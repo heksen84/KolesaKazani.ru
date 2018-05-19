@@ -18,11 +18,11 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-2">123</div>
-    <div class="col-8">
-      123
+    <div class="col-4" style="text-align:center"><h1>test</h1></div>
+    <div class="col-4" style="text-align:center">
+      <h1>test</h1>
     </div>
-    <div class="col-2">123</div>
+    <div class="col-4" style="text-align:center"><h1>test</h1></div>
   </div>
 </div>
 <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
