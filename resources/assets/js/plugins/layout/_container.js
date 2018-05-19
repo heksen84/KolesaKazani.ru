@@ -1,6 +1,6 @@
 export default {
 
-  name: 'xcontainer',
+  name: 'xcontainer'  ,
   mixins: [],
 
   directives: {
