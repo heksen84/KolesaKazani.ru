@@ -20849,7 +20849,7 @@ var render = function() {
                 [_vm._v("АксуМаркет")]
               ),
               _vm._v(" "),
-              _c("div", { staticStyle: { "font-size": "20px" } }, [
+              _c("div", { staticStyle: { "font-size": "18px" } }, [
                 _vm._v("доска объявлений")
               ])
             ]

@@ -29,6 +29,14 @@
 }
 
 body {
+  background-image: url("/images/fon.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
   margin: 0;
   padding: 0;
 }

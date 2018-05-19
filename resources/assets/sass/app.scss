@@ -1,5 +1,6 @@
 // -------- константы --------
 $my_grey: rgb(100,100,100);
+$body-bg: transparent;
 
 // ***************************
 ::-webkit-scrollbar{
@@ -26,8 +27,15 @@ $my_grey: rgb(100,100,100);
 ::-webkit-scrollbar-thumb:active{
  background: white;
 }
-
 body {
+ background-image: url('/images/fon.jpg');
+ background-size: cover;
+ background-position: center;
+ background-repeat: no-repeat;
+ background-attachment: fixed;
+ -moz-background-size: cover;
+ -webkit-background-size: cover;
+ -o-background-size: cover;
   margin:0;
   padding:0;
 }
