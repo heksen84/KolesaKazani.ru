@@ -1,12 +1,13 @@
 export default {
 
-  name: 'col',
+  name: 'my_col',
   mixins: [],
 
   directives: {
   },
 
   props: {
+    id: String
   },
 
   computed: {
@@ -17,7 +18,7 @@ export default {
   },
 
   mounted () {
-	//alert("mounted");
+	alert("col");
   },
 
   watch: {

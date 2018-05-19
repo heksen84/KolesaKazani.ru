@@ -1,12 +1,13 @@
 export default {
 
-  name: 'contaner',
+  name: 'my_container',
   mixins: [],
 
   directives: {
   },
 
   props: {
+    id: String
   },
 
   computed: {
@@ -17,6 +18,7 @@ export default {
   },
 
   mounted () {
+    	alert("container");
   },
 
   watch: {

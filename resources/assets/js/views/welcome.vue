@@ -1,12 +1,9 @@
 <template>
   <div>
     <h1>AksuMarket</h1>
-    <container>
-      <row>
-        <col>123</col>
-        <col>345</col>
-      </row>
-    </container>
+    <my_container></my_container>
+    <my_row></my_row>
+    <my_col></my_col>
   </div>
 </template>
 <script>

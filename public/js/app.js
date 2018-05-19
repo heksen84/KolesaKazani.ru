@@ -1724,9 +1724,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -20052,19 +20049,11 @@ var render = function() {
     [
       _c("h1", [_vm._v("AksuMarket")]),
       _vm._v(" "),
-      _c(
-        "container",
-        [
-          _c("row", [
-            _c("col"),
-            _vm._v("123"),
-            _vm._v(" "),
-            _c("col"),
-            _vm._v("345")
-          ])
-        ],
-        1
-      )
+      _c("my_container"),
+      _vm._v(" "),
+      _c("my_row"),
+      _vm._v(" "),
+      _c("my_col")
     ],
     1
   )
@@ -31085,12 +31074,14 @@ if (token) {
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
 
-  name: 'col',
+  name: 'my_col',
   mixins: [],
 
   directives: {},
 
-  props: {},
+  props: {
+    id: String
+  },
 
   computed: {
     classes: function classes() {
@@ -31099,7 +31090,7 @@ if (token) {
   },
 
   mounted: function mounted() {
-    //alert("mounted");
+    alert("col");
   },
 
 
@@ -31122,12 +31113,14 @@ if (token) {
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
 
-  name: 'contaner',
+  name: 'my_container',
   mixins: [],
 
   directives: {},
 
-  props: {},
+  props: {
+    id: String
+  },
 
   computed: {
     classes: function classes() {
@@ -31135,7 +31128,9 @@ if (token) {
     }
   },
 
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    alert("container");
+  },
 
 
   watch: {
@@ -31157,12 +31152,14 @@ if (token) {
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
 
-  name: 'row',
+  name: 'my_row',
   mixins: [],
 
   directives: {},
 
-  props: {},
+  props: {
+    id: String
+  },
 
   computed: {
     classes: function classes() {
@@ -31171,7 +31168,7 @@ if (token) {
   },
 
   mounted: function mounted() {
-    //alert("mounted");
+    alert("row");
   },
 
 
@@ -31197,10 +31194,17 @@ if (token) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__container__ = __webpack_require__("./resources/assets/js/plugins/layout/_container.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__row__ = __webpack_require__("./resources/assets/js/plugins/layout/_row.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__col__ = __webpack_require__("./resources/assets/js/plugins/layout/_col.js");
+/* unused harmony reexport my_container */
+/* unused harmony reexport my_row */
+/* unused harmony reexport my_col */
 
 
 
 
+
+
+
+var layout = {};
 
 layout.install = function install(Vue) {
   Vue.component(__WEBPACK_IMPORTED_MODULE_1__container__["a" /* default */].name, __WEBPACK_IMPORTED_MODULE_1__container__["a" /* default */]);

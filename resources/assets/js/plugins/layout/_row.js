@@ -1,12 +1,13 @@
 export default {
 
-  name: 'row',
+  name: 'my_row',
   mixins: [],
 
   directives: {
   },
 
   props: {
+    id: String
   },
 
   computed: {
@@ -17,7 +18,7 @@ export default {
   },
 
   mounted () {
-	//alert("mounted");
+	   alert("row");
   },
 
   watch: {
