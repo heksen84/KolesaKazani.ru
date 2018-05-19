@@ -1730,6 +1730,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var items = [{ isActive: true, age: 40, first_name: 'Dickerson', last_name: 'Macdonald' }, { isActive: false, age: 21, first_name: 'Larsen', last_name: 'Shaw' }, { isActive: false, age: 89, first_name: 'Geneva', last_name: 'Wilson' }, { isActive: true, age: 38, first_name: 'Jami', last_name: 'Carney' }];
 
@@ -20817,29 +20826,60 @@ var render = function() {
       _c(
         "b-row",
         [
+          _c("b-col", { staticStyle: { "text-align": "center" } }, [
+            _vm._v("\n        Вход\n        ")
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-row",
+        [
           _c(
             "b-col",
             {
               staticStyle: { "text-align": "center" },
-              attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" }
+              attrs: { cols: "12", sm: "12", md: "12", lg: "2", xl: "2" }
             },
-            [_c("h1", [_vm._v("АксуМаркет")])]
+            [
+              _c(
+                "div",
+                { staticStyle: { "font-size": "36px", "margin-top": "10px" } },
+                [_vm._v("АксуМаркет")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticStyle: { "font-size": "20px" } }, [
+                _vm._v("доска объявлений")
+              ])
+            ]
           ),
           _vm._v(" "),
           _c(
             "b-col",
             {
               staticStyle: { "text-align": "center" },
-              attrs: { cols: "12", sm: "12", md: "8", lg: "8", xl: "8" }
+              attrs: { cols: "12", sm: "12", md: "12", lg: "8", xl: "8" }
             },
-            [_vm._v("Variable width content")]
+            [
+              _c("input", {
+                staticStyle: {
+                  "margin-top": "35px",
+                  "font-size": "22px",
+                  width: "70%"
+                },
+                attrs: { type: "text" }
+              }),
+              _vm._v(" "),
+              _c("button", [_vm._v("найти")])
+            ]
           ),
           _vm._v(" "),
           _c(
             "b-col",
             {
               staticStyle: { "text-align": "center" },
-              attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" }
+              attrs: { cols: "12", sm: "12", md: "12", lg: "2", xl: "2" }
             },
             [_c("h2", [_vm._v("Разместить объявление")])]
           )
