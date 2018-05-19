@@ -1,7 +1,7 @@
 require('./bootstrap');
 
 import Vue from 'vue'
-import layout from './plugins/layout'
+import VueFlexGrid from 'vue-flex-grid'
 import welcome from './views/welcome.vue'
 import home from './views/home.vue'
 import profile from './views/profile.vue'
@@ -9,7 +9,7 @@ import passwordreset from './views/auth/passwordreset.vue'
 import login from './views/auth/login.vue'
 import register from './views/auth/register.vue'
 
-Vue.use(layout);
+Vue.use(VueFlexGrid);
 
 const app = new Vue({
     el: '#app',
