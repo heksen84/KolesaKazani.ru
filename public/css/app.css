@@ -1,1 +1,73 @@
-::-webkit-scrollbar{width:8px;background:#fff}::-webkit-scrollbar:horizontal{height:7px;background:#fff}::-webkit-scrollbar-thumb{width:8px;background:#fff;border:1px solid #000;border-radius:2px}::-webkit-scrollbar-thumb:horizontal{height:8px;background:#fff}::-webkit-scrollbar-thumb:active,::-webkit-scrollbar-thumb:hover{background:#fff}.custom-file-input:lang(en)~.custom-file-label:after{content:"Browse1"}@font-face{font-family:carefree;src:url(/fonts/carefree.ttf?f3db7a9cf88f94961dd173624793c336) format("truetype");font-weight:400}.carefree-font{font-size:20px;line-height:30px}#title{font-size:90px;line-height:110px;margin:10px;color:grey}#desc{font-size:20px;color:#323232;margin-top:-5px}#index_content h5,.grey{color:#646464}.error_control{color:#ff3737;font-size:12px}
+::-webkit-scrollbar {
+  width: 8px;
+  background: white;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 7px;
+  background: white;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 8px;
+  background: white;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  height: 8px;
+  background: white;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: white;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: white;
+}
+
+.custom-file-input:lang(en) ~ .custom-file-label::after {
+  content: "Browse1";
+}
+
+@font-face {
+  font-family: 'carefree';
+  src: url(/fonts/carefree.ttf?f3db7a9cf88f94961dd173624793c336) format("truetype");
+  font-weight: normal;
+}
+
+.carefree-font {
+  /*	font-family: $title-font;*/
+  font-size: 20px;
+  line-height: 30px;
+}
+
+#title {
+  font-size: 90px;
+  /*	font-family: $title-font;*/
+  line-height: 110px;
+  margin: 10px;
+  color: grey;
+}
+
+#desc {
+  font-size: 20px;
+  color: #323232;
+  margin-top: -5px;
+}
+
+#index_content h5 {
+  color: #646464;
+}
+
+.grey {
+  color: #646464;
+}
+
+.error_control {
+  color: #ff3737;
+  font-size: 12px;
+}
+
