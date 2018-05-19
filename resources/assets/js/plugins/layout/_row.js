@@ -1,6 +1,6 @@
 export default {
 
-  name: 'my_row',
+  name: 'xrow',
   mixins: [],
 
   directives: {

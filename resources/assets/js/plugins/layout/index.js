@@ -1,22 +1,22 @@
 import './simple-grid.css'
-import my_container from './_container'
-import my_row       from './_row'
-import my_col       from './_col'
+import xcontainer from './_container'
+import xrow from './_row'
+import xcol from './_col'
 
 
 export {
-  my_container,
-  my_row,
-  my_col
+  xcontainer,
+  xrow,
+  xcol
 }
 
 const layout = {}
 
 
 layout.install = function install (Vue) {
-  Vue.component(my_container.name, my_container)
-  Vue.component(my_row.name, my_row)
-  Vue.component(my_col.name, my_col)
+  Vue.component(xcontainer.name, xcontainer)
+  Vue.component(xrow.name, xrow)
+  Vue.component(xcol.name, xcol)
 }
 
 export default layout

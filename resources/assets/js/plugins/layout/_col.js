@@ -1,6 +1,6 @@
 export default {
 
-  name: 'my_col',
+  name: 'xcol',
   mixins: [],
 
   directives: {

@@ -1,6 +1,6 @@
 export default {
 
-  name: 'my_container',
+  name: 'xcontainer',
   mixins: [],
 
   directives: {

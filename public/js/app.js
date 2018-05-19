@@ -20049,11 +20049,11 @@ var render = function() {
     [
       _c("h1", [_vm._v("AksuMarket")]),
       _vm._v(" "),
-      _c("my_container"),
+      _c("xcontainer"),
       _vm._v(" "),
-      _c("my_row"),
+      _c("xrow"),
       _vm._v(" "),
-      _c("my_col")
+      _c("xcol")
     ],
     1
   )
@@ -31074,7 +31074,7 @@ if (token) {
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
 
-  name: 'my_col',
+  name: 'xcol',
   mixins: [],
 
   directives: {},
@@ -31113,7 +31113,7 @@ if (token) {
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
 
-  name: 'my_container',
+  name: 'xcontainer',
   mixins: [],
 
   directives: {},
@@ -31152,7 +31152,7 @@ if (token) {
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
 
-  name: 'my_row',
+  name: 'xrow',
   mixins: [],
 
   directives: {},
@@ -31194,9 +31194,9 @@ if (token) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__container__ = __webpack_require__("./resources/assets/js/plugins/layout/_container.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__row__ = __webpack_require__("./resources/assets/js/plugins/layout/_row.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__col__ = __webpack_require__("./resources/assets/js/plugins/layout/_col.js");
-/* unused harmony reexport my_container */
-/* unused harmony reexport my_row */
-/* unused harmony reexport my_col */
+/* unused harmony reexport xcontainer */
+/* unused harmony reexport xrow */
+/* unused harmony reexport xcol */
 
 
 
