@@ -1,0 +1,71 @@
+//import 'material-design-icons-iconfont/dist/material-design-icons.min.css' // Ensure you are using css-loader
+// -------- константы --------
+$my_grey: rgb(100,100,100);
+
+// ***************************
+::-webkit-scrollbar{
+ width: 8px;
+ background: white;
+}
+::-webkit-scrollbar:horizontal{
+ height: 7px;
+ background: white;
+}
+::-webkit-scrollbar-thumb{
+ width: 8px;
+ background: white;
+ border: 1px solid black;
+ border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:horizontal{
+ height: 8px;
+ background: white;
+}
+::-webkit-scrollbar-thumb:hover{
+ background: white;
+}
+::-webkit-scrollbar-thumb:active{
+ background: white;
+}
+.custom-file-input:lang(en)~.custom-file-label::after {
+    content: "Browse1";
+}
+
+@font-face {
+  font-family: 'carefree';
+  src: url('../fonts/carefree.ttf') format('truetype');
+  font-weight: normal;
+}
+
+$title-font: 'carefree';
+
+.carefree-font {
+/*	font-family: $title-font;*/
+	font-size:20px;
+	line-height: 30px;
+}
+#title {
+	font-size:90px;
+/*	font-family: $title-font;*/
+	line-height: 110px;
+	margin:10px;
+  color:grey;
+}
+
+#desc {
+	font-size:20px;
+  color:rgb(50,50,50);
+  margin-top: -5px;
+}
+
+#index_content h5 {
+ color: $my_grey;
+}
+
+.grey {
+  color: $my_grey;
+}
+.error_control {
+  color: rgb(255,55,55);
+  font-size: 12px;
+}
