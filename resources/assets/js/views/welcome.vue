@@ -3,7 +3,7 @@
     <grid>
     <row :reverse="false">123</row>
     <row :reverse="false">
-      <column :xs="12" :sm="4" :md="4" :lg="4" style="text-align:left">
+      <column :xs="12" :sm="4" :md="4" :lg="4" style="text-align:center">
         <h1>АксуМаркет</h1>
       </column>
       <column :xs="12" :sm="4" :md="4" :lg="4" style="text-align:center">
@@ -14,7 +14,6 @@
       </column>
     </row>
   </grid>
-
   </div>
 </template>
 <script>

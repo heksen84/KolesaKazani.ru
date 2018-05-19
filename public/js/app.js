@@ -1734,7 +1734,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -20814,7 +20813,7 @@ var render = function() {
               _c(
                 "column",
                 {
-                  staticStyle: { "text-align": "left" },
+                  staticStyle: { "text-align": "center" },
                   attrs: { xs: 12, sm: 4, md: 4, lg: 4 }
                 },
                 [_c("h1", [_vm._v("АксуМаркет")])]
