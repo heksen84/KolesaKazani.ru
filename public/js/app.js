@@ -20845,7 +20845,13 @@ var render = function() {
             [
               _c(
                 "div",
-                { staticStyle: { "font-size": "36px", "margin-top": "10px" } },
+                {
+                  staticStyle: {
+                    "font-size": "36px",
+                    "margin-top": "10px",
+                    "text-decoration": "underline"
+                  }
+                },
                 [_vm._v("АксуМаркет")]
               ),
               _vm._v(" "),

@@ -11,8 +11,6 @@ import passwordreset from './views/auth/passwordreset.vue'
 import login from './views/auth/login.vue'
 import register from './views/auth/register.vue'
 
-
-
 Vue.use(layout);
 
 const app = new Vue({

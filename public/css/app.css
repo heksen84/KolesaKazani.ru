@@ -29,6 +29,8 @@
 }
 
 body {
+  margin: 0;
+  padding: 0;
   background-image: url("/images/fon.jpg");
   background-size: cover;
   background-position: center;
@@ -37,7 +39,5 @@ body {
   -moz-background-size: cover;
   -webkit-background-size: cover;
   -o-background-size: cover;
-  margin: 0;
-  padding: 0;
 }
 
