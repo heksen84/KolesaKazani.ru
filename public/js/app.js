@@ -1722,6 +1722,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -20044,7 +20049,23 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    [_c("h1", [_vm._v("AksuMarket")]), _vm._v(" "), _c("layout")],
+    [
+      _c("h1", [_vm._v("AksuMarket")]),
+      _vm._v(" "),
+      _c(
+        "container",
+        [
+          _c("row", [
+            _c("col"),
+            _vm._v("123"),
+            _vm._v(" "),
+            _c("col"),
+            _vm._v("345")
+          ])
+        ],
+        1
+      )
+    ],
     1
   )
 }
@@ -31062,9 +31083,9 @@ if (token) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony default export */ var _unused_webpack_default_export = ({
+/* harmony default export */ __webpack_exports__["a"] = ({
 
-  name: 'layout',
+  name: 'col',
   mixins: [],
 
   directives: {},
@@ -31088,20 +31109,20 @@ if (token) {
 
   render: function render(h) {
     var div = document.createElement('div');
-    div.innerHTML = "Приветики, хули.";
+    div.innerHTML = "col";
     document.body.appendChild(div);
   }
 });
 
 /***/ }),
 
-/***/ "./resources/assets/js/plugins/layout/_layout.js":
+/***/ "./resources/assets/js/plugins/layout/_container.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
 
-  name: 'layout',
+  name: 'contaner',
   mixins: [],
 
   directives: {},
@@ -31123,7 +31144,7 @@ if (token) {
 
   render: function render(h) {
     var div = document.createElement('div');
-    div.innerHTML = "Здрасти.";
+    div.innerHTML = "container";
     document.body.appendChild(div);
   }
 });
@@ -31134,9 +31155,9 @@ if (token) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony default export */ var _unused_webpack_default_export = ({
+/* harmony default export */ __webpack_exports__["a"] = ({
 
-  name: 'layout',
+  name: 'row',
   mixins: [],
 
   directives: {},
@@ -31173,7 +31194,7 @@ if (token) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__simple_grid_css__ = __webpack_require__("./resources/assets/js/plugins/layout/simple-grid.css");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__simple_grid_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__simple_grid_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__layout__ = __webpack_require__("./resources/assets/js/plugins/layout/_layout.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__container__ = __webpack_require__("./resources/assets/js/plugins/layout/_container.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__row__ = __webpack_require__("./resources/assets/js/plugins/layout/_row.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__col__ = __webpack_require__("./resources/assets/js/plugins/layout/_col.js");
 
@@ -31181,11 +31202,13 @@ if (token) {
 
 
 
-__WEBPACK_IMPORTED_MODULE_1__layout__["a" /* default */].install = function install(Vue) {
-  Vue.component(__WEBPACK_IMPORTED_MODULE_1__layout__["a" /* default */].name, __WEBPACK_IMPORTED_MODULE_1__layout__["a" /* default */]);
+layout.install = function install(Vue) {
+  Vue.component(__WEBPACK_IMPORTED_MODULE_1__container__["a" /* default */].name, __WEBPACK_IMPORTED_MODULE_1__container__["a" /* default */]);
+  Vue.component(__WEBPACK_IMPORTED_MODULE_2__row__["a" /* default */].name, __WEBPACK_IMPORTED_MODULE_2__row__["a" /* default */]);
+  Vue.component(__WEBPACK_IMPORTED_MODULE_3__col__["a" /* default */].name, __WEBPACK_IMPORTED_MODULE_3__col__["a" /* default */]);
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_1__layout__["a" /* default */]);
+/* harmony default export */ __webpack_exports__["a"] = (layout);
 
 /***/ }),
 

@@ -1,6 +1,6 @@
 export default {
 
-  name: 'layout',
+  name: 'contaner',
   mixins: [],
 
   directives: {
@@ -26,7 +26,7 @@ export default {
 
   render (h) {
   var div = document.createElement('div');
-  div.innerHTML = "Здрасти.";
+  div.innerHTML = "container";
   document.body.appendChild(div);
   }
 }

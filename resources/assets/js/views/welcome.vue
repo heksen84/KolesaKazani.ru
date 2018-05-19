@@ -1,7 +1,12 @@
 <template>
   <div>
     <h1>AksuMarket</h1>
-    <layout></layout>
+    <container>
+      <row>
+        <col>123</col>
+        <col>345</col>
+      </row>
+    </container>
   </div>
 </template>
 <script>

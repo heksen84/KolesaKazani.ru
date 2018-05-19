@@ -1,6 +1,6 @@
 export default {
 
-  name: 'layout',
+  name: 'col',
   mixins: [],
 
   directives: {
@@ -27,7 +27,7 @@ export default {
 
   render (h) {
   var div = document.createElement('div');
-  div.innerHTML = "Приветики, хули.";
+  div.innerHTML = "col";
   document.body.appendChild(div);
   }
 }
