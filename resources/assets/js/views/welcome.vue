@@ -2,8 +2,8 @@
   <b-container fluid>
     <b-row>
         <b-col style="text-align:center">
-        <div class="auth_button" id="button_login">Вход</div>
-        <div class="auth_button" id="button_reg">Регистрация</div>
+          <div class="auth_button" id="button_login">Вход</div>
+          <div class="auth_button" id="button_reg">Регистрация</div>
         </b-col>
     </b-row>
     <b-row>
@@ -20,9 +20,23 @@
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
         <div id="new_advert_block">
           <h2>Разместить объявление</h2>
-      </div>
+        </div>
         </b-col>
     </b-row>
+
+    <!-- категории -->
+    <b-row>
+        <b-col cols="12" sm="12" md="12" lg="4" xl="4" style="text-align:center">
+            <div class="auth_button">категория1</div>
+        </b-col>
+        <b-col cols="12" sm="12" md="12" lg="4" xl="4" style="text-align:center">
+            <div class="auth_button">категория2</div>
+        </b-col>
+        <b-col cols="12" sm="12" md="12" lg="4" xl="4" style="text-align:center">
+            <div class="auth_button">категория3</div>
+        </b-col>
+    </b-row>
+
 </b-container>
 </template>
 

@@ -1744,6 +1744,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var items = [{ isActive: true, age: 40, first_name: 'Dickerson', last_name: 'Macdonald' }, { isActive: false, age: 21, first_name: 'Larsen', last_name: 'Shaw' }, { isActive: false, age: 89, first_name: 'Geneva', last_name: 'Wilson' }, { isActive: true, age: 38, first_name: 'Jami', last_name: 'Carney' }];
 
@@ -20915,6 +20929,39 @@ var render = function() {
                 _c("h2", [_vm._v("Разместить объявление")])
               ])
             ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            {
+              staticStyle: { "text-align": "center" },
+              attrs: { cols: "12", sm: "12", md: "12", lg: "4", xl: "4" }
+            },
+            [_c("div", { staticClass: "auth_button" }, [_vm._v("категория1")])]
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            {
+              staticStyle: { "text-align": "center" },
+              attrs: { cols: "12", sm: "12", md: "12", lg: "4", xl: "4" }
+            },
+            [_c("div", { staticClass: "auth_button" }, [_vm._v("категория2")])]
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            {
+              staticStyle: { "text-align": "center" },
+              attrs: { cols: "12", sm: "12", md: "12", lg: "4", xl: "4" }
+            },
+            [_c("div", { staticClass: "auth_button" }, [_vm._v("категория3")])]
           )
         ],
         1
