@@ -14,8 +14,8 @@
         </div>
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
-          <input type="text" style="text-align:center;margin-top:25px;font-size:18px;padding:5px;width:90%;border:1px solid grey;border-radius:5px" placeholder="Строка поиска"></input>
-          <button style="margin:2px;padding:7px;background:white;border:1px solid grey;border-radius:5px">найти</button>
+          <input type="text" style="text-align:center;margin-top:25px;font-size:18px;padding:5px;width:87%;border:1px solid grey;border-radius:8px;color:rgb(50,50,50)" placeholder="Строка поиска"></input>
+          <button style="margin:3px;padding:7px;background:rgb(100,100,200);color:white;letter-spacing:1px;font-size:16px;border:1px solid white;border-radius:3px">найти</button>
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
         <div id="new_advert_block">

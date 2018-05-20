@@ -20900,9 +20900,10 @@ var render = function() {
                   "margin-top": "25px",
                   "font-size": "18px",
                   padding: "5px",
-                  width: "90%",
+                  width: "87%",
                   border: "1px solid grey",
-                  "border-radius": "5px"
+                  "border-radius": "8px",
+                  color: "rgb(50,50,50)"
                 },
                 attrs: { type: "text", placeholder: "Строка поиска" }
               }),
@@ -20911,11 +20912,14 @@ var render = function() {
                 "button",
                 {
                   staticStyle: {
-                    margin: "2px",
+                    margin: "3px",
                     padding: "7px",
-                    background: "white",
-                    border: "1px solid grey",
-                    "border-radius": "5px"
+                    background: "rgb(100,100,200)",
+                    color: "white",
+                    "letter-spacing": "1px",
+                    "font-size": "16px",
+                    border: "1px solid white",
+                    "border-radius": "3px"
                   }
                 },
                 [_vm._v("найти")]
