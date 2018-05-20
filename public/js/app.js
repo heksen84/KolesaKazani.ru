@@ -20912,7 +20912,7 @@ var render = function() {
                 "button",
                 {
                   staticStyle: {
-                    margin: "3px",
+                    margin: "5px",
                     padding: "10px",
                     background: "rgb(100,100,200)",
                     color: "white",
@@ -20920,7 +20920,7 @@ var render = function() {
                     "font-weight": "bold",
                     "font-size": "16px",
                     border: "1px solid white",
-                    "border-radius": "3px"
+                    "border-radius": "5px"
                   }
                 },
                 [_vm._v("найти")]

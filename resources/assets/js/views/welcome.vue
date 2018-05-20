@@ -15,7 +15,7 @@
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
           <input type="text" style="text-align:center;margin-top:25px;font-size:19px;padding:5px;width:80%;border:1px solid grey;border-radius:8px;color:rgb(50,50,50)" placeholder="Строка поиска"></input>
-          <button style="margin:3px;padding:10px;background:rgb(100,100,200);color:white;letter-spacing:2px;font-weight:bold;font-size:16px;border:1px solid white;border-radius:3px">найти</button>
+          <button style="margin:5px;padding:10px;background:rgb(100,100,200);color:white;letter-spacing:2px;font-weight:bold;font-size:16px;border:1px solid white;border-radius:5px">найти</button>
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
         <div id="new_advert_block">
