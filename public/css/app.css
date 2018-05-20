@@ -56,6 +56,21 @@ body {
   -moz-background-size: cover;
   -webkit-background-size: cover;
   -o-background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+
+#auth_button {
+  padding: 5px;
+  background: #64c864;
+  border: 1px solid white;
+  width: 100px;
+  border-radius: 8px;
+  margin: 3px auto;
+}
+
+#auth_button:hover {
+  background: #78dc78;
 }
 
 #logo_block {
@@ -69,5 +84,10 @@ body {
   background: #c86464;
   border: 2px solid white;
   border-radius: 8px;
+  cursor: pointer;
+}
+
+#new_advert_block:hover {
+  background: #dc7878;
 }
 

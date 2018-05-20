@@ -1,8 +1,8 @@
 <template>
   <b-container fluid>
     <b-row>
-        <b-col style="text-align:center;padding:5px">
-        Вход
+        <b-col style="text-align:center">
+        <div id="auth_button">Вход</div>
         </b-col>
     </b-row>
     <b-row>

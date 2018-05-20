@@ -20830,11 +20830,9 @@ var render = function() {
       _c(
         "b-row",
         [
-          _c(
-            "b-col",
-            { staticStyle: { "text-align": "center", padding: "5px" } },
-            [_vm._v("\n        Вход\n        ")]
-          )
+          _c("b-col", { staticStyle: { "text-align": "center" } }, [
+            _c("div", { attrs: { id: "auth_button" } }, [_vm._v("Вход")])
+          ])
         ],
         1
       ),
