@@ -25,11 +25,11 @@
     </b-row>
 
     <!-- категории -->
-    <b-row>
+    <!--<b-row>
         <b-col v-for="(item, index) in items" :key="index" cols="12" sm="12" md="12" lg="4" xl="4" style="text-align:center">
             <div class="auth_button">{{ item.name }}</div>
         </b-col>
-    </b-row>
+    </b-row>-->
 
 </b-container>
 </template>

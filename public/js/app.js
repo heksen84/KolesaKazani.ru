@@ -20942,25 +20942,6 @@ var render = function() {
           )
         ],
         1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-row",
-        _vm._l(_vm.items, function(item, index) {
-          return _c(
-            "b-col",
-            {
-              key: index,
-              staticStyle: { "text-align": "center" },
-              attrs: { cols: "12", sm: "12", md: "12", lg: "4", xl: "4" }
-            },
-            [
-              _c("div", { staticClass: "auth_button" }, [
-                _vm._v(_vm._s(item.name))
-              ])
-            ]
-          )
-        })
       )
     ],
     1
