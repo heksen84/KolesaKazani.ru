@@ -9,8 +9,8 @@
     <b-row>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
           <div id="logo_block">
-          <div style="font-size:36px;margin-top:2px;text-decoration:underline">АксуМаркет</div>
-          <div style="font-size:21px;color:yellow">доска объявлений</div>
+          <div style="font-size:36px;text-decoration:underline">АксуМаркет</div>
+          <div style="font-size:20px;color:yellow">доска объявлений г. Аксу</div>
         </div>
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
@@ -26,7 +26,7 @@
 
     <!-- категории -->
     <b-row>
-        <b-col v-for="item in items" cols="12" sm="12" md="12" lg="4" xl="4" style="text-align:center">
+        <b-col v-for="(item, index) in items" :key="index" cols="12" sm="12" md="12" lg="4" xl="4" style="text-align:center">
             <div class="auth_button">{{ item.name }}</div>
         </b-col>
     </b-row>
