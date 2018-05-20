@@ -20916,7 +20916,7 @@ var render = function() {
                     padding: "7px",
                     background: "rgb(100,100,200)",
                     color: "white",
-                    "letter-spacing": "1px",
+                    "letter-spacing": "2px",
                     "font-size": "16px",
                     border: "1px solid white",
                     "border-radius": "3px"
