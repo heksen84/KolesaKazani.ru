@@ -20878,7 +20878,7 @@ var render = function() {
                   {
                     staticStyle: {
                       "font-size": "36px",
-                      "margin-top": "3px",
+                      "margin-top": "2px",
                       "text-decoration": "underline"
                     }
                   },
@@ -20914,7 +20914,9 @@ var render = function() {
                 attrs: { type: "text", placeholder: "Строка поиска" }
               }),
               _vm._v(" "),
-              _c("button", [_vm._v("найти")])
+              _c("button", { staticStyle: { margin: "5px", padding: "2px" } }, [
+                _vm._v("найти")
+              ])
             ]
           ),
           _vm._v(" "),

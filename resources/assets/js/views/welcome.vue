@@ -9,13 +9,13 @@
     <b-row>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
           <div id="logo_block">
-          <div style="font-size:36px;margin-top:3px;text-decoration:underline">АксуМаркет</div>
+          <div style="font-size:36px;margin-top:2px;text-decoration:underline">АксуМаркет</div>
           <div style="font-size:21px;color:yellow">доска объявлений</div>
         </div>
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
           <input type="text" style="text-align:center;margin-top:28px;font-size:20px;padding:5px;width:91%;border:none;border-radius:10px" placeholder="Строка поиска"></input>
-          <button>найти</button>
+          <button style="margin:5px;padding:2px">найти</button>
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
         <div id="new_advert_block">
