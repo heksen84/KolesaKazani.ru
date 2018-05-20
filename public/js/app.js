@@ -20897,19 +20897,29 @@ var render = function() {
               _c("input", {
                 staticStyle: {
                   "text-align": "center",
-                  "margin-top": "28px",
-                  "font-size": "20px",
+                  "margin-top": "25px",
+                  "font-size": "18px",
                   padding: "5px",
-                  width: "91%",
-                  border: "none",
-                  "border-radius": "10px"
+                  width: "90%",
+                  border: "1px solid grey",
+                  "border-radius": "5px"
                 },
                 attrs: { type: "text", placeholder: "Строка поиска" }
               }),
               _vm._v(" "),
-              _c("button", { staticStyle: { margin: "5px", padding: "2px" } }, [
-                _vm._v("найти")
-              ])
+              _c(
+                "button",
+                {
+                  staticStyle: {
+                    margin: "2px",
+                    padding: "7px",
+                    background: "white",
+                    border: "1px solid grey",
+                    "border-radius": "5px"
+                  }
+                },
+                [_vm._v("найти")]
+              )
             ]
           ),
           _vm._v(" "),
