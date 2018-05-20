@@ -13,7 +13,7 @@
         </div>
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
-          <input type="text" style="margin-top:35px;font-size:22px;width:90%" placeholder="Строка поиска"></input>
+          <input type="text" style="margin-top:26px;padding:5px;font-size:22px;width:90%" placeholder="Строка поиска"></input>
           <button>найти</button>
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">

@@ -20876,7 +20876,8 @@ var render = function() {
             [
               _c("input", {
                 staticStyle: {
-                  "margin-top": "35px",
+                  "margin-top": "26px",
+                  padding: "5px",
                   "font-size": "22px",
                   width: "90%"
                 },

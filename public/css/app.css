@@ -59,7 +59,8 @@ body {
 }
 
 .block1 {
-  padding: 5px;
+  padding: 7px;
   background: #6464c8;
+  border: 1px solid white;
 }
 
