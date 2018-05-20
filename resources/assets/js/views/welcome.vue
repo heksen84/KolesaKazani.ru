@@ -26,14 +26,8 @@
 
     <!-- категории -->
     <b-row>
-        <b-col cols="12" sm="12" md="12" lg="4" xl="4" style="text-align:center">
-            <div class="auth_button">категория1</div>
-        </b-col>
-        <b-col cols="12" sm="12" md="12" lg="4" xl="4" style="text-align:center">
-            <div class="auth_button">категория2</div>
-        </b-col>
-        <b-col cols="12" sm="12" md="12" lg="4" xl="4" style="text-align:center">
-            <div class="auth_button">категория3</div>
+        <b-col v-for="item in items" cols="12" sm="12" md="12" lg="4" xl="4" style="text-align:center">
+            <div class="auth_button">{{ item.name }}</div>
         </b-col>
     </b-row>
 
@@ -42,10 +36,16 @@
 
 <script>
 const items = [
-  { isActive: true, age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
-  { isActive: false, age: 21, first_name: 'Larsen', last_name: 'Shaw' },
-  { isActive: false, age: 89, first_name: 'Geneva', last_name: 'Wilson' },
-  { isActive: true, age: 38, first_name: 'Jami', last_name: 'Carney' }
+  { name: "транспорт"},
+  { name: "недвижимость"},
+  { name: "бытовая техника"},
+  { name: "работа и бизнес"},
+  { name: "для дома и дачи"},
+  { name: "личные вещи"},
+  { name: "животные"},
+  { name: "хобби и отдых"},
+  { name: "услуги"},
+  { name: "другое"}
 ]
 
 export default {
