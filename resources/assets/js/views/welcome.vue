@@ -1,7 +1,7 @@
 <template>
   <b-container fluid>
     <b-row>
-        <b-col style="text-align:center">
+        <b-col style="text-align:center;padding:5px">
         Вход
         </b-col>
     </b-row>
@@ -13,7 +13,7 @@
         </div>
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
-          <input type="text" style="margin-top:26px;padding:5px;font-size:22px;width:90%" placeholder="Строка поиска"></input>
+          <input type="text" style="margin-top:28px;font-size:20px;padding:5px;width:91%;border:none;border-radius:10px" placeholder="Строка поиска"></input>
           <button>найти</button>
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">

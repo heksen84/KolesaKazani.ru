@@ -20830,9 +20830,11 @@ var render = function() {
       _c(
         "b-row",
         [
-          _c("b-col", { staticStyle: { "text-align": "center" } }, [
-            _vm._v("\n        Вход\n        ")
-          ])
+          _c(
+            "b-col",
+            { staticStyle: { "text-align": "center", padding: "5px" } },
+            [_vm._v("\n        Вход\n        ")]
+          )
         ],
         1
       ),
@@ -20876,10 +20878,12 @@ var render = function() {
             [
               _c("input", {
                 staticStyle: {
-                  "margin-top": "26px",
+                  "margin-top": "28px",
+                  "font-size": "20px",
                   padding: "5px",
-                  "font-size": "22px",
-                  width: "90%"
+                  width: "91%",
+                  border: "none",
+                  "border-radius": "10px"
                 },
                 attrs: { type: "text", placeholder: "Строка поиска" }
               }),
