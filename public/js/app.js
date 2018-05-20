@@ -1739,6 +1739,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 var items = [{ isActive: true, age: 40, first_name: 'Dickerson', last_name: 'Macdonald' }, { isActive: false, age: 21, first_name: 'Larsen', last_name: 'Shaw' }, { isActive: false, age: 89, first_name: 'Geneva', last_name: 'Wilson' }, { isActive: true, age: 38, first_name: 'Jami', last_name: 'Carney' }];
 
@@ -20840,23 +20844,25 @@ var render = function() {
             "b-col",
             {
               staticStyle: { "text-align": "center" },
-              attrs: { cols: "12", sm: "12", md: "12", lg: "2", xl: "2" }
+              attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
             },
             [
-              _c(
-                "div",
-                {
-                  staticStyle: {
-                    "font-size": "36px",
-                    "margin-top": "10px",
-                    "text-decoration": "underline"
-                  }
-                },
-                [_vm._v("АксуМаркет")]
-              ),
-              _vm._v(" "),
-              _c("div", { staticStyle: { "font-size": "18px" } }, [
-                _vm._v("доска объявлений")
+              _c("div", { staticClass: "block1" }, [
+                _c(
+                  "div",
+                  {
+                    staticStyle: {
+                      "font-size": "36px",
+                      "margin-top": "10px",
+                      "text-decoration": "underline"
+                    }
+                  },
+                  [_vm._v("АксуМаркет")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticStyle: { "font-size": "18px" } }, [
+                  _vm._v("доска объявлений")
+                ])
               ])
             ]
           ),
@@ -20865,16 +20871,16 @@ var render = function() {
             "b-col",
             {
               staticStyle: { "text-align": "center" },
-              attrs: { cols: "12", sm: "12", md: "12", lg: "8", xl: "8" }
+              attrs: { cols: "12", sm: "12", md: "12", lg: "6", xl: "6" }
             },
             [
               _c("input", {
                 staticStyle: {
                   "margin-top": "35px",
                   "font-size": "22px",
-                  width: "70%"
+                  width: "90%"
                 },
-                attrs: { type: "text" }
+                attrs: { type: "text", placeholder: "Строка поиска" }
               }),
               _vm._v(" "),
               _c("button", [_vm._v("найти")])
@@ -20885,9 +20891,13 @@ var render = function() {
             "b-col",
             {
               staticStyle: { "text-align": "center" },
-              attrs: { cols: "12", sm: "12", md: "12", lg: "2", xl: "2" }
+              attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
             },
-            [_c("h2", [_vm._v("Разместить объявление")])]
+            [
+              _c("div", { staticClass: "block1" }, [
+                _c("h2", [_vm._v("Разместить объявление")])
+              ])
+            ]
           )
         ],
         1

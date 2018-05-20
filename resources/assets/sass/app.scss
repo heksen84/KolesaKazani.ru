@@ -22,9 +22,21 @@
 ::-webkit-scrollbar-thumb:active{
  background: white;
 }
+::-webkit-input-placeholder {
+ text-align: center;
+}
+:-moz-placeholder { /* Firefox 18- */
+ text-align: center;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+ text-align: center;
+}
+:-ms-input-placeholder {
+ text-align: center;
+}
+
 body {
- margin:0;
- padding:0;
+ color:white;
  background-image: url('/images/fon.jpg');
  background-size: cover;
  background-position: center;
@@ -33,4 +45,8 @@ body {
 -moz-background-size: cover;
 -webkit-background-size: cover;
 -o-background-size: cover;
+}
+.block1 {
+  padding:5px;
+  background: rgb(100,100,200);
 }
