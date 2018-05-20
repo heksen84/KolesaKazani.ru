@@ -20864,7 +20864,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticStyle: { "font-size": "20px", color: "yellow" } },
+                  { staticStyle: { "font-size": "21px", color: "yellow" } },
                   [_vm._v("доска объявлений")]
                 )
               ])
