@@ -20917,6 +20917,7 @@ var render = function() {
                     background: "rgb(100,100,200)",
                     color: "white",
                     "letter-spacing": "2px",
+                    "font-weight": "bold",
                     "font-size": "16px",
                     border: "1px solid white",
                     "border-radius": "3px"
