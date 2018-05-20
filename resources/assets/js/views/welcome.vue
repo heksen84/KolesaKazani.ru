@@ -2,13 +2,14 @@
   <b-container fluid>
     <b-row>
         <b-col style="text-align:center">
-        <div id="auth_button">Вход</div>
+        <div class="auth_button" id="button_login">Вход</div>
+        <div class="auth_button" id="button_reg">Регистрация</div>
         </b-col>
     </b-row>
     <b-row>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
           <div id="logo_block">
-          <div style="font-size:36px;margin-top:10px;text-decoration:underline">АксуМаркет</div>
+          <div style="font-size:36px;margin-top:3px;text-decoration:underline">АксуМаркет</div>
           <div style="font-size:21px;color:yellow">доска объявлений</div>
         </div>
         </b-col>

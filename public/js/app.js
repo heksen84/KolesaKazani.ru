@@ -1743,6 +1743,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 var items = [{ isActive: true, age: 40, first_name: 'Dickerson', last_name: 'Macdonald' }, { isActive: false, age: 21, first_name: 'Larsen', last_name: 'Shaw' }, { isActive: false, age: 89, first_name: 'Geneva', last_name: 'Wilson' }, { isActive: true, age: 38, first_name: 'Jami', last_name: 'Carney' }];
 
@@ -20831,7 +20832,17 @@ var render = function() {
         "b-row",
         [
           _c("b-col", { staticStyle: { "text-align": "center" } }, [
-            _c("div", { attrs: { id: "auth_button" } }, [_vm._v("Вход")])
+            _c(
+              "div",
+              { staticClass: "auth_button", attrs: { id: "button_login" } },
+              [_vm._v("Вход")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "auth_button", attrs: { id: "button_reg" } },
+              [_vm._v("Регистрация")]
+            )
           ])
         ],
         1
@@ -20853,7 +20864,7 @@ var render = function() {
                   {
                     staticStyle: {
                       "font-size": "36px",
-                      "margin-top": "10px",
+                      "margin-top": "3px",
                       "text-decoration": "underline"
                     }
                   },

@@ -60,17 +60,18 @@ body {
   padding: 0;
 }
 
-#auth_button {
-  padding: 5px;
+.auth_button {
+  padding: 2px;
   background: #64c864;
   border: 1px solid white;
   width: 100px;
-  border-radius: 8px;
+  border-radius: 9px;
   margin: 5px auto;
   cursor: default;
+  display: inline-block;
 }
 
-#auth_button:hover {
+.auth_button:hover {
   background: #78dc78;
 }
 
@@ -78,6 +79,7 @@ body {
   padding: 7px;
   background: #6464c8;
   border: 1px solid white;
+  border-radius: 8px;
   cursor: default;
 }
 
