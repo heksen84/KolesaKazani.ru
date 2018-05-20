@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- Ilya Bobkov Vue+Laravel Aksu 2018(R) -->
 <html lang="{{ app()->getLocale() }}">
 <head>
   <meta charset="utf-8">
