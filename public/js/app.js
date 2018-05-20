@@ -20898,9 +20898,9 @@ var render = function() {
                 staticStyle: {
                   "text-align": "center",
                   "margin-top": "25px",
-                  "font-size": "18px",
+                  "font-size": "19px",
                   padding: "5px",
-                  width: "87%",
+                  width: "80%",
                   border: "1px solid grey",
                   "border-radius": "8px",
                   color: "rgb(50,50,50)"
@@ -20913,7 +20913,7 @@ var render = function() {
                 {
                   staticStyle: {
                     margin: "3px",
-                    padding: "7px",
+                    padding: "10px",
                     background: "rgb(100,100,200)",
                     color: "white",
                     "letter-spacing": "2px",
