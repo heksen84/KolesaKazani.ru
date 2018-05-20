@@ -7,17 +7,17 @@
     </b-row>
     <b-row>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
-          <div class="block1">
+          <div id="logo_block">
           <div style="font-size:36px;margin-top:10px;text-decoration:underline">АксуМаркет</div>
-          <div style="font-size:18px">доска объявлений</div>
+          <div style="font-size:20px;color:yellow">доска объявлений</div>
         </div>
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
-          <input type="text" style="margin-top:28px;font-size:20px;padding:5px;width:91%;border:none;border-radius:10px" placeholder="Строка поиска"></input>
+          <input type="text" style="text-align:center;margin-top:28px;font-size:20px;padding:5px;width:91%;border:none;border-radius:10px" placeholder="Строка поиска"></input>
           <button>найти</button>
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
-        <div class="block1">
+        <div id="new_advert_block">
           <h2>Разместить объявление</h2>
       </div>
         </b-col>

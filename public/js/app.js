@@ -20849,7 +20849,7 @@ var render = function() {
               attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
             },
             [
-              _c("div", { staticClass: "block1" }, [
+              _c("div", { attrs: { id: "logo_block" } }, [
                 _c(
                   "div",
                   {
@@ -20862,9 +20862,11 @@ var render = function() {
                   [_vm._v("АксуМаркет")]
                 ),
                 _vm._v(" "),
-                _c("div", { staticStyle: { "font-size": "18px" } }, [
-                  _vm._v("доска объявлений")
-                ])
+                _c(
+                  "div",
+                  { staticStyle: { "font-size": "20px", color: "yellow" } },
+                  [_vm._v("доска объявлений")]
+                )
               ])
             ]
           ),
@@ -20878,6 +20880,7 @@ var render = function() {
             [
               _c("input", {
                 staticStyle: {
+                  "text-align": "center",
                   "margin-top": "28px",
                   "font-size": "20px",
                   padding: "5px",
@@ -20899,7 +20902,7 @@ var render = function() {
               attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
             },
             [
-              _c("div", { staticClass: "block1" }, [
+              _c("div", { attrs: { id: "new_advert_block" } }, [
                 _c("h2", [_vm._v("Разместить объявление")])
               ])
             ]

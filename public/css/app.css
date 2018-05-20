@@ -58,9 +58,16 @@ body {
   -o-background-size: cover;
 }
 
-.block1 {
+#logo_block {
   padding: 7px;
   background: #6464c8;
   border: 1px solid white;
+}
+
+#new_advert_block {
+  padding: 7px;
+  background: #c86464;
+  border: 2px solid white;
+  border-radius: 8px;
 }
 
