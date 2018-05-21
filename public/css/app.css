@@ -61,7 +61,7 @@ body {
 }
 
 .auth_button {
-  padding: 2px;
+  padding: 3px;
   background: #64c864;
   border: 1px solid white;
   width: 100px;
@@ -101,7 +101,7 @@ body {
   border-radius: 5px;
   padding: 5px;
   text-align: center;
-  font-size: 22px;
+  font-size: 20px;
   width: 240px;
   /*height:100px;*/
   background: #64c8c8;

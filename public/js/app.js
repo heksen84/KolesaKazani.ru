@@ -20963,7 +20963,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("b-row", { staticStyle: { "margin-top": "15px" } }),
+      _c("b-row", { staticStyle: { "margin-top": "30px" } }),
       _vm._v(" "),
       _vm._l(Math.ceil(Object.keys(_vm.categories).length / 4), function(i) {
         return _c(
