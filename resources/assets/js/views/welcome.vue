@@ -24,10 +24,11 @@
         </b-col>
     </b-row>
 
+    <b-row style="margin-top:15px"></b-row>
     <!-- категории -->
     <b-row v-for="i in Math.ceil(Object.keys(categories).length / 4)" v-bind:key=i>
-      <b-col md="3" v-for="item in categories.slice((i - 1) * 4, i * 4)" v-bind:key=item.name>
-        <div class="items" v-on:click="redirect">{{ item.name }}</div>
+      <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in categories.slice((i - 1) * 4, i * 4)" v-bind:key=item.name>
+        <div class="category_item" v-on:click="redirect">{{ item.name }}</div>
       </b-col>
     </b-row>
 

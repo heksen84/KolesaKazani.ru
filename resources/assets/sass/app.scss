@@ -83,3 +83,20 @@ padding:0;
 #new_advert_block:hover {
   background: rgb(220,120,120);
 }
+
+.category_item {
+  margin: 5px auto;
+  border: 1px solid rgb(230,230,230);
+  border-radius: 5px;
+  padding: 5px;
+  text-align:center;
+  font-size:22px;
+  width:240px;
+  /*height:100px;*/
+  background: rgb(100,200,200);
+}
+.category_item:hover {
+ cursor:pointer;
+ background: rgb(250,110,110);
+ color:white;
+}

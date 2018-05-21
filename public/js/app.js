@@ -1753,6 +1753,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -20962,16 +20963,27 @@ var render = function() {
         1
       ),
       _vm._v(" "),
+      _c("b-row", { staticStyle: { "margin-top": "15px" } }),
+      _vm._v(" "),
       _vm._l(Math.ceil(Object.keys(_vm.categories).length / 4), function(i) {
         return _c(
           "b-row",
           { key: i },
           _vm._l(_vm.categories.slice((i - 1) * 4, i * 4), function(item) {
-            return _c("b-col", { key: item.name, attrs: { md: "3" } }, [
-              _c("div", { staticClass: "items", on: { click: _vm.redirect } }, [
-                _vm._v(_vm._s(item.name))
-              ])
-            ])
+            return _c(
+              "b-col",
+              {
+                key: item.name,
+                attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "category_item", on: { click: _vm.redirect } },
+                  [_vm._v(_vm._s(item.name))]
+                )
+              ]
+            )
           })
         )
       })
