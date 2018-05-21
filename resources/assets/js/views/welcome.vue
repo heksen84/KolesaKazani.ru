@@ -25,16 +25,18 @@
     </b-row>
 
     <!-- категории -->
-    <!--<b-row>
-        <b-col v-for="(item, index) in items" :key="index" cols="12" sm="12" md="12" lg="4" xl="4" style="text-align:center">
+    <<b-row>
+        <b-col v-for="(item, index) in categories" :key="index" cols="12" sm="12" md="12" lg="4" xl="4" style="text-align:center">
             <div class="auth_button">{{ item.name }}</div>
         </b-col>
-    </b-row>-->
+    </b-row>
 
 </b-container>
 </template>
 
 <script>
+import { post, get, interceptors } from './../helpers/api'
+
 const items = [
   { name: "транспорт"},
   { name: "недвижимость"},
@@ -51,8 +53,19 @@ const items = [
 export default {
   data () {
     return {
-      items: items
+      categories: []
     }
+  },
+  created() {
+    this.categories={};
+    get("/categories").then((res) => {
+        this.categories=res.data;
+        console.log(this.categories);
+    }).catch((err) => {
+    console.log(err.response.data);
+    if(err.response.status === 422) {
+    }
+});
   }
 }
 </script>
