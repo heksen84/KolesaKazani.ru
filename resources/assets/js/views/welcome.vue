@@ -25,10 +25,10 @@
     </b-row>
 
     <!-- категории -->
-    <<b-row>
-        <b-col v-for="(item, index) in categories" :key="index" cols="12" sm="12" md="12" lg="4" xl="4" style="text-align:center">
-            <div class="auth_button">{{ item.name }}</div>
-        </b-col>
+    <b-row v-for="i in Math.ceil(Object.keys(categories).length / 4)" v-bind:key=i>
+      <b-col md="3" v-for="item in categories.slice((i - 1) * 4, i * 4)" v-bind:key=item.name>
+        <div class="items" v-on:click="redirect">{{ item.name }}</div>
+      </b-col>
     </b-row>
 
 </b-container>
@@ -36,19 +36,6 @@
 
 <script>
 import { post, get, interceptors } from './../helpers/api'
-
-const items = [
-  { name: "транспорт"},
-  { name: "недвижимость"},
-  { name: "бытовая техника"},
-  { name: "работа и бизнес"},
-  { name: "для дома и дачи"},
-  { name: "личные вещи"},
-  { name: "животные"},
-  { name: "хобби и отдых"},
-  { name: "услуги"},
-  { name: "другое"}
-]
 
 export default {
   data () {
@@ -62,10 +49,16 @@ export default {
         this.categories=res.data;
         console.log(this.categories);
     }).catch((err) => {
-    console.log(err.response.data);
-    if(err.response.status === 422) {
+      console.log(err.response.data);
+      if(err.response.status === 422) {
+      }
+    });
+  },
+  methods: {
+    redirect: function(event) {
+    },
+    search_numbers() {
     }
-});
   }
 }
 </script>

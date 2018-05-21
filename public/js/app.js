@@ -1756,8 +1756,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-var items = [{ name: "транспорт" }, { name: "недвижимость" }, { name: "бытовая техника" }, { name: "работа и бизнес" }, { name: "для дома и дачи" }, { name: "личные вещи" }, { name: "животные" }, { name: "хобби и отдых" }, { name: "услуги" }, { name: "другое" }];
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1775,6 +1773,11 @@ var items = [{ name: "транспорт" }, { name: "недвижимость" 
       console.log(err.response.data);
       if (err.response.status === 422) {}
     });
+  },
+
+  methods: {
+    redirect: function redirect(event) {},
+    search_numbers: function search_numbers() {}
   }
 });
 
@@ -20959,27 +20962,21 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm._v("\n    <"),
-      _c(
-        "b-row",
-        _vm._l(_vm.categories, function(item, index) {
-          return _c(
-            "b-col",
-            {
-              key: index,
-              staticStyle: { "text-align": "center" },
-              attrs: { cols: "12", sm: "12", md: "12", lg: "4", xl: "4" }
-            },
-            [
-              _c("div", { staticClass: "auth_button" }, [
+      _vm._l(Math.ceil(Object.keys(_vm.categories).length / 4), function(i) {
+        return _c(
+          "b-row",
+          { key: i },
+          _vm._l(_vm.categories.slice((i - 1) * 4, i * 4), function(item) {
+            return _c("b-col", { key: item.name, attrs: { md: "3" } }, [
+              _c("div", { staticClass: "items", on: { click: _vm.redirect } }, [
                 _vm._v(_vm._s(item.name))
               ])
-            ]
-          )
-        })
-      )
+            ])
+          })
+        )
+      })
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
