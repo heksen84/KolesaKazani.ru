@@ -1622,6 +1622,15 @@ module.exports = {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -20939,23 +20948,9 @@ var render = function() {
                 attrs: { type: "text", placeholder: "Строка поиска" }
               }),
               _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticStyle: {
-                    margin: "5px",
-                    padding: "10px",
-                    background: "rgb(100,100,200)",
-                    color: "white",
-                    "letter-spacing": "2px",
-                    "font-weight": "bold",
-                    "font-size": "16px",
-                    border: "1px solid white",
-                    "border-radius": "5px"
-                  }
-                },
-                [_vm._v("найти")]
-              )
+              _c("button", { attrs: { id: "button_search" } }, [
+                _vm._v("найти")
+              ])
             ]
           ),
           _vm._v(" "),
@@ -21043,7 +21038,35 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "b-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "b-row",
+        [
+          _c("b-col", { staticStyle: { "text-align": "center" } }, [
+            _c("input", {
+              staticClass: "standart_input",
+              attrs: { type: "text", placeholder: "1" }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "standart_input",
+              attrs: { type: "text", placeholder: "2" }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "standart_input",
+              attrs: { type: "text", placeholder: "3" }
+            })
+          ])
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

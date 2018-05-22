@@ -72,6 +72,22 @@ padding:0;
   cursor:default;
 }
 
+#button_search {
+  margin:5px;
+  padding:10px;
+  background:rgb(100,100,200);
+  color:white;
+  letter-spacing:2px;
+  font-weight:bold;
+  font-size:16px;
+  border:1px solid white;
+  border-radius:5px
+}
+
+#button_search:hover {
+  background:rgb(120,120,220);
+}
+
 #new_advert_block {
   padding:7px;
   background: rgb(200,100,100);
@@ -96,6 +112,5 @@ padding:0;
 }
 .category_item:hover {
  cursor:pointer;
- background: rgb(100,100,100);
- color:yellow;
+ background: rgb(140,140,140);
 }

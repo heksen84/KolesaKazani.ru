@@ -83,6 +83,22 @@ body {
   cursor: default;
 }
 
+#button_search {
+  margin: 5px;
+  padding: 10px;
+  background: #6464c8;
+  color: white;
+  letter-spacing: 2px;
+  font-weight: bold;
+  font-size: 16px;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+#button_search:hover {
+  background: #7878dc;
+}
+
 #new_advert_block {
   padding: 7px;
   background: #c86464;
@@ -108,7 +124,6 @@ body {
 
 .category_item:hover {
   cursor: pointer;
-  background: #646464;
-  color: yellow;
+  background: #8c8c8c;
 }
 
