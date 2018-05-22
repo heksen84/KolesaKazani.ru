@@ -15,7 +15,7 @@
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
           <input type="text" style="text-align:center;margin-top:25px;font-size:19px;padding:5px;width:80%;border:1px solid grey;border-radius:8px;color:rgb(50,50,50)" placeholder="Строка поиска"></input>
-          <button id="button_search">найти</button>
+          <button id="button_search" @click="search">найти</button>
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
         <div id="new_advert_block">
@@ -28,7 +28,7 @@
     <!-- категории -->
     <b-row v-for="i in Math.ceil(Object.keys(categories).length / 4)" v-bind:key=i>
       <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in categories.slice((i - 1) * 4, i * 4)" v-bind:key=item.name>
-        <div class="category_item" v-on:click="redirect">{{ item.name }}</div>
+        <div class="category_item">{{ item.name }}</div>
       </b-col>
     </b-row>
 
@@ -61,6 +61,9 @@ export default {
     },
     register(event) {
       window.location='/register';
+    },
+    search(event) {
+      window.location='/search';
     }
   }
 }

@@ -1791,6 +1791,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     register: function register(event) {
       window.location = '/register';
+    },
+    search: function search(event) {
+      window.location = '/search';
     }
   }
 });
@@ -20948,9 +20951,11 @@ var render = function() {
                 attrs: { type: "text", placeholder: "Строка поиска" }
               }),
               _vm._v(" "),
-              _c("button", { attrs: { id: "button_search" } }, [
-                _vm._v("найти")
-              ])
+              _c(
+                "button",
+                { attrs: { id: "button_search" }, on: { click: _vm.search } },
+                [_vm._v("найти")]
+              )
             ]
           ),
           _vm._v(" "),
@@ -20984,11 +20989,9 @@ var render = function() {
                 attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
               },
               [
-                _c(
-                  "div",
-                  { staticClass: "category_item", on: { click: _vm.redirect } },
-                  [_vm._v(_vm._s(item.name))]
-                )
+                _c("div", { staticClass: "category_item" }, [
+                  _vm._v(_vm._s(item.name))
+                ])
               ]
             )
           })
