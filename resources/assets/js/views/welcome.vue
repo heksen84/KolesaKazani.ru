@@ -2,8 +2,8 @@
   <b-container fluid>
     <b-row>
         <b-col style="text-align:center">
-          <div class="auth_button" id="button_login">Вход</div>
-          <div class="auth_button" id="button_reg">Регистрация</div>
+          <div class="auth_button" id="button_login" @click="login">Вход</div>
+          <div class="auth_button" id="button_reg" @click="register">Регистрация</div>
         </b-col>
     </b-row>
     <b-row>
@@ -56,9 +56,11 @@ export default {
     });
   },
   methods: {
-    redirect: function(event) {
+    login(event) {
+      window.location='/login';
     },
-    search_numbers() {
+    register(event) {
+      window.location='/register';
     }
   }
 }

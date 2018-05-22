@@ -1777,8 +1777,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
-    redirect: function redirect(event) {},
-    search_numbers: function search_numbers() {}
+    login: function login(event) {
+      window.location = '/login';
+    },
+    register: function register(event) {
+      window.location = '/register';
+    }
   }
 });
 
@@ -20861,13 +20865,21 @@ var render = function() {
           _c("b-col", { staticStyle: { "text-align": "center" } }, [
             _c(
               "div",
-              { staticClass: "auth_button", attrs: { id: "button_login" } },
+              {
+                staticClass: "auth_button",
+                attrs: { id: "button_login" },
+                on: { click: _vm.login }
+              },
               [_vm._v("Вход")]
             ),
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "auth_button", attrs: { id: "button_reg" } },
+              {
+                staticClass: "auth_button",
+                attrs: { id: "button_reg" },
+                on: { click: _vm.register }
+              },
               [_vm._v("Регистрация")]
             )
           ])
