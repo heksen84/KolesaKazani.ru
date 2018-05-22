@@ -120,6 +120,7 @@ body {
   font-size: 20px;
   width: 240px;
   background: #787878;
+  opacity: 0.96;
 }
 
 .category_item:hover {
