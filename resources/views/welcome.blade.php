@@ -10,12 +10,12 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Доска объявлений АксуМаркет</title>
   <link rel="icon" href="{{ asset('public/shop.ico') }}">
-  <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
 </head>
 <body>
 <div id="app">
   <welcome></welcome>
 </div>
 <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
 </body>
 </html>

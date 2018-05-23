@@ -10,7 +10,7 @@
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
           <div id="logo_block">
           <div style="font-size:36px;text-decoration:underline">АксуМаркет</div>
-          <div style="font-size:20px;color:yellow">доска объявлений г. Аксу</div>
+          <div style="font-size:20px;color:yellow;margin-top:-5px">доска объявлений г. Аксу</div>
         </div>
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
@@ -19,7 +19,7 @@
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
         <div id="new_advert_block">
-          <h2>Разместить объявление</h2>
+          <h3>разместить объявление</h3>
         </div>
         </b-col>
     </b-row>
