@@ -67,7 +67,7 @@ body {
   width: 100px;
   border-radius: 5px;
   margin: 5px auto;
-  cursor: default;
+  cursor: pointer;
   display: inline-block;
 }
 
@@ -120,11 +120,11 @@ body {
   font-size: 20px;
   width: 240px;
   background: #737373;
-  opacity: 0.98;
+  opacity: 0.95;
+  cursor: pointer;
 }
 
 .category_item:hover {
-  cursor: pointer;
   background: #8c8c8c;
 }
 
