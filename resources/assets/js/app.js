@@ -1,8 +1,5 @@
 require('./bootstrap');
 
-import 'bootstrap/dist/css/bootstrap-grid.min.css'
-import 'bootstrap-vue/dist/bootstrap-vue.min.css'
-
 import Vue from 'vue'
 import welcome from './views/welcome.vue'
 import home from './views/home.vue'
@@ -12,6 +9,8 @@ import login from './views/auth/login.vue'
 import register from './views/auth/register.vue'
 
 // bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap-vue/dist/bootstrap-vue.min.css'
 import layout from 'bootstrap-vue/src/components/layout'
 import form from 'bootstrap-vue/src/components/form'
 import form_input from 'bootstrap-vue/src/components/form-input'
