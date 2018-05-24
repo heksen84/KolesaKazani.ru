@@ -22972,10 +22972,10 @@ var render = function() {
             {
               staticStyle: {
                 "text-align": "center",
-                margin: "3px auto",
+                margin: "1px auto",
                 padding: "20px",
                 background: "rgb(140,140,140)",
-                "border-radius": "8px",
+                "border-radius": "5px",
                 border: "1px solid white"
               },
               attrs: { cols: "12", sm: "12", md: "9", lg: "3", xl: "3" }
