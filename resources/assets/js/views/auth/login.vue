@@ -1,6 +1,9 @@
 <template>
-  <div>
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+  <b-container fluid>
+    <b-row>
+    <b-col cols="12" sm="12" md="9" lg="3" xl="3" style="text-align:center;margin:5px auto;padding:5px">
+    <h2>вход</h2>
+    <b-form @submit="onSubmit" @reset="onReset" v-if="show" style="width:99%">
       <b-form-group id="exampleInputGroup1"
                     label="Email address:"
                     label-for="exampleInput1"
@@ -40,7 +43,9 @@
       <b-button type="submit" variant="primary">Submit</b-button>
       <b-button type="reset" variant="danger">Reset</b-button>
     </b-form>
-  </div>
+  </b-col>
+  </b-row>
+</b-container>
 </template>
 
 <script>
