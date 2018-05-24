@@ -6,8 +6,7 @@
     <b-form @submit="onSubmit" @reset="onReset" v-if="show" style="width:99%">
       <b-form-group id="exampleInputGroup1"
                     label="Email address:"
-                    label-for="exampleInput1"
-                    description="We'll never share your email with anyone else.">
+                    label-for="exampleInput1">
         <b-form-input id="exampleInput1"
                       type="email"
                       v-model="form.email"
@@ -41,7 +40,7 @@
         </b-form-checkbox-group>
       </b-form-group>
       <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
+      <!--<b-button type="reset" variant="danger">Reset</b-button>-->
     </b-form>
   </b-col>
   </b-row>

@@ -1669,7 +1669,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -22997,9 +22996,7 @@ var render = function() {
                           attrs: {
                             id: "exampleInputGroup1",
                             label: "Email address:",
-                            "label-for": "exampleInput1",
-                            description:
-                              "We'll never share your email with anyone else."
+                            "label-for": "exampleInput1"
                           }
                         },
                         [
@@ -23118,12 +23115,6 @@ var render = function() {
                         "b-button",
                         { attrs: { type: "submit", variant: "primary" } },
                         [_vm._v("Submit")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-button",
-                        { attrs: { type: "reset", variant: "danger" } },
-                        [_vm._v("Reset")]
                       )
                     ],
                     1
