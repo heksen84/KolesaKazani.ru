@@ -23735,7 +23735,7 @@ var render = function() {
                               _c(
                                 "b-form-checkbox",
                                 { attrs: { value: "me" } },
-                                [_vm._v("Check me out")]
+                                [_vm._v("запомнить меня")]
                               )
                             ],
                             1
