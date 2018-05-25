@@ -23779,7 +23779,7 @@ var render = function() {
                       _c(
                         "b-button",
                         { attrs: { type: "submit", variant: "primary" } },
-                        [_vm._v("Войти")]
+                        [_vm._v("Продолжить")]
                       )
                     ],
                     1
