@@ -5,3 +5,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/newtrip', function () { return view('newtrip'); });
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/categories', 'CategoriesController@index');
+Route::get('/search', function () { return view('search'); });
