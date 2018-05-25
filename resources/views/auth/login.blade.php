@@ -18,7 +18,5 @@
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <script src="{{ asset('js/app.js') }}"></script>
 <style>
-body{
-  background: none;
-}
+  body { background: none;}
 </style>
