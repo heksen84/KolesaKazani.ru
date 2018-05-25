@@ -1665,7 +1665,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       form: {
         email: '',
-        name: '',
+        password: '',
         food: null,
         checked: []
       },
@@ -1678,21 +1678,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     onSubmit: function onSubmit(evt) {
       evt.preventDefault();
       alert(JSON.stringify(this.form));
-    },
-    onReset: function onReset(evt) {
-      var _this = this;
-
-      evt.preventDefault();
-      /* Reset our form values */
-      this.form.email = '';
-      this.form.name = '';
-      this.form.food = null;
-      this.form.checked = [];
-      /* Trick to reset/clear native browser form validation state */
-      this.show = false;
-      this.$nextTick(function () {
-        _this.show = true;
-      });
     }
   }
 });
@@ -23900,16 +23885,16 @@ var render = function() {
                           _c("b-form-input", {
                             attrs: {
                               id: "exampleInput2",
-                              type: "text",
+                              type: "password",
                               required: "",
                               placeholder: "Введи пароль"
                             },
                             model: {
-                              value: _vm.form.name,
+                              value: _vm.form.password,
                               callback: function($$v) {
-                                _vm.$set(_vm.form, "name", $$v)
+                                _vm.$set(_vm.form, "password", $$v)
                               },
-                              expression: "form.name"
+                              expression: "form.password"
                             }
                           })
                         ],

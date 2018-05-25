@@ -18,8 +18,8 @@
                     label="Твой пароль:"
                     label-for="exampleInput2">
         <b-form-input id="exampleInput2"
-                      type="text"
-                      v-model="form.name"
+                      type="password"
+                      v-model="form.password"
                       required
                       placeholder="Введи пароль">
         </b-form-input>
@@ -43,7 +43,7 @@ export default {
     return {
       form: {
         email: '',
-        name: '',
+        password: '',
         food: null,
         checked: []
       },
@@ -58,17 +58,6 @@ export default {
     onSubmit (evt) {
       evt.preventDefault();
       alert(JSON.stringify(this.form));
-    },
-    onReset (evt) {
-      evt.preventDefault();
-      /* Reset our form values */
-      this.form.email = '';
-      this.form.name = '';
-      this.form.food = null;
-      this.form.checked = [];
-      /* Trick to reset/clear native browser form validation state */
-      this.show = false;
-      this.$nextTick(() => { this.show = true });
     }
   }
 }
