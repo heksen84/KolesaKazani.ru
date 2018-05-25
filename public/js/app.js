@@ -22971,16 +22971,14 @@ var render = function() {
             {
               staticStyle: {
                 "text-align": "center",
-                margin: "1px auto",
-                padding: "20px",
-                background: "rgb(140,140,140)",
-                "border-radius": "5px",
-                border: "1px solid white"
+                margin: "auto",
+                "margin-top": "40px",
+                color: "grey"
               },
               attrs: { cols: "12", sm: "12", md: "9", lg: "3", xl: "3" }
             },
             [
-              _c("h2", [_vm._v("вход")]),
+              _c("h1", [_vm._v("Вход")]),
               _vm._v(" "),
               _vm.show
                 ? _c(
@@ -22995,7 +22993,7 @@ var render = function() {
                         {
                           attrs: {
                             id: "exampleInputGroup1",
-                            label: "Email address:",
+                            label: "Email адрес:",
                             "label-for": "exampleInput1"
                           }
                         },
@@ -23024,7 +23022,7 @@ var render = function() {
                         {
                           attrs: {
                             id: "exampleInputGroup2",
-                            label: "Your Name:",
+                            label: "Твой пароль:",
                             "label-for": "exampleInput2"
                           }
                         },
@@ -23114,7 +23112,7 @@ var render = function() {
                       _c(
                         "b-button",
                         { attrs: { type: "submit", variant: "primary" } },
-                        [_vm._v("Submit")]
+                        [_vm._v("Войти")]
                       )
                     ],
                     1

@@ -1,11 +1,11 @@
 <template>
   <b-container fluid>
     <b-row>
-    <b-col cols="12" sm="12" md="9" lg="3" xl="3" style="text-align:center;margin:1px auto;padding:20px;background:rgb(140,140,140);border-radius:5px;border:1px solid white">
-    <h2>вход</h2>
+    <b-col cols="12" sm="12" md="9" lg="3" xl="3" style="text-align:center;margin:auto;margin-top:40px;color:grey">
+    <h1>Вход</h1>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show" style="width:99%">
       <b-form-group id="exampleInputGroup1"
-                    label="Email address:"
+                    label="Email адрес:"
                     label-for="exampleInput1">
         <b-form-input id="exampleInput1"
                       type="email"
@@ -15,7 +15,7 @@
         </b-form-input>
       </b-form-group>
       <b-form-group id="exampleInputGroup2"
-                    label="Your Name:"
+                    label="Твой пароль:"
                     label-for="exampleInput2">
         <b-form-input id="exampleInput2"
                       type="text"
@@ -39,7 +39,7 @@
           <b-form-checkbox value="that">Check that out</b-form-checkbox>
         </b-form-checkbox-group>
       </b-form-group>
-      <b-button type="submit" variant="primary">Submit</b-button>
+      <b-button type="submit" variant="primary">Войти</b-button>
       <!--<b-button type="reset" variant="danger">Reset</b-button>-->
     </b-form>
   </b-col>
