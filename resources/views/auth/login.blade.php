@@ -8,7 +8,8 @@
         <meta name="description" content="get free numbers">
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
-          <title>МИР ВОКРУГ - онлайн-сервис для путешественников</title>
+        <title>Доска объявлений АксуМаркет</title>
+        <link rel="icon" href="{{ asset('public/shop.ico') }}">
         <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
     </head>
     <body>
