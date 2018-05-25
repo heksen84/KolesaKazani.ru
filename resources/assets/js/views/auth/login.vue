@@ -2,7 +2,7 @@
   <b-container fluid>
     <b-row>
     <b-col cols="12" sm="12" md="9" lg="3" xl="3" style="text-align:center;margin:auto;margin-top:40px;color:grey">
-    <h1>Вход</h1>
+    <h1>вход</h1>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show" style="width:99%">
       <b-form-group id="exampleInputGroup1"
                     label="Email адрес:"
@@ -11,7 +11,7 @@
                       type="email"
                       v-model="form.email"
                       required
-                      placeholder="Enter email">
+                      placeholder="Введи email">
         </b-form-input>
       </b-form-group>
       <b-form-group id="exampleInputGroup2"
@@ -21,22 +21,12 @@
                       type="text"
                       v-model="form.name"
                       required
-                      placeholder="Enter name">
+                      placeholder="Введи пароль">
         </b-form-input>
-      </b-form-group>
-      <b-form-group id="exampleInputGroup3"
-                    label="Food:"
-                    label-for="exampleInput3">
-        <b-form-select id="exampleInput3"
-                      :options="foods"
-                      required
-                      v-model="form.food">
-        </b-form-select>
       </b-form-group>
       <b-form-group id="exampleGroup4">
         <b-form-checkbox-group v-model="form.checked" id="exampleChecks">
           <b-form-checkbox value="me">Check me out</b-form-checkbox>
-          <b-form-checkbox value="that">Check that out</b-form-checkbox>
         </b-form-checkbox-group>
       </b-form-group>
       <b-button type="submit" variant="primary">Войти</b-button>

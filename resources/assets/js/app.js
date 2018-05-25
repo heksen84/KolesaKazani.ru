@@ -15,12 +15,14 @@ import layout from 'bootstrap-vue/src/components/layout'
 import form from 'bootstrap-vue/src/components/form'
 import form_input from 'bootstrap-vue/src/components/form-input'
 import form_group from 'bootstrap-vue/src/components/form-group'
+import form_checkbox from 'bootstrap-vue/src/components/form-checkbox'
 import button from 'bootstrap-vue/src/components/button'
 
 Vue.use(layout);
 Vue.use(form);
 Vue.use(form_input);
 Vue.use(form_group);
+Vue.use(form_checkbox);
 Vue.use(button);
 
 const app = new Vue({

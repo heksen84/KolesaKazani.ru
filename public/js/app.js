@@ -1659,16 +1659,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2100,6 +2090,391 @@ const components = {
   bBtn: __WEBPACK_IMPORTED_MODULE_0__button__["a" /* default */],
   bButtonClose: __WEBPACK_IMPORTED_MODULE_1__button_close__["a" /* default */],
   bBtnClose: __WEBPACK_IMPORTED_MODULE_1__button_close__["a" /* default */]
+}
+
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["b" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/form-checkbox/form-checkbox-group.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_options__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-options.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-size.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-state.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-custom.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__form_checkbox__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-checkbox/form-checkbox.js");
+
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  mixins: [
+    __WEBPACK_IMPORTED_MODULE_0__mixins_id__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_1__mixins_form__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_2__mixins_form_options__["a" /* default */]
+  ],
+  components: { bFormCheckbox: __WEBPACK_IMPORTED_MODULE_6__form_checkbox__["a" /* default */] },
+  render (h) {
+    const $slots = this.$slots
+
+    const checks = this.formOptions.map((option, idx) => {
+      return h(
+        'b-form-checkbox',
+        {
+          key: `check_${idx}_opt`,
+          props: {
+            id: this.safeId(`_BV_check_${idx}_opt_`),
+            name: this.name,
+            value: option.value,
+            required: this.name && this.required,
+            disabled: option.disabled
+          }
+        },
+        [h('span', { domProps: { innerHTML: option.text } })]
+      )
+    })
+    return h(
+      'div',
+      {
+        class: this.groupClasses,
+        attrs: {
+          id: this.safeId(),
+          role: 'group',
+          tabindex: '-1',
+          'aria-required': this.required ? 'true' : null,
+          'aria-invalid': this.computedAriaInvalid
+        }
+      },
+      [$slots.first, checks, $slots.default]
+    )
+  },
+  data () {
+    return {
+      localChecked: this.checked || [],
+      // Flag for children
+      is_RadioCheckGroup: true
+    }
+  },
+  model: {
+    prop: 'checked',
+    event: 'input'
+  },
+  props: {
+    checked: {
+      type: [String, Number, Object, Array, Boolean],
+      default: null
+    },
+    validated: {
+      type: Boolean,
+      default: false
+    },
+    ariaInvalid: {
+      type: [Boolean, String],
+      default: false
+    },
+    stacked: {
+      type: Boolean,
+      default: false
+    },
+    buttons: {
+      // Render as button style
+      type: Boolean,
+      default: false
+    },
+    buttonVariant: {
+      // Only applicable when rendered with button style
+      type: String,
+      default: 'secondary'
+    }
+  },
+  watch: {
+    checked (newVal, oldVal) {
+      this.localChecked = this.checked
+    },
+    localChecked (newVal, oldVal) {
+      this.$emit('input', newVal)
+    }
+  },
+  computed: {
+    groupClasses () {
+      if (this.buttons) {
+        return [
+          'btn-group-toggle',
+          this.stacked ? 'btn-group-vertical' : 'btn-group',
+          this.size ? `btn-group-${this.size}` : '',
+          this.validated ? `was-validated` : ''
+        ]
+      }
+      return [
+        this.sizeFormClass,
+        this.stacked && this.custom ? 'custom-controls-stacked' : '',
+        this.validated ? `was-validated` : ''
+      ]
+    },
+    computedAriaInvalid () {
+      if (
+        this.ariaInvalid === true ||
+        this.ariaInvalid === 'true' ||
+        this.ariaInvalid === ''
+      ) {
+        return 'true'
+      }
+      return this.get_State === false ? 'true' : null
+    },
+    get_State () {
+      // Child radios sniff this value
+      return this.computedState
+    }
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/form-checkbox/form-checkbox.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form_radio_check__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-radio-check.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-size.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-state.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-custom.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_loose_equal__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/loose-equal.js");
+
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  mixins: [
+    __WEBPACK_IMPORTED_MODULE_0__mixins_id__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_1__mixins_form_radio_check__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_2__mixins_form__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__["a" /* default */]
+  ],
+  render (h) {
+    const input = h('input', {
+      ref: 'check',
+      class: [
+        this.is_ButtonMode
+          ? ''
+          : this.is_Plain ? 'form-check-input' : 'custom-control-input',
+        this.get_StateClass
+      ],
+      directives: [
+        {
+          name: 'model',
+          rawName: 'v-model',
+          value: this.computedLocalChecked,
+          expression: 'computedLocalChecked'
+        }
+      ],
+      attrs: {
+        id: this.safeId(),
+        type: 'checkbox',
+        name: this.get_Name,
+        disabled: this.is_Disabled,
+        required: this.is_Required,
+        autocomplete: 'off',
+        'true-value': this.value,
+        'false-value': this.uncheckedValue,
+        'aria-required': this.is_Required ? 'true' : null
+      },
+      domProps: { value: this.value, checked: this.is_Checked },
+      on: {
+        focus: this.handleFocus,
+        blur: this.handleFocus,
+        change: this.emitChange,
+        __c: evt => {
+          const $$a = this.computedLocalChecked
+          const $$el = evt.target
+          if (Object(__WEBPACK_IMPORTED_MODULE_6__utils_array__["d" /* isArray */])($$a)) {
+            // Multiple checkbox
+            const $$v = this.value
+            let $$i = this._i($$a, $$v) // Vue's 'loose' Array.indexOf
+            if ($$el.checked) {
+              // Append value to array
+              $$i < 0 && (this.computedLocalChecked = $$a.concat([$$v]))
+            } else {
+              // Remove value from array
+              $$i > -1 &&
+                (this.computedLocalChecked = $$a
+                  .slice(0, $$i)
+                  .concat($$a.slice($$i + 1)))
+            }
+          } else {
+            // Single checkbox
+            this.computedLocalChecked = $$el.checked ? this.value : this.uncheckedValue
+          }
+        }
+      }
+    })
+
+    const description = h(
+      this.is_ButtonMode ? 'span' : 'label',
+      {
+        class: this.is_ButtonMode
+          ? null
+          : this.is_Plain ? 'form-check-label' : 'custom-control-label',
+        attrs: { for: this.is_ButtonMode ? null : this.safeId() }
+      },
+      [this.$slots.default]
+    )
+
+    if (!this.is_ButtonMode) {
+      return h(
+        'div',
+        {
+          class: [
+            this.is_Plain ? 'form-check' : this.labelClasses,
+            { 'form-check-inline': this.is_Plain && !this.is_Stacked },
+            { 'custom-control-inline': !this.is_Plain && !this.is_Stacked }
+          ]
+        },
+        [input, description]
+      )
+    } else {
+      return h('label', { class: [this.buttonClasses] }, [input, description])
+    }
+  },
+  props: {
+    value: {
+      default: true
+    },
+    uncheckedValue: {
+      // Not applicable in multi-check mode
+      default: false
+    },
+    indeterminate: {
+      // Not applicable in multi-check mode
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    labelClasses () {
+      return [
+        'custom-control',
+        'custom-checkbox',
+        this.get_Size ? `form-control-${this.get_Size}` : '',
+        this.get_StateClass
+      ]
+    },
+    is_Checked () {
+      const checked = this.computedLocalChecked
+      if (Object(__WEBPACK_IMPORTED_MODULE_6__utils_array__["d" /* isArray */])(checked)) {
+        for (let i = 0; i < checked.length; i++) {
+          if (Object(__WEBPACK_IMPORTED_MODULE_7__utils_loose_equal__["a" /* default */])(checked[i], this.value)) {
+            return true
+          }
+        }
+        return false
+      } else {
+        return Object(__WEBPACK_IMPORTED_MODULE_7__utils_loose_equal__["a" /* default */])(checked, this.value)
+      }
+    }
+  },
+  watch: {
+    computedLocalChecked (newVal, oldVal) {
+      if (Object(__WEBPACK_IMPORTED_MODULE_7__utils_loose_equal__["a" /* default */])(newVal, oldVal)) {
+        return
+      }
+      this.$emit('input', newVal)
+      this.$emit('update:indeterminate', this.$refs.check.indeterminate)
+    },
+    checked (newVal, oldVal) {
+      if (this.is_Child || Object(__WEBPACK_IMPORTED_MODULE_7__utils_loose_equal__["a" /* default */])(newVal, oldVal)) {
+        return
+      }
+      this.computedLocalChecked = newVal
+    },
+    indeterminate (newVal, oldVal) {
+      this.setIndeterminate(newVal)
+    }
+  },
+  methods: {
+    emitChange ({ target: { checked } }) {
+      // Change event is only fired via user interaction
+      // And we only emit the value of this checkbox
+      if (this.is_Child || Object(__WEBPACK_IMPORTED_MODULE_6__utils_array__["d" /* isArray */])(this.computedLocalChecked)) {
+        this.$emit('change', checked ? this.value : null)
+        if (this.is_Child) {
+          // If we are a child of form-checkbbox-group, emit change on parent
+          this.$parent.$emit('change', this.computedLocalChecked)
+        }
+      } else {
+        // Single radio mode supports unchecked value
+        this.$emit('change', checked ? this.value : this.uncheckedValue)
+      }
+      this.$emit('update:indeterminate', this.$refs.check.indeterminate)
+    },
+    setIndeterminate (state) {
+      // Indeterminate only supported in single checkbox mode
+      if (this.is_Child || Object(__WEBPACK_IMPORTED_MODULE_6__utils_array__["d" /* isArray */])(this.computedLocalChecked)) {
+        return
+      }
+      this.$refs.check.indeterminate = state
+      // Emit update event to prop
+      this.$emit('update:indeterminate', this.$refs.check.indeterminate)
+    }
+  },
+  mounted () {
+    // Set initial indeterminate state
+    this.setIndeterminate(this.indeterminate)
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/form-checkbox/index.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_checkbox__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-checkbox/form-checkbox.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__form_checkbox_group__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-checkbox/form-checkbox-group.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
+
+
+
+
+const components = {
+  bFormCheckbox: __WEBPACK_IMPORTED_MODULE_0__form_checkbox__["a" /* default */],
+  bCheckbox: __WEBPACK_IMPORTED_MODULE_0__form_checkbox__["a" /* default */],
+  bCheck: __WEBPACK_IMPORTED_MODULE_0__form_checkbox__["a" /* default */],
+  bFormCheckboxGroup: __WEBPACK_IMPORTED_MODULE_1__form_checkbox_group__["a" /* default */],
+  bCheckboxGroup: __WEBPACK_IMPORTED_MODULE_1__form_checkbox_group__["a" /* default */],
+  bCheckGroup: __WEBPACK_IMPORTED_MODULE_1__form_checkbox_group__["a" /* default */]
 }
 
 const VuePlugin = {
@@ -3516,6 +3891,241 @@ function clickHandlerFactory ({ disabled, tag, href, suppliedHandler, parent }) 
 
 /***/ }),
 
+/***/ "./node_modules/bootstrap-vue/src/mixins/form-custom.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+  computed: {
+    custom () {
+      return !this.plain
+    }
+  },
+  props: {
+    plain: {
+      type: Boolean,
+      default: false
+    }
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/mixins/form-options.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
+
+
+
+function isObject (obj) {
+  return obj && ({}).toString.call(obj) === '[object Object]'
+}
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+
+  props: {
+    options: {
+      type: [Array, Object],
+      default () {
+        return []
+      }
+    },
+    valueField: {
+      type: String,
+      default: 'value'
+    },
+    textField: {
+      type: String,
+      default: 'text'
+    },
+    disabledField: {
+      type: String,
+      default: 'disabled'
+    }
+  },
+  computed: {
+    formOptions () {
+      let options = this.options
+
+      const valueField = this.valueField
+      const textField = this.textField
+      const disabledField = this.disabledField
+
+      if (Object(__WEBPACK_IMPORTED_MODULE_0__utils_array__["d" /* isArray */])(options)) {
+        // Normalize flat-ish arrays to Array of Objects
+        return options.map(option => {
+          if (isObject(option)) {
+            return {
+              value: option[valueField],
+              text: String(option[textField]),
+              disabled: option[disabledField] || false
+            }
+          }
+          return {
+            value: option,
+            text: String(option),
+            disabled: false
+          }
+        })
+      } else {
+        // options is Object
+        // Normalize Objects to Array of Objects
+        return Object(__WEBPACK_IMPORTED_MODULE_1__utils_object__["c" /* keys */])(options).map(key => {
+          let option = options[key] || {}
+          if (isObject(option)) {
+            const value = option[valueField]
+            const text = option[textField]
+            return {
+              value: typeof value === 'undefined' ? key : value,
+              text: typeof text === 'undefined' ? key : String(text),
+              disabled: option[disabledField] || false
+            }
+          }
+          return {
+            value: key,
+            text: String(option),
+            disabled: false
+          }
+        })
+      }
+    }
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/mixins/form-radio-check.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/*
+ * form-radio & form-check mixin
+ *
+ */
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  data () {
+    return {
+      localChecked: this.checked,
+      hasFocus: false
+    }
+  },
+  model: {
+    prop: 'checked',
+    event: 'input'
+  },
+  props: {
+    value: {
+    },
+    checked: {
+      // This is the model, except when in group mode
+    },
+    buttonVariant: {
+      // Only applicable when rendered with button style
+      type: String,
+      default: null
+    }
+  },
+  computed: {
+    computedLocalChecked: {
+      get () {
+        if (this.is_Child) {
+          return this.$parent.localChecked
+        } else {
+          return this.localChecked
+        }
+      },
+      set (val) {
+        if (this.is_Child) {
+          this.$parent.localChecked = val
+        } else {
+          this.localChecked = val
+        }
+      }
+    },
+    is_Child () {
+      return Boolean(this.$parent && this.$parent.is_RadioCheckGroup)
+    },
+    is_Disabled () {
+      // Child can be disabled while parent isn't
+      return Boolean(this.is_Child ? (this.$parent.disabled || this.disabled) : this.disabled)
+    },
+    is_Required () {
+      return Boolean(this.is_Child ? this.$parent.required : this.required)
+    },
+    is_Plain () {
+      return Boolean(this.is_Child ? this.$parent.plain : this.plain)
+    },
+    is_Custom () {
+      return !this.is_Plain
+    },
+    get_Size () {
+      return this.is_Child ? this.$parent.size : this.size
+    },
+    get_State () {
+      // This is a tri-state prop (true, false, null)
+      if (this.is_Child && typeof this.$parent.get_State === 'boolean') {
+        return this.$parent.get_State
+      }
+      return this.computedState
+    },
+    get_StateClass () {
+      // This is a tri-state prop (true, false, null)
+      return typeof this.get_State === 'boolean' ? (this.get_State ? 'is-valid' : 'is-invalid') : ''
+    },
+    is_Stacked () {
+      return Boolean(this.is_Child && this.$parent.stacked)
+    },
+    is_Inline () {
+      return !this.is_Stacked
+    },
+    is_ButtonMode () {
+      return Boolean(this.is_Child && this.$parent.buttons)
+    },
+    get_ButtonVariant () {
+      // Local variant trumps parent variant
+      return this.buttonVariant || (this.is_Child ? this.$parent.buttonVariant : null) || 'secondary'
+    },
+    get_Name () {
+      return (this.is_Child ? (this.$parent.name || this.$parent.safeId()) : this.name) || null
+    },
+    buttonClasses () {
+      // Same for radio & check
+      return [
+        'btn',
+        `btn-${this.get_ButtonVariant}`,
+        this.get_Size ? `btn-${this.get_Size}` : '',
+        // 'disabled' class makes "button" look disabled
+        this.is_Disabled ? 'disabled' : '',
+        // 'active' class makes "button" look pressed
+        this.is_Checked ? 'active' : '',
+        // Focus class makes button look focused
+        this.hasFocus ? 'focus' : ''
+      ]
+    }
+  },
+  methods: {
+    handleFocus (evt) {
+      // When in buttons mode, we need to add 'focus' class to label when radio focused
+      if (this.is_ButtonMode && evt.target) {
+        if (evt.type === 'focus') {
+          this.hasFocus = true
+        } else if (evt.type === 'blur') {
+          this.hasFocus = false
+        }
+      }
+    }
+  }
+});
+
+
+/***/ }),
+
 /***/ "./node_modules/bootstrap-vue/src/mixins/form-size.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4104,6 +4714,65 @@ const eventOff = (el, evtName, handler) => {
 function identity (x) {
   return x
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/utils/loose-equal.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
+
+
+
+/**
+ * Quick object check - this is primarily used to tell
+ * Objects from primitive values when we know the value
+ * is a JSON-compliant type.
+ */
+function isObject (obj) {
+  return obj !== null && typeof obj === 'object'
+}
+
+/**
+ * Check if two values are loosely equal - that is,
+ * if they are plain objects, do they have the same shape?
+ * Returns boolean true or false
+ */
+function looseEqual (a, b) {
+  if (a === b) return true
+  const isObjectA = isObject(a)
+  const isObjectB = isObject(b)
+  if (isObjectA && isObjectB) {
+    try {
+      const isArrayA = Object(__WEBPACK_IMPORTED_MODULE_0__array__["d" /* isArray */])(a)
+      const isArrayB = Object(__WEBPACK_IMPORTED_MODULE_0__array__["d" /* isArray */])(b)
+      if (isArrayA && isArrayB) {
+        return a.length === b.length && a.every((e, i) => {
+          return looseEqual(e, b[i])
+        })
+      } else if (!isArrayA && !isArrayB) {
+        const keysA = Object(__WEBPACK_IMPORTED_MODULE_1__object__["c" /* keys */])(a)
+        const keysB = Object(__WEBPACK_IMPORTED_MODULE_1__object__["c" /* keys */])(b)
+        return keysA.length === keysB.length && keysA.every(key => {
+          return looseEqual(a[key], b[key])
+        })
+      } else {
+        return false
+      }
+    } catch (e) {
+      return false
+    }
+  } else if (!isObjectA && !isObjectB) {
+    return String(a) === String(b)
+  } else {
+    return false
+  }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (looseEqual);
 
 
 /***/ }),
@@ -22978,7 +23647,7 @@ var render = function() {
               attrs: { cols: "12", sm: "12", md: "9", lg: "3", xl: "3" }
             },
             [
-              _c("h1", [_vm._v("Вход")]),
+              _c("h1", [_vm._v("вход")]),
               _vm._v(" "),
               _vm.show
                 ? _c(
@@ -23003,7 +23672,7 @@ var render = function() {
                               id: "exampleInput1",
                               type: "email",
                               required: "",
-                              placeholder: "Enter email"
+                              placeholder: "Введи email"
                             },
                             model: {
                               value: _vm.form.email,
@@ -23032,7 +23701,7 @@ var render = function() {
                               id: "exampleInput2",
                               type: "text",
                               required: "",
-                              placeholder: "Enter name"
+                              placeholder: "Введи пароль"
                             },
                             model: {
                               value: _vm.form.name,
@@ -23040,34 +23709,6 @@ var render = function() {
                                 _vm.$set(_vm.form, "name", $$v)
                               },
                               expression: "form.name"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        {
-                          attrs: {
-                            id: "exampleInputGroup3",
-                            label: "Food:",
-                            "label-for": "exampleInput3"
-                          }
-                        },
-                        [
-                          _c("b-form-select", {
-                            attrs: {
-                              id: "exampleInput3",
-                              options: _vm.foods,
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.form.food,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "food", $$v)
-                              },
-                              expression: "form.food"
                             }
                           })
                         ],
@@ -23095,12 +23736,6 @@ var render = function() {
                                 "b-form-checkbox",
                                 { attrs: { value: "me" } },
                                 [_vm._v("Check me out")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "b-form-checkbox",
-                                { attrs: { value: "that" } },
-                                [_vm._v("Check that out")]
                               )
                             ],
                             1
@@ -34988,7 +35623,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_bootstrap_vue_src_components_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_bootstrap_vue_src_components_form_input__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-input/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_bootstrap_vue_src_components_form_group__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-group/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_bootstrap_vue_src_components_button__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_bootstrap_vue_src_components_form_checkbox__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-checkbox/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_bootstrap_vue_src_components_button__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/index.js");
 __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
@@ -35008,11 +35644,13 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
 
+
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_9_bootstrap_vue_src_components_layout__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_10_bootstrap_vue_src_components_form__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_11_bootstrap_vue_src_components_form_input__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_12_bootstrap_vue_src_components_form_group__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_13_bootstrap_vue_src_components_button__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_13_bootstrap_vue_src_components_form_checkbox__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_14_bootstrap_vue_src_components_button__["a" /* default */]);
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#app',
