@@ -12,10 +12,10 @@
         <link rel="icon" href="{{ asset('public/shop.ico') }}">
         <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
     </head>
-<body>
+    <body>
 <div id="app">
   <register></register>
 </div>
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <script src="{{ asset('js/app.js') }}"></script>
-</body>
-</html>
+<style>body { background: none;}</style>

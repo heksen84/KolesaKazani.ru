@@ -1724,8 +1724,76 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      form: {
+        email: '',
+        name: '',
+        food: null,
+        checked: []
+      },
+      foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
+      show: true
+    };
+  },
+
+  methods: {
+    onSubmit: function onSubmit(evt) {
+      evt.preventDefault();
+      alert(JSON.stringify(this.form));
+    },
+    onReset: function onReset(evt) {
+      var _this = this;
+
+      evt.preventDefault();
+      /* Reset our form values */
+      this.form.email = '';
+      this.form.name = '';
+      this.form.food = null;
+      this.form.checked = [];
+      /* Trick to reset/clear native browser form validation state */
+      this.show = false;
+      this.$nextTick(function () {
+        _this.show = true;
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -23607,7 +23675,140 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "b-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            {
+              staticStyle: {
+                "text-align": "center",
+                margin: "auto",
+                "margin-top": "40px",
+                color: "grey"
+              },
+              attrs: { cols: "12", sm: "12", md: "9", lg: "3", xl: "3" }
+            },
+            [
+              _c("h1", [_vm._v("регистрация")]),
+              _vm._v(" "),
+              _vm.show
+                ? _c(
+                    "b-form",
+                    {
+                      staticStyle: { width: "99%" },
+                      on: { submit: _vm.onSubmit, reset: _vm.onReset }
+                    },
+                    [
+                      _c(
+                        "b-form-group",
+                        {
+                          attrs: {
+                            id: "exampleInputGroup1",
+                            label: "Email адрес:",
+                            "label-for": "exampleInput1"
+                          }
+                        },
+                        [
+                          _c("b-form-input", {
+                            attrs: {
+                              id: "exampleInput1",
+                              type: "email",
+                              required: "",
+                              placeholder: "Введи email"
+                            },
+                            model: {
+                              value: _vm.form.email,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "email", $$v)
+                              },
+                              expression: "form.email"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        {
+                          attrs: {
+                            id: "exampleInputGroup2",
+                            label: "Твой пароль:",
+                            "label-for": "exampleInput2"
+                          }
+                        },
+                        [
+                          _c("b-form-input", {
+                            attrs: {
+                              id: "exampleInput2",
+                              type: "text",
+                              required: "",
+                              placeholder: "Введи пароль"
+                            },
+                            model: {
+                              value: _vm.form.name,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "name", $$v)
+                              },
+                              expression: "form.name"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        { attrs: { id: "exampleGroup4" } },
+                        [
+                          _c(
+                            "b-form-checkbox-group",
+                            {
+                              attrs: { id: "exampleChecks" },
+                              model: {
+                                value: _vm.form.checked,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.form, "checked", $$v)
+                                },
+                                expression: "form.checked"
+                              }
+                            },
+                            [
+                              _c(
+                                "b-form-checkbox",
+                                { attrs: { value: "me" } },
+                                [_vm._v("запомнить меня")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-button",
+                        { attrs: { type: "submit", variant: "primary" } },
+                        [_vm._v("Войти")]
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e()
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
