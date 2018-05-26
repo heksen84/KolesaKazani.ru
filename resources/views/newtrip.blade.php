@@ -13,9 +13,9 @@
     </head>
     <body>
 <div id="app">
-<newtrip></newtrip>
+  <newtrip></newtrip>
 </div>
-<link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
-<script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>
+<link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
+<script type="text/javascript" src="{{ mix('js/app.js') }}"></script>

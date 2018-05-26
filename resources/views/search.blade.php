@@ -15,7 +15,8 @@
 <div id="app">
   <search></search>
 </div>
-<script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
-<link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
 </body>
 </html>
+<script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
+<style>body { background: none;}</style>
