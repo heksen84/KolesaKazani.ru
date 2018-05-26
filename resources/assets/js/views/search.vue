@@ -1,4 +1,5 @@
 <template>
+	<h1>приветик</h1>
 </template>
 <script>
 export default {
@@ -7,7 +8,6 @@ export default {
 			}
 	},
 	created() {
-	  alert("home");
 	},
 components: { },
   methods: {
