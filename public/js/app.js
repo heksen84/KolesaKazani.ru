@@ -2090,7 +2090,7 @@ function handleFocus (evt) {
   if (evt.type === 'focusin') {
     Object(__WEBPACK_IMPORTED_MODULE_4__utils_dom__["a" /* addClass */])(evt.target, 'focus')
   } else if (evt.type === 'focusout') {
-    Object(__WEBPACK_IMPORTED_MODULE_4__utils_dom__["e" /* removeClass */])(evt.target, 'focus')
+    Object(__WEBPACK_IMPORTED_MODULE_4__utils_dom__["i" /* removeClass */])(evt.target, 'focus')
   }
 }
 
@@ -2175,6 +2175,646 @@ const components = {
   bBtn: __WEBPACK_IMPORTED_MODULE_0__button__["a" /* default */],
   bButtonClose: __WEBPACK_IMPORTED_MODULE_1__button_close__["a" /* default */],
   bBtnClose: __WEBPACK_IMPORTED_MODULE_1__button_close__["a" /* default */]
+}
+
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["b" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/carousel/carousel-slide.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__image_img__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/image/img.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_warn__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/warn.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  components: { bImg: __WEBPACK_IMPORTED_MODULE_0__image_img__["a" /* default */] },
+  mixins: [ __WEBPACK_IMPORTED_MODULE_2__mixins_id__["a" /* default */] ],
+  render (h) {
+    const $slots = this.$slots
+
+    let img = $slots.img
+    if (!img && (this.imgSrc || this.imgBlank)) {
+      img = h(
+        'b-img',
+        {
+          props: {
+            fluidGrow: true,
+            block: true,
+            src: this.imgSrc,
+            blank: this.imgBlank,
+            blankColor: this.imgBlankColor,
+            width: this.computedWidth,
+            height: this.computedHeight,
+            alt: this.imgAlt
+          }
+        }
+      )
+    }
+
+    const content = h(
+      this.contentTag,
+      { class: this.contentClasses },
+      [
+        this.caption ? h(this.captionTag, { domProps: { innerHTML: this.caption } }) : h(false),
+        this.text ? h(this.textTag, { domProps: { innerHTML: this.text } }) : h(false),
+        $slots.default
+      ]
+    )
+
+    return h(
+      'div',
+      {
+        class: [ 'carousel-item' ],
+        style: { background: this.background },
+        attrs: { id: this.safeId(), role: 'listitem' }
+      },
+      [ img, content ]
+    )
+  },
+  props: {
+    imgSrc: {
+      type: String,
+      default () {
+        if (this && this.src) {
+          // Deprecate src
+          Object(__WEBPACK_IMPORTED_MODULE_1__utils_warn__["a" /* default */])("b-carousel-slide: prop 'src' has been deprecated. Use 'img-src' instead")
+          return this.src
+        }
+        return null
+      }
+    },
+    src: {
+      // Deprecated: use img-src instead
+      type: String
+    },
+    imgAlt: {
+      type: String
+    },
+    imgWidth: {
+      type: [Number, String]
+    },
+    imgHeight: {
+      type: [Number, String]
+    },
+    imgBlank: {
+      type: Boolean,
+      default: false
+    },
+    imgBlankColor: {
+      type: String,
+      default: 'transparent'
+    },
+    contentVisibleUp: {
+      type: String
+    },
+    contentTag: {
+      type: String,
+      default: 'div'
+    },
+    caption: {
+      type: String
+    },
+    captionTag: {
+      type: String,
+      default: 'h3'
+    },
+    text: {
+      type: String
+    },
+    textTag: {
+      type: String,
+      default: 'p'
+    },
+    background: {
+      type: String
+    }
+  },
+  computed: {
+    contentClasses () {
+      return [
+        'carousel-caption',
+        this.contentVisibleUp ? 'd-none' : '',
+        this.contentVisibleUp ? `d-${this.contentVisibleUp}-block` : ''
+      ]
+    },
+    computedWidth () {
+      // Use local width, or try parent width
+      return this.imgWidth || this.$parent.imgWidth
+    },
+    computedHeight () {
+      // Use local height, or try parent height
+      return this.imgHeight || this.$parent.imgHeight
+    }
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/carousel/carousel.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_observe_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/observe-dom.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_key_codes__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/key-codes.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
+
+
+
+
+
+// Slide directional classes
+const DIRECTION = {
+  next: {
+    dirClass: 'carousel-item-left',
+    overlayClass: 'carousel-item-next'
+  },
+  prev: {
+    dirClass: 'carousel-item-right',
+    overlayClass: 'carousel-item-prev'
+  }
+}
+
+// Fallback Transition duration (with a little buffer) in ms
+const TRANS_DURATION = 600 + 50
+
+// Transition Event names
+const TransitionEndEvents = {
+  WebkitTransition: 'webkitTransitionEnd',
+  MozTransition: 'transitionend',
+  OTransition: 'otransitionend oTransitionEnd',
+  transition: 'transitionend'
+}
+
+// Return the browser specific transitionEnd event name
+function getTransisionEndEvent (el) {
+  for (const name in TransitionEndEvents) {
+    if (el.style[name] !== undefined) {
+      return TransitionEndEvents[name]
+    }
+  }
+  // fallback
+  return null
+}
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  mixins: [ __WEBPACK_IMPORTED_MODULE_3__mixins_id__["a" /* default */] ],
+  render (h) {
+    // Wrapper for slides
+    const inner = h(
+      'div',
+      {
+        ref: 'inner',
+        class: [ 'carousel-inner' ],
+        attrs: {
+          id: this.safeId('__BV_inner_'),
+          role: 'list'
+        }
+      },
+      [ this.$slots.default ]
+    )
+
+    // Prev and Next Controls
+    let controls = h(false)
+    if (this.controls) {
+      controls = [
+        h(
+          'a',
+          {
+            class: [ 'carousel-control-prev' ],
+            attrs: { href: '#', role: 'button', 'aria-controls': this.safeId('__BV_inner_') },
+            on: {
+              click: (evt) => {
+                evt.preventDefault()
+                evt.stopPropagation()
+                this.prev()
+              },
+              keydown: (evt) => {
+                const keyCode = evt.keyCode
+                if (keyCode === __WEBPACK_IMPORTED_MODULE_1__utils_key_codes__["a" /* default */].SPACE || keyCode === __WEBPACK_IMPORTED_MODULE_1__utils_key_codes__["a" /* default */].ENTER) {
+                  evt.preventDefault()
+                  evt.stopPropagation()
+                  this.prev()
+                }
+              }
+            }
+          },
+          [
+            h('span', { class: [ 'carousel-control-prev-icon' ], attrs: { 'aria-hidden': 'true' } }),
+            h('span', { class: [ 'sr-only' ] }, [ this.labelPrev ])
+          ]
+        ),
+        h(
+          'a',
+          {
+            class: [ 'carousel-control-next' ],
+            attrs: { href: '#', role: 'button', 'aria-controls': this.safeId('__BV_inner_') },
+            on: {
+              click: (evt) => {
+                evt.preventDefault()
+                evt.stopPropagation()
+                this.next()
+              },
+              keydown: (evt) => {
+                const keyCode = evt.keyCode
+                if (keyCode === __WEBPACK_IMPORTED_MODULE_1__utils_key_codes__["a" /* default */].SPACE || keyCode === __WEBPACK_IMPORTED_MODULE_1__utils_key_codes__["a" /* default */].ENTER) {
+                  evt.preventDefault()
+                  evt.stopPropagation()
+                  this.next()
+                }
+              }
+            }
+          },
+          [
+            h('span', { class: [ 'carousel-control-next-icon' ], attrs: { 'aria-hidden': 'true' } }),
+            h('span', { class: [ 'sr-only' ] }, [ this.labelNext ])
+          ]
+        )
+      ]
+    }
+
+    // Indicators
+    const indicators = h(
+      'ol',
+      {
+        class: [ 'carousel-indicators' ],
+        directives: [
+          { name: 'show', rawName: 'v-show', value: this.indicators, expression: 'indicators' }
+        ],
+        attrs: {
+          id: this.safeId('__BV_indicators_'),
+          'aria-hidden': this.indicators ? 'false' : 'true',
+          'aria-label': this.labelIndicators,
+          'aria-owns': this.safeId('__BV_inner_')
+        }
+      },
+      this.slides.map((slide, n) => {
+        return h(
+          'li',
+          {
+            key: `slide_${n}`,
+            class: { active: n === this.index },
+            attrs: {
+              role: 'button',
+              id: this.safeId(`__BV_indicator_${n + 1}_`),
+              tabindex: this.indicators ? '0' : '-1',
+              'aria-current': n === this.index ? 'true' : 'false',
+              'aria-label': `${this.labelGotoSlide} ${n + 1}`,
+              'aria-describedby': this.slides[n].id || null,
+              'aria-controls': this.safeId('__BV_inner_')
+            },
+            on: {
+              click: (evt) => {
+                this.setSlide(n)
+              },
+              keydown: (evt) => {
+                const keyCode = evt.keyCode
+                if (keyCode === __WEBPACK_IMPORTED_MODULE_1__utils_key_codes__["a" /* default */].SPACE || keyCode === __WEBPACK_IMPORTED_MODULE_1__utils_key_codes__["a" /* default */].ENTER) {
+                  evt.preventDefault()
+                  evt.stopPropagation()
+                  this.setSlide(n)
+                }
+              }
+            }
+          }
+        )
+      })
+    )
+
+    // Return the carousel
+    return h(
+      'div',
+      {
+        class: [ 'carousel', 'slide' ],
+        style: { background: this.background },
+        attrs: {
+          role: 'region',
+          id: this.safeId(),
+          'aria-busy': this.isSliding ? 'true' : 'false'
+        },
+        on: {
+          mouseenter: this.pause,
+          mouseleave: this.restart,
+          focusin: this.pause,
+          focusout: this.restart,
+          keydown: (evt) => {
+            const keyCode = evt.keyCode
+            if (keyCode === __WEBPACK_IMPORTED_MODULE_1__utils_key_codes__["a" /* default */].LEFT || keyCode === __WEBPACK_IMPORTED_MODULE_1__utils_key_codes__["a" /* default */].RIGHT) {
+              evt.preventDefault()
+              evt.stopPropagation()
+              this[keyCode === __WEBPACK_IMPORTED_MODULE_1__utils_key_codes__["a" /* default */].LEFT ? 'prev' : 'next']()
+            }
+          }
+        }
+      },
+      [ inner, controls, indicators ]
+    )
+  },
+  data () {
+    return {
+      index: this.value || 0,
+      isSliding: false,
+      intervalId: null,
+      transitionEndEvent: null,
+      slides: [],
+      direction: null
+    }
+  },
+  props: {
+    labelPrev: {
+      type: String,
+      default: 'Previous Slide'
+    },
+    labelNext: {
+      type: String,
+      default: 'Next Slide'
+    },
+    labelGotoSlide: {
+      type: String,
+      default: 'Goto Slide'
+    },
+    labelIndicators: {
+      type: String,
+      default: 'Select a slide to display'
+    },
+    interval: {
+      type: Number,
+      default: 5000
+    },
+    indicators: {
+      type: Boolean,
+      default: false
+    },
+    controls: {
+      type: Boolean,
+      default: false
+    },
+    imgWidth: {
+      // Sniffed by carousel-slide
+      type: [Number, String]
+    },
+    imgHeight: {
+      // Sniffed by carousel-slide
+      type: [Number, String]
+    },
+    background: {
+      type: String
+    },
+    value: {
+      type: Number,
+      default: 0
+    }
+  },
+  computed: {
+    isCycling () {
+      return Boolean(this.intervalId)
+    }
+  },
+  methods: {
+    // Set slide
+    setSlide (slide) {
+      // Don't animate when page is not visible
+      if (typeof document !== 'undefined' && document.visibilityState && document.hidden) {
+        return
+      }
+      const len = this.slides.length
+      // Don't do anything if nothing to slide to
+      if (len === 0) {
+        return
+      }
+      // Don't change slide while transitioning, wait until transition is done
+      if (this.isSliding) {
+        // Schedule slide after sliding complete
+        this.$once('sliding-end', () => this.setSlide(slide))
+        return
+      }
+      // Make sure we have an integer (you never know!)
+      slide = Math.floor(slide)
+      // Set new slide index. Wrap around if necessary
+      this.index = slide >= len ? 0 : (slide >= 0 ? slide : len - 1)
+    },
+    // Previous slide
+    prev () {
+      this.direction = 'prev'
+      this.setSlide(this.index - 1)
+    },
+    // Next slide
+    next () {
+      this.direction = 'next'
+      this.setSlide(this.index + 1)
+    },
+    // Pause auto rotation
+    pause () {
+      if (this.isCycling) {
+        clearInterval(this.intervalId)
+        this.intervalId = null
+        if (this.slides[this.index]) {
+          // Make current slide focusable for screen readers
+          this.slides[this.index].tabIndex = 0
+        }
+      }
+    },
+    // Start auto rotate slides
+    start () {
+      // Don't start if no interval, or if we are already running
+      if (!this.interval || this.isCycling) {
+        return
+      }
+      this.slides.forEach(slide => {
+        slide.tabIndex = -1
+      })
+      this.intervalId = setInterval(() => {
+        this.next()
+      }, Math.max(1000, this.interval))
+    },
+    // Re-Start auto rotate slides when focus/hover leaves the carousel
+    restart (evt) {
+      if (!this.$el.contains(document.activeElement)) {
+        this.start()
+      }
+    },
+    // Update slide list
+    updateSlides () {
+      this.pause()
+      // Get all slides as DOM elements
+      this.slides = Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["k" /* selectAll */])('.carousel-item', this.$refs.inner)
+      const numSlides = this.slides.length
+      // Keep slide number in range
+      const index = Math.max(0, Math.min(Math.floor(this.index), numSlides - 1))
+      this.slides.forEach((slide, idx) => {
+        const n = idx + 1
+        if (idx === index) {
+          Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["a" /* addClass */])(slide, 'active')
+        } else {
+          Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["i" /* removeClass */])(slide, 'active')
+        }
+        Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["l" /* setAttr */])(slide, 'aria-current', idx === index ? 'true' : 'false')
+        Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["l" /* setAttr */])(slide, 'aria-posinset', String(n))
+        Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["l" /* setAttr */])(slide, 'aria-setsize', String(numSlides))
+        slide.tabIndex = -1
+      })
+      // Set slide as active
+      this.setSlide(index)
+      this.start()
+    },
+    calcDirection (direction = null, curIndex = 0, nextIndex = 0) {
+      if (!direction) {
+        return (nextIndex > curIndex) ? DIRECTION.next : DIRECTION.prev
+      }
+      return DIRECTION[direction]
+    }
+  },
+  watch: {
+    value (newVal, oldVal) {
+      if (newVal !== oldVal) {
+        this.setSlide(newVal)
+      }
+    },
+    interval (newVal, oldVal) {
+      if (newVal === oldVal) {
+        return
+      }
+      if (!newVal) {
+        // Pausing slide show
+        this.pause()
+      } else {
+        // Restarting or Changing interval
+        this.pause()
+        this.start()
+      }
+    },
+    index (val, oldVal) {
+      if (val === oldVal || this.isSliding) {
+        return
+      }
+      // Determine sliding direction
+      let direction = this.calcDirection(this.direction, oldVal, val)
+      // Determine current and next slides
+      const currentSlide = this.slides[oldVal]
+      const nextSlide = this.slides[val]
+      // Don't do anything if there aren't any slides to slide to
+      if (!currentSlide || !nextSlide) {
+        return
+      }
+      // Start animating
+      this.isSliding = true
+      this.$emit('sliding-start', val)
+      // Update v-model
+      this.$emit('input', this.index)
+      nextSlide.classList.add(direction.overlayClass)
+      // Trigger a reflow of next slide
+      Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["g" /* reflow */])(nextSlide)
+      Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["a" /* addClass */])(currentSlide, direction.dirClass)
+      Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["a" /* addClass */])(nextSlide, direction.dirClass)
+      // Transition End handler
+      let called = false
+      /* istanbul ignore next: dificult to test */
+      const onceTransEnd = (evt) => {
+        if (called) {
+          return
+        }
+        called = true
+        if (this.transitionEndEvent) {
+          const events = this.transitionEndEvent.split(/\s+/)
+          events.forEach(event => {
+            Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["b" /* eventOff */])(currentSlide, event, onceTransEnd)
+          })
+        }
+        this._animationTimeout = null
+        Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["i" /* removeClass */])(nextSlide, direction.dirClass)
+        Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["i" /* removeClass */])(nextSlide, direction.overlayClass)
+        Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["a" /* addClass */])(nextSlide, 'active')
+        Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["i" /* removeClass */])(currentSlide, 'active')
+        Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["i" /* removeClass */])(currentSlide, direction.dirClass)
+        Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["i" /* removeClass */])(currentSlide, direction.overlayClass)
+        Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["l" /* setAttr */])(currentSlide, 'aria-current', 'false')
+        Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["l" /* setAttr */])(nextSlide, 'aria-current', 'true')
+        Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["l" /* setAttr */])(currentSlide, 'aria-hidden', 'true')
+        Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["l" /* setAttr */])(nextSlide, 'aria-hidden', 'false')
+        currentSlide.tabIndex = -1
+        nextSlide.tabIndex = -1
+        if (!this.isCycling) {
+          // Focus the next slide for screen readers if not in play mode
+          nextSlide.tabIndex = 0
+          this.$nextTick(() => {
+            nextSlide.focus()
+          })
+        }
+        this.isSliding = false
+        this.direction = null
+        // Notify ourselves that we're done sliding (slid)
+        this.$nextTick(() => this.$emit('sliding-end', val))
+      }
+      // Clear transition classes after transition ends
+      if (this.transitionEndEvent) {
+        const events = this.transitionEndEvent.split(/\s+/)
+        events.forEach(event => {
+          Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["c" /* eventOn */])(currentSlide, event, onceTransEnd)
+        })
+      }
+      // Fallback to setTimeout
+      this._animationTimeout = setTimeout(onceTransEnd, TRANS_DURATION)
+    }
+  },
+  created () {
+    // Create private non-reactive props
+    this._animationTimeout = null
+  },
+  mounted () {
+    // Cache current browser transitionend event name
+    this.transitionEndEvent = getTransisionEndEvent(this.$el) || null
+    // Get all slides
+    this.updateSlides()
+    // Observe child changes so we can update slide list
+    Object(__WEBPACK_IMPORTED_MODULE_0__utils_observe_dom__["a" /* default */])(this.$refs.inner, this.updateSlides.bind(this), {
+      subtree: false,
+      childList: true,
+      attributes: true,
+      attributeFilter: [ 'id' ]
+    })
+  },
+  /* istanbul ignore next: dificult to test */
+  beforeDestroy () {
+    clearInterval(this.intervalId)
+    clearTimeout(this._animationTimeout)
+    this.intervalId = null
+    this._animationTimeout = null
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/carousel/index.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__carousel__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/carousel/carousel.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__carousel_slide__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/carousel/carousel-slide.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
+
+
+
+
+const components = {
+  bCarousel: __WEBPACK_IMPORTED_MODULE_0__carousel__["a" /* default */],
+  bCarouselSlide: __WEBPACK_IMPORTED_MODULE_1__carousel_slide__["a" /* default */]
 }
 
 const VuePlugin = {
@@ -2888,7 +3528,7 @@ const SELECTOR = 'input:not(:disabled),textarea:not(:disabled),select:not(:disab
         return
       }
       // Focus the first non-disabled visible input when the legend element is clicked
-      const inputs = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["g" /* selectAll */])(SELECTOR, this.$refs.content).filter(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["c" /* isVisible */])
+      const inputs = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["k" /* selectAll */])(SELECTOR, this.$refs.content).filter(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["f" /* isVisible */])
       if (inputs[0] && inputs[0].focus) {
         inputs[0].focus()
       }
@@ -2897,17 +3537,17 @@ const SELECTOR = 'input:not(:disabled),textarea:not(:disabled),select:not(:disab
       // Sets the `aria-describedby` attribute on the input if label-for is set.
       // Optionally accepts a string of IDs to remove as the second parameter
       if (this.labelFor && typeof document !== 'undefined') {
-        const input = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["f" /* select */])(`#${this.labelFor}`, this.$refs.content)
+        const input = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["j" /* select */])(`#${this.labelFor}`, this.$refs.content)
         if (input) {
           const adb = 'aria-describedby'
-          let ids = (Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["b" /* getAttr */])(input, adb) || '').split(/\s+/)
+          let ids = (Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["d" /* getAttr */])(input, adb) || '').split(/\s+/)
           remove = (remove || '').split(/\s+/)
           // Update ID list, preserving any original IDs
           ids = ids.filter(id => remove.indexOf(id) === -1).concat(add || '').join(' ').trim()
           if (ids) {
-            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["h" /* setAttr */])(input, adb, ids)
+            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["l" /* setAttr */])(input, adb, ids)
           } else {
-            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["d" /* removeAttr */])(input, adb)
+            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["h" /* removeAttr */])(input, adb)
           }
         }
       }
@@ -3421,6 +4061,157 @@ const VuePlugin = {
 Object(__WEBPACK_IMPORTED_MODULE_5__utils_plugins__["b" /* vueUse */])(VuePlugin)
 
 /* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/image/img.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
+
+
+// Blank image with fill template
+const BLANK_TEMPLATE = '<svg width="%{w}" height="%{h}" ' +
+                     'xmlns="http://www.w3.org/2000/svg" ' +
+                     'viewBox="0 0 %{w} %{h}" preserveAspectRatio="none">' +
+                     '<rect width="100%" height="100%" style="fill:%{f};"></rect>' +
+                     '</svg>'
+
+function makeBlankImgSrc (width, height, color) {
+  const src = encodeURIComponent(
+    BLANK_TEMPLATE
+      .replace('%{w}', String(width))
+      .replace('%{h}', String(height))
+      .replace('%{f}', color)
+  )
+  return `data:image/svg+xml;charset=UTF-8,${src}`
+}
+
+const props = {
+  src: {
+    type: String,
+    default: null
+  },
+  alt: {
+    type: String,
+    default: null
+  },
+  width: {
+    type: [Number, String],
+    default: null
+  },
+  height: {
+    type: [Number, String],
+    default: null
+  },
+  block: {
+    type: Boolean,
+    default: false
+  },
+  fluid: {
+    type: Boolean,
+    default: false
+  },
+  fluidGrow: {
+    // Gives fluid images class `w-100` to make them grow to fit container
+    type: Boolean,
+    default: false
+  },
+  rounded: {
+    // rounded can be:
+    //   false: no rounding of corners
+    //   true: slightly rounded corners
+    //   'top': top corners rounded
+    //   'right': right corners rounded
+    //   'bottom': bottom corners rounded
+    //   'left': left corners rounded
+    //   'circle': circle/oval
+    //   '0': force rounding off
+    type: [Boolean, String],
+    default: false
+  },
+  thumbnail: {
+    type: Boolean,
+    default: false
+  },
+  left: {
+    type: Boolean,
+    default: false
+  },
+  right: {
+    type: Boolean,
+    default: false
+  },
+  center: {
+    type: Boolean,
+    default: false
+  },
+  blank: {
+    type: Boolean,
+    default: false
+  },
+  blankColor: {
+    type: String,
+    default: 'transparent'
+  }
+}
+/* unused harmony export props */
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  functional: true,
+  props,
+  render (h, { props, data }) {
+    let src = props.src
+    let width = parseInt(props.width, 10) ? parseInt(props.width, 10) : null
+    let height = parseInt(props.height, 10) ? parseInt(props.height, 10) : null
+    let align = null
+    let block = props.block
+    if (props.blank) {
+      if (!height && Boolean(width)) {
+        height = width
+      } else if (!width && Boolean(height)) {
+        width = height
+      }
+      if (!width && !height) {
+        width = 1
+        height = 1
+      }
+      // Make a blank SVG image
+      src = makeBlankImgSrc(width, height, props.blankColor || 'transparent')
+    }
+    if (props.left) {
+      align = 'float-left'
+    } else if (props.right) {
+      align = 'float-right'
+    } else if (props.center) {
+      align = 'mx-auto'
+      block = true
+    }
+    return h(
+      'img',
+      Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
+        attrs: {
+          'src': src,
+          'alt': props.alt,
+          'width': width ? String(width) : null,
+          'height': height ? String(height) : null
+        },
+        class: {
+          'img-thumbnail': props.thumbnail,
+          'img-fluid': props.fluid || props.fluidGrow,
+          'w-100': props.fluidGrow,
+          'rounded': props.rounded === '' || props.rounded === true,
+          [`rounded-${props.rounded}`]: typeof props.rounded === 'string' && props.rounded !== '',
+          [align]: Boolean(align),
+          'd-block': block
+        }
+      })
+    )
+  }
+});
 
 
 /***/ }),
@@ -4517,7 +5308,7 @@ function concat () {
 const isElement = el => {
   return el && el.nodeType === Node.ELEMENT_NODE
 }
-/* unused harmony export isElement */
+/* harmony export (immutable) */ __webpack_exports__["e"] = isElement;
 
 
 // Determine if an HTML element is visible - Faster than CSS check
@@ -4527,7 +5318,7 @@ const isVisible = el => {
            el.getBoundingClientRect().height > 0 &&
            el.getBoundingClientRect().width > 0
 }
-/* harmony export (immutable) */ __webpack_exports__["c"] = isVisible;
+/* harmony export (immutable) */ __webpack_exports__["f"] = isVisible;
 
 
 // Determine if an element is disabled
@@ -4545,7 +5336,7 @@ const reflow = el => {
   // requsting an elements offsetHight will trigger a reflow of the element content
   return isElement(el) && el.offsetHeight
 }
-/* unused harmony export reflow */
+/* harmony export (immutable) */ __webpack_exports__["g"] = reflow;
 
 
 // Select all elements matching selector. Returns [] if none found
@@ -4555,7 +5346,7 @@ const selectAll = (selector, root) => {
   }
   return Object(__WEBPACK_IMPORTED_MODULE_0__array__["c" /* from */])(root.querySelectorAll(selector))
 }
-/* harmony export (immutable) */ __webpack_exports__["g"] = selectAll;
+/* harmony export (immutable) */ __webpack_exports__["k"] = selectAll;
 
 
 // Select a single element, returns null if not found
@@ -4565,7 +5356,7 @@ const select = (selector, root) => {
   }
   return root.querySelector(selector) || null
 }
-/* harmony export (immutable) */ __webpack_exports__["f"] = select;
+/* harmony export (immutable) */ __webpack_exports__["j"] = select;
 
 
 // Determine if an element matches a selector
@@ -4653,7 +5444,7 @@ const removeClass = (el, className) => {
     el.classList.remove(className)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["e"] = removeClass;
+/* harmony export (immutable) */ __webpack_exports__["i"] = removeClass;
 
 
 // Test if an element has a class
@@ -4672,7 +5463,7 @@ const setAttr = (el, attr, value) => {
     el.setAttribute(attr, value)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["h"] = setAttr;
+/* harmony export (immutable) */ __webpack_exports__["l"] = setAttr;
 
 
 // Remove an attribute from an element
@@ -4681,7 +5472,7 @@ const removeAttr = (el, attr) => {
     el.removeAttribute(attr)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["d"] = removeAttr;
+/* harmony export (immutable) */ __webpack_exports__["h"] = removeAttr;
 
 
 // Get an attribute value from an element (returns null if not found)
@@ -4691,7 +5482,7 @@ const getAttr = (el, attr) => {
   }
   return null
 }
-/* harmony export (immutable) */ __webpack_exports__["b"] = getAttr;
+/* harmony export (immutable) */ __webpack_exports__["d"] = getAttr;
 
 
 // Determine if an attribute exists on an element (returns true or false, or null if element not found)
@@ -4776,7 +5567,7 @@ const eventOn = (el, evtName, handler) => {
     el.addEventListener(evtName, handler)
   }
 }
-/* unused harmony export eventOn */
+/* harmony export (immutable) */ __webpack_exports__["c"] = eventOn;
 
 
 // Remove an event listener from an element
@@ -4785,7 +5576,7 @@ const eventOff = (el, evtName, handler) => {
     el.removeEventListener(evtName, handler)
   }
 }
-/* unused harmony export eventOff */
+/* harmony export (immutable) */ __webpack_exports__["b"] = eventOff;
 
 
 
@@ -4799,6 +5590,31 @@ const eventOff = (el, evtName, handler) => {
 function identity (x) {
   return x
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/utils/key-codes.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/*
+ * Key Codes (events)
+ */
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  SPACE: 32,
+  ENTER: 13,
+  ESC: 27,
+  LEFT: 37,
+  UP: 38,
+  RIGHT: 39,
+  DOWN: 40,
+  PAGEUP: 33,
+  PAGEDOWN: 34,
+  HOME: 36,
+  END: 35
+});
 
 
 /***/ }),
@@ -4978,6 +5794,83 @@ const is = Object.is
 
 function readonlyDescriptor () {
   return { enumerable: true, configurable: false, writable: false }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/utils/observe-dom.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = observeDOM;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
+
+
+
+/**
+ * Observe a DOM element changes, falls back to eventListener mode
+ * @param {Element} el The DOM element to observe
+ * @param {Function} callback callback to be called on change
+ * @param {object} [opts={childList: true, subtree: true}] observe options
+ * @see http://stackoverflow.com/questions/3219758
+ */
+function observeDOM (el, callback, opts) {
+  const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver
+  const eventListenerSupported = window.addEventListener
+
+  // Handle case where we might be passed a vue instance
+  el = el ? (el.$el || el) : null
+  /* istanbul ignore next: dificult to test in JSDOM */
+  if (!Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["e" /* isElement */])(el)) {
+    // We can't observe somthing that isn't an element
+    return null
+  }
+
+  let obs = null
+
+  /* istanbul ignore next: dificult to test in JSDOM */
+  if (MutationObserver) {
+    // Define a new observer
+    obs = new MutationObserver(mutations => {
+      let changed = false
+      // A Mutation can contain several change records, so we loop through them to see what has changed.
+      // We break out of the loop early if any "significant" change has been detected
+      for (let i = 0; i < mutations.length && !changed; i++) {
+        // The muttion record
+        const mutation = mutations[i]
+        // Mutation Type
+        const type = mutation.type
+        // DOM Node (could be any DOM Node type - HTMLElement, Text, comment, etc)
+        const target = mutation.target
+        if (type === 'characterData' && target.nodeType === Node.TEXT_NODE) {
+          // We ignore nodes that are not TEXt (i.e. comments, etc) as they don't change layout
+          changed = true
+        } else if (type === 'attributes') {
+          changed = true
+        } else if (type === 'childList' && (mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0)) {
+          // This includes HTMLElement and Text Nodes being added/removed/re-arranged
+          changed = true
+        }
+      }
+      if (changed) {
+        // We only call the callback if a change that could affect layout/size truely happened.
+        callback()
+      }
+    })
+
+    // Have the observer observe foo for changes in children, etc
+    obs.observe(el, Object(__WEBPACK_IMPORTED_MODULE_0__object__["a" /* assign */])({childList: true, subtree: true}, opts))
+  } else if (eventListenerSupported) {
+    // Legacy interface. most likely not used in modern browsers
+    el.addEventListener('DOMNodeInserted', callback, false)
+    el.addEventListener('DOMNodeRemoved', callback, false)
+  }
+
+  // We return a reference to the observer so that obs.disconnect() can be called if necessary
+  // To reduce overhead when the root element is hiiden
+  return obs
 }
 
 
@@ -35897,6 +36790,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_bootstrap_vue_src_components_form_group__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-group/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_bootstrap_vue_src_components_form_checkbox__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-checkbox/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_bootstrap_vue_src_components_button__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_bootstrap_vue_src_components_carousel__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/carousel/index.js");
 __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
@@ -35918,12 +36812,14 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
 
+
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_10_bootstrap_vue_src_components_layout__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_11_bootstrap_vue_src_components_form__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_12_bootstrap_vue_src_components_form_input__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_13_bootstrap_vue_src_components_form_group__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_14_bootstrap_vue_src_components_form_checkbox__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_15_bootstrap_vue_src_components_button__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_16_bootstrap_vue_src_components_carousel__["a" /* default */]);
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#app',
