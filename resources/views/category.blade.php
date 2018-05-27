@@ -12,9 +12,9 @@
 	      <link rel="icon" href="{{ asset('public/shop.ico') }}">
     </head>
     <body>
-<div id="app">
-	123
-</div>
+      <div id="app">
+        <results></results>
+      </div>
 </body>
 </html>
 <style>body { background: none;}</style>
