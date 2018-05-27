@@ -24686,7 +24686,7 @@ var render = function() {
             },
             [
               _c("h1", { staticStyle: { color: "white" } }, [
-                _vm._v("приветик")
+                _vm._v("результаты")
               ])
             ]
           )
