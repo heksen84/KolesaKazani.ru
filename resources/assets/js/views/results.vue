@@ -11,6 +11,7 @@
 			<div style="color:grey;background:white"><h3>{{ item }}</h3></div>
 		</b-col>
 	</b-row>
+	
 </b-container>
 </template>
 <script>

@@ -66,7 +66,7 @@ export default {
       window.location='/search';
     },
     createAdvert(event) {
-      alert("привет!");
+      window.location='/create';
     },
     searchInCategory(event) {
       window.location='/category/'+event.target.id;

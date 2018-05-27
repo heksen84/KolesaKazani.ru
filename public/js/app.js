@@ -1847,6 +1847,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -1967,7 +1968,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       window.location = '/search';
     },
     createAdvert: function createAdvert(event) {
-      alert("привет!");
+      window.location = '/create';
     },
     searchInCategory: function searchInCategory(event) {
       window.location = '/category/' + event.target.id;
