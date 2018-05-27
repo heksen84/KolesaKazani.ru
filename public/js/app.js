@@ -23634,7 +23634,7 @@ var render = function() {
                     staticStyle: {
                       "font-size": "20px",
                       color: "yellow",
-                      "margin-top": "-5px"
+                      "margin-top": "-7px"
                     }
                   },
                   [_vm._v("доска объявлений г. Аксу")]
