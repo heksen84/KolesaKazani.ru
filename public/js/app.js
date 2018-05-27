@@ -1935,7 +1935,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       alert("привет!");
     },
     searchInCategory: function searchInCategory(event) {
-      alert("sdf");
+      window.location = '/category/' + event.target.id;
     }
   }
 });
@@ -23703,7 +23703,7 @@ var render = function() {
             return _c(
               "b-col",
               {
-                key: item.name,
+                key: item.id,
                 attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
               },
               [
@@ -23711,6 +23711,7 @@ var render = function() {
                   "div",
                   {
                     staticClass: "category_item",
+                    attrs: { id: item.id },
                     on: { click: _vm.searchInCategory }
                   },
                   [_vm._v(_vm._s(item.name))]
