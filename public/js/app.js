@@ -1933,6 +1933,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     createAdvert: function createAdvert(event) {
       alert("привет!");
+    },
+    searchInCategory: function searchInCategory(event) {
+      alert("sdf");
     }
   }
 });
@@ -23704,9 +23707,14 @@ var render = function() {
                 attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
               },
               [
-                _c("div", { staticClass: "category_item" }, [
-                  _vm._v(_vm._s(item.name))
-                ])
+                _c(
+                  "div",
+                  {
+                    staticClass: "category_item",
+                    on: { click: _vm.searchInCategory }
+                  },
+                  [_vm._v(_vm._s(item.name))]
+                )
               ]
             )
           })

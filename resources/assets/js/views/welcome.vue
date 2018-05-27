@@ -28,7 +28,7 @@
     <!-- категории -->
     <b-row v-for="i in Math.ceil(Object.keys(categories).length / 4)" v-bind:key=i>
       <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in categories.slice((i - 1) * 4, i * 4)" v-bind:key=item.name>
-        <div class="category_item">{{ item.name }}</div>
+        <div class="category_item" @click="searchInCategory">{{ item.name }}</div>
       </b-col>
     </b-row>
 
@@ -67,6 +67,9 @@ export default {
     },
     createAdvert(event) {
       alert("привет!");
+    },
+    searchInCategory(event) {
+      alert("sdf");
     }
   }
 }
