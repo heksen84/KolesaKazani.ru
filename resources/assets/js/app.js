@@ -6,6 +6,7 @@ import home from './views/home.vue'
 import profile from './views/profile.vue'
 import search from './views/search.vue'
 import results from './views/results.vue'
+import create from './views/create.vue'
 import passwordreset from './views/auth/passwordreset.vue'
 import login from './views/auth/login.vue'
 import register from './views/auth/register.vue'
@@ -41,6 +42,7 @@ const app = new Vue({
       login,
       register,
       search,
-      results
+      results,
+      create
   }
 });
