@@ -1822,6 +1822,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -1829,7 +1835,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			form: {
 				title: '',
 				desc: ''
-			}
+			},
+			selected: null,
+			options: [{ value: null, text: 'Please select an option' }, { value: 'a', text: 'This is First option' }, { value: 'b', text: 'Selected Option' }, { value: { 'C': '3PO' }, text: 'This is an option with object value' }, { value: 'd', text: 'This one is disabled', disabled: true }]
 		};
 	},
 	created: function created() {},
@@ -3906,6 +3914,165 @@ const TYPES = [
 const components = {
   bFormInput: __WEBPACK_IMPORTED_MODULE_0__form_input__["a" /* default */],
   bInput: __WEBPACK_IMPORTED_MODULE_0__form_input__["a" /* default */]
+}
+
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["b" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/form-select/form-select.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form_options__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-options.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-size.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-state.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-custom.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  mixins: [
+    __WEBPACK_IMPORTED_MODULE_0__mixins_id__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_2__mixins_form__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_1__mixins_form_options__["a" /* default */]
+  ],
+  render (h) {
+    const $slots = this.$slots
+    const options = this.formOptions.map((option, index) => {
+      return h('option', {
+        key: `option_${index}_opt`,
+        attrs: { disabled: Boolean(option.disabled) },
+        domProps: { innerHTML: option.text, value: option.value }
+      })
+    })
+    return h(
+      'select',
+      {
+        ref: 'input',
+        class: this.inputClass,
+        directives: [
+          {
+            name: 'model',
+            rawName: 'v-model',
+            value: this.localValue,
+            expression: 'localValue'
+          }
+        ],
+        attrs: {
+          id: this.safeId(),
+          name: this.name,
+          multiple: this.multiple || null,
+          size: this.computedSelectSize,
+          disabled: this.disabled,
+          required: this.required,
+          'aria-required': this.required ? 'true' : null,
+          'aria-invalid': this.computedAriaInvalid
+        },
+        on: {
+          change: evt => {
+            const target = evt.target
+            const selectedVal = Object(__WEBPACK_IMPORTED_MODULE_6__utils_array__["c" /* from */])(target.options)
+              .filter(o => o.selected)
+              .map(o => ('_value' in o ? o._value : o.value))
+            this.localValue = target.multiple ? selectedVal : selectedVal[0]
+            this.$emit('change', this.localValue)
+          }
+        }
+      },
+      [$slots.first, options, $slots.default]
+    )
+  },
+  data () {
+    return {
+      localValue: this.value
+    }
+  },
+  watch: {
+    value (newVal, oldVal) {
+      this.localValue = newVal
+    },
+    localValue (newVal, oldVal) {
+      this.$emit('input', this.localValue)
+    }
+  },
+  props: {
+    value: {},
+    multiple: {
+      type: Boolean,
+      default: false
+    },
+    selectSize: {
+      // Browsers default size to 0, which shows 4 rows in most browsers in multiple mode
+      // Size of 1 can bork out firefox
+      type: Number,
+      default: 0
+    },
+    ariaInvalid: {
+      type: [Boolean, String],
+      default: false
+    }
+  },
+  computed: {
+    computedSelectSize () {
+      // Custom selects with a size of zero causes the arrows to be hidden,
+      // so dont render the size attribute in this case
+      return !this.plain && this.selectSize === 0 ? null : this.selectSize
+    },
+    inputClass () {
+      return [
+        'form-control',
+        this.stateClass,
+        this.sizeFormClass,
+        // Awaiting for https://github.com/twbs/bootstrap/issues/23058
+        this.plain ? null : 'custom-select',
+        this.plain || !this.size ? null : 'custom-select-' + this.size
+      ]
+    },
+    computedAriaInvalid () {
+      if (this.ariaInvalid === true || this.ariaInvalid === 'true') {
+        return 'true'
+      }
+      return this.stateClass === 'is-invalid' ? 'true' : null
+    }
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/form-select/index.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_select__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-select/form-select.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
+
+
+
+const components = {
+  bFormSelect: __WEBPACK_IMPORTED_MODULE_0__form_select__["a" /* default */],
+  bSelect: __WEBPACK_IMPORTED_MODULE_0__form_select__["a" /* default */]
 }
 
 const VuePlugin = {
@@ -25337,22 +25504,21 @@ var render = function() {
               _c(
                 "b-form",
                 {
-                  staticStyle: { width: "50%", margin: "auto" },
+                  staticStyle: {
+                    width: "50%",
+                    margin: "auto",
+                    "text-align": "left"
+                  },
                   on: { submit: _vm.onSubmit, reset: _vm.onReset }
                 },
                 [
                   _c(
                     "b-form-group",
-                    {
-                      attrs: {
-                        label: "Заголовок:",
-                        "label-for": "exampleInput1"
-                      }
-                    },
+                    { attrs: { label: "Заголовок:", "label-for": "title" } },
                     [
                       _c("b-form-input", {
                         attrs: {
-                          id: "exampleInput1",
+                          id: "title",
                           type: "text",
                           required: "",
                           placeholder: "Введи заголовок"
@@ -25371,11 +25537,11 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "b-form-group",
-                    { attrs: { label: "Описание:", "label-for": "textarea1" } },
+                    { attrs: { label: "Описание:", "label-for": "desc" } },
                     [
                       _c("b-form-textarea", {
                         attrs: {
-                          id: "textarea1",
+                          id: "desc",
                           placeholder: "Введите описание",
                           rows: 10,
                           "max-rows": 10
@@ -25393,9 +25559,41 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c(
-                    "b-button",
-                    { attrs: { type: "submit", variant: "primary" } },
-                    [_vm._v("Создать")]
+                    "b-form-group",
+                    {
+                      attrs: { label: "Категория:", "label-for": "categories" }
+                    },
+                    [
+                      _c("b-form-select", {
+                        staticClass: "mb-3",
+                        attrs: {
+                          options: _vm.options,
+                          size: "sm",
+                          id: "categories"
+                        },
+                        model: {
+                          value: _vm.selected,
+                          callback: function($$v) {
+                            _vm.selected = $$v
+                          },
+                          expression: "selected"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-form-group",
+                    { staticStyle: { "text-align": "center" } },
+                    [
+                      _c(
+                        "b-button",
+                        { attrs: { type: "submit", variant: "primary" } },
+                        [_vm._v("Создать")]
+                      )
+                    ],
+                    1
                   )
                 ],
                 1
@@ -37278,8 +37476,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_bootstrap_vue_src_components_form_group__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-group/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_bootstrap_vue_src_components_form_textarea__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-textarea/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_bootstrap_vue_src_components_form_checkbox__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-checkbox/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_bootstrap_vue_src_components_button__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_bootstrap_vue_src_components_carousel__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/carousel/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_bootstrap_vue_src_components_form_select__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-select/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_bootstrap_vue_src_components_button__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_bootstrap_vue_src_components_carousel__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/carousel/index.js");
 __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
@@ -37305,14 +37504,16 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
 
+
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_12_bootstrap_vue_src_components_layout__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_13_bootstrap_vue_src_components_form__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_14_bootstrap_vue_src_components_form_input__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_15_bootstrap_vue_src_components_form_group__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_17_bootstrap_vue_src_components_form_checkbox__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_16_bootstrap_vue_src_components_form_textarea__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_18_bootstrap_vue_src_components_button__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_19_bootstrap_vue_src_components_carousel__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_18_bootstrap_vue_src_components_form_select__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_19_bootstrap_vue_src_components_button__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_20_bootstrap_vue_src_components_carousel__["a" /* default */]);
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#app',
