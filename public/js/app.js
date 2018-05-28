@@ -1798,10 +1798,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
-		return {};
+		return {
+			form: {
+				title: '',
+				desc: ''
+			}
+		};
 	},
 	created: function created() {},
 
@@ -3877,6 +3907,196 @@ const TYPES = [
 const components = {
   bFormInput: __WEBPACK_IMPORTED_MODULE_0__form_input__["a" /* default */],
   bInput: __WEBPACK_IMPORTED_MODULE_0__form_input__["a" /* default */]
+}
+
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["b" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/form-textarea/form-textarea.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_size__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-size.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_state__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-state.js");
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_id__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__mixins_form__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2__mixins_form_size__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3__mixins_form_state__["a" /* default */]],
+  render (h) {
+    return h('textarea', {
+      ref: 'input',
+      class: this.inputClass,
+      style: this.inputStyle,
+      directives: [
+        {
+          name: 'model',
+          rawName: 'v-model',
+          value: this.localValue,
+          expression: 'localValue'
+        }
+      ],
+      domProps: { value: this.value },
+      attrs: {
+        id: this.safeId(),
+        name: this.name,
+        disabled: this.disabled,
+        placeholder: this.placeholder,
+        required: this.required,
+        autocomplete: this.autocomplete || null,
+        readonly: this.readonly || this.plaintext,
+        rows: this.rowsCount,
+        wrap: this.wrap || null,
+        'aria-required': this.required ? 'true' : null,
+        'aria-invalid': this.computedAriaInvalid
+      },
+      on: {
+        input: (evt) => {
+          this.localValue = evt.target.value
+        }
+      }
+    })
+  },
+  data () {
+    return {
+      localValue: this.value
+    }
+  },
+  props: {
+    value: {
+      type: String,
+      default: ''
+    },
+    ariaInvalid: {
+      type: [Boolean, String],
+      default: false
+    },
+    readonly: {
+      type: Boolean,
+      default: false
+    },
+    plaintext: {
+      type: Boolean,
+      default: false
+    },
+    autocomplete: {
+      type: String,
+      default: null
+    },
+    placeholder: {
+      type: String,
+      default: null
+    },
+    rows: {
+      type: [Number, String],
+      default: null
+    },
+    maxRows: {
+      type: [Number, String],
+      default: null
+    },
+    wrap: {
+      // 'soft', 'hard' or 'off'. Browser default is 'soft'
+      type: String,
+      default: 'soft'
+    },
+    noResize: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    rowsCount () {
+      // A better option could be based on https://codepen.io/vsync/pen/frudD
+      // As linebreaks aren't added until the input is submitted
+      const rows = parseInt(this.rows, 10) || 1
+      const maxRows = parseInt(this.maxRows, 10) || 0
+      const lines = (this.localValue || '').toString().split('\n').length
+      return maxRows
+        ? Math.min(maxRows, Math.max(rows, lines))
+        : Math.max(rows, lines)
+    },
+    inputClass () {
+      return [
+        this.plaintext ? 'form-control-plaintext' : 'form-control',
+        this.sizeFormClass,
+        this.stateClass
+      ]
+    },
+    inputStyle () {
+      // We set width 100% in plaintext mode to get around a shortcoming in bootstrap CSS
+      // setting noResize to true will disable the ability for the user to resize the textarea
+      return {
+        width: this.plaintext ? '100%' : null,
+        resize: this.noResize ? 'none' : null
+      }
+    },
+    computedAriaInvalid () {
+      if (!this.ariaInvalid || this.ariaInvalid === 'false') {
+        // this.ariaInvalid is null or false or 'false'
+        return this.computedState === false ? 'true' : null
+      }
+      if (this.ariaInvalid === true) {
+        // User wants explicit aria-invalid=true
+        return 'true'
+      }
+      // Most likely a string value (which could be the string 'true')
+      return this.ariaInvalid
+    }
+  },
+  watch: {
+    value (newVal, oldVal) {
+      // Update our localValue
+      if (newVal !== oldVal) {
+        this.localValue = newVal
+      }
+    },
+    localValue (newVal, oldVal) {
+      // update Parent value
+      if (newVal !== oldVal) {
+        this.$emit('input', newVal)
+      }
+    }
+  },
+  methods: {
+    focus () {
+      // For external handler that may want a focus method
+      if (!this.disabled) {
+        this.$el.focus()
+      }
+    }
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/form-textarea/index.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_textarea__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-textarea/form-textarea.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
+
+
+
+const components = {
+  bFormTextarea: __WEBPACK_IMPORTED_MODULE_0__form_textarea__["a" /* default */],
+  bTextarea: __WEBPACK_IMPORTED_MODULE_0__form_textarea__["a" /* default */]
 }
 
 const VuePlugin = {
@@ -25110,7 +25330,77 @@ var render = function() {
               },
               attrs: { cols: "12", sm: "12", md: "12", lg: "12", xl: "12" }
             },
-            [_c("h1", [_vm._v("новое объявление")])]
+            [
+              _c("h1", [_vm._v("новое объявление")]),
+              _vm._v(" "),
+              _c(
+                "b-form",
+                {
+                  staticStyle: { width: "50%", margin: "auto" },
+                  on: { submit: _vm.onSubmit, reset: _vm.onReset }
+                },
+                [
+                  _c(
+                    "b-form-group",
+                    {
+                      attrs: {
+                        label: "Описание:",
+                        "label-for": "exampleInput1"
+                      }
+                    },
+                    [
+                      _c("b-form-input", {
+                        attrs: {
+                          id: "exampleInput1",
+                          type: "text",
+                          required: "",
+                          placeholder: "Введи заголовок"
+                        },
+                        model: {
+                          value: _vm.form.title,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "title", $$v)
+                          },
+                          expression: "form.title"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-form-group",
+                    { attrs: { label: "Описание:", "label-for": "textarea1" } },
+                    [
+                      _c("b-form-textarea", {
+                        attrs: {
+                          id: "textarea1",
+                          placeholder: "Enter something",
+                          rows: 10,
+                          "max-rows": 10
+                        },
+                        model: {
+                          value: _vm.form.desc,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "desc", $$v)
+                          },
+                          expression: "form.desc"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-button",
+                    { attrs: { type: "submit", variant: "primary" } },
+                    [_vm._v("Войти")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
           )
         ],
         1
@@ -36985,9 +37275,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_bootstrap_vue_src_components_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_bootstrap_vue_src_components_form_input__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-input/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_bootstrap_vue_src_components_form_group__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-group/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_bootstrap_vue_src_components_form_checkbox__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-checkbox/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_bootstrap_vue_src_components_button__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_bootstrap_vue_src_components_carousel__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/carousel/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_bootstrap_vue_src_components_form_textarea__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-textarea/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_bootstrap_vue_src_components_form_checkbox__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-checkbox/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_bootstrap_vue_src_components_button__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_bootstrap_vue_src_components_carousel__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/carousel/index.js");
 __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
@@ -37012,13 +37303,15 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
 
+
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_12_bootstrap_vue_src_components_layout__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_13_bootstrap_vue_src_components_form__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_14_bootstrap_vue_src_components_form_input__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_15_bootstrap_vue_src_components_form_group__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_16_bootstrap_vue_src_components_form_checkbox__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_17_bootstrap_vue_src_components_button__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_18_bootstrap_vue_src_components_carousel__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_17_bootstrap_vue_src_components_form_checkbox__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_16_bootstrap_vue_src_components_form_textarea__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_18_bootstrap_vue_src_components_button__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_19_bootstrap_vue_src_components_carousel__["a" /* default */]);
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#app',

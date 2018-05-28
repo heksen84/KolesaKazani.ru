@@ -18,6 +18,7 @@ import layout from 'bootstrap-vue/src/components/layout'
 import form from 'bootstrap-vue/src/components/form'
 import form_input from 'bootstrap-vue/src/components/form-input'
 import form_group from 'bootstrap-vue/src/components/form-group'
+import form_textarea from 'bootstrap-vue/src/components/form-textarea'
 import form_checkbox from 'bootstrap-vue/src/components/form-checkbox'
 import button from 'bootstrap-vue/src/components/button'
 import carousel from 'bootstrap-vue/src/components/carousel'
@@ -27,6 +28,7 @@ Vue.use(form);
 Vue.use(form_input);
 Vue.use(form_group);
 Vue.use(form_checkbox);
+Vue.use(form_textarea);
 Vue.use(button);
 Vue.use(carousel);
 
