@@ -25376,7 +25376,7 @@ var render = function() {
                       _c("b-form-textarea", {
                         attrs: {
                           id: "textarea1",
-                          placeholder: "Enter something",
+                          placeholder: "Введите описание",
                           rows: 10,
                           "max-rows": 10
                         },
@@ -25395,7 +25395,7 @@ var render = function() {
                   _c(
                     "b-button",
                     { attrs: { type: "submit", variant: "primary" } },
-                    [_vm._v("Войти")]
+                    [_vm._v("Создать")]
                   )
                 ],
                 1

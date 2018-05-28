@@ -16,13 +16,13 @@
 			<b-form-group label="Описание:" label-for="textarea1">
 			 	<b-form-textarea id="textarea1"
 										v-model="form.desc"
-										placeholder="Enter something"
+										placeholder="Введите описание"
 										:rows="10"
 										:max-rows="10">
 	 		 </b-form-textarea>
 			</b-form-group>
 
-			<b-button type="submit" variant="primary">Войти</b-button>
+			<b-button type="submit" variant="primary">Создать</b-button>
 		</b-form>
 
 
