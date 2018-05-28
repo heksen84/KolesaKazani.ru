@@ -4,9 +4,8 @@
 		<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center;margin:auto;margin-top:40px;color:grey">
 		<h1>новое объявление</h1>
 		<br>
-
 		<b-form @submit="onSubmit" @reset="onReset" style="width:50%;margin:auto">
-			<b-form-group label="Описание:" label-for="exampleInput1">
+			<b-form-group label="Заголовок:" label-for="exampleInput1">
 				<b-form-input id="exampleInput1"
 											type="text"
 											v-model="form.title"
