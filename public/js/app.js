@@ -1744,18 +1744,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       form: {
+        login: '',
         email: '',
-        name: '',
-        food: null,
-        checked: []
-      },
-      foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
-      show: true
+        password: ''
+      }
     };
   },
 
@@ -1763,21 +1766,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     onSubmit: function onSubmit(evt) {
       evt.preventDefault();
       alert(JSON.stringify(this.form));
-    },
-    onReset: function onReset(evt) {
-      var _this = this;
-
-      evt.preventDefault();
-      /* Reset our form values */
-      this.form.email = '';
-      this.form.name = '';
-      this.form.food = null;
-      this.form.checked = [];
-      /* Trick to reset/clear native browser form validation state */
-      this.show = false;
-      this.$nextTick(function () {
-        _this.show = true;
-      });
     }
   }
 });
@@ -25189,101 +25177,84 @@ var render = function() {
               _vm._v(" "),
               _c("br"),
               _vm._v(" "),
-              _vm.show
-                ? _c(
-                    "b-form",
+              _c(
+                "b-form",
+                { staticStyle: { width: "99%" }, on: { submit: _vm.onSubmit } },
+                [
+                  _c(
+                    "b-form-group",
+                    { attrs: { label: "Имя:", "label-for": "name" } },
+                    [
+                      _c("b-form-input", {
+                        attrs: {
+                          id: "name",
+                          type: "text",
+                          required: "",
+                          placeholder: "Введи имя"
+                        },
+                        model: {
+                          value: _vm.form.login,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "login", $$v)
+                          },
+                          expression: "form.login"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-form-group",
+                    { attrs: { label: "Email адрес:", "label-for": "email" } },
+                    [
+                      _c("b-form-input", {
+                        attrs: {
+                          id: "email",
+                          type: "email",
+                          required: "",
+                          placeholder: "Введи email"
+                        },
+                        model: {
+                          value: _vm.form.email,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "email", $$v)
+                          },
+                          expression: "form.email"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-form-group",
                     {
-                      staticStyle: { width: "99%" },
-                      on: { submit: _vm.onSubmit, reset: _vm.onReset }
+                      attrs: { label: "Твой пароль:", "label-for": "password" }
                     },
                     [
-                      _c(
-                        "b-form-group",
-                        {
-                          attrs: {
-                            id: "exampleInputGroup1",
-                            label: "Email адрес:",
-                            "label-for": "exampleInput1"
-                          }
+                      _c("b-form-input", {
+                        attrs: {
+                          id: "password",
+                          type: "password",
+                          required: "",
+                          placeholder: "Введи пароль"
                         },
-                        [
-                          _c("b-form-input", {
-                            attrs: {
-                              id: "exampleInput1",
-                              type: "email",
-                              required: "",
-                              placeholder: "Введи email"
-                            },
-                            model: {
-                              value: _vm.form.email,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "email", $$v)
-                              },
-                              expression: "form.email"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        {
-                          attrs: {
-                            id: "exampleInputGroup2",
-                            label: "Твой пароль:",
-                            "label-for": "exampleInput2"
-                          }
-                        },
-                        [
-                          _c("b-form-input", {
-                            attrs: {
-                              id: "exampleInput2",
-                              type: "text",
-                              required: "",
-                              placeholder: "Введи пароль"
-                            },
-                            model: {
-                              value: _vm.form.name,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "name", $$v)
-                              },
-                              expression: "form.name"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        { attrs: { id: "exampleGroup4" } },
-                        [
-                          _c(
-                            "b-form-checkbox-group",
-                            {
-                              attrs: { id: "exampleChecks" },
-                              model: {
-                                value: _vm.form.checked,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.form, "checked", $$v)
-                                },
-                                expression: "form.checked"
-                              }
-                            },
-                            [
-                              _c(
-                                "b-form-checkbox",
-                                { attrs: { value: "me" } },
-                                [_vm._v("запомнить меня")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
+                        model: {
+                          value: _vm.form.password,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "password", $$v)
+                          },
+                          expression: "form.password"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-form-group",
+                    [
                       _c(
                         "b-button",
                         { attrs: { type: "submit", variant: "primary" } },
@@ -25292,7 +25263,9 @@ var render = function() {
                     ],
                     1
                   )
-                : _vm._e()
+                ],
+                1
+              )
             ],
             1
           )
