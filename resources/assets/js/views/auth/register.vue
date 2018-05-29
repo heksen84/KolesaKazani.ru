@@ -36,6 +36,7 @@
         </b-form-input>
       </b-form-group>
       <b-form-group>
+        <br>
         <b-button type="submit" variant="primary">Продолжить</b-button>
       </b-form-group>
     </b-form>
