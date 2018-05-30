@@ -1745,6 +1745,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -1764,13 +1768,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       evt.preventDefault();
       //alert(JSON.stringify(this.form));
 
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/register', Object(__WEBPACK_IMPORTED_MODULE_1__helpers_form__["a" /* objectToFormData */])(this.form)).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/register', JSON.stringify(this.form)).then(function (res) {
         console.log(res);
         //alert(res);
       }).catch(function (err) {
         console.log(err.response.data);
         if (err.response.status === 422) {
-          alert("error");
+          alert(err.response.data.message);
         }
       });
     }
@@ -25197,7 +25201,8 @@ var render = function() {
                           id: "name",
                           type: "text",
                           required: "",
-                          placeholder: "Введи имя"
+                          placeholder: "Введи имя",
+                          name: "name"
                         },
                         model: {
                           value: _vm.form.login,
@@ -25220,7 +25225,8 @@ var render = function() {
                           id: "email",
                           type: "email",
                           required: "",
-                          placeholder: "Введи email"
+                          placeholder: "Введи email",
+                          name: "email"
                         },
                         model: {
                           value: _vm.form.email,
@@ -25245,7 +25251,8 @@ var render = function() {
                           id: "password",
                           type: "password",
                           required: "",
-                          placeholder: "Введи пароль"
+                          placeholder: "Введи пароль",
+                          name: "password"
                         },
                         model: {
                           value: _vm.form.password,
@@ -37535,7 +37542,7 @@ if (token) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = get;
-/* unused harmony export post */
+/* harmony export (immutable) */ __webpack_exports__["b"] = post;
 /* unused harmony export del */
 /* unused harmony export interceptors */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__("./node_modules/axios/index.js");
@@ -37591,7 +37598,7 @@ function interceptors(cb) {
 
 "use strict";
 /* unused harmony export toMulipartedForm */
-/* harmony export (immutable) */ __webpack_exports__["a"] = objectToFormData;
+/* unused harmony export objectToFormData */
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 function toMulipartedForm(form, mode) {

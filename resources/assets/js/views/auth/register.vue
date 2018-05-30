@@ -12,7 +12,8 @@
                       type="text"
                       v-model="form.login"
                       required
-                      placeholder="Введи имя">
+                      placeholder="Введи имя"
+                      name="name">
         </b-form-input>
       </b-form-group>
 
@@ -22,7 +23,8 @@
                       type="email"
                       v-model="form.email"
                       required
-                      placeholder="Введи email">
+                      placeholder="Введи email"
+                      name="email">
         </b-form-input>
       </b-form-group>
 
@@ -32,7 +34,9 @@
                       type="password"
                       v-model="form.password"
                       required
-                      placeholder="Введи пароль">
+                      placeholder="Введи пароль"
+                      name="password"
+                      >
         </b-form-input>
       </b-form-group>
       <br>
@@ -63,13 +67,12 @@ export default {
       evt.preventDefault();
       //alert(JSON.stringify(this.form));
 
-      get('/register', objectToFormData(this.form)).then((res) => {
+      post('/register', JSON.stringify(this.form)).then((res) => {
         console.log(res)
-        //alert(res);
 		  }).catch((err) => {
 			console.log(err.response.data);
 			if(err.response.status === 422) {
-        alert("error");
+        alert(err.response.data.message);
 			}
   	});
 
