@@ -24845,7 +24845,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-button",
-    { attrs: { variant: "primary" }, on: { click: _vm.logout } },
+    { attrs: { variant: "success" }, on: { click: _vm.logout } },
     [_vm._v("выйти")]
   )
 }

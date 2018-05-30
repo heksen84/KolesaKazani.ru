@@ -1,5 +1,5 @@
 <template>
-	<b-button variant="primary" @click="logout">выйти</b-button>
+	<b-button variant="success" @click="logout">выйти</b-button>
 </template>
 <script>
 import { get } from './../helpers/api'
