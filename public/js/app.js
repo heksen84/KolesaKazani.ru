@@ -1620,6 +1620,7 @@ module.exports = {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
 //
 //
 //
@@ -1655,6 +1656,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1670,7 +1672,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     onSubmit: function onSubmit(evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.form));
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/login', { "email": this.form.email, "password": this.form.password }).then(function (res) {
+        console.log(res);
+        alert("good!");
+      }).catch(function (err) {
+        console.log(err.response.data);
+      });
     }
   }
 });

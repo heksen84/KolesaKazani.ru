@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { post } from './../../helpers/api'
 export default {
   data () {
     return {
@@ -47,7 +48,13 @@ export default {
   methods: {
     onSubmit (evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.form));
+      post('/login', { "email": this.form.email,"password": this.form.password }
+      ).then((res) => {
+        console.log(res)
+        alert("good!");
+      }).catch((err) => {
+      console.log(err.response.data);
+    });
     }
   }
 }
