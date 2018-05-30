@@ -12,8 +12,7 @@
                       type="text"
                       v-model="form.name"
                       required
-                      placeholder="Введи имя"
-                      name="name">
+                      placeholder="Введи имя">
         </b-form-input>
       </b-form-group>
 
@@ -23,8 +22,7 @@
                       type="email"
                       v-model="form.email"
                       required
-                      placeholder="Введи email"
-                      name="email">
+                      placeholder="Введи email">
         </b-form-input>
       </b-form-group>
 
@@ -34,21 +32,17 @@
                       type="password"
                       v-model="form.password"
                       required
-                      placeholder="Введи пароль"
-                      name="password"
-                      >
+                      placeholder="Введи пароль">
         </b-form-input>
       </b-form-group>
 
       <!-- пароль -->
-      <b-form-group label="Твой пароль:" label-for="password-confirm">
-        <b-form-input id="password-confirm"
+      <b-form-group label="Твой пароль:" label-for="password_confirm">
+        <b-form-input id="password_confirm"
                       type="password"
-                      v-model="form.password_confirm"
+                      v-model="form.password_confirmation"
                       required
-                      placeholder="Введи пароль"
-                      name="password-confirm"
-                      >
+                      placeholder="Введи пароль">
         </b-form-input>
       </b-form-group>
 
@@ -64,7 +58,6 @@
 
 <script>
 import { post, get, interceptors } from './../../helpers/api'
-import { toMulipartedForm, objectToFormData } from './../../helpers/form'
 export default {
   data () {
     return {
@@ -72,24 +65,29 @@ export default {
         name: '',
         email: '',
         password: '',
-        password_confirm: '',
+        password_confirmation: '',
       }
     }
   },
   methods: {
     onSubmit (evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.form));
-
-      post('/register', JSON.stringify(this.form)).then((res) => {
+      post('/register', {
+        "name": this.form.name,
+        "email": this.form.email,
+        "password": this.form.password,
+        "password_confirmation": this.form.password_confirmation
+      }
+      ).then((res) => {
         console.log(res)
+        alert("good!");
 		  }).catch((err) => {
 			console.log(err.response.data);
 			if(err.response.status === 422) {
-        alert(err.response.data.message);
+        if (err.response.data.errors.password)
+        alert(err.response.data.errors.password);
 			}
   	});
-
     }
   }
 }

@@ -1697,7 +1697,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_form__ = __webpack_require__("./resources/assets/js/helpers/form.js");
 //
 //
 //
@@ -1756,13 +1755,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1772,7 +1764,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         name: '',
         email: '',
         password: '',
-        password_confirm: ''
+        password_confirmation: ''
       }
     };
   },
@@ -1780,14 +1772,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     onSubmit: function onSubmit(evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.form));
-
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/register', JSON.stringify(this.form)).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/register', {
+        "name": this.form.name,
+        "email": this.form.email,
+        "password": this.form.password,
+        "password_confirmation": this.form.password_confirmation
+      }).then(function (res) {
         console.log(res);
+        alert("good!");
       }).catch(function (err) {
         console.log(err.response.data);
         if (err.response.status === 422) {
-          alert(err.response.data.message);
+          if (err.response.data.errors.password) alert(err.response.data.errors.password);
         }
       });
     }
@@ -25214,8 +25210,7 @@ var render = function() {
                           id: "name",
                           type: "text",
                           required: "",
-                          placeholder: "Введи имя",
-                          name: "name"
+                          placeholder: "Введи имя"
                         },
                         model: {
                           value: _vm.form.name,
@@ -25238,8 +25233,7 @@ var render = function() {
                           id: "email",
                           type: "email",
                           required: "",
-                          placeholder: "Введи email",
-                          name: "email"
+                          placeholder: "Введи email"
                         },
                         model: {
                           value: _vm.form.email,
@@ -25264,8 +25258,7 @@ var render = function() {
                           id: "password",
                           type: "password",
                           required: "",
-                          placeholder: "Введи пароль",
-                          name: "password"
+                          placeholder: "Введи пароль"
                         },
                         model: {
                           value: _vm.form.password,
@@ -25284,24 +25277,23 @@ var render = function() {
                     {
                       attrs: {
                         label: "Твой пароль:",
-                        "label-for": "password-confirm"
+                        "label-for": "password_confirm"
                       }
                     },
                     [
                       _c("b-form-input", {
                         attrs: {
-                          id: "password-confirm",
+                          id: "password_confirm",
                           type: "password",
                           required: "",
-                          placeholder: "Введи пароль",
-                          name: "password-confirm"
+                          placeholder: "Введи пароль"
                         },
                         model: {
-                          value: _vm.form.password_confirm,
+                          value: _vm.form.password_confirmation,
                           callback: function($$v) {
-                            _vm.$set(_vm.form, "password_confirm", $$v)
+                            _vm.$set(_vm.form, "password_confirmation", $$v)
                           },
-                          expression: "form.password_confirm"
+                          expression: "form.password_confirmation"
                         }
                       })
                     ],
@@ -37631,50 +37623,6 @@ function interceptors(cb) {
         cb(err);
         return Promise.reject(err);
     });
-}
-
-/***/ }),
-
-/***/ "./resources/assets/js/helpers/form.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export toMulipartedForm */
-/* unused harmony export objectToFormData */
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-function toMulipartedForm(form, mode) {
-    if (mode === 'edit' && typeof form.image === 'string') {
-        var temp = JSON.parse(JSON.stringify(form));
-        delete temp.image;
-        return temp;
-    } else {
-        return objectToFormData(form);
-    }
-}
-
-function objectToFormData(obj, form, namespace) {
-    var fd = form || new FormData();
-    var formKey = void 0;
-    for (var property in obj) {
-        if (obj.hasOwnProperty(property)) {
-            if (namespace) {
-                formKey = namespace + '[' + property + ']';
-            } else {
-                formKey = property;
-            }
-            if (obj[property] instanceof Array) {
-                for (var i = 0; i < obj[property].length; i++) {
-                    objectToFormData(obj[property][i], fd, property + '[' + i + ']');
-                }
-            } else if (_typeof(obj[property]) === 'object' && !(obj[property] instanceof File)) {
-                objectToFormData(obj[property], fd, property);
-            } else {
-                fd.append(formKey, obj[property]);
-            }
-        }
-    }
-    return fd;
 }
 
 /***/ }),
