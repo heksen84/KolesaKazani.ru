@@ -35,8 +35,8 @@
                       placeholder="Введи пароль">
         </b-form-input>
       </b-form-group>
+      <br>
       <b-form-group>
-        <br>
         <b-button type="submit" variant="primary">Продолжить</b-button>
       </b-form-group>
     </b-form>
@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import { post, get, interceptors } from './../../helpers/api'
 export default {
   data () {
     return {
@@ -59,7 +60,17 @@ export default {
   methods: {
     onSubmit (evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.form));
+      //alert(JSON.stringify(this.form));
+
+      get('/categories', "").then((res) => {
+        alert("success");
+		  }).catch((err) => {
+			console.log(err.response.data);
+			if(err.response.status === 422) {
+        alert("error");
+			}
+  	});
+
     }
   }
 }

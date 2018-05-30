@@ -1696,6 +1696,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
 //
 //
 //
@@ -1743,6 +1744,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1758,7 +1760,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     onSubmit: function onSubmit(evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.form));
+      //alert(JSON.stringify(this.form));
+
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/categories', "").then(function (res) {
+        alert("success");
+      }).catch(function (err) {
+        console.log(err.response.data);
+        if (err.response.status === 422) {
+          alert("error");
+        }
+      });
     }
   }
 });
@@ -25245,11 +25256,11 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
                   _c(
                     "b-form-group",
                     [
-                      _c("br"),
-                      _vm._v(" "),
                       _c(
                         "b-button",
                         { attrs: { type: "submit", variant: "primary" } },

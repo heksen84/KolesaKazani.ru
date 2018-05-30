@@ -11,6 +11,7 @@ import passwordreset from './views/auth/passwordreset.vue'
 import login from './views/auth/login.vue'
 import register from './views/auth/register.vue'
 
+
 // bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.min.css'
