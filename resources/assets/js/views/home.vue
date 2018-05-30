@@ -1,17 +1,19 @@
 <template>
+	<b-button variant="primary" @click="logout">выйти</b-button>
 </template>
 <script>
+import { get } from './../helpers/api'
 export default {
 	data () {
     return 	{
 			}
 	},
 	created() {
-	  alert("home");
 	},
 components: { },
   methods: {
-    hello() {
+    logout() {
+			get('/logout').then((res) => {}).catch((err) => {});
     }
 }
 }

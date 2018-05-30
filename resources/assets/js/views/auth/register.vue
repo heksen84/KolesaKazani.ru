@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { post, get, interceptors } from './../../helpers/api'
+import { post } from './../../helpers/api'
 export default {
   data () {
     return {

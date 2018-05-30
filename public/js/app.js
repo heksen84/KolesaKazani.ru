@@ -1863,20 +1863,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
 //
 //
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {};
 	},
-	created: function created() {
-		alert("home");
-	},
+	created: function created() {},
 
 	components: {},
 	methods: {
-		hello: function hello() {}
+		logout: function logout() {
+			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/logout').then(function (res) {}).catch(function (err) {});
+		}
 	}
 });
 
@@ -24840,7 +24843,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "b-button",
+    { attrs: { variant: "primary" }, on: { click: _vm.logout } },
+    [_vm._v("выйти")]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
