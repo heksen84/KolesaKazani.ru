@@ -50,8 +50,7 @@ export default {
       evt.preventDefault();
       post('/login', { "email": this.form.email,"password": this.form.password }
       ).then((res) => {
-        console.log(res)
-        alert("good!");
+        window.location='/home';
       }).catch((err) => {
       console.log(err.response.data);
     });

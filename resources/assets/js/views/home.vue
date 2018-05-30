@@ -13,7 +13,9 @@ export default {
 components: { },
   methods: {
     logout() {
-			get('/logout').then((res) => {}).catch((err) => {});
+			get('/logout').then((res) => {
+				window.location='/';
+			}).catch((err) => {});
     }
 }
 }

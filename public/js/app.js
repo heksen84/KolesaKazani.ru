@@ -1673,8 +1673,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     onSubmit: function onSubmit(evt) {
       evt.preventDefault();
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/login', { "email": this.form.email, "password": this.form.password }).then(function (res) {
-        console.log(res);
-        alert("good!");
+        window.location = '/home';
       }).catch(function (err) {
         console.log(err.response.data);
       });
@@ -1885,7 +1884,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	components: {},
 	methods: {
 		logout: function logout() {
-			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/logout').then(function (res) {}).catch(function (err) {});
+			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/logout').then(function (res) {
+				window.location = '/';
+			}).catch(function (err) {});
 		}
 	}
 });
