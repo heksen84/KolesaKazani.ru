@@ -1770,7 +1770,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/register', JSON.stringify(this.form)).then(function (res) {
         console.log(res);
-        //alert(res);
       }).catch(function (err) {
         console.log(err.response.data);
         if (err.response.status === 422) {

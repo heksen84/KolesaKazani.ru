@@ -66,11 +66,11 @@ body {
 }
 
 .auth_button {
-  margin: 3px;
-  padding: 3px;
+  margin: 1px;
+  padding: 1px;
   background: #64c864;
   border: 1px solid white;
-  width: 100px;
+  width: 105px;
   border-radius: 5px;
   margin: 5px auto;
   cursor: pointer;
