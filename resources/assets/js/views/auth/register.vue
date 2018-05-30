@@ -39,6 +39,19 @@
                       >
         </b-form-input>
       </b-form-group>
+
+      <!-- пароль -->
+      <b-form-group label="Твой пароль:" label-for="password-confirm">
+        <b-form-input id="password-confirm"
+                      type="password"
+                      v-model="form.password_confirm"
+                      required
+                      placeholder="Введи пароль"
+                      name="password-confirm"
+                      >
+        </b-form-input>
+      </b-form-group>
+
       <br>
       <b-form-group>
         <b-button type="submit" variant="primary">Продолжить</b-button>
@@ -58,7 +71,8 @@ export default {
       form: {
         name: '',
         email: '',
-        password: ''
+        password: '',
+        password_confirm: '',
       }
     }
   },

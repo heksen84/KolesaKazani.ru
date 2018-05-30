@@ -1749,6 +1749,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1758,7 +1771,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       form: {
         name: '',
         email: '',
-        password: ''
+        password: '',
+        password_confirm: ''
       }
     };
   },
@@ -25259,6 +25273,35 @@ var render = function() {
                             _vm.$set(_vm.form, "password", $$v)
                           },
                           expression: "form.password"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-form-group",
+                    {
+                      attrs: {
+                        label: "Твой пароль:",
+                        "label-for": "password-confirm"
+                      }
+                    },
+                    [
+                      _c("b-form-input", {
+                        attrs: {
+                          id: "password-confirm",
+                          type: "password",
+                          required: "",
+                          placeholder: "Введи пароль",
+                          name: "password-confirm"
+                        },
+                        model: {
+                          value: _vm.form.password_confirm,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "password_confirm", $$v)
+                          },
+                          expression: "form.password_confirm"
                         }
                       })
                     ],
