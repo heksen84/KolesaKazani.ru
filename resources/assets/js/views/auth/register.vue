@@ -47,11 +47,12 @@
 
 <script>
 import { post, get, interceptors } from './../../helpers/api'
+import { toMulipartedForm, objectToFormData } from './../../helpers/form'
 export default {
   data () {
     return {
       form: {
-        login: '',
+        name: '',
         email: '',
         password: ''
       }
@@ -62,8 +63,9 @@ export default {
       evt.preventDefault();
       //alert(JSON.stringify(this.form));
 
-      get('/categories', "").then((res) => {
-        alert("success");
+      get('/register', objectToFormData(this.form)).then((res) => {
+        console.log(res)
+        //alert(res);
 		  }).catch((err) => {
 			console.log(err.response.data);
 			if(err.response.status === 422) {

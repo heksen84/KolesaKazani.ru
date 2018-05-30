@@ -1697,6 +1697,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_form__ = __webpack_require__("./resources/assets/js/helpers/form.js");
 //
 //
 //
@@ -1744,13 +1745,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       form: {
-        login: '',
+        name: '',
         email: '',
         password: ''
       }
@@ -1762,8 +1764,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       evt.preventDefault();
       //alert(JSON.stringify(this.form));
 
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/categories', "").then(function (res) {
-        alert("success");
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/register', Object(__WEBPACK_IMPORTED_MODULE_1__helpers_form__["a" /* objectToFormData */])(this.form)).then(function (res) {
+        console.log(res);
+        //alert(res);
       }).catch(function (err) {
         console.log(err.response.data);
         if (err.response.status === 422) {
@@ -37579,6 +37582,50 @@ function interceptors(cb) {
         cb(err);
         return Promise.reject(err);
     });
+}
+
+/***/ }),
+
+/***/ "./resources/assets/js/helpers/form.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export toMulipartedForm */
+/* harmony export (immutable) */ __webpack_exports__["a"] = objectToFormData;
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+function toMulipartedForm(form, mode) {
+    if (mode === 'edit' && typeof form.image === 'string') {
+        var temp = JSON.parse(JSON.stringify(form));
+        delete temp.image;
+        return temp;
+    } else {
+        return objectToFormData(form);
+    }
+}
+
+function objectToFormData(obj, form, namespace) {
+    var fd = form || new FormData();
+    var formKey = void 0;
+    for (var property in obj) {
+        if (obj.hasOwnProperty(property)) {
+            if (namespace) {
+                formKey = namespace + '[' + property + ']';
+            } else {
+                formKey = property;
+            }
+            if (obj[property] instanceof Array) {
+                for (var i = 0; i < obj[property].length; i++) {
+                    objectToFormData(obj[property][i], fd, property + '[' + i + ']');
+                }
+            } else if (_typeof(obj[property]) === 'object' && !(obj[property] instanceof File)) {
+                objectToFormData(obj[property], fd, property);
+            } else {
+                fd.append(formKey, obj[property]);
+            }
+        }
+    }
+    return fd;
 }
 
 /***/ }),
