@@ -10,7 +10,7 @@
       <b-form-group label="Имя:" label-for="name">
         <b-form-input id="name"
                       type="text"
-                      v-model="form.login"
+                      v-model="form.name"
                       required
                       placeholder="Введи имя"
                       name="name">
@@ -79,7 +79,7 @@ export default {
   methods: {
     onSubmit (evt) {
       evt.preventDefault();
-      //alert(JSON.stringify(this.form));
+      alert(JSON.stringify(this.form));
 
       post('/register', JSON.stringify(this.form)).then((res) => {
         console.log(res)

@@ -1780,7 +1780,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     onSubmit: function onSubmit(evt) {
       evt.preventDefault();
-      //alert(JSON.stringify(this.form));
+      alert(JSON.stringify(this.form));
 
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/register', JSON.stringify(this.form)).then(function (res) {
         console.log(res);
@@ -25218,11 +25218,11 @@ var render = function() {
                           name: "name"
                         },
                         model: {
-                          value: _vm.form.login,
+                          value: _vm.form.name,
                           callback: function($$v) {
-                            _vm.$set(_vm.form, "login", $$v)
+                            _vm.$set(_vm.form, "name", $$v)
                           },
-                          expression: "form.login"
+                          expression: "form.name"
                         }
                       })
                     ],
