@@ -16,10 +16,10 @@
 </template>
 <script>
 export default {
-	props: ["data"],
+	props: ["items"],
 	data () {
     return 	{
-    	
+
 		}
 	},
 	created() {

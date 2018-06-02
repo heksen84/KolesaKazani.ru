@@ -1944,7 +1944,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ["data"],
+	props: ["items"],
 	data: function data() {
 		return {};
 	},

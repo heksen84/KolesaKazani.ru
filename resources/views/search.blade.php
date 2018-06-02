@@ -13,7 +13,7 @@
 </head>
 <body>
 <div id="app">
-  <results :data="{{ $data }}"></results>
+  <results :items="{{ $items }}"></results>
 </div>
 </body>
 </html>
