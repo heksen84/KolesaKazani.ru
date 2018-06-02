@@ -16,9 +16,11 @@
 </template>
 <script>
 export default {
+	props: ["data"],
 	data () {
     return 	{
-			}
+    	
+		}
 	},
 	created() {
 	},

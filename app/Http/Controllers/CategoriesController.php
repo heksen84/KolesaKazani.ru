@@ -14,7 +14,11 @@ class CategoriesController extends Controller
     }
 
     public function getCategoryItems(Request $request) {
-	     return view('categories')->with("search_string", ucfirst($request->item));
+        /*$store = Store::all(); // got this from database model
+        return view('store')->with('store', $store);*/ 
+
+	     //return view('categories')->with("search_string", ucfirst($request->item));
+        return view('categories')->with("data", null);
 
        /*
 
