@@ -2042,6 +2042,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   created: function created() {
     var _this = this;
 
+    alert("приветик!");
+
     this.categories = {};
     Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/categories").then(function (res) {
       _this.categories = res.data;

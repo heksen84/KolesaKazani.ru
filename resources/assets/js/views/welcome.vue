@@ -46,7 +46,7 @@ export default {
   },
   created() {
 
-    alert("приветик!");
+    //alert("приветик!");
 
     this.categories={};
     get("/categories").then((res) => {
