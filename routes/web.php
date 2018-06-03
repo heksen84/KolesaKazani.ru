@@ -1,6 +1,7 @@
 <?php
 Auth::routes();
 Route::get('/', 'WelcomeController@getCategories');
+Route::get('/getUser', 'UserController@getUser');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/newtrip', function () { return view('newtrip'); });
 Route::get('/categories', 'CategoriesController@index');

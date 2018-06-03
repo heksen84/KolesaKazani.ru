@@ -2035,9 +2035,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["items"],
   data: function data() {
-    return {};
+    return {
+      auth: false
+    };
   },
-  created: function created() {},
+  created: function created() {
+    var _this = this;
+
+    Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getUser').then(function (res) {
+      if (res.data != "") {
+        _this.auth = true;
+      }
+    }).catch(function (err) {
+      console.log("getUser error: " + err);
+    });
+  },
 
   methods: {
     login: function login(event) {

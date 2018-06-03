@@ -42,9 +42,17 @@ export default {
   props: ["items"],
   data () {
     return {
+      auth:false
     }
   },
   created() {
+    get('/getUser').then((res) => {
+      if (res.data!="") {
+        this.auth=true;
+      }
+      }).catch((err) => {
+        console.log("getUser error: "+err);
+      });
   },
   methods: {
     login(event) {
