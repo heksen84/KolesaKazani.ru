@@ -21,17 +21,17 @@ import { get } from './../helpers/api'
 export default {
 	data () {
     return 	{
-			}
-	},
+	}
+},
 	created() {
-	},
+},
 components: { },
   methods: {
     logout() {
-			get('/logout').then((res) => {
-				localStorage.setItem("am_userAuth", false);
-				window.location='/';
-			}).catch((err) => {});
+		get('/logout').then((res) => {
+			localStorage.setItem("am_userAuth", false);
+			window.location='/';
+		}).catch((err) => {});
     },
     goHome() {
     	window.location='/';
