@@ -11,7 +11,7 @@
 			<b-button variant="warning" @click="goHome">вернуться на главную страницу</b-button>
 		</b-col>
 		<b-col cols="12" sm="12" md="4" lg="4" xl="4" style="text-align:center;margin:auto">
-			<b-button variant="error" @click="goHome">разместить объявление</b-button>
+			<b-button variant="error" @click="createAdvert">разместить объявление</b-button>
 		</b-col>
 	</b-row>
 </b-container>
@@ -35,6 +35,9 @@ components: { },
     },
     goHome() {
     	window.location='/';
+    },
+    createAdvert() {
+    	window.location='/create';
     }
 }
 }

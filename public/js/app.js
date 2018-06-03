@@ -1892,23 +1892,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	data: function data() {
-		return {};
-	},
-	created: function created() {},
+  data: function data() {
+    return {};
+  },
+  created: function created() {},
 
-	components: {},
-	methods: {
-		logout: function logout() {
-			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/logout').then(function (res) {
-				localStorage.setItem("am_userAuth", false);
-				window.location = '/';
-			}).catch(function (err) {});
-		},
-		goHome: function goHome() {
-			window.location = '/';
-		}
-	}
+  components: {},
+  methods: {
+    logout: function logout() {
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/logout').then(function (res) {
+        localStorage.setItem("am_userAuth", false);
+        window.location = '/';
+      }).catch(function (err) {});
+    },
+    goHome: function goHome() {
+      window.location = '/';
+    },
+    createAdvert: function createAdvert() {
+      window.location = '/create';
+    }
+  }
 });
 
 /***/ }),
@@ -24921,7 +24924,10 @@ var render = function() {
             [
               _c(
                 "b-button",
-                { attrs: { variant: "error" }, on: { click: _vm.goHome } },
+                {
+                  attrs: { variant: "error" },
+                  on: { click: _vm.createAdvert }
+                },
                 [_vm._v("разместить объявление")]
               )
             ],
