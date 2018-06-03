@@ -2035,26 +2035,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["items"],
   data: function data() {
-    return {
-      categories: []
-    };
+    return {};
   },
-  created: function created() {
-
-    alert(this.items);
-
-    //alert("приветик!");
-
-    /*this.categories={};
-    get("/categories").then((res) => {
-        this.categories=res.data;
-        console.log(this.categories);
-    }).catch((err) => {
-      console.log(err.response.data);
-      if(err.response.status === 422) {
-      }
-    });*/
-  },
+  created: function created() {},
 
   methods: {
     login: function login(event) {
@@ -25101,11 +25084,11 @@ var render = function() {
       _vm._v(" "),
       _c("b-row", { staticStyle: { "margin-top": "50px" } }),
       _vm._v(" "),
-      _vm._l(Math.ceil(Object.keys(_vm.categories).length / 4), function(i) {
+      _vm._l(Math.ceil(Object.keys(_vm.items).length / 4), function(i) {
         return _c(
           "b-row",
           { key: i },
-          _vm._l(_vm.categories.slice((i - 1) * 4, i * 4), function(item) {
+          _vm._l(_vm.items.slice((i - 1) * 4, i * 4), function(item) {
             return _c(
               "b-col",
               {

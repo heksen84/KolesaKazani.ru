@@ -26,8 +26,8 @@
 
     <b-row style="margin-top:50px"></b-row>
     <!-- категории -->
-    <b-row v-for="i in Math.ceil(Object.keys(categories).length / 4)" v-bind:key=i>
-      <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in categories.slice((i - 1) * 4, i * 4)"  v-bind:key=item.id>
+    <b-row v-for="i in Math.ceil(Object.keys(items).length / 4)" v-bind:key=i>
+      <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in items.slice((i - 1) * 4, i * 4)"  v-bind:key=item.id>
         <div class="category_item" @click="searchInCategory" :id="item.id">{{ item.name }}</div>
       </b-col>
     </b-row>
@@ -42,24 +42,9 @@ export default {
   props: ["items"],
   data () {
     return {
-      categories: []
     }
   },
   created() {
-
-    alert(this.items);
-
-    //alert("приветик!");
-
-    /*this.categories={};
-    get("/categories").then((res) => {
-        this.categories=res.data;
-        console.log(this.categories);
-    }).catch((err) => {
-      console.log(err.response.data);
-      if(err.response.status === 422) {
-      }
-    });*/
   },
   methods: {
     login(event) {
