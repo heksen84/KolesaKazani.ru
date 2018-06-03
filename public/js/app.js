@@ -1881,6 +1881,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1896,6 +1901,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				localStorage.setItem("am_userAuth", false);
 				window.location = '/';
 			}).catch(function (err) {});
+		},
+		goHome: function goHome() {
+			window.location = '/';
 		}
 	}
 });
@@ -2040,27 +2048,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["items"],
+  props: ["items", "auth"],
   data: function data() {
-    return {
-      auth: false
-    };
+    return {};
   },
-  created: function created() {
-    var _this = this;
-
-    // alert("created");
-
-    Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getUser').then(function (res) {
-      console.log(res.data);
-      if (res.data) {
-        //alert("ebt!");
-        _this.auth = true;
-      }
-    }).catch(function (err) {
-      console.log("getUser error: " + err);
-    });
-  },
+  created: function created() {},
 
   methods: {
     login: function login(event) {
@@ -24880,15 +24872,38 @@ var render = function() {
             "b-col",
             {
               staticStyle: { "text-align": "center", margin: "auto" },
-              attrs: { cols: "12", sm: "12", md: "9", lg: "3", xl: "3" }
+              attrs: { cols: "12", sm: "12", md: "12", lg: "12", xl: "12" }
+            },
+            [_c("h2", [_vm._v("личный кабинет")])]
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            {
+              staticStyle: { "text-align": "center", margin: "auto" },
+              attrs: { cols: "12", sm: "12", md: "6", lg: "6", xl: "6" }
             },
             [
-              _c("h2", [_vm._v("личный кабинет")]),
-              _vm._v(" "),
               _c(
                 "b-button",
                 { attrs: { variant: "success" }, on: { click: _vm.logout } },
                 [_vm._v("выйти")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            {
+              staticStyle: { "text-align": "center", margin: "auto" },
+              attrs: { cols: "12", sm: "12", md: "6", lg: "6", xl: "6" }
+            },
+            [
+              _c(
+                "b-button",
+                { attrs: { variant: "error" }, on: { click: _vm.goHome } },
+                [_vm._v("вернуться на главную страницу")]
               )
             ],
             1

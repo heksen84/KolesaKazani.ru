@@ -44,25 +44,12 @@
 import { post, get, interceptors } from './../helpers/api'
 
 export default {
-  props: ["items"],
+  props: ["items", "auth"],
   data () {
     return {
-      auth:false
     }
   },
   created() {
-
-   // alert("created");
-
-    get('/getUser').then((res) => {
-      console.log(res.data);
-      if (res.data) {
-        //alert("ebt!");
-        this.auth=true;
-      }
-      }).catch((err) => {
-        console.log("getUser error: "+err);
-      });
   },
   methods: {
     login(event) {
