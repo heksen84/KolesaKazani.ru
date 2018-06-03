@@ -2031,6 +2031,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -2044,8 +2049,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   created: function created() {
     var _this = this;
 
+    // alert("created");
+
     Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getUser').then(function (res) {
-      if (res.data != "") {
+      console.log(res.data);
+      if (res.data) {
+        //alert("ebt!");
         _this.auth = true;
       }
     }).catch(function (err) {
@@ -24984,27 +24993,68 @@ var render = function() {
       _c(
         "b-row",
         [
-          _c("b-col", { staticStyle: { "text-align": "center" } }, [
-            _c(
-              "div",
-              {
-                staticClass: "auth_button",
-                attrs: { id: "button_login" },
-                on: { click: _vm.login }
-              },
-              [_vm._v("Вход")]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "auth_button",
-                attrs: { id: "button_reg" },
-                on: { click: _vm.register }
-              },
-              [_vm._v("Регистрация")]
-            )
-          ])
+          _c(
+            "b-col",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.auth,
+                  expression: "auth"
+                }
+              ],
+              staticStyle: { "text-align": "center" }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "auth_button",
+                  staticStyle: { width: "160px" },
+                  attrs: { id: "button_login" },
+                  on: { click: _vm.login }
+                },
+                [_vm._v("Личный кабинет")]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: !_vm.auth,
+                  expression: "!auth"
+                }
+              ],
+              staticStyle: { "text-align": "center" }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "auth_button",
+                  attrs: { id: "button_login" },
+                  on: { click: _vm.login }
+                },
+                [_vm._v("Вход")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "auth_button",
+                  attrs: { id: "button_reg" },
+                  on: { click: _vm.register }
+                },
+                [_vm._v("Регистрация")]
+              )
+            ]
+          )
         ],
         1
       ),

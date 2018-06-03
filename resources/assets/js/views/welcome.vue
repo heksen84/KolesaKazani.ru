@@ -1,10 +1,15 @@
 <template>
   <b-container fluid>
     <b-row>
-        <b-col style="text-align:center">
+        <b-col style="text-align:center" v-show="auth">
+          <div class="auth_button" id="button_login" style="width:160px" @click="login">Личный кабинет</div>
+        </b-col>
+
+        <b-col style="text-align:center" v-show="!auth">
           <div class="auth_button" id="button_login" @click="login">Вход</div>
           <div class="auth_button" id="button_reg" @click="register">Регистрация</div>
         </b-col>
+
     </b-row>
     <b-row>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
@@ -46,8 +51,13 @@ export default {
     }
   },
   created() {
+
+   // alert("created");
+
     get('/getUser').then((res) => {
-      if (res.data!="") {
+      console.log(res.data);
+      if (res.data) {
+        //alert("ebt!");
         this.auth=true;
       }
       }).catch((err) => {
