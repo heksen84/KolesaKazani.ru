@@ -1894,9 +1894,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
-var items = [{ isActive: true, age: 40, first_name: 'Dickerson', last_name: 'Macdonald' }, { isActive: false, age: 21, first_name: 'Larsen', last_name: 'Shaw' }, { isActive: false, age: 89, first_name: 'Geneva', last_name: 'Wilson' }, { isActive: true, age: 38, first_name: 'Jami', last_name: 'Carney' }];
+var items = [{ isActive: true, age: 40, first_name: 'Dickerson' }, { isActive: false, age: 21, first_name: 'Larsen' }, { isActive: false, age: 89, first_name: 'Geneva' }, { isActive: true, age: 38, first_name: 'Jami' }];
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27649,7 +27653,7 @@ var render = function() {
               staticStyle: { "text-align": "center", margin: "auto" },
               attrs: { cols: "12", sm: "12", md: "12", lg: "12", xl: "12" }
             },
-            [_c("h2", [_vm._v("личный кабинет")])]
+            [_c("br")]
           ),
           _vm._v(" "),
           _c(
@@ -27701,6 +27705,15 @@ var render = function() {
               )
             ],
             1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            {
+              staticStyle: { "text-align": "center", margin: "auto" },
+              attrs: { cols: "12", sm: "12", md: "12", lg: "12", xl: "12" }
+            },
+            [_c("br"), _vm._v(" "), _c("h3", [_vm._v("мои объявления")])]
           ),
           _vm._v(" "),
           _c(
