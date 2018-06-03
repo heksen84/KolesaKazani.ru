@@ -50,6 +50,7 @@ export default {
       evt.preventDefault();
       post('/login', { "email": this.form.email,"password": this.form.password }
       ).then((res) => {
+        localStorage.setItem("am_userAuth", true);
         window.location='/home';
       }).catch((err) => {
       console.log(err.response.data);
