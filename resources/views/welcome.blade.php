@@ -13,7 +13,7 @@
 </head>
 <body>
 <div id="app">
-  <welcome></welcome>
+  <welcome :items="{{ $items }}"></welcome>
 </div>
 </body>
 </html>

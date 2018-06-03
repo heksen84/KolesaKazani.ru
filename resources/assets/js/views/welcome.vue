@@ -39,6 +39,7 @@
 import { post, get, interceptors } from './../helpers/api'
 
 export default {
+  props: ["items"],
   data () {
     return {
       categories: []
@@ -46,9 +47,11 @@ export default {
   },
   created() {
 
+    alert(this.items);
+
     //alert("приветик!");
 
-    this.categories={};
+    /*this.categories={};
     get("/categories").then((res) => {
         this.categories=res.data;
         console.log(this.categories);
@@ -56,7 +59,7 @@ export default {
       console.log(err.response.data);
       if(err.response.status === 422) {
       }
-    });
+    });*/
   },
   methods: {
     login(event) {

@@ -1944,16 +1944,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ["items"],
-	data: function data() {
-		return {};
-	},
-	created: function created() {},
+		data: function data() {
+				return {};
+		},
+		created: function created() {},
 
-	components: {},
-	methods: {
-		hello: function hello() {}
-	}
+		components: {},
+		methods: {
+				hello: function hello() {}
+		}
 });
 
 /***/ }),
@@ -2034,24 +2033,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["items"],
   data: function data() {
     return {
       categories: []
     };
   },
   created: function created() {
-    var _this = this;
+
+    alert(this.items);
 
     //alert("приветик!");
 
-    this.categories = {};
-    Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/categories").then(function (res) {
-      _this.categories = res.data;
-      console.log(_this.categories);
-    }).catch(function (err) {
+    /*this.categories={};
+    get("/categories").then((res) => {
+        this.categories=res.data;
+        console.log(this.categories);
+    }).catch((err) => {
       console.log(err.response.data);
-      if (err.response.status === 422) {}
-    });
+      if(err.response.status === 422) {
+      }
+    });*/
   },
 
   methods: {

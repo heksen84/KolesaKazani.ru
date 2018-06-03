@@ -18,7 +18,7 @@ class CategoriesController extends Controller
         return view('store')->with('store', $store);*/ 
 
 	     //return view('categories')->with("search_string", ucfirst($request->item));
-        return view('categories')->with("items", null);
+        return view('categories')->with("items", "123");
 
        /*
 
