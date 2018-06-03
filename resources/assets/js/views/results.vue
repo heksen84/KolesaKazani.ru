@@ -6,9 +6,9 @@
 	</b-col>
 	</b-row>
 
-	<b-row>
-		<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="margin:auto;margin-top:3px;heigth:220px;color:grey" v-for="item in 100" :key="item">
-			<div style="color:grey;background:white"><h3>{{ item }}</h3></div>
+	<b-row style="margin-top:20px">
+		<b-col cols="12" sm="12" md="4" lg="4" xl="4" style="margin:auto;margin-top:2px;color:grey" v-for="item in 150" :key="item">
+			<div style="color:grey;background:white;padding:20px;border-radius:10px;width:100%"><h5>{{ item }}</h5></div>
 		</b-col>
 	</b-row>
 	
@@ -17,16 +17,14 @@
 <script>
 export default {
 	data () {
-    return 	{
-
-		}
+    return 	{}
 	},
 	created() {
 	},
-components: { },
-  methods: {
-    hello() {
-    }
-}
+	components: { },
+  		methods: {
+    		hello() {
+    	}
+	}
 }
 </script>
