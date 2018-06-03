@@ -1900,7 +1900,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
-var items = [{ isActive: true, age: 40, first_name: 'Dickerson' }, { isActive: false, age: 21, first_name: 'Larsen' }, { isActive: false, age: 89, first_name: 'Geneva' }, { isActive: true, age: 38, first_name: 'Jami' }];
+var items = [{ "№": true, age: 40, объявление: 'Dickerson' }, { "№": false, age: 21, объявление: 'Larsen' }, { "№": false, age: 89, объявление: 'Geneva' }, { "№": true, age: 38, объявление: 'Jami' }];
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
