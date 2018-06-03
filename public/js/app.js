@@ -1892,6 +1892,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 var items = [{ isActive: true, age: 40, first_name: 'Dickerson', last_name: 'Macdonald' }, { isActive: false, age: 21, first_name: 'Larsen', last_name: 'Shaw' }, { isActive: false, age: 89, first_name: 'Geneva', last_name: 'Wilson' }, { isActive: true, age: 38, first_name: 'Jami', last_name: 'Carney' }];
@@ -1968,15 +1970,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-		data: function data() {
-				return {};
-		},
-		created: function created() {},
+	data: function data() {
+		return {};
+	},
+	created: function created() {},
 
-		components: {},
-		methods: {
-				hello: function hello() {}
-		}
+	components: {},
+	methods: {
+		hello: function hello() {}
+	}
 });
 
 /***/ }),
@@ -27675,7 +27677,7 @@ var render = function() {
             [
               _c(
                 "b-button",
-                { attrs: { variant: "warning" }, on: { click: _vm.goHome } },
+                { attrs: { variant: "primary" }, on: { click: _vm.goHome } },
                 [_vm._v("вернуться на главную страницу")]
               )
             ],
@@ -27692,7 +27694,7 @@ var render = function() {
               _c(
                 "b-button",
                 {
-                  attrs: { variant: "error" },
+                  attrs: { variant: "secondary" },
                   on: { click: _vm.createAdvert }
                 },
                 [_vm._v("разместить объявление")]
@@ -27701,7 +27703,22 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("b-table", { attrs: { striped: "", hover: "", items: _vm.items } })
+          _c(
+            "b-col",
+            {
+              staticStyle: { "text-align": "center", margin: "auto" },
+              attrs: { cols: "12", sm: "12", md: "6", lg: "6", xl: "6" }
+            },
+            [
+              _c("br"),
+              _vm._v(" "),
+              _c("b-table", {
+                staticStyle: { background: "white", color: "black" },
+                attrs: { striped: "", hover: "", items: _vm.items }
+              })
+            ],
+            1
+          )
         ],
         1
       )

@@ -8,13 +8,15 @@
 			<b-button variant="success" @click="logout">выйти</b-button>
 		</b-col>
 		<b-col cols="12" sm="12" md="4" lg="4" xl="4" style="text-align:center;margin:auto">
-			<b-button variant="warning" @click="goHome">вернуться на главную страницу</b-button>
+			<b-button variant="primary" @click="goHome">вернуться на главную страницу</b-button>
 		</b-col>
 		<b-col cols="12" sm="12" md="4" lg="4" xl="4" style="text-align:center;margin:auto">
-			<b-button variant="error" @click="createAdvert">разместить объявление</b-button>
+			<b-button variant="secondary" @click="createAdvert">разместить объявление</b-button>
 		</b-col>
-
-		<b-table striped hover :items="items"></b-table>
+		<b-col cols="12" sm="12" md="6" lg="6" xl="6" style="text-align:center;margin:auto">
+			<br>
+			<b-table striped hover :items="items" style="background:white;color:black"></b-table>
+		</b-col>
 
 	</b-row>
 </b-container>
