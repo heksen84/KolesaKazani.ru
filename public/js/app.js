@@ -1886,6 +1886,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -24881,7 +24884,7 @@ var render = function() {
             "b-col",
             {
               staticStyle: { "text-align": "center", margin: "auto" },
-              attrs: { cols: "12", sm: "12", md: "6", lg: "6", xl: "6" }
+              attrs: { cols: "12", sm: "12", md: "4", lg: "4", xl: "4" }
             },
             [
               _c(
@@ -24897,13 +24900,29 @@ var render = function() {
             "b-col",
             {
               staticStyle: { "text-align": "center", margin: "auto" },
-              attrs: { cols: "12", sm: "12", md: "6", lg: "6", xl: "6" }
+              attrs: { cols: "12", sm: "12", md: "4", lg: "4", xl: "4" }
+            },
+            [
+              _c(
+                "b-button",
+                { attrs: { variant: "warning" }, on: { click: _vm.goHome } },
+                [_vm._v("вернуться на главную страницу")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            {
+              staticStyle: { "text-align": "center", margin: "auto" },
+              attrs: { cols: "12", sm: "12", md: "4", lg: "4", xl: "4" }
             },
             [
               _c(
                 "b-button",
                 { attrs: { variant: "error" }, on: { click: _vm.goHome } },
-                [_vm._v("вернуться на главную страницу")]
+                [_vm._v("разместить объявление")]
               )
             ],
             1
