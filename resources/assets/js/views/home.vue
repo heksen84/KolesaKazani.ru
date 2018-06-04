@@ -42,7 +42,7 @@ export default {
 },
 	created() {
 },
-components: { },
+components: {},
   methods: {
     logout() {
 		get('/logout').then((res) => {

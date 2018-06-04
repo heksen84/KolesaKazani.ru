@@ -1656,6 +1656,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1678,6 +1683,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).catch(function (err) {
         console.log(err.response.data);
       });
+    },
+    register: function register(evt) {
+      window.location = '/register';
     }
   }
 });
@@ -28395,6 +28403,23 @@ var render = function() {
                     "b-button",
                     { attrs: { type: "submit", variant: "primary" } },
                     [_vm._v("Войти")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-form-group",
+                    [
+                      _c("br"),
+                      _vm._v("\n       Ещё не зарегистрированы?\n       "),
+                      _c(
+                        "b-button",
+                        {
+                          attrs: { variant: "link" },
+                          on: { click: _vm.register }
+                        },
+                        [_vm._v("Зарегистрироваться")]
+                      )
+                    ],
+                    1
                   )
                 ],
                 1

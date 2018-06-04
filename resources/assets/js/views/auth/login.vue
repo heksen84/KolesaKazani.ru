@@ -27,6 +27,11 @@
         </b-form-checkbox-group>
       </b-form-group>
       <b-button type="submit" variant="primary">Войти</b-button>
+      <b-form-group>
+      <br>
+       Ещё не зарегистрированы?
+       <b-button variant="link" @click="register">Зарегистрироваться</b-button>
+      </b-form-group>
     </b-form>
   </b-col>
   </b-row>
@@ -55,6 +60,9 @@ export default {
       }).catch((err) => {
       console.log(err.response.data);
     });
+    },
+    register(evt) {
+      window.location='/register';
     }
   }
 }
