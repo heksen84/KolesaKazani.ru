@@ -28,9 +28,7 @@
       </b-form-group>
       <b-button type="submit" variant="primary">Войти</b-button>
       <b-form-group>
-      <br>
-       Ещё не зарегистрированы?
-       <!--<b-button variant="link" @click="register">Зарегистрироваться</b-button>-->
+      <br>Ещё не зарегистрированы?
        <b-link href="/register">Зарегистрироваться</b-link>
       </b-form-group>
     </b-form>

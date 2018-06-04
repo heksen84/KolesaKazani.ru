@@ -1660,8 +1660,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -28112,7 +28110,7 @@ var render = function() {
                 "margin-top": "2px",
                 color: "grey"
               },
-              attrs: { cols: "12", sm: "12", md: "4", lg: "4", xl: "4" }
+              attrs: { cols: "12", sm: "12", md: "7", lg: "7", xl: "7" }
             },
             [
               _c(
@@ -28121,7 +28119,7 @@ var render = function() {
                   staticStyle: {
                     color: "grey",
                     background: "white",
-                    padding: "20px",
+                    padding: "40px",
                     "border-radius": "10px",
                     width: "100%"
                   }
@@ -28436,8 +28434,7 @@ var render = function() {
                     "b-form-group",
                     [
                       _c("br"),
-                      _vm._v("\n       Ещё не зарегистрированы?\n       "),
-                      _vm._v(" "),
+                      _vm._v("Ещё не зарегистрированы?\n       "),
                       _c("b-link", { attrs: { href: "/register" } }, [
                         _vm._v("Зарегистрироваться")
                       ])
