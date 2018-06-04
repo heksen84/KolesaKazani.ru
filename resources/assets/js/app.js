@@ -25,6 +25,7 @@ import form_select from 'bootstrap-vue/src/components/form-select';
 import button from 'bootstrap-vue/src/components/button';
 import carousel from 'bootstrap-vue/src/components/carousel';
 import table from 'bootstrap-vue/src/components/table';
+import link from 'bootstrap-vue/src/components/link';
 
 Vue.use(layout);
 Vue.use(form);
@@ -36,6 +37,7 @@ Vue.use(form_select);
 Vue.use(button);
 Vue.use(carousel);
 Vue.use(table);
+Vue.use(link);
 
 const app = new Vue({
     el: '#app',

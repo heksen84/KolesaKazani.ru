@@ -30,7 +30,8 @@
       <b-form-group>
       <br>
        Ещё не зарегистрированы?
-       <b-button variant="link" @click="register">Зарегистрироваться</b-button>
+       <!--<b-button variant="link" @click="register">Зарегистрироваться</b-button>-->
+       <b-link href="/register">Зарегистрироваться</b-link>
       </b-form-group>
     </b-form>
   </b-col>
