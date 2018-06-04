@@ -28120,7 +28120,7 @@ var render = function() {
                     color: "grey",
                     background: "white",
                     padding: "40px",
-                    "border-radius": "10px",
+                    "border-radius": "3px",
                     width: "100%"
                   }
                 },
