@@ -1859,15 +1859,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				title: '',
 				desc: ''
 			},
-			selected: null,
-			options: [{ value: null, text: 'категории' }, { value: 'a', text: 'транспорт' }, { value: 'b', text: 'недвижимость' }]
+			selected: null
 		};
 	},
 	created: function created() {},
 
 	components: {},
 	methods: {
-		hello: function hello() {}
+		onSubmit: function onSubmit() {
+			alert("отправлено!");
+		}
 	}
 });
 
@@ -28505,7 +28506,7 @@ var render = function() {
                     margin: "auto",
                     "text-align": "left"
                   },
-                  on: { submit: _vm.onSubmit, reset: _vm.onReset }
+                  on: { submit: _vm.onSubmit }
                 },
                 [
                   _c(

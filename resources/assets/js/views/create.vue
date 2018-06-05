@@ -4,7 +4,7 @@
 		<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center;margin:auto;margin-top:40px;color:grey">
 		<h1>новое объявление</h1>
 		<br>
-		<b-form @submit="onSubmit" @reset="onReset" style="width:50%;margin:auto;text-align:left">
+		<b-form @submit="onSubmit" style="width:50%;margin:auto;text-align:left">
 			<b-form-group label="Заголовок:" label-for="title">
 				<b-form-input id="title"
 											type="text"
@@ -46,19 +46,15 @@ export default {
 				title: '',
 				desc:  ''
 			},
-			selected: null,
-			options: [
-			{ value: null, text: 'категории' },
-			{ value: 'a', text: 'транспорт' },
-			{ value: 'b', text: 'недвижимость' }
-		]
+			selected: null
 		}
 	},
 	created() {
 	},
-components: { },
-  methods: {
-    hello() {
+	components: {},
+  	methods: {
+    	onSubmit() {
+    	alert("отправлено!");
     }
 }
 }
