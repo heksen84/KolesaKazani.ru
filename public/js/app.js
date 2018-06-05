@@ -1859,6 +1859,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				title: '',
 				desc: ''
 			},
+			selected: null,
 			options: [{ value: null, text: 'категории' }, { value: 'a', text: 'транспорт' }, { value: 'b', text: 'недвижимость' }]
 		};
 	},
@@ -28559,21 +28560,33 @@ var render = function() {
                       attrs: { label: "Категория:", "label-for": "categories" }
                     },
                     [
-                      _c("b-form-select", {
-                        staticClass: "mb-3",
-                        attrs: {
-                          options: _vm.items,
-                          size: "sm",
-                          id: "categories"
+                      _c(
+                        "b-form-select",
+                        {
+                          staticClass: "mb-3",
+                          model: {
+                            value: _vm.selected,
+                            callback: function($$v) {
+                              _vm.selected = $$v
+                            },
+                            expression: "selected"
+                          }
                         },
-                        model: {
-                          value: _vm.selected,
-                          callback: function($$v) {
-                            _vm.selected = $$v
-                          },
-                          expression: "selected"
-                        }
-                      })
+                        [
+                          _c("option", { domProps: { value: null } }, [
+                            _vm._v("--- Категория ---")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.items, function(item) {
+                            return _c(
+                              "option",
+                              { attrs: { value: "item.id" } },
+                              [_vm._v(_vm._s(item.name))]
+                            )
+                          })
+                        ],
+                        2
+                      )
                     ],
                     1
                   ),
