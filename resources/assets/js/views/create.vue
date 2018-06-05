@@ -4,6 +4,7 @@
 		<b-col cols="12" sm="12" md="12" lg="5" xl="5" style="text-align:center;margin:auto;margin-top:40px;color:grey">
 		<h1>новое объявление</h1>
 		<br>
+			<b-form @submit="onSubmit">
 			<b-form-group label="Заголовок:" label-for="title">
 				<b-form-input id="title"	type="text"
 											v-model="form.title"
@@ -27,8 +28,9 @@
 			</b-form-group>
 
 			<b-form-group style="text-align:center">
-				<b-button @click="onSubmit" variant="primary">Создать</b-button>
+				<b-button type="onSubmit" variant="primary">Создать</b-button>
 			</b-form-group>
+		</b-form>
 	</b-col>
 	</b-row>
 </b-container>
@@ -50,7 +52,8 @@ export default {
 	},
 	components: {},
   	methods: {
-    	onSubmit() {
+    	onSubmit(evt) {
+    		evt.preventDefault();
     		post('/create').then((res) => {
     			window.location.href = "/home/555";
 			}).catch((err) => {});

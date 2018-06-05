@@ -1847,6 +1847,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1864,7 +1866,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	components: {},
 	methods: {
-		onSubmit: function onSubmit() {
+		onSubmit: function onSubmit(evt) {
+			evt.preventDefault();
 			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create').then(function (res) {
 				window.location.href = "/home/555";
 			}).catch(function (err) {});
@@ -28498,95 +28501,105 @@ var render = function() {
               _c("br"),
               _vm._v(" "),
               _c(
-                "b-form-group",
-                { attrs: { label: "Заголовок:", "label-for": "title" } },
-                [
-                  _c("b-form-input", {
-                    attrs: {
-                      id: "title",
-                      type: "text",
-                      required: "",
-                      placeholder: "Введи заголовок"
-                    },
-                    model: {
-                      value: _vm.form.title,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "title", $$v)
-                      },
-                      expression: "form.title"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-form-group",
-                { attrs: { label: "Описание:", "label-for": "desc" } },
-                [
-                  _c("b-form-textarea", {
-                    attrs: {
-                      id: "desc",
-                      placeholder: "Введите описание",
-                      rows: 10,
-                      "max-rows": 10
-                    },
-                    model: {
-                      value: _vm.form.desc,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "desc", $$v)
-                      },
-                      expression: "form.desc"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-form-group",
-                { attrs: { label: "Категория:", "label-for": "categories" } },
+                "b-form",
+                { on: { submit: _vm.onSubmit } },
                 [
                   _c(
-                    "b-form-select",
-                    {
-                      staticClass: "mb-3",
-                      model: {
-                        value: _vm.selected,
-                        callback: function($$v) {
-                          _vm.selected = $$v
-                        },
-                        expression: "selected"
-                      }
-                    },
+                    "b-form-group",
+                    { attrs: { label: "Заголовок:", "label-for": "title" } },
                     [
-                      _c("option", { domProps: { value: null } }, [
-                        _vm._v("--- Выберите категорию товара или услуги ---")
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.items, function(item) {
-                        return _c("option", { attrs: { value: "item.id" } }, [
-                          _vm._v(_vm._s(item.name))
-                        ])
+                      _c("b-form-input", {
+                        attrs: {
+                          id: "title",
+                          type: "text",
+                          required: "",
+                          placeholder: "Введи заголовок"
+                        },
+                        model: {
+                          value: _vm.form.title,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "title", $$v)
+                          },
+                          expression: "form.title"
+                        }
                       })
                     ],
-                    2
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-form-group",
-                { staticStyle: { "text-align": "center" } },
-                [
+                    1
+                  ),
+                  _vm._v(" "),
                   _c(
-                    "b-button",
+                    "b-form-group",
+                    { attrs: { label: "Описание:", "label-for": "desc" } },
+                    [
+                      _c("b-form-textarea", {
+                        attrs: {
+                          id: "desc",
+                          placeholder: "Введите описание",
+                          rows: 10,
+                          "max-rows": 10
+                        },
+                        model: {
+                          value: _vm.form.desc,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "desc", $$v)
+                          },
+                          expression: "form.desc"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-form-group",
                     {
-                      attrs: { variant: "primary" },
-                      on: { click: _vm.onSubmit }
+                      attrs: { label: "Категория:", "label-for": "categories" }
                     },
-                    [_vm._v("Создать")]
+                    [
+                      _c(
+                        "b-form-select",
+                        {
+                          staticClass: "mb-3",
+                          model: {
+                            value: _vm.selected,
+                            callback: function($$v) {
+                              _vm.selected = $$v
+                            },
+                            expression: "selected"
+                          }
+                        },
+                        [
+                          _c("option", { domProps: { value: null } }, [
+                            _vm._v(
+                              "--- Выберите категорию товара или услуги ---"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.items, function(item) {
+                            return _c(
+                              "option",
+                              { attrs: { value: "item.id" } },
+                              [_vm._v(_vm._s(item.name))]
+                            )
+                          })
+                        ],
+                        2
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-form-group",
+                    { staticStyle: { "text-align": "center" } },
+                    [
+                      _c(
+                        "b-button",
+                        { attrs: { type: "onSubmit", variant: "primary" } },
+                        [_vm._v("Создать")]
+                      )
+                    ],
+                    1
                   )
                 ],
                 1
