@@ -12,8 +12,8 @@ Route::get('/search', function () { return view('search'); });
 
 // перекинуть в контроллер
 Route::get('/create', function () { 
-	
-	return Auth::user()? view('create')->with("items", Categories::all())->with("auth", Auth::user()?1:0) : view('auth\login'); 
+
+	return Auth::user()? view('create')->with("items", Categories::all()) : view('auth\login'); 
 });
 Route::get('/category/{id}', function () { return view('category'); });
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
