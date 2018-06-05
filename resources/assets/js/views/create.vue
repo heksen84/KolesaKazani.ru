@@ -6,16 +6,14 @@
 		<br>
 		<b-form @submit="onSubmit" style="width:50%;margin:auto;text-align:left">
 			<b-form-group label="Заголовок:" label-for="title">
-				<b-form-input id="title"
-											type="text"
+				<b-form-input id="title"	type="text"
 											v-model="form.title"
 											required
 											placeholder="Введи заголовок">
 				</b-form-input>
 			</b-form-group>
 			<b-form-group label="Описание:" label-for="desc">
-			 <b-form-textarea id="desc"
-										v-model="form.desc"
+			 <b-form-textarea id="desc" v-model="form.desc"
 										placeholder="Введите описание"
 										:rows="10"
 										:max-rows="10">
@@ -38,15 +36,17 @@
 </b-container>
 </template>
 <script>
+import { post } from './../helpers/api'
 export default {
 	props: ["items"],
 	data () {
-    return 	{
-			form: {
-				title: '',
-				desc:  ''
-			},
-			selected: null
+    return 	
+    {
+		form: {
+			title: '',
+			desc:  ''
+		},
+		selected: null
 		}
 	},
 	created() {
@@ -54,7 +54,10 @@ export default {
 	components: {},
   	methods: {
     	onSubmit() {
-    	alert("отправлено!");
+    		post('/create').then((res) => {
+			//localStorage.setItem("am_userAuth", false);
+			//window.location='/';
+		}).catch((err) => {});
     }
 }
 }
