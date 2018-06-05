@@ -14,7 +14,7 @@
 				</b-form-input>
 			</b-form-group>
 			<b-form-group label="Описание:" label-for="desc">
-			 	<b-form-textarea id="desc"
+			 <b-form-textarea id="desc"
 										v-model="form.desc"
 										placeholder="Введите описание"
 										:rows="10"
@@ -23,7 +23,7 @@
 			</b-form-group>
 
 			<b-form-group label="Категория:" label-for="categories">
-				<b-form-select v-model="selected" :options="options" class="mb-3" size="sm" id="categories"/>
+				<b-form-select v-model="selected" :options="items" class="mb-3" size="sm" id="categories"/>
 			</b-form-group>
 
 			<b-form-group style="text-align:center">
@@ -39,19 +39,17 @@
 </template>
 <script>
 export default {
+	props: ["items"],
 	data () {
     return 	{
 			form: {
 				title: '',
 				desc:  ''
 			},
-			selected: null,
 			options: [
-			{ value: null, text: 'Please select an option' },
-			{ value: 'a', text: 'This is First option' },
-			{ value: 'b', text: 'Selected Option' },
-			{ value: {'C': '3PO'}, text: 'This is an option with object value' },
-			{ value: 'd', text: 'This one is disabled', disabled: true }
+			{ value: null, text: 'категории' },
+			{ value: 'a', text: 'транспорт' },
+			{ value: 'b', text: 'недвижимость' }
 		]
 		}
 	},
