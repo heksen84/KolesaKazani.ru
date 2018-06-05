@@ -22,7 +22,7 @@
 
 			<b-form-group label="Категория:" label-for="categories">
 				<b-form-select v-model="selected" class="mb-3">
-					 <option :value="null">--- Выберите категорию товара или услуги ---</option>
+					 <option :value="null">-- Категория товара или услуги --</option>
 					 <option v-for="item in items "value="item.id">{{item.name}}</option>
 				</b-form-select>
 			</b-form-group>

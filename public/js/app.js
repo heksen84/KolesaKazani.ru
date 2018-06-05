@@ -28570,9 +28570,7 @@ var render = function() {
                         },
                         [
                           _c("option", { domProps: { value: null } }, [
-                            _vm._v(
-                              "--- Выберите категорию товара или услуги ---"
-                            )
+                            _vm._v("-- Категория товара или услуги --")
                           ]),
                           _vm._v(" "),
                           _vm._l(_vm.items, function(item) {
