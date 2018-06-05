@@ -50,8 +50,7 @@ export default {
 	},
 	components: {},
   	methods: {
-    	onSubmit() 
-    	{
+    	onSubmit() {
     		post('/create').then((res) => {
     			window.location.href = "/";
 			}).catch((err) => {});
