@@ -1866,7 +1866,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	methods: {
 		onSubmit: function onSubmit() {
 			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create').then(function (res) {
-				window.location.href = "/";
+				window.location.href = "/home/555";
 			}).catch(function (err) {});
 		}
 	}
@@ -1924,7 +1924,6 @@ var items = [{ "№": 1, объявление: 'Продам' }, { "№": 2, о�
   methods: {
     logout: function logout() {
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/logout').then(function (res) {
-        localStorage.setItem("am_userAuth", false);
         window.location = '/';
       }).catch(function (err) {});
     },

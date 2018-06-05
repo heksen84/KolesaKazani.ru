@@ -46,7 +46,6 @@ components: {},
   methods: {
     logout() {
 		get('/logout').then((res) => {
-			localStorage.setItem("am_userAuth", false);
 			window.location='/';
 		}).catch((err) => {});
     },

@@ -52,7 +52,7 @@ export default {
   	methods: {
     	onSubmit() {
     		post('/create').then((res) => {
-    			window.location.href = "/";
+    			window.location.href = "/home/555";
 			}).catch((err) => {});
     	}
 }
