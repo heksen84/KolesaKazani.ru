@@ -1,10 +1,9 @@
 <template>
 	<b-container fluid>
 		<b-row>
-		<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center;margin:auto;margin-top:40px;color:grey">
+		<b-col cols="12" sm="12" md="12" lg="5" xl="5" style="text-align:center;margin:auto;margin-top:40px;color:grey">
 		<h1>новое объявление</h1>
 		<br>
-		<b-form @submit="onSubmit" style="width:50%;margin:auto;text-align:left">
 			<b-form-group label="Заголовок:" label-for="title">
 				<b-form-input id="title"	type="text"
 											v-model="form.title"
@@ -28,9 +27,8 @@
 			</b-form-group>
 
 			<b-form-group style="text-align:center">
-				<b-button type="submit" variant="primary">Создать</b-button>
+				<b-button @click="onSubmit" variant="primary">Создать</b-button>
 			</b-form-group>
-		</b-form>
 	</b-col>
 	</b-row>
 </b-container>
@@ -40,25 +38,24 @@ import { post } from './../helpers/api'
 export default {
 	props: ["items"],
 	data () {
-    return 	
-    {
+    return 	{
 		form: {
 			title: '',
-			desc:  ''
+			desc: ''
 		},
 		selected: null
-		}
+	}
 	},
 	created() {
 	},
 	components: {},
   	methods: {
-    	onSubmit() {
+    	onSubmit() 
+    	{
     		post('/create').then((res) => {
-			//localStorage.setItem("am_userAuth", false);
-			//window.location='/';
-		}).catch((err) => {});
-    }
+    			window.location.href = "/";
+			}).catch((err) => {});
+    	}
 }
 }
 </script>
