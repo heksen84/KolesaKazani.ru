@@ -90,7 +90,7 @@ body {
 }
 
 #button_search {
-  margin: 5px;
+  margin: 4px;
   padding: 10px;
   background: #6464c8;
   color: white;
@@ -106,7 +106,7 @@ body {
 }
 
 #new_advert_block {
-  padding: 7px;
+  padding: 10px;
   background: #c86464;
   border: 2px solid white;
   border-radius: 8px;

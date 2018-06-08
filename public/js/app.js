@@ -27961,12 +27961,12 @@ var render = function() {
                   "div",
                   {
                     staticStyle: {
-                      "font-size": "20px",
+                      "font-size": "18px",
                       color: "yellow",
-                      "margin-top": "-7px"
+                      "margin-top": "-5px"
                     }
                   },
-                  [_vm._v("доска объявлений г. Аксу")]
+                  [_vm._v("доска объявлений")]
                 )
               ])
             ]
@@ -28014,7 +28014,7 @@ var render = function() {
                   attrs: { id: "new_advert_block" },
                   on: { click: _vm.createAdvert }
                 },
-                [_c("h3", [_vm._v("разместить объявление")])]
+                [_c("h3", [_vm._v("подать объявление")])]
               )
             ]
           )
