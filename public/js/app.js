@@ -27965,7 +27965,8 @@ var render = function() {
                     staticStyle: {
                       "font-size": "18px",
                       color: "yellow",
-                      "margin-top": "-5px"
+                      "margin-top": "-5px",
+                      "letter-spacing": "3px"
                     }
                   },
                   [_vm._v("доска объявлений")]
