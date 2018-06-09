@@ -21,7 +21,7 @@
 			</b-form-group>
 
 			<b-form-group label="Категория:" label-for="categories">
-				<b-form-select v-model="selected" class="mb-3">
+				<b-form-select v-model="form.selected" class="mb-3">
 					 <option :value="null">-- Категория товара или услуги --</option>
 					 <option v-for="item in items "value="item.id">{{item.name}}</option>
 				</b-form-select>
@@ -43,9 +43,9 @@ export default {
     return 	{
 		form: {
 			title: '',
-			desc: ''
-		},
-		selected: null
+			desc: '',
+			selected: null
+		}
 	}
 	},
 	created() {
@@ -54,8 +54,10 @@ export default {
   	methods: {
     	onSubmit(evt) {
     		evt.preventDefault();
-    		post('/create').then((res) => {
-    			window.location.href = "/home/555";
+    		post('/create', { "data": this.form }).then((res) => {
+    			//window.location.href = "/home/555";
+    			console.log(res.data);
+    			alert("created");
 			}).catch((err) => {});
     	}
 }

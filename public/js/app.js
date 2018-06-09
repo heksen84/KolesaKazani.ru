@@ -1857,9 +1857,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		return {
 			form: {
 				title: '',
-				desc: ''
-			},
-			selected: null
+				desc: '',
+				selected: null
+			}
 		};
 	},
 	created: function created() {},
@@ -1868,8 +1868,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	methods: {
 		onSubmit: function onSubmit(evt) {
 			evt.preventDefault();
-			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create').then(function (res) {
-				window.location.href = "/home/555";
+			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.form }).then(function (res) {
+				//window.location.href = "/home/555";
+				console.log(res.data);
+				alert("created");
 			}).catch(function (err) {});
 		}
 	}
@@ -28561,11 +28563,11 @@ var render = function() {
                         {
                           staticClass: "mb-3",
                           model: {
-                            value: _vm.selected,
+                            value: _vm.form.selected,
                             callback: function($$v) {
-                              _vm.selected = $$v
+                              _vm.$set(_vm.form, "selected", $$v)
                             },
-                            expression: "selected"
+                            expression: "form.selected"
                           }
                         },
                         [

@@ -17,8 +17,6 @@ Route::get('/create', function () {
 	return Auth::user()? view('create')->with("items", Categories::all()) : view('auth\login'); 
 });
 
-Route::post('/create', function () { return view('home'); });
-
-
+Route::post('/create', 'AdvertsController@createAdvert');
 Route::get('/category/{id}', function () { return view('category'); });
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
