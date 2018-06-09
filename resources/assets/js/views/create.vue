@@ -21,9 +21,9 @@
 			</b-form-group>
 
 			<b-form-group label="Категория:" label-for="categories">
-				<b-form-select v-model="form.selected" class="mb-3">
+				<b-form-select v-model="form.category" class="mb-3">
 					 <option :value="null">-- Категория товара или услуги --</option>
-					 <option v-for="item in items "value="item.id">{{item.name}}</option>
+					 <option v-for="item in items" :value="item.id">{{item.name}}</option>
 				</b-form-select>
 			</b-form-group>
 
@@ -44,7 +44,7 @@ export default {
 		form: {
 			title: '',
 			desc: '',
-			selected: null
+			category: null
 		}
 	}
 	},

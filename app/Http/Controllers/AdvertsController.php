@@ -14,8 +14,10 @@ class AdvertsController extends Controller
      public function createAdvert(Request $request) {
      	 
      	 $data = $request->input('data');
-     	 $title = $data['title'];
-     	 $desc  = $data["desc"];
+     	 
+     	 $title 	= $data["title"];
+     	 $desc  	= $data["desc"];
+     	 $category  = $data["category"];
 
      	 return $data;
     }

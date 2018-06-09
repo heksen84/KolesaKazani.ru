@@ -1858,7 +1858,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			form: {
 				title: '',
 				desc: '',
-				selected: null
+				category: null
 			}
 		};
 	},
@@ -28563,11 +28563,11 @@ var render = function() {
                         {
                           staticClass: "mb-3",
                           model: {
-                            value: _vm.form.selected,
+                            value: _vm.form.category,
                             callback: function($$v) {
-                              _vm.$set(_vm.form, "selected", $$v)
+                              _vm.$set(_vm.form, "category", $$v)
                             },
-                            expression: "form.selected"
+                            expression: "form.category"
                           }
                         },
                         [
@@ -28578,7 +28578,7 @@ var render = function() {
                           _vm._l(_vm.items, function(item) {
                             return _c(
                               "option",
-                              { attrs: { value: "item.id" } },
+                              { domProps: { value: item.id } },
                               [_vm._v(_vm._s(item.name))]
                             )
                           })
