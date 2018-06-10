@@ -1992,7 +1992,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		return {};
 	},
 	created: function created() {
-		alert("results");
+		//alert("results");
 	},
 
 	components: {},
@@ -28107,6 +28107,40 @@ var render = function() {
           )
         ],
         1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-row",
+        { staticStyle: { "margin-top": "20px" } },
+        _vm._l(_vm.items, function(item) {
+          return _c(
+            "b-col",
+            {
+              key: item,
+              staticStyle: {
+                margin: "auto",
+                "margin-top": "2px",
+                color: "grey"
+              },
+              attrs: { cols: "12", sm: "12", md: "7", lg: "7", xl: "7" }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticStyle: {
+                    color: "grey",
+                    background: "white",
+                    padding: "35px",
+                    "border-radius": "3px",
+                    width: "100%"
+                  }
+                },
+                [_c("h5", [_vm._v(_vm._s(item.name))])]
+              )
+            ]
+          )
+        })
       )
     ],
     1
