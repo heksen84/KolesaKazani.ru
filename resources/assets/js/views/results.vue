@@ -8,7 +8,10 @@
 
 	<b-row style="margin-top:20px">
 		<b-col cols="12" sm="12" md="7" lg="7" xl="7" style="margin:auto;margin-top:2px;color:grey" v-for="item in items" :key="item">
-			<div style="color:grey;background:white;padding:35px;border-radius:3px;width:100%"><h5>{{ item.name }}</h5></div>
+			<div style="color:grey;background:white;padding:15px;margin-bottom:3px;border-radius:3px;width:100%">
+				<h4><ins>{{ item.name }}</ins></h4>
+				<h6>{{ item.text }}</h6>
+			</div>
 		</b-col>
 	</b-row>
 	
