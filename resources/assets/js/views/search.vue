@@ -11,9 +11,10 @@
 export default {
 	data () {
     return 	{
-			}
+		}
 	},
 	created() {
+		alert("search");
 	},
 components: { },
   methods: {

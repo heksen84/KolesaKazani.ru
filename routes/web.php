@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Auth;
 use App\Categories;
+use App\Adverts;
 
 Auth::routes();
 Route::get('/', 'WelcomeController@getCategories');
@@ -18,5 +19,5 @@ Route::get('/create', function () {
 });
 
 Route::post('/create', 'AdvertsController@createAdvert');
-Route::get('/category/{id}', function () { return view('category'); });
+Route::get('/category/{id}', function () { return view('category')->with("items", Adverts::all()); });
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
