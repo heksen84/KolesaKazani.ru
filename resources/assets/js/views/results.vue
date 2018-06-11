@@ -7,8 +7,8 @@
 		</b-row>
 
 	<b-row style="margin-top:20px">
-		<b-col cols="12" sm="12" md="7" lg="7" xl="7" style="margin:auto;margin-top:2px;color:grey" v-for="item in items" :key="item" @click="details">
-			<div style="color:grey;background:white;padding:15px;margin-bottom:3px;border-radius:3px;width:100%">
+		<b-col cols="12" sm="12" md="7" lg="7" xl="7" style="margin:auto;margin-top:2px;color:grey" v-for="item in items" :key="item.id">
+			<div style="color:grey;background:white;padding:15px;margin-bottom:3px;border-radius:3px;width:100%" @click="details" :id="item.id">
 				<h3>{{ item.name }}</h3>
 				<h6>{{ item.text }}</h6>
 				<center>
@@ -30,8 +30,9 @@ export default {
 	},
 	components: { },
   		methods: {
-    		details(evet) {
-    			 window.location='/details/123';
+    		details(event) {
+    			 window.location='/details/'+event.target.id;
+    			 //console.log(event);
     		}
 	}
 }

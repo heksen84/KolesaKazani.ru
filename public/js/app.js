@@ -2001,8 +2001,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	components: {},
 	methods: {
-		details: function details(evet) {
-			window.location = '/details/123';
+		details: function details(event) {
+			window.location = '/details/' + event.target.id;
+			//console.log(event);
 		}
 	}
 });
@@ -28123,14 +28124,13 @@ var render = function() {
           return _c(
             "b-col",
             {
-              key: item,
+              key: item.id,
               staticStyle: {
                 margin: "auto",
                 "margin-top": "2px",
                 color: "grey"
               },
-              attrs: { cols: "12", sm: "12", md: "7", lg: "7", xl: "7" },
-              on: { click: _vm.details }
+              attrs: { cols: "12", sm: "12", md: "7", lg: "7", xl: "7" }
             },
             [
               _c(
@@ -28143,7 +28143,9 @@ var render = function() {
                     "margin-bottom": "3px",
                     "border-radius": "3px",
                     width: "100%"
-                  }
+                  },
+                  attrs: { id: item.id },
+                  on: { click: _vm.details }
                 },
                 [
                   _c("h3", [_vm._v(_vm._s(item.name))]),
