@@ -1911,7 +1911,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 var items = [{ "№": 1, объявление: 'Продам' }, { "№": 2, объявление: 'Куплю' }, { "№": 3, объявление: 'Обменяю' }];
@@ -27963,7 +27962,7 @@ var render = function() {
                   "div",
                   {
                     staticStyle: {
-                      "font-size": "36px",
+                      "font-size": "35px",
                       "letter-spacing": "3px",
                       "font-weight": "450"
                     }
@@ -28029,7 +28028,7 @@ var render = function() {
                   attrs: { id: "new_advert_block" },
                   on: { click: _vm.createAdvert }
                 },
-                [_c("h3", [_vm._v("подать объявление")])]
+                [_c("h4", [_vm._v("+ добавить объявление")])]
               )
             ]
           )

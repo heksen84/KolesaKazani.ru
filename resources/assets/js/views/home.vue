@@ -21,7 +21,6 @@
 			<br>
 			<b-table striped hover :items="items" style="background:white;color:black"></b-table>
 		</b-col>
-
 	</b-row>
 </b-container>
 </template>
