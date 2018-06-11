@@ -2085,8 +2085,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -28029,7 +28027,7 @@ var render = function() {
                   attrs: { id: "new_advert_block" },
                   on: { click: _vm.createAdvert }
                 },
-                [_vm._v("\n          + добавить объявление\n        ")]
+                [_vm._v("+ добавить объявление")]
               )
             ]
           )

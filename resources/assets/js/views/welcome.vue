@@ -23,9 +23,7 @@
           <button id="button_search" @click="search">найти</button>
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
-        <div id="new_advert_block" @click="createAdvert">
-          + добавить объявление
-        </div>
+        <div id="new_advert_block" @click="createAdvert">+ добавить объявление</div>
         </b-col>
     </b-row>
 
