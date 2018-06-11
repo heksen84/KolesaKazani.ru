@@ -13,7 +13,8 @@
     </head>
     <body>
 <div id="app">
-  <newtrip></newtrip>
+  <!--<details></details>-->
+  Детальки
 </div>
 </body>
 </html>

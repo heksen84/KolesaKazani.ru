@@ -1997,14 +1997,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	data: function data() {
 		return {};
 	},
-	created: function created() {
-		//alert("results");
-	},
+	created: function created() {},
 
 	components: {},
 	methods: {
-		viewAds: function viewAds() {
-			alert("qqwd");
+		details: function details(evet) {
+			window.location = '/details/123';
 		}
 	}
 });
@@ -28131,7 +28129,7 @@ var render = function() {
                 color: "grey"
               },
               attrs: { cols: "12", sm: "12", md: "7", lg: "7", xl: "7" },
-              on: { click: _vm.viewAds }
+              on: { click: _vm.details }
             },
             [
               _c(
