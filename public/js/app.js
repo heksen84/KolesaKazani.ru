@@ -27964,7 +27964,8 @@ var render = function() {
                     staticStyle: {
                       "font-size": "32px",
                       "letter-spacing": "3px",
-                      "font-weight": "450"
+                      "font-weight": "450",
+                      padding: "3px"
                     }
                   },
                   [_vm._v("ЩЕПКА")]
