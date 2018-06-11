@@ -28147,7 +28147,7 @@ var render = function() {
                   }
                 },
                 [
-                  _c("h2", [_vm._v(_vm._s(item.name))]),
+                  _c("h3", [_vm._v(_vm._s(item.name))]),
                   _vm._v(" "),
                   _c("h6", [_vm._v(_vm._s(item.text))]),
                   _vm._v(" "),
