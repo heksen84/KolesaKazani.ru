@@ -17,7 +17,7 @@
 			<br>
 			<h3>мои объявления</h3>
 		</b-col>
-		<b-col cols="12" sm="12" md="6" lg="6" xl="6" style="text-align:center;margin:auto">
+		<b-col cols="12" sm="12" md="8" lg="8" xl="8" style="text-align:center;margin:auto">
 			<br>
 			<b-table striped hover :items="items" style="background:white;color:black"></b-table>
 		</b-col>

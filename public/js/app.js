@@ -27770,7 +27770,7 @@ var render = function() {
             "b-col",
             {
               staticStyle: { "text-align": "center", margin: "auto" },
-              attrs: { cols: "12", sm: "12", md: "6", lg: "6", xl: "6" }
+              attrs: { cols: "12", sm: "12", md: "8", lg: "8", xl: "8" }
             },
             [
               _c("br"),
