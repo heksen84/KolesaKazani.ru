@@ -27964,10 +27964,10 @@ var render = function() {
                   {
                     staticStyle: {
                       "font-size": "36px",
-                      "text-decoration": "underline"
+                      "letter-spacing": "5px"
                     }
                   },
-                  [_vm._v("АксуМаркет")]
+                  [_vm._v("ЩЕПКА")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -27976,8 +27976,8 @@ var render = function() {
                     staticStyle: {
                       "font-size": "18px",
                       color: "yellow",
-                      "margin-top": "-5px",
-                      "letter-spacing": "3px"
+                      "margin-top": "-10px",
+                      "letter-spacing": "2px"
                     }
                   },
                   [_vm._v("доска объявлений")]
