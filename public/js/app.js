@@ -1990,22 +1990,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ["items"],
-	data: function data() {
-		return {};
-	},
-	created: function created() {},
+  props: ["items"],
+  data: function data() {
+    return {};
+  },
+  created: function created() {},
 
-	components: {},
-	methods: {
-		details: function details(event) {
-			window.location = '/details/' + event.target.id;
-			//console.log(event);
-		}
-	}
+  components: {},
+  methods: {
+    details: function details(event) {
+      console.log(event);
+      window.location = '/details/' + event.target.parentNode.id;
+    }
+  }
 });
 
 /***/ }),
@@ -28144,19 +28143,19 @@ var render = function() {
                     "border-radius": "3px",
                     width: "100%"
                   },
-                  attrs: { id: item.id },
-                  on: { click: _vm.details }
+                  attrs: { id: item.id }
                 },
                 [
                   _c("h3", [_vm._v(_vm._s(item.name))]),
                   _vm._v(" "),
                   _c("h6", [_vm._v(_vm._s(item.text))]),
                   _vm._v(" "),
-                  _c("center", [
-                    _c("h5", [_c("b", [_vm._v(_vm._s(item.price))])])
-                  ])
-                ],
-                1
+                  _c("button", { on: { click: _vm.details } }, [
+                    _vm._v("подробнее")
+                  ]),
+                  _vm._v(" "),
+                  _c("h5", [_c("b", [_vm._v(_vm._s(item.price))])])
+                ]
               )
             ]
           )
