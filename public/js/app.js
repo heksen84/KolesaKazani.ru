@@ -28139,7 +28139,7 @@ var render = function() {
                   staticStyle: {
                     color: "grey",
                     background: "white",
-                    padding: "15px",
+                    padding: "25px",
                     "margin-bottom": "3px",
                     "border-radius": "3px",
                     width: "100%"
