@@ -14,7 +14,7 @@
     <b-row>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
           <div id="logo_block">
-            <div style="font-size:34px;letter-spacing:3px;font-weight:450">ЩЕПКА</div>
+            <div style="font-size:32px;letter-spacing:3px;font-weight:450">ЩЕПКА</div>
             <div style="font-size:18px;color:yellow;margin-top:-10px;letter-spacing:2px;">доска объявлений</div>
           </div>
         </b-col>
