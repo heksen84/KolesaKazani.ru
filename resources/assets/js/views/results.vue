@@ -7,10 +7,13 @@
 		</b-row>
 
 	<b-row style="margin-top:20px">
-		<b-col cols="12" sm="12" md="7" lg="7" xl="7" style="margin:auto;margin-top:2px;color:grey" v-for="item in items" :key="item">
+		<b-col cols="12" sm="12" md="7" lg="7" xl="7" style="margin:auto;margin-top:2px;color:grey" v-for="item in items" :key="item" @click="viewAds">
 			<div style="color:grey;background:white;padding:15px;margin-bottom:3px;border-radius:3px;width:100%">
-				<h4><ins>{{ item.name }}</ins></h4>
+				<h2>{{ item.name }}</h2>
 				<h6>{{ item.text }}</h6>
+				<center>
+					<h5><b>{{ item.price }}</b></h5>
+				</center>
 			</div>
 		</b-col>
 	</b-row>
@@ -28,8 +31,9 @@ export default {
 	},
 	components: { },
   		methods: {
-    		hello() {
-    	}
+    		viewAds() {
+    			alert("qqwd");
+    		}
 	}
 }
 </script>

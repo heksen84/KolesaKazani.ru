@@ -1988,6 +1988,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ["items"],
@@ -2000,7 +2003,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	components: {},
 	methods: {
-		hello: function hello() {}
+		viewAds: function viewAds() {
+			alert("qqwd");
+		}
 	}
 });
 
@@ -28125,7 +28130,8 @@ var render = function() {
                 "margin-top": "2px",
                 color: "grey"
               },
-              attrs: { cols: "12", sm: "12", md: "7", lg: "7", xl: "7" }
+              attrs: { cols: "12", sm: "12", md: "7", lg: "7", xl: "7" },
+              on: { click: _vm.viewAds }
             },
             [
               _c(
@@ -28141,10 +28147,15 @@ var render = function() {
                   }
                 },
                 [
-                  _c("h4", [_c("ins", [_vm._v(_vm._s(item.name))])]),
+                  _c("h2", [_vm._v(_vm._s(item.name))]),
                   _vm._v(" "),
-                  _c("h6", [_vm._v(_vm._s(item.text))])
-                ]
+                  _c("h6", [_vm._v(_vm._s(item.text))]),
+                  _vm._v(" "),
+                  _c("center", [
+                    _c("h5", [_c("b", [_vm._v(_vm._s(item.price))])])
+                  ])
+                ],
+                1
               )
             ]
           )
