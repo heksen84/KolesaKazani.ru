@@ -52,6 +52,7 @@ const app = new Vue({
       register,
       search,
       results,
-      create
+      create,
+      carousel
   }
 });

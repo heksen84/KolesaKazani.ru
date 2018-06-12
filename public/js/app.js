@@ -1993,7 +1993,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["items"],
   data: function data() {
-    return {};
+    return {
+      slide: 0,
+      sliding: null
+    };
   },
   created: function created() {},
 
@@ -28130,31 +28133,16 @@ var render = function() {
               attrs: { cols: "12", sm: "12", md: "7", lg: "7", xl: "7" }
             },
             [
-              _c(
-                "div",
-                {
-                  staticStyle: {
-                    color: "grey",
-                    background: "white",
-                    padding: "25px",
-                    "margin-bottom": "3px",
-                    "border-radius": "3px",
-                    width: "100%"
-                  },
-                  attrs: { id: item.id }
+              _c("div", {
+                staticStyle: {
+                  height: "200px",
+                  color: "grey",
+                  background: "white",
+                  "margin-bottom": "3px",
+                  "border-radius": "3px"
                 },
-                [
-                  _c("h3", [_vm._v(_vm._s(item.name))]),
-                  _vm._v(" "),
-                  _c("h6", [_vm._v(_vm._s(item.text))]),
-                  _vm._v(" "),
-                  _c("button", { on: { click: _vm.details } }, [
-                    _vm._v("подробнее")
-                  ]),
-                  _vm._v(" "),
-                  _c("h5", [_c("b", [_vm._v(_vm._s(item.price))])])
-                ]
-              )
+                attrs: { id: item.id }
+              })
             ]
           )
         })
@@ -40564,7 +40552,8 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     register: __WEBPACK_IMPORTED_MODULE_9__views_auth_register_vue___default.a,
     search: __WEBPACK_IMPORTED_MODULE_4__views_search_vue___default.a,
     results: __WEBPACK_IMPORTED_MODULE_5__views_results_vue___default.a,
-    create: __WEBPACK_IMPORTED_MODULE_6__views_create_vue___default.a
+    create: __WEBPACK_IMPORTED_MODULE_6__views_create_vue___default.a,
+    carousel: __WEBPACK_IMPORTED_MODULE_20_bootstrap_vue_src_components_carousel__["a" /* default */]
   }
 });
 
