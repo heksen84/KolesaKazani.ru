@@ -7,6 +7,11 @@
 		</b-row>
 
 	<b-row style="margin-top:20px">
+		<b-col cols="12" sm="12" md="7" lg="7" xl="7">
+		<select>
+			<options v-for="(index, i) in 10" :key="index">{{i}}</options>
+		</select>
+		</b-col>
 		<b-col cols="12" sm="12" md="7" lg="7" xl="7" style="margin:auto;margin-top:2px;color:grey" v-for="item in items" :key="item.id">
 			<div style="height:200px;color:grey;background:white;margin-bottom:3px;border-radius:3px" :id="item.id">
 				<!--<h3>{{ item.name }}</h3>-->

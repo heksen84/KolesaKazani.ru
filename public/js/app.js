@@ -1989,6 +1989,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["items"],
@@ -28120,32 +28125,48 @@ var render = function() {
       _c(
         "b-row",
         { staticStyle: { "margin-top": "20px" } },
-        _vm._l(_vm.items, function(item) {
-          return _c(
+        [
+          _c(
             "b-col",
-            {
-              key: item.id,
-              staticStyle: {
-                margin: "auto",
-                "margin-top": "2px",
-                color: "grey"
-              },
-              attrs: { cols: "12", sm: "12", md: "7", lg: "7", xl: "7" }
-            },
+            { attrs: { cols: "12", sm: "12", md: "7", lg: "7", xl: "7" } },
             [
-              _c("div", {
-                staticStyle: {
-                  height: "200px",
-                  color: "grey",
-                  background: "white",
-                  "margin-bottom": "3px",
-                  "border-radius": "3px"
-                },
-                attrs: { id: item.id }
-              })
+              _c(
+                "select",
+                _vm._l(10, function(index, i) {
+                  return _c("options", { key: index }, [_vm._v(_vm._s(i))])
+                })
+              )
             ]
-          )
-        })
+          ),
+          _vm._v(" "),
+          _vm._l(_vm.items, function(item) {
+            return _c(
+              "b-col",
+              {
+                key: item.id,
+                staticStyle: {
+                  margin: "auto",
+                  "margin-top": "2px",
+                  color: "grey"
+                },
+                attrs: { cols: "12", sm: "12", md: "7", lg: "7", xl: "7" }
+              },
+              [
+                _c("div", {
+                  staticStyle: {
+                    height: "200px",
+                    color: "grey",
+                    background: "white",
+                    "margin-bottom": "3px",
+                    "border-radius": "3px"
+                  },
+                  attrs: { id: item.id }
+                })
+              ]
+            )
+          })
+        ],
+        2
       )
     ],
     1
