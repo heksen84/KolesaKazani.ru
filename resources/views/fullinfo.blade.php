@@ -13,7 +13,7 @@
     </head>
     <body>
 <div id="app">
-  <details2></details2>
+  <fullinfo></fullinfo>
 </div>
 </body>
 </html>

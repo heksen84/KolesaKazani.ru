@@ -12,7 +12,7 @@ import profile from './views/profile.vue';
 import search from './views/search.vue';
 import results from './views/results.vue';
 import create from './views/create.vue';
-import details2 from './views/details2.vue';
+import fullinfo from './views/fullinfo.vue';
 import passwordreset from './views/auth/passwordreset.vue';
 import login from './views/auth/login.vue';
 import register from './views/auth/register.vue';
@@ -61,7 +61,7 @@ const app = new Vue({
       results,
       create,
       carousel,
-      details2
+      fullinfo
       //item
   }
 });
