@@ -1,6 +1,6 @@
 <template>
   <div class="item" @click="details">
-    <h3 style="margin-left:5px">{{ name }}</h3>
+    <h2 style="margin:15px;color:rgb(70,70,70)">{{ name }}</h2>
   </div>
 </template>
 
