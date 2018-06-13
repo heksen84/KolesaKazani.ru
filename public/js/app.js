@@ -28037,7 +28037,7 @@ var render = function() {
                       padding: "2px"
                     }
                   },
-                  [_vm._v("Флаймарт")]
+                  [_vm._v("ФлаймарТ")]
                 ),
                 _vm._v(" "),
                 _c(
