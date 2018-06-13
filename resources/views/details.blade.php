@@ -13,8 +13,7 @@
     </head>
     <body>
 <div id="app">
-  <!--<details></details>-->
-  Детальки
+  <details2></details2>
 </div>
 </body>
 </html>
