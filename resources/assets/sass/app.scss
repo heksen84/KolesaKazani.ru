@@ -112,7 +112,7 @@ padding:0;
   border-radius: 6px;
   padding: 5px;
   text-align:center;
-  font-size:18px;
+  font-size:19px;
   width:240px;
   background: rgb(115,115,115);
   opacity:0.95;
@@ -132,4 +132,13 @@ padding:0;
   border-radius:5px;
   text-align:center;
   display:block;
+}
+
+.item {
+  background:white;
+  color:black;
+  margin-top:-1px;
+  height:230px;
+  border:1px solid black;
+  border-radius:5px;
 }

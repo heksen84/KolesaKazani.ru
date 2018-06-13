@@ -7,24 +7,15 @@
 		</b-row>
 
 	<b-row style="margin-top:20px">
-		<b-col cols="12" sm="12" md="7" lg="7" xl="7">
-		<select>
-			<options v-for="(index, i) in 10" :key="index">{{i}}</options>
-		</select>
-		</b-col>
-		<b-col cols="12" sm="12" md="7" lg="7" xl="7" style="margin:auto;margin-top:2px;color:grey" v-for="item in items" :key="item.id">
-			<div style="height:200px;color:grey;background:white;margin-bottom:3px;border-radius:3px" :id="item.id">
-				<!--<h3>{{ item.name }}</h3>-->
-				<!--<h6>{{ item.text }}</h6>
-				<button @click="details">подробнее</button>
-				<h5><b>{{ item.price }}</b></h5>-->
-			</div>
+		<b-col cols="12" sm="12" md="8" lg="8" xl="8" v-for="item in items" :key="item" style="margin:auto">
+			<item :id="item.id" :name="item.name"></item>
 		</b-col>
 	</b-row>
 	
 </b-container>
 </template>
 <script>
+import item from "../components/item"
 export default {
 	props: ["items"],
 	data () {
@@ -35,13 +26,8 @@ export default {
 	},
 	created() {
 	},
-	components: { },
+	components: { item },
   		methods: {
-    		details(event) {
-    			console.log(event);
-    			 window.location='/details/'+event.target.parentNode.id;
-    			 
-    		}
 	}
 }
 </script>
