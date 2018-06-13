@@ -1,6 +1,8 @@
 require('./bootstrap');
 
 import Vue from 'vue';
+
+// views
 import welcome from './views/welcome.vue';
 import home from './views/home.vue';
 import profile from './views/profile.vue';
@@ -11,6 +13,8 @@ import passwordreset from './views/auth/passwordreset.vue';
 import login from './views/auth/login.vue';
 import register from './views/auth/register.vue';
 
+// components
+import item from './components/item.vue';
 
 // bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -26,6 +30,7 @@ import button from 'bootstrap-vue/src/components/button';
 import carousel from 'bootstrap-vue/src/components/carousel';
 import table from 'bootstrap-vue/src/components/table';
 import link from 'bootstrap-vue/src/components/link';
+
 
 Vue.use(layout);
 Vue.use(form);
@@ -53,6 +58,7 @@ const app = new Vue({
       search,
       results,
       create,
-      carousel
+      carousel,
+      item
   }
 });
