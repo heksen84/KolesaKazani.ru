@@ -28078,7 +28078,7 @@ var render = function() {
                     staticStyle: {
                       "font-size": "18px",
                       color: "yellow",
-                      "margin-top": "-12px",
+                      "margin-top": "-10px",
                       "letter-spacing": "2px"
                     }
                   },
