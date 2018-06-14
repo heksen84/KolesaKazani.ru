@@ -27906,13 +27906,7 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "item", on: { click: _vm.details } },
-    [
-      _c("avatarka"),
-      _vm._v(" "),
-      _c("h2", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
-        _vm._v(_vm._s(_vm.name))
-      ])
-    ],
+    [_c("avatarka")],
     1
   )
 }

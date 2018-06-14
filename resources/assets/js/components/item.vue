@@ -1,7 +1,7 @@
 <template>
   <div class="item" @click="details">
     <avatarka></avatarka>
-    <h2 style="margin:15px;color:rgb(70,70,70)">{{ name }}</h2>
+    <!--<h2 style="margin:15px;color:rgb(70,70,70)">{{ name }}</h2>-->
   </div>
 </template>
 
