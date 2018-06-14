@@ -1,6 +1,6 @@
 <template>
-  <div>
-    Аватарка
+  <div style="height:100%;width:24%;border:1px solid grey">
+    <center>Аватарка</center>
   </div>
 </template>
 

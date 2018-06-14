@@ -2163,7 +2163,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["items", "auth"],
   data: function data() {
@@ -28188,7 +28187,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n  Аватарка\n")])
+  return _c(
+    "div",
+    { staticStyle: { height: "100%", width: "24%", border: "1px solid grey" } },
+    [_c("center", [_vm._v("Аватарка")])],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -28265,7 +28269,7 @@ var render = function() {
           return _c(
             "b-col",
             {
-              key: item,
+              key: item.id,
               staticStyle: { margin: "auto" },
               attrs: { cols: "12", sm: "12", md: "8", lg: "8", xl: "8" }
             },
