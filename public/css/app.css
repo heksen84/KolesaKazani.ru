@@ -102,6 +102,7 @@ body {
 
 #button_search:hover {
   background: #7878dc;
+  text-decoration: underline;
 }
 
 #new_advert_block {
