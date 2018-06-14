@@ -28069,7 +28069,7 @@ var render = function() {
                       padding: "2px"
                     }
                   },
-                  [_vm._v("FlyМаркет")]
+                  [_vm._v("ФлайМаркет")]
                 ),
                 _vm._v(" "),
                 _c(
