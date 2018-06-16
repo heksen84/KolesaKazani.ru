@@ -28268,6 +28268,8 @@ var render = function() {
         1
       ),
       _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
       _vm._l(_vm.items, function(item) {
         return _c(
           "b-row",

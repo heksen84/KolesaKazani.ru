@@ -5,7 +5,7 @@
 			<h1 style="color:white">результаты</h1>
 			</b-col>
 		</b-row>
-
+	<br>
 	<b-row style="margin-top:-2px" v-for="item in items">
 		
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2" :key="item.id">
