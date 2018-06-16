@@ -9,7 +9,6 @@
           <div class="auth_button" id="button_login" @click="login">Вход</div>
           <div class="auth_button" id="button_reg" @click="register">Регистрация</div>
         </b-col>
-
     </b-row>
     <b-row>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
