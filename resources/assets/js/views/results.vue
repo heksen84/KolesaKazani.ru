@@ -6,7 +6,7 @@
 			</b-col>
 		</b-row>
 	<br>
-	<b-row style="margin-top:-2px" v-for="item in items">
+	<b-row style="margin-top:-2px" v-for="item in items" :key="item">
 		
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2" :key="item.id">
 			<!--<item :id="item.id" :name="item.name"></item>-->
@@ -15,7 +15,7 @@
 			</center>
 		</b-col>
 
-		<b-col cols="12" sm="12" md="10" lg="10" xl="10" :key="item.id">
+		<b-col cols="12" sm="12" md="8" lg="8" xl="8" :key="item.id">
 			<item :id="item.id" :name="item.name"></item>
 		</b-col>
 

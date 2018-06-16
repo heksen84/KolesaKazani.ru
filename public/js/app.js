@@ -28275,7 +28275,7 @@ var render = function() {
       _vm._l(_vm.items, function(item) {
         return _c(
           "b-row",
-          { staticStyle: { "margin-top": "-2px" } },
+          { key: item, staticStyle: { "margin-top": "-2px" } },
           [
             _c(
               "b-col",
@@ -28291,7 +28291,7 @@ var render = function() {
               "b-col",
               {
                 key: item.id,
-                attrs: { cols: "12", sm: "12", md: "10", lg: "10", xl: "10" }
+                attrs: { cols: "12", sm: "12", md: "8", lg: "8", xl: "8" }
               },
               [_c("item", { attrs: { id: item.id, name: item.name } })],
               1
