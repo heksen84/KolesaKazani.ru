@@ -1,8 +1,8 @@
 <template>
   <div class="item" @click="details">
     <!--<avatarka></avatarka>-->
-    <h1 style="margin:15px;color:rgb(70,70,70)">{{ name }}</h1>
-    <h3 style="margin:15px;color:rgb(70,70,70)">{{ text }}</h3>
+    <h2 style="margin:15px;color:rgb(70,70,70)">{{ name }}</h2>
+    <h4 style="margin:15px;color:rgb(70,70,70)">{{ text }}</h4>
   </div>
 </template>
 
