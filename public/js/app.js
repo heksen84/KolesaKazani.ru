@@ -27808,11 +27808,7 @@ var render = function() {
               },
               attrs: { cols: "12", sm: "12", md: "9", lg: "3", xl: "3" }
             },
-            [
-              _c("h1", { staticStyle: { color: "white" } }, [
-                _vm._v("результаты")
-              ])
-            ]
+            [_c("h1", { staticClass: "shadow_text" }, [_vm._v("результаты")])]
           )
         ],
         1
