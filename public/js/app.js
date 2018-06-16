@@ -2067,6 +2067,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -28262,24 +28270,34 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c(
-        "b-row",
-        { staticStyle: { "margin-top": "20px" } },
-        _vm._l(_vm.items, function(item) {
-          return _c(
-            "b-col",
-            {
-              key: item.id,
-              staticStyle: { margin: "auto" },
-              attrs: { cols: "12", sm: "12", md: "8", lg: "8", xl: "8" }
-            },
-            [_c("item", { attrs: { id: item.id, name: item.name } })],
-            1
-          )
-        })
-      )
+      _vm._l(_vm.items, function(item) {
+        return _c(
+          "b-row",
+          { staticStyle: { "margin-top": "-2px" } },
+          [
+            _c(
+              "b-col",
+              {
+                key: item.id,
+                attrs: { cols: "12", sm: "12", md: "3", lg: "3", xl: "3" }
+              },
+              [_vm._v("\n\t\t\t123\n\t\t")]
+            ),
+            _vm._v(" "),
+            _c(
+              "b-col",
+              {
+                key: item.id,
+                attrs: { cols: "12", sm: "12", md: "9", lg: "9", xl: "9" }
+              },
+              [_vm._v("\n\t\t\t-----\n\t\t")]
+            )
+          ],
+          1
+        )
+      })
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []

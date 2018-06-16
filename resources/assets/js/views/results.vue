@@ -7,10 +7,17 @@
 		</b-row>
 
 	<b-row style="margin-top:-2px" v-for="item in items">
-		123
-		<!--<b-col cols="12" sm="12" md="8" lg="8" xl="8" v-for="item in items" :key="item.id" style="margin:auto">
-		<!--	<item :id="item.id" :name="item.name"></item>-->
-		</b-col>-->
+		
+		<b-col cols="12" sm="12" md="3" lg="3" xl="3" :key="item.id">
+			<!--<item :id="item.id" :name="item.name"></item>-->
+			123
+		</b-col>
+
+		<b-col cols="12" sm="12" md="9" lg="9" xl="9" :key="item.id">
+			<!--<item :id="item.id" :name="item.name"></item>-->
+			-----
+		</b-col>
+
 	</b-row>
 	
 </b-container>
