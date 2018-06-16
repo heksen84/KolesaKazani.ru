@@ -10,7 +10,8 @@
 		
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2" :key="item.id">
 			<!--<item :id="item.id" :name="item.name"></item>-->
-<carousel :perPage=1>
+
+<carousel :perPage=1 :paginationEnabled=false>
   <slide>
      <b-img src="https://picsum.photos/1024/400/?image=41" fluid alt="Responsive image" />
   </slide>

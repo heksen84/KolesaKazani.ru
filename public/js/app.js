@@ -2088,6 +2088,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27817,7 +27818,7 @@ var render = function() {
               [
                 _c(
                   "carousel",
-                  { attrs: { perPage: 1 } },
+                  { attrs: { perPage: 1, paginationEnabled: false } },
                   [
                     _c(
                       "slide",
