@@ -2074,6 +2074,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -28281,7 +28283,8 @@ var render = function() {
                 key: item.id,
                 attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" }
               },
-              [_c("h2", [_vm._v("фотка")])]
+              [_c("center", [_c("h2", [_vm._v("фотка")])])],
+              1
             ),
             _vm._v(" "),
             _c(

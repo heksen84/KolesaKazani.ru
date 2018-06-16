@@ -10,7 +10,9 @@
 		
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2" :key="item.id">
 			<!--<item :id="item.id" :name="item.name"></item>-->
-			<h2>фотка</h2>
+			<center>
+				<h2>фотка</h2>
+			</center>
 		</b-col>
 
 		<b-col cols="12" sm="12" md="10" lg="10" xl="10" :key="item.id">
