@@ -28277,16 +28277,16 @@ var render = function() {
               "b-col",
               {
                 key: item.id,
-                attrs: { cols: "12", sm: "12", md: "3", lg: "3", xl: "3" }
+                attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" }
               },
-              [_vm._v("\n\t\t\t123\n\t\t")]
+              [_c("h2", [_vm._v("фотка")])]
             ),
             _vm._v(" "),
             _c(
               "b-col",
               {
                 key: item.id,
-                attrs: { cols: "12", sm: "12", md: "9", lg: "9", xl: "9" }
+                attrs: { cols: "12", sm: "12", md: "10", lg: "10", xl: "10" }
               },
               [_c("item", { attrs: { id: item.id, name: item.name } })],
               1

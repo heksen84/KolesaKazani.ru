@@ -1,5 +1,5 @@
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
   background: white;
 }
 
@@ -9,10 +9,9 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  width: 12px;
+  width: 10px;
   background: white;
   border: 1px solid black;
-  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:horizontal {

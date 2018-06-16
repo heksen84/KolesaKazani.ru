@@ -8,12 +8,12 @@
 
 	<b-row style="margin-top:-2px" v-for="item in items">
 		
-		<b-col cols="12" sm="12" md="3" lg="3" xl="3" :key="item.id">
+		<b-col cols="12" sm="12" md="2" lg="2" xl="2" :key="item.id">
 			<!--<item :id="item.id" :name="item.name"></item>-->
-			123
+			<h2>фотка</h2>
 		</b-col>
 
-		<b-col cols="12" sm="12" md="9" lg="9" xl="9" :key="item.id">
+		<b-col cols="12" sm="12" md="10" lg="10" xl="10" :key="item.id">
 			<item :id="item.id" :name="item.name"></item>
 		</b-col>
 
