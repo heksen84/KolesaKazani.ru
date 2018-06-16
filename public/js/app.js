@@ -2074,7 +2074,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27909,12 +27908,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "item", on: { click: _vm.details } },
-    [_c("avatarka")],
-    1
-  )
+  return _c("div", { staticClass: "item", on: { click: _vm.details } }, [
+    _c("h2", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
+      _vm._v(_vm._s(_vm.name))
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -28290,7 +28288,8 @@ var render = function() {
                 key: item.id,
                 attrs: { cols: "12", sm: "12", md: "9", lg: "9", xl: "9" }
               },
-              [_vm._v("\n\t\t\t-----\n\t\t")]
+              [_c("item", { attrs: { id: item.id, name: item.name } })],
+              1
             )
           ],
           1

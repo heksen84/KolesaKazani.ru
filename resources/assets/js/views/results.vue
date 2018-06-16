@@ -14,8 +14,7 @@
 		</b-col>
 
 		<b-col cols="12" sm="12" md="9" lg="9" xl="9" :key="item.id">
-			<!--<item :id="item.id" :name="item.name"></item>-->
-			-----
+			<item :id="item.id" :name="item.name"></item>
 		</b-col>
 
 	</b-row>
