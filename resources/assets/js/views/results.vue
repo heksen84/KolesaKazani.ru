@@ -13,6 +13,23 @@
 			<center>
 				<h2>фотка</h2>
 			</center>
+
+			<carousel>
+  <slide>
+    Slide 1 Content
+  </slide>
+  <slide>
+    Slide 2 Content
+  </slide>
+  <slide>
+    Slide 3 Content
+  </slide>
+  <slide>
+    Slide 4 Content
+  </slide>
+
+</carousel>
+
 		</b-col>
 
 		<b-col cols="12" sm="12" md="8" lg="8" xl="8" :key="item.id">
