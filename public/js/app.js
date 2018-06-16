@@ -2365,7 +2365,7 @@ function handleFocus (evt) {
   if (evt.type === 'focusin') {
     Object(__WEBPACK_IMPORTED_MODULE_4__utils_dom__["a" /* addClass */])(evt.target, 'focus')
   } else if (evt.type === 'focusout') {
-    Object(__WEBPACK_IMPORTED_MODULE_4__utils_dom__["e" /* removeClass */])(evt.target, 'focus')
+    Object(__WEBPACK_IMPORTED_MODULE_4__utils_dom__["h" /* removeClass */])(evt.target, 'focus')
   }
 }
 
@@ -3163,7 +3163,7 @@ const SELECTOR = 'input:not(:disabled),textarea:not(:disabled),select:not(:disab
         return
       }
       // Focus the first non-disabled visible input when the legend element is clicked
-      const inputs = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["g" /* selectAll */])(SELECTOR, this.$refs.content).filter(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["c" /* isVisible */])
+      const inputs = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["j" /* selectAll */])(SELECTOR, this.$refs.content).filter(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["f" /* isVisible */])
       if (inputs[0] && inputs[0].focus) {
         inputs[0].focus()
       }
@@ -3172,17 +3172,17 @@ const SELECTOR = 'input:not(:disabled),textarea:not(:disabled),select:not(:disab
       // Sets the `aria-describedby` attribute on the input if label-for is set.
       // Optionally accepts a string of IDs to remove as the second parameter
       if (this.labelFor && typeof document !== 'undefined') {
-        const input = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["f" /* select */])(`#${this.labelFor}`, this.$refs.content)
+        const input = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["i" /* select */])(`#${this.labelFor}`, this.$refs.content)
         if (input) {
           const adb = 'aria-describedby'
-          let ids = (Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["b" /* getAttr */])(input, adb) || '').split(/\s+/)
+          let ids = (Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["d" /* getAttr */])(input, adb) || '').split(/\s+/)
           remove = (remove || '').split(/\s+/)
           // Update ID list, preserving any original IDs
           ids = ids.filter(id => remove.indexOf(id) === -1).concat(add || '').join(' ').trim()
           if (ids) {
-            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["h" /* setAttr */])(input, adb, ids)
+            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["k" /* setAttr */])(input, adb, ids)
           } else {
-            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["d" /* removeAttr */])(input, adb)
+            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["g" /* removeAttr */])(input, adb)
           }
         }
       }
@@ -4043,6 +4043,381 @@ const VuePlugin = {
 }
 
 Object(__WEBPACK_IMPORTED_MODULE_5__utils_plugins__["b" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/image/img-lazy.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__img__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/image/img.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
+
+
+const THROTTLE = 100
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  components: { bImg: __WEBPACK_IMPORTED_MODULE_0__img__["a" /* default */] },
+  render (h) {
+    return h(
+      'b-img',
+      {
+        props: {
+          src: this.computedSrc,
+          alt: this.alt,
+          blank: this.computedBlank,
+          blankColor: this.blankColor,
+          width: this.computedWidth,
+          height: this.computedHeight,
+          fluid: this.fluid,
+          fluidGrow: this.fluidGrow,
+          block: this.block,
+          thumbnail: this.thumbnail,
+          rounded: this.rounded,
+          left: this.left,
+          right: this.right,
+          center: this.center
+        }
+      }
+    )
+  },
+  data () {
+    return {
+      isShown: false,
+      scrollTimeout: null
+    }
+  },
+  props: {
+    src: {
+      type: String,
+      default: null,
+      required: true
+    },
+    alt: {
+      type: String,
+      default: null
+    },
+    width: {
+      type: [Number, String],
+      default: null
+    },
+    height: {
+      type: [Number, String],
+      default: null
+    },
+    blankSrc: {
+      // If null, a blank image is generated
+      type: String,
+      default: null
+    },
+    blankColor: {
+      type: String,
+      default: 'transparent'
+    },
+    blankWidth: {
+      type: [Number, String],
+      default: null
+    },
+    blankHeight: {
+      type: [Number, String],
+      default: null
+    },
+    fluid: {
+      type: Boolean,
+      default: false
+    },
+    fluidGrow: {
+      type: Boolean,
+      default: false
+    },
+    block: {
+      type: Boolean,
+      default: false
+    },
+    thumbnail: {
+      type: Boolean,
+      default: false
+    },
+    rounded: {
+      type: [Boolean, String],
+      default: false
+    },
+    left: {
+      type: Boolean,
+      default: false
+    },
+    right: {
+      type: Boolean,
+      default: false
+    },
+    center: {
+      type: Boolean,
+      default: false
+    },
+    offset: {
+      type: [Number, String],
+      default: 360
+    },
+    throttle: {
+      type: [Number, String],
+      default: THROTTLE
+    }
+  },
+  computed: {
+    computedSrc () {
+      return (!this.blankSrc || this.isShown) ? this.src : this.blankSrc
+    },
+    computedBlank () {
+      return !((this.isShown || this.blankSrc))
+    },
+    computedWidth () {
+      return this.isShown ? this.width : (this.blankWidth || this.width)
+    },
+    computedHeight () {
+      return this.isShown ? this.height : (this.blankHeight || this.height)
+    }
+  },
+  mounted () {
+    this.setListeners(true)
+    this.checkView()
+  },
+  activated () {
+    this.setListeners(true)
+    this.checkView()
+  },
+  deactivated () {
+    this.setListeners(false)
+  },
+  beforeDdestroy () {
+    this.setListeners(false)
+  },
+  methods: {
+    setListeners (on) {
+      clearTimeout(this.scrollTimer)
+      this.scrollTimeout = null
+      const root = window
+      if (on) {
+        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["c" /* eventOn */])(root, 'scroll', this.onScroll)
+        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["c" /* eventOn */])(root, 'resize', this.onScroll)
+        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["c" /* eventOn */])(root, 'orientationchange', this.onScroll)
+      } else {
+        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["b" /* eventOff */])(root, 'scroll', this.onScroll)
+        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["b" /* eventOff */])(root, 'resize', this.onScroll)
+        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["b" /* eventOff */])(root, 'orientationchange', this.onScroll)
+      }
+    },
+    checkView () {
+      // check bounding box + offset to see if we should show
+      if (!Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["f" /* isVisible */])(this.$el)) {
+        // Element is hidden, so skip for now
+        return
+      }
+      const offset = parseInt(this.offset, 10) || 0
+      const docElement = document.documentElement
+      const view = {
+        l: 0 - offset,
+        t: 0 - offset,
+        b: docElement.clientHeight + offset,
+        r: docElement.clientWidth + offset
+      }
+      const box = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["e" /* getBCR */])(this.$el)
+      if (box.right >= view.l && box.bottom >= view.t && box.left <= view.r && box.top <= view.b) {
+        // image is in view (or about to be in view)
+        this.isShown = true
+        this.setListeners(false)
+      }
+    },
+    onScroll () {
+      if (this.isShown) {
+        this.setListeners(false)
+      } else {
+        clearTimeout(this.scrollTimeout)
+        this.scrollTimeout = setTimeout(this.checkView, parseInt(this.throttle, 10) || THROTTLE)
+      }
+    }
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/image/img.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
+
+
+// Blank image with fill template
+const BLANK_TEMPLATE = '<svg width="%{w}" height="%{h}" ' +
+                     'xmlns="http://www.w3.org/2000/svg" ' +
+                     'viewBox="0 0 %{w} %{h}" preserveAspectRatio="none">' +
+                     '<rect width="100%" height="100%" style="fill:%{f};"></rect>' +
+                     '</svg>'
+
+function makeBlankImgSrc (width, height, color) {
+  const src = encodeURIComponent(
+    BLANK_TEMPLATE
+      .replace('%{w}', String(width))
+      .replace('%{h}', String(height))
+      .replace('%{f}', color)
+  )
+  return `data:image/svg+xml;charset=UTF-8,${src}`
+}
+
+const props = {
+  src: {
+    type: String,
+    default: null
+  },
+  alt: {
+    type: String,
+    default: null
+  },
+  width: {
+    type: [Number, String],
+    default: null
+  },
+  height: {
+    type: [Number, String],
+    default: null
+  },
+  block: {
+    type: Boolean,
+    default: false
+  },
+  fluid: {
+    type: Boolean,
+    default: false
+  },
+  fluidGrow: {
+    // Gives fluid images class `w-100` to make them grow to fit container
+    type: Boolean,
+    default: false
+  },
+  rounded: {
+    // rounded can be:
+    //   false: no rounding of corners
+    //   true: slightly rounded corners
+    //   'top': top corners rounded
+    //   'right': right corners rounded
+    //   'bottom': bottom corners rounded
+    //   'left': left corners rounded
+    //   'circle': circle/oval
+    //   '0': force rounding off
+    type: [Boolean, String],
+    default: false
+  },
+  thumbnail: {
+    type: Boolean,
+    default: false
+  },
+  left: {
+    type: Boolean,
+    default: false
+  },
+  right: {
+    type: Boolean,
+    default: false
+  },
+  center: {
+    type: Boolean,
+    default: false
+  },
+  blank: {
+    type: Boolean,
+    default: false
+  },
+  blankColor: {
+    type: String,
+    default: 'transparent'
+  }
+}
+/* unused harmony export props */
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  functional: true,
+  props,
+  render (h, { props, data }) {
+    let src = props.src
+    let width = parseInt(props.width, 10) ? parseInt(props.width, 10) : null
+    let height = parseInt(props.height, 10) ? parseInt(props.height, 10) : null
+    let align = null
+    let block = props.block
+    if (props.blank) {
+      if (!height && Boolean(width)) {
+        height = width
+      } else if (!width && Boolean(height)) {
+        width = height
+      }
+      if (!width && !height) {
+        width = 1
+        height = 1
+      }
+      // Make a blank SVG image
+      src = makeBlankImgSrc(width, height, props.blankColor || 'transparent')
+    }
+    if (props.left) {
+      align = 'float-left'
+    } else if (props.right) {
+      align = 'float-right'
+    } else if (props.center) {
+      align = 'mx-auto'
+      block = true
+    }
+    return h(
+      'img',
+      Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
+        attrs: {
+          'src': src,
+          'alt': props.alt,
+          'width': width ? String(width) : null,
+          'height': height ? String(height) : null
+        },
+        class: {
+          'img-thumbnail': props.thumbnail,
+          'img-fluid': props.fluid || props.fluidGrow,
+          'w-100': props.fluidGrow,
+          'rounded': props.rounded === '' || props.rounded === true,
+          [`rounded-${props.rounded}`]: typeof props.rounded === 'string' && props.rounded !== '',
+          [align]: Boolean(align),
+          'd-block': block
+        }
+      })
+    )
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/image/index.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__img__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/image/img.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__img_lazy__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/image/img-lazy.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
+
+
+
+
+const components = {
+  bImg: __WEBPACK_IMPORTED_MODULE_0__img__["a" /* default */],
+  bImgLazy: __WEBPACK_IMPORTED_MODULE_1__img_lazy__["a" /* default */]
+}
+
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["b" /* vueUse */])(VuePlugin)
 
 /* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
@@ -6357,7 +6732,7 @@ const isVisible = el => {
            el.getBoundingClientRect().height > 0 &&
            el.getBoundingClientRect().width > 0
 }
-/* harmony export (immutable) */ __webpack_exports__["c"] = isVisible;
+/* harmony export (immutable) */ __webpack_exports__["f"] = isVisible;
 
 
 // Determine if an element is disabled
@@ -6385,7 +6760,7 @@ const selectAll = (selector, root) => {
   }
   return Object(__WEBPACK_IMPORTED_MODULE_0__array__["c" /* from */])(root.querySelectorAll(selector))
 }
-/* harmony export (immutable) */ __webpack_exports__["g"] = selectAll;
+/* harmony export (immutable) */ __webpack_exports__["j"] = selectAll;
 
 
 // Select a single element, returns null if not found
@@ -6395,7 +6770,7 @@ const select = (selector, root) => {
   }
   return root.querySelector(selector) || null
 }
-/* harmony export (immutable) */ __webpack_exports__["f"] = select;
+/* harmony export (immutable) */ __webpack_exports__["i"] = select;
 
 
 // Determine if an element matches a selector
@@ -6483,7 +6858,7 @@ const removeClass = (el, className) => {
     el.classList.remove(className)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["e"] = removeClass;
+/* harmony export (immutable) */ __webpack_exports__["h"] = removeClass;
 
 
 // Test if an element has a class
@@ -6502,7 +6877,7 @@ const setAttr = (el, attr, value) => {
     el.setAttribute(attr, value)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["h"] = setAttr;
+/* harmony export (immutable) */ __webpack_exports__["k"] = setAttr;
 
 
 // Remove an attribute from an element
@@ -6511,7 +6886,7 @@ const removeAttr = (el, attr) => {
     el.removeAttribute(attr)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["d"] = removeAttr;
+/* harmony export (immutable) */ __webpack_exports__["g"] = removeAttr;
 
 
 // Get an attribute value from an element (returns null if not found)
@@ -6521,7 +6896,7 @@ const getAttr = (el, attr) => {
   }
   return null
 }
-/* harmony export (immutable) */ __webpack_exports__["b"] = getAttr;
+/* harmony export (immutable) */ __webpack_exports__["d"] = getAttr;
 
 
 // Determine if an attribute exists on an element (returns true or false, or null if element not found)
@@ -6538,7 +6913,7 @@ const hasAttr = (el, attr) => {
 const getBCR = el => {
   return isElement(el) ? el.getBoundingClientRect() : null
 }
-/* unused harmony export getBCR */
+/* harmony export (immutable) */ __webpack_exports__["e"] = getBCR;
 
 
 // Get computed style object for an element
@@ -6606,7 +6981,7 @@ const eventOn = (el, evtName, handler) => {
     el.addEventListener(evtName, handler)
   }
 }
-/* unused harmony export eventOn */
+/* harmony export (immutable) */ __webpack_exports__["c"] = eventOn;
 
 
 // Remove an event listener from an element
@@ -6615,7 +6990,7 @@ const eventOff = (el, evtName, handler) => {
     el.removeEventListener(evtName, handler)
   }
 }
-/* unused harmony export eventOff */
+/* harmony export (immutable) */ __webpack_exports__["b"] = eventOff;
 
 
 
@@ -39877,8 +40252,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_bootstrap_vue_src_components_button__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_bootstrap_vue_src_components_table__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/table/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_bootstrap_vue_src_components_link__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/link/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_vue_carousel__ = __webpack_require__("./node_modules/vue-carousel/dist/vue-carousel.min.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_23_vue_carousel__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_bootstrap_vue_src_components_image__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/image/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_vue_carousel__ = __webpack_require__("./node_modules/vue-carousel/dist/vue-carousel.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_24_vue_carousel__);
 __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
@@ -39915,6 +40291,7 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
 
+
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_13_bootstrap_vue_src_components_layout__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_14_bootstrap_vue_src_components_form__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_15_bootstrap_vue_src_components_form_input__["a" /* default */]);
@@ -39926,8 +40303,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_20_boo
 //Vue.use(carousel);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_21_bootstrap_vue_src_components_table__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_22_bootstrap_vue_src_components_link__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_23_bootstrap_vue_src_components_image__["a" /* default */]);
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_23_vue_carousel___default.a);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_24_vue_carousel___default.a);
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#app',

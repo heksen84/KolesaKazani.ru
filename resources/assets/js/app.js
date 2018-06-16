@@ -33,6 +33,7 @@ import button from 'bootstrap-vue/src/components/button';
 //import carousel from 'bootstrap-vue/src/components/carousel';
 import table from 'bootstrap-vue/src/components/table';
 import link from 'bootstrap-vue/src/components/link';
+import image from 'bootstrap-vue/src/components/image';
 
 import VueCarousel from 'vue-carousel';
 
@@ -47,6 +48,7 @@ Vue.use(button);
 //Vue.use(carousel);
 Vue.use(table);
 Vue.use(link);
+Vue.use(image);
 
 Vue.use(VueCarousel);
 
