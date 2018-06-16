@@ -27450,13 +27450,61 @@ var render = function() {
                 _c(
                   "carousel",
                   [
-                    _c("slide", [_vm._v("\n    Slide 1 Content\n  ")]),
+                    _c(
+                      "slide",
+                      [
+                        _c("b-img", {
+                          attrs: {
+                            src: "https://picsum.photos/1024/400/?image=41",
+                            fluid: "",
+                            alt: "Responsive image"
+                          }
+                        })
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
-                    _c("slide", [_vm._v("\n    Slide 2 Content\n  ")]),
+                    _c(
+                      "slide",
+                      [
+                        _c("b-img", {
+                          attrs: {
+                            src: "https://picsum.photos/1024/400/?image=41",
+                            fluid: "",
+                            alt: "Responsive image"
+                          }
+                        })
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
-                    _c("slide", [_vm._v("\n    Slide 3 Content\n  ")]),
+                    _c(
+                      "slide",
+                      [
+                        _c("b-img", {
+                          attrs: {
+                            src: "https://picsum.photos/1024/400/?image=41",
+                            fluid: "",
+                            alt: "Responsive image"
+                          }
+                        })
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
-                    _c("slide", [_vm._v("\n    Slide 4 Content\n  ")])
+                    _c(
+                      "slide",
+                      [
+                        _c("b-img", {
+                          attrs: {
+                            src: "https://picsum.photos/1024/400/?image=41",
+                            fluid: "",
+                            alt: "Responsive image"
+                          }
+                        })
+                      ],
+                      1
+                    )
                   ],
                   1
                 )

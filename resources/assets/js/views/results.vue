@@ -16,16 +16,16 @@
 
 			<carousel>
   <slide>
-    Slide 1 Content
+     <b-img src="https://picsum.photos/1024/400/?image=41" fluid alt="Responsive image" />
   </slide>
   <slide>
-    Slide 2 Content
+     <b-img src="https://picsum.photos/1024/400/?image=41" fluid alt="Responsive image" />
   </slide>
   <slide>
-    Slide 3 Content
+     <b-img src="https://picsum.photos/1024/400/?image=41" fluid alt="Responsive image" />
   </slide>
   <slide>
-    Slide 4 Content
+     <b-img src="https://picsum.photos/1024/400/?image=41" fluid alt="Responsive image" />
   </slide>
 
 </carousel>
