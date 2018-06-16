@@ -1655,10 +1655,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['id', 'photo', 'name', 'desc', 'price'],
+  props: ['id', 'photo', 'name', 'text', 'price'],
   data: function data() {
     return {};
   },
@@ -27459,8 +27460,12 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "item", on: { click: _vm.details } }, [
-    _c("h2", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
+    _c("h1", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
       _vm._v(_vm._s(_vm.name))
+    ]),
+    _vm._v(" "),
+    _c("h3", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
+      _vm._v(_vm._s(_vm.text))
     ])
   ])
 }
@@ -27819,7 +27824,7 @@ var render = function() {
       _vm._l(_vm.items, function(item) {
         return _c(
           "b-row",
-          { key: item, staticStyle: { "margin-top": "5px" } },
+          { key: item, staticStyle: { "margin-top": "7px" } },
           [
             _c(
               "b-col",
@@ -27904,7 +27909,11 @@ var render = function() {
                 key: item.id,
                 attrs: { cols: "12", sm: "12", md: "8", lg: "8", xl: "8" }
               },
-              [_c("item", { attrs: { id: item.id, name: item.name } })],
+              [
+                _c("item", {
+                  attrs: { id: item.id, name: item.name, text: item.text }
+                })
+              ],
               1
             )
           ],
