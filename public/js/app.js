@@ -27823,7 +27823,7 @@ var render = function() {
       _vm._l(_vm.items, function(item) {
         return _c(
           "b-row",
-          { key: item, staticStyle: { "margin-top": "1px" } },
+          { key: item, staticStyle: { "margin-top": "5px" } },
           [
             _c(
               "b-col",
