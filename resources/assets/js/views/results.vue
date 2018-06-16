@@ -10,11 +10,7 @@
 		
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2" :key="item.id">
 			<!--<item :id="item.id" :name="item.name"></item>-->
-			<center>
-				<h2>фотка</h2>
-			</center>
-
-			<carousel>
+<carousel :perPage=1>
   <slide>
      <b-img src="https://picsum.photos/1024/400/?image=41" fluid alt="Responsive image" />
   </slide>
@@ -27,7 +23,6 @@
   <slide>
      <b-img src="https://picsum.photos/1024/400/?image=41" fluid alt="Responsive image" />
   </slide>
-
 </carousel>
 
 		</b-col>

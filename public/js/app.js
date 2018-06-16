@@ -2088,11 +2088,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27820,10 +27815,9 @@ var render = function() {
                 attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" }
               },
               [
-                _c("center", [_c("h2", [_vm._v("фотка")])]),
-                _vm._v(" "),
                 _c(
                   "carousel",
+                  { attrs: { perPage: 1 } },
                   [
                     _c(
                       "slide",
