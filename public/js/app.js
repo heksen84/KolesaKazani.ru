@@ -27460,7 +27460,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("h4", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
-      _vm._v(_vm._s(_vm.price))
+      _vm._v(" цена: " + _vm._s(_vm.price))
     ])
   ])
 }
