@@ -1656,6 +1656,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2052,15 +2053,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_item__ = __webpack_require__("./resources/assets/js/components/item.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_item___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_item__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -7511,7 +7503,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.VueCarousel-slide {\r\n  position: relative;\r\n  background: #42b983;\r\n  color: #fff;\r\n  font-family: Arial;\r\n  font-size: 24px;\r\n  text-align: center;\n}\r\n", ""]);
+exports.push([module.i, "\n.VueCarousel-slide {\r\n  position: relative;\r\n  color: #fff;\r\n  font-family: Arial;\r\n  font-size: 24px;\r\n  text-align: center;\n}\r\n", ""]);
 
 // exports
 
@@ -27465,6 +27457,10 @@ var render = function() {
     _vm._v(" "),
     _c("h4", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
       _vm._v(_vm._s(_vm.text))
+    ]),
+    _vm._v(" "),
+    _c("h4", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
+      _vm._v(_vm._s(_vm.price))
     ])
   ])
 }
@@ -27823,7 +27819,10 @@ var render = function() {
       _vm._l(_vm.items, function(item) {
         return _c(
           "b-row",
-          { key: item, staticStyle: { "margin-top": "5px" } },
+          {
+            key: item,
+            staticStyle: { "margin-top": "5px", border: "1px solid grey" }
+          },
           [
             _c(
               "b-col",
@@ -27835,68 +27834,21 @@ var render = function() {
                 _c(
                   "carousel",
                   { attrs: { perPage: 1, paginationEnabled: false } },
-                  [
-                    _c(
+                  _vm._l(10, function(i) {
+                    return _c(
                       "slide",
+                      { key: i },
                       [
                         _c("b-img", {
                           attrs: {
-                            fluid: "",
                             src: "https://picsum.photos/250/250/?image=54",
-                            "fluid-grow": "",
-                            alt: "Fluid-Grow image"
-                          }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "slide",
-                      [
-                        _c("b-img", {
-                          attrs: {
-                            fluid: "",
-                            src: "https://picsum.photos/250/250/?image=54",
-                            "fluid-grow": "",
-                            alt: "Fluid-Grow image"
-                          }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "slide",
-                      [
-                        _c("b-img", {
-                          attrs: {
-                            fluid: "",
-                            src: "https://picsum.photos/250/250/?image=54",
-                            "fluid-grow": "",
-                            alt: "Fluid-Grow image"
-                          }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "slide",
-                      [
-                        _c("b-img", {
-                          attrs: {
-                            fluid: "",
-                            src: "https://picsum.photos/250/250/?image=54",
-                            "fluid-grow": "",
-                            alt: "Fluid-Grow image"
+                            fluid: ""
                           }
                         })
                       ],
                       1
                     )
-                  ],
-                  1
+                  })
                 )
               ],
               1
@@ -27910,7 +27862,12 @@ var render = function() {
               },
               [
                 _c("item", {
-                  attrs: { id: item.id, name: item.name, text: item.text }
+                  attrs: {
+                    id: item.id,
+                    name: item.name,
+                    text: item.text,
+                    price: item.price
+                  }
                 })
               ],
               1
