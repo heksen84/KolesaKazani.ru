@@ -13,7 +13,7 @@
 </head>
 <body>
 <div id="app">
-  <results :items="{{ $items }}"></results>
+  <results :items="{{ $items }}" :category_id="{{ $category_id }}"></results>
 </div>
 </body>
 </html>

@@ -18,6 +18,6 @@ Route::get('/create', function () {
 });
 
 Route::post('/create', 'AdvertsController@createAdvert');
-Route::get('/category/{id}', function () { return view('results')->with("items", Adverts::all()); });
+Route::get('/category/{id}', function ($id) { return view('results')->with("items", Adverts::all())->with("category_id", $id ); });
 Route::get('/details/{id}', function () { return view('fullinfo'); });
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');

@@ -27834,18 +27834,14 @@ var render = function() {
           [
             _c(
               "b-col",
-              {
-                key: item.id,
-                attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" }
-              },
+              { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
               [
                 _c(
                   "carousel",
                   { attrs: { perPage: 1, paginationEnabled: false } },
-                  _vm._l(10, function(i) {
-                    return _c(
+                  [
+                    _c(
                       "slide",
-                      { key: i },
                       [
                         _c("b-img", {
                           attrs: {
@@ -27856,7 +27852,8 @@ var render = function() {
                       ],
                       1
                     )
-                  })
+                  ],
+                  1
                 )
               ],
               1
@@ -27864,10 +27861,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "b-col",
-              {
-                key: item.id,
-                attrs: { cols: "12", sm: "12", md: "8", lg: "8", xl: "8" }
-              },
+              { attrs: { cols: "12", sm: "12", md: "8", lg: "8", xl: "8" } },
               [
                 _c("item", {
                   attrs: {
