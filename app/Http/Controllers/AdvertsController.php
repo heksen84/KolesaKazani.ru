@@ -31,6 +31,7 @@ class AdvertsController extends Controller
         		$adverts->category_id  		= $category;
         		$adverts->ad_category_id  	= 1;
         		$adverts->save();
+        		$lastInsertedId = $adverts->id;
 		}
 		 catch(\Exception $e) {
        		return $e->getMessage();
