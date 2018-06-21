@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Adverts;
 
 class HomeController extends Controller
 {
@@ -21,6 +24,8 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return view('home');
+
+        $items = DB::table('adverts')->where('user_id', Auth::id())->select('title','text')->get();
+        return view('home')->with("items", $items );
     }
 }
