@@ -12,7 +12,7 @@
 										 placeholder="Введи заголовок">
 				</b-form-input>
 			</b-form-group>
-			
+
 			<b-form-group label="Описание:" label-for="text">
 			 <b-form-textarea id="text" v-model="form.text"
 										placeholder="Введите описание"
@@ -26,6 +26,11 @@
 					 <option :value="null">-- Категория товара или услуги --</option>
 					 <option v-for="item in items" :value="item.id">{{item.name}}</option>
 				</b-form-select>
+			</b-form-group>
+
+			<!-- ЦЕНА -->
+			<b-form-group label="цена:" label-for="price">
+			 <b-form-textarea id="price" v-model="form.price" placeholder="Цена"></b-form-textarea>
 			</b-form-group>
 
 			<b-form-group style="text-align:center">
@@ -45,7 +50,8 @@ export default {
 		form: {
 			title: '',
 			text: '',
-			category: null
+			category: null,
+			price: ''
 		}
 	}
 	},
@@ -56,9 +62,9 @@ export default {
     	onSubmit(evt) {
     		evt.preventDefault();
     		post('/create', { "data": this.form }).then((res) => {
-    			//window.location.href = "/home/555";
-    			console.log(res.data);
-    			alert("created");
+    			window.location.href = "/home/555";
+    			//console.log(res.data);
+    			//alert("created");
 			}).catch((err) => {});
     	}
 }

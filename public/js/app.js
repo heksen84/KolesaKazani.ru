@@ -1911,6 +1911,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1920,7 +1925,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			form: {
 				title: '',
 				text: '',
-				category: null
+				category: null,
+				price: ''
 			}
 		};
 	},
@@ -1931,9 +1937,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		onSubmit: function onSubmit(evt) {
 			evt.preventDefault();
 			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.form }).then(function (res) {
-				//window.location.href = "/home/555";
-				console.log(res.data);
-				alert("created");
+				window.location.href = "/home/555";
+				//console.log(res.data);
+				//alert("created");
 			}).catch(function (err) {});
 		}
 	}
@@ -28323,6 +28329,24 @@ var render = function() {
                         ],
                         2
                       )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-form-group",
+                    { attrs: { label: "цена:", "label-for": "price" } },
+                    [
+                      _c("b-form-textarea", {
+                        attrs: { id: "price", placeholder: "Цена" },
+                        model: {
+                          value: _vm.form.price,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "price", $$v)
+                          },
+                          expression: "form.price"
+                        }
+                      })
                     ],
                     1
                   ),

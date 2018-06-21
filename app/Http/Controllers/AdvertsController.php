@@ -19,6 +19,7 @@ class AdvertsController extends Controller
      	$title 		= $data["title"];
      	$text  		= $data["text"];
      	$category  	= $data["category"];
+     	$price  	= $data["price"];
 
      	try {
      			$adverts = new Adverts();
@@ -26,7 +27,7 @@ class AdvertsController extends Controller
         		$adverts->title 			= $title;
         		$adverts->text  			= $text;
         		$adverts->contacts  		= "sdfsdfsdf";
-        		$adverts->price  			= 555;
+        		$adverts->price  			= $price;
         		$adverts->category_id  		= $category;
         		$adverts->ad_category_id  	= 1;
         		$adverts->save();
