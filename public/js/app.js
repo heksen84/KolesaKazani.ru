@@ -27695,7 +27695,7 @@ var render = function() {
                   attrs: { id: "new_advert_block" },
                   on: { click: _vm.createAdvert }
                 },
-                [_vm._v("+ добавить объявление")]
+                [_c("b", [_vm._v("+")]), _vm._v(" добавить объявление")]
               )
             ]
           )
