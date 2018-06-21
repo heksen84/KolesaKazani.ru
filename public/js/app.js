@@ -1916,6 +1916,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1925,8 +1929,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			form: {
 				title: '',
 				text: '',
-				category: null,
-				price: ''
+				price: '',
+				category: null
 			}
 		};
 	},
@@ -28298,6 +28302,24 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "b-form-group",
+                    { attrs: { label: "цена:", "label-for": "price" } },
+                    [
+                      _c("b-form-textarea", {
+                        attrs: { id: "price", placeholder: "Цена" },
+                        model: {
+                          value: _vm.form.price,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "price", $$v)
+                          },
+                          expression: "form.price"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-form-group",
                     {
                       attrs: { label: "Категория:", "label-for": "categories" }
                     },
@@ -28329,24 +28351,6 @@ var render = function() {
                         ],
                         2
                       )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-form-group",
-                    { attrs: { label: "цена:", "label-for": "price" } },
-                    [
-                      _c("b-form-textarea", {
-                        attrs: { id: "price", placeholder: "Цена" },
-                        model: {
-                          value: _vm.form.price,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form, "price", $$v)
-                          },
-                          expression: "form.price"
-                        }
-                      })
                     ],
                     1
                   ),

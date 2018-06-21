@@ -21,6 +21,13 @@
 	 		 </b-form-textarea>
 			</b-form-group>
 
+
+			<!-- ЦЕНА -->
+			<b-form-group label="цена:" label-for="price">
+			 <b-form-textarea id="price" v-model="form.price" placeholder="Цена"></b-form-textarea>
+			</b-form-group>
+
+
 			<b-form-group label="Категория:" label-for="categories">
 				<b-form-select v-model="form.category" class="mb-3">
 					 <option :value="null">-- Категория товара или услуги --</option>
@@ -28,10 +35,7 @@
 				</b-form-select>
 			</b-form-group>
 
-			<!-- ЦЕНА -->
-			<b-form-group label="цена:" label-for="price">
-			 <b-form-textarea id="price" v-model="form.price" placeholder="Цена"></b-form-textarea>
-			</b-form-group>
+		
 
 			<b-form-group style="text-align:center">
 				<b-button type="onSubmit" variant="primary">Создать</b-button>
@@ -50,8 +54,8 @@ export default {
 		form: {
 			title: '',
 			text: '',
-			category: null,
-			price: ''
+			price: '',
+			category: null
 		}
 	}
 	},
