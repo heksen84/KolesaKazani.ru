@@ -5,6 +5,7 @@ use App\Categories;
 use App\Adverts;
 
 Auth::routes();
+
 Route::get('/', 'WelcomeController@getCategories');
 Route::get('/getUser', 'UserController@getUser');
 Route::get('/home', 'HomeController@index')->name('home');
