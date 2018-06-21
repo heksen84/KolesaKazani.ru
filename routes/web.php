@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Categories;
 use App\Adverts;
 
@@ -18,6 +19,13 @@ Route::get('/create', function () {
 });
 
 Route::post('/create', 'AdvertsController@createAdvert');
-Route::get('/category/{id}', function ($id) { return view('results')->with("items", Adverts::all())->with("category_id", $id ); });
+
+Route::get('/category/{id}', function ($id) 
+{ 
+	$items = DB::table('adverts')->where('category_id', $id)->get();
+	return view('results')->with("items", $items )->with("category_id", $id ); 
+});
+
+
 Route::get('/details/{id}', function () { return view('fullinfo'); });
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
