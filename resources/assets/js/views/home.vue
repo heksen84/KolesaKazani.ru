@@ -15,7 +15,7 @@
 		</b-col>
 		<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center;margin:auto">
 			<br>
-			<h3>мои объявления</h3>
+			<h3 class="shadow_text">мои объявления</h3>
 		</b-col>
 		<b-col cols="12" sm="12" md="8" lg="8" xl="8" style="text-align:center;margin:auto">
 			<br>

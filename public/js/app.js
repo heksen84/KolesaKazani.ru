@@ -27394,7 +27394,13 @@ var render = function() {
               staticStyle: { "text-align": "center", margin: "auto" },
               attrs: { cols: "12", sm: "12", md: "12", lg: "12", xl: "12" }
             },
-            [_c("br"), _vm._v(" "), _c("h3", [_vm._v("мои объявления")])]
+            [
+              _c("br"),
+              _vm._v(" "),
+              _c("h3", { staticClass: "shadow_text" }, [
+                _vm._v("мои объявления")
+              ])
+            ]
           ),
           _vm._v(" "),
           _c(
