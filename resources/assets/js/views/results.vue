@@ -21,7 +21,7 @@
 		</b-col>
 
 		<b-col cols="12" sm="12" md="8" lg="8" xl="8">
-			<item :id="item.id" :name="item.title" :text="item.text" :price="item.price"></item>
+			<item :id="item.id" :title="item.title" :text="item.text" :price="item.price"></item>
 		</b-col>
 
 	</b-row>

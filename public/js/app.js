@@ -27865,7 +27865,7 @@ var render = function() {
                 _c("item", {
                   attrs: {
                     id: item.id,
-                    name: item.title,
+                    title: item.title,
                     text: item.text,
                     price: item.price
                   }
