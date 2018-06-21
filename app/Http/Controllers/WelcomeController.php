@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Categories;
 
-class WelcomeController extends Controller{
+class WelcomeController extends Controller {
         public function getCategories(Request $request) {
         return view('welcome')->with("items", Categories::all())->with("auth", Auth::user()?1:0);
     }

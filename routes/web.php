@@ -17,7 +17,7 @@ Route::get('/search', function () { return view('search')->with("items", "123");
 // перекинуть в контроллер
 Route::get('/create', function () 
 { 
-	return Auth::user()? view('create')->with("items", Categories::all()) : view('auth\login'); 
+	return Auth::user()? view('create')->with( "items", Categories::all() ) : view('auth\login'); 
 });
 
 Route::post('/create', 'AdvertsController@createAdvert');
