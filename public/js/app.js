@@ -1910,6 +1910,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1918,7 +1919,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		return {
 			form: {
 				title: '',
-				desc: '',
+				text: '',
 				category: null
 			}
 		};
@@ -28268,21 +28269,21 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "b-form-group",
-                    { attrs: { label: "Описание:", "label-for": "desc" } },
+                    { attrs: { label: "Описание:", "label-for": "text" } },
                     [
                       _c("b-form-textarea", {
                         attrs: {
-                          id: "desc",
+                          id: "text",
                           placeholder: "Введите описание",
                           rows: 10,
                           "max-rows": 10
                         },
                         model: {
-                          value: _vm.form.desc,
+                          value: _vm.form.text,
                           callback: function($$v) {
-                            _vm.$set(_vm.form, "desc", $$v)
+                            _vm.$set(_vm.form, "text", $$v)
                           },
-                          expression: "form.desc"
+                          expression: "form.text"
                         }
                       })
                     ],

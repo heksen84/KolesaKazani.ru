@@ -12,7 +12,6 @@ Route::get('/newtrip', function () { return view('newtrip'); });
 Route::get('/categories', 'CategoriesController@index');
 Route::get('/search', function () { return view('search')->with("items", "123");});
 
-
 // перекинуть в контроллер
 Route::get('/create', function () { 
 	return Auth::user()? view('create')->with("items", Categories::all()) : view('auth\login'); 

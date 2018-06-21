@@ -6,14 +6,15 @@
 		<br>
 			<b-form @submit="onSubmit">
 			<b-form-group label="Заголовок:" label-for="title">
-				<b-form-input id="title"	type="text"
-											v-model="form.title"
-											required
-											placeholder="Введи заголовок">
+				<b-form-input id="title" type="text"
+										 v-model="form.title"
+										 required
+										 placeholder="Введи заголовок">
 				</b-form-input>
 			</b-form-group>
-			<b-form-group label="Описание:" label-for="desc">
-			 <b-form-textarea id="desc" v-model="form.desc"
+			
+			<b-form-group label="Описание:" label-for="text">
+			 <b-form-textarea id="text" v-model="form.text"
 										placeholder="Введите описание"
 										:rows="10"
 										:max-rows="10">
@@ -43,7 +44,7 @@ export default {
     return 	{
 		form: {
 			title: '',
-			desc: '',
+			text: '',
 			category: null
 		}
 	}
