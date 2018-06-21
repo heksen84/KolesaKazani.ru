@@ -1,7 +1,7 @@
 <template>
   <div class="item" @click="details">
     <!--<avatarka></avatarka>-->
-    <h3 style="margin:15px;color:rgb(70,70,70)">{{ name }}</h3>
+    <h3 style="margin:15px;color:rgb(70,70,70)">{{ title }}</h3>
     <div style="margin:15px;color:rgb(70,70,70)">{{ text }}</div>
     <h5 style="margin:15px;color:rgb(70,70,70)">цена: {{ price }}</h5>
   </div>
@@ -10,7 +10,7 @@
 <script>
 import avatarka from "./avatarka"
 export default {
-  props: ['id', 'photo', 'name', 'text', 'price'],
+  props: ['id', 'photo', 'title', 'text', 'price'],
   data () {
     return 	{
 		}
