@@ -2093,6 +2093,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27844,20 +27845,7 @@ var render = function() {
                 _c(
                   "carousel",
                   { attrs: { perPage: 1, paginationEnabled: false } },
-                  [
-                    _c(
-                      "slide",
-                      [
-                        _c("b-img", {
-                          attrs: {
-                            src: "https://picsum.photos/250/250/?image=54",
-                            fluid: ""
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
+                  [_c("slide", [_vm._v("\n     \t\t\timg\n  \t\t\t")])],
                   1
                 )
               ],

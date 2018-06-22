@@ -14,7 +14,8 @@
 
 			<carousel :perPage=1 :paginationEnabled="false">
   			<slide>
-     			<b-img src="https://picsum.photos/250/250/?image=54" fluid/>
+     			<!--<b-img src="https://picsum.photos/250/250/?image=54" :height="200" :width="200"/>-->
+     			img
   			</slide>
 			</carousel>
 
