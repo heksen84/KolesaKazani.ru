@@ -17,6 +17,7 @@ Route::get('/search', function () { return view('search')->with("items", "123");
 // перекинуть в контроллер
 Route::get('/create', function () 
 { 
+	// сдесь можно выдрать данные из сессии и передать их
 	return Auth::user()? view('create')->with( "items", Categories::all() ) : view('auth\login'); 
 });
 
