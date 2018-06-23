@@ -28235,14 +28235,12 @@ var render = function() {
                 "text-align": "center",
                 margin: "auto",
                 "margin-top": "40px",
-                color: "white"
+                color: "black"
               },
               attrs: { cols: "12", sm: "12", md: "12", lg: "5", xl: "5" }
             },
             [
-              _c("h1", { staticClass: "shadow_text" }, [
-                _vm._v("новое объявление")
-              ]),
+              _c("h1", [_vm._v("новое объявление")]),
               _vm._v(" "),
               _c("br"),
               _vm._v(" "),
@@ -28252,10 +28250,7 @@ var render = function() {
                 [
                   _c(
                     "b-form-group",
-                    {
-                      staticClass: "shadow_text",
-                      attrs: { label: "Заголовок:", "label-for": "title" }
-                    },
+                    { attrs: { label: "Заголовок:", "label-for": "title" } },
                     [
                       _c("b-form-input", {
                         attrs: {
@@ -28278,17 +28273,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "b-form-group",
-                    {
-                      staticClass: "shadow_text",
-                      attrs: { label: "Описание:", "label-for": "text" }
-                    },
+                    { attrs: { label: "Описание:", "label-for": "text" } },
                     [
                       _c("b-form-textarea", {
                         attrs: {
                           id: "text",
                           placeholder: "Введите описание",
-                          rows: 10,
-                          "max-rows": 10
+                          rows: 6,
+                          "max-rows": 6
                         },
                         model: {
                           value: _vm.form.text,
@@ -28304,13 +28296,10 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "b-form-group",
-                    {
-                      staticClass: "shadow_text",
-                      attrs: { label: "цена:", "label-for": "price" }
-                    },
+                    { attrs: { label: "цена:", "label-for": "price" } },
                     [
                       _c("b-form-textarea", {
-                        staticStyle: { width: "100px", margin: "auto" },
+                        staticStyle: { width: "120px", margin: "auto" },
                         attrs: { id: "price", placeholder: "Цена" },
                         model: {
                           value: _vm.form.price,
@@ -28327,7 +28316,6 @@ var render = function() {
                   _c(
                     "b-form-group",
                     {
-                      staticClass: "shadow_text",
                       attrs: { label: "Категория:", "label-for": "categories" }
                     },
                     [
