@@ -27980,26 +27980,6 @@ var render = function() {
                   })
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-col",
-                { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
-                [
-                  _c("b-form-select", {
-                    staticClass: "mb-3",
-                    attrs: { options: _vm.options_actual, size: "sm" },
-                    on: { change: _vm.getSearchData },
-                    model: {
-                      value: _vm.filters.actual,
-                      callback: function($$v) {
-                        _vm.$set(_vm.filters, "actual", $$v)
-                      },
-                      expression: "filters.actual"
-                    }
-                  })
-                ],
-                1
               )
             ],
             1

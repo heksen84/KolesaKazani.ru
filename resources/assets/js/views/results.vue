@@ -22,9 +22,9 @@
 		  	<b-form-select v-model="filters.location" :options="options_location" class="mb-3" size="sm" @change="getSearchData"/>
 		</b-col>
 
-		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
+		<!--<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 		 	<b-form-select v-model="filters.actual" :options="options_actual" class="mb-3" size="sm" @change="getSearchData"/>
-		</b-col>
+		</b-col>-->
 	</b-row>
 
 	<!-- ДОПОЛНИТЕЛЬНЫЕ ФИЛЬТРЫ -->
