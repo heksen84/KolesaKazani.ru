@@ -1,16 +1,13 @@
 <template>
 	<b-container fluid>
 	<b-row>
-		<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center;margin:auto">
-			<br>
-		</b-col>
-		<b-col cols="12" sm="12" md="4" lg="4" xl="4" style="text-align:center;margin:auto">
+		<b-col cols="12" sm="12" md="4" lg="4" xl="4" style="text-align:center;margin: 3px auto">
 			<b-button variant="success" @click="logout">выйти</b-button>
 		</b-col>
-		<b-col cols="12" sm="12" md="4" lg="4" xl="4" style="text-align:center;margin:auto">
+		<b-col cols="12" sm="12" md="4" lg="4" xl="4" style="text-align:center;margin: 3px auto">
 			<b-button variant="primary" @click="goHome">вернуться на главную страницу</b-button>
 		</b-col>
-		<b-col cols="12" sm="12" md="4" lg="4" xl="4" style="text-align:center;margin:auto">
+		<b-col cols="12" sm="12" md="4" lg="4" xl="4" style="text-align:center;margin: 3px auto">
 			<b-button variant="secondary" @click="createAdvert">разместить объявление</b-button>
 		</b-col>
 		<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center;margin:auto">

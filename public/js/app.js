@@ -2004,9 +2004,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 
@@ -27385,16 +27382,7 @@ var render = function() {
           _c(
             "b-col",
             {
-              staticStyle: { "text-align": "center", margin: "auto" },
-              attrs: { cols: "12", sm: "12", md: "12", lg: "12", xl: "12" }
-            },
-            [_c("br")]
-          ),
-          _vm._v(" "),
-          _c(
-            "b-col",
-            {
-              staticStyle: { "text-align": "center", margin: "auto" },
+              staticStyle: { "text-align": "center", margin: "3px auto" },
               attrs: { cols: "12", sm: "12", md: "4", lg: "4", xl: "4" }
             },
             [
@@ -27410,7 +27398,7 @@ var render = function() {
           _c(
             "b-col",
             {
-              staticStyle: { "text-align": "center", margin: "auto" },
+              staticStyle: { "text-align": "center", margin: "3px auto" },
               attrs: { cols: "12", sm: "12", md: "4", lg: "4", xl: "4" }
             },
             [
@@ -27426,7 +27414,7 @@ var render = function() {
           _c(
             "b-col",
             {
-              staticStyle: { "text-align": "center", margin: "auto" },
+              staticStyle: { "text-align": "center", margin: "3px auto" },
               attrs: { cols: "12", sm: "12", md: "4", lg: "4", xl: "4" }
             },
             [
