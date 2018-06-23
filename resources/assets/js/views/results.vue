@@ -6,7 +6,7 @@
 			</b-col>
 		</b-row>
 	<br>
-	<b-row v-if="count>0">
+	<b-row v-if="count>1">
 
 	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 		  <b-form-select v-model="selected" :options="options" class="mb-3" size="sm" />
@@ -53,6 +53,7 @@ export default {
    	  	slide: 0,
       	sliding: null,
       	selected: null,
+
       options: [
         { value: null, text: '-- Цена --' },
         { value: 'a', text: 'Цена по возрастанию' },

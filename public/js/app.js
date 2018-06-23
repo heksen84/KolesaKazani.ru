@@ -2119,6 +2119,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       slide: 0,
       sliding: null,
       selected: null,
+
       options: [{ value: null, text: '-- Цена --' }, { value: 'a', text: 'Цена по возрастанию' }, { value: 'b', text: 'Цена по убыванию' }]
     };
   },
@@ -27857,7 +27858,7 @@ var render = function() {
       _vm._v(" "),
       _c("br"),
       _vm._v(" "),
-      _vm.count > 0
+      _vm.count > 1
         ? _c(
             "b-row",
             [
