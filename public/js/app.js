@@ -2128,6 +2128,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2177,6 +2183,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(res.data);
         _this.items = res.data;
       }).catch(function (err) {});
+    },
+    loadMore: function loadMore() {
+      alert("loadMore");
     }
   }
 });
@@ -28033,7 +28042,33 @@ var render = function() {
           ],
           1
         )
-      })
+      }),
+      _vm._v(" "),
+      _vm.count > 1
+        ? _c(
+            "b-row",
+            [
+              _c(
+                "b-col",
+                {
+                  staticStyle: { "text-align": "center" },
+                  attrs: { cols: "12", sm: "12", md: "12", lg: "12", xl: "12" }
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticStyle: { margin: "10px" },
+                      on: { click: _vm.loadMore }
+                    },
+                    [_vm._v("загрузить ещё")]
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        : _vm._e()
     ],
     2
   )
