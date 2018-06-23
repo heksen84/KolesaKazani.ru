@@ -2140,7 +2140,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   components: { item: __WEBPACK_IMPORTED_MODULE_0__components_item___default.a },
-  methods: {}
+  methods: {
+    getData: function getData() {
+      alert("asd");
+      this.items = [];
+    }
+  }
 });
 
 /***/ }),
@@ -27885,6 +27890,7 @@ var render = function() {
                   _c("b-form-select", {
                     staticClass: "mb-3",
                     attrs: { options: _vm.options_price, size: "sm" },
+                    on: { change: _vm.getData },
                     model: {
                       value: _vm.selected_price,
                       callback: function($$v) {
@@ -27904,6 +27910,7 @@ var render = function() {
                   _c("b-form-select", {
                     staticClass: "mb-3",
                     attrs: { options: _vm.options_sdelka, size: "sm" },
+                    on: { change: _vm.getData },
                     model: {
                       value: _vm.selected_sdelka,
                       callback: function($$v) {
@@ -27923,6 +27930,7 @@ var render = function() {
                   _c("b-form-select", {
                     staticClass: "mb-3",
                     attrs: { options: _vm.options_actual, size: "sm" },
+                    on: { change: _vm.getData },
                     model: {
                       value: _vm.selected_actual,
                       callback: function($$v) {
