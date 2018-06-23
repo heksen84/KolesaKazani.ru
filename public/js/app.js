@@ -2100,11 +2100,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	props: ["items"],
 	data: function data() {
 		return {
+			count: 0,
 			slide: 0,
 			sliding: null
 		};
 	},
-	created: function created() {},
+	created: function created() {
+		this.count = Object.keys(this.items).length;
+	},
 
 	components: { item: __WEBPACK_IMPORTED_MODULE_0__components_item___default.a },
 	methods: {}
@@ -27825,7 +27828,11 @@ var render = function() {
               },
               attrs: { cols: "12", sm: "12", md: "9", lg: "3", xl: "3" }
             },
-            [_c("h1", { staticClass: "shadow_text" }, [_vm._v("результаты")])]
+            [
+              _c("h3", { staticClass: "shadow_text" }, [
+                _vm._v("найдено: " + _vm._s(_vm.count))
+              ])
+            ]
           )
         ],
         1

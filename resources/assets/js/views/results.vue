@@ -2,7 +2,7 @@
 	<b-container fluid>
 		<b-row>
 			<b-col cols="12" sm="12" md="9" lg="3" xl="3" style="text-align:center;margin:auto;margin-top:40px;color:grey">
-			<h1 class="shadow_text">результаты</h1>
+			<h3 class="shadow_text">найдено: {{ count  }}</h3>
 			</b-col>
 		</b-row>
 	<br>
@@ -35,11 +35,13 @@ export default {
 	props: ["items"],
 	data () {
     return 	{
-   	  slide: 0,
-      sliding: null
+    	count: 0,
+   	  	slide: 0,
+      	sliding: null
     }
 	},
 	created() {
+		this.count = Object.keys(this.items).length;
 	},
 	components: { item },
   		methods: {
