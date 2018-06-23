@@ -57,14 +57,16 @@ export default {
 
       options_price: [
         { value: null, text: '-- Цена --' },
-        { value: 'a', text: 'Цена по возрастанию' },
-        { value: 'b', text: 'Цена по убыванию' },
+        { value: '0', text: 'Цена по возрастанию' },
+        { value: '1', text: 'Цена по убыванию' },
       ],
 
        options_sdelka: [
         { value: null, text: '-- Вид сделки --' },
-        { value: 'a', text: 'Покупка' },
-        { value: 'b', text: 'Продажа' },
+        { value: '0', text: 'Покупка' },
+        { value: '1', text: 'Продажа' },
+        { value: '2', text: 'Обмен' },
+        { value: '3', text: 'Отдам' },
       ]
 
     }
