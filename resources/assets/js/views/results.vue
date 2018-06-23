@@ -7,10 +7,18 @@
 		</b-row>
 	<br>
 	<b-row v-if="count>0">
-	<b-col cols="12" sm="12" md="8" lg="8" xl="8">
-		  <b-form-select v-model="selected" :options="options" class="mb-3" size="sm" style="width:160px"/>
+
+	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
+		  <b-form-select v-model="selected" :options="options" class="mb-3" size="sm" />
 			<!--Сортировка: все, покупка, продажа, обмен. Цена: по возрастанию, убыванию-->
 	</b-col>
+
+	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
+		  <b-form-select v-model="selected" :options="options" class="mb-3" size="sm" />
+			<!--Сортировка: все, покупка, продажа, обмен. Цена: по возрастанию, убыванию-->
+	</b-col>
+
+
 	</b-row>
 	<b-row style="margin-top:5px" v-for="item in items" :key="item">
 		

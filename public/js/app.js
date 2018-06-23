@@ -2101,6 +2101,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27855,11 +27863,29 @@ var render = function() {
             [
               _c(
                 "b-col",
-                { attrs: { cols: "12", sm: "12", md: "8", lg: "8", xl: "8" } },
+                { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
                 [
                   _c("b-form-select", {
                     staticClass: "mb-3",
-                    staticStyle: { width: "160px" },
+                    attrs: { options: _vm.options, size: "sm" },
+                    model: {
+                      value: _vm.selected,
+                      callback: function($$v) {
+                        _vm.selected = $$v
+                      },
+                      expression: "selected"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
+                [
+                  _c("b-form-select", {
+                    staticClass: "mb-3",
                     attrs: { options: _vm.options, size: "sm" },
                     model: {
                       value: _vm.selected,
