@@ -28060,7 +28060,7 @@ var render = function() {
                     "b-button",
                     {
                       staticStyle: { margin: "10px" },
-                      attrs: { variant: "danger" },
+                      attrs: { variant: "warning" },
                       on: { click: _vm.loadMore }
                     },
                     [_vm._v("загрузить ещё")]
