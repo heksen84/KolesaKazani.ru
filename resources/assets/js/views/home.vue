@@ -19,7 +19,7 @@
 		</b-col>
 		<b-col cols="12" sm="12" md="8" lg="8" xl="8" style="text-align:center;margin:auto">
 			<br>
-			<b-table striped hover :items="items" style="background:white;color:black"></b-table>
+			<b-table hover :items="items" style="background:white;color:black"></b-table>
 		</b-col>
 	</b-row>
 </b-container>
