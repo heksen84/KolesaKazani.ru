@@ -74,7 +74,8 @@ export default {
         { value: '1', text: 'Продажа' },
         { value: '2', text: 'Обмен' },
         { value: '3', text: 'Частичный обмен' },
-        { value: '4', text: 'Отдам' },
+        { value: '4', text: 'Отдам даром' },
+        { value: '5', text: 'Сдача в аренду' }
       ],
 
         options_actual: [
