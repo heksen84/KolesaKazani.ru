@@ -2118,9 +2118,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       count: 0,
       slide: 0,
       sliding: null,
-      selected: null,
+      selected_price: null,
+      selected_sdelka: null,
 
-      options: [{ value: null, text: '-- Цена --' }, { value: 'a', text: 'Цена по возрастанию' }, { value: 'b', text: 'Цена по убыванию' }]
+      options_price: [{ value: null, text: '-- Цена --' }, { value: 'a', text: 'Цена по возрастанию' }, { value: 'b', text: 'Цена по убыванию' }],
+
+      options_sdelka: [{ value: null, text: '-- Вид сделки --' }, { value: 'a', text: 'Покупка' }, { value: 'b', text: 'Продажа' }]
+
     };
   },
   created: function created() {
@@ -27868,13 +27872,13 @@ var render = function() {
                 [
                   _c("b-form-select", {
                     staticClass: "mb-3",
-                    attrs: { options: _vm.options, size: "sm" },
+                    attrs: { options: _vm.options_price, size: "sm" },
                     model: {
-                      value: _vm.selected,
+                      value: _vm.selected_price,
                       callback: function($$v) {
-                        _vm.selected = $$v
+                        _vm.selected_price = $$v
                       },
-                      expression: "selected"
+                      expression: "selected_price"
                     }
                   })
                 ],
@@ -27887,13 +27891,13 @@ var render = function() {
                 [
                   _c("b-form-select", {
                     staticClass: "mb-3",
-                    attrs: { options: _vm.options, size: "sm" },
+                    attrs: { options: _vm.options_sdelka, size: "sm" },
                     model: {
-                      value: _vm.selected,
+                      value: _vm.selected_sdelka,
                       callback: function($$v) {
-                        _vm.selected = $$v
+                        _vm.selected_sdelka = $$v
                       },
-                      expression: "selected"
+                      expression: "selected_sdelka"
                     }
                   })
                 ],

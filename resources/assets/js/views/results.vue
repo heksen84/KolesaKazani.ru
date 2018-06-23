@@ -9,12 +9,12 @@
 	<b-row v-if="count>1">
 
 	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="selected" :options="options" class="mb-3" size="sm" />
+		  <b-form-select v-model="selected_price" :options="options_price" class="mb-3" size="sm" />
 			<!--Сортировка: все, покупка, продажа, обмен. Цена: по возрастанию, убыванию-->
 	</b-col>
 
 	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="selected" :options="options" class="mb-3" size="sm" />
+		  <b-form-select v-model="selected_sdelka" :options="options_sdelka" class="mb-3" size="sm" />
 			<!--Сортировка: все, покупка, продажа, обмен. Цена: по возрастанию, убыванию-->
 	</b-col>
 
@@ -52,13 +52,21 @@ export default {
     	count: 0,
    	  	slide: 0,
       	sliding: null,
-      	selected: null,
+      	selected_price: null,
+      	selected_sdelka: null,
 
-      options: [
+      options_price: [
         { value: null, text: '-- Цена --' },
         { value: 'a', text: 'Цена по возрастанию' },
         { value: 'b', text: 'Цена по убыванию' },
+      ],
+
+       options_sdelka: [
+        { value: null, text: '-- Вид сделки --' },
+        { value: 'a', text: 'Покупка' },
+        { value: 'b', text: 'Продажа' },
       ]
+
     }
 	},
 	created() {
