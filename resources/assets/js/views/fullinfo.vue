@@ -1,8 +1,9 @@
 <template>
-	<div>12312</div>
+	<div>{{ data }}</div>
 </template>
 <script>
 export default {
+	props: ["data"],
 	data () {
     return 	{
 			}
