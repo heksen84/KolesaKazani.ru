@@ -2064,6 +2064,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_item__ = __webpack_require__("./resources/assets/js/components/item.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_item___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_item__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
 //
 //
 //
@@ -2114,12 +2115,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["items"],
+  props: ["data"],
   data: function data() {
     return {
+      items: this.data,
       count: 0,
       slide: 0,
       sliding: null,
@@ -2141,9 +2144,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   components: { item: __WEBPACK_IMPORTED_MODULE_0__components_item___default.a },
   methods: {
-    getData: function getData() {
-      alert("asd");
-      this.items = [];
+    getSearchData: function getSearchData() {
+      var _this = this;
+
+      Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])('/getSearchData').then(function (res) {
+        _this.items = [];
+      }).catch(function (err) {});
     }
   }
 });
@@ -27890,7 +27896,7 @@ var render = function() {
                   _c("b-form-select", {
                     staticClass: "mb-3",
                     attrs: { options: _vm.options_price, size: "sm" },
-                    on: { change: _vm.getData },
+                    on: { change: _vm.getSearchData },
                     model: {
                       value: _vm.selected_price,
                       callback: function($$v) {
@@ -27910,7 +27916,7 @@ var render = function() {
                   _c("b-form-select", {
                     staticClass: "mb-3",
                     attrs: { options: _vm.options_sdelka, size: "sm" },
-                    on: { change: _vm.getData },
+                    on: { change: _vm.getSearchData },
                     model: {
                       value: _vm.selected_sdelka,
                       callback: function($$v) {
@@ -27930,7 +27936,7 @@ var render = function() {
                   _c("b-form-select", {
                     staticClass: "mb-3",
                     attrs: { options: _vm.options_actual, size: "sm" },
-                    on: { change: _vm.getData },
+                    on: { change: _vm.getSearchData },
                     model: {
                       value: _vm.selected_actual,
                       callback: function($$v) {

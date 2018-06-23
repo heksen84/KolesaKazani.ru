@@ -12,15 +12,15 @@
 	</b-col>
 
 	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="selected_price" :options="options_price" class="mb-3" size="sm" @change="getData"/>
+		  <b-form-select v-model="selected_price" :options="options_price" class="mb-3" size="sm" @change="getSearchData"/>
 	</b-col>
 
 	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="selected_sdelka" :options="options_sdelka" class="mb-3" size="sm" @change="getData"/>
+		  <b-form-select v-model="selected_sdelka" :options="options_sdelka" class="mb-3" size="sm" @change="getSearchData"/>
 	</b-col>
 
 	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="selected_actual" :options="options_actual" class="mb-3" size="sm" @change="getData"/>
+		  <b-form-select v-model="selected_actual" :options="options_actual" class="mb-3" size="sm" @change="getSearchData"/>
 	</b-col>
 
 
@@ -50,10 +50,12 @@
 </template>
 <script>
 import item from "../components/item"
+import { get } from './../helpers/api'
 export default {
-	props: ["items"],
+	props: ["data"],
 	data () {
     return 	{
+    	items: this.data,
     	count: 0,
    	  	slide: 0,
       	sliding: null,
@@ -89,10 +91,11 @@ export default {
 	},
 	components: { item },
   		methods: {
-  			getData() {
-  				alert("asd");
-  				this.items=[];
-    	}
+  			getSearchData() {
+  				get('/getSearchData').then((res) => {
+					this.items=[];
+				}).catch((err) => {});
+    		}
 	}
 }
 </script>
