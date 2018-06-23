@@ -2134,6 +2134,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -28056,14 +28057,16 @@ var render = function() {
                 },
                 [
                   _c(
-                    "button",
+                    "b-button",
                     {
                       staticStyle: { margin: "10px" },
+                      attrs: { variant: "danger" },
                       on: { click: _vm.loadMore }
                     },
                     [_vm._v("загрузить ещё")]
                   )
-                ]
+                ],
+                1
               )
             ],
             1

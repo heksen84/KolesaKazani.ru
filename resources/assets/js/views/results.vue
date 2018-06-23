@@ -63,7 +63,8 @@
 	</b-row>
 
 	<b-row v-if="count>1">
-		<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center"><button style="margin:10px" @click="loadMore">загрузить ещё</button>
+		<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
+			<b-button variant="danger" style="margin:10px" @click="loadMore">загрузить ещё</b-button>
 		</b-col>
 	</b-row>
 
