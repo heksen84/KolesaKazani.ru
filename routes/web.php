@@ -29,6 +29,7 @@ Route::get('/category/{id}', function ($id)
 	return view('results')->with("items", $items )->with("category_id", $id ); 
 });
 
+Route::get('getSearchData', 'SearchController@getSearchData');
 
 Route::get('/details/{id}', function () { return view('fullinfo'); });
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');

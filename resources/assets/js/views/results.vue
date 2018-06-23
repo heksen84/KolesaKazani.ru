@@ -1,8 +1,8 @@
 <template>
 	<b-container fluid>
 		<b-row>
-			<b-col cols="12" sm="12" md="9" lg="3" xl="3" style="text-align:center;margin:auto;margin-top:40px;color:grey">
-			<h3 class="shadow_text">найдено: {{ count  }}</h3>
+			<b-col cols="12" sm="12" md="10" lg="10" xl="10" style="text-align:left;margin:auto;margin-top:40px;color:grey">
+			<h4 class="shadow_text">найдено: {{ count  }}</h4>
 			</b-col>
 		</b-row>
 	<br>
@@ -103,7 +103,7 @@ export default {
   		methods: {
   			getSearchData() {
   				get('/getSearchData').then((res) => {
-					this.items=[];
+					this.items=res.data;
 				}).catch((err) => {});
     		}
 	}

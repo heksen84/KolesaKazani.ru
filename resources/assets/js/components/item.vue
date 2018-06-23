@@ -1,7 +1,7 @@
 <template>
   <div class="item" @click="details">
     <!--<avatarka></avatarka>-->
-    <h3 style="margin:15px;color:rgb(70,70,70)">{{ title }}</h3>
+    <h4 style="margin:15px;color:rgb(70,70,70)">{{ title }}</h4>
     <div style="margin:15px;color:rgb(70,70,70)">{{ text }}</div>
     <h5 style="margin:15px;color:rgb(70,70,70)">цена: {{ price }}</h5>
   </div>

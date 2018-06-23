@@ -2154,7 +2154,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])('/getSearchData').then(function (res) {
-        _this.items = [];
+        _this.items = res.data;
       }).catch(function (err) {});
     }
   }
@@ -27518,7 +27518,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "item", on: { click: _vm.details } }, [
-    _c("h3", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
+    _c("h4", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
       _vm._v(_vm._s(_vm.title))
     ]),
     _vm._v(" "),
@@ -27868,15 +27868,15 @@ var render = function() {
             "b-col",
             {
               staticStyle: {
-                "text-align": "center",
+                "text-align": "left",
                 margin: "auto",
                 "margin-top": "40px",
                 color: "grey"
               },
-              attrs: { cols: "12", sm: "12", md: "9", lg: "3", xl: "3" }
+              attrs: { cols: "12", sm: "12", md: "10", lg: "10", xl: "10" }
             },
             [
-              _c("h3", { staticClass: "shadow_text" }, [
+              _c("h4", { staticClass: "shadow_text" }, [
                 _vm._v("найдено: " + _vm._s(_vm.count))
               ])
             ]
