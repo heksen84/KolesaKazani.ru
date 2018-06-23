@@ -8,8 +8,7 @@
 	<br>
 	<b-row v-if="count>1">
 
-	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-	</b-col>
+	<b-col cols="12" sm="12" md="2" lg="2" xl="2"></b-col>
 
 	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 		  <b-form-select v-model="selected_price" :options="options_price" class="mb-3" size="sm" @change="getSearchData"/>
