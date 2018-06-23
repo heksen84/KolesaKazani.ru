@@ -20,9 +20,12 @@
 	</b-col>
 
 	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="selected_actual" :options="options_actual" class="mb-3" size="sm" @change="getSearchData"/>
+		  <b-form-select v-model="selected_location" :options="options_location" class="mb-3" size="sm" @change="getSearchData"/>
 	</b-col>
 
+	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
+		  <b-form-select v-model="selected_actual" :options="options_actual" class="mb-3" size="sm" @change="getSearchData"/>
+	</b-col>
 
 	</b-row>
 	<b-row style="margin-top:5px" v-for="item in items" :key="item">
@@ -62,6 +65,7 @@ export default {
       	selected_price: null,
       	selected_sdelka: null,
       	selected_actual: null,
+      	selected_location: null,
 
       options_price: [
         { value: null, text: '-- Цена --' },
@@ -82,6 +86,12 @@ export default {
         { value: null, text: '-- Актуальность --' },
         { value: '0', text: 'Сначала новые' },
         { value: '1', text: 'Сначала старые' },
+      ],
+
+        options_location: [
+        { value: null, text: '-- Расположение --' },
+        { value: '0', text: 'Рядом со мной' },
+        { value: '1', text: 'Любое расстояние' },
       ]
 
     }
