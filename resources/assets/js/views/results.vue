@@ -11,19 +11,19 @@
 	<b-col cols="12" sm="12" md="2" lg="2" xl="2"></b-col>
 
 	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="selected_price" :options="options_price" class="mb-3" size="sm" @change="getSearchData"/>
+		  <b-form-select v-model="filters.price" :options="options_price" class="mb-3" size="sm" @change="getSearchData"/>
 	</b-col>
 
 	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="selected_sdelka" :options="options_sdelka" class="mb-3" size="sm" @change="getSearchData"/>
+		  <b-form-select v-model="filters.sdelka" :options="options_sdelka" class="mb-3" size="sm" @change="getSearchData"/>
 	</b-col>
 
 	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="selected_location" :options="options_location" class="mb-3" size="sm" @change="getSearchData"/>
+		  <b-form-select v-model="filters.location" :options="options_location" class="mb-3" size="sm" @change="getSearchData"/>
 	</b-col>
 
 	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="selected_actual" :options="options_actual" class="mb-3" size="sm" @change="getSearchData"/>
+		  <b-form-select v-model="filters.actual" :options="options_actual" class="mb-3" size="sm" @change="getSearchData"/>
 	</b-col>
 
 	</b-row>
@@ -61,10 +61,13 @@ export default {
     	count: 0,
    	  	slide: 0,
       	sliding: null,
-      	selected_price: null,
-      	selected_sdelka: null,
-      	selected_actual: null,
-      	selected_location: null,
+
+      	filters: {
+      		price: null,
+      		sdelka: null,
+      		actual: null,
+      		location: null
+      },
 
       options_price: [
         { value: null, text: '-- Цена --' },
@@ -101,7 +104,7 @@ export default {
 	components: { item },
   		methods: {
   			getSearchData() {
-  				get('/getSearchData').then((res) => {
+  				get('/getSearchData', { "data": this.filters }).then((res) => {
 					this.items=res.data;
 				}).catch((err) => {});
     		}

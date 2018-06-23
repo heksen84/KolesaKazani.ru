@@ -2118,7 +2118,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -2130,10 +2129,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       count: 0,
       slide: 0,
       sliding: null,
-      selected_price: null,
-      selected_sdelka: null,
-      selected_actual: null,
-      selected_location: null,
+
+      filters: {
+        price: null,
+        sdelka: null,
+        actual: null,
+        location: null
+      },
 
       options_price: [{ value: null, text: '-- Цена --' }, { value: '0', text: 'Цена по возрастанию' }, { value: '1', text: 'Цена по убыванию' }],
 
@@ -2154,7 +2156,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getSearchData: function getSearchData() {
       var _this = this;
 
-      Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])('/getSearchData').then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])('/getSearchData', { "data": this.filters }).then(function (res) {
         _this.items = res.data;
       }).catch(function (err) {});
     }
@@ -27905,11 +27907,11 @@ var render = function() {
                     attrs: { options: _vm.options_price, size: "sm" },
                     on: { change: _vm.getSearchData },
                     model: {
-                      value: _vm.selected_price,
+                      value: _vm.filters.price,
                       callback: function($$v) {
-                        _vm.selected_price = $$v
+                        _vm.$set(_vm.filters, "price", $$v)
                       },
-                      expression: "selected_price"
+                      expression: "filters.price"
                     }
                   })
                 ],
@@ -27925,11 +27927,11 @@ var render = function() {
                     attrs: { options: _vm.options_sdelka, size: "sm" },
                     on: { change: _vm.getSearchData },
                     model: {
-                      value: _vm.selected_sdelka,
+                      value: _vm.filters.sdelka,
                       callback: function($$v) {
-                        _vm.selected_sdelka = $$v
+                        _vm.$set(_vm.filters, "sdelka", $$v)
                       },
-                      expression: "selected_sdelka"
+                      expression: "filters.sdelka"
                     }
                   })
                 ],
@@ -27945,11 +27947,11 @@ var render = function() {
                     attrs: { options: _vm.options_location, size: "sm" },
                     on: { change: _vm.getSearchData },
                     model: {
-                      value: _vm.selected_location,
+                      value: _vm.filters.location,
                       callback: function($$v) {
-                        _vm.selected_location = $$v
+                        _vm.$set(_vm.filters, "location", $$v)
                       },
-                      expression: "selected_location"
+                      expression: "filters.location"
                     }
                   })
                 ],
@@ -27965,11 +27967,11 @@ var render = function() {
                     attrs: { options: _vm.options_actual, size: "sm" },
                     on: { change: _vm.getSearchData },
                     model: {
-                      value: _vm.selected_actual,
+                      value: _vm.filters.actual,
                       callback: function($$v) {
-                        _vm.selected_actual = $$v
+                        _vm.$set(_vm.filters, "actual", $$v)
                       },
-                      expression: "selected_actual"
+                      expression: "filters.actual"
                     }
                   })
                 ],
