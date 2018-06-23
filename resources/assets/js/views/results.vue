@@ -6,27 +6,48 @@
 			</b-col>
 		</b-row>
 	<br>
+
+	<!-- БАЗОВЫЕ ФИЛЬТРЫ -->
 	<b-row v-if="count>1">
-
-	<b-col cols="12" sm="12" md="2" lg="2" xl="2"></b-col>
-
-	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
+		<b-col cols="12" sm="12" md="2" lg="2" xl="2"></b-col>
+		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 		  <b-form-select v-model="filters.price" :options="options_price" class="mb-3" size="sm" @change="getSearchData"/>
-	</b-col>
+		</b-col>
 
-	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
+		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 		  <b-form-select v-model="filters.sdelka" :options="options_sdelka" class="mb-3" size="sm" @change="getSearchData"/>
-	</b-col>
+		</b-col>
 
-	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="filters.location" :options="options_location" class="mb-3" size="sm" @change="getSearchData"/>
-	</b-col>
+		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
+		  	<b-form-select v-model="filters.location" :options="options_location" class="mb-3" size="sm" @change="getSearchData"/>
+		</b-col>
 
-	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="filters.actual" :options="options_actual" class="mb-3" size="sm" @change="getSearchData"/>
-	</b-col>
-
+		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
+		 	<b-form-select v-model="filters.actual" :options="options_actual" class="mb-3" size="sm" @change="getSearchData"/>
+		</b-col>
 	</b-row>
+
+	<!-- ДОПОЛНИТЕЛЬНЫЕ ФИЛЬТРЫ -->
+	<!--<b-row v-if="count>1">
+		<b-col cols="12" sm="12" md="2" lg="2" xl="2"></b-col>
+
+		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
+		  <b-form-select v-model="filters.price" :options="options_price" class="mb-3" size="sm" @change="getSearchData"/>
+		</b-col>
+
+		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
+		  <b-form-select v-model="filters.sdelka" :options="options_sdelka" class="mb-3" size="sm" @change="getSearchData"/>
+		</b-col>
+
+		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
+		  	<b-form-select v-model="filters.location" :options="options_location" class="mb-3" size="sm" @change="getSearchData"/>
+		</b-col>
+
+		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
+		 	<b-form-select v-model="filters.actual" :options="options_actual" class="mb-3" size="sm" @change="getSearchData"/>
+		</b-col>
+	</b-row>-->
+
 	<b-row style="margin-top:5px" v-for="item in items" :key="item.id">
 		
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
