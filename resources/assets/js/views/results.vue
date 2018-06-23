@@ -6,6 +6,11 @@
 			</b-col>
 		</b-row>
 	<br>
+	<b-row>
+	<b-col cols="12" sm="12" md="8" lg="8" xl="8">
+		Сортировка: все, покупка, продажа, обмен. Цена: по возрастанию, убыванию
+	</b-col>
+	</b-row>
 	<b-row style="margin-top:5px" v-for="item in items" :key="item">
 		
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
