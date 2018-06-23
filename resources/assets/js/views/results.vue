@@ -8,7 +8,8 @@
 	<br>
 	<b-row v-if="count>0">
 	<b-col cols="12" sm="12" md="8" lg="8" xl="8">
-		Сортировка: все, покупка, продажа, обмен. Цена: по возрастанию, убыванию
+		  <b-form-select v-model="selected" :options="options" class="mb-3" size="sm" style="width:160px"/>
+			<!--Сортировка: все, покупка, продажа, обмен. Цена: по возрастанию, убыванию-->
 	</b-col>
 	</b-row>
 	<b-row style="margin-top:5px" v-for="item in items" :key="item">
@@ -42,7 +43,13 @@ export default {
     return 	{
     	count: 0,
    	  	slide: 0,
-      	sliding: null
+      	sliding: null,
+      	selected: null,
+      options: [
+        { value: null, text: '-- Цена --' },
+        { value: 'a', text: 'Цена по возрастанию' },
+        { value: 'b', text: 'Цена по убыванию' },
+      ]
     }
 	},
 	created() {

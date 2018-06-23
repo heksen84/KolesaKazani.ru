@@ -2100,23 +2100,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ["items"],
-	data: function data() {
-		return {
-			count: 0,
-			slide: 0,
-			sliding: null
-		};
-	},
-	created: function created() {
-		this.count = Object.keys(this.items).length;
-	},
+  props: ["items"],
+  data: function data() {
+    return {
+      count: 0,
+      slide: 0,
+      sliding: null,
+      selected: null,
+      options: [{ value: null, text: '-- Цена --' }, { value: 'a', text: 'Цена по возрастанию' }, { value: 'b', text: 'Цена по убыванию' }]
+    };
+  },
+  created: function created() {
+    this.count = Object.keys(this.items).length;
+  },
 
-	components: { item: __WEBPACK_IMPORTED_MODULE_0__components_item___default.a },
-	methods: {}
+  components: { item: __WEBPACK_IMPORTED_MODULE_0__components_item___default.a },
+  methods: {}
 });
 
 /***/ }),
@@ -27854,10 +27857,20 @@ var render = function() {
                 "b-col",
                 { attrs: { cols: "12", sm: "12", md: "8", lg: "8", xl: "8" } },
                 [
-                  _vm._v(
-                    "\n\t\tСортировка: все, покупка, продажа, обмен. Цена: по возрастанию, убыванию\n\t"
-                  )
-                ]
+                  _c("b-form-select", {
+                    staticClass: "mb-3",
+                    staticStyle: { width: "160px" },
+                    attrs: { options: _vm.options, size: "sm" },
+                    model: {
+                      value: _vm.selected,
+                      callback: function($$v) {
+                        _vm.selected = $$v
+                      },
+                      expression: "selected"
+                    }
+                  })
+                ],
+                1
               )
             ],
             1
