@@ -2119,6 +2119,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       items: this.data,
       count: 0,
+      count_string: "",
       slide: 0,
       sliding: null,
 
@@ -2141,6 +2142,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   created: function created() {
     this.count = Object.keys(this.items).length;
+
+    if (this.count == 0) this.count_string = "объявлений";
+    if (this.count > 0) this.count_string = "объявление";
+    if (this.count > 1) this.count_string = "объявления";
   },
 
   components: { item: __WEBPACK_IMPORTED_MODULE_0__components_item___default.a },
@@ -27874,8 +27879,13 @@ var render = function() {
               attrs: { cols: "12", sm: "12", md: "10", lg: "10", xl: "10" }
             },
             [
-              _c("h4", { staticClass: "shadow_text" }, [
-                _vm._v("найдено: " + _vm._s(_vm.count))
+              _c("h5", { staticClass: "shadow_text" }, [
+                _vm._v(
+                  "найдено " +
+                    _vm._s(_vm.count) +
+                    " " +
+                    _vm._s(_vm.count_string)
+                )
               ])
             ]
           )

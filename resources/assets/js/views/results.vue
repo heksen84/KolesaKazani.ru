@@ -2,7 +2,7 @@
 	<b-container fluid>
 		<b-row>
 			<b-col cols="12" sm="12" md="10" lg="10" xl="10" style="text-align:left;margin:auto;margin-top:40px;color:grey">
-			<h4 class="shadow_text">найдено: {{ count  }}</h4>
+			<h5 class="shadow_text">найдено {{ count  }} {{ count_string }}</h5>
 			</b-col>
 		</b-row>
 	<br>
@@ -51,6 +51,7 @@ export default {
     return 	{
     	items: this.data,
     	count: 0,
+    	count_string: "",
    	  	slide: 0,
       	sliding: null,
 
@@ -92,6 +93,10 @@ export default {
 	},
 	created() {
 		this.count = Object.keys(this.items).length;
+
+		if (this.count==0) this.count_string = "объявлений";
+		if (this.count>0) this.count_string = "объявление";
+		if (this.count>1) this.count_string = "объявления";
 	},
 	components: { item },
   		methods: {
