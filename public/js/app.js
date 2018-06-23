@@ -2109,6 +2109,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2120,10 +2125,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       sliding: null,
       selected_price: null,
       selected_sdelka: null,
+      selected_actual: null,
 
       options_price: [{ value: null, text: '-- Цена --' }, { value: '0', text: 'Цена по возрастанию' }, { value: '1', text: 'Цена по убыванию' }],
 
-      options_sdelka: [{ value: null, text: '-- Вид сделки --' }, { value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Отдам' }]
+      options_sdelka: [{ value: null, text: '-- Вид сделки --' }, { value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам' }],
+
+      options_actual: [{ value: null, text: '-- Актуальность --' }, { value: '0', text: 'Сначала новые' }, { value: '1', text: 'Сначала старые' }]
 
     };
   },
@@ -27866,6 +27874,10 @@ var render = function() {
         ? _c(
             "b-row",
             [
+              _c("b-col", {
+                attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" }
+              }),
+              _vm._v(" "),
               _c(
                 "b-col",
                 { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
@@ -27898,6 +27910,25 @@ var render = function() {
                         _vm.selected_sdelka = $$v
                       },
                       expression: "selected_sdelka"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
+                [
+                  _c("b-form-select", {
+                    staticClass: "mb-3",
+                    attrs: { options: _vm.options_actual, size: "sm" },
+                    model: {
+                      value: _vm.selected_actual,
+                      callback: function($$v) {
+                        _vm.selected_actual = $$v
+                      },
+                      expression: "selected_actual"
                     }
                   })
                 ],

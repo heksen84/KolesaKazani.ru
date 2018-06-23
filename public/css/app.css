@@ -158,6 +158,6 @@ body {
 .shadow_text {
   color: #fff;
   letter-spacing: 3px;
-  text-shadow: -1px -1px 0 #646464, 1px -1px 0 #646464, -1px 1px 0 #646464, 1px 1px 0 #646464;
+  text-shadow: -1px -1px 0 #3c3c3c, 1px -1px 0 #3c3c3c, -1px 1px 0 #3c3c3c, 1px 1px 0 #3c3c3c;
 }
 

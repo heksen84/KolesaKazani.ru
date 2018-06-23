@@ -9,11 +9,18 @@
 	<b-row v-if="count>1">
 
 	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
+	</b-col>
+
+	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 		  <b-form-select v-model="selected_price" :options="options_price" class="mb-3" size="sm" />
 	</b-col>
 
 	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 		  <b-form-select v-model="selected_sdelka" :options="options_sdelka" class="mb-3" size="sm" />
+	</b-col>
+
+	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
+		  <b-form-select v-model="selected_actual" :options="options_actual" class="mb-3" size="sm" />
 	</b-col>
 
 
@@ -52,6 +59,7 @@ export default {
       	sliding: null,
       	selected_price: null,
       	selected_sdelka: null,
+      	selected_actual: null,
 
       options_price: [
         { value: null, text: '-- Цена --' },
@@ -64,7 +72,14 @@ export default {
         { value: '0', text: 'Покупка' },
         { value: '1', text: 'Продажа' },
         { value: '2', text: 'Обмен' },
-        { value: '3', text: 'Отдам' },
+        { value: '3', text: 'Частичный обмен' },
+        { value: '4', text: 'Отдам' },
+      ],
+
+        options_actual: [
+        { value: null, text: '-- Актуальность --' },
+        { value: '0', text: 'Сначала новые' },
+        { value: '1', text: 'Сначала старые' },
       ]
 
     }
