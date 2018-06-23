@@ -2186,7 +2186,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).catch(function (err) {});
     },
     loadMore: function loadMore() {
-      alert("loadMore");
+      this.getSearchData();
     }
   }
 });

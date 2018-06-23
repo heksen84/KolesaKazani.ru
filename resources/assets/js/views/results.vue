@@ -138,7 +138,7 @@ export default {
 				}).catch((err) => {});
     		},
     		loadMore() {
-    			alert("loadMore");
+    			this.getSearchData();
     		}
 	}
 }
