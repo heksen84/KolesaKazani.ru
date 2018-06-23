@@ -20,5 +20,7 @@ class SearchController extends Controller {
       $location = $data["location"];
 
 	     return Adverts::all()->toJson();
+
+      //return $data;
     }
 }

@@ -27,19 +27,12 @@
 	</b-col>
 
 	</b-row>
-	<b-row style="margin-top:5px" v-for="item in items" :key="item">
+	<b-row style="margin-top:5px" v-for="item in items" :key="item.id">
 		
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-			<!--<item :id="item.id" :name="item.name"></item>-->
-
-
 			<carousel :perPage=1 :paginationEnabled="false">
-  			<slide>
-     			<!--<b-img src="https://picsum.photos/250/250/?image=54" :height="200" :width="200"/>-->
-     			img
-  			</slide>
+  			<slide>img</slide>
 			</carousel>
-
 		</b-col>
 
 		<b-col cols="12" sm="12" md="8" lg="8" xl="8">
@@ -47,7 +40,6 @@
 		</b-col>
 
 	</b-row>
-	
 </b-container>
 </template>
 <script>
@@ -104,7 +96,10 @@ export default {
 	components: { item },
   		methods: {
   			getSearchData() {
-  				get('/getSearchData', { "data": this.filters }).then((res) => {
+  				console.log(this.filters);
+
+  				get('/getSearchData', { "data": this.filters } ).then((res) => {
+  					console.log(res.data);
 					this.items=res.data;
 				}).catch((err) => {});
     		}

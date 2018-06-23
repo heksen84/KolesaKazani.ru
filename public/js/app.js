@@ -2110,14 +2110,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2156,7 +2148,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getSearchData: function getSearchData() {
       var _this = this;
 
+      console.log(this.filters);
+
       Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])('/getSearchData', { "data": this.filters }).then(function (res) {
+        console.log(res.data);
         _this.items = res.data;
       }).catch(function (err) {});
     }
@@ -27985,7 +27980,7 @@ var render = function() {
       _vm._l(_vm.items, function(item) {
         return _c(
           "b-row",
-          { key: item, staticStyle: { "margin-top": "5px" } },
+          { key: item.id, staticStyle: { "margin-top": "5px" } },
           [
             _c(
               "b-col",
@@ -27994,7 +27989,7 @@ var render = function() {
                 _c(
                   "carousel",
                   { attrs: { perPage: 1, paginationEnabled: false } },
-                  [_c("slide", [_vm._v("\n     \t\t\timg\n  \t\t\t")])],
+                  [_c("slide", [_vm._v("img")])],
                   1
                 )
               ],
