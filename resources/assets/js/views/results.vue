@@ -10,12 +10,10 @@
 
 	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 		  <b-form-select v-model="selected_price" :options="options_price" class="mb-3" size="sm" />
-			<!--Сортировка: все, покупка, продажа, обмен. Цена: по возрастанию, убыванию-->
 	</b-col>
 
 	<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 		  <b-form-select v-model="selected_sdelka" :options="options_sdelka" class="mb-3" size="sm" />
-			<!--Сортировка: все, покупка, продажа, обмен. Цена: по возрастанию, убыванию-->
 	</b-col>
 
 
