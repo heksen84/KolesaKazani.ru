@@ -93,7 +93,8 @@ function num2str(n, text_forms) {
 }
 
 import item from "../components/item"
-import { get } from './../helpers/api'
+import { get } from "./../helpers/api"
+
 export default {
 	props: ["data"],
 	data () {
