@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\DB;
 use App\Categories;
 use App\Adverts;
 
+// перекинуть лишнее в контроллер
+
 Auth::routes();
 
 Route::get('/', 'WelcomeController@getCategories');
@@ -14,20 +16,18 @@ Route::get('/newtrip', function () { return view('newtrip'); });
 Route::get('/categories', 'CategoriesController@index');
 Route::get('/search', function () { return view('search')->with("items", "123");});
 
-// перекинуть в контроллер
 Route::get('/create', function () { 
 	// сдесь можно выдрать данные из сессии и передать их
 	return Auth::user()? view('create')->with( "items", Categories::all() ) : view('auth\login'); 
 });
 
-Route::post('/create', 'AdvertsController@createAdvert');
+Route::post('/create', 'AdvertController@createAdvert');
 
-Route::get('/category/{id}', function ($id) 
-{ 
+Route::get('/category/{id}', function ($id) { 
 	$items = DB::table('adverts')->where('category_id', $id)->get();
 	return view('results')->with("items", $items )->with("category_id", $id ); 
 });
 
-Route::get('/details/{id}', array('as' => 'id', 'uses' => 'AdvertsController@getFullInfo'));
 Route::get('getSearchData', 'SearchController@getSearchData');
+Route::get('/details/{id}', array('as' => 'id', 'uses' => 'AdvertController@getFullInfo'));
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');

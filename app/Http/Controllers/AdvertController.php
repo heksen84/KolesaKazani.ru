@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Adverts;
 use DB;
 
-class AdvertsController extends Controller
+class AdvertController extends Controller
 {
      public function getAdverts() {
 	     return Adverts::all()->toJson();
@@ -27,7 +27,7 @@ class AdvertsController extends Controller
      			$adverts->user_id   		= Auth::id();
         		$adverts->title 			= $title;
         		$adverts->text  			= $text;
-        		$adverts->contacts  		= "sdfsdfsdf";
+        		$adverts->contacts  		= "контакты";
         		$adverts->price  			= $price;
         		$adverts->category_id  		= $category;
         		$adverts->ad_category_id  	= 1;
