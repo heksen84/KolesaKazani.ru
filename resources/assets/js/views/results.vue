@@ -64,7 +64,7 @@
 
 
 	<div class="vip_block">
-		<h3 v-for="i in items" style="height:338px;border:1px solid yellow;text-align:center"></h3>
+		<h3 v-for="i in items" style="height:340px;border:1px solid white;text-align:center"></h3>
 	</div>
 
 

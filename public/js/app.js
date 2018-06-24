@@ -28083,8 +28083,8 @@ var render = function() {
         _vm._l(_vm.items, function(i) {
           return _c("h3", {
             staticStyle: {
-              height: "338px",
-              border: "1px solid yellow",
+              height: "340px",
+              border: "1px solid white",
               "text-align": "center"
             }
           })
