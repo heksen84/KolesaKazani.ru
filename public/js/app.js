@@ -27896,7 +27896,7 @@ var render = function() {
             [
               _c("h3", [_vm._v("FullInfo")]),
               _vm._v(" "),
-              _c("h5", [_vm._v(_vm._s(_vm.item[0].name))]),
+              _c("h5", [_vm._v(_vm._s(_vm.item[0].title))]),
               _vm._v(" "),
               _c("h5", [_vm._v(_vm._s(_vm.item[0].text))]),
               _vm._v(" "),
