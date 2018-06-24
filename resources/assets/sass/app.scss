@@ -154,3 +154,16 @@ padding:0;
  -1px 1px 0 $shadow_text_color, 
  1px 1px 0 $shadow_text_color
 }
+
+.result_info_col {
+  text-align:left;
+  margin:auto;
+  margin-top:5px;
+  color:grey;
+}
+
+@media screen and (max-width:479px) {
+  .result_info_col {
+  text-align:center;
+}
+}

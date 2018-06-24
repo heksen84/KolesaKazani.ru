@@ -161,3 +161,16 @@ body {
   text-shadow: -1px -1px 0 #3c3c3c, 1px -1px 0 #3c3c3c, -1px 1px 0 #3c3c3c, 1px 1px 0 #3c3c3c;
 }
 
+.result_info_col {
+  text-align: left;
+  margin: auto;
+  margin-top: 5px;
+  color: grey;
+}
+
+@media screen and (max-width: 479px) {
+  .result_info_col {
+    text-align: center;
+  }
+}
+

@@ -27900,12 +27900,7 @@ var render = function() {
           _c(
             "b-col",
             {
-              staticStyle: {
-                "text-align": "left",
-                margin: "auto",
-                "margin-top": "5px",
-                color: "grey"
-              },
+              staticClass: "result_info_col",
               attrs: { cols: "12", sm: "12", md: "10", lg: "10", xl: "10" }
             },
             [
