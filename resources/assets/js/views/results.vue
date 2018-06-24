@@ -1,7 +1,7 @@
 <template>
 	<b-container fluid>
 		<b-row>
-			<b-col cols="12" sm="12" md="10" lg="10" xl="10" style="text-align:left;margin:auto;margin-top:40px;color:grey">
+			<b-col cols="12" sm="12" md="10" lg="10" xl="10" style="text-align:left;margin:auto;margin-top:5px;color:grey">
 			<h5 class="shadow_text">найдено {{ count  }} {{ count_string }}</h5>
 			</b-col>
 		</b-row>
@@ -74,7 +74,7 @@
 
 // функция склонений слов
 function num2str(n, text_forms) {
-	
+
     n = Math.abs(n) % 100;
     var n1 = n % 10;
     
