@@ -2212,6 +2212,9 @@ function num2str(n, text_forms) {
       Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])('/getSearchData', { "data": this.filters }).then(function (res) {
         console.log(res.data);
         _this.items = res.data;
+
+        _this.count = Object.keys(_this.items).length;
+        _this.count_string = num2str(_this.count, ['объявление', 'объявления', 'объявлений']);
       }).catch(function (err) {});
     },
     loadMore: function loadMore() {

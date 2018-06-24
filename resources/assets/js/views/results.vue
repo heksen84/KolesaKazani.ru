@@ -143,7 +143,7 @@ export default {
 	},
 	created() {
 		this.count = Object.keys(this.items).length;
-		this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений'])
+		this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
 	},
 	components: { item },
   		methods: {
@@ -153,6 +153,9 @@ export default {
   				get('/getSearchData', { "data": this.filters } ).then((res) => {
   					console.log(res.data);
 					this.items=res.data;
+					
+					this.count = Object.keys(this.items).length;
+					this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
 				}).catch((err) => {});
     		},
     		loadMore() {
