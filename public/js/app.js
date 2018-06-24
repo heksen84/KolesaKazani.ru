@@ -2137,6 +2137,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
+// функция склонений слов
+function num2str(n, text_forms) {
+
+  n = Math.abs(n) % 100;
+  var n1 = n % 10;
+
+  if (n > 10 && n < 20) return text_forms[2];
+  if (n1 > 1 && n1 < 5) return text_forms[1];
+  if (n1 == 1) return text_forms[0];
+
+  return text_forms[2];
+}
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["data"],
@@ -2167,10 +2181,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   created: function created() {
     this.count = Object.keys(this.items).length;
-
-    if (this.count == 0) this.count_string = "объявлений";
-    if (this.count > 0) this.count_string = "объявление";
-    if (this.count > 1) this.count_string = "объявления";
+    this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
   },
 
   components: { item: __WEBPACK_IMPORTED_MODULE_0__components_item___default.a },
