@@ -66,8 +66,6 @@ const app = new Vue({
       search,
       results,
       create,
-      //carousel,
       fullinfo
-      //item
   }
 });

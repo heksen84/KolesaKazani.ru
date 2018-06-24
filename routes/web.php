@@ -15,8 +15,7 @@ Route::get('/categories', 'CategoriesController@index');
 Route::get('/search', function () { return view('search')->with("items", "123");});
 
 // перекинуть в контроллер
-Route::get('/create', function () 
-{ 
+Route::get('/create', function () { 
 	// сдесь можно выдрать данные из сессии и передать их
 	return Auth::user()? view('create')->with( "items", Categories::all() ) : view('auth\login'); 
 });
@@ -29,7 +28,6 @@ Route::get('/category/{id}', function ($id)
 	return view('results')->with("items", $items )->with("category_id", $id ); 
 });
 
+Route::get('/details/{id}', array('as' => 'id', 'uses' => 'AdvertsController@getFullInfo'));
 Route::get('getSearchData', 'SearchController@getSearchData');
-
-Route::get('/details/{id}', function () { return view('fullinfo'); });
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');

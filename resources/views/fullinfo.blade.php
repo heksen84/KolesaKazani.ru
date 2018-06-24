@@ -13,7 +13,7 @@
     </head>
     <body>
 <div id="app">
-  <fullinfo></fullinfo>
+    <fullinfo :item="{{ $item }}"></fullinfo>
 </div>
 </body>
 </html>

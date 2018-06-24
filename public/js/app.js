@@ -1960,9 +1960,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["data"],
+  props: ["item"],
+  created: function created() {},
   data: function data() {
     return {};
   },
@@ -27869,7 +27880,35 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v(_vm._s(_vm.data))])
+  return _c(
+    "b-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            {
+              staticStyle: { "text-align": "center", margin: "3px auto" },
+              attrs: { cols: "12", sm: "12", md: "4", lg: "4", xl: "4" }
+            },
+            [
+              _c("h3", [_vm._v("FullInfo")]),
+              _vm._v(" "),
+              _c("h5", [_vm._v(_vm._s(_vm.item[0].name))]),
+              _vm._v(" "),
+              _c("h5", [_vm._v(_vm._s(_vm.item[0].text))]),
+              _vm._v(" "),
+              _c("h5", [_vm._v(_vm._s(_vm.item[0].price))])
+            ]
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -40766,9 +40805,7 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     search: __WEBPACK_IMPORTED_MODULE_4__views_search_vue___default.a,
     results: __WEBPACK_IMPORTED_MODULE_5__views_results_vue___default.a,
     create: __WEBPACK_IMPORTED_MODULE_6__views_create_vue___default.a,
-    //carousel,
     fullinfo: __WEBPACK_IMPORTED_MODULE_7__views_fullinfo_vue___default.a
-    //item
   }
 });
 

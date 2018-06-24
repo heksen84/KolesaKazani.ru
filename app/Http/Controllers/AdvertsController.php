@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Adverts;
+use DB;
 
 class AdvertsController extends Controller
 {
@@ -36,8 +37,12 @@ class AdvertsController extends Controller
 		 catch(\Exception $e) {
        		return $e->getMessage();
     	}
-     	 
-
+     	
      	 return $data;
+    }
+
+    public function getFullInfo($id) {
+    	$item = DB::table('adverts')->where('id', $id)->get();
+        return view('fullinfo')->with("item", $item );
     }
 }
