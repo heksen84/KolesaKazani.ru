@@ -62,6 +62,13 @@
 
 	</b-row>
 
+
+	<div class="vip_block">
+		<h3 v-for="i in items" style="height:338px;border:1px solid yellow;text-align:center"></h3>
+	</div>
+
+
+
 	<b-row v-if="count>1">
 		<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
 			<b-button variant="primary" style="margin:10px" @click="loadMore">загрузить ещё</b-button>

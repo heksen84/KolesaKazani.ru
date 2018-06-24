@@ -169,9 +169,20 @@ body {
   color: grey;
 }
 
-@media screen and (max-width: 479px) {
+.vip_block {
+  position: absolute;
+  left: 83%;
+  top: 112px;
+  width: 16%;
+}
+
+@media screen and (max-width: 770px) {
   .result_info_col {
     text-align: center;
+  }
+
+  .vip_block {
+    display: none;
   }
 }
 

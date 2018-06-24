@@ -2146,6 +2146,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 // функция склонений слов
@@ -28069,6 +28076,20 @@ var render = function() {
           1
         )
       }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "vip_block" },
+        _vm._l(_vm.items, function(i) {
+          return _c("h3", {
+            staticStyle: {
+              height: "338px",
+              border: "1px solid yellow",
+              "text-align": "center"
+            }
+          })
+        })
+      ),
       _vm._v(" "),
       _vm.count > 1
         ? _c(
