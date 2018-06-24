@@ -1,7 +1,7 @@
 $shadow_text_color: rgb(60,60,60);
 
 ::-webkit-scrollbar{
- width: 10px;
+ width: 5px;
  background: white;
 }
 ::-webkit-scrollbar:horizontal{
@@ -9,9 +9,9 @@ $shadow_text_color: rgb(60,60,60);
  background: white;
 }
 ::-webkit-scrollbar-thumb{
- width: 10px;
+ width: 5px;
  background: white;
- border: 1px solid black;
+ border: 1px solid grey;
 }
 ::-webkit-scrollbar-thumb:horizontal{
  height: 8px;
