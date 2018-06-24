@@ -27783,7 +27783,7 @@ var render = function() {
                   "border-radius": "8px",
                   color: "rgb(50,50,50)"
                 },
-                attrs: { type: "text", placeholder: "Строка поиска" }
+                attrs: { type: "text", placeholder: "Что ищем?" }
               }),
               _vm._v(" "),
               _c(
