@@ -27894,7 +27894,7 @@ var render = function() {
               attrs: { cols: "12", sm: "12", md: "4", lg: "4", xl: "4" }
             },
             [
-              _c("h3", [_vm._v("FullInfo")]),
+              _c("h3", [_c("ins", [_vm._v("FullInfo")])]),
               _vm._v(" "),
               _c("h5", [_vm._v(_vm._s(_vm.item[0].title))]),
               _vm._v(" "),
