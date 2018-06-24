@@ -142,20 +142,21 @@ export default {
     }
 	},
 	created() {
-		this.count = Object.keys(this.items).length;
-		this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
+		this.update();
 	},
 	components: { item },
   		methods: {
+  			update() {
+  				this.count = Object.keys(this.items).length;
+				this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
+  			},
   			getSearchData() {
   				console.log(this.filters);
 
   				get('/getSearchData', { "data": this.filters } ).then((res) => {
   					console.log(res.data);
 					this.items=res.data;
-					
-					this.count = Object.keys(this.items).length;
-					this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
+					this.update();
 				}).catch((err) => {});
     		},
     		loadMore() {

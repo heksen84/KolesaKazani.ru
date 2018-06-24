@@ -2198,12 +2198,15 @@ function num2str(n, text_forms) {
     };
   },
   created: function created() {
-    this.count = Object.keys(this.items).length;
-    this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
+    this.update();
   },
 
   components: { item: __WEBPACK_IMPORTED_MODULE_0__components_item___default.a },
   methods: {
+    update: function update() {
+      this.count = Object.keys(this.items).length;
+      this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
+    },
     getSearchData: function getSearchData() {
       var _this = this;
 
@@ -2212,9 +2215,7 @@ function num2str(n, text_forms) {
       Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])('/getSearchData', { "data": this.filters }).then(function (res) {
         console.log(res.data);
         _this.items = res.data;
-
-        _this.count = Object.keys(_this.items).length;
-        _this.count_string = num2str(_this.count, ['объявление', 'объявления', 'объявлений']);
+        _this.update();
       }).catch(function (err) {});
     },
     loadMore: function loadMore() {
