@@ -53,7 +53,6 @@ const app = new Vue({
      // dealtype: ["покупка","продажа","обмен","частичный обмен","отдам даром","сдача в аренду"];
 
       options_sdelka: [
-        { value: null, text: '-- Вид сделки --' },
         { value: '0', text: 'Покупка' },
         { value: '1', text: 'Продажа' },
         { value: '2', text: 'Обмен' },

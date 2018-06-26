@@ -1916,13 +1916,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1930,11 +1923,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	data: function data() {
 		return {
 			form: {
-				sdelka: null,
+				sdelka: 0,
+				category: 1,
 				title: '',
 				text: '',
-				price: '',
-				category: null
+				price: ''
 			}
 		};
 	},
@@ -1946,8 +1939,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			evt.preventDefault();
 			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.form }).then(function (res) {
 				window.location.href = "/home/555";
-				//console.log(res.data);
-				//alert("created");
 			}).catch(function (err) {});
 		}
 	}
@@ -2192,6 +2183,8 @@ function num2str(n, text_forms) {
       },
 
       options_price: [{ value: null, text: '-- Цена --' }, { value: '0', text: 'Цена по возрастанию' }, { value: '1', text: 'Цена по убыванию' }],
+
+      options_sdelka: [{ value: null, text: '-- Вид сделки --' }, { value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }],
 
       options_actual: [{ value: null, text: '-- Актуальность --' }, { value: '0', text: 'Сначала новые' }, { value: '1', text: 'Сначала старые' }],
 
@@ -28006,7 +27999,7 @@ var render = function() {
                 [
                   _c("b-form-select", {
                     staticClass: "mb-3",
-                    attrs: { options: this.$root.options_sdelka, size: "sm" },
+                    attrs: { options: _vm.options_sdelka, size: "sm" },
                     on: { change: _vm.getSearchData },
                     model: {
                       value: _vm.filters.sdelka,
@@ -28494,22 +28487,41 @@ var render = function() {
                 "b-form",
                 { on: { submit: _vm.onSubmit } },
                 [
-                  _c("b-form-select", {
-                    staticClass: "mb-3",
-                    attrs: { options: this.$root.options_sdelka },
-                    model: {
-                      value: _vm.form.sdelka,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "sdelka", $$v)
-                      },
-                      expression: "form.sdelka"
-                    }
-                  }),
+                  _c(
+                    "b-form-group",
+                    { attrs: { label: "Вид сделки:" } },
+                    [
+                      _c(
+                        "b-form-select",
+                        {
+                          staticClass: "mb-3",
+                          model: {
+                            value: _vm.form.sdelka,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "sdelka", $$v)
+                            },
+                            expression: "form.sdelka"
+                          }
+                        },
+                        _vm._l(this.$root.options_sdelka, function(item) {
+                          return _c(
+                            "option",
+                            { domProps: { value: item.value } },
+                            [_vm._v(_vm._s(item.text))]
+                          )
+                        })
+                      )
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c(
                     "b-form-group",
                     {
-                      attrs: { label: "Категория:", "label-for": "categories" }
+                      attrs: {
+                        label: "Категория товара или услуги:",
+                        "label-for": "categories"
+                      }
                     },
                     [
                       _c(
@@ -28524,20 +28536,13 @@ var render = function() {
                             expression: "form.category"
                           }
                         },
-                        [
-                          _c("option", { domProps: { value: null } }, [
-                            _vm._v("-- Категория товара или услуги --")
-                          ]),
-                          _vm._v(" "),
-                          _vm._l(_vm.items, function(item) {
-                            return _c(
-                              "option",
-                              { domProps: { value: item.id } },
-                              [_vm._v(_vm._s(item.name))]
-                            )
-                          })
-                        ],
-                        2
+                        _vm._l(_vm.items, function(item) {
+                          return _c(
+                            "option",
+                            { domProps: { value: item.id } },
+                            [_vm._v(_vm._s(item.name))]
+                          )
+                        })
                       )
                     ],
                     1
@@ -40831,7 +40836,7 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 
       // dealtype: ["покупка","продажа","обмен","частичный обмен","отдам даром","сдача в аренду"];
 
-      options_sdelka: [{ value: null, text: '-- Вид сделки --' }, { value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }]
+      options_sdelka: [{ value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }]
 
     };
   },

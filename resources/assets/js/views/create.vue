@@ -5,11 +5,16 @@
 		<h2>новое объявление</h2>
 		<br>
 			<b-form @submit="onSubmit">
-			<b-form-select v-model="form.sdelka" :options="this.$root.options_sdelka" class="mb-3"/>
 
-			<b-form-group label="Категория:" label-for="categories">
+
+			<b-form-group label="Вид сделки:">
+				<b-form-select v-model="form.sdelka" class="mb-3">
+					 <option v-for="item in this.$root.options_sdelka" :value="item.value">{{item.text}}</option>
+				</b-form-select>
+			</b-form-group>
+
+			<b-form-group label="Категория товара или услуги:" label-for="categories">
 				<b-form-select v-model="form.category" class="mb-3">
-					 <option :value="null">-- Категория товара или услуги --</option>
 					 <option v-for="item in items" :value="item.id">{{item.name}}</option>
 				</b-form-select>
 			</b-form-group>
@@ -43,11 +48,11 @@ export default {
 	data () {
     return 	{
 		form: {
-			sdelka: null,
+			sdelka: 0,
+			category: 1,
 			title: '',
 			text: '',
 			price: '',
-			category: null
 		}
 	}
 	},
@@ -59,8 +64,6 @@ export default {
     		evt.preventDefault();
     		post('/create', { "data": this.form }).then((res) => {
     			window.location.href = "/home/555";
-    			//console.log(res.data);
-    			//alert("created");
 			}).catch((err) => {});
     	}
 }
