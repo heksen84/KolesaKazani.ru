@@ -5,6 +5,7 @@
 		<h2>новое объявление</h2>
 		<br>
 			<b-form @submit="onSubmit">
+			<b-form-select v-model="form.sdelka" :options="this.$root.options_sdelka" class="mb-3"/>
 
 			<b-form-group label="Категория:" label-for="categories">
 				<b-form-select v-model="form.category" class="mb-3">
@@ -12,15 +13,6 @@
 					 <option v-for="item in items" :value="item.id">{{item.name}}</option>
 				</b-form-select>
 			</b-form-group>
-
-
-			<!--<b-form-group label="Заголовок:" label-for="title">
-				<b-form-input id="title" type="text"
-										 v-model="form.title"
-										 required
-										 placeholder="Введи заголовок">
-				</b-form-input>
-			</b-form-group>-->
 
 			<b-form-group label="Описание:" label-for="text">
 			 <b-form-textarea id="text" v-model="form.text"
@@ -35,8 +27,6 @@
 			<b-form-group label="цена:" label-for="price">
 			 <b-form-textarea id="price" v-model="form.price" placeholder="Цена" style="width:120px;margin:auto"></b-form-textarea>
 			</b-form-group>
-
-		
 
 			<b-form-group style="text-align:center">
 				<b-button type="onSubmit" variant="primary">Создать</b-button>
@@ -53,6 +43,7 @@ export default {
 	data () {
     return 	{
 		form: {
+			sdelka: null,
 			title: '',
 			text: '',
 			price: '',

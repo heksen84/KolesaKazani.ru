@@ -1921,6 +1921,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1928,6 +1930,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	data: function data() {
 		return {
 			form: {
+				sdelka: null,
 				title: '',
 				text: '',
 				price: '',
@@ -2189,8 +2192,6 @@ function num2str(n, text_forms) {
       },
 
       options_price: [{ value: null, text: '-- Цена --' }, { value: '0', text: 'Цена по возрастанию' }, { value: '1', text: 'Цена по убыванию' }],
-
-      options_sdelka: [{ value: null, text: '-- Вид сделки --' }, { value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }],
 
       options_actual: [{ value: null, text: '-- Актуальность --' }, { value: '0', text: 'Сначала новые' }, { value: '1', text: 'Сначала старые' }],
 
@@ -28005,7 +28006,7 @@ var render = function() {
                 [
                   _c("b-form-select", {
                     staticClass: "mb-3",
-                    attrs: { options: _vm.options_sdelka, size: "sm" },
+                    attrs: { options: this.$root.options_sdelka, size: "sm" },
                     on: { change: _vm.getSearchData },
                     model: {
                       value: _vm.filters.sdelka,
@@ -28493,6 +28494,18 @@ var render = function() {
                 "b-form",
                 { on: { submit: _vm.onSubmit } },
                 [
+                  _c("b-form-select", {
+                    staticClass: "mb-3",
+                    attrs: { options: this.$root.options_sdelka },
+                    model: {
+                      value: _vm.form.sdelka,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "sdelka", $$v)
+                      },
+                      expression: "form.sdelka"
+                    }
+                  }),
+                  _vm._v(" "),
                   _c(
                     "b-form-group",
                     {
@@ -40768,9 +40781,6 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
 
-// components
-//import item from './components/item.vue';
-
 // views
 
 
@@ -40794,7 +40804,6 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
 
-//import carousel from 'bootstrap-vue/src/components/carousel';
 
 
 
@@ -40809,7 +40818,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_18_boo
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_17_bootstrap_vue_src_components_form_textarea__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_19_bootstrap_vue_src_components_form_select__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_20_bootstrap_vue_src_components_button__["a" /* default */]);
-//Vue.use(carousel);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_21_bootstrap_vue_src_components_table__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_22_bootstrap_vue_src_components_link__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_23_bootstrap_vue_src_components_image__["a" /* default */]);
@@ -40819,7 +40827,13 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_24_vue
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#app',
   data: function data() {
-    return {};
+    return {
+
+      // dealtype: ["покупка","продажа","обмен","частичный обмен","отдам даром","сдача в аренду"];
+
+      options_sdelka: [{ value: null, text: '-- Вид сделки --' }, { value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }]
+
+    };
   },
   components: {
     welcome: __WEBPACK_IMPORTED_MODULE_1__views_welcome_vue___default.a,

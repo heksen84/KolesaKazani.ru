@@ -15,7 +15,7 @@
 		</b-col>
 
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="filters.sdelka" :options="options_sdelka" class="mb-3" size="sm" @change="getSearchData"/>
+		  <b-form-select v-model="filters.sdelka" :options="this.$root.options_sdelka" class="mb-3" size="sm" @change="getSearchData"/>
 		</b-col>
 
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
@@ -116,16 +116,6 @@ export default {
         { value: null, text: '-- Цена --' },
         { value: '0', text: 'Цена по возрастанию' },
         { value: '1', text: 'Цена по убыванию' },
-      ],
-
-       options_sdelka: [
-        { value: null, text: '-- Вид сделки --' },
-        { value: '0', text: 'Покупка' },
-        { value: '1', text: 'Продажа' },
-        { value: '2', text: 'Обмен' },
-        { value: '3', text: 'Частичный обмен' },
-        { value: '4', text: 'Отдам даром' },
-        { value: '5', text: 'Сдача в аренду' }
       ],
 
         options_actual: [
