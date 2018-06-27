@@ -1,20 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1
--- Время создания: Фев 19 2016 г., 16:39
--- Версия сервера: 5.5.25
--- Версия PHP: 5.3.13
+-- Хост: 127.0.0.1:3306
+-- Время создания: Июн 27 2018 г., 17:14
+-- Версия сервера: 5.6.34
+-- Версия PHP: 7.1.0
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- База данных: `aksumarket`
@@ -26,71 +26,31 @@ SET time_zone = "+00:00";
 -- Структура таблицы `adverts`
 --
 
-CREATE TABLE IF NOT EXISTS `adverts` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
+CREATE TABLE `adverts` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
   `text` text NOT NULL,
-  `price` int(7) unsigned NOT NULL,
   `contacts` varchar(255) NOT NULL,
-  `category` int(2) unsigned NOT NULL,
-  `type` varchar(10) NOT NULL,
-  `user_id` int(10) unsigned NOT NULL,
-  `data_reg` date NOT NULL,
-  `views` int(4) unsigned NOT NULL,
-  `region` int(5) unsigned NOT NULL,
-  `city` int(5) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=58 ;
+  `price` int(7) UNSIGNED NOT NULL,
+  `category_id` int(2) UNSIGNED NOT NULL,
+  `ad_category_id` int(10) UNSIGNED NOT NULL,
+  `updated_at` timestamp NOT NULL,
+  `created_at` timestamp NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `adverts`
 --
 
-INSERT INTO `adverts` (`id`, `name`, `text`, `price`, `contacts`, `category`, `type`, `user_id`, `data_reg`, `views`, `region`, `city`) VALUES
-(5, 'mmbmb', 'lkkkjjkbbjkbjkbkj', 7000, 'uuuuuuuuuuuuu', 1, '1', 5, '2016-02-17', 1, 0, 0),
-(6, 'bomzh', 'bomzh', 23456, 'bomzh', 2, '1', 6, '2016-02-17', 1, 0, 0),
-(7, '!', '!', 222222, 'asdasdasd', 5, '0', 6, '2016-02-17', 1, 0, 0),
-(9, 'эжэжьэж', 'джжьдьджжджд', 4656564, 'джджжьдждьдьждьждьжьдждььждьджджждьь', 10, '0', 5, '2016-02-17', 1, 0, 0),
-(10, 'newuser', 'newuser', 123123, 'eeee', 1, '0', 7, '2016-02-17', 1, 0, 0),
-(11, 'j', 'j', 4444, 'jjjjj', 2, '0', 7, '2016-02-17', 1, 0, 0),
-(13, 'ыфвфыв', 'фывфывфыв', 22222, 'вфывфывфывфы', 3, '0', 6, '2016-02-18', 1, 1911, 1913),
-(14, 'апр', 'апрапрпар', 33333, 'ываываываыва', 1, '0', 6, '2016-02-18', 1, 2105, 2116),
-(19, 'йцвйцв', 'йцвйцв', 22222, 'фывфывфыв', 1, '0', 6, '2016-02-18', 1, 2564700, 0),
-(22, 'йцвйцв', 'йцвйцв', 22222, 'фывфывфыв', 1, '0', 6, '2016-02-18', 1, 2564700, 0),
-(23, 'йцвйцв', 'йцвйцв', 22222, 'фывфывфыв', 1, '0', 6, '2016-02-18', 1, 2564700, 0),
-(24, 'ыва', 'ыва', 3333, 'выаыва', 2, '0', 6, '2016-02-19', 1, 2564700, 0),
-(25, 'ыва', 'ыва', 3333, 'выаыва', 2, '0', 6, '2016-02-19', 1, 2564700, 0),
-(26, 'ыва', 'ыва', 3333, 'выаыва', 2, '0', 6, '2016-02-19', 1, 2564700, 0),
-(27, 'ыва', 'ыва', 3333, 'выаыва', 2, '0', 6, '2016-02-19', 1, 2564700, 0),
-(28, 'ыва', 'ыва2222', 3333, 'выаыва22222', 3, '0', 6, '2016-02-19', 1, 2564700, 0),
-(29, '222', 'фывфыв', 2222, 'фывфыв', 3, '0', 6, '2016-02-19', 1, 2105, 2106),
-(30, 'фывф', 'ывфыв', 2222, 'фывфыв', 2, '0', 6, '2016-02-19', 1, 2564700, 0),
-(31, 'машка', 'машка', 2222, 'фывфыв', 2, '0', 6, '2016-02-19', 1, 2564700, 0),
-(32, 'цц', 'фыв', 333, 'фыв', 1, '0', 6, '2016-02-19', 1, 2564700, 0),
-(33, '22', 'asdsa', 22, 'asdasd', 2, '0', 6, '2016-02-19', 1, 2564700, 0),
-(35, '22', 'asdsa', 22, 'asdasd', 2, '0', 6, '2016-02-19', 1, 2564700, 0),
-(36, '22', 'asdsa', 22, 'asdasd', 2, '0', 6, '2016-02-19', 1, 2564700, 0),
-(37, '22', 'asdsa', 22, 'asdasd', 2, '0', 6, '2016-02-19', 1, 2564700, 0),
-(38, '22', 'asdsa', 22, 'asdasd', 2, '0', 6, '2016-02-19', 1, 2564700, 0),
-(39, '22', 'asdsa', 22, 'asdasd', 2, '0', 6, '2016-02-19', 1, 2564700, 0),
-(40, 'fhjhjhfj', 'jhhjjjjj', 7777777, 'mjhjgjgjgghgjggghgj', 2, '0', 6, '2016-02-19', 1, 2061, 2062),
-(41, '1', '1', 1, '1', 1, '0', 6, '2016-02-19', 1, 2564700, 0),
-(42, '1', '1', 1, '1', 1, '0', 6, '2016-02-19', 1, 2061, 2063),
-(43, 'ор', 'джлдлждлж', 22, '55', 1, '0', 6, '2016-02-19', 1, 2564700, 4778059),
-(44, 'фыв', 'фывфы', 333, 'фывфыв', 1, '0', 6, '2016-02-19', 0, 277655, 278013),
-(45, 'ы', 'ыва', 333, 'ываыва', 1, '0', 6, '2016-02-19', 0, 2120, 2121),
-(46, 'ыыва', 'ыва', 333, 'ыва', 1, '0', 6, '2016-02-19', 0, 2084, 2085),
-(47, '.ь', 'дджть', 0, 'оо', 2, '0', 6, '2016-02-19', 1, 2084, 2085),
-(48, 'ол', 'др', 222, 'ддодо', 3, '0', 6, '2016-02-19', 1, 2055, 2056),
-(49, '123', '123', 123123, '1312312', 6, '0', 6, '2016-02-19', 1, 2146, 2160),
-(50, '123', '123', 123123, '1312312', 6, '0', 6, '2016-02-19', 1, 2146, 2160),
-(51, '6', '6', 6, '6', 1, '0', 6, '2016-02-19', 1, 2146, 2160),
-(52, 'Продам', 'Новые трусы!', 50000, 'Камзина 26-126', 6, '0', 6, '2016-02-19', 1, 2061, 2063),
-(53, 'Калкаман', 'Калкаман\n', 600000, 'Калкаман', 2, '0', 6, '2016-02-19', 1, 2061, 2066),
-(54, '8', '8', 8, 'длтдлт', 7, '1', 6, '2016-02-19', 1, 2061, 2063),
-(55, 'asd', 'asd', 22, 'asd', 1, '0', 6, '2016-02-19', 1, 2074, 2075),
-(56, 'гона', 'олмпол', 4294967295, 'оора', 1, '0', 6, '2016-02-19', 1, 2055, 2057),
-(57, 'п', 'п', 5, 'арпа', 5, '0', 6, '2016-02-19', 1, 2061, 2070);
+INSERT INTO `adverts` (`id`, `user_id`, `title`, `text`, `contacts`, `price`, `category_id`, `ad_category_id`, `updated_at`, `created_at`) VALUES
+(1, 2, '123', '123', 'sdfsdfsdf', 555, 6, 1, '2018-06-21 07:37:28', '2018-06-21 07:37:28'),
+(2, 2, 'qwdqwdfqw', '123qwdqwdqwdqwd', 'sdfsdfsdf', 555, 8, 1, '2018-06-21 07:37:58', '2018-06-21 07:37:58'),
+(3, 2, 'Продам тачку', 'Продам новую тачку', 'sdfsdfsdf', 555, 3, 1, '2018-06-21 07:48:49', '2018-06-21 07:48:49'),
+(4, 2, '123123123', '123123123', 'sdfsdfsdf', 12345, 7, 1, '2018-06-21 08:12:20', '2018-06-21 08:12:20'),
+(5, 2, 'укпукп', 'укпукпукп', 'sdfsdfsdf', 4444, 6, 1, '2018-06-21 08:13:44', '2018-06-21 08:13:44'),
+(6, 2, 'Чё-то', 'Чё-то описание', 'sdfsdfsdf', 666, 1, 1, '2018-06-21 09:26:45', '2018-06-21 09:26:45'),
+(7, 2, 'Super', 'SuperMan', 'sdfsdfsdf', 888, 1, 1, '2018-06-21 10:11:02', '2018-06-21 10:11:02');
 
 -- --------------------------------------------------------
 
@@ -98,10 +58,9 @@ INSERT INTO `adverts` (`id`, `name`, `text`, `price`, `contacts`, `category`, `t
 -- Структура таблицы `categories`
 --
 
-CREATE TABLE IF NOT EXISTS `categories` (
-  `id` int(6) unsigned NOT NULL,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `categories` (
+  `id` int(6) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -126,13 +85,11 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 -- Структура таблицы `city`
 --
 
-CREATE TABLE IF NOT EXISTS `city` (
-  `city_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `region_id` int(10) unsigned NOT NULL DEFAULT '0',
-  `name` varchar(128) NOT NULL DEFAULT '',
-  PRIMARY KEY (`city_id`),
-  KEY `region_id` (`region_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12367131 ;
+CREATE TABLE `city` (
+  `city_id` int(11) UNSIGNED NOT NULL,
+  `region_id` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `name` varchar(128) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `city`
@@ -413,24 +370,13 @@ INSERT INTO `city` (`city_id`, `region_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `dislikes`
+-- Структура таблицы `dealtype`
 --
 
-CREATE TABLE IF NOT EXISTS `dislikes` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `friends`
---
-
-CREATE TABLE IF NOT EXISTS `friends` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+CREATE TABLE `dealtype` (
+  `id` int(2) UNSIGNED NOT NULL,
+  `name` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -438,13 +384,12 @@ CREATE TABLE IF NOT EXISTS `friends` (
 -- Структура таблицы `images`
 --
 
-CREATE TABLE IF NOT EXISTS `images` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `images` (
+  `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(20) NOT NULL,
-  `advert_id` int(10) unsigned NOT NULL,
-  `user_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=38 ;
+  `advert_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `images`
@@ -483,77 +428,35 @@ INSERT INTO `images` (`id`, `name`, `advert_id`, `user_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `likes`
+-- Структура таблицы `migrations`
 --
 
-CREATE TABLE IF NOT EXISTS `likes` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2018_06_05_144053_create_sessions_table', 2);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `messages`
+-- Структура таблицы `password_resets`
 --
 
-CREATE TABLE IF NOT EXISTS `messages` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `text` text NOT NULL,
-  `from` int(10) unsigned NOT NULL,
-  `to` int(10) unsigned NOT NULL,
-  `date` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `otdels`
---
-
-CREATE TABLE IF NOT EXISTS `otdels` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(1024) NOT NULL,
-  `data_sozdanya` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `pokupki`
---
-
-CREATE TABLE IF NOT EXISTS `pokupki` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `prodavcy`
---
-
-CREATE TABLE IF NOT EXISTS `prodavcy` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `prodazhi`
---
-
-CREATE TABLE IF NOT EXISTS `prodazhi` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+CREATE TABLE `password_resets` (
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -561,11 +464,10 @@ CREATE TABLE IF NOT EXISTS `prodazhi` (
 -- Структура таблицы `region`
 --
 
-CREATE TABLE IF NOT EXISTS `region` (
-  `region_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(64) NOT NULL DEFAULT '',
-  PRIMARY KEY (`region_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2564701 ;
+CREATE TABLE `region` (
+  `region_id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(64) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `region`
@@ -597,14 +499,17 @@ INSERT INTO `region` (`region_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tov_otzyvy`
+-- Структура таблицы `sessions`
 --
 
-CREATE TABLE IF NOT EXISTS `tov_otzyvy` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `text` varchar(1024) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+CREATE TABLE `sessions` (
+  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int(10) UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `payload` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -612,103 +517,129 @@ CREATE TABLE IF NOT EXISTS `tov_otzyvy` (
 -- Структура таблицы `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `login` varchar(255) NOT NULL,
-  `password` varchar(32) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `data_reg` date NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `email_2` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+CREATE TABLE `users` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `login`, `password`, `email`, `data_reg`) VALUES
-(5, 'curl', 'f6e57c9de709e45feb0d955351f53548', 'curl@mail.ru', '2016-02-17'),
-(6, 'bomzh', '5a0dc526c4c36c026e54f38742a8415b', 'bomzh@mail.ru', '2016-02-17'),
-(7, 'newuser', '0354d89c28ec399c00d3cb2d094cf093', 'newuser@mail.ru', '2016-02-17');
-
--- --------------------------------------------------------
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, '123', '123@mail.ru1', '$2y$10$ddgkchcG9zZ5LlJdcDzXJuSEHrSWsMe7Ve93MrLdH1dmZ96XCW.Ky', '6FiOtqfSc3UiBWA0jmutGtf3fuzLkA9Pe35sBNx57ynsplFQwDYxARJpmGgc', '2018-05-30 08:53:18', '2018-05-30 08:53:18'),
+(2, 'Илья', 'heksen84@yandex.ru', '$2y$10$wQPxP3jSzPHTBa7hpmhPaedXz/tqgVbJJUcrEeYbp7jNnBh8Iltsi', 'XIg95Hzenpem9SIAQfafdWFMIznUSmCQMU34H03O2kJtcjfth4nFccudLMv3', '2018-05-30 09:39:11', '2018-05-30 09:39:11');
 
 --
--- Структура таблицы `uslugi`
+-- Индексы сохранённых таблиц
 --
 
-CREATE TABLE IF NOT EXISTS `uslugi` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` text NOT NULL,
-  `period` datetime NOT NULL,
-  `price` float unsigned NOT NULL,
-  `desc` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
+--
+-- Индексы таблицы `adverts`
+--
+ALTER TABLE `adverts`
+  ADD PRIMARY KEY (`id`);
 
 --
--- Структура таблицы `views`
+-- Индексы таблицы `categories`
 --
-
-CREATE TABLE IF NOT EXISTS `views` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `ip` varchar(15) NOT NULL,
-  `advert_id` int(10) unsigned NOT NULL,
-  `user_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=50 ;
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
 
 --
--- Дамп данных таблицы `views`
+-- Индексы таблицы `city`
+--
+ALTER TABLE `city`
+  ADD PRIMARY KEY (`city_id`),
+  ADD KEY `region_id` (`region_id`);
+
+--
+-- Индексы таблицы `dealtype`
+--
+ALTER TABLE `dealtype`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `images`
+--
+ALTER TABLE `images`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Индексы таблицы `region`
+--
+ALTER TABLE `region`
+  ADD PRIMARY KEY (`region_id`);
+
+--
+-- Индексы таблицы `sessions`
+--
+ALTER TABLE `sessions`
+  ADD UNIQUE KEY `sessions_id_unique` (`id`);
+
+--
+-- Индексы таблицы `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT для сохранённых таблиц
 --
 
-INSERT INTO `views` (`id`, `ip`, `advert_id`, `user_id`) VALUES
-(3, '127.0.0.1', 5, 5),
-(4, '127.0.0.1', 6, 6),
-(6, '127.0.0.1', 7, 6),
-(7, '127.0.0.1', 9, 5),
-(8, '127.0.0.1', 10, 7),
-(9, '127.0.0.1', 11, 7),
-(10, '127.0.0.1', 0, 7),
-(12, '127.0.0.1', 13, 6),
-(13, '127.0.0.1', 24, 6),
-(14, '127.0.0.1', 29, 6),
-(15, '127.0.0.1', 30, 6),
-(16, '127.0.0.1', 31, 6),
-(17, '127.0.0.1', 32, 6),
-(20, '127.0.0.1', 39, 6),
-(22, '127.0.0.1', 27, 6),
-(23, '127.0.0.1', 33, 6),
-(24, '127.0.0.1', 35, 6),
-(25, '127.0.0.1', 38, 6),
-(26, '127.0.0.1', 25, 6),
-(27, '127.0.0.1', 28, 6),
-(28, '127.0.0.1', 37, 6),
-(29, '127.0.0.1', 23, 0),
-(30, '127.0.0.1', 19, 0),
-(31, '127.0.0.1', 22, 0),
-(32, '127.0.0.1', 36, 0),
-(33, '127.0.0.1', 40, 6),
-(34, '127.0.0.1', 41, 6),
-(35, '127.0.0.1', 42, 6),
-(36, '127.0.0.1', 47, 6),
-(37, '127.0.0.1', 48, 6),
-(38, '127.0.0.1', 49, 6),
-(39, '127.0.0.1', 50, 6),
-(40, '127.0.0.1', 26, 6),
-(41, '127.0.0.1', 43, 6),
-(42, '127.0.0.1', 14, 6),
-(43, '127.0.0.1', 51, 6),
-(44, '127.0.0.1', 52, 6),
-(45, '127.0.0.1', 53, 6),
-(46, '127.0.0.1', 54, 6),
-(47, '127.0.0.1', 55, 6),
-(48, '127.0.0.1', 56, 6),
-(49, '127.0.0.1', 57, 6);
-
+--
+-- AUTO_INCREMENT для таблицы `adverts`
+--
+ALTER TABLE `adverts`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT для таблицы `city`
+--
+ALTER TABLE `city`
+  MODIFY `city_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12367131;
+--
+-- AUTO_INCREMENT для таблицы `dealtype`
+--
+ALTER TABLE `dealtype`
+  MODIFY `id` int(2) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT для таблицы `images`
+--
+ALTER TABLE `images`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+--
+-- AUTO_INCREMENT для таблицы `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT для таблицы `region`
+--
+ALTER TABLE `region`
+  MODIFY `region_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2564701;
+--
+-- AUTO_INCREMENT для таблицы `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
