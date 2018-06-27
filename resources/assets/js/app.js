@@ -33,6 +33,11 @@ import image from 'bootstrap-vue/src/components/image';
 
 import VueCarousel from 'vue-carousel';
 
+
+// register globally
+import YmapPlugin from 'vue-yandex-maps'
+Vue.use(YmapPlugin)
+
 Vue.use(layout);
 Vue.use(form);
 Vue.use(form_input);
