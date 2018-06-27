@@ -1,5 +1,6 @@
 require('./bootstrap');
 
+import common from './common';
 import Vue from 'vue';
 
 // views
@@ -48,20 +49,7 @@ Vue.use(VueCarousel);
 
 const app = new Vue({
     el: '#app',
-    data: () => ({
-    
-     // dealtype: ["покупка","продажа","обмен","частичный обмен","отдам даром","сдача в аренду"];
-
-      options_sdelka: [
-        { value: '0', text: 'Покупка' },
-        { value: '1', text: 'Продажа' },
-        { value: '2', text: 'Обмен' },
-        { value: '3', text: 'Частичный обмен' },
-        { value: '4', text: 'Отдам даром' },
-        { value: '5', text: 'Сдача в аренду' }
-      ],
-
-    }),
+    data: common,
     components: {
       welcome,
       profile,

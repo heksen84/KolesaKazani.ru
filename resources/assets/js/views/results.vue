@@ -49,7 +49,6 @@
 	</b-row>-->
 
 	<b-row style="margin-top:5px" v-for="item in items" :key="item.id">
-		
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 			<carousel :perPage=1 :paginationEnabled="false">
   			<slide>img</slide>
@@ -59,15 +58,11 @@
 		<b-col cols="12" sm="12" md="8" lg="8" xl="8">
 			<item :id="item.id" :title="item.title" :text="item.text" :price="item.price"></item>
 		</b-col>
-
 	</b-row>
-
 
 	<div class="vip_block">
 		<h3 v-for="i in items" style="height:340px;border:1px solid white;text-align:center"></h3>
 	</div>
-
-
 
 	<b-row v-if="count>1">
 		<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
