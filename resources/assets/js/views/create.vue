@@ -57,7 +57,6 @@ export default {
 			text: '',
 			price: '',
 		},
-
 		def:false,
 		cars:false,
 		home:false
