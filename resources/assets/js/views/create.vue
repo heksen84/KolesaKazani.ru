@@ -12,7 +12,8 @@
 			</b-form-group>
 
 			<b-form-group label="Категория товара или услуги:" label-for="categories" style="margin-top:30px">
-				<b-form-select v-model="form.category" class="mb-3">
+				<b-form-select v-model="form.category" class="mb-3" @change="changeCategory">
+					 <option :value=null>-- Выберите категорию --</option>
 					 <option v-for="item in items" :value="item.id">{{item.name}}</option>
 				</b-form-select>
 			</b-form-group>
@@ -47,7 +48,7 @@ export default {
     return 	{
 		form: {
 			deal_selected: 0,
-			category: 1,
+			category: null,
 			title: '',
 			text: '',
 			price: '',
@@ -58,6 +59,10 @@ export default {
 	},
 	components: {},
   	methods: {
+  		changeCategory(data) {
+  			console.log(data);
+  			alert("123");
+  		},
     	onSubmit(evt) {
     		evt.preventDefault();
     		post('/create', { "data": this.form }).then((res) => {

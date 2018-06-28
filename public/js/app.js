@@ -1914,6 +1914,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1922,7 +1923,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		return {
 			form: {
 				deal_selected: 0,
-				category: 1,
+				category: null,
 				title: '',
 				text: '',
 				price: ''
@@ -1933,6 +1934,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	components: {},
 	methods: {
+		changeCategory: function changeCategory(data) {
+			console.log(data);
+			alert("123");
+		},
 		onSubmit: function onSubmit(evt) {
 			evt.preventDefault();
 			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.form }).then(function (res) {
@@ -28864,6 +28869,7 @@ var render = function() {
                         "b-form-select",
                         {
                           staticClass: "mb-3",
+                          on: { change: _vm.changeCategory },
                           model: {
                             value: _vm.form.category,
                             callback: function($$v) {
@@ -28872,13 +28878,20 @@ var render = function() {
                             expression: "form.category"
                           }
                         },
-                        _vm._l(_vm.items, function(item) {
-                          return _c(
-                            "option",
-                            { domProps: { value: item.id } },
-                            [_vm._v(_vm._s(item.name))]
-                          )
-                        })
+                        [
+                          _c("option", { domProps: { value: null } }, [
+                            _vm._v("-- Выберите категорию --")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.items, function(item) {
+                            return _c(
+                              "option",
+                              { domProps: { value: item.id } },
+                              [_vm._v(_vm._s(item.name))]
+                            )
+                          })
+                        ],
+                        2
                       )
                     ],
                     1
