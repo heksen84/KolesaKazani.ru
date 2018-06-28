@@ -1919,6 +1919,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1932,10 +1934,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         text: '',
         price: ''
       },
-
       def: false,
-      cars: false,
-      home: false
+      transport: false,
+      real_estate: false,
+      appliances: false
     };
   },
   created: function created() {},
@@ -1944,8 +1946,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     resetCategories: function resetCategories(data) {
       this.def = false;
-      this.cars = false;
-      this.false = false;
+      this.transport = false;
+      this.real_estate = false;
+      this.appliances = false;
     },
     changeCategory: function changeCategory(data) {
       switch (data) {
@@ -1958,13 +1961,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         case 1:
           {
             this.resetCategories(data);
-            this.cars = true;
+            this.transport = true;
             break;
           }
         case 2:
           {
             this.resetCategories(data);
-            this.home = true;
+            this.real_estate = true;
+            break;
+          }
+        case 3:
+          {
+            this.resetCategories(data);
+            this.appliances = true;
             break;
           }
       }
@@ -28930,9 +28939,13 @@ var render = function() {
                   _vm._v(" "),
                   _vm.def
                     ? _c("div")
-                    : _vm.cars
-                      ? _c("h1", [_vm._v("CARS")])
-                      : _vm.home ? _c("h1", [_vm._v("HOME")]) : _vm._e(),
+                    : _vm.transport
+                      ? _c("h1", [_vm._v("транспорт")])
+                      : _vm.real_estate
+                        ? _c("h1", [_vm._v("недвижимость")])
+                        : _vm.appliances
+                          ? _c("h1", [_vm._v("бытовая техника")])
+                          : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "b-form-group",

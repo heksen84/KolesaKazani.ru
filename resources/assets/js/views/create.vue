@@ -19,8 +19,10 @@
 			</b-form-group>
 
 			<div v-if="def"></div>
-			<h1 v-else-if="cars">CARS</h1>
-			<h1 v-else-if="home">HOME</h1>
+			<h1 v-else-if="transport">транспорт</h1>
+			<h1 v-else-if="real_estate">недвижимость</h1>
+			<h1 v-else-if="appliances">бытовая техника</h1>
+			
 
 			<b-form-group label="Описание:" label-for="text">
 			 <b-form-textarea id="text" v-model="form.text"
@@ -58,8 +60,9 @@ export default {
 			price: '',
 		},
 		def:false,
-		cars:false,
-		home:false
+		transport:false,
+		real_estate:false,
+		appliances:false
 	}
 	},
 	created() {
@@ -68,8 +71,9 @@ export default {
   	methods: {
   		resetCategories(data) {
   			this.def=false;
-  			this.cars=false;
-  			this.false=false;
+  			this.transport=false;
+  			this.real_estate=false;
+  			this.appliances=false;
   		},
   		changeCategory(data) {
   			switch(data) {
@@ -80,14 +84,19 @@ export default {
   				}
   				case 1: { 
   					this.resetCategories(data); 
-  					this.cars=true; 
+  					this.transport=true; 
   					break; 
   				} 
   				case 2: { 
   					this.resetCategories(data); 
-  					this.home=true; 
+  					this.real_estate=true; 
   					break; 
-  				} 
+  				}
+  				case 3: { 
+  					this.resetCategories(data); 
+  					this.appliances=true; 
+  					break; 
+  				}  
   			}
   		},
     	onSubmit(evt) {
