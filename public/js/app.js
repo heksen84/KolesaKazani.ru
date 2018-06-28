@@ -1915,6 +1915,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1927,7 +1930,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				title: '',
 				text: '',
 				price: ''
-			}
+			},
+
+			cars: false,
+			home: false
 		};
 	},
 	created: function created() {},
@@ -1935,8 +1941,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	components: {},
 	methods: {
 		changeCategory: function changeCategory(data) {
-			console.log(data);
-			alert(data);
+			switch (data) {
+				case null:
+					this.cars = false;break;
+				case 1:
+					this.cars = true;break;
+				case 2:
+					this.home = true;break;
+			}
 		},
 		onSubmit: function onSubmit(evt) {
 			evt.preventDefault();
@@ -28896,6 +28908,10 @@ var render = function() {
                     ],
                     1
                   ),
+                  _vm._v(" "),
+                  _vm.cars ? _c("h1", [_vm._v("CARS")]) : _vm._e(),
+                  _vm._v(" "),
+                  _vm.home ? _c("h1", [_vm._v("HOME")]) : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "b-form-group",
