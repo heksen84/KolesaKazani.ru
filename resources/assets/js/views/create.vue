@@ -18,7 +18,7 @@
 				</b-form-select>
 			</b-form-group>
 
-			<div v-if="_default"></div>
+			<div v-if="root"></div>
 			<h1 v-else-if="transport">транспорт</h1>
 			<h1 v-else-if="real_estate">недвижимость</h1>
 			<h1 v-else-if="appliances">бытовая техника</h1>
@@ -59,7 +59,7 @@ export default {
 			text: '',
 			price: '',
 		},
-		_default:false,
+		root:false,
 		transport:false,
 		real_estate:false,
 		appliances:false
@@ -70,7 +70,7 @@ export default {
 	components: {},
   	methods: {
   		resetCategories(data) {
-  			this._default=false;
+  			this.root=false;
   			this.transport=false;
   			this.real_estate=false;
   			this.appliances=false;
@@ -79,7 +79,7 @@ export default {
   			switch(data) {
   				case null: {
   					this.resetCategories(data); 
-  					this._default=true; 
+  					this.root=true; 
   					break;
   				}
   				case 1: { 
