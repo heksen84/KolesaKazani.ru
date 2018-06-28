@@ -1918,45 +1918,64 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ["items"],
-	data: function data() {
-		return {
-			form: {
-				deal_selected: 0,
-				category: null,
-				title: '',
-				text: '',
-				price: ''
-			},
+  props: ["items"],
+  data: function data() {
+    return {
+      form: {
+        deal_selected: 0,
+        category: null,
+        title: '',
+        text: '',
+        price: ''
+      },
 
-			cars: false,
-			home: false
-		};
-	},
-	created: function created() {},
+      def: false,
+      cars: false,
+      home: false
+    };
+  },
+  created: function created() {},
 
-	components: {},
-	methods: {
-		changeCategory: function changeCategory(data) {
-			switch (data) {
-				case null:
-					this.cars = false;break;
-				case 1:
-					this.cars = true;break;
-				case 2:
-					this.home = true;break;
-			}
-		},
-		onSubmit: function onSubmit(evt) {
-			evt.preventDefault();
-			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.form }).then(function (res) {
-				window.location.href = "/home/555";
-			}).catch(function (err) {});
-		}
-	}
+  components: {},
+  methods: {
+    resetCategories: function resetCategories(data) {
+      this.def = false;
+      this.cars = false;
+      this.false = false;
+    },
+    changeCategory: function changeCategory(data) {
+      switch (data) {
+        case null:
+          {
+            this.resetCategories(data);
+            this.def = true;
+            break;
+          }
+        case 1:
+          {
+            this.resetCategories(data);
+            this.cars = true;
+            break;
+          }
+        case 2:
+          {
+            this.resetCategories(data);
+            this.home = true;
+            break;
+          }
+      }
+    },
+    onSubmit: function onSubmit(evt) {
+      evt.preventDefault();
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.form }).then(function (res) {
+        window.location.href = "/home/555";
+      }).catch(function (err) {});
+    }
+  }
 });
 
 /***/ }),
@@ -28909,9 +28928,11 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _vm.cars ? _c("h1", [_vm._v("CARS")]) : _vm._e(),
-                  _vm._v(" "),
-                  _vm.home ? _c("h1", [_vm._v("HOME")]) : _vm._e(),
+                  _vm.def
+                    ? _c("div")
+                    : _vm.cars
+                      ? _c("h1", [_vm._v("CARS")])
+                      : _vm.home ? _c("h1", [_vm._v("HOME")]) : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "b-form-group",

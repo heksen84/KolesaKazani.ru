@@ -18,8 +18,9 @@
 				</b-form-select>
 			</b-form-group>
 
-			<h1 v-if="cars">CARS</h1>
-			<h1 v-if="home">HOME</h1>
+			<div v-if="def"></div>
+			<h1 v-else-if="cars">CARS</h1>
+			<h1 v-else-if="home">HOME</h1>
 
 			<b-form-group label="Описание:" label-for="text">
 			 <b-form-textarea id="text" v-model="form.text"
@@ -57,6 +58,7 @@ export default {
 			price: '',
 		},
 
+		def:false,
 		cars:false,
 		home:false
 	}
@@ -65,11 +67,28 @@ export default {
 	},
 	components: {},
   	methods: {
+  		resetCategories(data) {
+  			this.def=false;
+  			this.cars=false;
+  			this.false=false;
+  		},
   		changeCategory(data) {
   			switch(data) {
-  				case null: this.cars=false; break;
-  				case 1: this.cars=true; break;
-  				case 2: this.home=true; break;
+  				case null: {
+  					this.resetCategories(data); 
+  					this.def=true; 
+  					break;
+  				}
+  				case 1: { 
+  					this.resetCategories(data); 
+  					this.cars=true; 
+  					break; 
+  				} 
+  				case 2: { 
+  					this.resetCategories(data); 
+  					this.home=true; 
+  					break; 
+  				} 
   			}
   		},
     	onSubmit(evt) {
