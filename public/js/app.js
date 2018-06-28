@@ -1934,7 +1934,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         text: '',
         price: ''
       },
-      def: false,
+      _default: false,
       transport: false,
       real_estate: false,
       appliances: false
@@ -1945,7 +1945,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   components: {},
   methods: {
     resetCategories: function resetCategories(data) {
-      this.def = false;
+      this._default = false;
       this.transport = false;
       this.real_estate = false;
       this.appliances = false;
@@ -1955,7 +1955,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         case null:
           {
             this.resetCategories(data);
-            this.def = true;
+            this._default = true;
             break;
           }
         case 1:
@@ -28937,7 +28937,7 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _vm.def
+                  _vm._default
                     ? _c("div")
                     : _vm.transport
                       ? _c("h1", [_vm._v("транспорт")])
