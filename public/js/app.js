@@ -1936,7 +1936,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	methods: {
 		changeCategory: function changeCategory(data) {
 			console.log(data);
-			alert("123");
+			alert(data);
 		},
 		onSubmit: function onSubmit(evt) {
 			evt.preventDefault();

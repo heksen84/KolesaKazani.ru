@@ -61,7 +61,7 @@ export default {
   	methods: {
   		changeCategory(data) {
   			console.log(data);
-  			alert("123");
+  			alert(data);
   		},
     	onSubmit(evt) {
     		evt.preventDefault();
