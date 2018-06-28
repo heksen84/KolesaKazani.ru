@@ -28853,7 +28853,7 @@ var render = function() {
                   _c(
                     "b-form-group",
                     {
-                      staticStyle: { width: "260px", "margin-top": "30px" },
+                      staticStyle: { "margin-top": "30px" },
                       attrs: {
                         label: "Категория товара или услуги:",
                         "label-for": "categories"
