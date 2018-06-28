@@ -1,19 +1,17 @@
 <template>
 	<b-container fluid>
 		<b-row>
-		<b-col cols="12" sm="12" md="12" lg="5" xl="5" style="text-align:center;margin:auto;margin-top:40px;color:black">
-		<h2>новое объявление</h2>
+		<b-col cols="12" sm="12" md="12" lg="5" xl="5" style="text-align:left;margin:auto;margin-top:40px;color:black">
+		<h2 style="text-align:center"><ins>новое объявление</ins></h2>
 		<br>
 			<b-form @submit="onSubmit">
 
 
-			<b-form-group label="Вид сделки:">
-				<b-form-select v-model="form.sdelka" class="mb-3">
-					 <option v-for="item in this.$root.options_sdelka" :value="item.value">{{item.text}}</option>
-				</b-form-select>
+			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px">
+				 <b-form-radio-group id="deal_group" stacked v-model="form.deal_selected" :options="this.$root.options_sdelka" name="radioOpenions"></b-form-radio-group>
 			</b-form-group>
 
-			<b-form-group label="Категория товара или услуги:" label-for="categories">
+			<b-form-group label="Категория товара или услуги:" label-for="categories" style="width:80%;margin-top:30px">
 				<b-form-select v-model="form.category" class="mb-3">
 					 <option v-for="item in items" :value="item.id">{{item.name}}</option>
 				</b-form-select>
@@ -30,10 +28,10 @@
 
 			<!-- ЦЕНА -->
 			<b-form-group label="цена:" label-for="price">
-			 <b-form-textarea id="price" v-model="form.price" placeholder="Цена" style="width:120px;margin:auto"></b-form-textarea>
+			 <b-form-textarea id="price" v-model="form.price" placeholder="Цена" style="width:130px;margin:auto;font-size:20px;text-align:center"></b-form-textarea>
 			</b-form-group>
 
-			<b-form-group style="text-align:center">
+			<b-form-group style="text-align:center;margin:30px">
 				<b-button type="onSubmit" variant="primary">Создать</b-button>
 			</b-form-group>
 		</b-form>
@@ -48,7 +46,7 @@ export default {
 	data () {
     return 	{
 		form: {
-			sdelka: 0,
+			deal_selected: 0,
 			category: 1,
 			title: '',
 			text: '',

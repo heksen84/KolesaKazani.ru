@@ -1914,8 +1914,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1923,7 +1921,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	data: function data() {
 		return {
 			form: {
-				sdelka: 0,
+				deal_selected: 0,
 				category: 1,
 				title: '',
 				text: '',
@@ -3584,6 +3582,305 @@ const VuePlugin = {
 }
 
 Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["b" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/form-radio/form-radio-group.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form_options__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-options.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-size.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-state.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-custom.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__form_radio__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-radio/form-radio.js");
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  mixins: [
+    __WEBPACK_IMPORTED_MODULE_0__mixins_id__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_2__mixins_form__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_1__mixins_form_options__["a" /* default */]
+  ],
+  components: { bFormRadio: __WEBPACK_IMPORTED_MODULE_6__form_radio__["a" /* default */] },
+  render (h) {
+    const $slots = this.$slots
+
+    const radios = this.formOptions.map((option, idx) => {
+      return h(
+        'b-form-radio',
+        {
+          key: `radio_${idx}_opt`,
+          props: {
+            id: this.safeId(`_BV_radio_${idx}_opt_`),
+            name: this.name,
+            value: option.value,
+            required: Boolean(this.name && this.required),
+            disabled: option.disabled
+          }
+        },
+        [h('span', { domProps: { innerHTML: option.text } })]
+      )
+    })
+    return h(
+      'div',
+      {
+        class: this.groupClasses,
+        attrs: {
+          id: this.safeId(),
+          role: 'radiogroup',
+          tabindex: '-1',
+          'aria-required': this.required ? 'true' : null,
+          'aria-invalid': this.computedAriaInvalid
+        }
+      },
+      [$slots.first, radios, $slots.default]
+    )
+  },
+  data () {
+    return {
+      localChecked: this.checked,
+      // Flag for children
+      is_RadioCheckGroup: true
+    }
+  },
+  model: {
+    prop: 'checked',
+    event: 'input'
+  },
+  props: {
+    checked: {
+      type: [String, Object, Number, Boolean],
+      default: null
+    },
+    validated: {
+      // Used for applying hte `was-validated` class to the group
+      type: Boolean,
+      default: false
+    },
+    ariaInvalid: {
+      type: [Boolean, String],
+      default: false
+    },
+    stacked: {
+      type: Boolean,
+      default: false
+    },
+    buttons: {
+      // Render as button style
+      type: Boolean,
+      default: false
+    },
+    buttonVariant: {
+      // Only applicable when rendered with button style
+      type: String,
+      default: 'secondary'
+    }
+  },
+  watch: {
+    checked (newVal, oldVal) {
+      this.localChecked = this.checked
+    },
+    localChecked (newVal, oldVal) {
+      this.$emit('input', newVal)
+    }
+  },
+  computed: {
+    groupClasses () {
+      if (this.buttons) {
+        return [
+          'btn-group-toggle',
+          this.stacked ? 'btn-group-vertical' : 'btn-group',
+          this.size ? `btn-group-${this.size}` : '',
+          this.validated ? `was-validated` : ''
+        ]
+      }
+      return [
+        this.sizeFormClass,
+        this.stacked && this.custom ? 'custom-controls-stacked' : '',
+        this.validated ? `was-validated` : ''
+      ]
+    },
+    computedAriaInvalid () {
+      if (
+        this.ariaInvalid === true ||
+        this.ariaInvalid === 'true' ||
+        this.ariaInvalid === ''
+      ) {
+        return 'true'
+      }
+      return this.get_State === false ? 'true' : null
+    },
+    get_State () {
+      // Required by child radios
+      return this.computedState
+    }
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/form-radio/form-radio.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_state__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-state.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_radio_check__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-radio-check.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_loose_equal__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/loose-equal.js");
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_id__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3__mixins_form_radio_check__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__mixins_form__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2__mixins_form_state__["a" /* default */]],
+  render (h) {
+    const input = h('input', {
+      ref: 'radio',
+      class: [
+        this.is_ButtonMode
+          ? ''
+          : this.is_Plain ? 'form-check-input' : 'custom-control-input',
+        this.get_StateClass
+      ],
+      directives: [
+        {
+          name: 'model',
+          rawName: 'v-model',
+          value: this.computedLocalChecked,
+          expression: 'computedLocalChecked'
+        }
+      ],
+      attrs: {
+        id: this.safeId(),
+        type: 'radio',
+        name: this.get_Name,
+        required: this.get_Name && this.is_Required,
+        disabled: this.is_Disabled,
+        autocomplete: 'off'
+      },
+      domProps: {
+        value: this.value,
+        checked: Object(__WEBPACK_IMPORTED_MODULE_4__utils_loose_equal__["a" /* default */])(this.computedLocalChecked, this.value)
+      },
+      on: {
+        focus: this.handleFocus,
+        blur: this.handleFocus,
+        change: this.emitChange,
+        __c: evt => {
+          this.computedLocalChecked = this.value
+        }
+      }
+    })
+
+    const description = h(
+      this.is_ButtonMode ? 'span' : 'label',
+      {
+        class: this.is_ButtonMode
+          ? null
+          : this.is_Plain ? 'form-check-label' : 'custom-control-label',
+        attrs: { for: this.is_ButtonMode ? null : this.safeId() }
+      },
+      [this.$slots.default]
+    )
+
+    if (!this.is_ButtonMode) {
+      return h(
+        'div',
+        {
+          class: [
+            this.is_Plain ? 'form-check' : this.labelClasses,
+            { 'form-check-inline': this.is_Plain && !this.is_Stacked },
+            { 'custom-control-inline': !this.is_Plain && !this.is_Stacked }
+          ]
+        },
+        [input, description]
+      )
+    } else {
+      return h('label', { class: [this.buttonClasses] }, [input, description])
+    }
+  },
+  watch: {
+    // Radio Groups can only have a single value, so our watchers are simple
+    checked (newVal, oldVal) {
+      this.computedLocalChecked = newVal
+    },
+    computedLocalChceked (newVal, oldVal) {
+      this.$emit('input', this.computedLocalChceked)
+    }
+  },
+  computed: {
+    is_Checked () {
+      return Object(__WEBPACK_IMPORTED_MODULE_4__utils_loose_equal__["a" /* default */])(this.value, this.computedLocalChecked)
+    },
+    labelClasses () {
+      // Specific to radio
+      return [
+        this.get_Size ? `form-control-${this.get_Size}` : '',
+        'custom-control',
+        'custom-radio',
+        this.get_StateClass
+      ]
+    }
+  },
+  methods: {
+    emitChange ({ target: { checked } }) {
+      // Change is only emitted on user interaction
+      this.$emit('change', checked ? this.value : null)
+      // If this is a child of form-radio-group, we emit a change event on it as well
+      if (this.is_Child) {
+        this.$parent.$emit('change', this.computedLocalChecked)
+      }
+    }
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/form-radio/index.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_radio__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-radio/form-radio.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__form_radio_group__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-radio/form-radio-group.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
+
+
+
+
+const components = {
+  bFormRadio: __WEBPACK_IMPORTED_MODULE_0__form_radio__["a" /* default */],
+  bRadio: __WEBPACK_IMPORTED_MODULE_0__form_radio__["a" /* default */],
+  bFormRadioGroup: __WEBPACK_IMPORTED_MODULE_1__form_radio_group__["a" /* default */],
+  bRadioGroup: __WEBPACK_IMPORTED_MODULE_1__form_radio_group__["a" /* default */]
+}
+
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["b" /* vueUse */])(VuePlugin)
 
 /* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
@@ -28506,7 +28803,7 @@ var render = function() {
             "b-col",
             {
               staticStyle: {
-                "text-align": "center",
+                "text-align": "left",
                 margin: "auto",
                 "margin-top": "40px",
                 color: "black"
@@ -28514,7 +28811,9 @@ var render = function() {
               attrs: { cols: "12", sm: "12", md: "12", lg: "5", xl: "5" }
             },
             [
-              _c("h2", [_vm._v("новое объявление")]),
+              _c("h2", { staticStyle: { "text-align": "center" } }, [
+                _c("ins", [_vm._v("новое объявление")])
+              ]),
               _vm._v(" "),
               _c("br"),
               _vm._v(" "),
@@ -28524,28 +28823,29 @@ var render = function() {
                 [
                   _c(
                     "b-form-group",
-                    { attrs: { label: "Вид сделки:" } },
+                    {
+                      staticStyle: { width: "270px" },
+                      attrs: {
+                        label: "Вид сделки:",
+                        "label-for": "default_group"
+                      }
+                    },
                     [
-                      _c(
-                        "b-form-select",
-                        {
-                          staticClass: "mb-3",
-                          model: {
-                            value: _vm.form.sdelka,
-                            callback: function($$v) {
-                              _vm.$set(_vm.form, "sdelka", $$v)
-                            },
-                            expression: "form.sdelka"
-                          }
+                      _c("b-form-radio-group", {
+                        attrs: {
+                          id: "deal_group",
+                          stacked: "",
+                          options: this.$root.options_sdelka,
+                          name: "radioOpenions"
                         },
-                        _vm._l(this.$root.options_sdelka, function(item) {
-                          return _c(
-                            "option",
-                            { domProps: { value: item.value } },
-                            [_vm._v(_vm._s(item.text))]
-                          )
-                        })
-                      )
+                        model: {
+                          value: _vm.form.deal_selected,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "deal_selected", $$v)
+                          },
+                          expression: "form.deal_selected"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -28553,6 +28853,7 @@ var render = function() {
                   _c(
                     "b-form-group",
                     {
+                      staticStyle: { width: "80%", "margin-top": "30px" },
                       attrs: {
                         label: "Категория товара или услуги:",
                         "label-for": "categories"
@@ -28611,7 +28912,12 @@ var render = function() {
                     { attrs: { label: "цена:", "label-for": "price" } },
                     [
                       _c("b-form-textarea", {
-                        staticStyle: { width: "120px", margin: "auto" },
+                        staticStyle: {
+                          width: "130px",
+                          margin: "auto",
+                          "font-size": "20px",
+                          "text-align": "center"
+                        },
                         attrs: { id: "price", placeholder: "Цена" },
                         model: {
                           value: _vm.form.price,
@@ -28627,7 +28933,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "b-form-group",
-                    { staticStyle: { "text-align": "center" } },
+                    { staticStyle: { "text-align": "center", margin: "30px" } },
                     [
                       _c(
                         "b-button",
@@ -40824,10 +41130,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_bootstrap_vue_src_components_table__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/table/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_bootstrap_vue_src_components_link__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/link/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_bootstrap_vue_src_components_image__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/image/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_vue_carousel__ = __webpack_require__("./node_modules/vue-carousel/dist/vue-carousel.min.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25_vue_carousel__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_vue_yandex_maps__ = __webpack_require__("./node_modules/vue-yandex-maps/vue-yandex-maps.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_vue_yandex_maps___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26_vue_yandex_maps__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_bootstrap_vue_src_components_form_radio__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-radio/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_vue_carousel__ = __webpack_require__("./node_modules/vue-carousel/dist/vue-carousel.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26_vue_carousel__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_vue_yandex_maps__ = __webpack_require__("./node_modules/vue-yandex-maps/vue-yandex-maps.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_vue_yandex_maps___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_27_vue_yandex_maps__);
 __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
@@ -40862,9 +41169,10 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
 
+
 // register globally
 
-__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_26_vue_yandex_maps___default.a);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_27_vue_yandex_maps___default.a);
 
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_14_bootstrap_vue_src_components_layout__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_15_bootstrap_vue_src_components_form__["a" /* default */]);
@@ -40877,8 +41185,8 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_21_boo
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_22_bootstrap_vue_src_components_table__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_23_bootstrap_vue_src_components_link__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_24_bootstrap_vue_src_components_image__["a" /* default */]);
-
-__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_25_vue_carousel___default.a);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_25_bootstrap_vue_src_components_form_radio__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_26_vue_carousel___default.a);
 
 var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
   el: '#app',
