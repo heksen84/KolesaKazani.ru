@@ -1,13 +1,20 @@
 <template>
   <div>
     <b-form inline>
-    <b-form-group label="Расположение руля:" style="border:1px grey">
+
+    <b-form-group label="Вид техники:">
+        <b-form-select v-model="selected_type_vehicles" class="mb-2 mr-sm-2 mb-sm-0" style="width:310px">
+           <option v-for="item in type_vehicles" :value="item.value">{{item.text}}</option>
+        </b-form-select>
+    </b-form-group>
+
+    <b-form-group label="Расположение руля:">
         <b-form-select v-model="selected_helm_position" class="mb-2 mr-sm-2 mb-sm-0" style="width:310px">
            <option v-for="item in helm_position" :value="item.value">{{item.text}}</option>
         </b-form-select>
     </b-form-group>
 
-     <b-form-group label="Тип двигателя:" style="border:1px grey">
+     <b-form-group label="Тип двигателя:">
         <b-form-select v-model="selected_fuel_type" class="mb-2 mr-sm-2 mb-sm-0" style="width:310px">
            <option v-for="item in fuel_type" :value="item.value">{{item.text}}</option>
         </b-form-select>
@@ -21,6 +28,17 @@
 export default {
   data () {
     return 	{
+        type_vehicles: 
+        [
+          { value: 0, text: 'Легковой автомобиль' },
+          { value: 1, text: 'Грузовой автомобиль' },
+          { value: 2, text: 'Мототехника' },
+          { value: 3, text: 'Спецтехника' },
+          { value: 4, text: 'Ретро-автомобиль' },
+          { value: 5, text: 'Водный транспорт' },
+          { value: 6, text: 'Велосипед' },
+          { value: 7, text: 'Воздушный транспорт' }
+        ],
        helm_position: 
         [
           { value: 0, text: 'Справа' },
@@ -35,6 +53,7 @@ export default {
           { value: 4, text: 'Гибрид' },
           { value: 5, text: 'Электричество' }
         ],
+        selected_type_vehicles: 0,
         selected_helm_position: 0,
         selected_fuel_type: 0,
 		}

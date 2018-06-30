@@ -1691,12 +1691,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      type_vehicles: [{ value: 0, text: 'Легковой автомобиль' }, { value: 1, text: 'Грузовой автомобиль' }, { value: 2, text: 'Мототехника' }, { value: 3, text: 'Спецтехника' }, { value: 4, text: 'Ретро-автомобиль' }, { value: 5, text: 'Водный транспорт' }, { value: 6, text: 'Велосипед' }, { value: 7, text: 'Воздушный транспорт' }],
       helm_position: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
       fuel_type: [{ value: 0, text: 'Бензин' }, { value: 1, text: 'Дизель' }, { value: 2, text: 'Газ-бензин' }, { value: 3, text: 'Газ' }, { value: 4, text: 'Гибрид' }, { value: 5, text: 'Электричество' }],
+      selected_type_vehicles: 0,
       selected_helm_position: 0,
       selected_fuel_type: 0
     };
@@ -27880,10 +27889,34 @@ var render = function() {
         [
           _c(
             "b-form-group",
-            {
-              staticStyle: { border: "1px grey" },
-              attrs: { label: "Расположение руля:" }
-            },
+            { attrs: { label: "Вид техники:" } },
+            [
+              _c(
+                "b-form-select",
+                {
+                  staticClass: "mb-2 mr-sm-2 mb-sm-0",
+                  staticStyle: { width: "310px" },
+                  model: {
+                    value: _vm.selected_type_vehicles,
+                    callback: function($$v) {
+                      _vm.selected_type_vehicles = $$v
+                    },
+                    expression: "selected_type_vehicles"
+                  }
+                },
+                _vm._l(_vm.type_vehicles, function(item) {
+                  return _c("option", { domProps: { value: item.value } }, [
+                    _vm._v(_vm._s(item.text))
+                  ])
+                })
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-form-group",
+            { attrs: { label: "Расположение руля:" } },
             [
               _c(
                 "b-form-select",
@@ -27910,10 +27943,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "b-form-group",
-            {
-              staticStyle: { border: "1px grey" },
-              attrs: { label: "Тип двигателя:" }
-            },
+            { attrs: { label: "Тип двигателя:" } },
             [
               _c(
                 "b-form-select",
