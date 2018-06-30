@@ -20,8 +20,8 @@
 			
 
 			<div v-if="root"></div>
-			<h1 v-else-if="transport">транспорт</h1>
-			<h1 v-else-if="real_estate">недвижимость</h1>
+			<transport v-else-if="transport"/>
+			<realestate v-else-if="real_estate"/>
 			<h1 v-else-if="appliances">бытовая техника</h1>
 			
 
@@ -49,6 +49,9 @@
 </template>
 <script>
 import { post } from './../helpers/api'
+import transport from '../components/characteristics/transport';
+import realestate from '../components/characteristics/real-estate';
+
 export default {
 	props: ["items"],
 	data () {
@@ -68,7 +71,7 @@ export default {
 	},
 	created() {
 	},
-	components: {},
+	components: { transport, realestate },
   	methods: {
   		resetCategories(data) {
   			this.root=false;
