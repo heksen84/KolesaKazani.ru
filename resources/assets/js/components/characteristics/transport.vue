@@ -1,10 +1,17 @@
 <template>
   <div>
     <b-form-group label="Расположение руля:">
-        <b-form-select v-model="selected_item" class="mb-3" style="width:230px">
+        <b-form-select v-model="selected_item" class="mb-3" style="width:220px">
            <option v-for="item in items" :value="item.value">{{item.text}}</option>
         </b-form-select>
-      </b-form-group>
+    </b-form-group>
+
+     <b-form-group label="Тип двигателя:">
+        <b-form-select v-model="selected_item" class="mb-3" style="width:220px">
+           <option v-for="item in items" :value="item.value">{{item.text}}</option>
+        </b-form-select>
+    </b-form-group>
+
   </div>
 </template>
 
