@@ -1689,6 +1689,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -27873,54 +27875,67 @@ var render = function() {
     "div",
     [
       _c(
-        "b-form-group",
-        { attrs: { label: "Расположение руля:" } },
+        "b-form",
+        { attrs: { inline: "" } },
         [
           _c(
-            "b-form-select",
+            "b-form-group",
             {
-              staticClass: "mb-3",
-              staticStyle: { width: "220px" },
-              model: {
-                value: _vm.selected_item,
-                callback: function($$v) {
-                  _vm.selected_item = $$v
-                },
-                expression: "selected_item"
-              }
+              staticStyle: { border: "1px grey" },
+              attrs: { label: "Расположение руля:" }
             },
-            _vm._l(_vm.items, function(item) {
-              return _c("option", { domProps: { value: item.value } }, [
-                _vm._v(_vm._s(item.text))
-              ])
-            })
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-form-group",
-        { attrs: { label: "Тип двигателя:" } },
-        [
+            [
+              _c(
+                "b-form-select",
+                {
+                  staticClass: "mb-2 mr-sm-2 mb-sm-0",
+                  staticStyle: { width: "260px" },
+                  model: {
+                    value: _vm.selected_item,
+                    callback: function($$v) {
+                      _vm.selected_item = $$v
+                    },
+                    expression: "selected_item"
+                  }
+                },
+                _vm._l(_vm.items, function(item) {
+                  return _c("option", { domProps: { value: item.value } }, [
+                    _vm._v(_vm._s(item.text))
+                  ])
+                })
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
           _c(
-            "b-form-select",
+            "b-form-group",
             {
-              staticClass: "mb-3",
-              staticStyle: { width: "220px" },
-              model: {
-                value: _vm.selected_item,
-                callback: function($$v) {
-                  _vm.selected_item = $$v
-                },
-                expression: "selected_item"
-              }
+              staticStyle: { border: "1px grey" },
+              attrs: { label: "Тип двигателя:" }
             },
-            _vm._l(_vm.items, function(item) {
-              return _c("option", { domProps: { value: item.value } }, [
-                _vm._v(_vm._s(item.text))
-              ])
-            })
+            [
+              _c(
+                "b-form-select",
+                {
+                  staticClass: "mb-2 mr-sm-2 mb-sm-0",
+                  staticStyle: { width: "260px" },
+                  model: {
+                    value: _vm.selected_item,
+                    callback: function($$v) {
+                      _vm.selected_item = $$v
+                    },
+                    expression: "selected_item"
+                  }
+                },
+                _vm._l(_vm.items, function(item) {
+                  return _c("option", { domProps: { value: item.value } }, [
+                    _vm._v(_vm._s(item.text))
+                  ])
+                })
+              )
+            ],
+            1
           )
         ],
         1
