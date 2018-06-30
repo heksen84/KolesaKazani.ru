@@ -2,9 +2,9 @@
   <div>
     <b-form inline>
 
-    <b-form-group label="Вид техники:">
-        <b-form-select v-model="selected_type_vehicles" class="mb-2 mr-sm-2 mb-sm-0" style="width:310px">
-           <option v-for="item in type_vehicles" :value="item.value">{{item.text}}</option>
+    <b-form-group label="Вид транспорта:">
+        <b-form-select v-model="selected_type_transport" class="mb-2 mr-sm-2 mb-sm-0" style="width:310px">
+           <option v-for="item in type_transport" :value="item.value">{{item.text}}</option>
         </b-form-select>
     </b-form-group>
 
@@ -28,7 +28,7 @@
 export default {
   data () {
     return 	{
-        type_vehicles: 
+        type_transport: 
         [
           { value: 0, text: 'Легковой автомобиль' },
           { value: 1, text: 'Грузовой автомобиль' },
@@ -53,7 +53,7 @@ export default {
           { value: 4, text: 'Гибрид' },
           { value: 5, text: 'Электричество' }
         ],
-        selected_type_vehicles: 0,
+        selected_type_transport: 0,
         selected_helm_position: 0,
         selected_fuel_type: 0,
 		}
