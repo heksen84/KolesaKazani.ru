@@ -1684,8 +1684,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      items: [{ value: 0, text: 'Правый руль' }, { value: 1, text: 'Левый руль' }],
-      selected_item: 0
+      items: [{ value: null, text: '-- раположение руля --' }, { value: 0, text: 'Правый руль' }, { value: 1, text: 'Левый руль' }],
+      selected_item: null
     };
   },
   created: function created() {},
@@ -27867,7 +27867,7 @@ var render = function() {
         "b-form-select",
         {
           staticClass: "mb-3",
-          staticStyle: { width: "200px" },
+          staticStyle: { width: "230px" },
           model: {
             value: _vm.selected_item,
             callback: function($$v) {
