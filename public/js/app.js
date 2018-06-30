@@ -1678,10 +1678,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      items: [{ value: 0, text: 'Правый руль' }, { value: 1, text: 'Левый руль' }],
+      selected_item: 1
+    };
   },
   created: function created() {},
 
@@ -27854,16 +27859,33 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    [
+      _c(
+        "b-form-select",
+        {
+          staticClass: "mb-3",
+          staticStyle: { width: "200px" },
+          model: {
+            value: _vm.selected_item,
+            callback: function($$v) {
+              _vm.selected_item = $$v
+            },
+            expression: "selected_item"
+          }
+        },
+        _vm._l(_vm.items, function(item) {
+          return _c("option", { domProps: { value: item.id } }, [
+            _vm._v(_vm._s(item.text))
+          ])
+        })
+      )
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h2", [_vm._v("транспорт")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
