@@ -2,7 +2,7 @@
 	<b-container fluid>
 		<b-row>
 		<b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:left;margin:auto;margin-top:40px;color:black">
-		<h2 style="text-align:center;color:grey"><ins>новое объявление</ins></h2>
+		<h2 style="color:grey"><ins>новое объявление</ins></h2>
 		<br>
 			<b-form @submit="onSubmit">
 			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px">
