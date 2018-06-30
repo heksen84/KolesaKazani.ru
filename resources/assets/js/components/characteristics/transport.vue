@@ -30,7 +30,10 @@ export default {
         [
           { value: 0, text: 'Бензин' },
           { value: 1, text: 'Дизель' },
-          { value: 2, text: 'Газ-бензин' }
+          { value: 2, text: 'Газ-бензин' },
+          { value: 3, text: 'Газ' },
+          { value: 4, text: 'Гибрид' },
+          { value: 5, text: 'Электричество' }
         ],
         selected_helm_position: 0,
         selected_fuel_type: 0,
