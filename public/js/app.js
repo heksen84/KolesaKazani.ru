@@ -1680,12 +1680,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      items: [{ value: null, text: '-- раположение руля --' }, { value: 0, text: 'Правый руль' }, { value: 1, text: 'Левый руль' }],
-      selected_item: null
+      items: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
+      selected_item: 0
     };
   },
   created: function created() {},
@@ -27864,23 +27866,30 @@ var render = function() {
     "div",
     [
       _c(
-        "b-form-select",
-        {
-          staticClass: "mb-3",
-          staticStyle: { width: "230px" },
-          model: {
-            value: _vm.selected_item,
-            callback: function($$v) {
-              _vm.selected_item = $$v
+        "b-form-group",
+        { attrs: { label: "Расположение руля:" } },
+        [
+          _c(
+            "b-form-select",
+            {
+              staticClass: "mb-3",
+              staticStyle: { width: "230px" },
+              model: {
+                value: _vm.selected_item,
+                callback: function($$v) {
+                  _vm.selected_item = $$v
+                },
+                expression: "selected_item"
+              }
             },
-            expression: "selected_item"
-          }
-        },
-        _vm._l(_vm.items, function(item) {
-          return _c("option", { domProps: { value: item.value } }, [
-            _vm._v(_vm._s(item.text))
-          ])
-        })
+            _vm._l(_vm.items, function(item) {
+              return _c("option", { domProps: { value: item.value } }, [
+                _vm._v(_vm._s(item.text))
+              ])
+            })
+          )
+        ],
+        1
       )
     ],
     1
