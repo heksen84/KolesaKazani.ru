@@ -1660,7 +1660,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      type: [{ value: 0, text: 'Легковой автомобиль' }, { value: 1, text: 'Грузовой автомобиль' }, { value: 2, text: 'Мототехника' }, { value: 3, text: 'Спецтехника' }, { value: 4, text: 'Ретро-автомобиль' }, { value: 5, text: 'Водный транспорт' }, { value: 6, text: 'Велосипед' }, { value: 7, text: 'Воздушный транспорт' }],
+      type: [{ value: 0, text: 'Квартира' }, { value: 1, text: 'Дом' }],
       selected_type: 0
     };
   },
