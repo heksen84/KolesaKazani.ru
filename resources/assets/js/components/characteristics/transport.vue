@@ -2,13 +2,13 @@
   <div>
     <b-form inline>
     <b-form-group label="Расположение руля:" style="border:1px grey">
-        <b-form-select v-model="selected_item" class="mb-2 mr-sm-2 mb-sm-0" style="width:260px">
+        <b-form-select v-model="selected_item" class="mb-2 mr-sm-2 mb-sm-0" style="width:310px">
            <option v-for="item in items" :value="item.value">{{item.text}}</option>
         </b-form-select>
     </b-form-group>
 
      <b-form-group label="Тип двигателя:" style="border:1px grey">
-        <b-form-select v-model="selected_item" class="mb-2 mr-sm-2 mb-sm-0" style="width:260px">
+        <b-form-select v-model="selected_item" class="mb-2 mr-sm-2 mb-sm-0" style="width:310px">
            <option v-for="item in items" :value="item.value">{{item.text}}</option>
         </b-form-select>
     </b-form-group>

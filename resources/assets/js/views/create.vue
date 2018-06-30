@@ -1,7 +1,7 @@
 <template>
 	<b-container fluid>
 		<b-row>
-		<b-col cols="12" sm="12" md="12" lg="5" xl="5" style="text-align:left;margin:auto;margin-top:40px;color:black">
+		<b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:left;margin:auto;margin-top:40px;color:black">
 		<h2 style="text-align:center"><ins>новое объявление</ins></h2>
 		<br>
 			<b-form @submit="onSubmit">
@@ -11,7 +11,7 @@
 				 <b-form-radio-group id="deal_group" stacked v-model="form.deal_selected" :options="this.$root.options_sdelka" name="radioOpenions"></b-form-radio-group>
 			</b-form-group>
 
-			<b-form-group label="Категория товара или услуги:" label-for="categories" style="margin-top:30px">
+			<b-form-group label="Категория товара или услуги:" label-for="categories" style="margin-top:30px;width:310px">
 				<b-form-select v-model="form.category" class="mb-3" @change="changeCategory">
 					 <option :value=null>-- Выберите категорию --</option>
 					 <option v-for="item in items" :value="item.id">{{item.name}}</option>

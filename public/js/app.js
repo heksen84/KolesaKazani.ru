@@ -27889,7 +27889,7 @@ var render = function() {
                 "b-form-select",
                 {
                   staticClass: "mb-2 mr-sm-2 mb-sm-0",
-                  staticStyle: { width: "260px" },
+                  staticStyle: { width: "310px" },
                   model: {
                     value: _vm.selected_item,
                     callback: function($$v) {
@@ -27919,7 +27919,7 @@ var render = function() {
                 "b-form-select",
                 {
                   staticClass: "mb-2 mr-sm-2 mb-sm-0",
-                  staticStyle: { width: "260px" },
+                  staticStyle: { width: "310px" },
                   model: {
                     value: _vm.selected_item,
                     callback: function($$v) {
@@ -29050,7 +29050,7 @@ var render = function() {
                 "margin-top": "40px",
                 color: "black"
               },
-              attrs: { cols: "12", sm: "12", md: "12", lg: "5", xl: "5" }
+              attrs: { cols: "12", sm: "12", md: "12", lg: "6", xl: "6" }
             },
             [
               _c("h2", { staticStyle: { "text-align": "center" } }, [
@@ -29095,7 +29095,7 @@ var render = function() {
                   _c(
                     "b-form-group",
                     {
-                      staticStyle: { "margin-top": "30px" },
+                      staticStyle: { "margin-top": "30px", width: "310px" },
                       attrs: {
                         label: "Категория товара или услуги:",
                         "label-for": "categories"
