@@ -29201,7 +29201,7 @@ var render = function() {
                     "b-form-group",
                     { attrs: { label: "цена:", "label-for": "price" } },
                     [
-                      _c("b-form-textarea", {
+                      _c("b-form-input", {
                         staticStyle: {
                           width: "130px",
                           margin: "auto",

@@ -34,7 +34,7 @@
 
 			<!-- ЦЕНА -->
 			<b-form-group label="цена:" label-for="price">
-			 <b-form-textarea id="price" v-model="form.price" placeholder="Цена" style="width:130px;margin:auto;font-size:20px;text-align:center"></b-form-textarea>
+			 	<b-form-input id="price" v-model="form.price" placeholder="Цена" style="width:130px;margin:auto;font-size:20px;text-align:center"></b-form-input>
 			</b-form-group>
 
 			<b-form-group style="text-align:center;margin:30px">
