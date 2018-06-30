@@ -1695,8 +1695,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      items: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
-      selected_item: 0
+      helm_position: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
+      fuel_type: [{ value: 0, text: 'Бензин' }, { value: 1, text: 'Дизель' }, { value: 2, text: 'Газ-бензин' }],
+      selected_helm_position: 0,
+      selected_fuel_type: 0
     };
   },
   created: function created() {},
@@ -1945,8 +1947,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_characteristics_transport___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_characteristics_transport__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_characteristics_real_estate__ = __webpack_require__("./resources/assets/js/components/characteristics/real-estate.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_characteristics_real_estate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_characteristics_real_estate__);
-//
-//
 //
 //
 //
@@ -27891,14 +27891,14 @@ var render = function() {
                   staticClass: "mb-2 mr-sm-2 mb-sm-0",
                   staticStyle: { width: "310px" },
                   model: {
-                    value: _vm.selected_item,
+                    value: _vm.selected_helm_position,
                     callback: function($$v) {
-                      _vm.selected_item = $$v
+                      _vm.selected_helm_position = $$v
                     },
-                    expression: "selected_item"
+                    expression: "selected_helm_position"
                   }
                 },
-                _vm._l(_vm.items, function(item) {
+                _vm._l(_vm.helm_position, function(item) {
                   return _c("option", { domProps: { value: item.value } }, [
                     _vm._v(_vm._s(item.text))
                   ])
@@ -27921,14 +27921,14 @@ var render = function() {
                   staticClass: "mb-2 mr-sm-2 mb-sm-0",
                   staticStyle: { width: "310px" },
                   model: {
-                    value: _vm.selected_item,
+                    value: _vm.selected_fuel_type,
                     callback: function($$v) {
-                      _vm.selected_item = $$v
+                      _vm.selected_fuel_type = $$v
                     },
-                    expression: "selected_item"
+                    expression: "selected_fuel_type"
                   }
                 },
-                _vm._l(_vm.items, function(item) {
+                _vm._l(_vm.fuel_type, function(item) {
                   return _c("option", { domProps: { value: item.value } }, [
                     _vm._v(_vm._s(item.text))
                   ])

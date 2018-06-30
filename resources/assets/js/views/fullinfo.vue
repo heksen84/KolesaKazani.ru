@@ -39,7 +39,7 @@ export default {
 
 
 
-    	 placemarks: [
+      placemarks: [
       {
         coords: [54.8, 39.8],
         properties: {}, // define properties here
