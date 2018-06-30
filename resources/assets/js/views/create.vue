@@ -48,6 +48,7 @@
 </b-container>
 </template>
 <script>
+
 import { post } from './../helpers/api'
 import transport from '../components/characteristics/transport';
 import realestate from '../components/characteristics/real-estate';

@@ -1685,7 +1685,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       items: [{ value: 0, text: 'Правый руль' }, { value: 1, text: 'Левый руль' }],
-      selected_item: 1
+      selected_item: 0
     };
   },
   created: function created() {},
@@ -1983,6 +1983,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
@@ -27876,7 +27877,7 @@ var render = function() {
           }
         },
         _vm._l(_vm.items, function(item) {
-          return _c("option", { domProps: { value: item.id } }, [
+          return _c("option", { domProps: { value: item.value } }, [
             _vm._v(_vm._s(item.text))
           ])
         })
