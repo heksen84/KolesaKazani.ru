@@ -5,8 +5,6 @@
 		<h2 style="text-align:center;color:grey"><ins>новое объявление</ins></h2>
 		<br>
 			<b-form @submit="onSubmit">
-
-
 			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px">
 				 <b-form-radio-group id="deal_group" stacked v-model="form.deal_selected" :options="this.$root.options_sdelka" name="radioOpenions"></b-form-radio-group>
 			</b-form-group>
@@ -18,7 +16,7 @@
 				</b-form-select>
 			</b-form-group>
 			
-
+			<!-- КАТЕГОРИИ -->
 			<div v-if="root"></div>
 			<transport v-else-if="transport"/>
 			<realestate v-else-if="real_estate"/>
