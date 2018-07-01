@@ -29112,7 +29112,7 @@ var render = function() {
             {
               staticStyle: {
                 "text-align": "left",
-                margin: "2px auto",
+                margin: "0px auto",
                 color: "black",
                 background: "white",
                 opacity: "1"
