@@ -29221,7 +29221,7 @@ var render = function() {
                     { attrs: { label: "Описание:", "label-for": "text" } },
                     [
                       _c("b-form-textarea", {
-                        staticStyle: { background: "rgb(240,240,250)" },
+                        staticStyle: { background: "rgb(230,230,230)" },
                         attrs: {
                           id: "text",
                           placeholder: "Введите описание",
