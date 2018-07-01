@@ -203,7 +203,12 @@ body {
 #categories_row {
    margin-top:5px;
 }
+}
 
+@media screen and (max-width:770px) {
+.vip_block {
+  display:none;
+}
 }
 
 @media screen and (max-width:400px) {
@@ -214,10 +219,6 @@ body {
   
 .result_info_col {
   text-align:center;
-}
-
-.vip_block {
-  display:none;
 }
 
 #addit_info {
