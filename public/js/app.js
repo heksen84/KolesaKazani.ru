@@ -29226,7 +29226,7 @@ var render = function() {
                     },
                     [
                       _c("b-form-textarea", {
-                        staticStyle: { background: "rgb(250,250,250)" },
+                        staticStyle: { background: "rgb(247,247,247)" },
                         attrs: {
                           id: "text",
                           placeholder: "Наберите дополнительную информацию",

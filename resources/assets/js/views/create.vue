@@ -27,7 +27,7 @@
 			 <b-form-textarea id="text" v-model="form.text"
 										placeholder="Наберите дополнительную информацию"
 										:rows="6"
-										:max-rows="6" style="background:rgb(250,250,250)">
+										:max-rows="6" style="background:rgb(247,247,247)">
 	 		 </b-form-textarea>
 			</b-form-group>
 
