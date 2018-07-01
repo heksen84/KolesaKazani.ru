@@ -28312,7 +28312,7 @@ var render = function() {
                       padding: "2px"
                     }
                   },
-                  [_vm._v("FlyМаркет")]
+                  [_vm._v("FlyMart24")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -29124,7 +29124,7 @@ var render = function() {
                 "h3",
                 {
                   staticStyle: {
-                    color: "rgb(120,120,120)",
+                    color: "rgb(140,140,140)",
                     "margin-top": "5px"
                   }
                 },
