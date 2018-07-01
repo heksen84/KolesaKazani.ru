@@ -20,7 +20,7 @@
 			<div v-if="root"></div>
 			<transport v-else-if="transport"/>
 			<realestate v-else-if="real_estate"/>
-			<h1 v-else-if="appliances">бытовая техника</h1>
+			<h1 v-else-if="appliances"></h1>
 			
 
 			<b-form-group label="Описание:" label-for="text">

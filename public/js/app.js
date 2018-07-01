@@ -29203,9 +29203,7 @@ var render = function() {
                       ? _c("transport")
                       : _vm.real_estate
                         ? _c("realestate")
-                        : _vm.appliances
-                          ? _c("h1", [_vm._v("бытовая техника")])
-                          : _vm._e(),
+                        : _vm.appliances ? _c("h1") : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "b-form-group",
