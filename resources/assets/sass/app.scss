@@ -168,13 +168,21 @@ body {
   width:16%;
 }
 
-@media screen and (max-width:770px) {
+#addit_info {
+  background:rgb(245,245,245);
+}
+
+@media screen and (max-width:450px) {
   .result_info_col {
   text-align:center;
 }
 
 .vip_block {
   display:none;
+}
+
+#addit_info {
+  width:100%;
 }
 
 }

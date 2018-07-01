@@ -9,7 +9,7 @@
 				 <b-form-radio-group id="deal_group" stacked v-model="form.deal_selected" :options="this.$root.options_sdelka" name="radioOpenions"></b-form-radio-group>
 			</b-form-group>
 
-			<b-form-group label="Категория товара или услуги:" label-for="categories" style="margin-top:30px;width:310px">
+			<b-form-group label="Категория товара или услуги:" label-for="categories" style="margin-top:30px;width:290px">
 				<b-form-select v-model="form.category" class="mb-3" @change="changeCategory">
 					 <option :value=null>-- Выберите категорию --</option>
 					 <option v-for="item in items" :value="item.id">{{item.name}}</option>
@@ -23,11 +23,11 @@
 			<h1 v-else-if="appliances"></h1>
 			
 
-			<b-form-group label="Дополнительная информация:" label-for="text">
-			 <b-form-textarea id="text" v-model="form.text"
+			<b-form-group label="Дополнительная информация:" label-for="addit_info">
+			 <b-form-textarea id="addit_info" v-model="form.text"
 										placeholder="Наберите дополнительную информацию"
 										:rows="6"
-										:max-rows="6" style="background:rgb(245,245,245)">
+										:max-rows="6">
 	 		 </b-form-textarea>
 			</b-form-group>
 

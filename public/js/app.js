@@ -27902,7 +27902,7 @@ var render = function() {
                 "b-form-select",
                 {
                   staticClass: "mb-2 mr-sm-2 mb-sm-0",
-                  staticStyle: { width: "310px" },
+                  staticStyle: { width: "295px" },
                   model: {
                     value: _vm.selected_type_transport,
                     callback: function($$v) {
@@ -27929,7 +27929,7 @@ var render = function() {
                 "b-form-select",
                 {
                   staticClass: "mb-2 mr-sm-2 mb-sm-0",
-                  staticStyle: { width: "310px" },
+                  staticStyle: { width: "295px" },
                   model: {
                     value: _vm.selected_helm_position,
                     callback: function($$v) {
@@ -27959,7 +27959,7 @@ var render = function() {
                 "b-form-select",
                 {
                   staticClass: "mb-2 mr-sm-2 mb-sm-0",
-                  staticStyle: { width: "310px" },
+                  staticStyle: { width: "295px" },
                   model: {
                     value: _vm.selected_fuel_type,
                     callback: function($$v) {
@@ -28438,7 +28438,7 @@ var render = function() {
       _c(
         "b-form-group",
         {
-          staticStyle: { width: "310px" },
+          staticStyle: { width: "290px" },
           attrs: { label: "Вид недвижимости:", "label-for": "categories" }
         },
         [
@@ -29169,7 +29169,7 @@ var render = function() {
                   _c(
                     "b-form-group",
                     {
-                      staticStyle: { "margin-top": "30px", width: "310px" },
+                      staticStyle: { "margin-top": "30px", width: "290px" },
                       attrs: {
                         label: "Категория товара или услуги:",
                         "label-for": "categories"
@@ -29221,14 +29221,13 @@ var render = function() {
                     {
                       attrs: {
                         label: "Дополнительная информация:",
-                        "label-for": "text"
+                        "label-for": "addit_info"
                       }
                     },
                     [
                       _c("b-form-textarea", {
-                        staticStyle: { background: "rgb(245,245,245)" },
                         attrs: {
-                          id: "text",
+                          id: "addit_info",
                           placeholder: "Наберите дополнительную информацию",
                           rows: 6,
                           "max-rows": 6

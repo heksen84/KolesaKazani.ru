@@ -3,19 +3,19 @@
     <b-form inline>
 
     <b-form-group label="Вид транспорта:">
-        <b-form-select v-model="selected_type_transport" class="mb-2 mr-sm-2 mb-sm-0" style="width:310px">
+        <b-form-select v-model="selected_type_transport" class="mb-2 mr-sm-2 mb-sm-0" style="width:295px">
            <option v-for="item in type_transport" :value="item.value">{{item.text}}</option>
         </b-form-select>
     </b-form-group>
 
     <b-form-group label="Расположение руля:">
-        <b-form-select v-model="selected_helm_position" class="mb-2 mr-sm-2 mb-sm-0" style="width:310px">
+        <b-form-select v-model="selected_helm_position" class="mb-2 mr-sm-2 mb-sm-0" style="width:295px">
            <option v-for="item in helm_position" :value="item.value">{{item.text}}</option>
         </b-form-select>
     </b-form-group>
 
      <b-form-group label="Тип двигателя:" style="margin-top:8px">
-        <b-form-select v-model="selected_fuel_type" class="mb-2 mr-sm-2 mb-sm-0" style="width:310px">
+        <b-form-select v-model="selected_fuel_type" class="mb-2 mr-sm-2 mb-sm-0" style="width:295px">
            <option v-for="item in fuel_type" :value="item.value">{{item.text}}</option>
         </b-form-select>
     </b-form-group>
