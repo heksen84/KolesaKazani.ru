@@ -14,7 +14,7 @@
         </b-form-select>
     </b-form-group>
 
-     <b-form-group label="Тип двигателя:">
+     <b-form-group label="Тип двигателя:" style="margin-top:8px">
         <b-form-select v-model="selected_fuel_type" class="mb-2 mr-sm-2 mb-sm-0" style="width:310px">
            <option v-for="item in fuel_type" :value="item.value">{{item.text}}</option>
         </b-form-select>

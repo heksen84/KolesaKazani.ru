@@ -27950,7 +27950,10 @@ var render = function() {
           _vm._v(" "),
           _c(
             "b-form-group",
-            { attrs: { label: "Тип двигателя:" } },
+            {
+              staticStyle: { "margin-top": "8px" },
+              attrs: { label: "Тип двигателя:" }
+            },
             [
               _c(
                 "b-form-select",
