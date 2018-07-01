@@ -186,7 +186,7 @@ body {
 }
 
 #addit_info {
-  background: whitesmoke;
+  background: #f0f0f0;
 }
 
 @media screen and (max-width: 450px) {
