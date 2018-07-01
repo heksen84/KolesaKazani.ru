@@ -29125,7 +29125,7 @@ var render = function() {
                 {
                   staticStyle: {
                     color: "rgb(130,130,130)",
-                    "margin-top": "5px"
+                    "margin-top": "10px"
                   }
                 },
                 [_c("ins", [_vm._v("новое объявление")])]
@@ -29226,7 +29226,7 @@ var render = function() {
                     },
                     [
                       _c("b-form-textarea", {
-                        staticStyle: { background: "rgb(247,247,247)" },
+                        staticStyle: { background: "rgb(245,245,245)" },
                         attrs: {
                           id: "text",
                           placeholder: "Наберите дополнительную информацию",
