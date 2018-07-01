@@ -23,11 +23,11 @@
 			<h1 v-else-if="appliances"></h1>
 			
 
-			<b-form-group label="Описание:" label-for="text">
+			<b-form-group label="Дополнительная информация:" label-for="text">
 			 <b-form-textarea id="text" v-model="form.text"
-										placeholder="Введите описание"
+										placeholder="Наберите дополнительную информацию"
 										:rows="6"
-										:max-rows="6" style="background:rgb(240,240,240);border:1px solid rgb(160,160,160)">
+										:max-rows="6" style="background:rgb(250,250,250)">
 	 		 </b-form-textarea>
 			</b-form-group>
 

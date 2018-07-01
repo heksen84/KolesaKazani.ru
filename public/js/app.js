@@ -29218,16 +29218,18 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "b-form-group",
-                    { attrs: { label: "Описание:", "label-for": "text" } },
+                    {
+                      attrs: {
+                        label: "Дополнительная информация:",
+                        "label-for": "text"
+                      }
+                    },
                     [
                       _c("b-form-textarea", {
-                        staticStyle: {
-                          background: "rgb(240,240,240)",
-                          border: "1px solid rgb(160,160,160)"
-                        },
+                        staticStyle: { background: "rgb(250,250,250)" },
                         attrs: {
                           id: "text",
-                          placeholder: "Введите описание",
+                          placeholder: "Наберите дополнительную информацию",
                           rows: 6,
                           "max-rows": 6
                         },
