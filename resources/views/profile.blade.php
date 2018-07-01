@@ -8,7 +8,7 @@
         <meta name="description" content="Доска объявлений АксуМаркет">
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Доска объявлений АксуМаркет</title>
+        <title>Доска объявлений FlyMart24</title>
 	      <link rel="icon" href="{{ asset('public/shop.ico') }}">
     </head>
     <body>
