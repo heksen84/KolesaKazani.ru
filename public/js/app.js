@@ -29110,17 +29110,23 @@ var render = function() {
               staticStyle: {
                 "text-align": "left",
                 margin: "auto",
-                "margin-top": "10px",
                 color: "black",
                 background: "rgb(250,250,250)",
                 border: "1px solid rgb(200,200,200)"
               },
-              attrs: { cols: "12", sm: "12", md: "12", lg: "6", xl: "6" }
+              attrs: { cols: "12", sm: "12", md: "12", lg: "7", xl: "7" }
             },
             [
-              _c("h3", { staticStyle: { color: "rgb(150,150,200)" } }, [
-                _c("ins", [_vm._v("новое объявление")])
-              ]),
+              _c(
+                "h3",
+                {
+                  staticStyle: {
+                    color: "rgb(120,120,120)",
+                    "margin-top": "5px"
+                  }
+                },
+                [_c("ins", [_vm._v("новое объявление")])]
+              ),
               _vm._v(" "),
               _c("br"),
               _vm._v(" "),
