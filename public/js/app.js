@@ -29222,8 +29222,8 @@ var render = function() {
                     [
                       _c("b-form-textarea", {
                         staticStyle: {
-                          background: "rgb(230,230,230)",
-                          border: "1px solid rgb(130,130,130)"
+                          background: "rgb(240,240,240)",
+                          border: "1px solid rgb(160,160,160)"
                         },
                         attrs: {
                           id: "text",
