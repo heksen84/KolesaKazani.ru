@@ -28143,7 +28143,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "item", on: { click: _vm.details } }, [
-    _c("h5", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
+    _c("h4", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
       _vm._v(_vm._s(_vm.title))
     ]),
     _vm._v(" "),
