@@ -29124,7 +29124,7 @@ var render = function() {
                 "h3",
                 {
                   staticStyle: {
-                    color: "rgb(140,140,140)",
+                    color: "rgb(130,130,130)",
                     "margin-top": "5px"
                   }
                 },
