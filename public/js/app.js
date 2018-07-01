@@ -29125,13 +29125,9 @@ var render = function() {
             },
             [
               _c(
-                "h6",
+                "div",
                 {
-                  staticStyle: {
-                    "margin-left": "99%",
-                    "margin-top": "7px",
-                    cursor: "pointer"
-                  },
+                  staticClass: "close_button",
                   attrs: { title: "Закрыть страницу" },
                   on: { click: _vm.closeAndReturn }
                 },

@@ -2,7 +2,7 @@
 	<b-container fluid>
 		<b-row>
 		<b-col cols="12" sm="12" md="12" lg="7" xl="7" style="text-align:left;margin:0px auto;color:black;background:white;opacity:1">
-		<h6 style="margin-left:99%;margin-top:7px;cursor:pointer" title="Закрыть страницу" @click="closeAndReturn">X</h6>
+		<div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
 		<h3 style="color:rgb(130,130,130);margin-top:-12px"><ins>новое объявление</ins></h3>
 		<br>
 			<b-form @submit="onSubmit">

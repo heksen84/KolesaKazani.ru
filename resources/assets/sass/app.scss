@@ -168,6 +168,17 @@ body {
   width:16%;
 }
 
+.close_button {
+  font-size: 18px;
+  margin-left:99%;
+  margin-top:7px;
+  cursor:pointer;
+}
+
+.close_button:hover {
+  text-decoration: underline;
+}
+
 #addit_info {
   background:rgb(245,245,245);
 }
