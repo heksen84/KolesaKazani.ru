@@ -29138,8 +29138,8 @@ var render = function() {
                 "h3",
                 {
                   staticStyle: {
-                    color: "rgb(130,130,130)",
-                    "margin-top": "-14px"
+                    color: "rgb(120,120,120)",
+                    "margin-top": "-17px"
                   }
                 },
                 [_c("ins", [_vm._v("новое объявление")])]
