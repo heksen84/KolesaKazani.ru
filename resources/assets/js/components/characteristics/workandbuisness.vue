@@ -1,6 +1,5 @@
 <template>
   <div>
-	недвижимость
   </div>
 </template>
 

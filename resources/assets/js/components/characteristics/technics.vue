@@ -1,6 +1,5 @@
 <template>
   <div>
-	<h2>недвижимость</h2>
   </div>
 </template>
 

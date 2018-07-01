@@ -15,7 +15,12 @@ export default {
         type: 
         [
           { value: 0, text: 'Квартира' },
-          { value: 1, text: 'Дом' }
+          { value: 1, text: 'Комната' },
+          { value: 2, text: 'Дом, дача, коттедж' },
+          { value: 3, text: 'Земельный участок' },
+          { value: 5, text: 'Гараж или машиноместо' },
+          { value: 6, text: 'Коммерческая недвижимость' },
+          { value: 7, text: 'Недвижимость за рубежом' }
         ],
         selected_type: 0
 		}
