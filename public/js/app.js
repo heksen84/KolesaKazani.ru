@@ -2010,6 +2010,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -2037,6 +2038,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_characteristics_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_characteristics_real_estate___default.a },
   methods: {
+    closeAndReturn: function closeAndReturn() {
+      window.history.back();
+    },
     resetCategories: function resetCategories(data) {
       this.root = false;
       this.transport = false;
@@ -29121,11 +29125,25 @@ var render = function() {
             },
             [
               _c(
+                "h6",
+                {
+                  staticStyle: {
+                    "margin-left": "99%",
+                    "margin-top": "7px",
+                    cursor: "pointer"
+                  },
+                  attrs: { title: "Закрыть страницу" },
+                  on: { click: _vm.closeAndReturn }
+                },
+                [_vm._v("X")]
+              ),
+              _vm._v(" "),
+              _c(
                 "h3",
                 {
                   staticStyle: {
                     color: "rgb(130,130,130)",
-                    "margin-top": "10px"
+                    "margin-top": "-10px"
                   }
                 },
                 [_c("ins", [_vm._v("новое объявление")])]
