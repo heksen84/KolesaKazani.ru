@@ -29111,7 +29111,8 @@ var render = function() {
                 "text-align": "left",
                 margin: "2px auto",
                 color: "black",
-                background: "white"
+                background: "white",
+                opacity: "1"
               },
               attrs: { cols: "12", sm: "12", md: "12", lg: "7", xl: "7" }
             },
