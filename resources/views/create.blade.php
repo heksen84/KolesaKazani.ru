@@ -19,4 +19,4 @@
 </html>
 <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
 <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
-<style>body { background: none;}</style>
+

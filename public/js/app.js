@@ -29109,10 +29109,9 @@ var render = function() {
             {
               staticStyle: {
                 "text-align": "left",
-                margin: "auto",
+                margin: "5px auto",
                 color: "black",
-                background: "rgb(250,250,250)",
-                border: "1px solid rgb(200,200,200)"
+                background: "white"
               },
               attrs: { cols: "12", sm: "12", md: "12", lg: "7", xl: "7" }
             },

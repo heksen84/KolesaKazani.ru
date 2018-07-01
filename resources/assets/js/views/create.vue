@@ -1,7 +1,7 @@
 <template>
 	<b-container fluid>
 		<b-row>
-		<b-col cols="12" sm="12" md="12" lg="7" xl="7" style="text-align:left;margin:auto;color:black;background: rgb(250,250,250); border:1px solid rgb(200,200,200)">
+		<b-col cols="12" sm="12" md="12" lg="7" xl="7" style="text-align:left;margin:5px auto;color:black;background:white">
 		<h3 style="color:rgb(120,120,120);margin-top:5px"><ins>новое объявление</ins></h3>
 		<br>
 			<b-form @submit="onSubmit">
