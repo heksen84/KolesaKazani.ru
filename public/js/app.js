@@ -28315,7 +28315,14 @@ var render = function() {
                       padding: "2px"
                     }
                   },
-                  [_vm._v("FlyMart24")]
+                  [
+                    _vm._v("FlyMart"),
+                    _c(
+                      "span",
+                      { staticStyle: { "text-decoration": "underline" } },
+                      [_vm._v("24")]
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _c(
