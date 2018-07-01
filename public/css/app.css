@@ -115,6 +115,17 @@ body {
   background: #dc7878;
 }
 
+#search_string {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 19px;
+  padding: 5px;
+  width: 80%;
+  border: 1px solid grey;
+  border-radius: 3px;
+  color: #323232;
+}
+
 .category_item {
   margin: 5px auto;
   border: 1px solid #e6e6e6;
@@ -189,7 +200,21 @@ body {
   background: #f0f0f0;
 }
 
-@media screen and (max-width: 450px) {
+#categories_row {
+  margin-top: 50px;
+}
+
+@media screen and (max-width: 990px) {
+  #categories_row {
+    margin-top: 5px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #search_string {
+    width: 100%;
+  }
+
   .result_info_col {
     text-align: center;
   }

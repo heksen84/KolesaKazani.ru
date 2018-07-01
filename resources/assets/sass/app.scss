@@ -106,6 +106,17 @@ body {
   background: rgb(220,120,120);
 }
 
+#search_string {
+  text-align:center;
+  margin-top:25px;
+  font-size:19px;
+  padding:5px;
+  width:80%;
+  border:1px solid grey;
+  border-radius:3px;
+  color:rgb(50,50,50);
+}
+
 .category_item {
   margin: 5px auto;
   border: 1px solid rgb(230,230,230);
@@ -183,8 +194,24 @@ body {
   background:rgb(240,240,240);
 }
 
-@media screen and (max-width:450px) {
-  .result_info_col {
+#categories_row {
+  margin-top:50px;
+}
+
+@media screen and (max-width:990px) {
+
+#categories_row {
+   margin-top:5px;
+}
+}
+
+@media screen and (max-width:400px) {
+
+#search_string {
+  width:100%;
+}
+  
+.result_info_col {
   text-align:center;
 }
 

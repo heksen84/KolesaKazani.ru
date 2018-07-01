@@ -28342,17 +28342,11 @@ var render = function() {
             },
             [
               _c("input", {
-                staticStyle: {
-                  "text-align": "center",
-                  "margin-top": "25px",
-                  "font-size": "19px",
-                  padding: "5px",
-                  width: "80%",
-                  border: "1px solid grey",
-                  "border-radius": "3px",
-                  color: "rgb(50,50,50)"
-                },
-                attrs: { type: "text", placeholder: "Что ищем?" }
+                attrs: {
+                  type: "text",
+                  id: "search_string",
+                  placeholder: "Что ищем?"
+                }
               }),
               _vm._v(" "),
               _c(
@@ -28384,7 +28378,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("b-row", { staticStyle: { "margin-top": "50px" } }),
+      _c("b-row", { attrs: { id: "categories_row" } }),
       _vm._v(" "),
       _vm._l(Math.ceil(Object.keys(_vm.items).length / 4), function(i) {
         return _c(
