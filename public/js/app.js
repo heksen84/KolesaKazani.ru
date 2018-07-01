@@ -29139,7 +29139,7 @@ var render = function() {
                 {
                   staticStyle: {
                     color: "rgb(130,130,130)",
-                    "margin-top": "-12px"
+                    "margin-top": "-14px"
                   }
                 },
                 [_c("ins", [_vm._v("новое объявление")])]
