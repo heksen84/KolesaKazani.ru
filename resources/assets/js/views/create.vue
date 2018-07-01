@@ -27,7 +27,7 @@
 			 <b-form-textarea id="text" v-model="form.text"
 										placeholder="Введите описание"
 										:rows="6"
-										:max-rows="6" style="background:rgb(245,245,255)">
+										:max-rows="6" style="background:rgb(240,240,250)">
 	 		 </b-form-textarea>
 			</b-form-group>
 

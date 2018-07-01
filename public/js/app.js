@@ -28346,7 +28346,7 @@ var render = function() {
                   padding: "5px",
                   width: "80%",
                   border: "1px solid grey",
-                  "border-radius": "8px",
+                  "border-radius": "3px",
                   color: "rgb(50,50,50)"
                 },
                 attrs: { type: "text", placeholder: "Что ищем?" }
@@ -29221,7 +29221,7 @@ var render = function() {
                     { attrs: { label: "Описание:", "label-for": "text" } },
                     [
                       _c("b-form-textarea", {
-                        staticStyle: { background: "rgb(245,245,255)" },
+                        staticStyle: { background: "rgb(240,240,250)" },
                         attrs: {
                           id: "text",
                           placeholder: "Введите описание",
