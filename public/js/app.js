@@ -28250,7 +28250,7 @@ var render = function() {
                   attrs: { id: "button_login" },
                   on: { click: _vm.login }
                 },
-                [_vm._v("Личный кабинет")]
+                [_vm._v("мои объявления")]
               )
             ]
           ),

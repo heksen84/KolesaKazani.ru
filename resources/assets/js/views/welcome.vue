@@ -2,7 +2,7 @@
   <b-container fluid>
     <b-row>
         <b-col style="text-align:center" v-show="auth">
-          <div class="auth_button" id="button_login" style="width:160px" @click="login">Личный кабинет</div>
+          <div class="auth_button" id="button_login" style="width:160px" @click="login">мои объявления</div>
         </b-col>
 
         <b-col style="text-align:center" v-show="!auth">
