@@ -3,7 +3,7 @@
     <b-form inline>
 
     <b-form-group label="Вид транспорта:">
-        <b-form-select v-model="selected_type_transport" class="mb-2 mr-sm-2 mb-sm-0" style="width:295px">
+        <b-form-select v-model="selected_type_transport" class="mb-2 mr-sm-2 mb-sm-0" style="width:295px" @change="selectTransportType">
            <option v-for="item in type_transport" :value="item.value">{{item.text}}</option>
         </b-form-select>
     </b-form-group>
@@ -20,7 +20,7 @@
         </b-form-select>
     </b-form-group>-->
 
-    
+
     </b-form>
   </div>
 </template>
@@ -31,14 +31,15 @@ export default {
     return 	{
         type_transport: 
         [
-          { value: 0, text: 'Легковой автомобиль' },
-          { value: 1, text: 'Грузовой автомобиль' },
-          { value: 2, text: 'Мототехника' },
-          { value: 3, text: 'Спецтехника' },
-          { value: 4, text: 'Ретро-автомобиль' },
-          { value: 5, text: 'Водный транспорт' },
-          { value: 6, text: 'Велосипед' },
-          { value: 7, text: 'Воздушный транспорт' }
+          { value: null, text: '-- Выберите вид транспорта --' },
+          { value: 1, text: 'Легковой автомобиль' },
+          { value: 2, text: 'Грузовой автомобиль' },
+          { value: 3, text: 'Мототехника' },
+          { value: 4, text: 'Спецтехника' },
+          { value: 5, text: 'Ретро-автомобиль' },
+          { value: 6, text: 'Водный транспорт' },
+          { value: 7, text: 'Велосипед' },
+          { value: 8, text: 'Воздушный транспорт' }
         ],
        helm_position: 
         [
@@ -54,7 +55,7 @@ export default {
           { value: 4, text: 'Гибрид' },
           { value: 5, text: 'Электричество' }
         ],
-        selected_type_transport: 0,
+        selected_type_transport: null,
         selected_helm_position: 0,
         selected_fuel_type: 0,
 		}
@@ -63,7 +64,11 @@ export default {
   },
   components: {},
   methods: {
-    details(event) {
+    selectTransportType(ttype) {
+      console.log(ttype);
+      switch(ttype) {
+        case 1: alert("загружаем..."); break;
+      }
     }
   }
 }
