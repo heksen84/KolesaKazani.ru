@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Adverts;
+use App\CarMark;
 use DB;
 
 class AdvertController extends Controller
 {
-     public function getAdverts() {
+    public function getAdverts() {
 	     return Adverts::all()->toJson();
     }
 
@@ -22,7 +23,8 @@ class AdvertController extends Controller
      	$category  	= $data["category"];
      	$price  	= $data["price"];
 
-     	try {
+     	try 
+     	{
      			$adverts = new Adverts();
      			$adverts->user_id   		= Auth::id();
         		$adverts->title 			= $title;
@@ -44,5 +46,9 @@ class AdvertController extends Controller
     public function getFullInfo($id) {
     	$item = DB::table('adverts')->where('id', $id)->get();
         return view('fullinfo')->with("item", $item );
+    }
+
+     public function getCarsMarks() {
+	     return CarMark::all('id_car_mark','name_rus');
     }
 }

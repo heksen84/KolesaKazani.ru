@@ -22,6 +22,7 @@ Route::get('/create', function () {
 });
 
 Route::post('/create', 'AdvertController@createAdvert');
+Route::get('/getCarsMarks', 'AdvertController@getCarsMarks' );
 
 Route::get('/category/{id}', function ($id) { 
 	$items = DB::table('adverts')->where('category_id', $id)->get();

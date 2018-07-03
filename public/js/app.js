@@ -1714,6 +1714,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1722,11 +1723,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type_transport: [{ value: null, text: '-- Выберите вид транспорта --' }, { value: 1, text: 'Легковой автомобиль' }, { value: 2, text: 'Грузовой автомобиль' }, { value: 3, text: 'Мототехника' }, { value: 4, text: 'Спецтехника' }, { value: 5, text: 'Ретро-автомобиль' }, { value: 6, text: 'Водный транспорт' }, { value: 7, text: 'Велосипед' }, { value: 8, text: 'Воздушный транспорт' }],
 
       // марки автомобилей
-      cars_marks: [],
+      carmark: [],
 
       helm_position: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
       fuel_type: [{ value: 0, text: 'Бензин' }, { value: 1, text: 'Дизель' }, { value: 2, text: 'Газ-бензин' }, { value: 3, text: 'Газ' }, { value: 4, text: 'Гибрид' }, { value: 5, text: 'Электричество' }],
       selected_type_transport: null,
+      selected_carmark: null,
       selected_helm_position: 0,
       selected_fuel_type: 0
     };
@@ -1742,8 +1744,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         // марки автомобилей
         case 1:
           {
+            this.carmark = [];
             Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsMarks').then(function (res) {
-              _this.cars_marks = res.data;
+              _this.carmark = res.data;
+              console.log(_this.this.carmark);
             }).catch(function (err) {});
             break;
           }
@@ -27951,32 +27955,43 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c(
-            "b-form-group",
-            { attrs: { label: "Марка автомобиля:" } },
-            [
-              _c(
-                "b-form-select",
-                {
-                  staticClass: "mb-2 mr-sm-2 mb-sm-0",
-                  staticStyle: { width: "295px" },
-                  model: {
-                    value: _vm.selected_helm_position,
-                    callback: function($$v) {
-                      _vm.selected_helm_position = $$v
+          _vm.carmark && _vm.selected_type_transport == 1
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Марка автомобиля:" } },
+                [
+                  _c(
+                    "b-form-select",
+                    {
+                      staticClass: "mb-2 mr-sm-2 mb-sm-0",
+                      staticStyle: { width: "295px" },
+                      model: {
+                        value: _vm.selected_carmark,
+                        callback: function($$v) {
+                          _vm.selected_carmark = $$v
+                        },
+                        expression: "selected_carmark"
+                      }
                     },
-                    expression: "selected_helm_position"
-                  }
-                },
-                _vm._l(_vm.helm_position, function(item) {
-                  return _c("option", { domProps: { value: item.value } }, [
-                    _vm._v(_vm._s(item.text))
-                  ])
-                })
+                    [
+                      _c("option", { domProps: { value: null } }, [
+                        _vm._v("-- Выберите марку автомобиля --")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.carmark, function(item) {
+                        return _c(
+                          "option",
+                          { domProps: { value: item.id_car_mark } },
+                          [_vm._v(_vm._s(item.name_rus))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ],
+                1
               )
-            ],
-            1
-          )
+            : _vm._e()
         ],
         1
       )
@@ -29136,7 +29151,7 @@ var render = function() {
                 {
                   staticStyle: {
                     color: "rgb(120,120,120)",
-                    "margin-top": "-13px"
+                    "margin-top": "-10px"
                   }
                 },
                 [_c("ins", [_vm._v("новое объявление")])]

@@ -9,9 +9,10 @@
     </b-form-group>
 
 
-    <b-form-group label="Марка автомобиля:">
-        <b-form-select v-model="selected_helm_position" class="mb-2 mr-sm-2 mb-sm-0" style="width:295px">
-           <option v-for="item in helm_position" :value="item.value">{{item.text}}</option>
+    <b-form-group label="Марка автомобиля:" v-if="carmark && selected_type_transport==1">
+        <b-form-select v-model="selected_carmark" class="mb-2 mr-sm-2 mb-sm-0" style="width:295px">
+           <option :value="null">-- Выберите марку автомобиля --</option>
+           <option v-for="item in carmark" :value="item.id_car_mark">{{item.name_rus}}</option>
         </b-form-select>
     </b-form-group>
 
@@ -51,7 +52,7 @@ export default {
         ],
 
         // марки автомобилей
-        cars_marks:[],
+        carmark:[],
 
 
        helm_position: 
@@ -69,6 +70,7 @@ export default {
           { value: 5, text: 'Электричество' }
         ],
         selected_type_transport: null,
+        selected_carmark: null,
         selected_helm_position: 0,
         selected_fuel_type: 0,
 		}
@@ -82,8 +84,10 @@ export default {
       switch(ttype) {
         // марки автомобилей
         case 1: {
+          this.carmark=[];
           get('/getCarsMarks').then((res) => {
-           this.cars_marks = res.data;
+           this.carmark = res.data;
+           console.log(this.this.carmark);
         }).catch((err) => {});
          break;
        }
