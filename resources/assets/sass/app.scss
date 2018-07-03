@@ -59,7 +59,7 @@ body {
   border: 1px solid white;
   width: 105px;
   border-radius: 5px;
-  margin: 3px auto;
+  margin: 5px auto;
   cursor:pointer;
   display: inline-block;
 }
@@ -201,6 +201,14 @@ body {
 
 @media screen and (max-width:990px) {
 
+#logo_block {
+  margin-top: 7px;
+}
+
+#search_string {
+  margin-top:7px;
+}
+
 #categories_row {
    margin-top:5px;
 }
@@ -213,15 +221,12 @@ body {
 }
 
 @media screen and (max-width:400px) {
-
 #search_string {
   width:100%;
 }
-  
 .result_info_col {
   text-align:center;
 }
-
 #addit_info {
   width:100%;
 }
