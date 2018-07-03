@@ -8,7 +8,7 @@
         </b-form-select>
     </b-form-group>
 
-    <b-form-group label="Расположение руля:">
+  <!--  <b-form-group label="Расположение руля:">
         <b-form-select v-model="selected_helm_position" class="mb-2 mr-sm-2 mb-sm-0" style="width:295px">
            <option v-for="item in helm_position" :value="item.value">{{item.text}}</option>
         </b-form-select>
@@ -18,9 +18,10 @@
         <b-form-select v-model="selected_fuel_type" class="mb-2 mr-sm-2 mb-sm-0" style="width:295px">
            <option v-for="item in fuel_type" :value="item.value">{{item.text}}</option>
         </b-form-select>
-    </b-form-group>
-    </b-form>
+    </b-form-group>-->
 
+    
+    </b-form>
   </div>
 </template>
 

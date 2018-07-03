@@ -1705,6 +1705,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -27915,63 +27916,6 @@ var render = function() {
                   }
                 },
                 _vm._l(_vm.type_transport, function(item) {
-                  return _c("option", { domProps: { value: item.value } }, [
-                    _vm._v(_vm._s(item.text))
-                  ])
-                })
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-form-group",
-            { attrs: { label: "Расположение руля:" } },
-            [
-              _c(
-                "b-form-select",
-                {
-                  staticClass: "mb-2 mr-sm-2 mb-sm-0",
-                  staticStyle: { width: "295px" },
-                  model: {
-                    value: _vm.selected_helm_position,
-                    callback: function($$v) {
-                      _vm.selected_helm_position = $$v
-                    },
-                    expression: "selected_helm_position"
-                  }
-                },
-                _vm._l(_vm.helm_position, function(item) {
-                  return _c("option", { domProps: { value: item.value } }, [
-                    _vm._v(_vm._s(item.text))
-                  ])
-                })
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-form-group",
-            {
-              staticStyle: { "margin-top": "8px" },
-              attrs: { label: "Тип двигателя:" }
-            },
-            [
-              _c(
-                "b-form-select",
-                {
-                  staticClass: "mb-2 mr-sm-2 mb-sm-0",
-                  staticStyle: { width: "295px" },
-                  model: {
-                    value: _vm.selected_fuel_type,
-                    callback: function($$v) {
-                      _vm.selected_fuel_type = $$v
-                    },
-                    expression: "selected_fuel_type"
-                  }
-                },
-                _vm._l(_vm.fuel_type, function(item) {
                   return _c("option", { domProps: { value: item.value } }, [
                     _vm._v(_vm._s(item.text))
                   ])
