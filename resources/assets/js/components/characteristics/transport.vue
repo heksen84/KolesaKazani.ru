@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { post, get, interceptors } from '../../helpers/api'
 export default {
   data () {
     return 	{
@@ -50,7 +51,7 @@ export default {
         ],
 
         // марки автомобилей
-        car_marks:[],
+        cars_marks:[],
 
 
        helm_position: 
@@ -77,9 +78,15 @@ export default {
   components: {},
   methods: {
     selectTransportType(ttype) {
-      console.log(ttype);
+      
       switch(ttype) {
-        case 1: alert("загружаем..."); break;
+        // марки автомобилей
+        case 1: {
+          get('/getCarsMarks').then((res) => {
+           this.cars_marks = res.data;
+        }).catch((err) => {});
+         break;
+       }
       }
     }
   }

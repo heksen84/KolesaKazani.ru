@@ -1679,6 +1679,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
 //
 //
 //
@@ -1713,6 +1714,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1720,7 +1722,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type_transport: [{ value: null, text: '-- Выберите вид транспорта --' }, { value: 1, text: 'Легковой автомобиль' }, { value: 2, text: 'Грузовой автомобиль' }, { value: 3, text: 'Мототехника' }, { value: 4, text: 'Спецтехника' }, { value: 5, text: 'Ретро-автомобиль' }, { value: 6, text: 'Водный транспорт' }, { value: 7, text: 'Велосипед' }, { value: 8, text: 'Воздушный транспорт' }],
 
       // марки автомобилей
-      car_marks: [],
+      cars_marks: [],
 
       helm_position: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
       fuel_type: [{ value: 0, text: 'Бензин' }, { value: 1, text: 'Дизель' }, { value: 2, text: 'Газ-бензин' }, { value: 3, text: 'Газ' }, { value: 4, text: 'Гибрид' }, { value: 5, text: 'Электричество' }],
@@ -1734,10 +1736,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   components: {},
   methods: {
     selectTransportType: function selectTransportType(ttype) {
-      console.log(ttype);
+      var _this = this;
+
       switch (ttype) {
+        // марки автомобилей
         case 1:
-          alert("загружаем...");break;
+          {
+            Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsMarks').then(function (res) {
+              _this.cars_marks = res.data;
+            }).catch(function (err) {});
+            break;
+          }
       }
     }
   }
@@ -2384,7 +2393,6 @@ function num2str(n, text_forms) {
       var _this = this;
 
       console.log(this.filters);
-
       Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])('/getSearchData', { "data": this.filters }).then(function (res) {
         console.log(res.data);
         _this.items = res.data;

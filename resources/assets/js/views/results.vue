@@ -147,8 +147,8 @@ export default {
 				this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
   			},
   			getSearchData() {
-  				console.log(this.filters);
 
+  				console.log(this.filters);
   				get('/getSearchData', { "data": this.filters } ).then((res) => {
   					console.log(res.data);
 					this.items=res.data;
