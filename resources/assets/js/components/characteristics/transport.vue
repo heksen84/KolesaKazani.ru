@@ -8,6 +8,13 @@
         </b-form-select>
     </b-form-group>
 
+
+    <b-form-group label="Марка автомобиля:">
+        <b-form-select v-model="selected_helm_position" class="mb-2 mr-sm-2 mb-sm-0" style="width:295px">
+           <option v-for="item in helm_position" :value="item.value">{{item.text}}</option>
+        </b-form-select>
+    </b-form-group>
+
   <!--  <b-form-group label="Расположение руля:">
         <b-form-select v-model="selected_helm_position" class="mb-2 mr-sm-2 mb-sm-0" style="width:295px">
            <option v-for="item in helm_position" :value="item.value">{{item.text}}</option>
@@ -41,6 +48,11 @@ export default {
           { value: 7, text: 'Велосипед' },
           { value: 8, text: 'Воздушный транспорт' }
         ],
+
+        // марки автомобилей
+        car_marks:[],
+
+
        helm_position: 
         [
           { value: 0, text: 'Справа' },
