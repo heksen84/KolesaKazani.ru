@@ -1748,13 +1748,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   components: {},
   methods: {
+
+    /*
+    -----------------------------
+      Вид транспорта
+    -----------------------------*/
     selectTransportType: function selectTransportType(ttype) {
       var _this = this;
 
       switch (ttype) {
-        // марки автомобилей
         case 1:
           {
+            // автомобили
             this.carmark = [];
             Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsMarks').then(function (res) {
               _this.carmark = res.data;
