@@ -1769,19 +1769,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
       }
     },
+
+
+    // change марки
     selectMark: function selectMark(markType) {
-      alert(markType);
+      this.models = [];
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsModels').then(function (res) {}).catch(function (err) {});
     },
+
+
+    // change модели
     selectModel: function selectModel(ttype) {
       switch (ttype) {
         // марки автомобилей
         case 1:
           {
             this.carmark = [];
-            Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsModels').then(function (res) {
-              //this.carmark = res.data;
-              //console.log(this.this.carmark);
-            }).catch(function (err) {});
+            Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsModels').then(function (res) {}).catch(function (err) {});
             break;
           }
       }

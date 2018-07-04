@@ -109,18 +109,24 @@ export default {
       }
     },
 
-    selectMark(markType) {
-      alert(markType)
+    // change марки
+    selectMark(markType) 
+    {
+      this.models=[];
+          get('/getCarsModels').then((res) => {
+        }).catch((err) => {});
     },
 
-     selectModel(ttype) {
-      switch(ttype) {
+      // change модели
+     selectModel(ttype) 
+     {
+      switch(ttype) 
+      {
         // марки автомобилей
-        case 1: {
+        case 1: 
+        {
           this.carmark=[];
           get('/getCarsModels').then((res) => {
-           //this.carmark = res.data;
-           //console.log(this.this.carmark);
         }).catch((err) => {});
          break;
        }
