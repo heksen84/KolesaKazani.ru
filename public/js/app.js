@@ -1764,6 +1764,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
       }
     },
+    selectMark: function selectMark(ttype) {
+      alert("123");
+    },
     selectModel: function selectModel(ttype) {
       switch (ttype) {
         // марки автомобилей
@@ -27990,6 +27993,7 @@ var render = function() {
                     {
                       staticClass: "mb-2 mr-sm-2 mb-sm-2",
                       staticStyle: { width: "298px" },
+                      on: { change: _vm.selectMark },
                       model: {
                         value: _vm.selected_carmark,
                         callback: function($$v) {
@@ -28028,6 +28032,7 @@ var render = function() {
                     {
                       staticClass: "mb-2 mr-sm-2 mb-sm-2",
                       staticStyle: { width: "298px" },
+                      on: { change: _vm.selectModel },
                       model: {
                         value: _vm.selected_model,
                         callback: function($$v) {
