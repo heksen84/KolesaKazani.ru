@@ -27944,7 +27944,7 @@ var render = function() {
                 "b-form-select",
                 {
                   staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                  staticStyle: { width: "295px" },
+                  staticStyle: { width: "298px" },
                   on: { change: _vm.selectTransportType },
                   model: {
                     value: _vm.selected_type_transport,
@@ -27973,7 +27973,7 @@ var render = function() {
                     "b-form-select",
                     {
                       staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                      staticStyle: { width: "295px" },
+                      staticStyle: { width: "298px" },
                       model: {
                         value: _vm.selected_carmark,
                         callback: function($$v) {
@@ -28011,7 +28011,7 @@ var render = function() {
                     "b-form-select",
                     {
                       staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                      staticStyle: { width: "295px" },
+                      staticStyle: { width: "298px" },
                       model: {
                         value: _vm.selected_carmark,
                         callback: function($$v) {
@@ -29241,7 +29241,7 @@ var render = function() {
                   _c(
                     "b-form-group",
                     {
-                      staticStyle: { "margin-top": "30px", width: "290px" },
+                      staticStyle: { "margin-top": "30px", width: "298px" },
                       attrs: {
                         label: "Категория товара или услуги:",
                         "label-for": "categories"

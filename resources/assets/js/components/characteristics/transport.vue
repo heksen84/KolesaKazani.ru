@@ -4,14 +4,14 @@
 
 
     <b-form-group label="Вид транспорта:">
-        <b-form-select v-model="selected_type_transport" class="mb-2 mr-sm-2 mb-sm-2" style="width:295px" @change="selectTransportType">
+        <b-form-select v-model="selected_type_transport" class="mb-2 mr-sm-2 mb-sm-2" style="width:298px" @change="selectTransportType">
            <option v-for="item in type_transport" :value="item.value">{{item.text}}</option>
         </b-form-select>
     </b-form-group>
 
 
     <b-form-group label="Марка автомобиля:" v-if="carmark && selected_type_transport==1">
-        <b-form-select v-model="selected_carmark" class="mb-2 mr-sm-2 mb-sm-2" style="width:295px">
+        <b-form-select v-model="selected_carmark" class="mb-2 mr-sm-2 mb-sm-2" style="width:298px">
            <option :value="null">-- Выберите марку автомобиля --</option>
            <option v-for="item in carmark" :value="item.id_car_mark">{{item.name_rus}}</option>
         </b-form-select>
@@ -19,7 +19,7 @@
 
 
     <b-form-group label="Модель:" v-if="carmark && selected_type_transport==1">
-        <b-form-select v-model="selected_carmark" class="mb-2 mr-sm-2 mb-sm-2" style="width:295px">
+        <b-form-select v-model="selected_carmark" class="mb-2 mr-sm-2 mb-sm-2" style="width:298px">
            <option :value="null">-- Выберите модель автомобиля --</option>
            <option v-for="item in carmark" :value="item.id_car_mark">{{item.name_rus}}</option>
         </b-form-select>
