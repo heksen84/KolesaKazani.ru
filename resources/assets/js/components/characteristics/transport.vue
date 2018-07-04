@@ -19,9 +19,9 @@
 
 
     <b-form-group label="Модель:" v-if="carmark && selected_type_transport==1">
-        <b-form-select v-model="selected_carmark" class="mb-2 mr-sm-2 mb-sm-2" style="width:298px">
+        <b-form-select v-model="selected_model" class="mb-2 mr-sm-2 mb-sm-2" style="width:298px">
            <option :value="null">-- Выберите модель автомобиля --</option>
-           <option v-for="item in carmark" :value="item.id_car_mark">{{item.name_rus}}</option>
+           <option v-for="item in models" :value="item.id_car_model">{{item.name_rus}}</option>
         </b-form-select>
     </b-form-group>
 
@@ -62,6 +62,7 @@ export default {
 
         // марки автомобилей
         carmark:[],
+        models:[],
 
 
        helm_position: 
@@ -80,6 +81,7 @@ export default {
         ],
         selected_type_transport: null,
         selected_carmark: null,
+        selected_model: null,
         selected_helm_position: 0,
         selected_fuel_type: 0,
 		}

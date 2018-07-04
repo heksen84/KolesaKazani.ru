@@ -1733,11 +1733,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       // марки автомобилей
       carmark: [],
+      models: [],
 
       helm_position: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
       fuel_type: [{ value: 0, text: 'Бензин' }, { value: 1, text: 'Дизель' }, { value: 2, text: 'Газ-бензин' }, { value: 3, text: 'Газ' }, { value: 4, text: 'Гибрид' }, { value: 5, text: 'Электричество' }],
       selected_type_transport: null,
       selected_carmark: null,
+      selected_model: null,
       selected_helm_position: 0,
       selected_fuel_type: 0
     };
@@ -28013,11 +28015,11 @@ var render = function() {
                       staticClass: "mb-2 mr-sm-2 mb-sm-2",
                       staticStyle: { width: "298px" },
                       model: {
-                        value: _vm.selected_carmark,
+                        value: _vm.selected_model,
                         callback: function($$v) {
-                          _vm.selected_carmark = $$v
+                          _vm.selected_model = $$v
                         },
-                        expression: "selected_carmark"
+                        expression: "selected_model"
                       }
                     },
                     [
@@ -28025,10 +28027,10 @@ var render = function() {
                         _vm._v("-- Выберите модель автомобиля --")
                       ]),
                       _vm._v(" "),
-                      _vm._l(_vm.carmark, function(item) {
+                      _vm._l(_vm.models, function(item) {
                         return _c(
                           "option",
-                          { domProps: { value: item.id_car_mark } },
+                          { domProps: { value: item.id_car_model } },
                           [_vm._v(_vm._s(item.name_rus))]
                         )
                       })
