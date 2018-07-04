@@ -91,22 +91,26 @@ export default {
   components: {},
   methods: {
 
+    /*
+    -----------------------------
+      Вид транспорта
+    -----------------------------*/
     selectTransportType(ttype) {
       switch(ttype) {
-        // марки автомобилей
-        case 1: {
+        case 1: 
+        {  // автомобили
           this.carmark=[];
           get('/getCarsMarks').then((res) => {
-           this.carmark = res.data;
-           console.log(this.this.carmark);
+            this.carmark = res.data;
+            console.log(this.this.carmark);
         }).catch((err) => {});
-         break;
+        break;
        }
       }
     },
 
-    selectMark(ttype) {
-      alert("123")
+    selectMark(markType) {
+      alert(markType)
     },
 
      selectModel(ttype) {

@@ -1764,8 +1764,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
       }
     },
-    selectMark: function selectMark(ttype) {
-      alert("123");
+    selectMark: function selectMark(markType) {
+      alert(markType);
     },
     selectModel: function selectModel(ttype) {
       switch (ttype) {
