@@ -1715,6 +1715,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27925,7 +27934,7 @@ var render = function() {
     [
       _c(
         "b-form",
-        { attrs: { inline: "" } },
+        { staticStyle: { "margin-top": "-12px" }, attrs: { inline: "" } },
         [
           _c(
             "b-form-group",
@@ -27934,7 +27943,7 @@ var render = function() {
               _c(
                 "b-form-select",
                 {
-                  staticClass: "mb-2 mr-sm-2 mb-sm-0",
+                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
                   staticStyle: { width: "295px" },
                   on: { change: _vm.selectTransportType },
                   model: {
@@ -27963,7 +27972,7 @@ var render = function() {
                   _c(
                     "b-form-select",
                     {
-                      staticClass: "mb-2 mr-sm-2 mb-sm-0",
+                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
                       staticStyle: { width: "295px" },
                       model: {
                         value: _vm.selected_carmark,
@@ -27976,6 +27985,44 @@ var render = function() {
                     [
                       _c("option", { domProps: { value: null } }, [
                         _vm._v("-- Выберите марку автомобиля --")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.carmark, function(item) {
+                        return _c(
+                          "option",
+                          { domProps: { value: item.id_car_mark } },
+                          [_vm._v(_vm._s(item.name_rus))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.carmark && _vm.selected_type_transport == 1
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Модель:" } },
+                [
+                  _c(
+                    "b-form-select",
+                    {
+                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                      staticStyle: { width: "295px" },
+                      model: {
+                        value: _vm.selected_carmark,
+                        callback: function($$v) {
+                          _vm.selected_carmark = $$v
+                        },
+                        expression: "selected_carmark"
+                      }
+                    },
+                    [
+                      _c("option", { domProps: { value: null } }, [
+                        _vm._v("-- Выберите модель автомобиля --")
                       ]),
                       _vm._v(" "),
                       _vm._l(_vm.carmark, function(item) {
@@ -29128,10 +29175,9 @@ var render = function() {
             {
               staticStyle: {
                 "text-align": "left",
-                margin: "0px auto",
+                margin: "auto",
                 color: "black",
-                background: "white",
-                opacity: "1"
+                background: "white"
               },
               attrs: { cols: "12", sm: "12", md: "12", lg: "7", xl: "7" }
             },
