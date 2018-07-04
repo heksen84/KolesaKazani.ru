@@ -90,8 +90,8 @@ export default {
   },
   components: {},
   methods: {
+    
     selectTransportType(ttype) {
-      
       switch(ttype) {
         // марки автомобилей
         case 1: {
@@ -99,6 +99,20 @@ export default {
           get('/getCarsMarks').then((res) => {
            this.carmark = res.data;
            console.log(this.this.carmark);
+        }).catch((err) => {});
+         break;
+       }
+      }
+    },
+
+     selectModel(ttype) {
+      switch(ttype) {
+        // марки автомобилей
+        case 1: {
+          this.carmark=[];
+          get('/getCarsModels').then((res) => {
+           //this.carmark = res.data;
+           //console.log(this.this.carmark);
         }).catch((err) => {});
          break;
        }
