@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Adverts;
 use App\CarMark;
+use App\CarModel;
 use DB;
 
 class AdvertController extends Controller
@@ -52,8 +53,8 @@ class AdvertController extends Controller
 	     return CarMark::all('id_car_mark','name_rus');
     }
 
-     public function getCarsModels() {
-	     //return CarMark::all('id_car_mark','name_rus');
-     	return "asdas";
+     public function getCarsModels(Request $request) {
+     	return DB::table('car_model')->where('id_car_mark', $request->mark_id )->get();
+     	//return "asd";
     }
 }
