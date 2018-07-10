@@ -28047,7 +28047,7 @@ var render = function() {
                     },
                     [
                       _c("option", { domProps: { value: null } }, [
-                        _vm._v("-- Выберите модель автомобиля --")
+                        _vm._v("-- Выберите модель --")
                       ]),
                       _vm._v(" "),
                       _vm._l(_vm.models, function(item) {
