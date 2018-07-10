@@ -1757,6 +1757,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       switch (ttype) {
+
         case 1:
           {
             // автомобили
@@ -1773,8 +1774,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     // change марки
     selectMark: function selectMark(markType) {
+
+      alert(markType);
+
       this.models = [];
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsModels').then(function (res) {}).catch(function (err) {});
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsModels', { "data": markType }).then(function (res) {
+
+        console.log(res);
+      }).catch(function (err) {});
     },
 
 

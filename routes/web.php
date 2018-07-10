@@ -22,7 +22,10 @@ Route::get('/create', function () {
 });
 
 Route::post('/create', 'AdvertController@createAdvert');
-Route::get('/getCarsMarks', 'AdvertController@getCarsMarks' );
+
+
+Route::get('/getCarsMarks',  'AdvertController@getCarsMarks' );
+Route::get('/getCarsModels', 'AdvertController@getCarsModels' );
 
 Route::get('/category/{id}', function ($id) { 
 	$items = DB::table('adverts')->where('category_id', $id)->get();

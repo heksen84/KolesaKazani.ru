@@ -64,7 +64,6 @@ export default {
         carmark:[],
         models:[],
 
-
        helm_position: 
         [
           { value: 0, text: 'Справа' },
@@ -96,9 +95,10 @@ export default {
       Вид транспорта
     -----------------------------*/
     selectTransportType(ttype) {
+
       switch(ttype) {
-        case 1: 
-        {  // автомобили
+
+        case 1: {  // автомобили
           this.carmark=[];
           get('/getCarsMarks').then((res) => {
             this.carmark = res.data;
@@ -112,8 +112,14 @@ export default {
     // change марки
     selectMark(markType) 
     {
+
+      alert(markType);
+
       this.models=[];
-          get('/getCarsModels').then((res) => {
+          get('/getCarsModels', { "data": markType } ).then((res) => {
+            
+            console.log(res);
+
         }).catch((err) => {});
     },
 

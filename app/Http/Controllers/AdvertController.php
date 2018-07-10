@@ -51,4 +51,9 @@ class AdvertController extends Controller
      public function getCarsMarks() {
 	     return CarMark::all('id_car_mark','name_rus');
     }
+
+     public function getCarsModels() {
+	     //return CarMark::all('id_car_mark','name_rus');
+     	return "asdas";
+    }
 }
