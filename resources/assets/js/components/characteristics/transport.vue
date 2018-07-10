@@ -114,14 +114,10 @@ export default {
 
     // change марки
     selectMark(markType) {
-
-      alert(markType);
-
-      this.models=[];
           get('/getCarsModels?mark_id='+markType).then((res) => {
-            
-            console.log(res);
-
+            this.models=[];
+            this.models = res.data;
+            this.form.selected_model=null;
         }).catch((err) => {
           console.log(err);
         });

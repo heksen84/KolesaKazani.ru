@@ -1777,13 +1777,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     // change марки
     selectMark: function selectMark(markType) {
+      var _this2 = this;
 
-      alert(markType);
-
-      this.models = [];
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsModels?mark_id=' + markType).then(function (res) {
-
-        console.log(res);
+        _this2.models = [];
+        _this2.models = res.data;
+        _this2.form.selected_model = null;
       }).catch(function (err) {
         console.log(err);
       });

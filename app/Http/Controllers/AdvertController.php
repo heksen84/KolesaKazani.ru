@@ -55,6 +55,5 @@ class AdvertController extends Controller
 
      public function getCarsModels(Request $request) {
      	return DB::table('car_model')->where('id_car_mark', $request->mark_id )->get();
-     	//return "asd";
     }
 }
