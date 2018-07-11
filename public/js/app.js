@@ -2539,8 +2539,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     search: function search(event) {
       window.location = '/search';
     },
-    createAdvert: function createAdvert(event) {
-      window.location = '/create';
+    newAdvert: function newAdvert(event) {
+      window.location = '/new';
     },
     searchInCategory: function searchInCategory(event) {
       window.location = '/category/' + event.target.id;
@@ -28460,7 +28460,7 @@ var render = function() {
                 "div",
                 {
                   attrs: { id: "new_advert_block" },
-                  on: { click: _vm.createAdvert }
+                  on: { click: _vm.newAdvert }
                 },
                 [_c("b", [_vm._v("+")]), _vm._v(" добавить объявление")]
               )

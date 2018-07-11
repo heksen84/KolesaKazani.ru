@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Adverts;
 use App\CarMark;
 use App\CarModel;
+use App\Categories;
 use DB;
 
 class AdvertController extends Controller
@@ -15,7 +16,11 @@ class AdvertController extends Controller
 	     return Adverts::all()->toJson();
     }
 
-     public function createAdvert(Request $request) {
+ 	public function newAdvert() {
+ 		return Auth::user()? view('create')->with( "items", Categories::all() ) : view('auth\login');
+ 	}
+
+    public function createAdvert(Request $request) {
      	 
      	$data = $request->input('data');
 
@@ -24,8 +29,7 @@ class AdvertController extends Controller
      	$category  	= $data["category"];
      	$price  	= $data["price"];
 
-     	try 
-     	{
+     	try {
      			$adverts = new Adverts();
      			$adverts->user_id   		= Auth::id();
         		$adverts->title 			= $title;

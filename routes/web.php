@@ -1,10 +1,5 @@
 <?php
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Categories;
-use App\Adverts;
-
-// перекинуть лишнее в контроллер
 
 Auth::routes();
 
@@ -15,15 +10,8 @@ Route::get('/home/{advert_id}', 'HomeController@index')->name('home');
 Route::get('/newtrip', function () { return view('newtrip'); });
 Route::get('/categories', 'CategoriesController@index');
 Route::get('/search', function () { return view('search')->with("items", "123");});
-
-Route::get('/create', function () { 
-	// сдесь можно выдрать данные из сессии и передать их
-	return Auth::user()? view('create')->with( "items", Categories::all() ) : view('auth\login'); 
-});
-
+Route::get('/new', 'AdvertController@newAdvert');
 Route::post('/create', 'AdvertController@createAdvert');
-
-
 Route::get('/getCarsMarks',  'AdvertController@getCarsMarks' );
 Route::get('/getCarsModels', 'AdvertController@getCarsModels' );
 
