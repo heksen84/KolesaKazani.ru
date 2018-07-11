@@ -1724,6 +1724,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -28064,7 +28071,20 @@ var render = function() {
                 ],
                 1
               )
-            : _vm._e()
+            : _vm._e(),
+          _vm._v(" "),
+          _c("li", [_vm._v("год выпуска")]),
+          _c("br"),
+          _vm._v(" "),
+          _c("li", [_vm._v("положение руля")]),
+          _c("br"),
+          _vm._v(" "),
+          _c("li", [_vm._v("вид топлива"), _c("br")]),
+          _c("li", [_vm._v("растаможен")]),
+          _c("br"),
+          _vm._v(" "),
+          _c("li", [_vm._v("пробег")]),
+          _c("br")
         ],
         1
       )

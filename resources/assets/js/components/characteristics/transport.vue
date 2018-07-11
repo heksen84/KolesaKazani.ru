@@ -25,6 +25,13 @@
         </b-form-select>
     </b-form-group>
 
+    <li>год выпуска</li><br>
+    <li>положение руля</li><br>
+    <li>вид топлива</li5><br>
+    <li>растаможен</li><br>
+    <li>пробег</li><br>
+   
+
   <!--  <b-form-group label="Расположение руля:">
         <b-form-select v-model="selected_helm_position" class="mb-2 mr-sm-2 mb-sm-0" style="width:295px">
            <option v-for="item in helm_position" :value="item.value">{{item.text}}</option>
