@@ -4,22 +4,22 @@
 
 
     <b-form-group label="Вид транспорта:">
-        <b-form-select v-model="form.selected_type_transport" class="mb-2 mr-sm-2 mb-sm-2" style="width:298px" @change="selectTransportType">
+        <b-form-select v-model="selected.type_transport" class="mb-2 mr-sm-2 mb-sm-2" style="width:298px" @change="selectTransportType">
            <option v-for="item in type_transport" :value="item.value">{{item.text}}</option>
         </b-form-select>
     </b-form-group>
 
 
-    <b-form-group label="Марка автомобиля:" v-if="carmark && form.selected_type_transport==1">
-        <b-form-select v-model="form.selected_carmark" class="mb-2 mr-sm-2 mb-sm-2" style="width:298px" @change="selectMark">
+    <b-form-group label="Марка автомобиля:" v-if="carmark && selected.type_transport==1">
+        <b-form-select v-model="selected.carmark" class="mb-2 mr-sm-2 mb-sm-2" style="width:298px" @change="selectMark">
            <option :value="null">-- Выберите марку автомобиля --</option>
            <option v-for="item in carmark" :value="item.id_car_mark">{{item.name_rus}}</option>
         </b-form-select>
     </b-form-group>
 
 
-    <b-form-group label="Модель:" v-if="carmark && form.selected_type_transport==1">
-        <b-form-select v-model="form.selected_model" class="mb-2 mr-sm-2 mb-sm-2" style="width:298px">
+    <b-form-group label="Модель:" v-if="carmark && selected.type_transport==1">
+        <b-form-select v-model="selected.model" class="mb-2 mr-sm-2 mb-sm-2" style="width:298px">
            <option :value="null">-- Выберите модель --</option>
            <option v-for="item in models" :value="item.id_car_model">{{item.name_rus}}</option>
         </b-form-select>
@@ -69,6 +69,7 @@ export default {
           { value: 0, text: 'Справа' },
           { value: 1, text: 'Слева' }
         ],
+        
         fuel_type: 
         [
           { value: 0, text: 'Бензин' },
@@ -79,12 +80,12 @@ export default {
           { value: 5, text: 'Электричество' }
         ],
 
-        form: {
-        selected_type_transport: null,
-        selected_carmark: null,
-        selected_model: null,
-        selected_helm_position: 0,
-        selected_fuel_type: 0
+        selected: {
+          type_transport: null,
+          carmark: null,
+          model: null,
+          helm_position: 0,
+          fuel_type: 0
       }
 		}
 	},
@@ -117,7 +118,7 @@ export default {
           get('/getCarsModels?mark_id='+markType).then((res) => {
             this.models=[];
             this.models = res.data;
-            this.form.selected_model=null;
+            this.selected.model=null;
         }).catch((err) => {
           console.log(err);
         });

@@ -1736,14 +1736,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       models: [],
 
       helm_position: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
+
       fuel_type: [{ value: 0, text: 'Бензин' }, { value: 1, text: 'Дизель' }, { value: 2, text: 'Газ-бензин' }, { value: 3, text: 'Газ' }, { value: 4, text: 'Гибрид' }, { value: 5, text: 'Электричество' }],
 
-      form: {
-        selected_type_transport: null,
-        selected_carmark: null,
-        selected_model: null,
-        selected_helm_position: 0,
-        selected_fuel_type: 0
+      selected: {
+        type_transport: null,
+        carmark: null,
+        model: null,
+        helm_position: 0,
+        fuel_type: 0
       }
     };
   },
@@ -1782,7 +1783,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsModels?mark_id=' + markType).then(function (res) {
         _this2.models = [];
         _this2.models = res.data;
-        _this2.form.selected_model = null;
+        _this2.selected.model = null;
       }).catch(function (err) {
         console.log(err);
       });
@@ -27971,11 +27972,11 @@ var render = function() {
                   staticStyle: { width: "298px" },
                   on: { change: _vm.selectTransportType },
                   model: {
-                    value: _vm.form.selected_type_transport,
+                    value: _vm.selected.type_transport,
                     callback: function($$v) {
-                      _vm.$set(_vm.form, "selected_type_transport", $$v)
+                      _vm.$set(_vm.selected, "type_transport", $$v)
                     },
-                    expression: "form.selected_type_transport"
+                    expression: "selected.type_transport"
                   }
                 },
                 _vm._l(_vm.type_transport, function(item) {
@@ -27988,7 +27989,7 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _vm.carmark && _vm.form.selected_type_transport == 1
+          _vm.carmark && _vm.selected.type_transport == 1
             ? _c(
                 "b-form-group",
                 { attrs: { label: "Марка автомобиля:" } },
@@ -28000,11 +28001,11 @@ var render = function() {
                       staticStyle: { width: "298px" },
                       on: { change: _vm.selectMark },
                       model: {
-                        value: _vm.form.selected_carmark,
+                        value: _vm.selected.carmark,
                         callback: function($$v) {
-                          _vm.$set(_vm.form, "selected_carmark", $$v)
+                          _vm.$set(_vm.selected, "carmark", $$v)
                         },
-                        expression: "form.selected_carmark"
+                        expression: "selected.carmark"
                       }
                     },
                     [
@@ -28027,7 +28028,7 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.carmark && _vm.form.selected_type_transport == 1
+          _vm.carmark && _vm.selected.type_transport == 1
             ? _c(
                 "b-form-group",
                 { attrs: { label: "Модель:" } },
@@ -28038,11 +28039,11 @@ var render = function() {
                       staticClass: "mb-2 mr-sm-2 mb-sm-2",
                       staticStyle: { width: "298px" },
                       model: {
-                        value: _vm.form.selected_model,
+                        value: _vm.selected.model,
                         callback: function($$v) {
-                          _vm.$set(_vm.form, "selected_model", $$v)
+                          _vm.$set(_vm.selected, "model", $$v)
                         },
-                        expression: "form.selected_model"
+                        expression: "selected.model"
                       }
                     },
                     [
