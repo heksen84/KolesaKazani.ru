@@ -29264,7 +29264,7 @@ var render = function() {
                   _c(
                     "b-form-group",
                     {
-                      staticStyle: { width: "270px", "margin-top": "-10px" },
+                      staticStyle: { width: "270px", "margin-top": "-5px" },
                       attrs: {
                         label: "Вид сделки:",
                         "label-for": "default_group"
