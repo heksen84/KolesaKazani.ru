@@ -23,13 +23,17 @@
            <option :value="null">-- Выберите модель --</option>
            <option v-for="item in models" :value="item.id_car_model">{{item.name_rus}}</option>
         </b-form-select>
-    </b-form-group>
 
-    <li>год выпуска</li><br>
+
+        <li>год выпуска</li><br>
     <li>положение руля</li><br>
     <li>вид топлива</li5><br>
     <li>растаможен</li><br>
     <li>пробег</li><br>
+    
+    </b-form-group>
+
+    
    
 
   <!--  <b-form-group label="Расположение руля:">
