@@ -29249,7 +29249,7 @@ var render = function() {
                 {
                   staticStyle: {
                     color: "rgb(120,120,120)",
-                    "margin-top": "-10px"
+                    "margin-top": "-28px"
                   }
                 },
                 [_c("ins", [_vm._v("новое объявление")])]
@@ -29264,7 +29264,7 @@ var render = function() {
                   _c(
                     "b-form-group",
                     {
-                      staticStyle: { width: "270px" },
+                      staticStyle: { width: "270px", "margin-top": "-10px" },
                       attrs: {
                         label: "Вид сделки:",
                         "label-for": "default_group"
