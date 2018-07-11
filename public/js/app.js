@@ -1735,6 +1735,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -28071,20 +28072,24 @@ var render = function() {
                       })
                     ],
                     2
-                  ),
-                  _vm._v(" "),
-                  _c("li", [_vm._v("год выпуска")]),
-                  _vm._v(" "),
-                  _c("li", [_vm._v("положение руля")]),
-                  _vm._v(" "),
-                  _c("li", [_vm._v("вид топлива")]),
-                  _vm._v(" "),
-                  _c("li", [_vm._v("растаможен")]),
-                  _vm._v(" "),
-                  _c("li", [_vm._v("пробег")])
+                  )
                 ],
                 1
               )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.selected.model != null
+            ? _c("b-form-group", { staticStyle: { width: "100%" } }, [
+                _c("li", [_vm._v("год выпуска")]),
+                _vm._v(" "),
+                _c("li", [_vm._v("положение руля")]),
+                _vm._v(" "),
+                _c("li", [_vm._v("вид топлива")]),
+                _vm._v(" "),
+                _c("li", [_vm._v("растаможен")]),
+                _vm._v(" "),
+                _c("li", [_vm._v("пробег")])
+              ])
             : _vm._e()
         ],
         1
