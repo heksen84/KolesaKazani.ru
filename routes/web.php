@@ -15,6 +15,7 @@ Route::post('/create', 'AdvertController@createAdvert');
 Route::get('/getCarsMarks',  'AdvertController@getCarsMarks' );
 Route::get('/getCarsModels', 'AdvertController@getCarsModels' );
 
+// перенести в контроллер Categories
 Route::get('/category/{id}', function ($id) { 
 	$items = DB::table('adverts')->where('category_id', $id)->get();
 	return view('results')->with("items", $items )->with("category_id", $id ); 
