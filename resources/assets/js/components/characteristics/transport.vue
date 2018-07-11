@@ -18,19 +18,19 @@
     </b-form-group>
 
 
-    <b-form-group label="Модель:" v-if="carmark && selected.type_transport==1">
+    <b-form-group label="Модель:" v-if="selected.carmark!=null">
         <b-form-select v-model="selected.model" class="mb-2 mr-sm-2 mb-sm-2" style="width:298px">
            <option :value="null">-- Выберите модель --</option>
            <option v-for="item in models" :value="item.id_car_model">{{item.name_rus}}</option>
         </b-form-select>
 
 
-        <li>год выпуска</li><br>
-    <li>положение руля</li><br>
-    <li>вид топлива</li5><br>
-    <li>растаможен</li><br>
-    <li>пробег</li><br>
-    
+    <li>год выпуска</li>
+    <li>положение руля</li>
+    <li>вид топлива</li>
+    <li>растаможен</li>
+    <li>пробег</li>
+
     </b-form-group>
 
     

@@ -28039,7 +28039,7 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.carmark && _vm.selected.type_transport == 1
+          _vm.selected.carmark != null
             ? _c(
                 "b-form-group",
                 { attrs: { label: "Модель:" } },
@@ -28074,17 +28074,14 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("li", [_vm._v("год выпуска")]),
-                  _c("br"),
                   _vm._v(" "),
                   _c("li", [_vm._v("положение руля")]),
-                  _c("br"),
                   _vm._v(" "),
-                  _c("li", [_vm._v("вид топлива"), _c("br")]),
+                  _c("li", [_vm._v("вид топлива")]),
+                  _vm._v(" "),
                   _c("li", [_vm._v("растаможен")]),
-                  _c("br"),
                   _vm._v(" "),
-                  _c("li", [_vm._v("пробег")]),
-                  _c("br")
+                  _c("li", [_vm._v("пробег")])
                 ],
                 1
               )
