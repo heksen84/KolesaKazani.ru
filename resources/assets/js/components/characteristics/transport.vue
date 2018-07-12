@@ -27,7 +27,7 @@
 
 
     <b-form-group label="Год выпуска:" v-if="selected.carmark!=null && selected.type_transport==1">
-       <b-form-input placeholder="Введите год" type="number" v-model="release_date" class="mb-2 mr-sm-2 mb-sm-2" style="width:140px"></b-form-input>
+       <b-form-input placeholder="Введите год" type="number" v-model="release_date" class="mb-2 mr-sm-2 mb-sm-2" style="width:133px"></b-form-input>
     </b-form-group>
 
     <b-form-group label="Положение руля:" v-if="selected.carmark!=null && selected.type_transport==1">
@@ -35,6 +35,10 @@
            <option :value="null">-- Выберите положение руля --</option>
            <option v-for="item in helm_position" :value="item.value">{{item.text}}</option>
     </b-form-select>
+    </b-form-group>
+
+    <b-form-group label="Пробег(км):" v-if="selected.carmark!=null && selected.type_transport==1">
+       <b-form-input type="number" v-model="release_date" class="mb-2 mr-sm-2 mb-sm-2" style="width:115px"></b-form-input>
     </b-form-group>
 
 

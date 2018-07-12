@@ -1748,6 +1748,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -28097,7 +28101,7 @@ var render = function() {
                 [
                   _c("b-form-input", {
                     staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                    staticStyle: { width: "140px" },
+                    staticStyle: { width: "133px" },
                     attrs: { placeholder: "Введите год", type: "number" },
                     model: {
                       value: _vm.release_date,
@@ -28144,6 +28148,28 @@ var render = function() {
                     ],
                     2
                   )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.selected.carmark != null && _vm.selected.type_transport == 1
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Пробег(км):" } },
+                [
+                  _c("b-form-input", {
+                    staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                    staticStyle: { width: "115px" },
+                    attrs: { type: "number" },
+                    model: {
+                      value: _vm.release_date,
+                      callback: function($$v) {
+                        _vm.release_date = $$v
+                      },
+                      expression: "release_date"
+                    }
+                  })
                 ],
                 1
               )
