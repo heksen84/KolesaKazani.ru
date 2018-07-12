@@ -4,14 +4,14 @@
 
 
     <b-form-group label="Вид транспорта:">
-        <b-form-select v-model="selected.type_transport" class="mb-2 mr-sm-2 mb-sm-2" style="width:298px" @change="selectTransportType">
+        <b-form-select v-model="selected.type_transport" class="mb-2 mr-sm-2 mb-sm-2"  @change="selectTransportType">
            <option v-for="item in type_transport" :value="item.value">{{item.text}}</option>
         </b-form-select>
     </b-form-group>
 
 
     <b-form-group label="Марка автомобиля:" v-if="carmark && selected.type_transport==1">
-        <b-form-select v-model="selected.carmark" class="mb-2 mr-sm-2 mb-sm-2" style="width:298px" @change="selectMark">
+        <b-form-select v-model="selected.carmark" class="mb-2 mr-sm-2 mb-sm-2" @change="selectMark">
            <option :value="null">-- Выберите марку автомобиля --</option>
            <option v-for="item in carmark" :value="item.id_car_mark">{{item.name_rus}}</option>
         </b-form-select>
@@ -31,9 +31,9 @@
     </b-form-group>
 
     <b-form-group label="Положение руля:" v-if="selected.carmark!=null && selected.type_transport==1">
-        <b-form-select v-model="selected.model" class="mb-2 mr-sm-2 mb-sm-2">
-           <option :value="null">-- Выберите модель --</option>
-           <option v-for="item in models" :value="item.id_car_model">{{item.name_rus}}</option>
+        <b-form-select v-model="selected.helm_position" class="mb-2 mr-sm-2 mb-sm-2">
+           <option :value="null">-- Выберите положение руля --</option>
+           <option v-for="item in helm_position" :value="item.value">{{item.text}}</option>
     </b-form-select>
     </b-form-group>
 
@@ -109,7 +109,7 @@ export default {
           type_transport: null,
           carmark: null,
           model: null,
-          helm_position: 0,
+          helm_position: null,
           fuel_type: 0
       }
 		}

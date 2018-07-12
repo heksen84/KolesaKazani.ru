@@ -1768,7 +1768,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         type_transport: null,
         carmark: null,
         model: null,
-        helm_position: 0,
+        helm_position: null,
         fuel_type: 0
       }
     };
@@ -27996,7 +27996,6 @@ var render = function() {
                 "b-form-select",
                 {
                   staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                  staticStyle: { width: "298px" },
                   on: { change: _vm.selectTransportType },
                   model: {
                     value: _vm.selected.type_transport,
@@ -28025,7 +28024,6 @@ var render = function() {
                     "b-form-select",
                     {
                       staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                      staticStyle: { width: "298px" },
                       on: { change: _vm.selectMark },
                       model: {
                         value: _vm.selected.carmark,
@@ -28124,23 +28122,23 @@ var render = function() {
                     {
                       staticClass: "mb-2 mr-sm-2 mb-sm-2",
                       model: {
-                        value: _vm.selected.model,
+                        value: _vm.selected.helm_position,
                         callback: function($$v) {
-                          _vm.$set(_vm.selected, "model", $$v)
+                          _vm.$set(_vm.selected, "helm_position", $$v)
                         },
-                        expression: "selected.model"
+                        expression: "selected.helm_position"
                       }
                     },
                     [
                       _c("option", { domProps: { value: null } }, [
-                        _vm._v("-- Выберите модель --")
+                        _vm._v("-- Выберите положение руля --")
                       ]),
                       _vm._v(" "),
-                      _vm._l(_vm.models, function(item) {
+                      _vm._l(_vm.helm_position, function(item) {
                         return _c(
                           "option",
-                          { domProps: { value: item.id_car_model } },
-                          [_vm._v(_vm._s(item.name_rus))]
+                          { domProps: { value: item.value } },
+                          [_vm._v(_vm._s(item.text))]
                         )
                       })
                     ],
