@@ -29350,7 +29350,7 @@ var render = function() {
                   _c(
                     "b-form-group",
                     {
-                      staticStyle: { "margin-top": "30px", width: "298px" },
+                      staticStyle: { "margin-top": "30px", width: "260px" },
                       attrs: {
                         label: "Категория товара или услуги:",
                         "label-for": "categories"
