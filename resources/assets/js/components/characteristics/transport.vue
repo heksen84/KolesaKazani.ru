@@ -19,7 +19,7 @@
 
 
     <b-form-group label="Модель:" v-if="selected.carmark!=null">
-        <b-form-select v-model="selected.model" class="mb-2 mr-sm-2 mb-sm-2" style="width:298px">
+        <b-form-select v-model="selected.model" class="mb-2 mr-sm-2 mb-sm-2">
            <option :value="null">-- Выберите модель --</option>
            <option v-for="item in models" :value="item.id_car_model">{{item.name_rus}}</option>
     </b-form-select>

@@ -28066,7 +28066,6 @@ var render = function() {
                     "b-form-select",
                     {
                       staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                      staticStyle: { width: "298px" },
                       model: {
                         value: _vm.selected.model,
                         callback: function($$v) {
