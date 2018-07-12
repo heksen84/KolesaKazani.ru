@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-form inline style="margin-top:-12px;">
+    <b-form inline style="margin-top:-18px;">
 
 
     <b-form-group label="Вид транспорта:">
@@ -26,13 +26,28 @@
     </b-form-group>
 
 
-    <b-form-group style="width:100%" v-if="selected.model!=null">
+    <b-form-group label="Год выпуска:" v-if="selected.model!=null">
+        <b-form-select v-model="selected.model" class="mb-2 mr-sm-2 mb-sm-2">
+           <option :value="null">-- Выберите модель --</option>
+           <option v-for="item in models" :value="item.id_car_model">{{item.name_rus}}</option>
+    </b-form-select>
+    </b-form-group>
+
+    <b-form-group label="Положение руля:" v-if="selected.model!=null">
+        <b-form-select v-model="selected.model" class="mb-2 mr-sm-2 mb-sm-2">
+           <option :value="null">-- Выберите модель --</option>
+           <option v-for="item in models" :value="item.id_car_model">{{item.name_rus}}</option>
+    </b-form-select>
+    </b-form-group>
+
+
+  <!-- <b-form-group style="width:100%" v-if="selected.model!=null">
     <li>год выпуска</li>
     <li>положение руля</li>
     <li>вид топлива</li>
     <li>растаможен</li>
     <li>пробег</li>
-    </b-form-group>
+    </b-form-group>-->
 
     
    

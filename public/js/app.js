@@ -1736,6 +1736,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27971,7 +27986,7 @@ var render = function() {
     [
       _c(
         "b-form",
-        { staticStyle: { "margin-top": "-12px" }, attrs: { inline: "" } },
+        { staticStyle: { "margin-top": "-18px" }, attrs: { inline: "" } },
         [
           _c(
             "b-form-group",
@@ -28079,17 +28094,77 @@ var render = function() {
             : _vm._e(),
           _vm._v(" "),
           _vm.selected.model != null
-            ? _c("b-form-group", { staticStyle: { width: "100%" } }, [
-                _c("li", [_vm._v("год выпуска")]),
-                _vm._v(" "),
-                _c("li", [_vm._v("положение руля")]),
-                _vm._v(" "),
-                _c("li", [_vm._v("вид топлива")]),
-                _vm._v(" "),
-                _c("li", [_vm._v("растаможен")]),
-                _vm._v(" "),
-                _c("li", [_vm._v("пробег")])
-              ])
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Год выпуска:" } },
+                [
+                  _c(
+                    "b-form-select",
+                    {
+                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                      model: {
+                        value: _vm.selected.model,
+                        callback: function($$v) {
+                          _vm.$set(_vm.selected, "model", $$v)
+                        },
+                        expression: "selected.model"
+                      }
+                    },
+                    [
+                      _c("option", { domProps: { value: null } }, [
+                        _vm._v("-- Выберите модель --")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.models, function(item) {
+                        return _c(
+                          "option",
+                          { domProps: { value: item.id_car_model } },
+                          [_vm._v(_vm._s(item.name_rus))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.selected.model != null
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Положение руля:" } },
+                [
+                  _c(
+                    "b-form-select",
+                    {
+                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                      model: {
+                        value: _vm.selected.model,
+                        callback: function($$v) {
+                          _vm.$set(_vm.selected, "model", $$v)
+                        },
+                        expression: "selected.model"
+                      }
+                    },
+                    [
+                      _c("option", { domProps: { value: null } }, [
+                        _vm._v("-- Выберите модель --")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.models, function(item) {
+                        return _c(
+                          "option",
+                          { domProps: { value: item.id_car_model } },
+                          [_vm._v(_vm._s(item.name_rus))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ],
+                1
+              )
             : _vm._e()
         ],
         1
