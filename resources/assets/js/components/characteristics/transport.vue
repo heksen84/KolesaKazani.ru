@@ -27,7 +27,7 @@
 
 
     <b-form-group label="Год выпуска:" v-if="selected.carmark!=null && selected.type_transport==1">
-       <b-form-input type="number" v-model="release_date" class="mb-2 mr-sm-2 mb-sm-2" style="width:140px"></b-form-input>
+       <b-form-input placeholder="Введите год" type="number" v-model="release_date" class="mb-2 mr-sm-2 mb-sm-2" style="width:140px"></b-form-input>
     </b-form-group>
 
     <b-form-group label="Положение руля:" v-if="selected.carmark!=null && selected.type_transport==1">

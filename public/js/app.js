@@ -28100,7 +28100,7 @@ var render = function() {
                   _c("b-form-input", {
                     staticClass: "mb-2 mr-sm-2 mb-sm-2",
                     staticStyle: { width: "140px" },
-                    attrs: { type: "number" },
+                    attrs: { placeholder: "Введите год", type: "number" },
                     model: {
                       value: _vm.release_date,
                       callback: function($$v) {
