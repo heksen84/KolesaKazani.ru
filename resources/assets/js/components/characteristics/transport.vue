@@ -22,7 +22,7 @@
         <b-form-select v-model="selected.model" class="mb-2 mr-sm-2 mb-sm-2">
            <option :value="null">-- Выберите модель --</option>
            <option v-for="item in models" :value="item.id_car_model">{{item.name}}</option>
-    </b-form-select>
+        </b-form-select>
     </b-form-group>
 
 
@@ -34,11 +34,18 @@
         <b-form-select v-model="selected.helm_position" class="mb-2 mr-sm-2 mb-sm-2">
            <option :value="null">-- Выберите положение руля --</option>
            <option v-for="item in helm_position" :value="item.value">{{item.text}}</option>
-    </b-form-select>
+        </b-form-select>
     </b-form-group>
 
     <b-form-group label="Пробег(км):" v-if="selected.carmark!=null && selected.type_transport==1">
        <b-form-input type="number" v-model="mileage" class="mb-2 mr-sm-2 mb-sm-2" style="width:115px"></b-form-input>
+    </b-form-group>
+
+     <b-form-group label="Растаможен:" v-if="selected.carmark!=null && selected.type_transport==1">
+        <b-form-select v-model="selected.car_customs" class="mb-2 mr-sm-2 mb-sm-2">
+           <option :value="1">Да</option>
+           <option :value="0">Нет</option>
+        </b-form-select>
     </b-form-group>
 
 
@@ -115,7 +122,8 @@ export default {
           carmark: null,
           model: null,
           helm_position: null,
-          fuel_type: 0
+          fuel_type: 0,
+          car_customs: 1
       }
 		}
 	},

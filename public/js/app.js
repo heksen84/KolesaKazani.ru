@@ -1752,6 +1752,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1774,7 +1781,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         carmark: null,
         model: null,
         helm_position: null,
-        fuel_type: 0
+        fuel_type: 0,
+        car_customs: 1
       }
     };
   },
@@ -28171,6 +28179,34 @@ var render = function() {
                       expression: "mileage"
                     }
                   })
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.selected.carmark != null && _vm.selected.type_transport == 1
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Растаможен:" } },
+                [
+                  _c(
+                    "b-form-select",
+                    {
+                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                      model: {
+                        value: _vm.selected.car_customs,
+                        callback: function($$v) {
+                          _vm.$set(_vm.selected, "car_customs", $$v)
+                        },
+                        expression: "selected.car_customs"
+                      }
+                    },
+                    [
+                      _c("option", { domProps: { value: 1 } }, [_vm._v("Да")]),
+                      _vm._v(" "),
+                      _c("option", { domProps: { value: 0 } }, [_vm._v("Нет")])
+                    ]
+                  )
                 ],
                 1
               )
