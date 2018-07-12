@@ -38,7 +38,9 @@
 			 	<b-form-input id="price" v-model="form.price" placeholder="Цена" style="width:130px;margin:auto;font-size:20px;text-align:center"></b-form-input>
 			</b-form-group>
 
-			<b-form-group style="text-align:center;margin:30px">
+			<hr>
+
+			<b-form-group style="text-align:center;margin:10px">
 				<b-button type="onSubmit" variant="primary">Создать</b-button>
 			</b-form-group>
 		</b-form>

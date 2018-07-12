@@ -2102,6 +2102,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -29467,9 +29469,11 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
+                  _c("hr"),
+                  _vm._v(" "),
                   _c(
                     "b-form-group",
-                    { staticStyle: { "text-align": "center", margin: "30px" } },
+                    { staticStyle: { "text-align": "center", margin: "10px" } },
                     [
                       _c(
                         "b-button",
