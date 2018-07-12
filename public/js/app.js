@@ -1748,9 +1748,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1761,6 +1758,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // марки автомобилей
       carmark: [],
       models: [],
+      release_date: "",
 
       helm_position: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
 
@@ -28099,33 +28097,17 @@ var render = function() {
                 "b-form-group",
                 { attrs: { label: "Год выпуска:" } },
                 [
-                  _c(
-                    "b-form-select",
-                    {
-                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                      model: {
-                        value: _vm.selected.model,
-                        callback: function($$v) {
-                          _vm.$set(_vm.selected, "model", $$v)
-                        },
-                        expression: "selected.model"
-                      }
-                    },
-                    [
-                      _c("option", { domProps: { value: null } }, [
-                        _vm._v("-- Выберите модель --")
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.models, function(item) {
-                        return _c(
-                          "option",
-                          { domProps: { value: item.id_car_model } },
-                          [_vm._v(_vm._s(item.name_rus))]
-                        )
-                      })
-                    ],
-                    2
-                  )
+                  _c("b-form-input", {
+                    staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                    attrs: { type: "number" },
+                    model: {
+                      value: _vm.release_date,
+                      callback: function($$v) {
+                        _vm.release_date = $$v
+                      },
+                      expression: "release_date"
+                    }
+                  })
                 ],
                 1
               )
