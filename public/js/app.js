@@ -1763,6 +1763,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       carmark: [],
       models: [],
       release_date: "",
+      mileage: 0,
 
       helm_position: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
 
@@ -28163,11 +28164,11 @@ var render = function() {
                     staticStyle: { width: "115px" },
                     attrs: { type: "number" },
                     model: {
-                      value: _vm.release_date,
+                      value: _vm.mileage,
                       callback: function($$v) {
-                        _vm.release_date = $$v
+                        _vm.mileage = $$v
                       },
-                      expression: "release_date"
+                      expression: "mileage"
                     }
                   })
                 ],

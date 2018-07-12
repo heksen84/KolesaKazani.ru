@@ -38,7 +38,7 @@
     </b-form-group>
 
     <b-form-group label="Пробег(км):" v-if="selected.carmark!=null && selected.type_transport==1">
-       <b-form-input type="number" v-model="release_date" class="mb-2 mr-sm-2 mb-sm-2" style="width:115px"></b-form-input>
+       <b-form-input type="number" v-model="mileage" class="mb-2 mr-sm-2 mb-sm-2" style="width:115px"></b-form-input>
     </b-form-group>
 
 
@@ -92,6 +92,7 @@ export default {
         carmark:[],
         models:[],
         release_date: "",
+        mileage: 0,
 
        helm_position: 
         [
