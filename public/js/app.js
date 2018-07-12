@@ -28046,7 +28046,7 @@ var render = function() {
                         return _c(
                           "option",
                           { domProps: { value: item.id_car_mark } },
-                          [_vm._v(_vm._s(item.name_rus))]
+                          [_vm._v(_vm._s(item.name))]
                         )
                       })
                     ],
@@ -28083,7 +28083,7 @@ var render = function() {
                         return _c(
                           "option",
                           { domProps: { value: item.id_car_model } },
-                          [_vm._v(_vm._s(item.name_rus))]
+                          [_vm._v(_vm._s(item.name))]
                         )
                       })
                     ],
