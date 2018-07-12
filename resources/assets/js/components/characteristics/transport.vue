@@ -18,7 +18,7 @@
     </b-form-group>
 
 
-    <b-form-group label="Модель:" v-if="selected.carmark!=null">
+    <b-form-group label="Модель:" v-if="selected.carmark!=null && selected.type_transport!=null">
         <b-form-select v-model="selected.model" class="mb-2 mr-sm-2 mb-sm-2">
            <option :value="null">-- Выберите модель --</option>
            <option v-for="item in models" :value="item.id_car_model">{{item.name_rus}}</option>
@@ -26,11 +26,11 @@
     </b-form-group>
 
 
-    <b-form-group label="Год выпуска:" v-if="selected.model!=null">
+    <b-form-group label="Год выпуска:" v-if="selected.carmark!=null && selected.type_transport!=null">
        <b-form-input type="number" v-model="release_date" class="mb-2 mr-sm-2 mb-sm-2"></b-form-input>
     </b-form-group>
 
-    <b-form-group label="Положение руля:" v-if="selected.model!=null">
+    <b-form-group label="Положение руля:" v-if="selected.carmark!=null && selected.type_transport!=null">
         <b-form-select v-model="selected.model" class="mb-2 mr-sm-2 mb-sm-2">
            <option :value="null">-- Выберите модель --</option>
            <option v-for="item in models" :value="item.id_car_model">{{item.name_rus}}</option>

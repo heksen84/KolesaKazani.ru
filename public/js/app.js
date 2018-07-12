@@ -28055,7 +28055,7 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.selected.carmark != null
+          _vm.selected.carmark != null && _vm.selected.type_transport != null
             ? _c(
                 "b-form-group",
                 { attrs: { label: "Модель:" } },
@@ -28092,7 +28092,7 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.selected.model != null
+          _vm.selected.carmark != null && _vm.selected.type_transport != null
             ? _c(
                 "b-form-group",
                 { attrs: { label: "Год выпуска:" } },
@@ -28113,7 +28113,7 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.selected.model != null
+          _vm.selected.carmark != null && _vm.selected.type_transport != null
             ? _c(
                 "b-form-group",
                 { attrs: { label: "Положение руля:" } },
