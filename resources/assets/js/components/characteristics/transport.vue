@@ -47,17 +47,6 @@
            <option :value="0">Нет</option>
         </b-form-select>
     </b-form-group>
-
-
-  <!-- <b-form-group style="width:100%" v-if="selected.model!=null">
-    <li>год выпуска</li>
-    <li>положение руля</li>
-    <li>вид топлива</li>
-    <li>растаможен</li>
-    <li>пробег</li>
-    </b-form-group>-->
-
-    
    
 
   <!--  <b-form-group label="Расположение руля:">
