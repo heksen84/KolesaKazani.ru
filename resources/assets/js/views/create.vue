@@ -47,11 +47,11 @@
 				<b-form-file v-model="form.file" class="mt-3" multiple accept="image/jpeg, image/png"></b-form-file>
 			</b-form-group>
 
-			<hr>
-				<b-form-group style="text-align:center;margin:15px">
+			
+				<b-form-group style="text-align:center;margin:25px">
 					<b-button type="onSubmit" variant="primary">ОПУБЛИКОВАТЬ</b-button>
 				</b-form-group>
-			<hr>
+			
 
 		</b-form>
 	</b-col>

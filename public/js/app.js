@@ -29850,11 +29850,9 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
                   _c(
                     "b-form-group",
-                    { staticStyle: { "text-align": "center", margin: "15px" } },
+                    { staticStyle: { "text-align": "center", margin: "25px" } },
                     [
                       _c(
                         "b-button",
@@ -29863,9 +29861,7 @@ var render = function() {
                       )
                     ],
                     1
-                  ),
-                  _vm._v(" "),
-                  _c("hr")
+                  )
                 ],
                 1
               )
