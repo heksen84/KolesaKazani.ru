@@ -42,7 +42,7 @@
 			<!-- ФОТОГРАФИИ -->
 			<b-form-group label="Фотографии:">
 				<div style="text-align:center">
-					<b-img src="https://picsum.photos/125/125/?image=58" alt="left image" v-for="i in 6" :key="i"/>
+					<b-img src="https://picsum.photos/125/125/?image=58" alt="left image" v-for="i in 6" :key="i" @click="deletePhoto"/>
 				</div>
 				<b-form-file v-model="form.file" multiple accept="image/jpeg, image/png"></b-form-file>
 			</b-form-group>
@@ -86,6 +86,9 @@ export default {
 	},
 	components: { transport, realestate },
   	methods: {
+  		deletePhoto() {
+  			alert("delete me");
+  		},
   		closeAndReturn() {
  			window.history.back();
   		},

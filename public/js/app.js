@@ -2147,6 +2147,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_characteristics_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_characteristics_real_estate___default.a },
   methods: {
+    deletePhoto: function deletePhoto() {
+      alert("delete me");
+    },
     closeAndReturn: function closeAndReturn() {
       window.history.back();
     },
@@ -29827,7 +29830,8 @@ var render = function() {
                             attrs: {
                               src: "https://picsum.photos/125/125/?image=58",
                               alt: "left image"
-                            }
+                            },
+                            on: { click: _vm.deletePhoto }
                           })
                         })
                       ),
