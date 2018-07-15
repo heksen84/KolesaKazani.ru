@@ -188,7 +188,9 @@ body {
 }
 
 .custom-file-input:lang(en)~.custom-file-label::after {
-    content: "Обзор";
+    background: rgb(120,220,120);
+    color:white;
+    content: "ЗАГРУЗИТЬ";
 }
 
 .close_button:hover {

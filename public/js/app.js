@@ -2115,6 +2115,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -29814,6 +29815,16 @@ var render = function() {
                     "b-form-group",
                     { attrs: { label: "Фотографии:" } },
                     [
+                      _vm._l(6, function(i) {
+                        return _c("b-img", {
+                          key: i,
+                          attrs: {
+                            src: "https://picsum.photos/125/125/?image=58",
+                            alt: "left image"
+                          }
+                        })
+                      }),
+                      _vm._v(" "),
                       _c("b-form-file", {
                         staticClass: "mt-3",
                         attrs: {
@@ -29829,7 +29840,7 @@ var render = function() {
                         }
                       })
                     ],
-                    1
+                    2
                   ),
                   _vm._v(" "),
                   _c("hr"),

@@ -196,7 +196,9 @@ body {
 }
 
 .custom-file-input:lang(en) ~ .custom-file-label::after {
-  content: "\41E\431\437\43E\440";
+  background: #78dc78;
+  color: white;
+  content: "\417\410\413\420\423\417\418\422\42C";
 }
 
 .close_button:hover {

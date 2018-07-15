@@ -41,6 +41,7 @@
 
 			<!-- ФОТОГРАФИИ -->
 			<b-form-group label="Фотографии:">
+				<b-img src="https://picsum.photos/125/125/?image=58" alt="left image" v-for="i in 6" :key="i"/>
 				<b-form-file v-model="form.file" class="mt-3" multiple accept="image/jpeg, image/png"></b-form-file>
 			</b-form-group>
 
