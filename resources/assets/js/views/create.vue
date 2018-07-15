@@ -27,8 +27,8 @@
 			<b-form-group label="Дополнительная информация:" label-for="addit_info">
 			 <b-form-textarea id="addit_info" v-model="form.text"
 										placeholder="Наберите дополнительную информацию"
-										:rows="6"
-										:max-rows="6">
+										:rows="3"
+										:max-rows="3">
 	 		 </b-form-textarea>
 			</b-form-group>
 
