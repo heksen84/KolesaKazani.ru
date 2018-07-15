@@ -48,10 +48,11 @@
 			</b-form-group>
 
 			<hr>
+				<b-form-group style="text-align:center;margin:15px">
+					<b-button type="onSubmit" variant="primary">ОПУБЛИКОВАТЬ</b-button>
+				</b-form-group>
+			<hr>
 
-			<b-form-group style="text-align:center;margin:10px">
-				<b-button type="onSubmit" variant="primary">ОПУБЛИКОВАТЬ</b-button>
-			</b-form-group>
 		</b-form>
 	</b-col>
 	</b-row>

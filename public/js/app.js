@@ -2118,6 +2118,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -29853,7 +29854,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "b-form-group",
-                    { staticStyle: { "text-align": "center", margin: "10px" } },
+                    { staticStyle: { "text-align": "center", margin: "15px" } },
                     [
                       _c(
                         "b-button",
@@ -29862,7 +29863,9 @@ var render = function() {
                       )
                     ],
                     1
-                  )
+                  ),
+                  _vm._v(" "),
+                  _c("hr")
                 ],
                 1
               )
