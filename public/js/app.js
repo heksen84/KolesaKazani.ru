@@ -29798,7 +29798,7 @@ var render = function() {
                         staticStyle: {
                           width: "150px",
                           margin: "auto",
-                          "font-size": "24px",
+                          "font-size": "20px",
                           "text-align": "center"
                         },
                         attrs: { id: "price", placeholder: "Цена" },
