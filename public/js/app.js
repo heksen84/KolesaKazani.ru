@@ -29858,7 +29858,7 @@ var render = function() {
                       _c(
                         "b-button",
                         { attrs: { type: "onSubmit", variant: "primary" } },
-                        [_vm._v("СОЗДАТЬ")]
+                        [_vm._v("ОПУБЛИКОВАТЬ")]
                       )
                     ],
                     1
