@@ -48,7 +48,7 @@
 			</b-form-group>
 
 			
-				<b-form-group style="text-align:center;margin:25px">
+				<b-form-group style="text-align:center;margin-top:25px">
 					<b-button type="onSubmit" variant="outline-primary">ОПУБЛИКОВАТЬ</b-button>
 				</b-form-group>
 			
