@@ -29807,6 +29807,10 @@ var render = function() {
                     [
                       _c("b-form-file", {
                         staticClass: "mt-3",
+                        attrs: {
+                          multiple: "",
+                          accept: "image/jpeg, image/png"
+                        },
                         model: {
                           value: _vm.form.file,
                           callback: function($$v) {
