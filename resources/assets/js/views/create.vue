@@ -44,12 +44,12 @@
 				<div style="text-align:center">
 					<b-img src="https://picsum.photos/125/125/?image=58" alt="left image" v-for="i in 6" :key="i"/>
 				</div>
-				<b-form-file v-model="form.file" class="mt-3" multiple accept="image/jpeg, image/png"></b-form-file>
+				<b-form-file v-model="form.file" multiple accept="image/jpeg, image/png"></b-form-file>
 			</b-form-group>
 
 			
 				<b-form-group style="text-align:center;margin:25px">
-					<b-button type="onSubmit" variant="primary">ОПУБЛИКОВАТЬ</b-button>
+					<b-button type="onSubmit" variant="outline-primary">ОПУБЛИКОВАТЬ</b-button>
 				</b-form-group>
 			
 

@@ -29833,7 +29833,6 @@ var render = function() {
                       ),
                       _vm._v(" "),
                       _c("b-form-file", {
-                        staticClass: "mt-3",
                         attrs: {
                           multiple: "",
                           accept: "image/jpeg, image/png"
@@ -29856,7 +29855,12 @@ var render = function() {
                     [
                       _c(
                         "b-button",
-                        { attrs: { type: "onSubmit", variant: "primary" } },
+                        {
+                          attrs: {
+                            type: "onSubmit",
+                            variant: "outline-primary"
+                          }
+                        },
                         [_vm._v("ОПУБЛИКОВАТЬ")]
                       )
                     ],
