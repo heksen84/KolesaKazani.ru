@@ -187,6 +187,10 @@ body {
   font-weight:bold;
 }
 
+.custom-file-input:lang(en)~.custom-file-label::after {
+    content: "Обзор";
+}
+
 .close_button:hover {
   text-decoration: underline;
 }

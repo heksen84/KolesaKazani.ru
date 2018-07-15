@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 ::-webkit-scrollbar {
   width: 5px;
   background: white;
@@ -191,6 +193,10 @@ body {
   margin-top: 7px;
   cursor: pointer;
   font-weight: bold;
+}
+
+.custom-file-input:lang(en) ~ .custom-file-label::after {
+  content: "\41E\431\437\43E\440";
 }
 
 .close_button:hover {

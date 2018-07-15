@@ -34,8 +34,14 @@
 
 
 			<!-- ЦЕНА -->
-			<b-form-group label="цена:" label-for="price">
+			<b-form-group label="Цена:" label-for="price">
 			 	<b-form-input id="price" v-model="form.price" placeholder="Цена" style="width:130px;margin:auto;font-size:20px;text-align:center"></b-form-input>
+			</b-form-group>
+
+
+			<!-- ФОТОГРАФИИ -->
+			<b-form-group label="Фотографии:">
+				<b-form-file v-model="form.file" class="mt-3"></b-form-file>
 			</b-form-group>
 
 			<hr>
@@ -64,6 +70,7 @@ export default {
 			title: '',
 			text: '',
 			price: '',
+			file: null
 		},
 		root:false,
 		transport:false,

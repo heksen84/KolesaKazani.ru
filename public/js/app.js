@@ -1748,17 +1748,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2115,6 +2104,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2130,7 +2125,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         category: null,
         title: '',
         text: '',
-        price: ''
+        price: '',
+        file: null
       },
       root: false,
       transport: false,
@@ -3217,6 +3213,299 @@ const VuePlugin = {
 }
 
 Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["b" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/form-file/form-file.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_state__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-state.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_custom__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-custom.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_id__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__mixins_form__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2__mixins_form_state__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3__mixins_form_custom__["a" /* default */]],
+  render (h) {
+    // Form Input
+    const input = h('input', {
+      ref: 'input',
+      class: [
+        {
+          'form-control-file': this.plain,
+          'custom-file-input': this.custom,
+          focus: this.custom && this.hasFocus
+        },
+        this.stateClass
+      ],
+      attrs: {
+        type: 'file',
+        id: this.safeId(),
+        name: this.name,
+        disabled: this.disabled,
+        required: this.required,
+        capture: this.capture || null,
+        accept: this.accept || null,
+        multiple: this.multiple,
+        webkitdirectory: this.directory,
+        'aria-required': this.required ? 'true' : null,
+        'aria-describedby': this.plain ? null : this.safeId('_BV_file_control_')
+      },
+      on: {
+        change: this.onFileChange,
+        focusin: this.focusHandler,
+        focusout: this.focusHandler
+      }
+    })
+
+    if (this.plain) {
+      return input
+    }
+
+    // Overlay Labels
+    const label = h(
+      'label',
+      {
+        class: ['custom-file-label', this.dragging ? 'dragging' : null],
+        attrs: {
+          id: this.safeId('_BV_file_control_')
+        }
+      },
+      this.selectLabel
+    )
+
+    // Return rendered custom file input
+    return h(
+      'div',
+      {
+        class: ['custom-file', 'b-form-file', this.stateClass],
+        attrs: { id: this.safeId('_BV_file_outer_') },
+        on: { dragover: this.dragover }
+      },
+      [input, label]
+    )
+  },
+  data () {
+    return {
+      selectedFile: null,
+      dragging: false,
+      hasFocus: false
+    }
+  },
+  props: {
+    accept: {
+      type: String,
+      default: ''
+    },
+    // Instruct input to capture from camera
+    capture: {
+      type: Boolean,
+      default: false
+    },
+    placeholder: {
+      type: String,
+      default: undefined
+    },
+    multiple: {
+      type: Boolean,
+      default: false
+    },
+    directory: {
+      type: Boolean,
+      default: false
+    },
+    noTraverse: {
+      type: Boolean,
+      default: false
+    },
+    noDrop: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    selectLabel () {
+      // No file choosen
+      if (!this.selectedFile || this.selectedFile.length === 0) {
+        return this.placeholder
+      }
+
+      // Multiple files
+      if (this.multiple) {
+        if (this.selectedFile.length === 1) {
+          return this.selectedFile[0].name
+        }
+        return this.selectedFile.map(file => file.name).join(', ')
+      }
+
+      // Single file
+      return this.selectedFile.name
+    }
+  },
+  watch: {
+    selectedFile (newVal, oldVal) {
+      if (newVal === oldVal) {
+        return
+      }
+      if (!newVal && this.multiple) {
+        this.$emit('input', [])
+      } else {
+        this.$emit('input', newVal)
+      }
+    }
+  },
+  methods: {
+    focusHandler (evt) {
+      // Boostrap v4.beta doesn't have focus styling for custom file input
+      // Firefox has a borked '[type=file]:focus ~ sibling' selector issue,
+      // So we add a 'focus' class to get around these "bugs"
+      if (this.plain || evt.type === 'focusout') {
+        this.hasFocus = false
+      } else {
+        // Add focus styling for custom file input
+        this.hasFocus = true
+      }
+    },
+    reset () {
+      try {
+        // Wrapped in try in case IE < 11 craps out
+        this.$refs.input.value = ''
+      } catch (e) {}
+      // IE < 11 doesn't support setting input.value to '' or null
+      // So we use this little extra hack to reset the value, just in case
+      // This also appears to work on modern browsers as well.
+      this.$refs.input.type = ''
+      this.$refs.input.type = 'file'
+      this.selectedFile = this.multiple ? [] : null
+    },
+    onFileChange (evt) {
+      // Always emit original event
+      this.$emit('change', evt)
+      // Check if special `items` prop is available on event (drop mode)
+      // Can be disabled by setting no-traverse
+      const items = evt.dataTransfer && evt.dataTransfer.items
+      if (items && !this.noTraverse) {
+        const queue = []
+        for (let i = 0; i < items.length; i++) {
+          const item = items[i].webkitGetAsEntry()
+          if (item) {
+            queue.push(this.traverseFileTree(item))
+          }
+        }
+        Promise.all(queue).then(filesArr => {
+          this.setFiles(Object(__WEBPACK_IMPORTED_MODULE_4__utils_array__["c" /* from */])(filesArr))
+        })
+        return
+      }
+      // Normal handling
+      this.setFiles(evt.target.files || evt.dataTransfer.files)
+    },
+    setFiles (files) {
+      if (!files) {
+        this.selectedFile = null
+        return
+      }
+      if (!this.multiple) {
+        this.selectedFile = files[0]
+        return
+      }
+      // Convert files to array
+      const filesArray = []
+      for (let i = 0; i < files.length; i++) {
+        if (files[i].type.match(this.accept)) {
+          filesArray.push(files[i])
+        }
+      }
+      this.selectedFile = filesArray
+    },
+    dragover (evt) {
+      evt.preventDefault()
+      evt.stopPropagation()
+      if (this.noDrop || !this.custom) {
+        return
+      }
+      this.dragging = true
+      evt.dataTransfer.dropEffect = 'copy'
+    },
+    dragleave (evt) {
+      evt.preventDefault()
+      evt.stopPropagation()
+      this.dragging = false
+    },
+    drop (evt) {
+      evt.preventDefault()
+      evt.stopPropagation()
+      if (this.noDrop) {
+        return
+      }
+      this.dragging = false
+      if (evt.dataTransfer.files && evt.dataTransfer.files.length > 0) {
+        this.onFileChange(evt)
+      }
+    },
+    traverseFileTree (item, path) {
+      // Based on http://stackoverflow.com/questions/3590058
+      return new Promise(resolve => {
+        path = path || ''
+        if (item.isFile) {
+          // Get file
+          item.file(file => {
+            file.$path = path // Inject $path to file obj
+            resolve(file)
+          })
+        } else if (item.isDirectory) {
+          // Get folder contents
+          item.createReader().readEntries(entries => {
+            const queue = []
+            for (let i = 0; i < entries.length; i++) {
+              queue.push(
+                this.traverseFileTree(entries[i], path + item.name + '/')
+              )
+            }
+            Promise.all(queue).then(filesArr => {
+              resolve(Object(__WEBPACK_IMPORTED_MODULE_4__utils_array__["c" /* from */])(filesArr))
+            })
+          })
+        }
+      })
+    }
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/form-file/index.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_file__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-file/form-file.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
+
+
+
+const components = {
+  bFormFile: __WEBPACK_IMPORTED_MODULE_0__form_file__["a" /* default */],
+  bFile: __WEBPACK_IMPORTED_MODULE_0__form_file__["a" /* default */]
+}
+
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["b" /* vueUse */])(VuePlugin)
 
 /* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
@@ -29490,7 +29779,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "b-form-group",
-                    { attrs: { label: "цена:", "label-for": "price" } },
+                    { attrs: { label: "Цена:", "label-for": "price" } },
                     [
                       _c("b-form-input", {
                         staticStyle: {
@@ -29506,6 +29795,24 @@ var render = function() {
                             _vm.$set(_vm.form, "price", $$v)
                           },
                           expression: "form.price"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-form-group",
+                    { attrs: { label: "Фотографии:" } },
+                    [
+                      _c("b-form-file", {
+                        staticClass: "mt-3",
+                        model: {
+                          value: _vm.form.file,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "file", $$v)
+                          },
+                          expression: "form.file"
                         }
                       })
                     ],
@@ -41709,15 +42016,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_bootstrap_vue_src_components_form_textarea__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-textarea/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_bootstrap_vue_src_components_form_checkbox__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-checkbox/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_bootstrap_vue_src_components_form_select__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-select/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_bootstrap_vue_src_components_button__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_bootstrap_vue_src_components_table__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/table/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_bootstrap_vue_src_components_link__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/link/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_bootstrap_vue_src_components_image__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/image/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_bootstrap_vue_src_components_form_radio__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-radio/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_vue_carousel__ = __webpack_require__("./node_modules/vue-carousel/dist/vue-carousel.min.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26_vue_carousel__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_vue_yandex_maps__ = __webpack_require__("./node_modules/vue-yandex-maps/vue-yandex-maps.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_vue_yandex_maps___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_27_vue_yandex_maps__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_bootstrap_vue_src_components_form_file__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-file/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_bootstrap_vue_src_components_button__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_bootstrap_vue_src_components_table__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/table/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_bootstrap_vue_src_components_link__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/link/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_bootstrap_vue_src_components_image__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/image/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_bootstrap_vue_src_components_form_radio__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-radio/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_vue_carousel__ = __webpack_require__("./node_modules/vue-carousel/dist/vue-carousel.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_27_vue_carousel__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28_vue_yandex_maps__ = __webpack_require__("./node_modules/vue-yandex-maps/vue-yandex-maps.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28_vue_yandex_maps___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_28_vue_yandex_maps__);
 __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
@@ -41753,9 +42061,10 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
 
+
 // register globally
 
-__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_27_vue_yandex_maps___default.a);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_28_vue_yandex_maps___default.a);
 
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_14_bootstrap_vue_src_components_layout__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_15_bootstrap_vue_src_components_form__["a" /* default */]);
@@ -41764,12 +42073,13 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_17_boo
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_19_bootstrap_vue_src_components_form_checkbox__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_18_bootstrap_vue_src_components_form_textarea__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_20_bootstrap_vue_src_components_form_select__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_21_bootstrap_vue_src_components_button__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_22_bootstrap_vue_src_components_table__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_23_bootstrap_vue_src_components_link__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_24_bootstrap_vue_src_components_image__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_25_bootstrap_vue_src_components_form_radio__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_26_vue_carousel___default.a);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_21_bootstrap_vue_src_components_form_file__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_22_bootstrap_vue_src_components_button__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_23_bootstrap_vue_src_components_table__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_24_bootstrap_vue_src_components_link__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_25_bootstrap_vue_src_components_image__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_26_bootstrap_vue_src_components_form_radio__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_27_vue_carousel___default.a);
 
 var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
   el: '#app',
