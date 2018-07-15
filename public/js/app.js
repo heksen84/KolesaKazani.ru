@@ -29796,9 +29796,9 @@ var render = function() {
                     [
                       _c("b-form-input", {
                         staticStyle: {
-                          width: "130px",
+                          width: "150px",
                           margin: "auto",
-                          "font-size": "20px",
+                          "font-size": "24px",
                           "text-align": "center"
                         },
                         attrs: { id: "price", placeholder: "Цена" },
