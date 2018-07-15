@@ -44,7 +44,7 @@ components: {},
     	window.location='/';
     },
     createAdvert() {
-    	window.location='/create';
+    	window.location='/new';
     }
 }
 }

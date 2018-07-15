@@ -1751,6 +1751,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    checkYear: function checkYear() {
+      return this.release_date.length > 3 && this.release_date > 1930 ? true : null;
+    }
+  },
   data: function data() {
     return {
       type_transport: [{ value: null, text: '-- Выберите вид транспорта --' }, { value: 1, text: 'Легковой автомобиль' }, { value: 2, text: 'Грузовой автомобиль' }, { value: 3, text: 'Мототехника' }, { value: 4, text: 'Спецтехника' }, { value: 5, text: 'Ретро-автомобиль' }, { value: 6, text: 'Водный транспорт' }, { value: 7, text: 'Велосипед' }, { value: 8, text: 'Воздушный транспорт' }],
@@ -2298,7 +2303,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       window.location = '/';
     },
     createAdvert: function createAdvert() {
-      window.location = '/create';
+      window.location = '/new';
     }
   }
 });
@@ -28400,7 +28405,11 @@ var render = function() {
                   _c("b-form-input", {
                     staticClass: "mb-2 mr-sm-2 mb-sm-2",
                     staticStyle: { width: "130px" },
-                    attrs: { placeholder: "Введите год", type: "number" },
+                    attrs: {
+                      placeholder: "Введите год",
+                      type: "number",
+                      state: _vm.checkYear
+                    },
                     model: {
                       value: _vm.release_date,
                       callback: function($$v) {

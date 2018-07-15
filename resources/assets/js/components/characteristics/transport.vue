@@ -27,7 +27,7 @@
 
 
     <b-form-group label="Год выпуска:" v-if="selected.carmark!=null && selected.type_transport==1">
-       <b-form-input placeholder="Введите год" type="number" v-model="release_date" class="mb-2 mr-sm-2 mb-sm-2" style="width:130px"></b-form-input>
+       <b-form-input placeholder="Введите год" type="number" v-model="release_date" class="mb-2 mr-sm-2 mb-sm-2" style="width:130px" :state="checkYear"></b-form-input>
     </b-form-group>
 
     <b-form-group label="Положение руля:" v-if="selected.carmark!=null && selected.type_transport==1">
@@ -69,6 +69,11 @@
 <script>
 import { post, get, interceptors } from '../../helpers/api'
 export default {
+  computed: {
+    checkYear () {
+      return (this.release_date.length > 3) && (this.release_date > 1930) ? true : null
+    }
+  },
   data () {
     return 	{
         type_transport: 
