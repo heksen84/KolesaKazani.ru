@@ -188,9 +188,9 @@ body {
 }
 
 .custom-file-input:lang(en)~.custom-file-label::after {
-    background: rgb(120,220,120);
+    background: rgb(80,180,80);
     color:white;
-    content: "ЗАГРУЗИТЬ";
+    content: "загрузить фото";
 }
 
 .close_button:hover {
