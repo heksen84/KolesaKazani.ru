@@ -60,6 +60,31 @@
 </template>
 <script>
 
+/*
+    function handleFileSelect(evt) {
+        $("#photo_block").empty();
+        var files = evt.target.files; // FileList object
+        for (var i = 0; i < 5; i++) {
+            f = files[i];
+            if (!f.type.match("image.*")) {
+                continue;
+            }
+            var reader = new FileReader();
+            reader.onload = (function(theFile) {
+                return function(e) {
+                    $("#photo_block").append("<img src='" + e.target.result + "' class='adv_img_item' title='" + theFile.name + "'/>");
+                };
+            })(f);
+
+            reader.readAsDataURL(f);
+	    photo_loaded=1;
+
+        }
+    }
+
+    document.getElementById('file').addEventListener('change', handleFileSelect, false);
+*/
+
 import { post } from './../helpers/api'
 import transport from '../components/characteristics/transport';
 import realestate from '../components/characteristics/real-estate';
