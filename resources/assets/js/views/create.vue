@@ -32,27 +32,22 @@
 	 		 </b-form-textarea>
 			</b-form-group>
 
-
 			<!-- ЦЕНА -->
 			<b-form-group label="Цена:" label-for="price">
 			 	<b-form-input id="price" v-model="form.price" placeholder="Цена" style="width:150px;margin:auto;font-size:20px;text-align:center"></b-form-input>
 			</b-form-group>
 
-
 			<!-- ФОТОГРАФИИ -->
 			<b-form-group label="Фотографии:">
-				<div style="text-align:center">
-					<!--<b-img src="https://picsum.photos/125/125/?image=58" alt="left image" v-for="i in 6" :key="i" @click="deletePhoto"/>-->
-				</div>
-				<b-form-file v-model="form.file" multiple accept="image/jpeg, image/png" @change="loadImage"></b-form-file>
+				<b-img v-for="i in form.images" :src="i.src" width="109" height="109" :key="i" @click="deletePhoto"/>
+				<b-form-file v-model="form.file" multiple accept="image/jpeg, image/png" class="mt-1" @change="loadImage"></b-form-file>
 			</b-form-group>
 
+			<!-- ПУБЛИКАЦИЯ -->
+			<b-form-group style="text-align:center;margin-top:25px">
+				<b-button type="onSubmit" variant="outline-primary">ОПУБЛИКОВАТЬ</b-button>
+			</b-form-group>
 			
-				<b-form-group style="text-align:center;margin-top:25px">
-					<b-button type="onSubmit" variant="outline-primary">ОПУБЛИКОВАТЬ</b-button>
-				</b-form-group>
-			
-
 		</b-form>
 	</b-col>
 	</b-row>
@@ -60,30 +55,7 @@
 </template>
 <script>
 
-/*
-    function handleFileSelect(evt) {
-        $("#photo_block").empty();
-        var files = evt.target.files; // FileList object
-        for (var i = 0; i < 5; i++) {
-            f = files[i];
-            if (!f.type.match("image.*")) {
-                continue;
-            }
-            var reader = new FileReader();
-            reader.onload = (function(theFile) {
-                return function(e) {
-                    $("#photo_block").append("<img src='" + e.target.result + "' class='adv_img_item' title='" + theFile.name + "'/>");
-                };
-            })(f);
 
-            reader.readAsDataURL(f);
-	    photo_loaded=1;
-
-        }
-    }
-
-    document.getElementById('file').addEventListener('change', handleFileSelect, false);
-*/
 
 import { post } from './../helpers/api'
 import transport from '../components/characteristics/transport';
@@ -102,7 +74,8 @@ export default {
 			title: '',
 			text: '',
 			price: '',
-			file: null
+			file: null,
+			images:[]
 		},
 		root:false,
 		transport:false,
@@ -116,21 +89,26 @@ export default {
   	methods: {
 
   		loadImage(evt) {
-  			var files = evt.target.files;
-        	for (var i = 0; i < files.length; i++) {
-        		
-        		console.log(files[i]);
 
+  			var files = evt.target.files;
+  			var tmp_images_array=[];
+
+  			this.form.images = [];
+
+        	for (var i = 0; i < files.length; i++) {
+        		console.log(files[i]);
         		var image = files[i]
   				var reader = new FileReader();
 
   				reader.onload = (function(theFile) {
                 return function(e) {
-                //    $("#photo_block").append("<img src='" + e.target.result + "' class='adv_img_item' //title='" + theFile.name + "'/>");
+                	tmp_images_array.push({ "src": e.target.result });
                 };
-            	})(f);
+            })(image);
 
-  				reader.readAsDataURL(image);
+			reader.readAsDataURL(image);
+			this.form.images = tmp_images_array;
+
         	}
   		},
   		deletePhoto() {
