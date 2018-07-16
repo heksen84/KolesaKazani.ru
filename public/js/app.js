@@ -2121,79 +2121,122 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
+/*
+    function handleFileSelect(evt) {
+        $("#photo_block").empty();
+        var files = evt.target.files; // FileList object
+        for (var i = 0; i < 5; i++) {
+            f = files[i];
+            if (!f.type.match("image.*")) {
+                continue;
+            }
+            var reader = new FileReader();
+            reader.onload = (function(theFile) {
+                return function(e) {
+                    $("#photo_block").append("<img src='" + e.target.result + "' class='adv_img_item' title='" + theFile.name + "'/>");
+                };
+            })(f);
+
+            reader.readAsDataURL(f);
+	    photo_loaded=1;
+
+        }
+    }
+
+    document.getElementById('file').addEventListener('change', handleFileSelect, false);
+*/
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["items"],
-  data: function data() {
-    return {
-      form: {
-        deal_selected: 0,
-        category: null,
-        title: '',
-        text: '',
-        price: '',
-        file: null
-      },
-      root: false,
-      transport: false,
-      real_estate: false,
-      appliances: false
-    };
-  },
-  created: function created() {},
+    props: ["items"],
+    data: function data() {
+        return {
+            form: {
+                deal_selected: 0,
+                category: null,
+                title: '',
+                text: '',
+                price: '',
+                file: null
+            },
+            root: false,
+            transport: false,
+            real_estate: false,
+            appliances: false
+        };
+    },
+    created: function created() {},
 
-  components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_characteristics_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_characteristics_real_estate___default.a },
-  methods: {
-    deletePhoto: function deletePhoto() {
-      alert("delete me");
-    },
-    closeAndReturn: function closeAndReturn() {
-      window.history.back();
-    },
-    resetCategories: function resetCategories(data) {
-      this.root = false;
-      this.transport = false;
-      this.real_estate = false;
-      this.appliances = false;
-    },
-    changeCategory: function changeCategory(data) {
-      switch (data) {
-        case null:
-          {
-            this.resetCategories(data);
-            this.root = true;
-            break;
-          }
-        case 1:
-          {
-            this.resetCategories(data);
-            this.transport = true;
-            break;
-          }
-        case 2:
-          {
-            this.resetCategories(data);
-            this.real_estate = true;
-            break;
-          }
-        case 3:
-          {
-            this.resetCategories(data);
-            this.appliances = true;
-            break;
-          }
-      }
-    },
-    onSubmit: function onSubmit(evt) {
-      evt.preventDefault();
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.form }).then(function (res) {
-        window.location.href = "/home/555";
-      }).catch(function (err) {});
+    components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_characteristics_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_characteristics_real_estate___default.a },
+    methods: {
+        loadImage: function loadImage(evt) {
+            var files = evt.target.files;
+            for (var i = 0; i < files.length; i++) {
+
+                console.log(files[i]);
+
+                var image = files[i];
+                var reader = new FileReader();
+
+                reader.onload = function (theFile) {
+                    return function (e) {
+                        //    $("#photo_block").append("<img src='" + e.target.result + "' class='adv_img_item' //title='" + theFile.name + "'/>");
+                    };
+                }(f);
+
+                reader.readAsDataURL(image);
+            }
+        },
+        deletePhoto: function deletePhoto() {
+            alert("delete me");
+        },
+        closeAndReturn: function closeAndReturn() {
+            window.history.back();
+        },
+        resetCategories: function resetCategories(data) {
+            this.root = false;
+            this.transport = false;
+            this.real_estate = false;
+            this.appliances = false;
+        },
+        changeCategory: function changeCategory(data) {
+            switch (data) {
+                case null:
+                    {
+                        this.resetCategories(data);
+                        this.root = true;
+                        break;
+                    }
+                case 1:
+                    {
+                        this.resetCategories(data);
+                        this.transport = true;
+                        break;
+                    }
+                case 2:
+                    {
+                        this.resetCategories(data);
+                        this.real_estate = true;
+                        break;
+                    }
+                case 3:
+                    {
+                        this.resetCategories(data);
+                        this.appliances = true;
+                        break;
+                    }
+            }
+        },
+        onSubmit: function onSubmit(evt) {
+            evt.preventDefault();
+            Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.form }).then(function (res) {
+                window.location.href = "/home/555";
+            }).catch(function (err) {});
+        }
     }
-  }
 });
 
 /***/ }),
@@ -29828,6 +29871,7 @@ var render = function() {
                           multiple: "",
                           accept: "image/jpeg, image/png"
                         },
+                        on: { change: _vm.loadImage },
                         model: {
                           value: _vm.form.file,
                           callback: function($$v) {

@@ -44,7 +44,7 @@
 				<div style="text-align:center">
 					<!--<b-img src="https://picsum.photos/125/125/?image=58" alt="left image" v-for="i in 6" :key="i" @click="deletePhoto"/>-->
 				</div>
-				<b-form-file v-model="form.file" multiple accept="image/jpeg, image/png"></b-form-file>
+				<b-form-file v-model="form.file" multiple accept="image/jpeg, image/png" @change="loadImage"></b-form-file>
 			</b-form-group>
 
 			
@@ -89,6 +89,9 @@ import { post } from './../helpers/api'
 import transport from '../components/characteristics/transport';
 import realestate from '../components/characteristics/real-estate';
 
+
+
+
 export default {
 	props: ["items"],
 	data () {
@@ -111,6 +114,25 @@ export default {
 	},
 	components: { transport, realestate },
   	methods: {
+
+  		loadImage(evt) {
+  			var files = evt.target.files;
+        	for (var i = 0; i < files.length; i++) {
+        		
+        		console.log(files[i]);
+
+        		var image = files[i]
+  				var reader = new FileReader();
+
+  				reader.onload = (function(theFile) {
+                return function(e) {
+                //    $("#photo_block").append("<img src='" + e.target.result + "' class='adv_img_item' //title='" + theFile.name + "'/>");
+                };
+            	})(f);
+
+  				reader.readAsDataURL(image);
+        	}
+  		},
   		deletePhoto() {
   			alert("delete me");
   		},
