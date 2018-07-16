@@ -55,6 +55,7 @@
 </template>
 <script>
 
+
 // импорт
 import { post } from './../helpers/api'
 import transport from '../components/characteristics/transport';
@@ -92,7 +93,7 @@ export default {
 
         	for (var i = 0; i < files.length; i++) {
         		console.log(files[i]);
-        		
+
         		var image = files[i]
   				var reader = new FileReader();
 
@@ -104,7 +105,6 @@ export default {
 
 			reader.readAsDataURL(image);
 			this.form.images = tmp_images_array;
-
         	}
   		},
   		deletePhoto(index) {
@@ -114,10 +114,12 @@ export default {
  			window.history.back();
   		},
   		resetCategories(data) {
+
   			this.root=false;
   			this.transport=false;
   			this.real_estate=false;
   			this.appliances=false;
+
   		},
   		changeCategory(data) {
   			switch(data) {
