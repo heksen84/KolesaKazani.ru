@@ -2116,9 +2116,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
+// импорт
 
 
 
+
+var tmp_images_array = [];
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["items"],
@@ -2144,11 +2147,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_characteristics_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_characteristics_real_estate___default.a },
   methods: {
     loadImage: function loadImage(evt) {
-
-      var files = evt.target.files;
-      var tmp_images_array = [];
-
-      this.form.images = [];
+      var files = evt.target.files;;
 
       for (var i = 0; i < files.length; i++) {
         console.log(files[i]);

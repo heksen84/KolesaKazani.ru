@@ -55,14 +55,12 @@
 </template>
 <script>
 
-
-
+// импорт
 import { post } from './../helpers/api'
 import transport from '../components/characteristics/transport';
 import realestate from '../components/characteristics/real-estate';
 
-
-
+var tmp_images_array=[];
 
 export default {
 	props: ["items"],
@@ -90,13 +88,11 @@ export default {
 
   		loadImage(evt) {
 
-  			var files = evt.target.files;
-  			var tmp_images_array=[];
-
-  			this.form.images = [];
+  			var files = evt.target.files;;
 
         	for (var i = 0; i < files.length; i++) {
         		console.log(files[i]);
+        		
         		var image = files[i]
   				var reader = new FileReader();
 
