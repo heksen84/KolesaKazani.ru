@@ -196,7 +196,7 @@ body {
 }
 
 .custom-file-input:lang(en) ~ .custom-file-label::after {
-  background: #64c864;
+  background: #6464c8;
   color: white;
   content: "\437\430\433\440\443\437\438\442\44C   \444\43E\442\43E";
 }
