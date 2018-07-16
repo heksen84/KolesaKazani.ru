@@ -39,7 +39,7 @@
 
 			<!-- ФОТОГРАФИИ -->
 			<b-form-group label="Фотографии:">
-				<b-img v-for="i in form.images" :src="i.src" width="100" height="100" :key="i" @click="deletePhoto"/>
+				<b-img v-for="i,index in form.images" :src="i.src" width="112" height="112" :key="index" @click="deletePhoto(index)"/>
 				<b-form-file v-model="form.file" multiple accept="image/jpeg, image/png" class="mt-1" @change="loadImage"></b-form-file>
 			</b-form-group>
 
@@ -111,8 +111,8 @@ export default {
 
         	}
   		},
-  		deletePhoto() {
-  			alert("delete me");
+  		deletePhoto(index) {
+  			alert(index);
   		},
   		closeAndReturn() {
  			window.history.back();

@@ -2165,8 +2165,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.form.images = tmp_images_array;
       }
     },
-    deletePhoto: function deletePhoto() {
-      alert("delete me");
+    deletePhoto: function deletePhoto(index) {
+      alert(index);
     },
     closeAndReturn: function closeAndReturn() {
       window.history.back();
@@ -29839,11 +29839,15 @@ var render = function() {
                     "b-form-group",
                     { attrs: { label: "Фотографии:" } },
                     [
-                      _vm._l(_vm.form.images, function(i) {
+                      _vm._l(_vm.form.images, function(i, index) {
                         return _c("b-img", {
-                          key: i,
-                          attrs: { src: i.src, width: "100", height: "100" },
-                          on: { click: _vm.deletePhoto }
+                          key: index,
+                          attrs: { src: i.src, width: "112", height: "112" },
+                          on: {
+                            click: function($event) {
+                              _vm.deletePhoto(index)
+                            }
+                          }
                         })
                       }),
                       _vm._v(" "),
