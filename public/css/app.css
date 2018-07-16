@@ -190,9 +190,8 @@ body {
 .close_button {
   font-size: 107%;
   margin-left: 98%;
-  margin-top: 7px;
+  margin-top: 10px;
   cursor: pointer;
-  font-weight: bold;
 }
 
 .custom-file-input:lang(en) ~ .custom-file-label::after {
