@@ -2114,9 +2114,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 
@@ -29845,7 +29842,7 @@ var render = function() {
                       _vm._l(_vm.form.images, function(i) {
                         return _c("b-img", {
                           key: i,
-                          attrs: { src: i.src, width: "109", height: "109" },
+                          attrs: { src: i.src, width: "100", height: "100" },
                           on: { click: _vm.deletePhoto }
                         })
                       }),
