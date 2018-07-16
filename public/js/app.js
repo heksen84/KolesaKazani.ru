@@ -29821,20 +29821,7 @@ var render = function() {
                     "b-form-group",
                     { attrs: { label: "Фотографии:" } },
                     [
-                      _c(
-                        "div",
-                        { staticStyle: { "text-align": "center" } },
-                        _vm._l(6, function(i) {
-                          return _c("b-img", {
-                            key: i,
-                            attrs: {
-                              src: "https://picsum.photos/125/125/?image=58",
-                              alt: "left image"
-                            },
-                            on: { click: _vm.deletePhoto }
-                          })
-                        })
-                      ),
+                      _c("div", { staticStyle: { "text-align": "center" } }),
                       _vm._v(" "),
                       _c("b-form-file", {
                         attrs: {
