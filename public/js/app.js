@@ -29850,7 +29850,7 @@ var render = function() {
                       _vm._l(_vm.form.images, function(i, index) {
                         return _c("b-img", {
                           key: index,
-                          attrs: { src: i.src, width: "112", height: "112" },
+                          attrs: { src: i.src, width: "105", height: "105" },
                           on: {
                             click: function($event) {
                               _vm.deletePhoto(index)
@@ -42199,6 +42199,7 @@ if (token) {
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
+
     options_sdelka: [{ value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }],
 
     max_load_images: 20
