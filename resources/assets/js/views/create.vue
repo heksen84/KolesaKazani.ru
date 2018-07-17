@@ -104,11 +104,11 @@ export default {
             })(image);
 
 			reader.readAsDataURL(image);
-			this.form.images = tmp_images_array;
+				this.form.images = tmp_images_array;
         	}
   		},
   		deletePhoto(index) {
-  			alert(index);
+  			this.form.images.splice(index, 1);
   		},
   		closeAndReturn() {
  			window.history.back();
