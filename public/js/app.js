@@ -2151,10 +2151,11 @@ var tmp_images_array = [];
       var files = evt.target.files;;
 
       for (var i = 0; i < files.length; i++) {
-        console.log(files[i]);
 
         var image = files[i];
         var reader = new FileReader();
+
+        //console.log(files[i]);
 
         reader.onload = function (theFile) {
           return function (e) {
@@ -29874,12 +29875,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "b-form-group",
-                    {
-                      staticStyle: {
-                        "text-align": "center",
-                        "margin-top": "25px"
-                      }
-                    },
+                    { staticStyle: { "text-align": "center", margin: "25px" } },
                     [
                       _c(
                         "b-button",

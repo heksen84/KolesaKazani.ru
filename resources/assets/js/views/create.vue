@@ -44,7 +44,7 @@
 			</b-form-group>
 
 			<!-- ПУБЛИКАЦИЯ -->
-			<b-form-group style="text-align:center;margin-top:25px">
+			<b-form-group style="text-align:center;margin:25px">
 				<b-button type="onSubmit" variant="outline-primary">ОПУБЛИКОВАТЬ</b-button>
 			</b-form-group>
 			
@@ -92,7 +92,7 @@ export default {
   			var files = evt.target.files;;
 
         	for (var i=0; i<files.length; i++) {
-        		
+
         		var image = files[i]
   				var reader = new FileReader();
 
