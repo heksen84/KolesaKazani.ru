@@ -93,6 +93,11 @@ export default {
 
         	for (var i=0; i<files.length; i++) {
 
+        		if ( i>=this.$root.max_load_images  || this.form.images.length>=this.$root.max_load_images ) {
+        			//alert("Не более "+this.$root.max_load_images+" изображений");
+        			break;
+        		}
+
         		var image = files[i]
   				var reader = new FileReader();
 

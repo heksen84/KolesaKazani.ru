@@ -2152,6 +2152,11 @@ var tmp_images_array = [];
 
       for (var i = 0; i < files.length; i++) {
 
+        if (i >= this.$root.max_load_images || this.form.images.length >= this.$root.max_load_images) {
+          //alert("Не более "+this.$root.max_load_images+" изображений");
+          break;
+        }
+
         var image = files[i];
         var reader = new FileReader();
 
@@ -42194,7 +42199,9 @@ if (token) {
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
-   options_sdelka: [{ value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }]
+    options_sdelka: [{ value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }],
+
+    max_load_images: 20
 });
 
 /***/ }),
