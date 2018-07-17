@@ -91,12 +91,12 @@ export default {
 
   			var files = evt.target.files;;
 
-        	for (var i = 0; i < files.length; i++) {
+        	for (var i=0; i<files.length; i++) {
         		
         		var image = files[i]
   				var reader = new FileReader();
 
-  				console.log(files[i]);
+  				//console.log(files[i]);
 
   				reader.onload = (function(theFile) {
                 return function(e) {
