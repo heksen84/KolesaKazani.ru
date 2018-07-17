@@ -1904,6 +1904,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -29357,15 +29359,17 @@ var render = function() {
             "b-col",
             {
               staticStyle: {
-                "text-align": "center",
-                margin: "auto",
-                "margin-top": "40px",
-                color: "grey"
+                "text-align": "left",
+                margin: "50px auto",
+                color: "black",
+                background: "white"
               },
-              attrs: { cols: "12", sm: "12", md: "9", lg: "3", xl: "3" }
+              attrs: { cols: "12", sm: "12", md: "12", lg: "4", xl: "4" }
             },
             [
-              _c("h1", [_vm._v("регистрация")]),
+              _c("h2", { staticStyle: { "text-align": "center" } }, [
+                _vm._v("регистрация")
+              ]),
               _vm._v(" "),
               _c("br"),
               _vm._v(" "),
@@ -29476,6 +29480,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "b-form-group",
+                    { staticStyle: { "text-align": "center" } },
                     [
                       _c(
                         "b-button",
@@ -29528,15 +29533,15 @@ var render = function() {
             "b-col",
             {
               staticStyle: {
-                "text-align": "center",
-                margin: "auto",
-                "margin-top": "40px",
-                color: "grey"
+                "text-align": "left",
+                margin: "50px auto",
+                color: "black",
+                background: "white"
               },
-              attrs: { cols: "12", sm: "12", md: "9", lg: "3", xl: "3" }
+              attrs: { cols: "12", sm: "12", md: "12", lg: "4", xl: "4" }
             },
             [
-              _c("h1", [_vm._v("вход")]),
+              _c("h2", [_vm._v("вход")]),
               _vm._v(" "),
               _c("br"),
               _vm._v(" "),
@@ -29618,9 +29623,16 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c(
-                    "b-button",
-                    { attrs: { type: "submit", variant: "primary" } },
-                    [_vm._v("Войти")]
+                    "b-form-group",
+                    { staticStyle: { "text-align": "center" } },
+                    [
+                      _c(
+                        "b-button",
+                        { attrs: { type: "submit", variant: "primary" } },
+                        [_vm._v("Войти")]
+                      )
+                    ],
+                    1
                   ),
                   _vm._v(" "),
                   _c(

@@ -1,8 +1,8 @@
 <template>
   <b-container fluid>
     <b-row>
-    <b-col cols="12" sm="12" md="9" lg="3" xl="3" style="text-align:center;margin:auto;margin-top:40px;color:grey">
-    <h1>регистрация</h1>
+    <b-col cols="12" sm="12" md="12" lg="4" xl="4" style="text-align:left;margin: 50px auto;color:black;background:white">
+    <h2 style="text-align:center">регистрация</h2>
     <br>
     <b-form @submit="onSubmit" style="width:99%">
 
@@ -47,7 +47,7 @@
       </b-form-group>
 
       <br>
-      <b-form-group>
+      <b-form-group style="text-align:center">
         <b-button type="submit" variant="primary">Продолжить</b-button>
       </b-form-group>
     </b-form>
