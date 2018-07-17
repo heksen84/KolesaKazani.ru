@@ -29861,7 +29861,7 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _c("b-form-file", {
-                        staticClass: "mt-1",
+                        staticClass: "mt-2",
                         attrs: {
                           multiple: "",
                           accept: "image/jpeg, image/png"
