@@ -39,7 +39,7 @@
 
 			<!-- ФОТОГРАФИИ -->
 			<b-form-group label="Фотографии:">
-				<b-img v-for="i,index in form.images" :src="i.src" width="105" height="105" :key="index" @click="deletePhoto(index)"/>
+				<b-img v-for="i,index in form.images" :src="i.src" width="105" height="105" :key="index" @click="deletePhoto(index)" class="image" />
 				<b-form-file v-model="form.file" multiple accept="image/jpeg, image/png" class="mt-1" @change="loadImage"></b-form-file>
 			</b-form-group>
 

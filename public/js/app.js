@@ -29850,6 +29850,7 @@ var render = function() {
                       _vm._l(_vm.form.images, function(i, index) {
                         return _c("b-img", {
                           key: index,
+                          staticClass: "image",
                           attrs: { src: i.src, width: "105", height: "105" },
                           on: {
                             click: function($event) {
