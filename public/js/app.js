@@ -1926,7 +1926,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _this = this;
 
     switch (ttype) {
-
       case 1:
         {
           // автомобили
@@ -28764,14 +28763,7 @@ var render = function() {
                       padding: "2px"
                     }
                   },
-                  [
-                    _vm._v("FlyMart"),
-                    _c(
-                      "span",
-                      { staticStyle: { "text-decoration": "underline" } },
-                      [_vm._v("24")]
-                    )
-                  ]
+                  [_vm._v("FlyMart"), _c("span", [_vm._v("24")])]
                 ),
                 _vm._v(" "),
                 _c(
