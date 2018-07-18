@@ -1741,13 +1741,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -28512,6 +28505,34 @@ var render = function() {
                       expression: "mileage"
                     }
                   })
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.selected.carmark != null && _vm.selected.type_transport == 1
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Тип двигателя:" } },
+                [
+                  _c(
+                    "b-form-select",
+                    {
+                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                      model: {
+                        value: _vm.selected.fuel_type,
+                        callback: function($$v) {
+                          _vm.$set(_vm.selected, "fuel_type", $$v)
+                        },
+                        expression: "selected.fuel_type"
+                      }
+                    },
+                    _vm._l(_vm.fuel_type, function(item) {
+                      return _c("option", { domProps: { value: item.value } }, [
+                        _vm._v(_vm._s(item.text))
+                      ])
+                    })
+                  )
                 ],
                 1
               )

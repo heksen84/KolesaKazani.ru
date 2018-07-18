@@ -41,19 +41,26 @@
        <b-form-input type="number" v-model="mileage" class="mb-2 mr-sm-2 mb-sm-2" style="width:115px"></b-form-input>
     </b-form-group>
 
-     <b-form-group label="Тип двигателя:" v-if="selected.carmark!=null && selected.type_transport==1">
-        <b-form-select v-model="selected.fuel_type" class="mb-2 mr-sm-2 mb-sm-2">
-           <option v-for="item in fuel_type" :value="item.value">{{item.text}}</option>
-        </b-form-select>
-    </b-form-group>
-
-
-    <b-form-group label="Растаможен:" v-if="selected.carmark!=null && selected.type_transport==1">
+     <b-form-group label="Растаможен:" v-if="selected.carmark!=null && selected.type_transport==1">
         <b-form-select v-model="selected.car_customs" class="mb-2 mr-sm-2 mb-sm-2">
            <option :value="1">Да</option>
            <option :value="0">Нет</option>
         </b-form-select>
     </b-form-group>
+   
+
+  <!--  <b-form-group label="Расположение руля:">
+        <b-form-select v-model="selected_helm_position" class="mb-2 mr-sm-2 mb-sm-0" style="width:295px">
+           <option v-for="item in helm_position" :value="item.value">{{item.text}}</option>
+        </b-form-select>
+    </b-form-group>
+
+     <b-form-group label="Тип двигателя:" style="margin-top:8px">
+        <b-form-select v-model="selected_fuel_type" class="mb-2 mr-sm-2 mb-sm-0" style="width:295px">
+           <option v-for="item in fuel_type" :value="item.value">{{item.text}}</option>
+        </b-form-select>
+    </b-form-group>-->
+
 
     </b-form>
   </div>
