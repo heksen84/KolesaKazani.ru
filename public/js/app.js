@@ -1641,56 +1641,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/characteristics/real-estate.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      type: [{ value: 0, text: 'Квартира' }, { value: 1, text: 'Комната' }, { value: 2, text: 'Дом, дача, коттедж' }, { value: 3, text: 'Земельный участок' }, { value: 5, text: 'Гараж или машиноместо' }, { value: 6, text: 'Коммерческая недвижимость' }, { value: 7, text: 'Недвижимость за рубежом' }],
-      selected_type: 0
-    };
-  },
-  created: function created() {},
-
-  components: {},
-  methods: {
-    details: function details(event) {}
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/characteristics/transport.vue":
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/characteristics/com_transport.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -1815,6 +1771,190 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   }
 });
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/characteristics/real-estate.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      type: [{ value: 0, text: 'Квартира' }, { value: 1, text: 'Комната' }, { value: 2, text: 'Дом, дача, коттедж' }, { value: 3, text: 'Земельный участок' }, { value: 5, text: 'Гараж или машиноместо' }, { value: 6, text: 'Коммерческая недвижимость' }, { value: 7, text: 'Недвижимость за рубежом' }],
+      selected_type: 0
+    };
+  },
+  created: function created() {},
+
+  components: {},
+  methods: {
+    details: function details(event) {}
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/characteristics/transport.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__com_transport_vue__ = __webpack_require__("./resources/assets/js/components/characteristics/com_transport.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__com_transport_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__com_transport_vue__);
+var _components$computed$;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (_components$computed$ = {
+  components: { comtransport: __WEBPACK_IMPORTED_MODULE_1__com_transport_vue___default.a },
+  computed: {
+    checkYear: function checkYear() {
+      return this.release_date.length > 3 && this.release_date > 1930 ? true : null;
+    }
+  },
+  data: function data() {
+    return {
+      type_transport: [{ value: null, text: '-- Выберите вид транспорта --' }, { value: 1, text: 'Легковой автомобиль' }, { value: 2, text: 'Грузовой автомобиль' }, { value: 3, text: 'Мототехника' }, { value: 4, text: 'Спецтехника' }, { value: 5, text: 'Ретро-автомобиль' }, { value: 6, text: 'Водный транспорт' }, { value: 7, text: 'Велосипед' }, { value: 8, text: 'Воздушный транспорт' }],
+
+      // марки автомобилей
+      carmark: [],
+      models: [],
+      release_date: "",
+      mileage: 0,
+
+      helm_position: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
+
+      fuel_type: [{ value: 0, text: 'Бензин' }, { value: 1, text: 'Дизель' }, { value: 2, text: 'Газ-бензин' }, { value: 3, text: 'Газ' }, { value: 4, text: 'Гибрид' }, { value: 5, text: 'Электричество' }],
+
+      selected: {
+        type_transport: null,
+        carmark: null,
+        model: null,
+        helm_position: null,
+        fuel_type: 0,
+        car_customs: 1
+      }
+    };
+  },
+  created: function created() {}
+}, _defineProperty(_components$computed$, 'components', {}), _defineProperty(_components$computed$, 'methods', {
+
+  /*
+  -----------------------------
+    Вид транспорта
+  -----------------------------*/
+  selectTransportType: function selectTransportType(ttype) {
+    var _this = this;
+
+    switch (ttype) {
+
+      case 1:
+        {
+          // автомобили
+          this.carmark = [];
+          Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsMarks').then(function (res) {
+            _this.carmark = res.data;
+            console.log(_this.this.carmark);
+          }).catch(function (err) {});
+          break;
+        }
+    }
+  },
+
+
+  // change марки
+  selectMark: function selectMark(markType) {
+    var _this2 = this;
+
+    Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsModels?mark_id=' + markType).then(function (res) {
+      _this2.models = [];
+      _this2.models = res.data;
+      _this2.selected.model = null;
+    }).catch(function (err) {
+      console.log(err);
+    });
+  }
+}), _components$computed$);
 
 /***/ }),
 
@@ -28753,6 +28893,253 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-1da86000\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/characteristics/com_transport.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "b-form",
+        { staticStyle: { "margin-top": "-18px" }, attrs: { inline: "" } },
+        [
+          _c(
+            "b-form-group",
+            { attrs: { label: "Вид транспорта:" } },
+            [
+              _c(
+                "b-form-select",
+                {
+                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                  on: { change: _vm.selectTransportType },
+                  model: {
+                    value: _vm.selected.type_transport,
+                    callback: function($$v) {
+                      _vm.$set(_vm.selected, "type_transport", $$v)
+                    },
+                    expression: "selected.type_transport"
+                  }
+                },
+                _vm._l(_vm.type_transport, function(item) {
+                  return _c("option", { domProps: { value: item.value } }, [
+                    _vm._v(_vm._s(item.text))
+                  ])
+                })
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _vm.carmark && _vm.selected.type_transport == 1
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Марка автомобиля:" } },
+                [
+                  _c(
+                    "b-form-select",
+                    {
+                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                      on: { change: _vm.selectMark },
+                      model: {
+                        value: _vm.selected.carmark,
+                        callback: function($$v) {
+                          _vm.$set(_vm.selected, "carmark", $$v)
+                        },
+                        expression: "selected.carmark"
+                      }
+                    },
+                    [
+                      _c("option", { domProps: { value: null } }, [
+                        _vm._v("-- Выберите марку автомобиля --")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.carmark, function(item) {
+                        return _c(
+                          "option",
+                          { domProps: { value: item.id_car_mark } },
+                          [_vm._v(_vm._s(item.name))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.selected.carmark != null && _vm.selected.type_transport == 1
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Модель:" } },
+                [
+                  _c(
+                    "b-form-select",
+                    {
+                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                      model: {
+                        value: _vm.selected.model,
+                        callback: function($$v) {
+                          _vm.$set(_vm.selected, "model", $$v)
+                        },
+                        expression: "selected.model"
+                      }
+                    },
+                    [
+                      _c("option", { domProps: { value: null } }, [
+                        _vm._v("-- Выберите модель --")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.models, function(item) {
+                        return _c(
+                          "option",
+                          { domProps: { value: item.id_car_model } },
+                          [_vm._v(_vm._s(item.name))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.selected.carmark != null && _vm.selected.type_transport == 1
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Год выпуска:" } },
+                [
+                  _c("b-form-input", {
+                    staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                    staticStyle: { width: "130px" },
+                    attrs: {
+                      placeholder: "Введите год",
+                      type: "number",
+                      state: _vm.checkYear
+                    },
+                    model: {
+                      value: _vm.release_date,
+                      callback: function($$v) {
+                        _vm.release_date = $$v
+                      },
+                      expression: "release_date"
+                    }
+                  })
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.selected.carmark != null && _vm.selected.type_transport == 1
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Положение руля:" } },
+                [
+                  _c(
+                    "b-form-select",
+                    {
+                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                      model: {
+                        value: _vm.selected.helm_position,
+                        callback: function($$v) {
+                          _vm.$set(_vm.selected, "helm_position", $$v)
+                        },
+                        expression: "selected.helm_position"
+                      }
+                    },
+                    [
+                      _c("option", { domProps: { value: null } }, [
+                        _vm._v("-- Выберите положение руля --")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.helm_position, function(item) {
+                        return _c(
+                          "option",
+                          { domProps: { value: item.value } },
+                          [_vm._v(_vm._s(item.text))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.selected.carmark != null && _vm.selected.type_transport == 1
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Пробег(км):" } },
+                [
+                  _c("b-form-input", {
+                    staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                    staticStyle: { width: "115px" },
+                    attrs: { type: "number" },
+                    model: {
+                      value: _vm.mileage,
+                      callback: function($$v) {
+                        _vm.mileage = $$v
+                      },
+                      expression: "mileage"
+                    }
+                  })
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.selected.carmark != null && _vm.selected.type_transport == 1
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Растаможен:" } },
+                [
+                  _c(
+                    "b-form-select",
+                    {
+                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                      model: {
+                        value: _vm.selected.car_customs,
+                        callback: function($$v) {
+                          _vm.$set(_vm.selected, "car_customs", $$v)
+                        },
+                        expression: "selected.car_customs"
+                      }
+                    },
+                    [
+                      _c("option", { domProps: { value: 1 } }, [_vm._v("Да")]),
+                      _vm._v(" "),
+                      _c("option", { domProps: { value: 0 } }, [_vm._v("Нет")])
+                    ]
+                  )
+                ],
+                1
+              )
+            : _vm._e()
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1da86000", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-1f664bd5\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/views/search.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -42280,6 +42667,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-474a4174", Component.options)
   } else {
     hotAPI.reload("data-v-474a4174", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/characteristics/com_transport.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/characteristics/com_transport.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-1da86000\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/characteristics/com_transport.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\characteristics\\com_transport.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1da86000", Component.options)
+  } else {
+    hotAPI.reload("data-v-1da86000", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true

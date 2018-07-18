@@ -61,7 +61,11 @@
 
 <script>
 import { post, get, interceptors } from '../../helpers/api'
+
+import comtransport from './com_transport.vue';
+
 export default {
+  components: { comtransport },
   computed: {
     checkYear () {
       return (this.release_date.length > 3) && (this.release_date > 1930) ? true : null
