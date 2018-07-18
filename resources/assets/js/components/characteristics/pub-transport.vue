@@ -2,13 +2,11 @@
   <div>
     <b-form inline style="margin-top:-18px;">
 
-
     <b-form-group label="Вид транспорта:">
         <b-form-select v-model="selected.type_transport" class="mb-2 mr-sm-2 mb-sm-2"  @change="selectTransportType">
            <option v-for="item in type_transport" :value="item.value">{{item.text}}</option>
         </b-form-select>
     </b-form-group>
-
 
     <b-form-group label="Марка автомобиля:" v-if="carmark && selected.type_transport==1">
         <b-form-select v-model="selected.carmark" class="mb-2 mr-sm-2 mb-sm-2" @change="selectMark">
@@ -17,14 +15,12 @@
         </b-form-select>
     </b-form-group>
 
-
     <b-form-group label="Модель:" v-if="selected.carmark!=null && selected.type_transport==1">
         <b-form-select v-model="selected.model" class="mb-2 mr-sm-2 mb-sm-2">
            <option :value="null">-- Выберите модель --</option>
            <option v-for="item in models" :value="item.id_car_model">{{item.name}}</option>
         </b-form-select>
     </b-form-group>
-
 
     <b-form-group label="Год выпуска:" v-if="selected.carmark!=null && selected.type_transport==1">
        <b-form-input placeholder="Введите год" type="number" v-model="release_date" class="mb-2 mr-sm-2 mb-sm-2" style="width:130px" :state="checkYear"></b-form-input>
@@ -47,21 +43,7 @@
            <option :value="0">Нет</option>
         </b-form-select>
     </b-form-group>
-   
-
-  <!--  <b-form-group label="Расположение руля:">
-        <b-form-select v-model="selected_helm_position" class="mb-2 mr-sm-2 mb-sm-0" style="width:295px">
-           <option v-for="item in helm_position" :value="item.value">{{item.text}}</option>
-        </b-form-select>
-    </b-form-group>
-
-     <b-form-group label="Тип двигателя:" style="margin-top:8px">
-        <b-form-select v-model="selected_fuel_type" class="mb-2 mr-sm-2 mb-sm-0" style="width:295px">
-           <option v-for="item in fuel_type" :value="item.value">{{item.text}}</option>
-        </b-form-select>
-    </b-form-group>-->
-
-
+ 
     </b-form>
   </div>
 </template>
