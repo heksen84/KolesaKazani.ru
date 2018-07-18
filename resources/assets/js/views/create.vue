@@ -58,8 +58,8 @@
 
 // импорт
 import { post } from './../helpers/api'
-import transport from '../components/characteristics/transport';
-import realestate from '../components/characteristics/real-estate';
+import transport from '../components/chars/transport';
+import realestate from '../components/chars/real-estate';
 
 var tmp_images_array=[];
 

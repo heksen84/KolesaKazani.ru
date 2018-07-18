@@ -61,11 +61,10 @@
 
 <script>
 import { post, get, interceptors } from '../../helpers/api'
-
-import comtransport from './com_transport.vue';
+import com_transport from './com_transport';
 
 export default {
-  components: { comtransport },
+  components: { com_transport },
   computed: {
     checkYear () {
       return (this.release_date.length > 3) && (this.release_date > 1930) ? true : null
@@ -128,9 +127,7 @@ export default {
       Вид транспорта
     -----------------------------*/
     selectTransportType(ttype) {
-
       switch(ttype) {
-
         case 1: {  // автомобили
           this.carmark=[];
           get('/getCarsMarks').then((res) => {
