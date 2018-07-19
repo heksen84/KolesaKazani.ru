@@ -1646,130 +1646,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
 //
 //
 //
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  computed: {
-    checkYear: function checkYear() {
-      return this.release_date.length > 3 && this.release_date > 1930 ? true : null;
-    }
-  },
+  computed: {},
   data: function data() {
-    return {
-      type_transport: [{ value: null, text: '-- Выберите вид транспорта --' }, { value: 1, text: 'Легковой автомобиль' }, { value: 2, text: 'Грузовой автомобиль' }, { value: 3, text: 'Мототехника' }, { value: 4, text: 'Спецтехника' }, { value: 5, text: 'Ретро-автомобиль' }, { value: 6, text: 'Водный транспорт' }, { value: 7, text: 'Велосипед' }, { value: 8, text: 'Воздушный транспорт' }],
-
-      // марки автомобилей
-      carmark: [],
-      models: [],
-      release_date: "",
-      mileage: 0,
-
-      helm_position: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
-
-      fuel_type: [{ value: 0, text: 'Бензин' }, { value: 1, text: 'Дизель' }, { value: 2, text: 'Газ-бензин' }, { value: 3, text: 'Газ' }, { value: 4, text: 'Гибрид' }, { value: 5, text: 'Электричество' }],
-
-      selected: {
-        type_transport: null,
-        carmark: null,
-        model: null,
-        helm_position: null,
-        fuel_type: 0,
-        car_customs: 1
-      }
-    };
+    return {};
   },
   created: function created() {},
 
   components: {},
-  methods: {
-
-    /*
-    -----------------------------
-      Вид транспорта
-    -----------------------------*/
-    selectTransportType: function selectTransportType(ttype) {
-      var _this = this;
-
-      switch (ttype) {
-
-        case 1:
-          {
-            // автомобили
-            this.carmark = [];
-            Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsMarks').then(function (res) {
-              _this.carmark = res.data;
-              console.log(_this.this.carmark);
-            }).catch(function (err) {});
-            break;
-          }
-      }
-    },
-
-
-    // change марки
-    selectMark: function selectMark(markType) {
-      var _this2 = this;
-
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsModels?mark_id=' + markType).then(function (res) {
-        _this2.models = [];
-        _this2.models = res.data;
-        _this2.selected.model = null;
-      }).catch(function (err) {
-        console.log(err);
-      });
-    }
-  }
+  methods: {}
 });
 
 /***/ }),
@@ -1813,10 +1705,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__com_transport__ = __webpack_require__("./resources/assets/js/components/chars/com_transport.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__com_transport___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__com_transport__);
-var _components$computed$;
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__com_transport_vue__ = __webpack_require__("./resources/assets/js/components/chars/com_transport.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__com_transport_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__com_transport_vue__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
@@ -1880,12 +1770,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (_components$computed$ = {
-  components: { com_transport: __WEBPACK_IMPORTED_MODULE_1__com_transport___default.a },
+
+/* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
   computed: {
     checkYear: function checkYear() {
       return this.release_date.length > 3 && this.release_date > 1930 ? true : null;
@@ -1915,44 +1808,47 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     };
   },
-  created: function created() {}
-}, _defineProperty(_components$computed$, 'components', {}), _defineProperty(_components$computed$, 'methods', {
+  created: function created() {},
 
-  /*
-  -----------------------------
-    Вид транспорта
-  -----------------------------*/
-  selectTransportType: function selectTransportType(ttype) {
-    var _this = this;
+  components: {},
+  methods: {
 
-    switch (ttype) {
-      case 1:
-        {
-          // автомобили
-          this.carmark = [];
-          Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsMarks').then(function (res) {
-            _this.carmark = res.data;
-            console.log(_this.this.carmark);
-          }).catch(function (err) {});
-          break;
-        }
+    /*
+    -----------------------------
+      Вид транспорта
+    -----------------------------*/
+    selectTransportType: function selectTransportType(ttype) {
+      var _this = this;
+
+      switch (ttype) {
+        case 1:
+          {
+            // автомобили
+            this.carmark = [];
+            Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsMarks').then(function (res) {
+              _this.carmark = res.data;
+              console.log(_this.this.carmark);
+            }).catch(function (err) {});
+            break;
+          }
+      }
+    },
+
+
+    // change марки
+    selectMark: function selectMark(markType) {
+      var _this2 = this;
+
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsModels?mark_id=' + markType).then(function (res) {
+        _this2.models = [];
+        _this2.models = res.data;
+        _this2.selected.model = null;
+      }).catch(function (err) {
+        console.log(err);
+      });
     }
-  },
-
-
-  // change марки
-  selectMark: function selectMark(markType) {
-    var _this2 = this;
-
-    Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsModels?mark_id=' + markType).then(function (res) {
-      _this2.models = [];
-      _this2.models = res.data;
-      _this2.selected.model = null;
-    }).catch(function (err) {
-      console.log(err);
-    });
   }
-}), _components$computed$);
+}, 'components', { comtransport: __WEBPACK_IMPORTED_MODULE_1__com_transport_vue___default.a }));
 
 /***/ }),
 
@@ -29125,7 +29021,9 @@ var render = function() {
                 ],
                 1
               )
-            : _vm._e()
+            : _vm._e(),
+          _vm._v(" "),
+          _c("comtransport")
         ],
         1
       )
@@ -29206,233 +29104,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "b-form",
-        { staticStyle: { "margin-top": "-18px" }, attrs: { inline: "" } },
-        [
-          _c(
-            "b-form-group",
-            { attrs: { label: "Вид транспорта:" } },
-            [
-              _c(
-                "b-form-select",
-                {
-                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                  on: { change: _vm.selectTransportType },
-                  model: {
-                    value: _vm.selected.type_transport,
-                    callback: function($$v) {
-                      _vm.$set(_vm.selected, "type_transport", $$v)
-                    },
-                    expression: "selected.type_transport"
-                  }
-                },
-                _vm._l(_vm.type_transport, function(item) {
-                  return _c("option", { domProps: { value: item.value } }, [
-                    _vm._v(_vm._s(item.text))
-                  ])
-                })
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _vm.carmark && _vm.selected.type_transport == 1
-            ? _c(
-                "b-form-group",
-                { attrs: { label: "Марка автомобиля:" } },
-                [
-                  _c(
-                    "b-form-select",
-                    {
-                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                      on: { change: _vm.selectMark },
-                      model: {
-                        value: _vm.selected.carmark,
-                        callback: function($$v) {
-                          _vm.$set(_vm.selected, "carmark", $$v)
-                        },
-                        expression: "selected.carmark"
-                      }
-                    },
-                    [
-                      _c("option", { domProps: { value: null } }, [
-                        _vm._v("-- Выберите марку автомобиля --")
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.carmark, function(item) {
-                        return _c(
-                          "option",
-                          { domProps: { value: item.id_car_mark } },
-                          [_vm._v(_vm._s(item.name))]
-                        )
-                      })
-                    ],
-                    2
-                  )
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.selected.carmark != null && _vm.selected.type_transport == 1
-            ? _c(
-                "b-form-group",
-                { attrs: { label: "Модель:" } },
-                [
-                  _c(
-                    "b-form-select",
-                    {
-                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                      model: {
-                        value: _vm.selected.model,
-                        callback: function($$v) {
-                          _vm.$set(_vm.selected, "model", $$v)
-                        },
-                        expression: "selected.model"
-                      }
-                    },
-                    [
-                      _c("option", { domProps: { value: null } }, [
-                        _vm._v("-- Выберите модель --")
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.models, function(item) {
-                        return _c(
-                          "option",
-                          { domProps: { value: item.id_car_model } },
-                          [_vm._v(_vm._s(item.name))]
-                        )
-                      })
-                    ],
-                    2
-                  )
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.selected.carmark != null && _vm.selected.type_transport == 1
-            ? _c(
-                "b-form-group",
-                { attrs: { label: "Год выпуска:" } },
-                [
-                  _c("b-form-input", {
-                    staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                    staticStyle: { width: "130px" },
-                    attrs: {
-                      placeholder: "Введите год",
-                      type: "number",
-                      state: _vm.checkYear
-                    },
-                    model: {
-                      value: _vm.release_date,
-                      callback: function($$v) {
-                        _vm.release_date = $$v
-                      },
-                      expression: "release_date"
-                    }
-                  })
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.selected.carmark != null && _vm.selected.type_transport == 1
-            ? _c(
-                "b-form-group",
-                { attrs: { label: "Положение руля:" } },
-                [
-                  _c(
-                    "b-form-select",
-                    {
-                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                      model: {
-                        value: _vm.selected.helm_position,
-                        callback: function($$v) {
-                          _vm.$set(_vm.selected, "helm_position", $$v)
-                        },
-                        expression: "selected.helm_position"
-                      }
-                    },
-                    [
-                      _c("option", { domProps: { value: null } }, [
-                        _vm._v("-- Выберите положение руля --")
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.helm_position, function(item) {
-                        return _c(
-                          "option",
-                          { domProps: { value: item.value } },
-                          [_vm._v(_vm._s(item.text))]
-                        )
-                      })
-                    ],
-                    2
-                  )
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.selected.carmark != null && _vm.selected.type_transport == 1
-            ? _c(
-                "b-form-group",
-                { attrs: { label: "Пробег(км):" } },
-                [
-                  _c("b-form-input", {
-                    staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                    staticStyle: { width: "115px" },
-                    attrs: { type: "number" },
-                    model: {
-                      value: _vm.mileage,
-                      callback: function($$v) {
-                        _vm.mileage = $$v
-                      },
-                      expression: "mileage"
-                    }
-                  })
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.selected.carmark != null && _vm.selected.type_transport == 1
-            ? _c(
-                "b-form-group",
-                { attrs: { label: "Растаможен:" } },
-                [
-                  _c(
-                    "b-form-select",
-                    {
-                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                      model: {
-                        value: _vm.selected.car_customs,
-                        callback: function($$v) {
-                          _vm.$set(_vm.selected, "car_customs", $$v)
-                        },
-                        expression: "selected.car_customs"
-                      }
-                    },
-                    [
-                      _c("option", { domProps: { value: 1 } }, [_vm._v("Да")]),
-                      _vm._v(" "),
-                      _c("option", { domProps: { value: 0 } }, [_vm._v("Нет")])
-                    ]
-                  )
-                ],
-                1
-              )
-            : _vm._e()
-        ],
-        1
-      )
-    ],
-    1
-  )
+  return _c("div", [_vm._v("\n  123\n")])
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -55,16 +55,19 @@
         </b-form-select>
     </b-form-group>
 
+    <comtransport></comtransport>
+
     </b-form>
+
   </div>
 </template>
 
 <script>
+
 import { post, get, interceptors } from '../../helpers/api'
-import com_transport from './com_transport';
+import comtransport from './com_transport.vue';
 
 export default {
-  components: { com_transport },
   computed: {
     checkYear () {
       return (this.release_date.length > 3) && (this.release_date > 1930) ? true : null
@@ -149,6 +152,7 @@ export default {
           console.log(err);
         });
     },
-  }
+  },
+   components: { comtransport }
 }
 </script>
