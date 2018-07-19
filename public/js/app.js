@@ -1773,7 +1773,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -29108,7 +29107,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n  123\n")])
+  return _c("div", [_vm._v("\n  Общие хар-ки\n")])
 }
 var staticRenderFns = []
 render._withStripped = true

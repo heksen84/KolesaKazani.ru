@@ -1,6 +1,6 @@
 <template>
   <div>
-    123
+    Общие хар-ки
   </div>
 </template>
 
