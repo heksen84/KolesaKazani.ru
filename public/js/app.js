@@ -1773,6 +1773,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -29023,7 +29024,8 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.selected.type_transport < 3 && _vm.selected.type_transport != null
+          [1, 2, 5].indexOf(_vm.selected.type_transport) !== -1 &&
+          _vm.selected.type_transport != null
             ? _c("com-transport")
             : _vm._e()
         ],

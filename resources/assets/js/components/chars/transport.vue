@@ -55,7 +55,8 @@
         </b-form-select>
     </b-form-group>
 
-    <com-transport v-if="selected.type_transport<3 && selected.type_transport!=null"></com-transport>
+    <!-- общий компонент для транспорта -->
+    <com-transport v-if="[1,2,5].indexOf(selected.type_transport) !== -1 && selected.type_transport!=null"></com-transport>
 
     </b-form>
 
