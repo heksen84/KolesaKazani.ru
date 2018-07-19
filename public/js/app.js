@@ -1848,7 +1848,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     }
   }
-}, 'components', { comtransport: __WEBPACK_IMPORTED_MODULE_1__com_transport_vue___default.a }));
+}, 'components', { "com-transport": __WEBPACK_IMPORTED_MODULE_1__com_transport_vue___default.a }));
 
 /***/ }),
 
@@ -29023,7 +29023,7 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _c("comtransport")
+          _c("com-transport")
         ],
         1
       )

@@ -55,7 +55,7 @@
         </b-form-select>
     </b-form-group>
 
-    <comtransport></comtransport>
+    <com-transport></com-transport>
 
     </b-form>
 
@@ -153,6 +153,6 @@ export default {
         });
     },
   },
-   components: { comtransport }
+   components: { "com-transport": comtransport }
 }
 </script>
