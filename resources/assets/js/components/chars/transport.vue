@@ -55,7 +55,7 @@
         </b-form-select>
     </b-form-group>
 
-    <com-transport></com-transport>
+    <com-transport v-if="selected.carmark!=null && selected.type_transport==1"></com-transport>
 
     </b-form>
 
