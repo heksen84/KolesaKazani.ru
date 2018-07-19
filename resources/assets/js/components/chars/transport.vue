@@ -2,7 +2,6 @@
   <div>
     <b-form inline style="margin-top:-18px;">
 
-
     <b-form-group label="Вид транспорта:">
         <b-form-select v-model="selected.type_transport" class="mb-2 mr-sm-2 mb-sm-2"  @change="selectTransportType">
            <option v-for="item in type_transport" :value="item.value">{{item.text}}</option>
@@ -58,7 +57,7 @@
     <!-- общий компонент для транспорта -->
     <com-transport v-if="[1,2,5].indexOf(selected.type_transport) !== -1 && selected.type_transport!=null"></com-transport>
 
-    </b-form>
+  </b-form>
 
   </div>
 </template>
