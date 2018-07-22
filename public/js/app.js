@@ -2349,7 +2349,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -32778,6 +32777,12 @@ var render = function() {
           _c("b-navbar-toggle", { attrs: { target: "nav_collapse" } }),
           _vm._v(" "),
           _c(
+            "b-navbar-brand",
+            { attrs: { href: "#" }, on: { click: _vm.goHome } },
+            [_vm._v("< назад")]
+          ),
+          _vm._v(" "),
+          _c(
             "b-collapse",
             { attrs: { "is-nav": "", id: "nav_collapse" } },
             [
@@ -32789,12 +32794,6 @@ var render = function() {
                     "b-nav-item",
                     { attrs: { href: "#" }, on: { click: _vm.createAdvert } },
                     [_vm._v("Разместить объявление")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-nav-item",
-                    { attrs: { href: "#" }, on: { click: _vm.goHome } },
-                    [_vm._v("Назад")]
                   ),
                   _vm._v(" "),
                   _c(
