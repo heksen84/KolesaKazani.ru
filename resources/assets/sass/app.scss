@@ -182,19 +182,19 @@ body {
 
 .close_button {
   font-size: 107%;
-  margin-left:98.5%;
+  margin-left:98%;
   margin-top:10px;
   cursor:pointer;
+}
+
+.close_button:hover {
+  text-decoration: underline;
 }
 
 .custom-file-input:lang(en)~.custom-file-label::after {
     background: rgb(100,200,100);
     color:white;
     content: "добавить фото";
-}
-
-.close_button:hover {
-  text-decoration: underline;
 }
 
 #addit_info {
