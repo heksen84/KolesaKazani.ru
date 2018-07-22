@@ -2347,8 +2347,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -32828,7 +32826,7 @@ var render = function() {
                 },
                 [
                   _c(
-                    "h4",
+                    "h5",
                     {
                       staticClass: "shadow_text",
                       staticStyle: { "text-align": "left" }

@@ -19,7 +19,7 @@
 	<br>
 	<b-row>
 		<b-col cols="12" sm="12" md="8" lg="8" xl="8" style="text-align:center;margin:auto">
-			<h4 class="shadow_text" style="text-align:left">мои объявления</h4>
+			<h5 class="shadow_text" style="text-align:left">мои объявления</h5>
 			<b-table hover :items="items" style="background:white;color:black"></b-table>
 		</b-col>
 	</b-row>
