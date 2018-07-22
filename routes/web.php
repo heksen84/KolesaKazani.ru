@@ -3,6 +3,9 @@ use Illuminate\Support\Facades\DB;
 
 Auth::routes();
 
+
+Route::get('/location/{country}/{region}/{city}/', array('as' => 'id', 'uses' => 'WelcomeController@getCategories'));
+
 Route::get('/', 'WelcomeController@getCategories');
 Route::get('/getUser', 'UserController@getUser');
 Route::get('/home', 'HomeController@index')->name('home');
