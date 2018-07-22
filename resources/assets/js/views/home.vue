@@ -8,8 +8,6 @@
 
     <!-- Right aligned nav items -->
     <b-navbar-nav class="ml-auto">
-
-    
       <b-nav-item href="#" @click="createAdvert">Разместить объявление</b-nav-item>
       <b-nav-item href="#" @click="goHome">Назад</b-nav-item>
       <b-nav-item href="#" @click="logout">Выйти</b-nav-item>
