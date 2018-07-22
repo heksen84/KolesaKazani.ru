@@ -2143,6 +2143,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 // импорт
@@ -34380,6 +34386,15 @@ var render = function() {
                       })
                     ],
                     2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-form-group",
+                    {
+                      staticStyle: { "text-align": "right" },
+                      attrs: { label: "Расположение:" }
+                    },
+                    [_c("button", [_vm._v("отметить на карте")])]
                   ),
                   _vm._v(" "),
                   _c(
