@@ -2351,28 +2351,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["items"],
-  data: function data() {
-    return {
-      items: items
-    };
-  },
-  created: function created() {},
+		props: ["items"],
+		data: function data() {
+				return {
+						_items: []
+				};
+		},
+		created: function created() {
+				this._items = this.items;
 
-  components: {},
-  methods: {
-    logout: function logout() {
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/logout').then(function (res) {
-        window.location = '/';
-      }).catch(function (err) {});
-    },
-    goHome: function goHome() {
-      window.location = '/';
-    },
-    createAdvert: function createAdvert() {
-      window.location = '/new';
-    }
-  }
+				for (var i = 0; i < this._items.length; i++) {
+						//this._items[i].push("123");
+						console.log(this._items[i]);
+				}
+				console.log(this._items);
+		},
+
+		components: {},
+		methods: {
+
+				// ВЫХОД
+				logout: function logout() {
+						Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/logout').then(function (res) {
+								window.location = '/';
+						}).catch(function (err) {});
+				},
+				goHome: function goHome() {
+						window.location = '/';
+				},
+				createAdvert: function createAdvert() {
+						window.location = '/new';
+				}
+		}
 });
 
 /***/ }),
@@ -32836,7 +32846,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("b-table", {
                     staticStyle: { background: "white", color: "black" },
-                    attrs: { hover: "", items: _vm.items }
+                    attrs: { hover: "", items: _vm._items }
                   })
                 ],
                 1

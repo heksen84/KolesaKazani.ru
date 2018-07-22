@@ -20,7 +20,7 @@
 	<b-row>
 		<b-col cols="12" sm="12" md="8" lg="8" xl="8" style="text-align:center;margin:auto">
 			<h5 class="shadow_text" style="text-align:left">мои объявления</h5>
-			<b-table hover :items="items" style="background:white;color:black"></b-table>
+			<b-table hover :items="_items" style="background:white;color:black"></b-table>
 		</b-col>
 	</b-row>
 </b-container>
@@ -33,13 +33,22 @@ export default {
 	props: ["items"],
 	data () {
     return 	{
-    	items: items
+    	_items: []
 	}
 },
 	created() {
+		this._items = this.items;
+
+		for (var i=0;i<this._items.length;i++) {
+			//this._items[i].push("123");
+			console.log(this._items[i]);
+		}
+		console.log(this._items);
 },
 components: {},
   methods: {
+
+  	// ВЫХОД
     logout() {
 		get('/logout').then((res) => {
 			window.location='/';
