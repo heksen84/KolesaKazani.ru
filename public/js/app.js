@@ -32788,19 +32788,19 @@ var render = function() {
                   _c(
                     "b-nav-item",
                     { attrs: { href: "#" }, on: { click: _vm.createAdvert } },
-                    [_c("b", [_vm._v("Разместить объявление")])]
+                    [_vm._v("Разместить объявление")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-nav-item",
                     { attrs: { href: "#" }, on: { click: _vm.goHome } },
-                    [_c("b", [_vm._v("Назад")])]
+                    [_vm._v("Назад")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-nav-item",
                     { attrs: { href: "#" }, on: { click: _vm.logout } },
-                    [_c("b", [_vm._v("Выйти")])]
+                    [_vm._v("Выйти")]
                   )
                 ],
                 1

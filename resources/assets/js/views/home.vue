@@ -10,9 +10,9 @@
     <b-navbar-nav class="ml-auto">
 
     
-      <b-nav-item href="#" @click="createAdvert"><b>Разместить объявление</b></b-nav-item>
-      <b-nav-item href="#" @click="goHome"><b>Назад</b></b-nav-item>
-      <b-nav-item href="#" @click="logout"><b>Выйти</b></b-nav-item>
+      <b-nav-item href="#" @click="createAdvert">Разместить объявление</b-nav-item>
+      <b-nav-item href="#" @click="goHome">Назад</b-nav-item>
+      <b-nav-item href="#" @click="logout">Выйти</b-nav-item>
     </b-navbar-nav>
 
   </b-collapse>
