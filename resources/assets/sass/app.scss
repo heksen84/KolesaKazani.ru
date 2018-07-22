@@ -58,10 +58,11 @@ body {
   background: rgb(100,200,100);
   border: 1px solid white;
   width: 105px;
-  border-radius: 5px;
+  border-radius: 3px;
   margin: 5px auto;
   cursor:pointer;
   display: inline-block;
+  font-size: 17px;
 }
 
 .auth_button:hover {
