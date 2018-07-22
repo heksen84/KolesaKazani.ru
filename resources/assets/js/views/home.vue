@@ -3,7 +3,7 @@
 <b-navbar toggleable="md" variant="light">
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-  <b-navbar-brand href="#" @click="goHome"><b>&lt;</b> назад</b-navbar-brand>
+  <b-navbar-brand href="#" @click="goHome">&lt; назад</b-navbar-brand>
   <b-collapse is-nav id="nav_collapse">
 
     <!-- Right aligned nav items -->
@@ -14,7 +14,6 @@
 
   </b-collapse>
 </b-navbar>
-
 	<b-container fluid>
 	<br>
 	<b-row>
@@ -23,7 +22,7 @@
 			<b-table hover :items="_items" style="background:white;color:black"></b-table>
 		</b-col>
 	</b-row>
-</b-container>
+	</b-container>
 </div>
 </template>
 <script>

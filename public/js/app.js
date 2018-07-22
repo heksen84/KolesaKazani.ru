@@ -32793,7 +32793,7 @@ var render = function() {
           _c(
             "b-navbar-brand",
             { attrs: { href: "#" }, on: { click: _vm.goHome } },
-            [_c("b", [_vm._v("<")]), _vm._v(" назад")]
+            [_vm._v("< назад")]
           ),
           _vm._v(" "),
           _c(
