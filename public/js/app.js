@@ -2361,7 +2361,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				this._items = this.items;
 
 				for (var i = 0; i < this._items.length; i++) {
-						//this._items[i].push("123");
+						this._items[i][""] = "продлить";
 						console.log(this._items[i]);
 				}
 				console.log(this._items);
