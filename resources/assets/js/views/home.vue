@@ -1,11 +1,9 @@
 <template>
 <div>
 <b-navbar toggleable="md" variant="light">
-
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
   <b-navbar-brand href="#" @click="goHome">&lt; назад</b-navbar-brand>
-
   <b-collapse is-nav id="nav_collapse">
 
     <!-- Right aligned nav items -->
