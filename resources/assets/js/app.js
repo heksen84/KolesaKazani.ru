@@ -32,6 +32,7 @@ import table from 'bootstrap-vue/src/components/table';
 import link from 'bootstrap-vue/src/components/link';
 import image from 'bootstrap-vue/src/components/image';
 import radio from 'bootstrap-vue/src/components/form-radio';
+import navbar from 'bootstrap-vue/src/components/navbar';
 
 import VueCarousel from 'vue-carousel';
 
@@ -53,6 +54,7 @@ Vue.use(table);
 Vue.use(link);
 Vue.use(image);
 Vue.use(radio);
+Vue.use(navbar);
 Vue.use(VueCarousel);
 
 const app = new Vue({

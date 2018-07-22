@@ -1,25 +1,33 @@
 <template>
+<div>
+<b-navbar toggleable="md" variant="light">
+
+  <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+
+  <b-collapse is-nav id="nav_collapse">
+
+    <!-- Right aligned nav items -->
+    <b-navbar-nav class="ml-auto">
+
+    
+      <b-nav-item href="#" @click="createAdvert"><b>Разместить объявление</b></b-nav-item>
+      <b-nav-item href="#" @click="goHome"><b>Назад</b></b-nav-item>
+      <b-nav-item href="#" @click="logout"><b>Выйти</b></b-nav-item>
+    </b-navbar-nav>
+
+  </b-collapse>
+</b-navbar>
+
 	<b-container fluid>
+	<br>
 	<b-row>
-		<b-col cols="12" sm="12" md="4" lg="4" xl="4" style="text-align:center;margin: 3px auto">
-			<b-button variant="success" @click="logout">выйти</b-button>
-		</b-col>
-		<b-col cols="12" sm="12" md="4" lg="4" xl="4" style="text-align:center;margin: 3px auto">
-			<b-button variant="primary" @click="goHome">вернуться на главную страницу</b-button>
-		</b-col>
-		<b-col cols="12" sm="12" md="4" lg="4" xl="4" style="text-align:center;margin: 3px auto">
-			<b-button variant="secondary" @click="createAdvert">разместить объявление</b-button>
-		</b-col>
-		<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center;margin:auto">
-			<br>
-			<h3 class="shadow_text">мои объявления</h3>
-		</b-col>
 		<b-col cols="12" sm="12" md="8" lg="8" xl="8" style="text-align:center;margin:auto">
-			<br>
+			<h4 class="shadow_text" style="text-align:left">мои объявления</h4>
 			<b-table hover :items="items" style="background:white;color:black"></b-table>
 		</b-col>
 	</b-row>
 </b-container>
+</div>
 </template>
 <script>
 

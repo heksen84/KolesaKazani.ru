@@ -170,7 +170,7 @@ body {
 .shadow_text {
   color: #fff;
   letter-spacing: 3px;
-  text-shadow: -1px -1px 0 #3c3c3c, 1px -1px 0 #3c3c3c, -1px 1px 0 #3c3c3c, 1px 1px 0 #3c3c3c;
+  text-shadow: -1px -1px 0 #5a5a5a, 1px -1px 0 #5a5a5a, -1px 1px 0 #5a5a5a, 1px 1px 0 #5a5a5a;
 }
 
 .result_info_col {
