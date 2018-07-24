@@ -5,6 +5,7 @@
 		<div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
 		<h3 style="color:rgb(120,120,120);margin-top:-25px"><ins>новое объявление</ins></h3>
 		<br>
+		
 			<b-form @submit="onSubmit">
 			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px;margin-top:-5px">
 				 <b-form-radio-group id="deal_group" stacked v-model="form.deal_selected" :options="this.$root.options_sdelka" name="radioOpenions"></b-form-radio-group>
