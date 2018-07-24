@@ -2651,7 +2651,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {};
   },
   created: function created() {
-    alert("hello!");
+    //alert("hello!");
   },
 
   methods: {

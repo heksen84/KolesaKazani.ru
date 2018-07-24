@@ -45,7 +45,7 @@ export default {
     }
   },
   created() {
-    alert("hello!");
+    //alert("hello!");
   },
   methods: {
     login(event) {
