@@ -2352,42 +2352,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-		props: ["items"],
-		data: function data() {
-				return {
-						_items: []
-				};
-		},
-		created: function created() {
-				this._items = this.items;
+	props: ["items"],
+	data: function data() {
 
-				for (var i = 0; i < this._items.length; i++) {
-						this._items[i][""] = "продлить";
-						console.log(this._items[i]);
-				}
-				console.log(this._items);
-		},
+		return {
+			_items: []
+		};
+	},
+	created: function created() {
+		this._items = this.items;
 
-		components: {},
-		methods: {
-
-				// ВЫХОД
-				logout: function logout() {
-						Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/logout').then(function (res) {
-								window.location = '/';
-						}).catch(function (err) {});
-				},
-				goHome: function goHome() {
-						window.location = '/';
-				},
-				createAdvert: function createAdvert() {
-						window.location = '/new';
-				}
+		for (var i = 0; i < this._items.length; i++) {
+			this._items[i][""] = "продлить";
+			console.log(this._items[i]);
 		}
+		console.log(this._items);
+	},
+
+	components: {},
+	methods: {
+
+		// ВЫХОД
+		logout: function logout() {
+			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/logout').then(function (res) {
+				window.location = '/';
+			}).catch(function (err) {});
+		},
+		goHome: function goHome() {
+			window.location = '/';
+		},
+		createAdvert: function createAdvert() {
+			window.location = '/new';
+		}
+	}
 });
 
 /***/ }),
@@ -32792,9 +32799,15 @@ var render = function() {
           _c("b-navbar-toggle", { attrs: { target: "nav_collapse" } }),
           _vm._v(" "),
           _c(
-            "b-navbar-brand",
-            { attrs: { href: "#" }, on: { click: _vm.goHome } },
-            [_vm._v("< назад")]
+            "b-navbar-nav",
+            [
+              _c(
+                "b-nav-item",
+                { attrs: { href: "#" }, on: { click: _vm.goHome } },
+                [_vm._v("< Назад")]
+              )
+            ],
+            1
           ),
           _vm._v(" "),
           _c(

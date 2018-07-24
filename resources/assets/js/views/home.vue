@@ -3,8 +3,14 @@
 <b-navbar toggleable="md" variant="light">
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-  <b-navbar-brand href="#" @click="goHome">&lt; назад</b-navbar-brand>
+  <!--<b-navbar-brand href="#" >/b-navbar-brand>-->
+
+  	<b-navbar-nav>
+      <b-nav-item href="#" @click="goHome">&lt; Назад</b-nav-item>
+  	</b-navbar-nav>
+
   <b-collapse is-nav id="nav_collapse">
+
 
     <!-- Right aligned nav items -->
     <b-navbar-nav class="ml-auto">
@@ -31,7 +37,7 @@ import { get } from './../helpers/api'
 export default {
 	props: ["items"],
 	data () {
-		
+
     return 	{
     	_items: []
 	}
