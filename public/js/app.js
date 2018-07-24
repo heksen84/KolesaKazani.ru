@@ -32804,7 +32804,7 @@ var render = function() {
               _c(
                 "b-nav-item",
                 { attrs: { href: "#" }, on: { click: _vm.goHome } },
-                [_vm._v("< Назад")]
+                [_c("b", [_vm._v("< Назад")])]
               )
             ],
             1

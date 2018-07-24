@@ -6,7 +6,7 @@
   <!--<b-navbar-brand href="#" >/b-navbar-brand>-->
 
   	<b-navbar-nav>
-      <b-nav-item href="#" @click="goHome">&lt; Назад</b-nav-item>
+      <b-nav-item href="#" @click="goHome"><b>&lt; Назад</b></b-nav-item>
   	</b-navbar-nav>
 
   <b-collapse is-nav id="nav_collapse">
