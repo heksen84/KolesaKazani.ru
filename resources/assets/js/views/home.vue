@@ -31,6 +31,7 @@ import { get } from './../helpers/api'
 export default {
 	props: ["items"],
 	data () {
+		
     return 	{
     	_items: []
 	}
