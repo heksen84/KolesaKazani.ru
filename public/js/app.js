@@ -2352,7 +2352,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -2651,7 +2650,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {};
   },
-  created: function created() {},
+  created: function created() {
+    alert("hello!");
+  },
 
   methods: {
     login: function login(event) {
