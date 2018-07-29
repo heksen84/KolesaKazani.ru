@@ -132,7 +132,6 @@ export default {
   			this.transport=false;
   			this.real_estate=false;
   			this.appliances=false;
-
   		},
   		changeCategory(data) {
   			switch(data) {
