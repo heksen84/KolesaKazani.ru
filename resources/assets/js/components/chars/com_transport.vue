@@ -35,6 +35,9 @@
 <script>
 export default {
   computed: {
+    checkYear () {
+      return (this.release_date.length > 3) && (this.release_date > 1930) ? true : null
+    }
   },
   data () {
     return 	{
@@ -47,6 +50,9 @@ export default {
           fuel_type: 0,
           car_customs: 1
       },
+
+      release_date: "",
+      mileage: 0,
 
        helm_position: 
         [

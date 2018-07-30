@@ -1680,11 +1680,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  computed: {},
+  computed: {
+    checkYear: function checkYear() {
+      return this.release_date.length > 3 && this.release_date > 1930 ? true : null;
+    }
+  },
   data: function data() {
     return {
 
@@ -1696,6 +1698,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fuel_type: 0,
         car_customs: 1
       },
+
+      release_date: "",
+      mileage: 0,
 
       helm_position: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
 
@@ -1827,11 +1832,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
-  computed: {
-    checkYear: function checkYear() {
-      return this.release_date.length > 3 && this.release_date > 1930 ? true : null;
-    }
-  },
   data: function data() {
     return {
       type_transport: [{ value: null, text: '-- Выберите вид транспорта --' }, { value: 1, text: 'Легковой автомобиль' }, { value: 2, text: 'Грузовой автомобиль' }, { value: 3, text: 'Мототехника' }, { value: 4, text: 'Спецтехника' }, { value: 5, text: 'Ретро-автомобиль' }, { value: 6, text: 'Водный транспорт' }, { value: 7, text: 'Велосипед' }, { value: 8, text: 'Воздушный транспорт' }],
@@ -1839,8 +1839,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // марки автомобилей
       carmark: [],
       models: [],
-      release_date: "",
-      mileage: 0,
 
       selected: {
         type_transport: null,

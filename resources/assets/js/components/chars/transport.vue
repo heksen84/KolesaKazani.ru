@@ -72,11 +72,6 @@ import { post, get, interceptors } from '../../helpers/api'
 import comtransport from './com_transport.vue';
 
 export default {
-  computed: {
-    checkYear () {
-      return (this.release_date.length > 3) && (this.release_date > 1930) ? true : null
-    }
-  },
   data () {
     return 	{
         type_transport: 
@@ -95,9 +90,7 @@ export default {
         // марки автомобилей
         carmark:[],
         models:[],
-        release_date: "",
-        mileage: 0,
-        
+
         selected: {
           type_transport: null,
           carmark: null,
