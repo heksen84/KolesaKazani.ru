@@ -27,11 +27,11 @@
     </b-row>
 
     <b-row id="categories_row"></b-row>
-    
+
     <!-- категории -->
     <b-row v-for="i in Math.ceil(Object.keys(items).length / 4)" v-bind:key=i>
       <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in items.slice((i - 1) * 4, i * 4)"  v-bind:key=item.id>
-        <div class="category_item" @click="searchInCategory" :id="item.id">{{ item.name }}<span style="font-size:13px;color:rgb(150,250,150);float:right;margin-top:3px" :id="item.id">| {{i*10000}} </span></div>
+        <div class="category_item" @click="searchInCategory" :id="item.id">{{ item.name }}<span style="font-size:12px;color:rgb(150,250,150);float:right;margin-top:4px" :id="item.id">| {{i*10000}} </span></div>
       </b-col>
     </b-row>
 

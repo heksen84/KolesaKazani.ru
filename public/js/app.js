@@ -33290,10 +33290,10 @@ var render = function() {
                       "span",
                       {
                         staticStyle: {
-                          "font-size": "13px",
+                          "font-size": "12px",
                           color: "rgb(150,250,150)",
                           float: "right",
-                          "margin-top": "3px"
+                          "margin-top": "4px"
                         },
                         attrs: { id: item.id }
                       },
