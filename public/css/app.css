@@ -106,12 +106,13 @@ body {
 }
 
 #new_advert_block {
-  padding: 16px;
+  padding: 14px;
   background: #c86464;
   border: 2px solid white;
   border-radius: 8px;
   cursor: default;
   font-size: 22px;
+  margin-right: 5px;
 }
 
 #new_advert_block:hover {
@@ -133,7 +134,7 @@ body {
   margin: 5px auto;
   border: 1px solid #e6e6e6;
   border-radius: 5px;
-  padding: 4px;
+  padding: 5px;
   text-align: left;
   padding-left: 12px;
   font-size: 16px;
@@ -217,6 +218,11 @@ body {
 }
 
 @media screen and (max-width: 990px) {
+  #new_advert_block {
+    margin-right: 0px;
+    padding: 10px;
+  }
+
   #logo_block {
     margin-top: 7px;
   }
