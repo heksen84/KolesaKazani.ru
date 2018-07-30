@@ -33289,14 +33289,14 @@ var render = function() {
                       "span",
                       {
                         staticStyle: {
-                          "font-size": "11px",
+                          "font-size": "12px",
                           color: "rgb(150,250,150)",
                           float: "right",
-                          "margin-top": "6px"
+                          "margin-top": "5px"
                         },
                         attrs: { id: item.id }
                       },
-                      [_vm._v("(" + _vm._s(i * 100) + ")")]
+                      [_vm._v("( " + _vm._s(i * 100) + " )")]
                     )
                   ]
                 )
