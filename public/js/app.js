@@ -2604,6 +2604,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 // ------------------------------
@@ -33809,7 +33810,7 @@ var render = function() {
                 [
                   _c("b-form-select", {
                     staticClass: "mb-3",
-                    attrs: { options: _vm.options_price },
+                    attrs: { options: _vm.options_price, size: "sm" },
                     on: { change: _vm.getSearchData },
                     model: {
                       value: _vm.filters.price,
@@ -33829,7 +33830,7 @@ var render = function() {
                 [
                   _c("b-form-select", {
                     staticClass: "mb-3",
-                    attrs: { options: _vm.options_sdelka },
+                    attrs: { options: _vm.options_sdelka, size: "sm" },
                     on: { change: _vm.getSearchData },
                     model: {
                       value: _vm.filters.sdelka,
@@ -33849,7 +33850,7 @@ var render = function() {
                 [
                   _c("b-form-select", {
                     staticClass: "mb-3",
-                    attrs: { options: _vm.options_location },
+                    attrs: { options: _vm.options_location, size: "sm" },
                     on: { change: _vm.getSearchData },
                     model: {
                       value: _vm.filters.location,
@@ -33867,44 +33868,48 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm._l(_vm.items, function(item) {
-        return _c(
-          "b-row",
-          { key: item.id, staticStyle: { "margin-top": "5px" } },
-          [
-            _c(
-              "b-col",
-              { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
-              [
-                _c("b-img", {
-                  attrs: {
-                    src: "https://picsum.photos/125/125/?image=58",
-                    alt: "left image"
-                  }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "b-col",
-              { attrs: { cols: "12", sm: "12", md: "8", lg: "8", xl: "8" } },
-              [
-                _c("item", {
-                  attrs: {
-                    id: item.id,
-                    title: item.title,
-                    text: item.text,
-                    price: item.price
-                  }
-                })
-              ],
-              1
-            )
-          ],
-          1
-        )
-      }),
+      _c(
+        "div",
+        { staticStyle: { "margin-top": "-13px" } },
+        _vm._l(_vm.items, function(item) {
+          return _c(
+            "b-row",
+            { key: item.id, staticStyle: { "margin-top": "0px" } },
+            [
+              _c(
+                "b-col",
+                { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
+                [
+                  _c("b-img", {
+                    attrs: {
+                      src: "https://picsum.photos/125/125/?image=58",
+                      alt: "left image"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                { attrs: { cols: "12", sm: "12", md: "8", lg: "8", xl: "8" } },
+                [
+                  _c("item", {
+                    attrs: {
+                      id: item.id,
+                      title: item.title,
+                      text: item.text,
+                      price: item.price
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        })
+      ),
       _vm._v(" "),
       _c(
         "div",
@@ -33948,7 +33953,7 @@ var render = function() {
           )
         : _vm._e()
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
