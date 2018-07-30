@@ -33295,7 +33295,7 @@ var render = function() {
                           "font-size": "13px",
                           color: "rgb(155,255,155)",
                           float: "right",
-                          "margin-top": "4px"
+                          "margin-top": "3px"
                         },
                         attrs: { id: item.id }
                       },
