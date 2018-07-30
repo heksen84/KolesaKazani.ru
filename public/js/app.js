@@ -46917,7 +46917,10 @@ if (token) {
         photos: [],
         location: [],
 
-        transport: { // транспорт
+        // ----------------------
+        // структура транспорта
+        // ----------------------
+        transport: {
 
             passenger_transport: [],
             freight_transport: [],
@@ -46928,9 +46931,8 @@ if (token) {
             a_bike: [],
             air_transport: [],
 
-            // -------------------------------------------------
-            // com_transport (общие характеристики транспорта)
-            // -------------------------------------------------
+            /* com_transport (общие характеристики транспорта) */
+
             year_release: null,
             rule_pos: null,
             probeg: null,
