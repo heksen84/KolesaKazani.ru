@@ -2291,6 +2291,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["item"],
@@ -2310,7 +2313,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   components: {},
   methods: {
-    hello: function hello() {}
+    closeAndReturn: function closeAndReturn() {
+      window.history.back();
+    }
   }
 });
 
@@ -33585,30 +33590,52 @@ var render = function() {
           _c(
             "b-col",
             {
-              staticStyle: { "text-align": "center", margin: "3px auto" },
-              attrs: { cols: "12", sm: "12", md: "4", lg: "4", xl: "4" }
+              staticStyle: {
+                "text-align": "left",
+                margin: "auto",
+                color: "black",
+                background: "white"
+              },
+              attrs: { cols: "12", sm: "12", md: "12", lg: "8", xl: "8" }
             },
             [
-              _c("h3", [_c("ins", [_vm._v("FullInfo")])]),
-              _vm._v(" "),
-              _c("h5", [_vm._v(_vm._s(_vm.item[0].title))]),
-              _vm._v(" "),
-              _c("h5", [_vm._v(_vm._s(_vm.item[0].text))]),
-              _vm._v(" "),
-              _c("h5", [_vm._v(_vm._s(_vm.item[0].price))]),
-              _vm._v(" "),
-              _c("yandex-map", {
-                staticStyle: { width: "450px", height: "450px" },
-                attrs: {
-                  coords: [54.62896654088406, 39.731893822753904],
-                  zoom: "10",
-                  behaviors: ["ruler"],
-                  controls: ["trafficControl"],
-                  placemarks: _vm.placemarks,
-                  "map-type": "map"
+              _c(
+                "div",
+                {
+                  staticClass: "close_button",
+                  attrs: { title: "Закрыть страницу" },
+                  on: { click: _vm.closeAndReturn }
                 },
-                on: { "map-was-initialized": _vm.initHandler }
-              })
+                [_vm._v("X")]
+              ),
+              _vm._v(" "),
+              _c("center", { staticStyle: { "margin-top": "10px" } }, [
+                _c("h5", [_vm._v(_vm._s(_vm.item[0].title))]),
+                _vm._v(" "),
+                _c("h5", [_vm._v(_vm._s(_vm.item[0].text))]),
+                _vm._v(" "),
+                _c("h5", [_vm._v(_vm._s(_vm.item[0].price))])
+              ]),
+              _vm._v(" "),
+              _c(
+                "center",
+                { staticStyle: { margin: "50px" } },
+                [
+                  _c("yandex-map", {
+                    staticStyle: { width: "400px", height: "400px" },
+                    attrs: {
+                      coords: [54.62896654088406, 39.731893822753904],
+                      zoom: "10",
+                      behaviors: ["ruler"],
+                      controls: ["trafficControl"],
+                      placemarks: _vm.placemarks,
+                      "map-type": "map"
+                    },
+                    on: { "map-was-initialized": _vm.initHandler }
+                  })
+                ],
+                1
+              )
             ],
             1
           )
