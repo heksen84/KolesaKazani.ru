@@ -113,6 +113,7 @@ body {
   cursor: default;
   font-size: 22px;
   margin-right: 8px;
+  margin-top: 10px;
 }
 
 #new_advert_block:hover {
@@ -221,6 +222,7 @@ body {
   #new_advert_block {
     margin-right: 0px;
     padding: 10px;
+    margin-top: 0px;
   }
 
   #logo_block {
