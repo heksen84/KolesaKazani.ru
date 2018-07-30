@@ -33292,7 +33292,7 @@ var render = function() {
                       "span",
                       {
                         staticStyle: {
-                          "font-size": "12px",
+                          "font-size": "13px",
                           color: "rgb(150,250,150)",
                           float: "right",
                           "margin-top": "4px"
