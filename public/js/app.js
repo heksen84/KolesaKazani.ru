@@ -33289,10 +33289,10 @@ var render = function() {
                       "span",
                       {
                         staticStyle: {
-                          "font-size": "12px",
+                          "font-size": "13px",
                           color: "rgb(150,250,150)",
                           float: "right",
-                          "margin-top": "4px"
+                          "margin-top": "3px"
                         },
                         attrs: { id: item.id }
                       },
@@ -33885,7 +33885,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticStyle: { "margin-top": "-12px" } },
+        { staticStyle: { "margin-top": "-11px" } },
         _vm._l(_vm.items, function(item) {
           return _c(
             "b-row",
