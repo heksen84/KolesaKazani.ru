@@ -2222,7 +2222,10 @@ var tmp_images_array = [];
       other: false // другое
     };
   },
-  created: function created() {},
+  created: function created() {
+
+    alert(this.$root.advert[0].desc);
+  },
 
   components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_real_estate___default.a },
   methods: {
@@ -2764,7 +2767,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {};
   },
   created: function created() {
-    //alert(this.count);
+    // alert(this.count);
   },
 
   methods: {
@@ -46776,6 +46779,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_28_vue_carousel__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29_vue_yandex_maps__ = __webpack_require__("./node_modules/vue-yandex-maps/vue-yandex-maps.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29_vue_yandex_maps___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_29_vue_yandex_maps__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
@@ -46832,6 +46836,20 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_25_boo
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_26_bootstrap_vue_src_components_form_radio__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_27_bootstrap_vue_src_components_navbar__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_28_vue_carousel___default.a);
+
+
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_30_vuex__["a" /* default */]);
+
+var store = new __WEBPACK_IMPORTED_MODULE_30_vuex__["a" /* default */].Store({
+  state: {
+    count: 0
+  },
+  mutations: {
+    increment: function increment(state) {
+      state.count++;
+    }
+  }
+});
 
 var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
   el: '#app',
@@ -46890,7 +46908,9 @@ if (token) {
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     max_load_images: 20,
-    options_sdelka: [{ value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }]
+    options_sdelka: [{ value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }],
+
+    advert: [{ title: "заголовок", price: "222.4", desc: "описание" }]
 });
 
 /***/ }),

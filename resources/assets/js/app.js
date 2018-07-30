@@ -56,6 +56,20 @@ Vue.use(radio);
 Vue.use(navbar);
 Vue.use(VueCarousel);
 
+import Vuex from 'vuex';
+Vue.use(Vuex);
+
+const store = new Vuex.Store({
+  state: {
+    count: 0
+  },
+  mutations: {
+    increment (state) {
+      state.count++
+    }
+  }
+})
+
 const app = new Vue({
     el: '#app',
     data: common,
