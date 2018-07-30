@@ -12,6 +12,13 @@ export default {
 
     advert: 
     [
-        {   title: "заголовок", price: "222.4", desc: "описание"   }
+        {   
+            type:       null, 
+            category:   null, 
+            desc:       null,
+            price:      null,
+            photos:     [],
+            location:   []
+        }
     ]
 }
