@@ -33292,7 +33292,7 @@ var render = function() {
                       "span",
                       {
                         staticStyle: {
-                          "font-size": "12px",
+                          "font-size": "13px",
                           color: "rgb(155,255,155)",
                           float: "right",
                           "margin-top": "4px"
@@ -46920,6 +46920,7 @@ if (token) {
         // ----------------------
         // структура транспорта
         // ----------------------
+
         transport: {
 
             passenger_transport: [],
