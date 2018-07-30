@@ -1,6 +1,7 @@
 export default {
 	max_load_images: 20,
-    options_sdelka: [
+    options_sdelka: 
+    [
         { value: '0', text: 'Покупка' },
         { value: '1', text: 'Продажа' },
         { value: '2', text: 'Обмен' },

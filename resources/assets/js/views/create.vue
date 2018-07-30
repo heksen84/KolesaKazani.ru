@@ -133,8 +133,7 @@ export default {
 	}
 	},
 	created() {
-
-		alert(this.$root.advert[0].desc);
+		//alert(this.$root.advert[0].desc);
 	},
 	components: { transport, realestate },
   	methods: {

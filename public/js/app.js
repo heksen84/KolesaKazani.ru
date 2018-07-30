@@ -2223,8 +2223,7 @@ var tmp_images_array = [];
     };
   },
   created: function created() {
-
-    alert(this.$root.advert[0].desc);
+    //alert(this.$root.advert[0].desc);
   },
 
   components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_real_estate___default.a },
