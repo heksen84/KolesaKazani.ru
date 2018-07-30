@@ -1,13 +1,10 @@
 <template>
-  <div>
     <b-form inline style="margin-top:-18px;">
-
     <b-form-group label="Вид транспорта:">
         <b-form-select v-model="selected.type_transport" class="mb-2 mr-sm-2 mb-sm-2"  @change="selectTransportType">
            <option v-for="item in type_transport" :value="item.value">{{item.text}}</option>
         </b-form-select>
     </b-form-group>
-
 
     <b-form-group label="Марка автомобиля:" v-if="carmark && selected.type_transport==1">
         <b-form-select v-model="selected.carmark" class="mb-2 mr-sm-2 mb-sm-2" @change="selectMark">
@@ -16,7 +13,6 @@
         </b-form-select>
     </b-form-group>
 
-
     <b-form-group label="Модель:" v-if="selected.carmark!=null && selected.type_transport==1">
         <b-form-select v-model="selected.model" class="mb-2 mr-sm-2 mb-sm-2">
            <option :value="null">-- Выберите модель --</option>
@@ -24,50 +20,12 @@
         </b-form-select>
     </b-form-group>
 
-<!--
-
-    <b-form-group label="Год выпуска:" v-if="selected.carmark!=null && selected.type_transport==1">
-       <b-form-input placeholder="Введите год" type="number" v-model="release_date" class="mb-2 mr-sm-2 mb-sm-2" style="width:130px" :state="checkYear"></b-form-input>
-    </b-form-group>
-
-    <b-form-group label="Положение руля:" v-if="selected.carmark!=null && selected.type_transport==1">
-        <b-form-select v-model="selected.helm_position" class="mb-2 mr-sm-2 mb-sm-2">
-           <option :value="null">-- Выберите положение руля --</option>
-           <option v-for="item in helm_position" :value="item.value">{{item.text}}</option>
-        </b-form-select>
-    </b-form-group>
-
-    <b-form-group label="Пробег(км):" v-if="selected.carmark!=null && selected.type_transport==1">
-       <b-form-input type="number" v-model="mileage" class="mb-2 mr-sm-2 mb-sm-2" style="width:115px"></b-form-input>
-    </b-form-group>
-
-     <b-form-group label="Тип двигателя:" v-if="selected.carmark!=null && selected.type_transport==1">
-        <b-form-select v-model="selected.fuel_type" class="mb-2 mr-sm-2 mb-sm-2">
-           <option v-for="item in fuel_type" :value="item.value">{{item.text}}</option>
-        </b-form-select>
-    </b-form-group>
-
-
-    <b-form-group label="Растаможен:" v-if="selected.carmark!=null && selected.type_transport==1">
-        <b-form-select v-model="selected.car_customs" class="mb-2 mr-sm-2 mb-sm-2">
-           <option :value="1">Да</option>
-           <option :value="0">Нет</option>
-        </b-form-select>
-    </b-form-group>
-
-
-  -->
-
     <!-- общий компонент для транспорта -->
     <com-transport v-if="[1,2,5].indexOf(selected.type_transport) !== -1 && selected.type_transport!=null"></com-transport>
-
-  </b-form>
-
-  </div>
+    </b-form>
 </template>
 
 <script>
-
 import { post, get, interceptors } from '../../helpers/api'
 import comtransport from './com_transport.vue';
 

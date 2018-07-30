@@ -1785,48 +1785,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 
 
 
@@ -2230,15 +2188,10 @@ var tmp_images_array = [];
 
       for (var i = 0; i < files.length; i++) {
 
-        if (i >= this.$root.max_load_images || this.form.images.length >= this.$root.max_load_images) {
-          //alert("Не более "+this.$root.max_load_images+" изображений");
-          break;
-        }
+        if (i >= this.$root.max_load_images || this.form.images.length >= this.$root.max_load_images) break;
 
         var image = files[i];
         var reader = new FileReader();
-
-        //console.log(files[i]);
 
         reader.onload = function (theFile) {
           return function (e) {
@@ -33254,121 +33207,115 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "b-form",
+    { staticStyle: { "margin-top": "-18px" }, attrs: { inline: "" } },
     [
       _c(
-        "b-form",
-        { staticStyle: { "margin-top": "-18px" }, attrs: { inline: "" } },
+        "b-form-group",
+        { attrs: { label: "Вид транспорта:" } },
         [
           _c(
+            "b-form-select",
+            {
+              staticClass: "mb-2 mr-sm-2 mb-sm-2",
+              on: { change: _vm.selectTransportType },
+              model: {
+                value: _vm.selected.type_transport,
+                callback: function($$v) {
+                  _vm.$set(_vm.selected, "type_transport", $$v)
+                },
+                expression: "selected.type_transport"
+              }
+            },
+            _vm._l(_vm.type_transport, function(item) {
+              return _c("option", { domProps: { value: item.value } }, [
+                _vm._v(_vm._s(item.text))
+              ])
+            })
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _vm.carmark && _vm.selected.type_transport == 1
+        ? _c(
             "b-form-group",
-            { attrs: { label: "Вид транспорта:" } },
+            { attrs: { label: "Марка автомобиля:" } },
             [
               _c(
                 "b-form-select",
                 {
                   staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                  on: { change: _vm.selectTransportType },
+                  on: { change: _vm.selectMark },
                   model: {
-                    value: _vm.selected.type_transport,
+                    value: _vm.selected.carmark,
                     callback: function($$v) {
-                      _vm.$set(_vm.selected, "type_transport", $$v)
+                      _vm.$set(_vm.selected, "carmark", $$v)
                     },
-                    expression: "selected.type_transport"
+                    expression: "selected.carmark"
                   }
                 },
-                _vm._l(_vm.type_transport, function(item) {
-                  return _c("option", { domProps: { value: item.value } }, [
-                    _vm._v(_vm._s(item.text))
-                  ])
-                })
+                [
+                  _c("option", { domProps: { value: null } }, [
+                    _vm._v("-- Выберите марку автомобиля --")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.carmark, function(item) {
+                    return _c(
+                      "option",
+                      { domProps: { value: item.id_car_mark } },
+                      [_vm._v(_vm._s(item.name))]
+                    )
+                  })
+                ],
+                2
               )
             ],
             1
-          ),
-          _vm._v(" "),
-          _vm.carmark && _vm.selected.type_transport == 1
-            ? _c(
-                "b-form-group",
-                { attrs: { label: "Марка автомобиля:" } },
-                [
-                  _c(
-                    "b-form-select",
-                    {
-                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                      on: { change: _vm.selectMark },
-                      model: {
-                        value: _vm.selected.carmark,
-                        callback: function($$v) {
-                          _vm.$set(_vm.selected, "carmark", $$v)
-                        },
-                        expression: "selected.carmark"
-                      }
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.selected.carmark != null && _vm.selected.type_transport == 1
+        ? _c(
+            "b-form-group",
+            { attrs: { label: "Модель:" } },
+            [
+              _c(
+                "b-form-select",
+                {
+                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                  model: {
+                    value: _vm.selected.model,
+                    callback: function($$v) {
+                      _vm.$set(_vm.selected, "model", $$v)
                     },
-                    [
-                      _c("option", { domProps: { value: null } }, [
-                        _vm._v("-- Выберите марку автомобиля --")
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.carmark, function(item) {
-                        return _c(
-                          "option",
-                          { domProps: { value: item.id_car_mark } },
-                          [_vm._v(_vm._s(item.name))]
-                        )
-                      })
-                    ],
-                    2
-                  )
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.selected.carmark != null && _vm.selected.type_transport == 1
-            ? _c(
-                "b-form-group",
-                { attrs: { label: "Модель:" } },
+                    expression: "selected.model"
+                  }
+                },
                 [
-                  _c(
-                    "b-form-select",
-                    {
-                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                      model: {
-                        value: _vm.selected.model,
-                        callback: function($$v) {
-                          _vm.$set(_vm.selected, "model", $$v)
-                        },
-                        expression: "selected.model"
-                      }
-                    },
-                    [
-                      _c("option", { domProps: { value: null } }, [
-                        _vm._v("-- Выберите модель --")
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.models, function(item) {
-                        return _c(
-                          "option",
-                          { domProps: { value: item.id_car_model } },
-                          [_vm._v(_vm._s(item.name))]
-                        )
-                      })
-                    ],
-                    2
-                  )
+                  _c("option", { domProps: { value: null } }, [
+                    _vm._v("-- Выберите модель --")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.models, function(item) {
+                    return _c(
+                      "option",
+                      { domProps: { value: item.id_car_model } },
+                      [_vm._v(_vm._s(item.name))]
+                    )
+                  })
                 ],
-                1
+                2
               )
-            : _vm._e(),
-          _vm._v(" "),
-          [1, 2, 5].indexOf(_vm.selected.type_transport) !== -1 &&
-          _vm.selected.type_transport != null
-            ? _c("com-transport")
-            : _vm._e()
-        ],
-        1
-      )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      [1, 2, 5].indexOf(_vm.selected.type_transport) !== -1 &&
+      _vm.selected.type_transport != null
+        ? _c("com-transport")
+        : _vm._e()
     ],
     1
   )
