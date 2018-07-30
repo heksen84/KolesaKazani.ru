@@ -19,8 +19,21 @@ export default {
             price:      null,
             photos:     [],
             location:   [],
-            transport:  
-            {  
+
+            transport: {  // транспорт
+
+                passenger_transport:[],
+                freight_transport:[],
+                mototechnics:[],
+                spec_technics:[],
+                retro_technics:[],
+                water_transport:[],
+                a_bike:[],
+                air_transport:[],
+
+                // -------------------------------------------------
+                // com_transport (общие характеристики транспорта)
+                // -------------------------------------------------
                 year_release: null,
                 rule_pos: null,
                 probeg: null,
