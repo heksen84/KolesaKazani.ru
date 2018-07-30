@@ -37,7 +37,29 @@
 
 			<!-- для дома и дачи -->
 			<h1 v-else-if="for_home">для дома и дачи</h1>
-			
+
+			<!--
+			personal_effects:false
+			animals:false
+			hobbies_and_leisure:false
+			services:false
+			other:false-->
+
+			<!-- для дома и дачи -->
+			<h1 v-else-if="personal_effects">личные вещи</h1>
+
+			<!-- животные -->
+			<h1 v-else-if="animals">животные</h1>
+
+			<!-- хобби и отдых -->
+			<h1 v-else-if="hobbies_and_leisure">хобби и отдых</h1>
+
+			<!-- услуги -->
+			<h1 v-else-if="services">услуги</h1>
+
+			<!-- услуги -->
+			<h1 v-else-if="other">другое</h1>
+
 
 			<b-form-group label="Дополнительная информация:" label-for="addit_info">
 			 <b-form-textarea id="addit_info" v-model="form.text"
@@ -191,6 +213,31 @@ export default {
   				case 5: { 
   					this.resetCategories(data); 
   					this.for_home=true; 
+  					break; 
+  				}
+  				case 6: { 
+  					this.resetCategories(data); 
+  					this.personal_effects=true; 
+  					break; 
+  				}
+  				case 7: { 
+  					this.resetCategories(data); 
+  					this.animals=true; 
+  					break; 
+  				}
+  				case 8: { 
+  					this.resetCategories(data); 
+  					this.hobbies_and_leisure=true; 
+  					break; 
+  				}
+  				case 9: { 
+  					this.resetCategories(data); 
+  					this.services=true; 
+  					break; 
+  				}
+  				case 10: { 
+  					this.resetCategories(data); 
+  					this.other=true; 
   					break; 
   				}
 

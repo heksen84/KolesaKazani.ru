@@ -2165,6 +2165,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // импорт
@@ -2288,6 +2310,36 @@ var tmp_images_array = [];
           {
             this.resetCategories(data);
             this.for_home = true;
+            break;
+          }
+        case 6:
+          {
+            this.resetCategories(data);
+            this.personal_effects = true;
+            break;
+          }
+        case 7:
+          {
+            this.resetCategories(data);
+            this.animals = true;
+            break;
+          }
+        case 8:
+          {
+            this.resetCategories(data);
+            this.hobbies_and_leisure = true;
+            break;
+          }
+        case 9:
+          {
+            this.resetCategories(data);
+            this.services = true;
+            break;
+          }
+        case 10:
+          {
+            this.resetCategories(data);
+            this.other = true;
             break;
           }
 
@@ -34383,7 +34435,17 @@ var render = function() {
                             ? _c("h1", [_vm._v("работа и бизнес")])
                             : _vm.for_home
                               ? _c("h1", [_vm._v("для дома и дачи")])
-                              : _vm._e(),
+                              : _vm.personal_effects
+                                ? _c("h1", [_vm._v("личные вещи")])
+                                : _vm.animals
+                                  ? _c("h1", [_vm._v("животные")])
+                                  : _vm.hobbies_and_leisure
+                                    ? _c("h1", [_vm._v("хобби и отдых")])
+                                    : _vm.services
+                                      ? _c("h1", [_vm._v("услуги")])
+                                      : _vm.other
+                                        ? _c("h1", [_vm._v("другое")])
+                                        : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "b-form-group",
