@@ -46915,8 +46915,17 @@ if (token) {
         desc: null,
         price: null,
         photos: [],
-        location: []
+        location: [],
+        transport: {
+            year_release: null,
+            rule_pos: null,
+            probeg: null,
+            engine_type: null,
+            rastamozhka: null
+        }
+
     }]
+
 });
 
 /***/ }),
