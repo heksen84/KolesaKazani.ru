@@ -74,9 +74,10 @@
 </template>
 <script>
 
+// ------------------------------
 // функция склонений слов
+// ------------------------------
 function num2str(n, text_forms) {
-
     n = Math.abs(n) % 100;
     var n1 = n % 10;
     
@@ -87,6 +88,7 @@ function num2str(n, text_forms) {
     return text_forms[2];
 }
 
+// импорт
 import item from "../components/item"
 import { get } from "./../helpers/api"
 
@@ -147,7 +149,6 @@ export default {
 				this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
   			},
   			getSearchData() {
-
   				console.log(this.filters);
   				get('/getSearchData', { "data": this.filters } ).then((res) => {
   					console.log(res.data);
