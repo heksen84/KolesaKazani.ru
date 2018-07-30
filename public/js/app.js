@@ -1785,6 +1785,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -33651,7 +33652,7 @@ var render = function() {
               attrs: { cols: "12", sm: "12", md: "10", lg: "10", xl: "10" }
             },
             [
-              _c("h5", { staticClass: "shadow_text" }, [
+              _c("h6", { staticClass: "shadow_text" }, [
                 _vm._v(
                   "найдено " +
                     _vm._s(_vm.count) +
