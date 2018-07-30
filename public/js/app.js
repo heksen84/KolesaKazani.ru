@@ -33283,7 +33283,22 @@ var render = function() {
                     attrs: { id: item.id },
                     on: { click: _vm.searchInCategory }
                   },
-                  [_vm._v(_vm._s(item.name))]
+                  [
+                    _vm._v(_vm._s(item.name)),
+                    _c(
+                      "span",
+                      {
+                        staticStyle: {
+                          "font-size": "11px",
+                          color: "rgb(150,250,150)",
+                          float: "right",
+                          "margin-top": "6px"
+                        },
+                        attrs: { id: item.id }
+                      },
+                      [_vm._v("(" + _vm._s(i * 100) + ")")]
+                    )
+                  ]
                 )
               ]
             )
