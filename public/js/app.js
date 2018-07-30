@@ -33749,12 +33749,12 @@ var render = function() {
               "b-col",
               { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
               [
-                _c(
-                  "carousel",
-                  { attrs: { perPage: 1, paginationEnabled: false } },
-                  [_c("slide", [_vm._v("img")])],
-                  1
-                )
+                _c("b-img", {
+                  attrs: {
+                    src: "https://picsum.photos/125/125/?image=58",
+                    alt: "left image"
+                  }
+                })
               ],
               1
             ),

@@ -9,7 +9,9 @@
 
 	<!-- БАЗОВЫЕ ФИЛЬТРЫ -->
 	<b-row v-if="count>1">
-		<b-col cols="12" sm="12" md="2" lg="2" xl="2"></b-col>
+		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
+
+		</b-col>
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 		  <b-form-select v-model="filters.price" :options="options_price" class="mb-3"  @change="getSearchData"/>
 		</b-col>
@@ -50,9 +52,7 @@
 
 	<b-row style="margin-top:5px" v-for="item in items" :key="item.id">
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-			<carousel :perPage=1 :paginationEnabled="false">
-  			<slide>img</slide>
-			</carousel>
+  			 <b-img src="https://picsum.photos/125/125/?image=58" alt="left image" />
 		</b-col>
 
 		<b-col cols="12" sm="12" md="8" lg="8" xl="8">
