@@ -34343,7 +34343,7 @@ var render = function() {
                 color: "black",
                 background: "white"
               },
-              attrs: { cols: "12", sm: "12", md: "12", lg: "7", xl: "7" }
+              attrs: { cols: "12", sm: "12", md: "12", lg: "8", xl: "8" }
             },
             [
               _c(

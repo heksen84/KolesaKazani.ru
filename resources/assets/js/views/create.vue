@@ -1,7 +1,7 @@
 <template>
 	<b-container fluid>
 		<b-row>
-		<b-col cols="12" sm="12" md="12" lg="7" xl="7" style="text-align:left;margin: auto;color:black;background:white">
+		<b-col cols="12" sm="12" md="12" lg="8" xl="8" style="text-align:left;margin: auto;color:black;background:white">
 		<div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
 		<h3 style="color:rgb(120,120,120);margin-top:-20px"><ins>новое объявление</ins></h3>
 		<br>
