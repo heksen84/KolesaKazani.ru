@@ -32932,7 +32932,7 @@ var render = function() {
                   _c(
                     "b-nav-item",
                     { attrs: { href: "#" }, on: { click: _vm.logout } },
-                    [_c("u", [_vm._v("Выйти")])]
+                    [_c("b", [_c("u", [_vm._v("Выйти")])])]
                   )
                 ],
                 1

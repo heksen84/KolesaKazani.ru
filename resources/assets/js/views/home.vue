@@ -15,7 +15,7 @@
     <!-- Right aligned nav items -->
     <b-navbar-nav class="ml-auto">
       <b-nav-item href="#" @click="createAdvert"><b>Разместить объявление</b></b-nav-item>
-      <b-nav-item href="#" @click="logout"><u>Выйти</u></b-nav-item>
+      <b-nav-item href="#" @click="logout"><b><u>Выйти</u></b></b-nav-item>
     </b-navbar-nav>
 
   </b-collapse>
