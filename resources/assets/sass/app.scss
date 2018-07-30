@@ -123,8 +123,9 @@ body {
   border: 1px solid rgb(230,230,230);
   border-radius: 5px;
   padding: 4px;
-  text-align:center;
-  font-size:17px;
+  text-align:left;
+  padding-left: 12px;
+  font-size:16px;
   width:240px;
   background: rgb(115,115,115);
   opacity:0.95;
@@ -132,6 +133,7 @@ body {
 }
 .category_item:hover {
  background: rgb(140,140,140);
+ text-decoration: underline;
 }
 
 .standart_input {

@@ -33296,7 +33296,7 @@ var render = function() {
                         },
                         attrs: { id: item.id }
                       },
-                      [_vm._v("( " + _vm._s(i * 100) + " )")]
+                      [_vm._v("[ " + _vm._s(i * 1000000) + " ]")]
                     )
                   ]
                 )

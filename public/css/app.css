@@ -134,8 +134,9 @@ body {
   border: 1px solid #e6e6e6;
   border-radius: 5px;
   padding: 4px;
-  text-align: center;
-  font-size: 17px;
+  text-align: left;
+  padding-left: 12px;
+  font-size: 16px;
   width: 240px;
   background: #737373;
   opacity: 0.95;
@@ -144,6 +145,7 @@ body {
 
 .category_item:hover {
   background: #8c8c8c;
+  text-decoration: underline;
 }
 
 .standart_input {
