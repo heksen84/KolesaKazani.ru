@@ -5,11 +5,11 @@
 
     <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
 
-    <center style="margin-top:10px">
+    <div style="margin-top:10px">
 			<h5>{{ item[0].title }}</h5>
 			<h5>{{ item[0].text }}</h5>
 			<h5>{{ item[0].price }}</h5>
-    </center>
+    </div>
 
   <center style="margin:50px">
     <yandex-map 
