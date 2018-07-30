@@ -22,6 +22,7 @@
 
     <!-- общий компонент для транспорта -->
     <com-transport v-if="[1,2,5].indexOf(selected.type_transport) !== -1 && selected.type_transport!=null"></com-transport>
+    
     </b-form>
 </template>
 
