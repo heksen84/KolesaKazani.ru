@@ -34481,8 +34481,8 @@ var render = function() {
                         attrs: {
                           id: "addit_info",
                           placeholder: "Наберите дополнительную информацию",
-                          rows: 3,
-                          "max-rows": 3
+                          rows: 4,
+                          "max-rows": 4
                         },
                         model: {
                           value: _vm.form.text,
