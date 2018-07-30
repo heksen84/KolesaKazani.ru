@@ -39,11 +39,7 @@ export default {
 	data () {
     return 	{
 
-
-
-
-      placemarks: [
-      {
+      placemarks: [{
         coords: [54.8, 39.8],
         properties: {}, // define properties here
         options: {}, // define options here
