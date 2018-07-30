@@ -27,6 +27,7 @@
     </b-row>
 
     <b-row id="categories_row"></b-row>
+    
     <!-- категории -->
     <b-row v-for="i in Math.ceil(Object.keys(items).length / 4)" v-bind:key=i>
       <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in items.slice((i - 1) * 4, i * 4)"  v-bind:key=item.id>
