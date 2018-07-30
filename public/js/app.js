@@ -2759,12 +2759,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["items", "auth"],
+  props: ["items", "auth", "count"],
   data: function data() {
     return {};
   },
   created: function created() {
-    //alert("hello!");
+    //alert(this.count);
   },
 
   methods: {
@@ -33297,7 +33297,7 @@ var render = function() {
                         },
                         attrs: { id: item.id }
                       },
-                      [_vm._v("| " + _vm._s(i * 10000) + " ")]
+                      [_vm._v("| " + _vm._s(555) + " ")]
                     )
                   ]
                 )
