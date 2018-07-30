@@ -1652,11 +1652,55 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {},
   data: function data() {
-    return {};
+    return {
+
+      selected: {
+        type_transport: null,
+        carmark: null,
+        model: null,
+        helm_position: null,
+        fuel_type: 0,
+        car_customs: 1
+      },
+
+      helm_position: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
+
+      fuel_type: [{ value: 0, text: 'Бензин' }, { value: 1, text: 'Дизель' }, { value: 2, text: 'Газ-бензин' }, { value: 3, text: 'Газ' }, { value: 4, text: 'Гибрид' }, { value: 5, text: 'Электричество' }]
+    };
   },
   created: function created() {},
 
@@ -1773,6 +1817,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -1793,10 +1841,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       models: [],
       release_date: "",
       mileage: 0,
-
-      helm_position: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
-
-      fuel_type: [{ value: 0, text: 'Бензин' }, { value: 1, text: 'Дизель' }, { value: 2, text: 'Газ-бензин' }, { value: 3, text: 'Газ' }, { value: 4, text: 'Гибрид' }, { value: 5, text: 'Электричество' }],
 
       selected: {
         type_transport: null,
@@ -2088,6 +2132,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_chars_transport__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_chars_real_estate__ = __webpack_require__("./resources/assets/js/components/chars/real-estate.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_chars_real_estate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_chars_real_estate__);
+//
 //
 //
 //
@@ -2504,9 +2549,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
+// ------------------------------
 // функция склонений слов
+// ------------------------------
 function num2str(n, text_forms) {
-
   n = Math.abs(n) % 100;
   var n1 = n % 10;
 
@@ -2517,6 +2563,7 @@ function num2str(n, text_forms) {
   return text_forms[2];
 }
 
+// импорт
 
 
 
@@ -33317,147 +33364,6 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.selected.carmark != null && _vm.selected.type_transport == 1
-            ? _c(
-                "b-form-group",
-                { attrs: { label: "Год выпуска:" } },
-                [
-                  _c("b-form-input", {
-                    staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                    staticStyle: { width: "130px" },
-                    attrs: {
-                      placeholder: "Введите год",
-                      type: "number",
-                      state: _vm.checkYear
-                    },
-                    model: {
-                      value: _vm.release_date,
-                      callback: function($$v) {
-                        _vm.release_date = $$v
-                      },
-                      expression: "release_date"
-                    }
-                  })
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.selected.carmark != null && _vm.selected.type_transport == 1
-            ? _c(
-                "b-form-group",
-                { attrs: { label: "Положение руля:" } },
-                [
-                  _c(
-                    "b-form-select",
-                    {
-                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                      model: {
-                        value: _vm.selected.helm_position,
-                        callback: function($$v) {
-                          _vm.$set(_vm.selected, "helm_position", $$v)
-                        },
-                        expression: "selected.helm_position"
-                      }
-                    },
-                    [
-                      _c("option", { domProps: { value: null } }, [
-                        _vm._v("-- Выберите положение руля --")
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.helm_position, function(item) {
-                        return _c(
-                          "option",
-                          { domProps: { value: item.value } },
-                          [_vm._v(_vm._s(item.text))]
-                        )
-                      })
-                    ],
-                    2
-                  )
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.selected.carmark != null && _vm.selected.type_transport == 1
-            ? _c(
-                "b-form-group",
-                { attrs: { label: "Пробег(км):" } },
-                [
-                  _c("b-form-input", {
-                    staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                    staticStyle: { width: "115px" },
-                    attrs: { type: "number" },
-                    model: {
-                      value: _vm.mileage,
-                      callback: function($$v) {
-                        _vm.mileage = $$v
-                      },
-                      expression: "mileage"
-                    }
-                  })
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.selected.carmark != null && _vm.selected.type_transport == 1
-            ? _c(
-                "b-form-group",
-                { attrs: { label: "Тип двигателя:" } },
-                [
-                  _c(
-                    "b-form-select",
-                    {
-                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                      model: {
-                        value: _vm.selected.fuel_type,
-                        callback: function($$v) {
-                          _vm.$set(_vm.selected, "fuel_type", $$v)
-                        },
-                        expression: "selected.fuel_type"
-                      }
-                    },
-                    _vm._l(_vm.fuel_type, function(item) {
-                      return _c("option", { domProps: { value: item.value } }, [
-                        _vm._v(_vm._s(item.text))
-                      ])
-                    })
-                  )
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.selected.carmark != null && _vm.selected.type_transport == 1
-            ? _c(
-                "b-form-group",
-                { attrs: { label: "Растаможен:" } },
-                [
-                  _c(
-                    "b-form-select",
-                    {
-                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                      model: {
-                        value: _vm.selected.car_customs,
-                        callback: function($$v) {
-                          _vm.$set(_vm.selected, "car_customs", $$v)
-                        },
-                        expression: "selected.car_customs"
-                      }
-                    },
-                    [
-                      _c("option", { domProps: { value: 1 } }, [_vm._v("Да")]),
-                      _vm._v(" "),
-                      _c("option", { domProps: { value: 0 } }, [_vm._v("Нет")])
-                    ]
-                  )
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
           [1, 2, 5].indexOf(_vm.selected.type_transport) !== -1 &&
           _vm.selected.type_transport != null
             ? _c("com-transport")
@@ -33542,7 +33448,141 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n  Общие хар-ки\n")])
+  return _c(
+    "b-form",
+    { attrs: { inline: "" } },
+    [
+      _c(
+        "b-form-group",
+        { attrs: { label: "Год выпуска:" } },
+        [
+          _c("b-form-input", {
+            staticClass: "mb-2 mr-sm-2 mb-sm-2",
+            staticStyle: { width: "130px" },
+            attrs: {
+              placeholder: "Введите год",
+              type: "number",
+              state: _vm.checkYear
+            },
+            model: {
+              value: _vm.release_date,
+              callback: function($$v) {
+                _vm.release_date = $$v
+              },
+              expression: "release_date"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-form-group",
+        { attrs: { label: "Положение руля:" } },
+        [
+          _c(
+            "b-form-select",
+            {
+              staticClass: "mb-2 mr-sm-2 mb-sm-2",
+              model: {
+                value: _vm.selected.helm_position,
+                callback: function($$v) {
+                  _vm.$set(_vm.selected, "helm_position", $$v)
+                },
+                expression: "selected.helm_position"
+              }
+            },
+            [
+              _c("option", { domProps: { value: null } }, [
+                _vm._v("-- Выберите положение руля --")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.helm_position, function(item) {
+                return _c("option", { domProps: { value: item.value } }, [
+                  _vm._v(_vm._s(item.text))
+                ])
+              })
+            ],
+            2
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-form-group",
+        { attrs: { label: "Пробег(км):" } },
+        [
+          _c("b-form-input", {
+            staticClass: "mb-2 mr-sm-2 mb-sm-2",
+            staticStyle: { width: "115px" },
+            attrs: { type: "number" },
+            model: {
+              value: _vm.mileage,
+              callback: function($$v) {
+                _vm.mileage = $$v
+              },
+              expression: "mileage"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-form-group",
+        { attrs: { label: "Тип двигателя:" } },
+        [
+          _c(
+            "b-form-select",
+            {
+              staticClass: "mb-2 mr-sm-2 mb-sm-2",
+              model: {
+                value: _vm.selected.fuel_type,
+                callback: function($$v) {
+                  _vm.$set(_vm.selected, "fuel_type", $$v)
+                },
+                expression: "selected.fuel_type"
+              }
+            },
+            _vm._l(_vm.fuel_type, function(item) {
+              return _c("option", { domProps: { value: item.value } }, [
+                _vm._v(_vm._s(item.text))
+              ])
+            })
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-form-group",
+        { attrs: { label: "Растаможен:" } },
+        [
+          _c(
+            "b-form-select",
+            {
+              staticClass: "mb-2 mr-sm-2 mb-sm-2",
+              model: {
+                value: _vm.selected.car_customs,
+                callback: function($$v) {
+                  _vm.$set(_vm.selected, "car_customs", $$v)
+                },
+                expression: "selected.car_customs"
+              }
+            },
+            [
+              _c("option", { domProps: { value: 1 } }, [_vm._v("Да")]),
+              _vm._v(" "),
+              _c("option", { domProps: { value: 0 } }, [_vm._v("Нет")])
+            ]
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

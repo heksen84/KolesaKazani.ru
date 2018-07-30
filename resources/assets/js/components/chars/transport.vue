@@ -24,6 +24,7 @@
         </b-form-select>
     </b-form-group>
 
+<!--
 
     <b-form-group label="Год выпуска:" v-if="selected.carmark!=null && selected.type_transport==1">
        <b-form-input placeholder="Введите год" type="number" v-model="release_date" class="mb-2 mr-sm-2 mb-sm-2" style="width:130px" :state="checkYear"></b-form-input>
@@ -53,6 +54,9 @@
            <option :value="0">Нет</option>
         </b-form-select>
     </b-form-group>
+
+
+  -->
 
     <!-- общий компонент для транспорта -->
     <com-transport v-if="[1,2,5].indexOf(selected.type_transport) !== -1 && selected.type_transport!=null"></com-transport>
@@ -93,23 +97,7 @@ export default {
         models:[],
         release_date: "",
         mileage: 0,
-
-       helm_position: 
-        [
-          { value: 0, text: 'Справа' },
-          { value: 1, text: 'Слева' }
-        ],
         
-        fuel_type: 
-        [
-          { value: 0, text: 'Бензин' },
-          { value: 1, text: 'Дизель' },
-          { value: 2, text: 'Газ-бензин' },
-          { value: 3, text: 'Газ' },
-          { value: 4, text: 'Гибрид' },
-          { value: 5, text: 'Электричество' }
-        ],
-
         selected: {
           type_transport: null,
           carmark: null,
