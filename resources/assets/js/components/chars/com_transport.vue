@@ -1,6 +1,5 @@
 <template>
- <b-form inline>
-
+<b-form inline>
 <b-form-group label="Год выпуска:">
        <b-form-input placeholder="Введите год" type="number" v-model="release_date" class="mb-2 mr-sm-2 mb-sm-2" style="width:130px" :state="checkYear"></b-form-input>
     </b-form-group>
@@ -29,7 +28,6 @@
            <option :value="0">Нет</option>
         </b-form-select>
     </b-form-group>
-
 
   </b-form>
 </template>
