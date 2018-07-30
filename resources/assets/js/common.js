@@ -20,7 +20,10 @@ export default {
             photos:     [],
             location:   [],
 
-            transport: {  // транспорт
+            // ----------------------
+            // структура транспорта
+            // ----------------------
+            transport: {  
 
                 passenger_transport:[],
                 freight_transport:[],
@@ -34,6 +37,7 @@ export default {
                 // -------------------------------------------------
                 // com_transport (общие характеристики транспорта)
                 // -------------------------------------------------
+
                 year_release: null,
                 rule_pos: null,
                 probeg: null,
