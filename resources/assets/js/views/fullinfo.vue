@@ -15,7 +15,7 @@
     <yandex-map 
     :coords="[54.62896654088406, 39.731893822753904]"
       zoom="10"
-      style="width: 400px; height: 400px"
+      style="width: 300px; height: 300px"
       :behaviors="['ruler']"
       :controls="['trafficControl']"
      :placemarks="placemarks" 

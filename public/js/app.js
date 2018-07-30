@@ -2151,6 +2151,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // импорт
@@ -2174,9 +2188,11 @@ var tmp_images_array = [];
         images: []
       },
       root: false,
-      transport: false,
-      real_estate: false,
-      appliances: false
+      transport: false, // транспорт
+      real_estate: false, // недвижимость
+      appliances: false, // бытовая техника
+      work_and_buisness: false, // работа и бизнес
+      for_home: false
     };
   },
   created: function created() {},
@@ -2216,7 +2232,14 @@ var tmp_images_array = [];
       this.transport = false;
       this.real_estate = false;
       this.appliances = false;
+      this.work_and_buisness = false;
+      this.for_home = false;
     },
+
+    /*
+    --------------------------
+    изменения в категориях
+    --------------------------*/
     changeCategory: function changeCategory(data) {
       switch (data) {
         case null:
@@ -2243,6 +2266,19 @@ var tmp_images_array = [];
             this.appliances = true;
             break;
           }
+        case 4:
+          {
+            this.resetCategories(data);
+            this.work_and_buisness = true;
+            break;
+          }
+        case 5:
+          {
+            this.resetCategories(data);
+            this.for_home = true;
+            break;
+          }
+
       }
     },
     onSubmit: function onSubmit(evt) {
@@ -33622,7 +33658,7 @@ var render = function() {
                 { staticStyle: { margin: "50px" } },
                 [
                   _c("yandex-map", {
-                    staticStyle: { width: "400px", height: "400px" },
+                    staticStyle: { width: "300px", height: "300px" },
                     attrs: {
                       coords: [54.62896654088406, 39.731893822753904],
                       zoom: "10",
@@ -34329,7 +34365,13 @@ var render = function() {
                       ? _c("transport")
                       : _vm.real_estate
                         ? _c("realestate")
-                        : _vm.appliances ? _c("h1") : _vm._e(),
+                        : _vm.appliances
+                          ? _c("h1", [_vm._v("бытовая техника")])
+                          : _vm.work_and_buisness
+                            ? _c("h1", [_vm._v("работа и бизнес")])
+                            : _vm.for_home
+                              ? _c("h1", [_vm._v("для дома и дачи")])
+                              : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "b-form-group",

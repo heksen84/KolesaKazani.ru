@@ -19,10 +19,24 @@
 			</b-form-group>
 			
 			<!-- КАТЕГОРИИ -->
+
+			<!-- null категория -->
 			<div v-if="root"></div>
+
+			<!-- транспорт -->
 			<transport v-else-if="transport"/>
+
+			<!-- недвижимость -->
 			<realestate v-else-if="real_estate"/>
-			<h1 v-else-if="appliances"></h1>
+
+			<!-- бытовая техника -->
+			<h1 v-else-if="appliances">бытовая техника</h1>
+
+			<!-- работа и бизнес -->
+			<h1 v-else-if="work_and_buisness">работа и бизнес</h1>
+
+			<!-- для дома и дачи -->
+			<h1 v-else-if="for_home">для дома и дачи</h1>
 			
 
 			<b-form-group label="Дополнительная информация:" label-for="addit_info">
@@ -84,9 +98,11 @@ export default {
 			images:[]
 		},
 		root:false,
-		transport:false,
-		real_estate:false,
-		appliances:false
+		transport:false,			// транспорт
+		real_estate:false,			// недвижимость
+		appliances:false,			// бытовая техника
+		work_and_buisness:false,	// работа и бизнес
+		for_home:false
 	}
 	},
 	created() {
@@ -127,8 +143,14 @@ export default {
   			this.transport=false;
   			this.real_estate=false;
   			this.appliances=false;
+  			this.work_and_buisness=false; 
+  			this.for_home=false; 
   			
   		},
+  		/*
+  		--------------------------
+  		изменения в категориях
+  		--------------------------*/
   		changeCategory(data) {
   			switch(data) {
   				case null: {
@@ -150,7 +172,18 @@ export default {
   					this.resetCategories(data); 
   					this.appliances=true; 
   					break; 
-  				}  
+  				}
+  				case 4: { 
+  					this.resetCategories(data); 
+  					this.work_and_buisness=true; 
+  					break; 
+  				}
+  				case 5: { 
+  					this.resetCategories(data); 
+  					this.for_home=true; 
+  					break; 
+  				}
+
   			}
   		},
     	onSubmit(evt) {
