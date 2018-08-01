@@ -29,6 +29,8 @@ export default {
   },
   components: {},
   methods: {
+    
+    // изменения в недвижимости
     changeRealEstate(data) {
         switch(data) {
           case 0: {
