@@ -1,7 +1,7 @@
 <template>
   <div>
 	<b-form-group label="Вид недвижимости:" label-for="categories" style="width:290px">
-        <b-form-select v-model="selected_type" class="mb-3">
+        <b-form-select v-model="selected_type" class="mb-3" @change="changeRealEstate">
            <option v-for="item in type" :value="item.value">{{item.text}}</option>
         </b-form-select>
   </b-form-group>
@@ -29,8 +29,38 @@ export default {
   },
   components: {},
   methods: {
-    details(event) {
-    }
+    changeRealEstate(data) {
+        switch(data) {
+          case 0: {
+            break;
+          }
+          case 1: {
+              alert("ok-1");
+            break; 
+          } 
+          case 2: { 
+            break; 
+          }
+          case 3: { 
+            break; 
+          }
+          case 4: { 
+            break; 
+          }
+          case 5: { 
+            break; 
+          }
+          case 6: { 
+            break; 
+          }
+          case 7: { 
+            break; 
+          }
+          case 8: { 
+            break; 
+          }
+        }
+      }
   }
 }
 </script>

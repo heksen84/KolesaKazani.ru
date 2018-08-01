@@ -1742,7 +1742,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   components: {},
   methods: {
-    details: function details(event) {}
+    changeRealEstate: function changeRealEstate(data) {
+      switch (data) {
+        case 0:
+          {
+            break;
+          }
+        case 1:
+          {
+            alert("ok-1");
+            break;
+          }
+        case 2:
+          {
+            break;
+          }
+        case 3:
+          {
+            break;
+          }
+        case 4:
+          {
+            break;
+          }
+        case 5:
+          {
+            break;
+          }
+        case 6:
+          {
+            break;
+          }
+        case 7:
+          {
+            break;
+          }
+        case 8:
+          {
+            break;
+          }
+      }
+    }
   }
 });
 
@@ -33472,6 +33512,7 @@ var render = function() {
             "b-form-select",
             {
               staticClass: "mb-3",
+              on: { change: _vm.changeRealEstate },
               model: {
                 value: _vm.selected_type,
                 callback: function($$v) {
