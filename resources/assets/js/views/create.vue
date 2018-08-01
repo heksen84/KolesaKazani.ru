@@ -98,8 +98,6 @@ import { post } from './../helpers/api'
 import transport from '../components/chars/transport';
 import realestate from '../components/chars/real-estate';
 
-import store from '../store';
-
 
 var tmp_images_array=[];
 
@@ -132,7 +130,7 @@ export default {
 	created() {
 		//alert(store.commit("getUserName"));
 	},
-	components: { transport, realestate,store },
+	components: { transport, realestate },
   	methods: {
 
   		loadImage(evt) {

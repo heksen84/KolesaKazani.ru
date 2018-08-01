@@ -72,10 +72,13 @@ const store = new Vuex.Store({
 })
 */
 
+import store from './store';
+
 const app = new Vue({
     el: '#app',
     data: common,
     components: {
+      store,
       welcome,
       profile,
       home,

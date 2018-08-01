@@ -2140,7 +2140,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_chars_transport__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_chars_real_estate__ = __webpack_require__("./resources/assets/js/components/chars/real-estate.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_chars_real_estate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_chars_real_estate__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__store__ = __webpack_require__("./resources/assets/js/store/index.js");
 //
 //
 //
@@ -2240,8 +2239,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-
-
 var tmp_images_array = [];
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2274,7 +2271,7 @@ var tmp_images_array = [];
     //alert(store.commit("getUserName"));
   },
 
-  components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_real_estate___default.a, store: __WEBPACK_IMPORTED_MODULE_3__store__["a" /* default */] },
+  components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_real_estate___default.a },
   methods: {
     loadImage: function loadImage(evt) {
 
@@ -46826,6 +46823,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_28_vue_carousel__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29_vue_yandex_maps__ = __webpack_require__("./node_modules/vue-yandex-maps/vue-yandex-maps.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29_vue_yandex_maps___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_29_vue_yandex_maps__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__store__ = __webpack_require__("./resources/assets/js/store/index.js");
 __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
@@ -46899,10 +46897,13 @@ const store = new Vuex.Store({
 })
 */
 
+
+
 var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
   el: '#app',
   data: __WEBPACK_IMPORTED_MODULE_0__common__["a" /* default */],
   components: {
+    store: __WEBPACK_IMPORTED_MODULE_30__store__["a" /* default */],
     welcome: __WEBPACK_IMPORTED_MODULE_2__views_welcome_vue___default.a,
     profile: __WEBPACK_IMPORTED_MODULE_4__views_profile_vue___default.a,
     home: __WEBPACK_IMPORTED_MODULE_3__views_home_vue___default.a,
