@@ -1,6 +1,6 @@
 require('./bootstrap');
 
-import common from './common';
+import store from './store';
 import Vue from 'vue';
 
 // views
@@ -56,6 +56,7 @@ Vue.use(radio);
 Vue.use(navbar);
 Vue.use(VueCarousel);
 
+/*
 import Vuex from 'vuex';
 Vue.use(Vuex);
 
@@ -69,10 +70,11 @@ const store = new Vuex.Store({
     }
   }
 })
+*/
 
 const app = new Vue({
     el: '#app',
-    data: common,
+    data: store,
     components: {
       welcome,
       profile,
