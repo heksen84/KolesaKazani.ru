@@ -174,6 +174,7 @@ export default {
 			this.services=false;			// услуги
 			this.other=false;				// другое 	
   		},
+  		
   		/*
   		--------------------------
   		изменения в категориях

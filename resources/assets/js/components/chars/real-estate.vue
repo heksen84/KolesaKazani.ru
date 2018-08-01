@@ -22,14 +22,23 @@ export default {
           { value: 6, text: 'Коммерческая недвижимость' },
           { value: 7, text: 'Недвижимость за рубежом' }
         ],
-        selected_type: 0
+        selected_type: 0,
+        selected: {
+          apartment:false,
+          room:false,
+          house_cottage:false,
+          land_plot:false,
+          garage:false,
+          commercial_property:false,
+          property_abroad:false
+        }
 		}
 	},
   created() {
   },
   components: {},
   methods: {
-    
+
     // изменения в недвижимости
     changeRealEstate(data) {
         switch(data) {

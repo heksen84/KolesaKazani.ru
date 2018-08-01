@@ -1735,13 +1735,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       type: [{ value: 0, text: 'Квартира' }, { value: 1, text: 'Комната' }, { value: 2, text: 'Дом, дача, коттедж' }, { value: 3, text: 'Земельный участок' }, { value: 5, text: 'Гараж или машиноместо' }, { value: 6, text: 'Коммерческая недвижимость' }, { value: 7, text: 'Недвижимость за рубежом' }],
-      selected_type: 0
+      selected_type: 0,
+      selected: {
+        apartment: false,
+        room: false,
+        house_cottage: false,
+        land_plot: false,
+        garage: false,
+        commercial_property: false,
+        property_abroad: false
+      }
     };
   },
   created: function created() {},
 
   components: {},
   methods: {
+
+    // изменения в недвижимости
     changeRealEstate: function changeRealEstate(data) {
       switch (data) {
         case 0:
@@ -2305,6 +2316,7 @@ var tmp_images_array = [];
       this.services = false; // услуги
       this.other = false; // другое 	
     },
+
 
     /*
     --------------------------
