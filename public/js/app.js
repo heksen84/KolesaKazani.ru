@@ -2181,12 +2181,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 // импорт
@@ -34453,22 +34447,20 @@ var render = function() {
                       : _vm.real_estate
                         ? _c("realestate")
                         : _vm.appliances
-                          ? _c("h1", [_vm._v("бытовая техника")])
+                          ? _c("h1")
                           : _vm.work_and_buisness
-                            ? _c("h1", [_vm._v("работа и бизнес")])
+                            ? _c("h1")
                             : _vm.for_home
-                              ? _c("h1", [_vm._v("для дома и дачи")])
+                              ? _c("h1")
                               : _vm.personal_effects
-                                ? _c("h1", [_vm._v("личные вещи")])
+                                ? _c("h1")
                                 : _vm.animals
-                                  ? _c("h1", [_vm._v("животные")])
+                                  ? _c("h1")
                                   : _vm.hobbies_and_leisure
-                                    ? _c("h1", [_vm._v("хобби и отдых")])
+                                    ? _c("h1")
                                     : _vm.services
-                                      ? _c("h1", [_vm._v("услуги")])
-                                      : _vm.other
-                                        ? _c("h1", [_vm._v("другое")])
-                                        : _vm._e(),
+                                      ? _c("h1")
+                                      : _vm.other ? _c("h1") : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "b-form-group",

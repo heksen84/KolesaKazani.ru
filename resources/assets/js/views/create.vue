@@ -30,35 +30,29 @@
 			<realestate v-else-if="real_estate"/>
 
 			<!-- бытовая техника -->
-			<h1 v-else-if="appliances">бытовая техника</h1>
+			<h1 v-else-if="appliances"></h1>
 
 			<!-- работа и бизнес -->
-			<h1 v-else-if="work_and_buisness">работа и бизнес</h1>
+			<h1 v-else-if="work_and_buisness"></h1>
 
 			<!-- для дома и дачи -->
-			<h1 v-else-if="for_home">для дома и дачи</h1>
+			<h1 v-else-if="for_home"></h1>
 
-			<!--
-			personal_effects:false
-			animals:false
-			hobbies_and_leisure:false
-			services:false
-			other:false-->
 
 			<!-- для дома и дачи -->
-			<h1 v-else-if="personal_effects">личные вещи</h1>
+			<h1 v-else-if="personal_effects"></h1>
 
 			<!-- животные -->
-			<h1 v-else-if="animals">животные</h1>
+			<h1 v-else-if="animals"></h1>
 
 			<!-- хобби и отдых -->
-			<h1 v-else-if="hobbies_and_leisure">хобби и отдых</h1>
+			<h1 v-else-if="hobbies_and_leisure"></h1>
 
 			<!-- услуги -->
-			<h1 v-else-if="services">услуги</h1>
+			<h1 v-else-if="services"></h1>
 
 			<!-- услуги -->
-			<h1 v-else-if="other">другое</h1>
+			<h1 v-else-if="other"></h1>
 
 
 			<b-form-group label="Дополнительная информация:" label-for="addit_info">
