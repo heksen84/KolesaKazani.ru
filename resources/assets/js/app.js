@@ -1,6 +1,6 @@
 require('./bootstrap');
 
-import store from './store';
+import common from './common';
 import Vue from 'vue';
 
 // views
@@ -74,7 +74,7 @@ const store = new Vuex.Store({
 
 const app = new Vue({
     el: '#app',
-    data: store,
+    data: common,
     components: {
       welcome,
       profile,
