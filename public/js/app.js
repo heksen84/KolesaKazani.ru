@@ -1641,7 +1641,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/chars/com_transport.vue":
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/chars/common/com_transport.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1805,8 +1805,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__com_transport_vue__ = __webpack_require__("./resources/assets/js/components/chars/com_transport.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__com_transport_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__com_transport_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_com_transport_vue__ = __webpack_require__("./resources/assets/js/components/chars/common/com_transport.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_com_transport_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__common_com_transport_vue__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
@@ -1900,7 +1900,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     }
   }
-}, 'components', { "com-transport": __WEBPACK_IMPORTED_MODULE_1__com_transport_vue___default.a }));
+}, 'components', { "com-transport": __WEBPACK_IMPORTED_MODULE_1__common_com_transport_vue___default.a }));
 
 /***/ }),
 
@@ -32936,6 +32936,161 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0d548f20\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/chars/common/com_transport.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "b-form",
+    { attrs: { inline: "" } },
+    [
+      _c(
+        "b-form-group",
+        { attrs: { label: "Год выпуска:" } },
+        [
+          _c("b-form-input", {
+            staticClass: "mb-2 mr-sm-2 mb-sm-2",
+            staticStyle: { width: "130px" },
+            attrs: {
+              placeholder: "Введите год",
+              type: "number",
+              state: _vm.checkYear
+            },
+            model: {
+              value: _vm.release_date,
+              callback: function($$v) {
+                _vm.release_date = $$v
+              },
+              expression: "release_date"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-form-group",
+        { attrs: { label: "Положение руля:" } },
+        [
+          _c(
+            "b-form-select",
+            {
+              staticClass: "mb-2 mr-sm-2 mb-sm-2",
+              model: {
+                value: _vm.selected.helm_position,
+                callback: function($$v) {
+                  _vm.$set(_vm.selected, "helm_position", $$v)
+                },
+                expression: "selected.helm_position"
+              }
+            },
+            [
+              _c("option", { domProps: { value: null } }, [
+                _vm._v("-- Выберите положение руля --")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.helm_position, function(item) {
+                return _c("option", { domProps: { value: item.value } }, [
+                  _vm._v(_vm._s(item.text))
+                ])
+              })
+            ],
+            2
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-form-group",
+        { attrs: { label: "Пробег(км):" } },
+        [
+          _c("b-form-input", {
+            staticClass: "mb-2 mr-sm-2 mb-sm-2",
+            staticStyle: { width: "115px" },
+            attrs: { type: "number" },
+            model: {
+              value: _vm.mileage,
+              callback: function($$v) {
+                _vm.mileage = $$v
+              },
+              expression: "mileage"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-form-group",
+        { attrs: { label: "Тип двигателя:" } },
+        [
+          _c(
+            "b-form-select",
+            {
+              staticClass: "mb-2 mr-sm-2 mb-sm-2",
+              model: {
+                value: _vm.selected.fuel_type,
+                callback: function($$v) {
+                  _vm.$set(_vm.selected, "fuel_type", $$v)
+                },
+                expression: "selected.fuel_type"
+              }
+            },
+            _vm._l(_vm.fuel_type, function(item) {
+              return _c("option", { domProps: { value: item.value } }, [
+                _vm._v(_vm._s(item.text))
+              ])
+            })
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-form-group",
+        { attrs: { label: "Растаможен:" } },
+        [
+          _c(
+            "b-form-select",
+            {
+              staticClass: "mb-2 mr-sm-2 mb-sm-2",
+              model: {
+                value: _vm.selected.car_customs,
+                callback: function($$v) {
+                  _vm.$set(_vm.selected, "car_customs", $$v)
+                },
+                expression: "selected.car_customs"
+              }
+            },
+            [
+              _c("option", { domProps: { value: 1 } }, [_vm._v("Да")]),
+              _vm._v(" "),
+              _c("option", { domProps: { value: 0 } }, [_vm._v("Нет")])
+            ]
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0d548f20", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0deb48cc\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/views/home.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33553,161 +33708,6 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-340b4c95", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4656a8b6\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/chars/com_transport.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "b-form",
-    { attrs: { inline: "" } },
-    [
-      _c(
-        "b-form-group",
-        { attrs: { label: "Год выпуска:" } },
-        [
-          _c("b-form-input", {
-            staticClass: "mb-2 mr-sm-2 mb-sm-2",
-            staticStyle: { width: "130px" },
-            attrs: {
-              placeholder: "Введите год",
-              type: "number",
-              state: _vm.checkYear
-            },
-            model: {
-              value: _vm.release_date,
-              callback: function($$v) {
-                _vm.release_date = $$v
-              },
-              expression: "release_date"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-form-group",
-        { attrs: { label: "Положение руля:" } },
-        [
-          _c(
-            "b-form-select",
-            {
-              staticClass: "mb-2 mr-sm-2 mb-sm-2",
-              model: {
-                value: _vm.selected.helm_position,
-                callback: function($$v) {
-                  _vm.$set(_vm.selected, "helm_position", $$v)
-                },
-                expression: "selected.helm_position"
-              }
-            },
-            [
-              _c("option", { domProps: { value: null } }, [
-                _vm._v("-- Выберите положение руля --")
-              ]),
-              _vm._v(" "),
-              _vm._l(_vm.helm_position, function(item) {
-                return _c("option", { domProps: { value: item.value } }, [
-                  _vm._v(_vm._s(item.text))
-                ])
-              })
-            ],
-            2
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-form-group",
-        { attrs: { label: "Пробег(км):" } },
-        [
-          _c("b-form-input", {
-            staticClass: "mb-2 mr-sm-2 mb-sm-2",
-            staticStyle: { width: "115px" },
-            attrs: { type: "number" },
-            model: {
-              value: _vm.mileage,
-              callback: function($$v) {
-                _vm.mileage = $$v
-              },
-              expression: "mileage"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-form-group",
-        { attrs: { label: "Тип двигателя:" } },
-        [
-          _c(
-            "b-form-select",
-            {
-              staticClass: "mb-2 mr-sm-2 mb-sm-2",
-              model: {
-                value: _vm.selected.fuel_type,
-                callback: function($$v) {
-                  _vm.$set(_vm.selected, "fuel_type", $$v)
-                },
-                expression: "selected.fuel_type"
-              }
-            },
-            _vm._l(_vm.fuel_type, function(item) {
-              return _c("option", { domProps: { value: item.value } }, [
-                _vm._v(_vm._s(item.text))
-              ])
-            })
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-form-group",
-        { attrs: { label: "Растаможен:" } },
-        [
-          _c(
-            "b-form-select",
-            {
-              staticClass: "mb-2 mr-sm-2 mb-sm-2",
-              model: {
-                value: _vm.selected.car_customs,
-                callback: function($$v) {
-                  _vm.$set(_vm.selected, "car_customs", $$v)
-                },
-                expression: "selected.car_customs"
-              }
-            },
-            [
-              _c("option", { domProps: { value: 1 } }, [_vm._v("Да")]),
-              _vm._v(" "),
-              _c("option", { domProps: { value: 0 } }, [_vm._v("Нет")])
-            ]
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4656a8b6", module.exports)
   }
 }
 
@@ -46881,23 +46881,7 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_26_boo
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_27_bootstrap_vue_src_components_navbar__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_28_vue_carousel___default.a);
 
-/*
-import Vuex from 'vuex';
-Vue.use(Vuex);
-
-const store = new Vuex.Store({
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment (state) {
-      state.count++
-    }
-  }
-})
-*/
-
-
+ // хранилище
 
 var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
   el: '#app',
@@ -47045,15 +47029,15 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/chars/com_transport.vue":
+/***/ "./resources/assets/js/components/chars/common/com_transport.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
-var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/chars/com_transport.vue")
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/chars/common/com_transport.vue")
 /* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4656a8b6\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/chars/com_transport.vue")
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0d548f20\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/chars/common/com_transport.vue")
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47070,7 +47054,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\chars\\com_transport.vue"
+Component.options.__file = "resources\\assets\\js\\components\\chars\\common\\com_transport.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -47079,9 +47063,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4656a8b6", Component.options)
+    hotAPI.createRecord("data-v-0d548f20", Component.options)
   } else {
-    hotAPI.reload("data-v-4656a8b6", Component.options)
+    hotAPI.reload("data-v-0d548f20", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true

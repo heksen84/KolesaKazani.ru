@@ -28,7 +28,7 @@
 
 <script>
 import { post, get, interceptors } from '../../helpers/api'
-import comtransport from './com_transport.vue';
+import comtransport from './common/com_transport.vue';
 
 export default {
   data () {
