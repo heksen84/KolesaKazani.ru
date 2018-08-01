@@ -2140,6 +2140,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_chars_transport__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_chars_real_estate__ = __webpack_require__("./resources/assets/js/components/chars/real-estate.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_chars_real_estate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_chars_real_estate__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__store__ = __webpack_require__("./resources/assets/js/store/index.js");
 //
 //
 //
@@ -2239,6 +2240,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
+
 var tmp_images_array = [];
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2268,10 +2271,10 @@ var tmp_images_array = [];
     };
   },
   created: function created() {
-    //alert(this.$root.advert[0].desc);
+    //alert(store.commit("getUserName"));
   },
 
-  components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_real_estate___default.a },
+  components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_real_estate___default.a, store: __WEBPACK_IMPORTED_MODULE_3__store__["a" /* default */] },
   methods: {
     loadImage: function loadImage(evt) {
 
@@ -47318,6 +47321,9 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     },
     setToken: function setToken(state, token) {
       state.user.api_token = token;
+    },
+    getUserName: function getUserName(state) {
+      return "123";
     }
   }
 });

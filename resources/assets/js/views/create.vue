@@ -98,6 +98,9 @@ import { post } from './../helpers/api'
 import transport from '../components/chars/transport';
 import realestate from '../components/chars/real-estate';
 
+import store from '../store';
+
+
 var tmp_images_array=[];
 
 export default {
@@ -127,9 +130,9 @@ export default {
 	}
 	},
 	created() {
-		//alert(this.$root.advert[0].desc);
+		//alert(store.commit("getUserName"));
 	},
-	components: { transport, realestate },
+	components: { transport, realestate,store },
   	methods: {
 
   		loadImage(evt) {

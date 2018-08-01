@@ -20,7 +20,10 @@ const store = new Vuex.Store({
 		},
     setToken (state, token) {
       state.user.api_token=token;
-		}
+		},
+    getUserName(state) {
+      return "123";
+    }
   }
 })
 
