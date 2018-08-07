@@ -1,11 +1,23 @@
 <template>
-  <div>
+  <b-form inline style="margin-top:-18px;">
+
+
 	<b-form-group label="Вид недвижимости:" label-for="categories" style="width:290px">
         <b-form-select v-model="selected_type" class="mb-3" @change="changeRealEstate">
            <option v-for="item in type" :value="item.value">{{item.text}}</option>
         </b-form-select>
   </b-form-group>
-  </div>
+
+   <!-- квартира -->
+
+<b-form-group label="Вид недвижимости:" label-for="categories" style="width:290px" v-if="selected.apartment">
+         <b-form-select v-model="selected_type" class="mb-3" @change="changeRealEstate">
+           <option v-for="item in type" :value="item.value">{{item.text}}</option>
+        </b-form-select>
+</b-form-group>
+
+
+</b-form>
 </template>
 
 <script>
@@ -14,6 +26,7 @@ export default {
     return 	{
         type: 
         [
+          { value: null, text: '-- Выберите вид недвижимости --' },
           { value: 0, text: 'Квартира' },
           { value: 1, text: 'Комната' },
           { value: 2, text: 'Дом, дача, коттедж' },
@@ -22,7 +35,7 @@ export default {
           { value: 6, text: 'Коммерческая недвижимость' },
           { value: 7, text: 'Недвижимость за рубежом' }
         ],
-        selected_type: 0,
+        selected_type: null,
         selected: {
           apartment:false,
           room:false,
@@ -43,6 +56,7 @@ export default {
     changeRealEstate(data) {
         switch(data) {
           case 0: {
+            this.selected.apartment=true;
             break;
           }
           case 1: {
