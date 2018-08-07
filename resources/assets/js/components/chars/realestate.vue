@@ -63,7 +63,7 @@ export default {
             break;
           }
           case 1: {
-              alert("ok-1");
+              //alert("ok-1");
             break; 
           } 
           case 2: { 

@@ -1777,7 +1777,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
         case 1:
           {
-            alert("ok-1");
+            //alert("ok-1");
             break;
           }
         case 2:
