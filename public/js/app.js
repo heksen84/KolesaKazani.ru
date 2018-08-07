@@ -34340,15 +34340,12 @@ var render = function() {
     [
       _c(
         "b-form-group",
-        {
-          staticStyle: { width: "290px" },
-          attrs: { label: "Вид недвижимости:", "label-for": "categories" }
-        },
+        { attrs: { label: "Вид недвижимости:" } },
         [
           _c(
             "b-form-select",
             {
-              staticClass: "mb-3",
+              staticClass: "mb-2 mr-sm-2 mb-sm-2",
               on: { change: _vm.changeRealEstate },
               model: {
                 value: _vm.selected_type,
@@ -34371,15 +34368,12 @@ var render = function() {
       _vm.selected.apartment
         ? _c(
             "b-form-group",
-            {
-              staticStyle: { width: "290px" },
-              attrs: { label: "Вид недвижимости:", "label-for": "categories" }
-            },
+            { attrs: { label: "Вид недвижимости:" } },
             [
               _c(
                 "b-form-select",
                 {
-                  staticClass: "mb-3",
+                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
                   on: { change: _vm.changeRealEstate },
                   model: {
                     value: _vm.selected_type,
