@@ -1747,7 +1747,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       type: [{ value: null, text: '-- Выберите вид недвижимости --' }, { value: 0, text: 'Квартира' }, { value: 1, text: 'Комната' }, { value: 2, text: 'Дом, дача, коттедж' }, { value: 3, text: 'Земельный участок' }, { value: 5, text: 'Гараж или машиноместо' }, { value: 6, text: 'Коммерческая недвижимость' }, { value: 7, text: 'Недвижимость за рубежом' }],
+
       selected_type: null,
+      selected_room_count: 1,
+
       selected: {
         apartment: false,
         room: false,
@@ -34376,16 +34379,16 @@ var render = function() {
                   staticClass: "mb-2 mr-sm-2 mb-sm-2",
                   on: { change: _vm.changeRealEstate },
                   model: {
-                    value: _vm.selected_type,
+                    value: _vm.selected_room_count,
                     callback: function($$v) {
-                      _vm.selected_type = $$v
+                      _vm.selected_room_count = $$v
                     },
-                    expression: "selected_type"
+                    expression: "selected_room_count"
                   }
                 },
-                _vm._l(_vm.type, function(item) {
-                  return _c("option", { domProps: { value: item.value } }, [
-                    _vm._v(_vm._s(item.text))
+                _vm._l(7, function(i) {
+                  return _c("option", { domProps: { value: i } }, [
+                    _vm._v(_vm._s(i))
                   ])
                 })
               )

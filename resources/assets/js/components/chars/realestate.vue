@@ -11,8 +11,8 @@
    <!-- квартира -->
 
 <b-form-group label="Количество комнат:" v-if="selected.apartment">
-         <b-form-select v-model="selected_type" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate">
-           <option v-for="item in type" :value="item.value">{{item.text}}</option>
+         <b-form-select v-model="selected_room_count" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate">
+           <option v-for="i in 7" :value="i">{{ i }}</option>
         </b-form-select>
 </b-form-group>
 
@@ -35,7 +35,10 @@ export default {
           { value: 6, text: 'Коммерческая недвижимость' },
           { value: 7, text: 'Недвижимость за рубежом' }
         ],
+
         selected_type: null,
+        selected_room_count: 1,
+
         selected: {
           apartment:false,
           room:false,
