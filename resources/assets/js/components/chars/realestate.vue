@@ -10,7 +10,7 @@
 
    <!-- квартира -->
 
-<b-form-group label="Вид недвижимости:" v-if="selected.apartment">
+<b-form-group label="Количество комнат:" v-if="selected.apartment">
          <b-form-select v-model="selected_type" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate">
            <option v-for="item in type" :value="item.value">{{item.text}}</option>
         </b-form-select>

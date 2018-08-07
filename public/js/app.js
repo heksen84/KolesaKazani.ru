@@ -34368,7 +34368,7 @@ var render = function() {
       _vm.selected.apartment
         ? _c(
             "b-form-group",
-            { attrs: { label: "Вид недвижимости:" } },
+            { attrs: { label: "Количество комнат:" } },
             [
               _c(
                 "b-form-select",
