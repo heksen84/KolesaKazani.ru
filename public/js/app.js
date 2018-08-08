@@ -33836,7 +33836,7 @@ var render = function() {
                 [
                   _c("b-form-select", {
                     staticClass: "mb-3",
-                    attrs: { options: _vm.options_price, size: "sm" },
+                    attrs: { options: _vm.options_price },
                     on: { change: _vm.getSearchData },
                     model: {
                       value: _vm.filters.price,
@@ -33856,7 +33856,7 @@ var render = function() {
                 [
                   _c("b-form-select", {
                     staticClass: "mb-3",
-                    attrs: { options: _vm.options_sdelka, size: "sm" },
+                    attrs: { options: _vm.options_sdelka },
                     on: { change: _vm.getSearchData },
                     model: {
                       value: _vm.filters.sdelka,
@@ -33876,7 +33876,7 @@ var render = function() {
                 [
                   _c("b-form-select", {
                     staticClass: "mb-3",
-                    attrs: { options: _vm.options_location, size: "sm" },
+                    attrs: { options: _vm.options_location },
                     on: { change: _vm.getSearchData },
                     model: {
                       value: _vm.filters.location,
