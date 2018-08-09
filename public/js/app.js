@@ -1742,6 +1742,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -34368,7 +34375,38 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm.selected.apartment
+      (_vm.selected.apartment && _vm.selected_type == 0) ||
+      _vm.selected_type == 1
+        ? _c(
+            "b-form-group",
+            { attrs: { label: "Этаж:" } },
+            [
+              _c(
+                "b-form-select",
+                {
+                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                  on: { change: _vm.changeRealEstate },
+                  model: {
+                    value: _vm.selected_room_count,
+                    callback: function($$v) {
+                      _vm.selected_room_count = $$v
+                    },
+                    expression: "selected_room_count"
+                  }
+                },
+                _vm._l(20, function(i) {
+                  return _c("option", { domProps: { value: i } }, [
+                    _vm._v(_vm._s(i))
+                  ])
+                })
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      (_vm.selected.apartment && _vm.selected_type == 0) ||
+      _vm.selected_type == 1
         ? _c(
             "b-form-group",
             { attrs: { label: "Количество комнат:" } },
@@ -34377,6 +34415,7 @@ var render = function() {
                 "b-form-select",
                 {
                   staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                  staticStyle: { width: "152px" },
                   on: { change: _vm.changeRealEstate },
                   model: {
                     value: _vm.selected_room_count,
