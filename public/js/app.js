@@ -1765,7 +1765,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -34396,34 +34395,6 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c(
-        "b-form-group",
-        { attrs: { label: "Право собственности:" } },
-        [
-          _c(
-            "b-form-select",
-            {
-              staticClass: "mb-2 mr-sm-2 mb-sm-2",
-              staticStyle: { width: "175px" },
-              on: { change: _vm.changeRealEstate },
-              model: {
-                value: _vm.selected_property_rights,
-                callback: function($$v) {
-                  _vm.selected_property_rights = $$v
-                },
-                expression: "selected_property_rights"
-              }
-            },
-            _vm._l(_vm.property_rights, function(item) {
-              return _c("option", { domProps: { value: item.value } }, [
-                _vm._v(_vm._s(item.text))
-              ])
-            })
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
       (_vm.selected.apartment && _vm.selected_type == 0) ||
       _vm.selected_type == 1
         ? _c(
@@ -34545,7 +34516,35 @@ var render = function() {
             ],
             1
           )
-        : _vm._e()
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "b-form-group",
+        { attrs: { label: "Право собственности:" } },
+        [
+          _c(
+            "b-form-select",
+            {
+              staticClass: "mb-2 mr-sm-2 mb-sm-2",
+              staticStyle: { width: "175px" },
+              on: { change: _vm.changeRealEstate },
+              model: {
+                value: _vm.selected_property_rights,
+                callback: function($$v) {
+                  _vm.selected_property_rights = $$v
+                },
+                expression: "selected_property_rights"
+              }
+            },
+            _vm._l(_vm.property_rights, function(item) {
+              return _c("option", { domProps: { value: item.value } }, [
+                _vm._v(_vm._s(item.text))
+              ])
+            })
+          )
+        ],
+        1
+      )
     ],
     1
   )

@@ -7,13 +7,6 @@
         </b-form-select>
   </b-form-group>
 
-
-  <b-form-group label="Право собственности:">
-        <b-form-select v-model="selected_property_rights" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate" style="width:175px">
-           <option v-for="item in property_rights" :value="item.value">{{item.text}}</option>
-        </b-form-select>
-  </b-form-group>
-
    <!-- квартира -->
 
 <b-form-group label="Этаж:" v-if="selected.apartment && selected_type==0 || selected_type==1">
@@ -39,6 +32,12 @@
            <option v-for="i in 7" :value="i">{{ i }}</option>
         </b-form-select>
 </b-form-group>
+
+<b-form-group label="Право собственности:">
+        <b-form-select v-model="selected_property_rights" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate" style="width:175px">
+           <option v-for="item in property_rights" :value="item.value">{{item.text}}</option>
+        </b-form-select>
+  </b-form-group>
 
 
 </b-form>
