@@ -14,7 +14,7 @@
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
           <div id="logo_block">
             <div style="font-size:31px;letter-spacing:4px;font-weight:450;padding:2px;">FlyList<span></span></div>
-            <div style="font-size:18px;color:yellow;margin-top:-10px;letter-spacing:2px;">доска объявлений</div>
+            <div style="font-size:18px;color:yellow;margin-top:-12px;letter-spacing:2px;">доска объявлений</div>
           </div>
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">

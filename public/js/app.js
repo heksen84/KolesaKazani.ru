@@ -33443,7 +33443,7 @@ var render = function() {
                       padding: "2px"
                     }
                   },
-                  [_vm._v("FlyMart"), _c("span")]
+                  [_vm._v("FlyList"), _c("span")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -33452,7 +33452,7 @@ var render = function() {
                     staticStyle: {
                       "font-size": "18px",
                       color: "yellow",
-                      "margin-top": "-10px",
+                      "margin-top": "-12px",
                       "letter-spacing": "2px"
                     }
                   },
