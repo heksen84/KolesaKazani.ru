@@ -13,8 +13,8 @@
     <b-row>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
           <div id="logo_block">
-            <div style="font-size:30px;letter-spacing:4px;font-weight:450;padding:4px;margin-top:-9px">Велира<span style="position:relative;top:-15px;left:-3px;font-size:13px;display:none">&reg</span></div>
-            <div style="font-size:18px;color:yellow;margin-top:-12px;letter-spacing:2px;">доска объявлений</div>
+            <div style="font-size:30px;letter-spacing:4px;font-weight:450;padding:4px;margin-top:-9px">Велира<span style="position:relative;top:-15px;left:-3px;font-size:12px;display:none">&reg</span></div>
+            <div style="font-size:18px;color:yellow;margin-top:-12px;letter-spacing:2px;">сайт объявлений</div>
           </div>
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">

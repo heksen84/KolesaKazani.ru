@@ -33465,7 +33465,7 @@ var render = function() {
                           position: "relative",
                           top: "-15px",
                           left: "-3px",
-                          "font-size": "13px",
+                          "font-size": "12px",
                           display: "none"
                         }
                       },
@@ -33484,7 +33484,7 @@ var render = function() {
                       "letter-spacing": "2px"
                     }
                   },
-                  [_vm._v("доска объявлений")]
+                  [_vm._v("сайт объявлений")]
                 )
               ])
             ]
