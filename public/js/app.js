@@ -33444,7 +33444,21 @@ var render = function() {
                       "margin-top": "-5px"
                     }
                   },
-                  [_vm._v("FlyList"), _c("span")]
+                  [
+                    _vm._v("FlyList"),
+                    _c(
+                      "span",
+                      {
+                        staticStyle: {
+                          position: "relative",
+                          top: "-14px",
+                          left: "-3px",
+                          "font-size": "15px"
+                        }
+                      },
+                      [_vm._v("®")]
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _c(
