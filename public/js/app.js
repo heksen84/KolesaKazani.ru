@@ -2552,39 +2552,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ["items"],
-	data: function data() {
+		props: ["items"],
+		data: function data() {
 
-		return {
-			_items: []
-		};
-	},
-	created: function created() {
-		this._items = this.items;
-
-		for (var i = 0; i < this._items.length; i++) {
-			this._items[i][""] = "продлить";
-			console.log(this._items[i]);
-		}
-		console.log(this._items);
-	},
-
-	components: {},
-	methods: {
-
-		// ВЫХОД
-		logout: function logout() {
-			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/logout').then(function (res) {
-				window.location = '/';
-			}).catch(function (err) {});
+				return {
+						_items: []
+				};
 		},
-		goHome: function goHome() {
-			window.location = '/';
+		created: function created() {
+				this._items = this.items;
+
+				console.log(this._items);
+
+				for (var i = 0; i < this._items.length; i++) {
+						this._items[i][""] = "продлить";
+						console.log(this._items[i]);
+				}
+				console.log(this._items);
 		},
-		createAdvert: function createAdvert() {
-			window.location = '/new';
+
+		components: {},
+		methods: {
+
+				// ВЫХОД
+				logout: function logout() {
+						Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/logout').then(function (res) {
+								window.location = '/';
+						}).catch(function (err) {});
+				},
+				goHome: function goHome() {
+						window.location = '/';
+				},
+				createAdvert: function createAdvert() {
+						window.location = '/new';
+				}
 		}
-	}
 });
 
 /***/ }),
@@ -33437,7 +33439,7 @@ var render = function() {
                   "div",
                   {
                     staticStyle: {
-                      "font-size": "32px",
+                      "font-size": "30px",
                       "letter-spacing": "4px",
                       "font-weight": "450",
                       padding: "3px",

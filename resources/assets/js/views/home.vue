@@ -45,6 +45,8 @@ export default {
 	created() {
 		this._items = this.items;
 
+		console.log(this._items );
+
 		for (var i=0;i<this._items.length;i++) {
 			this._items[i][""]="продлить";
 			console.log(this._items[i]);
