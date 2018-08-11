@@ -2,7 +2,7 @@
 	<b-container fluid>
 		<b-row>
 			<b-col cols="12" sm="12" md="10" lg="10" xl="10" class="result_info_col">
-				<h6 class="shadow_text">найдено {{ count  }} {{ count_string }}</h6>
+				<h5 class="shadow_text">{{ count  }} {{ count_string }}</h5>
 			</b-col>
 		</b-row>
 	<br>
