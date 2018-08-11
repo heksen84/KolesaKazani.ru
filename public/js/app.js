@@ -33437,7 +33437,7 @@ var render = function() {
                   "div",
                   {
                     staticStyle: {
-                      "font-size": "33px",
+                      "font-size": "32px",
                       "letter-spacing": "4px",
                       "font-weight": "450",
                       padding: "3px",
