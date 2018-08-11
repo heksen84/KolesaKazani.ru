@@ -33873,9 +33873,11 @@ var render = function() {
         ? _c(
             "b-row",
             [
-              _c("b-col", {
-                attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" }
-              }),
+              _c(
+                "b-col",
+                { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
+                [_vm._v("\n\t\tВыгрузить в эксель\n\t\t")]
+              ),
               _vm._v(" "),
               _c(
                 "b-col",
@@ -34650,7 +34652,7 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "h3",
+                "h4",
                 {
                   staticStyle: {
                     color: "rgb(120,120,120)",
