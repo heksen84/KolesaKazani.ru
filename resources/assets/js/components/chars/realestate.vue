@@ -31,9 +31,17 @@
         </b-form-select>
 </b-form-group>
 
+
 <b-form-group label="Право собственности:" v-if="selected_type!=null">
         <b-form-select v-model="selected_property_rights" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate" style="width:175px">
            <option v-for="item in property_rights" :value="item.value">{{item.text}}</option>
+        </b-form-select>
+</b-form-group>
+
+
+<b-form-group label="Вид объекта:" v-if="selected_type!=null">
+        <b-form-select v-model="selected_object_type" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate" style="width:175px">
+           <option v-for="item in object_type" :value="item.value">{{item.text}}</option>
         </b-form-select>
 </b-form-group>
 
@@ -44,7 +52,13 @@
 export default {
   data () {
     return 	{
-       property_rights: 
+        object_type: 
+        [
+          { value: 0, text: 'Вторичка' },
+          { value: 1, text: 'Новостройка' },
+         
+        ],
+        property_rights: 
         [
           { value: 0, text: 'Собственник' },
           { value: 1, text: 'Посредник' },
@@ -65,6 +79,7 @@ export default {
         selected_type: null,
         selected_property_rights: 0,
         selected_room_count: 1,
+        selected_object_type:0,
 
         selected: {
           apartment:false,

@@ -1762,16 +1762,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      object_type: [{ value: 0, text: 'Вторичка' }, { value: 1, text: 'Новостройка' }],
       property_rights: [{ value: 0, text: 'Собственник' }, { value: 1, text: 'Посредник' }],
       type: [{ value: null, text: '-- Выберите вид недвижимости --' }, { value: 0, text: 'Квартира' }, { value: 1, text: 'Комната' }, { value: 2, text: 'Дом, дача, коттедж' }, { value: 3, text: 'Земельный участок' }, { value: 5, text: 'Гараж или машиноместо' }, { value: 6, text: 'Коммерческая недвижимость' }, { value: 7, text: 'Недвижимость за рубежом' }],
 
       selected_type: null,
       selected_property_rights: 0,
       selected_room_count: 1,
+      selected_object_type: 0,
 
       selected: {
         apartment: false,
@@ -34548,6 +34558,36 @@ var render = function() {
                   }
                 },
                 _vm._l(_vm.property_rights, function(item) {
+                  return _c("option", { domProps: { value: item.value } }, [
+                    _vm._v(_vm._s(item.text))
+                  ])
+                })
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.selected_type != null
+        ? _c(
+            "b-form-group",
+            { attrs: { label: "Вид объекта:" } },
+            [
+              _c(
+                "b-form-select",
+                {
+                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                  staticStyle: { width: "175px" },
+                  on: { change: _vm.changeRealEstate },
+                  model: {
+                    value: _vm.selected_object_type,
+                    callback: function($$v) {
+                      _vm.selected_object_type = $$v
+                    },
+                    expression: "selected_object_type"
+                  }
+                },
+                _vm._l(_vm.object_type, function(item) {
                   return _c("option", { domProps: { value: item.value } }, [
                     _vm._v(_vm._s(item.text))
                   ])
