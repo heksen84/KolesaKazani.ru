@@ -35,7 +35,7 @@
         <b-form-select v-model="selected_property_rights" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate" style="width:175px">
            <option v-for="item in property_rights" :value="item.value">{{item.text}}</option>
         </b-form-select>
-  </b-form-group>
+</b-form-group>
 
 
 </b-form>
