@@ -33437,15 +33437,15 @@ var render = function() {
                   "div",
                   {
                     staticStyle: {
-                      "font-size": "34px",
+                      "font-size": "33px",
                       "letter-spacing": "4px",
                       "font-weight": "450",
-                      padding: "2px",
-                      "margin-top": "-10px"
+                      padding: "3px",
+                      "margin-top": "-8px"
                     }
                   },
                   [
-                    _vm._v("велира"),
+                    _vm._v("Велира"),
                     _c(
                       "span",
                       {
