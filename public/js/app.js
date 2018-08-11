@@ -33440,7 +33440,7 @@ var render = function() {
                       "font-size": "33px",
                       "letter-spacing": "4px",
                       "font-weight": "450",
-                      padding: "4px",
+                      padding: "3px",
                       "margin-top": "-8px"
                     }
                   },
