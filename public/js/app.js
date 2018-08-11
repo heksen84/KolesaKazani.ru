@@ -33437,11 +33437,11 @@ var render = function() {
                   "div",
                   {
                     staticStyle: {
-                      "font-size": "32px",
+                      "font-size": "34px",
                       "letter-spacing": "4px",
                       "font-weight": "450",
-                      padding: "2px",
-                      "margin-top": "-8px"
+                      padding: "1px",
+                      "margin-top": "-10px"
                     }
                   },
                   [
