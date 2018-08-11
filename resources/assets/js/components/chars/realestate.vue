@@ -1,10 +1,16 @@
 <template>
   <b-form inline style="margin-top:-18px;">
 
-
 	<b-form-group label="Вид недвижимости:">
         <b-form-select v-model="selected_type" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate">
            <option v-for="item in type" :value="item.value">{{item.text}}</option>
+        </b-form-select>
+  </b-form-group>
+
+
+  <b-form-group label="Право собственности:">
+        <b-form-select v-model="selected_property_rights" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate" style="width:175px">
+           <option v-for="item in property_rights" :value="item.value">{{item.text}}</option>
         </b-form-select>
   </b-form-group>
 
@@ -42,6 +48,12 @@
 export default {
   data () {
     return 	{
+       property_rights: 
+        [
+          { value: 0, text: 'Собственник' },
+          { value: 1, text: 'Посредник' },
+         
+        ],
         type: 
         [
           { value: null, text: '-- Выберите вид недвижимости --' },
@@ -55,6 +67,7 @@ export default {
         ],
 
         selected_type: null,
+        selected_property_rights: 0,
         selected_room_count: 1,
 
         selected: {
