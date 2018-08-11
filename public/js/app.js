@@ -33437,7 +33437,7 @@ var render = function() {
                   "div",
                   {
                     staticStyle: {
-                      "font-size": "31px",
+                      "font-size": "32px",
                       "letter-spacing": "4px",
                       "font-weight": "450",
                       padding: "2px",
@@ -33445,7 +33445,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._v("FlyList"),
+                    _vm._v("велира"),
                     _c(
                       "span",
                       {
