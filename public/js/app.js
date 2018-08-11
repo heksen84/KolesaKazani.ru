@@ -33453,7 +33453,8 @@ var render = function() {
                           position: "relative",
                           top: "-15px",
                           left: "-3px",
-                          "font-size": "15px"
+                          "font-size": "13px",
+                          display: "none"
                         }
                       },
                       [_vm._v("®")]
