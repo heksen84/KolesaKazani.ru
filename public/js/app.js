@@ -33440,7 +33440,8 @@ var render = function() {
                       "font-size": "31px",
                       "letter-spacing": "4px",
                       "font-weight": "450",
-                      padding: "2px"
+                      padding: "2px",
+                      "margin-top": "-5px"
                     }
                   },
                   [_vm._v("FlyList"), _c("span")]
