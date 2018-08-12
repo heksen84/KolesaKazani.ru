@@ -33556,7 +33556,9 @@ var render = function() {
                     on: { click: _vm.searchInCategory }
                   },
                   [
-                    _vm._v(_vm._s(item.name)),
+                    _c("a", { attrs: { href: "URL" } }, [
+                      _vm._v(_vm._s(item.name))
+                    ]),
                     _c(
                       "span",
                       {
