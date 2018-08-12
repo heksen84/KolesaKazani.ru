@@ -33517,7 +33517,7 @@ var render = function() {
             [
               _c("a", { attrs: { href: "/new" } }, [
                 _c("div", { attrs: { id: "new_advert_block" } }, [
-                  _c("b", [_vm._v("+")]),
+                  _c("b", [_vm._v("+ ")]),
                   _vm._v("добавить объявление")
                 ])
               ])
