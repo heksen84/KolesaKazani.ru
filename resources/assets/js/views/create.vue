@@ -3,8 +3,8 @@
 		<b-row>
 		<b-col cols="12" sm="12" md="12" lg="8" xl="8" style="text-align:left;margin: auto;color:black;background:white">
 		<div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
-		<h4 style="color:rgb(120,120,120);margin-top:-20px;text-decoration:underline">новое объявление</h4>
-		<br>
+		<h4 style="color:rgb(120,120,120);margin-top:-20px">добавить объявление</h4>
+		<hr>
 		
 			<b-form @submit="onSubmit">
 			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px;margin-top:-5px">

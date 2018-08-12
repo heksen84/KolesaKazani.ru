@@ -34648,14 +34648,13 @@ var render = function() {
                 {
                   staticStyle: {
                     color: "rgb(120,120,120)",
-                    "margin-top": "-20px",
-                    "text-decoration": "underline"
+                    "margin-top": "-20px"
                   }
                 },
-                [_vm._v("новое объявление")]
+                [_vm._v("добавить объявление")]
               ),
               _vm._v(" "),
-              _c("br"),
+              _c("hr"),
               _vm._v(" "),
               _c(
                 "b-form",
