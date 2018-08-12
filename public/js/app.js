@@ -1768,8 +1768,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -34515,26 +34513,11 @@ var render = function() {
             "b-form-group",
             { attrs: { label: "Общая площадь:" } },
             [
-              _c(
-                "b-form-select",
-                {
-                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                  staticStyle: { width: "130px" },
-                  on: { change: _vm.changeRealEstate },
-                  model: {
-                    value: _vm.selected_room_count,
-                    callback: function($$v) {
-                      _vm.selected_room_count = $$v
-                    },
-                    expression: "selected_room_count"
-                  }
-                },
-                _vm._l(7, function(i) {
-                  return _c("option", { domProps: { value: i } }, [
-                    _vm._v(_vm._s(i))
-                  ])
-                })
-              )
+              _c("b-form-input", {
+                staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                staticStyle: { width: "140px" },
+                attrs: { type: "number" }
+              })
             ],
             1
           )
