@@ -186,10 +186,11 @@ body {
 
 .close_button {
   font-size: 105%;
-  margin-left:99%;
-  margin-top:5px;
+  position:relative;
+  top:10px;
+  left:98.5%;
   cursor:pointer;
-  font-weight: 400;
+  font-weight: 390;
 }
 
 .close_button:hover {
