@@ -22,7 +22,7 @@
           <button id="button_search" @click="search">найти</button>
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
-        <div id="new_advert_block" @click="newAdvert"><b>+</b> добавить объявление</div>
+        <div id="new_advert_block"><b>+</b><a href="/new">добавить объявление</a></div>
         </b-col>
     </b-row>
 
@@ -59,9 +59,6 @@ export default {
     },
     search(event) {
       window.location='/search';
-    },
-    newAdvert(event) {
-      window.location='/new';
     }
   }
 }

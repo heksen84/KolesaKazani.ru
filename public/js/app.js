@@ -2878,9 +2878,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     search: function search(event) {
       window.location = '/search';
-    },
-    newAdvert: function newAdvert(event) {
-      window.location = '/new';
     }
   }
 });
@@ -33519,14 +33516,12 @@ var render = function() {
               attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
             },
             [
-              _c(
-                "div",
-                {
-                  attrs: { id: "new_advert_block" },
-                  on: { click: _vm.newAdvert }
-                },
-                [_c("b", [_vm._v("+")]), _vm._v(" добавить объявление")]
-              )
+              _c("div", { attrs: { id: "new_advert_block" } }, [
+                _c("b", [_vm._v("+")]),
+                _c("a", { attrs: { href: "/new" } }, [
+                  _vm._v("добавить объявление")
+                ])
+              ])
             ]
           )
         ],
