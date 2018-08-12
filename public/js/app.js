@@ -2856,6 +2856,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2879,9 +2881,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     newAdvert: function newAdvert(event) {
       window.location = '/new';
-    },
-    searchInCategory: function searchInCategory(event) {
-      window.location = '/category/' + event.target.id;
     }
   }
 });
@@ -33548,32 +33547,25 @@ var render = function() {
                 attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
               },
               [
-                _c(
-                  "div",
-                  {
-                    staticClass: "category_item",
-                    attrs: { id: item.id },
-                    on: { click: _vm.searchInCategory }
-                  },
-                  [
-                    _c("a", { attrs: { href: "URL" } }, [
-                      _vm._v(_vm._s(item.name))
-                    ]),
-                    _c(
-                      "span",
-                      {
-                        staticStyle: {
-                          "font-size": "13px",
-                          color: "rgb(155,255,155)",
-                          float: "right",
-                          "margin-top": "3px"
-                        },
-                        attrs: { id: item.id }
+                _c("div", { staticClass: "category_item" }, [
+                  _c("a", { attrs: { href: item.link } }, [
+                    _vm._v(_vm._s(item.name))
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticStyle: {
+                        "font-size": "13px",
+                        color: "rgb(155,255,155)",
+                        float: "right",
+                        "margin-top": "3px"
                       },
-                      [_vm._v("| " + _vm._s(555) + " ")]
-                    )
-                  ]
-                )
+                      attrs: { id: item.id }
+                    },
+                    [_vm._v("| " + _vm._s(555) + " ")]
+                  )
+                ])
               ]
             )
           })
