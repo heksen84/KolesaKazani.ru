@@ -2858,6 +2858,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -33516,9 +33517,9 @@ var render = function() {
               attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
             },
             [
-              _c("div", { attrs: { id: "new_advert_block" } }, [
-                _c("b", [_vm._v("+")]),
-                _c("a", { attrs: { href: "/new" } }, [
+              _c("a", { attrs: { href: "/new" } }, [
+                _c("div", { attrs: { id: "new_advert_block" } }, [
+                  _c("b", [_vm._v("+")]),
                   _vm._v("добавить объявление")
                 ])
               ])
@@ -33542,24 +33543,23 @@ var render = function() {
                 attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
               },
               [
-                _c("div", { staticClass: "category_item" }, [
-                  _c("a", { attrs: { href: item.link } }, [
-                    _vm._v(_vm._s(item.name))
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "span",
-                    {
-                      staticStyle: {
-                        "font-size": "13px",
-                        color: "rgb(155,255,155)",
-                        float: "right",
-                        "margin-top": "3px"
+                _c("a", { attrs: { href: item.link } }, [
+                  _c("div", { staticClass: "category_item" }, [
+                    _vm._v("\n          " + _vm._s(item.name) + "\n          "),
+                    _c(
+                      "span",
+                      {
+                        staticStyle: {
+                          "font-size": "13px",
+                          color: "rgb(155,255,155)",
+                          float: "right",
+                          "margin-top": "3px"
+                        },
+                        attrs: { id: item.id }
                       },
-                      attrs: { id: item.id }
-                    },
-                    [_vm._v("| " + _vm._s(555) + " ")]
-                  )
+                      [_vm._v("| " + _vm._s(555) + " ")]
+                    )
+                  ])
                 ])
               ]
             )

@@ -22,7 +22,7 @@
           <button id="button_search" @click="search">найти</button>
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
-        <div id="new_advert_block"><b>+</b><a href="/new">добавить объявление</a></div>
+        <a href="/new"><div id="new_advert_block"><b>+</b>добавить объявление</div></a>
         </b-col>
     </b-row>
 
@@ -31,9 +31,8 @@
     <!-- категории -->
     <b-row v-for="i in Math.ceil(Object.keys(items).length / 4)" v-bind:key=i>
       <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in items.slice((i - 1) * 4, i * 4)"  v-bind:key=item.id>
-        <div class="category_item">
-          <a :href="item.link">{{ item.name }}</a>
-          <span style="font-size:13px;color:rgb(155,255,155);float:right;margin-top:3px" :id="item.id">| {{ 555 }} </span></div>
+        <a :href="item.link">
+        <div class="category_item">{{ item.name }}<span style="font-size:13px;color:rgb(155,255,155);float:right;margin-top:3px" :id="item.id">| {{ 555 }} </span></div></a>
       </b-col>
     </b-row>
 
