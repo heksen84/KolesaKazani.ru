@@ -268,17 +268,17 @@ a:active {
   }
 }
 
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 750px) {
+  #search_string {
+    width: 100%;
+  }
+
   .vip_block {
     display: none;
   }
 }
 
 @media screen and (max-width: 400px) {
-  #search_string {
-    width: 100%;
-  }
-
   .result_info_col {
     text-align: center;
   }

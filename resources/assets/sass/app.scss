@@ -258,19 +258,24 @@ a:active {
 }
 }
 
-@media screen and (max-width:770px) {
-.vip_block {
-  display:none;
-}
-}
+@media screen and (max-width:750px) {
 
-@media screen and (max-width:400px) {
 #search_string {
   width:100%;
 }
+
+.vip_block {
+  display:none;
+}
+
+}
+
+@media screen and (max-width:400px) {
+
 .result_info_col {
   text-align:center;
 }
+
 #addit_info {
   width:100%;
 }
