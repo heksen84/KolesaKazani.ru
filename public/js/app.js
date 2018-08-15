@@ -33486,7 +33486,7 @@ var render = function() {
                       "letter-spacing": "4px",
                       "font-weight": "450",
                       padding: "6px",
-                      "margin-top": "-9px"
+                      "margin-top": "-8px"
                     }
                   },
                   [
