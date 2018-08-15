@@ -5,8 +5,10 @@
           <div class="auth_button" id="button_login" style="width:160px" @click="login">мои объявления</div>
 
        
-          <b-form-select v-model="location" id="location" size="sm">
-           <option :value=null>-- Расположение --</option>
+          <b-form-select v-model="location" id="location">
+           <option :value=null>Москва</option>
+           <option>Санкт-петербург</option>
+           <option>Казань</option>
           </b-form-select>
 
         </b-col>

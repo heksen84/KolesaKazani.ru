@@ -2867,6 +2867,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -33403,7 +33405,7 @@ var render = function() {
               _c(
                 "b-form-select",
                 {
-                  attrs: { id: "location", size: "sm" },
+                  attrs: { id: "location" },
                   model: {
                     value: _vm.location,
                     callback: function($$v) {
@@ -33414,8 +33416,12 @@ var render = function() {
                 },
                 [
                   _c("option", { domProps: { value: null } }, [
-                    _vm._v("-- Расположение --")
-                  ])
+                    _vm._v("Москва")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("Санкт-петербург")]),
+                  _vm._v(" "),
+                  _c("option", [_vm._v("Казань")])
                 ]
               )
             ],
