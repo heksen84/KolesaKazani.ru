@@ -3,6 +3,12 @@
     <b-row>
         <b-col style="text-align:center" v-show="auth">
           <div class="auth_button" id="button_login" style="width:160px" @click="login">мои объявления</div>
+
+       
+          <b-form-select size="sm" style="width:220px;float:right;margin-top:3px">
+           <option :value=null>-- Выберите категорию --</option>
+          </b-form-select>
+
         </b-col>
 
         <b-col style="text-align:center" v-show="!auth">
@@ -19,7 +25,11 @@
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
           <input type="text" id="search_string" placeholder="Что ищем?"/>
+
           <button id="button_search" @click="search">найти</button>
+
+          
+
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
         <a href="/new"><div id="new_advert_block"><b>+&nbsp;</b>добавить объявление</div></a>

@@ -2857,6 +2857,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -33386,8 +33396,26 @@ var render = function() {
                   on: { click: _vm.login }
                 },
                 [_vm._v("мои объявления")]
+              ),
+              _vm._v(" "),
+              _c(
+                "b-form-select",
+                {
+                  staticStyle: {
+                    width: "220px",
+                    float: "right",
+                    "margin-top": "3px"
+                  },
+                  attrs: { size: "sm" }
+                },
+                [
+                  _c("option", { domProps: { value: null } }, [
+                    _vm._v("-- Выберите категорию --")
+                  ])
+                ]
               )
-            ]
+            ],
+            1
           ),
           _vm._v(" "),
           _c(
