@@ -33444,15 +33444,15 @@ var render = function() {
                   "div",
                   {
                     staticStyle: {
-                      "font-size": "30px",
+                      "font-size": "28px",
                       "letter-spacing": "4px",
                       "font-weight": "450",
-                      padding: "4px",
+                      padding: "6px",
                       "margin-top": "-9px"
                     }
                   },
                   [
-                    _vm._v("Велира"),
+                    _vm._v("FlyMart24"),
                     _c(
                       "span",
                       {
