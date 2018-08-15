@@ -2872,7 +2872,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["items", "auth", "count"],
   data: function data() {
-    return {};
+    return {
+      location: null
+    };
   },
   created: function created() {
     // alert(this.count);
@@ -33404,13 +33406,20 @@ var render = function() {
                   staticStyle: {
                     width: "220px",
                     float: "right",
-                    "margin-top": "3px"
+                    "margin-top": "3px",
+                    "font-size": "15px"
                   },
-                  attrs: { size: "sm" }
+                  model: {
+                    value: _vm.location,
+                    callback: function($$v) {
+                      _vm.location = $$v
+                    },
+                    expression: "location"
+                  }
                 },
                 [
                   _c("option", { domProps: { value: null } }, [
-                    _vm._v("-- Выберите категорию --")
+                    _vm._v("-- Расположение --")
                   ])
                 ]
               )

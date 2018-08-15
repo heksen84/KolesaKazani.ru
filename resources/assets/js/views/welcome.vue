@@ -5,8 +5,8 @@
           <div class="auth_button" id="button_login" style="width:160px" @click="login">мои объявления</div>
 
        
-          <b-form-select size="sm" style="width:220px;float:right;margin-top:3px">
-           <option :value=null>-- Выберите категорию --</option>
+          <b-form-select v-model="location" style="width:220px;float:right;margin-top:3px;font-size:15px">
+           <option :value=null>-- Расположение --</option>
           </b-form-select>
 
         </b-col>
@@ -54,6 +54,7 @@ export default {
   props: ["items", "auth", "count"],
   data () {
     return {
+      location: null
     }
   },
   created() {
