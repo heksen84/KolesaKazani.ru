@@ -33405,7 +33405,7 @@ var render = function() {
               _c(
                 "b-form-select",
                 {
-                  attrs: { id: "location" },
+                  attrs: { id: "location", size: "sm" },
                   model: {
                     value: _vm.location,
                     callback: function($$v) {
