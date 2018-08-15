@@ -33403,12 +33403,7 @@ var render = function() {
               _c(
                 "b-form-select",
                 {
-                  staticStyle: {
-                    width: "220px",
-                    float: "right",
-                    "margin-top": "3px",
-                    "font-size": "15px"
-                  },
+                  attrs: { id: "location" },
                   model: {
                     value: _vm.location,
                     callback: function($$v) {

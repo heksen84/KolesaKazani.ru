@@ -5,7 +5,7 @@
           <div class="auth_button" id="button_login" style="width:160px" @click="login">мои объявления</div>
 
        
-          <b-form-select v-model="location" style="width:220px;float:right;margin-top:3px;font-size:15px">
+          <b-form-select v-model="location" id="location">
            <option :value=null>-- Расположение --</option>
           </b-form-select>
 
