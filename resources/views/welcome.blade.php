@@ -5,10 +5,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="keywords" content="get numbers, free numbers" />
-  <meta name="description" content="Велира - сайт объявлений">
+  <meta name="description" content="FlyMart24 - сайт объявлений">
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Велира - сайт объявлений</title>
+  <title>FlyMart24 - сайт объявлений</title>
   <link rel="icon" href="{{ asset('public/shop.ico') }}">
 </head>
 <body>
