@@ -2869,10 +2869,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -33456,6 +33452,7 @@ var render = function() {
                 "div",
                 {
                   staticClass: "auth_button",
+                  staticStyle: { "margin-top": "3px" },
                   attrs: { id: "button_login" },
                   on: { click: _vm.login }
                 },
@@ -33466,6 +33463,7 @@ var render = function() {
                 "div",
                 {
                   staticClass: "auth_button",
+                  staticStyle: { "margin-top": "3px" },
                   attrs: { id: "button_reg" },
                   on: { click: _vm.register }
                 },

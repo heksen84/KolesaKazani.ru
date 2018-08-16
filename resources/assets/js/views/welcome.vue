@@ -9,17 +9,13 @@
            <option v-for="i in regions">{{i.name}}</option>
           </b-form-select>
 
-
           <div class="auth_button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>
-
-       
-          
 
         </b-col>
 
         <b-col style="text-align:center" v-show="!auth">
-          <div class="auth_button" id="button_login" @click="login">Вход</div>
-          <div class="auth_button" id="button_reg" @click="register">Регистрация</div>
+          <div class="auth_button" id="button_login" style="margin-top:3px" @click="login">Вход</div>
+          <div class="auth_button" id="button_reg" style="margin-top:3px" @click="register">Регистрация</div>
         </b-col>
     </b-row>
     <b-row>
