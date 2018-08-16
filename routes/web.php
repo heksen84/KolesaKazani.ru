@@ -23,9 +23,9 @@ Route::get('/category/{id}', function ($id) {
 
 	$categories = DB::table('categories')->where('id', $id)->get();
 	$items = DB::table('adverts')->where('category_id', $id)->get();
-	
+
 	return view('results')->with("items", $items )->with("category_id", $id )->with("category_name", 
-		$categories[0]->name); 
+		mb_strtolower($categories[0]->name)); 
 });
 
 Route::get('getSearchData', 'SearchController@getSearchData');
