@@ -33544,7 +33544,7 @@ var render = function() {
                 attrs: {
                   type: "text",
                   id: "search_string",
-                  placeholder: "Что ищем?"
+                  placeholder: "Поиск по сайту"
                 }
               }),
               _vm._v(" "),

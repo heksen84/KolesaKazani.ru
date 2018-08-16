@@ -10,7 +10,7 @@
            <option>Казань</option>
           </b-form-select>
 
-          
+
           <div class="auth_button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>
 
        
@@ -31,7 +31,7 @@
           </div>
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
-          <input type="text" id="search_string" placeholder="Что ищем?"/>
+          <input type="text" id="search_string" placeholder="Поиск по сайту"/>
 
           <button id="button_search" @click="search">найти</button>
 
