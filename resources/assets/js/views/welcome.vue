@@ -2,14 +2,19 @@
   <b-container fluid>
     <b-row>
         <b-col id="welcome_menu" v-show="auth">
-          <div class="auth_button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>
 
-       
+
           <b-form-select v-model="location" id="location">
            <option :value=null>Москва</option>
            <option>Санкт-петербург</option>
            <option>Казань</option>
           </b-form-select>
+
+          
+          <div class="auth_button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>
+
+       
+          
 
         </b-col>
 

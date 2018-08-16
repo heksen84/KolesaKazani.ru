@@ -2869,6 +2869,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -33392,22 +33397,6 @@ var render = function() {
             },
             [
               _c(
-                "div",
-                {
-                  staticClass: "auth_button",
-                  staticStyle: {
-                    width: "160px",
-                    "text-align": "center",
-                    position: "relative",
-                    top: "3px"
-                  },
-                  attrs: { id: "button_login" },
-                  on: { click: _vm.login }
-                },
-                [_vm._v("мои объявления")]
-              ),
-              _vm._v(" "),
-              _c(
                 "b-form-select",
                 {
                   attrs: { id: "location" },
@@ -33428,6 +33417,22 @@ var render = function() {
                   _vm._v(" "),
                   _c("option", [_vm._v("Казань")])
                 ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "auth_button",
+                  staticStyle: {
+                    width: "160px",
+                    "text-align": "center",
+                    position: "relative",
+                    top: "3px"
+                  },
+                  attrs: { id: "button_login" },
+                  on: { click: _vm.login }
+                },
+                [_vm._v("мои объявления")]
               )
             ],
             1

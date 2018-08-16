@@ -72,9 +72,9 @@ body {
   padding: 3px;
   background: #64c864;
   border: 1px solid white;
-  width: 105px;
+  width: 110px;
   border-radius: 3px;
-  margin: 5px auto;
+  margin-top: 5px auto;
   cursor: pointer;
   display: inline-block;
   font-size: 17px;
@@ -297,7 +297,7 @@ a:active {
   }
 
   #location {
-    float: none;
+    margin-top: 2px;
   }
 
   .result_info_col {
