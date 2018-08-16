@@ -2873,11 +2873,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["items", "auth", "count"],
+  props: ["items", "auth", "count", "regions"],
   data: function data() {
     return {
       location: null
@@ -33410,13 +33409,14 @@ var render = function() {
                 },
                 [
                   _c("option", { domProps: { value: null } }, [
-                    _vm._v("Москва")
+                    _vm._v("-- Расположение --")
                   ]),
                   _vm._v(" "),
-                  _c("option", [_vm._v("Санкт-петербург")]),
-                  _vm._v(" "),
-                  _c("option", [_vm._v("Казань")])
-                ]
+                  _vm._l(_vm.regions, function(i) {
+                    return _c("option", [_vm._v(_vm._s(i.name))])
+                  })
+                ],
+                2
               ),
               _vm._v(" "),
               _c(

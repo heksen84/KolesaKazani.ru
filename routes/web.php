@@ -3,7 +3,6 @@ use Illuminate\Support\Facades\DB;
 
 Auth::routes();
 
-
 Route::get('/location/{country}/{region}/{city}/', array('as' => 'id', 'uses' => 'WelcomeController@getCategories'));
 
 Route::get('/', 'WelcomeController@getCategories');
@@ -26,7 +25,7 @@ Route::get('/category/{id}', function ($id) {
 
 	return view('results')->with("items", $items )->with("category_id", $id )->with("category_name", 
 		mb_strtolower($categories[0]->name));
-		 
+
 });
 
 Route::get('getSearchData', 'SearchController@getSearchData');

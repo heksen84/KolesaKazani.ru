@@ -5,9 +5,8 @@
 
 
           <b-form-select v-model="location" id="location">
-           <option :value=null>Москва</option>
-           <option>Санкт-петербург</option>
-           <option>Казань</option>
+           <option :value=null>-- Расположение --</option>
+           <option v-for="i in regions">{{i.name}}</option>
           </b-form-select>
 
 
@@ -58,7 +57,7 @@
 <script>
 import { post, get, interceptors } from './../helpers/api'
 export default {
-  props: ["items", "auth", "count"],
+  props: ["items", "auth", "count", "regions"],
   data () {
     return {
       location: null
