@@ -1,8 +1,8 @@
 <template>
   <b-container fluid>
     <b-row>
-        <b-col style="text-align:center" v-show="auth">
-          <div class="auth_button" id="button_login" style="width:160px;float:right" @click="login">мои объявления</div>
+        <b-col style="text-align:right" v-show="auth">
+          <div class="auth_button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>
 
        
           <b-form-select v-model="location" id="location">

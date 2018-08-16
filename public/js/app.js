@@ -33388,14 +33388,19 @@ var render = function() {
                   expression: "auth"
                 }
               ],
-              staticStyle: { "text-align": "center" }
+              staticStyle: { "text-align": "right" }
             },
             [
               _c(
                 "div",
                 {
                   staticClass: "auth_button",
-                  staticStyle: { width: "160px", float: "right" },
+                  staticStyle: {
+                    width: "160px",
+                    "text-align": "center",
+                    position: "relative",
+                    top: "3px"
+                  },
                   attrs: { id: "button_login" },
                   on: { click: _vm.login }
                 },
