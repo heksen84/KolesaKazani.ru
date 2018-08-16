@@ -33395,7 +33395,7 @@ var render = function() {
                 "div",
                 {
                   staticClass: "auth_button",
-                  staticStyle: { width: "160px" },
+                  staticStyle: { width: "160px", float: "right" },
                   attrs: { id: "button_login" },
                   on: { click: _vm.login }
                 },
@@ -33405,7 +33405,7 @@ var render = function() {
               _c(
                 "b-form-select",
                 {
-                  attrs: { id: "location", size: "sm" },
+                  attrs: { id: "location" },
                   model: {
                     value: _vm.location,
                     callback: function($$v) {
