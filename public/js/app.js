@@ -33388,7 +33388,7 @@ var render = function() {
                   expression: "auth"
                 }
               ],
-              staticStyle: { "text-align": "right" }
+              attrs: { id: "welcome_menu" }
             },
             [
               _c(

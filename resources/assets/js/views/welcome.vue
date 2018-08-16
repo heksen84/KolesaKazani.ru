@@ -1,7 +1,7 @@
 <template>
   <b-container fluid>
     <b-row>
-        <b-col style="text-align:right" v-show="auth">
+        <b-col id="welcome_menu" v-show="auth">
           <div class="auth_button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>
 
        

@@ -64,8 +64,12 @@ body {
   -o-background-size: cover;
 }
 
+#welcome_menu {
+  text-align: right;
+}
+
 .auth_button {
-  padding: 2px;
+  padding: 3px;
   background: #64c864;
   border: 1px solid white;
   width: 105px;
@@ -288,6 +292,10 @@ a:active {
 }
 
 @media screen and (max-width: 420px) {
+  #welcome_menu {
+    text-align: center;
+  }
+
   #location {
     float: none;
   }
