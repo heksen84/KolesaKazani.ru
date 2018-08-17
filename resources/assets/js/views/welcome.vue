@@ -2,14 +2,9 @@
   <b-container fluid>
     <b-row>
         <b-col id="welcome_menu" v-show="auth">
-          <!--<b-form-select v-model="location" id="location">
-           <option v-for="i in regions">{{i.name}}</option>
-           <option>-- Выбрать другое место-- </option>
-          </b-form-select>-->
-
-
-          <b-modal v-model="locationDialog" size="lg" style="text-align:center">
-            <button style="color:grey;display:inline-block" v-for="i in regions">{{i.name}}</button>
+          
+          <b-modal v-model="locationDialog" size="lg" style="text-align:center;color:grey" hide-footer title="Выберите регион">
+            <button style="color:black;display:inline-block" v-for="i in regions" @click="selectRegion">{{i.name}}</button>
           </b-modal>
 
 
@@ -79,6 +74,9 @@ export default {
     },
     search(e) {
       window.location='/search';
+    },
+    selectRegion(e) {
+      alert(e);
     }
   }
 }

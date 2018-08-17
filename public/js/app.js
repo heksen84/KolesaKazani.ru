@@ -2871,11 +2871,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2899,6 +2894,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     search: function search(e) {
       window.location = '/search';
+    },
+    selectRegion: function selectRegion(e) {
+      alert(e);
     }
   }
 });
@@ -34414,8 +34412,12 @@ var render = function() {
               _c(
                 "b-modal",
                 {
-                  staticStyle: { "text-align": "center" },
-                  attrs: { size: "lg" },
+                  staticStyle: { "text-align": "center", color: "grey" },
+                  attrs: {
+                    size: "lg",
+                    "hide-footer": "",
+                    title: "Выберите регион"
+                  },
                   model: {
                     value: _vm.locationDialog,
                     callback: function($$v) {
@@ -34427,7 +34429,10 @@ var render = function() {
                 _vm._l(_vm.regions, function(i) {
                   return _c(
                     "button",
-                    { staticStyle: { color: "grey", display: "inline-block" } },
+                    {
+                      staticStyle: { color: "black", display: "inline-block" },
+                      on: { click: _vm.selectRegion }
+                    },
                     [_vm._v(_vm._s(i.name))]
                   )
                 })
