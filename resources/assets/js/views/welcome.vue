@@ -21,8 +21,8 @@
           <div class="auth_button" id="button_login" style="margin-top:3px" @click="login">Вход</div>
           <div class="auth_button" id="button_reg" style="margin-top:3px" @click="register">Регистрация</div>
         </b-col>
-
     </b-row>
+    
     <b-row>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
           <div id="logo_block">
@@ -32,11 +32,7 @@
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
           <input type="text" id="search_string" placeholder="Поиск по сайту"/>
-
           <button id="button_search" @click="search">найти</button>
-
-          
-
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
         <a href="/new"><div id="new_advert_block"><b>+&nbsp;</b>добавить объявление</div></a>
@@ -67,7 +63,6 @@ export default {
     }
   },
   created() {
-   // alert(this.count);
   },
   methods: {
     login() {
