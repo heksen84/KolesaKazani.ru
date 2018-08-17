@@ -11,7 +11,7 @@
           </b-modal>
 
 
-          <b-button size="sm" variant="warning" @click="locationDialog=true">Павлодар</b-button>
+          <b-button size="sm" variant="warning" @click="locationDialog=true">Весь казахстан</b-button>
 
           <div class="auth_button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>
 
