@@ -3,7 +3,7 @@
     <b-row>
         <b-col id="welcome_menu" v-show="auth">
           
-          <b-modal v-model="locationDialog" size="lg" style="text-align:center;color:grey" hide-footer title="Выберите регион">
+          <b-modal v-model="locationDialog" size="lg" style="text-align:center;color:grey" hide-footer :title="locationDialogTitle">
 
             <button style="color:black;display:inline-block" v-for="i in regions" @click="selectRegion(i.region_id)">{{i.name}}
 
@@ -62,7 +62,8 @@ export default {
   data () {
     return {
       location: null,
-      locationDialog: false
+      locationDialog: false,
+      locationDialogTitle: "Выберите регион"
     }
   },
   created() {
@@ -79,7 +80,8 @@ export default {
       window.location='/search';
     },
     selectRegion(e) {
-      alert(e);
+      this.regions=[];
+      this.locationDialogTitle="Выберите расположение"
     }
   }
 }

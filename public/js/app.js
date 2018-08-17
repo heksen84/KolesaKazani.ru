@@ -2881,7 +2881,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       location: null,
-      locationDialog: false
+      locationDialog: false,
+      locationDialogTitle: "Выберите регион"
     };
   },
   created: function created() {
@@ -2899,7 +2900,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       window.location = '/search';
     },
     selectRegion: function selectRegion(e) {
-      alert(e);
+      this.regions = [];
+      this.locationDialogTitle = "Выберите расположение";
     }
   }
 });
@@ -34419,7 +34421,7 @@ var render = function() {
                   attrs: {
                     size: "lg",
                     "hide-footer": "",
-                    title: "Выберите регион"
+                    title: _vm.locationDialogTitle
                   },
                   model: {
                     value: _vm.locationDialog,
