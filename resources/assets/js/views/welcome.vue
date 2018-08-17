@@ -4,7 +4,10 @@
         <b-col id="welcome_menu" v-show="auth">
           
           <b-modal v-model="locationDialog" size="lg" style="text-align:center;color:grey" hide-footer title="Выберите регион">
-            <button style="color:black;display:inline-block" v-for="i in regions" @click="selectRegion">{{i.name}}</button>
+
+            <button style="color:black;display:inline-block" v-for="i in regions" @click="selectRegion(i.region_id)">{{i.name}}
+
+            </button>
           </b-modal>
 
 
@@ -66,13 +69,13 @@ export default {
    // alert(this.count);
   },
   methods: {
-    login(e) {
+    login() {
       window.location='/login';
     },
-    register(e) {
+    register() {
       window.location='/register';
     },
-    search(e) {
+    search() {
       window.location='/search';
     },
     selectRegion(e) {

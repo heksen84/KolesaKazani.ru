@@ -2871,6 +2871,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2886,13 +2889,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
-    login: function login(e) {
+    login: function login() {
       window.location = '/login';
     },
-    register: function register(e) {
+    register: function register() {
       window.location = '/register';
     },
-    search: function search(e) {
+    search: function search() {
       window.location = '/search';
     },
     selectRegion: function selectRegion(e) {
@@ -34431,9 +34434,13 @@ var render = function() {
                     "button",
                     {
                       staticStyle: { color: "black", display: "inline-block" },
-                      on: { click: _vm.selectRegion }
+                      on: {
+                        click: function($event) {
+                          _vm.selectRegion(i.region_id)
+                        }
+                      }
                     },
-                    [_vm._v(_vm._s(i.name))]
+                    [_vm._v(_vm._s(i.name) + "\n\n            ")]
                   )
                 })
               ),
