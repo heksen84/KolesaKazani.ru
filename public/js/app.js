@@ -2869,13 +2869,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["items", "auth", "count", "regions"],
   data: function data() {
     return {
-      location: null
+      location: null,
+      locationDialog: false
     };
   },
   created: function created() {
@@ -2883,13 +2891,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
-    login: function login(event) {
+    login: function login(e) {
       window.location = '/login';
     },
-    register: function register(event) {
+    register: function register(e) {
       window.location = '/register';
     },
-    search: function search(event) {
+    search: function search(e) {
       window.location = '/search';
     }
   }
@@ -3045,7 +3053,7 @@ function handleFocus (evt) {
   if (evt.type === 'focusin') {
     Object(__WEBPACK_IMPORTED_MODULE_4__utils_dom__["a" /* addClass */])(evt.target, 'focus')
   } else if (evt.type === 'focusout') {
-    Object(__WEBPACK_IMPORTED_MODULE_4__utils_dom__["k" /* removeClass */])(evt.target, 'focus')
+    Object(__WEBPACK_IMPORTED_MODULE_4__utils_dom__["m" /* removeClass */])(evt.target, 'focus')
   }
 }
 
@@ -3253,7 +3261,7 @@ const EVENT_TOGGLE = 'bv::toggle::collapse'
     },
     onEnter (el) {
       el.style.height = 0
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["i" /* reflow */])(el)
+      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["k" /* reflow */])(el)
       el.style.height = el.scrollHeight + 'px'
       this.transitioning = true
       // This should be moved out so we can add cancellable events
@@ -3268,7 +3276,7 @@ const EVENT_TOGGLE = 'bv::toggle::collapse'
       el.style.height = 'auto'
       el.style.display = 'block'
       el.style.height = el.getBoundingClientRect().height + 'px'
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["i" /* reflow */])(el)
+      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["k" /* reflow */])(el)
       this.transitioning = true
       el.style.height = 0
       // This should be moved out so we can add cancellable events
@@ -3294,7 +3302,7 @@ const EVENT_TOGGLE = 'bv::toggle::collapse'
       if (!this.isNav || !el || getComputedStyle(this.$el).display !== 'block') {
         return
       }
-      if (Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["g" /* hasClass */])(el, 'nav-link') || Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["g" /* hasClass */])(el, 'dropdown-item')) {
+      if (Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["h" /* hasClass */])(el, 'nav-link') || Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["h" /* hasClass */])(el, 'dropdown-item')) {
         this.show = false
       }
     },
@@ -4762,7 +4770,7 @@ const SELECTOR = 'input:not(:disabled),textarea:not(:disabled),select:not(:disab
         return
       }
       // Focus the first non-disabled visible input when the legend element is clicked
-      const inputs = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["m" /* selectAll */])(SELECTOR, this.$refs.content).filter(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["h" /* isVisible */])
+      const inputs = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["o" /* selectAll */])(SELECTOR, this.$refs.content).filter(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["j" /* isVisible */])
       if (inputs[0] && inputs[0].focus) {
         inputs[0].focus()
       }
@@ -4771,7 +4779,7 @@ const SELECTOR = 'input:not(:disabled),textarea:not(:disabled),select:not(:disab
       // Sets the `aria-describedby` attribute on the input if label-for is set.
       // Optionally accepts a string of IDs to remove as the second parameter
       if (this.labelFor && typeof document !== 'undefined') {
-        const input = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["l" /* select */])(`#${this.labelFor}`, this.$refs.content)
+        const input = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["n" /* select */])(`#${this.labelFor}`, this.$refs.content)
         if (input) {
           const adb = 'aria-describedby'
           let ids = (Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["e" /* getAttr */])(input, adb) || '').split(/\s+/)
@@ -4779,9 +4787,9 @@ const SELECTOR = 'input:not(:disabled),textarea:not(:disabled),select:not(:disab
           // Update ID list, preserving any original IDs
           ids = ids.filter(id => remove.indexOf(id) === -1).concat(add || '').join(' ').trim()
           if (ids) {
-            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["n" /* setAttr */])(input, adb, ids)
+            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["p" /* setAttr */])(input, adb, ids)
           } else {
-            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["j" /* removeAttr */])(input, adb)
+            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["l" /* removeAttr */])(input, adb)
           }
         }
       }
@@ -6109,7 +6117,7 @@ const THROTTLE = 100
     },
     checkView () {
       // check bounding box + offset to see if we should show
-      if (!Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["h" /* isVisible */])(this.$el)) {
+      if (!Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["j" /* isVisible */])(this.$el)) {
         // Element is hidden, so skip for now
         return
       }
@@ -6893,6 +6901,879 @@ function clickHandlerFactory ({ disabled, tag, href, suppliedHandler, parent }) 
     componentData[eventType] = Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["a" /* assign */])(componentData[eventType] || {}, handlers)
 
     return h(tag, componentData, children)
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/modal/index.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modal__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/modal/modal.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_modal__ = __webpack_require__("./node_modules/bootstrap-vue/src/directives/modal/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
+
+
+
+
+const components = {
+  bModal: __WEBPACK_IMPORTED_MODULE_0__modal__["a" /* default */]
+}
+
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["a" /* registerComponents */])(Vue, components)
+    Vue.use(__WEBPACK_IMPORTED_MODULE_1__directives_modal__["a" /* default */])
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/modal/modal.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__button_button__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/button.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__button_button_close__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/button-close.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_listen_on_root__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/listen-on-root.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_observe_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/observe-dom.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warn__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/warn.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_key_codes__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/key-codes.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_bv_event_class__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/bv-event.class.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
+
+
+
+
+
+
+
+
+
+
+
+// Selectors for padding/margin adjustments
+const Selector = {
+  FIXED_CONTENT: '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top',
+  STICKY_CONTENT: '.sticky-top',
+  NAVBAR_TOGGLER: '.navbar-toggler'
+}
+
+// ObserveDom config
+const OBSERVER_CONFIG = {
+  subtree: true,
+  childList: true,
+  characterData: true,
+  attributes: true,
+  attributeFilter: ['style', 'class']
+}
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_id__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3__mixins_listen_on_root__["a" /* default */]],
+  components: { bBtn: __WEBPACK_IMPORTED_MODULE_0__button_button__["a" /* default */], bBtnClose: __WEBPACK_IMPORTED_MODULE_1__button_button_close__["a" /* default */] },
+  render (h) {
+    const $slots = this.$slots
+    // Modal Header
+    let header = h(false)
+    if (!this.hideHeader) {
+      let modalHeader = $slots['modal-header']
+      if (!modalHeader) {
+        let closeButton = h(false)
+        if (!this.hideHeaderClose) {
+          closeButton = h(
+            'b-btn-close',
+            {
+              props: {
+                disabled: this.is_transitioning,
+                ariaLabel: this.headerCloseLabel,
+                textVariant: this.headerTextVariant
+              },
+              on: {
+                click: evt => {
+                  this.hide('header-close')
+                }
+              }
+            },
+            [$slots['modal-header-close']]
+          )
+        }
+        modalHeader = [
+          h(this.titleTag, { class: ['modal-title'] }, [
+            $slots['modal-title'] || this.title
+          ]),
+          closeButton
+        ]
+      }
+      header = h(
+        'header',
+        {
+          ref: 'header',
+          class: this.headerClasses,
+          attrs: { id: this.safeId('__BV_modal_header_') }
+        },
+        [modalHeader]
+      )
+    }
+    // Modal Body
+    const body = h(
+      'div',
+      {
+        ref: 'body',
+        class: this.bodyClasses,
+        attrs: { id: this.safeId('__BV_modal_body_') }
+      },
+      [$slots.default]
+    )
+    // Modal Footer
+    let footer = h(false)
+    if (!this.hideFooter) {
+      let modalFooter = $slots['modal-footer']
+      if (!modalFooter) {
+        let cancelButton = h(false)
+        if (!this.okOnly) {
+          cancelButton = h(
+            'b-btn',
+            {
+              props: {
+                variant: this.cancelVariant,
+                size: this.buttonSize,
+                disabled: this.cancelDisabled || this.busy || this.is_transitioning
+              },
+              on: {
+                click: evt => {
+                  this.hide('cancel')
+                }
+              }
+            },
+            [$slots['modal-cancel'] || this.cancelTitle]
+          )
+        }
+        const okButton = h(
+          'b-btn',
+          {
+            props: {
+              variant: this.okVariant,
+              size: this.buttonSize,
+              disabled: this.okDisabled || this.busy || this.is_transitioning
+            },
+            on: {
+              click: evt => {
+                this.hide('ok')
+              }
+            }
+          },
+          [$slots['modal-ok'] || this.okTitle]
+        )
+        modalFooter = [cancelButton, okButton]
+      }
+      footer = h(
+        'footer',
+        {
+          ref: 'footer',
+          class: this.footerClasses,
+          attrs: { id: this.safeId('__BV_modal_footer_') }
+        },
+        [modalFooter]
+      )
+    }
+    // Assemble Modal Content
+    const modalContent = h(
+      'div',
+      {
+        ref: 'content',
+        class: ['modal-content'],
+        attrs: {
+          tabindex: '-1',
+          role: 'document',
+          'aria-labelledby': this.hideHeader
+            ? null
+            : this.safeId('__BV_modal_header_'),
+          'aria-describedby': this.safeId('__BV_modal_body_')
+        },
+        on: {
+          focusout: this.onFocusout,
+          click: evt => {
+            evt.stopPropagation()
+            // https://github.com/bootstrap-vue/bootstrap-vue/issues/1528
+            this.$root.$emit('bv::dropdown::shown')
+          }
+        }
+      },
+      [header, body, footer]
+    )
+    // Modal Dialog wrapper
+    const modalDialog = h('div', { class: this.dialogClasses }, [modalContent])
+    // Modal
+    let modal = h(
+      'div',
+      {
+        ref: 'modal',
+        class: this.modalClasses,
+        directives: [
+          {
+            name: 'show',
+            rawName: 'v-show',
+            value: this.is_visible,
+            expression: 'is_visible'
+          }
+        ],
+        attrs: {
+          id: this.safeId(),
+          role: 'dialog',
+          'aria-hidden': this.is_visible ? null : 'true'
+        },
+        on: {
+          click: this.onClickOut,
+          keydown: this.onEsc
+        }
+      },
+      [modalDialog]
+    )
+    // Wrap modal in transition
+    modal = h(
+      'transition',
+      {
+        props: {
+          enterClass: '',
+          enterToClass: '',
+          enterActiveClass: '',
+          leaveClass: '',
+          leaveActiveClass: '',
+          leaveToClass: ''
+        },
+        on: {
+          'before-enter': this.onBeforeEnter,
+          enter: this.onEnter,
+          'after-enter': this.onAfterEnter,
+          'before-leave': this.onBeforeLeave,
+          leave: this.onLeave,
+          'after-leave': this.onAfterLeave
+        }
+      },
+      [modal]
+    )
+    // Modal Backdrop
+    let backdrop = h(false)
+    if (!this.hideBackdrop && (this.is_visible || this.is_transitioning)) {
+      backdrop = h('div', {
+        class: this.backdropClasses,
+        attrs: { id: this.safeId('__BV_modal_backdrop_') }
+      })
+    }
+    // Assemble modal and backdrop
+    let outer = h(false)
+    if (!this.is_hidden) {
+      outer = h('div', { attrs: { id: this.safeId('__BV_modal_outer_') } }, [
+        modal,
+        backdrop
+      ])
+    }
+    // Wrap in DIV to maintain thi.$el reference for hide/show method aceess
+    return h('div', {}, [outer])
+  },
+  data () {
+    return {
+      is_hidden: this.lazy || false,
+      is_visible: false,
+      is_transitioning: false,
+      is_show: false,
+      is_block: false,
+      scrollbarWidth: 0,
+      isBodyOverflowing: false,
+      return_focus: this.returnFocus || null
+    }
+  },
+  model: {
+    prop: 'visible',
+    event: 'change'
+  },
+  props: {
+    title: {
+      type: String,
+      default: ''
+    },
+    titleTag: {
+      type: String,
+      default: 'h5'
+    },
+    size: {
+      type: String,
+      default: 'md'
+    },
+    centered: {
+      type: Boolean,
+      default: false
+    },
+    buttonSize: {
+      type: String,
+      default: ''
+    },
+    noFade: {
+      type: Boolean,
+      default: false
+    },
+    noCloseOnBackdrop: {
+      type: Boolean,
+      default: false
+    },
+    noCloseOnEsc: {
+      type: Boolean,
+      default: false
+    },
+    noEnforceFocus: {
+      type: Boolean,
+      default: false
+    },
+    headerBgVariant: {
+      type: String,
+      default: null
+    },
+    headerBorderVariant: {
+      type: String,
+      default: null
+    },
+    headerTextVariant: {
+      type: String,
+      default: null
+    },
+    headerClass: {
+      type: [String, Array],
+      default: null
+    },
+    bodyBgVariant: {
+      type: String,
+      default: null
+    },
+    bodyTextVariant: {
+      type: String,
+      default: null
+    },
+    modalClass: {
+      type: [String, Array],
+      default: null
+    },
+    bodyClass: {
+      type: [String, Array],
+      default: null
+    },
+    footerBgVariant: {
+      type: String,
+      default: null
+    },
+    footerBorderVariant: {
+      type: String,
+      default: null
+    },
+    footerTextVariant: {
+      type: String,
+      default: null
+    },
+    footerClass: {
+      type: [String, Array],
+      default: null
+    },
+    hideHeader: {
+      type: Boolean,
+      default: false
+    },
+    hideFooter: {
+      type: Boolean,
+      default: false
+    },
+    hideHeaderClose: {
+      type: Boolean,
+      default: false
+    },
+    hideBackdrop: {
+      type: Boolean,
+      default: false
+    },
+    okOnly: {
+      type: Boolean,
+      default: false
+    },
+    okDisabled: {
+      type: Boolean,
+      default: false
+    },
+    cancelDisabled: {
+      type: Boolean,
+      default: false
+    },
+    visible: {
+      type: Boolean,
+      default: false
+    },
+    returnFocus: {
+      default: null
+    },
+    headerCloseLabel: {
+      type: String,
+      default: 'Close'
+    },
+    cancelTitle: {
+      type: String,
+      default: 'Cancel'
+    },
+    okTitle: {
+      type: String,
+      default: 'OK'
+    },
+    cancelVariant: {
+      type: String,
+      default: 'secondary'
+    },
+    okVariant: {
+      type: String,
+      default: 'primary'
+    },
+    lazy: {
+      type: Boolean,
+      default: false
+    },
+    busy: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    modalClasses () {
+      return [
+        'modal',
+        {
+          fade: !this.noFade,
+          show: this.is_show,
+          'd-block': this.is_block
+        },
+        this.modalClass
+      ]
+    },
+    dialogClasses () {
+      return [
+        'modal-dialog',
+        {
+          [`modal-${this.size}`]: Boolean(this.size),
+          'modal-dialog-centered': this.centered
+        }
+      ]
+    },
+    backdropClasses () {
+      return [
+        'modal-backdrop',
+        {
+          fade: !this.noFade,
+          show: this.is_show || this.noFade
+        }
+      ]
+    },
+    headerClasses () {
+      return [
+        'modal-header',
+        {
+          [`bg-${this.headerBgVariant}`]: Boolean(this.headerBgVariant),
+          [`text-${this.headerTextVariant}`]: Boolean(this.headerTextVariant),
+          [`border-${this.headerBorderVariant}`]: Boolean(
+            this.headerBorderVariant
+          )
+        },
+        this.headerClass
+      ]
+    },
+    bodyClasses () {
+      return [
+        'modal-body',
+        {
+          [`bg-${this.bodyBgVariant}`]: Boolean(this.bodyBgVariant),
+          [`text-${this.bodyTextVariant}`]: Boolean(this.bodyTextVariant)
+        },
+        this.bodyClass
+      ]
+    },
+    footerClasses () {
+      return [
+        'modal-footer',
+        {
+          [`bg-${this.footerBgVariant}`]: Boolean(this.footerBgVariant),
+          [`text-${this.footerTextVariant}`]: Boolean(this.footerTextVariant),
+          [`border-${this.footerBorderVariant}`]: Boolean(
+            this.footerBorderVariant
+          )
+        },
+        this.footerClass
+      ]
+    }
+  },
+  watch: {
+    visible (newVal, oldVal) {
+      if (newVal === oldVal) {
+        return
+      }
+      this[newVal ? 'show' : 'hide']()
+    }
+  },
+  methods: {
+    // Public Methods
+    show () {
+      if (this.is_visible) {
+        return
+      }
+      const showEvt = new __WEBPACK_IMPORTED_MODULE_7__utils_bv_event_class__["a" /* default */]('show', {
+        cancelable: true,
+        vueTarget: this,
+        target: this.$refs.modal,
+        relatedTarget: null
+      })
+      this.emitEvent(showEvt)
+      if (showEvt.defaultPrevented || this.is_visible) {
+        // Don't show if canceled
+        return
+      }
+      if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["h" /* hasClass */])(document.body, 'modal-open')) {
+        // If another modal is already open, wait for it to close
+        this.$root.$once('bv::modal::hidden', this.doShow)
+      } else {
+        // Show the modal
+        this.doShow()
+      }
+    },
+    hide (trigger) {
+      if (!this.is_visible) {
+        return
+      }
+      const hideEvt = new __WEBPACK_IMPORTED_MODULE_7__utils_bv_event_class__["a" /* default */]('hide', {
+        cancelable: true,
+        vueTarget: this,
+        target: this.$refs.modal,
+        // this could be the trigger element/component reference
+        relatedTarget: null,
+        isOK: trigger || null,
+        trigger: trigger || null,
+        cancel () {
+          // Backwards compatibility
+          Object(__WEBPACK_IMPORTED_MODULE_5__utils_warn__["a" /* default */])(
+            'b-modal: evt.cancel() is deprecated. Please use evt.preventDefault().'
+          )
+          this.preventDefault()
+        }
+      })
+      if (trigger === 'ok') {
+        this.$emit('ok', hideEvt)
+      } else if (trigger === 'cancel') {
+        this.$emit('cancel', hideEvt)
+      }
+      this.emitEvent(hideEvt)
+      // Hide if not canceled
+      if (hideEvt.defaultPrevented || !this.is_visible) {
+        return
+      }
+      // stop observing for content changes
+      if (this._observer) {
+        this._observer.disconnect()
+        this._observer = null
+      }
+      this.is_visible = false
+      this.$emit('change', false)
+    },
+    // Private method to finish showing modal
+    doShow () {
+      // Plce modal in DOM if lazy
+      this.is_hidden = false
+      this.$nextTick(() => {
+        // We do this in nextTick to ensure the modal is in DOM first before we show it
+        this.is_visible = true
+        this.$emit('change', true)
+        // Observe changes in modal content and adjust if necessary
+        this._observer = Object(__WEBPACK_IMPORTED_MODULE_4__utils_observe_dom__["a" /* default */])(
+          this.$refs.content,
+          this.adjustDialog.bind(this),
+          OBSERVER_CONFIG
+        )
+      })
+    },
+    // Transition Handlers
+    onBeforeEnter () {
+      this.is_transitioning = true
+      this.checkScrollbar()
+      this.setScrollbar()
+      this.adjustDialog()
+      Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["a" /* addClass */])(document.body, 'modal-open')
+      this.setResizeEvent(true)
+    },
+    onEnter () {
+      this.is_block = true
+      this.$refs.modal.scrollTop = 0
+    },
+    onAfterEnter () {
+      this.is_show = true
+      this.is_transitioning = false
+      this.$nextTick(() => {
+        this.focusFirst()
+        const shownEvt = new __WEBPACK_IMPORTED_MODULE_7__utils_bv_event_class__["a" /* default */]('shown', {
+          cancelable: false,
+          vueTarget: this,
+          target: this.$refs.modal,
+          relatedTarget: null
+        })
+        this.emitEvent(shownEvt)
+      })
+    },
+    onBeforeLeave () {
+      this.is_transitioning = true
+      this.setResizeEvent(false)
+    },
+    onLeave () {
+      // Remove the 'show' class
+      this.is_show = false
+    },
+    onAfterLeave () {
+      this.is_block = false
+      this.resetAdjustments()
+      this.resetScrollbar()
+      this.is_transitioning = false
+      Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["m" /* removeClass */])(document.body, 'modal-open')
+      this.$nextTick(() => {
+        this.is_hidden = this.lazy || false
+        this.returnFocusTo()
+        const hiddenEvt = new __WEBPACK_IMPORTED_MODULE_7__utils_bv_event_class__["a" /* default */]('hidden', {
+          cancelable: false,
+          vueTarget: this,
+          target: this.lazy ? null : this.$refs.modal,
+          relatedTarget: null
+        })
+        this.emitEvent(hiddenEvt)
+      })
+    },
+    // Event emitter
+    emitEvent (bvEvt) {
+      const type = bvEvt.type
+      this.$emit(type, bvEvt)
+      this.$root.$emit(`bv::modal::${type}`, bvEvt)
+    },
+    // UI Event Handlers
+    onClickOut (evt) {
+      // If backdrop clicked, hide modal
+      if (this.is_visible && !this.noCloseOnBackdrop) {
+        this.hide('backdrop')
+      }
+    },
+    onEsc (evt) {
+      // If ESC pressed, hide modal
+      if (
+        evt.keyCode === __WEBPACK_IMPORTED_MODULE_6__utils_key_codes__["a" /* default */].ESC &&
+        this.is_visible &&
+        !this.noCloseOnEsc
+      ) {
+        this.hide('esc')
+      }
+    },
+    onFocusout (evt) {
+      // If focus leaves modal, bring it back
+      // 'focusout' Event Listener bound on content
+      const content = this.$refs.content
+      if (
+        !this.noEnforceFocus &&
+        this.is_visible &&
+        content &&
+        !content.contains(evt.relatedTarget)
+      ) {
+        content.focus()
+      }
+    },
+    // Resize Listener
+    setResizeEvent (on) {
+      ;['resize', 'orientationchange'].forEach(evtName => {
+        if (on) {
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["d" /* eventOn */])(window, evtName, this.adjustDialog)
+        } else {
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["c" /* eventOff */])(window, evtName, this.adjustDialog)
+        }
+      })
+    },
+    // Root Listener handlers
+    showHandler (id, triggerEl) {
+      if (id === this.id) {
+        this.return_focus = triggerEl || null
+        this.show()
+      }
+    },
+    hideHandler (id) {
+      if (id === this.id) {
+        this.hide()
+      }
+    },
+    modalListener (bvEvt) {
+      // If another modal opens, close this one
+      if (bvEvt.vueTarget !== this) {
+        this.hide()
+      }
+    },
+    // Focus control handlers
+    focusFirst () {
+      // Don't try and focus if we are SSR
+      if (typeof document === 'undefined') {
+        return
+      }
+      const content = this.$refs.content
+      const modal = this.$refs.modal
+      const activeElement = document.activeElement
+      if (activeElement && content && content.contains(activeElement)) {
+        // If activeElement is child of content, no need to change focus
+      } else if (content) {
+        if (modal) {
+          modal.scrollTop = 0
+        }
+        // Focus the modal content wrapper
+        content.focus()
+      }
+    },
+    returnFocusTo () {
+      // Prefer returnFocus prop over event specified return_focus value
+      let el = this.returnFocus || this.return_focus || null
+      if (typeof el === 'string') {
+        // CSS Selector
+        el = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["n" /* select */])(el)
+      }
+      if (el) {
+        el = el.$el || el
+        if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["j" /* isVisible */])(el)) {
+          el.focus()
+        }
+      }
+    },
+    // Utility methods
+    getScrollbarWidth () {
+      const scrollDiv = document.createElement('div')
+      scrollDiv.className = 'modal-scrollbar-measure'
+      document.body.appendChild(scrollDiv)
+      this.scrollbarWidth =
+        scrollDiv.getBoundingClientRect().width - scrollDiv.clientWidth
+      document.body.removeChild(scrollDiv)
+    },
+    adjustDialog () {
+      if (!this.is_visible) {
+        return
+      }
+      const modal = this.$refs.modal
+      const isModalOverflowing =
+        modal.scrollHeight > document.documentElement.clientHeight
+      if (!this.isBodyOverflowing && isModalOverflowing) {
+        modal.style.paddingLeft = `${this.scrollbarWidth}px`
+      }
+      if (this.isBodyOverflowing && !isModalOverflowing) {
+        modal.style.paddingRight = `${this.scrollbarWidth}px`
+      }
+    },
+    resetAdjustments () {
+      const modal = this.$refs.modal
+      if (modal) {
+        modal.style.paddingLeft = ''
+        modal.style.paddingRight = ''
+      }
+    },
+    checkScrollbar () {
+      const rect = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["f" /* getBCR */])(document.body)
+      this.isBodyOverflowing = rect.left + rect.right < window.innerWidth
+    },
+    setScrollbar () {
+      if (this.isBodyOverflowing) {
+        // Note: DOMNode.style.paddingRight returns the actual value or '' if not set
+        //   while $(DOMNode).css('padding-right') returns the calculated value or 0 if not set
+        const computedStyle = window.getComputedStyle
+        const body = document.body
+        const scrollbarWidth = this.scrollbarWidth
+        // Adjust fixed content padding
+        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["o" /* selectAll */])(Selector.FIXED_CONTENT).forEach(el => {
+          const actualPadding = el.style.paddingRight
+          const calculatedPadding = computedStyle(el).paddingRight || 0
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* setAttr */])(el, 'data-padding-right', actualPadding)
+          el.style.paddingRight = `${parseFloat(calculatedPadding) +
+            scrollbarWidth}px`
+        })
+        // Adjust sticky content margin
+        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["o" /* selectAll */])(Selector.STICKY_CONTENT).forEach(el => {
+          const actualMargin = el.style.marginRight
+          const calculatedMargin = computedStyle(el).marginRight || 0
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* setAttr */])(el, 'data-margin-right', actualMargin)
+          el.style.marginRight = `${parseFloat(calculatedMargin) -
+            scrollbarWidth}px`
+        })
+        // Adjust navbar-toggler margin
+        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["o" /* selectAll */])(Selector.NAVBAR_TOGGLER).forEach(el => {
+          const actualMargin = el.style.marginRight
+          const calculatedMargin = computedStyle(el).marginRight || 0
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* setAttr */])(el, 'data-margin-right', actualMargin)
+          el.style.marginRight = `${parseFloat(calculatedMargin) +
+            scrollbarWidth}px`
+        })
+        // Adjust body padding
+        const actualPadding = body.style.paddingRight
+        const calculatedPadding = computedStyle(body).paddingRight
+        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* setAttr */])(body, 'data-padding-right', actualPadding)
+        body.style.paddingRight = `${parseFloat(calculatedPadding) +
+          scrollbarWidth}px`
+      }
+    },
+    resetScrollbar () {
+      // Restore fixed content padding
+      Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["o" /* selectAll */])(Selector.FIXED_CONTENT).forEach(el => {
+        if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["g" /* hasAttr */])(el, 'data-padding-right')) {
+          el.style.paddingRight = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["e" /* getAttr */])(el, 'data-padding-right') || ''
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["l" /* removeAttr */])(el, 'data-padding-right')
+        }
+      })
+      // Restore sticky content and navbar-toggler margin
+      Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["o" /* selectAll */])(
+        `${Selector.STICKY_CONTENT}, ${Selector.NAVBAR_TOGGLER}`
+      ).forEach(el => {
+        if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["g" /* hasAttr */])(el, 'data-margin-right')) {
+          el.style.marginRight = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["e" /* getAttr */])(el, 'data-margin-right') || ''
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["l" /* removeAttr */])(el, 'data-margin-right')
+        }
+      })
+      // Restore body padding
+      const body = document.body
+      if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["g" /* hasAttr */])(body, 'data-padding-right')) {
+        body.style.paddingRight = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["e" /* getAttr */])(body, 'data-padding-right') || ''
+        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["l" /* removeAttr */])(body, 'data-padding-right')
+      }
+    }
+  },
+  created () {
+    // create non-reactive property
+    this._observer = null
+  },
+  mounted () {
+    // Measure scrollbar
+    this.getScrollbarWidth()
+    // Listen for events from others to either open or close ourselves
+    this.listenOnRoot('bv::show::modal', this.showHandler)
+    this.listenOnRoot('bv::hide::modal', this.hideHandler)
+    // Listen for bv:modal::show events, and close ourselves if the opening modal not us
+    this.listenOnRoot('bv::modal::show', this.modalListener)
+    // Initially show modal?
+    if (this.visible === true) {
+      this.show()
+    }
+  },
+  beforeDestroy () {
+    // Ensure everything is back to normal
+    if (this._observer) {
+      this._observer.disconnect()
+      this._observer = null
+    }
+    this.setResizeEvent(false)
+    // Re-adjust body/navbar/fixed padding/margins (if needed)
+    Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["m" /* removeClass */])(document.body, 'modal-open')
+    this.resetAdjustments()
+    this.resetScrollbar()
   }
 });
 
@@ -8578,6 +9459,68 @@ function processField (key, value) {
 
 /***/ }),
 
+/***/ "./node_modules/bootstrap-vue/src/directives/modal/index.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modal__ = __webpack_require__("./node_modules/bootstrap-vue/src/directives/modal/modal.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
+
+
+
+const directives = {
+  bModal: __WEBPACK_IMPORTED_MODULE_0__modal__["a" /* default */]
+}
+
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["b" /* registerDirectives */])(Vue, directives)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/directives/modal/modal.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_target__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/target.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
+
+
+
+const listenTypes = {click: true}
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  // eslint-disable-next-line no-shadow-restricted-names
+  bind (el, binding, vnode) {
+    Object(__WEBPACK_IMPORTED_MODULE_0__utils_target__["a" /* bindTargets */])(vnode, binding, listenTypes, ({targets, vnode}) => {
+      targets.forEach(target => {
+        vnode.context.$root.$emit('bv::show::modal', target, vnode.elm)
+      })
+    })
+    if (el.tagName !== 'BUTTON') {
+      // If element is not a button, we add `role="button"` for accessibility
+      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["p" /* setAttr */])(el, 'role', 'button')
+    }
+  },
+  unbind (el, binding, vnode) {
+    Object(__WEBPACK_IMPORTED_MODULE_0__utils_target__["c" /* unbindTargets */])(vnode, binding, listenTypes)
+    if (el.tagName !== 'BUTTON') {
+      // If element is not a button, we add `role="button"` for accessibility
+      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["l" /* removeAttr */])(el, 'role', 'button')
+    }
+  }
+});
+
+
+/***/ }),
+
 /***/ "./node_modules/bootstrap-vue/src/directives/toggle/index.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -8631,7 +9574,7 @@ const EVENT_STATE = 'bv::collapse::state'
 /* harmony default export */ __webpack_exports__["a"] = ({
 
   bind (el, binding, vnode) {
-    const targets = Object(__WEBPACK_IMPORTED_MODULE_0__utils_target__["a" /* default */])(vnode, binding, listenTypes, ({targets, vnode}) => {
+    const targets = Object(__WEBPACK_IMPORTED_MODULE_0__utils_target__["b" /* default */])(vnode, binding, listenTypes, ({targets, vnode}) => {
       targets.forEach(target => {
         vnode.context.$root.$emit(EVENT_TOGGLE, target)
       })
@@ -8639,21 +9582,21 @@ const EVENT_STATE = 'bv::collapse::state'
 
     if (inBrowser && vnode.context && targets.length > 0) {
       // Add aria attributes to element
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["n" /* setAttr */])(el, 'aria-controls', targets.join(' '))
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["n" /* setAttr */])(el, 'aria-expanded', 'false')
+      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["p" /* setAttr */])(el, 'aria-controls', targets.join(' '))
+      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["p" /* setAttr */])(el, 'aria-expanded', 'false')
       if (el.tagName !== 'BUTTON') {
         // If element is not a button, we add `role="button"` for accessibility
-        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["n" /* setAttr */])(el, 'role', 'button')
+        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["p" /* setAttr */])(el, 'role', 'button')
       }
 
       // Toggle state hadnler, stored on element
       el[BVT] = function toggleDirectiveHandler (id, state) {
         if (targets.indexOf(id) !== -1) {
           // Set aria-expanded state
-          Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["n" /* setAttr */])(el, 'aria-expanded', state ? 'true' : 'false')
+          Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["p" /* setAttr */])(el, 'aria-expanded', state ? 'true' : 'false')
           // Set/Clear 'collapsed' class state
           if (state) {
-            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["k" /* removeClass */])(el, 'collapsed')
+            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["m" /* removeClass */])(el, 'collapsed')
           } else {
             Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["a" /* addClass */])(el, 'collapsed')
           }
@@ -8730,7 +9673,7 @@ const EVENT_STATE = 'bv::collapse::state'
 
 // Return an Array of visible items
 function filterVisible (els) {
-  return (els || []).filter(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["h" /* isVisible */])
+  return (els || []).filter(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["j" /* isVisible */])
 }
 
 // Dropdown item CSS selectors
@@ -9109,7 +10052,7 @@ const AttachmentMap = {
     },
     getItems () {
       // Get all items
-      return filterVisible(Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["m" /* selectAll */])(ITEM_SELECTOR, this.$refs.menu))
+      return filterVisible(Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["o" /* selectAll */])(ITEM_SELECTOR, this.$refs.menu))
     },
     getFirstItem () {
       // Get the first non-disabled item
@@ -9802,7 +10745,7 @@ class BvEvent {
 const isElement = el => {
   return el && el.nodeType === Node.ELEMENT_NODE
 }
-/* unused harmony export isElement */
+/* harmony export (immutable) */ __webpack_exports__["i"] = isElement;
 
 
 // Determine if an HTML element is visible - Faster than CSS check
@@ -9812,7 +10755,7 @@ const isVisible = el => {
            el.getBoundingClientRect().height > 0 &&
            el.getBoundingClientRect().width > 0
 }
-/* harmony export (immutable) */ __webpack_exports__["h"] = isVisible;
+/* harmony export (immutable) */ __webpack_exports__["j"] = isVisible;
 
 
 // Determine if an element is disabled
@@ -9830,7 +10773,7 @@ const reflow = el => {
   // requsting an elements offsetHight will trigger a reflow of the element content
   return isElement(el) && el.offsetHeight
 }
-/* harmony export (immutable) */ __webpack_exports__["i"] = reflow;
+/* harmony export (immutable) */ __webpack_exports__["k"] = reflow;
 
 
 // Select all elements matching selector. Returns [] if none found
@@ -9840,7 +10783,7 @@ const selectAll = (selector, root) => {
   }
   return Object(__WEBPACK_IMPORTED_MODULE_0__array__["c" /* from */])(root.querySelectorAll(selector))
 }
-/* harmony export (immutable) */ __webpack_exports__["m"] = selectAll;
+/* harmony export (immutable) */ __webpack_exports__["o"] = selectAll;
 
 
 // Select a single element, returns null if not found
@@ -9850,7 +10793,7 @@ const select = (selector, root) => {
   }
   return root.querySelector(selector) || null
 }
-/* harmony export (immutable) */ __webpack_exports__["l"] = select;
+/* harmony export (immutable) */ __webpack_exports__["n"] = select;
 
 
 // Determine if an element matches a selector
@@ -9938,7 +10881,7 @@ const removeClass = (el, className) => {
     el.classList.remove(className)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["k"] = removeClass;
+/* harmony export (immutable) */ __webpack_exports__["m"] = removeClass;
 
 
 // Test if an element has a class
@@ -9948,7 +10891,7 @@ const hasClass = (el, className) => {
   }
   return false
 }
-/* harmony export (immutable) */ __webpack_exports__["g"] = hasClass;
+/* harmony export (immutable) */ __webpack_exports__["h"] = hasClass;
 
 
 // Set an attribute on an element
@@ -9957,7 +10900,7 @@ const setAttr = (el, attr, value) => {
     el.setAttribute(attr, value)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["n"] = setAttr;
+/* harmony export (immutable) */ __webpack_exports__["p"] = setAttr;
 
 
 // Remove an attribute from an element
@@ -9966,7 +10909,7 @@ const removeAttr = (el, attr) => {
     el.removeAttribute(attr)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["j"] = removeAttr;
+/* harmony export (immutable) */ __webpack_exports__["l"] = removeAttr;
 
 
 // Get an attribute value from an element (returns null if not found)
@@ -9986,7 +10929,7 @@ const hasAttr = (el, attr) => {
   }
   return null
 }
-/* unused harmony export hasAttr */
+/* harmony export (immutable) */ __webpack_exports__["g"] = hasAttr;
 
 
 // Return the Bounding Client Rec of an element. Retruns null if not an element
@@ -10293,6 +11236,83 @@ function readonlyDescriptor () {
 
 /***/ }),
 
+/***/ "./node_modules/bootstrap-vue/src/utils/observe-dom.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = observeDOM;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
+
+
+
+/**
+ * Observe a DOM element changes, falls back to eventListener mode
+ * @param {Element} el The DOM element to observe
+ * @param {Function} callback callback to be called on change
+ * @param {object} [opts={childList: true, subtree: true}] observe options
+ * @see http://stackoverflow.com/questions/3219758
+ */
+function observeDOM (el, callback, opts) {
+  const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver
+  const eventListenerSupported = window.addEventListener
+
+  // Handle case where we might be passed a vue instance
+  el = el ? (el.$el || el) : null
+  /* istanbul ignore next: dificult to test in JSDOM */
+  if (!Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["i" /* isElement */])(el)) {
+    // We can't observe somthing that isn't an element
+    return null
+  }
+
+  let obs = null
+
+  /* istanbul ignore next: dificult to test in JSDOM */
+  if (MutationObserver) {
+    // Define a new observer
+    obs = new MutationObserver(mutations => {
+      let changed = false
+      // A Mutation can contain several change records, so we loop through them to see what has changed.
+      // We break out of the loop early if any "significant" change has been detected
+      for (let i = 0; i < mutations.length && !changed; i++) {
+        // The muttion record
+        const mutation = mutations[i]
+        // Mutation Type
+        const type = mutation.type
+        // DOM Node (could be any DOM Node type - HTMLElement, Text, comment, etc)
+        const target = mutation.target
+        if (type === 'characterData' && target.nodeType === Node.TEXT_NODE) {
+          // We ignore nodes that are not TEXt (i.e. comments, etc) as they don't change layout
+          changed = true
+        } else if (type === 'attributes') {
+          changed = true
+        } else if (type === 'childList' && (mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0)) {
+          // This includes HTMLElement and Text Nodes being added/removed/re-arranged
+          changed = true
+        }
+      }
+      if (changed) {
+        // We only call the callback if a change that could affect layout/size truely happened.
+        callback()
+      }
+    })
+
+    // Have the observer observe foo for changes in children, etc
+    obs.observe(el, Object(__WEBPACK_IMPORTED_MODULE_0__object__["a" /* assign */])({childList: true, subtree: true}, opts))
+  } else if (eventListenerSupported) {
+    // Legacy interface. most likely not used in modern browsers
+    el.addEventListener('DOMNodeInserted', callback, false)
+    el.addEventListener('DOMNodeRemoved', callback, false)
+  }
+
+  // We return a reference to the observer so that obs.disconnect() can be called if necessary
+  // To reduce overhead when the root element is hiiden
+  return obs
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/bootstrap-vue/src/utils/pluck-props.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -10462,8 +11482,8 @@ function suffixPropName (suffix, str) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export bindTargets */
-/* unused harmony export unbindTargets */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return bindTargets; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return unbindTargets; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
 
 
@@ -10511,7 +11531,7 @@ const unbindTargets = (vnode, binding, listenTypes) => {
 
 
 
-/* harmony default export */ __webpack_exports__["a"] = (bindTargets);
+/* harmony default export */ __webpack_exports__["b"] = (bindTargets);
 
 
 /***/ }),
@@ -33392,27 +34412,38 @@ var render = function() {
             },
             [
               _c(
-                "b-form-select",
+                "b-modal",
                 {
-                  attrs: { id: "location" },
+                  staticStyle: { "text-align": "center" },
+                  attrs: { size: "lg" },
                   model: {
-                    value: _vm.location,
+                    value: _vm.locationDialog,
                     callback: function($$v) {
-                      _vm.location = $$v
+                      _vm.locationDialog = $$v
                     },
-                    expression: "location"
+                    expression: "locationDialog"
                   }
                 },
-                [
-                  _c("option", { domProps: { value: null } }, [
-                    _vm._v("-- Расположение --")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.regions, function(i) {
-                    return _c("option", [_vm._v(_vm._s(i.name))])
-                  })
-                ],
-                2
+                _vm._l(_vm.regions, function(i) {
+                  return _c(
+                    "button",
+                    { staticStyle: { color: "grey", display: "inline-block" } },
+                    [_vm._v(_vm._s(i.name))]
+                  )
+                })
+              ),
+              _vm._v(" "),
+              _c(
+                "b-button",
+                {
+                  attrs: { size: "sm", variant: "warning" },
+                  on: {
+                    click: function($event) {
+                      _vm.locationDialog = true
+                    }
+                  }
+                },
+                [_vm._v("Павлодар")]
               ),
               _vm._v(" "),
               _c(
@@ -33498,7 +34529,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._v("FlyMart24"),
+                    _vm._v("FlyMark24"),
                     _c(
                       "span",
                       {
@@ -47090,11 +48121,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_bootstrap_vue_src_components_image__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/image/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_bootstrap_vue_src_components_form_radio__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-radio/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_bootstrap_vue_src_components_navbar__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/navbar/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28_vue_carousel__ = __webpack_require__("./node_modules/vue-carousel/dist/vue-carousel.min.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_28_vue_carousel__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29_vue_yandex_maps__ = __webpack_require__("./node_modules/vue-yandex-maps/vue-yandex-maps.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29_vue_yandex_maps___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_29_vue_yandex_maps__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__store__ = __webpack_require__("./resources/assets/js/store/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28_bootstrap_vue_src_components_modal__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/modal/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29_vue_carousel__ = __webpack_require__("./node_modules/vue-carousel/dist/vue-carousel.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_29_vue_carousel__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30_vue_yandex_maps__ = __webpack_require__("./node_modules/vue-yandex-maps/vue-yandex-maps.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30_vue_yandex_maps___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30_vue_yandex_maps__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__store__ = __webpack_require__("./resources/assets/js/store/index.js");
 __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
@@ -47132,9 +48164,10 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
 
+
 // register globally
 
-__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_29_vue_yandex_maps___default.a);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_30_vue_yandex_maps___default.a);
 
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_14_bootstrap_vue_src_components_layout__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_15_bootstrap_vue_src_components_form__["a" /* default */]);
@@ -47150,7 +48183,8 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_24_boo
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_25_bootstrap_vue_src_components_image__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_26_bootstrap_vue_src_components_form_radio__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_27_bootstrap_vue_src_components_navbar__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_28_vue_carousel___default.a);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_29_vue_carousel___default.a);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_28_bootstrap_vue_src_components_modal__["a" /* default */]);
 
  // хранилище
 
@@ -47158,7 +48192,7 @@ var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
   el: '#app',
   data: __WEBPACK_IMPORTED_MODULE_0__common__["a" /* default */],
   components: {
-    store: __WEBPACK_IMPORTED_MODULE_30__store__["a" /* default */],
+    store: __WEBPACK_IMPORTED_MODULE_31__store__["a" /* default */],
     welcome: __WEBPACK_IMPORTED_MODULE_2__views_welcome_vue___default.a,
     profile: __WEBPACK_IMPORTED_MODULE_4__views_profile_vue___default.a,
     home: __WEBPACK_IMPORTED_MODULE_3__views_home_vue___default.a,
