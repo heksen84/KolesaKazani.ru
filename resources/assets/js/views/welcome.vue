@@ -4,17 +4,13 @@
         <b-col id="welcome_menu" v-show="auth">
           
           <b-modal v-model="locationDialog" size="lg" style="text-align:center;color:grey" hide-footer :title="locationDialogTitle">
-
             <button style="color:black;display:inline-block" v-for="i in regions" @click="selectRegion(i.region_id)">{{i.name}}
-
             </button>
           </b-modal>
-
 
           <b-button size="sm" variant="warning" @click="locationDialog=true">Весь казахстан</b-button>
 
           <div class="auth_button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>
-
         </b-col>
 
         <b-col style="text-align:center" v-show="!auth">
@@ -22,7 +18,7 @@
           <div class="auth_button" id="button_reg" style="margin-top:3px" @click="register">Регистрация</div>
         </b-col>
     </b-row>
-    
+
     <b-row>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
           <div id="logo_block">
