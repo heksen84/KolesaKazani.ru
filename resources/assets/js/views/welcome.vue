@@ -8,7 +8,7 @@
             </button>
           </b-modal>
 
-          <b-button size="sm" variant="primary" @click="locationDialog=true">Весь казахстан</b-button>
+          <b-button size="sm" variant="success" @click="locationDialog=true">Весь казахстан</b-button>
 
           <div class="auth_button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>
         </b-col>

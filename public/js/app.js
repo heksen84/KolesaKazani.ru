@@ -34440,7 +34440,7 @@ var render = function() {
               _c(
                 "b-button",
                 {
-                  attrs: { size: "sm", variant: "primary" },
+                  attrs: { size: "sm", variant: "success" },
                   on: {
                     click: function($event) {
                       _vm.locationDialog = true
