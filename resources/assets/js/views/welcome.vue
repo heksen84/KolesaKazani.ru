@@ -12,7 +12,6 @@
             </button>
           </b-modal>
 
-
           <div class="auth_button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>
         </b-col>
 
