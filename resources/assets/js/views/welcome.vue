@@ -2,13 +2,16 @@
   <b-container fluid>
     <b-row>
         <b-col id="welcome_menu" v-show="auth">
-          
+
+          <!-- кнопка выбора региона -->
+          <b-button size="sm" variant="success" @click="locationDialog=true">Весь казахстан</b-button>
+
+          <!-- окно выбоа региона и местоположения -->
           <b-modal v-model="locationDialog" size="lg" style="text-align:center;color:grey" hide-footer :title="locationDialogTitle">
             <button style="color:black;display:inline-block" v-for="i in regions" @click="selectRegion(i.region_id)">{{i.name}}
             </button>
           </b-modal>
 
-          <b-button size="sm" variant="success" @click="locationDialog=true">Весь казахстан</b-button>
 
           <div class="auth_button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>
         </b-col>
