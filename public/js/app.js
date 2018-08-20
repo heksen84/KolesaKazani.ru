@@ -34560,7 +34560,7 @@ var render = function() {
                     staticStyle: {
                       "font-size": "18px",
                       color: "yellow",
-                      "margin-top": "-15px",
+                      "margin-top": "-12px",
                       "letter-spacing": "2px"
                     }
                   },
