@@ -7,7 +7,7 @@
 
           <!-- кнопка выбора региона -->
           <b-button size="sm" variant="primary" @click="locationDialog=true">Весь казахстан</b-button>
-
+          
           <!-- окно выбоа региона и местоположения -->
           <b-modal v-model="locationDialog" size="lg" style="text-align:center;color:grey" hide-footer :title="locationDialogTitle">
             <button style="color:black;display:inline-block" v-for="i in regions" @click="selectRegion(i.region_id)">{{i.name}}
@@ -19,7 +19,6 @@
           <div class="auth_button" id="button_login" style="margin-top:3px" @click="login">Вход</div>
           <div class="auth_button" id="button_reg" style="margin-top:3px" @click="register">Регистрация</div>
         </b-col>
-
     </b-row>
 
     <b-row>
