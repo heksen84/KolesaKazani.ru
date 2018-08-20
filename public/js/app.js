@@ -34531,7 +34531,7 @@ var render = function() {
                       "font-size": "29px",
                       "letter-spacing": "4px",
                       "font-weight": "450",
-                      padding: "6px",
+                      padding: "7px",
                       "margin-top": "-8px"
                     }
                   },
@@ -34559,7 +34559,7 @@ var render = function() {
                     staticStyle: {
                       "font-size": "18px",
                       color: "yellow",
-                      "margin-top": "-13px",
+                      "margin-top": "-15px",
                       "letter-spacing": "2px"
                     }
                   },
