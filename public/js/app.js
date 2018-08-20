@@ -34403,7 +34403,7 @@ var render = function() {
                   expression: "auth"
                 }
               ],
-              attrs: { id: "welcome_menu", inline: "" }
+              attrs: { id: "welcome_menu" }
             },
             [
               _c(
