@@ -7,7 +7,7 @@
 
           <!-- кнопка выбора региона -->
           <b-button size="sm" variant="primary" @click="locationDialog=true">Весь казахстан</b-button>
-          
+
           <!-- окно выбоа региона и местоположения -->
           <b-modal v-model="locationDialog" size="lg" style="text-align:center;color:grey" hide-footer :title="locationDialogTitle">
             <button style="color:black;display:inline-block" v-for="i in regions" @click="selectRegion(i.region_id)">{{i.name}}
@@ -24,7 +24,7 @@
     <b-row>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
           <div id="logo_block">
-            <div style="font-size:29px;letter-spacing:4px;font-weight:450;padding:7px;margin-top:-8px">АксуМаркет<span style="position:relative;top:-15px;left:-3px;font-size:12px;display:none">&reg</span></div>
+            <div style="font-size:30px;letter-spacing:4px;font-weight:450;padding:7px;margin-top:-8px">АксуМаркет<span style="position:relative;top:-15px;left:-3px;font-size:12px;display:none">&reg</span></div>
             <div style="font-size:18px;color:yellow;margin-top:-14px;letter-spacing:2px;">сайт объявлений</div>
           </div>
         </b-col>

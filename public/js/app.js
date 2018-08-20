@@ -2868,7 +2868,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -34528,7 +34527,7 @@ var render = function() {
                   "div",
                   {
                     staticStyle: {
-                      "font-size": "29px",
+                      "font-size": "30px",
                       "letter-spacing": "4px",
                       "font-weight": "450",
                       padding: "7px",
@@ -34559,7 +34558,7 @@ var render = function() {
                     staticStyle: {
                       "font-size": "18px",
                       color: "yellow",
-                      "margin-top": "-15px",
+                      "margin-top": "-14px",
                       "letter-spacing": "2px"
                     }
                   },
