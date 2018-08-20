@@ -2866,6 +2866,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -34401,9 +34405,38 @@ var render = function() {
                   expression: "auth"
                 }
               ],
-              attrs: { id: "welcome_menu" }
+              attrs: { id: "welcome_menu", inline: "" }
             },
             [
+              _c(
+                "div",
+                {
+                  staticClass: "auth_button",
+                  staticStyle: {
+                    width: "160px",
+                    "text-align": "center",
+                    position: "relative",
+                    top: "3px"
+                  },
+                  attrs: { id: "button_login" },
+                  on: { click: _vm.login }
+                },
+                [_vm._v("мои объявления")]
+              ),
+              _vm._v(" "),
+              _c(
+                "b-button",
+                {
+                  attrs: { size: "sm", variant: "primary" },
+                  on: {
+                    click: function($event) {
+                      _vm.locationDialog = true
+                    }
+                  }
+                },
+                [_vm._v("Весь казахстан")]
+              ),
+              _vm._v(" "),
               _c(
                 "b-modal",
                 {
@@ -34435,35 +34468,6 @@ var render = function() {
                     [_vm._v(_vm._s(i.name) + "\n            ")]
                   )
                 })
-              ),
-              _vm._v(" "),
-              _c(
-                "b-button",
-                {
-                  attrs: { size: "sm", variant: "success" },
-                  on: {
-                    click: function($event) {
-                      _vm.locationDialog = true
-                    }
-                  }
-                },
-                [_vm._v("Весь казахстан")]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "auth_button",
-                  staticStyle: {
-                    width: "160px",
-                    "text-align": "center",
-                    position: "relative",
-                    top: "3px"
-                  },
-                  attrs: { id: "button_login" },
-                  on: { click: _vm.login }
-                },
-                [_vm._v("мои объявления")]
               )
             ],
             1
@@ -34525,7 +34529,7 @@ var render = function() {
                   "div",
                   {
                     staticStyle: {
-                      "font-size": "28px",
+                      "font-size": "30px",
                       "letter-spacing": "4px",
                       "font-weight": "450",
                       padding: "6px",
@@ -34533,7 +34537,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._v("FlyMark24"),
+                    _vm._v("АксуМаркет"),
                     _c(
                       "span",
                       {
@@ -34556,7 +34560,7 @@ var render = function() {
                     staticStyle: {
                       "font-size": "18px",
                       color: "yellow",
-                      "margin-top": "-12px",
+                      "margin-top": "-15px",
                       "letter-spacing": "2px"
                     }
                   },

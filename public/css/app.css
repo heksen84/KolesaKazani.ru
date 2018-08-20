@@ -70,7 +70,7 @@ body {
 
 .auth_button {
   padding: 3px;
-  background: #64c864;
+  background: #5abe5a;
   border: 1px solid white;
   width: 110px;
   border-radius: 3px;
@@ -81,7 +81,7 @@ body {
 }
 
 .auth_button:hover {
-  background: #78dc78;
+  background: #6ed26e;
 }
 
 #location {

@@ -1,10 +1,12 @@
 <template>
   <b-container fluid>
     <b-row>
-        <b-col id="welcome_menu" v-show="auth">
+        <b-col id="welcome_menu" v-show="auth" inline>
+
+          <div class="auth_button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>
 
           <!-- кнопка выбора региона -->
-          <b-button size="sm" variant="success" @click="locationDialog=true">Весь казахстан</b-button>
+          <b-button size="sm" variant="primary" @click="locationDialog=true">Весь казахстан</b-button>
 
           <!-- окно выбоа региона и местоположения -->
           <b-modal v-model="locationDialog" size="lg" style="text-align:center;color:grey" hide-footer :title="locationDialogTitle">
@@ -12,7 +14,7 @@
             </button>
           </b-modal>
 
-          <div class="auth_button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>
+      
         </b-col>
 
         <b-col style="text-align:center" v-show="!auth">
@@ -24,8 +26,8 @@
     <b-row>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
           <div id="logo_block">
-            <div style="font-size:28px;letter-spacing:4px;font-weight:450;padding:6px;margin-top:-8px">FlyMark24<span style="position:relative;top:-15px;left:-3px;font-size:12px;display:none">&reg</span></div>
-            <div style="font-size:18px;color:yellow;margin-top:-12px;letter-spacing:2px;">сайт объявлений</div>
+            <div style="font-size:30px;letter-spacing:4px;font-weight:450;padding:6px;margin-top:-8px">АксуМаркет<span style="position:relative;top:-15px;left:-3px;font-size:12px;display:none">&reg</span></div>
+            <div style="font-size:18px;color:yellow;margin-top:-15px;letter-spacing:2px;">сайт объявлений</div>
           </div>
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
