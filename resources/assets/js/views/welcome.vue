@@ -13,14 +13,13 @@
             <button style="color:black;display:inline-block" v-for="i in regions" @click="selectRegion(i.region_id)">{{i.name}}
             </button>
           </b-modal>
-
-      
         </b-col>
 
         <b-col style="text-align:center" v-show="!auth">
           <div class="auth_button" id="button_login" style="margin-top:3px" @click="login">Вход</div>
           <div class="auth_button" id="button_reg" style="margin-top:3px" @click="register">Регистрация</div>
         </b-col>
+        
     </b-row>
 
     <b-row>
