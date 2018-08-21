@@ -18,9 +18,7 @@ class WelcomeController extends Controller {
 
 		public function getPlaces(Request $request) 
 		{
-			return Places::where('region_id',  1924 )->orderBy('name', 'asc')->get();
-
-			//return 123;
+			return Places::where('region_id',  $request->region_id )->orderBy('name', 'asc')->get();
 		}
 
         public function getCategories(Request $request) 

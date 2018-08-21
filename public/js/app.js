@@ -2921,7 +2921,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.regions = [];
       this.locationDialogTitle = "Выберите расположение";
 
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getPlaces', { params: { region_id: 1895 } }).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getPlaces/?region_id=' + e.region_id).then(function (res) {
         _this2.places = res.data;
         console.log(res.data);
       }).catch(function (err) {});
