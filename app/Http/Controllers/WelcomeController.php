@@ -13,14 +13,12 @@ class WelcomeController extends Controller {
 
 		public function getRegions(Request $request) 
 		{
-			return Regions::all();
+			return Regions::orderBy('name', 'asc')->get();
 		}
 
 		public function getPlaces(Request $request) 
 		{
-
-			return Places::all();
-			//return DB::table('categories')->where('id', $id)->get();
+			return Places::orderBy('name', 'asc')->get();
 		}
 
         public function getCategories(Request $request) 

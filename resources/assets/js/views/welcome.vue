@@ -93,6 +93,7 @@ export default {
       get('/getRegions').then((res) => {
           this.regions=res.data;
       }).catch((err) => {});
+      
     },
     selectRegion(e) {
 
