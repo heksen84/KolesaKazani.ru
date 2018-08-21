@@ -2875,6 +2875,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       regions: [],
+      places: [],
       location: null,
       locationDialog: false,
       locationDialogTitle: "Выберите регион"
@@ -2902,8 +2903,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).catch(function (err) {});
     },
     selectRegion: function selectRegion(e) {
+      var _this2 = this;
+
       this.regions = [];
       this.locationDialogTitle = "Выберите расположение";
+
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getPlaces').then(function (res) {
+        _this2.places = res.data;
+      }).catch(function (err) {});
     }
   }
 });
@@ -34441,21 +34448,38 @@ var render = function() {
                 [_vm._v("Весь казахстан")]
               ),
               _vm._v(" "),
-              _c("b-modal", {
-                staticStyle: { "text-align": "center", color: "grey" },
-                attrs: {
-                  size: "lg",
-                  "hide-footer": "",
-                  title: _vm.locationDialogTitle
-                },
-                model: {
-                  value: _vm.locationDialog,
-                  callback: function($$v) {
-                    _vm.locationDialog = $$v
+              _c(
+                "b-modal",
+                {
+                  staticStyle: { "text-align": "center", color: "grey" },
+                  attrs: {
+                    size: "lg",
+                    "hide-footer": "",
+                    title: _vm.locationDialogTitle
                   },
-                  expression: "locationDialog"
-                }
-              })
+                  model: {
+                    value: _vm.locationDialog,
+                    callback: function($$v) {
+                      _vm.locationDialog = $$v
+                    },
+                    expression: "locationDialog"
+                  }
+                },
+                _vm._l(_vm.regions, function(i) {
+                  return _c(
+                    "button",
+                    {
+                      staticStyle: { color: "black", display: "inline-block" },
+                      on: {
+                        click: function($event) {
+                          _vm.selectRegion(i.region_id)
+                        }
+                      }
+                    },
+                    [_vm._v(_vm._s(i.name) + "\n            ")]
+                  )
+                })
+              )
             ],
             1
           ),

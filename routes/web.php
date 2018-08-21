@@ -6,6 +6,7 @@ Auth::routes();
 Route::get('/location/{country}/{region}/{city}/', array('as' => 'id', 'uses' => 'WelcomeController@getCategories'));
 
 Route::get('/', 'WelcomeController@getCategories');
+Route::get('/getRegions', 'WelcomeController@getRegions');
 Route::get('/getUser', 'UserController@getUser');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/{advert_id}', 'HomeController@index')->name('home');
@@ -28,7 +29,6 @@ Route::get('/category/{id}', function ($id) {
 
 });
 
-Route::get('getRegions', 'SearchController@getSearchData');
 Route::get('getSearchData', 'SearchController@getSearchData');
 Route::get('/details/{id}', array('as' => 'id', 'uses' => 'AdvertController@getFullInfo'));
 Route::get('/location/{country}/{region}/{place}', array('as' => 'country', 'uses' => 'AdvertController@getFullInfo'));
