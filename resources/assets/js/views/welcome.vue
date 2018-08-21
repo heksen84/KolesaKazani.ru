@@ -100,9 +100,9 @@ export default {
       this.regions=[];
       this.locationDialogTitle="Выберите расположение"
 
-      get('/getPlaces', { region_id: e.region_id } ).then((res) => {
+      get('/getPlaces', { id: 1895 } ).then((res) => {
           this.places=res.data;
-          console.log(this.places);
+          console.log(res.data);
       }).catch((err) => {});
 
     },
