@@ -57,7 +57,7 @@
 </b-container>
 </template>
 <script>
-import { post, get, interceptors } from './../helpers/api'
+import { get } from './../helpers/api'
 export default {
   props: ["items", "auth", "count"],
   data () {
