@@ -2884,10 +2884,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       places: [],
       location: null,
       locationDialog: false,
-      locationDialogTitle: ""
+      locationDialogTitle: "",
+      selectedPlaceName: ""
     };
   },
-  created: function created() {},
+  created: function created() {
+    this.selectedPlaceName = "Весь казахстан";
+  },
 
   methods: {
     login: function login() {
@@ -2922,7 +2925,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this2.places = res.data;
       }).catch(function (err) {});
     },
-    selectPlace: function selectPlace(e) {}
+    selectPlace: function selectPlace(e) {
+      this.selectedPlaceName = e.name;
+      this.locationDialog = false;
+    }
   }
 });
 
@@ -34456,7 +34462,7 @@ var render = function() {
                   attrs: { size: "sm", variant: "primary" },
                   on: { click: _vm.openLocationWindow }
                 },
-                [_vm._v("Весь казахстан")]
+                [_vm._v(_vm._s(_vm.selectedPlaceName))]
               ),
               _vm._v(" "),
               _c(
@@ -34505,7 +34511,7 @@ var render = function() {
                         },
                         on: {
                           click: function($event) {
-                            _vm.selectPlace(i.city_id)
+                            _vm.selectPlace(i)
                           }
                         }
                       },

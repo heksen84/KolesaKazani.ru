@@ -6,7 +6,7 @@
           <div class="auth_button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>
 
           <!-- кнопка выбора региона -->
-          <b-button size="sm" variant="primary" @click="openLocationWindow">Весь казахстан</b-button>
+          <b-button size="sm" variant="primary" @click="openLocationWindow">{{ selectedPlaceName }}</b-button>
 
           <!-- окно выбоа региона и местоположения -->
           <b-modal v-model="locationDialog" size="lg" style="text-align:center;color:grey" hide-footer :title="locationDialogTitle">
@@ -15,7 +15,7 @@
             <button style="color:black;display:inline-block" v-for="i in regions" @click="selectRegion(i.region_id)">{{i.name}}
             </button>
 
-            <button style="color:black;display:inline-block" v-for="i in places" @click="selectPlace(i.city_id)">{{i.name}}
+            <button style="color:black;display:inline-block" v-for="i in places" @click="selectPlace(i)">{{i.name}}
             </button>
 
           </b-modal>
@@ -65,10 +65,12 @@ export default {
       places: [],
       location: null,
       locationDialog: false,
-      locationDialogTitle: ""
+      locationDialogTitle: "",
+      selectedPlaceName: ""
     }
   },
   created() {
+    this.selectedPlaceName = "Весь казахстан";
   },
   methods: {
     login() {
@@ -102,6 +104,8 @@ export default {
       }).catch((err) => {});
     },
     selectPlace(e) {
+      this.selectedPlaceName=e.name;
+      this.locationDialog=false;
     }
   }
 }
