@@ -2874,6 +2874,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2907,7 +2908,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.locationDialog = true;
       this.locationDialogTitle = "Выберите регион";
-
       this.places = {};
       this.regions = {};
 
@@ -2921,7 +2921,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.regions = [];
       this.locationDialogTitle = "Выберите расположение";
 
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getPlaces').then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getPlaces', { "data": e.region_id }).then(function (res) {
         _this2.places = res.data;
       }).catch(function (err) {});
     },
@@ -34493,7 +34493,7 @@ var render = function() {
                         },
                         on: {
                           click: function($event) {
-                            _vm.selectRegion(i.region_id)
+                            _vm.selectRegion(i)
                           }
                         }
                       },
