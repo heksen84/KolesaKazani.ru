@@ -6,12 +6,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Categories;
 use App\Regions;
+use App\Places;
+
 
 class WelcomeController extends Controller {
 
 		public function getRegions(Request $request) 
 		{
 			return Regions::all();
+		}
+
+		public function getPlaces(Request $request) 
+		{
+			return Places::all();
 		}
 
         public function getCategories(Request $request) 

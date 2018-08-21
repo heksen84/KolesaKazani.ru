@@ -10,8 +10,14 @@
 
           <!-- окно выбоа региона и местоположения -->
           <b-modal v-model="locationDialog" size="lg" style="text-align:center;color:grey" hide-footer :title="locationDialogTitle">
+
+
             <button style="color:black;display:inline-block" v-for="i in regions" @click="selectRegion(i.region_id)">{{i.name}}
             </button>
+
+            <button style="color:black;display:inline-block" v-for="i in places" @click="selectPlace(i.city_id)">{{i.name}}
+            </button>
+
           </b-modal>
         </b-col>
 
@@ -79,6 +85,9 @@ export default {
       this.locationDialog=true;
       this.locationDialogTitle="Выберите регион"
 
+      this.places={};
+      this.regions={};
+
       get('/getRegions').then((res) => {
           this.regions=res.data;
       }).catch((err) => {});
@@ -91,7 +100,8 @@ export default {
       get('/getPlaces').then((res) => {
           this.places=res.data;
       }).catch((err) => {});
-
+    },
+    selectPlace(e) {
     }
   }
 }

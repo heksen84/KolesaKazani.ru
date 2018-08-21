@@ -2868,6 +2868,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2899,6 +2905,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.locationDialog = true;
       this.locationDialogTitle = "Выберите регион";
 
+      this.places = {};
+      this.regions = {};
+
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getRegions').then(function (res) {
         _this.regions = res.data;
       }).catch(function (err) {});
@@ -2912,7 +2921,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getPlaces').then(function (res) {
         _this2.places = res.data;
       }).catch(function (err) {});
-    }
+    },
+    selectPlace: function selectPlace(e) {}
   }
 });
 
@@ -34466,20 +34476,44 @@ var render = function() {
                     expression: "locationDialog"
                   }
                 },
-                _vm._l(_vm.regions, function(i) {
-                  return _c(
-                    "button",
-                    {
-                      staticStyle: { color: "black", display: "inline-block" },
-                      on: {
-                        click: function($event) {
-                          _vm.selectRegion(i.region_id)
+                [
+                  _vm._l(_vm.regions, function(i) {
+                    return _c(
+                      "button",
+                      {
+                        staticStyle: {
+                          color: "black",
+                          display: "inline-block"
+                        },
+                        on: {
+                          click: function($event) {
+                            _vm.selectRegion(i.region_id)
+                          }
                         }
-                      }
-                    },
-                    [_vm._v(_vm._s(i.name) + "\n            ")]
-                  )
-                })
+                      },
+                      [_vm._v(_vm._s(i.name) + "\n            ")]
+                    )
+                  }),
+                  _vm._v(" "),
+                  _vm._l(_vm.places, function(i) {
+                    return _c(
+                      "button",
+                      {
+                        staticStyle: {
+                          color: "black",
+                          display: "inline-block"
+                        },
+                        on: {
+                          click: function($event) {
+                            _vm.selectPlace(i.city_id)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(i.name) + "\n            ")]
+                    )
+                  })
+                ],
+                2
               )
             ],
             1

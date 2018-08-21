@@ -7,6 +7,7 @@ Route::get('/location/{country}/{region}/{city}/', array('as' => 'id', 'uses' =>
 
 Route::get('/', 'WelcomeController@getCategories');
 Route::get('/getRegions', 'WelcomeController@getRegions');
+Route::get('/getPlaces', 'WelcomeController@getPlaces');
 Route::get('/getUser', 'UserController@getUser');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/{advert_id}', 'HomeController@index')->name('home');
