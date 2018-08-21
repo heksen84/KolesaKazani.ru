@@ -6,12 +6,12 @@
           <div class="auth_button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>
 
           <!-- кнопка выбора региона -->
-          <b-button size="sm" variant="primary" @click="locationDialog=true">Весь казахстан</b-button>
+          <b-button size="sm" variant="primary" @click="openLocationWindow">Весь казахстан</b-button>
 
           <!-- окно выбоа региона и местоположения -->
           <b-modal v-model="locationDialog" size="lg" style="text-align:center;color:grey" hide-footer :title="locationDialogTitle">
-            <button style="color:black;display:inline-block" v-for="i in regions" @click="selectRegion(i.region_id)">{{i.name}}
-            </button>
+            <!--<button style="color:black;display:inline-block" v-for="i in regions" @click="selectRegion(i.region_id)">{{i.name}}
+            </button>-->
           </b-modal>
         </b-col>
 
@@ -52,9 +52,10 @@
 <script>
 import { post, get, interceptors } from './../helpers/api'
 export default {
-  props: ["items", "auth", "count", "regions"],
+  props: ["items", "auth", "count"],
   data () {
     return {
+      regions: [],
       location: null,
       locationDialog: false,
       locationDialogTitle: "Выберите регион"
@@ -71,6 +72,14 @@ export default {
     },
     search() {
       window.location='/search';
+    },
+    openLocationWindow() {
+
+      this.locationDialog=true;
+
+      get('/getRegions').then((res) => {
+          this.regions=res.data;
+        }).catch((err) => {});
     },
     selectRegion(e) {
       this.regions=[];

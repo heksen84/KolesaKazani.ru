@@ -28,6 +28,7 @@ Route::get('/category/{id}', function ($id) {
 
 });
 
+Route::get('getRegions', 'SearchController@getSearchData');
 Route::get('getSearchData', 'SearchController@getSearchData');
 Route::get('/details/{id}', array('as' => 'id', 'uses' => 'AdvertController@getFullInfo'));
 Route::get('/location/{country}/{region}/{place}', array('as' => 'country', 'uses' => 'AdvertController@getFullInfo'));

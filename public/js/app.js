@@ -2871,9 +2871,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["items", "auth", "count", "regions"],
+  props: ["items", "auth", "count"],
   data: function data() {
     return {
+      regions: [],
       location: null,
       locationDialog: false,
       locationDialogTitle: "Выберите регион"
@@ -2890,6 +2891,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     search: function search() {
       window.location = '/search';
+    },
+    openLocationWindow: function openLocationWindow() {
+      var _this = this;
+
+      this.locationDialog = true;
+
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getRegions').then(function (res) {
+        _this.regions = res.data;
+      }).catch(function (err) {});
     },
     selectRegion: function selectRegion(e) {
       this.regions = [];
@@ -34426,47 +34436,26 @@ var render = function() {
                 "b-button",
                 {
                   attrs: { size: "sm", variant: "primary" },
-                  on: {
-                    click: function($event) {
-                      _vm.locationDialog = true
-                    }
-                  }
+                  on: { click: _vm.openLocationWindow }
                 },
                 [_vm._v("Весь казахстан")]
               ),
               _vm._v(" "),
-              _c(
-                "b-modal",
-                {
-                  staticStyle: { "text-align": "center", color: "grey" },
-                  attrs: {
-                    size: "lg",
-                    "hide-footer": "",
-                    title: _vm.locationDialogTitle
-                  },
-                  model: {
-                    value: _vm.locationDialog,
-                    callback: function($$v) {
-                      _vm.locationDialog = $$v
-                    },
-                    expression: "locationDialog"
-                  }
+              _c("b-modal", {
+                staticStyle: { "text-align": "center", color: "grey" },
+                attrs: {
+                  size: "lg",
+                  "hide-footer": "",
+                  title: _vm.locationDialogTitle
                 },
-                _vm._l(_vm.regions, function(i) {
-                  return _c(
-                    "button",
-                    {
-                      staticStyle: { color: "black", display: "inline-block" },
-                      on: {
-                        click: function($event) {
-                          _vm.selectRegion(i.region_id)
-                        }
-                      }
-                    },
-                    [_vm._v(_vm._s(i.name) + "\n            ")]
-                  )
-                })
-              )
+                model: {
+                  value: _vm.locationDialog,
+                  callback: function($$v) {
+                    _vm.locationDialog = $$v
+                  },
+                  expression: "locationDialog"
+                }
+              })
             ],
             1
           ),
