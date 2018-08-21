@@ -18,7 +18,9 @@ class WelcomeController extends Controller {
 
 		public function getPlaces(Request $request) 
 		{
+
 			return Places::all();
+			//return DB::table('categories')->where('id', $id)->get();
 		}
 
         public function getCategories(Request $request) 
