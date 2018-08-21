@@ -2878,7 +2878,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       places: [],
       location: null,
       locationDialog: false,
-      locationDialogTitle: "Выберите регион"
+      locationDialogTitle: ""
     };
   },
   created: function created() {},
@@ -2897,6 +2897,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       this.locationDialog = true;
+      this.locationDialogTitle = "Выберите регион";
 
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getRegions').then(function (res) {
         _this.regions = res.data;

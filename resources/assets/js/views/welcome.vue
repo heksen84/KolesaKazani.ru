@@ -59,7 +59,7 @@ export default {
       places: [],
       location: null,
       locationDialog: false,
-      locationDialogTitle: "Выберите регион"
+      locationDialogTitle: ""
     }
   },
   created() {
@@ -77,6 +77,7 @@ export default {
     openLocationWindow() {
 
       this.locationDialog=true;
+      this.locationDialogTitle="Выберите регион"
 
       get('/getRegions').then((res) => {
           this.regions=res.data;
@@ -90,7 +91,7 @@ export default {
       get('/getPlaces').then((res) => {
           this.places=res.data;
       }).catch((err) => {});
-      
+
     }
   }
 }
