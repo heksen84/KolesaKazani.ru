@@ -6,7 +6,7 @@ Auth::routes();
 // сервисы
 Route::get('/util/str2url', 'WelcomeController@getCategories');
 
-// категории
+// категории по всему Казахстану
 Route::get('/transport', 					'ResultController@getResultsByCategory');
 Route::get('/nedvizhimost', 				'ResultController@getResultsByCategory');
 Route::get('/bytovaya-tehnika', 			'ResultController@getResultsByCategory');
@@ -18,8 +18,6 @@ Route::get('/hobbi-i-otdyh', 				'ResultController@getResultsByCategory');
 Route::get('/uslugi', 						'ResultController@getResultsByCategory');
 Route::get('/drugoe', 						'ResultController@getResultsByCategory');
 
-// resultsController@getResultsByCategory(0)
-// resultsController@getResultsByCategory(1)
 
 // категории по региону
 Route::get('{region}/transport', 			'SearchController@getSearchData');
