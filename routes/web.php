@@ -3,9 +3,47 @@ use Illuminate\Support\Facades\DB;
 
 Auth::routes();
 
-//Route::get('/{region}', array('as' => 'id', 'uses' => 'WelcomeController@getCategories'));
+Route::get('/util/str2url', 'WelcomeController@getCategories');
 
-Route::get('/{region}/{place}/{category}', array('as' => 'id', 'uses' => 'WelcomeController@getCategories'));
+// категории
+Route::get('/transport', 		'SearchController@getSearchData');
+Route::get('/nedvizhimost', 	'SearchController@getSearchData');
+Route::get('/bytovaya-tehnika', 'SearchController@getSearchData');
+Route::get('/rabota-i-biznes', 	'SearchController@getSearchData');
+Route::get('/dlya-doma-i-dachi','SearchController@getSearchData');
+Route::get('/lichnye-veschi', 	'SearchController@getSearchData');
+Route::get('/zhivotnye', 		'SearchController@getSearchData');
+Route::get('/hobbi-i-otdyh', 	'SearchController@getSearchData');
+Route::get('/uslugi', 			'SearchController@getSearchData');
+Route::get('/drugoe', 			'SearchController@getSearchData');
+
+
+// категории по региону
+Route::get('{region}/transport', 				'SearchController@getSearchData');
+Route::get('{region}/nedvizhimost', 			'SearchController@getSearchData');
+Route::get('{region}/bytovaya-tehnika', 		'SearchController@getSearchData');
+Route::get('{region}/rabota-i-biznes', 			'SearchController@getSearchData');
+Route::get('{region}/dlya-doma-i-dachi',		'SearchController@getSearchData');
+Route::get('{region}/lichnye-veschi', 			'SearchController@getSearchData');
+Route::get('{region}/zhivotnye', 				'SearchController@getSearchData');
+Route::get('{region}/hobbi-i-otdyh', 			'SearchController@getSearchData');
+Route::get('{region}/uslugi', 					'SearchController@getSearchData');
+Route::get('{region}/drugoe', 					'SearchController@getSearchData');
+
+// категории по региону и местности
+Route::get('{region}/{place}/transport', 		'SearchController@getSearchData');
+Route::get('{region}/{place}/nedvizhimost', 	'SearchController@getSearchData');
+Route::get('{region}/{place}/bytovaya-tehnika', 'SearchController@getSearchData');
+Route::get('{region}/{place}/rabota-i-biznes', 	'SearchController@getSearchData');
+Route::get('{region}/{place}/dlya-doma-i-dachi','SearchController@getSearchData');
+Route::get('{region}/{place}/lichnye-veschi', 	'SearchController@getSearchData');
+Route::get('{region}/{place}/zhivotnye', 		'SearchController@getSearchData');
+Route::get('{region}/{place}/hobbi-i-otdyh', 	'SearchController@getSearchData');
+Route::get('{region}/{place}/uslugi', 			'SearchController@getSearchData');
+Route::get('{region}/{place}/drugoe', 			'SearchController@getSearchData');
+
+
+
 
 Route::get('/', 'WelcomeController@getCategories');
 Route::get('/getRegions', 'WelcomeController@getRegions');

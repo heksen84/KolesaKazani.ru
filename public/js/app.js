@@ -34679,7 +34679,7 @@ var render = function() {
                 attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
               },
               [
-                _c("a", { attrs: { href: item.link } }, [
+                _c("a", { attrs: { href: item.url } }, [
                   _c("div", { staticClass: "category_item" }, [
                     _vm._v(_vm._s(item.name)),
                     _c(
