@@ -17,7 +17,6 @@ Route::get('/hobbi-i-otdyh', 	'SearchController@getSearchData');
 Route::get('/uslugi', 			'SearchController@getSearchData');
 Route::get('/drugoe', 			'SearchController@getSearchData');
 
-
 // категории по региону
 Route::get('{region}/transport', 				'SearchController@getSearchData');
 Route::get('{region}/nedvizhimost', 			'SearchController@getSearchData');
