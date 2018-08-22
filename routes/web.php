@@ -2,19 +2,21 @@
 use Illuminate\Support\Facades\DB;
 
 Auth::routes();
+
+// сервисы
 Route::get('/util/str2url', 'WelcomeController@getCategories');
 
 // категории
-Route::get('/transport', 					'SearchController@getSearchData');
-Route::get('/nedvizhimost', 				'SearchController@getSearchData');
-Route::get('/bytovaya-tehnika', 			'SearchController@getSearchData');
-Route::get('/rabota-i-biznes', 				'SearchController@getSearchData');
-Route::get('/dlya-doma-i-dachi',			'SearchController@getSearchData');
-Route::get('/lichnye-veschi', 				'SearchController@getSearchData');
-Route::get('/zhivotnye', 					'SearchController@getSearchData');
-Route::get('/hobbi-i-otdyh', 				'SearchController@getSearchData');
-Route::get('/uslugi', 						'SearchController@getSearchData');
-Route::get('/drugoe', 						'SearchController@getSearchData');
+Route::get('/transport', 					'ResultController@getResultsByCategory');
+Route::get('/nedvizhimost', 				'ResultController@getResultsByCategory');
+Route::get('/bytovaya-tehnika', 			'ResultController@getResultsByCategory');
+Route::get('/rabota-i-biznes', 				'ResultController@getResultsByCategory');
+Route::get('/dlya-doma-i-dachi',			'ResultController@getResultsByCategory');
+Route::get('/lichnye-veschi', 				'ResultController@getResultsByCategory');
+Route::get('/zhivotnye', 					'ResultController@getResultsByCategory');
+Route::get('/hobbi-i-otdyh', 				'ResultController@getResultsByCategory');
+Route::get('/uslugi', 						'ResultController@getResultsByCategory');
+Route::get('/drugoe', 						'ResultController@getResultsByCategory');
 
 // resultsController@getResultsByCategory(0)
 // resultsController@getResultsByCategory(1)
@@ -75,5 +77,7 @@ Route::get('/category/{id}', function ($id) {
 
 Route::get('getSearchData', 'SearchController@getSearchData');
 Route::get('/details/{id}', array('as' => 'id', 'uses' => 'AdvertController@getFullInfo'));
+
+
 Route::get('/location/{country}/{region}/{place}', array('as' => 'country', 'uses' => 'AdvertController@getFullInfo'));
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');

@@ -35769,7 +35769,7 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "h4",
+                "h2",
                 {
                   staticStyle: {
                     color: "rgb(120,120,120)",
