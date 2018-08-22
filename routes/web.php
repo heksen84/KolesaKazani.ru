@@ -16,6 +16,8 @@ Route::get('/hobbi-i-otdyh', 				'SearchController@getSearchData');
 Route::get('/uslugi', 						'SearchController@getSearchData');
 Route::get('/drugoe', 						'SearchController@getSearchData');
 
+// resultsController@getResultsByCategory(0)
+// resultsController@getResultsByCategory(1)
 
 // категории по региону
 Route::get('{region}/transport', 			'SearchController@getSearchData');
@@ -29,6 +31,7 @@ Route::get('{region}/hobbi-i-otdyh', 		'SearchController@getSearchData');
 Route::get('{region}/uslugi', 				'SearchController@getSearchData');
 Route::get('{region}/drugoe', 				'SearchController@getSearchData');
 
+// resultsController@getResultsByRegion(region_name)
 
 // категории по региону и местности
 Route::get('{region}/{place}/transport', 		'SearchController@getSearchData');
@@ -41,6 +44,8 @@ Route::get('{region}/{place}/zhivotnye', 		'SearchController@getSearchData');
 Route::get('{region}/{place}/hobbi-i-otdyh', 	'SearchController@getSearchData');
 Route::get('{region}/{place}/uslugi', 			'SearchController@getSearchData');
 Route::get('{region}/{place}/drugoe', 			'SearchController@getSearchData');
+
+// resultsController@getResultsByPlace(place_name)
 
 
 Route::get('/', 'WelcomeController@getCategories');
