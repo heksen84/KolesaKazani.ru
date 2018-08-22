@@ -19,6 +19,6 @@ class ResultController extends Controller {
     	// получаю объявления
     	$items 	= Adverts::all()->toJson();
 
-     	return view('results')->with("items", $items)->with("category_name", $record[0]->name);
+     	return view('results')->with("items", $items)->with("category_name", $record[0]->name." в Казахстане");
     }
 }

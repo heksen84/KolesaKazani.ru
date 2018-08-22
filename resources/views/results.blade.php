@@ -8,7 +8,7 @@
   <meta name="description" content="Купить, продать, обменять или сдать в аренду {{ $category_name }}">
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>{{ $category_name }} в Павлодаре</title>
+  <title>{{ $category_name }}</title>
   <link rel="icon" href="{{ asset('public/shop.ico') }}">
 </head>
 <body>
