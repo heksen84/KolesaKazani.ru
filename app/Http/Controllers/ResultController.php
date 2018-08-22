@@ -12,7 +12,13 @@ use App\Categories;
 class ResultController extends Controller {
 
     public function getResultsByCategory(Request $request) {
+
+    	// получаю имя на русском
     	$record = Categories::select('name')->where('url',  $request->path() )->get();
-     	return view('results')->with("items", "123")->with("category_name", $record[0]->name);
+
+    	// получаю объявления
+    	$items 	= Adverts::all()->toJson();
+
+     	return view('results')->with("items", $items)->with("category_name", $record[0]->name);
     }
 }
