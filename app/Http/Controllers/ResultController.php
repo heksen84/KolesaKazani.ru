@@ -15,7 +15,6 @@ class ResultController extends Controller {
 
     	// получаю имя на русском
     	$record = Categories::select('name')->where('url',  $request->path() )->get();
-
     	// получаю объявления
     	$items 	= Adverts::all()->toJson();
 
