@@ -47,7 +47,7 @@ Route::get('{region}/{place}/drugoe', 			'SearchController@getSearchData');
 
 // resultsController@getResultsByPlace(place_name)
 
-
+// базовые контроллеры
 Route::get('/', 'WelcomeController@getCategories');
 Route::get('/getRegions', 'WelcomeController@getRegions');
 Route::get('/getPlaces', 'WelcomeController@getPlaces');
