@@ -162,7 +162,7 @@ body {
 .item {
   background:white;
   color:black;
-  margin-top:-2px;
+  margin-top:0px;
   height:130px;
   border:1px solid grey;
   border-radius:3px;
@@ -246,8 +246,6 @@ a:active {
 }
 
 @media screen and (max-width:990px) {
-
-
 #new_advert_block {
   margin-right: 0px;
   padding: 10px;
