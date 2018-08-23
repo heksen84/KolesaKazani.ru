@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Adverts;
 use App\Categories;
 use App\Regions;
+use App\Places;
 
 function rus2translit($string) {
     $converter = array(
@@ -55,10 +56,19 @@ class UtilsController extends Controller {
 
     public function str2url(Request $request) {
 
-    	$records = Regions::all();
+    	$regions 	= Regions::all();
+    	$places 	= Places::all();
 
-    	foreach ($records as $record) {
-			echo str2url($record->name)."<br>";
+    	foreach ($regions as $region) {
+			echo str2url($region->name)."<br>";
+			$region->url=str2url($region->name);
+			$region->save();
+		}
+
+		foreach ($places as $place) {
+			echo str2url($place->name)."<br>";
+			$place->url=str2url($place->name);
+			$place->save();
 		}
     }
 }
