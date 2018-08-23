@@ -34679,24 +34679,28 @@ var render = function() {
                 attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
               },
               [
-                _c("a", { attrs: { href: item.url } }, [
-                  _c("div", { staticClass: "category_item" }, [
-                    _vm._v(_vm._s(item.name)),
-                    _c(
-                      "span",
-                      {
-                        staticStyle: {
-                          "font-size": "13px",
-                          color: "rgb(155,255,155)",
-                          float: "right",
-                          "margin-top": "3px"
+                _c(
+                  "a",
+                  { attrs: { href: _vm.selectedPlaceName + "/" + item.url } },
+                  [
+                    _c("div", { staticClass: "category_item" }, [
+                      _vm._v(_vm._s(item.name)),
+                      _c(
+                        "span",
+                        {
+                          staticStyle: {
+                            "font-size": "13px",
+                            color: "rgb(155,255,155)",
+                            float: "right",
+                            "margin-top": "3px"
+                          },
+                          attrs: { id: item.id }
                         },
-                        attrs: { id: item.id }
-                      },
-                      [_vm._v("| " + _vm._s(555) + " ")]
-                    )
-                  ])
-                ])
+                        [_vm._v("| " + _vm._s(555) + " ")]
+                      )
+                    ])
+                  ]
+                )
               ]
             )
           })
