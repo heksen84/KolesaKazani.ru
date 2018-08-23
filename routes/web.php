@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\DB;
 Auth::routes();
 
 // сервисы
-Route::get('/util/str2url', 'WelcomeController@getCategories');
+Route::get('/util/str2url', 'UtilsController@str2url');
 
 // категории по всему Казахстану
 Route::get('/transport', 					'ResultController@getResultsByCategory');
