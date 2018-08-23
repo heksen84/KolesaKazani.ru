@@ -31,6 +31,7 @@
     <b-row>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
 
+        <!-- ЛОГОТИП -->
         <a href="/">
           <div id="logo_block">
             <div style="font-size:30px;letter-spacing:4px;font-weight:450;padding:7px;margin-top:-8px">АксуМаркет<span style="position:relative;top:-15px;left:-3px;font-size:12px;display:none">&reg</span>
