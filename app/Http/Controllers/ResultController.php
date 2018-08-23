@@ -14,9 +14,10 @@ class ResultController extends Controller {
     public function getResultsByCategory(Request $request) {
 
     	// получаю имя на русском
-    	$record = Categories::select('name')->where('url',  $request->path() )->get();
+    	$record = Categories::select('id', 'name')->where('url',  $request->path() )->get();
+
     	// получаю объявления
-    	$items 	= Adverts::all()->toJson();
+    	$items 	= Adverts::where('category_id',  $record[0]->id )->get();
 
      	return view('results')->with("items", $items)->with("title", $record[0]->name." в Казахстане");
     }
