@@ -2875,6 +2875,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -34577,48 +34580,50 @@ var render = function() {
               attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
             },
             [
-              _c("div", { attrs: { id: "logo_block" } }, [
-                _c(
-                  "div",
-                  {
-                    staticStyle: {
-                      "font-size": "30px",
-                      "letter-spacing": "4px",
-                      "font-weight": "450",
-                      padding: "7px",
-                      "margin-top": "-8px"
-                    }
-                  },
-                  [
-                    _vm._v("АксуМаркет"),
-                    _c(
-                      "span",
-                      {
-                        staticStyle: {
-                          position: "relative",
-                          top: "-15px",
-                          left: "-3px",
-                          "font-size": "12px",
-                          display: "none"
-                        }
-                      },
-                      [_vm._v("®")]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticStyle: {
-                      "font-size": "18px",
-                      color: "yellow",
-                      "margin-top": "-13px",
-                      "letter-spacing": "2px"
-                    }
-                  },
-                  [_vm._v("сайт объявлений")]
-                )
+              _c("a", { attrs: { href: "/" } }, [
+                _c("div", { attrs: { id: "logo_block" } }, [
+                  _c(
+                    "div",
+                    {
+                      staticStyle: {
+                        "font-size": "30px",
+                        "letter-spacing": "4px",
+                        "font-weight": "450",
+                        padding: "7px",
+                        "margin-top": "-8px"
+                      }
+                    },
+                    [
+                      _vm._v("АксуМаркет"),
+                      _c(
+                        "span",
+                        {
+                          staticStyle: {
+                            position: "relative",
+                            top: "-15px",
+                            left: "-3px",
+                            "font-size": "12px",
+                            display: "none"
+                          }
+                        },
+                        [_vm._v("®")]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticStyle: {
+                        "font-size": "18px",
+                        color: "yellow",
+                        "margin-top": "-13px",
+                        "letter-spacing": "2px"
+                      }
+                    },
+                    [_vm._v("сайт объявлений")]
+                  )
+                ])
               ])
             ]
           ),
