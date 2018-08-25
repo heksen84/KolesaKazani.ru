@@ -12,6 +12,7 @@
           <b-modal v-model="locationDialog" size="lg" style="text-align:center;color:grey" hide-footer :title="locationDialogTitle">
 
             <!-- регионы -->
+            
             <button style="color:black;display:inline-block" v-for="i in regions" @click="selectRegion(i)">{{i.name}}
             </button>
 
