@@ -121,7 +121,7 @@ export default {
       
     },
 
-    // Выбор региона либо локального места жительства
+    // Выбор региона либо локального места жительства в диалоге
     selectLocation(e) {
 
       this.buttonAllCountry=false;
