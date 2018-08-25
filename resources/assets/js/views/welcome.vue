@@ -15,19 +15,15 @@
             <button style="color:black;display:inline-block" v-for="i in regions" @click="selectLocation(i)">{{i.name}}
             </button>
 
-
             <hr v-if="buttonAllCountry">
-            
             <button style="color:black;display:block;margin:auto;margin-top:-5px" v-if="buttonAllCountry" @click="selectAllCountry">Весь Казахстан</button>
-
 
             <!-- города, cёлы, аулы, деревни -->
             <button style="color:black;display:inline-block" v-for="i in places" @click="selectPlace(i)">{{i.name}}
             </button>
 
             <hr v-if="buttonAllRegion">
-
-            <button style="color:black;display:block;margin:auto;margin-top:-5px" v-if="buttonAllRegion" @click="selectAllCountry">Вся область</button>
+            <button style="color:black;display:block;margin:auto;margin-top:-5px" v-if="buttonAllRegion" @click="selectAllRegion">Вся область</button>
 
 
           </b-modal>
@@ -86,7 +82,8 @@ export default {
       locationDialogTitle: "",
       urlRegAndPlace: "",
       buttonAllCountry: true,
-      buttonAllRegion: false
+      buttonAllRegion: false,
+      regionName: ""
 
     }
   },
@@ -135,6 +132,7 @@ export default {
     // Выбор региона либо локального места жительства в диалоге
     selectLocation(e) {
 
+      this.regionName = e.name;
       this.buttonAllCountry=false;
       this.buttonAllRegion=true;
       this.urlRegAndPlace=e.url;
@@ -167,6 +165,15 @@ export default {
       // закидываем в localStrorage
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", "");
+
+      this.locationDialog=false;
+    },
+    selectAllRegion(e) {
+      this.selectedPlaceName=this.regionName;
+      
+      // закидываем в localStrorage
+      localStorage.setItem("placeName", this.selectedPlaceName);
+      localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);
 
       this.locationDialog=false;
     }
