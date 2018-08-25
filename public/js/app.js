@@ -2887,6 +2887,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -34551,6 +34556,8 @@ var render = function() {
                     )
                   }),
                   _vm._v(" "),
+                  _vm.buttonAllCountry ? _c("hr") : _vm._e(),
+                  _vm._v(" "),
                   _vm.buttonAllCountry
                     ? _c(
                         "button",
@@ -34558,7 +34565,8 @@ var render = function() {
                           staticStyle: {
                             color: "black",
                             display: "block",
-                            margin: "3px auto"
+                            margin: "auto",
+                            "margin-top": "-5px"
                           },
                           on: { click: _vm.selectAllCountry }
                         },
@@ -34584,6 +34592,8 @@ var render = function() {
                     )
                   }),
                   _vm._v(" "),
+                  _vm.buttonAllRegion ? _c("hr") : _vm._e(),
+                  _vm._v(" "),
                   _vm.buttonAllRegion
                     ? _c(
                         "button",
@@ -34591,7 +34601,8 @@ var render = function() {
                           staticStyle: {
                             color: "black",
                             display: "block",
-                            margin: "3px auto"
+                            margin: "auto",
+                            "margin-top": "-5px"
                           },
                           on: { click: _vm.selectAllCountry }
                         },

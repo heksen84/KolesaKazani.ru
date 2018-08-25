@@ -12,17 +12,22 @@
           <b-modal v-model="locationDialog" size="lg" style="text-align:center;color:grey" hide-footer :title="locationDialogTitle">
 
             <!-- регионы -->
-
             <button style="color:black;display:inline-block" v-for="i in regions" @click="selectLocation(i)">{{i.name}}
             </button>
 
-            <button style="color:black;display:block;margin:3px auto" v-if="buttonAllCountry" @click="selectAllCountry">Весь Казахстан</button>
+
+            <hr v-if="buttonAllCountry">
+            
+            <button style="color:black;display:block;margin:auto;margin-top:-5px" v-if="buttonAllCountry" @click="selectAllCountry">Весь Казахстан</button>
+
 
             <!-- города, cёлы, аулы, деревни -->
             <button style="color:black;display:inline-block" v-for="i in places" @click="selectPlace(i)">{{i.name}}
             </button>
 
-            <button style="color:black;display:block;margin:3px auto" v-if="buttonAllRegion" @click="selectAllCountry">Весь регион</button>
+            <hr v-if="buttonAllRegion">
+
+            <button style="color:black;display:block;margin:auto;margin-top:-5px" v-if="buttonAllRegion" @click="selectAllCountry">Весь регион</button>
 
 
           </b-modal>
