@@ -2933,6 +2933,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this.regions = res.data;
       }).catch(function (err) {});
     },
+
+
+    // Выбор региона либо локального места жительства в диалоге
     selectLocation: function selectLocation(e) {
       var _this2 = this;
 
@@ -34746,7 +34749,7 @@ var render = function() {
                         {
                           staticStyle: {
                             "font-size": "13px",
-                            color: "rgb(155,255,155)",
+                            color: "rgb(150,255,150)",
                             float: "right",
                             "margin-top": "3px"
                           },
