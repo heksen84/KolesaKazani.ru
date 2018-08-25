@@ -77,7 +77,14 @@ export default {
     }
   },
   created() {
-    this.selectedPlaceName = "Весь казахстан";
+
+    var placeName = localStorage.getItem("placeName");
+
+    if(placeName==null)
+      this.selectedPlaceName = "Весь казахстан";
+    else 
+      this.selectedPlaceName = placeName;
+    
   },
   methods: {
     login() {
@@ -115,9 +122,16 @@ export default {
 
     },
     selectPlace(e) {
+
       this.selectedPlaceName=e.name;
       this.locationDialog=false;
-      this.urlRegAndPlace=this.urlRegAndPlace+"/"+e.url; // формируем url
+
+      // формируем url
+      this.urlRegAndPlace=this.urlRegAndPlace+"/"+e.url;
+
+      // закидываем в localStrorage
+      localStorage.setItem("placeName", this.selectedPlaceName);
+      localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);
     }
   }
 }

@@ -2896,7 +2896,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   created: function created() {
-    this.selectedPlaceName = "Весь казахстан";
+
+    var placeName = localStorage.getItem("placeName");
+
+    if (placeName == null) this.selectedPlaceName = "Весь казахстан";else this.selectedPlaceName = placeName;
   },
 
   methods: {
@@ -2935,9 +2938,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).catch(function (err) {});
     },
     selectPlace: function selectPlace(e) {
+
       this.selectedPlaceName = e.name;
       this.locationDialog = false;
+
+      // формируем url
       this.urlRegAndPlace = this.urlRegAndPlace + "/" + e.url;
+
+      // закидываем в localStrorage
+      localStorage.setItem("placeName", this.selectedPlaceName);
+      localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);
     }
   }
 });
