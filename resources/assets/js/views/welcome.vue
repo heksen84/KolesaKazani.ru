@@ -22,6 +22,9 @@
             <button style="color:black;display:inline-block" v-for="i in places" @click="selectPlace(i)">{{i.name}}
             </button>
 
+            <button style="color:black;display:block;margin:3px auto" v-if="buttonAllRegion" @click="selectAllCountry">Весь регион</button>
+
+
           </b-modal>
         </b-col>
 
@@ -77,7 +80,9 @@ export default {
       locationDialog: false,
       locationDialogTitle: "",
       urlRegAndPlace: "",
-      buttonAllCountry: true
+      buttonAllCountry: true,
+      buttonAllRegion: false
+
     }
   },
   created() {
@@ -110,6 +115,7 @@ export default {
     openLocationWindow() {
 
       this.buttonAllCountry=true;
+      this.buttonAllRegion=false;
       this.locationDialog=true;
       this.locationDialogTitle="Выберите регион"
       this.places={};
@@ -125,6 +131,7 @@ export default {
     selectLocation(e) {
 
       this.buttonAllCountry=false;
+      this.buttonAllRegion=true;
       this.urlRegAndPlace=e.url;
       this.regions=[];
       this.locationDialogTitle="Выберите расположение"
