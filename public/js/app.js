@@ -2895,7 +2895,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       location: null,
       locationDialog: false,
       locationDialogTitle: "",
-      urlRegAndPlace: ""
+      urlRegAndPlace: "",
+      buttonAllCountry: true
     };
   },
   created: function created() {
@@ -2922,6 +2923,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     openLocationWindow: function openLocationWindow() {
       var _this = this;
 
+      this.buttonAllCountry = true;
       this.locationDialog = true;
       this.locationDialogTitle = "Выберите регион";
       this.places = {};
@@ -2931,11 +2933,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this.regions = res.data;
       }).catch(function (err) {});
     },
-    selectRegion: function selectRegion(e) {
+    selectLocation: function selectLocation(e) {
       var _this2 = this;
 
+      this.buttonAllCountry = false;
       this.urlRegAndPlace = e.url;
-
       this.regions = [];
       this.locationDialogTitle = "Выберите расположение";
 
@@ -2946,6 +2948,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     selectPlace: function selectPlace(e) {
 
+      this.buttonAllCountry = false;
       this.selectedPlaceName = e.name;
       this.locationDialog = false;
 
@@ -34530,7 +34533,7 @@ var render = function() {
                         },
                         on: {
                           click: function($event) {
-                            _vm.selectRegion(i)
+                            _vm.selectLocation(i)
                           }
                         }
                       },
@@ -34538,18 +34541,20 @@ var render = function() {
                     )
                   }),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticStyle: {
-                        color: "black",
-                        display: "block",
-                        margin: "3px auto"
-                      },
-                      on: { click: _vm.selectAllCountry }
-                    },
-                    [_vm._v("Весь Казахстан")]
-                  ),
+                  _vm.buttonAllCountry
+                    ? _c(
+                        "button",
+                        {
+                          staticStyle: {
+                            color: "black",
+                            display: "block",
+                            margin: "3px auto"
+                          },
+                          on: { click: _vm.selectAllCountry }
+                        },
+                        [_vm._v("Весь Казахстан")]
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _vm._l(_vm.places, function(i) {
                     return _c(

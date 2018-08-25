@@ -13,10 +13,10 @@
 
             <!-- регионы -->
 
-            <button style="color:black;display:inline-block" v-for="i in regions" @click="selectRegion(i)">{{i.name}}
+            <button style="color:black;display:inline-block" v-for="i in regions" @click="selectLocation(i)">{{i.name}}
             </button>
 
-            <button style="color:black;display:block;margin:3px auto" @click="selectAllCountry">Весь Казахстан</button>
+            <button style="color:black;display:block;margin:3px auto" v-if="buttonAllCountry" @click="selectAllCountry">Весь Казахстан</button>
 
             <!-- города, cёлы, аулы, деревни -->
             <button style="color:black;display:inline-block" v-for="i in places" @click="selectPlace(i)">{{i.name}}
@@ -76,7 +76,8 @@ export default {
       location: null,
       locationDialog: false,
       locationDialogTitle: "",
-      urlRegAndPlace: ""
+      urlRegAndPlace: "",
+      buttonAllCountry: true
     }
   },
   created() {
@@ -108,6 +109,7 @@ export default {
     },
     openLocationWindow() {
 
+      this.buttonAllCountry=true;
       this.locationDialog=true;
       this.locationDialogTitle="Выберите регион"
       this.places={};
@@ -118,10 +120,12 @@ export default {
       }).catch((err) => {});
       
     },
-    selectRegion(e) {
 
+    // Выбор региона либо локального места жительства
+    selectLocation(e) {
+
+      this.buttonAllCountry=false;
       this.urlRegAndPlace=e.url;
-
       this.regions=[];
       this.locationDialogTitle="Выберите расположение"
 
@@ -133,6 +137,7 @@ export default {
     },
     selectPlace(e) {
 
+      this.buttonAllCountry=false;
       this.selectedPlaceName=e.name;
       this.locationDialog=false;
 
