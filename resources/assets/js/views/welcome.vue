@@ -84,7 +84,14 @@ export default {
       this.selectedPlaceName = "Весь казахстан";
     else 
       this.selectedPlaceName = placeName;
-    
+
+    var urlRegAndPlace = localStorage.getItem("urlRegAndPlace");
+
+     if(urlRegAndPlace==null)
+      this.urlRegAndPlace = "";
+    else 
+      this.urlRegAndPlace = urlRegAndPlace;
+
   },
   methods: {
     login() {

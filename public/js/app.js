@@ -2900,6 +2900,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     var placeName = localStorage.getItem("placeName");
 
     if (placeName == null) this.selectedPlaceName = "Весь казахстан";else this.selectedPlaceName = placeName;
+
+    var urlRegAndPlace = localStorage.getItem("urlRegAndPlace");
+
+    if (urlRegAndPlace == null) this.urlRegAndPlace = "";else this.urlRegAndPlace = urlRegAndPlace;
   },
 
   methods: {
