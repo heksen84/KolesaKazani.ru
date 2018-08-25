@@ -12,9 +12,11 @@
           <b-modal v-model="locationDialog" size="lg" style="text-align:center;color:grey" hide-footer :title="locationDialogTitle">
 
             <!-- регионы -->
-            
+
             <button style="color:black;display:inline-block" v-for="i in regions" @click="selectRegion(i)">{{i.name}}
             </button>
+
+            <button style="color:black;display:block;margin:3px auto" @click="selectAllCountry">Весь Казахстан</button>
 
             <!-- города, cёлы, аулы, деревни -->
             <button style="color:black;display:inline-block" v-for="i in places" @click="selectPlace(i)">{{i.name}}
@@ -140,6 +142,16 @@ export default {
       // закидываем в localStrorage
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);
+    },
+    selectAllCountry(e) {
+      this.selectedPlaceName="Весь Казахстан";
+      this.urlRegAndPlace="";
+      
+      // закидываем в localStrorage
+      localStorage.setItem("placeName", this.selectedPlaceName);
+      localStorage.setItem("urlRegAndPlace", "");
+
+      this.locationDialog=false;
     }
   }
 }

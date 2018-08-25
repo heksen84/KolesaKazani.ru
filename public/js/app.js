@@ -2881,6 +2881,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2952,6 +2955,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // закидываем в localStrorage
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);
+    },
+    selectAllCountry: function selectAllCountry(e) {
+      this.selectedPlaceName = "Весь Казахстан";
+      this.urlRegAndPlace = "";
+
+      // закидываем в localStrorage
+      localStorage.setItem("placeName", this.selectedPlaceName);
+      localStorage.setItem("urlRegAndPlace", "");
+
+      this.locationDialog = false;
     }
   }
 });
@@ -34524,6 +34537,19 @@ var render = function() {
                       [_vm._v(_vm._s(i.name) + "\n            ")]
                     )
                   }),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticStyle: {
+                        color: "black",
+                        display: "block",
+                        margin: "3px auto"
+                      },
+                      on: { click: _vm.selectAllCountry }
+                    },
+                    [_vm._v("Весь Казахстан")]
+                  ),
                   _vm._v(" "),
                   _vm._l(_vm.places, function(i) {
                     return _c(
