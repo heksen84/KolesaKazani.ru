@@ -34606,7 +34606,7 @@ var render = function() {
                           },
                           on: { click: _vm.selectAllCountry }
                         },
-                        [_vm._v("Весь регион")]
+                        [_vm._v("Вся область")]
                       )
                     : _vm._e()
                 ],

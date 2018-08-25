@@ -27,7 +27,7 @@
 
             <hr v-if="buttonAllRegion">
 
-            <button style="color:black;display:block;margin:auto;margin-top:-5px" v-if="buttonAllRegion" @click="selectAllCountry">Весь регион</button>
+            <button style="color:black;display:block;margin:auto;margin-top:-5px" v-if="buttonAllRegion" @click="selectAllCountry">Вся область</button>
 
 
           </b-modal>
