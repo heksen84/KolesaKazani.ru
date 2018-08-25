@@ -105,15 +105,19 @@ export default {
 
   },
   methods: {
+
     login() {
       window.location='/login';
     },
+
     register() {
       window.location='/register';
     },
+
     search() {
       window.location='/search';
     },
+    
     openLocationWindow() {
 
       this.buttonAllCountry=true;
