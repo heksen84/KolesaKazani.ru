@@ -48,12 +48,14 @@ class ResultsController extends Controller {
     // ---------------------------------------------------
     public function getResultsByPlace($_region, $place, $_category) {
 
-    	// получаю имя на русском
-    	//$record = Categories::select('id', 'name')->where('url',  $request->path() )->get();
-
+    	// получаю имена на русском
+    	$region 	= Regions::select('name')->where('url',  $_region )->first();
+    	$category 	= Categories::select('id', 'name')->where('url',  $_category )->first();
+    	
     	// получаю объявления
-    	$items 	= Adverts::where('category_id',  0)->get();
+    	$items 	= Adverts::where('category_id',  $region->id)->get();
 
-		return view('results')->with("items", $items)->with("title", " в Казахстане");
+    	// передаю во вьюху
+		return view('results')->with("items", $items)->with("title", $category->name." в ".$region->name);
     }
 }
