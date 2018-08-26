@@ -18,12 +18,13 @@ class ResultsController extends Controller {
     public function getResultsByCategory(Request $request) {
 
     	// получаю имя на русском
-    	$record = Categories::select('id', 'name')->where('url',  $request->path() )->get();
+    	$record = Categories::select('id', 'name')->where('url',  $request->path() )->first();
 
     	// получаю объявления
-    	$items 	= Adverts::where('category_id',  $record[0]->id )->get();
+    	$items 	= Adverts::where('category_id',  $record->id )->get();
 
-     	return view('results')->with("items", $items)->with("title", $record[0]->name." в Казахстане");
+		// передаю во вьюху
+     	return view('results')->with("items", $items)->with("title", $record->name." в Казахстане");
     }
 
     // ---------------------------------------------------
@@ -38,9 +39,8 @@ class ResultsController extends Controller {
     	// получаю объявления
     	$items 	= Adverts::where('category_id',  $region->id)->get();
 
-    	// отобразить
+    	// передаю во вьюху
 		return view('results')->with("items", $items)->with("title", $category->name." в ".$region->name);
-
     }
 
 	// ---------------------------------------------------
