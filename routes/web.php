@@ -34,16 +34,16 @@ Route::get('{region}/drugoe', 				'ResultsController@getResultsByRegion');
 // resultsController@getResultsByRegion(region_name)
 
 // категории по региону и местности
-Route::get('{region}/{place}/transport', 		'SearchController@getSearchData');
-Route::get('{region}/{place}/nedvizhimost', 	'SearchController@getSearchData');
-Route::get('{region}/{place}/bytovaya-tehnika', 'SearchController@getSearchData');
-Route::get('{region}/{place}/rabota-i-biznes', 	'SearchController@getSearchData');
-Route::get('{region}/{place}/dlya-doma-i-dachi','SearchController@getSearchData');
-Route::get('{region}/{place}/lichnye-veschi', 	'SearchController@getSearchData');
-Route::get('{region}/{place}/zhivotnye', 		'SearchController@getSearchData');
-Route::get('{region}/{place}/hobbi-i-otdyh', 	'SearchController@getSearchData');
-Route::get('{region}/{place}/uslugi', 			'SearchController@getSearchData');
-Route::get('{region}/{place}/drugoe', 			'SearchController@getSearchData');
+Route::get('{region}/{place}/transport', 		'ResultsController@getResultsByPlace');
+Route::get('{region}/{place}/nedvizhimost', 	'ResultsController@getResultsByPlace');
+Route::get('{region}/{place}/bytovaya-tehnika', 'ResultsController@getResultsByPlace');
+Route::get('{region}/{place}/rabota-i-biznes', 	'ResultsController@getResultsByPlace');
+Route::get('{region}/{place}/dlya-doma-i-dachi','ResultsController@getResultsByPlace');
+Route::get('{region}/{place}/lichnye-veschi', 	'ResultsController@getResultsByPlace');
+Route::get('{region}/{place}/zhivotnye', 		'ResultsController@getResultsByPlace');
+Route::get('{region}/{place}/hobbi-i-otdyh', 	'ResultsController@getResultsByPlace');
+Route::get('{region}/{place}/uslugi', 			'ResultsController@getResultsByPlace');
+Route::get('{region}/{place}/drugoe', 			'ResultsController@getResultsByPlace');
 
 // resultsController@getResultsByPlace(place_name)
 
@@ -66,6 +66,7 @@ Route::get('/getCarsModels', 'AdvertController@getCarsModels' );
 Route::get('/category/{id}', function ($id) { 
 
 	$categories = DB::table('categories')->where('id', $id)->get();
+
 	$items = DB::table('adverts')->where('category_id', $id)->get();
 
 	return view('results')->with("items", $items )->with("category_id", $id )->with("category_name", 
@@ -75,7 +76,5 @@ Route::get('/category/{id}', function ($id) {
 
 Route::get('getSearchData', 'SearchController@getSearchData');
 Route::get('/details/{id}', array('as' => 'id', 'uses' => 'AdvertController@getFullInfo'));
-
-
 Route::get('/location/{country}/{region}/{place}', array('as' => 'country', 'uses' => 'AdvertController@getFullInfo'));
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
