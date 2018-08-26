@@ -1,6 +1,5 @@
 <?php
 use Illuminate\Support\Facades\DB;
-
 Auth::routes();
 
 // сервисы
@@ -18,7 +17,6 @@ Route::get('hobbi-i-otdyh', 			'ResultsController@getResultsByCategory');
 Route::get('uslugi', 					'ResultsController@getResultsByCategory');
 Route::get('drugoe', 					'ResultsController@getResultsByCategory');
 
-
 // категории по региону
 Route::get('{region}/transport', 			'ResultsController@getResultsByRegion');
 Route::get('{region}/nedvizhimost', 		'ResultsController@getResultsByRegion');
@@ -30,7 +28,6 @@ Route::get('{region}/zhivotnye', 			'ResultsController@getResultsByRegion');
 Route::get('{region}/hobbi-i-otdyh', 		'ResultsController@getResultsByRegion');
 Route::get('{region}/uslugi', 				'ResultsController@getResultsByRegion');
 Route::get('{region}/drugoe', 				'ResultsController@getResultsByRegion');
-
 
 // категории по региону и местности
 Route::get('{region}/{place}/transport', 		'ResultsController@getResultsByPlace');
@@ -52,9 +49,8 @@ Route::get('getUser', 			'UserController@getUser');
 Route::get('home', 				'HomeController@index')->name('home');
 Route::get('home/{advert_id}', 	'HomeController@index')->name('home');
 Route::get('categories', 		'CategoriesController@index');
-
-Route::get('new', 					'AdvertController@newAdvert');
-Route::post('create', 				'AdvertController@createAdvert');
+Route::get('new', 				'AdvertController@newAdvert');
+Route::post('create', 			'AdvertController@createAdvert');
 
 // АВТО
 Route::get('getCarsMarks',  		'AdvertController@getCarsMarks' );
@@ -73,6 +69,5 @@ Route::get('getSearchData', 'SearchController@getSearchData');
 //Route::get('details/{id}', array('as' => 'id', 'uses' => 'AdvertController@getFullInfo'));
 
 Route::get('details/{id}', ['uses' => 'AdvertController@getFullInfo']);
-
 Route::get('location/{country}/{region}/{place}', ['uses' => 'AdvertController@getFullInfo']);
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
