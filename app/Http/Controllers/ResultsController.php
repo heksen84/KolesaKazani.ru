@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Adverts;
 use App\Categories;
 use App\Regions;
+use App\Places;
 
 class ResultsController extends Controller {
 
@@ -19,7 +20,6 @@ class ResultsController extends Controller {
 
     	// получаю имя на русском
     	$record = Categories::select('id', 'name')->where('url',  $request->path() )->first();
-
     	// получаю объявления
     	$items 	= Adverts::where('category_id',  $record->id )->get();
 
@@ -46,7 +46,7 @@ class ResultsController extends Controller {
 	// ---------------------------------------------------
     // результаты по городу, деревне
     // ---------------------------------------------------
-    public function getResultsByPlace(Request $request) {
+    public function getResultsByPlace($_region, $place, $_category) {
 
     	// получаю имя на русском
     	//$record = Categories::select('id', 'name')->where('url',  $request->path() )->get();
