@@ -1,21 +1,22 @@
 <?php
 use Illuminate\Support\Facades\DB;
+
 Auth::routes();
 
 // сервисы
 Route::get('/util/str2url', 'UtilsController@str2url');
 
 // категории по всему Казахстану
-Route::get('transport', 				'ResultsController@getResultsByCategory');
-Route::get('nedvizhimost', 				'ResultsController@getResultsByCategory');
-Route::get('bytovaya-tehnika', 			'ResultsController@getResultsByCategory');
-Route::get('rabota-i-biznes', 			'ResultsController@getResultsByCategory');
-Route::get('dlya-doma-i-dachi',			'ResultsController@getResultsByCategory');
-Route::get('lichnye-veschi', 			'ResultsController@getResultsByCategory');
-Route::get('zhivotnye', 				'ResultsController@getResultsByCategory');
-Route::get('hobbi-i-otdyh', 			'ResultsController@getResultsByCategory');
-Route::get('uslugi', 					'ResultsController@getResultsByCategory');
-Route::get('drugoe', 					'ResultsController@getResultsByCategory');
+Route::get('transport', 					'ResultsController@getResultsByCategory');
+Route::get('nedvizhimost', 					'ResultsController@getResultsByCategory');
+Route::get('bytovaya-tehnika', 				'ResultsController@getResultsByCategory');
+Route::get('rabota-i-biznes', 				'ResultsController@getResultsByCategory');
+Route::get('dlya-doma-i-dachi',				'ResultsController@getResultsByCategory');
+Route::get('lichnye-veschi', 				'ResultsController@getResultsByCategory');
+Route::get('zhivotnye', 					'ResultsController@getResultsByCategory');
+Route::get('hobbi-i-otdyh', 				'ResultsController@getResultsByCategory');
+Route::get('uslugi', 						'ResultsController@getResultsByCategory');
+Route::get('drugoe', 						'ResultsController@getResultsByCategory');
 
 // категории по региону
 Route::get('{region}/transport', 			'ResultsController@getResultsByRegion');
