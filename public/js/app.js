@@ -2754,6 +2754,10 @@ function num2str(n, text_forms) {
   },
   created: function created() {
     this.update();
+
+    document.addEventListener('keyup', function (event) {
+      if (event.key === "Escape") window.history.back();
+    });
   },
 
   components: { item: __WEBPACK_IMPORTED_MODULE_0__components_item___default.a },

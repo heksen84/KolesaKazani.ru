@@ -142,6 +142,12 @@ export default {
 	},
 	created() {
 		this.update();
+
+		// esc на результатах
+		document.addEventListener('keyup', (event) => {
+     		if (event.key==="Escape") window.history.back();
+    	});
+
 	},
 	components: { item },
   		methods: {
