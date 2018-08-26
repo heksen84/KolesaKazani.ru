@@ -42,7 +42,7 @@
         <!-- ЛОГОТИП -->
         <a href="/">
           <div id="logo_block">
-            <div style="font-size:30px;letter-spacing:4px;font-weight:450;padding:7px;margin-top:-8px">АксуМаркет<span style="position:relative;top:-15px;left:-3px;font-size:12px;display:none">&reg</span>
+            <div style="font-size:32px;letter-spacing:4px;font-weight:450;padding:7px;margin-top:-8px">АксуМаркет<span style="position:relative;top:-15px;left:-3px;font-size:12px;display:none">&reg</span>
             </div>
             <div style="font-size:18px;color:yellow;margin-top:-13px;letter-spacing:2px;">сайт объявлений</div>
           </div>
