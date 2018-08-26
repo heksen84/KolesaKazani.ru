@@ -52,9 +52,9 @@ Route::get('categories', 		'CategoriesController@index');
 Route::get('new', 				'AdvertController@newAdvert');
 Route::post('create', 			'AdvertController@createAdvert');
 
-// АВТО
-Route::get('getCarsMarks',  		'AdvertController@getCarsMarks' );
-Route::get('getCarsModels', 		'AdvertController@getCarsModels' );
+// авто
+Route::get('getCarsMarks',  'AdvertController@getCarsMarks' );
+Route::get('getCarsModels', 'AdvertController@getCarsModels' );
 Route::get('search',  function () { return view('search')->with("items", "123"); });
 
 // перенести в контроллер Categories
