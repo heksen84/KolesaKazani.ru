@@ -26,17 +26,18 @@ class ResultsController extends Controller {
     }
 
     // ---------------------------------------------------
-	// результаты по региону
+	// результаты по всему региону
 	// ---------------------------------------------------
-    public function getResultsByRegion(Request $request) {
+    public function getResultsByRegion($region, $transport) {
 
     	// получаю имя на русском
-    	//$record = Categories::select('id', 'name')->where('url',  $request->path() )->get();
+    	$record = Categories::select('id', 'name')->where('url',  $transport )->get();
 
     	// получаю объявления
     	$items 	= Adverts::where('category_id',  0)->get();
 
 		return view('results')->with("items", $items)->with("title", " в Казахстане");
+
     }
 
 	// ---------------------------------------------------
