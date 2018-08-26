@@ -35298,9 +35298,17 @@ var render = function() {
               attrs: { cols: "12", sm: "12", md: "12", lg: "4", xl: "4" }
             },
             [
-              _c("h2", { staticStyle: { "text-align": "center" } }, [
-                _vm._v("регистрация")
-              ]),
+              _c(
+                "h3",
+                {
+                  staticStyle: {
+                    "text-align": "center",
+                    "margin-top": "10px",
+                    color: "grey"
+                  }
+                },
+                [_vm._v("Регистрация")]
+              ),
               _vm._v(" "),
               _c("br"),
               _vm._v(" "),
@@ -35473,11 +35481,15 @@ var render = function() {
             },
             [
               _c(
-                "h2",
+                "h3",
                 {
-                  staticStyle: { "text-align": "center", "margin-top": "10px" }
+                  staticStyle: {
+                    "text-align": "center",
+                    "margin-top": "10px",
+                    color: "grey"
+                  }
                 },
-                [_vm._v("вход")]
+                [_vm._v("Вход")]
               ),
               _vm._v(" "),
               _c("br"),
