@@ -11,7 +11,9 @@ use App\Categories;
 
 class ResultsController extends Controller {
 
+	// ---------------------------------------------------
     // результаты по всей стране
+    // ---------------------------------------------------
     public function getResultsByCategory(Request $request) {
 
     	// получаю имя на русском
@@ -23,7 +25,9 @@ class ResultsController extends Controller {
      	return view('results')->with("items", $items)->with("title", $record[0]->name." в Казахстане");
     }
 
+    // ---------------------------------------------------
 	// результаты по региону
+	// ---------------------------------------------------
     public function getResultsByRegion(Request $request) {
 
     	// получаю имя на русском
@@ -35,7 +39,9 @@ class ResultsController extends Controller {
 		return view('results')->with("items", $items)->with("title", " в Казахстане");
     }
 
+	// ---------------------------------------------------
     // результаты по городу, деревне
+    // ---------------------------------------------------
     public function getResultsByPlace(Request $request) {
 
     	// получаю имя на русском
