@@ -30,12 +30,12 @@ class ResultsController extends Controller {
     // ---------------------------------------------------
 	// результаты по всему региону
 	// ---------------------------------------------------
-    public function getResultsByRegion($_region, $_transport) {
+    public function getResultsByRegion($_region, $_category) {
 
-    	// получаю имя на русском
-    	$category 	= Categories::select('id', 'name')->where('url',  $_transport )->first();
+    	// получаю имена на русском
     	$region 	= Regions::select('name')->where('url',  $_region )->first();
-
+    	$category 	= Categories::select('id', 'name')->where('url',  $_category )->first();
+    	
     	// получаю объявления
     	$items 	= Adverts::where('category_id',  $region->id)->get();
 
