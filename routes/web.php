@@ -19,10 +19,10 @@ Route::get('uslugi', 					'ResultsController@getResultsByCategory');
 Route::get('drugoe', 					'ResultsController@getResultsByCategory');
 
 // категории по региону
-Route::get('{region}/{category}', 					'ResultsController@getResultsByRegion');
+Route::get('{region}/{category}', 'ResultsController@getResultsByRegion');
 
 // категории по региону и местности
-Route::get('{region}/{place}/{category}', 			'ResultsController@getResultsByPlace');
+Route::get('{region}/{place}/{category}', 'ResultsController@getResultsByPlace');
 
 // базовые контроллеры
 Route::get('/', 				'WelcomeController@getCategories');
