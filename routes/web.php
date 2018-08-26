@@ -31,7 +31,6 @@ Route::get('{region}/hobbi-i-otdyh', 		'ResultsController@getResultsByRegion');
 Route::get('{region}/uslugi', 				'ResultsController@getResultsByRegion');
 Route::get('{region}/drugoe', 				'ResultsController@getResultsByRegion');
 
-// resultsController@getResultsByRegion(region_name)
 
 // категории по региону и местности
 Route::get('{region}/{place}/transport', 		'ResultsController@getResultsByPlace');
@@ -44,8 +43,6 @@ Route::get('{region}/{place}/zhivotnye', 		'ResultsController@getResultsByPlace'
 Route::get('{region}/{place}/hobbi-i-otdyh', 	'ResultsController@getResultsByPlace');
 Route::get('{region}/{place}/uslugi', 			'ResultsController@getResultsByPlace');
 Route::get('{region}/{place}/drugoe', 			'ResultsController@getResultsByPlace');
-
-// resultsController@getResultsByPlace(place_name)
 
 // базовые контроллеры
 Route::get('/', 				'WelcomeController@getCategories');
@@ -73,6 +70,9 @@ Route::get('/category/{id}', function ($id) {
 });
 
 Route::get('getSearchData', 'SearchController@getSearchData');
-Route::get('details/{id}', array('as' => 'id', 'uses' => 'AdvertController@getFullInfo'));
-Route::get('location/{country}/{region}/{place}', array('as' => 'country', 'uses' => 'AdvertController@getFullInfo'));
+//Route::get('details/{id}', array('as' => 'id', 'uses' => 'AdvertController@getFullInfo'));
+
+Route::get('details/{id}', ['uses' => 'AdvertController@getFullInfo']);
+
+Route::get('location/{country}/{region}/{place}', ['uses' => 'AdvertController@getFullInfo']);
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
