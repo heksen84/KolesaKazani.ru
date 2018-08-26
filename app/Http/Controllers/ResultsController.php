@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Adverts;
 use App\Categories;
+use App\Regions;
 
 class ResultsController extends Controller {
 
@@ -28,15 +29,17 @@ class ResultsController extends Controller {
     // ---------------------------------------------------
 	// результаты по всему региону
 	// ---------------------------------------------------
-    public function getResultsByRegion($region, $transport) {
+    public function getResultsByRegion($_region, $_transport) {
 
     	// получаю имя на русском
-    	$record = Categories::select('id', 'name')->where('url',  $transport )->get();
+    	$category 	= Categories::select('id', 'name')->where('url',  $_transport )->first();
+    	$region 	= Regions::select('name')->where('url',  $_region )->first();
 
     	// получаю объявления
-    	$items 	= Adverts::where('category_id',  0)->get();
+    	$items 	= Adverts::where('category_id',  $region->id)->get();
 
-		return view('results')->with("items", $items)->with("title", " в Казахстане");
+    	// отобразить
+		return view('results')->with("items", $items)->with("title", $category->name." в ".$region->name);
 
     }
 
