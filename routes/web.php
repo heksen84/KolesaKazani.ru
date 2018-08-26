@@ -7,29 +7,29 @@ Auth::routes();
 Route::get('/util/str2url', 'UtilsController@str2url');
 
 // категории по всему Казахстану
-Route::get('/transport', 					'ResultController@getResultsByCategory');
-Route::get('/nedvizhimost', 				'ResultController@getResultsByCategory');
-Route::get('/bytovaya-tehnika', 			'ResultController@getResultsByCategory');
-Route::get('/rabota-i-biznes', 				'ResultController@getResultsByCategory');
-Route::get('/dlya-doma-i-dachi',			'ResultController@getResultsByCategory');
-Route::get('/lichnye-veschi', 				'ResultController@getResultsByCategory');
-Route::get('/zhivotnye', 					'ResultController@getResultsByCategory');
-Route::get('/hobbi-i-otdyh', 				'ResultController@getResultsByCategory');
-Route::get('/uslugi', 						'ResultController@getResultsByCategory');
-Route::get('/drugoe', 						'ResultController@getResultsByCategory');
+Route::get('/transport', 					'ResultsController@getResultsByCategory');
+Route::get('/nedvizhimost', 				'ResultsController@getResultsByCategory');
+Route::get('/bytovaya-tehnika', 			'ResultsController@getResultsByCategory');
+Route::get('/rabota-i-biznes', 				'ResultsController@getResultsByCategory');
+Route::get('/dlya-doma-i-dachi',			'ResultsController@getResultsByCategory');
+Route::get('/lichnye-veschi', 				'ResultsController@getResultsByCategory');
+Route::get('/zhivotnye', 					'ResultsController@getResultsByCategory');
+Route::get('/hobbi-i-otdyh', 				'ResultsController@getResultsByCategory');
+Route::get('/uslugi', 						'ResultsController@getResultsByCategory');
+Route::get('/drugoe', 						'ResultsController@getResultsByCategory');
 
 
 // категории по региону
-Route::get('{region}/transport', 			'SearchController@getSearchData');
-Route::get('{region}/nedvizhimost', 		'SearchController@getSearchData');
-Route::get('{region}/bytovaya-tehnika', 	'SearchController@getSearchData');
-Route::get('{region}/rabota-i-biznes', 		'SearchController@getSearchData');
-Route::get('{region}/dlya-doma-i-dachi',	'SearchController@getSearchData');
-Route::get('{region}/lichnye-veschi', 		'SearchController@getSearchData');
-Route::get('{region}/zhivotnye', 			'SearchController@getSearchData');
-Route::get('{region}/hobbi-i-otdyh', 		'SearchController@getSearchData');
-Route::get('{region}/uslugi', 				'SearchController@getSearchData');
-Route::get('{region}/drugoe', 				'SearchController@getSearchData');
+Route::get('{region}/transport', 			'ResultsController@getResultsByRegion');
+Route::get('{region}/nedvizhimost', 		'ResultsController@getResultsByRegion');
+Route::get('{region}/bytovaya-tehnika', 	'ResultsController@getResultsByRegion');
+Route::get('{region}/rabota-i-biznes', 		'ResultsController@getResultsByRegion');
+Route::get('{region}/dlya-doma-i-dachi',	'ResultsController@getResultsByRegion');
+Route::get('{region}/lichnye-veschi', 		'ResultsController@getResultsByRegion');
+Route::get('{region}/zhivotnye', 			'ResultsController@getResultsByRegion');
+Route::get('{region}/hobbi-i-otdyh', 		'ResultsController@getResultsByRegion');
+Route::get('{region}/uslugi', 				'ResultsController@getResultsByRegion');
+Route::get('{region}/drugoe', 				'ResultsController@getResultsByRegion');
 
 // resultsController@getResultsByRegion(region_name)
 
