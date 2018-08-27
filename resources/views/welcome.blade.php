@@ -8,7 +8,7 @@
   <meta name="description" content="АксуМаркет - сайт объявлений">
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>АксуМаркет - сайт объявлений</title>
+  <title>Доска объявлений АксуМаркет. Частные объявления о покупке и продаже.</title>
   <link rel="icon" href="{{ asset('public/shop.ico') }}">
 </head>
 <body>
