@@ -2755,6 +2755,7 @@ function num2str(n, text_forms) {
   created: function created() {
     this.update();
 
+    // esc на результатах
     document.addEventListener('keyup', function (event) {
       if (event.key === "Escape") window.history.back();
     });
