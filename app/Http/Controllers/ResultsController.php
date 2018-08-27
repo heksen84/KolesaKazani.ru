@@ -11,16 +11,22 @@ use App\Categories;
 use App\Regions;
 use App\Places;
 
+require ('./App/Utils/Petrovich.php');
+
 class ResultsController extends Controller {
+
+	//use Petrovich;
 
 	// ---------------------------------------------------
     // результаты по всей стране
     // ---------------------------------------------------
     public function getResultsByCategory(Request $request) {
 
+    	//$petrovich = new Petrovich(Petrovich::GENDER_MALE);
+
     	// получаю имя на русском
     	$record = Categories::select('id', 'name')->where('url',  $request->path() )->first();
-    	// получаю объявления
+    	// получаю объявления/
     	$items 	= Adverts::where('category_id',  $record->id )->get();
 
 		// передаю во вьюху
