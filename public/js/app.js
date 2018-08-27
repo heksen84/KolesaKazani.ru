@@ -34795,7 +34795,7 @@ var render = function() {
                         {
                           staticStyle: {
                             "font-size": "13px",
-                            color: "rgb(150,255,150)",
+                            color: "rgb(160,255,160)",
                             float: "right",
                             "margin-top": "3px"
                           },
