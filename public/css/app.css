@@ -209,7 +209,7 @@ body {
 }
 
 .close_button:hover {
-  text-decoration: underline;
+  font-weight: bold;
 }
 
 .custom-file-input:lang(en) ~ .custom-file-label::after {
