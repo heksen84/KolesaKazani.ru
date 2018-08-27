@@ -32,7 +32,7 @@ Route::get('getUser', 			'UserController@getUser');
 Route::get('home', 				'HomeController@index')->name('home');
 Route::get('home/{advert_id}', 	'HomeController@index')->name('home');
 Route::get('categories', 		'CategoriesController@index');
-Route::get('podatobyavlenie', 	'AdvertController@newAdvert');
+Route::get('podat-obyavlenie', 	'AdvertController@newAdvert');
 Route::post('create', 			'AdvertController@createAdvert');
 
 // авто

@@ -34758,7 +34758,7 @@ var render = function() {
               attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
             },
             [
-              _c("a", { attrs: { href: "/podatobyavlenie" } }, [
+              _c("a", { attrs: { href: "/podat-obyavlenie" } }, [
                 _c("div", { attrs: { id: "new_advert_block" } }, [
                   _c("b", [_vm._v("+ ")]),
                   _vm._v("подать объявление")

@@ -54,7 +54,7 @@
           <button id="button_search" @click="search">найти</button>
         </b-col>
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
-        <a href="/podatobyavlenie"><div id="new_advert_block"><b>+&nbsp;</b>подать объявление</div></a>
+        <a href="/podat-obyavlenie"><div id="new_advert_block"><b>+&nbsp;</b>подать объявление</div></a>
         </b-col>
     </b-row>
 
