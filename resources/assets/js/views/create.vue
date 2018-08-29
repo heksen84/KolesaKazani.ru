@@ -38,7 +38,6 @@
 			<!-- для дома и дачи -->
 			<h1 v-else-if="for_home"></h1>
 
-
 			<!-- для дома и дачи -->
 			<h1 v-else-if="personal_effects"></h1>
 
@@ -53,7 +52,6 @@
 
 			<!-- услуги -->
 			<h1 v-else-if="other"></h1>
-
 
 			<b-form-group label="Дополнительная информация:" label-for="addit_info">
 			 <b-form-textarea id="addit_info" v-model="form.text"
