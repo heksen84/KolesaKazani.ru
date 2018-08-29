@@ -98,7 +98,6 @@ import { post } from './../helpers/api'
 import transport from '../components/chars/transport';
 import realestate from '../components/chars/realestate';
 
-
 var tmp_images_array=[];
 
 export default {
