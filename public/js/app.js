@@ -35890,14 +35890,14 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "h2",
+                "h3",
                 {
                   staticStyle: {
                     color: "rgb(120,120,120)",
                     "margin-top": "-20px"
                   }
                 },
-                [_vm._v("новое объявление")]
+                [_vm._v("подать объявление")]
               ),
               _vm._v(" "),
               _c("hr"),
