@@ -11,11 +11,9 @@ use App\Categories;
 use App\Regions;
 use App\Places;
 
-require ('./App/Utils/Petrovich.php');
 
 class ResultsController extends Controller {
 
-	//use Petrovich;
 
 	// ---------------------------------------------------
     // результаты по всей стране
