@@ -14,7 +14,6 @@ use App\Places;
 
 class ResultsController extends Controller {
 
-
 	// ---------------------------------------------------
     // результаты по всей стране
     // ---------------------------------------------------
@@ -24,8 +23,9 @@ class ResultsController extends Controller {
 
     	// получаю имя на русском
     	$record = Categories::select('id', 'name')->where('url',  $request->path() )->first();
+
     	// получаю объявления/
-    	$items 	= Adverts::where('category_id',  $record->id )->get();
+    	$items = Adverts::where('category_id',  $record->id )->get();
 
 		// передаю во вьюху
      	return view('results')->with("items", $items)->with("title", $record->name." в Казахстане");
@@ -37,11 +37,11 @@ class ResultsController extends Controller {
     public function getResultsByRegion($_region, $_category) {
 
     	// получаю имена на русском
-    	$region 	= Regions::select('name')->where('url',  $_region )->first();
-    	$category 	= Categories::select('id', 'name')->where('url',  $_category )->first();
+    	$region = Regions::select('name')->where('url',  $_region )->first();
+    	$category = Categories::select('id', 'name')->where('url',  $_category )->first();
     	
     	// получаю объявления
-    	$items 	= Adverts::where('category_id',  $region->id)->get();
+    	$items = Adverts::where('category_id',  $region->id)->get();
 
     	// передаю во вьюху
 		return view('results')->with("items", $items)->with("title", $category->name." в ".$region->name);
@@ -53,11 +53,11 @@ class ResultsController extends Controller {
     public function getResultsByPlace($_region, $place, $_category) {
 
     	// получаю имена на русском
-    	$region 	= Regions::select('name')->where('url',  $_region )->first();
-    	$category 	= Categories::select('id', 'name')->where('url',  $_category )->first();
+    	$region = Regions::select('name')->where('url',  $_region )->first();
+    	$category = Categories::select('id', 'name')->where('url',  $_category )->first();
     	
     	// получаю объявления
-    	$items 	= Adverts::where('category_id',  $region->id)->get();
+    	$items = Adverts::where('category_id',  $region->id)->get();
 
     	// передаю во вьюху
 		return view('results')->with("items", $items)->with("title", $category->name." в ".$region->name);
