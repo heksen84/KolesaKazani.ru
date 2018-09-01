@@ -24,7 +24,7 @@ class ResultsController extends Controller {
     	// получаю имя на русском
     	$record = Categories::select('id', 'name')->where('url',  $request->path() )->first();
 
-    	// получаю объявления/
+    	// получаю объявления
     	$items = Adverts::where('category_id',  $record->id )->get();
 
 		// передаю во вьюху
@@ -41,7 +41,7 @@ class ResultsController extends Controller {
     	$category = Categories::select('id', 'name')->where('url',  $_category )->first();
     	
     	// получаю объявления
-    	$items = Adverts::where('category_id',  $region->id)->get();
+    	$items = Adverts::where('category_id',  0)->get();
 
     	// передаю во вьюху
 		return view('results')->with("items", $items)->with("title", $category->name." в ".$region->name);
