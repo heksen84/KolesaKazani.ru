@@ -139,6 +139,11 @@ body {
   color: #323232;
 }
 
+.title_text {
+  font-size: 28px;
+  color: #787878;
+}
+
 .category_item {
   margin: 5px auto;
   border: 1px solid #e6e6e6;

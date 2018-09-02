@@ -35882,12 +35882,10 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "h3",
+                "h1",
                 {
-                  staticStyle: {
-                    color: "rgb(120,120,120)",
-                    "margin-top": "-20px"
-                  }
+                  staticClass: "title_text",
+                  staticStyle: { "margin-top": "-20px" }
                 },
                 [_vm._v("подать объявление")]
               ),
