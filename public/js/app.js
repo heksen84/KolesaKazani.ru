@@ -35084,7 +35084,7 @@ var render = function() {
               attrs: { cols: "12", sm: "12", md: "10", lg: "10", xl: "10" }
             },
             [
-              _c("h5", { staticClass: "shadow_text" }, [
+              _c("h1", { staticClass: "shadow_text title_text" }, [
                 _vm._v(_vm._s(_vm.count) + " " + _vm._s(_vm.count_string))
               ])
             ]

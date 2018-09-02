@@ -2,7 +2,7 @@
 	<b-container fluid>
 		<b-row>
 			<b-col cols="12" sm="12" md="10" lg="10" xl="10" class="result_info_col">
-				<h5 class="shadow_text">{{ count  }} {{ count_string }}</h5>
+				<h1 class="shadow_text title_text">{{ count  }} {{ count_string }}</h1>
 			</b-col>
 		</b-row>
 	<br>
