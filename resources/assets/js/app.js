@@ -76,5 +76,13 @@ const app = new Vue({
       results,
       create,
       fullinfo
+  },
+  created() {
+
+    // esc на результатах
+    document.addEventListener('keyup', (event) => {
+        if (event.key==="Escape") window.history.back();
+    });
+
   }
 });

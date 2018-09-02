@@ -2279,9 +2279,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 // импорт
@@ -2754,11 +2751,6 @@ function num2str(n, text_forms) {
   },
   created: function created() {
     this.update();
-
-    // esc на результатах
-    document.addEventListener('keyup', function (event) {
-      if (event.key === "Escape") window.history.back();
-    });
   },
 
   components: { item: __WEBPACK_IMPORTED_MODULE_0__components_item___default.a },
@@ -48371,21 +48363,28 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_28_boo
  // хранилище
 
 var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
-  el: '#app',
-  data: __WEBPACK_IMPORTED_MODULE_0__common__["a" /* default */],
-  components: {
-    store: __WEBPACK_IMPORTED_MODULE_31__store__["a" /* default */],
-    welcome: __WEBPACK_IMPORTED_MODULE_2__views_welcome_vue___default.a,
-    profile: __WEBPACK_IMPORTED_MODULE_4__views_profile_vue___default.a,
-    home: __WEBPACK_IMPORTED_MODULE_3__views_home_vue___default.a,
-    passwordreset: __WEBPACK_IMPORTED_MODULE_9__views_auth_passwordreset_vue___default.a,
-    login: __WEBPACK_IMPORTED_MODULE_10__views_auth_login_vue___default.a,
-    register: __WEBPACK_IMPORTED_MODULE_11__views_auth_register_vue___default.a,
-    search: __WEBPACK_IMPORTED_MODULE_5__views_search_vue___default.a,
-    results: __WEBPACK_IMPORTED_MODULE_6__views_results_vue___default.a,
-    create: __WEBPACK_IMPORTED_MODULE_7__views_create_vue___default.a,
-    fullinfo: __WEBPACK_IMPORTED_MODULE_8__views_fullinfo_vue___default.a
-  }
+    el: '#app',
+    data: __WEBPACK_IMPORTED_MODULE_0__common__["a" /* default */],
+    components: {
+        store: __WEBPACK_IMPORTED_MODULE_31__store__["a" /* default */],
+        welcome: __WEBPACK_IMPORTED_MODULE_2__views_welcome_vue___default.a,
+        profile: __WEBPACK_IMPORTED_MODULE_4__views_profile_vue___default.a,
+        home: __WEBPACK_IMPORTED_MODULE_3__views_home_vue___default.a,
+        passwordreset: __WEBPACK_IMPORTED_MODULE_9__views_auth_passwordreset_vue___default.a,
+        login: __WEBPACK_IMPORTED_MODULE_10__views_auth_login_vue___default.a,
+        register: __WEBPACK_IMPORTED_MODULE_11__views_auth_register_vue___default.a,
+        search: __WEBPACK_IMPORTED_MODULE_5__views_search_vue___default.a,
+        results: __WEBPACK_IMPORTED_MODULE_6__views_results_vue___default.a,
+        create: __WEBPACK_IMPORTED_MODULE_7__views_create_vue___default.a,
+        fullinfo: __WEBPACK_IMPORTED_MODULE_8__views_fullinfo_vue___default.a
+    },
+    created: function created() {
+
+        // esc на результатах
+        document.addEventListener('keyup', function (event) {
+            if (event.key === "Escape") window.history.back();
+        });
+    }
 });
 
 /***/ }),

@@ -72,7 +72,6 @@
 				<b-form-file v-model="form.file" multiple accept="image/jpeg, image/png" class="mt-2" @change="loadImage"></b-form-file>
 			</b-form-group>
 
-
 			<!-- ОТМЕТИТЬ НА КАРТЕ -->
 			<b-form-group label="Расположение:" style="text-align:right">
 				<button>отметить на карте</button>
@@ -89,7 +88,6 @@
 </b-container>
 </template>
 <script>
-
 
 // импорт
 import { post } from './../helpers/api'
@@ -129,7 +127,6 @@ export default {
 	},
 	components: { transport, realestate },
   	methods: {
-
   		loadImage(evt) {
 
   			var files = evt.target.files;;
