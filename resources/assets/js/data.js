@@ -12,7 +12,7 @@ export default {
         { value: '5', text: 'Сдача в аренду' }
     ],
     advert: [
-        {   
+    {   
             type:null, 
             category:null, 
             desc:"",
