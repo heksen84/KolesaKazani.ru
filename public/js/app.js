@@ -2300,8 +2300,8 @@ var tmp_images_array = [];
         text: '',
         price: '',
         file: null,
-        images: [],
-        chars: [] // <-- характеристики
+        images: []
+        //chars:[]	// <-- характеристики
 
       },
       root: false,
@@ -2319,7 +2319,9 @@ var tmp_images_array = [];
   },
   created: function created() {
 
-    alert(this.$root.advert[0].price);
+    this.$root.advert[0].chars.push({ "type": 0, "category": 5, "engine_type": 10 });
+
+    alert(this.$root.advert[0].chars[0].type + "\n" + this.$root.advert[0].chars[0].category + "\n" + this.$root.advert[0].chars[0].engine_type);
   },
 
   components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default.a },
@@ -48691,9 +48693,7 @@ module.exports = Component.exports
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
-
     max_load_images: 20,
-
     options_sdelka: [{ value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }],
     advert: [{
         type: null,

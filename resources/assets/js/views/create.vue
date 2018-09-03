@@ -110,7 +110,7 @@ export default {
 			price: '',
 			file: null,
 			images:[],
-			chars:[]	// <-- характеристики
+			//chars:[]	// <-- характеристики
 
 		},
 		root:false,
@@ -128,8 +128,9 @@ export default {
 	},
 	created() {
 
+		this.$root.advert[0].chars.push({ "type": 0, "category": 5, "engine_type": 10 });
 
-		alert(this.$root.advert[0].price);
+		alert(this.$root.advert[0].chars[0].type+"\n"+this.$root.advert[0].chars[0].category+"\n"+this.$root.advert[0].chars[0].engine_type);
 		
 	},
 	components: { transport, realestate },
