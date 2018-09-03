@@ -109,8 +109,7 @@ export default {
 			text: '',
 			price: '',
 			file: null,
-			images:[],
-			//chars:[]	// <-- характеристики
+			images:[]
 
 		},
 		root:false,
