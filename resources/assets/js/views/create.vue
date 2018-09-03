@@ -128,14 +128,9 @@ export default {
 	},
 	created() {
 
-		this.$store.commit('increment')
-    	this.$store.commit('increment')
-    	this.$store.commit('increment')
-    	this.$store.commit('increment')
-    	this.$store.commit('increment')
-    	this.$store.commit('increment')
 
-		console.log(this.$store.state.count) // -> 2
+		alert(this.$root.advert[0].price);
+		
 	},
 	components: { transport, realestate },
   	methods: {

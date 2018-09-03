@@ -2319,14 +2319,7 @@ var tmp_images_array = [];
   },
   created: function created() {
 
-    this.$store.commit('increment');
-    this.$store.commit('increment');
-    this.$store.commit('increment');
-    this.$store.commit('increment');
-    this.$store.commit('increment');
-    this.$store.commit('increment');
-
-    console.log(this.$store.state.count); // -> 2
+    alert(this.$root.advert[0].price);
   },
 
   components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default.a },
@@ -48706,12 +48699,13 @@ module.exports = Component.exports
         type: null,
         category: null,
         desc: "",
-        price: 0,
+        price: 10,
         images: [],
         location: [],
-        chars: [] // здесь хар-ки: тип объявления, категория, хар-ки транспорта в виде json'a
-        // vuex н прокатывает т.к. сайт не одностраничный (гибридный)
-    }]
+        chars: []
+    }] // здесь хар-ки: тип объявления, категория, 
+    // хар-ки транспорта в виде json'a
+    // vuex не прокатывает т.к. сайт не одностраничный (гибридный)
 });
 
 /***/ }),
