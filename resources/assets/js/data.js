@@ -24,7 +24,7 @@ export default {
             // структура транспорта
             // ----------------------
             
-            transport: {  
+            /*transport: {  
 
                 passenger_transport:[],
                 freight_transport:[],
@@ -34,15 +34,15 @@ export default {
                 water_transport:[],
                 a_bike:[],
                 air_transport:[],
-
-                /* com_transport (общие характеристики транспорта) */
                
                 year_release: null,
                 rule_pos: null,
                 probeg: null,
                 engine_type: null,
                 rastamozhka: null 
-            } 
+            }*/ 
+
+            chars:[]
 
         }
     ]

@@ -1,6 +1,6 @@
 require('./bootstrap');
 
-import common from './common';
+import data from './data';
 import Vue from 'vue';
 import Vuex from 'vuex';
 
@@ -60,6 +60,10 @@ Vue.use(VueCarousel);
 Vue.use(modal);
 
 
+/*
+--------------------------------
+Хранилище Vuex
+--------------------------------*/
 const store = new Vuex.Store({
   state: {
     count: 0
@@ -74,7 +78,7 @@ const store = new Vuex.Store({
 
 const app = new Vue({
     el: '#app',
-    data: common,
+    data: data,
     store,
     components: {
       welcome,

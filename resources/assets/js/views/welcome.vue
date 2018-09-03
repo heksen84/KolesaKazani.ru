@@ -74,6 +74,7 @@
 import { get } from './../helpers/api'
 export default {
   props: ["items", "auth", "count"],
+
   data () {
     return {
       regions: [],
@@ -90,9 +91,6 @@ export default {
   },
   created() {
 
-    this.$store.commit('increment')
-    console.log(this.$store.state.count) // -> 1
-
     var placeName = localStorage.getItem("placeName");
 
     if(placeName==null)
@@ -102,10 +100,10 @@ export default {
 
     var urlRegAndPlace = localStorage.getItem("urlRegAndPlace");
 
-     if(urlRegAndPlace==null)
-      this.urlRegAndPlace = "";
-    else 
-      this.urlRegAndPlace = urlRegAndPlace;
+    if(urlRegAndPlace==null) 
+    this.urlRegAndPlace = "";
+      else 
+    this.urlRegAndPlace = urlRegAndPlace;
 
   },
   methods: {

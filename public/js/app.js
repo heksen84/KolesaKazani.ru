@@ -2317,7 +2317,17 @@ var tmp_images_array = [];
       other: false // другое
     };
   },
-  created: function created() {},
+  created: function created() {
+
+    this.$store.commit('increment');
+    this.$store.commit('increment');
+    this.$store.commit('increment');
+    this.$store.commit('increment');
+    this.$store.commit('increment');
+    this.$store.commit('increment');
+
+    console.log(this.$store.state.count); // -> 2
+  },
 
   components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default.a },
   methods: {
@@ -2898,6 +2908,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["items", "auth", "count"],
+
   data: function data() {
     return {
       regions: [],
@@ -2913,9 +2924,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   created: function created() {
-
-    this.$store.commit('increment');
-    console.log(this.$store.state.count); // -> 1
 
     var placeName = localStorage.getItem("placeName");
 
@@ -48263,7 +48271,7 @@ module.exports = function(module) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common__ = __webpack_require__("./resources/assets/js/common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__data__ = __webpack_require__("./resources/assets/js/data.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
@@ -48371,6 +48379,10 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_28_boo
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_30_vue_carousel___default.a);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_29_bootstrap_vue_src_components_modal__["a" /* default */]);
 
+/*
+--------------------------------
+Хранилище Vuex
+--------------------------------*/
 var store = new __WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */].Store({
   state: {
     count: 0
@@ -48384,7 +48396,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */].Store({
 
 var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
   el: '#app',
-  data: __WEBPACK_IMPORTED_MODULE_0__common__["a" /* default */],
+  data: __WEBPACK_IMPORTED_MODULE_0__data__["a" /* default */],
   store: store,
   components: {
     welcome: __WEBPACK_IMPORTED_MODULE_3__views_welcome_vue___default.a,
@@ -48438,52 +48450,6 @@ if (token) {
 } else {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
-
-/***/ }),
-
-/***/ "./resources/assets/js/common.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
-    max_load_images: 20,
-    options_sdelka: [{ value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }],
-
-    advert: [{
-        type: null,
-        category: null,
-        desc: null,
-        price: null,
-        photos: [],
-        location: [],
-
-        // ----------------------
-        // структура транспорта
-        // ----------------------
-
-        transport: {
-
-            passenger_transport: [],
-            freight_transport: [],
-            mototechnics: [],
-            spec_technics: [],
-            retro_technics: [],
-            water_transport: [],
-            a_bike: [],
-            air_transport: [],
-
-            /* com_transport (общие характеристики транспорта) */
-
-            year_release: null,
-            rule_pos: null,
-            probeg: null,
-            engine_type: null,
-            rastamozhka: null
-        }
-
-    }]
-
-});
 
 /***/ }),
 
@@ -48724,6 +48690,51 @@ if (false) {(function () {
 
 module.exports = Component.exports
 
+
+/***/ }),
+
+/***/ "./resources/assets/js/data.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    max_load_images: 20,
+    options_sdelka: [{ value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }],
+
+    advert: [{
+        type: null,
+        category: null,
+        desc: null,
+        price: null,
+        photos: [],
+        location: [],
+
+        // ----------------------
+        // структура транспорта
+        // ----------------------
+
+        /*transport: {  
+              passenger_transport:[],
+            freight_transport:[],
+            mototechnics:[],
+            spec_technics:[],
+            retro_technics:[],
+            water_transport:[],
+            a_bike:[],
+            air_transport:[],
+           
+            year_release: null,
+            rule_pos: null,
+            probeg: null,
+            engine_type: null,
+            rastamozhka: null 
+        }*/
+
+        chars: []
+
+    }]
+
+});
 
 /***/ }),
 

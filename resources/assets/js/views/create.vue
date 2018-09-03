@@ -111,7 +111,7 @@ export default {
 			file: null,
 			images:[],
 			chars:[]	// <-- характеристики
-			
+
 		},
 		root:false,
 		transport:false,			// транспорт
@@ -127,6 +127,15 @@ export default {
 	}
 	},
 	created() {
+
+		this.$store.commit('increment')
+    	this.$store.commit('increment')
+    	this.$store.commit('increment')
+    	this.$store.commit('increment')
+    	this.$store.commit('increment')
+    	this.$store.commit('increment')
+
+		console.log(this.$store.state.count) // -> 2
 	},
 	components: { transport, realestate },
   	methods: {
@@ -137,7 +146,8 @@ export default {
 
         	for (var i=0; i<files.length; i++) {
 
-        		if ( i>=this.$root.max_load_images  || this.form.images.length>=this.$root.max_load_images ) break;
+        		if ( i>=this.$root.max_load_images  || this.form.images.length >= this.$root.max_load_images ) 
+        			break;
 
         		var image = files[i]
   				var reader = new FileReader();
