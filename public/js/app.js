@@ -48730,7 +48730,8 @@ module.exports = Component.exports
             rastamozhka: null 
         }*/
 
-        chars: []
+        chars: [] // помещаем сюда вложенные хар-ки: тип объявления, категория, ... 
+        // хар-ки транспорта в виде json'a
 
     }]
 
