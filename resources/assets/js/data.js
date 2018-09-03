@@ -1,5 +1,7 @@
 export default {
+    
 	max_load_images: 20,
+
     options_sdelka: 
     [
         { value: '0', text: 'Покупка' },
@@ -11,13 +13,14 @@ export default {
     ],
     advert: [
         {   
-            type:       null, 
-            category:   null, 
-            desc:       "",
-            price:      0,
-            photos:     [],
-            location:   [],
+            type:null, 
+            category:null, 
+            desc:"",
+            price:0,
+            images:[],
+            location:[],
             chars:[]    // здесь хар-ки: тип объявления, категория, хар-ки транспорта в виде json'a
+                        // vuex н прокатывает т.к. сайт не одностраничный (гибридный)
         }
     ]
 }
