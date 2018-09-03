@@ -100,14 +100,18 @@ export default {
 	props: ["items"],
 	data () {
     return 	{
-		form: {
+		form: 
+		{
+			
 			deal_selected: 0,
 			category: null,
 			title: '',
 			text: '',
 			price: '',
 			file: null,
-			images:[]
+			images:[],
+			chars:[]	// <-- характеристики
+			
 		},
 		root:false,
 		transport:false,			// транспорт
@@ -123,13 +127,13 @@ export default {
 	}
 	},
 	created() {
-		//alert(store.commit("getUserName"));
 	},
 	components: { transport, realestate },
   	methods: {
+
   		loadImage(evt) {
 
-  			var files = evt.target.files;;
+  			var files = evt.target.files;
 
         	for (var i=0; i<files.length; i++) {
 
@@ -234,6 +238,12 @@ export default {
 
   			}
   		},
+  		
+  		/*
+		----------------------------
+		Сохранить объявление
+		----------------------------
+  		*/
     	onSubmit(evt) {
     		evt.preventDefault();
     		post('/create', { "data": this.form }).then((res) => {

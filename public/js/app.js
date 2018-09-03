@@ -2293,13 +2293,16 @@ var tmp_images_array = [];
   data: function data() {
     return {
       form: {
+
         deal_selected: 0,
         category: null,
         title: '',
         text: '',
         price: '',
         file: null,
-        images: []
+        images: [],
+        chars: [] // <-- характеристики
+
       },
       root: false,
       transport: false, // транспорт
@@ -2314,15 +2317,13 @@ var tmp_images_array = [];
       other: false // другое
     };
   },
-  created: function created() {
-    //alert(store.commit("getUserName"));
-  },
+  created: function created() {},
 
   components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default.a },
   methods: {
     loadImage: function loadImage(evt) {
 
-      var files = evt.target.files;;
+      var files = evt.target.files;
 
       for (var i = 0; i < files.length; i++) {
 
@@ -2440,6 +2441,13 @@ var tmp_images_array = [];
 
       }
     },
+
+
+    /*
+    ----------------------------
+    Сохранить объявление
+    ----------------------------
+    */
     onSubmit: function onSubmit(evt) {
       evt.preventDefault();
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.form }).then(function (res) {
@@ -48298,7 +48306,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_29_vue_carousel__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30_vue_yandex_maps__ = __webpack_require__("./node_modules/vue-yandex-maps/vue-yandex-maps.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30_vue_yandex_maps___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30_vue_yandex_maps__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__store__ = __webpack_require__("./resources/assets/js/store/index.js");
 __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
@@ -48317,7 +48324,6 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
 // bootstrap
-
 
 
 
@@ -48358,13 +48364,12 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_27_boo
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_29_vue_carousel___default.a);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_28_bootstrap_vue_src_components_modal__["a" /* default */]);
 
- // хранилище
+//import store from './store'; // хранилище
 
 var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
     el: '#app',
     data: __WEBPACK_IMPORTED_MODULE_0__common__["a" /* default */],
     components: {
-        store: __WEBPACK_IMPORTED_MODULE_31__store__["a" /* default */],
         welcome: __WEBPACK_IMPORTED_MODULE_2__views_welcome_vue___default.a,
         profile: __WEBPACK_IMPORTED_MODULE_4__views_profile_vue___default.a,
         home: __WEBPACK_IMPORTED_MODULE_3__views_home_vue___default.a,

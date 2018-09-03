@@ -33,9 +33,7 @@ import image from 'bootstrap-vue/src/components/image';
 import radio from 'bootstrap-vue/src/components/form-radio';
 import navbar from 'bootstrap-vue/src/components/navbar';
 import modal from 'bootstrap-vue/src/components/modal';
-
 import VueCarousel from 'vue-carousel';
-
 
 // register globally
 import YmapPlugin from 'vue-yandex-maps'
@@ -59,13 +57,12 @@ Vue.use(VueCarousel);
 Vue.use(modal);
 
 
-import store from './store'; // хранилище
+//import store from './store'; // хранилище
 
 const app = new Vue({
     el: '#app',
     data: common,
     components: {
-      store,
       welcome,
       profile,
       home,
