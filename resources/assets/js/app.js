@@ -2,6 +2,9 @@ require('./bootstrap');
 
 import common from './common';
 import Vue from 'vue';
+import Vuex from 'vuex';
+
+Vue.use(Vuex);
 
 // views
 import welcome from './views/welcome.vue';
@@ -57,11 +60,22 @@ Vue.use(VueCarousel);
 Vue.use(modal);
 
 
-//import store from './store'; // хранилище
+const store = new Vuex.Store({
+  state: {
+    count: 0
+  },
+  mutations: {
+    increment (state) {
+      state.count++
+    }
+  }
+})
+
 
 const app = new Vue({
     el: '#app',
     data: common,
+    store,
     components: {
       welcome,
       profile,

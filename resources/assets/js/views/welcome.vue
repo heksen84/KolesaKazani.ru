@@ -90,6 +90,9 @@ export default {
   },
   created() {
 
+    this.$store.commit('increment')
+    console.log(this.$store.state.count) // -> 1
+
     var placeName = localStorage.getItem("placeName");
 
     if(placeName==null)
