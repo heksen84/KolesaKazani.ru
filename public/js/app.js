@@ -2447,7 +2447,6 @@ var tmp_images_array = [];
     */
     onSubmit: function onSubmit(evt) {
       evt.preventDefault();
-
       /*chars.push({ "type": 0, "category": 5, "engine_type": 10 });
       alert(this.$root.advert[0].chars[0].type+"\n"+this.$root.advert[0].chars[0].category+"\n"+this.$root.advert[0].chars[0].engine_type);*/
 
@@ -35926,14 +35925,9 @@ var render = function() {
                 [_vm._v("X")]
               ),
               _vm._v(" "),
-              _c(
-                "h1",
-                {
-                  staticClass: "title_text",
-                  staticStyle: { "margin-top": "-20px" }
-                },
-                [_vm._v("подать объявление")]
-              ),
+              _c("h1", { staticClass: "title_text" }, [
+                _vm._v("подать объявление")
+              ]),
               _vm._v(" "),
               _c("hr"),
               _vm._v(" "),

@@ -3,7 +3,7 @@
 		<b-row>
 		<b-col cols="12" sm="12" md="12" lg="8" xl="8" style="text-align:left;margin: auto;color:black;background:white">
 		<div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
-		<h1 class="title_text" style="margin-top:-20px">подать объявление</h1>
+		<h1 class="title_text">подать объявление</h1>
 		<hr>
 		
 			<b-form @submit="onSubmit">
@@ -244,7 +244,6 @@ export default {
   		*/
     	onSubmit(evt) {
 		evt.preventDefault();
-		
     	/*chars.push({ "type": 0, "category": 5, "engine_type": 10 });
 
 		alert(this.$root.advert[0].chars[0].type+"\n"+this.$root.advert[0].chars[0].category+"\n"+this.$root.advert[0].chars[0].engine_type);*/
