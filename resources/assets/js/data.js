@@ -9,7 +9,7 @@ export default {
         { value: '4', text: 'Отдам даром' },
         { value: '5', text: 'Сдача в аренду' }
     ],
-    advert: 
+    advert: // струтура объявления 
     [{   
         deal_selected:null, 
         category:null, 
