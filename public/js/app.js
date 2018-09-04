@@ -35932,9 +35932,14 @@ var render = function() {
                 [_vm._v("X")]
               ),
               _vm._v(" "),
-              _c("h1", { staticClass: "title_text" }, [
-                _vm._v("подать объявление")
-              ]),
+              _c(
+                "h1",
+                {
+                  staticClass: "title_text",
+                  staticStyle: { "margin-top": "5px" }
+                },
+                [_vm._v("подать объявление")]
+              ),
               _vm._v(" "),
               _c("hr"),
               _vm._v(" "),
