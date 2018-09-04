@@ -210,7 +210,8 @@ body {
   top: 12px;
   left: 93%;
   cursor: pointer;
-  font-weight: 380;
+  font-weight: 480;
+  color: #646496;
 }
 
 .close_button:hover {
