@@ -102,10 +102,8 @@ export default {
     return 	{
 		form: 
 		{
-			
 			deal_selected: 0,
 			category: null,
-			title: '',
 			text: '',
 			price: '',
 			file: null,
@@ -126,11 +124,6 @@ export default {
 	}
 	},
 	created() {
-
-		this.$root.advert[0].chars.push({ "type": 0, "category": 5, "engine_type": 10 });
-
-		alert(this.$root.advert[0].chars[0].type+"\n"+this.$root.advert[0].chars[0].category+"\n"+this.$root.advert[0].chars[0].engine_type);
-		
 	},
 	components: { transport, realestate },
   	methods: {
@@ -250,10 +243,54 @@ export default {
 		----------------------------
   		*/
     	onSubmit(evt) {
-    		evt.preventDefault();
+		evt.preventDefault();
+		
+    	/*chars.push({ "type": 0, "category": 5, "engine_type": 10 });
+
+		alert(this.$root.advert[0].chars[0].type+"\n"+this.$root.advert[0].chars[0].category+"\n"+this.$root.advert[0].chars[0].engine_type);*/
+
+/*
+		advert: 
+    	[{   
+        	deal_selected:null, 
+       	 	category:null, 
+        	text:"",
+        	price:0,
+        	images:[],
+        	location:[],
+        	chars:[] 
+    	}] 
+
+    	form: 
+		{
+			deal_selected: 0,
+			category: null,
+			title: '',
+			text: '',
+			price: '',
+			file: null,
+			images:[]
+
+		}
+*/
+		
+		// можно напрямую работать с data
+		this.$root.advert[0].deal_selected = this.form.deal_selected;
+		this.$root.advert[0].category = this.form.category;
+		this.$root.advert[0].text = this.form.text;
+		this.$root.advert[0].price = this.form.price;
+		this.$root.advert[0].images = this.form.images;
+
+		console.log(this.$root.advert[0]);
+
+
+    		/*evt.preventDefault();
     		post('/create', { "data": this.form }).then((res) => {
     			window.location.href = "/home/555";
-			}).catch((err) => {});
+			}).catch((err) => {});*/
+
+
+
     	}
 }
 }

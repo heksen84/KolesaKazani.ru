@@ -2,9 +2,6 @@ require('./bootstrap');
 
 import data from './data';
 import Vue from 'vue';
-import Vuex from 'vuex';
-
-Vue.use(Vuex);
 
 // views
 import welcome from './views/welcome.vue';
@@ -59,27 +56,9 @@ Vue.use(navbar);
 Vue.use(VueCarousel);
 Vue.use(modal);
 
-
-/*
---------------------------------
-Хранилище Vuex
---------------------------------*/
-const store = new Vuex.Store({
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment (state) {
-      state.count++
-    }
-  }
-})
-
-
 const app = new Vue({
     el: '#app',
     data: data,
-    store,
     components: {
       welcome,
       profile,
@@ -93,7 +72,6 @@ const app = new Vue({
       fullinfo
   },
   created() {
-
     // esc на результатах
     document.addEventListener('keyup', (event) => {
         if (event.key==="Escape") window.history.back();

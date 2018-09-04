@@ -11,10 +11,10 @@ export default {
     ],
     advert: 
     [{   
-        type:null, 
+        deal_selected:null, 
         category:null, 
-        desc:"",
-        price:10,
+        text:"",
+        price:0,
         images:[],
         location:[],
         chars:[] 
