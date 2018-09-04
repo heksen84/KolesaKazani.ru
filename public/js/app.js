@@ -1941,7 +1941,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     selectMark: function selectMark(markType) {
       var _this2 = this;
 
+      alert(markType);
+
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsModels?mark_id=' + markType).then(function (res) {
+
+        _this2.$root.advert[0].chars.push({ "car_mark": markType });
+
         _this2.models = [];
         _this2.models = res.data;
         _this2.selected.model = null;
@@ -2482,7 +2487,7 @@ var tmp_images_array = [];
       this.$root.advert[0].price = this.form.price;
       this.$root.advert[0].images = this.form.images;
 
-      console.log(this.$root.advert[0]);
+      console.log(this.$root.advert[0].chars[0].car_mark);
 
       /*evt.preventDefault();
       post('/create', { "data": this.form }).then((res) => {

@@ -280,7 +280,7 @@ export default {
 		this.$root.advert[0].price = this.form.price;
 		this.$root.advert[0].images = this.form.images;
 
-		console.log(this.$root.advert[0]);
+		console.log(this.$root.advert[0].chars[0].car_mark);
 
 
     		/*evt.preventDefault();
