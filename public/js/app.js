@@ -1922,6 +1922,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     selectTransportType: function selectTransportType(ttype) {
       var _this = this;
 
+      alert(ttype);
+
       switch (ttype) {
         case 1:
           {

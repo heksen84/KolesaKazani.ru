@@ -70,6 +70,9 @@ export default {
       Вид транспорта
     -----------------------------*/
     selectTransportType(ttype) {
+
+      alert(ttype);
+
       switch(ttype) {
         case 1: {  // автомобили
           this.carmark=[];
@@ -99,6 +102,6 @@ export default {
         });
     },
   },
-   components: { "com-transport": comtransport }
+  components: { "com-transport": comtransport }
 }
 </script>
