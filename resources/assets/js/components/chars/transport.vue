@@ -72,38 +72,12 @@ export default {
     selectTransportType(transport_id) {
 
       // если массив характеристик не пуст, то ...
-      if(this.$root.advert[0].chars.length!=0) {
-
-        /*var json_chars = this.$root.advert[0].chars[0];
-        var data = JSON.parse(json_chars);
-
-        if ('age' in data) {
-          console.log("есть");
-        } else {
-         console.log("нету");
-        }*/
-
-        console.log(this.$root.advert[0].chars);
+      if( this.$root.advert[0].chars.length!=0 && this.$root.advert[0].chars[0].transport_id!=undefined) {
+            this.$root.advert[0].chars[0].transport_id=transport_id;
+            console.log(this.$root.advert[0].chars[0].transport_id);
       }
       else // если пустой, то добавляем элемент
-      this.$root.advert[0].chars.push("transport_id", transport_id);
-
-      //console.log(this.$root.advert[0].chars[0].transport_id);
-      //var json_chars = this.$root.advert[0].chars[0];
-      //var data = JSON.parse(json_chars);
-
-/*
-      if ('age' in data) {
-        console.log("есть");
-      } else {
-        console.log("нету");
-      }
-
-*/
-     
-     //   this.$root.advert[0].chars.push("transport_id", transport_id);
-
-    //  alert(ttype);
+      this.$root.advert[0].chars.push({ "transport_id": transport_id });
 
       switch(transport_id) {
         case 1: {  // автомобили
