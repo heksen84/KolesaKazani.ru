@@ -71,6 +71,7 @@ export default {
     -----------------------------*/
     selectTransportType(transport_id) {
 
+      // если массив характеристик не пуст, то ...
       if(this.$root.advert[0].chars.length!=0) {
 
         /*var json_chars = this.$root.advert[0].chars[0];
@@ -84,7 +85,7 @@ export default {
 
         console.log(this.$root.advert[0].chars);
       }
-      else 
+      else // если пустой, то добавляем элемент
       this.$root.advert[0].chars.push("transport_id", transport_id);
 
       //console.log(this.$root.advert[0].chars[0].transport_id);
