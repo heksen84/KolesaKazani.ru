@@ -101,7 +101,8 @@ export default {
           console.log(err);
         });
     },
-    // change марки
+    
+    // change модели
     selectModel(modelId) {
       alert(modelId);
     }
