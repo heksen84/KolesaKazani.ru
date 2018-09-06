@@ -177,6 +177,9 @@ export default {
   		изменения в категориях
   		--------------------------*/
   		changeCategory(data) {
+
+  			this.$root.advert[0].chars=[]; // обнуляю характеристики
+
   			switch(data) {
   				case null: {
   					this.resetCategories(data); 

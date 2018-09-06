@@ -1925,10 +1925,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var chars = this.$root.advert[0].chars;
 
       if (!transport_id) {
-        this.$root.advert[0].chars = [];
+        this.$root.advert[0].chars = []; // обнуляю
         return;
       }
 
+      // заполняю
       if (chars.length != 0 && chars[0].transport_id != undefined) {
         chars.transport_id = transport_id;
         console.log(chars.transport_id);
@@ -2396,6 +2397,9 @@ var tmp_images_array = [];
     изменения в категориях
     --------------------------*/
     changeCategory: function changeCategory(data) {
+
+      this.$root.advert[0].chars = []; // обнуляю характеристики
+
       switch (data) {
         case null:
           {
