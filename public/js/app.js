@@ -1955,17 +1955,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       chars.mark_id = mark_id;
       console.log(chars.mark_id);
 
-      /*if( chars.length!=0 && chars[0].mark_id!=undefined) 
-      {
-          chars[0].mark_id=mark_id;
-          console.log(chars[0].mark_id);
-      }
-      else 
-      {
-        chars.mark_id = mark_id;
-        console.log(chars.mark_id);
-      }*/
-
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsModels?mark_id=' + mark_id).then(function (res) {
 
         _this2.models = [];
@@ -1979,8 +1968,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     // change модели
     selectModel: function selectModel(model_id) {
-      this.$root.advert[0].chars.push("model_id", model_id);
-      //alert(modelId);
+      var chars = this.$root.advert[0].chars;
+      chars.model_id = model_id;
+      console.log(chars.model_id);
     }
   }
 }, 'components', { "com-transport": __WEBPACK_IMPORTED_MODULE_1__common_com_transport_vue___default.a }));

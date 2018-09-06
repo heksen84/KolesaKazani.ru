@@ -82,8 +82,6 @@ export default {
         console.log(chars[0].transport_id);
       }
 
-
-
       switch(transport_id) {
         case 1: {  // автомобили
           this.carmark=[];
@@ -103,7 +101,6 @@ export default {
       chars.mark_id = mark_id;
       console.log(chars.mark_id);
       
-
       get('/getCarsModels?mark_id='+mark_id).then((res) => {
 
         this.models=[];
@@ -116,8 +113,9 @@ export default {
 
     // change модели
     selectModel(model_id) {
-      this.$root.advert[0].chars.push("model_id", model_id);
-      //alert(modelId);
+      var chars = this.$root.advert[0].chars;
+      chars.model_id = model_id;
+      console.log(chars.model_id);
     }
   },
   components: { "com-transport": comtransport }
