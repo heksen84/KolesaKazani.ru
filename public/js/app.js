@@ -1919,12 +1919,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     -----------------------------
       Вид транспорта
     -----------------------------*/
-    selectTransportType: function selectTransportType(ttype) {
+    selectTransportType: function selectTransportType(transport_id) {
       var _this = this;
 
-      alert(ttype);
+      this.$root.advert[0].chars.push("transport_id", transport_id);
 
-      switch (ttype) {
+      //  alert(ttype);
+
+      switch (transport_id) {
         case 1:
           {
             // автомобили
@@ -1940,14 +1942,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
     // change марки
-    selectMark: function selectMark(markType) {
+    selectMark: function selectMark(mark_id) {
       var _this2 = this;
 
-      alert(markType);
+      //alert(markType);
 
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsModels?mark_id=' + markType).then(function (res) {
+      this.$root.advert[0].chars.push("mark_id", mark_id);
 
-        _this2.$root.advert[0].chars.push({ "car_mark": markType });
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsModels?mark_id=' + mark_id).then(function (res) {
 
         _this2.models = [];
         _this2.models = res.data;
@@ -1957,9 +1959,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
 
-    // change марки
-    selectModel: function selectModel(modelId) {
-      alert(modelId);
+
+    // change модели
+    selectModel: function selectModel(model_id) {
+      this.$root.advert[0].chars.push("model_id", model_id);
+      //alert(modelId);
     }
   }
 }, 'components', { "com-transport": __WEBPACK_IMPORTED_MODULE_1__common_com_transport_vue___default.a }));
@@ -2459,33 +2463,6 @@ var tmp_images_array = [];
     */
     onSubmit: function onSubmit(evt) {
       evt.preventDefault();
-      /*chars.push({ "type": 0, "category": 5, "engine_type": 10 });
-      alert(this.$root.advert[0].chars[0].type+"\n"+this.$root.advert[0].chars[0].category+"\n"+this.$root.advert[0].chars[0].engine_type);*/
-
-      /*
-      		advert: 
-          	[{   
-              	deal_selected:null, 
-             	 	category:null, 
-              	text:"",
-              	price:0,
-              	images:[],
-              	location:[],
-              	chars:[] 
-          	}] 
-      
-          	form: 
-      		{
-      			deal_selected: 0,
-      			category: null,
-      			title: '',
-      			text: '',
-      			price: '',
-      			file: null,
-      			images:[]
-      
-      		}
-      */
 
       // можно напрямую работать с data
       this.$root.advert[0].deal_selected = this.form.deal_selected;
@@ -2494,7 +2471,8 @@ var tmp_images_array = [];
       this.$root.advert[0].price = this.form.price;
       this.$root.advert[0].images = this.form.images;
 
-      console.log(this.$root.advert[0].chars[0].car_mark);
+      console.log(this.$root.advert[0].text);
+      console.log(this.$root.advert[0].chars);
 
       /*evt.preventDefault();
       post('/create', { "data": this.form }).then((res) => {

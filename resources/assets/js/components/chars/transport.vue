@@ -69,11 +69,13 @@ export default {
     -----------------------------
       Вид транспорта
     -----------------------------*/
-    selectTransportType(ttype) {
+    selectTransportType(transport_id) {
 
-      alert(ttype);
+      this.$root.advert[0].chars.push("transport_id", transport_id);
 
-      switch(ttype) {
+    //  alert(ttype);
+
+      switch(transport_id) {
         case 1: {  // автомобили
           this.carmark=[];
           get('/getCarsMarks').then((res) => {
@@ -86,26 +88,27 @@ export default {
     },
 
     // change марки
-    selectMark(markType) {
+    selectMark(mark_id) {
 
-          alert(markType);
+          //alert(markType);
 
-          get('/getCarsModels?mark_id='+markType).then((res) => {
+          this.$root.advert[0].chars.push("mark_id", mark_id);
 
-            this.$root.advert[0].chars.push({ "car_mark": markType });
+          get('/getCarsModels?mark_id='+mark_id).then((res) => {
+
             this.models=[];
             this.models = res.data;
             this.selected.model=null;
 
-            
         }).catch((err) => {
           console.log(err);
         });
     },
 
     // change модели
-    selectModel(modelId) {
-      alert(modelId);
+    selectModel(model_id) {
+      this.$root.advert[0].chars.push("model_id", model_id);
+      //alert(modelId);
     }
   },
   components: { "com-transport": comtransport }
