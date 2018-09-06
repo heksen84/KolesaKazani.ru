@@ -93,15 +93,16 @@ export default {
           get('/getCarsModels?mark_id='+markType).then((res) => {
 
             this.$root.advert[0].chars.push({ "car_mark": markType });
-
             this.models=[];
             this.models = res.data;
             this.selected.model=null;
+
+            
         }).catch((err) => {
           console.log(err);
         });
     },
-    
+
     // change модели
     selectModel(modelId) {
       alert(modelId);
