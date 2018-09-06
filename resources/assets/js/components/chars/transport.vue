@@ -73,6 +73,12 @@ export default {
 
       var chars = this.$root.advert[0].chars;
 
+      if (!transport_id) {
+        this.$root.advert[0].chars=[]; // обнуляю
+        return;
+      }
+
+      // заполняю
       if( chars.length!=0 && chars[0].transport_id!=undefined) 
       {
         chars.transport_id=transport_id;

@@ -1924,6 +1924,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       var chars = this.$root.advert[0].chars;
 
+      if (!transport_id) {
+        this.$root.advert[0].chars = [];
+        return;
+      }
+
       if (chars.length != 0 && chars[0].transport_id != undefined) {
         chars.transport_id = transport_id;
         console.log(chars.transport_id);
