@@ -71,13 +71,15 @@ export default {
     -----------------------------*/
     selectTransportType(transport_id) {
 
-      // если массив характеристик не пуст, то ...
-      if( this.$root.advert[0].chars.length!=0 && this.$root.advert[0].chars[0].transport_id!=undefined) {
-            this.$root.advert[0].chars[0].transport_id=transport_id;
-            console.log(this.$root.advert[0].chars[0].transport_id);
+      var chars = this.$root.advert[0].chars;
+      
+      if( chars.length!=0 && chars[0].transport_id!=undefined) {
+          chars[0].transport_id=transport_id;
+          console.log(chars[0].transport_id);
       }
-      else // если пустой, то добавляем элемент
-      this.$root.advert[0].chars.push({ "transport_id": transport_id });
+      else chars.push({ "transport_id": transport_id });
+
+
 
       switch(transport_id) {
         case 1: {  // автомобили
