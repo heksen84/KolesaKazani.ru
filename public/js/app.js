@@ -1955,6 +1955,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).catch(function (err) {
         console.log(err);
       });
+    },
+
+    // change марки
+    selectModel: function selectModel(modelId) {
+      alert(modelId);
     }
   }
 }, 'components', { "com-transport": __WEBPACK_IMPORTED_MODULE_1__common_com_transport_vue___default.a }));
@@ -34955,6 +34960,7 @@ var render = function() {
                 "b-form-select",
                 {
                   staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                  on: { change: _vm.selectModel },
                   model: {
                     value: _vm.selected.model,
                     callback: function($$v) {
