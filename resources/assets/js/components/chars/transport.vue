@@ -73,11 +73,13 @@ export default {
 
       var chars = this.$root.advert[0].chars;
 
-      if( chars.length!=0 && chars[0].transport_id!=undefined) {
-          chars[0].transport_id=transport_id;
-          console.log(chars[0].transport_id);
+      if( chars.length!=0 && chars[0].transport_id!=undefined) 
+      {
+        chars[0].transport_id=transport_id;
+        console.log(chars[0].transport_id);
       }
-      else {
+      else 
+      {
         chars.push({ "transport_id": transport_id });
         console.log(chars[0].transport_id);
       }
