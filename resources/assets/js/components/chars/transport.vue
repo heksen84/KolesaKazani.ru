@@ -79,13 +79,11 @@ export default {
       }
 
       // заполняю
-      if( chars.length!=0 && chars[0].transport_id!=undefined) 
-      {
+      if( chars.length!=0 && chars[0].transport_id!=undefined) {
         chars.transport_id=transport_id;
         console.log(chars.transport_id);
       }
-      else 
-      {
+      else {
         chars.push({ "transport_id": transport_id });
         console.log(chars[0].transport_id);
       }
