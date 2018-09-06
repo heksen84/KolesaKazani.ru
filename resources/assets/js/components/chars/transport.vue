@@ -71,7 +71,36 @@ export default {
     -----------------------------*/
     selectTransportType(transport_id) {
 
+      if(this.$root.advert[0].chars.length!=0) {
+
+        /*var json_chars = this.$root.advert[0].chars[0];
+        var data = JSON.parse(json_chars);
+
+        if ('age' in data) {
+          console.log("есть");
+        } else {
+         console.log("нету");
+        }*/
+
+        console.log(this.$root.advert[0].chars);
+      }
+      else 
       this.$root.advert[0].chars.push("transport_id", transport_id);
+
+      //console.log(this.$root.advert[0].chars[0].transport_id);
+      //var json_chars = this.$root.advert[0].chars[0];
+      //var data = JSON.parse(json_chars);
+
+/*
+      if ('age' in data) {
+        console.log("есть");
+      } else {
+        console.log("нету");
+      }
+
+*/
+     
+     //   this.$root.advert[0].chars.push("transport_id", transport_id);
 
     //  alert(ttype);
 
