@@ -1927,8 +1927,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (chars.length != 0 && chars[0].transport_id != undefined) {
         chars[0].transport_id = transport_id;
         console.log(chars[0].transport_id);
-      } else // если пустой, то добавляем элемент
+      } else {
         chars.push({ "transport_id": transport_id });
+        console.log(chars[0].transport_id);
+      }
 
       switch (transport_id) {
         case 1:
@@ -1949,9 +1951,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     selectMark: function selectMark(mark_id) {
       var _this2 = this;
 
-      //alert(markType);
+      var chars = this.$root.advert[0].chars;
+      chars.mark_id = mark_id;
+      console.log(chars.mark_id);
 
-      this.$root.advert[0].chars.push("mark_id", mark_id);
+      /*if( chars.length!=0 && chars[0].mark_id!=undefined) 
+      {
+          chars[0].mark_id=mark_id;
+          console.log(chars[0].mark_id);
+      }
+      else 
+      {
+        chars.mark_id = mark_id;
+        console.log(chars.mark_id);
+      }*/
 
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsModels?mark_id=' + mark_id).then(function (res) {
 

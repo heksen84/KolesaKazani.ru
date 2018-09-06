@@ -72,12 +72,15 @@ export default {
     selectTransportType(transport_id) {
 
       var chars = this.$root.advert[0].chars;
-      
+
       if( chars.length!=0 && chars[0].transport_id!=undefined) {
           chars[0].transport_id=transport_id;
           console.log(chars[0].transport_id);
       }
-      else chars.push({ "transport_id": transport_id });
+      else {
+        chars.push({ "transport_id": transport_id });
+        console.log(chars[0].transport_id);
+      }
 
 
 
@@ -96,19 +99,19 @@ export default {
     // change марки
     selectMark(mark_id) {
 
-          //alert(markType);
+      var chars = this.$root.advert[0].chars;
+      chars.mark_id = mark_id;
+      console.log(chars.mark_id);
+      
 
-          this.$root.advert[0].chars.push("mark_id", mark_id);
+      get('/getCarsModels?mark_id='+mark_id).then((res) => {
 
-          get('/getCarsModels?mark_id='+mark_id).then((res) => {
-
-            this.models=[];
-            this.models = res.data;
-            this.selected.model=null;
-
+        this.models=[];
+        this.models = res.data;
+        this.selected.model=null;
         }).catch((err) => {
           console.log(err);
-        });
+      });
     },
 
     // change модели
