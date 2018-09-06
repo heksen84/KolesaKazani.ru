@@ -1925,8 +1925,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var chars = this.$root.advert[0].chars;
 
       if (chars.length != 0 && chars[0].transport_id != undefined) {
-        chars[0].transport_id = transport_id;
-        console.log(chars[0].transport_id);
+        chars.transport_id = transport_id;
+        console.log(chars.transport_id);
       } else {
         chars.push({ "transport_id": transport_id });
         console.log(chars[0].transport_id);
