@@ -85,6 +85,7 @@ export default {
      SetTransportCustoms(customs_id) {
       alert("растаможка");
      }
+     
   }
 }
 </script>
