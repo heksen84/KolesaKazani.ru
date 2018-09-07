@@ -75,12 +75,17 @@ export default {
   components: {},
   methods: {
 
+     // положение руля
      SetHelmPosition(positon_id) {
       alert("руль");
      },
+
+     // тип топлива
      SetFuelType(positon_id) {
       alert("топливо");
      },
+     
+     // растаможка
      SetTransportCustoms(customs_id) {
       alert("растаможка");
      }
