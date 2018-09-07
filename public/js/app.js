@@ -1696,7 +1696,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         model: null,
         helm_position: null,
         fuel_type: 0,
-        car_customs: 1
+        transport_customs: 1
       },
 
       release_date: "",
@@ -1710,7 +1710,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   created: function created() {},
 
   components: {},
-  methods: {}
+  methods: {
+    SetHelmPosition: function SetHelmPosition(positon_id) {
+      alert("руль");
+    },
+    SetFuelType: function SetFuelType(positon_id) {
+      alert("топливо");
+    },
+    SetTransportCustoms: function SetTransportCustoms(customs_id) {
+      alert("растаможка");
+    }
+  }
 });
 
 /***/ }),
@@ -34199,6 +34209,7 @@ var render = function() {
             "b-form-select",
             {
               staticClass: "mb-2 mr-sm-2 mb-sm-2",
+              on: { change: _vm.SetHelmPosition },
               model: {
                 value: _vm.selected.helm_position,
                 callback: function($$v) {
@@ -34252,6 +34263,7 @@ var render = function() {
             "b-form-select",
             {
               staticClass: "mb-2 mr-sm-2 mb-sm-2",
+              on: { change: _vm.SetFuelType },
               model: {
                 value: _vm.selected.fuel_type,
                 callback: function($$v) {
@@ -34278,12 +34290,13 @@ var render = function() {
             "b-form-select",
             {
               staticClass: "mb-2 mr-sm-2 mb-sm-2",
+              on: { change: _vm.SetTransportCustoms },
               model: {
-                value: _vm.selected.car_customs,
+                value: _vm.selected.transport_customs,
                 callback: function($$v) {
-                  _vm.$set(_vm.selected, "car_customs", $$v)
+                  _vm.$set(_vm.selected, "transport_customs", $$v)
                 },
-                expression: "selected.car_customs"
+                expression: "selected.transport_customs"
               }
             },
             [

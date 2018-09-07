@@ -112,9 +112,11 @@ export default {
         this.models=[];
         this.models = res.data;
         this.selected.model=null;
-        }).catch((err) => {
+        
+        }).catch((err) => 
+        {
           console.log(err);
-      });
+        });
     },
 
     // change модели

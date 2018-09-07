@@ -5,7 +5,7 @@
     </b-form-group>
 
     <b-form-group label="Положение руля:">
-        <b-form-select v-model="selected.helm_position" class="mb-2 mr-sm-2 mb-sm-2">
+        <b-form-select v-model="selected.helm_position" class="mb-2 mr-sm-2 mb-sm-2" @change="SetHelmPosition">
            <option :value="null">-- Выберите положение руля --</option>
            <option v-for="item in helm_position" :value="item.value">{{item.text}}</option>
         </b-form-select>
@@ -16,14 +16,14 @@
     </b-form-group>
 
      <b-form-group label="Тип двигателя:">
-        <b-form-select v-model="selected.fuel_type" class="mb-2 mr-sm-2 mb-sm-2">
+        <b-form-select v-model="selected.fuel_type" class="mb-2 mr-sm-2 mb-sm-2" @change="SetFuelType">
            <option v-for="item in fuel_type" :value="item.value">{{item.text}}</option>
         </b-form-select>
     </b-form-group>
 
 
     <b-form-group label="Растаможен:">
-        <b-form-select v-model="selected.car_customs" class="mb-2 mr-sm-2 mb-sm-2">
+        <b-form-select v-model="selected.transport_customs" class="mb-2 mr-sm-2 mb-sm-2" @change="SetTransportCustoms">
            <option :value="1">Да</option>
            <option :value="0">Нет</option>
         </b-form-select>
@@ -48,7 +48,7 @@ export default {
           model: null,
           helm_position: null,
           fuel_type: 0,
-          car_customs: 1
+          transport_customs: 1
       },
 
       release_date: "",
@@ -75,6 +75,16 @@ export default {
   },
   components: {},
   methods: {
+
+     SetHelmPosition(positon_id) {
+      alert("руль");
+     },
+     SetFuelType(positon_id) {
+      alert("топливо");
+     },
+     SetTransportCustoms(customs_id) {
+      alert("растаможка");
+     }
   }
 }
 </script>
