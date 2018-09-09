@@ -1715,6 +1715,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       helm_position: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
 
       fuel_type: [{ value: 0, text: 'Бензин' }, { value: 1, text: 'Дизель' }, { value: 2, text: 'Газ-бензин' }, { value: 3, text: 'Газ' }, { value: 4, text: 'Гибрид' }, { value: 5, text: 'Электричество' }]
+
     };
   },
   created: function created() {},
@@ -2891,6 +2892,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+//
 //
 //
 //
@@ -34745,6 +34747,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "b-row",
+        { staticStyle: { "margin-top": "5px" } },
         [
           _c(
             "b-col",
@@ -34843,7 +34846,14 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("b-row", { attrs: { id: "categories_row" } }),
+      _c(
+        "b-row",
+        {
+          staticStyle: { "margin-left": "30px" },
+          attrs: { id: "categories_row" }
+        },
+        [_c("h6", [_c("ins", [_vm._v("Категории")])])]
+      ),
       _vm._v(" "),
       _vm._l(Math.ceil(Object.keys(_vm.items).length / 4), function(i) {
         return _c(

@@ -36,7 +36,7 @@
         
     </b-row>
 
-    <b-row>
+    <b-row style="margin-top:5px">
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
 
         <!-- ЛОГОТИП -->
@@ -58,8 +58,9 @@
         </b-col>
     </b-row>
 
-    <b-row id="categories_row"></b-row>
+    <b-row id="categories_row" style="margin-left:30px"><h6><ins>Категории</ins></h6></b-row>
 
+    
     <!-- категории -->
     <b-row v-for="i in Math.ceil(Object.keys(items).length / 4)" v-bind:key=i>
       <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in items.slice((i - 1) * 4, i * 4)"  v-bind:key=item.id>
