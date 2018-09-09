@@ -1,5 +1,14 @@
 <template>
 <b-form inline>
+
+
+<!--
+
+Нужно поймать событие и записать значение input в chars
+
+-->
+
+<!-- INPUT -->
 <b-form-group label="Год выпуска:">
        <b-form-input placeholder="Введите год" type="number" v-model="release_date" class="mb-2 mr-sm-2 mb-sm-2" style="width:130px" :state="checkYear"></b-form-input>
     </b-form-group>
@@ -11,6 +20,8 @@
         </b-form-select>
     </b-form-group>
 
+
+    <!-- INPUT -->
     <b-form-group label="Пробег(км):">
        <b-form-input type="number" v-model="mileage" class="mb-2 mr-sm-2 mb-sm-2" style="width:115px"></b-form-input>
     </b-form-group>
