@@ -34747,7 +34747,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "b-row",
-        { staticStyle: { "margin-top": "0px" } },
+        { staticStyle: { "margin-top": "2px" } },
         [
           _c(
             "b-col",
