@@ -25,7 +25,6 @@
             <hr v-if="buttonAllRegion">
             <button style="color:black;display:block;margin:auto;margin-top:-5px" v-if="buttonAllRegion" @click="selectAllRegion">Вся область</button>
 
-
           </b-modal>
         </b-col>
 
@@ -59,7 +58,6 @@
     </b-row>
 
     <b-row id="categories_row" style="margin-left:30px"><h6><ins>Категории</ins></h6></b-row>
-
     
     <!-- категории -->
     <b-row v-for="i in Math.ceil(Object.keys(items).length / 4)" v-bind:key=i>
