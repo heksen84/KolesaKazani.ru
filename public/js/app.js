@@ -1679,7 +1679,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
@@ -1711,12 +1710,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   components: {},
   methods: {
+
+    // положение руля
     SetHelmPosition: function SetHelmPosition(positon_id) {
       alert("руль");
     },
+
+
+    // тип топлива
     SetFuelType: function SetFuelType(positon_id) {
       alert("топливо");
     },
+
+
+    // растаможка
     SetTransportCustoms: function SetTransportCustoms(customs_id) {
       alert("растаможка");
     }
