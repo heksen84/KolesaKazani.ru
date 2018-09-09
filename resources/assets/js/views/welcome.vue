@@ -36,7 +36,7 @@
         
     </b-row>
 
-    <b-row style="margin-top:5px">
+    <b-row style="margin-top:0px">
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
 
         <!-- ЛОГОТИП -->
