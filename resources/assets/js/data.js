@@ -25,9 +25,10 @@ export default
         images:[],
         location:[],
         chars:[] 
-    }]
+    }],
+}
 
-
-    function testFunction(param)  {
-    }
+// вынести в functions
+export function testFunction(param)  {
+    alert("im test");
 }

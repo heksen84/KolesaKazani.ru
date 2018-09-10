@@ -124,17 +124,18 @@ export default {
 	}
 	},
 	created() {
+
+		testFunction();
 	},
 	components: { transport, realestate },
   	methods: {
 
   		loadImage(evt) {
-
+  			
   			var files = evt.target.files;
 
         	for (var i=0; i<files.length; i++) 
         	{
-
         		if ( i>=this.$root.max_load_images  || this.form.images.length >= this.$root.max_load_images ) 
         			break;
 
@@ -147,16 +148,18 @@ export default {
                 	{
                 		tmp_images_array.push({ "src": e.target.result });
                 	};
-                	
+
             	})(image);
 
 			reader.readAsDataURL(image);
 				this.form.images = tmp_images_array;
         	}
   		},
+
   		deletePhoto(index) {
   			this.form.images.splice(index, 1);
   		},
+
   		closeAndReturn() {
  			window.history.back();
   		},

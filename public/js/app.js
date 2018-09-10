@@ -1706,7 +1706,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
           };
      },
-     created: function created() {},
+     created: function created() {
+          // ...
+     },
 
      components: {},
      methods: {
@@ -2384,7 +2386,10 @@ var tmp_images_array = [];
       other: false // другое
     };
   },
-  created: function created() {},
+  created: function created() {
+
+    testFunction();
+  },
 
   components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default.a },
   methods: {
@@ -2393,7 +2398,6 @@ var tmp_images_array = [];
       var files = evt.target.files;
 
       for (var i = 0; i < files.length; i++) {
-
         if (i >= this.$root.max_load_images || this.form.images.length >= this.$root.max_load_images) break;
 
         var image = files[i];
@@ -34217,7 +34221,8 @@ var render = function() {
             attrs: {
               placeholder: "Введите год",
               type: "number",
-              formatter: _vm.SetReleaseDate
+              formatter: _vm.SetReleaseDate,
+              required: ""
             },
             model: {
               value: _vm.release_date,
@@ -34272,7 +34277,7 @@ var render = function() {
           _c("b-form-input", {
             staticClass: "mb-2 mr-sm-2 mb-sm-2",
             staticStyle: { width: "115px" },
-            attrs: { type: _vm.number, formatter: _vm.SetMileage },
+            attrs: { type: "number", formatter: _vm.SetMileage, required: "" },
             model: {
               value: _vm.mileage,
               callback: function($$v) {
@@ -48759,11 +48764,17 @@ module.exports = Component.exports
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* unused harmony export testFunction */
 /* harmony default export */ __webpack_exports__["a"] = ({
+
+    // максимальное кол-во загружаемых картинок
     max_load_images: 20,
+
+    // стандартные операции
     options_sdelka: [{ value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }],
-    advert: // струтура объявления 
-    [{
+
+    // структура объявления 
+    advert: [{
         deal_selected: null,
         category: null,
         text: "",
@@ -48771,10 +48782,12 @@ module.exports = Component.exports
         images: [],
         location: [],
         chars: []
-    }] // здесь хар-ки: тип объявления, категория, 
-    // хар-ки транспорта в виде json'a
-    // vuex не прокатывает т.к. сайт не одностраничный (гибридный)
+    }]
 });
+
+function testFunction(param) {
+    alert("im test");
+}
 
 /***/ }),
 
