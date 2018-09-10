@@ -1,5 +1,6 @@
 export default 
 {
+    
     // максимальное кол-во загружаемых картинок
 	max_load_images: 20,
 

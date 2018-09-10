@@ -70,7 +70,9 @@ export default {
       
 		}
 	},
-  created() {
+  created() 
+  {
+    // ...
   },
   components: {},
   methods: {
