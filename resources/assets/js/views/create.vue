@@ -132,7 +132,8 @@ export default {
 
   			var files = evt.target.files;
 
-        	for (var i=0; i<files.length; i++) {
+        	for (var i=0; i<files.length; i++) 
+        	{
 
         		if ( i>=this.$root.max_load_images  || this.form.images.length >= this.$root.max_load_images ) 
         			break;
@@ -140,11 +141,14 @@ export default {
         		var image = files[i]
   				var reader = new FileReader();
 
-  				reader.onload = (function(theFile) {
-                return function(e) {
-                	tmp_images_array.push({ "src": e.target.result });
-                };
-            })(image);
+  				reader.onload = (function(theFile) 
+  				{
+                	return function(e) 
+                	{
+                		tmp_images_array.push({ "src": e.target.result });
+                	};
+                	
+            	})(image);
 
 			reader.readAsDataURL(image);
 				this.form.images = tmp_images_array;
