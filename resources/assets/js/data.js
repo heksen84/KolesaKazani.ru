@@ -1,6 +1,6 @@
 export default 
 {
-    
+
     // максимальное кол-во загружаемых картинок
 	max_load_images: 20,
 
@@ -24,5 +24,10 @@ export default
         images:[],
         location:[],
         chars:[] 
-    }] 
+    }]
+
+
+    function testFunction(param)  {
+        
+    }
 }
