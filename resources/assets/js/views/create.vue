@@ -124,8 +124,7 @@ export default {
 	}
 	},
 	created() {
-
-		testFunction();
+		//this.$root.testFunction();
 	},
 	components: { transport, realestate },
   	methods: {

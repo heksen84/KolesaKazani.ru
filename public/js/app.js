@@ -2387,8 +2387,7 @@ var tmp_images_array = [];
     };
   },
   created: function created() {
-
-    testFunction();
+    //this.$root.testFunction();
   },
 
   components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default.a },
@@ -48783,9 +48782,9 @@ module.exports = Component.exports
         location: [],
         chars: []
     }]
-});
 
-function testFunction(param) {
+    // вынести в functions
+});function testFunction(param) {
     alert("im test");
 }
 
