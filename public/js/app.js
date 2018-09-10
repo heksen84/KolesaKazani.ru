@@ -1692,11 +1692,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  computed: {
-    checkYear: function checkYear() {
-      return this.release_date.length > 3 && this.release_date > 1930 ? true : null;
-    }
-  },
   data: function data() {
     return {
 
@@ -1738,6 +1733,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // растаможка
     SetTransportCustoms: function SetTransportCustoms(customs_id) {
       alert("растаможка");
+    },
+
+
+    // год выпуска
+    SetReleaseDate: function SetReleaseDate(date) {
+      console.log(date);
+    },
+
+
+    // пробег
+    SetMileage: function SetMileage(mileage) {
+      console.log(mileage);
     }
   }
 });
@@ -34205,7 +34212,7 @@ var render = function() {
             attrs: {
               placeholder: "Введите год",
               type: "number",
-              state: _vm.checkYear
+              formatter: _vm.SetReleaseDate
             },
             model: {
               value: _vm.release_date,
@@ -34260,7 +34267,7 @@ var render = function() {
           _c("b-form-input", {
             staticClass: "mb-2 mr-sm-2 mb-sm-2",
             staticStyle: { width: "115px" },
-            attrs: { type: "number" },
+            attrs: { type: "number", formatter: _vm.SetMileage },
             model: {
               value: _vm.mileage,
               callback: function($$v) {
