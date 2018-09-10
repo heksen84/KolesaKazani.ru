@@ -105,6 +105,8 @@ export default {
      // год выпуска
      SetReleaseDate(date) {
 
+      if (date<0) return;
+
       var chars = this.$root.advert[0].chars;
       chars.release_date = date;
       console.log(chars.release_date);
@@ -114,6 +116,8 @@ export default {
 
      // пробег
      SetMileage(mileage) {
+
+      if (mileage<0) return;
 
       var chars = this.$root.advert[0].chars;
       chars.mileage = mileage;

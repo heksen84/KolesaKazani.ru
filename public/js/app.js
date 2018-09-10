@@ -1741,6 +1741,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           // год выпуска
           SetReleaseDate: function SetReleaseDate(date) {
 
+               if (date < 0) return;
+
                var chars = this.$root.advert[0].chars;
                chars.release_date = date;
                console.log(chars.release_date);
@@ -1751,6 +1753,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
           // пробег
           SetMileage: function SetMileage(mileage) {
+
+               if (mileage < 0) return;
 
                var chars = this.$root.advert[0].chars;
                chars.mileage = mileage;
