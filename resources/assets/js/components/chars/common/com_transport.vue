@@ -91,7 +91,26 @@ export default {
 
      // год выпуска
      SetReleaseDate(date) {
-      console.log(date);
+      
+     // console.log(date);
+
+     /*var chars = this.$root.advert[0].chars;
+
+      if (!transport_id) {
+        this.$root.advert[0].chars=[]; // обнуляю
+        return;
+      }
+
+      // заполняю
+      if( chars.length!=0 && chars[0].transport_id!=undefined) {
+        chars.transport_id=transport_id;
+        console.log(chars.transport_id);
+      }
+      else {
+        chars.push({ "transport_id": transport_id });
+        console.log(chars[0].transport_id);
+      }*/
+
      },
 
      // пробег
