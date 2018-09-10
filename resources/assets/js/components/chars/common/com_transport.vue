@@ -16,7 +16,7 @@
 
     <!-- INPUT -->
     <b-form-group label="Пробег(км):">
-       <b-form-input type="number" v-model="mileage" class="mb-2 mr-sm-2 mb-sm-2" style="width:115px" :formatter="SetMileage"></b-form-input>
+       <b-form-input :type="number" v-model="mileage" class="mb-2 mr-sm-2 mb-sm-2" style="width:115px" :formatter="SetMileage"></b-form-input>
     </b-form-group>
 
      <b-form-group label="Тип двигателя:">
@@ -40,7 +40,8 @@ export default {
   data () {
     return 	{
 
-       selected: {
+       selected: 
+       {
           type_transport: null,
           carmark: null,
           model: null,
@@ -49,7 +50,7 @@ export default {
           transport_customs: 1
       },
 
-      release_date: "",
+      release_date: null,
       mileage: 0,
 
       helm_position: [

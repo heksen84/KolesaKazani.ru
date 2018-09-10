@@ -1697,7 +1697,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     transport_customs: 1
                },
 
-               release_date: "",
+               release_date: null,
                mileage: 0,
 
                helm_position: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
@@ -34268,7 +34268,7 @@ var render = function() {
           _c("b-form-input", {
             staticClass: "mb-2 mr-sm-2 mb-sm-2",
             staticStyle: { width: "115px" },
-            attrs: { type: "number", formatter: _vm.SetMileage },
+            attrs: { type: _vm.number, formatter: _vm.SetMileage },
             model: {
               value: _vm.mileage,
               callback: function($$v) {
