@@ -4,6 +4,7 @@ export default
     // максимальное кол-во загружаемых картинок
 	max_load_images: 20,
 
+    // стандартные операции
     options_sdelka: 
     [
         { value: '0', text: 'Покупка' },
@@ -28,6 +29,6 @@ export default
 
 
     function testFunction(param)  {
-        
+
     }
 }
