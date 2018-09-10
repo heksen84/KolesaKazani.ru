@@ -1685,78 +1685,71 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
+     data: function data() {
+          return {
 
-      selected: {
-        type_transport: null,
-        carmark: null,
-        model: null,
-        helm_position: null,
-        fuel_type: 0,
-        transport_customs: 1
-      },
+               selected: {
+                    type_transport: null,
+                    carmark: null,
+                    model: null,
+                    helm_position: null,
+                    fuel_type: 0,
+                    transport_customs: 1
+               },
 
-      release_date: "",
-      mileage: 0,
+               release_date: "",
+               mileage: 0,
 
-      helm_position: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
+               helm_position: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
 
-      fuel_type: [{ value: 0, text: 'Бензин' }, { value: 1, text: 'Дизель' }, { value: 2, text: 'Газ-бензин' }, { value: 3, text: 'Газ' }, { value: 4, text: 'Гибрид' }, { value: 5, text: 'Электричество' }]
+               fuel_type: [{ value: 0, text: 'Бензин' }, { value: 1, text: 'Дизель' }, { value: 2, text: 'Газ-бензин' }, { value: 3, text: 'Газ' }, { value: 4, text: 'Гибрид' }, { value: 5, text: 'Электричество' }]
 
-    };
-  },
-  created: function created() {},
+          };
+     },
+     created: function created() {},
 
-  components: {},
-  methods: {
+     components: {},
+     methods: {
 
-    // положение руля
-    SetHelmPosition: function SetHelmPosition(positon_id) {
-      alert("руль");
-    },
-
-
-    // тип топлива
-    SetFuelType: function SetFuelType(positon_id) {
-      alert("топливо");
-    },
+          // положение руля
+          SetHelmPosition: function SetHelmPosition(positon_id) {
+               alert("руль");
+          },
 
 
-    // растаможка
-    SetTransportCustoms: function SetTransportCustoms(customs_id) {
-      alert("растаможка");
-    },
+          // тип топлива
+          SetFuelType: function SetFuelType(positon_id) {
+               alert("топливо");
+          },
 
 
-    // год выпуска
-    SetReleaseDate: function SetReleaseDate(date) {
-
-      // console.log(date);
-
-      /*var chars = this.$root.advert[0].chars;
-         if (!transport_id) {
-         this.$root.advert[0].chars=[]; // обнуляю
-         return;
-       }
-         // заполняю
-       if( chars.length!=0 && chars[0].transport_id!=undefined) {
-         chars.transport_id=transport_id;
-         console.log(chars.transport_id);
-       }
-       else {
-         chars.push({ "transport_id": transport_id });
-         console.log(chars[0].transport_id);
-       }*/
-
-    },
+          // растаможка
+          SetTransportCustoms: function SetTransportCustoms(customs_id) {
+               alert("растаможка");
+          },
 
 
-    // пробег
-    SetMileage: function SetMileage(mileage) {
-      console.log(mileage);
-    }
-  }
+          // год выпуска
+          SetReleaseDate: function SetReleaseDate(date) {
+
+               var chars = this.$root.advert[0].chars;
+               chars.release_date = date;
+               console.log(chars.release_date);
+
+               return date;
+          },
+
+
+          // пробег
+          SetMileage: function SetMileage(mileage) {
+
+               var chars = this.$root.advert[0].chars;
+               chars.mileage = mileage;
+               console.log(chars.mileage);
+
+               return mileage;
+          }
+     }
 });
 
 /***/ }),
