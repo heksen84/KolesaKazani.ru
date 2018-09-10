@@ -1,5 +1,8 @@
-export default {
+export default 
+{
+    // максимальное кол-во загружаемых картинок
 	max_load_images: 20,
+
     options_sdelka: 
     [
         { value: '0', text: 'Покупка' },
@@ -9,7 +12,9 @@ export default {
         { value: '4', text: 'Отдам даром' },
         { value: '5', text: 'Сдача в аренду' }
     ],
-    advert: // струтура объявления 
+
+    // структура объявления 
+    advert:
     [{   
         deal_selected:null, 
         category:null, 
@@ -18,7 +23,5 @@ export default {
         images:[],
         location:[],
         chars:[] 
-    }]              // здесь хар-ки: тип объявления, категория, 
-                    // хар-ки транспорта в виде json'a
-                    // vuex не прокатывает т.к. сайт не одностраничный (гибридный)
+    }] 
 }
