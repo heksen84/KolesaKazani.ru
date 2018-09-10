@@ -72,30 +72,20 @@ export default {
     selectTransportType(transport_id) {
 
       var chars = this.$root.advert[0].chars;
-
-      if (!transport_id) {
-        this.$root.advert[0].chars=[]; // обнуляю
-        return;
-      }
-
-      // заполняю
-      if( chars.length!=0 && chars[0].transport_id!=undefined) {
-        chars.transport_id=transport_id;
-        console.log(chars.transport_id);
-      }
-      else {
-        chars.push({ "transport_id": transport_id });
-        console.log(chars[0].transport_id);
-      }
+      chars.transport_id = transport_id;
+      console.log(chars.transport_id);
 
       switch(transport_id) {
-        case 1: {  // автомобили
+
+        case 1: { 
+         // автомобили
           this.carmark=[];
-          get('/getCarsMarks').then((res) => {
+          get('/getCarsMarks').then((res) => 
+          {
             this.carmark = res.data;
             console.log(this.this.carmark);
-        }).catch((err) => {});
-        break;
+          }).catch((err) => {});
+          break;
        }
       }
     },
