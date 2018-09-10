@@ -76,17 +76,29 @@ export default {
 
      // положение руля
      SetHelmPosition(positon_id) {
-      alert("руль");
+      
+        var chars = this.$root.advert[0].chars;
+        chars.rule_position = positon_id;
+        console.log(chars.rule_position);
+
      },
 
      // тип топлива
-     SetFuelType(positon_id) {
-      alert("топливо");
+     SetFuelType(fuel_type) {
+      
+        var chars = this.$root.advert[0].chars;
+        chars.fuel_type = fuel_type;
+        console.log(chars.fuel_type);
+
      },
      
      // растаможка
      SetTransportCustoms(customs_id) {
-      alert("растаможка");
+
+        var chars = this.$root.advert[0].chars;
+        chars.customs = customs_id;
+        console.log(chars.customs);
+
      },
 
      // год выпуска

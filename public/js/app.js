@@ -1713,19 +1713,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
           // положение руля
           SetHelmPosition: function SetHelmPosition(positon_id) {
-               alert("руль");
+
+               var chars = this.$root.advert[0].chars;
+               chars.rule_position = positon_id;
+               console.log(chars.rule_position);
           },
 
 
           // тип топлива
-          SetFuelType: function SetFuelType(positon_id) {
-               alert("топливо");
+          SetFuelType: function SetFuelType(fuel_type) {
+
+               var chars = this.$root.advert[0].chars;
+               chars.fuel_type = fuel_type;
+               console.log(chars.fuel_type);
           },
 
 
           // растаможка
           SetTransportCustoms: function SetTransportCustoms(customs_id) {
-               alert("растаможка");
+
+               var chars = this.$root.advert[0].chars;
+               chars.customs = customs_id;
+               console.log(chars.customs);
           },
 
 
