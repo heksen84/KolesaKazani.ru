@@ -22,9 +22,9 @@ class AdvertController extends Controller
 
     public function createAdvert(Request $request) {
      	 
-     	/*$data = $request->input('data');
+     	$data = $request->input('data');
 
-     	$title 		= $data["title"];
+     	/*$title 		= $data["title"];
      	$text  		= $data["text"];
      	$category  	= $data["category"];
      	$price  	= $data["price"];
@@ -47,7 +47,7 @@ class AdvertController extends Controller
      	
      	 return $data;*/
 
-         return 123;
+         return $data["adv_category"];
     }
 
     public function getFullInfo($id) {

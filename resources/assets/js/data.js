@@ -28,7 +28,7 @@ export default
         chars:[] 
     }]*/
 
-    advert_data: []
+    advert_data: {}
 }
 
 // вынести в functions

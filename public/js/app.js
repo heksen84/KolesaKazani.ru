@@ -2533,12 +2533,16 @@ var tmp_images_array = [];
     ----------------------------*/
     onSubmit: function onSubmit(evt) {
 
-      console.log(this.$root.advert_data);
+      //console.log(Object.keys(this.$root.advert_data));
+
+      //console.log(Object.values(this.$root.advert_data));
 
       evt.preventDefault();
 
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (res) {
-        window.location.href = "/home/555";
+        //window.location.href = "/home/555";
+
+        console.log(res);
       }).catch(function (err) {});
     }
   }
@@ -48793,7 +48797,7 @@ module.exports = Component.exports
         chars:[] 
     }]*/
 
-    advert_data: []
+    advert_data: {}
 
     // вынести в functions
 });function testFunction(param) {
