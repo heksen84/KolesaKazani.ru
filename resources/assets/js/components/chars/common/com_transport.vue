@@ -70,10 +70,12 @@ export default {
       
 		}
 	},
+  
   created() 
   {
      this.transport_chars = this.$root.advert_data;
   },
+
   components: {},
   methods: {
 
