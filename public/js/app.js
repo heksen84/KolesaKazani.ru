@@ -2361,8 +2361,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var tmp_images_array = [];
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+
   props: ["items"],
   data: function data() {
+
     return {
       form: {
         deal_selected: 0,
@@ -2389,6 +2391,7 @@ var tmp_images_array = [];
   created: function created() {
     //this.$root.testFunction();
   },
+
 
   components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default.a },
   methods: {
@@ -2529,9 +2532,10 @@ var tmp_images_array = [];
     Сохранить объявление
     ----------------------------*/
     onSubmit: function onSubmit(evt) {
-      evt.preventDefault();
 
       console.log(this.$root.advert_data);
+
+      evt.preventDefault();
 
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (res) {
         window.location.href = "/home/555";
@@ -36110,7 +36114,7 @@ var render = function() {
                           rows: 4,
                           "max-rows": 4
                         },
-                        on: { change: _vm.setInfo },
+                        on: { input: _vm.setInfo },
                         model: {
                           value: _vm.form.text,
                           callback: function($$v) {

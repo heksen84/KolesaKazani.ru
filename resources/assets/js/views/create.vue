@@ -59,7 +59,7 @@
 			 <b-form-textarea id="addit_info" v-model="form.text"
 										placeholder="Укажите дополнительную информацию"
 										:rows="4"
-										:max-rows="4" @change="setInfo">
+										:max-rows="4" @input="setInfo">
 	 		 </b-form-textarea>
 			</b-form-group>
 
