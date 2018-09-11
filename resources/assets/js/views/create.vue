@@ -11,7 +11,6 @@
 
 				 <b-form-radio-group id="deal_group" stacked v-model="form.deal_selected" :options="this.$root.options_sdelka" name="radioOpenions" @change="setDeal"></b-form-radio-group>
 
-
 			</b-form-group>
 
 			<b-form-group label="Категория товара или услуги:" label-for="categories" style="margin-top:30px;width:260px">
@@ -60,13 +59,13 @@
 			 <b-form-textarea id="addit_info" v-model="form.text"
 										placeholder="Укажите дополнительную информацию"
 										:rows="4"
-										:max-rows="4">
+										:max-rows="4" @change="setInfo">
 	 		 </b-form-textarea>
 			</b-form-group>
 
 			<!-- ЦЕНА -->
 			<b-form-group label="Цена:" label-for="price">
-			 	<b-form-input id="price" v-model="form.price" placeholder="Цена" style="width:150px;margin:auto;font-size:20px;text-align:center"></b-form-input>
+			 	<b-form-input id="price" v-model="form.price" placeholder="Цена" style="width:150px;margin:auto;font-size:20px;text-align:center" :formatter="setPrice"></b-form-input>
 			</b-form-group>
 
 			<!-- ФОТОГРАФИИ -->
@@ -139,7 +138,7 @@ export default {
 
         	for (var i=0; i<files.length; i++) 
         	{
-        		if ( i>=this.$root.max_load_images  || this.form.images.length >= this.$root.max_load_images ) 
+        		if ( i>=this.$root.max_load_images || this.form.images.length >= this.$root.max_load_images ) 
         			break;
 
         		var image = files[i]
@@ -181,6 +180,14 @@ export default {
 			this.services=false;			// услуги
 			this.other=false;				// другое 	
   		},
+
+  		setInfo(info) {
+  			this.$root.advert_data.adv_info=info;
+  		},
+
+  		setPrice(price) {
+  			this.$root.advert_data.adv_price=price;
+  		},
   		
   		setDeal(deal_id) {
   			this.$root.advert_data.adv_deal=deal_id;
@@ -190,7 +197,7 @@ export default {
   		изменения в категориях
   		--------------------------*/
   		changeCategory(data) {
-  			
+
   			this.$root.advert_data.adv_category=data;	// добавляю категорию
 
   			switch(data) {
@@ -262,29 +269,12 @@ export default {
 
 		console.log(this.$root.advert_data);
 
-		// можно напрямую работать с data
-		/*this.$root.advert[0].deal_selected 	= this.form.deal_selected;
-		this.$root.advert[0].category 		= this.form.category;
-		this.$root.advert[0].text 			= this.form.text;
-		this.$root.advert[0].price 			= this.form.price;
-		this.$root.advert[0].images 		= this.form.images;
-
-		console.log(this.$root.advert[0].text);
-		console.log(this.$root.advert[0].chars);*/
-
-		// отправляем запрос
-    	/*post('/create', { "data": this.form }).then((res) => {
-    		window.location.href = "/home/555";
-		}).catch((err) => {});*/
-
-
 		post('/create', { "data": this.$root.advert_data }).then((res) => {
     		window.location.href = "/home/555";
 		}).catch((err) => {});
 
 
-
-    	}
+    }
 }
 }
 </script>

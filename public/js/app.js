@@ -1710,6 +1710,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           this.transport_chars = this.$root.advert_data;
      },
 
+
      components: {},
      methods: {
 
@@ -2350,7 +2351,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 // импорт
@@ -2433,6 +2433,12 @@ var tmp_images_array = [];
       this.hobbies_and_leisure = false; // хобби и отдых
       this.services = false; // услуги
       this.other = false; // другое 	
+    },
+    setInfo: function setInfo(info) {
+      this.$root.advert_data.adv_info = info;
+    },
+    setPrice: function setPrice(price) {
+      this.$root.advert_data.adv_price = price;
     },
     setDeal: function setDeal(deal_id) {
       this.$root.advert_data.adv_deal = deal_id;
@@ -2526,20 +2532,6 @@ var tmp_images_array = [];
       evt.preventDefault();
 
       console.log(this.$root.advert_data);
-
-      // можно напрямую работать с data
-      /*this.$root.advert[0].deal_selected 	= this.form.deal_selected;
-      this.$root.advert[0].category 		= this.form.category;
-      this.$root.advert[0].text 			= this.form.text;
-      this.$root.advert[0].price 			= this.form.price;
-      this.$root.advert[0].images 		= this.form.images;
-      		console.log(this.$root.advert[0].text);
-      console.log(this.$root.advert[0].chars);*/
-
-      // отправляем запрос
-      /*post('/create', { "data": this.form }).then((res) => {
-      	window.location.href = "/home/555";
-      }).catch((err) => {});*/
 
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (res) {
         window.location.href = "/home/555";
@@ -36118,6 +36110,7 @@ var render = function() {
                           rows: 4,
                           "max-rows": 4
                         },
+                        on: { change: _vm.setInfo },
                         model: {
                           value: _vm.form.text,
                           callback: function($$v) {
@@ -36141,7 +36134,11 @@ var render = function() {
                           "font-size": "20px",
                           "text-align": "center"
                         },
-                        attrs: { id: "price", placeholder: "Цена" },
+                        attrs: {
+                          id: "price",
+                          placeholder: "Цена",
+                          formatter: _vm.setPrice
+                        },
                         model: {
                           value: _vm.form.price,
                           callback: function($$v) {
