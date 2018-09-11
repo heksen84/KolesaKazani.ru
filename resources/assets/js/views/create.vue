@@ -99,8 +99,10 @@ import realestate from '../components/chars/realestate';
 var tmp_images_array=[];
 
 export default {
+
 	props: ["items"],
 	data () {
+
     return 	{
 		form: 
 		{
@@ -125,10 +127,12 @@ export default {
 		other:false					// другое
 	}
 	},
+
 	created() 
 	{
 		//this.$root.testFunction();
 	},
+
 	components: { transport, realestate },
   	methods: {
 
@@ -265,9 +269,10 @@ export default {
 		Сохранить объявление
 		----------------------------*/
     	onSubmit(evt) {
-		evt.preventDefault();
-
+		
 		console.log(this.$root.advert_data);
+
+		evt.preventDefault();
 
 		post('/create', { "data": this.$root.advert_data }).then((res) => {
     		window.location.href = "/home/555";
