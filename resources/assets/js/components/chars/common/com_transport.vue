@@ -72,35 +72,32 @@ export default {
 	},
   created() 
   {
-    // ...
+     this.transport_chars = this.$root.advert_data;
   },
   components: {},
   methods: {
 
      // положение руля
      SetHelmPosition(positon_id) {
-      
-        var chars = this.$root.advert[0].chars;
-        chars.rule_position = positon_id;
-        console.log(chars.rule_position);
+  
+        this.transport_chars.rule_position = positon_id;
+        console.log(this.transport_chars.rule_position);
 
      },
 
      // тип топлива
      SetFuelType(fuel_type) {
       
-        var chars = this.$root.advert[0].chars;
-        chars.fuel_type = fuel_type;
-        console.log(chars.fuel_type);
+        this.transport_chars.fuel_type = fuel_type;
+        console.log(this.transport_chars.fuel_type );
 
      },
      
      // растаможка
      SetTransportCustoms(customs_id) {
 
-        var chars = this.$root.advert[0].chars;
-        chars.customs = customs_id;
-        console.log(chars.customs);
+        this.transport_chars.customs = customs_id;
+        console.log(this.transport_chars.customs);
 
      },
 
@@ -109,9 +106,8 @@ export default {
 
       if (date<0) return;
 
-      var chars = this.$root.advert[0].chars;
-      chars.release_date = date;
-      console.log(chars.release_date);
+      this.transport_chars.release_date = date;
+      console.log(this.transport_chars.release_date);
 
       return date;
      },
@@ -121,9 +117,8 @@ export default {
 
       if (mileage<0) return;
 
-      var chars = this.$root.advert[0].chars;
-      chars.mileage = mileage;
-      console.log(chars.mileage);
+      this.transport_chars.mileage = mileage;
+      console.log(this.transport_chars.mileage);
 
       return mileage;
      }

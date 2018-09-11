@@ -8,7 +8,10 @@
 		
 			<b-form @submit="onSubmit">
 			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px;margin-top:-5px">
-				 <b-form-radio-group id="deal_group" stacked v-model="form.deal_selected" :options="this.$root.options_sdelka" name="radioOpenions"></b-form-radio-group>
+
+				 <b-form-radio-group id="deal_group" stacked v-model="form.deal_selected" :options="this.$root.options_sdelka" name="radioOpenions" @change="setDeal"></b-form-radio-group>
+
+
 			</b-form-group>
 
 			<b-form-group label="Категория товара или услуги:" label-for="categories" style="margin-top:30px;width:260px">
@@ -123,7 +126,8 @@ export default {
 		other:false					// другое
 	}
 	},
-	created() {
+	created() 
+	{
 		//this.$root.testFunction();
 	},
 	components: { transport, realestate },
@@ -178,13 +182,16 @@ export default {
 			this.other=false;				// другое 	
   		},
   		
+  		setDeal(deal_id) {
+  			this.$root.advert_data.adv_deal=deal_id;
+  		},
   		/*
   		--------------------------
   		изменения в категориях
   		--------------------------*/
   		changeCategory(data) {
-
-  			this.$root.advert[0].chars=[]; // обнуляю характеристики
+  			
+  			this.$root.advert_data.adv_category=data;	// добавляю категорию
 
   			switch(data) {
   				case null: {
@@ -253,21 +260,29 @@ export default {
     	onSubmit(evt) {
 		evt.preventDefault();
 
+		console.log(this.$root.advert_data);
+
 		// можно напрямую работать с data
-		this.$root.advert[0].deal_selected = this.form.deal_selected;
-		this.$root.advert[0].category = this.form.category;
-		this.$root.advert[0].text = this.form.text;
-		this.$root.advert[0].price = this.form.price;
-		this.$root.advert[0].images = this.form.images;
+		/*this.$root.advert[0].deal_selected 	= this.form.deal_selected;
+		this.$root.advert[0].category 		= this.form.category;
+		this.$root.advert[0].text 			= this.form.text;
+		this.$root.advert[0].price 			= this.form.price;
+		this.$root.advert[0].images 		= this.form.images;
 
 		console.log(this.$root.advert[0].text);
-		console.log(this.$root.advert[0].chars);
+		console.log(this.$root.advert[0].chars);*/
 
-
-    	/*evt.preventDefault();
-    	post('/create', { "data": this.form }).then((res) => {
+		// отправляем запрос
+    	/*post('/create', { "data": this.form }).then((res) => {
     		window.location.href = "/home/555";
 		}).catch((err) => {});*/
+
+
+		post('/create', { "data": this.$root.advert_data }).then((res) => {
+    		window.location.href = "/home/555";
+		}).catch((err) => {});
+
+
 
     	}
 }

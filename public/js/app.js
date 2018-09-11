@@ -1707,7 +1707,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           };
      },
      created: function created() {
-          // ...
+          this.transport_chars = this.$root.advert_data;
      },
 
      components: {},
@@ -1716,27 +1716,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           // положение руля
           SetHelmPosition: function SetHelmPosition(positon_id) {
 
-               var chars = this.$root.advert[0].chars;
-               chars.rule_position = positon_id;
-               console.log(chars.rule_position);
+               this.transport_chars.rule_position = positon_id;
+               console.log(this.transport_chars.rule_position);
           },
 
 
           // тип топлива
           SetFuelType: function SetFuelType(fuel_type) {
 
-               var chars = this.$root.advert[0].chars;
-               chars.fuel_type = fuel_type;
-               console.log(chars.fuel_type);
+               this.transport_chars.fuel_type = fuel_type;
+               console.log(this.transport_chars.fuel_type);
           },
 
 
           // растаможка
           SetTransportCustoms: function SetTransportCustoms(customs_id) {
 
-               var chars = this.$root.advert[0].chars;
-               chars.customs = customs_id;
-               console.log(chars.customs);
+               this.transport_chars.customs = customs_id;
+               console.log(this.transport_chars.customs);
           },
 
 
@@ -1745,9 +1742,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                if (date < 0) return;
 
-               var chars = this.$root.advert[0].chars;
-               chars.release_date = date;
-               console.log(chars.release_date);
+               this.transport_chars.release_date = date;
+               console.log(this.transport_chars.release_date);
 
                return date;
           },
@@ -1758,9 +1754,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                if (mileage < 0) return;
 
-               var chars = this.$root.advert[0].chars;
-               chars.mileage = mileage;
-               console.log(chars.mileage);
+               this.transport_chars.mileage = mileage;
+               console.log(this.transport_chars.mileage);
 
                return mileage;
           }
@@ -1953,6 +1948,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // марки автомобилей
       carmark: [],
       models: [],
+      transport_chars: null,
 
       selected: {
         type_transport: null,
@@ -1964,7 +1960,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     };
   },
-  created: function created() {},
+  created: function created() {
+    this.transport_chars = this.$root.advert_data;
+  },
+
 
   components: {},
   methods: {
@@ -1976,9 +1975,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     selectTransportType: function selectTransportType(transport_id) {
       var _this = this;
 
-      var chars = this.$root.advert[0].chars;
-      chars.transport_id = transport_id;
-      console.log(chars.transport_id);
+      this.transport_chars.transport_id = transport_id;
+      console.log(this.transport_chars.transport_id);
 
       switch (transport_id) {
 
@@ -2000,9 +1998,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     selectMark: function selectMark(mark_id) {
       var _this2 = this;
 
-      var chars = this.$root.advert[0].chars;
-      chars.mark_id = mark_id;
-      console.log(chars.mark_id);
+      this.transport_chars.mark_id = mark_id;
+      console.log(this.transport_chars.mark_id);
 
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsModels?mark_id=' + mark_id).then(function (res) {
 
@@ -2017,9 +2014,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     // change модели
     selectModel: function selectModel(model_id) {
-      var chars = this.$root.advert[0].chars;
-      chars.model_id = model_id;
-      console.log(chars.model_id);
+
+      this.transport_chars.model_id = model_id;
+      console.log(this.transport_chars.model_id);
     }
   }
 }, 'components', { "com-transport": __WEBPACK_IMPORTED_MODULE_1__common_com_transport_vue___default.a }));
@@ -2351,6 +2348,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 // импорт
@@ -2434,7 +2434,9 @@ var tmp_images_array = [];
       this.services = false; // услуги
       this.other = false; // другое 	
     },
-
+    setDeal: function setDeal(deal_id) {
+      this.$root.advert_data.adv_deal = deal_id;
+    },
 
     /*
     --------------------------
@@ -2442,7 +2444,7 @@ var tmp_images_array = [];
     --------------------------*/
     changeCategory: function changeCategory(data) {
 
-      this.$root.advert[0].chars = []; // обнуляю характеристики
+      this.$root.advert_data.adv_category = data; // добавляю категорию
 
       switch (data) {
         case null:
@@ -2519,25 +2521,29 @@ var tmp_images_array = [];
     /*
     ----------------------------
     Сохранить объявление
-    ----------------------------
-    */
+    ----------------------------*/
     onSubmit: function onSubmit(evt) {
       evt.preventDefault();
 
+      console.log(this.$root.advert_data);
+
       // можно напрямую работать с data
-      this.$root.advert[0].deal_selected = this.form.deal_selected;
-      this.$root.advert[0].category = this.form.category;
-      this.$root.advert[0].text = this.form.text;
-      this.$root.advert[0].price = this.form.price;
-      this.$root.advert[0].images = this.form.images;
+      /*this.$root.advert[0].deal_selected 	= this.form.deal_selected;
+      this.$root.advert[0].category 		= this.form.category;
+      this.$root.advert[0].text 			= this.form.text;
+      this.$root.advert[0].price 			= this.form.price;
+      this.$root.advert[0].images 		= this.form.images;
+      		console.log(this.$root.advert[0].text);
+      console.log(this.$root.advert[0].chars);*/
 
-      console.log(this.$root.advert[0].text);
-      console.log(this.$root.advert[0].chars);
-
-      /*evt.preventDefault();
-      post('/create', { "data": this.form }).then((res) => {
+      // отправляем запрос
+      /*post('/create', { "data": this.form }).then((res) => {
       	window.location.href = "/home/555";
       }).catch((err) => {});*/
+
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (res) {
+        window.location.href = "/home/555";
+      }).catch(function (err) {});
     }
   }
 });
@@ -36019,6 +36025,7 @@ var render = function() {
                           options: this.$root.options_sdelka,
                           name: "radioOpenions"
                         },
+                        on: { change: _vm.setDeal },
                         model: {
                           value: _vm.form.deal_selected,
                           callback: function($$v) {
@@ -48773,15 +48780,19 @@ module.exports = Component.exports
     options_sdelka: [{ value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }],
 
     // структура объявления 
-    advert: [{
-        deal_selected: null,
-        category: null,
-        text: "",
-        price: 0,
-        images: [],
-        location: [],
-        chars: []
-    }]
+
+    /*advert:
+    [{   
+        deal_selected:null, 
+        category:null, 
+        text:"",
+        price:0,
+        images:[],
+        location:[],
+        chars:[] 
+    }]*/
+
+    advert_data: []
 
     // вынести в functions
 });function testFunction(param) {

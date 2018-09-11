@@ -16,7 +16,8 @@ export default
     ],
 
     // структура объявления 
-    advert:
+
+    /*advert:
     [{   
         deal_selected:null, 
         category:null, 
@@ -25,7 +26,9 @@ export default
         images:[],
         location:[],
         chars:[] 
-    }],
+    }]*/
+
+    advert_data: []
 }
 
 // вынести в functions
