@@ -47,6 +47,10 @@ class AdvertController extends Controller
         	$adverts->save();
         	//$lastInsertedId = $adverts->id;
 
+            switch($category) {
+                
+            }
+
 		}
 		 catch(\Exception $e) {
        		return $e->getMessage();
