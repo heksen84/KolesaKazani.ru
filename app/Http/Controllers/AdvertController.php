@@ -32,8 +32,7 @@ class AdvertController extends Controller
 
       //  $request->validate([ $text  => 'min:6' ]);
 
-     	try 
-        {
+     	try {
      			
             $adverts = new Adverts();
      		$adverts->user_id   		= Auth::id();
@@ -48,9 +47,52 @@ class AdvertController extends Controller
             switch($category) {
 
                 case 1: {
-
                     $Transport = new Transport();
+                    break;
+                }
 
+                case 2: {
+                    $Transport = new Transport();
+                    break;
+                }
+
+                case 3: {
+                    $Transport = new Transport();
+                    break;
+                }
+
+                case 4: {
+                    $Transport = new Transport();
+                    break;
+                }
+
+                case 5: {
+                    $Transport = new Transport();
+                    break;
+                }
+
+                case 6: {
+                    $Transport = new Transport();
+                    break;
+                }
+
+                case 7: {
+                    $Transport = new Transport();
+                    break;
+                }
+
+                case 8: {
+                    $Transport = new Transport();
+                    break;
+                }
+
+                case 9: {
+                    $Transport = new Transport();
+                    break;
+                }
+
+                case 10: {
+                    $Transport = new Transport();
                     break;
                 }
 
