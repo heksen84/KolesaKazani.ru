@@ -8,6 +8,7 @@ use App\Adverts;
 use App\CarMark;
 use App\CarModel;
 use App\Categories;
+use App\Transport;
 use DB;
 
 class AdvertController extends Controller
@@ -29,7 +30,6 @@ class AdvertController extends Controller
         $text       = $data["adv_info"];
         $price      = $data["adv_price"];
 
-
       //  $request->validate([ $text  => 'min:6' ]);
 
      	try 
@@ -46,6 +46,13 @@ class AdvertController extends Controller
         	//$lastInsertedId = $adverts->id;
 
             switch($category) {
+
+                case 1: {
+
+                    $Transport = new Transport();
+                    
+                    break;
+                }
 
             }
 
