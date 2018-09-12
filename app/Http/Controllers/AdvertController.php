@@ -50,18 +50,19 @@ class AdvertController extends Controller
                 case 1: {
 
                     $Transport = new Transport();
-                    
+
                     break;
                 }
 
             }
 
 		}
-		 catch(\Exception $e) {
+		
+        catch(\Exception $e) {
        		return $e->getMessage();
     	}
      	
-     	 return $data;
+     	return $data;
     }
 
     public function getFullInfo($id) {
