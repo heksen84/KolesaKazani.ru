@@ -269,8 +269,10 @@ export default {
 		Сохранить объявление
 		----------------------------*/
     	onSubmit(evt) {
-
 			evt.preventDefault();
+
+			console.log(this.$root.advert_data);
+
 			post('/create', { "data": this.$root.advert_data }).then((res) => {
 
     		//window.location.href = "/home/555";

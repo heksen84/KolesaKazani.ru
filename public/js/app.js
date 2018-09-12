@@ -2532,16 +2532,13 @@ var tmp_images_array = [];
     Сохранить объявление
     ----------------------------*/
     onSubmit: function onSubmit(evt) {
-
-      //console.log(Object.keys(this.$root.advert_data));
-
-      //console.log(Object.values(this.$root.advert_data));
-
       evt.preventDefault();
 
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (res) {
-        //window.location.href = "/home/555";
+      console.log(this.$root.advert_data);
 
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (res) {
+
+        //window.location.href = "/home/555";
         console.log(res);
       }).catch(function (err) {});
     }
