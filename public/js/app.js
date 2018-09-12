@@ -36142,7 +36142,8 @@ var render = function() {
                         attrs: {
                           id: "price",
                           placeholder: "Цена",
-                          formatter: _vm.setPrice
+                          formatter: _vm.setPrice,
+                          required: ""
                         },
                         model: {
                           value: _vm.form.price,

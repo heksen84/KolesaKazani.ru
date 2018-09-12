@@ -21,31 +21,38 @@ class AdvertController extends Controller
  	}
 
     public function createAdvert(Request $request) {
-     	 
-     	$data = $request->input('data');
+        //return $request;
+
+        $data = $request->input('data');
 
         $category   = $data["adv_category"];
-     	$text  		= $data["adv_info"];
-     	$price  	= $data["adv_price"];
+        $text       = $data["adv_info"];
+        $price      = $data["adv_price"];
 
-     	try {
-     			$adverts = new Adverts();
-     			$adverts->user_id   		= Auth::id();
-        		$adverts->text  			= $text;
-        		$adverts->contacts  		= "контакты";
-        		$adverts->price  			= $price;
-        		$adverts->category_id  		= $category;
-        		$adverts->ad_category_id  	= NULL;
-        		$adverts->save();
-        		//$lastInsertedId = $adverts->id;
+
+      //  $request->validate([ $text  => 'min:6' ]);
+
+
+     	 
+     	try 
+        {
+     			
+            $adverts = new Adverts();
+     		$adverts->user_id   		= Auth::id();
+        	$adverts->text  			= $text;
+        	$adverts->contacts  		= "контакты";
+        	$adverts->price  			= $price;
+        	$adverts->category_id  		= $category;
+        	$adverts->ad_category_id  	= NULL;
+        	$adverts->save();
+        	//$lastInsertedId = $adverts->id;
+
 		}
 		 catch(\Exception $e) {
        		return $e->getMessage();
     	}
      	
      	 return $data;
-
-         //return $data["adv_category"];
     }
 
     public function getFullInfo($id) {
