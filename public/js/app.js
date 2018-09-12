@@ -34863,12 +34863,9 @@ var render = function() {
       ),
       _vm._v(" "),
       _c(
-        "b-row",
-        {
-          staticStyle: { "margin-left": "30px" },
-          attrs: { id: "categories_row" }
-        },
-        [_c("h6", [_c("ins", [_vm._v("Категории")])])]
+        "div",
+        { staticClass: "shadow_text", attrs: { id: "categories_row" } },
+        [_vm._v("категории")]
       ),
       _vm._v(" "),
       _vm._l(Math.ceil(Object.keys(_vm.items).length / 4), function(i) {

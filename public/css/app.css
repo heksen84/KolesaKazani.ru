@@ -186,8 +186,8 @@ body {
 
 .shadow_text {
   color: #fff;
-  letter-spacing: 3px;
-  text-shadow: -1px -1px 0 #5a5a5a, 1px -1px 0 #5a5a5a, -1px 1px 0 #5a5a5a, 1px 1px 0 #5a5a5a;
+  letter-spacing: 2px;
+  text-shadow: -1px -1px 0 #646464, 1px -1px 0 #646464, -1px 1px 0 #646464, 1px 1px 0 #646464;
 }
 
 .result_info_col {
@@ -258,7 +258,9 @@ a:active {
 }
 
 #categories_row {
+  font-size: 105%;
   margin-top: 35px;
+  margin-left: 30px;
 }
 
 @media screen and (max-width: 990px) {
@@ -292,6 +294,11 @@ a:active {
 
   .vip_block {
     display: none;
+  }
+
+  #categories_row {
+    margin-left: 0px;
+    text-align: center;
   }
 }
 

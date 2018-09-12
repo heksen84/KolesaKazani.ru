@@ -32,8 +32,6 @@ class AdvertController extends Controller
 
       //  $request->validate([ $text  => 'min:6' ]);
 
-
-     	 
      	try 
         {
      			
@@ -43,12 +41,12 @@ class AdvertController extends Controller
         	$adverts->contacts  		= "контакты";
         	$adverts->price  			= $price;
         	$adverts->category_id  		= $category;
-        	$adverts->ad_category_id  	= NULL;
+        	$adverts->adv_category_id  	= NULL;
         	$adverts->save();
         	//$lastInsertedId = $adverts->id;
 
             switch($category) {
-                
+
             }
 
 		}
