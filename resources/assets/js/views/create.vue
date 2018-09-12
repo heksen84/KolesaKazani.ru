@@ -81,7 +81,7 @@
 
 			<!-- ПУБЛИКАЦИЯ -->
 			<b-form-group style="text-align:center;margin:25px">
-				<b-button type="onSubmit" variant="outline-success">ОПУБЛИКОВАТЬ</b-button>
+				<b-button type="onSubmit" variant="outline-primary">ОПУБЛИКОВАТЬ</b-button>
 			</b-form-group>
 			
 		</b-form>

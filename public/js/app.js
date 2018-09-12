@@ -36207,7 +36207,7 @@ var render = function() {
                         {
                           attrs: {
                             type: "onSubmit",
-                            variant: "outline-success"
+                            variant: "outline-primary"
                           }
                         },
                         [_vm._v("ОПУБЛИКОВАТЬ")]
