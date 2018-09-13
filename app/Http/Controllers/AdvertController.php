@@ -37,10 +37,10 @@ class AdvertController extends Controller
             $adverts = new Adverts();
      		$adverts->user_id   		= Auth::id();
         	$adverts->text  			= $text;
-        	$adverts->contacts  		= "контакты";
+        	$adverts->contacts  		= "контакты"; 
         	$adverts->price  			= $price;
         	$adverts->category_id  		= $category;
-        	$adverts->adv_category_id  	= 0; 
+        	$adverts->adv_category_id  	= 0;
 
             switch($category) {
 
