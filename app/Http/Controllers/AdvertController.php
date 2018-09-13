@@ -57,7 +57,6 @@ class AdvertController extends Controller
                     $transport->save();
 
                     $adverts->adv_category_id = $transport->id;
-                    $adverts->save();
 
                     break;
                 }
@@ -108,6 +107,8 @@ class AdvertController extends Controller
                 }
 
             }
+
+            $adverts->save(); // сохраняю объявление
 
 		}
 		
