@@ -33,7 +33,6 @@ class AdvertController extends Controller
       //  $request->validate([ $text  => 'min:6' ]);
 
      	try {
-
      			
             $adverts = new Adverts();
      		$adverts->user_id   		= Auth::id();
