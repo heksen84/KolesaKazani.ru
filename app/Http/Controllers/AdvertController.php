@@ -33,17 +33,15 @@ class AdvertController extends Controller
       //  $request->validate([ $text  => 'min:6' ]);
 
      	try {
+
      			
-                   $adverts = new Adverts();
-     		       $adverts->user_id   		    = Auth::id();
-        	       $adverts->text  			    = $text;
-        	       $adverts->contacts  		    = "контакты";
-        	       $adverts->price  			= $price;
-        	       $adverts->category_id  		= $category;
-        	       $adverts->adv_category_id  	= NULL;
-        	       $adverts->save();
-                   
-        	       //$lastInsertedId = $adverts->id;
+            $adverts = new Adverts();
+     		$adverts->user_id   		= Auth::id();
+        	$adverts->text  			= $text;
+        	$adverts->contacts  		= "контакты";
+        	$adverts->price  			= $price;
+        	$adverts->category_id  		= $category;
+        	$adverts->adv_category_id  	= 0; 
 
             switch($category) {
 
@@ -58,6 +56,9 @@ class AdvertController extends Controller
                     $transport->engine_type = 0;
                     $transport->customs = 0;
                     $transport->save();
+
+                    $adverts->adv_category_id = $transport->id;
+                    $adverts->save();
 
                     break;
                 }
