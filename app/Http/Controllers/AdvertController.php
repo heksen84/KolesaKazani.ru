@@ -34,20 +34,31 @@ class AdvertController extends Controller
 
      	try {
      			
-            $adverts = new Adverts();
-     		$adverts->user_id   		= Auth::id();
-        	$adverts->text  			= $text;
-        	$adverts->contacts  		= "контакты";
-        	$adverts->price  			= $price;
-        	$adverts->category_id  		= $category;
-        	$adverts->adv_category_id  	= NULL;
-        	$adverts->save();
-        	//$lastInsertedId = $adverts->id;
+                   $adverts = new Adverts();
+     		       $adverts->user_id   		    = Auth::id();
+        	       $adverts->text  			    = $text;
+        	       $adverts->contacts  		    = "контакты";
+        	       $adverts->price  			= $price;
+        	       $adverts->category_id  		= $category;
+        	       $adverts->adv_category_id  	= NULL;
+        	       $adverts->save();
+                   
+        	       //$lastInsertedId = $adverts->id;
 
             switch($category) {
 
                 case 1: {
-                    $Transport = new Transport();
+
+                    $transport = new Transport();
+                    $transport->type = 0;
+                    $transport->mark = 0;
+                    $transport->year = 1999;
+                    $transport->steering_position = 0;
+                    $transport->mileage = 0;
+                    $transport->engine_type = 0;
+                    $transport->customs = 0;
+                    $transport->save();
+
                     break;
                 }
 
