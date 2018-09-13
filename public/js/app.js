@@ -34864,7 +34864,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "shadow_text", attrs: { id: "categories_row" } },
+        { staticClass: "shadow_text", attrs: { id: "categories_title" } },
         [_vm._v("категории")]
       ),
       _vm._v(" "),

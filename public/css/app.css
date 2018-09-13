@@ -257,8 +257,8 @@ a:active {
   /*background:rgb(250,250,250);*/
 }
 
-#categories_row {
-  font-size: 105%;
+#categories_title {
+  font-size: 115%;
   margin-top: 35px;
   margin-left: 30px;
 }
@@ -278,7 +278,7 @@ a:active {
     margin-top: 7px;
   }
 
-  #categories_row {
+  #categories_title {
     margin-top: 5px;
   }
 }
@@ -296,7 +296,7 @@ a:active {
     display: none;
   }
 
-  #categories_row {
+  #categories_title {
     margin-left: 0px;
     text-align: center;
   }

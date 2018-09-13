@@ -57,7 +57,7 @@
         </b-col>
     </b-row>
 
-    <div id="categories_row" class="shadow_text">категории</div>
+    <div id="categories_title" class="shadow_text">категории</div>
     
     <!-- категории -->
     <b-row v-for="i in Math.ceil(Object.keys(items).length / 4)" v-bind:key=i>
