@@ -10,6 +10,7 @@ use App\CarModel;
 use App\Categories;
 use App\Transport;
 use App\RealEstate;
+use App\Appliances;
 use DB;
 
 class AdvertController extends Controller
@@ -78,43 +79,37 @@ class AdvertController extends Controller
                     break;
                 }
 
+                // бытовая техника
                 case 3: {
-                    $Transport = new Transport();
+                    //$appliances= new Appliances();
                     break;
                 }
 
                 case 4: {
-                    $Transport = new Transport();
                     break;
                 }
 
                 case 5: {
-                    $Transport = new Transport();
                     break;
                 }
 
                 case 6: {
-                    $Transport = new Transport();
                     break;
                 }
 
                 case 7: {
-                    $Transport = new Transport();
                     break;
                 }
 
                 case 8: {
-                    $Transport = new Transport();
                     break;
                 }
 
                 case 9: {
-                    $Transport = new Transport();
                     break;
                 }
 
                 case 10: {
-                    $Transport = new Transport();
                     break;
                 }
 
