@@ -65,6 +65,7 @@ class AdvertController extends Controller
 
                 // недвижимость
                 case 2: {
+                    
                     $realestate= new RealEstate();
                     $realestate->property_type = 0;
                     $realestate->floor = 0;
