@@ -72,6 +72,9 @@ class AdvertController extends Controller
                     $realestate->area = 0;
                     $realestate->ownership = 0;
                     $realestate->kind_of_object = 0;
+                    $realestate->save();
+
+                    $realestate->adv_category_id = $realestate->id;
                     break;
                 }
 
