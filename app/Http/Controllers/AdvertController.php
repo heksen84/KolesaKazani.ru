@@ -45,6 +45,7 @@ class AdvertController extends Controller
 
             switch($category) {
 
+                // транспорт
                 case 1: {
 
                     $transport = new Transport();
@@ -61,8 +62,16 @@ class AdvertController extends Controller
                     break;
                 }
 
+                // недвижимость
                 case 2: {
-                    $Transport = new Transport();
+                    $realestate= new RealEstate();
+                    $realestate->property_type = 0;
+                    $realestate->floor = 0;
+                    $realestate->floors_house = 0;
+                    $realestate->rooms = 0;
+                    $realestate->area = 0;
+                    $realestate->ownership = 0;
+                    $realestate->kind_of_object = 0;
                     break;
                 }
 
