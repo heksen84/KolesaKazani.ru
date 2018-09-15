@@ -258,10 +258,9 @@ a:active {
 }
 
 #categories_title {
-  font-size: 115%;
+  font-size: 110%;
   margin-top: 35px;
   margin-left: 30px;
-  text-decoration: underline;
 }
 
 @media screen and (max-width: 990px) {
