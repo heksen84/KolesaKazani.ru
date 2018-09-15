@@ -9,6 +9,7 @@ use App\CarMark;
 use App\CarModel;
 use App\Categories;
 use App\Transport;
+use App\RealEstate;
 use DB;
 
 class AdvertController extends Controller
