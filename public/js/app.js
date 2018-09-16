@@ -34778,7 +34778,7 @@ var render = function() {
                     "div",
                     {
                       staticStyle: {
-                        "font-size": "178%",
+                        "font-size": "172%",
                         "letter-spacing": "4px",
                         "font-weight": "450",
                         padding: "7px",
@@ -34786,7 +34786,7 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._v("АксуМаркет"),
+                      _vm._v("КупиПродай"),
                       _c(
                         "span",
                         {
