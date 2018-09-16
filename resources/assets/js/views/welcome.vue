@@ -41,7 +41,7 @@
         <!-- ЛОГОТИП -->
         <a href="/">
           <div id="logo_block">
-            <div style="font-size:172%;letter-spacing:4px;font-weight:450;padding:7px;margin-top:-8px">КупиПродай
+            <div style="font-size:174%;letter-spacing:4px;font-weight:450;padding:7px;margin-top:-8px">КупиПродай
             </div>
             <div style="font-size:18px;color:yellow;margin-top:-13px;letter-spacing:2px;">доска объявлений</div>
           </div>
