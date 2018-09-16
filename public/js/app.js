@@ -34781,7 +34781,7 @@ var render = function() {
                         "font-size": "170%",
                         "letter-spacing": "4px",
                         "font-weight": "450",
-                        padding: "7px",
+                        padding: "5px",
                         "margin-top": "-8px"
                       }
                     },
