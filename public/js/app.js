@@ -34785,22 +34785,7 @@ var render = function() {
                         "margin-top": "-8px"
                       }
                     },
-                    [
-                      _vm._v("КупиПродай"),
-                      _c(
-                        "span",
-                        {
-                          staticStyle: {
-                            position: "relative",
-                            top: "-15px",
-                            left: "-3px",
-                            "font-size": "12px",
-                            display: "none"
-                          }
-                        },
-                        [_vm._v("®")]
-                      )
-                    ]
+                    [_vm._v("КупиПродай\n            ")]
                   ),
                   _vm._v(" "),
                   _c(
