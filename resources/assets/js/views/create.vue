@@ -269,6 +269,7 @@ export default {
 
 			evt.preventDefault();
 
+      // сохраняю объявление
 			post('/create', { "data": this.$root.advert_data }).then((advert_id) => {
     		window.location.href = "/home/"+advert_id.data;
 		  }).catch((err) => {});
