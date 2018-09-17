@@ -271,14 +271,9 @@ export default {
     	onSubmit(evt) {
 			evt.preventDefault();
 
-			console.log(this.$root.advert_data);
-
-			post('/create', { "data": this.$root.advert_data }).then((res) => {
-
-    		window.location.href = "/home/555";
-    		//console.log(res);
-
-		}).catch((err) => {});
+			post('/create', { "data": this.$root.advert_data }).then((advert_id) => {
+    		window.location.href = "/home/"+advert_id.data;
+		  }).catch((err) => {});
 
     }
 }

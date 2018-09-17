@@ -118,6 +118,8 @@ class AdvertController extends Controller
 
             $adverts->save(); // сохраняю объявление
 
+            return  $adverts->id;
+
 		}
 		
         catch(\Exception $e) {
