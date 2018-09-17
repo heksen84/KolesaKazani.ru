@@ -2533,15 +2533,8 @@ var tmp_images_array = [];
     onSubmit: function onSubmit(evt) {
       evt.preventDefault();
 
-      //console.log(this.$root.advert_data);
-
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (advert_id) {
-
-        console.log(advert_id);
-        alert(advert_id);
-
         window.location.href = "/home/" + advert_id.data;
-        //console.log(res);
       }).catch(function (err) {});
     }
   }

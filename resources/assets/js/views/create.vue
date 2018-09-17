@@ -140,22 +140,19 @@ export default {
   			
   			var files = evt.target.files;
 
-        	for (var i=0; i<files.length; i++) 
-        	{
+        	for (var i=0; i<files.length; i++) {
         		if ( i>=this.$root.max_load_images || this.form.images.length >= this.$root.max_load_images ) 
         			break;
 
-        		var image = files[i]
+        	var image = files[i]
   				var reader = new FileReader();
 
-  				reader.onload = (function(theFile) 
-  				{
-                	return function(e) 
-                	{
-                		tmp_images_array.push({ "src": e.target.result });
-                	};
+  				reader.onload = (function(theFile) {
+          return function(e) {
+            tmp_images_array.push({ "src": e.target.result });
+          };
 
-            	})(image);
+          })(image);
 
 			reader.readAsDataURL(image);
 				this.form.images = tmp_images_array;
@@ -167,22 +164,22 @@ export default {
   		},
 
   		closeAndReturn() {
- 			window.history.back();
+ 			  window.history.back();
   		},
 
   		// сброс данных при выборе категории
   		resetCategories(data) {
-  			this.root=false;				// по умолчанию
-  			this.transport=false;			// транспорт
-  			this.real_estate=false;			// недвижимость
-  			this.appliances=false;			// бытовая техника
-  			this.work_and_buisness=false; 	// работа и бизнес
-  			this.for_home=false;			// для дома и дачи
-  			this.personal_effects=false;	// личные вещи
-			this.animals=false;				// животные
-			this.hobbies_and_leisure=false;	// хобби и отдых
-			this.services=false;			// услуги
-			this.other=false;				// другое 	
+  			 this.root=false;				// по умолчанию
+  			 this.transport=false;			// транспорт
+  			 this.real_estate=false;			// недвижимость
+  			 this.appliances=false;			// бытовая техника
+  			 this.work_and_buisness=false; 	// работа и бизнес
+  			 this.for_home=false;			// для дома и дачи
+  			 this.personal_effects=false;	// личные вещи
+			   this.animals=false;				// животные
+			   this.hobbies_and_leisure=false;	// хобби и отдых
+			   this.services=false;			// услуги
+			   this.other=false;				// другое 	
   		},
 
   		setInfo(info) {
@@ -264,11 +261,12 @@ export default {
   			}
   		},
   		
-  		/*
+  	/*
 		----------------------------
-		Сохранить объявление
+		  Сохранить объявление
 		----------------------------*/
     	onSubmit(evt) {
+
 			evt.preventDefault();
 
 			post('/create', { "data": this.$root.advert_data }).then((advert_id) => {
