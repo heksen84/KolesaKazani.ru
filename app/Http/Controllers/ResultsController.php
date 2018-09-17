@@ -38,13 +38,17 @@ class ResultsController extends Controller {
 
     	// получаю имена на русском
     	$region    = Regions::select('name')->where('url',  $_region )->first();
+
     	$category  = Categories::select('id', 'name')->where('url',  $_category )->first();
     	
     	// получаю объявления
     	$items = Adverts::where('category_id',  0)->get();
 
+
+        // !!!! НЕТ РЕГИОНА !!! зависит от локации
+
     	// передаю во вьюху
-		return view('results')->with("items", $items)->with("title", $category->name." в ".$region->name);
+		return view('results')->with("items", $items)->with("title", $_category->name." в ".$_region->name);
     }
 
 	// ---------------------------------------------------
@@ -53,8 +57,8 @@ class ResultsController extends Controller {
     public function getResultsByPlace($_region, $place, $_category) {
 
     	// получаю имена на русском
-    	$region = Regions::select('name')->where('url',  $_region )->first();
-    	$category = Categories::select('id', 'name')->where('url',  $_category )->first();
+    	$region    = Regions::select('name')->where('url',  $_region )->first();
+    	$category  = Categories::select('id', 'name')->where('url',  $_category )->first();
     	
     	// получаю объявления
     	$items = Adverts::where('category_id',  $region->id)->get();
