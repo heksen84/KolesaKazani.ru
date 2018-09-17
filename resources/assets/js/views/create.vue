@@ -275,8 +275,8 @@ export default {
 
 			post('/create', { "data": this.$root.advert_data }).then((res) => {
 
-    		//window.location.href = "/home/555";
-    		console.log(res);
+    		window.location.href = "/home/555";
+    		//console.log(res);
 
 		}).catch((err) => {});
 

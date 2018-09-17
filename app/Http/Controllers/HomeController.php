@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index() {
 
-        $items = DB::table('adverts')->where('user_id', Auth::id())->select('title','text')->get();
+        $items = DB::table('adverts')->where('user_id', Auth::id())->select('text')->get();
         return view('home')->with("items", $items );
     }
 }

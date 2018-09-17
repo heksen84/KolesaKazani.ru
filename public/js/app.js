@@ -2537,8 +2537,8 @@ var tmp_images_array = [];
 
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (res) {
 
-        //window.location.href = "/home/555";
-        console.log(res);
+        window.location.href = "/home/555";
+        //console.log(res);
       }).catch(function (err) {});
     }
   }
