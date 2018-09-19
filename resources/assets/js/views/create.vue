@@ -14,7 +14,7 @@
 			</b-form-group>
 
 			<b-form-group label="Категория товара или услуги:" label-for="categories" style="margin-top:30px;width:260px">
-				<b-form-select v-model="form.category" class="mb-3" @change="changeCategory">
+				<b-form-select v-model="form.category" class="mb-3" @change="changeCategory" state="invalid">
 					 <option :value=null>-- Выберите категорию --</option>
 					 <option v-for="item in items" :value="item.id">{{item.name}}</option>
 				</b-form-select>
@@ -65,7 +65,7 @@
 
 			<!-- ЦЕНА -->
 			<b-form-group label="Цена:" label-for="price">
-			 	<b-form-input id="price" v-model="form.price" placeholder="Цена" style="width:150px;margin:auto;font-size:20px;text-align:center" :formatter="setPrice" required></b-form-input>
+			 	<b-form-input id="price" v-model="form.price" placeholder="Цена" style="width:150px;margin:auto;font-size:20px;text-align:center" :formatter="setPrice" required state="invalid"></b-form-input>
 			</b-form-group>
 
 			<!-- ФОТОГРАФИИ -->

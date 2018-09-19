@@ -36031,6 +36031,7 @@ var render = function() {
                         "b-form-select",
                         {
                           staticClass: "mb-3",
+                          attrs: { state: "invalid" },
                           on: { change: _vm.changeCategory },
                           model: {
                             value: _vm.form.category,
@@ -36125,7 +36126,8 @@ var render = function() {
                           id: "price",
                           placeholder: "Цена",
                           formatter: _vm.setPrice,
-                          required: ""
+                          required: "",
+                          state: "invalid"
                         },
                         model: {
                           value: _vm.form.price,
