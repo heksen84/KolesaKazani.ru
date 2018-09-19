@@ -62,6 +62,7 @@ components: {},
 			window.location='/';
 		}).catch((err) => {});
     },
+    
     goHome() {
     	window.location='/';
     },

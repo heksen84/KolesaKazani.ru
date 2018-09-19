@@ -104,8 +104,7 @@ export default {
 	data () {
 
     return 	{
-		form: 
-		{
+		form: {
 			deal_selected: 0,
 			category: null,
 			text: '',
@@ -273,6 +272,7 @@ export default {
 			post('/create', { "data": this.$root.advert_data }).then((advert_id) => {
     		window.location.href = "/home/"+advert_id.data;
 		  }).catch((err) => {});
+      
 
     }
 }
