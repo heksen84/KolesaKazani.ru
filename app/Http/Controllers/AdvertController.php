@@ -25,11 +25,15 @@ class AdvertController extends Controller
 
     public function createAdvert(Request $request) {
 
+        // ---------------------------------
         // Обязательно:
         // Вид сделки покупка / продажа 
         // Категория товара или услуги
         // Доп. информация
         // Цена
+        // ---------------------------------
+
+
 
         // обязательные поля
         $request->validate([ 
@@ -37,8 +41,6 @@ class AdvertController extends Controller
             "data.adv_category"  => "required", 
             "data.adv_price"     => "required" 
         ]);
-
-
 
 
         $data = $request->input('data');
