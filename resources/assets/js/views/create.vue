@@ -5,7 +5,7 @@
 		<div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
 		<h1 class="title_text" style="margin-top:5px">подать объявление</h1>
 		<hr>
-		
+
 			<b-form @submit="onSubmit">
 			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px;margin-top:-5px">
 
