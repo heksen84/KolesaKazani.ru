@@ -2534,7 +2534,7 @@ var tmp_images_array = [];
 
       evt.preventDefault();
 
-      // добавляем формально поле доп. информация
+      // добавляю формально поле доп. информация
       this.$root.advert_data.adv_info = "";
 
       // сохраняю объявление
