@@ -268,6 +268,9 @@ export default {
 
 			evt.preventDefault();
 
+      // добавляем формально поле доп. информация
+      this.$root.advert_data.adv_info="";
+
       // сохраняю объявление
 			post('/create', { "data": this.$root.advert_data }).then((advert_id) => {
     		window.location.href = "/home/"+advert_id.data;
