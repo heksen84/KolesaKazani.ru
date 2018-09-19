@@ -24,6 +24,7 @@ class AdvertController extends Controller
  	}
 
     public function createAdvert(Request $request) {
+        
 
         // ---------------------------------
         // Обязательно:
@@ -32,7 +33,6 @@ class AdvertController extends Controller
         // Доп. информация
         // Цена
         // ---------------------------------
-
 
 
         // обязательные поля
