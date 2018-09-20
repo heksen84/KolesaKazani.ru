@@ -292,7 +292,6 @@ export default {
 
 		  }).catch((err) => {});
       
-
     }
 }
 }
