@@ -2549,7 +2549,7 @@ var tmp_images_array = [];
 
           _this.$root.$notify({
             group: 'foo',
-            text: "<div style='font-size:115%'>" + response.data.msg + "</div>",
+            text: "<div style='font-size:120%'>" + response.data.msg + "</div>",
             type: 'error'
           });
         } else window.location.href = "/home/" + advert_id.data;
