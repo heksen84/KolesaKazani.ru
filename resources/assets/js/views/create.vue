@@ -190,6 +190,7 @@ export default {
 
   		setPrice(price) {
   			this.$root.advert_data.adv_price=price;
+        return price;
   		},
   		
   		setDeal(deal_id) {
