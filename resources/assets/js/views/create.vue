@@ -1,5 +1,6 @@
 <template>
 	<b-container fluid>
+    <notifications group="foo" position="top center"/>
 		<b-row>
 		<b-col cols="12" sm="12" md="12" lg="8" xl="8" style="text-align:left;margin: auto;color:black;background:white">
 		<div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
@@ -131,6 +132,7 @@ export default {
 
 	created() {
 		//this.$root.testFunction();
+
 	},
 
 	components: { transport, realestate },
@@ -275,8 +277,16 @@ export default {
       // сохраняю объявление
 			post('/create', { "data": this.$root.advert_data }).then((response) => {
 
-        if (!response.data.response)
-          alert(response.data.msg);
+        if (!response.data.response) {
+
+            this.$root.$notify
+            ({
+              group: 'foo',
+              text: "<div style='font-size:115%'>"+response.data.msg+"</div>",
+              type: 'error',
+            });
+
+        }
         else
           window.location.href = "/home/"+advert_id.data;
 

@@ -2,6 +2,8 @@ require('./bootstrap');
 
 import data from './data';
 import Vue from 'vue';
+import Notifications from 'vue-notification'
+Vue.use(Notifications)
 
 // views
 import welcome from './views/welcome.vue';
