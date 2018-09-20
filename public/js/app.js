@@ -2365,6 +2365,7 @@ var tmp_images_array = [];
   data: function data() {
 
     return {
+
       form: {
         deal_selected: 0,
         category: null,
@@ -2374,6 +2375,7 @@ var tmp_images_array = [];
         images: []
 
       },
+
       root: false,
       transport: false, // транспорт
       real_estate: false, // недвижимость
@@ -2538,8 +2540,9 @@ var tmp_images_array = [];
       this.$root.advert_data.adv_info = "";
 
       // сохраняю объявление
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (advert_id) {
-        window.location.href = "/home/" + advert_id.data;
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (response) {
+        //window.location.href = "/home/"+advert_id.data;
+        alert(response.data.msg);
       }).catch(function (err) {});
     }
   }

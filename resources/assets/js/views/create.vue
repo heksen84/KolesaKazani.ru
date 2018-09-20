@@ -104,6 +104,7 @@ export default {
 	data () {
 
     return 	{
+
 		form: {
 			deal_selected: 0,
 			category: null,
@@ -113,6 +114,7 @@ export default {
 			images:[]
 
 		},
+
 		root:false,
 		transport:false,			// транспорт
 		real_estate:false,			// недвижимость
@@ -127,8 +129,7 @@ export default {
 	}
 	},
 
-	created() 
-	{
+	created() {
 		//this.$root.testFunction();
 	},
 
@@ -272,8 +273,10 @@ export default {
       this.$root.advert_data.adv_info="";
 
       // сохраняю объявление
-			post('/create', { "data": this.$root.advert_data }).then((advert_id) => {
-    		window.location.href = "/home/"+advert_id.data;
+			post('/create', { "data": this.$root.advert_data }).then((response) => {
+    		//window.location.href = "/home/"+advert_id.data;
+        alert(response.data.msg);
+
 		  }).catch((err) => {});
       
 

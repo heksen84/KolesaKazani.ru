@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Validator;
 use App\Adverts;
 use App\CarMark;
 use App\CarModel;
@@ -24,23 +25,30 @@ class AdvertController extends Controller
  	}
 
     public function createAdvert(Request $request) {
-        
 
-        // ---------------------------------
-        // Обязательно:
-        // Вид сделки покупка / продажа 
-        // Категория товара или услуги
-        // Доп. информация
-        // Цена
-        // ---------------------------------
-
-
-        // обязательные поля
-        $request->validate([ 
-            "data.adv_deal"      => "required", 
+        // правила валидации      
+        $rules = 
+        [
+            "data.adv_deal"      => "required",
             "data.adv_category"  => "required", 
-            "data.adv_price"     => "required" 
-        ]);
+            "data.adv_price"     => "required|numeric"
+        ]; 
+
+        // сообщения валидации
+        $messages = 
+        [
+            "data.adv_deal.required"        =>"Укажите вид сделки", 
+            "data.adv_category.required"    =>"Укажите категорию товара или услуги",
+            "data.adv_price.required"       =>"Укажите цену",
+            "data.adv_price.numeric"        =>"Введите числовое значение для цены",
+        ]; 
+
+        // проверяем
+        $validator = Validator::make( $request->all(), $rules, $messages );
+
+        // если ошибка, возвращаем false и текст ошибки
+        if ( $validator->fails() )  
+            return response()->json(["response"=>false, "msg"=>$validator->errors()->first()]);  
 
 
         $data = $request->input('data');
