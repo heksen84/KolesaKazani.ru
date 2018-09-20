@@ -2541,8 +2541,8 @@ var tmp_images_array = [];
 
       // сохраняю объявление
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (response) {
-        //window.location.href = "/home/"+advert_id.data;
-        alert(response.data.msg);
+
+        if (!response.data.response) alert(response.data.msg);else window.location.href = "/home/" + advert_id.data;
       }).catch(function (err) {});
     }
   }
