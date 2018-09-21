@@ -90,6 +90,8 @@ export default {
   },
   created() {
 
+   // alert(screen.width);
+
     var placeName = localStorage.getItem("placeName");
 
     if(placeName==null)

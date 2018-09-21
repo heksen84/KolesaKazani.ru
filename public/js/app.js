@@ -3016,6 +3016,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   created: function created() {
 
+    // alert(screen.width);
+
     var placeName = localStorage.getItem("placeName");
 
     if (placeName == null) this.selectedPlaceName = "Весь казахстан";else this.selectedPlaceName = placeName;
