@@ -326,6 +326,11 @@ body {
 
 // смартфоны
 @media screen and (max-width:420px) {
+
+.close_button {
+ left:90%;
+}
+
 #welcome_menu {
   text-align:center;
 }
