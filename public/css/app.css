@@ -308,6 +308,11 @@ a:active {
 }
 
 @media screen and (max-width: 750px) {
+  .create_advert_col {
+    margin: 0px auto;
+    border-radius: 0px;
+  }
+
   #welcome_menu {
     margin-top: 0px;
   }
