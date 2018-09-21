@@ -284,6 +284,18 @@ a:active {
   }
 }
 
+@media screen and (min-width: 1824px) {
+  .mycontainer {
+    width: 1250px;
+  }
+}
+
+@media screen and (min-width: 1224px) {
+  .mycontainer {
+    width: 1250px;
+  }
+}
+
 @media screen and (max-width: 750px) {
   #welcome_menu {
     margin-top: 0px;
@@ -322,18 +334,6 @@ a:active {
 
   #addit_info {
     width: 100%;
-  }
-}
-
-@media screen and (min-width: 1224px) {
-  .mycontainer {
-    width: 1250px;
-  }
-}
-
-@media screen and (min-width: 1824px) {
-  .mycontainer {
-    width: 1250px;
   }
 }
 
