@@ -273,20 +273,29 @@ a:active {
 }
 }
 
+.create_advert_col {
+ text-align:left;
+ margin: auto;
+ color:black;
+ background:white;
+}
+
+// большие монитиры
 @media screen and (min-width:1824px) {
 .mycontainer {
  width: 1250px;
 }
 }
 
+// стандартные мониторы и ноуты
 @media screen and (min-width:1224px) {
 .mycontainer {
  width: 1250px;
 }
 }
 
+// IPAD'ы
 @media screen and (max-width:750px) {
-
 #welcome_menu {
   margin-top:0px;
 }
@@ -310,8 +319,8 @@ body {
 
 }
 
+// смартфоны
 @media screen and (max-width:420px) {
-
 #welcome_menu {
   text-align:center;
 }

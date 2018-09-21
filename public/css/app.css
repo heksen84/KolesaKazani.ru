@@ -284,6 +284,13 @@ a:active {
   }
 }
 
+.create_advert_col {
+  text-align: left;
+  margin: auto;
+  color: black;
+  background: white;
+}
+
 @media screen and (min-width: 1824px) {
   .mycontainer {
     width: 1250px;

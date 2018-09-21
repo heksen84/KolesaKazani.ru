@@ -35969,13 +35969,8 @@ var render = function() {
           _c(
             "b-col",
             {
-              staticStyle: {
-                "text-align": "left",
-                margin: "auto",
-                color: "black",
-                background: "white"
-              },
-              attrs: { cols: "12", sm: "12", md: "12", lg: "9", xl: "9" }
+              staticClass: "create_advert_col",
+              attrs: { cols: "12", sm: "12", md: "12", lg: "10", xl: "10" }
             },
             [
               _c(
