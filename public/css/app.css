@@ -53,6 +53,7 @@ html {
 
 body {
   color: white;
+  background: #e6e6e6;
   background-image: url("/images/site/fon.jpg");
   background-size: cover;
   background-position: center;
