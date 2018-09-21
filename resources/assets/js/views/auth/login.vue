@@ -1,5 +1,5 @@
 <template>
-  <b-container fluid>
+  <b-container fluid class="mycontainer">
     <b-row>
     <b-col cols="12" sm="12" md="12" lg="4" xl="4" style="text-align:left;margin: 50px auto;color:black;background:white">
     <h3 style="text-align:center;margin-top:10px;color:grey">Вход</h3>

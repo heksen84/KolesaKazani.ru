@@ -66,6 +66,7 @@ body {
 
 #welcome_menu {
   text-align: right;
+  margin-top: 30px;
 }
 
 .auth_button {
@@ -284,6 +285,10 @@ a:active {
 }
 
 @media screen and (max-width: 750px) {
+  #welcome_menu {
+    margin-top: 0px;
+  }
+
   body {
     background-image: url("/images/site/fon_750px.jpg");
   }

@@ -35383,7 +35383,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-container",
-    { attrs: { fluid: "" } },
+    { staticClass: "mycontainer", attrs: { fluid: "" } },
     [
       _c(
         "b-row",
@@ -35565,7 +35565,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-container",
-    { attrs: { fluid: "" } },
+    { staticClass: "mycontainer", attrs: { fluid: "" } },
     [
       _c(
         "b-row",
@@ -35975,7 +35975,7 @@ var render = function() {
                 color: "black",
                 background: "white"
               },
-              attrs: { cols: "12", sm: "12", md: "12", lg: "8", xl: "8" }
+              attrs: { cols: "12", sm: "12", md: "12", lg: "9", xl: "9" }
             },
             [
               _c(
