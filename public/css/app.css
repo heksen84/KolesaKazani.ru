@@ -66,10 +66,9 @@ body {
 
 #welcome_menu {
   text-align: right;
-  margin-top: 30px;
 }
 
-.auth_button {
+.button {
   padding: 3px;
   background: #5abe5a;
   border: 1px solid white;
@@ -81,7 +80,7 @@ body {
   font-size: 16px;
 }
 
-.auth_button:hover {
+.button:hover {
   background: #6ed26e;
 }
 
@@ -292,13 +291,15 @@ a:active {
   border-radius: 10px;
 }
 
+@media screen and (min-width: 1920px) {
+  #welcome_menu {
+    margin-top: 30px;
+  }
+}
+
 @media screen and (min-width: 1224px) {
   .mycontainer {
     width: 1280px;
-  }
-
-  #welcome_menu {
-    margin-top: 0px;
   }
 
   .create_advert_col {
@@ -311,10 +312,6 @@ a:active {
   .create_advert_col {
     margin: 0px auto;
     border-radius: 0px;
-  }
-
-  #welcome_menu {
-    margin-top: 0px;
   }
 
   body {

@@ -3,7 +3,7 @@
     <b-row>
         <b-col id="welcome_menu" v-show="auth">
 
-          <div class="auth_button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>
+          <div class="button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>
 
           <!-- кнопка выбора региона -->
           <b-button size="sm" variant="primary" @click="openLocationWindow">{{ selectedPlaceName }}</b-button>
@@ -29,8 +29,8 @@
         </b-col>
 
         <b-col style="text-align:center" v-show="!auth">
-          <div class="auth_button" id="button_login" style="margin-top:3px" @click="login">Вход</div>
-          <div class="auth_button" id="button_reg" style="margin-top:3px" @click="register">Регистрация</div>
+          <div class="button" id="button_login" style="margin-top:3px" @click="login">Вход</div>
+          <div class="button" id="button_reg" style="margin-top:3px" @click="register">Регистрация</div>
         </b-col>
         
     </b-row>

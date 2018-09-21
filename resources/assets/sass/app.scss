@@ -56,10 +56,9 @@ body {
 
 #welcome_menu {
   text-align:right;
-  margin-top:30px;
 }
 
-.auth_button {
+.button {
   padding: 3px;
   background: rgb(90,190,90);
   border: 1px solid white;
@@ -71,7 +70,7 @@ body {
   font-size: 16px;
 }
 
-.auth_button:hover {
+.button:hover {
   background: rgb(110,210,110);
 }
 
@@ -283,13 +282,16 @@ a:active {
 
 
 // стандартные мониторы и ноуты
+@media screen and (min-width:1920px) {
+#welcome_menu {
+  margin-top:30px;
+}
+}
+
+// стандартные мониторы и ноуты
 @media screen and (min-width:1224px) {
 .mycontainer {
  width: 1280px;
-}
-
-#welcome_menu {
-  margin-top:0px;
 }
 
 .create_advert_col {
@@ -305,9 +307,6 @@ a:active {
 .create_advert_col {
  margin:0px auto;
  border-radius:0px;
-}
-#welcome_menu {
-  margin-top:0px;
 }
 
 body {

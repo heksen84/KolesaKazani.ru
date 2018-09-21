@@ -34619,7 +34619,7 @@ var render = function() {
               _c(
                 "div",
                 {
-                  staticClass: "auth_button",
+                  staticClass: "button",
                   staticStyle: {
                     width: "160px",
                     "text-align": "center",
@@ -34754,7 +34754,7 @@ var render = function() {
               _c(
                 "div",
                 {
-                  staticClass: "auth_button",
+                  staticClass: "button",
                   staticStyle: { "margin-top": "3px" },
                   attrs: { id: "button_login" },
                   on: { click: _vm.login }
@@ -34765,7 +34765,7 @@ var render = function() {
               _c(
                 "div",
                 {
-                  staticClass: "auth_button",
+                  staticClass: "button",
                   staticStyle: { "margin-top": "3px" },
                   attrs: { id: "button_reg" },
                   on: { click: _vm.register }
