@@ -34434,7 +34434,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "b-container",
-        { attrs: { fluid: "" } },
+        { staticClass: "container", attrs: { fluid: "" } },
         [
           _c("br"),
           _vm._v(" "),
@@ -34595,7 +34595,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-container",
-    { attrs: { fluid: "" } },
+    { staticClass: "mycontainer", attrs: { fluid: "" } },
     [
       _c(
         "b-row",
@@ -35177,7 +35177,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-container",
-    { attrs: { fluid: "" } },
+    { staticClass: "mycontainer", attrs: { fluid: "" } },
     [
       _c(
         "b-row",
@@ -35959,7 +35959,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-container",
-    { attrs: { fluid: "" } },
+    { staticClass: "mycontainer", attrs: { fluid: "" } },
     [
       _c("notifications", { attrs: { group: "foo", position: "top center" } }),
       _vm._v(" "),

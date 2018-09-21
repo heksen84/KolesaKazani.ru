@@ -1,5 +1,5 @@
 <template>
-  <b-container fluid>
+  <b-container fluid class="mycontainer">
     <b-row>
         <b-col id="welcome_menu" v-show="auth">
 

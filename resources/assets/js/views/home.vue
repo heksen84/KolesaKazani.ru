@@ -20,7 +20,7 @@
 
   </b-collapse>
 </b-navbar>
-	<b-container fluid>
+	<b-container fluid class="container">
 	<br>
 	<b-row>
 		<b-col cols="12" sm="12" md="8" lg="8" xl="8" style="text-align:center;margin:auto">
