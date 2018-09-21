@@ -15,20 +15,7 @@ export default
         { value: '5', text: 'Сдача в аренду' }
     ],
 
-    // структура объявления 
-
-    /*advert:
-    [{   
-        deal_selected:null, 
-        category:null, 
-        text:"",
-        price:0,
-        images:[],
-        location:[],
-        chars:[] 
-    }]*/
-
-    advert_data: {}
+    advert_data: {} // наш объект объявления 
 }
 
 // вынести в functions
