@@ -2994,7 +2994,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -34791,19 +34790,9 @@ var render = function() {
             [
               _c("a", { attrs: { href: "/" } }, [
                 _c("div", { attrs: { id: "logo_block" } }, [
-                  _c(
-                    "div",
-                    {
-                      staticStyle: {
-                        "font-size": "174%",
-                        "letter-spacing": "4px",
-                        "font-weight": "450",
-                        padding: "7px",
-                        "margin-top": "-8px"
-                      }
-                    },
-                    [_vm._v("КупиПродай\n            ")]
-                  ),
+                  _c("div", { attrs: { id: "logo_block_text" } }, [
+                    _vm._v("КупиПродай")
+                  ]),
                   _vm._v(" "),
                   _c(
                     "div",

@@ -97,6 +97,14 @@ body {
   cursor: default;
 }
 
+#logo_block_text {
+  font-size: 174%;
+  letter-spacing: 4px;
+  font-weight: 450;
+  padding: 7px;
+  margin-top: -8px;
+}
+
 #button_search {
   margin: 4px;
   padding: 10px;
