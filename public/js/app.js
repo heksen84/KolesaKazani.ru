@@ -35973,7 +35973,8 @@ var render = function() {
                 "text-align": "left",
                 margin: "auto",
                 color: "black",
-                background: "white"
+                background: "white",
+                height: "100%"
               },
               attrs: { cols: "12", sm: "12", md: "12", lg: "9", xl: "9" }
             },

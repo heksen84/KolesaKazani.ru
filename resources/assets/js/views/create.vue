@@ -2,7 +2,7 @@
 	<b-container fluid class="mycontainer">
     <notifications group="foo" position="top center"/>
 		<b-row>
-		<b-col cols="12" sm="12" md="12" lg="9" xl="9" style="text-align:left;margin: auto;color:black;background:white">
+		<b-col cols="12" sm="12" md="12" lg="9" xl="9" style="text-align:left;margin: auto;color:black;background:white;height:100%">
 		<div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
 		<h1 class="title_text" style="margin-top:5px">подать объявление</h1>
 		<hr>
