@@ -35960,7 +35960,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-container",
-    { staticClass: "mycontainer", attrs: { fluid: "" } },
+    { staticClass: "mycontainer_adv", attrs: { fluid: "" } },
     [
       _c("notifications", { attrs: { group: "foo", position: "top center" } }),
       _vm._v(" "),

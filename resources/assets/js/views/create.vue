@@ -1,5 +1,5 @@
 <template>
-	<b-container fluid class="mycontainer">
+	<b-container fluid class="mycontainer_adv">
     <notifications group="foo" position="top center"/>
 		<b-row>
 		<b-col cols="12" sm="12" md="12" lg="10" xl="10" class="create_advert_col">
