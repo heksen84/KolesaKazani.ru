@@ -142,7 +142,7 @@ body {
 
 .title_text {
   font-size: 170%;
-  color: #5a5a5a;
+  color: #464646;
 }
 
 .category_item {
@@ -206,13 +206,13 @@ body {
 }
 
 .close_button {
-  font-size: 107%;
+  font-size: 110%;
   position: absolute;
-  top: 15px;
+  top: 18px;
   left: 95%;
   cursor: pointer;
   font-weight: 600;
-  color: #6464a0;
+  color: #464646;
 }
 
 .close_button:hover {
