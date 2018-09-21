@@ -142,7 +142,7 @@ body {
 
 .title_text {
   font-size: 170%;
-  color: #787878;
+  color: #5a5a5a;
 }
 
 .category_item {
@@ -286,9 +286,10 @@ a:active {
 
 .create_advert_col {
   text-align: left;
-  margin: auto;
+  margin: 20px auto;
   color: black;
   background: white;
+  border-radius: 10px;
 }
 
 @media screen and (min-width: 1824px) {
@@ -304,6 +305,11 @@ a:active {
 }
 
 @media screen and (max-width: 750px) {
+  .create_advert_col {
+    margin: 0px auto;
+    border-radius: 0px;
+  }
+
   #welcome_menu {
     margin-top: 0px;
   }

@@ -35987,7 +35987,7 @@ var render = function() {
                 "h1",
                 {
                   staticClass: "title_text",
-                  staticStyle: { "margin-top": "5px" }
+                  staticStyle: { "margin-top": "18px" }
                 },
                 [_vm._v("подать объявление")]
               ),
