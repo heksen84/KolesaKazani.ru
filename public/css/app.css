@@ -331,3 +331,9 @@ a:active {
   }
 }
 
+@media screen and (min-width: 1824px) {
+  .mycontainer {
+    width: 1250px;
+  }
+}
+
