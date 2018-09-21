@@ -282,10 +282,9 @@ a:active {
 
 .create_advert_col {
  text-align:left;
- margin: 10px auto;
+ margin: auto;
  color:black;
  background:white;
- border-radius:10px;
 }
 
 
@@ -307,20 +306,10 @@ a:active {
  width: 1000px;
 }
 
-.create_advert_col {
- margin:0px auto;
- border-radius:0px;
-}
-
 }
 
 // IPAD'ы
 @media screen and (max-width:768px) {
-
-.create_advert_col {
- margin:0px auto;
- border-radius:0px;
-}
 
 body {
  background-image: url('/images/site/fon_750px.jpg');
