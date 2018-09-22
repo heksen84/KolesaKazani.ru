@@ -34652,7 +34652,7 @@ var render = function() {
                 {
                   staticStyle: {
                     "text-align": "center",
-                    color: "rgb(80,80,80)"
+                    color: "rgb(50,50,50)"
                   },
                   attrs: { "hide-footer": "", title: _vm.locationDialogTitle },
                   model: {
