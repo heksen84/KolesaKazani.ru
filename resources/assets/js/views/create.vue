@@ -15,7 +15,7 @@
 			</b-form-group>
 
 			<b-form-group label="Категория товара или услуги:" label-for="categories" style="margin-top:30px;width:260px">
-				<b-form-select v-model="form.category" class="mb-3" @change="changeCategory" state="valid">
+				<b-form-select v-model="form.category" class="mb-3" @change="changeCategory">
 					 <option :value=null>-- Выберите категорию --</option>
 					 <option v-for="item in items" :value="item.id">{{item.name}}</option>
 				</b-form-select>

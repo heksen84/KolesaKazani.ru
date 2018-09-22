@@ -36036,7 +36036,6 @@ var render = function() {
                         "b-form-select",
                         {
                           staticClass: "mb-3",
-                          attrs: { state: "valid" },
                           on: { change: _vm.changeCategory },
                           model: {
                             value: _vm.form.category,
