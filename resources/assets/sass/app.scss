@@ -295,30 +295,13 @@ a:active {
  width: 1000px;
 }
 
-}
 
-
-// большие устройства
-@media screen and (max-width:960px) {
-#new_advert_block {
-  margin-right: 0px;
-  padding: 10px;
-  margin-top: 0px;
-}
-
-#logo_block {
-  margin-top: 7px;
-}
-
-#search_string {
-  margin-top:7px;
-}
-
-#categories_title {
-   margin-top:5px;
+.create_advert_col {
+ margin-top: 20px;
 }
 
 }
+
 
 // IPAD'ы PRO
 @media screen and (max-width:1024px) {
@@ -345,6 +328,28 @@ a:active {
 
 .create_advert_col {
  margin-top: 20px;
+}
+
+}
+
+// большие устройства
+@media screen and (max-width:960px) {
+#new_advert_block {
+  margin-right: 0px;
+  padding: 10px;
+  margin-top: 0px;
+}
+
+#logo_block {
+  margin-top: 7px;
+}
+
+#search_string {
+  margin-top:7px;
+}
+
+#categories_title {
+   margin-top:5px;
 }
 
 }
