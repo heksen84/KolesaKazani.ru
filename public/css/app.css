@@ -343,6 +343,10 @@ a:active {
   .category_item {
     width: 220px;
   }
+
+  .create_advert_col {
+    margin-top: 20px;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -361,6 +365,12 @@ a:active {
   #categories_title {
     margin-left: 0px;
     text-align: center;
+  }
+
+  .create_advert_col {
+    margin-top: 0px;
+    border-radius: 0px;
+    height: 100%;
   }
 }
 

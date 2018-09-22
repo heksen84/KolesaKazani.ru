@@ -335,18 +335,16 @@ a:active {
   width:385px;
 }
 
-#logo_block {
-}
-
 #logo_block_text {
  font-size: 25px;
 }
 
-#button_search {
-}
-
 .category_item {
   width:220px;
+}
+
+.create_advert_col {
+ margin-top: 20px;
 }
 
 }
@@ -370,6 +368,12 @@ body {
 #categories_title {
   margin-left: 0px;
   text-align: center;
+}
+
+.create_advert_col {
+ margin-top: 0px;
+ border-radius: 0px;
+ height:100%;
 }
 
 }
