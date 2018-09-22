@@ -34684,9 +34684,14 @@ var render = function() {
                   _vm.buttonAllCountry ? _c("hr") : _vm._e(),
                   _vm._v(" "),
                   _vm.buttonAllCountry
-                    ? _c("b-button", { on: { click: _vm.selectAllCountry } }, [
-                        _vm._v("Весь Казахстан")
-                      ])
+                    ? _c(
+                        "b-button",
+                        {
+                          attrs: { variant: "link" },
+                          on: { click: _vm.selectAllCountry }
+                        },
+                        [_vm._v("Весь Казахстан")]
+                      )
                     : _vm._e(),
                   _vm._v(" "),
                   _vm._l(_vm.places, function(i) {

@@ -16,7 +16,7 @@
             </b-button>
 
             <hr v-if="buttonAllCountry">
-            <b-button v-if="buttonAllCountry" @click="selectAllCountry">Весь Казахстан</b-button>
+            <b-button variant="link" v-if="buttonAllCountry" @click="selectAllCountry">Весь Казахстан</b-button>
 
             <!-- города, cёлы, аулы, деревни -->
             <b-button variant="link" style="color:black" v-for="i in places" :key="i.city_id" @click="selectPlace(i)">{{i.name}}
