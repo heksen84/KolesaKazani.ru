@@ -301,10 +301,6 @@ a:active {
   .mycontainer_adv {
     width: 1000px;
   }
-
-  .create_advert_col {
-    margin-top: 20px;
-  }
 }
 
 @media screen and (max-width: 1024px) {
@@ -326,10 +322,6 @@ a:active {
 
   .category_item {
     width: 220px;
-  }
-
-  .create_advert_col {
-    margin-top: 20px;
   }
 }
 
