@@ -47,13 +47,16 @@
         </a>
 
         </b-col>
+
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
           <input type="text" id="search_string" placeholder="Поиск по сайту"/>
           <button id="button_search" @click="search">найти</button>
         </b-col>
+
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
-        <a href="/podat-obyavlenie"><div id="new_advert_block">подать объявление</div></a>
+          <a href="/podat-obyavlenie"><div id="new_advert_block">подать объявление</div></a>
         </b-col>
+
     </b-row>
 
     <div id="categories_title" class="shadow_text">категории</div>
@@ -61,8 +64,12 @@
     <!-- категории -->
     <b-row v-for="i in Math.ceil(Object.keys(items).length / 4)" v-bind:key=i>
       <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in items.slice((i - 1) * 4, i * 4)"  v-bind:key=item.id>
+
         <a :href="urlRegAndPlace+'/'+item.url">
-        <div class="category_item">{{ item.name }}<span style="font-size:13px;color:rgb(170,255,170);float:right;margin-top:4px" :id="item.id">| {{ 555 }} </span></div></a>
+
+        <div class="category_item">{{ item.name }}
+          <span style="font-size:13px;color:rgb(170,255,170);float:right;margin-top:4px" :id="item.id">| {{ 555 }} </span>
+        </div></a>
       </b-col>
     </b-row>
 

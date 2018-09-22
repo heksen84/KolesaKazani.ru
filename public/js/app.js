@@ -2994,6 +2994,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -34869,7 +34876,7 @@ var render = function() {
                   { attrs: { href: _vm.urlRegAndPlace + "/" + item.url } },
                   [
                     _c("div", { staticClass: "category_item" }, [
-                      _vm._v(_vm._s(item.name)),
+                      _vm._v(_vm._s(item.name) + "\n          "),
                       _c(
                         "span",
                         {
