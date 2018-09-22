@@ -34644,11 +34644,7 @@ var render = function() {
                 "b-modal",
                 {
                   staticStyle: { "text-align": "center", color: "grey" },
-                  attrs: {
-                    size: "lg",
-                    "hide-footer": "",
-                    title: _vm.locationDialogTitle
-                  },
+                  attrs: { "hide-footer": "", title: _vm.locationDialogTitle },
                   model: {
                     value: _vm.locationDialog,
                     callback: function($$v) {
@@ -34660,12 +34656,10 @@ var render = function() {
                 [
                   _vm._l(_vm.regions, function(i) {
                     return _c(
-                      "button",
+                      "b-button",
                       {
-                        staticStyle: {
-                          color: "black",
-                          display: "inline-block"
-                        },
+                        staticStyle: { color: "black" },
+                        attrs: { variant: "link" },
                         on: {
                           click: function($event) {
                             _vm.selectLocation(i)
@@ -34696,12 +34690,10 @@ var render = function() {
                   _vm._v(" "),
                   _vm._l(_vm.places, function(i) {
                     return _c(
-                      "button",
+                      "b-button",
                       {
-                        staticStyle: {
-                          color: "black",
-                          display: "inline-block"
-                        },
+                        staticStyle: { color: "black" },
+                        attrs: { variant: "link" },
                         on: {
                           click: function($event) {
                             _vm.selectPlace(i)

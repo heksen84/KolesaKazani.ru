@@ -9,18 +9,18 @@
           <b-button size="sm" variant="primary" @click="openLocationWindow">{{ selectedPlaceName }}</b-button>
 
           <!-- окно выбоа региона и местоположения -->
-          <b-modal v-model="locationDialog" size="lg" style="text-align:center;color:grey" hide-footer :title="locationDialogTitle">
+          <b-modal v-model="locationDialog" style="text-align:center;color:grey" hide-footer :title="locationDialogTitle">
 
             <!-- регионы -->
-            <button style="color:black;display:inline-block" v-for="i in regions" @click="selectLocation(i)">{{i.name}}
-            </button>
+            <b-button variant="link" style="color:black" v-for="i in regions" @click="selectLocation(i)">{{i.name}}
+            </b-button>
 
             <hr v-if="buttonAllCountry">
             <button style="color:black;display:block;margin:auto;margin-top:-5px" v-if="buttonAllCountry" @click="selectAllCountry">Весь Казахстан</button>
 
             <!-- города, cёлы, аулы, деревни -->
-            <button style="color:black;display:inline-block" v-for="i in places" @click="selectPlace(i)">{{i.name}}
-            </button>
+            <b-button variant="link" style="color:black" v-for="i in places" @click="selectPlace(i)">{{i.name}}
+            </b-button>
 
             <hr v-if="buttonAllRegion">
             <button style="color:black;display:block;margin:auto;margin-top:-5px" v-if="buttonAllRegion" @click="selectAllRegion">Вся область</button>
