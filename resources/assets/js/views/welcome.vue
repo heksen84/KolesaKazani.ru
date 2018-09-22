@@ -12,14 +12,14 @@
           <b-modal v-model="locationDialog" style="text-align:center;color:grey" hide-footer :title="locationDialogTitle">
 
             <!-- регионы -->
-            <b-button variant="link" style="color:black" v-for="i in regions" @click="selectLocation(i)">{{i.name}}
+            <b-button variant="link" style="color:black" v-for="i in regions" key="i" @click="selectLocation(i)">{{i.name}}
             </b-button>
 
             <hr v-if="buttonAllCountry">
             <button style="color:black;display:block;margin:auto;margin-top:-5px" v-if="buttonAllCountry" @click="selectAllCountry">Весь Казахстан</button>
 
             <!-- города, cёлы, аулы, деревни -->
-            <b-button variant="link" style="color:black" v-for="i in places" @click="selectPlace(i)">{{i.name}}
+            <b-button variant="link" style="color:black" v-for="i in places" key="i" @click="selectPlace(i)">{{i.name}}
             </b-button>
 
             <hr v-if="buttonAllRegion">
