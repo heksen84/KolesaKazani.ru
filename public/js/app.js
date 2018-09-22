@@ -34650,7 +34650,10 @@ var render = function() {
               _c(
                 "b-modal",
                 {
-                  staticStyle: { "text-align": "center", color: "grey" },
+                  staticStyle: {
+                    "text-align": "center",
+                    color: "rgb(80,80,80)"
+                  },
                   attrs: { "hide-footer": "", title: _vm.locationDialogTitle },
                   model: {
                     value: _vm.locationDialog,
