@@ -34668,7 +34668,7 @@ var render = function() {
                     return _c(
                       "b-button",
                       {
-                        key: "i",
+                        key: i.region_id,
                         staticStyle: { color: "black" },
                         attrs: { variant: "link" },
                         on: {
@@ -34684,21 +34684,16 @@ var render = function() {
                   _vm.buttonAllCountry ? _c("hr") : _vm._e(),
                   _vm._v(" "),
                   _vm.buttonAllCountry
-                    ? _c(
-                        "b-button",
-                        {
-                          attrs: { variant: "link" },
-                          on: { click: _vm.selectAllCountry }
-                        },
-                        [_vm._v("Весь Казахстан")]
-                      )
+                    ? _c("b-button", { on: { click: _vm.selectAllCountry } }, [
+                        _vm._v("Весь Казахстан")
+                      ])
                     : _vm._e(),
                   _vm._v(" "),
                   _vm._l(_vm.places, function(i) {
                     return _c(
                       "b-button",
                       {
-                        key: "i",
+                        key: i.city_id,
                         staticStyle: { color: "black" },
                         attrs: { variant: "link" },
                         on: {
@@ -34715,9 +34710,14 @@ var render = function() {
                   _vm._v(" "),
                   _vm.buttonAllRegion
                     ? _c(
-                        "b-button",
+                        "button",
                         {
-                          attrs: { variant: "link" },
+                          staticStyle: {
+                            color: "black",
+                            display: "block",
+                            margin: "auto",
+                            "margin-top": "-5px"
+                          },
                           on: { click: _vm.selectAllRegion }
                         },
                         [_vm._v("Вся область")]
