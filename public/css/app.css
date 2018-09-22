@@ -303,7 +303,7 @@ a:active {
   }
 }
 
-@media screen and (max-width: 990px) {
+@media screen and (max-width: 960px) {
   #new_advert_block {
     margin-right: 0px;
     padding: 10px;
@@ -320,6 +320,28 @@ a:active {
 
   #categories_title {
     margin-top: 5px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #welcome_menu {
+    margin-top: 10px;
+  }
+
+  #new_advert_block {
+    font-size: 20px;
+  }
+
+  #search_string {
+    width: 385px;
+  }
+
+  #logo_block_text {
+    font-size: 25px;
+  }
+
+  .category_item {
+    width: 220px;
   }
 }
 
