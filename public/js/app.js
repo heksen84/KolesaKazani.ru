@@ -34685,14 +34685,9 @@ var render = function() {
                   _vm._v(" "),
                   _vm.buttonAllCountry
                     ? _c(
-                        "button",
+                        "b-button",
                         {
-                          staticStyle: {
-                            color: "black",
-                            display: "block",
-                            margin: "auto",
-                            "margin-top": "-5px"
-                          },
+                          attrs: { variant: "link" },
                           on: { click: _vm.selectAllCountry }
                         },
                         [_vm._v("Весь Казахстан")]
@@ -34720,14 +34715,9 @@ var render = function() {
                   _vm._v(" "),
                   _vm.buttonAllRegion
                     ? _c(
-                        "button",
+                        "b-button",
                         {
-                          staticStyle: {
-                            color: "black",
-                            display: "block",
-                            margin: "auto",
-                            "margin-top": "-5px"
-                          },
+                          attrs: { variant: "link" },
                           on: { click: _vm.selectAllRegion }
                         },
                         [_vm._v("Вся область")]

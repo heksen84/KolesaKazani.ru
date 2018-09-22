@@ -16,14 +16,14 @@
             </b-button>
 
             <hr v-if="buttonAllCountry">
-            <button style="color:black;display:block;margin:auto;margin-top:-5px" v-if="buttonAllCountry" @click="selectAllCountry">Весь Казахстан</button>
+            <b-button variant="link" v-if="buttonAllCountry" @click="selectAllCountry">Весь Казахстан</b-button>
 
             <!-- города, cёлы, аулы, деревни -->
             <b-button variant="link" style="color:black" v-for="i in places" key="i" @click="selectPlace(i)">{{i.name}}
             </b-button>
 
             <hr v-if="buttonAllRegion">
-            <button style="color:black;display:block;margin:auto;margin-top:-5px" v-if="buttonAllRegion" @click="selectAllRegion">Вся область</button>
+            <b-button variant="link" v-if="buttonAllRegion" @click="selectAllRegion">Вся область</b-button>
 
           </b-modal>
         </b-col>
