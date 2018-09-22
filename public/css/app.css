@@ -271,6 +271,31 @@ a:active {
   margin-left: 30px;
 }
 
+@media screen and (min-width: 1920px) {
+  .create_advert_col {
+    margin-top: 20px;
+    border-radius: 10px;
+  }
+
+  #welcome_menu {
+    margin-top: 20px;
+  }
+
+  .mycontainer {
+    width: 1280px !important;
+  }
+}
+
+@media screen and (min-width: 1224px) {
+  .mycontainer {
+    width: 1280px;
+  }
+
+  .mycontainer_adv {
+    width: 1000px;
+  }
+}
+
 @media screen and (max-width: 990px) {
   #new_advert_block {
     margin-right: 0px;
@@ -296,27 +321,6 @@ a:active {
   margin: auto;
   color: black;
   background: white;
-}
-
-@media screen and (min-width: 1920px) {
-  .create_advert_col {
-    margin-top: 20px;
-    border-radius: 10px;
-  }
-
-  #welcome_menu {
-    margin-top: 20px;
-  }
-}
-
-@media screen and (min-width: 1224px) {
-  .mycontainer {
-    width: 1280px;
-  }
-
-  .mycontainer_adv {
-    width: 1000px;
-  }
 }
 
 @media screen and (max-width: 768px) {
