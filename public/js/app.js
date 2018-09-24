@@ -2554,7 +2554,7 @@ var tmp_images_array = [];
 
           _this.$root.$notify({
             group: 'foo',
-            text: "<div style='font-size:125%'>" + response.data.msg + "</div>",
+            text: "<div style='font-size:130%'>" + response.data.msg + "</div>",
             type: 'success'
           });
         } else window.location.href = "/home/" + advert_id.data;
