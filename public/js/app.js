@@ -36100,21 +36100,23 @@ var render = function() {
                     "b-form-group",
                     { attrs: { label: "Цена:", "label-for": "price" } },
                     [
-                      _c("b-form-input", {
-                        staticStyle: {
-                          width: "150px",
-                          margin: "auto",
-                          "font-size": "20px",
-                          "text-align": "center"
-                        },
-                        attrs: {
-                          id: "price",
-                          placeholder: "Цена",
-                          formatter: _vm.setPrice,
-                          required: "",
-                          state: "valid"
-                        }
-                      })
+                      _vm.options_category != null
+                        ? _c("b-form-input", {
+                            staticStyle: {
+                              width: "150px",
+                              margin: "auto",
+                              "font-size": "20px",
+                              "text-align": "center"
+                            },
+                            attrs: {
+                              id: "price",
+                              placeholder: "Цена",
+                              formatter: _vm.setPrice,
+                              required: "",
+                              state: "valid"
+                            }
+                          })
+                        : _vm._e()
                     ],
                     1
                   ),
