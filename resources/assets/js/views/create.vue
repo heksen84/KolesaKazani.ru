@@ -10,12 +10,12 @@
 			<b-form @submit="onSubmit">
 			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px;margin-top:-5px">
 
-				 <b-form-radio-group id="deal_group" stacked v-model="form.deal_selected" :options="this.$root.options_sdelka" name="radioOpenions" @change="setDeal"></b-form-radio-group>
+				 <b-form-radio-group id="deal_group" stacked :options="options_sdelka" name="radioOpenions" @change="setDeal"></b-form-radio-group>
 
 			</b-form-group>
 
 			<b-form-group label="Категория товара или услуги:" label-for="categories" style="margin-top:30px;width:260px">
-				<b-form-select v-model="form.category" class="mb-3" @change="changeCategory">
+				<b-form-select class="mb-3" @change="changeCategory" v-model="options_category">
 					 <option :value=null>-- Выберите категорию --</option>
 					 <option v-for="item in items" :value="item.id">{{item.name}}</option>
 				</b-form-select>
@@ -57,7 +57,7 @@
 			<h1 v-else-if="other"></h1>
 
 			<b-form-group label="Дополнительная информация:" label-for="addit_info">
-			 <b-form-textarea id="addit_info" v-model="form.text"
+			 <b-form-textarea id="addit_info"
 										placeholder="Укажите дополнительную информацию"
 										:rows="4"
 										:max-rows="4" @input="setInfo">
@@ -66,14 +66,14 @@
 
 			<!-- ЦЕНА -->
 			<b-form-group label="Цена:" label-for="price">
-			 	<b-form-input id="price" v-model="form.price" placeholder="Цена" style="width:150px;margin:auto;font-size:20px;text-align:center" :formatter="setPrice" required state="valid"></b-form-input>
+			 	<b-form-input id="price" placeholder="Цена" style="width:150px;margin:auto;font-size:20px;text-align:center" :formatter="setPrice" required state="valid"></b-form-input>
 			</b-form-group>
 
 			<!-- ФОТОГРАФИИ -->
-			<b-form-group label="Фотографии:">
+			<!--<b-form-group label="Фотографии:">
 				<b-img v-for="i,index in form.images" :src="i.src" width="105" height="105" :key="index" @click="deletePhoto(index)" class="image" />
-				<b-form-file v-model="form.file" multiple accept="image/jpeg, image/png" class="mt-2" @change="loadImage"></b-form-file>
-			</b-form-group>
+				<b-form-file multiple accept="image/jpeg, image/png" class="mt-2" @change="loadImage"></b-form-file>
+			</b-form-group>-->
 
 			<!-- ОТМЕТИТЬ НА КАРТЕ -->
 			<b-form-group label="Расположение:" style="text-align:right">
@@ -102,19 +102,23 @@ var tmp_images_array=[];
 export default {
 
 	props: ["items"],
+
 	data () {
 
     return 	{
 
-		form: {
-			deal_selected: 0,
+      options_sdelka: this.$root.options_sdelka,
+      options_category: null, 
+
+	/*	form: 
+    {
+			deal_selected: this.$root.options_sdelka,
 			category: null,
 			text: '',
 			price: '',
 			file: null,
 			images:[]
-
-		},
+		},*/
 
 		root:false,
 		transport:false,			// транспорт
@@ -130,9 +134,9 @@ export default {
 	}
 	},
 
-	created() {
-		//this.$root.testFunction();
-
+	created() 
+  {
+		this.$root.options_sdelka=0;
 	},
 
 	components: { transport, realestate },
@@ -140,7 +144,7 @@ export default {
 
   		loadImage(evt) {
   			
-  			var files = evt.target.files;
+  		/*	var files = evt.target.files;
 
         	for (var i=0; i<files.length; i++) {
         		if ( i>=this.$root.max_load_images || this.form.images.length >= this.$root.max_load_images ) 
@@ -158,11 +162,11 @@ export default {
 
 			reader.readAsDataURL(image);
 				this.form.images = tmp_images_array;
-        	}
+        	}*/
   		},
 
   		deletePhoto(index) {
-  			this.form.images.splice(index, 1);
+  			//this.form.images.splice(index, 1);
   		},
 
   		closeAndReturn() {

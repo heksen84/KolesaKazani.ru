@@ -2363,19 +2363,23 @@ var tmp_images_array = [];
 /* harmony default export */ __webpack_exports__["default"] = ({
 
   props: ["items"],
+
   data: function data() {
 
     return {
 
-      form: {
-        deal_selected: 0,
-        category: null,
-        text: '',
-        price: '',
-        file: null,
-        images: []
+      options_sdelka: this.$root.options_sdelka,
+      options_category: null,
 
-      },
+      /*	form: 
+         {
+      		deal_selected: this.$root.options_sdelka,
+      		category: null,
+      		text: '',
+      		price: '',
+      		file: null,
+      		images:[]
+      	},*/
 
       root: false,
       transport: false, // транспорт
@@ -2391,8 +2395,7 @@ var tmp_images_array = [];
     };
   },
   created: function created() {
-    //this.$root.testFunction();
-
+    this.$root.options_sdelka = 0;
   },
 
 
@@ -2400,26 +2403,23 @@ var tmp_images_array = [];
   methods: {
     loadImage: function loadImage(evt) {
 
-      var files = evt.target.files;
-
-      for (var i = 0; i < files.length; i++) {
-        if (i >= this.$root.max_load_images || this.form.images.length >= this.$root.max_load_images) break;
-
-        var image = files[i];
-        var reader = new FileReader();
-
-        reader.onload = function (theFile) {
-          return function (e) {
-            tmp_images_array.push({ "src": e.target.result });
-          };
-        }(image);
-
-        reader.readAsDataURL(image);
-        this.form.images = tmp_images_array;
-      }
+      /*	var files = evt.target.files;
+            	for (var i=0; i<files.length; i++) {
+          		if ( i>=this.$root.max_load_images || this.form.images.length >= this.$root.max_load_images ) 
+          			break;
+            	var image = files[i]
+      		var reader = new FileReader();
+      				reader.onload = (function(theFile) {
+            return function(e) {
+              tmp_images_array.push({ "src": e.target.result });
+            };
+              })(image);
+      	reader.readAsDataURL(image);
+      this.form.images = tmp_images_array;
+          	}*/
     },
     deletePhoto: function deletePhoto(index) {
-      this.form.images.splice(index, 1);
+      //this.form.images.splice(index, 1);
     },
     closeAndReturn: function closeAndReturn() {
       window.history.back();
@@ -36001,17 +36001,10 @@ var render = function() {
                         attrs: {
                           id: "deal_group",
                           stacked: "",
-                          options: this.$root.options_sdelka,
+                          options: _vm.options_sdelka,
                           name: "radioOpenions"
                         },
-                        on: { change: _vm.setDeal },
-                        model: {
-                          value: _vm.form.deal_selected,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form, "deal_selected", $$v)
-                          },
-                          expression: "form.deal_selected"
-                        }
+                        on: { change: _vm.setDeal }
                       })
                     ],
                     1
@@ -36033,11 +36026,11 @@ var render = function() {
                           staticClass: "mb-3",
                           on: { change: _vm.changeCategory },
                           model: {
-                            value: _vm.form.category,
+                            value: _vm.options_category,
                             callback: function($$v) {
-                              _vm.$set(_vm.form, "category", $$v)
+                              _vm.options_category = $$v
                             },
-                            expression: "form.category"
+                            expression: "options_category"
                           }
                         },
                         [
@@ -36097,14 +36090,7 @@ var render = function() {
                           rows: 4,
                           "max-rows": 4
                         },
-                        on: { input: _vm.setInfo },
-                        model: {
-                          value: _vm.form.text,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form, "text", $$v)
-                          },
-                          expression: "form.text"
-                        }
+                        on: { input: _vm.setInfo }
                       })
                     ],
                     1
@@ -36127,53 +36113,10 @@ var render = function() {
                           formatter: _vm.setPrice,
                           required: "",
                           state: "valid"
-                        },
-                        model: {
-                          value: _vm.form.price,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form, "price", $$v)
-                          },
-                          expression: "form.price"
                         }
                       })
                     ],
                     1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-form-group",
-                    { attrs: { label: "Фотографии:" } },
-                    [
-                      _vm._l(_vm.form.images, function(i, index) {
-                        return _c("b-img", {
-                          key: index,
-                          staticClass: "image",
-                          attrs: { src: i.src, width: "105", height: "105" },
-                          on: {
-                            click: function($event) {
-                              _vm.deletePhoto(index)
-                            }
-                          }
-                        })
-                      }),
-                      _vm._v(" "),
-                      _c("b-form-file", {
-                        staticClass: "mt-2",
-                        attrs: {
-                          multiple: "",
-                          accept: "image/jpeg, image/png"
-                        },
-                        on: { change: _vm.loadImage },
-                        model: {
-                          value: _vm.form.file,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form, "file", $$v)
-                          },
-                          expression: "form.file"
-                        }
-                      })
-                    ],
-                    2
                   ),
                   _vm._v(" "),
                   _c(
