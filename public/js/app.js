@@ -2350,7 +2350,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 // импорт
@@ -2396,9 +2395,7 @@ var tmp_images_array = [];
       other: false // другое
     };
   },
-  created: function created() {
-    //this.$root.advert_data.adv_price=0;
-  },
+  created: function created() {},
 
 
   components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default.a },
