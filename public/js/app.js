@@ -36096,12 +36096,12 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "b-form-group",
-                    { attrs: { label: "Цена:", "label-for": "price" } },
-                    [
-                      _vm.options_category != null
-                        ? _c("b-form-input", {
+                  _vm.options_category != null
+                    ? _c(
+                        "b-form-group",
+                        { attrs: { label: "Цена:", "label-for": "price" } },
+                        [
+                          _c("b-form-input", {
                             staticStyle: {
                               width: "150px",
                               margin: "auto",
@@ -36116,10 +36116,10 @@ var render = function() {
                               state: "valid"
                             }
                           })
-                        : _vm._e()
-                    ],
-                    1
-                  ),
+                        ],
+                        1
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "b-form-group",

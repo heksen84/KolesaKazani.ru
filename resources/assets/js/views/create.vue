@@ -65,8 +65,8 @@
 			</b-form-group>
 
 			<!-- ЦЕНА -->
-			<b-form-group label="Цена:" label-for="price">
-			 	<b-form-input id="price" placeholder="Цена" style="width:150px;margin:auto;font-size:20px;text-align:center" :formatter="setPrice" required state="valid" v-if="options_category!=null"></b-form-input>
+			<b-form-group label="Цена:" label-for="price" v-if="options_category!=null">
+			 	<b-form-input id="price" placeholder="Цена" style="width:150px;margin:auto;font-size:20px;text-align:center" :formatter="setPrice" required state="valid"></b-form-input>
 			</b-form-group>
 
 			<!-- ФОТОГРАФИИ -->
