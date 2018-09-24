@@ -21,7 +21,6 @@
 			</b-form-group>
 			
 			<!-- КАТЕГОРИИ -->
-
 			<!-- null категория -->
 			<div v-if="root"></div>
 
@@ -202,6 +201,7 @@ export default {
   			this.$root.advert_data.adv_deal=deal_id;
         this.options_deal_id=deal_id;
   		},
+
   		/*
   		--------------------------
   		изменения в категориях
@@ -286,8 +286,7 @@ export default {
 
         if (!response.data.response) {
 
-            this.$root.$notify
-            ({
+            this.$root.$notify({
               group: 'foo',
               text: "<div style='font-size:130%'>"+response.data.msg+"</div>",
               type: 'success',

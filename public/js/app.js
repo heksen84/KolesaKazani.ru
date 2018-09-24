@@ -2349,7 +2349,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 // импорт
@@ -2451,6 +2450,7 @@ var tmp_images_array = [];
       this.$root.advert_data.adv_deal = deal_id;
       this.options_deal_id = deal_id;
     },
+
 
     /*
     --------------------------
