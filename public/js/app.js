@@ -36117,8 +36117,7 @@ var render = function() {
                               id: "price",
                               placeholder: "Цена",
                               formatter: _vm.setPrice,
-                              required: "",
-                              state: "valid"
+                              required: ""
                             }
                           })
                         ],
@@ -36137,23 +36136,30 @@ var render = function() {
                       )
                     : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "b-form-group",
-                    { staticStyle: { "text-align": "center", margin: "25px" } },
-                    [
-                      _c(
-                        "b-button",
+                  _vm.options_price != 0
+                    ? _c(
+                        "b-form-group",
                         {
-                          attrs: {
-                            type: "onSubmit",
-                            variant: "outline-primary"
+                          staticStyle: {
+                            "text-align": "center",
+                            margin: "25px"
                           }
                         },
-                        [_vm._v("ОПУБЛИКОВАТЬ")]
+                        [
+                          _c(
+                            "b-button",
+                            {
+                              attrs: {
+                                type: "onSubmit",
+                                variant: "outline-primary"
+                              }
+                            },
+                            [_vm._v("ОПУБЛИКОВАТЬ")]
+                          )
+                        ],
+                        1
                       )
-                    ],
-                    1
-                  )
+                    : _vm._e()
                 ],
                 1
               )

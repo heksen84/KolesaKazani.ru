@@ -64,7 +64,7 @@
 
 			<!-- ЦЕНА -->
 			<b-form-group label="Цена:" label-for="price" v-if="options_category!=null">
-			 	<b-form-input id="price" placeholder="Цена" style="width:150px;margin:auto;font-size:20px;text-align:center" :formatter="setPrice" required state="valid"></b-form-input>
+			 	<b-form-input id="price" placeholder="Цена" style="width:150px;margin:auto;font-size:20px;text-align:center" :formatter="setPrice" required></b-form-input>
 			</b-form-group>
 
 			<!-- ФОТОГРАФИИ -->
@@ -79,7 +79,7 @@
 			</b-form-group>
 
 			<!-- ПУБЛИКАЦИЯ -->
-			<b-form-group style="text-align:center;margin:25px">
+			<b-form-group style="text-align:center;margin:25px" v-if="options_price!=0">
 				<b-button type="onSubmit" variant="outline-primary">ОПУБЛИКОВАТЬ</b-button>
 			</b-form-group>
 			
