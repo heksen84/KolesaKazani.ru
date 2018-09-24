@@ -14,7 +14,7 @@
 
 			</b-form-group>
 
-			<b-form-group label="Категория товара или услуги:" label-for="categories" style="margin-top:30px;width:260px">
+			<b-form-group label="Категория товара или услуги:" label-for="categories" style="margin-top:30px;width:260px" v-if="options_deal_id!=null">
 				<b-form-select class="mb-3" @change="changeCategory" v-model="options_category">
 					 <option :value=null>-- Выберите категорию --</option>
 					 <option v-for="item in items" :value="item.id">{{item.name}}</option>
@@ -56,7 +56,7 @@
 			<!-- услуги -->
 			<h1 v-else-if="other"></h1>
 
-			<b-form-group label="Дополнительная информация:" label-for="addit_info">
+			<b-form-group label="Дополнительная информация:" label-for="addit_info" v-if="options_category!=null">
 			 <b-form-textarea id="addit_info"
 										placeholder="Укажите дополнительную информацию"
 										:rows="4"
@@ -76,7 +76,7 @@
 			</b-form-group>-->
 
 			<!-- ОТМЕТИТЬ НА КАРТЕ -->
-			<b-form-group label="Расположение:" style="text-align:right">
+			<b-form-group label="Расположение:" style="text-align:right" v-if="options_price!=0">
 				<button>отметить на карте</button>
 			</b-form-group>
 
@@ -108,7 +108,9 @@ export default {
     return 	{
 
       options_sdelka: this.$root.options_sdelka,
-      options_category: null, 
+      options_category: null,
+      options_deal_id: null,
+      options_price: 0, 
 
 	/*	form: 
     {
@@ -136,7 +138,7 @@ export default {
 
 	created() 
   {
-		this.$root.options_sdelka=0;
+    //this.$root.advert_data.adv_price=0;
 	},
 
 	components: { transport, realestate },
@@ -194,11 +196,13 @@ export default {
 
   		setPrice(price) {
   			this.$root.advert_data.adv_price=price;
+        this.options_price = price;
         return price;
   		},
   		
   		setDeal(deal_id) {
   			this.$root.advert_data.adv_deal=deal_id;
+        this.options_deal_id=deal_id;
   		},
   		/*
   		--------------------------
@@ -288,7 +292,7 @@ export default {
             ({
               group: 'foo',
               text: "<div style='font-size:125%'>"+response.data.msg+"</div>",
-              type: 'error',
+              type: 'success',
             });
 
         }

@@ -2370,6 +2370,8 @@ var tmp_images_array = [];
 
       options_sdelka: this.$root.options_sdelka,
       options_category: null,
+      options_deal_id: null,
+      options_price: 0,
 
       /*	form: 
          {
@@ -2395,7 +2397,7 @@ var tmp_images_array = [];
     };
   },
   created: function created() {
-    this.$root.options_sdelka = 0;
+    //this.$root.advert_data.adv_price=0;
   },
 
 
@@ -2445,10 +2447,12 @@ var tmp_images_array = [];
     },
     setPrice: function setPrice(price) {
       this.$root.advert_data.adv_price = price;
+      this.options_price = price;
       return price;
     },
     setDeal: function setDeal(deal_id) {
       this.$root.advert_data.adv_deal = deal_id;
+      this.options_deal_id = deal_id;
     },
 
     /*
@@ -2551,7 +2555,7 @@ var tmp_images_array = [];
           _this.$root.$notify({
             group: 'foo',
             text: "<div style='font-size:125%'>" + response.data.msg + "</div>",
-            type: 'error'
+            type: 'success'
           });
         } else window.location.href = "/home/" + advert_id.data;
       }).catch(function (err) {});
@@ -36010,47 +36014,49 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "b-form-group",
-                    {
-                      staticStyle: { "margin-top": "30px", width: "260px" },
-                      attrs: {
-                        label: "Категория товара или услуги:",
-                        "label-for": "categories"
-                      }
-                    },
-                    [
-                      _c(
-                        "b-form-select",
+                  _vm.options_deal_id != null
+                    ? _c(
+                        "b-form-group",
                         {
-                          staticClass: "mb-3",
-                          on: { change: _vm.changeCategory },
-                          model: {
-                            value: _vm.options_category,
-                            callback: function($$v) {
-                              _vm.options_category = $$v
-                            },
-                            expression: "options_category"
+                          staticStyle: { "margin-top": "30px", width: "260px" },
+                          attrs: {
+                            label: "Категория товара или услуги:",
+                            "label-for": "categories"
                           }
                         },
                         [
-                          _c("option", { domProps: { value: null } }, [
-                            _vm._v("-- Выберите категорию --")
-                          ]),
-                          _vm._v(" "),
-                          _vm._l(_vm.items, function(item) {
-                            return _c(
-                              "option",
-                              { domProps: { value: item.id } },
-                              [_vm._v(_vm._s(item.name))]
-                            )
-                          })
+                          _c(
+                            "b-form-select",
+                            {
+                              staticClass: "mb-3",
+                              on: { change: _vm.changeCategory },
+                              model: {
+                                value: _vm.options_category,
+                                callback: function($$v) {
+                                  _vm.options_category = $$v
+                                },
+                                expression: "options_category"
+                              }
+                            },
+                            [
+                              _c("option", { domProps: { value: null } }, [
+                                _vm._v("-- Выберите категорию --")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.items, function(item) {
+                                return _c(
+                                  "option",
+                                  { domProps: { value: item.id } },
+                                  [_vm._v(_vm._s(item.name))]
+                                )
+                              })
+                            ],
+                            2
+                          )
                         ],
-                        2
+                        1
                       )
-                    ],
-                    1
-                  ),
+                    : _vm._e(),
                   _vm._v(" "),
                   _vm.root
                     ? _c("div")
@@ -36074,27 +36080,29 @@ var render = function() {
                                       ? _c("h1")
                                       : _vm.other ? _c("h1") : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "b-form-group",
-                    {
-                      attrs: {
-                        label: "Дополнительная информация:",
-                        "label-for": "addit_info"
-                      }
-                    },
-                    [
-                      _c("b-form-textarea", {
-                        attrs: {
-                          id: "addit_info",
-                          placeholder: "Укажите дополнительную информацию",
-                          rows: 4,
-                          "max-rows": 4
+                  _vm.options_category != null
+                    ? _c(
+                        "b-form-group",
+                        {
+                          attrs: {
+                            label: "Дополнительная информация:",
+                            "label-for": "addit_info"
+                          }
                         },
-                        on: { input: _vm.setInfo }
-                      })
-                    ],
-                    1
-                  ),
+                        [
+                          _c("b-form-textarea", {
+                            attrs: {
+                              id: "addit_info",
+                              placeholder: "Укажите дополнительную информацию",
+                              rows: 4,
+                              "max-rows": 4
+                            },
+                            on: { input: _vm.setInfo }
+                          })
+                        ],
+                        1
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _vm.options_category != null
                     ? _c(
@@ -36121,14 +36129,16 @@ var render = function() {
                       )
                     : _vm._e(),
                   _vm._v(" "),
-                  _c(
-                    "b-form-group",
-                    {
-                      staticStyle: { "text-align": "right" },
-                      attrs: { label: "Расположение:" }
-                    },
-                    [_c("button", [_vm._v("отметить на карте")])]
-                  ),
+                  _vm.options_price != 0
+                    ? _c(
+                        "b-form-group",
+                        {
+                          staticStyle: { "text-align": "right" },
+                          attrs: { label: "Расположение:" }
+                        },
+                        [_c("button", [_vm._v("отметить на карте")])]
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "b-form-group",
