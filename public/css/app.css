@@ -215,7 +215,7 @@ body {
 .close_button {
   font-size: 110%;
   position: absolute;
-  top: 19px;
+  top: 16px;
   left: 95%;
   cursor: pointer;
   font-weight: 600;

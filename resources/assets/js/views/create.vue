@@ -5,7 +5,7 @@
 		<b-row>
 		  <b-col cols="12" sm="12" md="12" lg="10" xl="10" class="create_advert_col">
 		  <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
-		  <h1 class="title_text" style="margin-top:18px">подать объявление</h1>
+		  <h1 class="title_text" style="margin-top:12px">подать объявление</h1>
 		  <hr>
 
 			<b-form @submit="onSubmit">
