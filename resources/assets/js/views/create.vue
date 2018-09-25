@@ -257,7 +257,6 @@ export default {
   					this.other=true; 
   					break; 
   				}
-
   			}
   		},
   		
