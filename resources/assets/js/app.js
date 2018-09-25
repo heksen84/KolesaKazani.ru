@@ -63,11 +63,11 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-      count: 0
+      show_info: false
     },
     mutations: {
-      increment (state) {
-        state.count++
+      showInfo (state) {
+        state.show_info=true;
       }
     }
 })

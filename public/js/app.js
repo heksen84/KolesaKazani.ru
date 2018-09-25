@@ -1975,7 +1975,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     selectTransportType: function selectTransportType(transport_id) {
       var _this = this;
 
-      this.$root.advert_data.show_info = true;
+      // this.$root.advert_data.show_info=true;
+
+      this.$store.commit('showInfo');
+
       this.transport_chars.transport_id = transport_id;
 
       //alert(this.$root.advert_data.show_info)
@@ -2393,8 +2396,8 @@ var tmp_images_array = [];
   },
   created: function created() {
 
-    this.$store.commit('increment');
-    console.log(this.$store.state.count); // -> 1
+    //this.$store.commit('increment')
+    //console.log(this.$store.state.count) // -> 1
   },
 
 
@@ -36078,7 +36081,7 @@ var render = function() {
                                       ? _c("h1")
                                       : _vm.other ? _c("h1") : _vm._e(),
                   _vm._v(" "),
-                  _vm.$store.show_info
+                  this.$store.state.show_info
                     ? _c(
                         "b-form-group",
                         {
@@ -49551,11 +49554,11 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_32_vue
 
 var store = new __WEBPACK_IMPORTED_MODULE_32_vuex__["a" /* default */].Store({
   state: {
-    count: 0
+    show_info: false
   },
   mutations: {
-    increment: function increment(state) {
-      state.count++;
+    showInfo: function showInfo(state) {
+      state.show_info = true;
     }
   }
 });

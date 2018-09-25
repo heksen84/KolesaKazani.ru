@@ -55,7 +55,7 @@
 			<!-- услуги -->
 			<h1 v-else-if="other"></h1>
 
-			<b-form-group label="Дополнительная информация:" label-for="addit_info" v-if="$store.show_info">
+			<b-form-group label="Дополнительная информация:" label-for="addit_info" v-if="this.$store.state.show_info">
 			 <b-form-textarea id="addit_info"
 										placeholder="Укажите дополнительную информацию"
 										:rows="4"
@@ -132,8 +132,8 @@ export default {
  	 {
 
 
-		this.$store.commit('increment')
-		console.log(this.$store.state.count) // -> 1
+		//this.$store.commit('increment')
+		//console.log(this.$store.state.count) // -> 1
 	},
 
 	components: { transport, realestate },

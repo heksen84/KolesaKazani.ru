@@ -75,7 +75,10 @@ export default {
     -----------------------------*/
     selectTransportType(transport_id) {
 
-      this.$root.advert_data.show_info=true;
+     // this.$root.advert_data.show_info=true;
+
+     this.$store.commit('showInfo')
+      
       this.transport_chars.transport_id = transport_id;
 
       //alert(this.$root.advert_data.show_info)
