@@ -74,6 +74,7 @@ const store = new Vuex.Store({
 
 const app = new Vue({
     el: '#app',
+    store,
     data: data,
     components: {
       welcome,

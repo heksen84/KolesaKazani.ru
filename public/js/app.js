@@ -2393,8 +2393,8 @@ var tmp_images_array = [];
   },
   created: function created() {
 
-    //store.commit('increment')
-    //console.log(store.state.count) // -> 1
+    this.$store.commit('increment');
+    console.log(this.$store.state.count); // -> 1
   },
 
 
@@ -36078,7 +36078,7 @@ var render = function() {
                                       ? _c("h1")
                                       : _vm.other ? _c("h1") : _vm._e(),
                   _vm._v(" "),
-                  _vm.options_category != null
+                  _vm.$store.show_info
                     ? _c(
                         "b-form-group",
                         {
@@ -49562,6 +49562,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_32_vuex__["a" /* default */].Store({
 
 var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
   el: '#app',
+  store: store,
   data: __WEBPACK_IMPORTED_MODULE_0__data__["a" /* default */],
   components: {
     welcome: __WEBPACK_IMPORTED_MODULE_3__views_welcome_vue___default.a,
