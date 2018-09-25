@@ -94,20 +94,6 @@
 // --------------------------
 // импорт
 // --------------------------
-import Vue from 'vue';
-import Vuex from 'vuex';
-Vue.use(Vuex);
-
-const store = new Vuex.Store({
-    state: {
-      count: 0
-    },
-    mutations: {
-      increment (state) {
-        state.count++
-      }
-    }
-})
 
 import { post } from './../helpers/api'
 import transport from '../components/chars/transport';
@@ -145,8 +131,8 @@ export default {
 	created() 
  	 {
 
-		store.commit('increment')
-		console.log(store.state.count) // -> 1
+		//store.commit('increment')
+		//console.log(store.state.count) // -> 1
 	},
 
 	components: { transport, realestate },

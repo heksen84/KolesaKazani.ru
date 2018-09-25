@@ -2257,14 +2257,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__("./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_chars_transport__ = __webpack_require__("./resources/assets/js/components/chars/transport.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_chars_transport___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_chars_transport__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_chars_realestate__ = __webpack_require__("./resources/assets/js/components/chars/realestate.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_chars_realestate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_chars_realestate__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_chars_transport__ = __webpack_require__("./resources/assets/js/components/chars/transport.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_chars_transport__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate__ = __webpack_require__("./resources/assets/js/components/chars/realestate.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_chars_realestate__);
 //
 //
 //
@@ -2363,20 +2360,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // --------------------------
 
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
-
-var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment: function increment(state) {
-      state.count++;
-    }
-  }
-});
-
-
 
 
 
@@ -2410,12 +2393,12 @@ var tmp_images_array = [];
   },
   created: function created() {
 
-    store.commit('increment');
-    console.log(store.state.count); // -> 1
+    //store.commit('increment')
+    //console.log(store.state.count) // -> 1
   },
 
 
-  components: { transport: __WEBPACK_IMPORTED_MODULE_3__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_4__components_chars_realestate___default.a },
+  components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default.a },
   methods: {
     loadImage: function loadImage(evt) {
 
@@ -2563,7 +2546,7 @@ var tmp_images_array = [];
       this.$root.advert_data.adv_info = "";
 
       // сохраняю объявление
-      Object(__WEBPACK_IMPORTED_MODULE_2__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (response) {
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (response) {
 
         if (!response.data.response) {
 
@@ -49502,6 +49485,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30_vue_carousel__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31_vue_yandex_maps__ = __webpack_require__("./node_modules/vue-yandex-maps/vue-yandex-maps.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31_vue_yandex_maps___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_31_vue_yandex_maps__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
@@ -49562,27 +49546,41 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_28_boo
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_30_vue_carousel___default.a);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_29_bootstrap_vue_src_components_modal__["a" /* default */]);
 
-var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
-    el: '#app',
-    data: __WEBPACK_IMPORTED_MODULE_0__data__["a" /* default */],
-    components: {
-        welcome: __WEBPACK_IMPORTED_MODULE_3__views_welcome_vue___default.a,
-        profile: __WEBPACK_IMPORTED_MODULE_5__views_profile_vue___default.a,
-        home: __WEBPACK_IMPORTED_MODULE_4__views_home_vue___default.a,
-        passwordreset: __WEBPACK_IMPORTED_MODULE_10__views_auth_passwordreset_vue___default.a,
-        login: __WEBPACK_IMPORTED_MODULE_11__views_auth_login_vue___default.a,
-        register: __WEBPACK_IMPORTED_MODULE_12__views_auth_register_vue___default.a,
-        search: __WEBPACK_IMPORTED_MODULE_6__views_search_vue___default.a,
-        results: __WEBPACK_IMPORTED_MODULE_7__views_results_vue___default.a,
-        create: __WEBPACK_IMPORTED_MODULE_8__views_create_vue___default.a,
-        fullinfo: __WEBPACK_IMPORTED_MODULE_9__views_fullinfo_vue___default.a
-    },
-    created: function created() {
-        // esc на результатах
-        document.addEventListener('keyup', function (event) {
-            if (event.key === "Escape") window.history.back();
-        });
+
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_32_vuex__["a" /* default */]);
+
+var store = new __WEBPACK_IMPORTED_MODULE_32_vuex__["a" /* default */].Store({
+  state: {
+    count: 0
+  },
+  mutations: {
+    increment: function increment(state) {
+      state.count++;
     }
+  }
+});
+
+var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
+  el: '#app',
+  data: __WEBPACK_IMPORTED_MODULE_0__data__["a" /* default */],
+  components: {
+    welcome: __WEBPACK_IMPORTED_MODULE_3__views_welcome_vue___default.a,
+    profile: __WEBPACK_IMPORTED_MODULE_5__views_profile_vue___default.a,
+    home: __WEBPACK_IMPORTED_MODULE_4__views_home_vue___default.a,
+    passwordreset: __WEBPACK_IMPORTED_MODULE_10__views_auth_passwordreset_vue___default.a,
+    login: __WEBPACK_IMPORTED_MODULE_11__views_auth_login_vue___default.a,
+    register: __WEBPACK_IMPORTED_MODULE_12__views_auth_register_vue___default.a,
+    search: __WEBPACK_IMPORTED_MODULE_6__views_search_vue___default.a,
+    results: __WEBPACK_IMPORTED_MODULE_7__views_results_vue___default.a,
+    create: __WEBPACK_IMPORTED_MODULE_8__views_create_vue___default.a,
+    fullinfo: __WEBPACK_IMPORTED_MODULE_9__views_fullinfo_vue___default.a
+  },
+  created: function created() {
+    // esc на результатах
+    document.addEventListener('keyup', function (event) {
+      if (event.key === "Escape") window.history.back();
+    });
+  }
 });
 
 /***/ }),
