@@ -165,17 +165,17 @@ export default {
 
   		// сброс данных при выборе категории
   		resetCategories(data) {
-  			 this.root=false;				            // по умолчанию
+  			 this.root=false;				        // по умолчанию
   			 this.transport=false;			        // транспорт
-  			 this.real_estate=false;			      // недвижимость
+  			 this.real_estate=false;			    // недвижимость
   			 this.appliances=false;			        // бытовая техника
-  			 this.work_and_buisness=false; 	    // работа и бизнес
-  			 this.for_home=false;			          // для дома и дачи
-  			 this.personal_effects=false;	      // личные вещи
-			 this.animals=false;				        // животные
-			 this.hobbies_and_leisure=false;	  // хобби и отдых
-			 this.services=false;			          // услуги
-			 this.other=false;				          // другое 	
+  			 this.work_and_buisness=false; 	    	// работа и бизнес
+  			 this.for_home=false;			        // для дома и дачи
+  			 this.personal_effects=false;	      	// личные вещи
+			 this.animals=false;				    // животные
+			 this.hobbies_and_leisure=false;	  	// хобби и отдых
+			 this.services=false;			        // услуги
+			 this.other=false;				        // другое 	
   		},
 
   		setInfo(info) {
