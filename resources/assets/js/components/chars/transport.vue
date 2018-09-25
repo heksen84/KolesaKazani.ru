@@ -77,7 +77,7 @@ export default {
 
      // this.$root.advert_data.show_info=true;
 
-     this.$store.commit('showInfo')
+     this.$store.commit('showOtherFields')
       
       this.transport_chars.transport_id = transport_id;
 

@@ -1977,7 +1977,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       // this.$root.advert_data.show_info=true;
 
-      this.$store.commit('showInfo');
+      this.$store.commit('showOtherFields');
 
       this.transport_chars.transport_id = transport_id;
 
@@ -2375,12 +2375,10 @@ var tmp_images_array = [];
   data: function data() {
 
     return {
-
       options_sdelka: this.$root.options_sdelka,
       options_category: null,
       options_deal_id: null,
       options_price: 0,
-
       root: false,
       transport: false, // транспорт
       real_estate: false, // недвижимость
@@ -2394,11 +2392,7 @@ var tmp_images_array = [];
       other: false // другое
     };
   },
-  created: function created() {
-
-    //this.$store.commit('increment')
-    //console.log(this.$store.state.count) // -> 1
-  },
+  created: function created() {},
 
 
   components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default.a },
@@ -2552,7 +2546,6 @@ var tmp_images_array = [];
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (response) {
 
         if (!response.data.response) {
-
           _this.$root.$notify({
             group: 'foo',
             text: "<div style='font-size:130%'>" + response.data.msg + "</div>",
@@ -36081,7 +36074,7 @@ var render = function() {
                                       ? _c("h1")
                                       : _vm.other ? _c("h1") : _vm._e(),
                   _vm._v(" "),
-                  this.$store.state.show_info
+                  this.$store.state.show_other_fields
                     ? _c(
                         "b-form-group",
                         {
@@ -36105,7 +36098,7 @@ var render = function() {
                       )
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.options_category != null
+                  this.$store.state.show_other_fields
                     ? _c(
                         "b-form-group",
                         { attrs: { label: "Цена:", "label-for": "price" } },
@@ -49554,11 +49547,11 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_32_vue
 
 var store = new __WEBPACK_IMPORTED_MODULE_32_vuex__["a" /* default */].Store({
   state: {
-    show_info: false
+    show_other_fields: false
   },
   mutations: {
-    showInfo: function showInfo(state) {
-      state.show_info = true;
+    showOtherFields: function showOtherFields(state) {
+      state.show_other_fields = true;
     }
   }
 });

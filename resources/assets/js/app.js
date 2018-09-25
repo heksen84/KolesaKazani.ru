@@ -63,11 +63,11 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-      show_info: false
+      show_other_fields: false
     },
     mutations: {
-      showInfo (state) {
-        state.show_info=true;
+      showOtherFields (state) {
+        state.show_other_fields=true;
       }
     }
 })

@@ -55,7 +55,7 @@
 			<!-- услуги -->
 			<h1 v-else-if="other"></h1>
 
-			<b-form-group label="Дополнительная информация:" label-for="addit_info" v-if="this.$store.state.show_info">
+			<b-form-group label="Дополнительная информация:" label-for="addit_info" v-if="this.$store.state.show_other_fields">
 			 <b-form-textarea id="addit_info"
 										placeholder="Укажите дополнительную информацию"
 										:rows="4"
@@ -64,7 +64,7 @@
 			</b-form-group>
 
 			<!-- ЦЕНА -->
-			<b-form-group label="Цена:" label-for="price" v-if="options_category!=null">
+			<b-form-group label="Цена:" label-for="price" v-if="this.$store.state.show_other_fields">
 			 	<b-form-input id="price" placeholder="Цена" style="width:150px;margin:auto;font-size:20px;text-align:center" :formatter="setPrice" required></b-form-input>
 			</b-form-group>
 
@@ -108,32 +108,25 @@ export default {
 	data () {
 
     return 	{
-
-    options_sdelka:   this.$root.options_sdelka,
-    options_category: null,
-    options_deal_id:  null,
-    options_price:    0, 
-
-	root:false,
-	transport:false,			// транспорт
-	real_estate:false,			// недвижимость
-	appliances:false,			// бытовая техника
-	work_and_buisness:false,	// работа и бизнес
-	for_home:false,				// для дома и дачи
-	personal_effects:false,		// личные вещи
-	animals:false,				// животные
-	hobbies_and_leisure:false,	// хобби и отдых
-	services:false,				// услуги
-	other:false					// другое
+    	options_sdelka:   this.$root.options_sdelka,
+    	options_category: null,
+    	options_deal_id:  null,
+    	options_price:    0, 
+		root:false,
+		transport:false,			// транспорт
+		real_estate:false,			// недвижимость
+		appliances:false,			// бытовая техника
+		work_and_buisness:false,	// работа и бизнес
+		for_home:false,				// для дома и дачи
+		personal_effects:false,		// личные вещи
+		animals:false,				// животные
+		hobbies_and_leisure:false,	// хобби и отдых
+		services:false,				// услуги
+		other:false					// другое
 	}
 	},
 
-	created() 
- 	 {
-
-
-		//this.$store.commit('increment')
-		//console.log(this.$store.state.count) // -> 1
+	created() {
 	},
 
 	components: { transport, realestate },
@@ -179,10 +172,10 @@ export default {
   			 this.work_and_buisness=false; 	    // работа и бизнес
   			 this.for_home=false;			          // для дома и дачи
   			 this.personal_effects=false;	      // личные вещи
-			   this.animals=false;				        // животные
-			   this.hobbies_and_leisure=false;	  // хобби и отдых
-			   this.services=false;			          // услуги
-			   this.other=false;				          // другое 	
+			 this.animals=false;				        // животные
+			 this.hobbies_and_leisure=false;	  // хобби и отдых
+			 this.services=false;			          // услуги
+			 this.other=false;				          // другое 	
   		},
 
   		setInfo(info) {
@@ -276,26 +269,23 @@ export default {
 
 			evt.preventDefault();
 
-      // добавляю формально поле доп. информация
-      this.$root.advert_data.adv_info = "";
+      		// добавляю формально поле доп. информация
+      		this.$root.advert_data.adv_info = "";
 
-      // сохраняю объявление
+     		// сохраняю объявление
 			post('/create', { "data": this.$root.advert_data }).then((response) => {
 
-        if (!response.data.response) {
-
-            this.$root.$notify({
-              group: 'foo',
-              text: "<div style='font-size:130%'>"+response.data.msg+"</div>",
-              type: 'success',
+        	if (!response.data.response) {
+            	this.$root.$notify({
+              	group: 'foo',
+              	text: "<div style='font-size:130%'>"+response.data.msg+"</div>",
+              	type: 'success',
             });
-
         }
         else
           window.location.href = "/home/"+advert_id.data;
 
 		  }).catch((err) => {});
-      
     }
 }
 }
