@@ -1975,8 +1975,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     selectTransportType: function selectTransportType(transport_id) {
       var _this = this;
 
+      this.$root.advert_data.show_info = true;
       this.transport_chars.transport_id = transport_id;
-      console.log(this.transport_chars.transport_id);
+
+      //alert(this.$root.advert_data.show_info)
 
       switch (transport_id) {
 
@@ -1984,6 +1986,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           {
             // автомобили
             this.carmark = [];
+
             Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsMarks').then(function (res) {
               _this.carmark = res.data;
               console.log(_this.this.carmark);

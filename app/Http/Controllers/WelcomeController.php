@@ -11,18 +11,15 @@ use App\Places;
 
 class WelcomeController extends Controller {
 
-		public function getRegions(Request $request) 
-		{
+		public function getRegions(Request $request) {
 			return Regions::orderBy('name', 'asc')->get();
 		}
 
-		public function getPlaces(Request $request) 
-		{
+		public function getPlaces(Request $request) {
 			return Places::where('region_id',  $request->region_id )->orderBy('name', 'asc')->get();
 		}
 
-        public function getCategories(Request $request) 
-        {
+        public function getCategories(Request $request) {
         	return view('welcome')->with("items", Categories::all())->with("count", Categories::count())->with("auth", Auth::user()?1:0);
     	}
 }

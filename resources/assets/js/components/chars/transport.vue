@@ -75,8 +75,10 @@ export default {
     -----------------------------*/
     selectTransportType(transport_id) {
 
+      this.$root.advert_data.show_info=true;
       this.transport_chars.transport_id = transport_id;
-      console.log(this.transport_chars.transport_id);
+
+      //alert(this.$root.advert_data.show_info)
 
       switch(transport_id) {
 
@@ -84,8 +86,8 @@ export default {
         { 
           // автомобили
           this.carmark=[];
-          get('/getCarsMarks').then((res) => 
-          {
+
+          get('/getCarsMarks').then((res) => {
             this.carmark = res.data;
             console.log(this.this.carmark);
           }).catch((err) => {});
