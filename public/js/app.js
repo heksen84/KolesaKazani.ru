@@ -2257,11 +2257,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_chars_transport__ = __webpack_require__("./resources/assets/js/components/chars/transport.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_chars_transport__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate__ = __webpack_require__("./resources/assets/js/components/chars/realestate.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_chars_realestate__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__("./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_chars_transport__ = __webpack_require__("./resources/assets/js/components/chars/transport.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_chars_transport___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_chars_transport__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_chars_realestate__ = __webpack_require__("./resources/assets/js/components/chars/realestate.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_chars_realestate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_chars_realestate__);
 //
 //
 //
@@ -2355,7 +2358,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
+// --------------------------
 // импорт
+// --------------------------
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
+
+var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
+  state: {
+    count: 0
+  },
+  mutations: {
+    increment: function increment(state) {
+      state.count++;
+    }
+  }
+});
+
 
 
 
@@ -2375,16 +2395,6 @@ var tmp_images_array = [];
       options_deal_id: null,
       options_price: 0,
 
-      /*	form: 
-         {
-      		deal_selected: this.$root.options_sdelka,
-      		category: null,
-      		text: '',
-      		price: '',
-      		file: null,
-      		images:[]
-      	},*/
-
       root: false,
       transport: false, // транспорт
       real_estate: false, // недвижимость
@@ -2398,10 +2408,14 @@ var tmp_images_array = [];
       other: false // другое
     };
   },
-  created: function created() {},
+  created: function created() {
+
+    store.commit('increment');
+    console.log(store.state.count); // -> 1
+  },
 
 
-  components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default.a },
+  components: { transport: __WEBPACK_IMPORTED_MODULE_3__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_4__components_chars_realestate___default.a },
   methods: {
     loadImage: function loadImage(evt) {
 
@@ -2549,7 +2563,7 @@ var tmp_images_array = [];
       this.$root.advert_data.adv_info = "";
 
       // сохраняю объявление
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (response) {
+      Object(__WEBPACK_IMPORTED_MODULE_2__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (response) {
 
         if (!response.data.response) {
 
@@ -49849,7 +49863,6 @@ module.exports = Component.exports
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export testFunction */
 /* harmony default export */ __webpack_exports__["a"] = ({
 
     // максимальное кол-во загружаемых картинок
@@ -49859,12 +49872,7 @@ module.exports = Component.exports
     options_sdelka: [{ value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }],
 
     advert_data: {} // наш объект объявления 
-
-
-    // вынести в functions
-});function testFunction(param) {
-    alert("im test");
-}
+});
 
 /***/ }),
 

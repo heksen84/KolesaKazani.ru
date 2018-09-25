@@ -91,7 +91,24 @@
 </template>
 <script>
 
+// --------------------------
 // импорт
+// --------------------------
+import Vue from 'vue';
+import Vuex from 'vuex';
+Vue.use(Vuex);
+
+const store = new Vuex.Store({
+    state: {
+      count: 0
+    },
+    mutations: {
+      increment (state) {
+        state.count++
+      }
+    }
+})
+
 import { post } from './../helpers/api'
 import transport from '../components/chars/transport';
 import realestate from '../components/chars/realestate';
@@ -106,37 +123,30 @@ export default {
 
     return 	{
 
-      options_sdelka:   this.$root.options_sdelka,
-      options_category: null,
-      options_deal_id:  null,
-      options_price:    0, 
+    options_sdelka:   this.$root.options_sdelka,
+    options_category: null,
+    options_deal_id:  null,
+    options_price:    0, 
 
-	/*	form: 
-    {
-			deal_selected: this.$root.options_sdelka,
-			category: null,
-			text: '',
-			price: '',
-			file: null,
-			images:[]
-		},*/
-
-		root:false,
-		transport:false,			// транспорт
-		real_estate:false,			// недвижимость
-		appliances:false,			// бытовая техника
-		work_and_buisness:false,	// работа и бизнес
-		for_home:false,				// для дома и дачи
-		personal_effects:false,		// личные вещи
-		animals:false,				// животные
-		hobbies_and_leisure:false,	// хобби и отдых
-		services:false,				// услуги
-		other:false					// другое
+	root:false,
+	transport:false,			// транспорт
+	real_estate:false,			// недвижимость
+	appliances:false,			// бытовая техника
+	work_and_buisness:false,	// работа и бизнес
+	for_home:false,				// для дома и дачи
+	personal_effects:false,		// личные вещи
+	animals:false,				// животные
+	hobbies_and_leisure:false,	// хобби и отдых
+	services:false,				// услуги
+	other:false					// другое
 	}
 	},
 
 	created() 
-  {
+ 	 {
+
+		store.commit('increment')
+		console.log(store.state.count) // -> 1
 	},
 
 	components: { transport, realestate },

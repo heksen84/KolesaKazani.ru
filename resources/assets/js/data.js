@@ -18,7 +18,3 @@ export default
     advert_data: {} // наш объект объявления 
 }
 
-// вынести в functions
-export function testFunction(param)  {
-    alert("im test");
-}
