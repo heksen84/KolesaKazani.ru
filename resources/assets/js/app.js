@@ -68,6 +68,9 @@ const store = new Vuex.Store({
     mutations: {
       showOtherFields (state) {
         state.show_other_fields=true;
+      },
+      hideOtherFields (state) {
+        state.show_other_fields=false;
       }
     }
 })
