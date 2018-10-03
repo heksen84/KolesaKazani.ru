@@ -61,8 +61,12 @@ Vue.use(modal);
 import Vuex from 'vuex';
 Vue.use(Vuex);
 
+// -----------------------------
+// ОСНОВНОЕ ХРАНИЛИЩЕ
+// -----------------------------
 const store = new Vuex.Store({
     state: {
+      // дополнительные поля в объявлении
       show_other_fields: false
     },
     mutations: {

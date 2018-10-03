@@ -1852,6 +1852,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // изменения в недвижимости
     // --------------------------------
     changeRealEstate: function changeRealEstate(data) {
+
+      this.$store.commit('showOtherFields');
+
       switch (data) {
         case 0:
           {
@@ -2451,7 +2454,11 @@ var tmp_images_array = [];
     --------------------------*/
     changeCategory: function changeCategory(data) {
 
-      this.$root.advert_data.adv_category = data; // добавляю категорию
+      // сбрасываю дополнительные поля
+      this.$store.commit('hideOtherFields');
+
+      // добавляю категорию
+      this.$root.advert_data.adv_category = data;
 
       switch (data) {
         case null:
@@ -2916,7 +2923,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
-//
 //
 //
 //
@@ -49539,8 +49545,12 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_29_boo
 
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_32_vuex__["a" /* default */]);
 
+// -----------------------------
+// ОСНОВНОЕ ХРАНИЛИЩЕ
+// -----------------------------
 var store = new __WEBPACK_IMPORTED_MODULE_32_vuex__["a" /* default */].Store({
   state: {
+    // дополнительные поля в объявлении
     show_other_fields: false
   },
   mutations: {

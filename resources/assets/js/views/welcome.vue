@@ -56,7 +56,6 @@
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
           <a href="/podat-obyavlenie"><div id="new_advert_block">подать объявление</div></a>
         </b-col>
-
     </b-row>
 
     <div id="categories_title" class="shadow_text">категории</div>

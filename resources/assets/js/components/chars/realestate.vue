@@ -101,6 +101,9 @@ export default {
     // изменения в недвижимости
     // --------------------------------
     changeRealEstate(data) {
+
+        this.$store.commit('showOtherFields');
+     
         switch(data) {
           case 0: {
             this.selected.apartment=true;

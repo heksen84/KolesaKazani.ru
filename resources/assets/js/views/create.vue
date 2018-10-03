@@ -199,7 +199,11 @@ export default {
   		--------------------------*/
   		changeCategory(data) {
 
-  			this.$root.advert_data.adv_category=data;	// добавляю категорию
+			// сбрасываю дополнительные поля
+			this.$store.commit('hideOtherFields');
+
+			// добавляю категорию
+  			this.$root.advert_data.adv_category=data;
 
   			switch(data) {
   				case null: {
