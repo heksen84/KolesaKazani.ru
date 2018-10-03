@@ -102,6 +102,7 @@ export default {
     // --------------------------------
     changeRealEstate(data) {
 
+        // показываю дополнительные поля
         this.$store.commit('showOtherFields');
      
         switch(data) {
@@ -110,7 +111,6 @@ export default {
             break;
           }
           case 1: {
-              //alert("ok-1");
             break; 
           } 
           case 2: { 

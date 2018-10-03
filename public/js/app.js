@@ -1853,6 +1853,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // --------------------------------
     changeRealEstate: function changeRealEstate(data) {
 
+      // показываю дополнительные поля
       this.$store.commit('showOtherFields');
 
       switch (data) {
@@ -1863,7 +1864,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
         case 1:
           {
-            //alert("ok-1");
             break;
           }
         case 2:
