@@ -203,22 +203,28 @@ export default {
 			this.$store.commit('hideOtherFields');
 
 			// добавляю категорию
-  			this.$root.advert_data.adv_category=data;
+			this.$root.advert_data.adv_category=data;
+			
+			// по умолчанию показываю доп. поля
+			this.$store.commit('showOtherFields'); 
 
   			switch(data) {
   				case null: {
   					this.resetCategories(data); 
-  					this.root=true; 
+					  this.root=true; 
+					  this.$store.commit('hideOtherFields'); 
   					break;
   				}
   				case 1: { 
   					this.resetCategories(data); 
-  					this.transport=true; 
+					  this.transport=true; 
+					  this.$store.commit('hideOtherFields'); 
   					break; 
   				} 
   				case 2: { 
   					this.resetCategories(data); 
-  					this.real_estate=true; 
+					  this.real_estate=true; 
+					  this.$store.commit('hideOtherFields'); 
   					break; 
   				}
   				case 3: { 

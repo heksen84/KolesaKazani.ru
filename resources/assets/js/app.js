@@ -2,8 +2,6 @@ require('./bootstrap');
 
 import data from './data';
 import Vue from 'vue';
-import Notifications from 'vue-notification'
-Vue.use(Notifications)
 
 // views
 import welcome from './views/welcome.vue';
@@ -37,10 +35,6 @@ import navbar from 'bootstrap-vue/src/components/navbar';
 import modal from 'bootstrap-vue/src/components/modal';
 import VueCarousel from 'vue-carousel';
 
-// register globally
-import YmapPlugin from 'vue-yandex-maps'
-Vue.use(YmapPlugin)
-
 Vue.use(layout);
 Vue.use(form);
 Vue.use(form_input);
@@ -61,12 +55,20 @@ Vue.use(modal);
 import Vuex from 'vuex';
 Vue.use(Vuex);
 
-// -----------------------------
+import Notifications from 'vue-notification'
+Vue.use(Notifications)
+
+import YmapPlugin from 'vue-yandex-maps'
+Vue.use(YmapPlugin)
+
+// -----------------------------------
+//
 // ОСНОВНОЕ ХРАНИЛИЩЕ
-// -----------------------------
+//
+// -----------------------------------
 const store = new Vuex.Store({
     state: {
-      // дополнительные поля в объявлении
+      // дополнительные поля в объявлении (поле доп. информация, и.т.д.)
       show_other_fields: false
     },
     mutations: {
