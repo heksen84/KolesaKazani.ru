@@ -184,13 +184,13 @@ export default {
 
   		setPrice(price) {
   			this.$root.advert_data.adv_price=price;
-        this.options_price = price;
+        	this.options_price = price;
         return price;
   		},
   		
   		setDeal(deal_id) {
   			this.$root.advert_data.adv_deal=deal_id;
-        this.options_deal_id=deal_id;
+        	this.options_deal_id=deal_id;
   		},
 
   		/*
@@ -200,31 +200,31 @@ export default {
   		changeCategory(data) {
 
 			// сбрасываю дополнительные поля
-			this.$store.commit('hideOtherFields');
+			this.$store.commit("hideOtherFields");
 
 			// добавляю категорию
 			this.$root.advert_data.adv_category=data;
 			
 			// по умолчанию показываю доп. поля
-			this.$store.commit('showOtherFields'); 
+			this.$store.commit("showOtherFields"); 
 
   			switch(data) {
   				case null: {
   					this.resetCategories(data); 
 					  this.root=true; 
-					  this.$store.commit('hideOtherFields'); 
+					  this.$store.commit("hideOtherFields"); 
   					break;
   				}
   				case 1: { 
   					this.resetCategories(data); 
 					  this.transport=true; 
-					  this.$store.commit('hideOtherFields'); 
+					  this.$store.commit("hideOtherFields"); 
   					break; 
   				} 
   				case 2: { 
   					this.resetCategories(data); 
 					  this.real_estate=true; 
-					  this.$store.commit('hideOtherFields'); 
+					  this.$store.commit("hideOtherFields"); 
   					break; 
   				}
   				case 3: { 

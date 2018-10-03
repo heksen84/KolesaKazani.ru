@@ -103,7 +103,7 @@ export default {
     changeRealEstate(data) {
 
         // показываю дополнительные поля
-        this.$store.commit('showOtherFields');
+        this.$store.commit("showOtherFields");
      
         switch(data) {
           case 0: {

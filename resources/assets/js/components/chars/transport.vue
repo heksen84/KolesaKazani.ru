@@ -76,9 +76,9 @@ export default {
     selectTransportType(transport_id) {
 
       if (transport_id)
-        this.$store.commit('showOtherFields');
+        this.$store.commit("showOtherFields");
       else
-        this.$store.commit('hideOtherFields');
+        this.$store.commit("hideOtherFields");
 
       this.transport_chars.transport_id = transport_id;
 

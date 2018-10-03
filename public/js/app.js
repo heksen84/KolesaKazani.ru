@@ -1854,7 +1854,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     changeRealEstate: function changeRealEstate(data) {
 
       // показываю дополнительные поля
-      this.$store.commit('showOtherFields');
+      this.$store.commit("showOtherFields");
 
       switch (data) {
         case 0:
@@ -1978,7 +1978,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     selectTransportType: function selectTransportType(transport_id) {
       var _this = this;
 
-      if (transport_id) this.$store.commit('showOtherFields');else this.$store.commit('hideOtherFields');
+      if (transport_id) this.$store.commit("showOtherFields");else this.$store.commit("hideOtherFields");
 
       this.transport_chars.transport_id = transport_id;
 
@@ -2455,34 +2455,34 @@ var tmp_images_array = [];
     changeCategory: function changeCategory(data) {
 
       // сбрасываю дополнительные поля
-      this.$store.commit('hideOtherFields');
+      this.$store.commit("hideOtherFields");
 
       // добавляю категорию
       this.$root.advert_data.adv_category = data;
 
       // по умолчанию показываю доп. поля
-      this.$store.commit('showOtherFields');
+      this.$store.commit("showOtherFields");
 
       switch (data) {
         case null:
           {
             this.resetCategories(data);
             this.root = true;
-            this.$store.commit('hideOtherFields');
+            this.$store.commit("hideOtherFields");
             break;
           }
         case 1:
           {
             this.resetCategories(data);
             this.transport = true;
-            this.$store.commit('hideOtherFields');
+            this.$store.commit("hideOtherFields");
             break;
           }
         case 2:
           {
             this.resetCategories(data);
             this.real_estate = true;
-            this.$store.commit('hideOtherFields');
+            this.$store.commit("hideOtherFields");
             break;
           }
         case 3:
