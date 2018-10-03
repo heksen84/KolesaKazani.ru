@@ -36135,7 +36135,12 @@ var render = function() {
                           staticStyle: { "text-align": "right" },
                           attrs: { label: "Расположение:" }
                         },
-                        [_c("button", [_vm._v("отметить на карте")])]
+                        [
+                          _c("b-button", { attrs: { variant: "primary" } }, [
+                            _vm._v("отметить на карте")
+                          ])
+                        ],
+                        1
                       )
                     : _vm._e(),
                   _vm._v(" "),
@@ -49558,8 +49563,7 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_32_vue
 // -----------------------------------
 var store = new __WEBPACK_IMPORTED_MODULE_30_vuex__["a" /* default */].Store({
   state: {
-    // дополнительные поля в объявлении (поле доп. информация, и.т.д.)
-    show_other_fields: false
+    show_other_fields: false // дополнительные поля в объявлении (поле доп. информация, и.т.д.)
   },
   mutations: {
     showOtherFields: function showOtherFields(state) {

@@ -68,8 +68,7 @@ Vue.use(YmapPlugin)
 // -----------------------------------
 const store = new Vuex.Store({
     state: {
-      // дополнительные поля в объявлении (поле доп. информация, и.т.д.)
-      show_other_fields: false
+      show_other_fields: false  // дополнительные поля в объявлении (поле доп. информация, и.т.д.)
     },
     mutations: {
       showOtherFields (state) {

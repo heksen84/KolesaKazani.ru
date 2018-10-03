@@ -76,7 +76,7 @@
 
 			<!-- ОТМЕТИТЬ НА КАРТЕ -->
 			<b-form-group label="Расположение:" style="text-align:right" v-if="options_price!=0">
-				<button>отметить на карте</button>
+				<b-button variant="primary">отметить на карте</b-button>
 			</b-form-group>
 
 			<!-- ПУБЛИКАЦИЯ -->
