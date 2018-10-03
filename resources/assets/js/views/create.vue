@@ -91,9 +91,9 @@
 </template>
 <script>
 
-// --------------------------
-// импорт
-// --------------------------
+// ----------------------------------------------------
+// ИМПОРТ
+// ----------------------------------------------------
 
 import { post } from './../helpers/api'
 import transport from '../components/chars/transport';
@@ -108,10 +108,10 @@ export default {
 	data () {
 
     return 	{
-    	options_sdelka:   this.$root.options_sdelka,
-    	options_category: null,
-    	options_deal_id:  null,
-    	options_price:    0, 
+    	options_sdelka:this.$root.options_sdelka,
+    	options_category:null,
+    	options_deal_id:null,
+    	options_price:0, 
 		root:false,
 		transport:false,			// транспорт
 		real_estate:false,			// недвижимость
@@ -270,7 +270,7 @@ export default {
   			}
   		},
   		
-  	/*
+  		/*
 		----------------------------
 		  Сохранить объявление
 		----------------------------*/
