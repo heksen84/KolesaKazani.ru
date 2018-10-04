@@ -3065,7 +3065,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
+    // ----------------------------------------------------------
     // Выбор региона либо локального места жительства в диалоге
+    // ----------------------------------------------------------
     selectLocation: function selectLocation(e) {
       var _this2 = this;
 

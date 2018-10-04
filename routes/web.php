@@ -55,3 +55,6 @@ Route::get('getSearchData', 'SearchController@getSearchData');
 Route::get('details/{id}', ['uses' => 'AdvertController@getFullInfo']);
 Route::get('location/{country}/{region}/{place}', ['uses' => 'AdvertController@getFullInfo']);
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+
+Route::get('admin', 'AdminController@login');
