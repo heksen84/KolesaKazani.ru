@@ -48,9 +48,8 @@
         </b-col>
 
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
-          <input type="text" id="search_string" placeholder="Поиск по сайту"/>
-
           
+          <input type="text" id="search_string" placeholder="Поиск по сайту"/>
 
           <button id="button_search" @click="search">найти</button>
 
