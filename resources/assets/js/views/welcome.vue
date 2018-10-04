@@ -5,8 +5,7 @@
 
           <div class="button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>
 
-          <!-- кнопка выбора региона -->
-          <b-button size="sm" variant="primary" @click="openLocationWindow">{{ selectedPlaceName }}</b-button>
+          
 
           <!-- окно выбоа региона и местоположения -->
           <b-modal v-model="locationDialog" style="text-align:center;color:rgb(50,50,50)" hide-footer :title="locationDialogTitle">
@@ -50,7 +49,14 @@
 
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
           <input type="text" id="search_string" placeholder="Поиск по сайту"/>
+
+          
+
           <button id="button_search" @click="search">найти</button>
+
+          <!-- кнопка выбора региона -->
+          <b-button style="margin-top:-7px;color:white;padding:3px 10px; background:rgb(150,100,100)" size="sm" @click="openLocationWindow"> Искать в {{ selectedPlaceName }}</b-button>
+
         </b-col>
 
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">

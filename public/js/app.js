@@ -3007,6 +3007,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -34647,15 +34653,6 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "b-button",
-                {
-                  attrs: { size: "sm", variant: "primary" },
-                  on: { click: _vm.openLocationWindow }
-                },
-                [_vm._v(_vm._s(_vm.selectedPlaceName))]
-              ),
-              _vm._v(" "),
-              _c(
                 "b-modal",
                 {
                   staticStyle: {
@@ -34837,8 +34834,24 @@ var render = function() {
                 "button",
                 { attrs: { id: "button_search" }, on: { click: _vm.search } },
                 [_vm._v("найти")]
+              ),
+              _vm._v(" "),
+              _c(
+                "b-button",
+                {
+                  staticStyle: {
+                    "margin-top": "-7px",
+                    color: "white",
+                    padding: "3px 10px",
+                    background: "rgb(150,100,100)"
+                  },
+                  attrs: { size: "sm" },
+                  on: { click: _vm.openLocationWindow }
+                },
+                [_vm._v(" Искать в " + _vm._s(_vm.selectedPlaceName))]
               )
-            ]
+            ],
+            1
           ),
           _vm._v(" "),
           _c(
