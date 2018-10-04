@@ -7,33 +7,42 @@ $scroll_back_color: rgb(100,100,100);
   border: 1px solid grey;
   border-radius: 2px;
 }
+
 ::-webkit-scrollbar{
  width: 7px;
  background: $scroll_back_color;
 }
+
 ::-webkit-scrollbar:horizontal{
  height: 7px;
  background: $scroll_back_color;
 }
+
 ::-webkit-scrollbar-thumb:horizontal{
  height: 7px;
  background: $scroll_back_color;
 }
+
 ::-webkit-scrollbar-thumb:hover{
 background: $scroll_back_color;
 }
+
 ::-webkit-scrollbar-thumb:active{
  background: $scroll_back_color;
 }
+
 ::-webkit-input-placeholder {
  text-align: center;
 }
+
 :-moz-placeholder { /* Firefox 18- */
  text-align: center;
 }
+
 ::-moz-placeholder {  /* Firefox 19+ */
  text-align: center;
 }
+
 :-ms-input-placeholder {
  text-align: center;
 }
