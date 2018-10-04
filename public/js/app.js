@@ -34842,8 +34842,8 @@ var render = function() {
                   staticStyle: {
                     "margin-top": "-7px",
                     color: "white",
-                    padding: "3px 10px",
-                    background: "rgb(150,100,100)"
+                    padding: "2px 10px",
+                    background: "rgb(150,100,150)"
                   },
                   attrs: { size: "sm" },
                   on: { click: _vm.openLocationWindow }
