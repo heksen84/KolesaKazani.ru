@@ -55,7 +55,7 @@
           <button id="button_search" @click="search">найти</button>
 
           <!-- кнопка выбора региона -->
-          <b-button style="margin-top:-7px;color:white;padding:2px 10px; background:rgb(150,100,150)" size="sm" @click="openLocationWindow"> Искать в {{ selectedPlaceName }}</b-button>
+          <b-button style="margin-top:-7px;color:white;padding:4px 10px; background:rgb(150,100,150)" size="sm" @click="openLocationWindow"> Искать в {{ selectedPlaceName }}</b-button>
 
         </b-col>
 
