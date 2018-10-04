@@ -33,6 +33,7 @@ import comtransport from './common/com_transport.vue';
 export default {
   data () {
     return 	{
+
         type_transport: 
         [
           { value: null, text: '-- Выберите вид транспорта --' },
@@ -59,6 +60,7 @@ export default {
           fuel_type: 0,
           car_customs: 1
       }
+
 		}
 	},
 
@@ -70,9 +72,9 @@ export default {
   methods: {
 
     /*
-    -----------------------------
+    -----------------------------------
       Вид транспорта
-    -----------------------------*/
+    -----------------------------------*/
     selectTransportType(transport_id) {
 
       if (transport_id)

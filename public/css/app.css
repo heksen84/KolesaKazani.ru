@@ -1,32 +1,33 @@
 @charset "UTF-8";
 
-::-webkit-scrollbar {
-  width: 5px;
+::-webkit-scrollbar-thumb {
+  width: 7px;
   background: white;
+  border: 1px solid grey;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  background: #646464;
 }
 
 ::-webkit-scrollbar:horizontal {
   height: 7px;
-  background: white;
-}
-
-::-webkit-scrollbar-thumb {
-  width: 5px;
-  background: white;
-  border: 1px solid grey;
+  background: #646464;
 }
 
 ::-webkit-scrollbar-thumb:horizontal {
-  height: 8px;
-  background: white;
+  height: 7px;
+  background: #646464;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: white;
+  background: #646464;
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background: white;
+  background: #646464;
 }
 
 ::-webkit-input-placeholder {

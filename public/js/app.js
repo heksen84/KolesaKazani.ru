@@ -1946,6 +1946,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
   data: function data() {
     return {
+
       type_transport: [{ value: null, text: '-- Выберите вид транспорта --' }, { value: 1, text: 'Легковой автомобиль' }, { value: 2, text: 'Грузовой автомобиль' }, { value: 3, text: 'Мототехника' }, { value: 4, text: 'Спецтехника' }, { value: 5, text: 'Ретро-автомобиль' }, { value: 6, text: 'Водный транспорт' }, { value: 7, text: 'Велосипед' }, { value: 8, text: 'Воздушный транспорт' }],
 
       // марки автомобилей
@@ -1961,6 +1962,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         fuel_type: 0,
         car_customs: 1
       }
+
     };
   },
   created: function created() {
@@ -1972,9 +1974,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
 
     /*
-    -----------------------------
+    -----------------------------------
       Вид транспорта
-    -----------------------------*/
+    -----------------------------------*/
     selectTransportType: function selectTransportType(transport_id) {
       var _this = this;
 
