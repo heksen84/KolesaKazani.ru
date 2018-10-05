@@ -26,6 +26,8 @@ class AdvertController extends Controller
 
     public function createAdvert(Request $request) {
 
+        \Debugbar::info($request->all()); // отладка мать её
+
         // правила валидации      
         $rules = 
         [
