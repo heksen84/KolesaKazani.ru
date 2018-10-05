@@ -54,7 +54,7 @@
 
           <!-- Искать в-->
           <!-- кнопка выбора региона -->
-          <b-button style="margin-top:-8px;color:white;padding:4px 10px; background:rgb(150,100,150)" size="sm" @click="openLocationWindow">{{ selectedPlaceName }}</b-button>
+          <b-button style="margin-top:-8px;color:white;padding:2px 10px; background:rgb(100,150,100)" size="sm" @click="openLocationWindow">{{ selectedPlaceName }}</b-button>
 
         </b-col>
 
