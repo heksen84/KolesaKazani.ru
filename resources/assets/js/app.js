@@ -96,6 +96,8 @@ const app = new Vue({
       create,
       fullinfo
   },
+  //render: h => h(app),
+
   created() {
     // esc на результатах
     document.addEventListener('keyup', (event) => {

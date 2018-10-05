@@ -294,7 +294,7 @@ export default {
         else
           window.location.href = "/home/"+advert_id.data;
 
-		  }).catch((err) => {});
+		}).catch((err) => {});
     }
 }
 }

@@ -49607,6 +49607,8 @@ var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
     create: __WEBPACK_IMPORTED_MODULE_7__views_create_vue___default.a,
     fullinfo: __WEBPACK_IMPORTED_MODULE_8__views_fullinfo_vue___default.a
   },
+  //render: h => h(app),
+
   created: function created() {
     // esc на результатах
     document.addEventListener('keyup', function (event) {
