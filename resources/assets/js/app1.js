@@ -96,10 +96,9 @@ const app = new Vue({
       create,
       fullinfo
   },
+  //render: h => h(app),
 
   created() {
-
-    //alert("app.js")
     // esc на результатах
     document.addEventListener('keyup', (event) => {
         if (event.key==="Escape") window.history.back();
