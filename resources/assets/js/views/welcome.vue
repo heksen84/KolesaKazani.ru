@@ -107,7 +107,13 @@ export default {
     this.urlRegAndPlace = urlRegAndPlace;
     
   },
+  mounted() {
 
+    get('/getCategoryCounts').then((res) => {
+          this.regions=res.data;
+      }).catch((err) => {});
+      
+  },
   computed: {
   },
 

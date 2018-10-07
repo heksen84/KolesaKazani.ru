@@ -3034,7 +3034,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     if (urlRegAndPlace == null) this.urlRegAndPlace = "";else this.urlRegAndPlace = urlRegAndPlace;
   },
+  mounted: function mounted() {
+    var _this = this;
 
+    Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCategoryCounts').then(function (res) {
+      _this.regions = res.data;
+    }).catch(function (err) {});
+  },
 
   computed: {},
 
@@ -3055,7 +3061,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       window.location = '/search';
     },
     openLocationWindow: function openLocationWindow() {
-      var _this = this;
+      var _this2 = this;
 
       this.buttonAllCountry = true;
       this.buttonAllRegion = false;
@@ -3065,7 +3071,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.regions = {};
 
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getRegions').then(function (res) {
-        _this.regions = res.data;
+        _this2.regions = res.data;
       }).catch(function (err) {});
     },
 
@@ -3074,7 +3080,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // Выбор региона либо локального места жительства в диалоге
     // ----------------------------------------------------------
     selectLocation: function selectLocation(e) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.regionName = e.name;
       this.buttonAllCountry = false;
@@ -3084,7 +3090,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.locationDialogTitle = "Выберите расположение";
 
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('getPlaces?region_id=' + e.region_id).then(function (res) {
-        _this2.places = res.data;
+        _this3.places = res.data;
         console.log(res.data);
       }).catch(function (err) {});
     },
