@@ -123,7 +123,7 @@ export default {
       /*get('getCategoryCountById?category_id='+id).then((res) => {
           return res;
       }).catch((err) => {});*/
-      return id;
+      return "-";
     },
 
     login() {

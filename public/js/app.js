@@ -3049,7 +3049,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       /*get('getCategoryCountById?category_id='+id).then((res) => {
           return res;
       }).catch((err) => {});*/
-      return id;
+      return "-";
     },
     login: function login() {
       window.location = '/login';
