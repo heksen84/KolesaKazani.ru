@@ -3037,10 +3037,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     if (urlRegAndPlace == null) this.urlRegAndPlace = "";else this.urlRegAndPlace = urlRegAndPlace;
 
-    this.count_category.push(123);
+    // this.count_category.push(123);
   },
 
+  computed: {},
   methods: {
+    getCategoryCountById: function getCategoryCountById(id) {
+      return id * 2;
+    },
     login: function login() {
       window.location = '/login';
     },
@@ -34902,7 +34906,13 @@ var render = function() {
                           },
                           attrs: { id: item.id }
                         },
-                        [_vm._v("| " + _vm._s(item.id) + " ")]
+                        [
+                          _vm._v(
+                            "| " +
+                              _vm._s(_vm.getCategoryCountById(item.id)) +
+                              " "
+                          )
+                        ]
                       )
                     ])
                   ]

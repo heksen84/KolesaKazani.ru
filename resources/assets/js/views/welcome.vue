@@ -65,10 +65,10 @@
     
     <!-- категории -->
     <b-row v-for="i,index in Math.ceil(Object.keys(items).length / 4)" v-bind:key=i>
-      <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in items.slice((i - 1) * 4, i * 4)"  v-bind:key=item.id>
+      <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in items.slice((i - 1) * 4, i * 4)" v-bind:key=item.id>
         <a :href="urlRegAndPlace+'/'+item.url">
         <div class="category_item">{{ item.name }}
-          <span style="font-size:13px;color:rgb(170,255,170);float:right;margin-top:4px" :id="item.id">| {{ item.id }} </span>
+          <span style="font-size:13px;color:rgb(170,255,170);float:right;margin-top:4px" :id="item.id">| {{ getCategoryCountById(item.id) }} </span>
         </div>
         </a>
       </b-col>
@@ -110,10 +110,17 @@ export default {
       else 
     this.urlRegAndPlace = urlRegAndPlace;
 
-    this.count_category.push(123);
+   // this.count_category.push(123);
 
   },
+  computed: {
+   
+  },
   methods: {
+
+    getCategoryCountById(id) {
+      return id*2;
+    },
 
     login() {
       window.location='/login';
