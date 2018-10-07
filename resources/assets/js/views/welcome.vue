@@ -46,14 +46,12 @@
         </b-col>
 
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
-          
           <input type="text" id="search_string" placeholder="Поиск по сайту"/>
           <button id="button_search" @click="search">найти</button>
 
           <!-- Искать в-->
           <!-- кнопка выбора региона -->
           <b-button style="margin-top:-8px;color:white;padding:2px 10px; background:rgb(100,150,100)" size="sm" @click="openLocationWindow">{{ selectedPlaceName }}</b-button>
-
         </b-col>
 
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
@@ -68,7 +66,7 @@
       <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in items.slice((i - 1) * 4, i * 4)" v-bind:key=item.id>
         <a :href="urlRegAndPlace+'/'+item.url">
         <div class="category_item">{{ item.name }}
-          <span style="font-size:13px;color:rgb(170,255,170);float:right;margin-top:4px" :id="item.id">| {{ getCategoryCountById(item.id) }} </span>
+          <span style="font-size:13px;color:rgb(170,255,170);float:right;margin-top:4px" :id="item.id">{{ getCategoryCountById(item.id) }} </span>
         </div>
         </a>
       </b-col>
@@ -97,29 +95,26 @@ export default {
   created() {
 
     var placeName = localStorage.getItem("placeName");
+    var urlRegAndPlace = localStorage.getItem("urlRegAndPlace");
 
     if(placeName==null)
       this.selectedPlaceName = "Весь казахстан";
     else 
       this.selectedPlaceName = placeName;
 
-    var urlRegAndPlace = localStorage.getItem("urlRegAndPlace");
-
-    if(urlRegAndPlace==null) 
-    this.urlRegAndPlace = "";
+    if(urlRegAndPlace==null)  this.urlRegAndPlace = "";
       else 
     this.urlRegAndPlace = urlRegAndPlace;
-
-   // this.count_category.push(123);
-
+    
   },
+
   computed: {
-   
   },
+
   methods: {
 
     getCategoryCountById(id) {
-      return id*2;
+      return "";
     },
 
     login() {

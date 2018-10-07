@@ -3007,8 +3007,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3030,20 +3028,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   created: function created() {
 
     var placeName = localStorage.getItem("placeName");
+    var urlRegAndPlace = localStorage.getItem("urlRegAndPlace");
 
     if (placeName == null) this.selectedPlaceName = "Весь казахстан";else this.selectedPlaceName = placeName;
 
-    var urlRegAndPlace = localStorage.getItem("urlRegAndPlace");
-
     if (urlRegAndPlace == null) this.urlRegAndPlace = "";else this.urlRegAndPlace = urlRegAndPlace;
-
-    // this.count_category.push(123);
   },
 
+
   computed: {},
+
   methods: {
     getCategoryCountById: function getCategoryCountById(id) {
-      return id * 2;
+      return "";
     },
     login: function login() {
       window.location = '/login';
@@ -34908,9 +34905,7 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "| " +
-                              _vm._s(_vm.getCategoryCountById(item.id)) +
-                              " "
+                            _vm._s(_vm.getCategoryCountById(item.id)) + " "
                           )
                         ]
                       )
