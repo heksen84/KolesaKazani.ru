@@ -1,1 +1,0 @@
-You are running Composer with SSL/TLS protection disabled.
