@@ -15,6 +15,10 @@ class WelcomeController extends Controller {
 			return 0;
 		}
 
+		public function getCategoryCounts(Request $request) {
+			return 0;
+		}
+
 		public function getRegions(Request $request) {
 			return Regions::orderBy('name', 'asc')->get();
 		}

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\DB;
 Auth::routes();
 
 Route::get('getCategoryCountById', 'WelcomeController@getCategoryCountById');
+Route::get('getCategoryCounts', 'WelcomeController@getCategoryCounts');
 
 // сервисы
 Route::get('/util/str2url', 'UtilsController@str2url');
@@ -58,5 +59,9 @@ Route::get('details/{id}', ['uses' => 'AdvertController@getFullInfo']);
 Route::get('location/{country}/{region}/{place}', ['uses' => 'AdvertController@getFullInfo']);
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
+/*
+------------------------------------------------
+АДМИН
+------------------------------------------------*/
 
 Route::get('admin', 'AdminController@login');
