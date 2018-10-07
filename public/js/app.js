@@ -3040,7 +3040,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     getCategoryCountById: function getCategoryCountById(id) {
-      return "";
+
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('getCategoryCountById?category_id=' + id).then(function (res) {
+        return id;
+      }).catch(function (err) {});
+
+      return id;
     },
     login: function login() {
       window.location = '/login';
@@ -3080,7 +3085,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.regions = [];
       this.locationDialogTitle = "Выберите расположение";
 
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getPlaces/?region_id=' + e.region_id).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('getPlaces?region_id=' + e.region_id).then(function (res) {
         _this2.places = res.data;
         console.log(res.data);
       }).catch(function (err) {});
@@ -34838,7 +34843,7 @@ var render = function() {
                   staticStyle: {
                     "margin-top": "-8px",
                     color: "white",
-                    padding: "3px 10px",
+                    padding: "2px 10px",
                     background: "rgb(100,150,100)"
                   },
                   attrs: { size: "sm" },
@@ -34874,7 +34879,7 @@ var render = function() {
         [_vm._v("категории")]
       ),
       _vm._v(" "),
-      _vm._l(Math.ceil(Object.keys(_vm.items).length / 4), function(i, index) {
+      _vm._l(Object.keys(_vm.items).length, function(i) {
         return _c(
           "b-row",
           { key: i },

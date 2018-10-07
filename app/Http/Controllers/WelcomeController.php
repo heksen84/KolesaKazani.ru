@@ -11,6 +11,10 @@ use App\Places;
 
 class WelcomeController extends Controller {
 
+		public function getCategoryCountById(Request $request) {
+			return 0;
+		}
+
 		public function getRegions(Request $request) {
 			return Regions::orderBy('name', 'asc')->get();
 		}

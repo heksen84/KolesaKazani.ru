@@ -3,6 +3,8 @@ use Illuminate\Support\Facades\DB;
 
 Auth::routes();
 
+Route::get('getCategoryCountById', 'WelcomeController@getCategoryCountById');
+
 // сервисы
 Route::get('/util/str2url', 'UtilsController@str2url');
 

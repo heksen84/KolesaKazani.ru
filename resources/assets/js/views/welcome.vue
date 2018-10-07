@@ -51,7 +51,7 @@
 
           <!-- Искать в-->
           <!-- кнопка выбора региона -->
-          <b-button style="margin-top:-8px;color:white;padding:3px 10px; background:rgb(100,150,100)" size="sm" @click="openLocationWindow">{{ selectedPlaceName }}</b-button>
+          <b-button style="margin-top:-8px;color:white;padding:2px 10px; background:rgb(100,150,100)" size="sm" @click="openLocationWindow">{{ selectedPlaceName }}</b-button>
         </b-col>
 
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
@@ -62,7 +62,7 @@
     <div id="categories_title" class="shadow_text">категории</div>
     
     <!-- категории -->
-    <b-row v-for="i,index in Math.ceil(Object.keys(items).length / 4)" v-bind:key=i>
+    <b-row v-for="i in Object.keys(items).length" v-bind:key=i>
       <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in items.slice((i - 1) * 4, i * 4)" v-bind:key=item.id>
         <a :href="urlRegAndPlace+'/'+item.url">
         <div class="category_item">{{ item.name }}
@@ -114,7 +114,12 @@ export default {
   methods: {
 
     getCategoryCountById(id) {
-      return "";
+
+      get('getCategoryCountById?category_id='+id).then((res) => {
+          return id;
+      }).catch((err) => {});
+
+      return id;
     },
 
     login() {
@@ -156,7 +161,7 @@ export default {
       this.regions=[];
       this.locationDialogTitle="Выберите расположение"
 
-      get('/getPlaces/?region_id='+e.region_id).then((res) => {
+      get('getPlaces?region_id='+e.region_id).then((res) => {
           this.places=res.data;
           console.log(res.data);
       }).catch((err) => {});
