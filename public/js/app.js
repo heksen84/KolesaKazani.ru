@@ -3009,9 +3009,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3028,12 +3025,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       buttonAllCountry: true,
       buttonAllRegion: false,
       regionName: ""
-
     };
   },
   created: function created() {
-
-    // alert(screen.width);
 
     var placeName = localStorage.getItem("placeName");
 
@@ -3042,6 +3036,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     var urlRegAndPlace = localStorage.getItem("urlRegAndPlace");
 
     if (urlRegAndPlace == null) this.urlRegAndPlace = "";else this.urlRegAndPlace = urlRegAndPlace;
+
+    this.count_category.push(123);
   },
 
   methods: {
@@ -34877,7 +34873,7 @@ var render = function() {
         [_vm._v("категории")]
       ),
       _vm._v(" "),
-      _vm._l(Math.ceil(Object.keys(_vm.items).length / 4), function(i) {
+      _vm._l(Math.ceil(Object.keys(_vm.items).length / 4), function(i, index) {
         return _c(
           "b-row",
           { key: i },
@@ -34906,7 +34902,7 @@ var render = function() {
                           },
                           attrs: { id: item.id }
                         },
-                        [_vm._v("| " + _vm._s(555) + " ")]
+                        [_vm._v("| " + _vm._s(item.id) + " ")]
                       )
                     ])
                   ]

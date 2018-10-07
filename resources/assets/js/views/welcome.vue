@@ -5,8 +5,6 @@
 
           <div class="button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>
 
-          
-
           <!-- окно выбоа региона и местоположения -->
           <b-modal v-model="locationDialog" style="text-align:center;color:rgb(50,50,50)" hide-footer :title="locationDialogTitle">
 
@@ -66,14 +64,13 @@
     <div id="categories_title" class="shadow_text">категории</div>
     
     <!-- категории -->
-    <b-row v-for="i in Math.ceil(Object.keys(items).length / 4)" v-bind:key=i>
+    <b-row v-for="i,index in Math.ceil(Object.keys(items).length / 4)" v-bind:key=i>
       <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in items.slice((i - 1) * 4, i * 4)"  v-bind:key=item.id>
-
         <a :href="urlRegAndPlace+'/'+item.url">
-
         <div class="category_item">{{ item.name }}
-          <span style="font-size:13px;color:rgb(170,255,170);float:right;margin-top:4px" :id="item.id">| {{ 555 }} </span>
-        </div></a>
+          <span style="font-size:13px;color:rgb(170,255,170);float:right;margin-top:4px" :id="item.id">| {{ item.id }} </span>
+        </div>
+        </a>
       </b-col>
     </b-row>
 
@@ -95,12 +92,9 @@ export default {
       buttonAllCountry: true,
       buttonAllRegion: false,
       regionName: ""
-
     }
   },
   created() {
-
-   // alert(screen.width);
 
     var placeName = localStorage.getItem("placeName");
 
@@ -115,6 +109,8 @@ export default {
     this.urlRegAndPlace = "";
       else 
     this.urlRegAndPlace = urlRegAndPlace;
+
+    this.count_category.push(123);
 
   },
   methods: {
