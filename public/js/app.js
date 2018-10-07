@@ -34838,7 +34838,7 @@ var render = function() {
                   staticStyle: {
                     "margin-top": "-8px",
                     color: "white",
-                    padding: "2px 10px",
+                    padding: "3px 10px",
                     background: "rgb(100,150,100)"
                   },
                   attrs: { size: "sm" },
