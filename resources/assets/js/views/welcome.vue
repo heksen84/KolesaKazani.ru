@@ -120,9 +120,9 @@ export default {
   methods: {
 
     getCategoryCountById(id) {
-      get('getCategoryCountById?category_id='+id).then((res) => {
+      /*get('getCategoryCountById?category_id='+id).then((res) => {
           return res;
-      }).catch((err) => {});
+      }).catch((err) => {});*/
       return id;
     },
 
