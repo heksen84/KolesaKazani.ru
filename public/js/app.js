@@ -3040,11 +3040,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     getCategoryCountById: function getCategoryCountById(id) {
-
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('getCategoryCountById?category_id=' + id).then(function (res) {
-        return id;
+        return res;
       }).catch(function (err) {});
-
       return id;
     },
     login: function login() {

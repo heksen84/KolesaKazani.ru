@@ -114,11 +114,9 @@ export default {
   methods: {
 
     getCategoryCountById(id) {
-
       get('getCategoryCountById?category_id='+id).then((res) => {
-          return id;
+          return res;
       }).catch((err) => {});
-
       return id;
     },
 
