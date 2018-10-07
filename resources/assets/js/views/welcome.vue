@@ -40,7 +40,7 @@
         <!-- ЛОГОТИП -->
         <a href="/">
           <div id="logo_block">
-            <div id="logo_block_text">КупиПродай</div>
+            <div id="logo_block_text">FlyMart24</div>
             <div style="font-size:18px;color:yellow;margin-top:-13px;letter-spacing:2px;">доска объявлений</div>
           </div>
         </a>

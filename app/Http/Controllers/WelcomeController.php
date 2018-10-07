@@ -22,6 +22,8 @@ class WelcomeController extends Controller {
         public function getCategories(Request $request) {
 
 			\Debugbar::info("hello");
+			\Debugbar::error("hello");
+			\Debugbar::warning("hello");
 
         	return view('welcome')->with("items", Categories::all())->with("count", Categories::count())->with("auth", Auth::user()?1:0);
     	}
