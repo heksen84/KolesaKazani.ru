@@ -34850,9 +34850,9 @@ var render = function() {
                 "b-button",
                 {
                   staticStyle: {
-                    "margin-top": "-8px",
+                    "margin-top": "-7px",
                     color: "white",
-                    padding: "2px 10px",
+                    padding: "1px 10px",
                     background: "rgb(100,150,100)"
                   },
                   attrs: { size: "sm" },
