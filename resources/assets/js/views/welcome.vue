@@ -7,7 +7,6 @@
 
           <!-- окно выбоа региона и местоположения -->
           <b-modal v-model="locationDialog" style="text-align:center;color:rgb(50,50,50)" hide-footer :title="locationDialogTitle">
-
             <!-- регионы -->
             <b-button variant="link" style="color:black" v-for="i in regions" :key="i.region_id" @click="selectLocation(i)">{{i.name}}
             </b-button>
@@ -21,8 +20,10 @@
 
             <hr v-if="buttonAllRegion">
             <button style="color:black;display:block;margin:auto;margin-top:-5px" v-if="buttonAllRegion" @click="selectAllRegion">Вся область</button>
-
           </b-modal>
+
+          <!--====[ end modal ]====================-->
+
         </b-col>
 
         <b-col style="text-align:center" v-show="!auth">
@@ -76,8 +77,6 @@
 
 <b-row>    
     <b-col v-for="i in 40" style="border:1px solid rgb(255,255,255);margin:1px;padding:30px" v-bind:key="i"></b-col>
-    
-    
 </b-row>
 
 <b-row><span style="margin:auto;margin-top:10px">2018(c)</span></b-row>
