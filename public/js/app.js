@@ -3007,6 +3007,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -34908,7 +34912,26 @@ var render = function() {
             )
           })
         )
-      })
+      }),
+      _vm._v(" "),
+      _c("b-row", { staticStyle: { "margin-top": "50px" } }, [
+        _c("h5", [_vm._v("VIP")])
+      ]),
+      _vm._v(" "),
+      _c(
+        "b-row",
+        _vm._l(60, function(i) {
+          return _c("div", {
+            staticStyle: {
+              display: "inline",
+              border: "1px solid white",
+              height: "50px",
+              width: "40px",
+              padding: "40px"
+            }
+          })
+        })
+      )
     ],
     2
   )
