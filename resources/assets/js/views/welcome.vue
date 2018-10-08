@@ -72,10 +72,12 @@
       </b-col>
     </b-row>
 
-<b-row style="margin-top:50px"><h4>VIP объявления</h4></b-row>
+<b-row style="margin-top:60px"><h5>VIP объявления</h5></b-row>
 
 <b-row>    
-    <b-col v-for="i in 50" style="border:1px solid rgb(255,255,255);margin:2px;padding:35" v-bind:key="i"></b-col>
+    <b-col v-for="i in 40" style="border:1px solid rgb(255,255,255);margin:1px;padding:30px" v-bind:key="i"></b-col>
+    
+    
 </b-row>
 
 <b-row><span style="margin:auto;margin-top:10px">2018(c)</span></b-row>
