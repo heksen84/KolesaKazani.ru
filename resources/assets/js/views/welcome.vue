@@ -71,9 +71,10 @@
         </a>
       </b-col>
     </b-row>
-<b-row style="margin-top:50px"><h5>VIP</h5></b-row>
+
+<b-row style="margin-top:50px"><h4>VIP объявления</h4></b-row>
 <b-row>    
-    <div v-for="i in 60" style="display:inline;border:1px solid white;height:50px;width:40px;padding:40px"></div>
+    <b-col v-for="i in 50" style="border:1px solid rgb(255,255,255);margin:2px;padding:35" v-bind:key="i"></b-col>
 </b-row>
 
 </b-container>
