@@ -6,6 +6,7 @@
           <div class="button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>
 
           <!-- окно выбоа региона и местоположения -->
+          
           <b-modal v-model="locationDialog" style="text-align:center;color:rgb(50,50,50)" hide-footer :title="locationDialogTitle">
             <!-- регионы -->
             <b-button variant="link" style="color:black" v-for="i in regions" :key="i.region_id" @click="selectLocation(i)">{{i.name}}
@@ -52,7 +53,7 @@
 
           <!-- Искать в-->
           <!-- кнопка выбора региона -->
-          <b-button style="margin-top:-7px;color:white;padding:1px 10px; background:rgb(100,150,100)" size="sm" @click="openLocationWindow">{{ selectedPlaceName }}</b-button>
+          <b-button style="margin-top:-7px;color:white;padding:1px 10px; background:rgb(100,150,150)" size="sm" @click="openLocationWindow">{{ selectedPlaceName }}</b-button>
         </b-col>
 
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">

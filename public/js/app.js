@@ -3015,6 +3015,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -34856,7 +34858,7 @@ var render = function() {
                     "margin-top": "-7px",
                     color: "white",
                     padding: "1px 10px",
-                    background: "rgb(100,150,100)"
+                    background: "rgb(100,150,150)"
                   },
                   attrs: { size: "sm" },
                   on: { click: _vm.openLocationWindow }
