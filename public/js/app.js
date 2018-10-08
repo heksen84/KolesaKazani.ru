@@ -34900,24 +34900,7 @@ var render = function() {
                   { attrs: { href: _vm.urlRegAndPlace + "/" + item.url } },
                   [
                     _c("div", { staticClass: "category_item" }, [
-                      _vm._v(_vm._s(item.name) + "\n          "),
-                      _c(
-                        "span",
-                        {
-                          staticStyle: {
-                            "font-size": "13px",
-                            color: "rgb(170,255,170)",
-                            float: "right",
-                            "margin-top": "4px"
-                          },
-                          attrs: { id: item.id }
-                        },
-                        [
-                          _vm._v(
-                            _vm._s(_vm.getCategoryCountById(item.id)) + " "
-                          )
-                        ]
-                      )
+                      _vm._v(_vm._s(item.name) + "\n")
                     ])
                   ]
                 )
