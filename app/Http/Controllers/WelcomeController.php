@@ -39,11 +39,11 @@ class WelcomeController extends Controller {
 			$redis = Redis::connection();
 
 			try {								
-				$redis->ping();	// проверяю включен-ли redis
-				$categories = $redis->get("categories"); // получаю массив категорий
+					$redis->ping();	// проверяю включен-ли redis
+					$categories = $redis->get("categories"); // получаю массив категорий
 
-				if (!$categories) // если массив пуст,
-					$redis->set("categories", Categories::all()); // .. делаю выборку в новую переменную
+					if (!$categories) // если массив пуст,
+						$redis->set("categories", Categories::all()); // .. делаю выборку в новую переменную
 			}
 			catch(\Exception $e) {
 				\Debugbar::error($e->getMessage());
