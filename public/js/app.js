@@ -34871,7 +34871,7 @@ var render = function() {
                   attrs: { size: "sm", title: "Расположение поиска" },
                   on: { click: _vm.openLocationWindow }
                 },
-                [_vm._v("Расположение: " + _vm._s(_vm.selectedPlaceName))]
+                [_vm._v("Расположение " + _vm._s(_vm.selectedPlaceName))]
               )
             ],
             1
