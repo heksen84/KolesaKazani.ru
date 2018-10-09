@@ -47,13 +47,17 @@ class WelcomeController extends Controller {
 			return $regions;
 		}
 
+		/*
+		---------------------------------------------
+		Города, сёла, деревни
+		---------------------------------------------*/
 		public function getPlaces(Request $request) {
 			return Places::where('region_id',  $request->region_id )->orderBy('name', 'asc')->get();
 		}
 		
 		/*
 		-------------------------------------
-		 получить категории
+		 Получить категории
 		-------------------------------------*/
 
         public function getCategories(Request $request) {
