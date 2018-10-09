@@ -29,19 +29,18 @@ class WelcomeController extends Controller {
 		public function getRegions(Request $request) {
 
 			$redis = Redis::connection();
-			$query = Regions::orderBy('name', 'asc')->get();
 
 			try {								
 				$redis->ping();
 				$regions = $redis->get("regions");
 				if (!$regions) {
-					$redis->set("regions", $query);
+					$redis->set("regions", Regions::orderBy('name', 'asc')->get());
 					$regions = $redis->get("regions");
 				}
 			}
 			catch(\Exception $e) {
 				\Debugbar::warning($e->getMessage());
-				$regions = $query;
+				$regions = Regions::orderBy('name', 'asc')->get();
 			}
 
 			return $regions;
@@ -63,19 +62,18 @@ class WelcomeController extends Controller {
         public function getCategories(Request $request) {
 						
 			$redis = Redis::connection();
-			$query = Categories::all();
 
 			try {								
 				$redis->ping();	// проверяю включен-ли redis
 				$categories = $redis->get("categories"); // получаю массив категорий
 				if (!$categories) { // если массив пуст,
-					$redis->set("categories", $query); // .. делаю выборку в новую переменную
+					$redis->set("categories", Categories::all()); // .. делаю выборку в новую переменную
 					$categories = $redis->get("categories"); // получаю данные из редиса
 				}
 			}
 			catch(\Exception $e) {
 				\Debugbar::warning($e->getMessage());
-				$categories = $query;
+				$categories = Categories::all();
 			}
 					
         	return view('welcome')->with("items", $categories)->with("count", Categories::count())->with("auth", Auth::user()?1:0);
