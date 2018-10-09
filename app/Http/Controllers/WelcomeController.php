@@ -21,8 +21,29 @@ class WelcomeController extends Controller {
 			return 0;
 		}
 
+		/*
+		---------------------------------------------
+		Регионы
+		---------------------------------------------*/
+
 		public function getRegions(Request $request) {
-			return Regions::orderBy('name', 'asc')->get();
+
+			$redis = Redis::connection();
+
+			try {								
+				$redis->ping();
+				$regions = $redis->get("regions");
+				if (!$regions) {
+					$redis->set("regions", Regions::orderBy('name', 'asc')->get());
+					$regions = $redis->get("regions");
+				}
+			}
+			catch(\Exception $e) {
+				\Debugbar::warning($e->getMessage());
+				$regions = Regions::orderBy('name', 'asc')->get();
+			}
+
+			return $regions;
 		}
 
 		public function getPlaces(Request $request) {
@@ -39,10 +60,8 @@ class WelcomeController extends Controller {
 			$redis = Redis::connection();
 
 			try {								
-
 				$redis->ping();	// проверяю включен-ли redis
 				$categories = $redis->get("categories"); // получаю массив категорий
-
 				if (!$categories) { // если массив пуст,
 					$redis->set("categories", Categories::all()); // .. делаю выборку в новую переменную
 					$categories = $redis->get("categories"); // получаю данные из редиса
