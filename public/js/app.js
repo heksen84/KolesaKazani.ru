@@ -2395,8 +2395,7 @@ var tmp_images_array = [];
     };
   },
   created: function created() {
-    // добавляю формально поле доп. информация
-    this.$root.advert_data.adv_info = null;
+    this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
   },
 
 
@@ -2559,7 +2558,7 @@ var tmp_images_array = [];
 
         console.log(response);
 
-        if (!response.data.response) {
+        if (response.status != 200) {
           _this.$root.$notify({
             group: 'foo',
             text: "<div style='font-size:130%'>" + response.data.msg + "</div>",

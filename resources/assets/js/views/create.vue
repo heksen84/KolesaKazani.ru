@@ -129,8 +129,7 @@ export default {
 	},
 
 	created() {
-		// добавляю формально поле доп. информация
-    	this.$root.advert_data.adv_info = null;
+    	this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
 	},
 
 	components: { transport, realestate },
@@ -281,15 +280,14 @@ export default {
 		  Сохранить объявление
 		----------------------------*/
     	onSubmit(evt) {
-
 			evt.preventDefault();
 
      		// сохраняю объявление
 			post('/create', { "data": this.$root.advert_data }).then((response) => {
 
-				console.log(response)
+			console.log(response)
 
-        	if (!response.data.response) {
+        	if (response.status!=200) {
             	this.$root.$notify({
               	group: 'foo',
               	text: "<div style='font-size:130%'>"+response.data.msg+"</div>",
