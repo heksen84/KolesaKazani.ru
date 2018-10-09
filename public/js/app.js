@@ -2375,9 +2375,11 @@ var tmp_images_array = [];
   data: function data() {
 
     return {
+
       options_sdelka: this.$root.options_sdelka,
       options_category: null,
       options_deal_id: null,
+      text: "",
       options_price: 0,
       root: false,
       transport: false, // транспорт
@@ -2424,6 +2426,7 @@ var tmp_images_array = [];
 
     // сброс данных при выборе категории
     resetCategories: function resetCategories(data) {
+
       this.root = false; // по умолчанию
       this.transport = false; // транспорт
       this.real_estate = false; // недвижимость
@@ -2434,7 +2437,7 @@ var tmp_images_array = [];
       this.animals = false; // животные
       this.hobbies_and_leisure = false; // хобби и отдых
       this.services = false; // услуги
-      this.other = false; // другое 	
+      this.other = false; // другое 
     },
     setInfo: function setInfo(info) {
       this.$root.advert_data.adv_info = info;
@@ -2553,6 +2556,8 @@ var tmp_images_array = [];
 
       // сохраняю объявление
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (response) {
+
+        console.log(response);
 
         if (!response.data.response) {
           _this.$root.$notify({
@@ -34947,7 +34952,8 @@ var render = function() {
             staticStyle: {
               border: "1px solid rgb(255,255,255)",
               margin: "1px",
-              padding: "30px"
+              padding: "30px",
+              opacity: "0.5"
             }
           })
         })
@@ -36155,7 +36161,14 @@ var render = function() {
                               rows: 4,
                               "max-rows": 4
                             },
-                            on: { input: _vm.setInfo }
+                            on: { input: _vm.setInfo },
+                            model: {
+                              value: _vm.text,
+                              callback: function($$v) {
+                                _vm.text = $$v
+                              },
+                              expression: "text"
+                            }
                           })
                         ],
                         1

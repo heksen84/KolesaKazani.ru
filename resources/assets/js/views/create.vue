@@ -56,10 +56,10 @@
 			<h1 v-else-if="other"></h1>
 
 			<b-form-group label="Дополнительная информация:" label-for="addit_info" v-if="this.$store.state.show_other_fields">
-			 <b-form-textarea id="addit_info"
-										placeholder="Укажите дополнительную информацию"
-										:rows="4"
-										:max-rows="4" @input="setInfo">
+			 <b-form-textarea   id="addit_info"
+								placeholder="Укажите дополнительную информацию"
+								:rows="4"
+								:max-rows="4" @input="setInfo" v-model="text">
 	 		 </b-form-textarea>
 			</b-form-group>
 
@@ -108,9 +108,11 @@ export default {
 	data () {
 
     return 	{
+
     	options_sdelka:this.$root.options_sdelka,
     	options_category:null,
-    	options_deal_id:null,
+		options_deal_id:null,
+		text:"",
     	options_price:0, 
 		root:false,
 		transport:false,			// транспорт
@@ -165,6 +167,7 @@ export default {
 
   		// сброс данных при выборе категории
   		resetCategories(data) {
+
   			 this.root=false;				        // по умолчанию
   			 this.transport=false;			        // транспорт
   			 this.real_estate=false;			    // недвижимость
@@ -175,17 +178,18 @@ export default {
 			 this.animals=false;				    // животные
 			 this.hobbies_and_leisure=false;	  	// хобби и отдых
 			 this.services=false;			        // услуги
-			 this.other=false;				        // другое 	
+			 this.other=false;				        // другое 
+
   		},
 
   		setInfo(info) {
-  			this.$root.advert_data.adv_info=info;
+			  this.$root.advert_data.adv_info=info;
   		},
 
   		setPrice(price) {
   			this.$root.advert_data.adv_price=price;
         	this.options_price = price;
-        return price;
+        	return price;
   		},
   		
   		setDeal(deal_id) {
@@ -283,6 +287,8 @@ export default {
 
      		// сохраняю объявление
 			post('/create', { "data": this.$root.advert_data }).then((response) => {
+
+				console.log(response)
 
         	if (!response.data.response) {
             	this.$root.$notify({
