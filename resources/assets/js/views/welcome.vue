@@ -53,7 +53,7 @@
 
           <!-- Искать в-->
           <!-- кнопка выбора региона -->
-          <b-button style="margin-top:-7px;color:white;padding:1px 10px; background:rgb(100,150,150)" size="sm" @click="openLocationWindow">Искать в {{ selectedPlaceName }}</b-button>
+          <b-button style="margin-top:-7px;color:white;padding:1px 10px; background:rgb(100,150,150)" size="sm" @click="openLocationWindow">Расположение: {{ selectedPlaceName }}</b-button>
         </b-col>
 
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
@@ -86,6 +86,8 @@
 </template>
 <script>
 import { get } from './../helpers/api'
+//import petrovich from 'petrovich';
+
 export default {
   props: ["items", "auth", "count"],
 
@@ -103,6 +105,13 @@ export default {
     }
   },
   created() {
+
+  /*var person = {
+    gender: 'androgynous',
+    first: 'Павлодар'    
+  };*/
+    // вызываем Петровича как функцию, указав падеж:
+    //console.log(petrovich(person, 'prepositional'));
 
     var placeName = localStorage.getItem("placeName");
     var urlRegAndPlace = localStorage.getItem("urlRegAndPlace");

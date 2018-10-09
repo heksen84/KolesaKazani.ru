@@ -3019,6 +3019,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
+//import petrovich from 'petrovich';
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["items", "auth", "count"],
 
@@ -3036,6 +3038,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   created: function created() {
+
+    /*var person = {
+      gender: 'androgynous',
+      first: 'Павлодар'    
+    };*/
+    // вызываем Петровича как функцию, указав падеж:
+    //console.log(petrovich(person, 'prepositional'));
 
     var placeName = localStorage.getItem("placeName");
     var urlRegAndPlace = localStorage.getItem("urlRegAndPlace");
@@ -34863,7 +34872,7 @@ var render = function() {
                   attrs: { size: "sm" },
                   on: { click: _vm.openLocationWindow }
                 },
-                [_vm._v("Искать в " + _vm._s(_vm.selectedPlaceName))]
+                [_vm._v("Расположение: " + _vm._s(_vm.selectedPlaceName))]
               )
             ],
             1
