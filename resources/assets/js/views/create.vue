@@ -59,7 +59,7 @@
 			 <b-form-textarea   id="addit_info"
 								placeholder="Укажите дополнительную информацию"
 								:rows="4"
-								:max-rows="4" @input="setInfo" v-model="text">
+								:max-rows="4" @input="setInfo" v-model="options_text">
 	 		 </b-form-textarea>
 			</b-form-group>
 
@@ -112,7 +112,7 @@ export default {
     	options_sdelka:this.$root.options_sdelka,
     	options_category:null,
 		options_deal_id:null,
-		text:"",
+		options_text:"",
     	options_price:0, 
 		root:false,
 		transport:false,			// транспорт
@@ -183,7 +183,7 @@ export default {
   		},
 
   		setInfo(info) {
-			  this.$root.advert_data.adv_info=info;
+			this.$root.advert_data.adv_info=info;
   		},
 
   		setPrice(price) {

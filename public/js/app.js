@@ -2379,7 +2379,7 @@ var tmp_images_array = [];
       options_sdelka: this.$root.options_sdelka,
       options_category: null,
       options_deal_id: null,
-      text: "",
+      options_text: "",
       options_price: 0,
       root: false,
       transport: false, // транспорт
@@ -36163,11 +36163,11 @@ var render = function() {
                             },
                             on: { input: _vm.setInfo },
                             model: {
-                              value: _vm.text,
+                              value: _vm.options_text,
                               callback: function($$v) {
-                                _vm.text = $$v
+                                _vm.options_text = $$v
                               },
-                              expression: "text"
+                              expression: "options_text"
                             }
                           })
                         ],
