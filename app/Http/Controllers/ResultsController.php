@@ -19,7 +19,24 @@ class ResultsController extends Controller {
     // ---------------------------------------------------
     public function getResultsByCategory(Request $request) {
 
-    	//$petrovich = new Petrovich(Petrovich::GENDER_MALE);
+		/*
+			$redis = Redis::connection();
+
+			try {								
+
+				$redis->ping();
+				$results = $redis->get("results");
+
+				if (!$results) {
+					$redis->set("results", Categories::all()); 
+					$results = $redis->get("results");
+				}
+			}
+			catch(\Exception $e) {
+				\Debugbar::warning($e->getMessage());
+				$results = Categories::all();
+			}
+		*/
 
     	// получаю имя на русском
     	$record = Categories::select('id', 'name')->where('url',  $request->path() )->first();

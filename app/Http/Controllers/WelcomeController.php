@@ -43,7 +43,7 @@ class WelcomeController extends Controller {
 				$redis->ping();	// проверяю включен-ли redis
 				$categories = $redis->get("categories"); // получаю массив категорий
 
-				if (!$categories) {// если массив пуст,
+				if (!$categories) { // если массив пуст,
 					$redis->set("categories", Categories::all()); // .. делаю выборку в новую переменную
 					$categories = $redis->get("categories"); // получаю данные из редиса
 				}
