@@ -3015,8 +3015,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 //import petrovich from 'petrovich';
@@ -34816,25 +34814,23 @@ var render = function() {
               attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
             },
             [
-              _c("a", { attrs: { href: "/" } }, [
-                _c("div", { attrs: { id: "logo_block" } }, [
-                  _c("div", { attrs: { id: "logo_block_text" } }, [
-                    _vm._v("FlyMart24")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticStyle: {
-                        "font-size": "18px",
-                        color: "yellow",
-                        "margin-top": "-13px",
-                        "letter-spacing": "2px"
-                      }
-                    },
-                    [_vm._v("доска объявлений")]
-                  )
-                ])
+              _c("div", { attrs: { id: "logo_block" } }, [
+                _c("div", { attrs: { id: "logo_block_text" } }, [
+                  _vm._v("FlyMart24")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticStyle: {
+                      "font-size": "18px",
+                      color: "yellow",
+                      "margin-top": "-13px",
+                      "letter-spacing": "2px"
+                    }
+                  },
+                  [_vm._v("доска объявлений")]
+                )
               ])
             ]
           ),
@@ -34856,7 +34852,10 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "button",
-                { attrs: { id: "button_search" }, on: { click: _vm.search } },
+                {
+                  attrs: { id: "button_search", title: "Найти что требуется" },
+                  on: { click: _vm.search }
+                },
                 [_vm._v("найти")]
               ),
               _vm._v(" "),
@@ -34869,7 +34868,7 @@ var render = function() {
                     padding: "1px 10px",
                     background: "rgb(100,150,150)"
                   },
-                  attrs: { size: "sm" },
+                  attrs: { size: "sm", title: "Расположение поиска" },
                   on: { click: _vm.openLocationWindow }
                 },
                 [_vm._v("Расположение: " + _vm._s(_vm.selectedPlaceName))]
@@ -34882,7 +34881,14 @@ var render = function() {
             "b-col",
             {
               staticStyle: { "text-align": "center" },
-              attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
+              attrs: {
+                cols: "12",
+                sm: "12",
+                md: "12",
+                lg: "3",
+                xl: "3",
+                title: "Подать новое объявление"
+              }
             },
             [
               _c("a", { attrs: { href: "/podat-obyavlenie" } }, [
