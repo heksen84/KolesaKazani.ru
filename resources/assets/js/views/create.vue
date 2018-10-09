@@ -129,6 +129,8 @@ export default {
 	},
 
 	created() {
+		// добавляю формально поле доп. информация
+    	this.$root.advert_data.adv_info = null;
 	},
 
 	components: { transport, realestate },
@@ -281,9 +283,6 @@ export default {
     	onSubmit(evt) {
 
 			evt.preventDefault();
-
-      		// добавляю формально поле доп. информация
-      		this.$root.advert_data.adv_info = "";
 
      		// сохраняю объявление
 			post('/create', { "data": this.$root.advert_data }).then((response) => {

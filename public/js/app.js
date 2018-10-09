@@ -2394,7 +2394,10 @@ var tmp_images_array = [];
       other: false // другое
     };
   },
-  created: function created() {},
+  created: function created() {
+    // добавляю формально поле доп. информация
+    this.$root.advert_data.adv_info = null;
+  },
 
 
   components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default.a },
@@ -2550,9 +2553,6 @@ var tmp_images_array = [];
       var _this = this;
 
       evt.preventDefault();
-
-      // добавляю формально поле доп. информация
-      this.$root.advert_data.adv_info = "";
 
       // сохраняю объявление
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (response) {
