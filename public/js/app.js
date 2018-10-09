@@ -34863,7 +34863,7 @@ var render = function() {
                   attrs: { size: "sm" },
                   on: { click: _vm.openLocationWindow }
                 },
-                [_vm._v(_vm._s(_vm.selectedPlaceName))]
+                [_vm._v("Искать в " + _vm._s(_vm.selectedPlaceName))]
               )
             ],
             1
