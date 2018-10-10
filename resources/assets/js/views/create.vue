@@ -75,7 +75,7 @@
 			</b-form-group>-->
 
 			<!-- ОТМЕТИТЬ НА КАРТЕ -->
-			<b-form-group label="Расположение:" style="text-align:right" v-if="options_price!=0">
+			<b-form-group label="Расположение:" style="text-align:center" v-if="options_price!=0">
 				<b-button variant="primary">отметить на карте</b-button>
 			</b-form-group>
 

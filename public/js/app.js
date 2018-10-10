@@ -36198,7 +36198,7 @@ var render = function() {
                     ? _c(
                         "b-form-group",
                         {
-                          staticStyle: { "text-align": "right" },
+                          staticStyle: { "text-align": "center" },
                           attrs: { label: "Расположение:" }
                         },
                         [
