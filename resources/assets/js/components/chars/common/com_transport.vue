@@ -34,7 +34,7 @@
     </b-form-group>
 
     <b-form-group label="Растаможен:">
-        <b-form-select v-model="selected.transport_customs" class="mb-2 mr-sm-2 mb-sm-2" @change="SetTransportCustoms">
+        <b-form-select style="width:90px" v-model="selected.transport_customs" class="mb-2 mr-sm-2 mb-sm-2" @change="SetTransportCustoms">
            <option :value="1">Да</option>
            <option :value="0">Нет</option>
         </b-form-select>
