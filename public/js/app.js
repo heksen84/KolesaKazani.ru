@@ -34389,7 +34389,7 @@ var render = function() {
             "b-form-select",
             {
               staticClass: "mb-2 mr-sm-2 mb-sm-2",
-              staticStyle: { width: "90px" },
+              staticStyle: { width: "100px" },
               on: { change: _vm.SetTransportCustoms },
               model: {
                 value: _vm.selected.transport_customs,
