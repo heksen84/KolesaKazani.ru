@@ -1693,82 +1693,72 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-     data: function data() {
-          return {
+  data: function data() {
+    return {
 
-               selected: {
-                    type_transport: null,
-                    carmark: null,
-                    model: null,
-                    helm_position: null,
-                    fuel_type: 0,
-                    transport_customs: 1
-               },
+      selected: {
+        type_transport: null,
+        carmark: null,
+        model: null,
+        helm_position: null,
+        fuel_type: 0,
+        transport_customs: 1
+      },
 
-               release_date: null,
-               mileage: 0,
+      release_date: null,
+      mileage: 0,
 
-               helm_position: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
+      helm_position: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
 
-               fuel_type: [{ value: 0, text: 'Бензин' }, { value: 1, text: 'Дизель' }, { value: 2, text: 'Газ-бензин' }, { value: 3, text: 'Газ' }, { value: 4, text: 'Гибрид' }, { value: 5, text: 'Электричество' }]
-
-          };
-     },
-     created: function created() {
-          this.transport_chars = this.$root.advert_data;
-     },
-
-
-     components: {},
-     methods: {
-
-          // положение руля
-          SetHelmPosition: function SetHelmPosition(positon_id) {
-
-               this.transport_chars.rule_position = positon_id;
-               //console.log(this.transport_chars.rule_position);
-          },
+      fuel_type: [{ value: 0, text: 'Бензин' }, { value: 1, text: 'Дизель' }, { value: 2, text: 'Газ-бензин' }, { value: 3, text: 'Газ' }, { value: 4, text: 'Гибрид' }, { value: 5, text: 'Электричество' }]
+    };
+  },
+  created: function created() {
+    this.transport_chars = this.$root.advert_data;
+  },
 
 
-          // тип топлива
-          SetFuelType: function SetFuelType(fuel_type) {
+  components: {},
+  methods: {
 
-               this.transport_chars.fuel_type = fuel_type;
-               //console.log(this.transport_chars.fuel_type );
-          },
-
-
-          // растаможка
-          SetTransportCustoms: function SetTransportCustoms(customs_id) {
-
-               this.transport_chars.customs = customs_id;
-               //console.log(this.transport_chars.customs);
-          },
+    // положение руля
+    SetHelmPosition: function SetHelmPosition(positon_id) {
+      this.transport_chars.rule_position = positon_id;
+      //console.log(this.transport_chars.rule_position);
+    },
 
 
-          // год выпуска
-          SetReleaseDate: function SetReleaseDate(date) {
-
-               if (date < 0) return 0;
-
-               this.transport_chars.release_date = date;
-               //console.log(this.transport_chars.release_date);
-
-               return date;
-          },
+    // тип топлива
+    SetFuelType: function SetFuelType(fuel_type) {
+      this.transport_chars.fuel_type = fuel_type;
+      //console.log(this.transport_chars.fuel_type );
+    },
 
 
-          // пробег
-          SetMileage: function SetMileage(mileage) {
+    // растаможка
+    SetTransportCustoms: function SetTransportCustoms(customs_id) {
+      this.transport_chars.customs = customs_id;
+      //console.log(this.transport_chars.customs);
+    },
 
-               if (mileage < 0) return 0;
 
-               this.transport_chars.mileage = mileage;
-               //console.log(this.transport_chars.mileage);
+    // год выпуска
+    SetReleaseDate: function SetReleaseDate(date) {
+      if (date < 0) return 0;
+      this.transport_chars.release_date = date;
+      //console.log(this.transport_chars.release_date);
+      return date;
+    },
 
-               return mileage;
-          }
-     }
+
+    // пробег
+    SetMileage: function SetMileage(mileage) {
+      if (mileage < 0) return 0;
+      this.transport_chars.mileage = mileage;
+      //console.log(this.transport_chars.mileage);
+      return mileage;
+    }
+  }
 });
 
 /***/ }),
