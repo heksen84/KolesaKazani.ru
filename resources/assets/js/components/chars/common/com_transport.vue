@@ -87,41 +87,32 @@ export default {
      // положение руля
      SetHelmPosition(positon_id) {
         this.transport_chars.rule_position = positon_id;
-        //console.log(this.transport_chars.rule_position);
      },
 
      // тип топлива
      SetFuelType(fuel_type) {
         this.transport_chars.fuel_type = fuel_type;
-        //console.log(this.transport_chars.fuel_type );
      },
      
      // растаможка
      SetTransportCustoms(customs_id) {
         this.transport_chars.customs = customs_id;
-        //console.log(this.transport_chars.customs);
      },
 
      // год выпуска
      SetReleaseDate(date) {
-
       var d = new Date();
-
       if (date<0 || date>d.getFullYear()) return;
-     
       this.transport_chars.release_date = date;
-      //console.log(this.transport_chars.release_date);
       return date;
      },
 
      // пробег
      SetMileage(mileage) {
-      if (mileage<0 || mileage>1000000) return;
+      if (mileage<0 || mileage>10000000) return;
       this.transport_chars.mileage = mileage;
-      //console.log(this.transport_chars.mileage);
       return mileage;
      }
-
   }
 }
 </script>
