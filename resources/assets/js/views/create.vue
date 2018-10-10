@@ -69,10 +69,10 @@
 			</b-form-group>
 
 			<!-- ФОТОГРАФИИ -->
-			<!--<b-form-group label="Фотографии:">
-				<b-img v-for="i,index in form.images" :src="i.src" width="105" height="105" :key="index" @click="deletePhoto(index)" class="image" />
+			<b-form-group label="Фотографии:" v-if="options_price!=0">
+				<b-img v-for="i,index in options_images" :src="i.src" width="105" height="105" :key="index" @click="deletePhoto(index)" class="image" />
 				<b-form-file multiple accept="image/jpeg, image/png" class="mt-2" @change="loadImage"></b-form-file>
-			</b-form-group>-->
+			</b-form-group>
 
 			<!-- ОТМЕТИТЬ НА КАРТЕ -->
 			<b-form-group label="Расположение:" style="text-align:center" v-if="options_price!=0">
@@ -113,7 +113,8 @@ export default {
     	options_category:null,
 		options_deal_id:null,
 		options_text:"",
-    	options_price:0, 
+		options_price:0, 
+    	options_images:[],
 		root:false,
 		transport:false,			// транспорт
 		real_estate:false,			// недвижимость

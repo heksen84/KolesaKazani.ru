@@ -2368,6 +2368,7 @@ var tmp_images_array = [];
       options_deal_id: null,
       options_text: "",
       options_price: 0,
+      options_images: [],
       root: false,
       transport: false, // транспорт
       real_estate: false, // недвижимость
@@ -36184,6 +36185,41 @@ var render = function() {
                           })
                         ],
                         1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.options_price != 0
+                    ? _c(
+                        "b-form-group",
+                        { attrs: { label: "Фотографии:" } },
+                        [
+                          _vm._l(_vm.options_images, function(i, index) {
+                            return _c("b-img", {
+                              key: index,
+                              staticClass: "image",
+                              attrs: {
+                                src: i.src,
+                                width: "105",
+                                height: "105"
+                              },
+                              on: {
+                                click: function($event) {
+                                  _vm.deletePhoto(index)
+                                }
+                              }
+                            })
+                          }),
+                          _vm._v(" "),
+                          _c("b-form-file", {
+                            staticClass: "mt-2",
+                            attrs: {
+                              multiple: "",
+                              accept: "image/jpeg, image/png"
+                            },
+                            on: { change: _vm.loadImage }
+                          })
+                        ],
+                        2
                       )
                     : _vm._e(),
                   _vm._v(" "),
