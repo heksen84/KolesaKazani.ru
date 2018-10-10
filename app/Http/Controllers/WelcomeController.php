@@ -25,7 +25,6 @@ class WelcomeController extends Controller {
 		---------------------------------------------
 		Регионы
 		---------------------------------------------*/
-
 		public function getRegions(Request $request) {
 
 			$redis = Redis::connection();

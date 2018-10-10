@@ -53,14 +53,11 @@ class AdvertController extends Controller
         if ( $validator->fails() )  
             return response()->json(["response"=>false, "msg"=>$validator->errors()->first()]);  
 
-
         $data = $request->input('data');
 
         $category   = $data["adv_category"];
         $text       = $data["adv_info"];
         $price      = $data["adv_price"];
-
-       
 
      	try {
      			
@@ -164,7 +161,7 @@ class AdvertController extends Controller
 
     /*
     ----------------------------------
-    Выбрать марок автомобилей
+    Выбор марок авто
     ----------------------------------*/
      public function getCarsMarks() {
 
@@ -174,19 +171,23 @@ class AdvertController extends Controller
             $redis->ping();
             $car_marks = $redis->get("car_marks");
             if (!$car_marks) {
-                $redis->set("car_marks", CarMark::all('id_car_mark','name'));
+                $redis->set("car_marks", CarMark::all("id_car_mark", "name"));
                 $car_marks = $redis->get("car_marks");
             }
         }
         catch(\Exception $e) {
             \Debugbar::warning($e->getMessage());
-            $car_marks = CarMark::all('id_car_mark','name');
+            $car_marks = CarMark::all("id_car_mark", "name");
         }
 
 	    return $car_marks;
     }
 
-     public function getCarsModels(Request $request) {
+    /*
+    ----------------------------------
+    Выбор моделей авто
+    ----------------------------------*/
+    public function getCarsModels(Request $request) {
      	return DB::table('car_model')->where('id_car_mark', $request->mark_id )->get();
     }
 }
