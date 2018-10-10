@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redis;
 use Validator;
 use App\Adverts;
 use App\CarMark;
@@ -161,8 +162,28 @@ class AdvertController extends Controller
         return view('fullinfo')->with("item", $item );
     }
 
+    /*
+    ----------------------------------
+    Выбрать марок автомобилей
+    ----------------------------------*/
      public function getCarsMarks() {
-	     return CarMark::all('id_car_mark','name');
+
+        $redis = Redis::connection();
+
+        try {								
+            $redis->ping();
+            $car_marks = $redis->get("car_marks");
+            if (!$car_marks) {
+                $redis->set("car_marks", CarMark::all('id_car_mark','name'));
+                $car_marks = $redis->get("car_marks");
+            }
+        }
+        catch(\Exception $e) {
+            \Debugbar::warning($e->getMessage());
+            $car_marks = CarMark::all('id_car_mark','name');
+        }
+
+	    return $car_marks;
     }
 
      public function getCarsModels(Request $request) {
