@@ -1,14 +1,6 @@
 <template>
 <b-form inline>
 
-<!--
-   <NumberInputSpinner
-    :min="0"
-    :max="10"
-    :integerOnly="true"
-    v-model="mileage"
-  />-->
-  
 <!-- INPUT -->
 <b-form-group label="Год выпуска:">
        <b-form-input placeholder="Введите год" type="number" v-model="release_date" class="mb-2 mr-sm-2 mb-sm-2" style="width:130px" :formatter="SetReleaseDate" required></b-form-input>
@@ -101,17 +93,17 @@ export default {
 
      // год выпуска
      SetReleaseDate(date) {
-      var d = new Date();
-      if (date<0 || date>d.getFullYear()) return;
-      this.transport_chars.release_date = date;
-      return date;
+        var d = new Date();
+        if (date<0 || date>d.getFullYear()) return;
+        this.transport_chars.release_date = date;
+        return date;
      },
 
      // пробег
      SetMileage(mileage) {
-      if (mileage<0 || mileage>10000000) return;
-      this.transport_chars.mileage = mileage;
-      return mileage;
+        if (mileage<0 || mileage>10000000) return;
+        this.transport_chars.mileage = mileage;
+        return mileage;
      }
   }
 }

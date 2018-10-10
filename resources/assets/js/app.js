@@ -35,9 +35,6 @@ import navbar from 'bootstrap-vue/src/components/navbar';
 import modal from 'bootstrap-vue/src/components/modal';
 import VueCarousel from 'vue-carousel';
 
-import NumberInputSpinner from 'vue-number-input-spinner';
-Vue.use(NumberInputSpinner);
-
 Vue.use(layout);
 Vue.use(form);
 Vue.use(form_input);
