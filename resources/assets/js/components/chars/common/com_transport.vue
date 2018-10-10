@@ -1,5 +1,14 @@
 <template>
 <b-form inline>
+
+<!--
+   <NumberInputSpinner
+    :min="0"
+    :max="10"
+    :integerOnly="true"
+    v-model="mileage"
+  />-->
+  
 <!-- INPUT -->
 <b-form-group label="Год выпуска:">
        <b-form-input placeholder="Введите год" type="number" v-model="release_date" class="mb-2 mr-sm-2 mb-sm-2" style="width:130px" :formatter="SetReleaseDate" required></b-form-input>
@@ -82,7 +91,7 @@ export default {
      SetHelmPosition(positon_id) {
   
         this.transport_chars.rule_position = positon_id;
-        console.log(this.transport_chars.rule_position);
+        //console.log(this.transport_chars.rule_position);
 
      },
 
@@ -90,7 +99,7 @@ export default {
      SetFuelType(fuel_type) {
       
         this.transport_chars.fuel_type = fuel_type;
-        console.log(this.transport_chars.fuel_type );
+        //console.log(this.transport_chars.fuel_type );
 
      },
      
@@ -98,17 +107,17 @@ export default {
      SetTransportCustoms(customs_id) {
 
         this.transport_chars.customs = customs_id;
-        console.log(this.transport_chars.customs);
+        //console.log(this.transport_chars.customs);
 
      },
 
      // год выпуска
      SetReleaseDate(date) {
 
-      if (date<0) return;
+      if (date<0) return 0;
 
       this.transport_chars.release_date = date;
-      console.log(this.transport_chars.release_date);
+      //console.log(this.transport_chars.release_date);
 
       return date;
      },
@@ -116,10 +125,10 @@ export default {
      // пробег
      SetMileage(mileage) {
 
-      if (mileage<0) return;
+      if (mileage<0) return 0;
 
       this.transport_chars.mileage = mileage;
-      console.log(this.transport_chars.mileage);
+      //console.log(this.transport_chars.mileage);
 
       return mileage;
      }
