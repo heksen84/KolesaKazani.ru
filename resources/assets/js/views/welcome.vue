@@ -49,7 +49,6 @@
           <input type="text" id="search_string" placeholder="Поиск по сайту"/>
           <button id="button_search" @click="search" title="Найти что требуется">найти</button>
 
-          <!-- Искать в-->
           <!-- кнопка выбора региона -->
           <b-button style="margin-top:-7px;color:white;padding:1px 10px; background:rgb(100,150,150)" size="sm" @click="openLocationWindow" title="Расположение поиска">Расположение {{ selectedPlaceName }}</b-button>
         </b-col>
