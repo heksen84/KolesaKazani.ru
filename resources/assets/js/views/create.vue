@@ -280,22 +280,23 @@ export default {
 		  Сохранить объявление
 		----------------------------*/
     	onSubmit(evt) {
-			evt.preventDefault();
+			
+		evt.preventDefault();
 
-     		// сохраняю объявление
-			post('/create', { "data": this.$root.advert_data }).then((response) => {
+     	// сохраняю объявление
+		post('/create', { "data": this.$root.advert_data }).then((response) => {
 
-			console.log(response)
+		console.log(response);
 
-        	if (response.status!=200) {
-            	this.$root.$notify({
-              	group: 'foo',
-              	text: "<div style='font-size:130%'>"+response.data.msg+"</div>",
-              	type: 'success',
-            });
-        }
-        else
-          window.location.href = "/home/"+advert_id.data;
+		if (response.status==200)
+		  window.location.href = "/home";
+		else
+		this.$root.$notify
+		({
+            group: 'foo',
+            text: "<div style='font-size:130%'>"+response.data.msg+"</div>",
+            type: 'success',
+        });
 
 		}).catch((err) => {});
     }

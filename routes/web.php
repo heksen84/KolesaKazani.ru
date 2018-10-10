@@ -33,7 +33,7 @@ Route::get('getRegions', 		'WelcomeController@getRegions');
 Route::get('getPlaces', 		'WelcomeController@getPlaces');
 Route::get('getUser', 			'UserController@getUser');
 Route::get('home', 				'HomeController@index')->name('home');
-Route::get('home/{advert_id}', 	'HomeController@index')->name('home');
+Route::get('home/{advert_id}', 	'HomeController@index');
 Route::get('categories', 		'CategoriesController@index');
 Route::get('podat-obyavlenie', 	'AdvertController@newAdvert');
 Route::post('create', 			'AdvertController@createAdvert');
