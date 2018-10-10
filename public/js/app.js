@@ -1744,7 +1744,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     // год выпуска
     SetReleaseDate: function SetReleaseDate(date) {
-      if (date < 0) return 0;
+
+      var d = new Date();
+
+      if (date < 0 || date > d.getFullYear()) return;
+
       this.transport_chars.release_date = date;
       //console.log(this.transport_chars.release_date);
       return date;
@@ -1753,7 +1757,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     // пробег
     SetMileage: function SetMileage(mileage) {
-      if (mileage < 0) return 0;
+      if (mileage < 0 || mileage > 1000000) return;
       this.transport_chars.mileage = mileage;
       //console.log(this.transport_chars.mileage);
       return mileage;
@@ -2444,6 +2448,9 @@ var tmp_images_array = [];
       this.$root.advert_data.adv_info = info;
     },
     setPrice: function setPrice(price) {
+
+      if (price < 0) return;
+
       this.$root.advert_data.adv_price = price;
       this.options_price = price;
       return price;
@@ -36177,13 +36184,9 @@ var render = function() {
                         { attrs: { label: "Цена:", "label-for": "price" } },
                         [
                           _c("b-form-input", {
-                            staticStyle: {
-                              width: "150px",
-                              margin: "auto",
-                              "font-size": "20px",
-                              "text-align": "center"
-                            },
+                            staticStyle: { width: "150px", margin: "auto" },
                             attrs: {
+                              type: "number",
                               id: "price",
                               placeholder: "Цена",
                               formatter: _vm.setPrice,

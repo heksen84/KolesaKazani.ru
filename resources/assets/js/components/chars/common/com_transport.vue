@@ -104,7 +104,11 @@ export default {
 
      // год выпуска
      SetReleaseDate(date) {
-      if (date<0) return 0;
+
+      var d = new Date();
+
+      if (date<0 || date>d.getFullYear()) return;
+     
       this.transport_chars.release_date = date;
       //console.log(this.transport_chars.release_date);
       return date;
@@ -112,7 +116,7 @@ export default {
 
      // пробег
      SetMileage(mileage) {
-      if (mileage<0) return 0;
+      if (mileage<0 || mileage>1000000) return;
       this.transport_chars.mileage = mileage;
       //console.log(this.transport_chars.mileage);
       return mileage;

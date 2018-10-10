@@ -65,7 +65,7 @@
 
 			<!-- ЦЕНА -->
 			<b-form-group label="Цена:" label-for="price" v-if="this.$store.state.show_other_fields">
-			 	<b-form-input id="price" placeholder="Цена" style="width:150px;margin:auto;font-size:20px;text-align:center" :formatter="setPrice" required></b-form-input>
+			 	<b-form-input type="number" id="price" placeholder="Цена" style="width:150px;margin:auto" :formatter="setPrice" required></b-form-input>
 			</b-form-group>
 
 			<!-- ФОТОГРАФИИ -->
@@ -188,6 +188,9 @@ export default {
   		},
 
   		setPrice(price) {
+
+			if (price < 0) return;
+
   			this.$root.advert_data.adv_price=price;
         	this.options_price = price;
         	return price;
