@@ -58,7 +58,6 @@ class WelcomeController extends Controller {
 		-------------------------------------
 		 Получить категории
 		-------------------------------------*/
-
         public function getCategories(Request $request) {
 						
 			$redis = Redis::connection();
