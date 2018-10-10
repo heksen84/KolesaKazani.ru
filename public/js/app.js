@@ -1706,7 +1706,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       },
 
       release_date: null,
-      mileage: 0,
+      mileage: null,
 
       helm_position: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
 
@@ -34343,8 +34343,13 @@ var render = function() {
         [
           _c("b-form-input", {
             staticClass: "mb-2 mr-sm-2 mb-sm-2",
-            staticStyle: { width: "115px" },
-            attrs: { type: "number", formatter: _vm.SetMileage, required: "" },
+            staticStyle: { width: "145px" },
+            attrs: {
+              type: "number",
+              placeholder: "Введите пробег",
+              formatter: _vm.SetMileage,
+              required: ""
+            },
             model: {
               value: _vm.mileage,
               callback: function($$v) {

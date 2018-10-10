@@ -24,7 +24,7 @@
 
     <!-- INPUT -->
     <b-form-group label="Пробег(км):">
-       <b-form-input type="number" v-model="mileage" class="mb-2 mr-sm-2 mb-sm-2" style="width:115px" :formatter="SetMileage" required></b-form-input>
+       <b-form-input type="number" v-model="mileage" placeholder="Введите пробег" class="mb-2 mr-sm-2 mb-sm-2" style="width:145px" :formatter="SetMileage" required></b-form-input>
     </b-form-group>
 
      <b-form-group label="Тип двигателя:">
@@ -58,7 +58,7 @@ export default {
       },
 
       release_date: null,
-      mileage: 0,
+      mileage: null,
 
       helm_position: [
         { value: 0, text: 'Справа' },
