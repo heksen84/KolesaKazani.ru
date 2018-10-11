@@ -1812,8 +1812,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       property_rights: [{ value: 0, text: 'Собственник' }, { value: 1, text: 'Посредник' }],
       type: [{ value: null, text: '-- Выберите вид недвижимости --' }, { value: 0, text: 'Квартира' }, { value: 1, text: 'Комната' }, { value: 2, text: 'Дом, дача, коттедж' }, { value: 3, text: 'Земельный участок' }, { value: 5, text: 'Гараж или машиноместо' }, { value: 6, text: 'Коммерческая недвижимость' }, { value: 7, text: 'Недвижимость за рубежом' }],
 
-      area: 0,
-
+      area: null,
       selected_type: null,
       selected_property_rights: 0,
       selected_room_count: 1,
@@ -35911,8 +35910,8 @@ var render = function() {
             [
               _c("b-form-input", {
                 staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                staticStyle: { width: "140px" },
-                attrs: { type: "number" },
+                staticStyle: { width: "160px" },
+                attrs: { type: "number", placeholder: "Введите площадь" },
                 model: {
                   value: _vm.area,
                   callback: function($$v) {

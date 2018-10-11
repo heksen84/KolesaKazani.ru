@@ -26,7 +26,7 @@
 </b-form-group>
 
 <b-form-group label="Общая площадь:" v-if="selected.apartment && selected_type==0 || selected_type==1">
-        <b-form-input type="number" v-model="area" class="mb-2 mr-sm-2 mb-sm-2" style="width:140px"></b-form-input>
+        <b-form-input type="number" v-model="area" class="mb-2 mr-sm-2 mb-sm-2" style="width:160px" placeholder="Введите площадь"></b-form-input>
 </b-form-group>
 
 
@@ -74,8 +74,7 @@ export default {
           { value: 7, text: 'Недвижимость за рубежом' }
         ],
 
-        area: 0,
-
+        area: null,        
         selected_type: null,
         selected_property_rights: 0,
         selected_room_count: 1,
