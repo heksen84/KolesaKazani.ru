@@ -2343,6 +2343,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 // ----------------------------------------------------
@@ -36171,10 +36172,17 @@ var render = function() {
                   this.$store.state.show_other_fields
                     ? _c(
                         "b-form-group",
-                        { attrs: { label: "Цена:", "label-for": "price" } },
+                        {
+                          staticStyle: { "text-align": "center" },
+                          attrs: { "label-for": "price" }
+                        },
                         [
                           _c("b-form-input", {
-                            staticStyle: { width: "150px", margin: "auto" },
+                            staticStyle: {
+                              width: "150px",
+                              border: "1px solid grey",
+                              display: "inline"
+                            },
                             attrs: {
                               type: "number",
                               id: "price",
@@ -36182,7 +36190,12 @@ var render = function() {
                               formatter: _vm.setPrice,
                               required: ""
                             }
-                          })
+                          }),
+                          _vm._v(
+                            "\n\t\t\t\t " +
+                              _vm._s(this.$root.money_full_name) +
+                              "\n\t\t\t"
+                          )
                         ],
                         1
                       )
@@ -49970,6 +49983,8 @@ module.exports = Component.exports
 
     // стандартные операции
     options_sdelka: [{ value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }],
+
+    money_full_name: "тенге",
 
     advert_data: {} // наш объект объявления 
 });

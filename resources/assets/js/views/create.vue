@@ -64,8 +64,9 @@
 			</b-form-group>
 
 			<!-- ЦЕНА -->
-			<b-form-group label="Цена:" label-for="price" v-if="this.$store.state.show_other_fields">
-			 	<b-form-input type="number" id="price" placeholder="Цена" style="width:150px;margin:auto" :formatter="setPrice" required></b-form-input>
+			<b-form-group label-for="price" v-if="this.$store.state.show_other_fields" style="text-align:center">
+			 	<b-form-input type="number" id="price" placeholder="Цена" style="width:150px;border:1px solid grey;display:inline" :formatter="setPrice" required></b-form-input>
+				&nbsp;{{ this.$root.money_full_name }}
 			</b-form-group>
 
 			<!-- ФОТОГРАФИИ -->

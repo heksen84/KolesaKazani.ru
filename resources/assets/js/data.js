@@ -15,6 +15,8 @@ export default
         { value: '5', text: 'Сдача в аренду' }
     ],
 
+    money_full_name: "тенге",
+
     advert_data: {} // наш объект объявления 
 }
 
