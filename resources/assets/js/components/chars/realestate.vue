@@ -3,25 +3,25 @@
 
 	<b-form-group label="Вид недвижимости:">
         <b-form-select v-model="selected_type" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate">
-           <option v-for="item in type" :value="item.value">{{item.text}}</option>
+           <option v-for="item in type" :value="item.value" :key="item.value">{{item.text}}</option>
         </b-form-select>
   </b-form-group>
 
 <b-form-group label="Этаж:" v-if="selected.apartment && selected_type==0 || selected_type==1">
          <b-form-select v-model="selected_room_count" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate">
-           <option v-for="i in 60" :value="i">{{ i }}</option>
+           <option v-for="i in 60" :value="i" :key="i">{{ i }}</option>
         </b-form-select>
 </b-form-group>
 
 <b-form-group label="Этажей в доме:" v-if="selected.apartment && selected_type==0 || selected_type==1">
          <b-form-select v-model="selected_room_count" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate" style="width:120px">
-           <option v-for="i in 100" :value="i">{{ i }}</option>
+           <option v-for="i in 100" :value="i" :key="i">{{ i }}</option>
         </b-form-select>
 </b-form-group>
 
 <b-form-group label="Количество комнат:" v-if="selected.apartment && selected_type==0 || selected_type==1">
          <b-form-select v-model="selected_room_count" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate" style="width:152px">
-           <option v-for="i in 10" :value="i">{{ i }}</option>
+           <option v-for="i in 10" :value="i" :key="i">{{ i }}</option>
         </b-form-select>
 </b-form-group>
 
@@ -32,14 +32,14 @@
 
 <b-form-group label="Право собственности:" v-if="selected_type!=null">
         <b-form-select v-model="selected_property_rights" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate" style="width:175px">
-           <option v-for="item in property_rights" :value="item.value">{{item.text}}</option>
+           <option v-for="item in property_rights" :value="item.value" :key="item.value">{{item.text}}</option>
         </b-form-select>
 </b-form-group>
 
 
 <b-form-group label="Вид объекта:" v-if="selected_type!=null">
         <b-form-select v-model="selected_object_type" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate" style="width:175px">
-           <option v-for="item in object_type" :value="item.value">{{item.text}}</option>
+           <option v-for="item in object_type" :value="item.value" :key="item.value">{{item.text}}</option>
         </b-form-select>
 </b-form-group>
 

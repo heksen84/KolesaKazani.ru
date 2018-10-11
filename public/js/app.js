@@ -35002,9 +35002,11 @@ var render = function() {
               }
             },
             _vm._l(_vm.type_transport, function(item) {
-              return _c("option", { domProps: { value: item.value } }, [
-                _vm._v(_vm._s(item.text))
-              ])
+              return _c(
+                "option",
+                { key: item.value, domProps: { value: item.value } },
+                [_vm._v(_vm._s(item.text))]
+              )
             })
           )
         ],
@@ -35037,7 +35039,10 @@ var render = function() {
                   _vm._l(_vm.carmark, function(item) {
                     return _c(
                       "option",
-                      { domProps: { value: item.id_car_mark } },
+                      {
+                        key: item.id_car_mark,
+                        domProps: { value: item.id_car_mark }
+                      },
                       [_vm._v(_vm._s(item.name))]
                     )
                   })
@@ -35075,7 +35080,10 @@ var render = function() {
                   _vm._l(_vm.models, function(item) {
                     return _c(
                       "option",
-                      { domProps: { value: item.id_car_model } },
+                      {
+                        key: item.id_car_model,
+                        domProps: { value: item.id_car_model }
+                      },
                       [_vm._v(_vm._s(item.name))]
                     )
                   })
@@ -35801,9 +35809,11 @@ var render = function() {
               }
             },
             _vm._l(_vm.type, function(item) {
-              return _c("option", { domProps: { value: item.value } }, [
-                _vm._v(_vm._s(item.text))
-              ])
+              return _c(
+                "option",
+                { key: item.value, domProps: { value: item.value } },
+                [_vm._v(_vm._s(item.text))]
+              )
             })
           )
         ],
@@ -35830,7 +35840,7 @@ var render = function() {
                   }
                 },
                 _vm._l(60, function(i) {
-                  return _c("option", { domProps: { value: i } }, [
+                  return _c("option", { key: i, domProps: { value: i } }, [
                     _vm._v(_vm._s(i))
                   ])
                 })
@@ -35861,7 +35871,7 @@ var render = function() {
                   }
                 },
                 _vm._l(100, function(i) {
-                  return _c("option", { domProps: { value: i } }, [
+                  return _c("option", { key: i, domProps: { value: i } }, [
                     _vm._v(_vm._s(i))
                   ])
                 })
@@ -35892,7 +35902,7 @@ var render = function() {
                   }
                 },
                 _vm._l(10, function(i) {
-                  return _c("option", { domProps: { value: i } }, [
+                  return _c("option", { key: i, domProps: { value: i } }, [
                     _vm._v(_vm._s(i))
                   ])
                 })
@@ -35945,9 +35955,11 @@ var render = function() {
                   }
                 },
                 _vm._l(_vm.property_rights, function(item) {
-                  return _c("option", { domProps: { value: item.value } }, [
-                    _vm._v(_vm._s(item.text))
-                  ])
+                  return _c(
+                    "option",
+                    { key: item.value, domProps: { value: item.value } },
+                    [_vm._v(_vm._s(item.text))]
+                  )
                 })
               )
             ],
@@ -35975,9 +35987,11 @@ var render = function() {
                   }
                 },
                 _vm._l(_vm.object_type, function(item) {
-                  return _c("option", { domProps: { value: item.value } }, [
-                    _vm._v(_vm._s(item.text))
-                  ])
+                  return _c(
+                    "option",
+                    { key: item.value, domProps: { value: item.value } },
+                    [_vm._v(_vm._s(item.text))]
+                  )
                 })
               )
             ],
