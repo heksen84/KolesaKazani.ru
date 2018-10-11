@@ -15,13 +15,13 @@
 
 <b-form-group label="Этажей в доме:" v-if="selected.apartment && selected_type==0 || selected_type==1">
          <b-form-select v-model="selected_room_count" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate" style="width:120px">
-           <option v-for="i in 60" :value="i">{{ i }}</option>
+           <option v-for="i in 100" :value="i">{{ i }}</option>
         </b-form-select>
 </b-form-group>
 
 <b-form-group label="Количество комнат:" v-if="selected.apartment && selected_type==0 || selected_type==1">
          <b-form-select v-model="selected_room_count" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate" style="width:152px">
-           <option v-for="i in 7" :value="i">{{ i }}</option>
+           <option v-for="i in 10" :value="i">{{ i }}</option>
         </b-form-select>
 </b-form-group>
 

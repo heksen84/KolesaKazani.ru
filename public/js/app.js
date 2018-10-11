@@ -35860,7 +35860,7 @@ var render = function() {
                     expression: "selected_room_count"
                   }
                 },
-                _vm._l(60, function(i) {
+                _vm._l(100, function(i) {
                   return _c("option", { domProps: { value: i } }, [
                     _vm._v(_vm._s(i))
                   ])
@@ -35891,7 +35891,7 @@ var render = function() {
                     expression: "selected_room_count"
                   }
                 },
-                _vm._l(7, function(i) {
+                _vm._l(10, function(i) {
                   return _c("option", { domProps: { value: i } }, [
                     _vm._v(_vm._s(i))
                   ])
