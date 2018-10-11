@@ -36104,7 +36104,10 @@ var render = function() {
                               _vm._l(_vm.items, function(item) {
                                 return _c(
                                   "option",
-                                  { domProps: { value: item.id } },
+                                  {
+                                    key: item.name,
+                                    domProps: { value: item.id }
+                                  },
                                   [_vm._v(_vm._s(item.name))]
                                 )
                               })
@@ -36151,7 +36154,7 @@ var render = function() {
                           _c("b-form-textarea", {
                             attrs: {
                               id: "addit_info",
-                              placeholder: "Укажите дополнительную информацию",
+                              placeholder: "Введите дополнительную информацию",
                               rows: 4,
                               "max-rows": 4
                             },
@@ -36178,11 +36181,7 @@ var render = function() {
                         },
                         [
                           _c("b-form-input", {
-                            staticStyle: {
-                              width: "150px",
-                              border: "1px solid grey",
-                              display: "inline"
-                            },
+                            staticStyle: { width: "150px", display: "inline" },
                             attrs: {
                               type: "number",
                               id: "price",
@@ -36206,9 +36205,9 @@ var render = function() {
                         "b-form-group",
                         { attrs: { label: "Фотографии:" } },
                         [
-                          _vm._l(_vm.options_images, function(i, index) {
+                          _vm._l(_vm.options_images, function(i) {
                             return _c("b-img", {
-                              key: index,
+                              key: i,
                               staticClass: "image",
                               attrs: {
                                 src: i.src,
@@ -36217,7 +36216,7 @@ var render = function() {
                               },
                               on: {
                                 click: function($event) {
-                                  _vm.deletePhoto(index)
+                                  _vm.deletePhoto(i)
                                 }
                               }
                             })
