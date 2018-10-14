@@ -118,10 +118,11 @@ export default {
     else 
       this.selectedPlaceName = placeName;
 
-    if(urlRegAndPlace==null)  this.urlRegAndPlace = "";
-      else 
-    this.urlRegAndPlace = urlRegAndPlace;
-    
+    if(urlRegAndPlace==null)
+      this.urlRegAndPlace = "";
+    else 
+      this.urlRegAndPlace = urlRegAndPlace;
+      
   },
   mounted() {
 
