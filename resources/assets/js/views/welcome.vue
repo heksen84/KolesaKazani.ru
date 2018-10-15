@@ -49,9 +49,9 @@
           <input type="text" id="search_string" placeholder="Поиск по сайту"/>
           <button id="button_search" @click="search" title="Найти что требуется">найти</button>
 
-          <!-- кнопка выбора региона -->                    
+          <!-- кнопка выбора региона -->          
           <b-button class="search_options_button mb-1 mr-sm-1 mb-sm-1" size="sm" @click="openLocationWindow" title="Расположение поиска">Расположение {{ selectedPlaceName }}</b-button>
-          <b-button class="search_options_button mb-1 mr-sm-1 mb-sm-1" size="sm" style="background:rgb(100,100,150)">Настройки</b-button>
+          <b-button class="search_options_button mb-1 mr-sm-1 mb-sm-1" size="sm" style="background:rgb(100,100,150)">Категория</b-button>
           
         </b-col>
 

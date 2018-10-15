@@ -34879,7 +34879,7 @@ var render = function() {
                   staticStyle: { background: "rgb(100,100,150)" },
                   attrs: { size: "sm" }
                 },
-                [_vm._v("Настройки")]
+                [_vm._v("Категория")]
               )
             ],
             1
