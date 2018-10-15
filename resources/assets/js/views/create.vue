@@ -191,7 +191,6 @@ export default {
 
   		setPrice(price) {
 			if (price < 0) return;
-
   			this.$root.advert_data.adv_price=price;
         	this.options_price = price;
         	return price;
@@ -283,8 +282,7 @@ export default {
 		----------------------------
 		  Сохранить объявление
 		----------------------------*/
-    	onSubmit(evt) {
-			
+    	onSubmit(evt) {			
 		evt.preventDefault();
 
      	// сохраняю объявление
@@ -292,11 +290,9 @@ export default {
 
 		console.log(response);
 
-		if (response.status==200)
-		  window.location.href = "/home";
+		if (response.status==200) window.location.href = "/home";
 		else
-		this.$root.$notify
-		({
+		this.$root.$notify({
             group: 'foo',
             text: "<div style='font-size:130%'>"+response.data.msg+"</div>",
             type: 'success',

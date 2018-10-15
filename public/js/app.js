@@ -2440,7 +2440,6 @@ var tmp_images_array = [];
     },
     setPrice: function setPrice(price) {
       if (price < 0) return;
-
       this.$root.advert_data.adv_price = price;
       this.options_price = price;
       return price;
