@@ -21,9 +21,7 @@
 
             <hr v-if="buttonAllRegion">
             <button style="color:black;display:block;margin:auto;margin-top:-5px" v-if="buttonAllRegion" @click="selectAllRegion">Вся область</button>
-          </b-modal>
-
-          <!--====[ end modal ]====================-->
+          </b-modal>          
 
         </b-col>        
 
@@ -37,7 +35,7 @@
     <b-row style="margin-top:2px">
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
 
-        <!-- ЛОГОТИП -->        
+        <!-- Логотип -->        
           <div id="logo_block">
             <div id="logo_block_text">FlyMart24</div>
             <div style="font-size:18px;color:yellow;margin-top:-13px;letter-spacing:2px;">доска объявлений</div>
