@@ -126,9 +126,9 @@ export default {
   },
   mounted() {
 
-    get('/getCategoryCounts').then((res) => {
+    /*get('/getCategoryCounts').then((res) => {
           this.regions=res.data;
-      }).catch((err) => {});
+    }).catch((err) => {});*/
       
   },
   computed: {

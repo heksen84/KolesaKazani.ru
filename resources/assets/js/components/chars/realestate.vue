@@ -105,6 +105,10 @@ export default {
         this.$store.commit("showOtherFields");
      
         switch(data) {
+          case null: {
+            this.$store.commit("hideOtherFields");
+            break;
+          }
           case 0: {
             this.selected.apartment=true;
             break;
