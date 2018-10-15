@@ -2343,6 +2343,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 // ----------------------------------------------------
@@ -36156,133 +36158,137 @@ var render = function() {
                   _vm._v(" "),
                   this.$store.state.show_other_fields
                     ? _c(
-                        "b-form-group",
-                        {
-                          attrs: {
-                            label: "Дополнительная информация:",
-                            "label-for": "addit_info"
-                          }
-                        },
-                        [
-                          _c("b-form-textarea", {
-                            attrs: {
-                              id: "addit_info",
-                              placeholder: "Введите дополнительную информацию",
-                              rows: 4,
-                              "max-rows": 4
-                            },
-                            on: { input: _vm.setInfo },
-                            model: {
-                              value: _vm.options_text,
-                              callback: function($$v) {
-                                _vm.options_text = $$v
-                              },
-                              expression: "options_text"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  this.$store.state.show_other_fields
-                    ? _c(
-                        "b-form-group",
-                        {
-                          staticStyle: { "text-align": "center" },
-                          attrs: { "label-for": "price" }
-                        },
-                        [
-                          _c("b-form-input", {
-                            staticStyle: { width: "150px", display: "inline" },
-                            attrs: {
-                              type: "number",
-                              id: "price",
-                              placeholder: "Цена",
-                              formatter: _vm.setPrice,
-                              required: ""
-                            }
-                          }),
-                          _vm._v(
-                            "\n\t\t\t\t " +
-                              _vm._s(this.$root.money_full_name) +
-                              "\n\t\t\t"
-                          )
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.options_price != 0
-                    ? _c(
-                        "b-form-group",
-                        { attrs: { label: "Фотографии:" } },
-                        [
-                          _vm._l(_vm.options_images, function(i) {
-                            return _c("b-img", {
-                              key: i,
-                              staticClass: "image",
-                              attrs: {
-                                src: i.src,
-                                width: "105",
-                                height: "105"
-                              },
-                              on: {
-                                click: function($event) {
-                                  _vm.deletePhoto(i)
-                                }
-                              }
-                            })
-                          }),
-                          _vm._v(" "),
-                          _c("b-form-file", {
-                            staticClass: "mt-2",
-                            attrs: {
-                              multiple: "",
-                              accept: "image/jpeg, image/png"
-                            },
-                            on: { change: _vm.loadImage }
-                          })
-                        ],
-                        2
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.options_price != 0
-                    ? _c(
-                        "b-form-group",
-                        {
-                          staticStyle: { "text-align": "center" },
-                          attrs: { label: "Расположение:" }
-                        },
-                        [
-                          _c("b-button", { attrs: { variant: "primary" } }, [
-                            _vm._v("отметить на карте")
-                          ])
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.options_price != 0
-                    ? _c(
-                        "b-form-group",
-                        {
-                          staticStyle: {
-                            "text-align": "center",
-                            margin: "25px"
-                          }
-                        },
+                        "div",
                         [
                           _c(
-                            "b-button",
+                            "b-form-group",
                             {
                               attrs: {
-                                type: "onSubmit",
-                                variant: "outline-primary"
+                                label: "Дополнительная информация:",
+                                "label-for": "addit_info"
                               }
                             },
-                            [_vm._v("ОПУБЛИКОВАТЬ")]
+                            [
+                              _c("b-form-textarea", {
+                                attrs: {
+                                  id: "addit_info",
+                                  placeholder:
+                                    "Введите дополнительную информацию",
+                                  rows: 4,
+                                  "max-rows": 4
+                                },
+                                on: { input: _vm.setInfo },
+                                model: {
+                                  value: _vm.options_text,
+                                  callback: function($$v) {
+                                    _vm.options_text = $$v
+                                  },
+                                  expression: "options_text"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-form-group",
+                            {
+                              staticStyle: { "text-align": "center" },
+                              attrs: { "label-for": "price" }
+                            },
+                            [
+                              _c("b-form-input", {
+                                staticStyle: {
+                                  width: "150px",
+                                  display: "inline"
+                                },
+                                attrs: {
+                                  type: "number",
+                                  id: "price",
+                                  placeholder: "Цена",
+                                  formatter: _vm.setPrice,
+                                  required: ""
+                                }
+                              }),
+                              _vm._v(
+                                "\n\t\t\t\t " +
+                                  _vm._s(this.$root.money_full_name) +
+                                  "\n\t\t\t"
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-form-group",
+                            { attrs: { label: "Фотографии:" } },
+                            [
+                              _vm._l(_vm.options_images, function(i) {
+                                return _c("b-img", {
+                                  key: i,
+                                  staticClass: "image",
+                                  attrs: {
+                                    src: i.src,
+                                    width: "105",
+                                    height: "105"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.deletePhoto(i)
+                                    }
+                                  }
+                                })
+                              }),
+                              _vm._v(" "),
+                              _c("b-form-file", {
+                                staticClass: "mt-2",
+                                attrs: {
+                                  multiple: "",
+                                  accept: "image/jpeg, image/png"
+                                },
+                                on: { change: _vm.loadImage }
+                              })
+                            ],
+                            2
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-form-group",
+                            {
+                              staticStyle: { "text-align": "center" },
+                              attrs: { label: "Расположение:" }
+                            },
+                            [
+                              _c(
+                                "b-button",
+                                { attrs: { variant: "primary" } },
+                                [_vm._v("отметить на карте")]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-form-group",
+                            {
+                              staticStyle: {
+                                "text-align": "center",
+                                margin: "25px"
+                              }
+                            },
+                            [
+                              _c(
+                                "b-button",
+                                {
+                                  attrs: {
+                                    type: "onSubmit",
+                                    variant: "outline-primary"
+                                  }
+                                },
+                                [_vm._v("ОПУБЛИКОВАТЬ")]
+                              )
+                            ],
+                            1
                           )
                         ],
                         1

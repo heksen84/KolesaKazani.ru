@@ -55,36 +55,38 @@
 			<!-- услуги -->
 			<h1 v-else-if="other"></h1>
 
-			<b-form-group label="Дополнительная информация:" label-for="addit_info" v-if="this.$store.state.show_other_fields">
+			<div v-if="this.$store.state.show_other_fields">				
+			<b-form-group label="Дополнительная информация:" label-for="addit_info">
 			 <b-form-textarea   id="addit_info"
 								placeholder="Введите дополнительную информацию"
 								:rows="4"
 								:max-rows="4" @input="setInfo" v-model="options_text">
 	 		 </b-form-textarea>
-			</b-form-group>
+			</b-form-group>			
 
 			<!-- ЦЕНА -->
-			<b-form-group label-for="price" v-if="this.$store.state.show_other_fields" style="text-align:center">
+			<b-form-group label-for="price" style="text-align:center">
 			 	<b-form-input type="number" id="price" placeholder="Цена" style="width:150px;display:inline" :formatter="setPrice" required></b-form-input>
 				&nbsp;{{ this.$root.money_full_name }}
-			</b-form-group>
+			</b-form-group>			
 
 			<!-- ФОТОГРАФИИ -->
-			<b-form-group label="Фотографии:" v-if="options_price!=0">
+			<b-form-group label="Фотографии:">
 				<b-img v-for="i in options_images" :src="i.src" width="105" height="105" :key="i" @click="deletePhoto(i)" class="image" />
 				<b-form-file multiple accept="image/jpeg, image/png" class="mt-2" @change="loadImage"></b-form-file>
 			</b-form-group>
 
 			<!-- ОТМЕТИТЬ НА КАРТЕ -->
-			<b-form-group label="Расположение:" style="text-align:center" v-if="options_price!=0">
+			<b-form-group label="Расположение:" style="text-align:center">
 				<b-button variant="primary">отметить на карте</b-button>
 			</b-form-group>
 
 			<!-- ПУБЛИКАЦИЯ -->
-			<b-form-group style="text-align:center;margin:25px" v-if="options_price!=0">
+			<b-form-group style="text-align:center;margin:25px">
 				<b-button type="onSubmit" variant="outline-primary">ОПУБЛИКОВАТЬ</b-button>
 			</b-form-group>
-			
+
+			</div>			
 		</b-form>
 	</b-col>
 	</b-row>
