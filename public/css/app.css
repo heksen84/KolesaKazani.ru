@@ -118,6 +118,12 @@ body {
   margin-top: -8px;
 }
 
+.search_options_button {
+  color: white;
+  padding: 1px 10px;
+  background: #649696;
+}
+
 #button_search {
   margin: 4px;
   padding: 10px;

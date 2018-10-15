@@ -3011,6 +3011,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 //import petrovich from 'petrovich';
@@ -34863,16 +34865,21 @@ var render = function() {
               _c(
                 "b-button",
                 {
-                  staticStyle: {
-                    "margin-top": "-7px",
-                    color: "white",
-                    padding: "1px 10px",
-                    background: "rgb(100,150,150)"
-                  },
+                  staticClass: "search_options_button mb-1 mr-sm-1 mb-sm-1",
                   attrs: { size: "sm", title: "Расположение поиска" },
                   on: { click: _vm.openLocationWindow }
                 },
                 [_vm._v("Расположение " + _vm._s(_vm.selectedPlaceName))]
+              ),
+              _vm._v(" "),
+              _c(
+                "b-button",
+                {
+                  staticClass: "search_options_button mb-1 mr-sm-1 mb-sm-1",
+                  staticStyle: { background: "rgb(100,100,150)" },
+                  attrs: { size: "sm" }
+                },
+                [_vm._v("Настройки")]
               )
             ],
             1

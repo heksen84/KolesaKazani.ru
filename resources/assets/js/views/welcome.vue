@@ -25,7 +25,7 @@
 
           <!--====[ end modal ]====================-->
 
-        </b-col>
+        </b-col>        
 
         <b-col style="text-align:center" v-show="!auth">
           <div class="button" id="button_login" style="margin-top:3px" @click="login">Вход</div>
@@ -49,8 +49,10 @@
           <input type="text" id="search_string" placeholder="Поиск по сайту"/>
           <button id="button_search" @click="search" title="Найти что требуется">найти</button>
 
-          <!-- кнопка выбора региона -->
-          <b-button style="margin-top:-7px;color:white;padding:1px 10px; background:rgb(100,150,150)" size="sm" @click="openLocationWindow" title="Расположение поиска">Расположение {{ selectedPlaceName }}</b-button>
+          <!-- кнопка выбора региона -->                    
+          <b-button class="search_options_button mb-1 mr-sm-1 mb-sm-1" size="sm" @click="openLocationWindow" title="Расположение поиска">Расположение {{ selectedPlaceName }}</b-button>
+          <b-button class="search_options_button mb-1 mr-sm-1 mb-sm-1" size="sm" style="background:rgb(100,100,150)">Настройки</b-button>
+          
         </b-col>
 
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center" title="Подать новое объявление">
