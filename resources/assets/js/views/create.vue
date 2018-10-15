@@ -21,8 +21,7 @@
 				</b-form-select>
 			</b-form-group>
 			
-			<!-- КАТЕГОРИИ -->
-			<!-- null категория -->
+			<!-- Категории -->
 			<div v-if="root"></div>
 
 			<!-- транспорт -->
@@ -55,7 +54,7 @@
 			<!-- услуги -->
 			<h1 v-else-if="other"></h1>
 
-			<!-- дополнительные поля -->
+			<!-- Дополнительные поля -->
 			<div v-if="this.$store.state.show_other_fields">
 
 				<b-form-group label="Дополнительная информация:" label-for="addit_info">
@@ -66,24 +65,24 @@
 	 		 	</b-form-textarea>
 				</b-form-group>			
 
-				<!-- ЦЕНА -->
+				<!-- Цена -->
 				<b-form-group label-for="price" style="text-align:center">
 			 		<b-form-input type="number" id="price" placeholder="Цена" style="width:150px;display:inline" :formatter="setPrice" required></b-form-input>
 					&nbsp;{{ this.$root.money_full_name }}
 				</b-form-group>			
 
-				<!-- ФОТОГРАФИИ -->
+				<!-- Фотографии -->
 				<b-form-group label="Фотографии:">
 					<b-img v-for="i in options_images" :src="i.src" width="105" height="105" :key="i" @click="deletePhoto(i)" class="image" />
 					<b-form-file multiple accept="image/jpeg, image/png" class="mt-2" @change="loadImage"></b-form-file>
 				</b-form-group>
 
-				<!-- ОТМЕТИТЬ НА КАРТЕ -->
+				<!-- Расположение на карте -->
 				<b-form-group label="Расположение:" style="text-align:center">
 					<b-button variant="primary">отметить на карте</b-button>
 				</b-form-group>
 
-				<!-- ПУБЛИКАЦИЯ -->
+				<!-- Публикация -->
 				<b-form-group style="text-align:center;margin:25px">
 					<b-button type="onSubmit" variant="outline-primary" title="Опубликовать объявление">ОПУБЛИКОВАТЬ</b-button>
 				</b-form-group>
@@ -113,25 +112,24 @@ export default {
 	data () {
 
     return 	{
-
-    	options_sdelka:this.$root.options_sdelka,
-    	options_category:null,
-		options_deal_id:null,
-		options_text:"",
-		options_price:0, 
-    	options_images:[],
-		root:false,
-		transport:false,			// транспорт
-		real_estate:false,			// недвижимость
-		appliances:false,			// бытовая техника
-		work_and_buisness:false,	// работа и бизнес
-		for_home:false,				// для дома и дачи
-		personal_effects:false,		// личные вещи
-		animals:false,				// животные
-		hobbies_and_leisure:false,	// хобби и отдых
-		services:false,				// услуги
-		other:false					// другое
-	}
+    		options_sdelka:this.$root.options_sdelka,
+    		options_category:null,
+			options_deal_id:null,
+			options_text:"",
+			options_price:0, 
+    		options_images:[],
+			root:false,
+			transport:false,			// транспорт
+			real_estate:false,			// недвижимость
+			appliances:false,			// бытовая техника
+			work_and_buisness:false,	// работа и бизнес
+			for_home:false,				// для дома и дачи
+			personal_effects:false,		// личные вещи
+			animals:false,				// животные
+			hobbies_and_leisure:false,	// хобби и отдых
+			services:false,				// услуги
+			other:false					// другое
+		}
 	},
 
 	created() {
@@ -174,7 +172,6 @@ export default {
 
   		// сброс данных при выборе категории
   		resetCategories(data) {
-
   			 this.root=false;				        // по умолчанию
   			 this.transport=false;			        // транспорт
   			 this.real_estate=false;			    // недвижимость
@@ -186,7 +183,6 @@ export default {
 			 this.hobbies_and_leisure=false;	  	// хобби и отдых
 			 this.services=false;			        // услуги
 			 this.other=false;				        // другое 
-
   		},
 
   		setInfo(info) {
@@ -194,7 +190,6 @@ export default {
   		},
 
   		setPrice(price) {
-
 			if (price < 0) return;
 
   			this.$root.advert_data.adv_price=price;

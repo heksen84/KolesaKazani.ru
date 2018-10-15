@@ -2346,7 +2346,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 // ----------------------------------------------------
@@ -2366,7 +2365,6 @@ var tmp_images_array = [];
   data: function data() {
 
     return {
-
       options_sdelka: this.$root.options_sdelka,
       options_category: null,
       options_deal_id: null,
@@ -2420,7 +2418,6 @@ var tmp_images_array = [];
 
     // сброс данных при выборе категории
     resetCategories: function resetCategories(data) {
-
       this.root = false; // по умолчанию
       this.transport = false; // транспорт
       this.real_estate = false; // недвижимость
@@ -2437,7 +2434,6 @@ var tmp_images_array = [];
       this.$root.advert_data.adv_info = info;
     },
     setPrice: function setPrice(price) {
-
       if (price < 0) return;
 
       this.$root.advert_data.adv_price = price;
