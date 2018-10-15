@@ -2345,6 +2345,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 // ----------------------------------------------------
@@ -36211,9 +36213,9 @@ var render = function() {
                                 }
                               }),
                               _vm._v(
-                                "\n\t\t\t\t " +
+                                "\n\t\t\t\t\t " +
                                   _vm._s(this.$root.money_full_name) +
-                                  "\n\t\t\t"
+                                  "\n\t\t\t\t"
                               )
                             ],
                             1
