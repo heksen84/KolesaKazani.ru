@@ -196,15 +196,14 @@ export default {
 
       // формируем url
       this.urlRegAndPlace=this.urlRegAndPlace+"/"+e.url;
-
       // закидываем в localStrorage
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);
     },
     selectAllCountry(e) {
+
       this.selectedPlaceName="Весь Казахстан";
       this.urlRegAndPlace="";
-      
       // закидываем в localStrorage
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", "");
@@ -212,8 +211,8 @@ export default {
       this.locationDialog=false;
     },
     selectAllRegion(e) {
+
       this.selectedPlaceName=this.regionName;
-      
       // закидываем в localStrorage
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);

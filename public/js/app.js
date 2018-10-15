@@ -3111,15 +3111,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       // формируем url
       this.urlRegAndPlace = this.urlRegAndPlace + "/" + e.url;
-
       // закидываем в localStrorage
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);
     },
     selectAllCountry: function selectAllCountry(e) {
+
       this.selectedPlaceName = "Весь Казахстан";
       this.urlRegAndPlace = "";
-
       // закидываем в localStrorage
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", "");
@@ -3127,8 +3126,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.locationDialog = false;
     },
     selectAllRegion: function selectAllRegion(e) {
-      this.selectedPlaceName = this.regionName;
 
+      this.selectedPlaceName = this.regionName;
       // закидываем в localStrorage
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);
