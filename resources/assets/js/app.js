@@ -5,7 +5,7 @@ import Vue from 'vue';
 
 // Вьюшки ВьюДжеЭс
 import index from './views/index.vue';
-import home from './views/home.vue';
+import cabinet from './views/cabinet.vue';
 import profile from './views/profile.vue';
 import search from './views/search.vue';
 import results from './views/results.vue';
@@ -87,7 +87,7 @@ const app = new Vue({
     components: {
       index,
       profile,
-      home,
+      cabinet,
       passwordreset,
       login,
       register,
