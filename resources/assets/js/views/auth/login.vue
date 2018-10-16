@@ -54,7 +54,7 @@ export default {
   methods: {
     onSubmit (evt) {
       evt.preventDefault();
-      post('/login', { "email": this.form.email,"password": this.form.password }
+      post('/login', { "email": this.form.email, "password": this.form.password }
       ).then((res) => {
         window.location='/home';
       }).catch((err) => {

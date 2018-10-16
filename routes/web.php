@@ -28,15 +28,15 @@ Route::get('{region}/{category}', 'ResultsController@getResultsByRegion');
 Route::get('{region}/{place}/{category}', 'ResultsController@getResultsByPlace');
 
 // базовые контроллеры
-Route::get('/', 				'IndexController@getCategories');
-Route::get('getRegions', 		'IndexController@getRegions');
-Route::get('getPlaces', 		'IndexController@getPlaces');
-Route::get('getUser', 			'UserController@getUser');
-Route::get('home', 				'HomeController@index')->name('home');
-Route::get('home/{advert_id}', 	'HomeController@index');
-Route::get('categories', 		'CategoriesController@index');
-Route::get('podat-obyavlenie', 	'AdvertController@newAdvert');
-Route::post('create', 			'AdvertController@createAdvert');
+Route::get('/', 				 'IndexController@getCategories');
+Route::get('getRegions', 		 'IndexController@getRegions');
+Route::get('getPlaces', 		 'IndexController@getPlaces');
+Route::get('getUser', 			 'UserController@getUser');
+Route::get('home',	 		 	 'CabinetController@index');
+Route::get('home/{advert_id}',	 'CabinetController@index');
+Route::get('categories', 		 'CategoriesController@index');
+Route::get('podat-obyavlenie', 	 'AdvertController@newAdvert');
+Route::post('create', 			 'AdvertController@createAdvert');
 
 // авто
 Route::get('getCarsMarks',  'AdvertController@getCarsMarks' );
