@@ -13,7 +13,7 @@
 </head>
 <body>
 <div id="app">
-  <welcome :items="{{ $items }}" :auth="{{ $auth }}" :count="{{ $count }}"></welcome>
+  <index :items="{{ $items }}" :auth="{{ $auth }}" :count="{{ $count }}"></index>
 </div>
 </body>
 </html>

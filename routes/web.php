@@ -28,9 +28,9 @@ Route::get('{region}/{category}', 'ResultsController@getResultsByRegion');
 Route::get('{region}/{place}/{category}', 'ResultsController@getResultsByPlace');
 
 // базовые контроллеры
-Route::get('/', 				'WelcomeController@getCategories');
-Route::get('getRegions', 		'WelcomeController@getRegions');
-Route::get('getPlaces', 		'WelcomeController@getPlaces');
+Route::get('/', 				'IndexController@getCategories');
+Route::get('getRegions', 		'IndexController@getRegions');
+Route::get('getPlaces', 		'IndexController@getPlaces');
 Route::get('getUser', 			'UserController@getUser');
 Route::get('home', 				'HomeController@index')->name('home');
 Route::get('home/{advert_id}', 	'HomeController@index');

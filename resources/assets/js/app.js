@@ -3,8 +3,8 @@ require('./bootstrap');
 import data from './data';
 import Vue from 'vue';
 
-// views
-import welcome from './views/welcome.vue';
+// Вьюшки ВьюДжеЭс
+import index from './views/index.vue';
 import home from './views/home.vue';
 import profile from './views/profile.vue';
 import search from './views/search.vue';
@@ -85,7 +85,7 @@ const app = new Vue({
     store,
     data: data,
     components: {
-      welcome,
+      index,
       profile,
       home,
       passwordreset,

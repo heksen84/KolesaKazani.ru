@@ -11,7 +11,7 @@ use App\Regions;
 use App\Places;
 
 
-class WelcomeController extends Controller {
+class IndexController extends Controller {
 
 		public function getCategoryCountById(Request $request) {
 			return 0;
@@ -74,6 +74,6 @@ class WelcomeController extends Controller {
 				$categories = Categories::all();
 			}
 					
-        	return view('welcome')->with("items", $categories)->with("count", Categories::count())->with("auth", Auth::user()?1:0);
+        	return view('index')->with("items", $categories)->with("count", Categories::count())->with("auth", Auth::user()?1:0);
     	}
 }
