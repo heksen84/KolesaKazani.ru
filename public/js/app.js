@@ -49712,8 +49712,6 @@ var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
   },
 
   created: function created() {
-
-    //alert("app.js")
     // esc на результатах
     document.addEventListener('keyup', function (event) {
       if (event.key === "Escape") window.history.back();

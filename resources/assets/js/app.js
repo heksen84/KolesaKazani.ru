@@ -97,13 +97,10 @@ const app = new Vue({
       fullinfo
   },
 
-  created() {
-
-    //alert("app.js")
+  created() {    
     // esc на результатах
     document.addEventListener('keyup', (event) => {
         if (event.key==="Escape") window.history.back();
     });
-
   }
 });
