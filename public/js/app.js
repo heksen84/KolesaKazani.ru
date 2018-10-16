@@ -2632,9 +2632,7 @@ var tmp_images_array = [];
 
       // сохраняю объявление
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (response) {
-
         console.log(response);
-
         if (response.status == 200) window.location.href = "/home";else _this.$root.$notify({
           group: 'foo',
           text: "<div style='font-size:130%'>" + response.data.msg + "</div>",
