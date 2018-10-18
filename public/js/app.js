@@ -2452,6 +2452,10 @@ var tmp_images_array = [];
   data: function data() {
 
     return {
+
+      /*-----------------------------
+      	базовые поля объявления
+      -----------------------------*/
       sdelka: this.$root.options_sdelka,
       category: null,
       deal_id: null,
@@ -2459,6 +2463,10 @@ var tmp_images_array = [];
       price: 0,
       images: [],
       root: false,
+
+      /*-------------------------
+      	категории 
+      -------------------------*/
       transport: false, // транспорт
       real_estate: false, // недвижимость
       appliances: false, // бытовая техника

@@ -112,6 +112,10 @@ export default {
 	data () {
 
     return 	{
+		
+			/*-----------------------------
+				базовые поля объявления
+			-----------------------------*/
     		sdelka:this.$root.options_sdelka,
     		category:null,
 			deal_id:null,
@@ -119,6 +123,10 @@ export default {
 			price:0, 
     		images:[],
 			root:false,
+			
+			/*-------------------------
+				категории 
+			-------------------------*/
 			transport:false,			// транспорт
 			real_estate:false,			// недвижимость
 			appliances:false,			// бытовая техника
