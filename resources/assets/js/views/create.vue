@@ -291,13 +291,17 @@ export default {
 		evt.preventDefault();
 
      	// сохраняю объявление
-		post('/create', { "data": this.$root.advert_data }).then((response) => {			
+		post('/create', { "data": this.$root.advert_data }).then((response) => {
 			if (response.data.result=="error") {				
-				console.log(response);			
-				this.$root.$notify({group: 'foo', text: "<h5>"+response.data.msg+"</h5>", type: 'error'});
+				console.log(response);
+				this.$root.$notify({group: 'foo', text: "<h5>Неполадки на сервере. Приносим свои извинения.</h5>", type: 'error'});
 			}
+			else window.location="home"; // переходим в личный кабинет
 
-		}).catch((err) => {});
+		}).catch((err) => {
+			console.log(err);
+			this.$root.$notify({group: 'foo', text: "<h5>Невозможно отправить запрос.</h5>", type: 'error'});
+		});
     }
 }
 }
