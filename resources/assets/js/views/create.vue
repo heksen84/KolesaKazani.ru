@@ -300,7 +300,7 @@ export default {
 
 		}).catch((err) => {
 			console.log(err);
-			this.$root.$notify({group: 'foo', text: "<h5>Невозможно отправить запрос.</h5>", type: 'error'});
+			this.$root.$notify({group: 'foo', text: "<h5>Невозможно отправить запрос. Проверьте подключение к интернету.</h5>", type: 'error'});
 		});
     }
 }

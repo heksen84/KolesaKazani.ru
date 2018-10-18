@@ -2649,7 +2649,7 @@ var tmp_images_array = [];
         } else window.location = "home"; // переходим в личный кабинет
       }).catch(function (err) {
         console.log(err);
-        _this.$root.$notify({ group: 'foo', text: "<h5>Невозможно отправить запрос.</h5>", type: 'error' });
+        _this.$root.$notify({ group: 'foo', text: "<h5>Невозможно отправить запрос. Проверьте подключение к интернету.</h5>", type: 'error' });
       });
     }
   }
