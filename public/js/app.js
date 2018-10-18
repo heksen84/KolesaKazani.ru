@@ -2643,13 +2643,9 @@ var tmp_images_array = [];
 
       // сохраняю объявление
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (response) {
-        if (response.data.result == "srv_error") {
-          console.log(response);
-          _this.$root.$notify({ group: 'foo', text: "<h5>Неполадки на сервере. Приносим свои извинения.</h5>", type: 'error' });
-        } else if (response.data.result == "error") {
-          console.log(response);
-          _this.$root.$notify({ group: 'foo', text: "<h5>" + response.data.msg + "</h5>", type: 'warning' });
-        } else window.location = "home"; // переходим в личный кабинет
+        console.log(response);
+
+        if (response.data.result == "srv_error") _this.$root.$notify({ group: 'foo', text: "<h5>Неполадки на сервере. Приносим свои извинения.</h5>", type: 'error' });else if (response.data.result == "error") _this.$root.$notify({ group: 'foo', text: "<h5>" + response.data.msg + "</h5>", type: 'warning' });else window.location = "home"; // переходим в личный кабинет
       }).catch(function (err) {
         console.log(err);
         _this.$root.$notify({ group: 'foo', text: "<h5>Невозможно отправить запрос. Проверьте подключение к интернету.</h5>", type: 'error' });
