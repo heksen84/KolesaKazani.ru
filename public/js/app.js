@@ -2645,7 +2645,7 @@ var tmp_images_array = [];
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (response) {
         if (response.data.result == "error") {
           console.log(response);
-          _this.$root.$notify({ group: 'foo', text: "<div style='font-size:120%'>" + response.data.msg + "</div>", type: 'error' });
+          _this.$root.$notify({ group: 'foo', text: "<h5>" + response.data.msg + "</h5>", type: 'error' });
         }
       }).catch(function (err) {});
     }
