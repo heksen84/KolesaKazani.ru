@@ -83,7 +83,6 @@ class AdvertController extends Controller
                     $transport->engine_type = 0;
                     $transport->customs = 0;
                     $transport->save();
-
                     $adverts->adv_category_id = $transport->id;
                     break;
                 }
@@ -100,7 +99,6 @@ class AdvertController extends Controller
                     $realestate->ownership = 0;
                     $realestate->kind_of_object = 0;
                     $realestate->save();
-
                     $realestate->adv_category_id = $realestate->id;
                     break;
                 }
