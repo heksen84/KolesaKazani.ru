@@ -2452,12 +2452,12 @@ var tmp_images_array = [];
   data: function data() {
 
     return {
-      options_sdelka: this.$root.options_sdelka,
-      options_category: null,
-      options_deal_id: null,
-      options_text: "",
-      options_price: 0,
-      options_images: [],
+      sdelka: this.$root.options_sdelka,
+      category: null,
+      deal_id: null,
+      text: "",
+      price: 0,
+      images: [],
       root: false,
       transport: false, // транспорт
       real_estate: false, // недвижимость
@@ -2487,7 +2487,7 @@ var tmp_images_array = [];
       var files = evt.target.files;
 
       for (var i = 0; i < files.length; i++) {
-        if (i >= this.$root.max_load_images || this.options_images.length >= this.$root.max_load_images) break;
+        if (i >= this.$root.max_load_images || this.images.length >= this.$root.max_load_images) break;
 
         var image = files[i];
         var reader = new FileReader();
@@ -2499,11 +2499,11 @@ var tmp_images_array = [];
         }(image);
 
         reader.readAsDataURL(image);
-        this.options_images = tmp_images_array;
+        this.images = tmp_images_array;
       }
     },
     deletePhoto: function deletePhoto(index) {
-      this.options_images.splice(index, 1);
+      this.images.splice(index, 1);
     },
 
 
@@ -2534,12 +2534,12 @@ var tmp_images_array = [];
     setPrice: function setPrice(price) {
       if (price < 0) return;
       this.$root.advert_data.adv_price = price;
-      this.options_price = price;
+      this.price = price;
       return price;
     },
     setDeal: function setDeal(deal_id) {
       this.$root.advert_data.adv_deal = deal_id;
-      this.options_deal_id = deal_id;
+      this.deal_id = deal_id;
     },
 
 
@@ -2643,12 +2643,10 @@ var tmp_images_array = [];
 
       // сохраняю объявление
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (response) {
-        console.log(response);
-        if (response.status == 200) window.location.href = "/home";else _this.$root.$notify({
-          group: 'foo',
-          text: "<div style='font-size:130%'>" + response.data.msg + "</div>",
-          type: 'success'
-        });
+        if (response.data.result == "error") {
+          console.log(response);
+          _this.$root.$notify({ group: 'foo', text: "<div style='font-size:120%'>" + response.data.msg + "</div>", type: 'error' });
+        }
       }).catch(function (err) {});
     }
   }
@@ -36093,7 +36091,7 @@ var render = function() {
                         attrs: {
                           id: "deal_group",
                           stacked: "",
-                          options: _vm.options_sdelka,
+                          options: _vm.sdelka,
                           name: "radioOpenions"
                         },
                         on: { change: _vm.setDeal }
@@ -36102,7 +36100,7 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _vm.options_deal_id != null
+                  _vm.deal_id != null
                     ? _c(
                         "b-form-group",
                         {
@@ -36119,11 +36117,11 @@ var render = function() {
                               staticClass: "mb-3",
                               on: { change: _vm.changeCategory },
                               model: {
-                                value: _vm.options_category,
+                                value: _vm.category,
                                 callback: function($$v) {
-                                  _vm.options_category = $$v
+                                  _vm.category = $$v
                                 },
-                                expression: "options_category"
+                                expression: "category"
                               }
                             },
                             [
@@ -36194,11 +36192,11 @@ var render = function() {
                                 },
                                 on: { input: _vm.setInfo },
                                 model: {
-                                  value: _vm.options_text,
+                                  value: _vm.text,
                                   callback: function($$v) {
-                                    _vm.options_text = $$v
+                                    _vm.text = $$v
                                   },
-                                  expression: "options_text"
+                                  expression: "text"
                                 }
                               })
                             ],
@@ -36238,7 +36236,7 @@ var render = function() {
                             "b-form-group",
                             { attrs: { label: "Фотографии:" } },
                             [
-                              _vm._l(_vm.options_images, function(i) {
+                              _vm._l(_vm.images, function(i) {
                                 return _c("b-img", {
                                   key: i.src,
                                   staticClass: "image",

@@ -51,7 +51,7 @@ class AdvertController extends Controller
 
         // если ошибка, возвращаем false и текст ошибки
         if ( $validator->fails() )  
-            return response()->json(["response"=>false, "msg"=>$validator->errors()->first()]);  
+            return response()->json(["result"=>"error", "msg"=>$validator->errors()->first()]);  
 
         $data = $request->input('data');
 
@@ -147,7 +147,7 @@ class AdvertController extends Controller
 		}
 		
         catch(\Exception $e) {
-       		return $e->getMessage();
+               return response()->json(["result"=>"error", "msg"=>$e->getMessage()]);  
     	}
      	
      	return $data;

@@ -11,11 +11,11 @@
 			<b-form @submit="onSubmit">
 
 			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px;margin-top:-5px">
-				 <b-form-radio-group id="deal_group" stacked :options="options_sdelka" name="radioOpenions" @change="setDeal"></b-form-radio-group>
+				 <b-form-radio-group id="deal_group" stacked :options="sdelka" name="radioOpenions" @change="setDeal"></b-form-radio-group>
 			</b-form-group>
 
-			<b-form-group label="Категория товара или услуги:" label-for="categories" style="margin-top:30px;width:260px" v-if="options_deal_id!=null">
-				<b-form-select class="mb-3" @change="changeCategory" v-model="options_category">
+			<b-form-group label="Категория товара или услуги:" label-for="categories" style="margin-top:30px;width:260px" v-if="deal_id!=null">
+				<b-form-select class="mb-3" @change="changeCategory" v-model="category">
 					 <option :value=null>-- Выберите категорию --</option>
 					 <option v-for="item in items" :value="item.id" :key="item.name">{{item.name}}</option>
 				</b-form-select>
@@ -61,7 +61,7 @@
 			 	<b-form-textarea id="addit_info"
 								placeholder="Введите дополнительную информацию"
 								:rows="4"
-								:max-rows="4" @input="setInfo" v-model="options_text">
+								:max-rows="4" @input="setInfo" v-model="text">
 	 		 	</b-form-textarea>
 				</b-form-group>			
 
@@ -73,7 +73,7 @@
 
 				<!-- Фотографии -->
 				<b-form-group label="Фотографии:">
-					<b-img v-for="i in options_images" :src="i.src" width="105" height="105" :key="i.src" @click="deletePhoto(i)" class="image" />
+					<b-img v-for="i in images" :src="i.src" width="105" height="105" :key="i.src" @click="deletePhoto(i)" class="image" />
 					<b-form-file multiple accept="image/jpeg, image/png" class="mt-2" @change="loadImage"></b-form-file>
 				</b-form-group>
 
@@ -112,12 +112,12 @@ export default {
 	data () {
 
     return 	{
-    		options_sdelka:this.$root.options_sdelka,
-    		options_category:null,
-			options_deal_id:null,
-			options_text:"",
-			options_price:0, 
-    		options_images:[],
+    		sdelka:this.$root.options_sdelka,
+    		category:null,
+			deal_id:null,
+			text:"",
+			price:0, 
+    		images:[],
 			root:false,
 			transport:false,			// транспорт
 			real_estate:false,			// недвижимость
@@ -147,7 +147,7 @@ export default {
 			var files = evt.target.files;
 
         	for (var i=0; i<files.length; i++) {
-        		if ( i>=this.$root.max_load_images || this.options_images.length >= this.$root.max_load_images ) 
+        		if ( i>=this.$root.max_load_images || this.images.length >= this.$root.max_load_images ) 
         			break;
 
         	var image = files[i]
@@ -161,12 +161,12 @@ export default {
           })(image);
 
 			reader.readAsDataURL(image);
-				this.options_images = tmp_images_array;
+				this.images = tmp_images_array;
         	}
   		},
 
   		deletePhoto(index) {
-  			this.options_images.splice(index, 1);
+  			this.images.splice(index, 1);
   		},
 
 		// ---------------------------------
@@ -197,13 +197,13 @@ export default {
   		setPrice(price) {
 			if (price < 0) return;
   			this.$root.advert_data.adv_price=price;
-        	this.options_price = price;
+        	this.price = price;
         	return price;
   		},
   		
   		setDeal(deal_id) {
   			this.$root.advert_data.adv_deal=deal_id;
-        	this.options_deal_id=deal_id;
+        	this.deal_id=deal_id;
   		},
 
   		/*
@@ -291,15 +291,11 @@ export default {
 		evt.preventDefault();
 
      	// сохраняю объявление
-		post('/create', { "data": this.$root.advert_data }).then((response) => {
-			console.log(response);
-			if (response.status==200) window.location.href = "/home";
-			else
-			this.$root.$notify({
-            group: 'foo',
-            text: "<div style='font-size:130%'>"+response.data.msg+"</div>",
-            type: 'success',
-        });
+		post('/create', { "data": this.$root.advert_data }).then((response) => {			
+			if (response.data.result=="error") {				
+				console.log(response);			
+				this.$root.$notify({group: 'foo', text: "<div style='font-size:120%'>"+response.data.msg+"</div>", type: 'error'});
+			}
 
 		}).catch((err) => {});
     }
