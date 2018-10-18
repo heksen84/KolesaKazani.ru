@@ -2450,7 +2450,6 @@ var tmp_images_array = [];
   props: ["items"],
 
   data: function data() {
-
     return {
 
       /*-----------------------------
