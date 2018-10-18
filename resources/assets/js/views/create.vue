@@ -292,12 +292,12 @@ export default {
 
      	// сохраняю объявление
 		post('/create', { "data": this.$root.advert_data }).then((response) => {
-			if (response.data.result=="error") {				
+			if (response.data.result=="srv_error") {				
 				console.log(response);
 				this.$root.$notify({group: 'foo', text: "<h5>Неполадки на сервере. Приносим свои извинения.</h5>", type: 'error'});
 			}
 			else
-			if (response.data.result=="warning") {				
+			if (response.data.result=="error") {				
 				console.log(response);
 				this.$root.$notify({group: 'foo', text: "<h5>"+response.data.msg+"</h5>", type: 'warning'});
 			}
