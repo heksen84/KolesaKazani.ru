@@ -1,5 +1,4 @@
-export default 
-{
+export default {
 
     // максимальное кол-во загружаемых картинок
 	max_load_images: 20,
@@ -16,7 +15,8 @@ export default
     ],
 
     money_full_name: "тенге",
+    money_small_name: "тнг.",
 
-    advert_data: {} // наш объект объявления 
+    advert_data: {} // наш объект объявления, куда всё размещается 
 }
 
