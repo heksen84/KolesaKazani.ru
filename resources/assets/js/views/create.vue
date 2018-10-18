@@ -73,7 +73,7 @@
 
 				<!-- Фотографии -->
 				<b-form-group label="Фотографии:">
-					<b-img v-for="i in options_images" :src="i.src" width="105" height="105" :key="i" @click="deletePhoto(i)" class="image" />
+					<b-img v-for="i in options_images" :src="i.src" width="105" height="105" :key="i.src" @click="deletePhoto(i)" class="image" />
 					<b-form-file multiple accept="image/jpeg, image/png" class="mt-2" @change="loadImage"></b-form-file>
 				</b-form-group>
 
@@ -139,32 +139,37 @@ export default {
 	components: { transport, realestate },
   	methods: {
 
-  		loadImage(evt) {
-  			
-  		/*	var files = evt.target.files;
+		// ---------------------------------
+		// Загрузка изображений
+		// ---------------------------------
+  		loadImage(evt) {  			
+
+			var files = evt.target.files;
 
         	for (var i=0; i<files.length; i++) {
-        		if ( i>=this.$root.max_load_images || this.form.images.length >= this.$root.max_load_images ) 
+        		if ( i>=this.$root.max_load_images || this.options_images.length >= this.$root.max_load_images ) 
         			break;
 
         	var image = files[i]
-  				var reader = new FileReader();
+  			var reader = new FileReader();
 
-  				reader.onload = (function(theFile) {
-          return function(e) {
-            tmp_images_array.push({ "src": e.target.result });
-          };
+  			reader.onload = (function(theFile) {
+          	return function(e) {
+            	tmp_images_array.push({ "src": e.target.result });
+          	};
 
           })(image);
 
 			reader.readAsDataURL(image);
-				this.form.images = tmp_images_array;
-        	}*/
+				this.options_images = tmp_images_array;
+        	}
   		},
 
   		deletePhoto(index) {
-  			//this.form.images.splice(index, 1);
+  			this.options_images.splice(index, 1);
   		},
+
+		// ---------------------------------
 
   		closeAndReturn() {
  			  window.history.back();

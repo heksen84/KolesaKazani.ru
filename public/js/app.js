@@ -2478,26 +2478,37 @@ var tmp_images_array = [];
 
   components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default.a },
   methods: {
+
+    // ---------------------------------
+    // Загрузка изображений
+    // ---------------------------------
     loadImage: function loadImage(evt) {
 
-      /*	var files = evt.target.files;
-            	for (var i=0; i<files.length; i++) {
-          		if ( i>=this.$root.max_load_images || this.form.images.length >= this.$root.max_load_images ) 
-          			break;
-            	var image = files[i]
-      		var reader = new FileReader();
-      				reader.onload = (function(theFile) {
-            return function(e) {
-              tmp_images_array.push({ "src": e.target.result });
-            };
-              })(image);
-      	reader.readAsDataURL(image);
-      this.form.images = tmp_images_array;
-          	}*/
+      var files = evt.target.files;
+
+      for (var i = 0; i < files.length; i++) {
+        if (i >= this.$root.max_load_images || this.options_images.length >= this.$root.max_load_images) break;
+
+        var image = files[i];
+        var reader = new FileReader();
+
+        reader.onload = function (theFile) {
+          return function (e) {
+            tmp_images_array.push({ "src": e.target.result });
+          };
+        }(image);
+
+        reader.readAsDataURL(image);
+        this.options_images = tmp_images_array;
+      }
     },
     deletePhoto: function deletePhoto(index) {
-      //this.form.images.splice(index, 1);
+      this.options_images.splice(index, 1);
     },
+
+
+    // ---------------------------------
+
     closeAndReturn: function closeAndReturn() {
       window.history.back();
     },
@@ -36229,7 +36240,7 @@ var render = function() {
                             [
                               _vm._l(_vm.options_images, function(i) {
                                 return _c("b-img", {
-                                  key: i,
+                                  key: i.src,
                                   staticClass: "image",
                                   attrs: {
                                     src: i.src,
