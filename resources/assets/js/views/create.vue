@@ -301,10 +301,10 @@ export default {
 		post('/create', { "data": this.$root.advert_data }).then((response) => {
 			console.log(response);
 			
-			if (response.data.result=="srv_error")
-				this.$root.$notify({group: 'foo', text: "<h5>Неполадки на сервере. Приносим свои извинения.</h5>", type: 'error'});
+			if (response.data.result=="db.error")
+				this.$root.$notify({group: 'foo', text: "<h5>Неполадки в работе сервиса. Приносим свои извинения.</h5>", type: 'error'});
 			else
-			if (response.data.result=="error")
+			if (response.data.result=="usr.error")
 				this.$root.$notify({group: 'foo', text: "<h5>"+response.data.msg+"</h5>", type: 'warning'});
 			else 
 			window.location="home"; // переходим в личный кабинет
