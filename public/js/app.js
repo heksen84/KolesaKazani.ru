@@ -2646,6 +2646,9 @@ var tmp_images_array = [];
         if (response.data.result == "error") {
           console.log(response);
           _this.$root.$notify({ group: 'foo', text: "<h5>Неполадки на сервере. Приносим свои извинения.</h5>", type: 'error' });
+        } else if (response.data.result == "warning") {
+          console.log(response);
+          _this.$root.$notify({ group: 'foo', text: "<h5>" + response.data.msg + "</h5>", type: 'warning' });
         } else window.location = "home"; // переходим в личный кабинет
       }).catch(function (err) {
         console.log(err);
