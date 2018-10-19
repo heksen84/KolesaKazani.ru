@@ -151,7 +151,7 @@ export default {
 		// ---------------------------------
   		loadImage(evt) { 
 
-			var files = evt.target.files;						
+			var files = evt.target.files;
 			
 			for (var i=0; i<files.length; i++) {
 
