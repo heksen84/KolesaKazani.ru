@@ -2490,6 +2490,12 @@ var tmp_images_array = [];
 
       for (var i = 0; i < files.length; i++) {
 
+        for (var j = 0; j < this.images.length; j++) {
+          if (files[i].name == this.images[j].name) {
+            i++;break;
+          }
+        }
+
         var image = files[i];
         var reader = new FileReader();
 

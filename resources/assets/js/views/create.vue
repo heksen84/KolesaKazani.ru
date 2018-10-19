@@ -155,8 +155,14 @@ export default {
 			
 			for (var i=0; i<files.length; i++) {
 
-        		var image 	= files[i]
-  				var reader 	= new FileReader();
+				for (var j=0; j<this.images.length; j++) {
+					if (files[i].name==this.images[j].name) {
+						i++; break;
+					}
+				}
+
+        		var image  = files[i]
+  				var reader = new FileReader();
 
   				reader.onload = (function(theFile) {
           		return function(e) {	
