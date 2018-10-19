@@ -2511,6 +2511,7 @@ var tmp_images_array = [];
       this.images = tmp_images_array;
     },
     deletePhoto: function deletePhoto(index) {
+      console.log(index);
       this.images.splice(index, 1);
     },
 
@@ -36259,7 +36260,7 @@ var render = function() {
                             "b-form-group",
                             { attrs: { label: "Фотографии:" } },
                             [
-                              _vm._l(_vm.images, function(i) {
+                              _vm._l(_vm.images, function(i, index) {
                                 return _c("b-img", {
                                   key: i.name,
                                   staticClass: "image",
@@ -36271,7 +36272,7 @@ var render = function() {
                                   },
                                   on: {
                                     click: function($event) {
-                                      _vm.deletePhoto(i)
+                                      _vm.deletePhoto(index)
                                     }
                                   }
                                 })

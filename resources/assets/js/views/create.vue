@@ -73,7 +73,7 @@
 
 				<!-- Фотографии -->
 				<b-form-group label="Фотографии:">
-					<b-img v-for="i in images" :src="i.src" width="105" height="105" :key="i.name" @click="deletePhoto(i)" class="image" :title="i.name"/>
+					<b-img v-for="(i, index) in images" :src="i.src" width="105" height="105" :key="i.name" @click="deletePhoto(index)" class="image" :title="i.name"/>
 					<b-form-file multiple accept="image/jpeg, image/png" class="mt-2" @change="loadImage"></b-form-file>
 				</b-form-group>
 
@@ -178,7 +178,8 @@ export default {
   		},
 
   		deletePhoto(index) {
-  			this.images.splice(index, 1);
+			console.log(index)			
+			this.images.splice(index, 1);
   		},
 
 		// ---------------------------------
