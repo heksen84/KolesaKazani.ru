@@ -149,16 +149,16 @@ export default {
 		// ---------------------------------
 		// Загрузка изображений
 		// ---------------------------------
-  		loadImage(evt) {  			
+  		loadImage(evt) { 
 
-			// удалить сходу повторения
 			var files = evt.target.files; 
 			var uniq=[];
+			
+			//if ( i>=this.$root.max_load_images || this.images.length >= this.$root.max_load_images ) break;
 
+			// удаляю сходу повторения
 			for (var i=0; i<files.length; i++) {
-				for (var j=0; j<files.length; j++) {
-					//if (files[i].name==uniq[i].name)
-				}
+				uniq.push(files[i]);
 			}
 
         	for (var i=0; i<uniq.length; i++) {
@@ -166,8 +166,6 @@ export default {
 					if (this.images[j].name==uniq[i].name)					
 					return;					
 				}
-
-        		if ( i>=this.$root.max_load_images || this.images.length >= this.$root.max_load_images ) break;
 
         		var image = uniq[i]
   				var reader = new FileReader();
