@@ -73,7 +73,7 @@
 
 				<!-- Фотографии -->
 				<b-form-group label="Фотографии:">
-					<b-img v-for="i in images" :src="i.src" width="105" height="105" :key="i.name" @click="deletePhoto(i)" class="image" />
+					<b-img v-for="i in images" :src="i.src" width="105" height="105" :key="i.name" @click="deletePhoto(i)" class="image" :title="i.name"/>
 					<b-form-file multiple accept="image/jpeg, image/png" class="mt-2" @change="loadImage"></b-form-file>
 				</b-form-group>
 
@@ -151,24 +151,12 @@ export default {
 		// ---------------------------------
   		loadImage(evt) { 
 
-			var files = evt.target.files; 
-			var uniq=[];
+			var files = evt.target.files;			
 			
-			//if ( i>=this.$root.max_load_images || this.images.length >= this.$root.max_load_images ) break;
-
-			// удаляю сходу повторения
 			for (var i=0; i<files.length; i++) {
-				uniq.push(files[i]);
-			}
-
-        	for (var i=0; i<uniq.length; i++) {
-				for (var j=0; j<this.images.length; j++) {										
-					if (this.images[j].name==uniq[i].name)					
-					return;					
-				}
-
-        		var image = uniq[i]
-  				var reader = new FileReader();
+				
+        		var image 	= files[i]
+  				var reader 	= new FileReader();
 
   				reader.onload = (function(theFile) {
           		return function(e) {	
@@ -177,9 +165,10 @@ export default {
 
           })(image);
 
-			reader.readAsDataURL(image);
-				this.images = tmp_images_array;
-        	}
+			reader.readAsDataURL(image);			
+		}
+			
+			this.images = tmp_images_array;
   		},
 
   		deletePhoto(index) {
