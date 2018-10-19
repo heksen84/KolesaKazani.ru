@@ -157,7 +157,7 @@ export default {
 
 				for (var j=0; j<this.images.length; j++) {
 					if (files[i].name==this.images[j].name) {
-					return false;
+						return false;
 					}
 				}
 
