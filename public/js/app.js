@@ -2492,7 +2492,7 @@ var tmp_images_array = [];
 
         for (var j = 0; j < this.images.length; j++) {
           if (files[i].name == this.images[j].name) {
-            i++;j++;break;
+            return false;
           }
         }
 

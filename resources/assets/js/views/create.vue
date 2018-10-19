@@ -151,13 +151,13 @@ export default {
 		// ---------------------------------
   		loadImage(evt) { 
 
-			var files = evt.target.files;			
+			var files = evt.target.files;						
 			
 			for (var i=0; i<files.length; i++) {
 
 				for (var j=0; j<this.images.length; j++) {
 					if (files[i].name==this.images[j].name) {
-						i++; j++; break;
+					return false;
 					}
 				}
 
