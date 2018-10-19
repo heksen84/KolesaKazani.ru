@@ -2495,7 +2495,7 @@ var tmp_images_array = [];
 
         reader.onload = function (theFile) {
           return function (e) {
-            tmp_images_array.push({ "name": image.name, "src": e.target.result });
+            tmp_images_array.push({ "name": theFile.name, "src": e.target.result });
           };
         }(image);
 
