@@ -2486,17 +2486,29 @@ var tmp_images_array = [];
     // ---------------------------------
     loadImage: function loadImage(evt) {
 
+      // удалить сходу повторения
       var files = evt.target.files;
+      var uniq = [];
 
       for (var i = 0; i < files.length; i++) {
+        for (var j = 0; j < files.length; j++) {
+          //if (files[i].name==uniq[i].name)
+        }
+      }
+
+      for (var i = 0; i < uniq.length; i++) {
+        for (var j = 0; j < this.images.length; j++) {
+          if (this.images[j].name == uniq[i].name) return;
+        }
+
         if (i >= this.$root.max_load_images || this.images.length >= this.$root.max_load_images) break;
 
-        var image = files[i];
+        var image = uniq[i];
         var reader = new FileReader();
 
         reader.onload = function (theFile) {
           return function (e) {
-            tmp_images_array.push({ "src": e.target.result });
+            tmp_images_array.push({ "name": image.name, "src": e.target.result });
           };
         }(image);
 
@@ -36255,7 +36267,7 @@ var render = function() {
                             [
                               _vm._l(_vm.images, function(i) {
                                 return _c("b-img", {
-                                  key: i.src,
+                                  key: i.name,
                                   staticClass: "image",
                                   attrs: {
                                     src: i.src,
