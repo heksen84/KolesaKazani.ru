@@ -74,7 +74,7 @@
 				<!-- Фотографии -->
 				<b-form-group label="Фотографии:">
 					<b-img v-for="(i, index) in images" :src="i.src" width="105" height="105" :key="i.name" @click="deletePhoto(index)" class="image" :title="i.name"/>
-					<b-form-file multiple accept="image/jpeg, image/png" class="mt-2" @change="loadImage"></b-form-file>
+					<b-form-file multiple accept="image/jpeg, image/png" class="mt-2" @change="loadImage" id="load_photo_button"></b-form-file>
 				</b-form-group>
 
 				<!-- Расположение на карте -->
@@ -149,7 +149,10 @@ export default {
 		// ---------------------------------
 		// Загрузка изображений
 		// ---------------------------------
-  		loadImage(evt) { 
+  		loadImage(evt) {
+
+			console.log(document.querySelector('input[type=file]').files[0]);
+			console.log(this.images);
 
 			var files = evt.target.files;
 			
@@ -178,8 +181,10 @@ export default {
   		},
 
   		deletePhoto(index) {
-			console.log(index)			
+			var photos = document.querySelector('input[type=file]');		
 			this.images.splice(index, 1);
+			photos.value="";
+			console.log(photos.files[0]);
   		},
 
 		// ---------------------------------
