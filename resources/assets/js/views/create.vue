@@ -178,13 +178,11 @@ export default {
 		}
 			
 			this.images = tmp_images_array;
+			document.querySelector('input[type=file]').value="";
   		},
 
   		deletePhoto(index) {
-			var photos = document.querySelector('input[type=file]');		
 			this.images.splice(index, 1);
-			photos.value="";
-			console.log(photos.files[0]);
   		},
 
 		// ---------------------------------
