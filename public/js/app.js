@@ -35504,12 +35504,7 @@ var render = function() {
           _c(
             "b-col",
             {
-              staticStyle: {
-                "text-align": "left",
-                margin: "50px auto",
-                color: "black",
-                background: "white"
-              },
+              staticClass: "standart_window",
               attrs: { cols: "12", sm: "12", md: "12", lg: "4", xl: "4" }
             },
             [
@@ -35535,7 +35530,7 @@ var render = function() {
                 [_vm._v("регистрация")]
               ),
               _vm._v(" "),
-              _c("br"),
+              _c("hr"),
               _vm._v(" "),
               _c(
                 "b-form",
@@ -35696,12 +35691,7 @@ var render = function() {
           _c(
             "b-col",
             {
-              staticStyle: {
-                "text-align": "left",
-                margin: "50px auto",
-                color: "black",
-                background: "white"
-              },
+              staticClass: "standart_window",
               attrs: { cols: "12", sm: "12", md: "12", lg: "4", xl: "4" }
             },
             [
@@ -35727,7 +35717,7 @@ var render = function() {
                 [_vm._v("вход")]
               ),
               _vm._v(" "),
-              _c("br"),
+              _c("hr"),
               _vm._v(" "),
               _c(
                 "b-form",
