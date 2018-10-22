@@ -2,6 +2,7 @@
   <b-container fluid class="mycontainer">
     <b-row>
     <b-col cols="12" sm="12" md="12" lg="4" xl="4" style="text-align:left;margin: 50px auto;color:black;background:white">
+    <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
     <h3 style="text-align:center;margin-top:10px;color:grey">регистрация</h3>
     <br>
     <b-form @submit="onSubmit" style="width:99%">
@@ -70,6 +71,9 @@ export default {
     }
   },
   methods: {
+    closeAndReturn() {
+ 		  window.history.back();
+  	},
     onSubmit (evt) {
       evt.preventDefault();
       post('/register', {

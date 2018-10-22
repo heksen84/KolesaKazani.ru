@@ -2103,6 +2103,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2117,6 +2118,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    closeAndReturn: function closeAndReturn() {
+      window.history.back();
+    },
     onSubmit: function onSubmit(evt) {
       evt.preventDefault();
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/login', { "email": this.form.email, "password": this.form.password }).then(function (res) {
@@ -2212,6 +2216,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2227,6 +2232,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    closeAndReturn: function closeAndReturn() {
+      window.history.back();
+    },
     onSubmit: function onSubmit(evt) {
       evt.preventDefault();
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/register', {
@@ -35506,6 +35514,16 @@ var render = function() {
             },
             [
               _c(
+                "div",
+                {
+                  staticClass: "close_button",
+                  attrs: { title: "Закрыть страницу" },
+                  on: { click: _vm.closeAndReturn }
+                },
+                [_vm._v("X")]
+              ),
+              _vm._v(" "),
+              _c(
                 "h3",
                 {
                   staticStyle: {
@@ -35687,6 +35705,16 @@ var render = function() {
               attrs: { cols: "12", sm: "12", md: "12", lg: "4", xl: "4" }
             },
             [
+              _c(
+                "div",
+                {
+                  staticClass: "close_button",
+                  attrs: { title: "Закрыть страницу" },
+                  on: { click: _vm.closeAndReturn }
+                },
+                [_vm._v("X")]
+              ),
+              _vm._v(" "),
               _c(
                 "h3",
                 {
