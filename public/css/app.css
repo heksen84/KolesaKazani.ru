@@ -128,7 +128,8 @@ body {
 .search_options_button {
   color: white;
   padding: 1px 10px;
-  background: #649696;
+  background: #6464c8;
+  font-size: 14px;
 }
 
 #button_search {
