@@ -35532,7 +35532,7 @@ var render = function() {
                           id: "name",
                           type: "text",
                           required: "",
-                          placeholder: "Введи имя"
+                          placeholder: "Введите имя"
                         },
                         model: {
                           value: _vm.form.name,
@@ -35555,7 +35555,7 @@ var render = function() {
                           id: "email",
                           type: "email",
                           required: "",
-                          placeholder: "Введи email"
+                          placeholder: "Введите email"
                         },
                         model: {
                           value: _vm.form.email,
@@ -35572,7 +35572,7 @@ var render = function() {
                   _c(
                     "b-form-group",
                     {
-                      attrs: { label: "Твой пароль:", "label-for": "password" }
+                      attrs: { label: "Ваш пароль:", "label-for": "password" }
                     },
                     [
                       _c("b-form-input", {
@@ -35580,7 +35580,7 @@ var render = function() {
                           id: "password",
                           type: "password",
                           required: "",
-                          placeholder: "Введи пароль"
+                          placeholder: "Введите пароль"
                         },
                         model: {
                           value: _vm.form.password,
@@ -35598,7 +35598,7 @@ var render = function() {
                     "b-form-group",
                     {
                       attrs: {
-                        label: "Твой пароль:",
+                        label: "Подтверждение пароля:",
                         "label-for": "password_confirm"
                       }
                     },
@@ -35608,7 +35608,7 @@ var render = function() {
                           id: "password_confirm",
                           type: "password",
                           required: "",
-                          placeholder: "Введи пароль"
+                          placeholder: "Подтвердите пароль"
                         },
                         model: {
                           value: _vm.form.password_confirmation,

@@ -12,7 +12,7 @@
                       type="text"
                       v-model="form.name"
                       required
-                      placeholder="Введи имя">
+                      placeholder="Введите имя">
         </b-form-input>
       </b-form-group>
 
@@ -22,27 +22,27 @@
                       type="email"
                       v-model="form.email"
                       required
-                      placeholder="Введи email">
+                      placeholder="Введите email">
         </b-form-input>
       </b-form-group>
 
       <!-- пароль -->
-      <b-form-group label="Твой пароль:" label-for="password">
+      <b-form-group label="Ваш пароль:" label-for="password">
         <b-form-input id="password"
                       type="password"
                       v-model="form.password"
                       required
-                      placeholder="Введи пароль">
+                      placeholder="Введите пароль">
         </b-form-input>
       </b-form-group>
 
       <!-- пароль -->
-      <b-form-group label="Твой пароль:" label-for="password_confirm">
+      <b-form-group label="Подтверждение пароля:" label-for="password_confirm">
         <b-form-input id="password_confirm"
                       type="password"
                       v-model="form.password_confirmation"
                       required
-                      placeholder="Введи пароль">
+                      placeholder="Подтвердите пароль">
         </b-form-input>
       </b-form-group>
 
