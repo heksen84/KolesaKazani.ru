@@ -32,8 +32,9 @@
       </b-form-group>
       <b-form-group>
       <div style="text-align:center">
-        Забыли пароль? <b-link style="color:grey" href="/restore">Восстановить</b-link>
-        <br>Ещё не зарегистрированы? <b-link style="color:grey" href="/register">Регистрация</b-link>        
+        Забыли пароль? <b-link style="color:grey" href="/password/reset">Восстановить</b-link>
+        <br>
+        Ещё не зарегистрированы? <b-link style="color:grey" href="/register">Регистрация</b-link>                
       </div>
       </b-form-group>
     </b-form>

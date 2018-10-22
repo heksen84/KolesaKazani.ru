@@ -2104,6 +2104,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2142,13 +2143,62 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      form: {
+        email: ''
+      }
+    };
+  },
+
+  methods: {
+    closeAndReturn: function closeAndReturn() {
+      window.history.back();
+    },
+    onSubmit: function onSubmit(evt) {
+      evt.preventDefault();
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/login', { "email": this.form.email, "password": this.form.password }).then(function (res) {
+        window.location = '/home';
+      }).catch(function (err) {
+        console.log(err.response.data);
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -34831,7 +34881,99 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\r\n  123\r\n")])
+  return _c(
+    "b-container",
+    { staticClass: "mycontainer", attrs: { fluid: "" } },
+    [
+      _c(
+        "b-row",
+        [
+          _c(
+            "b-col",
+            {
+              staticClass: "standart_window",
+              attrs: { cols: "12", sm: "12", md: "12", lg: "4", xl: "4" }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "close_button",
+                  attrs: { title: "Закрыть страницу" },
+                  on: { click: _vm.closeAndReturn }
+                },
+                [_vm._v("X")]
+              ),
+              _vm._v(" "),
+              _c(
+                "h3",
+                {
+                  staticStyle: {
+                    "text-align": "center",
+                    "margin-top": "10px",
+                    color: "grey"
+                  }
+                },
+                [_vm._v("восстановление пароля")]
+              ),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _c(
+                "b-form",
+                { staticStyle: { width: "99%" }, on: { submit: _vm.onSubmit } },
+                [
+                  _c(
+                    "b-form-group",
+                    { attrs: { label: "Email адрес:", "label-for": "email" } },
+                    [
+                      _c("b-form-input", {
+                        attrs: {
+                          id: "email",
+                          type: "email",
+                          required: "",
+                          placeholder: "Введи email"
+                        },
+                        model: {
+                          value: _vm.form.email,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "email", $$v)
+                          },
+                          expression: "form.email"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("b-form-group"),
+                  _vm._v(" "),
+                  _c(
+                    "b-form-group",
+                    { staticStyle: { "text-align": "center" } },
+                    [
+                      _c(
+                        "b-button",
+                        { attrs: { type: "submit", variant: "primary" } },
+                        [_vm._v("Восстановить")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("b-form-group")
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -35821,13 +35963,13 @@ var render = function() {
                           "b-link",
                           {
                             staticStyle: { color: "grey" },
-                            attrs: { href: "/restore" }
+                            attrs: { href: "/password/reset" }
                           },
                           [_vm._v("Восстановить")]
                         ),
                         _vm._v(" "),
                         _c("br"),
-                        _vm._v("Ещё не зарегистрированы? "),
+                        _vm._v("\n        Ещё не зарегистрированы? "),
                         _c(
                           "b-link",
                           {

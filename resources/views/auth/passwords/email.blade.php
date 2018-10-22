@@ -8,7 +8,7 @@
   <meta name="description" content="Доска объявлений КупиПродай">
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Доска объявлений КупиПродай/title>
+  <title>Доска объявлений КупиПродай</title>
   <link rel="icon" href="{{ asset('public/globe.ico') }}">
   <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
 </head>
