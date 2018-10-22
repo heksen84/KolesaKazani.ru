@@ -1,7 +1,7 @@
 export default {
 
     // максимальное кол-во загружаемых картинок
-	max_load_images: 20,
+	max_loaded_images: 10,
 
     // стандартные операции
     options_sdelka: 

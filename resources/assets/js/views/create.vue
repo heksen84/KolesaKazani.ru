@@ -74,7 +74,7 @@
 				<!-- Фотографии -->
 				<b-form-group label="Фотографии:">
 					<b-img v-for="(i, index) in images" :src="i.src" width="105" height="105" :key="i.name" @click="deletePhoto(index)" class="image" :title="i.name"/>
-					<b-form-file multiple accept="image/jpeg, image/png" class="mt-2" @change="loadImage" id="load_photo_button"></b-form-file>
+					<b-form-file multiple accept="image/jpeg, image/png" class="mt-2" @change="loadImage"></b-form-file>
 				</b-form-group>
 
 				<!-- Расположение на карте -->
@@ -151,12 +151,16 @@ export default {
 		// ---------------------------------
   		loadImage(evt) {
 
-			console.log(document.querySelector('input[type=file]').files[0]);
-			console.log(this.images);
-
 			var files = evt.target.files;
+			var input_images = document.querySelector("input[type=file]");
+
+			if (input_images.files.length + this.images.length > this.$root.max_loaded_images) 
+				return;
 			
 			for (var i=0; i<files.length; i++) {
+
+				if (i===this.$root.max_loaded_images) 
+				break;
 
 				for (var j=0; j<this.images.length; j++) {
 					if (files[i].name==this.images[j].name) {
@@ -176,9 +180,9 @@ export default {
 
 			reader.readAsDataURL(image);			
 		}
-			
+
 			this.images = tmp_images_array;
-			document.querySelector('input[type=file]').value="";
+			input_images.value="";
   		},
 
   		deletePhoto(index) {
