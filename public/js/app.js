@@ -2100,6 +2100,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2135,6 +2138,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -34817,7 +34821,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", [_vm._v("\r\n  123\r\n")])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -35510,7 +35514,7 @@ var render = function() {
                     color: "grey"
                   }
                 },
-                [_vm._v("Регистрация")]
+                [_vm._v("регистрация")]
               ),
               _vm._v(" "),
               _c("br"),
@@ -35692,7 +35696,7 @@ var render = function() {
                     color: "grey"
                   }
                 },
-                [_vm._v("Вход")]
+                [_vm._v("вход")]
               ),
               _vm._v(" "),
               _c("br"),
@@ -35792,8 +35796,18 @@ var render = function() {
                       "div",
                       { staticStyle: { "text-align": "center" } },
                       [
-                        _vm._v("Ещё не зарегистрированы?"),
+                        _vm._v("\n        Забыли пароль? "),
+                        _c(
+                          "b-link",
+                          {
+                            staticStyle: { color: "grey" },
+                            attrs: { href: "/restore" }
+                          },
+                          [_vm._v("Восстановить")]
+                        ),
+                        _vm._v(" "),
                         _c("br"),
+                        _vm._v("Ещё не зарегистрированы? "),
                         _c(
                           "b-link",
                           {

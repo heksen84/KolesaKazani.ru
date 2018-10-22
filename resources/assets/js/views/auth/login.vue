@@ -2,7 +2,7 @@
   <b-container fluid class="mycontainer">
     <b-row>
     <b-col cols="12" sm="12" md="12" lg="4" xl="4" style="text-align:left;margin: 50px auto;color:black;background:white">
-    <h3 style="text-align:center;margin-top:10px;color:grey">Вход</h3>
+    <h3 style="text-align:center;margin-top:10px;color:grey">вход</h3>
     <br>
     <b-form @submit="onSubmit" style="width:99%">
       <b-form-group label="Email адрес:" label-for="email">
@@ -30,7 +30,10 @@
         <b-button type="submit" variant="primary">Войти</b-button>
       </b-form-group>
       <b-form-group>
-      <div style="text-align:center">Ещё не зарегистрированы?<br><b-link href="/register" style="color:grey">Регистрация</b-link></div>
+      <div style="text-align:center">
+        Забыли пароль? <b-link style="color:grey" href="/restore">Восстановить</b-link>
+        <br>Ещё не зарегистрированы? <b-link style="color:grey" href="/register">Регистрация</b-link>        
+      </div>
       </b-form-group>
     </b-form>
   </b-col>
