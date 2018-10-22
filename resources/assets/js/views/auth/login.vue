@@ -30,8 +30,7 @@
         <b-button type="submit" variant="primary">Войти</b-button>
       </b-form-group>
       <b-form-group>
-      <br>Ещё не зарегистрированы?
-       <b-link href="/register">Зарегистрироваться</b-link>
+      <div style="text-align:center">Ещё не зарегистрированы?<br><b-link href="/register" style="color:grey">Регистрация</b-link></div>
       </b-form-group>
     </b-form>
   </b-col>
