@@ -126,8 +126,12 @@ body {
 .search_options_button {
   color:white;
   padding:1px 10px; 
-  background:rgb(100,100,200);
-  font-size:14px;
+  background:rgb(100,100,130);
+  font-size:15px;
+}
+
+#index_select_region_and_other_button_block {
+  margin-top:-7px;
 }
 
 #button_search {
@@ -406,6 +410,10 @@ body {
 .create_advert_col {
  margin-top: 0px;
  border-radius: 0px;
+}
+
+#index_select_region_and_other_button_block {
+  margin-top:0px;
 }
 
 }

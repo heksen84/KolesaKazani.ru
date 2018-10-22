@@ -48,7 +48,7 @@
           <button id="button_search" @click="search" title="Найти что требуется">найти</button>
 
           <!-- кнопки выбора региона и т.п.-->
-          <div style="margin-top:0px">
+          <div id="index_select_region_and_other_button_block">
           <b-button class="search_options_button mb-1 mr-sm-1 mb-sm-1" size="sm" @click="openLocationWindow" title="Расположение поиска">Расположение {{ selectedPlaceName }}</b-button>
           <!--<b-button class="search_options_button mb-1 mr-sm-1 mb-sm-1" size="sm" style="background:rgb(100,100,150)">Категория</b-button>-->
           </div>

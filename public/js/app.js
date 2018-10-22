@@ -34571,7 +34571,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticStyle: { "margin-top": "0px" } },
+                { attrs: { id: "index_select_region_and_other_button_block" } },
                 [
                   _c(
                     "b-button",
