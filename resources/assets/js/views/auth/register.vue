@@ -37,7 +37,7 @@
         </b-form-input>
       </b-form-group>
 
-      <!-- пароль -->
+      <!-- подтверждение пароля -->
       <b-form-group label="Подтверждение пароля:" label-for="password_confirm">
         <b-form-input id="password_confirm"
                       type="password"
