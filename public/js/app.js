@@ -36302,18 +36302,16 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "b-form-group",
-                            { attrs: { label: "Фотографии:" } },
+                            {
+                              staticStyle: { "text-align": "center" },
+                              attrs: { label: "Фотографии:" }
+                            },
                             [
                               _vm._l(_vm.images, function(i, index) {
                                 return _c("b-img", {
                                   key: i.name,
                                   staticClass: "image",
-                                  attrs: {
-                                    src: i.src,
-                                    width: "105",
-                                    height: "105",
-                                    title: i.name
-                                  },
+                                  attrs: { src: i.src, title: i.name },
                                   on: {
                                     click: function($event) {
                                       _vm.deletePhoto(index)

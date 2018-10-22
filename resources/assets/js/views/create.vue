@@ -72,8 +72,8 @@
 				</b-form-group>			
 
 				<!-- Фотографии -->
-				<b-form-group label="Фотографии:">
-					<b-img v-for="(i, index) in images" :src="i.src" width="105" height="105" :key="i.name" @click="deletePhoto(index)" class="image" :title="i.name"/>
+				<b-form-group label="Фотографии:" style="text-align:center">
+					<b-img v-for="(i, index) in images" :src="i.src" :key="i.name" @click="deletePhoto(index)" class="image" :title="i.name"/>
 					<b-form-file multiple accept="image/jpeg, image/png" class="mt-2" @change="loadImage"></b-form-file>
 				</b-form-group>
 

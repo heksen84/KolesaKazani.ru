@@ -215,6 +215,10 @@ body {
   width:100%;
 }
 
+.image {
+  width:100px; 
+  height:100px;
+}
 .shadow_text {
  color: #fff;
  letter-spacing: 2px;
@@ -405,6 +409,10 @@ body {
 
 // смартфоны
 @media screen and (max-width:420px) {
+
+.standart_window {
+  margin-top:0px;
+}
 
 .close_button {
  left:90%;
