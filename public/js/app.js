@@ -2439,6 +2439,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 // ----------------------------------------------------
@@ -36302,34 +36304,37 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "b-form-group",
-                            {
-                              staticStyle: { "text-align": "center" },
-                              attrs: { label: "Фотографии:" }
-                            },
+                            { attrs: { label: "Фотографии:" } },
                             [
-                              _vm._l(_vm.images, function(i, index) {
-                                return _c("b-img", {
-                                  key: i.name,
-                                  staticClass: "image",
-                                  attrs: { src: i.src, title: i.name },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.deletePhoto(index)
-                                    }
-                                  }
-                                })
-                              }),
-                              _vm._v(" "),
-                              _c("b-form-file", {
-                                staticClass: "mt-2",
-                                attrs: {
-                                  multiple: "",
-                                  accept: "image/jpeg, image/png"
-                                },
-                                on: { change: _vm.loadImage }
-                              })
-                            ],
-                            2
+                              _c(
+                                "div",
+                                { staticStyle: { "text-align": "center" } },
+                                [
+                                  _vm._l(_vm.images, function(i, index) {
+                                    return _c("b-img", {
+                                      key: i.name,
+                                      staticClass: "image",
+                                      attrs: { src: i.src, title: i.name },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.deletePhoto(index)
+                                        }
+                                      }
+                                    })
+                                  }),
+                                  _vm._v(" "),
+                                  _c("b-form-file", {
+                                    staticClass: "mt-2",
+                                    attrs: {
+                                      multiple: "",
+                                      accept: "image/jpeg, image/png"
+                                    },
+                                    on: { change: _vm.loadImage }
+                                  })
+                                ],
+                                2
+                              )
+                            ]
                           ),
                           _vm._v(" "),
                           _c(
