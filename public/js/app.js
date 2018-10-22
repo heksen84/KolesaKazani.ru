@@ -35876,7 +35876,7 @@ var render = function() {
                           id: "email",
                           type: "email",
                           required: "",
-                          placeholder: "Введи email"
+                          placeholder: "Введите email"
                         },
                         model: {
                           value: _vm.form.email,
@@ -35893,7 +35893,7 @@ var render = function() {
                   _c(
                     "b-form-group",
                     {
-                      attrs: { label: "Твой пароль:", "label-for": "password" }
+                      attrs: { label: "Ваш пароль:", "label-for": "password" }
                     },
                     [
                       _c("b-form-input", {
@@ -35901,7 +35901,7 @@ var render = function() {
                           id: "password",
                           type: "password",
                           required: "",
-                          placeholder: "Введи пароль"
+                          placeholder: "Введите пароль"
                         },
                         model: {
                           value: _vm.form.password,
@@ -35958,7 +35958,7 @@ var render = function() {
                       "div",
                       { staticStyle: { "text-align": "center" } },
                       [
-                        _vm._v("\n        Забыли пароль? "),
+                        _vm._v("\n        Забыли пароль? "),
                         _c(
                           "b-link",
                           {
@@ -35969,7 +35969,7 @@ var render = function() {
                         ),
                         _vm._v(" "),
                         _c("br"),
-                        _vm._v("\n        Ещё не зарегистрированы? "),
+                        _vm._v("\n        Ещё не зарегистрированы? "),
                         _c(
                           "b-link",
                           {

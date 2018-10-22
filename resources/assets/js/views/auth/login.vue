@@ -11,15 +11,15 @@
                       type="email"
                       v-model="form.email"
                       required
-                      placeholder="Введи email">
+                      placeholder="Введите email">
         </b-form-input>
       </b-form-group>
-      <b-form-group label="Твой пароль:" label-for="password">
+      <b-form-group label="Ваш пароль:" label-for="password">
         <b-form-input id="password"
                       type="password"
                       v-model="form.password"
                       required
-                      placeholder="Введи пароль">
+                      placeholder="Введите пароль">
         </b-form-input>
       </b-form-group>
       <b-form-group>
@@ -32,9 +32,9 @@
       </b-form-group>
       <b-form-group>
       <div style="text-align:center">
-        Забыли пароль? <b-link style="color:grey" href="/password/reset">Восстановить</b-link>
+        Забыли пароль?&nbsp;<b-link style="color:grey" href="/password/reset">Восстановить</b-link>
         <br>
-        Ещё не зарегистрированы? <b-link style="color:grey" href="/register">Регистрация</b-link>                
+        Ещё не зарегистрированы?&nbsp;<b-link style="color:grey" href="/register">Регистрация</b-link>                
       </div>
       </b-form-group>
     </b-form>
