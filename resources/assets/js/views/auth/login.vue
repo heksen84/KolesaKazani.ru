@@ -32,9 +32,9 @@
       </b-form-group>
       <b-form-group>
       <div style="text-align:center">
-        Забыли пароль?&nbsp;<b-link style="color:grey" href="/password/reset">Восстановить</b-link>
+        Забыли пароль?&nbsp;<b-link style="color:grey;font-weight:bold" href="/password/reset">Восстановить</b-link>
         <br>
-        Ещё не зарегистрированы?&nbsp;<b-link style="color:grey" href="/register">Регистрация</b-link>                
+        Ещё не зарегистрированы?&nbsp;<b-link style="color:grey;font-weight:bold" href="/register">Регистрация</b-link>                
       </div>
       </b-form-group>
     </b-form>

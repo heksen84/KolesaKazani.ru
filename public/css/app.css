@@ -110,6 +110,14 @@ body {
   cursor: default;
 }
 
+#logo_block_text {
+  font-size: 170%;
+  letter-spacing: 4px;
+  padding: 7px;
+  margin-top: -8px;
+  font-weight: 550;
+}
+
 .standart_window {
   text-align: left;
   margin: 50px auto;
@@ -117,18 +125,10 @@ body {
   background: white;
 }
 
-#logo_block_text {
-  font-size: 170%;
-  letter-spacing: 4px;
-  font-weight: 460;
-  padding: 7px;
-  margin-top: -8px;
-}
-
 .search_options_button {
   color: white;
   padding: 1px 10px;
-  background: #648c64;
+  background: #64648c;
   font-size: 15px;
 }
 

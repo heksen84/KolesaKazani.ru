@@ -35960,7 +35960,10 @@ var render = function() {
                         _c(
                           "b-link",
                           {
-                            staticStyle: { color: "grey" },
+                            staticStyle: {
+                              color: "grey",
+                              "font-weight": "bold"
+                            },
                             attrs: { href: "/password/reset" }
                           },
                           [_vm._v("Восстановить")]
@@ -35971,7 +35974,10 @@ var render = function() {
                         _c(
                           "b-link",
                           {
-                            staticStyle: { color: "grey" },
+                            staticStyle: {
+                              color: "grey",
+                              "font-weight": "bold"
+                            },
                             attrs: { href: "/register" }
                           },
                           [_vm._v("Регистрация")]
