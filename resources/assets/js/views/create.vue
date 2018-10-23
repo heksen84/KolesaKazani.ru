@@ -75,7 +75,7 @@
 				<b-form-group label="Фотографии:">
 				<div style="text-align:center">
 					<b-img v-for="(i, index) in images" :src="i.src" :key="i.name" @click="deletePhoto(index)" class="image" :title="i.name"/>
-					<b-form-file multiple accept="image/jpeg, image/png" class="mt-2" @change="loadImage"></b-form-file>
+					<b-form-file multiple accept="image/jpeg, image/png" class="mt-2" @change="loadImage" name="images[]"></b-form-file>
 				</div>
 				</b-form-group>
 
@@ -179,7 +179,7 @@ export default {
   				reader.onload = (function(theFile) {
           		return function(e) {					
 					preview_images_array.push({ "name": theFile.name, "src": e.target.result });
-					root.advert_data.images.push(input_images.files[0]);
+					root.advert_data.images.push(theFile);
           		};
 
           })(image);
