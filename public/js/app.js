@@ -2580,16 +2580,14 @@ var preview_images_array = [];
 
         reader.readAsDataURL(image);
       }
-
-      //console.log(this.$root.advert_data);
-
+      console.log(this.$root.advert_data);
       this.images = preview_images_array;
       input_images.value = "";
     },
     deletePhoto: function deletePhoto(index) {
       this.images.splice(index, 1);
       this.$root.advert_data.images.splice(index, 1);
-      //console.log(this.$root.advert_data.images);
+      console.log(this.$root.advert_data.images);
     },
 
 

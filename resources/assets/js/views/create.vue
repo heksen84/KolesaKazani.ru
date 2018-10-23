@@ -160,7 +160,6 @@ export default {
 			var files = evt.target.files;			
 			var input_images = document.querySelector("input[type=file]");
 
-
 			if (input_images.files.length + this.images.length > this.$root.max_loaded_images) 
 				return;
 			
@@ -187,9 +186,7 @@ export default {
 
 			reader.readAsDataURL(image);			
 		}
-
-			//console.log(this.$root.advert_data);
-
+			console.log(this.$root.advert_data);
 			this.images = preview_images_array;
 			input_images.value = "";
   		},
@@ -197,7 +194,7 @@ export default {
   		deletePhoto(index) {
 			this.images.splice(index, 1);
 			this.$root.advert_data.images.splice(index, 1);
-			//console.log(this.$root.advert_data.images);
+			console.log(this.$root.advert_data.images);
   		},
 
 		// ---------------------------------
