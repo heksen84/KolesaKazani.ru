@@ -2515,7 +2515,6 @@ function forEach(data, callback) {
 	props: ["items"],
 	data: function data() {
 		return {
-
 			/*-----------------------------
    	базовые поля объявления
    -----------------------------*/

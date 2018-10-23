@@ -36,8 +36,8 @@ class AdvertController extends Controller
         $rules = [
             "adv_deal"      => "required",
             "adv_category"  => "required", 
-            "adv_price"     => "required|numeric|max:1",
-            "images.*"      => "image|mimes:jpeg,png,jpg,gif,svg|max:6048"
+            "adv_price"     => "required|numeric",
+            "images.*"      => "image|mimes:jpeg,png,jpg|max:2048"
         ]; 
 
         // сообщения валидации
