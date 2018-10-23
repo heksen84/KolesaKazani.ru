@@ -2559,7 +2559,6 @@ function forEach(data, callback) {
 		//
 		// ------------------------------------------------
 		loadImage: function loadImage(evt) {
-
 			var root = this.$root;
 			var files = evt.target.files;
 			var input_images = document.querySelector("input[type=file]");
