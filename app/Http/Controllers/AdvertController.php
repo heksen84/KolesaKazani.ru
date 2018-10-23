@@ -33,21 +33,20 @@ class AdvertController extends Controller
         \Debugbar::info($data);
 
         // правила валидации      
-        $rules = 
-        [
+        $rules = [
             "adv_deal"      => "required",
             "adv_category"  => "required", 
             "adv_price"     => "required|numeric|max:1",
-            "images.*"      => "image|mimes:jpeg,png,jpg,gif,svg|max:2048"
+            "images.*"      => "image|mimes:jpeg,png,jpg,gif,svg|max:6048"
         ]; 
 
         // сообщения валидации
-        $messages = 
-        [
+        $messages = [
             "adv_deal.required"        => "Укажите вид сделки", 
             "adv_category.required"    => "Укажите категорию товара или услуги",
             "adv_price.required"       => "Укажите цену",
-            "adv_price.numeric"        => "Введите числовое значение для цены"
+            "adv_price.numeric"        => "Введите числовое значение для цены",
+            "images.*.image"           => "Только изображения!"
         ]; 
 
         // проверяем

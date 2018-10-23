@@ -2526,7 +2526,8 @@ function forEach(data, callback) {
 			deal_id: null,
 			text: "",
 			price: 0,
-			images: [],
+			preview_images: [],
+			real_images: [],
 			root: false,
 
 			/*-------------------------
@@ -2558,46 +2559,42 @@ function forEach(data, callback) {
 		//
 		// ------------------------------------------------
 		loadImage: function loadImage(evt) {
-
 			var root = this.$root;
 			var files = evt.target.files;
 			var input_images = document.querySelector("input[type=file]");
+			var preview_images = this.preview_images;
+			var real_images = this.real_images;
 
-			if (input_images.files.length + this.images.length > this.$root.max_loaded_images) return;
+			if (input_images.files.length + preview_images.length > this.$root.max_loaded_images) return;
 
-			this.$root.advert_data.images = []; // обнуляем и за одно создаём массив изображений
-			//root.advert_data.images=input_images.files[0];
+			//this.$root.advert_data.images=[];	// обнуляем и за одно создаём массив изображений
 
 			for (var i = 0; i < files.length; i++) {
 				if (i === this.$root.max_loaded_images) break;
 
 				// если уже существует, не обрабатывать изображение
-				for (var j = 0; j < this.images.length; j++) {
-					if (files[i].name == this.images[j].name) {
-						return false;
-					}
-				}
-
-				var image = files[i];
+				for (var j = 0; j < preview_images.length; j++) {
+					if (files[i].name == preview_images[j].name) return false;
+				}var image = files[i];
 				var reader = new FileReader();
 
 				reader.onload = function (theFile) {
 					return function (e) {
-						preview_images_array.push({ "name": theFile.name, "src": e.target.result });
+						if (theFile.type == "image/jpeg" || theFile.type == "image/pjpeg" || theFile.type == "image/png") {
+							preview_images.push({ "name": theFile.name, "src": e.target.result });
+							real_images.push(theFile);
+						} else root.$notify({ group: 'foo', text: "<h6>Только изображения!</h6>", type: 'error' });
 					};
 				}(image);
 
 				reader.readAsDataURL(image);
 			}
-			console.log(this.$root.advert_data);
 
-			this.images = preview_images_array;
-			//input_images.value = "";
+			input_images.value = "";
 		},
 		deletePhoto: function deletePhoto(index) {
-			//document.querySelector("input[type=file]")[index].value="";
-			this.images.splice(index, 1);
-			this.$root.advert_data.images.splice(index, 1);
+			this.preview_images.splice(index, 1);
+			this.real_images.splice(index, 1);
 			console.log(this.$root.advert_data.images);
 		},
 
@@ -2738,28 +2735,27 @@ function forEach(data, callback) {
 
 			var formData = new FormData();
 
+			// записываю значения полей
 			forEach(this.$root.advert_data, function (key, value) {
 				formData.append(key, value);
 				console.log(key + ":" + value);
 			});
 
-			var input_images = document.querySelector("input[type=file]");
-
-			for (var i = 0; i < input_images.files.length; i++) {
-				var image = input_images.files[i];
-				formData.append('images[' + i + ']', image);
+			// записываю изображения
+			for (var i = 0; i < this.real_images.length; i++) {
+				formData.append('images[' + i + ']', this.real_images[i]);
 			}
 
 			axios.post('/create', formData, {
 				headers: { 'Content-Type': 'multipart/form-data' }
 			}).then(function (response) {
 				console.log(response);
-				if (response.data.result == "db.error") _this.$root.$notify({ group: 'foo', text: "<h5>Неполадки в работе сервиса. Приносим свои извинения.</h5>", type: 'error' });else if (response.data.result == "usr.error") _this.$root.$notify({ group: 'foo', text: "<h5>" + response.data.msg + "</h5>", type: 'warning' });
+				if (response.data.result == "db.error") _this.$root.$notify({ group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error' });else if (response.data.result == "usr.error") _this.$root.$notify({ group: 'foo', text: "<h6>" + response.data.msg + "</h6>", type: 'error' });
 				//	else 
 				//	window.location="home"; // переходим в личный кабинет
 			}).catch(function (error) {
 				console.log(error.response);
-				_this.$root.$notify({ group: 'foo', text: "<h5>Невозможно отправить запрос. Проверьте подключение к интернету.</h5>", type: 'error' });
+				_this.$root.$notify({ group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error' });
 			});
 		}
 	}
@@ -36472,7 +36468,10 @@ var render = function() {
                                 "div",
                                 { staticStyle: { "text-align": "center" } },
                                 [
-                                  _vm._l(_vm.images, function(i, index) {
+                                  _vm._l(_vm.preview_images, function(
+                                    i,
+                                    index
+                                  ) {
                                     return _c("b-img", {
                                       key: i.name,
                                       staticClass: "image",
