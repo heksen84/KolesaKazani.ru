@@ -29,22 +29,16 @@ class AdvertController extends Controller
     public function createAdvert(Request $request) {
 
         $data = $request->all();
-        /*$data   = $request->input('adv');
-        $images = $request->input('images');*/
-
+    
         \Debugbar::info($data);
-
-
-        
-
 
         // правила валидации      
         $rules = 
         [
             "adv_deal"      => "required",
             "adv_category"  => "required", 
-            "adv_price"     => "required|numeric",
-            "images"        => "required"
+            "adv_price"     => "required|numeric|max:1",
+            "images.*"      => "image|mimes:jpeg,png,jpg,gif,svg|max:2048"
         ]; 
 
         // сообщения валидации
@@ -59,7 +53,6 @@ class AdvertController extends Controller
         // проверяем
         $validator = Validator::make( $data, $rules, $messages );
 
-        
         if ( $validator->fails() )  
             return response()->json(["result"=>"usr.error", "msg"=>$validator->errors()->first()]);  
                 

@@ -75,7 +75,7 @@
 				<b-form-group label="Фотографии:">
 				<div style="text-align:center">
 					<b-img v-for="(i, index) in images" :src="i.src" :key="i.name" @click="deletePhoto(index)" class="image" :title="i.name"/>
-					<b-form-file multiple accept="image/jpeg, image/png" class="mt-2" @change="loadImage"></b-form-file>
+					<b-form-file multiple accept=".png, .jpg, .jpeg" class="mt-2" @change="loadImage"></b-form-file>
 				</div>
 				</b-form-group>
 
@@ -151,7 +151,6 @@ export default {
 
 	created() {
 		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
-		this.$root.advert_data.images=[];		// обнуляем и за одно создаём массив изображений
 	},
 
 	components: { transport, realestate },
@@ -171,7 +170,10 @@ export default {
 
 			if (input_images.files.length + this.images.length > this.$root.max_loaded_images) 
 				return;
-			
+
+			this.$root.advert_data.images=[];	// обнуляем и за одно создаём массив изображений
+			//root.advert_data.images=input_images.files[0];
+
 			for (var i=0; i<files.length; i++) {
 				if (i===this.$root.max_loaded_images) break;
 
@@ -183,14 +185,12 @@ export default {
 				}
 
         		var image  = files[i]
-				var reader = new FileReader();				
+				var reader = new FileReader();
 
+			
   				reader.onload = (function(theFile) {
           		return function(e) {					
-					preview_images_array.push({ "name": theFile.name, "src": e.target.result });
-					root.advert_data.images.push(theFile);
-					//root.advert_data.images=files;
-					//root.advert_data.images = input_images.files;
+					preview_images_array.push({ "name": theFile.name, "src": e.target.result });				
           		};
 
           })(image);
@@ -198,13 +198,15 @@ export default {
 			reader.readAsDataURL(image);			
 		}
 			console.log(this.$root.advert_data);
+			
 			this.images = preview_images_array;
-			input_images.value = "";
+			//input_images.value = "";
   		},
 
   		deletePhoto(index) {
+			//document.querySelector("input[type=file]")[index].value="";
 			this.images.splice(index, 1);
-			//this.$root.advert_data.images.splice(index, 1);
+			this.$root.advert_data.images.splice(index, 1);
 			console.log(this.$root.advert_data.images);
   		},
 
@@ -336,32 +338,28 @@ export default {
 			console.log(key + ":" + value);
 		})
 
-		//console.log(this.$root.advert_data);
+			var input_images = document.querySelector("input[type=file]");
 
+		 	for( var i=0; i<input_images.files.length; i++ ) {
+          		let image = input_images.files[i];
+          		formData.append('images['+i+']', image);
+			}
+		
 		axios.post('/create', formData, {
 		headers: { 'Content-Type': 'multipart/form-data' }
         }).then(response => {
-              console.log(response)
-        }).catch(error => {
-              console.log(error.response)
-		})
-
-     	// сохраняю объявление
-		/*post('/create', { "data": this.$root.advert_data }).then((response) => {		
-			console.log(response);
-			
+              console.log(response);
 			if (response.data.result=="db.error")
 				this.$root.$notify({group: 'foo', text: "<h5>Неполадки в работе сервиса. Приносим свои извинения.</h5>", type: 'error'});
 			else
 			if (response.data.result=="usr.error")
 				this.$root.$notify({group: 'foo', text: "<h5>"+response.data.msg+"</h5>", type: 'warning'});
-		//	else 
-		//	window.location="home"; // переходим в личный кабинет
-
-		}).catch((err) => {
-			console.log(err);
-			this.$root.$notify({group: 'foo', text: "<h5>Невозможно отправить запрос. Проверьте подключение к интернету.</h5>", type: 'error'});
-		});*/
+			//	else 
+			//	window.location="home"; // переходим в личный кабинет
+        }).catch(error => {
+			  console.log(error.response)
+			  this.$root.$notify({group: 'foo', text: "<h5>Невозможно отправить запрос. Проверьте подключение к интернету.</h5>", type: 'error'});
+		})
     }
 }
 }
