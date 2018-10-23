@@ -2545,9 +2545,11 @@ var preview_images_array = [];
   components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default.a },
   methods: {
 
-    // ---------------------------------
+    // ------------------------------------------------
+    //
     // Загрузка изображений
-    // ---------------------------------
+    //
+    // ------------------------------------------------
     loadImage: function loadImage(evt) {
 
       var root = this.$root;
