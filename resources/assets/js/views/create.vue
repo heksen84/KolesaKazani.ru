@@ -338,12 +338,12 @@ export default {
 			console.log(key + ":" + value);
 		})
 
-			var input_images = document.querySelector("input[type=file]");
+		var input_images = document.querySelector("input[type=file]");
 
-		 	for( var i=0; i<input_images.files.length; i++ ) {
-          		let image = input_images.files[i];
-          		formData.append('images['+i+']', image);
-			}
+		for( var i=0; i<input_images.files.length; i++ ) {
+          	let image = input_images.files[i];
+          	formData.append('images['+i+']', image);
+		}
 		
 		axios.post('/create', formData, {
 		headers: { 'Content-Type': 'multipart/form-data' }
