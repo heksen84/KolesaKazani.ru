@@ -338,7 +338,7 @@ export default {
 		}
 		
 		axios.post('/create', formData, {
-		headers: { 'Content-Type': 'multipart/form-data' }
+			headers: { 'Content-Type': 'multipart/form-data' }
         }).then(response => {
               console.log(response);
 			if (response.data.result=="db.error")
