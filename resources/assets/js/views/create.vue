@@ -160,6 +160,7 @@ export default {
 		//
 		// ------------------------------------------------
   		loadImage(evt) {
+			  
 			var root  = this.$root;  
 			var files = evt.target.files;			
 			var input_images = document.querySelector("input[type=file]");	
