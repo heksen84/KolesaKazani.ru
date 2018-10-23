@@ -163,9 +163,9 @@ export default {
 			
 			for (var i=0; i<files.length; i++) {
 
-				if (i===this.$root.max_loaded_images) 
-				break;
+				if (i===this.$root.max_loaded_images) break;
 
+				// если уже существует, не обрабатывать изображение
 				for (var j=0; j<this.images.length; j++) {
 					if (files[i].name==this.images[j].name) {
 						return false;
@@ -179,8 +179,7 @@ export default {
 
   				reader.onload = (function(theFile) {
           		return function(e) {										
-					tmp_images_array.push({ "name": theFile.name, "src": e.target.result });					
-					
+					tmp_images_array.push({ "name": theFile.name, "src": e.target.result });										
           		};
 
           })(image);
