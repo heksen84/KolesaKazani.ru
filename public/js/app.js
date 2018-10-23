@@ -2554,8 +2554,6 @@ var preview_images_array = [];
       var files = evt.target.files;
       var input_images = document.querySelector("input[type=file]");
 
-      //console.log(files);
-
       if (input_images.files.length + this.images.length > this.$root.max_loaded_images) return;
 
       for (var i = 0; i < files.length; i++) {
