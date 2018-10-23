@@ -75,7 +75,7 @@
 				<b-form-group label="Фотографии:">
 				<div style="text-align:center">
 					<b-img v-for="(i, index) in images" :src="i.src" :key="i.name" @click="deletePhoto(index)" class="image" :title="i.name"/>
-					<b-form-file multiple accept="image/jpeg, image/png" class="mt-2" @change="loadImage" name="images[]"></b-form-file>
+					<b-form-file multiple accept="image/jpeg, image/png" class="mt-2" @change="loadImage"></b-form-file>
 				</div>
 				</b-form-group>
 
@@ -159,6 +159,10 @@ export default {
 			var root  = this.$root;  
 			var files = evt.target.files;			
 			var input_images = document.querySelector("input[type=file]");
+
+			console.log("-----------------");
+			console.log(input_images.files[0])
+			console.log("-----------------")
 
 			if (input_images.files.length + this.images.length > this.$root.max_loaded_images) 
 				return;

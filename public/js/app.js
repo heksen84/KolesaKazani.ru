@@ -2556,6 +2556,10 @@ var preview_images_array = [];
       var files = evt.target.files;
       var input_images = document.querySelector("input[type=file]");
 
+      console.log("-----------------");
+      console.log(input_images.files[0]);
+      console.log("-----------------");
+
       if (input_images.files.length + this.images.length > this.$root.max_loaded_images) return;
 
       for (var i = 0; i < files.length; i++) {
@@ -36482,8 +36486,7 @@ var render = function() {
                                     staticClass: "mt-2",
                                     attrs: {
                                       multiple: "",
-                                      accept: "image/jpeg, image/png",
-                                      name: "images[]"
+                                      accept: "image/jpeg, image/png"
                                     },
                                     on: { change: _vm.loadImage }
                                   })
