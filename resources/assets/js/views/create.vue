@@ -156,6 +156,8 @@ export default {
 			var files = evt.target.files;
 			var input_images = document.querySelector("input[type=file]");
 
+			console.log(files);
+
 			if (input_images.files.length + this.images.length > this.$root.max_loaded_images) 
 				return;
 			
@@ -170,13 +172,15 @@ export default {
 					}
 				}
 
+				// здесь нужно поместить наш files[i] фотографию в массив глобального объекта
+
         		var image  = files[i]
   				var reader = new FileReader();
 
   				reader.onload = (function(theFile) {
-          		return function(e) {					
-					// здесь нужно поместить фотографии в массив глобального объекта
+          		return function(e) {										
 					tmp_images_array.push({ "name": theFile.name, "src": e.target.result });					
+					
           		};
 
           })(image);
