@@ -2559,6 +2559,7 @@ function forEach(data, callback) {
 		//
 		// ------------------------------------------------
 		loadImage: function loadImage(evt) {
+
 			var root = this.$root;
 			var files = evt.target.files;
 			var input_images = document.querySelector("input[type=file]");
@@ -2587,18 +2588,19 @@ function forEach(data, callback) {
 
 				reader.readAsDataURL(image);
 			}
-
 			input_images.value = "";
 		},
+
+
+		// Удаление фото по щелчку
 		deletePhoto: function deletePhoto(index) {
+			document.querySelector("input[type=file]").value = "";
 			this.preview_images.splice(index, 1);
 			this.real_images.splice(index, 1);
-			console.log(this.$root.advert_data.images);
 		},
 
 
 		// ---------------------------------
-
 		closeAndReturn: function closeAndReturn() {
 			window.history.back();
 		},

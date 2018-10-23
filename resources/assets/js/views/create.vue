@@ -163,6 +163,7 @@ export default {
 		//
 		// ------------------------------------------------
   		loadImage(evt) {
+
 			var root  = this.$root;  
 			var files = evt.target.files;			
 			var input_images = document.querySelector("input[type=file]");	
@@ -193,24 +194,23 @@ export default {
 					root.$notify({group: 'foo', text: "<h6>Только изображения!</h6>", type: 'error'});				
           		};
 
-          })(image);
-
+		  })(image);
+		  
 			reader.readAsDataURL(image);			
 		}
-
 			input_images.value = "";
-  		},
+		},
 
+		// Удаление фото по щелчку
   		deletePhoto(index) {
+			document.querySelector("input[type=file]").value = "";
 			this.preview_images.splice(index, 1);
 			this.real_images.splice(index, 1);
-			console.log(this.$root.advert_data.images);
   		},
 
 		// ---------------------------------
-
   		closeAndReturn() {
- 			  window.history.back();
+ 			window.history.back();
   		},
 
   		// сброс данных при выборе категории
