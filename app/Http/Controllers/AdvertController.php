@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
+//use Illuminate\Foundation\Validation\ValidatesRequests;
 use Validator;
 use App\Adverts;
 use App\CarMark;
@@ -29,12 +30,32 @@ class AdvertController extends Controller
 
         \Debugbar::info($request->all()); // отладка мать её
 
+
+        /*
+        $img_rules = [
+            "data.image.*"=>"image|mimes:jpeg,png,jpg|max:2048"
+        ]
+
+        $img_messages = [
+            "data.image.max" =>"Большой размер картинки", 
+        ]
+
+        // проверяем
+        $validator = Validator::make( $request->all(), $img_rules, $img_messages );
+
+        // если ошибка, возвращаем false и текст ошибки
+        if ( $validator->fails() )  
+            return response()->json(["result"=>"usr.error", "msg"=>$validator->errors()->first()]);  
+
+        */
+
         // правила валидации      
         $rules = 
         [
             "data.adv_deal"      => "required",
             "data.adv_category"  => "required", 
-            "data.adv_price"     => "required|numeric"
+            "data.adv_price"     => "required|numeric",
+            "data.images.*"      => "image|mimes:png,jpg,jpeg,bmp"
         ]; 
 
         // сообщения валидации
@@ -44,6 +65,8 @@ class AdvertController extends Controller
             "data.adv_category.required"    =>"Укажите категорию товара или услуги",
             "data.adv_price.required"       =>"Укажите цену",
             "data.adv_price.numeric"        =>"Введите числовое значение для цены",
+            //"data.images.*"                 =>"Не картинка",
+            //"data.images.*.max"             =>"Большой размер картинки" 
         ]; 
 
         // проверяем
@@ -58,6 +81,8 @@ class AdvertController extends Controller
         $category   = $data["adv_category"];
         $text       = $data["adv_info"];
         $price      = $data["adv_price"];
+
+        \Debugbar::info($data["images.0"]);
 
      	try {
      			
