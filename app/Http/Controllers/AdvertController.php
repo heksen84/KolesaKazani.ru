@@ -179,7 +179,7 @@ class AdvertController extends Controller
     }
 
     public function getFullInfo($id) {
-    	$item = DB::table('adverts')->where('id', $id)->get();
+    	$item = DB::table('adverts')->where("id", $id)->get();
         return view('fullinfo')->with("item", $item );
     }
 
