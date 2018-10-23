@@ -181,6 +181,7 @@ export default {
           		return function(e) {					
 					preview_images_array.push({ "name": theFile.name, "src": e.target.result });
 					root.advert_data.images.push(theFile);
+					//root.advert_data.images=files;
 					//root.advert_data.images = input_images.files;
           		};
 
@@ -322,9 +323,8 @@ export default {
 
 		var formData = new FormData();
 		//formData.append("test", document.querySelector("input[type=file]").files);
-
-//		formData.append("form", document.querySelector("input[type=file]").files);
-		formData.append("form", this.$root.advert_data);
+		//formData.append("form", document.querySelector("input[type=file]").files);
+		formData.append("images", document.querySelector("input[type=file]").files);
 
 		axios.post('/create', formData, {
             headers: {

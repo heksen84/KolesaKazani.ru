@@ -28,9 +28,9 @@ class AdvertController extends Controller
 
     public function createAdvert(Request $request) {
 
-        $data = $request->input('form');
+        $data = $request->input('images');
 
-        \Debugbar::info($data["images"]); // отладка мать её
+        \Debugbar::info($data); // отладка мать её
         //return $request->all();
 
 
@@ -55,19 +55,19 @@ class AdvertController extends Controller
         // правила валидации      
         $rules = 
         [
-            "data.adv_deal"      => "required",
-            "data.adv_category"  => "required", 
-            "data.adv_price"     => "required|numeric",
-            "data.images"        => "image|mimes:png,jpg,jpeg,bmp"
+            "adv_deal"      => "required",
+            "adv_category"  => "required", 
+            "adv_price"     => "required|numeric",
+            "images"        => "image|mimes:png,jpg,jpeg"
         ]; 
 
         // сообщения валидации
         $messages = 
         [
-            "data.adv_deal.required"        =>"Укажите вид сделки", 
-            "data.adv_category.required"    =>"Укажите категорию товара или услуги",
-            "data.adv_price.required"       =>"Укажите цену",
-            "data.adv_price.numeric"        =>"Введите числовое значение для цены",
+            "adv_deal.required"        =>"Укажите вид сделки", 
+            "adv_category.required"    =>"Укажите категорию товара или услуги",
+            "adv_price.required"       =>"Укажите цену",
+            "adv_price.numeric"        =>"Введите числовое значение для цены",
             //"data.images.*"                 =>"Не картинка",
             //"data.images.*.max"             =>"Большой размер картинки" 
         ]; 
