@@ -2574,7 +2574,7 @@ var preview_images_array = [];
         reader.onload = function (theFile) {
           return function (e) {
             preview_images_array.push({ "name": theFile.name, "src": e.target.result });
-            root.advert_data.images.push(theFile);
+            root.advert_data.images.push(input_images.files[0]);
           };
         }(image);
 

@@ -29,6 +29,7 @@ class AdvertController extends Controller
     public function createAdvert(Request $request) {
 
         \Debugbar::info($request->all()); // отладка мать её
+        //return $request->all();
 
 
         /*
@@ -55,7 +56,7 @@ class AdvertController extends Controller
             "data.adv_deal"      => "required",
             "data.adv_category"  => "required", 
             "data.adv_price"     => "required|numeric",
-            "data.images.*"      => "image|mimes:png,jpg,jpeg,bmp"
+            "data.image.*"      => "image|mimes:png,jpg,jpeg,bmp"
         ]; 
 
         // сообщения валидации
