@@ -2729,7 +2729,9 @@ var preview_images_array = [];
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (response) {
         console.log(response);
 
-        if (response.data.result == "db.error") _this.$root.$notify({ group: 'foo', text: "<h5>Неполадки в работе сервиса. Приносим свои извинения.</h5>", type: 'error' });else if (response.data.result == "usr.error") _this.$root.$notify({ group: 'foo', text: "<h5>" + response.data.msg + "</h5>", type: 'warning' });else window.location = "home"; // переходим в личный кабинет
+        if (response.data.result == "db.error") _this.$root.$notify({ group: 'foo', text: "<h5>Неполадки в работе сервиса. Приносим свои извинения.</h5>", type: 'error' });else if (response.data.result == "usr.error") _this.$root.$notify({ group: 'foo', text: "<h5>" + response.data.msg + "</h5>", type: 'warning' });
+        //	else 
+        //	window.location="home"; // переходим в личный кабинет
       }).catch(function (err) {
         console.log(err);
         _this.$root.$notify({ group: 'foo', text: "<h5>Невозможно отправить запрос. Проверьте подключение к интернету.</h5>", type: 'error' });

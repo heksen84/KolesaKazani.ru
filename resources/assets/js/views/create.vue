@@ -327,8 +327,8 @@ export default {
 			else
 			if (response.data.result=="usr.error")
 				this.$root.$notify({group: 'foo', text: "<h5>"+response.data.msg+"</h5>", type: 'warning'});
-			else 
-			window.location="home"; // переходим в личный кабинет
+		//	else 
+		//	window.location="home"; // переходим в личный кабинет
 
 		}).catch((err) => {
 			console.log(err);
