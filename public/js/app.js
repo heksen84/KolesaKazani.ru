@@ -2738,7 +2738,6 @@ function forEach(data, callback) {
 			// записываю значения полей
 			forEach(this.$root.advert_data, function (key, value) {
 				formData.append(key, value);
-				console.log(key + ":" + value);
 			});
 
 			// записываю изображения
