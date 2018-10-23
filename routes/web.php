@@ -3,6 +3,10 @@ use Illuminate\Support\Facades\DB;
 
 Auth::routes();
 
+Route::get('test',  function () { return view('test'); });
+Route::post('checkPhotos',  'TestController@checkPhotos');
+
+
 Route::get('getCategoryCountById', 'WelcomeController@getCategoryCountById');
 Route::get('getCategoryCounts', 'WelcomeController@getCategoryCounts');
 
