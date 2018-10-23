@@ -2503,260 +2503,270 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var preview_images_array = [];
 
+function forEach(data, callback) {
+	for (var key in data) {
+		if (data.hasOwnProperty(key)) {
+			callback(key, data[key]);
+		}
+	}
+}
+
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ["items"],
+	props: ["items"],
 
-  data: function data() {
-    return {
+	data: function data() {
+		return {
 
-      /*-----------------------------
-      	базовые поля объявления
-      -----------------------------*/
-      sdelka: this.$root.options_sdelka,
-      category: null,
-      deal_id: null,
-      text: "",
-      price: 0,
-      images: [],
-      root: false,
+			/*-----------------------------
+   	базовые поля объявления
+   -----------------------------*/
+			sdelka: this.$root.options_sdelka,
+			category: null,
+			deal_id: null,
+			text: "",
+			price: 0,
+			images: [],
+			root: false,
 
-      /*-------------------------
-      	категории 
-      -------------------------*/
-      transport: false, // транспорт
-      real_estate: false, // недвижимость
-      appliances: false, // бытовая техника
-      work_and_buisness: false, // работа и бизнес
-      for_home: false, // для дома и дачи
-      personal_effects: false, // личные вещи
-      animals: false, // животные
-      hobbies_and_leisure: false, // хобби и отдых
-      services: false, // услуги
-      other: false // другое
-    };
-  },
-  created: function created() {
-    this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
-    this.$root.advert_data.images = []; // обнуляем и за одно создаём массив изображений
-  },
-
-
-  components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default.a },
-  methods: {
-
-    // ------------------------------------------------
-    //
-    // Загрузка изображений
-    //
-    // ------------------------------------------------
-    loadImage: function loadImage(evt) {
-
-      var root = this.$root;
-      var files = evt.target.files;
-      var input_images = document.querySelector("input[type=file]");
-
-      if (input_images.files.length + this.images.length > this.$root.max_loaded_images) return;
-
-      for (var i = 0; i < files.length; i++) {
-        if (i === this.$root.max_loaded_images) break;
-
-        // если уже существует, не обрабатывать изображение
-        for (var j = 0; j < this.images.length; j++) {
-          if (files[i].name == this.images[j].name) {
-            return false;
-          }
-        }
-
-        var image = files[i];
-        var reader = new FileReader();
-
-        reader.onload = function (theFile) {
-          return function (e) {
-            preview_images_array.push({ "name": theFile.name, "src": e.target.result });
-            root.advert_data.images.push(theFile);
-            //root.advert_data.images=files;
-            //root.advert_data.images = input_images.files;
-          };
-        }(image);
-
-        reader.readAsDataURL(image);
-      }
-      console.log(this.$root.advert_data);
-      this.images = preview_images_array;
-      input_images.value = "";
-    },
-    deletePhoto: function deletePhoto(index) {
-      this.images.splice(index, 1);
-      //this.$root.advert_data.images.splice(index, 1);
-      console.log(this.$root.advert_data.images);
-    },
+			/*-------------------------
+   	категории 
+   -------------------------*/
+			transport: false, // транспорт
+			real_estate: false, // недвижимость
+			appliances: false, // бытовая техника
+			work_and_buisness: false, // работа и бизнес
+			for_home: false, // для дома и дачи
+			personal_effects: false, // личные вещи
+			animals: false, // животные
+			hobbies_and_leisure: false, // хобби и отдых
+			services: false, // услуги
+			other: false // другое
+		};
+	},
+	created: function created() {
+		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
+		this.$root.advert_data.images = []; // обнуляем и за одно создаём массив изображений
+	},
 
 
-    // ---------------------------------
+	components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default.a },
+	methods: {
 
-    closeAndReturn: function closeAndReturn() {
-      window.history.back();
-    },
+		// ------------------------------------------------
+		//
+		// Загрузка изображений
+		//
+		// ------------------------------------------------
+		loadImage: function loadImage(evt) {
 
+			var root = this.$root;
+			var files = evt.target.files;
+			var input_images = document.querySelector("input[type=file]");
 
-    // сброс данных при выборе категории
-    resetCategories: function resetCategories(data) {
-      this.root = false; // по умолчанию
-      this.transport = false; // транспорт
-      this.real_estate = false; // недвижимость
-      this.appliances = false; // бытовая техника
-      this.work_and_buisness = false; // работа и бизнес
-      this.for_home = false; // для дома и дачи
-      this.personal_effects = false; // личные вещи
-      this.animals = false; // животные
-      this.hobbies_and_leisure = false; // хобби и отдых
-      this.services = false; // услуги
-      this.other = false; // другое 
-    },
-    setInfo: function setInfo(info) {
-      this.$root.advert_data.adv_info = info;
-    },
-    setPrice: function setPrice(price) {
-      if (price < 0) return;
-      this.$root.advert_data.adv_price = price;
-      this.price = price;
-      return price;
-    },
-    setDeal: function setDeal(deal_id) {
-      this.$root.advert_data.adv_deal = deal_id;
-      this.deal_id = deal_id;
-    },
+			if (input_images.files.length + this.images.length > this.$root.max_loaded_images) return;
 
+			for (var i = 0; i < files.length; i++) {
+				if (i === this.$root.max_loaded_images) break;
 
-    /*
-    --------------------------
-    изменения в категориях
-    --------------------------*/
-    changeCategory: function changeCategory(data) {
+				// если уже существует, не обрабатывать изображение
+				for (var j = 0; j < this.images.length; j++) {
+					if (files[i].name == this.images[j].name) {
+						return false;
+					}
+				}
 
-      // сбрасываю дополнительные поля
-      this.$store.commit("hideOtherFields");
+				var image = files[i];
+				var reader = new FileReader();
 
-      // добавляю категорию
-      this.$root.advert_data.adv_category = data;
+				reader.onload = function (theFile) {
+					return function (e) {
+						preview_images_array.push({ "name": theFile.name, "src": e.target.result });
+						root.advert_data.images.push(theFile);
+						//root.advert_data.images=files;
+						//root.advert_data.images = input_images.files;
+					};
+				}(image);
 
-      // по умолчанию показываю доп. поля
-      this.$store.commit("showOtherFields");
-
-      switch (data) {
-        case null:
-          {
-            this.resetCategories(data);
-            this.root = true;
-            this.$store.commit("hideOtherFields");
-            break;
-          }
-        case 1:
-          {
-            this.resetCategories(data);
-            this.transport = true;
-            this.$store.commit("hideOtherFields");
-            break;
-          }
-        case 2:
-          {
-            this.resetCategories(data);
-            this.real_estate = true;
-            this.$store.commit("hideOtherFields");
-            break;
-          }
-        case 3:
-          {
-            this.resetCategories(data);
-            this.appliances = true;
-            break;
-          }
-        case 4:
-          {
-            this.resetCategories(data);
-            this.work_and_buisness = true;
-            break;
-          }
-        case 5:
-          {
-            this.resetCategories(data);
-            this.for_home = true;
-            break;
-          }
-        case 6:
-          {
-            this.resetCategories(data);
-            this.personal_effects = true;
-            break;
-          }
-        case 7:
-          {
-            this.resetCategories(data);
-            this.animals = true;
-            break;
-          }
-        case 8:
-          {
-            this.resetCategories(data);
-            this.hobbies_and_leisure = true;
-            break;
-          }
-        case 9:
-          {
-            this.resetCategories(data);
-            this.services = true;
-            break;
-          }
-        case 10:
-          {
-            this.resetCategories(data);
-            this.other = true;
-            break;
-          }
-      }
-    },
+				reader.readAsDataURL(image);
+			}
+			console.log(this.$root.advert_data);
+			this.images = preview_images_array;
+			input_images.value = "";
+		},
+		deletePhoto: function deletePhoto(index) {
+			this.images.splice(index, 1);
+			//this.$root.advert_data.images.splice(index, 1);
+			console.log(this.$root.advert_data.images);
+		},
 
 
-    /*
-    ----------------------------
-    Сохранить объявление
-    ----------------------------*/
-    onSubmit: function onSubmit(evt) {
-      evt.preventDefault();
+		// ---------------------------------
 
-      var formData = new FormData();
-      //formData.append("test", document.querySelector("input[type=file]").files);
-      //formData.append("form", document.querySelector("input[type=file]").files);
-      formData.append("images", document.querySelector("input[type=file]").files);
+		closeAndReturn: function closeAndReturn() {
+			window.history.back();
+		},
 
-      axios.post('/create', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      }).then(function (response) {
-        console.log(response);
-      }).catch(function (error) {
-        console.log(error.response);
-      });
 
-      // сохраняю объявление
-      /*post('/create', { "data": this.$root.advert_data }).then((response) => {		
-      	console.log(response);
-      	
-      	if (response.data.result=="db.error")
-      		this.$root.$notify({group: 'foo', text: "<h5>Неполадки в работе сервиса. Приносим свои извинения.</h5>", type: 'error'});
-      	else
-      	if (response.data.result=="usr.error")
-      		this.$root.$notify({group: 'foo', text: "<h5>"+response.data.msg+"</h5>", type: 'warning'});
-      //	else 
-      //	window.location="home"; // переходим в личный кабинет
-      		}).catch((err) => {
-      	console.log(err);
-      	this.$root.$notify({group: 'foo', text: "<h5>Невозможно отправить запрос. Проверьте подключение к интернету.</h5>", type: 'error'});
-      });*/
-    }
-  }
+		// сброс данных при выборе категории
+		resetCategories: function resetCategories(data) {
+			this.root = false; // по умолчанию
+			this.transport = false; // транспорт
+			this.real_estate = false; // недвижимость
+			this.appliances = false; // бытовая техника
+			this.work_and_buisness = false; // работа и бизнес
+			this.for_home = false; // для дома и дачи
+			this.personal_effects = false; // личные вещи
+			this.animals = false; // животные
+			this.hobbies_and_leisure = false; // хобби и отдых
+			this.services = false; // услуги
+			this.other = false; // другое 
+		},
+		setInfo: function setInfo(info) {
+			this.$root.advert_data.adv_info = info;
+		},
+		setPrice: function setPrice(price) {
+			if (price < 0) return;
+			this.$root.advert_data.adv_price = price;
+			this.price = price;
+			return price;
+		},
+		setDeal: function setDeal(deal_id) {
+			this.$root.advert_data.adv_deal = deal_id;
+			this.deal_id = deal_id;
+		},
+
+
+		/*
+  --------------------------
+  изменения в категориях
+  --------------------------*/
+		changeCategory: function changeCategory(data) {
+
+			// сбрасываю дополнительные поля
+			this.$store.commit("hideOtherFields");
+
+			// добавляю категорию
+			this.$root.advert_data.adv_category = data;
+
+			// по умолчанию показываю доп. поля
+			this.$store.commit("showOtherFields");
+
+			switch (data) {
+				case null:
+					{
+						this.resetCategories(data);
+						this.root = true;
+						this.$store.commit("hideOtherFields");
+						break;
+					}
+				case 1:
+					{
+						this.resetCategories(data);
+						this.transport = true;
+						this.$store.commit("hideOtherFields");
+						break;
+					}
+				case 2:
+					{
+						this.resetCategories(data);
+						this.real_estate = true;
+						this.$store.commit("hideOtherFields");
+						break;
+					}
+				case 3:
+					{
+						this.resetCategories(data);
+						this.appliances = true;
+						break;
+					}
+				case 4:
+					{
+						this.resetCategories(data);
+						this.work_and_buisness = true;
+						break;
+					}
+				case 5:
+					{
+						this.resetCategories(data);
+						this.for_home = true;
+						break;
+					}
+				case 6:
+					{
+						this.resetCategories(data);
+						this.personal_effects = true;
+						break;
+					}
+				case 7:
+					{
+						this.resetCategories(data);
+						this.animals = true;
+						break;
+					}
+				case 8:
+					{
+						this.resetCategories(data);
+						this.hobbies_and_leisure = true;
+						break;
+					}
+				case 9:
+					{
+						this.resetCategories(data);
+						this.services = true;
+						break;
+					}
+				case 10:
+					{
+						this.resetCategories(data);
+						this.other = true;
+						break;
+					}
+			}
+		},
+
+
+		/*
+  ----------------------------
+  Сохранить объявление
+  ----------------------------*/
+		onSubmit: function onSubmit(evt) {
+			evt.preventDefault();
+
+			var formData = new FormData();
+
+			forEach(this.$root.advert_data, function (key, value) {
+				formData.append(key, value);
+				console.log(key + ":" + value);
+			});
+
+			//console.log(this.$root.advert_data);
+
+			axios.post('/create', formData, {
+				headers: { 'Content-Type': 'multipart/form-data' }
+			}).then(function (response) {
+				console.log(response);
+			}).catch(function (error) {
+				console.log(error.response);
+			});
+
+			// сохраняю объявление
+			/*post('/create', { "data": this.$root.advert_data }).then((response) => {		
+   	console.log(response);
+   	
+   	if (response.data.result=="db.error")
+   		this.$root.$notify({group: 'foo', text: "<h5>Неполадки в работе сервиса. Приносим свои извинения.</h5>", type: 'error'});
+   	else
+   	if (response.data.result=="usr.error")
+   		this.$root.$notify({group: 'foo', text: "<h5>"+response.data.msg+"</h5>", type: 'warning'});
+   //	else 
+   //	window.location="home"; // переходим в личный кабинет
+   		}).catch((err) => {
+   	console.log(err);
+   	this.$root.$notify({group: 'foo', text: "<h5>Невозможно отправить запрос. Проверьте подключение к интернету.</h5>", type: 'error'});
+   });*/
+		}
+	}
 });
 
 /***/ }),

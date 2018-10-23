@@ -28,29 +28,15 @@ class AdvertController extends Controller
 
     public function createAdvert(Request $request) {
 
-        $data = $request->input('images');
+        $data = $request->all();
+        /*$data   = $request->input('adv');
+        $images = $request->input('images');*/
 
-        \Debugbar::info($data); // отладка мать её
-        //return $request->all();
+        \Debugbar::info($data);
 
 
-        /*
-        $img_rules = [
-            "data.image.*"=>"image|mimes:jpeg,png,jpg|max:2048"
-        ]
+        
 
-        $img_messages = [
-            "data.image.max" =>"Большой размер картинки", 
-        ]
-
-        // проверяем
-        $validator = Validator::make( $request->all(), $img_rules, $img_messages );
-
-        // если ошибка, возвращаем false и текст ошибки
-        if ( $validator->fails() )  
-            return response()->json(["result"=>"usr.error", "msg"=>$validator->errors()->first()]);  
-
-        */
 
         // правила валидации      
         $rules = 
@@ -58,33 +44,30 @@ class AdvertController extends Controller
             "adv_deal"      => "required",
             "adv_category"  => "required", 
             "adv_price"     => "required|numeric",
-            "images"        => "image|mimes:png,jpg,jpeg"
+            "images"        => "required"
         ]; 
 
         // сообщения валидации
         $messages = 
         [
-            "adv_deal.required"        =>"Укажите вид сделки", 
-            "adv_category.required"    =>"Укажите категорию товара или услуги",
-            "adv_price.required"       =>"Укажите цену",
-            "adv_price.numeric"        =>"Введите числовое значение для цены",
-            //"data.images.*"                 =>"Не картинка",
-            //"data.images.*.max"             =>"Большой размер картинки" 
+            "adv_deal.required"        => "Укажите вид сделки", 
+            "adv_category.required"    => "Укажите категорию товара или услуги",
+            "adv_price.required"       => "Укажите цену",
+            "adv_price.numeric"        => "Введите числовое значение для цены"
         ]; 
 
         // проверяем
-        $validator = Validator::make( $request->all(), $rules, $messages );
+        $validator = Validator::make( $data, $rules, $messages );
 
-        // если ошибка, возвращаем false и текст ошибки
+        
         if ( $validator->fails() )  
             return response()->json(["result"=>"usr.error", "msg"=>$validator->errors()->first()]);  
-        
+                
 
         $category   = $data["adv_category"];
         $text       = $data["adv_info"];
         $price      = $data["adv_price"];
-
-        //\Debugbar::info($data["images.0"]);
+        
 
      	try {
      			

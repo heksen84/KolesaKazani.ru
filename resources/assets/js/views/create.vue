@@ -107,6 +107,14 @@ import realestate from '../components/chars/realestate';
 
 var preview_images_array=[];
 
+function forEach(data, callback) { 
+	for(var key in data) { 
+		if(data.hasOwnProperty(key)) { 
+			callback(key, data[key]); 
+		} 
+	}
+}
+
 export default {
 
 	props: ["items"],
@@ -322,14 +330,16 @@ export default {
 		evt.preventDefault();
 
 		var formData = new FormData();
-		//formData.append("test", document.querySelector("input[type=file]").files);
-		//formData.append("form", document.querySelector("input[type=file]").files);
-		formData.append("images", document.querySelector("input[type=file]").files);
+
+		forEach(this.$root.advert_data, function(key, value) {
+			formData.append(key, value);
+			console.log(key + ":" + value);
+		})
+
+		//console.log(this.$root.advert_data);
 
 		axios.post('/create', formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
+		headers: { 'Content-Type': 'multipart/form-data' }
         }).then(response => {
               console.log(response)
         }).catch(error => {
