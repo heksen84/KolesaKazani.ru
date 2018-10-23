@@ -2556,10 +2556,6 @@ var preview_images_array = [];
       var files = evt.target.files;
       var input_images = document.querySelector("input[type=file]");
 
-      console.log("----------------------");
-      console.log(input_images.files[0]);
-      console.log("----------------------");
-
       if (input_images.files.length + this.images.length > this.$root.max_loaded_images) return;
 
       for (var i = 0; i < files.length; i++) {
@@ -2579,6 +2575,7 @@ var preview_images_array = [];
           return function (e) {
             preview_images_array.push({ "name": theFile.name, "src": e.target.result });
             root.advert_data.images.push(theFile);
+            //root.advert_data.images = input_images.files;
           };
         }(image);
 
@@ -2590,7 +2587,7 @@ var preview_images_array = [];
     },
     deletePhoto: function deletePhoto(index) {
       this.images.splice(index, 1);
-      this.$root.advert_data.images.splice(index, 1);
+      //this.$root.advert_data.images.splice(index, 1);
       console.log(this.$root.advert_data.images);
     },
 
@@ -2725,21 +2722,39 @@ var preview_images_array = [];
     Сохранить объявление
     ----------------------------*/
     onSubmit: function onSubmit(evt) {
-      var _this = this;
-
       evt.preventDefault();
 
-      // сохраняю объявление
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/create', { "data": this.$root.advert_data }).then(function (response) {
-        console.log(response);
+      var formData = new FormData();
+      //formData.append("test", document.querySelector("input[type=file]").files);
 
-        if (response.data.result == "db.error") _this.$root.$notify({ group: 'foo', text: "<h5>Неполадки в работе сервиса. Приносим свои извинения.</h5>", type: 'error' });else if (response.data.result == "usr.error") _this.$root.$notify({ group: 'foo', text: "<h5>" + response.data.msg + "</h5>", type: 'warning' });
-        //	else 
-        //	window.location="home"; // переходим в личный кабинет
-      }).catch(function (err) {
-        console.log(err);
-        _this.$root.$notify({ group: 'foo', text: "<h5>Невозможно отправить запрос. Проверьте подключение к интернету.</h5>", type: 'error' });
+      //		formData.append("form", document.querySelector("input[type=file]").files);
+      formData.append("form", this.$root.advert_data);
+
+      axios.post('/create', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        console.log(response);
+      }).catch(function (error) {
+        console.log(error.response);
       });
+
+      // сохраняю объявление
+      /*post('/create', { "data": this.$root.advert_data }).then((response) => {		
+      	console.log(response);
+      	
+      	if (response.data.result=="db.error")
+      		this.$root.$notify({group: 'foo', text: "<h5>Неполадки в работе сервиса. Приносим свои извинения.</h5>", type: 'error'});
+      	else
+      	if (response.data.result=="usr.error")
+      		this.$root.$notify({group: 'foo', text: "<h5>"+response.data.msg+"</h5>", type: 'warning'});
+      //	else 
+      //	window.location="home"; // переходим в личный кабинет
+      		}).catch((err) => {
+      	console.log(err);
+      	this.$root.$notify({group: 'foo', text: "<h5>Невозможно отправить запрос. Проверьте подключение к интернету.</h5>", type: 'error'});
+      });*/
     }
   }
 });

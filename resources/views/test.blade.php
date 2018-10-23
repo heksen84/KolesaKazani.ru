@@ -5,7 +5,7 @@
 </head>
 <body>
 
-@if (count($errors) > 0)
+    @if (count($errors) > 0)
       <div class="alert alert-danger">
         <strong>Whoops!</strong> There were some problems with your input.<br><br>
         <ul>
@@ -14,12 +14,13 @@
           @endforeach
         </ul>
       </div>
-      @endif
-      
+    @endif
+
     <form method="post" action="/checkPhotos" enctype="multipart/form-data">
         {{csrf_field()}}
         <input type="file" name="filename[]" class="form-control" multiple>          
-        <button type="submit" class="btn btn-primary" style="margin-top:10px">Submit</button>
+        <button type="submit">ОТПРАВИТЬ</button>
     </form>        
+    
 </body>
 </html>

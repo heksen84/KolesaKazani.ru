@@ -11,7 +11,7 @@ class TestController extends Controller {
             'filename' => 'required',
             'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
-        
+
         \Debugbar::info($request->all());
         return $request;
     }

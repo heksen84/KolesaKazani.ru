@@ -28,7 +28,9 @@ class AdvertController extends Controller
 
     public function createAdvert(Request $request) {
 
-        \Debugbar::info($request->all()); // отладка мать её
+        $data = $request->input('form');
+
+        \Debugbar::info($data["images"]); // отладка мать её
         //return $request->all();
 
 
@@ -56,7 +58,7 @@ class AdvertController extends Controller
             "data.adv_deal"      => "required",
             "data.adv_category"  => "required", 
             "data.adv_price"     => "required|numeric",
-            "data.image.*"      => "image|mimes:png,jpg,jpeg,bmp"
+            "data.images"        => "image|mimes:png,jpg,jpeg,bmp"
         ]; 
 
         // сообщения валидации
@@ -76,14 +78,13 @@ class AdvertController extends Controller
         // если ошибка, возвращаем false и текст ошибки
         if ( $validator->fails() )  
             return response()->json(["result"=>"usr.error", "msg"=>$validator->errors()->first()]);  
-
-        $data = $request->input('data');
+        
 
         $category   = $data["adv_category"];
         $text       = $data["adv_info"];
         $price      = $data["adv_price"];
 
-        \Debugbar::info($data["images.0"]);
+        //\Debugbar::info($data["images.0"]);
 
      	try {
      			

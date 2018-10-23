@@ -158,11 +158,8 @@ export default {
 
 			var root  = this.$root;  
 			var files = evt.target.files;			
-			var input_images = document.querySelector("input[type=file]");
+			var input_images = document.querySelector("input[type=file]");			
 
-			console.log("----------------------");
-			console.log(input_images.files[0]);
-			console.log("----------------------");
 
 			if (input_images.files.length + this.images.length > this.$root.max_loaded_images) 
 				return;
@@ -184,6 +181,7 @@ export default {
           		return function(e) {					
 					preview_images_array.push({ "name": theFile.name, "src": e.target.result });
 					root.advert_data.images.push(theFile);
+					//root.advert_data.images = input_images.files;
           		};
 
           })(image);
@@ -197,7 +195,7 @@ export default {
 
   		deletePhoto(index) {
 			this.images.splice(index, 1);
-			this.$root.advert_data.images.splice(index, 1);
+			//this.$root.advert_data.images.splice(index, 1);
 			console.log(this.$root.advert_data.images);
   		},
 
@@ -322,8 +320,24 @@ export default {
     	onSubmit(evt) {			
 		evt.preventDefault();
 
+		var formData = new FormData();
+		//formData.append("test", document.querySelector("input[type=file]").files);
+
+//		formData.append("form", document.querySelector("input[type=file]").files);
+		formData.append("form", this.$root.advert_data);
+
+		axios.post('/create', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+        }).then(response => {
+              console.log(response)
+        }).catch(error => {
+              console.log(error.response)
+		})
+
      	// сохраняю объявление
-		post('/create', { "data": this.$root.advert_data }).then((response) => {
+		/*post('/create', { "data": this.$root.advert_data }).then((response) => {		
 			console.log(response);
 			
 			if (response.data.result=="db.error")
@@ -337,7 +351,7 @@ export default {
 		}).catch((err) => {
 			console.log(err);
 			this.$root.$notify({group: 'foo', text: "<h5>Невозможно отправить запрос. Проверьте подключение к интернету.</h5>", type: 'error'});
-		});
+		});*/
     }
 }
 }
