@@ -2567,8 +2567,6 @@ function forEach(data, callback) {
 
 			if (input_images.files.length + preview_images.length > this.$root.max_loaded_images) return;
 
-			//this.$root.advert_data.images=[];	// обнуляем и за одно создаём массив изображений
-
 			for (var i = 0; i < files.length; i++) {
 				if (i === this.$root.max_loaded_images) break;
 
