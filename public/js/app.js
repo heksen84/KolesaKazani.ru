@@ -2501,7 +2501,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-var tmp_images_array = [];
+var preview_images_array = [];
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -2538,6 +2538,7 @@ var tmp_images_array = [];
   },
   created: function created() {
     this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
+    this.$root.advert_data.images = []; // обнуляем и за одно создаём массив изображений
   },
 
 
@@ -2549,15 +2550,15 @@ var tmp_images_array = [];
     // ---------------------------------
     loadImage: function loadImage(evt) {
 
+      var root = this.$root;
       var files = evt.target.files;
       var input_images = document.querySelector("input[type=file]");
 
-      console.log(files);
+      //console.log(files);
 
       if (input_images.files.length + this.images.length > this.$root.max_loaded_images) return;
 
       for (var i = 0; i < files.length; i++) {
-
         if (i === this.$root.max_loaded_images) break;
 
         // если уже существует, не обрабатывать изображение
@@ -2567,25 +2568,28 @@ var tmp_images_array = [];
           }
         }
 
-        // здесь нужно поместить наш files[i] фотографию в массив глобального объекта
-
         var image = files[i];
         var reader = new FileReader();
 
         reader.onload = function (theFile) {
           return function (e) {
-            tmp_images_array.push({ "name": theFile.name, "src": e.target.result });
+            preview_images_array.push({ "name": theFile.name, "src": e.target.result });
+            root.advert_data.images.push(theFile);
           };
         }(image);
 
         reader.readAsDataURL(image);
       }
 
-      this.images = tmp_images_array;
+      //console.log(this.$root.advert_data);
+
+      this.images = preview_images_array;
       input_images.value = "";
     },
     deletePhoto: function deletePhoto(index) {
       this.images.splice(index, 1);
+      this.$root.advert_data.images.splice(index, 1);
+      //console.log(this.$root.advert_data.images);
     },
 
 

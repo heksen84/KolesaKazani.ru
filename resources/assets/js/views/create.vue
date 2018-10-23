@@ -105,7 +105,7 @@ import { post } from './../helpers/api'
 import transport from '../components/chars/transport';
 import realestate from '../components/chars/realestate';
 
-var tmp_images_array=[];
+var preview_images_array=[];
 
 export default {
 
@@ -142,7 +142,8 @@ export default {
 	},
 
 	created() {
-    	this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
+		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
+		this.$root.advert_data.images=[];		// обнуляем и за одно создаём массив изображений
 	},
 
 	components: { transport, realestate },
@@ -153,16 +154,16 @@ export default {
 		// ---------------------------------
   		loadImage(evt) {
 
-			var files = evt.target.files;
+			var root  = this.$root;  
+			var files = evt.target.files;			
 			var input_images = document.querySelector("input[type=file]");
 
-			console.log(files);
+			//console.log(files);
 
 			if (input_images.files.length + this.images.length > this.$root.max_loaded_images) 
 				return;
 			
 			for (var i=0; i<files.length; i++) {
-
 				if (i===this.$root.max_loaded_images) break;
 
 				// если уже существует, не обрабатывать изображение
@@ -172,14 +173,13 @@ export default {
 					}
 				}
 
-				// здесь нужно поместить наш files[i] фотографию в массив глобального объекта
-
-        		var image  = files[i]
-  				var reader = new FileReader();
+        		var image  	= files[i]
+				var reader 	= new FileReader();				
 
   				reader.onload = (function(theFile) {
-          		return function(e) {										
-					tmp_images_array.push({ "name": theFile.name, "src": e.target.result });										
+          		return function(e) {					
+					preview_images_array.push({ "name": theFile.name, "src": e.target.result });
+					root.advert_data.images.push(theFile);
           		};
 
           })(image);
@@ -187,12 +187,16 @@ export default {
 			reader.readAsDataURL(image);			
 		}
 
-			this.images = tmp_images_array;
-			input_images.value="";
+			//console.log(this.$root.advert_data);
+
+			this.images = preview_images_array;
+			input_images.value = "";
   		},
 
   		deletePhoto(index) {
 			this.images.splice(index, 1);
+			this.$root.advert_data.images.splice(index, 1);
+			//console.log(this.$root.advert_data.images);
   		},
 
 		// ---------------------------------
