@@ -116,9 +116,7 @@ function forEach(data, callback) {
 }
 
 export default {
-
 	props: ["items"],
-
 	data () {
     return 	{
 

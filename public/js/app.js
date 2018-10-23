@@ -2512,9 +2512,7 @@ function forEach(data, callback) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-
 	props: ["items"],
-
 	data: function data() {
 		return {
 
