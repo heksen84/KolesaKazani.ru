@@ -2569,6 +2569,7 @@ var tmp_images_array = [];
 
         reader.onload = function (theFile) {
           return function (e) {
+            // здесь нужно поместить фотографии в массив глобального объекта
             tmp_images_array.push({ "name": theFile.name, "src": e.target.result });
           };
         }(image);
