@@ -71,12 +71,12 @@ class AdvertController extends Controller
      	try {
      			
             $advert = new Adverts();
-     		$advert->user_id   		= Auth::id();
-        	$advert->text  			= $text;
-        	$advert->contacts  		= null; 
-        	$advert->price  			= $price;
-        	$advert->category_id  		= $category;
-        	$advert->adv_category_id  	= 0;
+     		$advert->user_id   		 = Auth::id();
+        	$advert->text  			 = $text;
+        	$advert->contacts  		 = null; 
+        	$advert->price  		 = $price;
+        	$advert->category_id  	 = $category;
+        	$advert->adv_category_id = 0;
 
             switch($category) {
 
