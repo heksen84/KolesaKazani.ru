@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
-//use Illuminate\Foundation\Validation\ValidatesRequests;
 use Validator;
 use App\Adverts;
 use App\CarMark;
@@ -16,8 +15,9 @@ use App\RealEstate;
 use App\Appliances;
 use DB;
 
-class AdvertController extends Controller
+class AdvertController extends Controller 
 {
+
     public function getAdverts() {
 	     return Adverts::all()->toJson();
     }
