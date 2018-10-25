@@ -70,13 +70,13 @@ class AdvertController extends Controller
         
      	try {
      			
-            $adverts = new Adverts();
-     		$adverts->user_id   		= Auth::id();
-        	$adverts->text  			= $text;
-        	$adverts->contacts  		= null; 
-        	$adverts->price  			= $price;
-        	$adverts->category_id  		= $category;
-        	$adverts->adv_category_id  	= 0;
+            $advert = new Adverts();
+     		$advert->user_id   		= Auth::id();
+        	$advert->text  			= $text;
+        	$advert->contacts  		= null; 
+        	$advert->price  			= $price;
+        	$advert->category_id  		= $category;
+        	$advert->adv_category_id  	= 0;
 
             switch($category) {
 
@@ -92,7 +92,7 @@ class AdvertController extends Controller
                     $transport->engine_type = 0;
                     $transport->customs = 0;
                     $transport->save();
-                    $adverts->adv_category_id = $transport->id;
+                    $advert->adv_category_id = $transport->id;
                     break;
                 }
 
@@ -146,21 +146,23 @@ class AdvertController extends Controller
                     break;
                 }
 
-            }
+            }            
 
+
+            $advert->save(); // сохраняю основную информацию
 
             /*
             ------------------------------------------
             Сохраняю картинки
             ------------------------------------------*/
             foreach($request->file("images") as $image) {
-                $path = $image->store("images");            
-                \Debugbar::info($path);
+                $path = $image->store("images");
+
+                // сохраняю в базу $path и $advert->id
+            //    \Debugbar::info($path);
             }
 
-
-            $adverts->save(); // сохраняю объявление
-            return $adverts->id;
+            return $advert->id;
 		}
 		
         catch(\Exception $e) {
