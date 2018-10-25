@@ -22,10 +22,18 @@ class AdvertController extends Controller
 	     return Adverts::all()->toJson();
     }
 
+    /*
+    -----------------------------------
+    Новое объявление
+    -----------------------------------*/
  	public function newAdvert() {
  		return Auth::user()? view('create')->with( "items", Categories::all() ) : view('auth\login');
  	}
 
+    /*
+    -----------------------------------------------
+    Создать объявление
+    -----------------------------------------------*/
     public function createAdvert(Request $request) {
 
         $data = $request->all();
@@ -140,7 +148,6 @@ class AdvertController extends Controller
             }
 
             $adverts->save(); // сохраняю объявление
-
             return $adverts->id;
 		}
 		
@@ -151,6 +158,10 @@ class AdvertController extends Controller
      	return $data;
     }
 
+    /*
+    -------------------------------------------
+    Получить полную информацию об объявлении
+    -------------------------------------------*/
     public function getFullInfo($id) {
     	$item = DB::table('adverts')->where("id", $id)->get();
         return view('fullinfo')->with("item", $item );
