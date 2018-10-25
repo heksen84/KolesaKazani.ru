@@ -61,7 +61,8 @@ class AdvertController extends Controller
         $validator = Validator::make( $data, $rules, $messages );
 
         if ( $validator->fails() )  
-            return response()->json(["result"=>"usr.error", "msg"=>$validator->errors()->first()]);  
+            return response()->json(["result"=>"usr.error", "msg"=>$validator->errors()->first()]);                    
+
                 
         $category   = $data["adv_category"];
         $text       = $data["adv_info"];
@@ -146,6 +147,17 @@ class AdvertController extends Controller
                 }
 
             }
+
+
+            /*
+            ------------------------------------------
+            Сохраняю картинки
+            ------------------------------------------*/
+            foreach($request->file("images") as $image) {
+                $path = $image->store("images");            
+                \Debugbar::info($path);
+            }
+
 
             $adverts->save(); // сохраняю объявление
             return $adverts->id;
