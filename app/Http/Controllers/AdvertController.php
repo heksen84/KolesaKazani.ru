@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 use Validator;
+use App\Images;
 use App\Adverts;
 use App\CarMark;
 use App\CarModel;
@@ -99,7 +100,7 @@ class AdvertController extends Controller
                 // недвижимость
                 case 2: {
                     
-                    $realestate= new RealEstate();
+                    $realestate = new RealEstate();
                     $realestate->property_type = 0;
                     $realestate->floor = 0;
                     $realestate->floors_house = 0;
@@ -155,6 +156,9 @@ class AdvertController extends Controller
             ------------------------------------------
             Сохраняю картинки
             ------------------------------------------*/
+
+            $image = new Images();
+
             foreach($request->file("images") as $image) {
                 $path = $image->store("images");
 
