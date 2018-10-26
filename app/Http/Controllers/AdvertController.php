@@ -162,10 +162,7 @@ class AdvertController extends Controller
                 $image->advert_id   = $advert->id;
                 $image->image_path  = $path;                
                 $image->save();
-            }
-
-
-            
+            }            
 
             return $advert->id;
 		}
