@@ -157,7 +157,7 @@ class AdvertController extends Controller
             Сохраняю картинки
             ------------------------------------------*/
             foreach($request->file("images") as $img) {                
-                $imgage = new Images();
+                $image = new Images();
                 $path = $img->store("images");
                 $image->advert_id   = $advert->id;
                 $image->image_path  = $path;                
