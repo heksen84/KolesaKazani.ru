@@ -81,7 +81,7 @@
 
 				<!-- Расположение на карте -->
 				<b-form-group label="Расположение:" style="text-align:center">
-					<b-button variant="primary">отметить на карте</b-button>
+					<b-button variant="primary" @click="setCoords">отметить на карте</b-button>
 				</b-form-group>
 
 				<!-- Публикация -->
@@ -354,7 +354,12 @@ export default {
 			  console.log(error.response)
 			  this.$root.$notify({group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error'});
 		})
-    }
+    },
+
+	// установить координаты
+	setCoords() {
+		alert("coords");
+	}
 }
 }
 </script>

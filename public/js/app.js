@@ -2753,6 +2753,12 @@ function forEach(data, callback) {
 				console.log(error.response);
 				_this.$root.$notify({ group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error' });
 			});
+		},
+
+
+		// установить координаты
+		setCoords: function setCoords() {
+			alert("coords");
 		}
 	}
 });
@@ -36503,7 +36509,10 @@ var render = function() {
                             [
                               _c(
                                 "b-button",
-                                { attrs: { variant: "primary" } },
+                                {
+                                  attrs: { variant: "primary" },
+                                  on: { click: _vm.setCoords }
+                                },
                                 [_vm._v("отметить на карте")]
                               )
                             ],
