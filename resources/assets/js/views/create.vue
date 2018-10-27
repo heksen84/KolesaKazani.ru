@@ -346,6 +346,8 @@ export default {
 			else
 			if (response.data.result=="usr.error")
 				this.$root.$notify({group: 'foo', text: "<h6>"+response.data.msg+"</h6>", type: 'error'});
+				else
+				alert("ok");
 			//	else 
 			//	window.location="home"; // переходим в личный кабинет
         }).catch(error => {

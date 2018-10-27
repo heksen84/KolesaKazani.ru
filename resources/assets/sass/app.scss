@@ -7,6 +7,7 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
     text-align: center;
 }
+
 input[type="number"] {
     -moz-appearance: textfield;
     text-align: center;
@@ -34,9 +35,9 @@ input[type="number"] {
  background: $scroll_back_color;
 }
 
-::-webkit-scrollbar-thumb:hover{
+/*::-webkit-scrollbar-thumb:hover{
 background: $scroll_back_color;
-}
+}*/
 
 ::-webkit-scrollbar-thumb:active{
  background: $scroll_back_color;
