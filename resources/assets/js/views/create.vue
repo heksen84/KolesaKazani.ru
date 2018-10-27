@@ -5,11 +5,19 @@
 		<b-row>
 
 		 <!-- карта -->
-          <b-modal v-model="setCoordsDialog" style="text-align:center;color:rgb(50,50,50)" hide-footer :title="locationDialogTitle">
-           координатки!
+          <b-modal size="lg" v-model="setCoordsDialog" style="text-align:center;color:rgb(50,50,50)" hide-footer title="Местоположение">
+		   <yandex-map 
+  			:coords="[54.62896654088406, 39.731893822753904]"
+  			zoom="10"
+  			style="width: 100%; height: 400px;"
+  			:cluster-options="{
+    		1: {clusterDisableClickZoom: true}
+  			}"
+  			:behaviors="['ruler']"
+  			:controls="['trafficControl']"></yandex-map>
+			<br/>
+			<b-button variant="primary" @click="setCoords">Сохранить</b-button>
           </b-modal> 	
-
-
 
 
 		  <b-col cols="12" sm="12" md="12" lg="10" xl="10" class="create_advert_col">
@@ -133,14 +141,14 @@ export default {
 			/*-----------------------------
 				базовые поля объявления
 			-----------------------------*/
-    		sdelka:this.$root.options_sdelka,
-    		category:null,
-			deal_id:null,
-			text:"",
-			price:0, 
-			preview_images:[],
-			real_images:[],
-			root:false,
+    		sdelka: this.$root.options_sdelka,
+    		category: null,
+			deal_id: null,
+			text: "",
+			price: 0, 
+			preview_images: [],
+			real_images: [],
+			root: false,
 			
 			/*-------------------------
 				категории 

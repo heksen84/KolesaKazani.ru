@@ -61,6 +61,8 @@ Vue.use(Notifications)
 import YmapPlugin from 'vue-yandex-maps'
 Vue.use(YmapPlugin)
 
+import { yandexMap, ymapMarker } from 'vue-yandex-maps'
+
 // -----------------------------------
 //
 // ОСНОВНОЕ ХРАНИЛИЩЕ
@@ -94,7 +96,9 @@ const app = new Vue({
       search,
       results,
       create,
-      fullinfo
+      fullinfo,
+
+      yandexMap, ymapMarker
   },
 
   created() {    

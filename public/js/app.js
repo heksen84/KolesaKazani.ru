@@ -2500,6 +2500,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // ----------------------------------------------------
@@ -36290,7 +36298,7 @@ var render = function() {
             "b-modal",
             {
               staticStyle: { "text-align": "center", color: "rgb(50,50,50)" },
-              attrs: { "hide-footer": "", title: _vm.locationDialogTitle },
+              attrs: { size: "lg", "hide-footer": "", title: "Местоположение" },
               model: {
                 value: _vm.setCoordsDialog,
                 callback: function($$v) {
@@ -36299,7 +36307,29 @@ var render = function() {
                 expression: "setCoordsDialog"
               }
             },
-            [_vm._v("\n           координатки!\n          ")]
+            [
+              _c("yandex-map", {
+                staticStyle: { width: "100%", height: "400px" },
+                attrs: {
+                  coords: [54.62896654088406, 39.731893822753904],
+                  zoom: "10",
+                  "cluster-options": {
+                    1: { clusterDisableClickZoom: true }
+                  },
+                  behaviors: ["ruler"],
+                  controls: ["trafficControl"]
+                }
+              }),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c(
+                "b-button",
+                { attrs: { variant: "primary" }, on: { click: _vm.setCoords } },
+                [_vm._v("Сохранить")]
+              )
+            ],
+            1
           ),
           _vm._v(" "),
           _c(
@@ -49949,6 +49979,8 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_31_vue
 
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_32_vue_yandex_maps___default.a);
 
+
+
 // -----------------------------------
 //
 // ОСНОВНОЕ ХРАНИЛИЩЕ
@@ -49982,7 +50014,9 @@ var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
     search: __WEBPACK_IMPORTED_MODULE_5__views_search_vue___default.a,
     results: __WEBPACK_IMPORTED_MODULE_6__views_results_vue___default.a,
     create: __WEBPACK_IMPORTED_MODULE_7__views_create_vue___default.a,
-    fullinfo: __WEBPACK_IMPORTED_MODULE_8__views_fullinfo_vue___default.a
+    fullinfo: __WEBPACK_IMPORTED_MODULE_8__views_fullinfo_vue___default.a,
+
+    yandexMap: __WEBPACK_IMPORTED_MODULE_32_vue_yandex_maps__["yandexMap"], ymapMarker: __WEBPACK_IMPORTED_MODULE_32_vue_yandex_maps__["ymapMarker"]
   },
 
   created: function created() {
