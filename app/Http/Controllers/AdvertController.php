@@ -149,7 +149,6 @@ class AdvertController extends Controller
 
             }            
 
-
             $advert->save(); // сохраняю основную информацию
 
             /*
