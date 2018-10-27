@@ -3,6 +3,15 @@
     <notifications group="foo" position="top center"/>
 
 		<b-row>
+
+		 <!-- карта -->
+          <b-modal v-model="setCoordsDialog" style="text-align:center;color:rgb(50,50,50)" hide-footer :title="locationDialogTitle">
+           координатки!
+          </b-modal> 	
+
+
+
+
 		  <b-col cols="12" sm="12" md="12" lg="10" xl="10" class="create_advert_col">
 		  <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
 		  <h1 class="title_text" style="margin-top:12px">подать объявление</h1>
@@ -119,6 +128,8 @@ export default {
 	props: ["items"],
 	data () {
     return 	{
+
+			setCoordsDialog:false,
 			/*-----------------------------
 				базовые поля объявления
 			-----------------------------*/
@@ -358,7 +369,7 @@ export default {
 
 	// установить координаты
 	setCoords() {
-		alert("coords");
+		this.setCoordsDialog=true;
 	}
 }
 }

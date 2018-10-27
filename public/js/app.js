@@ -2491,6 +2491,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // ----------------------------------------------------
@@ -2515,6 +2524,8 @@ function forEach(data, callback) {
 	props: ["items"],
 	data: function data() {
 		return {
+
+			setCoordsDialog: false,
 			/*-----------------------------
    	базовые поля объявления
    -----------------------------*/
@@ -2758,7 +2769,7 @@ function forEach(data, callback) {
 
 		// установить координаты
 		setCoords: function setCoords() {
-			alert("coords");
+			this.setCoordsDialog = true;
 		}
 	}
 });
@@ -36275,6 +36286,22 @@ var render = function() {
       _c(
         "b-row",
         [
+          _c(
+            "b-modal",
+            {
+              staticStyle: { "text-align": "center", color: "rgb(50,50,50)" },
+              attrs: { "hide-footer": "", title: _vm.locationDialogTitle },
+              model: {
+                value: _vm.setCoordsDialog,
+                callback: function($$v) {
+                  _vm.setCoordsDialog = $$v
+                },
+                expression: "setCoordsDialog"
+              }
+            },
+            [_vm._v("\n           координатки!\n          ")]
+          ),
+          _vm._v(" "),
           _c(
             "b-col",
             {
