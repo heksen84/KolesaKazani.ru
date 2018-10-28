@@ -47,7 +47,6 @@ class AdvertController extends Controller
             "adv_category"  => "required", 
             "adv_price"     => "required|numeric",
             "images.*"      => "image|mimes:jpeg,png,jpg|max:2048",
-           // "adv_coords"    => "array"
         ]; 
 
         // сообщения валидации
