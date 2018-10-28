@@ -67,9 +67,6 @@ class AdvertController extends Controller
         $category   = $data["adv_category"];
         $text       = $data["adv_info"];
         $price      = $data["adv_price"];
-        $coords     = explode(",", $data["adv_coords"]);
-
-        \Debugbar::info($coords);
         
      	try {
      			
@@ -152,8 +149,17 @@ class AdvertController extends Controller
             }
             
             // координаты
-            $advert->coord_lat = $coords[0];
-            $advert->coord_lon = $coords[1];
+            if (isset($data["adv_coords"])) {
+                $coords = explode(",", $data["adv_coords"]);
+                \Debugbar::info($coords);
+                $advert->coord_lat = $coords[0];
+                $advert->coord_lon = $coords[1];
+            }
+            else 
+            {
+                $advert->coord_lat = 0;
+                $advert->coord_lon = 0;
+            }
 
             $advert->save(); // сохраняю основную информацию
 
