@@ -152,6 +152,8 @@ class AdvertController extends Controller
             $advert->save(); // сохраняю основную информацию
 
             /*
+            use Intervention\Image\ImageManagerStatic as Image;
+            
             if($request->hasFile('image')) {
 
                 $image       = $request->file('image');
