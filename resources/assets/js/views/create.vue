@@ -174,6 +174,7 @@ export default {
         });
 
 		myMap.geoObjects.add(myPlacemark);
+		
 		}
 
 		ymaps.ready(init);
