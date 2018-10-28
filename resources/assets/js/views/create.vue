@@ -284,13 +284,10 @@ export default {
   		изменения в категориях
   		--------------------------*/
   		changeCategory(data) {
-
 			// сбрасываю дополнительные поля
 			this.$store.commit("hideOtherFields");
-
 			// добавляю категорию
 			this.$root.advert_data.adv_category=data;
-			
 			// по умолчанию показываю доп. поля
 			this.$store.commit("showOtherFields"); 
 
