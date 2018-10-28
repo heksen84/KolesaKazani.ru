@@ -34,14 +34,6 @@ input[type="number"] {
   background: #646464;
 }
 
-/*::-webkit-scrollbar-thumb:hover{
-background: $scroll_back_color;
-}*/
-
-::-webkit-scrollbar-thumb:active {
-  background: #646464;
-}
-
 ::-webkit-input-placeholder {
   text-align: center;
 }

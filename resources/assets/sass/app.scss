@@ -35,14 +35,6 @@ input[type="number"] {
  background: $scroll_back_color;
 }
 
-/*::-webkit-scrollbar-thumb:hover{
-background: $scroll_back_color;
-}*/
-
-::-webkit-scrollbar-thumb:active{
- background: $scroll_back_color;
-}
-
 ::-webkit-input-placeholder {
  text-align: center;
 }
