@@ -169,13 +169,13 @@ export default {
 		});
 		
 		myPlacemark = new ymaps.Placemark([55.76, 37.64]);
-
 		myMap.geoObjects.add(myPlacemark);
 
     	myMap.events.add('click', function (e) {
             mapCoords = e.get('coordPosition');
 			myPlacemark.geometry.setCoordinates(mapCoords);
 		});
+		
 		}
 
 		ymaps.ready(init);
