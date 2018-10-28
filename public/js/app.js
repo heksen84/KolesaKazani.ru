@@ -2796,7 +2796,7 @@ function forEach(data, callback) {
 		// установить координаты
 		setCoords: function setCoords() {
 			this.setCoordsDialog = false;
-			alert(mapCoords);
+			alert(mapCoords[0] + "\n" + mapCoords[1]);
 		}
 	}
 });

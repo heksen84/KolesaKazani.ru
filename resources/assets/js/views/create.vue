@@ -397,7 +397,7 @@ export default {
 	// установить координаты
 	setCoords() {
 		this.setCoordsDialog=false;
-		alert(mapCoords)
+		alert(mapCoords[0]+"\n"+mapCoords[1])
 	}
 }
 }
