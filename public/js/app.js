@@ -2793,9 +2793,9 @@ function forEach(data, callback) {
 		// установить координаты
 		setCoords: function setCoords() {
 			this.setCoordsDialog = false;
-			this.$root.advert_data.adv_coords = {};
+			this.$root.advert_data.adv_coords = [];
 			this.$root.advert_data.adv_coord_lat = mapCoords;
-			//alert(mapCoords[0]+"\n"+mapCoords[1])
+			alert(mapCoords[0] + "\n" + mapCoords[1]);
 		}
 	}
 });
