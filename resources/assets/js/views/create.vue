@@ -114,6 +114,7 @@ import transport from '../components/chars/transport';
 import realestate from '../components/chars/realestate';
 
 var preview_images_array=[];
+var mapCoords=[];
 
 // для заполнения изображений
 function forEach(data, callback) { 
@@ -159,9 +160,8 @@ export default {
 	},
 
 	created() {
-
 		var myMap, myPlacemark;
-		 
+
 		function init() {     
         	myMap = new ymaps.Map ("map", {
             center: [55.76, 37.64],
@@ -173,10 +173,9 @@ export default {
 		myMap.geoObjects.add(myPlacemark);
 
     	myMap.events.add('click', function (e) {
-            var coords = e.get('coordPosition');
-			myPlacemark.geometry.setCoordinates(coords);
+            mapCoords = e.get('coordPosition');
+			myPlacemark.geometry.setCoordinates(mapCoords);
 		});
-		
 		}
 
 		ymaps.ready(init);
@@ -391,6 +390,7 @@ export default {
 	// установить координаты
 	setCoords() {
 		this.setCoordsDialog=false;
+		alert(mapCoords)
 	}
 }
 }

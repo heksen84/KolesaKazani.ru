@@ -2510,6 +2510,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 var preview_images_array = [];
+var mapCoords = [];
 
 // для заполнения изображений
 function forEach(data, callback) {
@@ -2554,7 +2555,6 @@ function forEach(data, callback) {
 		};
 	},
 	created: function created() {
-
 		var myMap, myPlacemark;
 
 		function init() {
@@ -2568,8 +2568,8 @@ function forEach(data, callback) {
 			myMap.geoObjects.add(myPlacemark);
 
 			myMap.events.add('click', function (e) {
-				var coords = e.get('coordPosition');
-				myPlacemark.geometry.setCoordinates(coords);
+				mapCoords = e.get('coordPosition');
+				myPlacemark.geometry.setCoordinates(mapCoords);
 			});
 		}
 
@@ -2790,6 +2790,7 @@ function forEach(data, callback) {
 		// установить координаты
 		setCoords: function setCoords() {
 			this.setCoordsDialog = false;
+			alert(mapCoords);
 		}
 	}
 });
