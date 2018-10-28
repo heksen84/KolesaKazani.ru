@@ -160,10 +160,9 @@ export default {
 	},
 
 	created() {
-
 		var myMap, myPlacemark;
-
-		function init() {     
+		
+		function init() {
         	myMap = new ymaps.Map ("map", {
             center: [55.76, 37.64],
            	zoom: 15
@@ -214,7 +213,7 @@ export default {
 				var reader = new FileReader();
 
   				reader.onload = (function(theFile) {
-					  
+
           		return function(e) {
 					if (theFile.type=="image/jpeg" || theFile.type=="image/pjpeg" || theFile.type=="image/png") {					
 						preview_images.push({ "name": theFile.name, "src": e.target.result });
