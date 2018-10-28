@@ -2563,10 +2563,7 @@ function forEach(data, callback) {
 				zoom: 15
 			});
 
-			myPlacemark = new ymaps.Placemark([55.76, 37.64], {
-				hintContent: 'Москва!',
-				balloonContent: 'Столица России'
-			});
+			myPlacemark = new ymaps.Placemark([55.76, 37.64]);
 
 			myMap.geoObjects.add(myPlacemark);
 
