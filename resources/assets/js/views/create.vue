@@ -174,6 +174,11 @@ export default {
         });
 
 		myMap.geoObjects.add(myPlacemark);
+
+    	myMap.events.add('click', function (e) {
+            var coords = e.get('coordPosition');
+			alert(coords)
+		});
 		
 		}
 
