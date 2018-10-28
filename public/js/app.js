@@ -2560,7 +2560,7 @@ function forEach(data, callback) {
 		function init() {
 			myMap = new ymaps.Map("map", {
 				center: [55.76, 37.64],
-				zoom: 10
+				zoom: 15
 			});
 
 			myPlacemark = new ymaps.Placemark([55.76, 37.64], {
@@ -2572,7 +2572,7 @@ function forEach(data, callback) {
 
 			myMap.events.add('click', function (e) {
 				var coords = e.get('coordPosition');
-				alert(coords);
+				myPlacemark.geometry.setCoordinates(coords);
 			});
 		}
 
