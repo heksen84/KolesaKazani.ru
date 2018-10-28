@@ -2607,6 +2607,7 @@ function forEach(data, callback) {
 				var reader = new FileReader();
 
 				reader.onload = function (theFile) {
+
 					return function (e) {
 						if (theFile.type == "image/jpeg" || theFile.type == "image/pjpeg" || theFile.type == "image/png") {
 							preview_images.push({ "name": theFile.name, "src": e.target.result });
