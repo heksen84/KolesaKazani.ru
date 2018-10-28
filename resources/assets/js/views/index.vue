@@ -8,6 +8,7 @@
 
           <!-- окно выбоа региона и местоположения -->
           <b-modal v-model="locationDialog" style="text-align:center;color:rgb(50,50,50)" hide-footer :title="locationDialogTitle">
+            
             <!-- регионы -->
             <b-button variant="link" style="color:black" v-for="i in regions" :key="i.region_id" @click="selectLocation(i)">{{i.name}}
             </b-button>
