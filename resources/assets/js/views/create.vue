@@ -6,30 +6,7 @@
 
 		 <!-- карта -->
           <b-modal size="lg" v-model="setCoordsDialog" style="text-align:center;color:rgb(50,50,50)" hide-footer title="Местоположение">
-		   <yandex-map 
-  			:coords="[54.62896654088406, 39.731893822753904]"
-  			zoom="10"
-  			style="width: 100%; height: 400px;"
-  			:cluster-options="{
-    		1: {clusterDisableClickZoom: true}
-  			}"
-  			:behaviors="['ruler']"
-  			:controls="['trafficControl']"
-  			:placemarks="placemarks" 
- 			 @map-was-initialized="initHandler">
-
-			<ymap-marker 
-    		marker-id="1"
-   			marker-type="placemark"
-    		:coords="[54.7, 39.7]"
-   			 hint-content="Hint content 1"
-    		:balloon="{header: 'header', body: 'body', footer: 'footer'}"
-    		:icon="{color: 'green', glyph: 'cinema'}"
-    		cluster-name="1">
-			</ymap-marker>
-			
- 			</yandex-map>
-
+			  <div id="map" style="width: 100%; height: 400px"></div>
 			<br/>
 			<b-button variant="primary" @click="setCoords">Сохранить</b-button>
           </b-modal> 	
@@ -132,13 +109,13 @@
 // ----------------------------------------------------
 // ИМПОРТ
 // ----------------------------------------------------
-
 import { post } from './../helpers/api'
 import transport from '../components/chars/transport';
 import realestate from '../components/chars/realestate';
 
 var preview_images_array=[];
 
+// для заполнения изображений
 function forEach(data, callback) { 
 	for(var key in data) { 
 		if(data.hasOwnProperty(key)) { 
@@ -151,20 +128,7 @@ export default {
 	props: ["items"],
 	data () {
     return 	{
-
-
-placemarks: [
-      	{
-        	coords: [54.8, 39.8],
-        	properties: {}, // define properties here
-        	options: {}, // define options here
-        	clusterName: "1",
-        	balloonTemplate: '<div>"Your custom template"</div>'
-        	//callbacks: { click: function() {} }
-      	}
-    	],
 		
-
 			setCoordsDialog:false,
 			/*-----------------------------
 				базовые поля объявления
@@ -195,12 +159,20 @@ placemarks: [
 	},
 
 	created() {
+		
+		 function init(){     
+        	var myMap = new ymaps.Map ("map", {
+            center: [55.76, 37.64],
+           	zoom: 10
+        });
+	}
+		ymaps.ready(init);
+
 		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
 	},
 
 	components: { transport, realestate },
   	methods: {
-
 		// ------------------------------------------------
 		//
 		// Загрузка изображений

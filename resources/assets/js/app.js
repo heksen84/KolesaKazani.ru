@@ -58,10 +58,6 @@ Vue.use(Vuex);
 import Notifications from 'vue-notification'
 Vue.use(Notifications)
 
-import YmapPlugin from 'vue-yandex-maps'
-Vue.use(YmapPlugin)
-
-import { yandexMap, ymapMarker } from 'vue-yandex-maps'
 
 // -----------------------------------
 //
@@ -97,8 +93,6 @@ const app = new Vue({
       results,
       create,
       fullinfo,
-
-      yandexMap, ymapMarker
   },
 
   created() {    
