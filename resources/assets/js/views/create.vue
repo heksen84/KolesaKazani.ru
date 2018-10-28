@@ -160,6 +160,7 @@ export default {
 	},
 
 	created() {
+		
 		var myMap, myPlacemark;
 
 		function init() {     

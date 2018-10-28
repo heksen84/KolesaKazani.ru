@@ -2555,6 +2555,7 @@ function forEach(data, callback) {
 		};
 	},
 	created: function created() {
+
 		var myMap, myPlacemark;
 
 		function init() {
