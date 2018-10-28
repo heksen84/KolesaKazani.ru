@@ -394,7 +394,9 @@ export default {
 	// установить координаты
 	setCoords() {
 		this.setCoordsDialog=false;
-		alert(mapCoords[0]+"\n"+mapCoords[1])
+		this.$root.advert_data.adv_coords={};
+		this.$root.advert_data.adv_coord_lat=mapCoords;
+		//alert(mapCoords[0]+"\n"+mapCoords[1])
 	}
 }
 }

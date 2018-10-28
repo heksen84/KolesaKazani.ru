@@ -39,14 +39,15 @@ class AdvertController extends Controller
 
         $data = $request->all();
     
-        \Debugbar::info($data);
+       // \Debugbar::info($data);
 
         // правила валидации      
         $rules = [
             "adv_deal"      => "required",
             "adv_category"  => "required", 
             "adv_price"     => "required|numeric",
-            "images.*"      => "image|mimes:jpeg,png,jpg|max:2048"
+            "images.*"      => "image|mimes:jpeg,png,jpg|max:2048",
+           // "adv_coords"    => "array"
         ]; 
 
         // сообщения валидации
@@ -67,6 +68,9 @@ class AdvertController extends Controller
         $category   = $data["adv_category"];
         $text       = $data["adv_info"];
         $price      = $data["adv_price"];
+        $coords     = explode(",", $data["adv_coords"]);
+
+        \Debugbar::info($coords);
         
      	try {
      			
@@ -146,7 +150,11 @@ class AdvertController extends Controller
                     break;
                 }
 
-            }            
+            }
+            
+            // координаты
+            $advert->coord_lat = $coords[0];
+            $advert->coord_lon = $coords[1];
 
             $advert->save(); // сохраняю основную информацию
 
