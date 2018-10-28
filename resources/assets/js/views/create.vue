@@ -14,7 +14,22 @@
     		1: {clusterDisableClickZoom: true}
   			}"
   			:behaviors="['ruler']"
-  			:controls="['trafficControl']"></yandex-map>
+  			:controls="['trafficControl']"
+  			:placemarks="placemarks" 
+ 			 @map-was-initialized="initHandler">
+
+			<ymap-marker 
+    		marker-id="1"
+   			marker-type="placemark"
+    		:coords="[54.7, 39.7]"
+   			 hint-content="Hint content 1"
+    		:balloon="{header: 'header', body: 'body', footer: 'footer'}"
+    		:icon="{color: 'green', glyph: 'cinema'}"
+    		cluster-name="1">
+			</ymap-marker>
+			
+ 			</yandex-map>
+
 			<br/>
 			<b-button variant="primary" @click="setCoords">Сохранить</b-button>
           </b-modal> 	
@@ -98,7 +113,7 @@
 
 				<!-- Расположение на карте -->
 				<b-form-group label="Расположение:" style="text-align:center">
-					<b-button variant="primary" @click="setCoords">отметить на карте</b-button>
+					<b-button variant="primary" @click="setCoordsDialog=true">отметить на карте</b-button>
 				</b-form-group>
 
 				<!-- Публикация -->
@@ -136,6 +151,19 @@ export default {
 	props: ["items"],
 	data () {
     return 	{
+
+
+placemarks: [
+      	{
+        	coords: [54.8, 39.8],
+        	properties: {}, // define properties here
+        	options: {}, // define options here
+        	clusterName: "1",
+        	balloonTemplate: '<div>"Your custom template"</div>'
+        	//callbacks: { click: function() {} }
+      	}
+    	],
+		
 
 			setCoordsDialog:false,
 			/*-----------------------------
@@ -377,7 +405,7 @@ export default {
 
 	// установить координаты
 	setCoords() {
-		this.setCoordsDialog=true;
+		this.setCoordsDialog=false;
 	}
 }
 }

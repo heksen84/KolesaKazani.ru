@@ -2508,6 +2508,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // ----------------------------------------------------
@@ -2532,6 +2547,15 @@ function forEach(data, callback) {
 	props: ["items"],
 	data: function data() {
 		return {
+
+			placemarks: [{
+				coords: [54.8, 39.8],
+				properties: {}, // define properties here
+				options: {}, // define options here
+				clusterName: "1",
+				balloonTemplate: '<div>"Your custom template"</div>'
+				//callbacks: { click: function() {} }
+			}],
 
 			setCoordsDialog: false,
 			/*-----------------------------
@@ -2777,7 +2801,7 @@ function forEach(data, callback) {
 
 		// установить координаты
 		setCoords: function setCoords() {
-			this.setCoordsDialog = true;
+			this.setCoordsDialog = false;
 		}
 	}
 });
@@ -36308,18 +36332,41 @@ var render = function() {
               }
             },
             [
-              _c("yandex-map", {
-                staticStyle: { width: "100%", height: "400px" },
-                attrs: {
-                  coords: [54.62896654088406, 39.731893822753904],
-                  zoom: "10",
-                  "cluster-options": {
-                    1: { clusterDisableClickZoom: true }
+              _c(
+                "yandex-map",
+                {
+                  staticStyle: { width: "100%", height: "400px" },
+                  attrs: {
+                    coords: [54.62896654088406, 39.731893822753904],
+                    zoom: "10",
+                    "cluster-options": {
+                      1: { clusterDisableClickZoom: true }
+                    },
+                    behaviors: ["ruler"],
+                    controls: ["trafficControl"],
+                    placemarks: _vm.placemarks
                   },
-                  behaviors: ["ruler"],
-                  controls: ["trafficControl"]
-                }
-              }),
+                  on: { "map-was-initialized": _vm.initHandler }
+                },
+                [
+                  _c("ymap-marker", {
+                    attrs: {
+                      "marker-id": "1",
+                      "marker-type": "placemark",
+                      coords: [54.7, 39.7],
+                      "hint-content": "Hint content 1",
+                      balloon: {
+                        header: "header",
+                        body: "body",
+                        footer: "footer"
+                      },
+                      icon: { color: "green", glyph: "cinema" },
+                      "cluster-name": "1"
+                    }
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c("br"),
               _vm._v(" "),
@@ -36568,7 +36615,11 @@ var render = function() {
                                 "b-button",
                                 {
                                   attrs: { variant: "primary" },
-                                  on: { click: _vm.setCoords }
+                                  on: {
+                                    click: function($event) {
+                                      _vm.setCoordsDialog = true
+                                    }
+                                  }
                                 },
                                 [_vm._v("отметить на карте")]
                               )
