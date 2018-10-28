@@ -64,7 +64,6 @@ class AdvertController extends Controller
         if ( $validator->fails() )  
             return response()->json(["result"=>"usr.error", "msg"=>$validator->errors()->first()]);                    
 
-                
         $category   = $data["adv_category"];
         $text       = $data["adv_info"];
         $price      = $data["adv_price"];
