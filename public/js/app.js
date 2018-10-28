@@ -2555,13 +2555,19 @@ function forEach(data, callback) {
 		};
 	},
 	created: function created() {
+
 		var myMap, myPlacemark;
 
 		function init() {
+			mapCoords = [51.08, 71.26];
 			myMap = new ymaps.Map("map", {
-				center: [55.76, 37.64],
-				zoom: 15
+				center: mapCoords,
+				zoom: 10
 			});
+
+			//Добавляем элементы управления
+			myMap.controls.add('zoomControl');
+			myMap.behaviors.enable('scrollZoom');
 
 			myPlacemark = new ymaps.Placemark([55.76, 37.64]);
 			myMap.geoObjects.add(myPlacemark);
