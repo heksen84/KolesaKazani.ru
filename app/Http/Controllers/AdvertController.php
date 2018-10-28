@@ -152,6 +152,18 @@ class AdvertController extends Controller
             $advert->save(); // сохраняю основную информацию
 
             /*
+            if($request->hasFile('image')) {
+
+                $image       = $request->file('image');
+                $filename    = $image->getClientOriginalName();
+            
+                $image_resize = Image::make($image->getRealPath());              
+                $image_resize->resize(300, 300);
+                $image_resize->save(public_path('images/ServiceImages/' .$filename));
+            
+            }*/
+
+            /*
             ------------------------------------------
             Сохраняю картинки
             ------------------------------------------*/
