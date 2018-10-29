@@ -400,8 +400,7 @@ export default {
 				navigator.geolocation.getCurrentPosition(function(position) {
 				
 				var lat = position.coords.latitude;
-				var lon = position.coords.longitude;								
-
+				var lon = position.coords.longitude;
 				var geoCoords=[lat,lon];
 				
 				/*geoCoords[0]=lat;

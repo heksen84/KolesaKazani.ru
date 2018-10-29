@@ -2798,7 +2798,6 @@ function forEach(data, callback) {
 
 					var lat = position.coords.latitude;
 					var lon = position.coords.longitude;
-
 					var geoCoords = [lat, lon];
 
 					/*geoCoords[0]=lat;
