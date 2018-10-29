@@ -2555,15 +2555,14 @@ function forEach(data, callback) {
 		};
 	},
 	created: function created() {
+		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
 
 		var myMap, myPlacemark;
 
 		function init() {
+
 			mapCoords = [51.08, 71.26];
-			myMap = new ymaps.Map("map", {
-				center: mapCoords,
-				zoom: 10
-			});
+			myMap = new ymaps.Map("map", { center: mapCoords, zoom: 10 });
 
 			//Добавляем элементы управления
 			myMap.controls.add('zoomControl');
@@ -2579,8 +2578,6 @@ function forEach(data, callback) {
 		}
 
 		ymaps.ready(init);
-
-		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
 	},
 
 
@@ -2788,7 +2785,20 @@ function forEach(data, callback) {
 				_this.$root.$notify({ group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error' });
 			});
 		},
+		showSetCoordsDialog: function showSetCoordsDialog() {
+			this.setCoordsDialog = true;
 
+			if (!navigator.geolocation) {
+				// не поддерживается. Установим координаты Астаны
+			} else {
+				navigator.geolocation.getCurrentPosition(function (position) {
+					var lat = position.coords.latitude;
+					var lon = position.coords.longitude;
+
+					alert(lat + "\n" + lon);
+				});
+			}
+		},
 
 		// установить координаты
 		setCoords: function setCoords() {
@@ -36589,11 +36599,7 @@ var render = function() {
                                 "b-button",
                                 {
                                   attrs: { variant: "primary" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.setCoordsDialog = true
-                                    }
-                                  }
+                                  on: { click: _vm.showSetCoordsDialog }
                                 },
                                 [_vm._v("отметить на карте")]
                               )

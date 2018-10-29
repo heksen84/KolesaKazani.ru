@@ -90,7 +90,7 @@
 
 				<!-- Расположение на карте -->
 				<b-form-group label="Расположение:" style="text-align:center">
-					<b-button variant="primary" @click="setCoordsDialog=true">отметить на карте</b-button>
+					<b-button variant="primary" @click="showSetCoordsDialog">отметить на карте</b-button>
 				</b-form-group>
 
 				<!-- Публикация -->
@@ -159,34 +159,30 @@ export default {
 		}
 	},
 
-	created() {
-		
-		var myMap, myPlacemark;
+	created() {		
+		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
+
+		var myMap, myPlacemark;		
 		
 		function init() {
+
 			mapCoords = [51.08, 71.26];
-        	myMap = new ymaps.Map ("map", {
-            center: mapCoords,
-           	zoom: 10,
-		});
+        	myMap = new ymaps.Map ("map", { center: mapCoords, zoom: 10 });
 
-		//Добавляем элементы управления
-		myMap.controls.add('zoomControl');
-		myMap.behaviors.enable('scrollZoom');
+			//Добавляем элементы управления
+			myMap.controls.add('zoomControl');
+			myMap.behaviors.enable('scrollZoom');
 			
-		myPlacemark = new ymaps.Placemark([55.76, 37.64]);
-		myMap.geoObjects.add(myPlacemark);
+			myPlacemark = new ymaps.Placemark([55.76, 37.64]);
+			myMap.geoObjects.add(myPlacemark);
 
-    	myMap.events.add('click', function (e) {
-            mapCoords = e.get('coordPosition');
-			myPlacemark.geometry.setCoordinates(mapCoords);
-		});
-		
+    		myMap.events.add('click', function (e) {
+            	mapCoords = e.get('coordPosition');
+				myPlacemark.geometry.setCoordinates(mapCoords);
+			});		
 		}
 
 		ymaps.ready(init);
-
-		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
 	},
 
 	components: { transport, realestate },
@@ -391,6 +387,21 @@ export default {
 		})
     },
 
+	showSetCoordsDialog() {
+		this.setCoordsDialog=true;
+
+		if (!navigator.geolocation) {
+			// не поддерживается. Установим координаты Астаны
+		}
+		else {
+				navigator.geolocation.getCurrentPosition(function(position) {
+				var lat = position.coords.latitude;
+				var lon = position.coords.longitude;
+
+				alert(lat+"\n"+lon);
+			});
+		}
+	},
 	// установить координаты
 	setCoords() {
 		this.setCoordsDialog=false;
