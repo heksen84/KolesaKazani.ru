@@ -2797,6 +2797,7 @@ function forEach(data, callback) {
 
 					var lat = position.coords.latitude;
 					var lon = position.coords.longitude;
+
 					console.log(lat + "\n" + lon);
 
 					var geoCoords = [];

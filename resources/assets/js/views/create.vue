@@ -399,9 +399,10 @@ export default {
 				navigator.geolocation.getCurrentPosition(function(position) {
 				
 				var lat = position.coords.latitude;
-				var lon = position.coords.longitude;
+				var lon = position.coords.longitude;				
+
 				console.log(lat+"\n"+lon);
-				
+
 				var geoCoords=[];
 				geoCoords[0]=lat;
 				geoCoords[1]=lon;
