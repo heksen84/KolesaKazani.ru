@@ -2511,6 +2511,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var preview_images_array = [];
 var mapCoords = [];
+var myPlacemark;
 
 // для заполнения изображений
 function forEach(data, callback) {
@@ -2557,7 +2558,7 @@ function forEach(data, callback) {
 	created: function created() {
 		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
 
-		var myMap, myPlacemark;
+		var myMap;
 
 		function init() {
 
@@ -2786,16 +2787,23 @@ function forEach(data, callback) {
 			});
 		},
 		showSetCoordsDialog: function showSetCoordsDialog() {
+
 			this.setCoordsDialog = true;
 
 			if (!navigator.geolocation) {
 				// не поддерживается. Установим координаты Астаны
 			} else {
 				navigator.geolocation.getCurrentPosition(function (position) {
+
 					var lat = position.coords.latitude;
 					var lon = position.coords.longitude;
+					console.log(lat + "\n" + lon);
 
-					alert(lat + "\n" + lon);
+					var geoCoords = [];
+					geoCoords[0] = lat;
+					geoCoords[1] = lon;
+
+					myPlacemark.geometry.setCoordinates(getCoords);
 				});
 			}
 		},

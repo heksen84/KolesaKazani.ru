@@ -115,6 +115,7 @@ import realestate from '../components/chars/realestate';
 
 var preview_images_array=[];
 var mapCoords=[];
+var myPlacemark;
 
 // для заполнения изображений
 function forEach(data, callback) { 
@@ -162,7 +163,7 @@ export default {
 	created() {		
 		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
 
-		var myMap, myPlacemark;		
+		var myMap;		
 		
 		function init() {
 
@@ -388,6 +389,7 @@ export default {
     },
 
 	showSetCoordsDialog() {
+
 		this.setCoordsDialog=true;
 
 		if (!navigator.geolocation) {
@@ -395,10 +397,16 @@ export default {
 		}
 		else {
 				navigator.geolocation.getCurrentPosition(function(position) {
+				
 				var lat = position.coords.latitude;
 				var lon = position.coords.longitude;
+				console.log(lat+"\n"+lon);
+				
+				var geoCoords=[];
+				geoCoords[0]=lat;
+				geoCoords[1]=lon;
 
-				alert(lat+"\n"+lon);
+				myPlacemark.geometry.setCoordinates(getCoords);				
 			});
 		}
 	},
