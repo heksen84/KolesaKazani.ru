@@ -2792,17 +2792,19 @@ function forEach(data, callback) {
 
 			if (!navigator.geolocation) {
 				// не поддерживается. Установим координаты Астаны
+				console.log("navigator.geolocation error");
 			} else {
 				navigator.geolocation.getCurrentPosition(function (position) {
 
 					var lat = position.coords.latitude;
 					var lon = position.coords.longitude;
 
-					console.log(lat + "\n" + lon);
+					var geoCoords = [lat, lon];
 
-					var geoCoords = [];
-					geoCoords[0] = lat;
-					geoCoords[1] = lon;
+					/*geoCoords[0]=lat;
+     geoCoords[1]=lon;*/
+
+					console.log(geoCoords);
 
 					myPlacemark.geometry.setCoordinates(getCoords);
 				});
