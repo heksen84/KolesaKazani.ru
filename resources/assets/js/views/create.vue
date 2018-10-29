@@ -393,7 +393,7 @@ export default {
 		this.setCoordsDialog=true;
 
 		if (!navigator.geolocation) {
-			// не поддерживается. Установим координаты Астаны
+			// navigator.geolocation не поддерживается
 			console.log("navigator.geolocation error");
 		}
 		else {
