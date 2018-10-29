@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
+use Intervention\Image\ImageManagerStatic as Image;
 use Validator;
 use App\Images;
 use App\Adverts;

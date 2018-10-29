@@ -18,5 +18,6 @@
 </body>
 </html>
 <script src="https://api-maps.yandex.ru/2.0-stable/?apikey=123&load=package.standard&lang=ru-RU" type="text/javascript"></script>
+<!--<SCRIPT type=text/javascript src="http://api-maps.yandex.ru/2.0.42/?load=package.standard&amp;mode=debug&amp;lang=ru-RU"></SCRIPT>-->
 <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
 <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
