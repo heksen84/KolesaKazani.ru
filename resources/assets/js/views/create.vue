@@ -90,7 +90,7 @@
 
 				<!-- Расположение на карте -->
 				<b-form-group label="Расположение:" style="text-align:center">
-					<div id="smallmap" style="border:1px solid grey; margin:auto;width: 250px; height: 250px" v-if="coordinates_set"></div>
+					<div id="smallmap" style="border:1px solid grey; margin:auto;width: 100%; height: 200px" v-if="coordinates_set" @click="showSetCoordsDialog"></div>
 					<br/>
 					<b-button variant="primary" @click="showSetCoordsDialog">отметить на карте</b-button>
 				</b-form-group>

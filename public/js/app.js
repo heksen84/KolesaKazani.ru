@@ -36619,10 +36619,11 @@ var render = function() {
                                     staticStyle: {
                                       border: "1px solid grey",
                                       margin: "auto",
-                                      width: "250px",
-                                      height: "250px"
+                                      width: "100%",
+                                      height: "200px"
                                     },
-                                    attrs: { id: "smallmap" }
+                                    attrs: { id: "smallmap" },
+                                    on: { click: _vm.showSetCoordsDialog }
                                   })
                                 : _vm._e(),
                               _vm._v(" "),
