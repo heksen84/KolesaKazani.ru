@@ -162,13 +162,14 @@ export default {
 		}
 	},
 
+	// компонент создан
 	created() {		
-		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
+		
+		var bigmap, smallmap;
 
-		var bigmap, smallmap;		
+		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация		
 		
 		function initBigMap() {
-
 			mapCoords = [51.08, 71.26];
         	bigmap = new ymaps.Map ("map", { center: mapCoords, zoom: 10 });
 
