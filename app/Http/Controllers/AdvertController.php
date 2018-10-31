@@ -174,7 +174,7 @@ class AdvertController extends Controller
             foreach($request->file("images") as $img) {
                 $filename = str_random(32).".".$img->getClientOriginalExtension();
                 $image_resize = Image::make($img->getRealPath());              
-                $image_resize->resize(640, 480)->text("FlyMarket24.kz", 10,10, function($font) {
+                $image_resize->resize(800, 600)->text("FlyMarket24.kz", 10,10, function($font) {
                     //$font->file("file.ttf");
                     $font->color(array(255,255,255,1));
                     $font->size(32);
