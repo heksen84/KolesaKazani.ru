@@ -36562,7 +36562,11 @@ var render = function() {
                         },
                         [
                           _c("b-form-input", {
-                            staticStyle: { width: "150px", display: "inline" },
+                            staticStyle: {
+                              width: "150px",
+                              display: "inline",
+                              "font-weight": "bold"
+                            },
                             attrs: {
                               type: "number",
                               id: "price",

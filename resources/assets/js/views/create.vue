@@ -76,7 +76,7 @@
 
 				<!-- Цена -->
 				<b-form-group label-for="price" style="text-align:center">
-			 		<b-form-input type="number" id="price" placeholder="Цена" style="width:150px;display:inline" :formatter="setPrice" required></b-form-input>
+			 		<b-form-input type="number" id="price" placeholder="Цена" style="width:150px;display:inline;font-weight:bold" :formatter="setPrice" required></b-form-input>
 					&nbsp;{{ this.$root.money_full_name }}
 				</b-form-group>			
 
