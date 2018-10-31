@@ -169,7 +169,7 @@ class AdvertController extends Controller
             ------------------------------------------
             Сохраняю картинки
             ------------------------------------------*/
-
+            //
             if ($request->images)
             foreach($request->file("images") as $img) {
                 $filename = str_random(32).".".$img->getClientOriginalExtension();
