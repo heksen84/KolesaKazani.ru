@@ -48,7 +48,7 @@ class AdvertController extends Controller
             "adv_deal"      => "required",
             "adv_category"  => "required", 
             "adv_price"     => "required|numeric",
-            "images.*"      => "image|mimes:jpeg,png,jpg|max:2048",
+            "images.*"      => "image|mimes:jpeg,png,jpg",
         ]; 
 
         // сообщения валидации
@@ -174,10 +174,10 @@ class AdvertController extends Controller
             foreach($request->file("images") as $img) {
                 $filename = str_random(32).".".$img->getClientOriginalExtension();
                 $image_resize = Image::make($img->getRealPath());              
-                $image_resize->resize(800, 600)->text("FlyMarket24.kz", 10,10, function($font) {
-                    //$font->file("file.ttf");
+                $image_resize->resize(800, 600)->text("www.damelya.kz", 8,25, function($font) {
+                    $font->file(public_path()."/fonts/Brushie.ttf");
                     $font->color(array(255,255,255,1));
-                    $font->size(32);
+                    $font->size(26);
                 });
                 $image_resize->save('storage/app/images/' .$filename);
                 $image = new Images();
