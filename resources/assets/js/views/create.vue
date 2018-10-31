@@ -90,6 +90,8 @@
 
 				<!-- Расположение на карте -->
 				<b-form-group label="Расположение:" style="text-align:center">
+					<div id="smallmap" style="border:1px solid grey; margin:auto;width: 250px; height: 250px" v-if="coordinates_set"></div>
+					<br/>
 					<b-button variant="primary" @click="showSetCoordsDialog">отметить на карте</b-button>
 				</b-form-group>
 
@@ -132,6 +134,7 @@ export default {
     return 	{
 		
 			setCoordsDialog:false,
+			coordinates_set:false,
 			/*-----------------------------
 				базовые поля объявления
 			-----------------------------*/
@@ -169,6 +172,7 @@ export default {
 
 			mapCoords = [51.08, 71.26];
         	myMap = new ymaps.Map ("map", { center: mapCoords, zoom: 10 });
+//			smallmap = new ymaps.Map ("smallmap", { center: mapCoords, zoom: 10 });
 
 			//Добавляем элементы управления
 			myMap.controls.add('zoomControl');
@@ -281,6 +285,9 @@ export default {
   		изменения в категориях
   		--------------------------*/
   		changeCategory(data) {
+			
+			// сбрасываю карту
+			this.coordinates_set=false;
 			// сбрасываю дополнительные поля
 			this.$store.commit("hideOtherFields");
 			// добавляю категорию
@@ -412,11 +419,13 @@ export default {
 			});
 		}
 	},
+
 	// установить координаты
 	setCoords() {
 		this.setCoordsDialog=false;
 		this.$root.advert_data.adv_coords=[];
 		this.$root.advert_data.adv_coords=mapCoords;
+		this.coordinates_set=true;
 	}
 }
 }

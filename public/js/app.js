@@ -2500,6 +2500,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 // ----------------------------------------------------
@@ -2528,6 +2530,7 @@ function forEach(data, callback) {
 		return {
 
 			setCoordsDialog: false,
+			coordinates_set: false,
 			/*-----------------------------
    	базовые поля объявления
    -----------------------------*/
@@ -2564,6 +2567,7 @@ function forEach(data, callback) {
 
 			mapCoords = [51.08, 71.26];
 			myMap = new ymaps.Map("map", { center: mapCoords, zoom: 10 });
+			//			smallmap = new ymaps.Map ("smallmap", { center: mapCoords, zoom: 10 });
 
 			//Добавляем элементы управления
 			myMap.controls.add('zoomControl');
@@ -2672,6 +2676,9 @@ function forEach(data, callback) {
   изменения в категориях
   --------------------------*/
 		changeCategory: function changeCategory(data) {
+
+			// сбрасываю карту
+			this.coordinates_set = false;
 			// сбрасываю дополнительные поля
 			this.$store.commit("hideOtherFields");
 			// добавляю категорию
@@ -2810,11 +2817,13 @@ function forEach(data, callback) {
 			}
 		},
 
+
 		// установить координаты
 		setCoords: function setCoords() {
 			this.setCoordsDialog = false;
 			this.$root.advert_data.adv_coords = [];
 			this.$root.advert_data.adv_coords = mapCoords;
+			this.coordinates_set = true;
 		}
 	}
 });
@@ -36605,6 +36614,20 @@ var render = function() {
                               attrs: { label: "Расположение:" }
                             },
                             [
+                              _vm.coordinates_set
+                                ? _c("div", {
+                                    staticStyle: {
+                                      border: "1px solid grey",
+                                      margin: "auto",
+                                      width: "250px",
+                                      height: "250px"
+                                    },
+                                    attrs: { id: "smallmap" }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c("br"),
+                              _vm._v(" "),
                               _c(
                                 "b-button",
                                 {
