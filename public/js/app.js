@@ -2503,7 +2503,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 // ----------------------------------------------------
@@ -2563,28 +2562,32 @@ function forEach(data, callback) {
 	created: function created() {
 		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
 
-		var myMap;
+		var bigmap, smallmap;
 
-		function init() {
+		function initBigMap() {
 
 			mapCoords = [51.08, 71.26];
-			myMap = new ymaps.Map("map", { center: mapCoords, zoom: 10 });
-			//			smallmap = new ymaps.Map ("smallmap", { center: mapCoords, zoom: 10 });
+			bigmap = new ymaps.Map("map", { center: mapCoords, zoom: 10 });
 
 			//Добавляем элементы управления
-			myMap.controls.add('zoomControl');
-			myMap.behaviors.enable('scrollZoom');
+			bigmap.controls.add('zoomControl');
+			bigmap.behaviors.enable('scrollZoom');
 
 			myPlacemark = new ymaps.Placemark([55.76, 37.64]);
-			myMap.geoObjects.add(myPlacemark);
+			bigmap.geoObjects.add(myPlacemark);
 
-			myMap.events.add('click', function (e) {
+			bigmap.events.add('click', function (e) {
 				mapCoords = e.get('coordPosition');
 				myPlacemark.geometry.setCoordinates(mapCoords);
 			});
 		}
 
-		ymaps.ready(init);
+		function initSmallMap() {
+			smallmap = new ymaps.Map("smallmap", { center: mapCoords, zoom: 10 });
+		}
+
+		ymaps.ready(initBigMap);
+		ymaps.ready(initSmallMap);
 	},
 
 
@@ -36607,25 +36610,26 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "b-form-group",
-                        {
-                          staticStyle: { "text-align": "center" },
-                          attrs: { label: "Расположение:" }
-                        },
+                        { attrs: { label: "Расположение:" } },
                         [
-                          _vm.coordinates_set
-                            ? _c("div", {
-                                staticStyle: {
-                                  border: "1px solid rgb(200,200,200)",
-                                  margin: "auto",
-                                  width: "100%",
-                                  height: "200px"
-                                },
-                                attrs: { id: "smallmap" },
-                                on: { click: _vm.showSetCoordsDialog }
-                              })
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _c("br"),
+                          _c("div", {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.coordinates_set,
+                                expression: "coordinates_set"
+                              }
+                            ],
+                            staticStyle: {
+                              border: "1px solid rgb(200,200,200)",
+                              margin: "5px auto",
+                              width: "100%",
+                              height: "200px"
+                            },
+                            attrs: { id: "smallmap" },
+                            on: { click: _vm.showSetCoordsDialog }
+                          }),
                           _vm._v(" "),
                           _c(
                             "b-button",

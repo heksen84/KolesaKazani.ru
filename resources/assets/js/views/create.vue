@@ -89,9 +89,8 @@
 				</b-form-group>
 
 				<!-- Расположение на карте -->
-				<b-form-group label="Расположение:" style="text-align:center">
-					<div id="smallmap" style="border:1px solid rgb(200,200,200); margin:auto;width: 100%; height: 200px" v-if="coordinates_set" @click="showSetCoordsDialog"></div>
-					<br/>
+				<b-form-group label="Расположение:">
+					<div id="smallmap" style="border:1px solid rgb(200,200,200); margin:5px auto;width: 100%; height: 200px" v-show="coordinates_set" @click="showSetCoordsDialog"></div>
 					<b-button variant="primary" @click="showSetCoordsDialog">отметить на карте</b-button>
 				</b-form-group>
 
@@ -166,28 +165,32 @@ export default {
 	created() {		
 		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
 
-		var myMap;		
+		var bigmap, smallmap;		
 		
-		function init() {
+		function initBigMap() {
 
 			mapCoords = [51.08, 71.26];
-        	myMap = new ymaps.Map ("map", { center: mapCoords, zoom: 10 });
-//			smallmap = new ymaps.Map ("smallmap", { center: mapCoords, zoom: 10 });
+        	bigmap = new ymaps.Map ("map", { center: mapCoords, zoom: 10 });
 
 			//Добавляем элементы управления
-			myMap.controls.add('zoomControl');
-			myMap.behaviors.enable('scrollZoom');
+			bigmap.controls.add('zoomControl');
+			bigmap.behaviors.enable('scrollZoom');
 			
 			myPlacemark = new ymaps.Placemark([55.76, 37.64]);
-			myMap.geoObjects.add(myPlacemark);
+			bigmap.geoObjects.add(myPlacemark);
 
-    		myMap.events.add('click', function (e) {
+    		bigmap.events.add('click', function (e) {
             	mapCoords = e.get('coordPosition');
 				myPlacemark.geometry.setCoordinates(mapCoords);
 			});		
-		}
+		}				
 
-		ymaps.ready(init);
+		function initSmallMap() {			
+			smallmap = new ymaps.Map ("smallmap", { center: mapCoords, zoom: 10 });
+		}		
+
+		ymaps.ready(initBigMap);
+		ymaps.ready(initSmallMap);
 	},
 
 	components: { transport, realestate },
