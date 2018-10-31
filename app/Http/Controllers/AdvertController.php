@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Filesystem;
 use Intervention\Image\ImageManagerStatic as Image;
 use Validator;
 use App\Images;
@@ -162,21 +163,7 @@ class AdvertController extends Controller
                 $advert->coord_lon = 0;
             }
 
-            $advert->save(); // сохраняю основную информацию
-
-            /*
-            use Intervention\Image\ImageManagerStatic as Image;
-            
-            if($request->hasFile('image')) {
-
-                $image       = $request->file('image');
-                $filename    = $image->getClientOriginalName();
-            
-                $image_resize = Image::make($image->getRealPath());              
-                $image_resize->resize(300, 300);
-                $image_resize->save(public_path('images/ServiceImages/' .$filename));
-            
-            }*/
+            $advert->save(); // сохраняю основную информацию           
 
             /*
             ------------------------------------------
@@ -184,11 +171,14 @@ class AdvertController extends Controller
             ------------------------------------------*/
 
             if ($request->images)
-            foreach($request->file("images") as $img) {                
+            foreach($request->file("images") as $img) {
+                $filename = str_random(32).".".$img->getClientOriginalExtension();
+                $image_resize = Image::make($img->getRealPath());              
+                $image_resize->resize(640, 480)->text("FlyMarket24.kz", 10,10);
+                $image_resize->save('storage/app/images/' .$filename);
                 $image = new Images();
-                $path = $img->store("images");
                 $image->advert_id = $advert->id;
-                $image->image_path = $path;                
+                $image->image_path = $filename;                
                 $image->save();
             }            
 
