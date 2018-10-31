@@ -34615,7 +34615,7 @@ var render = function() {
                     staticStyle: {
                       "font-size": "18px",
                       color: "yellow",
-                      "margin-top": "-13px",
+                      "margin-top": "-15px",
                       "letter-spacing": "2px"
                     }
                   },

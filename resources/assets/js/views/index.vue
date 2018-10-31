@@ -39,7 +39,7 @@
         <!-- Логотип -->        
           <div id="logo_block">
             <div id="logo_block_text">Дамеля</div>
-            <div style="font-size:18px;color:yellow;margin-top:-13px;letter-spacing:2px;">доска объявлений</div>
+            <div style="font-size:18px;color:yellow;margin-top:-15px;letter-spacing:2px;">доска объявлений</div>
           </div>
 
         </b-col>
