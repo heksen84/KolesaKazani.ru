@@ -286,6 +286,10 @@ export default {
   		--------------------------*/
   		changeCategory(data) {
 			
+			// сбрасываю фотки
+			//if(document.querySelector("input[type=file]").value!=null)
+			//	document.querySelector("input[type=file]").value = "";
+
 			// сбрасываю карту
 			this.coordinates_set=false;
 			// сбрасываю дополнительные поля
@@ -409,7 +413,7 @@ export default {
 				var lat = position.coords.latitude;
 				var lon = position.coords.longitude;
 				var geoCoords=[lat,lon];
-				
+
 				myPlacemark.geometry.setCoordinates(getCoords);				
 			});
 		}

@@ -2677,6 +2677,10 @@ function forEach(data, callback) {
   --------------------------*/
 		changeCategory: function changeCategory(data) {
 
+			// сбрасываю фотки
+			//if(document.querySelector("input[type=file]").value!=null)
+			//	document.querySelector("input[type=file]").value = "";
+
 			// сбрасываю карту
 			this.coordinates_set = false;
 			// сбрасываю дополнительные поля
