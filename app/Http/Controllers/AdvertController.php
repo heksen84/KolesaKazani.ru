@@ -172,13 +172,23 @@ class AdvertController extends Controller
             //
             if ($request->images)
             foreach($request->file("images") as $img) {
+                
                 $filename = str_random(32).".".$img->getClientOriginalExtension();
-                $image_resize = Image::make($img->getRealPath());              
-                $image_resize->resize(800, 600)->text("www.damelya.kz", 8,25, function($font) {
+                $image_resize = Image::make($img->getRealPath());
+                
+                // изменяю размер с соотношением пропорций              
+                $image_resize->resize(800, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+
+                // пишу текст в картинку
+                $image_resize->text("www.damelya.kz", 8,25, function($font) {
                     $font->file(public_path()."/fonts/Brushie.ttf");
                     $font->color(array(255,255,255,1));
                     $font->size(26);
                 });
+
+                // ... и сохраняю
                 $image_resize->save('storage/app/images/' .$filename);
                 $image = new Images();
                 $image->advert_id = $advert->id;
