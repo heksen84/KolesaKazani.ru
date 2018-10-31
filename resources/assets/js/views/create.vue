@@ -174,7 +174,7 @@ export default {
         	bigmap = new ymaps.Map ("map", { center: mapCoords, zoom: 10 });
 
 			//Добавляем элементы управления
-			bigmap.controls.add('zoomControl');
+			//bigmap.controls.add('zoomControl');
 			bigmap.behaviors.enable('scrollZoom');
 			
 			myPlacemark = new ymaps.Placemark([55.76, 37.64]);
