@@ -407,6 +407,7 @@ export default {
 		this.setCoordsDialog=true;
 
 		if (!navigator.geolocation) {
+			
 			// navigator.geolocation не поддерживается
 			console.log("navigator.geolocation error");
 		}
