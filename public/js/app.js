@@ -34624,7 +34624,7 @@ var render = function() {
             [
               _c("div", { attrs: { id: "logo_block" } }, [
                 _c("div", { attrs: { id: "logo_block_text" } }, [
-                  _vm._v("FlyMart24")
+                  _vm._v("Дамеля")
                 ]),
                 _vm._v(" "),
                 _c(

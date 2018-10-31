@@ -38,7 +38,7 @@
 
         <!-- Логотип -->        
           <div id="logo_block">
-            <div id="logo_block_text">FlyMart24</div>
+            <div id="logo_block_text">Дамеля</div>
             <div style="font-size:18px;color:yellow;margin-top:-13px;letter-spacing:2px;">доска объявлений</div>
           </div>
 
