@@ -64,7 +64,7 @@
 			<h1 v-else-if="other"></h1>
 
 			<!-- Дополнительные поля -->
-			<div v-if="this.$store.state.show_other_fields">
+			<div v-show="this.$store.state.show_other_fields">
 
 				<b-form-group label="Дополнительная информация:" label-for="addit_info">
 			 	<b-form-textarea id="addit_info"
@@ -286,10 +286,9 @@ export default {
   		--------------------------*/
   		changeCategory(data) {
 			
-			// сбрасываю фотки
-			//if(document.querySelector("input[type=file]").value!=null)
-			//	document.querySelector("input[type=file]").value = "";
-
+			// сбрасываю фотки			
+			document.querySelector("input[type=file]").value = "";
+			this.preview_images=[];
 			// сбрасываю карту
 			this.coordinates_set=false;
 			// сбрасываю дополнительные поля

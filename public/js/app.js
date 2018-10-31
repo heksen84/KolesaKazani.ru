@@ -2677,10 +2677,9 @@ function forEach(data, callback) {
   --------------------------*/
 		changeCategory: function changeCategory(data) {
 
-			// сбрасываю фотки
-			//if(document.querySelector("input[type=file]").value!=null)
-			//	document.querySelector("input[type=file]").value = "";
-
+			// сбрасываю фотки			
+			document.querySelector("input[type=file]").value = "";
+			this.preview_images = [];
 			// сбрасываю карту
 			this.coordinates_set = false;
 			// сбрасываю дополнительные поля
@@ -36505,168 +36504,165 @@ var render = function() {
                                       ? _c("h1")
                                       : _vm.other ? _c("h1") : _vm._e(),
                   _vm._v(" "),
-                  this.$store.state.show_other_fields
-                    ? _c(
-                        "div",
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: this.$store.state.show_other_fields,
+                          expression: "this.$store.state.show_other_fields"
+                        }
+                      ]
+                    },
+                    [
+                      _c(
+                        "b-form-group",
+                        {
+                          attrs: {
+                            label: "Дополнительная информация:",
+                            "label-for": "addit_info"
+                          }
+                        },
                         [
-                          _c(
-                            "b-form-group",
-                            {
-                              attrs: {
-                                label: "Дополнительная информация:",
-                                "label-for": "addit_info"
-                              }
+                          _c("b-form-textarea", {
+                            attrs: {
+                              id: "addit_info",
+                              placeholder: "Введите дополнительную информацию",
+                              rows: 4,
+                              "max-rows": 4
                             },
-                            [
-                              _c("b-form-textarea", {
-                                attrs: {
-                                  id: "addit_info",
-                                  placeholder:
-                                    "Введите дополнительную информацию",
-                                  rows: 4,
-                                  "max-rows": 4
-                                },
-                                on: { input: _vm.setInfo },
-                                model: {
-                                  value: _vm.text,
-                                  callback: function($$v) {
-                                    _vm.text = $$v
-                                  },
-                                  expression: "text"
+                            on: { input: _vm.setInfo },
+                            model: {
+                              value: _vm.text,
+                              callback: function($$v) {
+                                _vm.text = $$v
+                              },
+                              expression: "text"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        {
+                          staticStyle: { "text-align": "center" },
+                          attrs: { "label-for": "price" }
+                        },
+                        [
+                          _c("b-form-input", {
+                            staticStyle: { width: "150px", display: "inline" },
+                            attrs: {
+                              type: "number",
+                              id: "price",
+                              placeholder: "Цена",
+                              formatter: _vm.setPrice,
+                              required: ""
+                            }
+                          }),
+                          _vm._v(
+                            "\n\t\t\t\t\t " +
+                              _vm._s(this.$root.money_full_name) +
+                              "\n\t\t\t\t"
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("b-form-group", { attrs: { label: "Фотографии:" } }, [
+                        _c(
+                          "div",
+                          { staticStyle: { "text-align": "center" } },
+                          [
+                            _vm._l(_vm.preview_images, function(i, index) {
+                              return _c("b-img", {
+                                key: i.name,
+                                staticClass: "image",
+                                attrs: { src: i.src, title: i.name },
+                                on: {
+                                  click: function($event) {
+                                    _vm.deletePhoto(index)
+                                  }
                                 }
                               })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-form-group",
-                            {
-                              staticStyle: { "text-align": "center" },
-                              attrs: { "label-for": "price" }
-                            },
-                            [
-                              _c("b-form-input", {
+                            }),
+                            _vm._v(" "),
+                            _c("b-form-file", {
+                              staticClass: "mt-2",
+                              attrs: {
+                                multiple: "",
+                                accept: ".png, .jpg, .jpeg"
+                              },
+                              on: { change: _vm.loadImage }
+                            })
+                          ],
+                          2
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        {
+                          staticStyle: { "text-align": "center" },
+                          attrs: { label: "Расположение:" }
+                        },
+                        [
+                          _vm.coordinates_set
+                            ? _c("div", {
                                 staticStyle: {
-                                  width: "150px",
-                                  display: "inline"
+                                  border: "1px solid rgb(200,200,200)",
+                                  margin: "auto",
+                                  width: "100%",
+                                  height: "200px"
                                 },
-                                attrs: {
-                                  type: "number",
-                                  id: "price",
-                                  placeholder: "Цена",
-                                  formatter: _vm.setPrice,
-                                  required: ""
-                                }
-                              }),
-                              _vm._v(
-                                "\n\t\t\t\t\t " +
-                                  _vm._s(this.$root.money_full_name) +
-                                  "\n\t\t\t\t"
-                              )
-                            ],
-                            1
-                          ),
+                                attrs: { id: "smallmap" },
+                                on: { click: _vm.showSetCoordsDialog }
+                              })
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("br"),
                           _vm._v(" "),
                           _c(
-                            "b-form-group",
-                            { attrs: { label: "Фотографии:" } },
-                            [
-                              _c(
-                                "div",
-                                { staticStyle: { "text-align": "center" } },
-                                [
-                                  _vm._l(_vm.preview_images, function(
-                                    i,
-                                    index
-                                  ) {
-                                    return _c("b-img", {
-                                      key: i.name,
-                                      staticClass: "image",
-                                      attrs: { src: i.src, title: i.name },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.deletePhoto(index)
-                                        }
-                                      }
-                                    })
-                                  }),
-                                  _vm._v(" "),
-                                  _c("b-form-file", {
-                                    staticClass: "mt-2",
-                                    attrs: {
-                                      multiple: "",
-                                      accept: ".png, .jpg, .jpeg"
-                                    },
-                                    on: { change: _vm.loadImage }
-                                  })
-                                ],
-                                2
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-form-group",
+                            "b-button",
                             {
-                              staticStyle: { "text-align": "center" },
-                              attrs: { label: "Расположение:" }
+                              attrs: { variant: "primary" },
+                              on: { click: _vm.showSetCoordsDialog }
                             },
-                            [
-                              _vm.coordinates_set
-                                ? _c("div", {
-                                    staticStyle: {
-                                      border: "1px solid rgb(200,200,200)",
-                                      margin: "auto",
-                                      width: "100%",
-                                      height: "200px"
-                                    },
-                                    attrs: { id: "smallmap" },
-                                    on: { click: _vm.showSetCoordsDialog }
-                                  })
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _c("br"),
-                              _vm._v(" "),
-                              _c(
-                                "b-button",
-                                {
-                                  attrs: { variant: "primary" },
-                                  on: { click: _vm.showSetCoordsDialog }
-                                },
-                                [_vm._v("отметить на карте")]
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
+                            [_vm._v("отметить на карте")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-group",
+                        {
+                          staticStyle: {
+                            "text-align": "center",
+                            margin: "25px"
+                          }
+                        },
+                        [
                           _c(
-                            "b-form-group",
+                            "b-button",
                             {
-                              staticStyle: {
-                                "text-align": "center",
-                                margin: "25px"
+                              attrs: {
+                                type: "onSubmit",
+                                variant: "outline-primary",
+                                title: "Опубликовать объявление"
                               }
                             },
-                            [
-                              _c(
-                                "b-button",
-                                {
-                                  attrs: {
-                                    type: "onSubmit",
-                                    variant: "outline-primary",
-                                    title: "Опубликовать объявление"
-                                  }
-                                },
-                                [_vm._v("ОПУБЛИКОВАТЬ")]
-                              )
-                            ],
-                            1
+                            [_vm._v("ОПУБЛИКОВАТЬ")]
                           )
                         ],
                         1
                       )
-                    : _vm._e()
+                    ],
+                    1
+                  )
                 ],
                 1
               )
