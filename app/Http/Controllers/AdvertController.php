@@ -169,7 +169,7 @@ class AdvertController extends Controller
             ------------------------------------------
             Сохраняю картинки
             ------------------------------------------*/
-            //
+            
             if ($request->images)
             foreach($request->file("images") as $img) {
 
@@ -188,7 +188,7 @@ class AdvertController extends Controller
                     $font->size(26);
                 });
 
-                // ... и сохраняю
+                // ... и сохраняю в хранилище
                 $image_resize->save(storage_path().'/app/images/' .$filename);
                 $image = new Images();
                 $image->advert_id = $advert->id;
