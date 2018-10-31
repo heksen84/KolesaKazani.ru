@@ -118,7 +118,7 @@ var preview_images_array=[];
 var mapCoords=[];
 var myPlacemark;
 
-// для заполнения изображений
+// Для заполнения изображений
 function forEach(data, callback) { 
 	for(var key in data) { 
 		if(data.hasOwnProperty(key)) { 
@@ -162,7 +162,7 @@ export default {
 		}
 	},
 
-	// компонент создан
+	// Событие: компонент создан
 	created() {		
 		
 		var bigmap, smallmap;
@@ -253,7 +253,7 @@ export default {
  			window.history.back();
   		},
 
-  		// сброс данных при выборе категории
+  		// Сброс данных при выборе категории
   		resetCategories(data) {
   			 this.root=false;				        // по умолчанию
   			 this.transport=false;			        // транспорт
@@ -286,7 +286,7 @@ export default {
 
   		/*
   		--------------------------
-  		изменения в категориях
+  		 Изменения в категориях
   		--------------------------*/
   		changeCategory(data) {
 			
@@ -378,7 +378,7 @@ export default {
 			formData.append(key, value);
 		})
 
-		// записываю изображения
+		// Записываю изображения
 		for( var i=0; i < this.real_images.length; i++ ) {
           	formData.append('images['+i+']', this.real_images[i]);
 		}
@@ -402,28 +402,26 @@ export default {
 		})
     },
 
+	// Показать диалог выбора расположения
 	showSetCoordsDialog() {
 
 		this.setCoordsDialog=true;
 
 		if (!navigator.geolocation) {
-
 			// navigator.geolocation не поддерживается
 			console.log("navigator.geolocation error");
 		}
 		else {
-				navigator.geolocation.getCurrentPosition(function(position) {
-				
+				navigator.geolocation.getCurrentPosition(function(position) {				
 				var lat = position.coords.latitude;
 				var lon = position.coords.longitude;
 				var geoCoords=[lat,lon];
-
 				myPlacemark.geometry.setCoordinates(getCoords);				
 			});
 		}
 	},
 
-	// установить координаты
+	// Установить координаты
 	setCoords() {
 		this.setCoordsDialog=false;
 		this.$root.advert_data.adv_coords=[];

@@ -2516,7 +2516,7 @@ var preview_images_array = [];
 var mapCoords = [];
 var myPlacemark;
 
-// для заполнения изображений
+// Для заполнения изображений
 function forEach(data, callback) {
 	for (var key in data) {
 		if (data.hasOwnProperty(key)) {
@@ -2561,7 +2561,7 @@ function forEach(data, callback) {
 	},
 
 
-	// компонент создан
+	// Событие: компонент создан
 	created: function created() {
 
 		var bigmap, smallmap;
@@ -2650,7 +2650,7 @@ function forEach(data, callback) {
 		},
 
 
-		// сброс данных при выборе категории
+		// Сброс данных при выборе категории
 		resetCategories: function resetCategories(data) {
 			this.root = false; // по умолчанию
 			this.transport = false; // транспорт
@@ -2681,7 +2681,7 @@ function forEach(data, callback) {
 
 		/*
   --------------------------
-  изменения в категориях
+   Изменения в категориях
   --------------------------*/
 		changeCategory: function changeCategory(data) {
 
@@ -2787,7 +2787,7 @@ function forEach(data, callback) {
 				formData.append(key, value);
 			});
 
-			// записываю изображения
+			// Записываю изображения
 			for (var i = 0; i < this.real_images.length; i++) {
 				formData.append('images[' + i + ']', this.real_images[i]);
 			}
@@ -2804,28 +2804,28 @@ function forEach(data, callback) {
 				_this.$root.$notify({ group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error' });
 			});
 		},
+
+
+		// Показать диалог выбора расположения
 		showSetCoordsDialog: function showSetCoordsDialog() {
 
 			this.setCoordsDialog = true;
 
 			if (!navigator.geolocation) {
-
 				// navigator.geolocation не поддерживается
 				console.log("navigator.geolocation error");
 			} else {
 				navigator.geolocation.getCurrentPosition(function (position) {
-
 					var lat = position.coords.latitude;
 					var lon = position.coords.longitude;
 					var geoCoords = [lat, lon];
-
 					myPlacemark.geometry.setCoordinates(getCoords);
 				});
 			}
 		},
 
 
-		// установить координаты
+		// Установить координаты
 		setCoords: function setCoords() {
 			this.setCoordsDialog = false;
 			this.$root.advert_data.adv_coords = [];
