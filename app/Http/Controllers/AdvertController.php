@@ -172,7 +172,7 @@ class AdvertController extends Controller
             //
             if ($request->images)
             foreach($request->file("images") as $img) {
-                
+
                 $filename = str_random(32).".".$img->getClientOriginalExtension();
                 $image_resize = Image::make($img->getRealPath());
                 
@@ -189,7 +189,7 @@ class AdvertController extends Controller
                 });
 
                 // ... и сохраняю
-                $image_resize->save('storage/app/images/' .$filename);
+                $image_resize->save(storage_path().'/app/images/' .$filename);
                 $image = new Images();
                 $image->advert_id = $advert->id;
                 $image->image = $filename;                
