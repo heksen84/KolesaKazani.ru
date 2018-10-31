@@ -34758,7 +34758,7 @@ var render = function() {
       _vm._v(" "),
       _c("b-row", [
         _c("span", { staticStyle: { margin: "auto", "margin-top": "10px" } }, [
-          _vm._v("2018(c)")
+          _vm._v("AksuSoftware 2018(c)")
         ])
       ])
     ],

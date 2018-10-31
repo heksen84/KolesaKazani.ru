@@ -80,7 +80,7 @@
     <b-col v-for="i in 40" style="border:1px solid rgb(255,255,255);margin:1px;padding:30px;opacity:0.5" v-bind:key="i"></b-col>
 </b-row>
 
-<b-row><span style="margin:auto;margin-top:10px">2018(c)</span></b-row>
+<b-row><span style="margin:auto;margin-top:10px">AksuSoftware 2018(c)</span></b-row>
 
 </b-container>
 </template>
