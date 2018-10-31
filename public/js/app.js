@@ -2807,11 +2807,6 @@ function forEach(data, callback) {
 					var lon = position.coords.longitude;
 					var geoCoords = [lat, lon];
 
-					/*geoCoords[0]=lat;
-     geoCoords[1]=lon;*/
-
-					console.log(geoCoords);
-
 					myPlacemark.geometry.setCoordinates(getCoords);
 				});
 			}
