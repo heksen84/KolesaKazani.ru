@@ -182,7 +182,7 @@ class AdvertController extends Controller
                 $image_resize->save('storage/app/images/' .$filename);
                 $image = new Images();
                 $image->advert_id = $advert->id;
-                $image->image_path = $filename;                
+                $image->image = $filename;                
                 $image->save();
             }            
 
