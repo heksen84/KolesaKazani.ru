@@ -8,7 +8,7 @@
           <b-modal size="lg" v-model="setCoordsDialog" style="text-align:center;color:rgb(50,50,50)" hide-footer title="Местоположение">
 			  <div id="map" style="width: 100%; height: 400px"></div>
 			<br/>
-			<b-button variant="primary" @click="setCoords">Сохранить</b-button>
+			<b-button variant="primary" @click="setCoords" id="setCoordsBtn">Сохранить</b-button>
           </b-modal> 	
 
 
@@ -183,7 +183,7 @@ export default {
     		bigmap.events.add('click', function (e) {
             	mapCoords = e.get('coordPosition');
 				myPlacemark.geometry.setCoordinates(mapCoords);
-			});		
+			});			
 		}				
 
 		function initSmallMap() {			

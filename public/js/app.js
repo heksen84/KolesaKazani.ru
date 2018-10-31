@@ -36382,7 +36382,10 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "b-button",
-                { attrs: { variant: "primary" }, on: { click: _vm.setCoords } },
+                {
+                  attrs: { variant: "primary", id: "setCoordsBtn" },
+                  on: { click: _vm.setCoords }
+                },
                 [_vm._v("Сохранить")]
               )
             ],
