@@ -36617,7 +36617,7 @@ var render = function() {
                               _vm.coordinates_set
                                 ? _c("div", {
                                     staticStyle: {
-                                      border: "1px solid grey",
+                                      border: "1px solid rgb(200,200,200)",
                                       margin: "auto",
                                       width: "100%",
                                       height: "200px"
