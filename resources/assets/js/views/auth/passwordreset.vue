@@ -17,7 +17,7 @@
                       type="email"
                       v-model="form.email"
                       required
-                      placeholder="Введи email">
+                      placeholder="Введите email">
         </b-form-input>
       </b-form-group>
       </b-form-group>

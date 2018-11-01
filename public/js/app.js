@@ -35284,7 +35284,7 @@ var render = function() {
                           id: "email",
                           type: "email",
                           required: "",
-                          placeholder: "Введи email"
+                          placeholder: "Введите email"
                         },
                         model: {
                           value: _vm.form.email,
