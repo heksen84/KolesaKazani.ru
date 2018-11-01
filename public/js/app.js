@@ -2210,9 +2210,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     closeAndReturn: function closeAndReturn() {
       window.history.back();
     },
-    onSubmit: function onSubmit(evt) {
+    sendEmail: function sendEmail(evt) {
       evt.preventDefault();
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/login', { "email": this.form.email, "password": this.form.password }).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/password/email', { "email": this.form.email }).then(function (res) {
         window.location = '/home';
       }).catch(function (err) {
         console.log(err.response.data);
@@ -36262,7 +36262,7 @@ var render = function() {
                             },
                             attrs: { href: "/password/reset" }
                           },
-                          [_c("br"), _vm._v("Восстановить")]
+                          [_c("br"), _vm._v("Восстановить вход")]
                         ),
                         _vm._v(" "),
                         _c("br"),

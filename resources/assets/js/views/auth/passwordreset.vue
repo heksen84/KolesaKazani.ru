@@ -48,9 +48,9 @@ export default {
     closeAndReturn() {
  			  window.history.back();
   	},
-    onSubmit (evt) {
+    sendEmail (evt) {
       evt.preventDefault();
-      post('/login', { "email": this.form.email, "password": this.form.password }
+      post('/password/email', { "email": this.form.email }
       ).then((res) => {
         window.location='/home';
       }).catch((err) => {
