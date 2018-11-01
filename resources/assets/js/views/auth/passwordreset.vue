@@ -2,8 +2,8 @@
   <b-container fluid class="mycontainer">
     <b-row>
     <!-- ALERT -->    
-    <b-col cols="12" class="alert" v-if="alert.show">    
-      <b-alert variant="danger" show style="margin:auto;width:300px">{{ alert.msg }}</b-alert>
+    <b-col cols="12" class="alert" v-if="$root.alert.show">    
+      <b-alert variant="danger" show style="margin:auto;width:300px">{{ $root.alert.msg }}</b-alert>
     </b-col>
 
     <!-- ФОРМА -->
@@ -39,10 +39,6 @@ import { post } from './../../helpers/api'
 export default {
   data () {
     return {
-      alert: {
-        show:false,
-        msg:""
-      },
       form: {
         email: ''
       },

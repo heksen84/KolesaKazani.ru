@@ -2119,10 +2119,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      alert: {
-        show: false,
-        msg: ""
-      },
       form: {
         email: '',
         password: '',
@@ -2142,9 +2138,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/login', { "email": this.form.email, "password": this.form.password }).then(function (res) {
         window.location = '/home';
       }).catch(function (err) {
-        _this.alert.show = true;
+        _this.$root.alert.show = true;
         //this.alert.msg=err.response.data.message;
-        _this.alert.msg = "Неверные почта или пароль";
+        _this.$root.alert.msg = "Почта или пароль указаны неверно";
         console.log(err.response.data);
       });
     },
@@ -2203,10 +2199,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      alert: {
-        show: false,
-        msg: ""
-      },
       form: {
         email: ''
       }
@@ -2306,10 +2298,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      alert: {
-        show: false,
-        msg: ""
-      },
       form: {
         name: '',
         email: '',
@@ -35233,7 +35221,7 @@ var render = function() {
       _c(
         "b-row",
         [
-          _vm.alert.show
+          _vm.$root.alert.show
             ? _c(
                 "b-col",
                 { staticClass: "alert", attrs: { cols: "12" } },
@@ -35244,7 +35232,7 @@ var render = function() {
                       staticStyle: { margin: "auto", width: "300px" },
                       attrs: { variant: "danger", show: "" }
                     },
-                    [_vm._v(_vm._s(_vm.alert.msg))]
+                    [_vm._v(_vm._s(_vm.$root.alert.msg))]
                   )
                 ],
                 1
@@ -35925,7 +35913,7 @@ var render = function() {
       _c(
         "b-row",
         [
-          _vm.alert.show
+          _vm.$root.alert.show
             ? _c(
                 "b-col",
                 { staticClass: "alert", attrs: { cols: "12" } },
@@ -35936,7 +35924,7 @@ var render = function() {
                       staticStyle: { margin: "auto", width: "300px" },
                       attrs: { variant: "danger", show: "" }
                     },
-                    [_vm._v(_vm._s(_vm.alert.msg))]
+                    [_vm._v(_vm._s(_vm.$root.alert.msg))]
                   )
                 ],
                 1
@@ -36130,7 +36118,7 @@ var render = function() {
       _c(
         "b-row",
         [
-          _vm.alert.show
+          _vm.$root.alert.show
             ? _c(
                 "b-col",
                 { staticClass: "alert", attrs: { cols: "12" } },
@@ -36141,7 +36129,7 @@ var render = function() {
                       staticStyle: { margin: "auto", width: "300px" },
                       attrs: { variant: "danger", show: "" }
                     },
-                    [_vm._v(_vm._s(_vm.alert.msg))]
+                    [_vm._v(_vm._s(_vm.$root.alert.msg))]
                   )
                 ],
                 1
@@ -50599,7 +50587,12 @@ module.exports = Component.exports
     money_full_name: "тенге",
     money_small_name: "тнг.",
 
-    advert_data: {} // наш объект объявления, куда всё размещается 
+    advert_data: {}, // наш объект объявления, куда всё размещается 
+
+    alert: {
+        show: false,
+        msg: ""
+    }
 });
 
 /***/ }),

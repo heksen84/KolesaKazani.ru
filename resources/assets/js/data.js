@@ -17,6 +17,11 @@ export default {
     money_full_name: "тенге",
     money_small_name: "тнг.",
 
-    advert_data: {} // наш объект объявления, куда всё размещается 
+    advert_data: {}, // наш объект объявления, куда всё размещается 
+
+    alert: {
+        show:false,
+        msg:""
+    },
 }
 
