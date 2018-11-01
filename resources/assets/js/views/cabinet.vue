@@ -53,16 +53,17 @@ components: {},
 
   	// ВЫХОД
     logout() {
-		get('/logout').then((res) => {
-			window.location='/';
-		}).catch((err) => {});
+			get('/logout').then((res) => {
+				window.location='/';
+			}).catch((err) => {});
     },
     
     goHome() {
     	window.location='/';
-    },
+		},
+		
     createAdvert() {
-    	window.location='/new';
+    	window.location='/podat-obyavlenie';
     }
 }
 }
