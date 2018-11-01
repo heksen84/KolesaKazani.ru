@@ -52,7 +52,7 @@ class RegisterController extends Controller
             "name.required"  => "Введите имя", 
             "name.string"    => "Имя должно быть строкой", 
             "email.required" => "Введите почту", 
-            "email.string"   => "Почта должно быть строкой", 
+            "email.string"   => "Почта должна быть строкой", 
         ]; 
 
         return Validator::make($data, [
