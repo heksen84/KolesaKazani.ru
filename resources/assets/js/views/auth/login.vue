@@ -39,7 +39,7 @@
         <hr>
       </b-form-group>
       <b-form-group>
-      <div style="text-align:center">        
+      <div style="text-align:center;margin-top:-20px">        
         Забыли пароль?&nbsp;<b-link style="color:grey;font-weight:bold" href="/password/reset"><br>Восстановить</b-link>
         <br>
         Ещё не зарегистрированы?&nbsp;<b-link style="color:grey;font-weight:bold" href="/register"><br>Регистрация</b-link>                        

@@ -36263,7 +36263,12 @@ var render = function() {
                   _c("b-form-group", [
                     _c(
                       "div",
-                      { staticStyle: { "text-align": "center" } },
+                      {
+                        staticStyle: {
+                          "text-align": "center",
+                          "margin-top": "-20px"
+                        }
+                      },
                       [
                         _vm._v("        \n        Забыли пароль? "),
                         _c(
