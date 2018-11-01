@@ -11,20 +11,20 @@
     <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
     <h4 style="text-align:center;margin-top:12px;color:grey">восстановление пароля</h4>    
     <hr>
-    <b-form @submit="onSubmit" style="width:99%">
+    <b-form style="width:99%">
       <b-form-group label="Email адрес:" label-for="email">
         <b-form-input id="email"
                       type="email"
                       v-model="form.email"
                       required
-                      placeholder="Введите email">
+                      placeholder="Введите свой email">
         </b-form-input>
       </b-form-group>
       </b-form-group>
       <b-form-group>
       </b-form-group>
       <b-form-group style="text-align:center">
-        <b-button type="submit" variant="primary">Восстановить</b-button>
+        <b-button @click="sendEmail" variant="primary">Восстановить</b-button>
       </b-form-group>
       <b-form-group>
       </b-form-group>
@@ -49,10 +49,12 @@ export default {
  			  window.history.back();
   	},
     sendEmail (evt) {
-      evt.preventDefault();
+
+      alert("!23")
       post('/password/email', { "email": this.form.email }
       ).then((res) => {
-        window.location='/home';
+        console.log(res);
+       // window.location='/home';
       }).catch((err) => {
       console.log(err.response.data);
     });

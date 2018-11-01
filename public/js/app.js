@@ -2211,9 +2211,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       window.history.back();
     },
     sendEmail: function sendEmail(evt) {
-      evt.preventDefault();
+
+      alert("!23");
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/password/email', { "email": this.form.email }).then(function (res) {
-        window.location = '/home';
+        console.log(res);
+        // window.location='/home';
       }).catch(function (err) {
         console.log(err.response.data);
       });
@@ -35255,7 +35257,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "b-form",
-                { staticStyle: { width: "99%" }, on: { submit: _vm.onSubmit } },
+                { staticStyle: { width: "99%" } },
                 [
                   _c(
                     "b-form-group",
@@ -35266,7 +35268,7 @@ var render = function() {
                           id: "email",
                           type: "email",
                           required: "",
-                          placeholder: "Введите email"
+                          placeholder: "Введите свой email"
                         },
                         model: {
                           value: _vm.form.email,
@@ -35288,7 +35290,10 @@ var render = function() {
                     [
                       _c(
                         "b-button",
-                        { attrs: { type: "submit", variant: "primary" } },
+                        {
+                          attrs: { variant: "primary" },
+                          on: { click: _vm.sendEmail }
+                        },
                         [_vm._v("Восстановить")]
                       )
                     ],
