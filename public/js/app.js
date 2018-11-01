@@ -2143,7 +2143,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         window.location = '/home';
       }).catch(function (err) {
         _this.alert.show = true;
-        _this.alert.msg = err.response.data.message;
+        //this.alert.msg=err.response.data.message;
+        _this.alert.msg = "Неверные почта или пароль";
         console.log(err.response.data);
       });
     },

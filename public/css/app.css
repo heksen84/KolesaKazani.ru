@@ -112,7 +112,7 @@ body {
 
 .standart_window {
   text-align: left;
-  margin: 20px auto;
+  margin: 50px auto;
   color: black;
   background: white;
 }
@@ -419,7 +419,7 @@ a:active {
 
   .alert {
     margin-top: 5px;
-    margin-bottom: 5px;
+    /*margin-bottom:5px;*/
   }
 
   #welcome_menu {

@@ -77,7 +77,8 @@ export default {
         window.location='/home';
       }).catch((err) => {
         this.alert.show=true;
-        this.alert.msg=err.response.data.message;
+        //this.alert.msg=err.response.data.message;
+        this.alert.msg="Неверные почта или пароль";
         console.log(err.response.data);
     });
     },
