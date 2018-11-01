@@ -14,7 +14,7 @@
 </head>
 <body>
 <div id="app">
-      <passwordreset></passwordreset>
+  <passwordreset></passwordreset>
 </div>
 <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
 </body>
