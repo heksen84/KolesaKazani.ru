@@ -10,6 +10,7 @@ use App\Adverts;
 use App\Categories;
 use App\Regions;
 use App\Places;
+use App\Images;
 
 
 class ResultsController extends Controller {
@@ -19,33 +20,15 @@ class ResultsController extends Controller {
     // ---------------------------------------------------
     public function getResultsByCategory(Request $request) {
 
-		/*
-			$redis = Redis::connection();
-
-			try {								
-
-				$redis->ping();
-				$results = $redis->get("results");
-
-				if (!$results) {
-					$redis->set("results", Categories::all()); 
-					$results = $redis->get("results");
-				}
-			}
-			catch(\Exception $e) {
-				\Debugbar::warning($e->getMessage());
-				$results = Categories::all();
-			}
-		*/
-
     	// получаю имя на русском
     	$record = Categories::select('id', 'name')->where('url',  $request->path() )->first();
-
-    	// получаю объявления
-    	$items = Adverts::where('category_id',  $record->id )->get();
+		// получаю объявления
+		$items = Adverts::where('category_id',  $record->id )->get();
+		// получаю картинки
+    	$images = Images::where('advert_id',  $record->id )->get();
 
 		// передаю во вьюху
-     	return view('results')->with("items", $items)->with("title", $record->name." в Казахстане");
+     	return view('results')->with("title", $record->name." в Казахстане")->with("items", $items)->with("images", $images);
     }
 
     // ---------------------------------------------------
@@ -54,13 +37,10 @@ class ResultsController extends Controller {
     public function getResultsByRegion($_region, $_category) {
 
     	// получаю имена на русском
-    	$region    = Regions::select('name')->where('url',  $_region )->first();
-
-    	$category  = Categories::select('id', 'name')->where('url',  $_category )->first();
-    	
+    	$region = Regions::select('name')->where('url',  $_region )->first();
+    	$category = Categories::select('id', 'name')->where('url',  $_category )->first();
     	// получаю объявления
     	$items = Adverts::where('category_id',  0)->get();
-
 
         // !!!! НЕТ РЕГИОНА !!! зависит от локации
 

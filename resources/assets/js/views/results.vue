@@ -2,13 +2,13 @@
 	<b-container fluid class="mycontainer">
 		<b-row>
 			<b-col cols="12" sm="12" md="10" lg="10" xl="10" class="result_info_col">
-				<h1 class="shadow_text title_text">{{ count  }} {{ count_string }}</h1>
+				<h1 class="shadow_text title_text">{{ count  }} {{ count_string }} </h1>
 			</b-col>
 		</b-row>
 	<br>
 
 	<!-- БАЗОВЫЕ ФИЛЬТРЫ -->
-	<b-row v-if="count>1">
+<!--<b-row v-if="count>1">
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 		Выгрузить в эксель
 		</b-col>
@@ -23,11 +23,11 @@
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 		  	<b-form-select v-model="filters.location" :options="options_location" class="mb-3" @change="getSearchData" />
 		</b-col>
-
+-->
 		<!--<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 		 	<b-form-select v-model="filters.actual" :options="options_actual" class="mb-3" size="sm" @change="getSearchData"/>
-		</b-col>-->
-	</b-row>
+		</b-col>
+	</b-row>-->
 
 	<!-- ДОПОЛНИТЕЛЬНЫЕ ФИЛЬТРЫ -->
 	<!--<b-row v-if="count>1">
@@ -52,7 +52,7 @@
 	<div style="margin-top:-11px">
 	<b-row style="margin-top:0px" v-for="item in items" :key="item.id">
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-  			 <b-img src="https://picsum.photos/125/125/?image=58" alt="left image" />
+  			<!-- <b-img src="https://picsum.photos/125/125/?image=58" alt="left image" />-->
 		</b-col>
 
 		<b-col cols="12" sm="12" md="8" lg="8" xl="8">
@@ -62,7 +62,7 @@
 	</div>
 
 	<div class="vip_block">
-		<h3 v-for="i in items" style="height:340px;border:1px solid white;text-align:center"></h3>
+		<h3 v-for="i in items" :key="i" style="height:340px;border:1px solid white;text-align:center"></h3>
 	</div>
 
 	<b-row v-if="count>1">
