@@ -3231,20 +3231,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 function num2str(n, text_forms) {
   n = Math.abs(n) % 100;
   var n1 = n % 10;
-
   if (n > 10 && n < 20) return text_forms[2];
   if (n1 > 1 && n1 < 5) return text_forms[1];
   if (n1 == 1) return text_forms[0];
-
   return text_forms[2];
 }
 
+// ------------------------------------
 // импорт
+// ------------------------------------
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["data"],
+
+  props: ["data", "images"],
+
   data: function data() {
     return {
       items: this.data,
@@ -3267,7 +3269,6 @@ function num2str(n, text_forms) {
       options_actual: [{ value: null, text: '-- Актуальность --' }, { value: '0', text: 'Сначала новые' }, { value: '1', text: 'Сначала старые' }],
 
       options_location: [{ value: null, text: '-- Расположение --' }, { value: '0', text: 'Рядом со мной' }, { value: '1', text: 'Любое расстояние' }]
-
     };
   },
   created: function created() {
@@ -12117,7 +12118,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.VueCarousel-slide {\r\n  position: relative;\r\n  color: #fff;\r\n  font-family: Arial;\r\n  font-size: 24px;\r\n  text-align: center;\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 

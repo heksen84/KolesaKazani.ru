@@ -81,25 +81,27 @@
 function num2str(n, text_forms) {
     n = Math.abs(n) % 100;
     var n1 = n % 10;
-    
     if (n > 10 && n < 20) return text_forms[2];   
     if (n1 > 1 && n1 < 5) return text_forms[1];
     if (n1 == 1) return text_forms[0];
-    
     return text_forms[2];
 }
 
+// ------------------------------------
 // импорт
+// ------------------------------------
 import item from "../components/item"
 import { get } from "./../helpers/api"
 
 export default {
-	props: ["data"],
+	
+	props: ["data", "images"],
+
 	data () {
     return 	{
-    	items: this.data,
-    	count: 0,
-    	count_string: "",
+    		items: this.data,
+    		count: 0,
+    		count_string: "",
    	  	slide: 0,
       	sliding: null,
 
@@ -137,7 +139,6 @@ export default {
         { value: '0', text: 'Рядом со мной' },
         { value: '1', text: 'Любое расстояние' },
       ]
-
     }
 	},
 	created() {
@@ -145,6 +146,7 @@ export default {
 	},
 	components: { item },
   		methods: {
+
   			update() {
   				this.count = Object.keys(this.items).length;
 				this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
@@ -163,14 +165,4 @@ export default {
 	}
 }
 </script>
-
-<style>
-.VueCarousel-slide {
-  position: relative;
-  color: #fff;
-  font-family: Arial;
-  font-size: 24px;
-  text-align: center;
- 
-}
-</style>
+<style></style>
