@@ -94,7 +94,7 @@ import item from "../components/item"
 import { get } from "./../helpers/api"
 
 export default {
-	
+
 	props: ["data", "images"],
 
 	data () {
@@ -146,18 +146,17 @@ export default {
 	},
 	components: { item },
   		methods: {
-
   			update() {
   				this.count = Object.keys(this.items).length;
-				this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
+					this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
   			},
   			getSearchData() {
   				console.log(this.filters);
   				get('/getSearchData', { "data": this.filters } ).then((res) => {
   					console.log(res.data);
-					this.items=res.data;
-					this.update();
-				}).catch((err) => {});
+						this.items=res.data;
+						this.update();
+					}).catch((err) => {});
     		},
     		loadMore() {
     			this.getSearchData();
