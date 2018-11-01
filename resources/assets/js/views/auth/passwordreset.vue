@@ -9,7 +9,7 @@
     <!-- ФОРМА -->
     <b-col cols="12" sm="12" md="12" lg="4" xl="4" class="standart_window">    
     <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
-    <h3 style="text-align:center;margin-top:10px;color:grey">восстановление пароля</h3>    
+    <h4 style="text-align:center;margin-top:12px;color:grey">восстановление пароля</h4>    
     <hr>
     <b-form @submit="onSubmit" style="width:99%">
       <b-form-group label="Email адрес:" label-for="email">
