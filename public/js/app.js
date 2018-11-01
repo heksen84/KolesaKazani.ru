@@ -2114,6 +2114,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -36252,7 +36253,9 @@ var render = function() {
                         "b-button",
                         { attrs: { type: "submit", variant: "primary" } },
                         [_vm._v("Войти")]
-                      )
+                      ),
+                      _vm._v(" "),
+                      _c("hr")
                     ],
                     1
                   ),
@@ -36262,7 +36265,7 @@ var render = function() {
                       "div",
                       { staticStyle: { "text-align": "center" } },
                       [
-                        _vm._v("\n        Забыли пароль? "),
+                        _vm._v("        \n        Забыли пароль? "),
                         _c(
                           "b-link",
                           {
@@ -36272,7 +36275,7 @@ var render = function() {
                             },
                             attrs: { href: "/password/reset" }
                           },
-                          [_vm._v("Восстановить")]
+                          [_c("br"), _vm._v("Восстановить")]
                         ),
                         _vm._v(" "),
                         _c("br"),
@@ -36286,7 +36289,7 @@ var render = function() {
                             },
                             attrs: { href: "/register" }
                           },
-                          [_vm._v("Регистрация")]
+                          [_c("br"), _vm._v("Регистрация")]
                         )
                       ],
                       1

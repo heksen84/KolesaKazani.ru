@@ -35,13 +35,14 @@
         </b-form-checkbox-group>
       </b-form-group>
       <b-form-group style="text-align:center">
-        <b-button type="submit" variant="primary">Войти</b-button>
+          <b-button type="submit" variant="primary">Войти</b-button>
+        <hr>
       </b-form-group>
       <b-form-group>
-      <div style="text-align:center">
-        Забыли пароль?&nbsp;<b-link style="color:grey;font-weight:bold" href="/password/reset">Восстановить</b-link>
+      <div style="text-align:center">        
+        Забыли пароль?&nbsp;<b-link style="color:grey;font-weight:bold" href="/password/reset"><br>Восстановить</b-link>
         <br>
-        Ещё не зарегистрированы?&nbsp;<b-link style="color:grey;font-weight:bold" href="/register">Регистрация</b-link>                
+        Ещё не зарегистрированы?&nbsp;<b-link style="color:grey;font-weight:bold" href="/register"><br>Регистрация</b-link>                        
       </div>
       </b-form-group>
     </b-form>
