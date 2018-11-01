@@ -2115,6 +2115,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      alert: {
+        show: false,
+        msg: ""
+      },
       form: {
         email: '',
         password: '',
@@ -2128,10 +2132,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       window.history.back();
     },
     onSubmit: function onSubmit(evt) {
+      var _this = this;
+
       evt.preventDefault();
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/login', { "email": this.form.email, "password": this.form.password }).then(function (res) {
         window.location = '/home';
       }).catch(function (err) {
+        _this.alert.show = true;
+        _this.alert.msg = err.response.data.message;
         console.log(err.response.data);
       });
     },
@@ -2280,6 +2288,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      alert: {
+        show: false,
+        msg: ""
+      },
       form: {
         name: '',
         email: '',
@@ -35877,21 +35889,26 @@ var render = function() {
       _c(
         "b-row",
         [
-          _c(
-            "b-col",
-            { staticStyle: { "margin-top": "10px" }, attrs: { cols: "12" } },
-            [
-              _c(
-                "b-alert",
+          _vm.alert.show
+            ? _c(
+                "b-col",
                 {
-                  staticStyle: { margin: "auto", width: "300px" },
-                  attrs: { variant: "danger", show: "" }
+                  staticStyle: { "margin-top": "5px", "margin-bottom": "5px" },
+                  attrs: { cols: "12" }
                 },
-                [_vm._v("Указан не верный пароль")]
+                [
+                  _c(
+                    "b-alert",
+                    {
+                      staticStyle: { margin: "auto", width: "300px" },
+                      attrs: { variant: "danger", show: "" }
+                    },
+                    [_vm._v(_vm._s(_vm.alert.msg))]
+                  )
+                ],
+                1
               )
-            ],
-            1
-          ),
+            : _vm._e(),
           _vm._v(" "),
           _c(
             "b-col",
@@ -36080,21 +36097,26 @@ var render = function() {
       _c(
         "b-row",
         [
-          _c(
-            "b-col",
-            { staticStyle: { "margin-top": "10px" }, attrs: { cols: "12" } },
-            [
-              _c(
-                "b-alert",
+          _vm.alert.show
+            ? _c(
+                "b-col",
                 {
-                  staticStyle: { margin: "auto", width: "300px" },
-                  attrs: { variant: "danger", show: "" }
+                  staticStyle: { "margin-top": "5px", "margin-bottom": "5px" },
+                  attrs: { cols: "12" }
                 },
-                [_vm._v("Указан не верный пароль")]
+                [
+                  _c(
+                    "b-alert",
+                    {
+                      staticStyle: { margin: "auto", width: "300px" },
+                      attrs: { variant: "danger", show: "" }
+                    },
+                    [_vm._v(_vm._s(_vm.alert.msg))]
+                  )
+                ],
+                1
               )
-            ],
-            1
-          ),
+            : _vm._e(),
           _vm._v(" "),
           _c(
             "b-col",

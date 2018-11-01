@@ -1,8 +1,8 @@
 <template>
   <b-container fluid class="mycontainer">
     <b-row>    
-    <b-col cols="12" style="margin-top:10px">    
-      <b-alert variant="danger" show style="margin:auto;width:300px">Указан не верный пароль</b-alert>
+    <b-col cols="12" style="margin-top:5px;margin-bottom:5px" v-if="alert.show">    
+      <b-alert variant="danger" show style="margin:auto;width:300px">{{ alert.msg }}</b-alert>
     </b-col>
     <b-col cols="12" sm="12" md="12" lg="4" xl="4" class="standart_window">    
     <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
@@ -51,6 +51,10 @@ import { post } from './../../helpers/api'
 export default {
   data () {
     return {
+      alert: {
+        show:false,
+        msg:""
+      },
       form: {
         email: '',
         password: '',
@@ -68,7 +72,9 @@ export default {
       ).then((res) => {
         window.location='/home';
       }).catch((err) => {
-      console.log(err.response.data);
+        this.alert.show=true;
+        this.alert.msg=err.response.data.message;
+        console.log(err.response.data);
     });
     },
     register(evt) {
