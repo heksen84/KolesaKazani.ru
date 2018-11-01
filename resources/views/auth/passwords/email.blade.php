@@ -9,7 +9,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Доска объявлений Дамеля</title>
-  <link rel="icon" href="{{ asset('public/globe.ico') }}">
+  <link rel="icon" href="{{ asset('public/shop.ico') }}">
   <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
 </head>
 <body>
