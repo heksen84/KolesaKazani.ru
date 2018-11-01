@@ -112,7 +112,7 @@ body {
 
 .standart_window {
   text-align: left;
-  margin: 30px auto;
+  margin: 20px auto;
   color: black;
   background: white;
 }
@@ -415,6 +415,11 @@ a:active {
 
   .close_button {
     left: 90%;
+  }
+
+  .alert {
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
 
   #welcome_menu {

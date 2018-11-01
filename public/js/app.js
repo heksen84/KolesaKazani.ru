@@ -2110,6 +2110,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2187,11 +2191,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      alert: {
+        show: false,
+        msg: ""
+      },
       form: {
         email: ''
       }
@@ -2221,6 +2235,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+//
+//
+//
 //
 //
 //
@@ -35215,6 +35232,24 @@ var render = function() {
       _c(
         "b-row",
         [
+          _vm.alert.show
+            ? _c(
+                "b-col",
+                { staticClass: "alert", attrs: { cols: "12" } },
+                [
+                  _c(
+                    "b-alert",
+                    {
+                      staticStyle: { margin: "auto", width: "300px" },
+                      attrs: { variant: "danger", show: "" }
+                    },
+                    [_vm._v(_vm._s(_vm.alert.msg))]
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
           _c(
             "b-col",
             {
@@ -35892,10 +35927,7 @@ var render = function() {
           _vm.alert.show
             ? _c(
                 "b-col",
-                {
-                  staticStyle: { "margin-top": "5px", "margin-bottom": "5px" },
-                  attrs: { cols: "12" }
-                },
+                { staticClass: "alert", attrs: { cols: "12" } },
                 [
                   _c(
                     "b-alert",
@@ -36100,10 +36132,7 @@ var render = function() {
           _vm.alert.show
             ? _c(
                 "b-col",
-                {
-                  staticStyle: { "margin-top": "5px", "margin-bottom": "5px" },
-                  attrs: { cols: "12" }
-                },
+                { staticClass: "alert", attrs: { cols: "12" } },
                 [
                   _c(
                     "b-alert",

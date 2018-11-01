@@ -1,9 +1,12 @@
 <template>
   <b-container fluid class="mycontainer">
     <b-row>
-    <b-col cols="12" style="margin-top:5px;margin-bottom:5px" v-if="alert.show">    
+    <!-- ALERT -->    
+    <b-col cols="12" class="alert" v-if="alert.show">    
       <b-alert variant="danger" show style="margin:auto;width:300px">{{ alert.msg }}</b-alert>
     </b-col>
+
+    <!-- ФОРМА -->
     <b-col cols="12" sm="12" md="12" lg="4" xl="4" class="standart_window">
     <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
     <h3 style="text-align:center;margin-top:10px;color:grey">регистрация</h3>
