@@ -2107,6 +2107,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2210,6 +2213,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+//
+//
+//
 //
 //
 //
@@ -3359,6 +3365,203 @@ if(false) {
 	// When the module is disposed, remove the <style> tags
 	module.hot.dispose(function() { update(); });
 }
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/alert/alert.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/bootstrap-vue/src/components/alert/alert.css");
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/style-loader/lib/addStyles.js")(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../css-loader/index.js!./alert.css", function() {
+			var newContent = require("!!../../../../css-loader/index.js!./alert.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/alert/alert.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__button_button_close__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/button-close.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__alert_css__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/alert/alert.css");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__alert_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__alert_css__);
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  components: {bButtonClose: __WEBPACK_IMPORTED_MODULE_0__button_button_close__["a" /* default */]},
+  render (h) {
+    if (!this.localShow) {
+      // If not showing, render placeholder
+      return h(false)
+    }
+    let dismissBtn = h(false)
+    if (this.dismissible) {
+      // Add dismiss button
+      dismissBtn = h(
+        'b-button-close',
+        { attrs: { 'aria-label': this.dismissLabel }, on: { click: this.dismiss } },
+        [ this.$slots.dismiss ]
+      )
+    }
+    const alert = h(
+      'div',
+      {class: this.classObject, attrs: {role: 'alert', 'aria-live': 'polite', 'aria-atomic': true}},
+      [dismissBtn, this.$slots.default]
+    )
+    return !this.fade ? alert : h(
+      'transition',
+      { props: { name: 'fade', appear: true } },
+      [ alert ]
+    )
+  },
+  model: {
+    prop: 'show',
+    event: 'input'
+  },
+  data () {
+    return {
+      countDownTimerId: null,
+      dismissed: false
+    }
+  },
+  computed: {
+    classObject () {
+      return ['alert', this.alertVariant, this.dismissible ? 'alert-dismissible' : '']
+    },
+    alertVariant () {
+      const variant = this.variant
+      return `alert-${variant}`
+    },
+    localShow () {
+      return !this.dismissed && (this.countDownTimerId || this.show)
+    }
+  },
+  props: {
+    variant: {
+      type: String,
+      default: 'info'
+    },
+    dismissible: {
+      type: Boolean,
+      default: false
+    },
+    dismissLabel: {
+      type: String,
+      default: 'Close'
+    },
+    show: {
+      type: [Boolean, Number],
+      default: false
+    },
+    fade: {
+      type: Boolean,
+      default: false
+    }
+  },
+  watch: {
+    show () {
+      this.showChanged()
+    }
+  },
+  mounted () {
+    this.showChanged()
+  },
+  destroyed /* istanbul ignore next */ () {
+    this.clearCounter()
+  },
+  methods: {
+    dismiss () {
+      this.clearCounter()
+      this.dismissed = true
+      this.$emit('dismissed')
+      this.$emit('input', false)
+      if (typeof this.show === 'number') {
+        this.$emit('dismiss-count-down', 0)
+        this.$emit('input', 0)
+      } else {
+        this.$emit('input', false)
+      }
+    },
+    clearCounter () {
+      if (this.countDownTimerId) {
+        clearInterval(this.countDownTimerId)
+        this.countDownTimerId = null
+      }
+    },
+    showChanged () {
+      // Reset counter status
+      this.clearCounter()
+      // Reset dismiss status
+      this.dismissed = false
+      // No timer for boolean values
+      if (this.show === true || this.show === false || this.show === null || this.show === 0) {
+        return
+      }
+      // Start counter
+      let dismissCountDown = this.show
+      this.countDownTimerId = setInterval(() => {
+        if (dismissCountDown < 1) {
+          this.dismiss()
+          return
+        }
+        dismissCountDown--
+        this.$emit('dismiss-count-down', dismissCountDown)
+        this.$emit('input', dismissCountDown)
+      }, 1000)
+    }
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/alert/index.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__alert__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/alert/alert.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
+
+
+
+const components = {
+  bAlert: __WEBPACK_IMPORTED_MODULE_0__alert__["a" /* default */]
+}
+
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
+
 
 /***/ }),
 
@@ -12044,6 +12247,21 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 // module
 exports.push([module.i, ".fade-enter-active,.fade-leave-active{transition:opacity .15s linear}.fade-enter,.fade-leave-to{opacity:0}.input-group>.input-group-append:last-child>.b-dropdown:not(:last-child):not(.dropdown-toggle)>.btn,.input-group>.input-group-append:not(:last-child)>.b-dropdown>.btn,.input-group>.input-group-prepend>.b-dropdown>.btn{border-top-right-radius:0;border-bottom-right-radius:0}.input-group>.input-group-append>.b-dropdown>.btn,.input-group>.input-group-prepend:first-child>.b-dropdown:not(:first-child)>.btn,.input-group>.input-group-prepend:not(:first-child)>.b-dropdown>.btn{border-top-left-radius:0;border-bottom-left-radius:0}input.form-control[type=range],input.form-control[type=color]{height:2.25rem}input.form-control.form-control-sm[type=range],input.form-control.form-control-sm[type=color]{height:1.9375rem}input.form-control.form-control-lg[type=range],input.form-control.form-control-lg[type=color]{height:3rem}input.form-control[type=color]{padding:.25rem}input.form-control.form-control-sm[type=color]{padding:.125rem}table.b-table.b-table-fixed{table-layout:fixed}table.b-table[aria-busy=false]{opacity:1}table.b-table[aria-busy=true]{opacity:.6}table.b-table>tfoot>tr>th,table.b-table>thead>tr>th{position:relative}table.b-table>tfoot>tr>th.sorting,table.b-table>thead>tr>th.sorting{padding-right:1.5em;cursor:pointer}table.b-table>tfoot>tr>th.sorting::after,table.b-table>tfoot>tr>th.sorting::before,table.b-table>thead>tr>th.sorting::after,table.b-table>thead>tr>th.sorting::before{position:absolute;bottom:0;display:block;opacity:.4;padding-bottom:inherit;font-size:inherit;line-height:180%}table.b-table>tfoot>tr>th.sorting::before,table.b-table>thead>tr>th.sorting::before{right:.75em;content:'\\2191'}table.b-table>tfoot>tr>th.sorting::after,table.b-table>thead>tr>th.sorting::after{right:.25em;content:'\\2193'}table.b-table>tfoot>tr>th.sorting_asc::after,table.b-table>tfoot>tr>th.sorting_desc::before,table.b-table>thead>tr>th.sorting_asc::after,table.b-table>thead>tr>th.sorting_desc::before{opacity:1}table.b-table.b-table-stacked{width:100%}table.b-table.b-table-stacked,table.b-table.b-table-stacked>caption,table.b-table.b-table-stacked>tbody,table.b-table.b-table-stacked>tbody>tr,table.b-table.b-table-stacked>tbody>tr>td,table.b-table.b-table-stacked>tbody>tr>th{display:block}table.b-table.b-table-stacked>tbody>tr.b-table-bottom-row,table.b-table.b-table-stacked>tbody>tr.b-table-top-row,table.b-table.b-table-stacked>tfoot,table.b-table.b-table-stacked>thead{display:none}table.b-table.b-table-stacked>tbody>tr>:first-child{border-top-width:.4rem}table.b-table.b-table-stacked>tbody>tr>[data-label]{display:grid;grid-template-columns:40% auto;grid-gap:.25rem 1rem}table.b-table.b-table-stacked>tbody>tr>[data-label]::before{content:attr(data-label);display:inline;text-align:right;overflow-wrap:break-word;font-weight:700;font-style:normal}@media all and (max-width:575.99px){table.b-table.b-table-stacked-sm{width:100%}table.b-table.b-table-stacked-sm,table.b-table.b-table-stacked-sm>caption,table.b-table.b-table-stacked-sm>tbody,table.b-table.b-table-stacked-sm>tbody>tr,table.b-table.b-table-stacked-sm>tbody>tr>td,table.b-table.b-table-stacked-sm>tbody>tr>th{display:block}table.b-table.b-table-stacked-sm>tbody>tr.b-table-bottom-row,table.b-table.b-table-stacked-sm>tbody>tr.b-table-top-row,table.b-table.b-table-stacked-sm>tfoot,table.b-table.b-table-stacked-sm>thead{display:none}table.b-table.b-table-stacked-sm>tbody>tr>:first-child{border-top-width:.4rem}table.b-table.b-table-stacked-sm>tbody>tr>[data-label]{display:grid;grid-template-columns:40% auto;grid-gap:.25rem 1rem}table.b-table.b-table-stacked-sm>tbody>tr>[data-label]::before{content:attr(data-label);display:inline;text-align:right;overflow-wrap:break-word;font-weight:700;font-style:normal}}@media all and (max-width:767.99px){table.b-table.b-table-stacked-md{width:100%}table.b-table.b-table-stacked-md,table.b-table.b-table-stacked-md>caption,table.b-table.b-table-stacked-md>tbody,table.b-table.b-table-stacked-md>tbody>tr,table.b-table.b-table-stacked-md>tbody>tr>td,table.b-table.b-table-stacked-md>tbody>tr>th{display:block}table.b-table.b-table-stacked-md>tbody>tr.b-table-bottom-row,table.b-table.b-table-stacked-md>tbody>tr.b-table-top-row,table.b-table.b-table-stacked-md>tfoot,table.b-table.b-table-stacked-md>thead{display:none}table.b-table.b-table-stacked-md>tbody>tr>:first-child{border-top-width:.4rem}table.b-table.b-table-stacked-md>tbody>tr>[data-label]{display:grid;grid-template-columns:40% auto;grid-gap:.25rem 1rem}table.b-table.b-table-stacked-md>tbody>tr>[data-label]::before{content:attr(data-label);display:inline;text-align:right;overflow-wrap:break-word;font-weight:700;font-style:normal}}@media all and (max-width:991.99px){table.b-table.b-table-stacked-lg{width:100%}table.b-table.b-table-stacked-lg,table.b-table.b-table-stacked-lg>caption,table.b-table.b-table-stacked-lg>tbody,table.b-table.b-table-stacked-lg>tbody>tr,table.b-table.b-table-stacked-lg>tbody>tr>td,table.b-table.b-table-stacked-lg>tbody>tr>th{display:block}table.b-table.b-table-stacked-lg>tbody>tr.b-table-bottom-row,table.b-table.b-table-stacked-lg>tbody>tr.b-table-top-row,table.b-table.b-table-stacked-lg>tfoot,table.b-table.b-table-stacked-lg>thead{display:none}table.b-table.b-table-stacked-lg>tbody>tr>:first-child{border-top-width:.4rem}table.b-table.b-table-stacked-lg>tbody>tr>[data-label]{display:grid;grid-template-columns:40% auto;grid-gap:.25rem 1rem}table.b-table.b-table-stacked-lg>tbody>tr>[data-label]::before{content:attr(data-label);display:inline;text-align:right;overflow-wrap:break-word;font-weight:700;font-style:normal}}@media all and (max-width:1199.99px){table.b-table.b-table-stacked-xl{width:100%}table.b-table.b-table-stacked-xl,table.b-table.b-table-stacked-xl>caption,table.b-table.b-table-stacked-xl>tbody,table.b-table.b-table-stacked-xl>tbody>tr,table.b-table.b-table-stacked-xl>tbody>tr>td,table.b-table.b-table-stacked-xl>tbody>tr>th{display:block}table.b-table.b-table-stacked-xl>tbody>tr.b-table-bottom-row,table.b-table.b-table-stacked-xl>tbody>tr.b-table-top-row,table.b-table.b-table-stacked-xl>tfoot,table.b-table.b-table-stacked-xl>thead{display:none}table.b-table.b-table-stacked-xl>tbody>tr>:first-child{border-top-width:.4rem}table.b-table.b-table-stacked-xl>tbody>tr>[data-label]{display:grid;grid-template-columns:40% auto;grid-gap:.25rem 1rem}table.b-table.b-table-stacked-xl>tbody>tr>[data-label]::before{content:attr(data-label);display:inline;text-align:right;overflow-wrap:break-word;font-weight:700;font-style:normal}}table.b-table>tbody>tr.b-table-details>td{border-top:none}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/bootstrap-vue/src/components/alert/alert.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transition: opacity .15s linear;\n}\n.fade-enter, .fade-leave-to {\n    opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -35661,6 +35879,22 @@ var render = function() {
         [
           _c(
             "b-col",
+            { staticStyle: { "margin-top": "10px" }, attrs: { cols: "12" } },
+            [
+              _c(
+                "b-alert",
+                {
+                  staticStyle: { margin: "auto", width: "300px" },
+                  attrs: { variant: "danger", show: "" }
+                },
+                [_vm._v("Указан не верный пароль")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
             {
               staticClass: "standart_window",
               attrs: { cols: "12", sm: "12", md: "12", lg: "4", xl: "4" }
@@ -35846,6 +36080,22 @@ var render = function() {
       _c(
         "b-row",
         [
+          _c(
+            "b-col",
+            { staticStyle: { "margin-top": "10px" }, attrs: { cols: "12" } },
+            [
+              _c(
+                "b-alert",
+                {
+                  staticStyle: { margin: "auto", width: "300px" },
+                  attrs: { variant: "danger", show: "" }
+                },
+                [_vm._v("Указан не верный пароль")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
           _c(
             "b-col",
             {
@@ -49896,11 +50146,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_bootstrap_vue_src_components_form_radio__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-radio/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_bootstrap_vue_src_components_navbar__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/navbar/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28_bootstrap_vue_src_components_modal__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/modal/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29_vue_carousel__ = __webpack_require__("./node_modules/vue-carousel/dist/vue-carousel.min.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_29_vue_carousel__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31_vue_notification__ = __webpack_require__("./node_modules/vue-notification/dist/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31_vue_notification___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_31_vue_notification__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29_bootstrap_vue_src_components_alert__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/alert/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30_vue_carousel__ = __webpack_require__("./node_modules/vue-carousel/dist/vue-carousel.min.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30_vue_carousel__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32_vue_notification__ = __webpack_require__("./node_modules/vue-notification/dist/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32_vue_notification___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_32_vue_notification__);
 __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
@@ -49938,6 +50189,7 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
 
+
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_14_bootstrap_vue_src_components_layout__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_15_bootstrap_vue_src_components_form__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_16_bootstrap_vue_src_components_form_input__["a" /* default */]);
@@ -49952,21 +50204,22 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_24_boo
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_25_bootstrap_vue_src_components_image__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_26_bootstrap_vue_src_components_form_radio__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_27_bootstrap_vue_src_components_navbar__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_29_vue_carousel___default.a);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_30_vue_carousel___default.a);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_28_bootstrap_vue_src_components_modal__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_29_bootstrap_vue_src_components_alert__["a" /* default */]);
 
 
-__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_30_vuex__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */]);
 
 
-__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_31_vue_notification___default.a);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_32_vue_notification___default.a);
 
 // -----------------------------------
 //
 // ОСНОВНОЕ ХРАНИЛИЩЕ
 //
 // -----------------------------------
-var store = new __WEBPACK_IMPORTED_MODULE_30_vuex__["a" /* default */].Store({
+var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
   state: {
     show_other_fields: false // дополнительные поля в объявлении (поле доп. информация, и.т.д.)
   },

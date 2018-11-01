@@ -33,6 +33,7 @@ import image from 'bootstrap-vue/src/components/image';
 import radio from 'bootstrap-vue/src/components/form-radio';
 import navbar from 'bootstrap-vue/src/components/navbar';
 import modal from 'bootstrap-vue/src/components/modal';
+import alert from 'bootstrap-vue/src/components/alert';
 import VueCarousel from 'vue-carousel';
 
 Vue.use(layout);
@@ -51,6 +52,7 @@ Vue.use(radio);
 Vue.use(navbar);
 Vue.use(VueCarousel);
 Vue.use(modal);
+Vue.use(alert);
 
 import Vuex from 'vuex';
 Vue.use(Vuex);
