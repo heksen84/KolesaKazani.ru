@@ -35103,9 +35103,20 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("b-row", [
-        _c("span", { staticStyle: { margin: "auto", "margin-top": "10px" } }, [
-          _vm._v("AksuSoftware 2018(c)")
-        ])
+        _c(
+          "span",
+          {
+            staticStyle: {
+              margin: "auto",
+              "margin-top": "10px",
+              "font-weight": "500"
+            }
+          },
+          [
+            _c("a", { attrs: { href: "" } }, [_vm._v("AksuSoftware")]),
+            _vm._v(" 2018(c)")
+          ]
+        )
       ])
     ],
     2
