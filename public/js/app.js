@@ -35112,7 +35112,7 @@ var render = function() {
               "font-weight": "500",
               padding: "5px",
               background: "rgb(100,100,120)",
-              opacity: "0.8",
+              opacity: "0.7",
               "font-size": "15px",
               width: "100%",
               "text-align": "center"
