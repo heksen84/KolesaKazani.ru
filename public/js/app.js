@@ -35111,7 +35111,7 @@ var render = function() {
               "margin-top": "10px",
               "font-weight": "500",
               padding: "5px",
-              background: "rgb(100,120,100)",
+              background: "rgb(100,100,120)",
               opacity: "0.8",
               "font-size": "15px",
               width: "100%",
