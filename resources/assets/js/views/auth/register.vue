@@ -83,7 +83,8 @@ export default {
   	},
     onSubmit (evt) {
       evt.preventDefault();
-      post('/register', {
+      post('/register', 
+      {
         "name": this.form.name,
         "email": this.form.email,
         "password": this.form.password,
