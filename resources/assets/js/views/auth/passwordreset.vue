@@ -10,37 +10,18 @@
     <!-- ФОРМА -->
     <b-col cols="12" sm="12" md="12" lg="4" xl="4" class="standart_window">
     <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
-    <h3 style="text-align:center;margin-top:10px;color:grey">регистрация</h3>
+    <h3 style="text-align:center;margin-top:10px;color:grey">сброс пароля</h3>
     <hr>
     <b-form @submit="onSubmit" style="width:99%">
 
-      <!-- имя / логин -->
-      <b-form-group label="Имя:" label-for="name">
-        <b-form-input id="name"
-                      type="text"
-                      v-model="form.name"
-                      required
-                      placeholder="Введите имя">
-        </b-form-input>
-      </b-form-group>
-
-      <!-- email -->
-      <b-form-group label="Email адрес:" label-for="email">
-        <b-form-input id="email"
-                      type="email"
-                      v-model="form.email"
-                      required
-                      placeholder="Введите email">
-        </b-form-input>
-      </b-form-group>
-
+      
       <!-- пароль -->
-      <b-form-group label="Ваш пароль:" label-for="password">
+      <b-form-group label="Новый пароль:" label-for="password">
         <b-form-input id="password"
                       type="password"
                       v-model="form.password"
                       required
-                      placeholder="Введите пароль">
+                      placeholder="Введите новый пароль">
         </b-form-input>
       </b-form-group>
 
@@ -50,13 +31,13 @@
                       type="password"
                       v-model="form.password_confirmation"
                       required
-                      placeholder="Подтвердите пароль">
+                      placeholder="Подтвердите новый пароль">
         </b-form-input>
       </b-form-group>
 
       <br>
       <b-form-group style="text-align:center">
-        <b-button type="submit" variant="primary">Продолжить</b-button>
+        <b-button type="submit" variant="primary">Сохранить</b-button>
       </b-form-group>
     </b-form>
   </b-col>

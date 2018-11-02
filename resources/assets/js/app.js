@@ -12,6 +12,7 @@ import results from './views/results.vue';
 import create from './views/create.vue';
 import fullinfo from './views/fullinfo.vue';
 import sendemail from './views/auth/sendemail.vue';
+import passwordreset from './views/auth/passwordreset.vue';
 import login from './views/auth/login.vue';
 import register from './views/auth/register.vue';
 
@@ -89,6 +90,7 @@ const app = new Vue({
       profile,
       cabinet,
       sendemail,
+      passwordreset,
       login,
       register,
       search,
@@ -99,8 +101,8 @@ const app = new Vue({
 
   created() {    
     // esc на результатах
-    document.addEventListener('keyup', (event) => {
+    /*document.addEventListener('keyup', (event) => {
         if (event.key==="Escape") window.history.back();
-    });
+    });*/
   }
 });
