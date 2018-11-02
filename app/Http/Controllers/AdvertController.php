@@ -186,7 +186,7 @@ class AdvertController extends Controller {
                 });
 
                 // пишу текст в картинку
-                $image_resize->text("www.damelya.kz", 8,25, function($font) {
+                $image_resize->text(env("APP_URL"), 8,25, function($font) {
                     $font->file(public_path()."/fonts/Brushie.ttf");
                     $font->color(array(255,255,255,1));
                     $font->size(26);
