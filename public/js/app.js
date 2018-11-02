@@ -35090,7 +35090,7 @@ var render = function() {
           {
             staticStyle: {
               margin: "auto",
-              "margin-top": "8px",
+              "margin-top": "14px",
               "font-weight": "500",
               padding: "5px",
               background: "rgb(50,50,100)",
