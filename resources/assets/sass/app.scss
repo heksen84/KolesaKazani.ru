@@ -72,6 +72,12 @@ body {
   text-align:right;
 }
 
+.alert {
+  margin: 5px auto;
+  width:430px;
+  margin-bottom:-43px;
+}
+
 .button {
   padding: 2px;
   background: rgb(90,190,90);
@@ -307,6 +313,7 @@ a:active {
 
 // большие мониторы
 @media screen and (min-width:1920px) {
+  
 
 .create_advert_col {
  margin-top: 20px;
@@ -321,6 +328,12 @@ a:active {
 
 // стандартные мониторы и ноуты
 @media screen and (min-width:1224px) {
+
+.alert {
+    margin: 5px auto;
+    width:430px;
+    margin-bottom:-43px;
+}
 
 .mycontainer {
  width: 1280px;
@@ -359,6 +372,12 @@ a:active {
 
 // большие устройства
 @media screen and (max-width:960px) {
+
+.alert {
+  width:100%;
+  margin-bottom:5px;
+}
+
 #new_advert_block {
   margin-right: 0px;
   padding: 10px;
@@ -376,6 +395,7 @@ a:active {
 #categories_title {
    margin-top:5px;
 }
+
 
 }
 
@@ -433,11 +453,6 @@ body {
 
 .close_button {
  left:90%;
-}
-
-.alert {
-  margin-top:5px;
-  /*margin-bottom:5px;*/
 }
 
 #welcome_menu {

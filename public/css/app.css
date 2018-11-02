@@ -73,6 +73,12 @@ body {
   text-align: right;
 }
 
+.alert {
+  margin: 5px auto;
+  width: 430px;
+  margin-bottom: -43px;
+}
+
 .button {
   padding: 2px;
   background: #5abe5a;
@@ -316,6 +322,12 @@ a:active {
 }
 
 @media screen and (min-width: 1224px) {
+  .alert {
+    margin: 5px auto;
+    width: 430px;
+    margin-bottom: -43px;
+  }
+
   .mycontainer {
     width: 1280px;
   }
@@ -348,6 +360,11 @@ a:active {
 }
 
 @media screen and (max-width: 960px) {
+  .alert {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
   #new_advert_block {
     margin-right: 0px;
     padding: 10px;
@@ -415,11 +432,6 @@ a:active {
 
   .close_button {
     left: 90%;
-  }
-
-  .alert {
-    margin-top: 5px;
-    /*margin-bottom:5px;*/
   }
 
   #welcome_menu {

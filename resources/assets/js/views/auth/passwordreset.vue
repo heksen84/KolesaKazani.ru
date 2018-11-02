@@ -3,8 +3,8 @@
     <b-row>
       
     <!-- ALERT -->    
-    <b-col cols="12" class="alert" v-if="$root.alert.show">    
-      <b-alert variant="danger" show style="margin:auto;width:300px">{{ $root.alert.msg }}</b-alert>
+    <b-col cols="12" sm="12" md="12" lg="12" xl="12" v-if="$root.alert.show">    
+      <b-alert variant="danger" show class="alert">{{ $root.alert.msg }}</b-alert>
     </b-col>
 
     <!-- ФОРМА -->

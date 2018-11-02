@@ -35328,12 +35328,12 @@ var render = function() {
           _vm.$root.alert.show
             ? _c(
                 "b-col",
-                { staticClass: "alert", attrs: { cols: "12" } },
+                { attrs: { cols: "12" } },
                 [
                   _c(
                     "b-alert",
                     {
-                      staticStyle: { margin: "auto", width: "300px" },
+                      staticClass: "alert",
                       attrs: { variant: "danger", show: "" }
                     },
                     [_vm._v(_vm._s(_vm.$root.alert.msg))]
@@ -35462,12 +35462,14 @@ var render = function() {
           _vm.$root.alert.show
             ? _c(
                 "b-col",
-                { staticClass: "alert", attrs: { cols: "12" } },
+                {
+                  attrs: { cols: "12", sm: "12", md: "12", lg: "12", xl: "12" }
+                },
                 [
                   _c(
                     "b-alert",
                     {
-                      staticStyle: { margin: "auto", width: "300px" },
+                      staticClass: "alert",
                       attrs: { variant: "danger", show: "" }
                     },
                     [_vm._v(_vm._s(_vm.$root.alert.msg))]
@@ -36182,12 +36184,14 @@ var render = function() {
           _vm.$root.alert.show
             ? _c(
                 "b-col",
-                { staticClass: "alert", attrs: { cols: "12" } },
+                {
+                  attrs: { cols: "12", sm: "12", md: "12", lg: "12", xl: "12" }
+                },
                 [
                   _c(
                     "b-alert",
                     {
-                      staticStyle: { margin: "auto", width: "300px" },
+                      staticClass: "alert",
                       attrs: { variant: "danger", show: "" }
                     },
                     [_vm._v(_vm._s(_vm.$root.alert.msg))]
@@ -36387,12 +36391,14 @@ var render = function() {
           _vm.$root.alert.show
             ? _c(
                 "b-col",
-                { staticClass: "alert", attrs: { cols: "12" } },
+                {
+                  attrs: { cols: "12", sm: "12", md: "12", lg: "12", xl: "12" }
+                },
                 [
                   _c(
                     "b-alert",
                     {
-                      staticStyle: { margin: "auto", width: "300px" },
+                      staticClass: "alert",
                       attrs: { variant: "danger", show: "" }
                     },
                     [_vm._v(_vm._s(_vm.$root.alert.msg))]
