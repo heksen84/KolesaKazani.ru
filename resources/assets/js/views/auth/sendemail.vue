@@ -1,7 +1,7 @@
 <template>
   <b-container fluid class="mycontainer">
     <b-row>
-      
+
     <!-- ALERT -->    
     <b-col cols="12" class="alert" v-if="$root.alert.show">    
       <b-alert variant="danger" show style="margin:auto;width:300px">{{ $root.alert.msg }}</b-alert>
@@ -10,7 +10,7 @@
     <!-- ФОРМА -->
     <b-col cols="12" sm="12" md="12" lg="4" xl="4" class="standart_window">    
     <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
-    <h4 style="text-align:center;margin-top:12px;color:grey">восстановление пароля</h4>    
+    <h4 style="text-align:center;margin-top:12px;color:grey">восстановление доступа</h4>    
     <hr>
     <b-form style="width:99%">
       <b-form-group label="Email адрес:" label-for="email">

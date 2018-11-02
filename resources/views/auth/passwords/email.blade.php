@@ -8,7 +8,7 @@
   <meta name="description" content="Доска объявлений Дамеля">
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Доска объявлений Дамеля</title>
+  <title>Восстановление доступа</title>
   <link rel="icon" href="{{ asset('public/shop.ico') }}">
   <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
 </head>
