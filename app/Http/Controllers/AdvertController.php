@@ -157,9 +157,9 @@ class AdvertController extends Controller {
             // ------------------------------
             if (isset($data["adv_coords"])) {
                 $coords = explode(",", $data["adv_coords"]);
-                \Debugbar::info($coords);
                 $advert->coord_lat = $coords[0];
                 $advert->coord_lon = $coords[1];
+                \Debugbar::info($coords);
             }
             else 
             {
