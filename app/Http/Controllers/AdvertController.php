@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
-use Illuminate\Filesystem;
 use Intervention\Image\ImageManagerStatic as Image;
 use Validator;
 use App\Images;
@@ -17,6 +16,8 @@ use App\Transport;
 use App\RealEstate;
 use App\Appliances;
 use DB;
+
+//use \SitemapController;
 
 class AdvertController extends Controller 
 {
@@ -37,14 +38,15 @@ class AdvertController extends Controller
     -----------------------------------------------
     Создать объявление
     -----------------------------------------------*/
-    public function createAdvert(Request $request) {
+    public function createAdvert(Request $request) {                
 
         $data = $request->all();
     
        // \Debugbar::info($data);
 
         // правила валидации      
-        $rules = [
+        $rules = 
+        [
             "adv_deal"      => "required",
             "adv_category"  => "required", 
             "adv_price"     => "required|numeric",
@@ -52,7 +54,8 @@ class AdvertController extends Controller
         ]; 
 
         // сообщения валидации
-        $messages = [
+        $messages = 
+        [
             "adv_deal.required"        => "Укажите вид сделки", 
             "adv_category.required"    => "Укажите категорию товара или услуги",
             "adv_price.required"       => "Укажите цену",
@@ -194,7 +197,10 @@ class AdvertController extends Controller
                 $image->advert_id = $advert->id;
                 $image->image = $filename;                
                 $image->save();
-            }            
+            }
+
+            SitemapController::addUrl("Моя url");
+            SitemapController::removeUrl("Моя url");
 
             return $advert->id;
 		}
