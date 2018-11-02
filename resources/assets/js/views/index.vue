@@ -39,7 +39,7 @@
         <!-- Логотип -->        
           <div id="logo_block">
             <div id="logo_block_text">Дамеля</div>
-            <div style="font-size:16px;color:yellow;margin-top:-15px;letter-spacing:2px;">доска объявлений</div>
+            <div style="font-size:16px;color:yellow;margin-top:-13px;letter-spacing:2px;">доска объявлений</div>
           </div>
 
         </b-col>
@@ -80,7 +80,7 @@
     <b-col v-for="i in 40" style="border:1px solid rgb(255,255,255);margin:1px;padding:30px;opacity:0.5" v-bind:key="i"></b-col>
 </b-row>
 
-<b-row><span style="margin:auto;margin-top:5px;font-weight:500;padding:5px;background:rgb(80,80,100);opacity:0.8;font-size:15px;width:100%;margin-bottom:-5px;text-align:center"><a href="#">Разработано студией AksuSoftware</a> 2018 (c)</span></b-row>
+<b-row><span style="margin:auto;margin-top:8px;font-weight:500;padding:5px;background:rgb(50,50,100);opacity:0.7;font-size:15px;width:100%;margin-bottom:-5px;text-align:center"><a href="#">Разработано студией AksuSoftware</a> 2018 (c)</span></b-row>
 
 </b-container>
 </template>
