@@ -35097,7 +35097,6 @@ var render = function() {
               opacity: "0.8",
               "font-size": "14px",
               width: "100%",
-              height: "40px",
               "text-align": "center"
             }
           },
