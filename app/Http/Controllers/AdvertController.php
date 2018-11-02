@@ -19,8 +19,7 @@ use DB;
 
 //use \SitemapController;
 
-class AdvertController extends Controller 
-{
+class AdvertController extends Controller {
 
     public function getAdverts() {
 	     return Adverts::all()->toJson();
@@ -153,7 +152,9 @@ class AdvertController extends Controller
 
             }
             
+            // ------------------------------
             // координаты
+            // ------------------------------
             if (isset($data["adv_coords"])) {
                 $coords = explode(",", $data["adv_coords"]);
                 \Debugbar::info($coords);
