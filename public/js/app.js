@@ -34907,7 +34907,7 @@ var render = function() {
                   expression: "!auth"
                 }
               ],
-              staticStyle: { "text-align": "center" }
+              staticStyle: { "text-align": "center", "margin-bottom": "-5px" }
             },
             [
               _c(
@@ -35095,7 +35095,7 @@ var render = function() {
           {
             staticStyle: {
               margin: "auto",
-              "margin-top": "8px",
+              "margin-top": "5px",
               "font-weight": "500",
               padding: "5px",
               background: "rgb(50,50,100)",
