@@ -34970,7 +34970,7 @@ var render = function() {
                   "div",
                   {
                     staticStyle: {
-                      "font-size": "18px",
+                      "font-size": "16px",
                       color: "yellow",
                       "margin-top": "-15px",
                       "letter-spacing": "2px"
@@ -35111,7 +35111,7 @@ var render = function() {
               "margin-top": "10px",
               "font-weight": "500",
               padding: "5px",
-              background: "rgb(110,110,150)",
+              background: "rgb(100,120,100)",
               opacity: "0.8",
               "font-size": "15px",
               width: "100%",
