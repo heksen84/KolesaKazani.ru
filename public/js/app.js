@@ -2337,6 +2337,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       window.history.back();
     },
     onSubmit: function onSubmit(evt) {
+      var _this = this;
+
       evt.preventDefault();
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/register', {
         "name": this.form.name,
@@ -2345,11 +2347,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         "password_confirmation": this.form.password_confirmation
       }).then(function (res) {
         console.log(res);
-        alert("good!");
+        alert("Вы зареганы!");
       }).catch(function (err) {
         console.log(err.response.data);
         if (err.response.status === 422) {
-          if (err.response.data.errors.password) alert(err.response.data.errors.password);
+          if (err.response.data.errors.password) {
+            _this.$root.alert.show = true;
+            _this.$root.alert.msg = err.response.data.errors.password;
+          }
         }
       });
     }

@@ -91,12 +91,14 @@ export default {
       }
       ).then((res) => {
         console.log(res)
-        alert("good!");
+        alert("Вы зареганы!");
 		  }).catch((err) => {
 			console.log(err.response.data);
 			if(err.response.status === 422) {
-        if (err.response.data.errors.password)
-        alert(err.response.data.errors.password);
+        if (err.response.data.errors.password) {
+          this.$root.alert.show=true;
+          this.$root.alert.msg=err.response.data.errors.password;
+        }
 			}
   	});
     }
