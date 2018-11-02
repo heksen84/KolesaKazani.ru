@@ -52,13 +52,13 @@ export default {
        Асинхронная функция. Походу надо ставить в очередь
       ----------------------------------------------------*/
     sendEmail (evt) {            
-
+      // 0fa8a8a062-5b09a9@inbox.mailtrap.io
       post('password/email', { "email": this.form.email }).then((res) => {
-        alert("ok");
+        alert("Инструкция по восстановлению пароля отправлена на указанную почту.");
         console.log(res);      
       }).catch((err) => 
       {
-        alert("ne ok");
+        alert("Ошибка отправки");
         console.log(err.response.data);
       });
     }

@@ -2326,12 +2326,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
        Асинхронная функция. Походу надо ставить в очередь
       ----------------------------------------------------*/
     sendEmail: function sendEmail(evt) {
-
+      // 0fa8a8a062-5b09a9@inbox.mailtrap.io
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('password/email', { "email": this.form.email }).then(function (res) {
-        alert("ok");
+        alert("Инструкция по восстановлению пароля отправлена на указанную почту.");
         console.log(res);
       }).catch(function (err) {
-        alert("ne ok");
+        alert("Ошибка отправки");
         console.log(err.response.data);
       });
     }
