@@ -35109,12 +35109,20 @@ var render = function() {
             staticStyle: {
               margin: "auto",
               "margin-top": "10px",
-              "font-weight": "500"
+              "font-weight": "500",
+              padding: "5px",
+              background: "rgb(130,130,180)",
+              opacity: "0.8",
+              "font-size": "15px",
+              width: "100%",
+              "text-align": "center"
             }
           },
           [
-            _c("a", { attrs: { href: "" } }, [_vm._v("AksuSoftware")]),
-            _vm._v(" 2018(c)")
+            _c("a", { attrs: { href: "" } }, [
+              _vm._v("Разработано студией AksuSoftware")
+            ]),
+            _vm._v(" 2018 (c)")
           ]
         )
       ])
