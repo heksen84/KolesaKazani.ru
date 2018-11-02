@@ -35090,18 +35090,19 @@ var render = function() {
           {
             staticStyle: {
               margin: "auto",
-              "margin-top": "10px",
+              "margin-top": "5px",
               "font-weight": "500",
               padding: "5px",
               background: "rgb(80,80,100)",
               opacity: "0.8",
-              "font-size": "14px",
+              "font-size": "15px",
               width: "100%",
+              "margin-bottom": "-5px",
               "text-align": "center"
             }
           },
           [
-            _c("a", { attrs: { href: "" } }, [
+            _c("a", { attrs: { href: "#" } }, [
               _vm._v("Разработано студией AksuSoftware")
             ]),
             _vm._v(" 2018 (c)")
