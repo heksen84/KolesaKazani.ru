@@ -11,7 +11,7 @@ import search from './views/search.vue';
 import results from './views/results.vue';
 import create from './views/create.vue';
 import fullinfo from './views/fullinfo.vue';
-import passwordreset from './views/auth/passwordreset.vue';
+import sendemail from './views/auth/sendemail.vue';
 import login from './views/auth/login.vue';
 import register from './views/auth/register.vue';
 
@@ -88,7 +88,7 @@ const app = new Vue({
       index,
       profile,
       cabinet,
-      passwordreset,
+      sendemail,
       login,
       register,
       search,

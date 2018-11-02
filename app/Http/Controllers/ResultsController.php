@@ -44,7 +44,8 @@ class ResultsController extends Controller {
         // !!!! НЕТ РЕГИОНА !!! зависит от локации
 
     	// передаю во вьюху
-		return view('results')->with("items", $items)->with("title", $_category->name." в ".$_region->name)->with("images", "123");
+		//return view('results')->with("items", $items)->with("title", $_category->name." в ".$_region->name)->with("images", "123");
+		return;
     }
 
 	// ---------------------------------------------------

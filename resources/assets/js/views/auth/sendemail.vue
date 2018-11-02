@@ -47,17 +47,20 @@ export default {
   methods: {
     closeAndReturn() {
  			  window.history.back();
-  	},
-    sendEmail (evt) {
+    },
+    /*----------------------------------------------------
+       Асинхронная функция. Походу надо ставить в очередь
+      ----------------------------------------------------*/
+    sendEmail (evt) {            
 
-      alert("!23")
-      post('/password/email', { "email": this.form.email }
-      ).then((res) => {
-        console.log(res);
-       // window.location='/home';
-      }).catch((err) => {
-      console.log(err.response.data);
-    });
+      post('password/email', { "email": this.form.email }).then((res) => {
+        alert("ok");
+        console.log(res);      
+      }).catch((err) => 
+      {
+        alert("ne ok");
+        console.log(err.response.data);
+      });
     }
   }
 }
