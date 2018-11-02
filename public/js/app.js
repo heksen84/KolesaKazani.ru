@@ -36344,7 +36344,12 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "b-form-group",
-                    { staticStyle: { "text-align": "center" } },
+                    {
+                      staticStyle: {
+                        "text-align": "center",
+                        "margin-top": "-15px"
+                      }
+                    },
                     [
                       _c(
                         "b-button",

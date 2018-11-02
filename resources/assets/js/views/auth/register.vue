@@ -55,7 +55,7 @@
       </b-form-group>
 
       <br>
-      <b-form-group style="text-align:center">
+      <b-form-group style="text-align:center;margin-top:-15px">
         <b-button type="submit" variant="primary">Продолжить</b-button>
       </b-form-group>
     </b-form>
