@@ -80,7 +80,7 @@
     <b-col v-for="i in 40" style="border:1px solid rgb(255,255,255);margin:1px;padding:30px;opacity:0.5" v-bind:key="i"></b-col>
 </b-row>
 
-<b-row><span style="margin:auto;margin-top:4px;font-weight:500;padding:5px;background:rgb(50,50,100);opacity:0.7;font-size:15px;width:100%;margin-bottom:-5px;text-align:center">Рекламодателям | <a href="#">Разработано студией AksuSoftware</a> 2018 (c)</span></b-row>
+<b-row><span style="margin:auto;margin-top:4px;font-weight:500;padding:5px;background:rgb(50,50,100);opacity:0.7;font-size:15px;width:100%;margin-bottom:-5px;text-align:center"><a href="advertisers">Рекламодателям</a> | <a href="#">Разработано студией AksuSoftware</a> 2018 (c)</span></b-row>
 
 </b-container>
 </template>
