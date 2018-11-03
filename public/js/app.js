@@ -35111,10 +35111,9 @@ var render = function() {
               _vm._v("Рекламодателям")
             ]),
             _vm._v(" | "),
-            _c("a", { attrs: { href: "#" } }, [
-              _vm._v("Разработано студией AksuSoftware")
-            ]),
-            _vm._v(" 2018 (c)")
+            _c("a", { attrs: { href: "about" } }, [
+              _vm._v("Разработано студией AksuSoftware 2018 (c)")
+            ])
           ]
         )
       ])
