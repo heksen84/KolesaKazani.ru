@@ -8,8 +8,8 @@
   
 	<b-collapse is-nav id="nav_collapse">
     <b-navbar-nav class="ml-auto">
-      <b-nav-item href="#" @click="createAdvert"><b>Разместить объявление</b></b-nav-item>
-      <b-nav-item href="#" @click="logout"><b><u>Выйти</u></b></b-nav-item>
+      <b-nav-item href="#" @click="createAdvert"><b-button size="sm">Разместить объявление</b-button></b-nav-item>
+      <b-nav-item href="#" @click="logout"><b-button variant="primary" size="sm">Выйти</b-button></b-nav-item>
     </b-navbar-nav>
   </b-collapse>
 	

@@ -35871,13 +35871,25 @@ var render = function() {
                   _c(
                     "b-nav-item",
                     { attrs: { href: "#" }, on: { click: _vm.createAdvert } },
-                    [_c("b", [_vm._v("Разместить объявление")])]
+                    [
+                      _c("b-button", { attrs: { size: "sm" } }, [
+                        _vm._v("Разместить объявление")
+                      ])
+                    ],
+                    1
                   ),
                   _vm._v(" "),
                   _c(
                     "b-nav-item",
                     { attrs: { href: "#" }, on: { click: _vm.logout } },
-                    [_c("b", [_c("u", [_vm._v("Выйти")])])]
+                    [
+                      _c(
+                        "b-button",
+                        { attrs: { variant: "primary", size: "sm" } },
+                        [_vm._v("Выйти")]
+                      )
+                    ],
+                    1
                   )
                 ],
                 1
