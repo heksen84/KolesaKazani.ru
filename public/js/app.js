@@ -35107,6 +35107,7 @@ var render = function() {
             }
           },
           [
+            _vm._v("Рекламодателям | "),
             _c("a", { attrs: { href: "#" } }, [
               _vm._v("Разработано студией AksuSoftware")
             ]),
