@@ -35093,32 +35093,17 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("b-row", [
-        _c(
-          "span",
-          {
-            staticStyle: {
-              margin: "auto",
-              "margin-top": "4px",
-              "font-weight": "500",
-              padding: "5px",
-              background: "rgb(50,50,100)",
-              opacity: "0.7",
-              "font-size": "15px",
-              width: "100%",
-              "margin-bottom": "-5px",
-              "text-align": "center"
-            }
-          },
-          [
-            _c("a", { attrs: { href: "advertisers" } }, [
-              _vm._v("Рекламодателям")
-            ]),
-            _vm._v(" | "),
-            _c("a", { attrs: { href: "about" } }, [
-              _vm._v("Разработано студией AksuSoftware 2018 (c)")
-            ])
-          ]
-        )
+        _c("div", { attrs: { id: "footer" } }, [
+          _c(
+            "a",
+            { staticClass: "underline_link", attrs: { href: "advertisers" } },
+            [_vm._v("Рекламодателям")]
+          ),
+          _vm._v(" | "),
+          _c("a", { staticClass: "underline_link", attrs: { href: "about" } }, [
+            _vm._v("Разработано студией AksuSoftware 2018 (c)")
+          ])
+        ])
       ])
     ],
     2

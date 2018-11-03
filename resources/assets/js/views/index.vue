@@ -82,7 +82,7 @@
 
 <!-- ПОДВАЛ -->
 <b-row>
-  <span style="margin:auto;margin-top:4px;font-weight:500;padding:5px;background:rgb(50,50,100);opacity:0.7;font-size:15px;width:100%;margin-bottom:-5px;text-align:center"><a href="advertisers">Рекламодателям</a> | <a href="about">Разработано студией AksuSoftware 2018 (c)</a></span>
+  <div id="footer"><a href="advertisers" class="underline_link">Рекламодателям</a> | <a href="about" class="underline_link">Разработано студией AksuSoftware 2018 (c)</a></div>
 </b-row>
 
 </b-container>
