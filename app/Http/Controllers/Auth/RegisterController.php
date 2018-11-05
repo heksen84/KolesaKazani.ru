@@ -53,7 +53,7 @@ class RegisterController extends Controller
         $messages = [
             "name.required"         => "Введите имя",             
             "name.string"           => "Имя должно быть указано в виде строки", 
-            "name.min"              => "Имя должно быть не длиной менее 3-ёх символов", 
+            "name.min"              => "Имя должно быть длиной не менее 3-ёх символов", 
             "name.max"              => "Имя должно быть не более 60 символов", 
             "email.required"        => "Введите почту", 
             "email.string"          => "Почта должна быть указана в виде строки",
@@ -62,7 +62,7 @@ class RegisterController extends Controller
             "email.unique"          => "Такая почта уже существует", 
             "password.required"     => "Требуется пароль", 
             "password.string"       => "Пароль должен быть указан в виде строки", 
-            "password.min"          => "Для пароля требуется длина не менее 6 символов", 
+            "password.min"          => "Пароль должен быть не короче 6 символов", 
             "password.confirmed"    => "Пожалуйста, подтвердите пароль", 
         ]; 
 
