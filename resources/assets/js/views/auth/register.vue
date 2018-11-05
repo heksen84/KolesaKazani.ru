@@ -99,13 +99,13 @@ export default {
     onSubmit (evt) {
       evt.preventDefault();
 
+      // сбрасываю состояния полей
       this.name_state=null,
       this.email_state=null,
       this.password_state=null,
       this.confirm_password_state=null,
       
-      post('/register', 
-      {
+      post('/register', {
         "name": this.form.name,
         "email": this.form.email,
         "password": this.form.password,

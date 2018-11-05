@@ -2356,6 +2356,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       evt.preventDefault();
 
+      // сбрасываю состояния полей
       this.name_state = null, this.email_state = null, this.password_state = null, this.confirm_password_state = null, Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/register', {
         "name": this.form.name,
         "email": this.form.email,
