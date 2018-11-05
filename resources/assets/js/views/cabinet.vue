@@ -43,7 +43,9 @@ export default {
 		console.log(this._items );
 
 		for (var i=0;i<this._items.length;i++) {
-			this._items[i][""]="продлить";
+			this._items[i]["1"]="продлить";
+			this._items[i]["2"]="скрыть из выдачи";
+			this._items[i]["3"]="удалить";
 			console.log(this._items[i]);
 		}
 		console.log(this._items);

@@ -2347,7 +2347,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         "password_confirmation": this.form.password_confirmation
       }).then(function (res) {
         console.log(res);
-        alert("Вы зареганы!");
+        window.location = "home";
       }).catch(function (err) {
 
         console.log(err.response.data);
@@ -2497,7 +2497,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		console.log(this._items);
 
 		for (var i = 0; i < this._items.length; i++) {
-			this._items[i][""] = "продлить";
+			this._items[i]["1"] = "продлить";
+			this._items[i]["2"] = "скрыть из выдачи";
+			this._items[i]["3"] = "удалить";
 			console.log(this._items[i]);
 		}
 		console.log(this._items);

@@ -92,7 +92,7 @@ export default {
       }
       ).then((res) => {
         console.log(res)
-        alert("Вы зареганы!");
+        window.location="home";
 		  }).catch((err) => {
 
       console.log(err.response.data);
