@@ -47,7 +47,9 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        // сообщения валидации
+        // ----------------------------------------------
+        // сообщения для валидации при регистрации
+        // ----------------------------------------------
         $messages = [
             "name.required"         => "Введите имя",             
             "name.string"           => "Имя должно быть строкой", 
@@ -63,6 +65,7 @@ class RegisterController extends Controller
             "password.confirmed"    => "Подтвердите пароль", 
         ]; 
 
+        // правила валидации при регистрации
         return Validator::make($data, [
             'name'      => 'required|string|min:3|max:60',
             'email'     => 'required|string|email|max:60|unique:users',
