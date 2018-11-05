@@ -13,7 +13,6 @@
     <h3 class="form_title">сброс пароля</h3>
     <hr>
     <b-form @submit="onSubmit" style="width:99%">
-
       
       <!-- пароль -->
       <b-form-group label="Новый пароль:" label-for="password">
