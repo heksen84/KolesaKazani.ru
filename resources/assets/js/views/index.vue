@@ -194,8 +194,8 @@ export default {
       }).catch((err) => {});
 
     },
-    selectPlace(e) {
 
+    selectPlace(e) {
       this.buttonAllCountry=false;
       this.selectedPlaceName=e.name;
       this.locationDialog=false;
@@ -203,16 +203,16 @@ export default {
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);
     },
-    selectAllCountry(e) {
 
+    selectAllCountry(e) {
       this.selectedPlaceName="Весь Казахстан";
       this.urlRegAndPlace="";
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", "");
       this.locationDialog=false;
     },
-    selectAllRegion(e) {
 
+    selectAllRegion(e) {
       this.selectedPlaceName=this.regionName;
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);

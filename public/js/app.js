@@ -3233,7 +3233,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).catch(function (err) {});
     },
     selectPlace: function selectPlace(e) {
-
       this.buttonAllCountry = false;
       this.selectedPlaceName = e.name;
       this.locationDialog = false;
@@ -3242,7 +3241,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);
     },
     selectAllCountry: function selectAllCountry(e) {
-
       this.selectedPlaceName = "Весь Казахстан";
       this.urlRegAndPlace = "";
       localStorage.setItem("placeName", this.selectedPlaceName);
@@ -3250,7 +3248,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.locationDialog = false;
     },
     selectAllRegion: function selectAllRegion(e) {
-
       this.selectedPlaceName = this.regionName;
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);
