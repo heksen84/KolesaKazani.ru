@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     closeAndReturn() {
- 		  window.history.back();
+ 		  window.location="/login";
   	},
     onSubmit (evt) {
       evt.preventDefault();

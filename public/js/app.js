@@ -2222,7 +2222,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     closeAndReturn: function closeAndReturn() {
-      window.history.back();
+      window.location = "/login";
     },
     onSubmit: function onSubmit(evt) {
       evt.preventDefault();
