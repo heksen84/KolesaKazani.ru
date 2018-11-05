@@ -3172,7 +3172,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 //import petrovich from 'petrovich';
@@ -3274,21 +3273,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.selectedPlaceName = e.name;
       this.locationDialog = false;
       this.urlRegAndPlace = this.urlRegAndPlace + "/" + e.url;
+      // сохраняю в localStorage
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);
     },
     selectAllCountry: function selectAllCountry(e) {
       this.selectedPlaceName = "Весь Казахстан";
       this.urlRegAndPlace = "";
+      this.locationDialog = false;
+      // сохраняю в localStorage
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", "");
-      this.locationDialog = false;
     },
     selectAllRegion: function selectAllRegion(e) {
       this.selectedPlaceName = this.regionName;
+      this.locationDialog = false;
+      this.buttonAllCountry = false;
+      // сохраняю в localStorage
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);
-      this.locationDialog = false;
     }
   }
 });
@@ -34931,7 +34934,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v(_vm._s(i.name) + "\n            ")]
+                      [_vm._v(_vm._s(i.name))]
                     )
                   }),
                   _vm._v(" "),

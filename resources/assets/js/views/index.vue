@@ -17,8 +17,7 @@
             <b-button variant="link" v-if="buttonAllCountry" @click="selectAllCountry">Весь Казахстан</b-button>
 
             <!-- города, cёлы, аулы, деревни -->
-            <b-button variant="link" style="color:black" v-for="i in places" :key="i.city_id" @click="selectPlace(i)">{{i.name}}
-            </b-button>
+            <b-button variant="link" style="color:black" v-for="i in places" :key="i.city_id" @click="selectPlace(i)">{{i.name}}</b-button>
 
             <hr v-if="buttonAllRegion">
             <button style="color:black;display:block;margin:auto;margin-top:-5px" v-if="buttonAllRegion" @click="selectAllRegion">Вся область</button>
@@ -199,24 +198,28 @@ export default {
       this.buttonAllCountry=false;
       this.selectedPlaceName=e.name;
       this.locationDialog=false;
-      this.urlRegAndPlace=this.urlRegAndPlace+"/"+e.url;
+      this.urlRegAndPlace=this.urlRegAndPlace+"/"+e.url;      
+      // сохраняю в localStorage
       localStorage.setItem("placeName", this.selectedPlaceName);
-      localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);
+      localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);      
     },
 
     selectAllCountry(e) {
       this.selectedPlaceName="Весь Казахстан";
-      this.urlRegAndPlace="";
+      this.urlRegAndPlace="";      
+      this.locationDialog=false;
+      // сохраняю в localStorage
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", "");
-      this.locationDialog=false;
     },
 
     selectAllRegion(e) {
       this.selectedPlaceName=this.regionName;
+      this.locationDialog=false;
+      this.buttonAllCountry=false;
+      // сохраняю в localStorage
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);
-      this.locationDialog=false;
     }
   }
 }
