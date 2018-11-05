@@ -49,16 +49,24 @@ class RegisterController extends Controller
     {
         // сообщения валидации
         $messages = [
-            "name.required"  => "Введите имя", 
-            "name.string"    => "Имя должно быть строкой", 
-            "email.required" => "Введите почту", 
-            "email.string"   => "Почта должна быть строкой", 
+            "name.required"         => "Введите имя",             
+            "name.string"           => "Имя должно быть строкой", 
+            "name.min"              => "Имя должно быть не менее 3-ёх символов", 
+            "name.max"              => "Имя должно быть не более 60 символов", 
+            "email.required"        => "Введите почту", 
+            "email.string"          => "Почта должна быть строкой",
+            "email.max"             => "Почта должна быть не более 60 символов",  
+            "email.unique"          => "Такая почта уже существует", 
+            "password.required"     => "Требуется пароль", 
+            "password.string"       => "Пароль должен быть в виде строки", 
+            "password.min"          => "Слишком короткий пароль. Не менее 6 символов", 
+            "password.confirmed"    => "Подтвердите пароль", 
         ]; 
 
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'name'      => 'required|string|min:3|max:60',
+            'email'     => 'required|string|email|max:60|unique:users',
+            'password'  => 'required|string|min:6|confirmed',
         ], $messages);
     }
 

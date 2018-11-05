@@ -94,12 +94,21 @@ export default {
         console.log(res)
         alert("Вы зареганы!");
 		  }).catch((err) => {
-			console.log(err.response.data);
+
+      console.log(err.response.data);
+      
+      // получаю ошибки
 			if(err.response.status === 422) {
-        if (err.response.data.errors.password) {
-          this.$root.alert.show=true;
-          this.$root.alert.msg=err.response.data.errors.password;
-        }
+        this.$root.alert.show=true;
+
+        if (err.response.data.errors.name)
+          this.$root.alert.msg=err.response.data.errors.name[0];
+
+        if (err.response.data.errors.email)
+          this.$root.alert.msg=err.response.data.errors.email[0];
+
+        if (err.response.data.errors.password)
+          this.$root.alert.msg=err.response.data.errors.password[0];        
 			}
   	});
     }
