@@ -12,7 +12,7 @@
     <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
     <h4 class="form_title">восстановление доступа</h4>    
     <hr>
-    <b-form style="width:99%">
+    <b-form style="width:99%" @submit="sendEmail">
       <b-form-group label="Email адрес:" label-for="email">
         <b-form-input id="email"
                       type="email"
@@ -25,7 +25,7 @@
       <b-form-group>
       </b-form-group>
       <b-form-group style="text-align:center">
-        <b-button @click="sendEmail" variant="primary">Восстановить</b-button>
+        <b-button type="submit" variant="primary">Восстановить</b-button>
       </b-form-group>
       <b-form-group>
       </b-form-group>
@@ -52,11 +52,10 @@ export default {
     /*----------------------------------------------------
        Асинхронная функция. Походу надо ставить в очередь
       ----------------------------------------------------*/
-    sendEmail (evt) {            
-      // 0fa8a8a062-5b09a9@inbox.mailtrap.io
-      post('password/email', { "email": this.form.email }).then((res) => {
+    sendEmail (evt) {
+      post('/password/email', { "email": this.form.email }).then((res) => {
         alert("Инструкция по восстановлению пароля отправлена на указанную почту.");
-        console.log(res);      
+        console.log(res);   
       }).catch((err) => 
       {
         alert("Ошибка отправки");
