@@ -8,9 +8,9 @@
     </b-col>
 
     <!-- ФОРМА -->
-    <b-col cols="12" sm="12" md="12" lg="4" xl="4" class="standart_window">
+    <b-col cols="12" sm="12" md="12" lg="4" xl="4" class="form">
     <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
-    <h3 style="text-align:center;margin-top:10px;color:grey">регистрация</h3>
+    <h3 class="form_title">регистрация</h3>
     <hr>
     <b-form @submit="onSubmit" style="width:99%">
 

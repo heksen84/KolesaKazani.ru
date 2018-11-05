@@ -35365,7 +35365,7 @@ var render = function() {
           _c(
             "b-col",
             {
-              staticClass: "standart_window",
+              staticClass: "form",
               attrs: { cols: "12", sm: "12", md: "12", lg: "4", xl: "4" }
             },
             [
@@ -35379,17 +35379,9 @@ var render = function() {
                 [_vm._v("X")]
               ),
               _vm._v(" "),
-              _c(
-                "h4",
-                {
-                  staticStyle: {
-                    "text-align": "center",
-                    "margin-top": "12px",
-                    color: "grey"
-                  }
-                },
-                [_vm._v("восстановление доступа")]
-              ),
+              _c("h4", { staticClass: "form_title" }, [
+                _vm._v("восстановление доступа")
+              ]),
               _vm._v(" "),
               _c("hr"),
               _vm._v(" "),
@@ -35501,7 +35493,7 @@ var render = function() {
           _c(
             "b-col",
             {
-              staticClass: "standart_window",
+              staticClass: "form",
               attrs: { cols: "12", sm: "12", md: "12", lg: "4", xl: "4" }
             },
             [
@@ -35515,17 +35507,7 @@ var render = function() {
                 [_vm._v("X")]
               ),
               _vm._v(" "),
-              _c(
-                "h3",
-                {
-                  staticStyle: {
-                    "text-align": "center",
-                    "margin-top": "10px",
-                    color: "grey"
-                  }
-                },
-                [_vm._v("сброс пароля")]
-              ),
+              _c("h3", { staticClass: "form_title" }, [_vm._v("сброс пароля")]),
               _vm._v(" "),
               _c("hr"),
               _vm._v(" "),
@@ -36235,7 +36217,7 @@ var render = function() {
           _c(
             "b-col",
             {
-              staticClass: "standart_window",
+              staticClass: "form",
               attrs: { cols: "12", sm: "12", md: "12", lg: "4", xl: "4" }
             },
             [
@@ -36249,17 +36231,7 @@ var render = function() {
                 [_vm._v("X")]
               ),
               _vm._v(" "),
-              _c(
-                "h3",
-                {
-                  staticStyle: {
-                    "text-align": "center",
-                    "margin-top": "10px",
-                    color: "grey"
-                  }
-                },
-                [_vm._v("регистрация")]
-              ),
+              _c("h3", { staticClass: "form_title" }, [_vm._v("регистрация")]),
               _vm._v(" "),
               _c("hr"),
               _vm._v(" "),
@@ -36447,7 +36419,7 @@ var render = function() {
           _c(
             "b-col",
             {
-              staticClass: "standart_window",
+              staticClass: "form",
               attrs: { cols: "12", sm: "12", md: "12", lg: "4", xl: "4" }
             },
             [
@@ -36461,17 +36433,7 @@ var render = function() {
                 [_vm._v("X")]
               ),
               _vm._v(" "),
-              _c(
-                "h3",
-                {
-                  staticStyle: {
-                    "text-align": "center",
-                    "margin-top": "10px",
-                    color: "grey"
-                  }
-                },
-                [_vm._v("вход")]
-              ),
+              _c("h3", { staticClass: "form_title" }, [_vm._v("вход")]),
               _vm._v(" "),
               _c("hr"),
               _vm._v(" "),

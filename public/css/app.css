@@ -116,7 +116,7 @@ body {
   font-weight: 550;
 }
 
-.standart_window {
+.form {
   text-align: left;
   margin: 60px auto;
   color: black;
@@ -179,6 +179,13 @@ body {
 .title_text {
   font-size: 170%;
   color: #505050;
+}
+
+.form_title {
+  text-align: center;
+  margin-top: 10px;
+  color: grey;
+  font-weight: 550;
 }
 
 .category_item {
@@ -444,7 +451,7 @@ a:active {
     height: 50px;
   }
 
-  .standart_window {
+  .form {
     margin-top: 0px;
   }
 

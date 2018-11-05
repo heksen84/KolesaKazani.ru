@@ -8,9 +8,9 @@
     </b-col>
 
     <!-- ФОРМА -->
-    <b-col cols="12" sm="12" md="12" lg="4" xl="4" class="standart_window">    
+    <b-col cols="12" sm="12" md="12" lg="4" xl="4" class="form">    
     <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
-    <h4 style="text-align:center;margin-top:12px;color:grey">восстановление доступа</h4>    
+    <h4 class="form_title">восстановление доступа</h4>    
     <hr>
     <b-form style="width:99%">
       <b-form-group label="Email адрес:" label-for="email">
