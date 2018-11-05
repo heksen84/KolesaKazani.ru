@@ -2372,22 +2372,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         // получаю ошибки
         // -------------------------------
         if (err.response.status === 422) {
+
+          // показываю алерт
           _this.$root.alert.show = true;
 
+          // проверка имени
           if (err.response.data.errors.name) {
             _this.$root.alert.msg = err.response.data.errors.name[0];
             _this.name_state = false;
             return;
           }
 
+          // проверка почты
           if (err.response.data.errors.email) {
             _this.$root.alert.msg = err.response.data.errors.email[0];
             _this.email_state = false;
             return;
           }
 
+          // проверка паролей
           var password = err.response.data.errors.password;
-
           if (password) {
             _this.$root.alert.msg = password[0];
             if (password.length > 1) _this.password_state = false;else _this.confirm_password_state = false;

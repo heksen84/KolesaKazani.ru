@@ -122,22 +122,26 @@ export default {
       // получаю ошибки
       // -------------------------------
 			if(err.response.status === 422) {
+
+        // показываю алерт
         this.$root.alert.show=true;
 
+        // проверка имени
         if (err.response.data.errors.name) {
           this.$root.alert.msg=err.response.data.errors.name[0];
           this.name_state=false;
           return;
         }
 
+        // проверка почты
         if (err.response.data.errors.email) {          
           this.$root.alert.msg=err.response.data.errors.email[0];
           this.email_state=false;
           return;
         }
 
+        // проверка паролей
         var password = err.response.data.errors.password;
-
         if (password) {          
           this.$root.alert.msg=password[0];        
           if (password.length>1) 
