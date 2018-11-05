@@ -10,6 +10,7 @@
 	<link rel="icon" href="{{ asset('public/shop.ico') }}">
     </head>
 <body>
-	<h1 style="text-align:center;margin-top:20px;color:rgb(130,130,150)">Страница не найдена</h1>
+	<h1 style="text-align:center;margin-top:30px;color:rgb(130,130,150)">Страница не найдена</h1>
+    <h4 style="text-align:center;margin-top:-20px"><a href="/" style="color:rgb(100,100,100);text-decoration:none">вернуться на главную</a></h4>
 </body>
 </html>
