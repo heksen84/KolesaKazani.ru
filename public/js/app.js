@@ -2332,6 +2332,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
 
+      // состояния полей
       name_state: null,
       email_state: null,
       password_state: null,
@@ -2354,7 +2355,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       evt.preventDefault();
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/register', {
+
+      this.name_state = null, this.email_state = null, this.password_state = null, this.confirm_password_state = null, Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/register', {
         "name": this.form.name,
         "email": this.form.email,
         "password": this.form.password,
@@ -2366,7 +2368,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         console.log(err.response.data);
 
+        // -------------------------------
         // получаю ошибки
+        // -------------------------------
         if (err.response.status === 422) {
           _this.$root.alert.show = true;
 
@@ -2379,12 +2383,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           if (err.response.data.errors.email) {
             _this.$root.alert.msg = err.response.data.errors.email[0];
             _this.email_state = false;
+            return;
           }
 
-          if (err.response.data.errors.password) {
-            _this.$root.alert.msg = err.response.data.errors.password[0];
-            _this.password_state = false;
-            _this.password_confirm_state = false;
+          var password = err.response.data.errors.password;
+
+          if (password) {
+            _this.$root.alert.msg = password[0];
+            if (password.length > 1) _this.password_state = false;else _this.confirm_password_state = false;
+            return;
           }
         }
       });

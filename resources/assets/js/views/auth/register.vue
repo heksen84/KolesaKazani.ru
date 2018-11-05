@@ -78,6 +78,7 @@ export default {
   data () {
     return {
 
+      // состояния полей
       name_state: null,
       email_state: null,
       password_state: null,
@@ -97,6 +98,12 @@ export default {
   	},
     onSubmit (evt) {
       evt.preventDefault();
+
+      this.name_state=null,
+      this.email_state=null,
+      this.password_state=null,
+      this.confirm_password_state=null,
+      
       post('/register', 
       {
         "name": this.form.name,
@@ -111,7 +118,9 @@ export default {
 
       console.log(err.response.data);
       
+      // -------------------------------
       // получаю ошибки
+      // -------------------------------
 			if(err.response.status === 422) {
         this.$root.alert.show=true;
 
@@ -124,13 +133,20 @@ export default {
         if (err.response.data.errors.email) {          
           this.$root.alert.msg=err.response.data.errors.email[0];
           this.email_state=false;
+          return;
         }
 
-        if (err.response.data.errors.password) {
-          this.$root.alert.msg=err.response.data.errors.password[0];        
-          this.password_state=false;
-          this.password_confirm_state=false;
+        var password = err.response.data.errors.password;
+
+        if (password) {          
+          this.$root.alert.msg=password[0];        
+          if (password.length>1) 
+            this.password_state=false;
+          else
+            this.confirm_password_state=false;
+          return;
         }
+
 			}
   	});
     }
