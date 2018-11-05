@@ -52,23 +52,24 @@ class RegisterController extends Controller
         // ----------------------------------------------
         $messages = [
             "name.required"         => "Введите имя",             
-            "name.string"           => "Имя должно быть строкой", 
-            "name.min"              => "Имя должно быть не менее 3-ёх символов", 
+            "name.string"           => "Имя должно быть указано в виде строки", 
+            "name.min"              => "Имя должно быть не длиной менее 3-ёх символов", 
             "name.max"              => "Имя должно быть не более 60 символов", 
             "email.required"        => "Введите почту", 
-            "email.string"          => "Почта должна быть строкой",
-            "email.max"             => "Почта должна быть не более 60 символов",  
+            "email.string"          => "Почта должна быть указана в виде строки",
+            "email.max"             => "Почта должна быть длиной не менее 1-го символа",  
+            "email.max"             => "Почта должна быть длиной не более 60 символов",  
             "email.unique"          => "Такая почта уже существует", 
             "password.required"     => "Требуется пароль", 
-            "password.string"       => "Пароль должен быть в виде строки", 
-            "password.min"          => "Слабый пароль. Требуется не менее 6 символов", 
-            "password.confirmed"    => "Подтвердите пароль", 
+            "password.string"       => "Пароль должен быть указан в виде строки", 
+            "password.min"          => "Для пароля требуется длина не менее 6 символов", 
+            "password.confirmed"    => "Пожалуйста, подтвердите пароль", 
         ]; 
 
         // правила валидации при регистрации
         return Validator::make($data, [
             'name'      => 'required|string|min:3|max:60',
-            'email'     => 'required|string|email|max:60|unique:users',
+            'email'     => 'required|string|email|min:1|max:60|unique:users',
             'password'  => 'required|string|min:6|confirmed',
         ], $messages);
     }
