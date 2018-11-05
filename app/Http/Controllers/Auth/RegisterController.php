@@ -59,7 +59,7 @@ class RegisterController extends Controller
             "email.unique"          => "Такая почта уже существует", 
             "password.required"     => "Требуется пароль", 
             "password.string"       => "Пароль должен быть в виде строки", 
-            "password.min"          => "Слишком короткий пароль. Не менее 6 символов", 
+            "password.min"          => "Слабый пароль. Требуется не менее 6 символов", 
             "password.confirmed"    => "Подтвердите пароль", 
         ]; 
 
