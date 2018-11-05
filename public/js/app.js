@@ -2318,11 +2318,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+
+      name_state: null,
+      email_state: null,
+      password_state: null,
+      confirm_password_state: null,
+
       form: {
         name: '',
         email: '',
@@ -2356,11 +2370,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (err.response.status === 422) {
           _this.$root.alert.show = true;
 
-          if (err.response.data.errors.name) _this.$root.alert.msg = err.response.data.errors.name[0];
+          if (err.response.data.errors.name) {
+            _this.$root.alert.msg = err.response.data.errors.name[0];
+            _this.name_state = false;
+            return;
+          }
 
-          if (err.response.data.errors.email) _this.$root.alert.msg = err.response.data.errors.email[0];
+          if (err.response.data.errors.email) {
+            _this.$root.alert.msg = err.response.data.errors.email[0];
+            _this.email_state = false;
+          }
 
-          if (err.response.data.errors.password) _this.$root.alert.msg = err.response.data.errors.password[0];
+          if (err.response.data.errors.password) {
+            _this.$root.alert.msg = err.response.data.errors.password[0];
+            _this.password_state = false;
+            _this.password_confirm_state = false;
+          }
         }
       });
     }
@@ -36248,7 +36273,8 @@ var render = function() {
                           id: "name",
                           type: "text",
                           required: "",
-                          placeholder: "Введите имя"
+                          placeholder: "Введите имя",
+                          state: _vm.name_state
                         },
                         model: {
                           value: _vm.form.name,
@@ -36271,7 +36297,8 @@ var render = function() {
                           id: "email",
                           type: "email",
                           required: "",
-                          placeholder: "Введите email"
+                          placeholder: "Введите email",
+                          state: _vm.email_state
                         },
                         model: {
                           value: _vm.form.email,
@@ -36296,7 +36323,8 @@ var render = function() {
                           id: "password",
                           type: "password",
                           required: "",
-                          placeholder: "Введите пароль"
+                          placeholder: "Введите пароль",
+                          state: _vm.password_state
                         },
                         model: {
                           value: _vm.form.password,
@@ -36324,7 +36352,8 @@ var render = function() {
                           id: "password_confirm",
                           type: "password",
                           required: "",
-                          placeholder: "Подтвердите пароль"
+                          placeholder: "Подтвердите пароль",
+                          state: _vm.confirm_password_state
                         },
                         model: {
                           value: _vm.form.password_confirmation,

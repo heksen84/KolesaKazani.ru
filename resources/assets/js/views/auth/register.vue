@@ -20,7 +20,9 @@
                       type="text"
                       v-model="form.name"
                       required
-                      placeholder="Введите имя">
+                      placeholder="Введите имя"
+                      :state="name_state"
+                      >
         </b-form-input>
       </b-form-group>
 
@@ -30,7 +32,9 @@
                       type="email"
                       v-model="form.email"
                       required
-                      placeholder="Введите email">
+                      placeholder="Введите email"
+                      :state="email_state"
+                      >
         </b-form-input>
       </b-form-group>
 
@@ -40,7 +44,9 @@
                       type="password"
                       v-model="form.password"
                       required
-                      placeholder="Введите пароль">
+                      placeholder="Введите пароль"
+                      :state="password_state"
+                      >
         </b-form-input>
       </b-form-group>
 
@@ -50,7 +56,9 @@
                       type="password"
                       v-model="form.password_confirmation"
                       required
-                      placeholder="Подтвердите пароль">
+                      placeholder="Подтвердите пароль"
+                      :state="confirm_password_state"
+                      >
         </b-form-input>
       </b-form-group>
 
@@ -69,6 +77,12 @@ import { post } from './../../helpers/api'
 export default {
   data () {
     return {
+
+      name_state: null,
+      email_state: null,
+      password_state: null,
+      confirm_password_state: null,
+
       form: {
         name: '',
         email: '',
@@ -101,14 +115,22 @@ export default {
 			if(err.response.status === 422) {
         this.$root.alert.show=true;
 
-        if (err.response.data.errors.name)
+        if (err.response.data.errors.name) {
           this.$root.alert.msg=err.response.data.errors.name[0];
+          this.name_state=false;
+          return;
+        }
 
-        if (err.response.data.errors.email)
+        if (err.response.data.errors.email) {          
           this.$root.alert.msg=err.response.data.errors.email[0];
+          this.email_state=false;
+        }
 
-        if (err.response.data.errors.password)
+        if (err.response.data.errors.password) {
           this.$root.alert.msg=err.response.data.errors.password[0];        
+          this.password_state=false;
+          this.password_confirm_state=false;
+        }
 			}
   	});
     }
