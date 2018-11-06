@@ -14,7 +14,8 @@
 </head>
 <body>
 <div id="app">      
-      <passwordreset></passwordreset>
+      {{ csrf_field() }}
+      <passwordreset token={{ $token }}></passwordreset>
 </div>
 <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
 </body>

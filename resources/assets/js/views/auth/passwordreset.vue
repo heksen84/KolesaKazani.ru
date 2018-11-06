@@ -47,11 +47,10 @@
 <script>
 import { post } from './../../helpers/api'
 export default {
+  props: ["token"],
   data () {
     return {
       form: {
-        name: '',
-        email: '',
         password: '',
         password_confirmation: '',
       }
@@ -64,8 +63,6 @@ export default {
     onSubmit (evt) {
       evt.preventDefault();
       post('/register', {
-        "name": this.form.name,
-        "email": this.form.email,
         "password": this.form.password,
         "password_confirmation": this.form.password_confirmation
       }
