@@ -13,9 +13,8 @@
   <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
 </head>
 <body>
-<div id="app">      
-      {{ csrf_field() }}
-      <passwordreset token={{ $token }}></passwordreset>
+<div id="app">                  
+<passwordreset email_token={{ $token }} csrf_token={{ csrf_token() }}></passwordreset>
 </div>
 <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
 </body>

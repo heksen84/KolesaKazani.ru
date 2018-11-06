@@ -2205,14 +2205,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['email_token', 'csrf_token'],
   data: function data() {
     return {
       form: {
-        name: '',
-        email: '',
         password: '',
         password_confirmation: ''
       }
@@ -2226,8 +2234,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     onSubmit: function onSubmit(evt) {
       evt.preventDefault();
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/register', {
-        "name": this.form.name,
-        "email": this.form.email,
         "password": this.form.password,
         "password_confirmation": this.form.password_confirmation
       }).then(function (res) {
@@ -2468,6 +2474,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
        Асинхронная функция. Походу надо ставить в очередь
       ----------------------------------------------------*/
     sendEmail: function sendEmail(evt) {
+      //http://damelya/password/reset/237db7b84258af0e7847a40a99e4a6f22636c48855366dfee63e96aa7a615de3
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/password/email', { "email": this.form.email }).then(function (res) {
         alert("Инструкция по восстановлению пароля отправлена на указанную почту.");
         console.log(res);
@@ -35553,6 +35560,44 @@ var render = function() {
                 "b-form",
                 { staticStyle: { width: "99%" }, on: { submit: _vm.onSubmit } },
                 [
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: false,
+                          expression: "false"
+                        }
+                      ]
+                    },
+                    [
+                      _c("b-form-input", {
+                        attrs: { required: "" },
+                        model: {
+                          value: _vm.email_token,
+                          callback: function($$v) {
+                            _vm.email_token = $$v
+                          },
+                          expression: "email_token"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("b-form-input", {
+                        attrs: { required: "" },
+                        model: {
+                          value: _vm.csrf_token,
+                          callback: function($$v) {
+                            _vm.csrf_token = $$v
+                          },
+                          expression: "csrf_token"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
                   _c(
                     "b-form-group",
                     {

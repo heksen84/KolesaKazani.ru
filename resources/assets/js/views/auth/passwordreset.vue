@@ -13,7 +13,16 @@
     <h3 class="form_title">сброс пароля</h3>
     <hr>
     <b-form @submit="onSubmit" style="width:99%">
-      
+      <!--<input" type="hidden" name="_token" value={{ csrf_token }}>
+      <input type="hidden" name="token" value="{{ $token }}">-->
+      <!--<input name="token" value={{ token }}>-->
+
+      <!-- прячу токены -->
+      <div v-show="false">
+        <b-form-input v-model="email_token" required />      
+        <b-form-input v-model="csrf_token" required />
+      </div>
+
       <!-- пароль -->
       <b-form-group label="Новый пароль:" label-for="password">
         <b-form-input id="password"
@@ -47,7 +56,7 @@
 <script>
 import { post } from './../../helpers/api'
 export default {
-  props: ["token"],
+  props: ['email_token', 'csrf_token'],
   data () {
     return {
       form: {
