@@ -35134,7 +35134,7 @@ var render = function() {
         )
       }),
       _vm._v(" "),
-      _c("b-row", { staticStyle: { "margin-top": "60px" } }, [
+      _c("b-row", { staticStyle: { "margin-top": "55px" } }, [
         _c("h5", [_vm._v("VIP объявления")])
       ]),
       _vm._v(" "),
