@@ -72,7 +72,7 @@ export default {
   },
   methods: {
     closeAndReturn() {
- 		  window.location="/login";
+ 		  window.location="/";
   	},
     onSubmit (evt) {
       evt.preventDefault();
