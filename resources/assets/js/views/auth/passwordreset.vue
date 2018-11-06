@@ -13,20 +13,25 @@
     <h3 class="form_title">сброс пароля</h3>
     <hr>
     <b-form @submit="onSubmit" style="width:99%">
-      <!--<input" type="hidden" name="_token" value={{ csrf_token }}>
-      <input type="hidden" name="token" value="{{ $token }}">-->
-      <!--<input name="token" value={{ token }}>-->
-
+    
       <!-- прячу токены -->
       <div v-show="false">
         <b-form-input v-model="email_token" required />      
         <b-form-input v-model="csrf_token" required />
       </div>
 
+      <!-- почта -->
+      <b-form-group label="Почта:" label-for="email">
+        <b-form-input type="email"
+                      v-model="form.email"
+                      required
+                      placeholder="Введите email">
+        </b-form-input>
+      </b-form-group>
+
       <!-- пароль -->
       <b-form-group label="Новый пароль:" label-for="password">
-        <b-form-input id="password"
-                      type="password"
+        <b-form-input type="password"
                       v-model="form.password"
                       required
                       placeholder="Введите новый пароль">
@@ -35,8 +40,7 @@
 
       <!-- подтверждение пароля -->
       <b-form-group label="Подтверждение пароля:" label-for="password_confirm">
-        <b-form-input id="password_confirm"
-                      type="password"
+        <b-form-input type="password"
                       v-model="form.password_confirmation"
                       required
                       placeholder="Подтвердите новый пароль">
@@ -45,7 +49,7 @@
 
       <br>
       <b-form-group style="text-align:center">
-        <b-button type="submit" variant="primary">Сохранить</b-button>
+        <b-button type="submit" variant="primary">Сбросить</b-button>
       </b-form-group>
     </b-form>
   </b-col>
@@ -60,6 +64,7 @@ export default {
   data () {
     return {
       form: {
+        email: '',
         password: '',
         password_confirmation: '',
       }
@@ -71,13 +76,16 @@ export default {
   	},
     onSubmit (evt) {
       evt.preventDefault();
-      post('/register', {
+
+      post('/password/reset', {
+        "_token": this.csrf_token,
+        "token": this.email_token,
+        "email": this.form.email,
         "password": this.form.password,
         "password_confirmation": this.form.password_confirmation
       }
       ).then((res) => {
-        console.log(res)
-        alert("good!");
+        window.location="/";
 		  }).catch((err) => {
 			console.log(err.response.data);
 			if(err.response.status === 422) {
