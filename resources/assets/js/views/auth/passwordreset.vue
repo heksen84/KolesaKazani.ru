@@ -77,20 +77,27 @@ export default {
     onSubmit (evt) {
       evt.preventDefault();
 
-      post('/password/reset', {
+      post('/password/reset', 
+      {
         "_token": this.csrf_token,
         "token": this.email_token,
         "email": this.form.email,
         "password": this.form.password,
         "password_confirmation": this.form.password_confirmation
       }
-      ).then((res) => {
+      ).then((res) => 
+      {
         window.location="/";
-		  }).catch((err) => {
-			console.log(err.response.data);
-			if(err.response.status === 422) {
-        if (err.response.data.errors.password)
-        alert(err.response.data.errors.password);
+      }).catch((err) => 
+      {
+			  console.log(err.response.data);
+			  if(err.response.status === 422) {
+
+          if (err.response.data.errors.email)
+          alert(err.response.data.errors.email);
+
+          if (err.response.data.errors.password)
+          alert(err.response.data.errors.password);
 			}
   	});
     }

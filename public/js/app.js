@@ -2250,6 +2250,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).catch(function (err) {
         console.log(err.response.data);
         if (err.response.status === 422) {
+
+          if (err.response.data.errors.email) alert(err.response.data.errors.email);
+
           if (err.response.data.errors.password) alert(err.response.data.errors.password);
         }
       });
