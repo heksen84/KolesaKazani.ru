@@ -11,14 +11,16 @@ class MailResetPasswordNotification extends Notification
 {
     use Queueable;
 
+    protected $token;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($token)
     {
-        //
+        $this->token=$token;
     }
 
     /**
@@ -32,34 +34,21 @@ class MailResetPasswordNotification extends Notification
         return ['mail'];
     }
 
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
+   
     public function toMail( $notifiable ) {
-   $link = url( "/password/reset/?token=" . $this->token );
 
-   return ( new MailMessage )
-      ->view('reset.emailer')
-      ->from('info@example.com')
-      ->subject( 'Reset your password' )
-      ->line( "Hey, We've successfully changed the text " )
-      ->action( 'Reset Password', $link )
-      ->attach('reset.attachment')
-      ->line( 'Thank you!' );
-}
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            //
-        ];
+    $link = url( "/password/reset/".$this->token);
+
+    return ( new MailMessage )
+      ->from('info@damelya.kz')
+      ->subject( 'Сброс пароля' )
+      ->line( "Для подтверждения сброса пароля нажмите на кнопку 'Сбросить пароль'" )
+      ->action( 'Сбросить пароль', $link )
+      ->line( 'Спасибки!' );
+
+    }
+    
+    public function toArray($notifiable) {
+        return [];
     }
 }

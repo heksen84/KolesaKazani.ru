@@ -4,9 +4,9 @@
 # {{ $greeting }}
 @else
 @if ($level == 'error')
-# Whoops!
+# Ой!
 @else
-# Hello!
+# Привет!
 @endif
 @endif
 
@@ -45,14 +45,16 @@
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-Regards,<br>{{ config('app.name') }}
+<!--C уважением,{{ config('app.name') }}-->
 @endif
 
 {{-- Subcopy --}}
 @isset($actionText)
 @component('mail::subcopy')
-If you’re having trouble clicking the "{{ $actionText }}" button, copy and paste the URL below
-into your web browser: [{{ $actionUrl }}]({{ $actionUrl }})
+
+Если у вас возникли проблемы с нажатием кнопки "{{ $actionText }}", скопируйте и вставьте URL-адрес ниже
+в ваш веб-браузер: [{{ $actionUrl }}]({{ $actionUrl }})
+
 @endcomponent
 @endisset
 @endcomponent

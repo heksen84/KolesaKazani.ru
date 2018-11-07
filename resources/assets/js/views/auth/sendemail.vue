@@ -53,10 +53,10 @@ export default {
        Асинхронная функция. Походу надо ставить в очередь
       ----------------------------------------------------*/
     sendEmail (evt) {
-      //http://damelya/password/reset/237db7b84258af0e7847a40a99e4a6f22636c48855366dfee63e96aa7a615de3
+      evt.preventDefault();
       post('/password/email', { "email": this.form.email }).then((res) => {
         alert("Инструкция по восстановлению пароля отправлена на указанную почту.");
-        console.log(res);   
+        window.location="/"; 
       }).catch((err) => 
       {
         alert("Ошибка отправки");
