@@ -1,6 +1,7 @@
 <template>
   <b-container fluid class="mycontainer">
     <b-row>
+      
     <!-- ALERT -->    
     <b-col cols="12" v-if="$root.alert.show">    
       <b-alert variant="danger" show class="alert">{{ $root.alert.msg }}</b-alert>
@@ -46,6 +47,7 @@ export default {
     closeAndReturn() {
  			  window.history.back();
     },
+
     /*----------------------------------------------------
        Асинхронная функция. Походу надо ставить в очередь
       ----------------------------------------------------*/
