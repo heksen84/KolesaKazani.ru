@@ -12,24 +12,20 @@ class MailResetPasswordNotification extends Notification {
 
     protected $token;
 
-    public function __construct($token)
-    {
+    public function __construct($token) {
         $this->token=$token;
     }
 
-    public function via($notifiable)
-    {
+    public function via($notifiable) {
         return ['mail'];
     }
 
     public function toMail( $notifiable ) {
-    $link = url( "/password/reset/".$this->token);
-
     return ( new MailMessage )
       ->from('info@damelya.kz')
       ->subject( 'Сброс пароля' )
       ->line( "Для подтверждения сброса пароля нажмите на кнопку 'Сбросить пароль'" )
-      ->action( 'Сбросить пароль', $link )
+      ->action( 'Сбросить пароль', url( "/password/reset/".$this->token) )
       ->line( 'Спасибки!' );
     }
     
