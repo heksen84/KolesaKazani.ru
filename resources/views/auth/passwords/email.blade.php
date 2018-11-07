@@ -14,7 +14,7 @@
 </head>
 <body>
 <div id="app">
-  <sendemail></sendemail>
+  <sendemail email="{{ old('email') }}"></sendemail>
 </div>
 <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
 </body>

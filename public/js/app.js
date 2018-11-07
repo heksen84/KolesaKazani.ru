@@ -2464,16 +2464,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["email"],
   data: function data() {
-    return {
-      form: {
-        email: ''
-      }
-    };
+    return {};
   },
 
   methods: {
@@ -2486,7 +2482,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       ----------------------------------------------------*/
     sendEmail: function sendEmail(evt) {
       evt.preventDefault();
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/password/email', { "email": this.form.email }).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["b" /* post */])('/password/email', { "email": this.email }).then(function (res) {
         alert("Инструкция по восстановлению пароля отправлена на указанную почту.");
         window.location = "/";
       }).catch(function (err) {
@@ -35442,11 +35438,11 @@ var render = function() {
                           placeholder: "Введите свой email"
                         },
                         model: {
-                          value: _vm.form.email,
+                          value: _vm.email,
                           callback: function($$v) {
-                            _vm.$set(_vm.form, "email", $$v)
+                            _vm.email = $$v
                           },
-                          expression: "form.email"
+                          expression: "email"
                         }
                       })
                     ],

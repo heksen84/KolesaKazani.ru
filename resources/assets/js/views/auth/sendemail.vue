@@ -1,7 +1,6 @@
 <template>
   <b-container fluid class="mycontainer">
     <b-row>
-
     <!-- ALERT -->    
     <b-col cols="12" v-if="$root.alert.show">    
       <b-alert variant="danger" show class="alert">{{ $root.alert.msg }}</b-alert>
@@ -16,7 +15,7 @@
       <b-form-group label="Email адрес:" label-for="email">
         <b-form-input id="email"
                       type="email"
-                      v-model="form.email"
+                      v-model="email"
                       required
                       placeholder="Введите свой email">
         </b-form-input>
@@ -38,11 +37,9 @@
 <script>
 import { post } from './../../helpers/api'
 export default {
+  props:["email"],
   data () {
     return {
-      form: {
-        email: ''
-      },
     }
   },
   methods: {
@@ -54,7 +51,7 @@ export default {
       ----------------------------------------------------*/
     sendEmail (evt) {
       evt.preventDefault();
-      post('/password/email', { "email": this.form.email }).then((res) => {
+      post('/password/email', { "email": this.email }).then((res) => {
         alert("Инструкция по восстановлению пароля отправлена на указанную почту.");
         window.location="/"; 
       }).catch((err) => 
