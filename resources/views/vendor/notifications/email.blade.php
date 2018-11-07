@@ -6,7 +6,7 @@
 @if ($level == 'error')
 # Ой!
 @else
-# Привет!
+<!--# Привет!-->
 @endif
 @endif
 
