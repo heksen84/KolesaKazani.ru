@@ -3185,11 +3185,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 //import petrovich from 'petrovich';
@@ -3287,6 +3282,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).catch(function (err) {});
     },
     selectPlace: function selectPlace(e) {
+
       this.buttonAllCountry = false;
       this.selectedPlaceName = e.name;
       this.locationDialog = false;
@@ -3296,6 +3292,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);
     },
     selectAllCountry: function selectAllCountry(e) {
+
       this.selectedPlaceName = "Весь Казахстан";
       this.urlRegAndPlace = "";
       this.locationDialog = false;
@@ -3304,6 +3301,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       localStorage.setItem("urlRegAndPlace", "");
     },
     selectAllRegion: function selectAllRegion(e) {
+
       this.selectedPlaceName = this.regionName;
       this.locationDialog = false;
       this.buttonAllCountry = false;
@@ -34863,6 +34861,88 @@ var render = function() {
         "b-row",
         [
           _c(
+            "b-modal",
+            {
+              staticStyle: { "text-align": "center", color: "rgb(50,50,50)" },
+              attrs: { "hide-footer": "", title: _vm.locationDialogTitle },
+              model: {
+                value: _vm.locationDialog,
+                callback: function($$v) {
+                  _vm.locationDialog = $$v
+                },
+                expression: "locationDialog"
+              }
+            },
+            [
+              _vm._l(_vm.regions, function(i) {
+                return _c(
+                  "b-button",
+                  {
+                    key: i.region_id,
+                    staticStyle: { color: "black" },
+                    attrs: { variant: "link" },
+                    on: {
+                      click: function($event) {
+                        _vm.selectLocation(i)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(i.name) + "\n          ")]
+                )
+              }),
+              _vm._v(" "),
+              _vm.buttonAllCountry ? _c("hr") : _vm._e(),
+              _vm._v(" "),
+              _vm.buttonAllCountry
+                ? _c(
+                    "b-button",
+                    {
+                      attrs: { variant: "link" },
+                      on: { click: _vm.selectAllCountry }
+                    },
+                    [_vm._v("Весь Казахстан")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm._l(_vm.places, function(i) {
+                return _c(
+                  "b-button",
+                  {
+                    key: i.city_id,
+                    staticStyle: { color: "black" },
+                    attrs: { variant: "link" },
+                    on: {
+                      click: function($event) {
+                        _vm.selectPlace(i)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(i.name))]
+                )
+              }),
+              _vm._v(" "),
+              _vm.buttonAllRegion ? _c("hr") : _vm._e(),
+              _vm._v(" "),
+              _vm.buttonAllRegion
+                ? _c(
+                    "button",
+                    {
+                      staticStyle: {
+                        color: "black",
+                        display: "block",
+                        margin: "auto",
+                        "margin-top": "-5px"
+                      },
+                      on: { click: _vm.selectAllRegion }
+                    },
+                    [_vm._v("Вся область")]
+                  )
+                : _vm._e()
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
             "b-col",
             {
               directives: [
@@ -34890,94 +34970,8 @@ var render = function() {
                   on: { click: _vm.login }
                 },
                 [_vm._v("мои объявления")]
-              ),
-              _vm._v(" "),
-              _c(
-                "b-modal",
-                {
-                  staticStyle: {
-                    "text-align": "center",
-                    color: "rgb(50,50,50)"
-                  },
-                  attrs: { "hide-footer": "", title: _vm.locationDialogTitle },
-                  model: {
-                    value: _vm.locationDialog,
-                    callback: function($$v) {
-                      _vm.locationDialog = $$v
-                    },
-                    expression: "locationDialog"
-                  }
-                },
-                [
-                  _vm._l(_vm.regions, function(i) {
-                    return _c(
-                      "b-button",
-                      {
-                        key: i.region_id,
-                        staticStyle: { color: "black" },
-                        attrs: { variant: "link" },
-                        on: {
-                          click: function($event) {
-                            _vm.selectLocation(i)
-                          }
-                        }
-                      },
-                      [_vm._v(_vm._s(i.name) + "\n            ")]
-                    )
-                  }),
-                  _vm._v(" "),
-                  _vm.buttonAllCountry ? _c("hr") : _vm._e(),
-                  _vm._v(" "),
-                  _vm.buttonAllCountry
-                    ? _c(
-                        "b-button",
-                        {
-                          attrs: { variant: "link" },
-                          on: { click: _vm.selectAllCountry }
-                        },
-                        [_vm._v("Весь Казахстан")]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm._l(_vm.places, function(i) {
-                    return _c(
-                      "b-button",
-                      {
-                        key: i.city_id,
-                        staticStyle: { color: "black" },
-                        attrs: { variant: "link" },
-                        on: {
-                          click: function($event) {
-                            _vm.selectPlace(i)
-                          }
-                        }
-                      },
-                      [_vm._v(_vm._s(i.name))]
-                    )
-                  }),
-                  _vm._v(" "),
-                  _vm.buttonAllRegion ? _c("hr") : _vm._e(),
-                  _vm._v(" "),
-                  _vm.buttonAllRegion
-                    ? _c(
-                        "button",
-                        {
-                          staticStyle: {
-                            color: "black",
-                            display: "block",
-                            margin: "auto",
-                            "margin-top": "-5px"
-                          },
-                          on: { click: _vm.selectAllRegion }
-                        },
-                        [_vm._v("Вся область")]
-                      )
-                    : _vm._e()
-                ],
-                2
               )
-            ],
-            1
+            ]
           ),
           _vm._v(" "),
           _c(

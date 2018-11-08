@@ -2,27 +2,22 @@
 <template>
   <b-container fluid class="mycontainer">
     <b-row>
+
+        <!-- окно выбоа региона и местоположения -->
+        <b-modal v-model="locationDialog" style="text-align:center;color:rgb(50,50,50)" hide-footer :title="locationDialogTitle">
+          <!-- регионы -->
+          <b-button variant="link" style="color:black" v-for="i in regions" :key="i.region_id" @click="selectLocation(i)">{{i.name}}
+          </b-button>
+          <hr v-if="buttonAllCountry">
+          <b-button variant="link" v-if="buttonAllCountry" @click="selectAllCountry">Весь Казахстан</b-button>
+          <!-- города, cёлы, аулы, деревни -->
+          <b-button variant="link" style="color:black" v-for="i in places" :key="i.city_id" @click="selectPlace(i)">{{i.name}}</b-button>
+          <hr v-if="buttonAllRegion">
+          <button style="color:black;display:block;margin:auto;margin-top:-5px" v-if="buttonAllRegion" @click="selectAllRegion">Вся область</button>
+        </b-modal>          
+
         <b-col id="welcome_menu" v-show="auth">
-
           <div class="button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>
-
-          <!-- окно выбоа региона и местоположения -->
-          <b-modal v-model="locationDialog" style="text-align:center;color:rgb(50,50,50)" hide-footer :title="locationDialogTitle">
-            
-            <!-- регионы -->
-            <b-button variant="link" style="color:black" v-for="i in regions" :key="i.region_id" @click="selectLocation(i)">{{i.name}}
-            </b-button>
-
-            <hr v-if="buttonAllCountry">
-            <b-button variant="link" v-if="buttonAllCountry" @click="selectAllCountry">Весь Казахстан</b-button>
-
-            <!-- города, cёлы, аулы, деревни -->
-            <b-button variant="link" style="color:black" v-for="i in places" :key="i.city_id" @click="selectPlace(i)">{{i.name}}</b-button>
-
-            <hr v-if="buttonAllRegion">
-            <button style="color:black;display:block;margin:auto;margin-top:-5px" v-if="buttonAllRegion" @click="selectAllRegion">Вся область</button>
-          </b-modal>          
-
         </b-col>        
 
         <b-col style="text-align:center" v-show="!auth">
@@ -195,6 +190,7 @@ export default {
     },
 
     selectPlace(e) {
+
       this.buttonAllCountry=false;
       this.selectedPlaceName=e.name;
       this.locationDialog=false;
@@ -205,6 +201,7 @@ export default {
     },
 
     selectAllCountry(e) {
+
       this.selectedPlaceName="Весь Казахстан";
       this.urlRegAndPlace="";      
       this.locationDialog=false;
@@ -214,6 +211,7 @@ export default {
     },
 
     selectAllRegion(e) {
+
       this.selectedPlaceName=this.regionName;
       this.locationDialog=false;
       this.buttonAllCountry=false;

@@ -25,6 +25,7 @@ Route::get('hobbi-i-otdyh', 			'ResultsController@getResultsByCategory');
 Route::get('uslugi', 					'ResultsController@getResultsByCategory');
 Route::get('drugoe', 					'ResultsController@getResultsByCategory');
 
+
 // категории по региону
 Route::get('{region}/{category}', 'ResultsController@getResultsByRegion');
 
