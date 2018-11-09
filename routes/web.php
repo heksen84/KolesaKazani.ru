@@ -6,6 +6,8 @@ Auth::routes();
 Route::get('test',  function () { return view('test'); });
 Route::post('checkPhotos',  'TestController@checkPhotos');
 
+Route::get('advertisers',  function () { return view('advertisers'); });
+
 
 Route::get('getCategoryCountById', 'WelcomeController@getCategoryCountById');
 Route::get('getCategoryCounts', 'WelcomeController@getCategoryCounts');
