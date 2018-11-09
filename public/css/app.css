@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+@font-face {
+  font-family: "carefree";
+  src: url(/fonts/carefree.ttf?f3db7a9cf88f94961dd173624793c336) format("truetype");
+  font-weight: normal;
+}
+
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -109,7 +115,7 @@ body {
 }
 
 #logo_block_text {
-  font-size: 180%;
+  font-size: 190%;
   letter-spacing: 4px;
   padding: 7px;
   margin-top: -12px;

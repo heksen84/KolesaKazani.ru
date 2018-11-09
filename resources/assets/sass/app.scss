@@ -1,3 +1,9 @@
+@font-face {
+ font-family: "carefree";
+ src: url("../fonts/carefree.ttf") format("truetype");
+ font-weight: normal;
+}
+
 $shadow_text_color: rgb(100,100,100);
 $scroll_back_color: rgb(100,100,100);
 
@@ -108,7 +114,8 @@ body {
 }
 
 #logo_block_text {
-  font-size:180%;
+//  font-family: "carefree";
+  font-size:190%;
   letter-spacing:4px;  
   padding:7px;
   margin-top:-12px;
