@@ -37340,7 +37340,7 @@ var render = function() {
                               }
                             ],
                             staticStyle: {
-                              border: "1px solid rgb(200,200,200)",
+                              border: "1px solid rgb(180,180,180)",
                               "margin-bottom": "10px",
                               width: "100%",
                               height: "200px"
@@ -37355,7 +37355,7 @@ var render = function() {
                               attrs: { variant: "primary" },
                               on: { click: _vm.showSetCoordsDialog }
                             },
-                            [_vm._v("отметить объект на карте")]
+                            [_vm._v("отметить на карте")]
                           )
                         ],
                         1
