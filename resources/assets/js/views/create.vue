@@ -90,7 +90,7 @@
 				<div style="text-align:center;margin-top:15px;margin-bottom:10px">Расположение объекта</div>
 				
 				<b-form-group label="Регион:" style="width:280px;margin:auto" v-if="deal_id!=null">
-				<b-form-select class="mb-3" @change="changeCategory" v-model="regions_model">
+				<b-form-select class="mb-3" @change="changeRegion" v-model="regions_model">
 					 <option :value=null>-- Выберите категорию --</option>
 					 <option v-for="item in regions" :value="item.id" :key="item.name">{{item.name}}</option>
 				</b-form-select>
@@ -389,7 +389,10 @@ export default {
   					break; 
   				}
   			}
-  		},
+		},
+		changeRegion() {
+
+		},
   		
   		/*
 		----------------------------

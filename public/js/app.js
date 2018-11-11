@@ -2989,6 +2989,7 @@ function forEach(data, callback) {
 					}
 			}
 		},
+		changeRegion: function changeRegion() {},
 
 
 		/*
@@ -37252,7 +37253,7 @@ var render = function() {
                                 "b-form-select",
                                 {
                                   staticClass: "mb-3",
-                                  on: { change: _vm.changeCategory },
+                                  on: { change: _vm.changeRegion },
                                   model: {
                                     value: _vm.regions_model,
                                     callback: function($$v) {
