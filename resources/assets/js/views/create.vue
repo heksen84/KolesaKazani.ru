@@ -91,15 +91,15 @@
 				
 				<b-form-group label="Регион:" style="width:280px;margin:auto" v-if="deal_id!=null">
 				<b-form-select class="mb-3" @change="changeRegion" v-model="regions_model">
-					 <option :value=null>-- Выберите категорию --</option>
+					 <option :value=null>-- Выберите регион --</option>
 					 <option v-for="item in regions" :value="item.id" :key="item.name">{{item.name}}</option>
 				</b-form-select>
 				</b-form-group>
 
 				<b-form-group label="Город / Село:" style="width:280px;margin:auto" v-if="deal_id!=null">
-				<b-form-select class="mb-3" @change="changeCategory" v-model="category">
-				<!--	 <option :value=null>-- Выберите категорию --</option>
-					 <option v-for="item in items" :value="item.id" :key="item.name">{{item.name}}</option>-->
+				<b-form-select class="mb-3" @change="changePlace" v-model="places_model">
+					 <option :value=null>-- Выберите расположение --</option>
+					 <!--<option v-for="item in items" :value="item.id" :key="item.name">{{item.name}}</option>-->
 				</b-form-select>
 				</b-form-group>
 
@@ -159,8 +159,8 @@ function initBigMap() {
 	}
 
 
-// Для заполнения изображений
-function forEach(data, callback) { 
+	// Для заполнения изображений
+	function forEach(data, callback) { 
 	for(var key in data) { 
 		if(data.hasOwnProperty(key)) { 
 			callback(key, data[key]); 
@@ -188,6 +188,8 @@ export default {
 			root: false,
 			regions: [],
 			regions_model:null,
+			places: [],
+			places_model:null,
 			
 			/*-------------------------
 				категории 

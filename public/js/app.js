@@ -2779,6 +2779,8 @@ function forEach(data, callback) {
 			root: false,
 			regions: [],
 			regions_model: null,
+			places: [],
+			places_model: null,
 
 			/*-------------------------
    	категории 
@@ -37274,7 +37276,7 @@ var render = function() {
                                 },
                                 [
                                   _c("option", { domProps: { value: null } }, [
-                                    _vm._v("-- Выберите категорию --")
+                                    _vm._v("-- Выберите регион --")
                                   ]),
                                   _vm._v(" "),
                                   _vm._l(_vm.regions, function(item) {
@@ -37303,17 +37305,25 @@ var render = function() {
                               attrs: { label: "Город / Село:" }
                             },
                             [
-                              _c("b-form-select", {
-                                staticClass: "mb-3",
-                                on: { change: _vm.changeCategory },
-                                model: {
-                                  value: _vm.category,
-                                  callback: function($$v) {
-                                    _vm.category = $$v
-                                  },
-                                  expression: "category"
-                                }
-                              })
+                              _c(
+                                "b-form-select",
+                                {
+                                  staticClass: "mb-3",
+                                  on: { change: _vm.changePlace },
+                                  model: {
+                                    value: _vm.places_model,
+                                    callback: function($$v) {
+                                      _vm.places_model = $$v
+                                    },
+                                    expression: "places_model"
+                                  }
+                                },
+                                [
+                                  _c("option", { domProps: { value: null } }, [
+                                    _vm._v("-- Выберите расположение --")
+                                  ])
+                                ]
+                              )
                             ],
                             1
                           )

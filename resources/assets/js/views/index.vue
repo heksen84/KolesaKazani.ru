@@ -172,8 +172,8 @@ export default {
           
           this.regions=res.data;
       }).catch((err) => {
-
-      });
+        
+    });
       
     },
 
