@@ -2715,8 +2715,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 // ----------------------------------------------------
@@ -37228,123 +37226,105 @@ var render = function() {
                           staticStyle: {
                             "text-align": "center",
                             "margin-top": "15px",
-                            "margin-bottom": "20px",
-                            "text-decoration": "underline"
+                            "margin-bottom": "20px"
                           }
                         },
                         [_vm._v("Расположение объекта")]
                       ),
                       _vm._v(" "),
-                      _c(
-                        "b-form",
-                        { attrs: { inline: "" } },
-                        [
-                          _vm.deal_id != null
-                            ? _c(
-                                "b-form-group",
+                      _vm.deal_id != null
+                        ? _c(
+                            "b-form-group",
+                            {
+                              staticStyle: { width: "280px", margin: "auto" },
+                              attrs: {
+                                label: "Регион:",
+                                "label-for": "categories"
+                              }
+                            },
+                            [
+                              _c(
+                                "b-form-select",
                                 {
-                                  staticStyle: {
-                                    width: "280px",
-                                    margin: "auto"
-                                  },
-                                  attrs: {
-                                    label: "Регион:",
-                                    "label-for": "categories"
+                                  staticClass: "mb-3",
+                                  on: { change: _vm.changeCategory },
+                                  model: {
+                                    value: _vm.category,
+                                    callback: function($$v) {
+                                      _vm.category = $$v
+                                    },
+                                    expression: "category"
                                   }
                                 },
                                 [
-                                  _c(
-                                    "b-form-select",
-                                    {
-                                      staticClass: "mb-3",
-                                      on: { change: _vm.changeCategory },
-                                      model: {
-                                        value: _vm.category,
-                                        callback: function($$v) {
-                                          _vm.category = $$v
-                                        },
-                                        expression: "category"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        { domProps: { value: null } },
-                                        [_vm._v("-- Выберите категорию --")]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm._l(_vm.items, function(item) {
-                                        return _c(
-                                          "option",
-                                          {
-                                            key: item.name,
-                                            domProps: { value: item.id }
-                                          },
-                                          [_vm._v(_vm._s(item.name))]
-                                        )
-                                      })
-                                    ],
-                                    2
-                                  )
+                                  _c("option", { domProps: { value: null } }, [
+                                    _vm._v("-- Выберите категорию --")
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.items, function(item) {
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: item.name,
+                                        domProps: { value: item.id }
+                                      },
+                                      [_vm._v(_vm._s(item.name))]
+                                    )
+                                  })
                                 ],
-                                1
+                                2
                               )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.deal_id != null
-                            ? _c(
-                                "b-form-group",
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.deal_id != null
+                        ? _c(
+                            "b-form-group",
+                            {
+                              staticStyle: { width: "280px", margin: "auto" },
+                              attrs: {
+                                label: "Город / Село:",
+                                "label-for": "categories"
+                              }
+                            },
+                            [
+                              _c(
+                                "b-form-select",
                                 {
-                                  staticStyle: {
-                                    width: "280px",
-                                    margin: "auto"
-                                  },
-                                  attrs: {
-                                    label: "Город / Село:",
-                                    "label-for": "categories"
+                                  staticClass: "mb-3",
+                                  on: { change: _vm.changeCategory },
+                                  model: {
+                                    value: _vm.category,
+                                    callback: function($$v) {
+                                      _vm.category = $$v
+                                    },
+                                    expression: "category"
                                   }
                                 },
                                 [
-                                  _c(
-                                    "b-form-select",
-                                    {
-                                      staticClass: "mb-3",
-                                      on: { change: _vm.changeCategory },
-                                      model: {
-                                        value: _vm.category,
-                                        callback: function($$v) {
-                                          _vm.category = $$v
-                                        },
-                                        expression: "category"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        { domProps: { value: null } },
-                                        [_vm._v("-- Выберите категорию --")]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm._l(_vm.items, function(item) {
-                                        return _c(
-                                          "option",
-                                          {
-                                            key: item.name,
-                                            domProps: { value: item.id }
-                                          },
-                                          [_vm._v(_vm._s(item.name))]
-                                        )
-                                      })
-                                    ],
-                                    2
-                                  )
+                                  _c("option", { domProps: { value: null } }, [
+                                    _vm._v("-- Выберите категорию --")
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.items, function(item) {
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: item.name,
+                                        domProps: { value: item.id }
+                                      },
+                                      [_vm._v(_vm._s(item.name))]
+                                    )
+                                  })
                                 ],
-                                1
+                                2
                               )
-                            : _vm._e()
-                        ],
-                        1
-                      ),
+                            ],
+                            1
+                          )
+                        : _vm._e(),
                       _vm._v(" "),
                       _c(
                         "b-form-group",
