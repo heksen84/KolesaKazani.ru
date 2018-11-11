@@ -37226,7 +37226,7 @@ var render = function() {
                           staticStyle: {
                             "text-align": "center",
                             "margin-top": "15px",
-                            "margin-bottom": "20px"
+                            "margin-bottom": "10px"
                           }
                         },
                         [_vm._v("Расположение объекта")]
