@@ -413,6 +413,9 @@ export default {
           	formData.append('images['+i+']', this.real_images[i]);
 		}
 		
+		// ---------------------------------------------------
+		// Отправить пост запрос на создание объявления
+		// ---------------------------------------------------
 		axios.post('/create', formData, {
 			headers: { 'Content-Type': 'multipart/form-data' }
         }).then(response => {
@@ -421,9 +424,9 @@ export default {
 				this.$root.$notify({group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error'});
 			else
 			if (response.data.result=="usr.error")
-				this.$root.$notify({group: 'foo', text: "<h6>"+response.data.msg+"</h6>", type: 'error'});
-				else
-				alert("ok");
+			this.$root.$notify({group: 'foo', text: "<h6>"+response.data.msg+"</h6>", type: 'error'});
+			else
+			alert("ok");
 			//	else 
 			//	window.location="home"; // переходим в личный кабинет
         }).catch(error => {

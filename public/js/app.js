@@ -3013,6 +3013,9 @@ function forEach(data, callback) {
 				formData.append('images[' + i + ']', this.real_images[i]);
 			}
 
+			// ---------------------------------------------------
+			// Отправить пост запрос на создание объявления
+			// ---------------------------------------------------
 			axios.post('/create', formData, {
 				headers: { 'Content-Type': 'multipart/form-data' }
 			}).then(function (response) {
