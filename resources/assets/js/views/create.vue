@@ -88,11 +88,31 @@
 				</div>
 				</b-form-group>
 
-				<!-- Расположение на карте -->
-				<b-form-group label="Расположение:">
-					<div id="smallmap" style="border:1px solid rgb(200,200,200); margin:5px auto;width: 100%; height: 200px" v-show="coordinates_set" @click="showSetCoordsDialog"></div>
-					<b-button variant="primary" @click="showSetCoordsDialog">отметить на карте</b-button>
+				<div style="text-align:center;margin-top:15px;margin-bottom:20px">Расположение объекта</div>
+				<b-form inline>
+				
+				<b-form-group label="Регион:" label-for="categories" style="width:260px;margin:auto" v-if="deal_id!=null">
+				<b-form-select class="mb-3" @change="changeCategory" v-model="category">
+					 <option :value=null>-- Выберите категорию --</option>
+					 <option v-for="item in items" :value="item.id" :key="item.name">{{item.name}}</option>
+				</b-form-select>
 				</b-form-group>
+
+				<b-form-group label="Город / Село:" label-for="categories" style="width:260px;margin:auto" v-if="deal_id!=null">
+				<b-form-select class="mb-3" @change="changeCategory" v-model="category">
+					 <option :value=null>-- Выберите категорию --</option>
+					 <option v-for="item in items" :value="item.id" :key="item.name">{{item.name}}</option>
+				</b-form-select>
+				</b-form-group>
+				</b-form>
+
+				<!-- Расположение на карте -->
+				<b-form-group style="text-align:center">
+					<div id="smallmap" style="margin-bottom:10px;width: 100%; height: 200px" v-show="coordinates_set" @click="showSetCoordsDialog"></div>
+					<b-button variant="primary" @click="showSetCoordsDialog">отметить объект на карте</b-button>
+				</b-form-group>
+
+				<hr>
 
 				<!-- Публикация -->
 				<b-form-group style="text-align:center;margin:25px">
