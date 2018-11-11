@@ -1,7 +1,6 @@
 <template>
 	<b-container fluid class="mycontainer_adv">
     <notifications group="foo" position="top center"/>
-
 		<b-row>
 
 		 <!-- карта -->
@@ -90,17 +89,17 @@
 
 				<div style="text-align:center;margin-top:15px;margin-bottom:10px">Расположение объекта</div>
 				
-				<b-form-group label="Регион:" label-for="categories" style="width:280px;margin:auto" v-if="deal_id!=null">
-				<b-form-select class="mb-3" @change="changeCategory" v-model="category">
+				<b-form-group label="Регион:" style="width:280px;margin:auto" v-if="deal_id!=null">
+				<b-form-select class="mb-3" @change="changeCategory" v-model="regions_model">
 					 <option :value=null>-- Выберите категорию --</option>
-					 <option v-for="item in items" :value="item.id" :key="item.name">{{item.name}}</option>
+					 <option v-for="item in regions" :value="item.id" :key="item.name">{{item.name}}</option>
 				</b-form-select>
 				</b-form-group>
 
-				<b-form-group label="Город / Село:" label-for="categories" style="width:280px;margin:auto" v-if="deal_id!=null">
+				<b-form-group label="Город / Село:" style="width:280px;margin:auto" v-if="deal_id!=null">
 				<b-form-select class="mb-3" @change="changeCategory" v-model="category">
-					 <option :value=null>-- Выберите категорию --</option>
-					 <option v-for="item in items" :value="item.id" :key="item.name">{{item.name}}</option>
+				<!--	 <option :value=null>-- Выберите категорию --</option>
+					 <option v-for="item in items" :value="item.id" :key="item.name">{{item.name}}</option>-->
 				</b-form-select>
 				</b-form-group>
 
@@ -128,13 +127,37 @@
 // ----------------------------------------------------
 // ИМПОРТ
 // ----------------------------------------------------
-import { post } from './../helpers/api'
+import { post, get } from './../helpers/api'
 import transport from '../components/chars/transport';
 import realestate from '../components/chars/realestate';
 
 var preview_images_array=[];
 var mapCoords=[];
 var myPlacemark;
+var bigmap, smallmap;
+
+function initBigMap() {
+
+		mapCoords = [51.08, 71.26];
+    	bigmap = new ymaps.Map ("map", { center: mapCoords, zoom: 10 });
+
+		//Добавляем элементы управления
+		//bigmap.controls.add('zoomControl');
+		bigmap.behaviors.enable('scrollZoom');
+			
+		myPlacemark = new ymaps.Placemark([55.76, 37.64]);
+		bigmap.geoObjects.add(myPlacemark);
+
+    	bigmap.events.add('click', function (e) {
+        	mapCoords = e.get('coordPosition');
+			myPlacemark.geometry.setCoordinates(mapCoords);
+		});			
+	}				
+
+	function initSmallMap() {			
+		smallmap = new ymaps.Map ("smallmap", { center: mapCoords, zoom: 10 });
+	}
+
 
 // Для заполнения изображений
 function forEach(data, callback) { 
@@ -163,6 +186,8 @@ export default {
 			preview_images: [],
 			real_images: [],
 			root: false,
+			regions: [],
+			regions_model:null,
 			
 			/*-------------------------
 				категории 
@@ -183,33 +208,17 @@ export default {
 	// Событие: компонент создан
 	created() {		
 		
-		var bigmap, smallmap;
-
-		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация		
-		
-		function initBigMap() {
-			mapCoords = [51.08, 71.26];
-        	bigmap = new ymaps.Map ("map", { center: mapCoords, zoom: 10 });
-
-			//Добавляем элементы управления
-			//bigmap.controls.add('zoomControl');
-			bigmap.behaviors.enable('scrollZoom');
-			
-			myPlacemark = new ymaps.Placemark([55.76, 37.64]);
-			bigmap.geoObjects.add(myPlacemark);
-
-    		bigmap.events.add('click', function (e) {
-            	mapCoords = e.get('coordPosition');
-				myPlacemark.geometry.setCoordinates(mapCoords);
-			});			
-		}				
-
-		function initSmallMap() {			
-			smallmap = new ymaps.Map ("smallmap", { center: mapCoords, zoom: 10 });
-		}		
+		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация				
 
 		ymaps.ready(initBigMap);
 		ymaps.ready(initSmallMap);
+
+		get('/getRegions').then((res) => {
+          console.log(res.data);
+          
+          this.regions=res.data;
+      	}).catch((err) => {});
+
 	},
 
 	components: { transport, realestate },

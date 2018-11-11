@@ -2714,7 +2714,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 // ----------------------------------------------------
@@ -2727,6 +2726,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var preview_images_array = [];
 var mapCoords = [];
 var myPlacemark;
+var bigmap, smallmap;
+
+function initBigMap() {
+
+	mapCoords = [51.08, 71.26];
+	bigmap = new ymaps.Map("map", { center: mapCoords, zoom: 10 });
+
+	//Добавляем элементы управления
+	//bigmap.controls.add('zoomControl');
+	bigmap.behaviors.enable('scrollZoom');
+
+	myPlacemark = new ymaps.Placemark([55.76, 37.64]);
+	bigmap.geoObjects.add(myPlacemark);
+
+	bigmap.events.add('click', function (e) {
+		mapCoords = e.get('coordPosition');
+		myPlacemark.geometry.setCoordinates(mapCoords);
+	});
+}
+
+function initSmallMap() {
+	smallmap = new ymaps.Map("smallmap", { center: mapCoords, zoom: 10 });
+}
 
 // Для заполнения изображений
 function forEach(data, callback) {
@@ -2755,6 +2777,8 @@ function forEach(data, callback) {
 			preview_images: [],
 			real_images: [],
 			root: false,
+			regions: [],
+			regions_model: null,
 
 			/*-------------------------
    	категории 
@@ -2775,34 +2799,18 @@ function forEach(data, callback) {
 
 	// Событие: компонент создан
 	created: function created() {
+		var _this = this;
 
-		var bigmap, smallmap;
-
-		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация		
-
-		function initBigMap() {
-			mapCoords = [51.08, 71.26];
-			bigmap = new ymaps.Map("map", { center: mapCoords, zoom: 10 });
-
-			//Добавляем элементы управления
-			//bigmap.controls.add('zoomControl');
-			bigmap.behaviors.enable('scrollZoom');
-
-			myPlacemark = new ymaps.Placemark([55.76, 37.64]);
-			bigmap.geoObjects.add(myPlacemark);
-
-			bigmap.events.add('click', function (e) {
-				mapCoords = e.get('coordPosition');
-				myPlacemark.geometry.setCoordinates(mapCoords);
-			});
-		}
-
-		function initSmallMap() {
-			smallmap = new ymaps.Map("smallmap", { center: mapCoords, zoom: 10 });
-		}
+		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация				
 
 		ymaps.ready(initBigMap);
 		ymaps.ready(initSmallMap);
+
+		Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getRegions').then(function (res) {
+			console.log(res.data);
+
+			_this.regions = res.data;
+		}).catch(function (err) {});
 	},
 
 
@@ -2988,7 +2996,7 @@ function forEach(data, callback) {
   Сохранить объявление
   ----------------------------*/
 		onSubmit: function onSubmit(evt) {
-			var _this = this;
+			var _this2 = this;
 
 			evt.preventDefault();
 
@@ -3008,12 +3016,12 @@ function forEach(data, callback) {
 				headers: { 'Content-Type': 'multipart/form-data' }
 			}).then(function (response) {
 				console.log(response);
-				if (response.data.result == "db.error") _this.$root.$notify({ group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error' });else if (response.data.result == "usr.error") _this.$root.$notify({ group: 'foo', text: "<h6>" + response.data.msg + "</h6>", type: 'error' });else alert("ok");
+				if (response.data.result == "db.error") _this2.$root.$notify({ group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error' });else if (response.data.result == "usr.error") _this2.$root.$notify({ group: 'foo', text: "<h6>" + response.data.msg + "</h6>", type: 'error' });else alert("ok");
 				//	else 
 				//	window.location="home"; // переходим в личный кабинет
 			}).catch(function (error) {
 				console.log(error.response);
-				_this.$root.$notify({ group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error' });
+				_this2.$root.$notify({ group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error' });
 			});
 		},
 
@@ -37237,10 +37245,7 @@ var render = function() {
                             "b-form-group",
                             {
                               staticStyle: { width: "280px", margin: "auto" },
-                              attrs: {
-                                label: "Регион:",
-                                "label-for": "categories"
-                              }
+                              attrs: { label: "Регион:" }
                             },
                             [
                               _c(
@@ -37249,11 +37254,11 @@ var render = function() {
                                   staticClass: "mb-3",
                                   on: { change: _vm.changeCategory },
                                   model: {
-                                    value: _vm.category,
+                                    value: _vm.regions_model,
                                     callback: function($$v) {
-                                      _vm.category = $$v
+                                      _vm.regions_model = $$v
                                     },
-                                    expression: "category"
+                                    expression: "regions_model"
                                   }
                                 },
                                 [
@@ -37261,7 +37266,7 @@ var render = function() {
                                     _vm._v("-- Выберите категорию --")
                                   ]),
                                   _vm._v(" "),
-                                  _vm._l(_vm.items, function(item) {
+                                  _vm._l(_vm.regions, function(item) {
                                     return _c(
                                       "option",
                                       {
@@ -37284,43 +37289,20 @@ var render = function() {
                             "b-form-group",
                             {
                               staticStyle: { width: "280px", margin: "auto" },
-                              attrs: {
-                                label: "Город / Село:",
-                                "label-for": "categories"
-                              }
+                              attrs: { label: "Город / Село:" }
                             },
                             [
-                              _c(
-                                "b-form-select",
-                                {
-                                  staticClass: "mb-3",
-                                  on: { change: _vm.changeCategory },
-                                  model: {
-                                    value: _vm.category,
-                                    callback: function($$v) {
-                                      _vm.category = $$v
-                                    },
-                                    expression: "category"
-                                  }
-                                },
-                                [
-                                  _c("option", { domProps: { value: null } }, [
-                                    _vm._v("-- Выберите категорию --")
-                                  ]),
-                                  _vm._v(" "),
-                                  _vm._l(_vm.items, function(item) {
-                                    return _c(
-                                      "option",
-                                      {
-                                        key: item.name,
-                                        domProps: { value: item.id }
-                                      },
-                                      [_vm._v(_vm._s(item.name))]
-                                    )
-                                  })
-                                ],
-                                2
-                              )
+                              _c("b-form-select", {
+                                staticClass: "mb-3",
+                                on: { change: _vm.changeCategory },
+                                model: {
+                                  value: _vm.category,
+                                  callback: function($$v) {
+                                    _vm.category = $$v
+                                  },
+                                  expression: "category"
+                                }
+                              })
                             ],
                             1
                           )
