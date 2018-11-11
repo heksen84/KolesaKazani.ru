@@ -3314,6 +3314,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.regions = [];
       this.locationDialogTitle = "Выберите расположение";
 
+      // Получить города / сёлы
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('getPlaces?region_id=' + e.region_id).then(function (res) {
         _this2.places = res.data;
         console.log(res.data);
@@ -3324,6 +3325,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.selectedPlaceName = e.name;
       this.locationDialog = false;
       this.urlRegAndPlace = this.urlRegAndPlace + "/" + e.url;
+
       // сохраняю в localStorage
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);
@@ -3332,6 +3334,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.selectedPlaceName = "Весь Казахстан";
       this.urlRegAndPlace = "";
       this.locationDialog = false;
+
       // сохраняю в localStorage
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", "");
@@ -3340,6 +3343,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.selectedPlaceName = this.regionName;
       this.locationDialog = false;
       this.buttonAllCountry = false;
+
       // сохраняю в localStorage
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);

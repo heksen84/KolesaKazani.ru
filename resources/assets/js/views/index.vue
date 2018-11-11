@@ -189,6 +189,7 @@ export default {
       this.regions=[];
       this.locationDialogTitle="Выберите расположение"
 
+      // Получить города / сёлы
       get('getPlaces?region_id='+e.region_id).then((res) => {
           this.places=res.data;
           console.log(res.data);
@@ -200,7 +201,8 @@ export default {
       this.buttonAllCountry=false;
       this.selectedPlaceName=e.name;
       this.locationDialog=false;
-      this.urlRegAndPlace=this.urlRegAndPlace+"/"+e.url;      
+      this.urlRegAndPlace=this.urlRegAndPlace+"/"+e.url;
+
       // сохраняю в localStorage
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);      
@@ -210,6 +212,7 @@ export default {
       this.selectedPlaceName="Весь Казахстан";
       this.urlRegAndPlace="";      
       this.locationDialog=false;
+
       // сохраняю в localStorage
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", "");
@@ -219,6 +222,7 @@ export default {
       this.selectedPlaceName=this.regionName;
       this.locationDialog=false;
       this.buttonAllCountry=false;
+
       // сохраняю в localStorage
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);
