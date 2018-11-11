@@ -37228,7 +37228,8 @@ var render = function() {
                           staticStyle: {
                             "text-align": "center",
                             "margin-top": "15px",
-                            "margin-bottom": "20px"
+                            "margin-bottom": "20px",
+                            "text-decoration": "underline"
                           }
                         },
                         [_vm._v("Расположение объекта")]
@@ -37359,6 +37360,7 @@ var render = function() {
                               }
                             ],
                             staticStyle: {
+                              border: "1px solid rgb(200,200,200)",
                               "margin-bottom": "10px",
                               width: "100%",
                               height: "200px"

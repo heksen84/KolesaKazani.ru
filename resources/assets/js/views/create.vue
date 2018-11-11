@@ -88,7 +88,7 @@
 				</div>
 				</b-form-group>
 
-				<div style="text-align:center;margin-top:15px;margin-bottom:20px">Расположение объекта</div>
+				<div style="text-align:center;margin-top:15px;margin-bottom:20px;text-decoration:underline">Расположение объекта</div>
 				<b-form inline>
 				
 				<b-form-group label="Регион:" label-for="categories" style="width:280px;margin:auto" v-if="deal_id!=null">
@@ -108,7 +108,7 @@
 
 				<!-- Расположение на карте -->
 				<b-form-group style="text-align:center">
-					<div id="smallmap" style="margin-bottom:10px;width: 100%; height: 200px" v-show="coordinates_set" @click="showSetCoordsDialog"></div>
+					<div id="smallmap" style="border:1px solid rgb(200,200,200);margin-bottom:10px;width: 100%; height: 200px" v-show="coordinates_set" @click="showSetCoordsDialog"></div>
 					<b-button variant="primary" @click="showSetCoordsDialog">отметить объект на карте</b-button>
 				</b-form-group>
 
