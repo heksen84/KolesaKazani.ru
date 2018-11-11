@@ -390,6 +390,8 @@ export default {
   				}
   			}
 		},
+
+		// обработка выбора региона
 		changeRegion() {
 
 		},

@@ -2989,6 +2989,9 @@ function forEach(data, callback) {
 					}
 			}
 		},
+
+
+		// обработка выбора региона
 		changeRegion: function changeRegion() {},
 
 
