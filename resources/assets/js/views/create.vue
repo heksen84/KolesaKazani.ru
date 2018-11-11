@@ -91,14 +91,14 @@
 				<div style="text-align:center;margin-top:15px;margin-bottom:20px">Расположение объекта</div>
 				<b-form inline>
 				
-				<b-form-group label="Регион:" label-for="categories" style="width:260px;margin:auto" v-if="deal_id!=null">
+				<b-form-group label="Регион:" label-for="categories" style="width:280px;margin:auto" v-if="deal_id!=null">
 				<b-form-select class="mb-3" @change="changeCategory" v-model="category">
 					 <option :value=null>-- Выберите категорию --</option>
 					 <option v-for="item in items" :value="item.id" :key="item.name">{{item.name}}</option>
 				</b-form-select>
 				</b-form-group>
 
-				<b-form-group label="Город / Село:" label-for="categories" style="width:260px;margin:auto" v-if="deal_id!=null">
+				<b-form-group label="Город / Село:" label-for="categories" style="width:280px;margin:auto" v-if="deal_id!=null">
 				<b-form-select class="mb-3" @change="changeCategory" v-model="category">
 					 <option :value=null>-- Выберите категорию --</option>
 					 <option v-for="item in items" :value="item.id" :key="item.name">{{item.name}}</option>

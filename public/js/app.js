@@ -37243,7 +37243,7 @@ var render = function() {
                                 "b-form-group",
                                 {
                                   staticStyle: {
-                                    width: "260px",
+                                    width: "280px",
                                     margin: "auto"
                                   },
                                   attrs: {
@@ -37295,7 +37295,7 @@ var render = function() {
                                 "b-form-group",
                                 {
                                   staticStyle: {
-                                    width: "260px",
+                                    width: "280px",
                                     margin: "auto"
                                   },
                                   attrs: {
