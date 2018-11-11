@@ -158,7 +158,6 @@ function initBigMap() {
 		smallmap = new ymaps.Map ("smallmap", { center: mapCoords, zoom: 10 });
 	}
 
-
 	// Для заполнения изображений
 	function forEach(data, callback) { 
 	for(var key in data) { 
