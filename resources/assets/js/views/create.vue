@@ -344,7 +344,7 @@ export default {
   		--------------------------*/
   		changeCategory(data) {
 
-			console.log(data);
+			//console.log(data);
 			
 			// сбрасываю фотки			
 			document.querySelector("input[type=file]").value = "";
