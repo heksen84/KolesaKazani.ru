@@ -37276,7 +37276,7 @@ var render = function() {
                             "margin-bottom": "10px"
                           }
                         },
-                        [_vm._v("Расположение объекта")]
+                        [_vm._v("Расположение")]
                       ),
                       _vm._v(" "),
                       _vm.regions

@@ -88,7 +88,7 @@
 				</b-form-group>
 
 				<!-- Город, Село и т.д. -->
-				<div style="text-align:center;margin-top:15px;margin-bottom:10px">Расположение объекта</div>
+				<div style="text-align:center;margin-top:15px;margin-bottom:10px">Расположение</div>
 				
 				<!-- выпадающий список регионов -->
 				<b-form-group label="Регион:" style="width:280px;margin:auto" v-if="regions">
@@ -347,7 +347,7 @@ export default {
 			
 			// сбрасываю фотки			
 			document.querySelector("input[type=file]").value = "";
-			
+
 			this.preview_images=[];
 			// сбрасываю карту
 			this.coordinates_set=false;
