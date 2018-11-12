@@ -10,14 +10,13 @@
 			<b-button variant="primary" @click="setCoords" id="setCoordsBtn">Сохранить</b-button>
           </b-modal> 	
 
-
 		  <b-col cols="12" sm="12" md="12" lg="10" xl="10" class="create_advert_col">
 		  <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
 		  <h1 class="title_text" style="margin-top:12px">подать объявление</h1>
+
 		  <hr>
 
 			<b-form @submit="onSubmit">
-
 			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px;margin-top:-5px">
 				 <b-form-radio-group id="deal_group" stacked :options="sdelka" name="radioOpenions" @change="setDeal"></b-form-radio-group>
 			</b-form-group>
