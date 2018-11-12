@@ -91,17 +91,17 @@
 				<div style="text-align:center;margin-top:15px;margin-bottom:10px">Расположение</div>
 				
 				<!-- выпадающий список регионов -->
-				<b-form-group label="Регион:" style="width:280px;margin:auto" v-if="regions">
+				<b-form-group label="Регион:" style="width:280px;margin:auto" v-if="regions.length>0">
 				<b-form-select class="mb-3" @change="changeRegion" v-model="regions_model">
 					 <option :value=null>-- Выберите регион --</option>
 					 <option v-for="item in regions" :value="item.region_id" :key="item.name">{{item.name}}</option>
 				</b-form-select>
 				</b-form-group>
 
-				<b-form-group label="Местность:" style="width:280px;margin:auto" v-if="deal_id!=null">
+				<b-form-group label="Местность:" style="width:280px;margin:auto" v-if="places.length>0">
 				<b-form-select class="mb-3" @change="changePlace" v-model="places_model">
 					 <option :value=null>-- Выберите местность --</option>
-					 <option v-for="item in places" :value="item.id" :key="item.name">{{item.name}}</option>
+					 <option v-for="item in places" :value="item.city_id" :key="item.name">{{item.name}}</option>
 				</b-form-select>
 				</b-form-group>
 
@@ -197,6 +197,7 @@ export default {
 			/*-------------------------
 				категории 
 			-------------------------*/
+
 			transport:false,			// транспорт
 			real_estate:false,			// недвижимость
 			appliances:false,			// бытовая техника
@@ -223,7 +224,6 @@ export default {
 		// -----------------------------
 		get('/getRegions').then((res) => {
 		  this.regions=res.data;
-		  console.log(this.regions);
       	}).catch((err) => {
 			console.log("Не возможно загрузить регионы!");
 		});
@@ -234,19 +234,20 @@ export default {
   	methods: {
 
 		// обработка выбора региона
-		changeRegion(data) {
-		console.log(data);
+		changeRegion(region_id) {
 
-			 // Получить города / сёлы
-      	/*get('getPlaces?region_id='+e.region_id).then((res) => {
-          this.places=res.data;
-          console.log(res.data);
-      	}).catch((err) => {});*/
-
+			// Получить города / сёлы
+      		get('getPlaces?region_id='+region_id).then((res) => {
+				  this.places=res.data;
+				  this.places_model=null;
+          		console.log(res.data);
+			  }).catch((err) => {});
+			  
 		},
 
 		// обработка выбора местоположения
-		changePlace(e) {
+		changePlace(city_id) {
+			console.log(city_id)
 		},
 
 		// ------------------------------------------------

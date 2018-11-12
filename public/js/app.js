@@ -2791,6 +2791,7 @@ function forEach(data, callback) {
 			/*-------------------------
    	категории 
    -------------------------*/
+
 			transport: false, // транспорт
 			real_estate: false, // недвижимость
 			appliances: false, // бытовая техника
@@ -2819,7 +2820,6 @@ function forEach(data, callback) {
 		// -----------------------------
 		Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getRegions').then(function (res) {
 			_this.regions = res.data;
-			console.log(_this.regions);
 		}).catch(function (err) {
 			console.log("Не возможно загрузить регионы!");
 		});
@@ -2830,19 +2830,22 @@ function forEach(data, callback) {
 	methods: {
 
 		// обработка выбора региона
-		changeRegion: function changeRegion(data) {
-			console.log(data);
+		changeRegion: function changeRegion(region_id) {
+			var _this2 = this;
 
 			// Получить города / сёлы
-			/*get('getPlaces?region_id='+e.region_id).then((res) => {
-      this.places=res.data;
-      console.log(res.data);
-   }).catch((err) => {});*/
+			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('getPlaces?region_id=' + region_id).then(function (res) {
+				_this2.places = res.data;
+				_this2.places_model = null;
+				console.log(res.data);
+			}).catch(function (err) {});
 		},
 
 
 		// обработка выбора местоположения
-		changePlace: function changePlace(e) {},
+		changePlace: function changePlace(city_id) {
+			console.log(city_id);
+		},
 
 
 		// ------------------------------------------------
@@ -3028,7 +3031,7 @@ function forEach(data, callback) {
   Сохранить объявление
   ----------------------------*/
 		onSubmit: function onSubmit(evt) {
-			var _this2 = this;
+			var _this3 = this;
 
 			evt.preventDefault();
 
@@ -3051,12 +3054,12 @@ function forEach(data, callback) {
 				headers: { 'Content-Type': 'multipart/form-data' }
 			}).then(function (response) {
 				console.log(response);
-				if (response.data.result == "db.error") _this2.$root.$notify({ group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error' });else if (response.data.result == "usr.error") _this2.$root.$notify({ group: 'foo', text: "<h6>" + response.data.msg + "</h6>", type: 'error' });else alert("ok");
+				if (response.data.result == "db.error") _this3.$root.$notify({ group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error' });else if (response.data.result == "usr.error") _this3.$root.$notify({ group: 'foo', text: "<h6>" + response.data.msg + "</h6>", type: 'error' });else alert("ok");
 				//	else 
 				//	window.location="home"; // переходим в личный кабинет
 			}).catch(function (error) {
 				console.log(error.response);
-				_this2.$root.$notify({ group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error' });
+				_this3.$root.$notify({ group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error' });
 			});
 		},
 
@@ -37279,7 +37282,7 @@ var render = function() {
                         [_vm._v("Расположение")]
                       ),
                       _vm._v(" "),
-                      _vm.regions
+                      _vm.regions.length > 0
                         ? _c(
                             "b-form-group",
                             {
@@ -37323,7 +37326,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      _vm.deal_id != null
+                      _vm.places.length > 0
                         ? _c(
                             "b-form-group",
                             {
@@ -37354,7 +37357,7 @@ var render = function() {
                                       "option",
                                       {
                                         key: item.name,
-                                        domProps: { value: item.id }
+                                        domProps: { value: item.city_id }
                                       },
                                       [_vm._v(_vm._s(item.name))]
                                     )
