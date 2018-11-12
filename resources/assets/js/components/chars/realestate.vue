@@ -101,6 +101,8 @@ export default {
     // --------------------------------
     changeRealEstate(data) {
 
+      console.log("Ёбтель :"+data)
+
         // показываю дополнительные поля
         this.$store.commit("showOtherFields");
      

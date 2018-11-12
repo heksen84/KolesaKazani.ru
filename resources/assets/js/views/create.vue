@@ -87,19 +87,21 @@
 				</div>
 				</b-form-group>
 
+				<!-- Город, Село и т.д. -->
 				<div style="text-align:center;margin-top:15px;margin-bottom:10px">Расположение объекта</div>
 				
-				<b-form-group label="Регион:" style="width:280px;margin:auto" v-if="deal_id!=null">
+				<!-- выпадающий список регионов -->
+				<b-form-group label="Регион:" style="width:280px;margin:auto" v-if="regions">
 				<b-form-select class="mb-3" @change="changeRegion" v-model="regions_model">
 					 <option :value=null>-- Выберите регион --</option>
-					 <option v-for="item in regions" :value="item.id" :key="item.name">{{item.name}}</option>
+					 <option v-for="item in regions" :value="item.region_id" :key="item.name">{{item.name}}</option>
 				</b-form-select>
 				</b-form-group>
 
-				<b-form-group label="Город / Село:" style="width:280px;margin:auto" v-if="deal_id!=null">
+				<b-form-group label="Местность:" style="width:280px;margin:auto" v-if="deal_id!=null">
 				<b-form-select class="mb-3" @change="changePlace" v-model="places_model">
-					 <option :value=null>-- Выберите расположение --</option>
-					 <!--<option v-for="item in items" :value="item.id" :key="item.name">{{item.name}}</option>-->
+					 <option :value=null>-- Выберите местность --</option>
+					 <option v-for="item in places" :value="item.id" :key="item.name">{{item.name}}</option>
 				</b-form-select>
 				</b-form-group>
 
@@ -174,9 +176,11 @@ export default {
 		
 			setCoordsDialog:false,
 			coordinates_set:false,
+
 			/*-----------------------------
 				базовые поля объявления
 			-----------------------------*/
+
     		sdelka: this.$root.options_sdelka,
     		category: null,
 			deal_id: null,
@@ -207,23 +211,44 @@ export default {
 	},
 
 	// Событие: компонент создан
-	created() {		
+	created() {
 		
 		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация				
 
 		ymaps.ready(initBigMap);
 		ymaps.ready(initSmallMap);
 
+		// -----------------------------
+		// Получаем регионы
+		// -----------------------------
 		get('/getRegions').then((res) => {
-          console.log(res.data);
-          
-          this.regions=res.data;
-      	}).catch((err) => {});
+		  this.regions=res.data;
+		  console.log(this.regions);
+      	}).catch((err) => {
+			console.log("Не возможно загрузить регионы!");
+		});
 
 	},
 
 	components: { transport, realestate },
   	methods: {
+
+		// обработка выбора региона
+		changeRegion(data) {
+		console.log(data);
+
+			 // Получить города / сёлы
+      	/*get('getPlaces?region_id='+e.region_id).then((res) => {
+          this.places=res.data;
+          console.log(res.data);
+      	}).catch((err) => {});*/
+
+		},
+
+		// обработка выбора местоположения
+		changePlace(e) {
+		},
+
 		// ------------------------------------------------
 		//
 		// Загрузка изображений
@@ -317,9 +342,12 @@ export default {
   		 Изменения в категориях
   		--------------------------*/
   		changeCategory(data) {
+
+			console.log(data);
 			
 			// сбрасываю фотки			
 			document.querySelector("input[type=file]").value = "";
+			
 			this.preview_images=[];
 			// сбрасываю карту
 			this.coordinates_set=false;
@@ -390,11 +418,6 @@ export default {
   					break; 
   				}
   			}
-		},
-
-		// обработка выбора региона
-		changeRegion() {
-
 		},
   		
   		/*

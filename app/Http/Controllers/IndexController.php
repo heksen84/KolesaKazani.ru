@@ -39,7 +39,7 @@ class IndexController extends Controller {
 			}
 			catch(\Exception $e) {
 					\Debugbar::warning($e->getMessage());
-					$regions = Regions::orderBy('name', 'asc')->get();
+					$regions = Regions::orderBy('name', 'asc')->get()->toJson();
 			}
 
 			return $regions;

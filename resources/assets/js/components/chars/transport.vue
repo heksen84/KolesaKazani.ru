@@ -13,8 +13,6 @@
         </b-form-select>
     </b-form-group>
 
-    <!-- showTransportCharsBase-->
-    <!-- hideTransportCharsBase-->
     <b-form-group label="Модель:" v-if="selected.carmark!=null && selected.type_transport==1">
         <b-form-select v-model="selected.model" class="mb-2 mr-sm-2 mb-sm-2" @change="selectModel">
            <option :value="null">-- Выберите модель --</option>
@@ -100,8 +98,11 @@ export default {
       }
     },
 
+    // ------------------------
     // change марки
+    // ------------------------
     selectMark(mark_id) {
+
       this.transport_chars.mark_id = mark_id;
       console.log(this.transport_chars.mark_id);
       

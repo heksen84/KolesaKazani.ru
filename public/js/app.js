@@ -1839,6 +1839,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // --------------------------------
     changeRealEstate: function changeRealEstate(data) {
 
+      console.log("Ёбтель :" + data);
+
       // показываю дополнительные поля
       this.$store.commit("showOtherFields");
 
@@ -1930,8 +1932,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 
 
@@ -1993,7 +1993,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
 
 
+    // ------------------------
     // change марки
+    // ------------------------
     selectMark: function selectMark(mark_id) {
       var _this2 = this;
 
@@ -2714,6 +2716,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 // ----------------------------------------------------
@@ -2766,9 +2770,11 @@ function forEach(data, callback) {
 
 			setCoordsDialog: false,
 			coordinates_set: false,
+
 			/*-----------------------------
    	базовые поля объявления
    -----------------------------*/
+
 			sdelka: this.$root.options_sdelka,
 			category: null,
 			deal_id: null,
@@ -2808,16 +2814,37 @@ function forEach(data, callback) {
 		ymaps.ready(initBigMap);
 		ymaps.ready(initSmallMap);
 
+		// -----------------------------
+		// Получаем регионы
+		// -----------------------------
 		Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getRegions').then(function (res) {
-			console.log(res.data);
-
 			_this.regions = res.data;
-		}).catch(function (err) {});
+			console.log(_this.regions);
+		}).catch(function (err) {
+			console.log("Не возможно загрузить регионы!");
+		});
 	},
 
 
 	components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default.a },
 	methods: {
+
+		// обработка выбора региона
+		changeRegion: function changeRegion(data) {
+			console.log(data);
+
+			// Получить города / сёлы
+			/*get('getPlaces?region_id='+e.region_id).then((res) => {
+      this.places=res.data;
+      console.log(res.data);
+   }).catch((err) => {});*/
+		},
+
+
+		// обработка выбора местоположения
+		changePlace: function changePlace(e) {},
+
+
 		// ------------------------------------------------
 		//
 		// Загрузка изображений
@@ -2907,8 +2934,11 @@ function forEach(data, callback) {
   --------------------------*/
 		changeCategory: function changeCategory(data) {
 
+			console.log(data);
+
 			// сбрасываю фотки			
 			document.querySelector("input[type=file]").value = "";
+
 			this.preview_images = [];
 			// сбрасываю карту
 			this.coordinates_set = false;
@@ -2991,10 +3021,6 @@ function forEach(data, callback) {
 					}
 			}
 		},
-
-
-		// обработка выбора региона
-		changeRegion: function changeRegion() {},
 
 
 		/*
@@ -37253,7 +37279,7 @@ var render = function() {
                         [_vm._v("Расположение объекта")]
                       ),
                       _vm._v(" "),
-                      _vm.deal_id != null
+                      _vm.regions
                         ? _c(
                             "b-form-group",
                             {
@@ -37284,7 +37310,7 @@ var render = function() {
                                       "option",
                                       {
                                         key: item.name,
-                                        domProps: { value: item.id }
+                                        domProps: { value: item.region_id }
                                       },
                                       [_vm._v(_vm._s(item.name))]
                                     )
@@ -37302,7 +37328,7 @@ var render = function() {
                             "b-form-group",
                             {
                               staticStyle: { width: "280px", margin: "auto" },
-                              attrs: { label: "Город / Село:" }
+                              attrs: { label: "Местность:" }
                             },
                             [
                               _c(
@@ -37320,9 +37346,21 @@ var render = function() {
                                 },
                                 [
                                   _c("option", { domProps: { value: null } }, [
-                                    _vm._v("-- Выберите расположение --")
-                                  ])
-                                ]
+                                    _vm._v("-- Выберите местность --")
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.places, function(item) {
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: item.name,
+                                        domProps: { value: item.id }
+                                      },
+                                      [_vm._v(_vm._s(item.name))]
+                                    )
+                                  })
+                                ],
+                                2
                               )
                             ],
                             1
