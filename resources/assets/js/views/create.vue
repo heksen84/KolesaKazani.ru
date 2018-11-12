@@ -481,7 +481,9 @@ export default {
 		}
 	},
 
+	// ---------------------------------
 	// Установить координаты
+	// ---------------------------------
 	setCoords() {
 		this.setCoordsDialog=false;
 		this.$root.advert_data.adv_coords=[];

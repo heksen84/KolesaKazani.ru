@@ -3083,7 +3083,9 @@ function forEach(data, callback) {
 		},
 
 
+		// ---------------------------------
 		// Установить координаты
+		// ---------------------------------
 		setCoords: function setCoords() {
 			this.setCoordsDialog = false;
 			this.$root.advert_data.adv_coords = [];
