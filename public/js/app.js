@@ -37390,7 +37390,7 @@ var render = function() {
                               }
                             ],
                             staticStyle: {
-                              border: "1px solid rgb(180,180,180)",
+                              border: "2px solid rgb(180,180,180)",
                               "margin-bottom": "10px",
                               width: "100%",
                               height: "200px"
