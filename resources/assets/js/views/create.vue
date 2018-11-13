@@ -213,7 +213,9 @@ export default {
 	// Событие: компонент создан
 	created() {
 		
-		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация				
+		this.$root.advert_data.adv_info 	= null; // добавляю формально поле доп. информация
+		this.$root.advert_data.region_id	= null;
+		this.$root.advert_data.city_id		= null;					
 
 		ymaps.ready(initBigMap);
 		ymaps.ready(initSmallMap);
@@ -235,6 +237,8 @@ export default {
 		// обработка выбора региона
 		changeRegion(region_id) {
 
+			this.$root.advert_data.region_id = region_id;
+
 			// Получить города / сёлы
       		get('getPlaces?region_id='+region_id).then((res) => {
 				  this.places=res.data;
@@ -247,6 +251,7 @@ export default {
 		// обработка выбора местоположения
 		changePlace(city_id) {
 			console.log(city_id)
+			this.$root.advert_data.city_id = city_id;
 		},
 
 		// ------------------------------------------------

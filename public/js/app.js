@@ -2809,7 +2809,9 @@ function forEach(data, callback) {
 	created: function created() {
 		var _this = this;
 
-		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация				
+		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
+		this.$root.advert_data.region_id = null;
+		this.$root.advert_data.city_id = null;
 
 		ymaps.ready(initBigMap);
 		ymaps.ready(initSmallMap);
@@ -2832,6 +2834,8 @@ function forEach(data, callback) {
 		changeRegion: function changeRegion(region_id) {
 			var _this2 = this;
 
+			this.$root.advert_data.region_id = region_id;
+
 			// Получить города / сёлы
 			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('getPlaces?region_id=' + region_id).then(function (res) {
 				_this2.places = res.data;
@@ -2844,6 +2848,7 @@ function forEach(data, callback) {
 		// обработка выбора местоположения
 		changePlace: function changePlace(city_id) {
 			console.log(city_id);
+			this.$root.advert_data.city_id = city_id;
 		},
 
 
