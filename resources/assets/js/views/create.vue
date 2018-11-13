@@ -168,6 +168,7 @@ function initBigMap() {
 	}
 }
 
+// Логика
 export default {
 	props: ["items"],
 	data () {

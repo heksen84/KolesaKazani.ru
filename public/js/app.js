@@ -2762,6 +2762,7 @@ function forEach(data, callback) {
 	}
 }
 
+// Логика
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ["items"],
 	data: function data() {

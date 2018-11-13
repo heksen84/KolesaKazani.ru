@@ -41,7 +41,7 @@ class AdvertController extends Controller {
 
         $data = $request->all();
     
-       // \Debugbar::info($data);
+        \Debugbar::info($data);
 
         // правила валидации      
         $rules = 
