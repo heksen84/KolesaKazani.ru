@@ -50,6 +50,8 @@ class AdvertController extends Controller {
             "adv_category"  => "required", 
             "adv_price"     => "required|numeric",
             "images.*"      => "image|mimes:jpeg,png,jpg",
+            "region_id"     => "required|numeric",
+            "city_id"       => "required|numeric"
         ]; 
 
         // сообщения валидации
@@ -59,7 +61,11 @@ class AdvertController extends Controller {
             "adv_category.required"    => "Укажите категорию товара или услуги",
             "adv_price.required"       => "Укажите цену",
             "adv_price.numeric"        => "Введите числовое значение для цены",
-            "images.*.image"           => "Только изображения!"
+            "images.*.image"           => "Только изображения!",
+            "region_id.required"       => "Не указан регион",
+            "region_id.numeric"        => "Введите числовое значение для региона",
+            "city_id.required"         => "Не указано расположение",
+            "city_id.numeric"          => "Введите числовое значение для расположения"
         ]; 
 
         // проверяем
