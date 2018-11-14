@@ -37293,7 +37293,7 @@ var render = function() {
                             attrs: {
                               type: "number",
                               id: "price",
-                              placeholder: "+7(705)XXXXXXX",
+                              placeholder: "+7(XXX)XXXXXXX",
                               formatter: _vm.setPrice,
                               required: ""
                             }

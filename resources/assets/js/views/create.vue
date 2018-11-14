@@ -87,7 +87,7 @@
 				</b-form-group>
 
 				<b-form-group label="Контактный номер:" style="text-align:center">
-			 		<b-form-input type="number" id="price" placeholder="+7(705)XXXXXXX" style="width:250px;display:inline" :formatter="setPrice" required></b-form-input>
+			 		<b-form-input type="number" id="price" placeholder="+7(XXX)XXXXXXX" style="width:250px;display:inline" :formatter="setPrice" required></b-form-input>
 				</b-form-group>
 
 				<!-- Город, Село и т.д. -->
