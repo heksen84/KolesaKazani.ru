@@ -86,8 +86,12 @@
 				</div>
 				</b-form-group>
 
+				<b-form-group label="Контактный номер:" style="text-align:center">
+			 		<b-form-input type="number" id="price" placeholder="+7(705)XXXXXXX" style="width:250px;display:inline" :formatter="setPrice" required></b-form-input>
+				</b-form-group>
+
 				<!-- Город, Село и т.д. -->
-				<div style="text-align:center;margin-top:15px;margin-bottom:10px">Расположение</div>
+				<div style="text-align:center;margin-top:50px;margin-bottom:0px">Расположение</div>
 				
 				<!-- выпадающий список регионов -->
 				<b-form-group label="Регион:" style="width:280px;margin:auto" v-if="regions.length>0">
