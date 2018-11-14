@@ -210,8 +210,8 @@ class AdvertController extends Controller {
                 $image->save();
             }
 
-            SitemapController::addUrl("Моя url");
-            SitemapController::removeUrl("Моя url");
+            /*SitemapController::addUrl("Моя url");
+            SitemapController::removeUrl("Моя url");*/
 
             return $advert->id;
 		}
