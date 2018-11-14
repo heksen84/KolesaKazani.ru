@@ -62,9 +62,9 @@ class AdvertController extends Controller {
             "adv_price.required"       => "Укажите цену",
             "adv_price.numeric"        => "Введите числовое значение для цены",
             "images.*.image"           => "Только изображения!",
-            "region_id.required"       => "Не указан регион",
+            "region_id.required"       => "Укажите регион",
             "region_id.numeric"        => "Введите числовое значение для региона",
-            "city_id.required"         => "Не указано расположение",
+            "city_id.required"         => "Укажите расположение",
             "city_id.numeric"          => "Введите числовое значение для расположения"
         ]; 
 
@@ -77,6 +77,8 @@ class AdvertController extends Controller {
         $category   = $data["adv_category"];
         $text       = $data["adv_info"];
         $price      = $data["adv_price"];
+        $region_id  = $data["region_id"];
+        $city_id    = $data["city_id"];
         
      	try {
      			
@@ -86,7 +88,9 @@ class AdvertController extends Controller {
         	$advert->contacts  		 = null; 
         	$advert->price  		 = $price;
         	$advert->category_id  	 = $category;
-        	$advert->adv_category_id = 0;
+            $advert->adv_category_id = 0;
+            $advert->region_id       = $region_id;
+            $advert->city_id         = $city_id;
 
             switch($category) {
 

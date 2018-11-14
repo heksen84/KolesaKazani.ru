@@ -215,8 +215,8 @@ export default {
 	created() {
 		
 		this.$root.advert_data.adv_info 	= null; // добавляю формально поле доп. информация
-		this.$root.advert_data.region_id	= null;
-		this.$root.advert_data.city_id		= null;					
+		//this.$root.advert_data.region_id	= null;
+		//this.$root.advert_data.city_id		= null;					
 
 		ymaps.ready(initBigMap);
 		ymaps.ready(initSmallMap);
