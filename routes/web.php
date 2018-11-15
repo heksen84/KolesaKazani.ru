@@ -3,9 +3,14 @@ use Illuminate\Support\Facades\DB;
 
 Auth::routes();
 
+//  ------------ TEST ---------------
 Route::get('test',  function () { return view('test'); });
 Route::post('checkPhotos',  'TestController@checkPhotos');
 
+// Модерация
+Route::get('moderation',  function () { return view('moderation'); });
+
+// Реклама на сайте
 Route::get('advertisers',  function () { return view('advertisers'); });
 
 
