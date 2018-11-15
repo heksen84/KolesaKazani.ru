@@ -35,7 +35,6 @@ import radio from 'bootstrap-vue/src/components/form-radio';
 import navbar from 'bootstrap-vue/src/components/navbar';
 import modal from 'bootstrap-vue/src/components/modal';
 import alert from 'bootstrap-vue/src/components/alert';
-import VueCarousel from 'vue-carousel';
 
 Vue.use(layout);
 Vue.use(form);
@@ -51,7 +50,6 @@ Vue.use(link);
 Vue.use(image);
 Vue.use(radio);
 Vue.use(navbar);
-Vue.use(VueCarousel);
 Vue.use(modal);
 Vue.use(alert);
 
@@ -61,11 +59,8 @@ Vue.use(Vuex);
 import Notifications from 'vue-notification'
 Vue.use(Notifications)
 
-
 // -----------------------------------
-//
-// ОСНОВНОЕ ХРАНИЛИЩЕ
-//
+// Реактивное хранилище
 // -----------------------------------
 const store = new Vuex.Store({
     state: {

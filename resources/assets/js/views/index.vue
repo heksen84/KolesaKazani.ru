@@ -71,10 +71,13 @@
       </b-col>
     </b-row>
 
-<b-row style="margin-top:55px"><h5>VIP объявления</h5></b-row>
+
+<!-- VIP -->
+
+<b-row style="margin-top:80px"><h5>VIP объявления</h5></b-row>
 
 <b-row>    
-    <b-col v-for="i in 40" style="border:1px solid rgb(255,255,255);margin:1px;padding:30px;opacity:0.5" v-bind:key="i"></b-col>
+    <b-col v-for="i in 10" style="border:1px solid rgb(255,255,255);margin:3px;padding:50px;opacity:0.5" v-bind:key="i"></b-col>
 </b-row>
 
 <!-- ПОДВАЛ -->

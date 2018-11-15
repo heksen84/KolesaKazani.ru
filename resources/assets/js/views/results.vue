@@ -49,10 +49,11 @@
 		 	<b-form-select v-model="filters.actual" :options="options_actual" class="mb-3" size="sm" @change="getSearchData"/>
 		</b-col>
 	</b-row>-->
+
 	<div style="margin-top:-11px">
 	<b-row style="margin-top:0px" v-for="(item,index) in items" :key="index">
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-  			<!-- <b-img src="https://picsum.photos/125/125/?image=58" alt="left image" />-->			  
+  			 <b-img src="storage/app/images/4kTnf1MwrWslOSKzZLkNw5B5oPJ6ndIe.jpg" width="120" height="120" alt="картинка" />			  
 		</b-col>
 
 		<b-col cols="12" sm="12" md="8" lg="8" xl="8">
