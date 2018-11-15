@@ -11,6 +11,6 @@
     </head>
 <body>
 	<h1 style="text-align:center;margin-top:30px;color:rgb(100,100,130)">Страница не найдена</h1>
-    	<h4 style="text-align:center"><a href="/" style="color:rgb(100,100,100);text-decoration:none">вернуться на главную страницу</a></h4>
+    	<h4 style="text-align:center"><a href="/" style="color:rgb(100,100,100);text-decoration:none">вернуться на главную</a></h4>
 </body>
 </html>
