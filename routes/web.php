@@ -14,7 +14,6 @@ Route::get('moderation/{advert_id}',  function () { return view('moderation_adve
 // Реклама на сайте
 Route::get('advertisers',  function () { return view('advertisers'); });
 
-
 Route::get('getCategoryCountById', 'WelcomeController@getCategoryCountById');
 Route::get('getCategoryCounts', 'WelcomeController@getCategoryCounts');
 
@@ -32,7 +31,6 @@ Route::get('zhivotnye', 				'ResultsController@getResultsByCategory');
 Route::get('hobbi-i-otdyh', 			'ResultsController@getResultsByCategory');
 Route::get('uslugi', 					'ResultsController@getResultsByCategory');
 Route::get('drugoe', 					'ResultsController@getResultsByCategory');
-
 
 // категории по региону
 Route::get('{region}/{category}', 'ResultsController@getResultsByRegion');
@@ -74,7 +72,6 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 /*
 ------------------------------------------------
-АДМИН
+ Панель администратора
 ------------------------------------------------*/
-
 Route::get('admin', 'AdminController@login');
