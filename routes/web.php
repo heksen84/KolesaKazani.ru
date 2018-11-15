@@ -9,6 +9,7 @@ Route::post('checkPhotos',  'TestController@checkPhotos');
 
 // Модерация
 Route::get('moderation',  function () { return view('moderation'); });
+Route::get('moderation/{advert_id}',  function () { return view('moderation_advert'); });
 
 // Реклама на сайте
 Route::get('advertisers',  function () { return view('advertisers'); });
