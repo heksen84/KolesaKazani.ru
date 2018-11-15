@@ -79,7 +79,7 @@
 
 <!-- ПОДВАЛ -->
 <b-row>
-  <div id="footer"><a href="advertisers" class="underline_link">Рекламодателям</a> | <a href="about" class="underline_link">Разработано студией AksuSoftware 2018 (c)</a></div>
+  <div id="footer"><a href="advertisers" class="underline_link">Реклама на сайте</a> | <a href="about" class="underline_link">Разработано студией AksuSoftware 2018 (c)</a></div>
 </b-row>
 
 </b-container>

@@ -35258,7 +35258,7 @@ var render = function() {
           _c(
             "a",
             { staticClass: "underline_link", attrs: { href: "advertisers" } },
-            [_vm._v("Рекламодателям")]
+            [_vm._v("Реклама на сайте")]
           ),
           _vm._v(" | "),
           _c("a", { staticClass: "underline_link", attrs: { href: "about" } }, [
