@@ -2039,14 +2039,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['id', 'photo', 'title', 'text', 'price'],
+  props: ['id', 'photo', 'title', 'text', 'price', "images"],
   data: function data() {
     return {};
   },
-  created: function created() {},
+  created: function created() {
+
+    console.log(this.images);
+  },
 
   components: { avatarka: __WEBPACK_IMPORTED_MODULE_0__avatarka___default.a },
   methods: {
@@ -35803,19 +35810,37 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "item", on: { click: _vm.details } }, [
-    _c("h4", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
-      _vm._v(_vm._s(_vm.title))
-    ]),
-    _vm._v(" "),
-    _c("div", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
-      _vm._v(_vm._s(_vm.text))
-    ]),
-    _vm._v(" "),
-    _c("h6", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
-      _vm._v("цена: " + _vm._s(_vm.price))
-    ])
-  ])
+  return _c(
+    "div",
+    { staticClass: "item", on: { click: _vm.details } },
+    [
+      _c("h4", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
+        _vm._v(_vm._s(_vm.title))
+      ]),
+      _vm._v(" "),
+      _c("div", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
+        _vm._v(_vm._s(_vm.text))
+      ]),
+      _vm._v(" "),
+      _c("h6", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
+        _vm._v("цена: " + _vm._s(_vm.price))
+      ]),
+      _vm._v(" "),
+      _vm._l(_vm.images, function(i, index) {
+        return _c("b-img", {
+          key: index,
+          attrs: {
+            src: i.image,
+            fluid: "",
+            alt: i.image,
+            width: "100",
+            height: "100"
+          }
+        })
+      })
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -36281,10 +36306,10 @@ var render = function() {
       _c(
         "div",
         { staticStyle: { "margin-top": "-11px" } },
-        _vm._l(_vm.items, function(item) {
+        _vm._l(_vm.items, function(item, index) {
           return _c(
             "b-row",
-            { key: item.id, staticStyle: { "margin-top": "0px" } },
+            { key: index, staticStyle: { "margin-top": "0px" } },
             [
               _c("b-col", {
                 attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" }
@@ -36299,7 +36324,8 @@ var render = function() {
                       id: item.id,
                       title: item.title,
                       text: item.text,
-                      price: item.price
+                      price: item.price,
+                      images: _vm.images
                     }
                   })
                 ],
@@ -36314,9 +36340,9 @@ var render = function() {
       _c(
         "div",
         { staticClass: "vip_block" },
-        _vm._l(_vm.items, function(i) {
+        _vm._l(_vm.items, function(i, index) {
           return _c("h3", {
-            key: i,
+            key: index,
             staticStyle: {
               height: "340px",
               border: "1px solid white",

@@ -25,7 +25,8 @@ class ResultsController extends Controller {
 		// получаю объявления
 		$items = Adverts::where('category_id',  $record->id )->get();
 		// получаю картинки
-    	$images = Images::where('advert_id',  $record->id )->get();
+		//$images = Images::where('advert_id',  $record->id )->get();
+		$images = Images::all();
 		// передаю во вьюху
      	return view('results')->with("title", $record->name." в Казахстане")->with("items", $items)->with("images", $images);
     }

@@ -50,19 +50,19 @@
 		</b-col>
 	</b-row>-->
 	<div style="margin-top:-11px">
-	<b-row style="margin-top:0px" v-for="item in items" :key="item.id">
+	<b-row style="margin-top:0px" v-for="(item,index) in items" :key="index">
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-  			<!-- <b-img src="https://picsum.photos/125/125/?image=58" alt="left image" />-->
+  			<!-- <b-img src="https://picsum.photos/125/125/?image=58" alt="left image" />-->			  
 		</b-col>
 
 		<b-col cols="12" sm="12" md="8" lg="8" xl="8">
-			<item :id="item.id" :title="item.title" :text="item.text" :price="item.price"></item>
+			<item :id="item.id" :title="item.title" :text="item.text" :price="item.price" :images="images"></item>			
 		</b-col>
 	</b-row>
 	</div>
 
 	<div class="vip_block">
-		<h3 v-for="i in items" :key="i" style="height:340px;border:1px solid white;text-align:center"></h3>
+		<h3 v-for="(i, index) in items" :key="index" style="height:340px;border:1px solid white;text-align:center"></h3>
 	</div>
 
 	<b-row v-if="count>1">
