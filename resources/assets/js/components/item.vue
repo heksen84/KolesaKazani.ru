@@ -7,7 +7,7 @@
     <!--<span v-for="(i,index) in images" :key="index">{{ i.image }}</span>-->
     <!--<b-img v-for="(i,index) in images" :key="index" :src="i.image" fluid :alt="i.image" width="100" height="100"/>-->
     
-    <b-img :src="images[0]" fluid :alt="images[0].image" width="100" height="100"/>
+    <!--<b-img :src="images[0]" fluid :alt="images[0].image" width="100" height="100"/>-->
 
   </div>
 </template>

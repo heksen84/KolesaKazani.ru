@@ -3510,6 +3510,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // ------------------------------
@@ -12611,7 +12623,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -35786,34 +35798,19 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "item", on: { click: _vm.details } },
-    [
-      _c("h4", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
-        _vm._v(_vm._s(_vm.title))
-      ]),
-      _vm._v(" "),
-      _c("div", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
-        _vm._v(_vm._s(_vm.text))
-      ]),
-      _vm._v(" "),
-      _c("h6", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
-        _vm._v("цена: " + _vm._s(_vm.price))
-      ]),
-      _vm._v(" "),
-      _c("b-img", {
-        attrs: {
-          src: _vm.images[0],
-          fluid: "",
-          alt: _vm.images[0].image,
-          width: "100",
-          height: "100"
-        }
-      })
-    ],
-    1
-  )
+  return _c("div", { staticClass: "item", on: { click: _vm.details } }, [
+    _c("h4", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
+      _vm._v(_vm._s(_vm.title))
+    ]),
+    _vm._v(" "),
+    _c("div", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
+      _vm._v(_vm._s(_vm.text))
+    ]),
+    _vm._v(" "),
+    _c("h6", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
+      _vm._v("цена: " + _vm._s(_vm.price))
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -36278,34 +36275,23 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticStyle: { "margin-top": "-11px" } },
-        _vm._l(_vm.items, function(item, index) {
-          return _c(
+        { staticClass: "text-center" },
+        [
+          _c(
             "b-row",
-            { key: index, staticStyle: { "margin-top": "0px" } },
             [
               _c(
                 "b-col",
                 { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
-                [
-                  _c("b-img", {
-                    attrs: {
-                      src:
-                        "storage/app/images/4kTnf1MwrWslOSKzZLkNw5B5oPJ6ndIe.jpg",
-                      width: "120",
-                      height: "120",
-                      alt: "картинка"
-                    }
-                  })
-                ],
-                1
+                [_vm._v("\n\t\t\tVIP\n\t\t")]
               ),
               _vm._v(" "),
               _c(
                 "b-col",
                 { attrs: { cols: "12", sm: "12", md: "8", lg: "8", xl: "8" } },
-                [
-                  _c("item", {
+                _vm._l(_vm.items, function(item, index) {
+                  return _c("item", {
+                    key: index,
                     attrs: {
                       id: item.id,
                       title: item.title,
@@ -36314,57 +36300,20 @@ var render = function() {
                       images: _vm.images
                     }
                   })
-                ],
-                1
-              )
-            ],
-            1
-          )
-        })
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "vip_block" },
-        _vm._l(_vm.items, function(i, index) {
-          return _c("h3", {
-            key: index,
-            staticStyle: {
-              height: "340px",
-              border: "1px solid white",
-              "text-align": "center"
-            }
-          })
-        })
-      ),
-      _vm._v(" "),
-      _vm.count > 1
-        ? _c(
-            "b-row",
-            [
+                })
+              ),
+              _vm._v(" "),
               _c(
                 "b-col",
-                {
-                  staticStyle: { "text-align": "center" },
-                  attrs: { cols: "12", sm: "12", md: "12", lg: "12", xl: "12" }
-                },
-                [
-                  _c(
-                    "b-button",
-                    {
-                      staticStyle: { margin: "10px" },
-                      attrs: { variant: "primary" },
-                      on: { click: _vm.loadMore }
-                    },
-                    [_vm._v("загрузить ещё")]
-                  )
-                ],
-                1
+                { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
+                [_vm._v("\n\t\t\tVIP\n\t\t")]
               )
             ],
             1
           )
-        : _vm._e()
+        ],
+        1
+      )
     ],
     1
   )

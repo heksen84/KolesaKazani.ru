@@ -50,17 +50,11 @@
 		</b-col>
 	</b-row>-->
 
-	<div style="margin-top:-11px">
-	<b-row style="margin-top:0px" v-for="(item,index) in items" :key="index">
-		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-  			 <b-img src="storage/app/images/4kTnf1MwrWslOSKzZLkNw5B5oPJ6ndIe.jpg" width="120" height="120" alt="картинка" />			  
-		</b-col>
-
-		<b-col cols="12" sm="12" md="8" lg="8" xl="8">
+	<!--<b-row v-for="(item,index) in items" :key="index">
+		<b-col cols="12" sm="12" md="9" lg="9" xl="9">
 			<item :id="item.id" :title="item.title" :text="item.text" :price="item.price" :images="images"></item>			
 		</b-col>
 	</b-row>
-	</div>
 
 	<div class="vip_block">
 		<h3 v-for="(i, index) in items" :key="index" style="height:340px;border:1px solid white;text-align:center"></h3>
@@ -70,7 +64,25 @@
 		<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
 			<b-button variant="primary" style="margin:10px" @click="loadMore">загрузить ещё</b-button>
 		</b-col>
+	</b-row>-->
+
+<div class="text-center">
+	<b-row>
+		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
+			VIP
+		</b-col>
+
+		<b-col cols="12" sm="12" md="8" lg="8" xl="8">
+			<item v-for="(item,index) in items" :key="index" :id="item.id" :title="item.title" :text="item.text" :price="item.price" :images="images"></item>
+		</b-col>
+
+		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
+			VIP
+		</b-col>	
 	</b-row>
+</div>
+
+
 
 </b-container>
 </template>
