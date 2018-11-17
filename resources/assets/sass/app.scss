@@ -183,7 +183,8 @@ body {
 }
 
 .title_text {
-  font-size: 170%;
+  margin-top:10px;
+  font-size: 150%;
   color: rgb(80,80,80);
 }
 
@@ -229,11 +230,12 @@ body {
   background:white;
   color:black;
   margin-top: -1px;
-  height:130px;
+  height:120px;
   border:1px solid grey;
   border-radius:3px;
   width:100%;
   text-align:left;
+  display:inline-block;
 
 }
 

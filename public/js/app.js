@@ -2044,11 +2044,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+
   props: ['id', 'photo', 'title', 'text', 'price', "images"],
+
   data: function data() {
     return {};
   },
@@ -35798,19 +35799,48 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "item", on: { click: _vm.details } }, [
-    _c("h4", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
-      _vm._v(_vm._s(_vm.title))
-    ]),
-    _vm._v(" "),
-    _c("div", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
-      _vm._v(_vm._s(_vm.text))
-    ]),
-    _vm._v(" "),
-    _c("h6", { staticStyle: { margin: "15px", color: "rgb(70,70,70)" } }, [
-      _vm._v("цена: " + _vm._s(_vm.price))
-    ])
-  ])
+  return _c(
+    "div",
+    {
+      staticClass: "item",
+      staticStyle: { "word-wrap": "break-word" },
+      on: { click: _vm.details }
+    },
+    [
+      _c("b-img", {
+        staticStyle: { display: "inline-block" },
+        attrs: {
+          src: "https://picsum.photos/300/150/?image=41",
+          width: "120",
+          height: "120"
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticStyle: {
+            width: "74%",
+            position: "relative",
+            top: "-115px",
+            left: "125px"
+          }
+        },
+        [
+          _c("span", { staticStyle: { "font-weight": "bold" } }, [
+            _vm._v(
+              "12322222234324234234234232222222222222222222222222222222222222222222eeeeeeeeeeeeeeeeeeeeeeeee"
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", [_vm._v(_vm._s(_vm.text))]),
+          _vm._v(" "),
+          _c("div", [_vm._v("Цена: " + _vm._s(_vm.price))])
+        ]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -1,21 +1,22 @@
 <template>
-  <div class="item" @click="details">
-    
-    <h4 style="margin:15px;color:rgb(70,70,70)">{{ title }}</h4>
-    <div style="margin:15px;color:rgb(70,70,70)">{{ text }}</div>
-    <h6 style="margin:15px;color:rgb(70,70,70)">цена: {{ price }}</h6>  
-    <!--<span v-for="(i,index) in images" :key="index">{{ i.image }}</span>-->
-    <!--<b-img v-for="(i,index) in images" :key="index" :src="i.image" fluid :alt="i.image" width="100" height="100"/>-->
-    
-    <!--<b-img :src="images[0]" fluid :alt="images[0].image" width="100" height="100"/>-->
 
+  <div class="item" @click="details" style="word-wrap: break-word">
+    <b-img src="https://picsum.photos/300/150/?image=41" width="120" height="120" style="display:inline-block"/>
+    <div style="width:74%;position:relative;top:-115px;left:125px">
+      <span style="font-weight:bold">12322222234324234234234232222222222222222222222222222222222222222222eeeeeeeeeeeeeeeeeeeeeeeee</span>
+      <div>{{ text }}</div>
+      <div>Цена: {{ price }}</div>
+    </div>
   </div>
+    
 </template>
 
 <script>
 import avatarka from "./avatarka"
 export default {
+
   props: ['id', 'photo', 'title', 'text', 'price', "images"],
+
   data () {
     return 	{
 		}
