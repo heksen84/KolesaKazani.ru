@@ -229,14 +229,14 @@ body {
 .item {
   background:white;
   color:black;
-  margin-top: -1px;
   height:120px;
   border:1px solid grey;
   border-radius:3px;
   width:100%;
   text-align:left;
   display:inline-block;
-
+ /* word-wrap: break-word;*/
+ word-break: break-all;
 }
 
 .image {
@@ -468,6 +468,10 @@ body {
 
 // смартфоны
 @media screen and (max-width:420px) {
+
+.item {
+  font-size:12px;
+}
 
  #setCoordsBtn {
   position: absolute;

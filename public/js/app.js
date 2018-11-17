@@ -35801,17 +35801,13 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass: "item",
-      staticStyle: { "word-wrap": "break-word" },
-      on: { click: _vm.details }
-    },
+    { staticClass: "item", on: { click: _vm.details } },
     [
       _c("b-img", {
         staticStyle: { display: "inline-block" },
         attrs: {
           src: "https://picsum.photos/300/150/?image=41",
-          width: "120",
+          width: "120%",
           height: "120"
         }
       }),
@@ -35820,7 +35816,7 @@ var render = function() {
         "div",
         {
           staticStyle: {
-            width: "74%",
+            width: "55%",
             position: "relative",
             top: "-115px",
             left: "125px",
