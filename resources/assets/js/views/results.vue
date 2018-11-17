@@ -1,5 +1,6 @@
 <template>
 	<b-container fluid class="mycontainer">
+		<div class="close_button shadow_text" title="Закрыть страницу" @click="closeAndReturn" style="color:white">X</div>
 		<b-row>
 			<b-col cols="12" sm="12" md="10" lg="10" xl="10" class="result_info_col">
 				<h1 class="shadow_text title_text">{{ count  }} {{ count_string }} </h1>
@@ -159,6 +160,9 @@ export default {
 	},
 	components: { item },
   		methods: {
+			closeAndReturn() {
+ 			  window.history.back();
+  			},
   			update() {
   				this.count = Object.keys(this.items).length;
 					this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);

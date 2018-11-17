@@ -3523,6 +3523,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 // ------------------------------
@@ -3577,6 +3578,9 @@ function num2str(n, text_forms) {
 
   components: { item: __WEBPACK_IMPORTED_MODULE_0__components_item___default.a },
   methods: {
+    closeAndReturn: function closeAndReturn() {
+      window.history.back();
+    },
     update: function update() {
       this.count = Object.keys(this.items).length;
       this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
@@ -12624,7 +12628,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -36280,6 +36284,17 @@ var render = function() {
     "b-container",
     { staticClass: "mycontainer", attrs: { fluid: "" } },
     [
+      _c(
+        "div",
+        {
+          staticClass: "close_button shadow_text",
+          staticStyle: { color: "white" },
+          attrs: { title: "Закрыть страницу" },
+          on: { click: _vm.closeAndReturn }
+        },
+        [_vm._v("X")]
+      ),
+      _vm._v(" "),
       _c(
         "b-row",
         [
