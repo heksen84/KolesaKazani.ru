@@ -3522,8 +3522,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 // ------------------------------
@@ -12628,7 +12626,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -36285,17 +36283,6 @@ var render = function() {
     { staticClass: "mycontainer", attrs: { fluid: "" } },
     [
       _c(
-        "div",
-        {
-          staticClass: "close_button shadow_text",
-          staticStyle: { color: "white" },
-          attrs: { title: "Закрыть страницу" },
-          on: { click: _vm.closeAndReturn }
-        },
-        [_vm._v("X")]
-      ),
-      _vm._v(" "),
-      _c(
         "b-row",
         [
           _c(
@@ -36305,6 +36292,17 @@ var render = function() {
               attrs: { cols: "12", sm: "12", md: "10", lg: "10", xl: "10" }
             },
             [
+              _c(
+                "div",
+                {
+                  staticClass: "close_button shadow_text",
+                  staticStyle: { color: "white" },
+                  attrs: { title: "Закрыть страницу" },
+                  on: { click: _vm.closeAndReturn }
+                },
+                [_vm._v("X")]
+              ),
+              _vm._v(" "),
               _c("h1", { staticClass: "shadow_text title_text" }, [
                 _vm._v(_vm._s(_vm.count) + " " + _vm._s(_vm.count_string) + " ")
               ])

@@ -279,7 +279,8 @@ body {
 }
 
 .close_button:hover {
-  font-weight: bold;
+  /*font-weight: bold;*/
+  text-decoration: underline;
 }
 
 .custom-file-input:lang(en)~.custom-file-label::after {
