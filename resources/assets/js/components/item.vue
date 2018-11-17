@@ -2,10 +2,10 @@
 
   <div class="item" @click="details" style="word-wrap: break-word">
     <b-img src="https://picsum.photos/300/150/?image=41" width="120" height="120" style="display:inline-block"/>
-    <div style="width:74%;position:relative;top:-115px;left:125px">
+    <div style="width:74%;position:relative;top:-115px;left:125px;height:100px;overflow:hidden">
       <span style="font-weight:bold">12322222234324234234234232222222222222222222222222222222222222222222eeeeeeeeeeeeeeeeeeeeeeeee</span>
       <div>{{ text }}</div>
-      <div>Цена: {{ price }}</div>
+      <div>Цена: <b>{{ price }}</b></div>
     </div>
   </div>
     

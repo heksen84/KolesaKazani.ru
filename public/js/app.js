@@ -35823,7 +35823,9 @@ var render = function() {
             width: "74%",
             position: "relative",
             top: "-115px",
-            left: "125px"
+            left: "125px",
+            height: "100px",
+            overflow: "hidden"
           }
         },
         [
@@ -35835,7 +35837,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", [_vm._v(_vm._s(_vm.text))]),
           _vm._v(" "),
-          _c("div", [_vm._v("Цена: " + _vm._s(_vm.price))])
+          _c("div", [_vm._v("Цена: "), _c("b", [_vm._v(_vm._s(_vm.price))])])
         ]
       )
     ],
