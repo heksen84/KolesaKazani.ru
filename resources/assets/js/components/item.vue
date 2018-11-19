@@ -5,7 +5,8 @@
     <div style="width:55%;position:relative;top:-115px;left:125px;height:100px;overflow:hidden">
       <span style="font-weight:bold">12322222234324234234234232222222222222222222222222222222222222222222eeeeeeeeeeeeeeeeeeeeeeeee</span>
       <div>{{ text }}</div>
-      <div>Цена: <b>{{ price }}</b></div>
+      <!--<div>Цена: <b>{{ price }}</b></div>-->
+      <b-button size="sm">Подробнее</b-button>
     </div>
   </div>
     
