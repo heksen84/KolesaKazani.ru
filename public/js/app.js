@@ -35823,7 +35823,6 @@ var render = function() {
             position: "relative",
             top: "-115px",
             left: "125px",
-            height: "100px",
             overflow: "hidden"
           }
         },
@@ -35836,7 +35835,11 @@ var render = function() {
           _vm._v(" "),
           _c("div", [_vm._v(_vm._s(_vm.text))]),
           _vm._v(" "),
-          _c("b-button", { attrs: { size: "sm" } }, [_vm._v("Подробнее")])
+          _c(
+            "b-button",
+            { attrs: { size: "sm", variant: "outline-success" } },
+            [_vm._v("Подробнее")]
+          )
         ],
         1
       )
