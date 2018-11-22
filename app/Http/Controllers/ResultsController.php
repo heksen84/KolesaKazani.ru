@@ -20,13 +20,21 @@ class ResultsController extends Controller {
     // ---------------------------------------------------
     public function getResultsByCategory(Request $request) {
 
+		// ---------------------------------------------------------------------------
+		// 1. Нужно определить категорию объявления
+		// 2. Вернуть название категории например: Audi 100, 1999г. 1000000 тенге.
+		// ---------------------------------------------------------------------------
+
     	// получаю имя на русском
-    	$record = Categories::select('id', 'name')->where('url',  $request->path() )->first();
+		$record = Categories::select('id', 'name')->where('url',  $request->path() )->first();
+		
 		// получаю объявления
 		$items = Adverts::where('category_id',  $record->id )->get();
+
 		// получаю картинки
 		//$images = Images::where('advert_id',  $record->id )->get();
 		$images = Images::all();
+		
 		// передаю во вьюху
      	return view('results')->with("title", $record->name." в Казахстане")->with("items", $items)->with("images", $images);
     }
