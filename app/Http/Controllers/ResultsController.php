@@ -31,15 +31,13 @@ class ResultsController extends Controller {
 		// получаю объявления
 		$items = Adverts::where('category_id',  $category->id )->get();
 
-
-		/*		
-		switch($category->id)  //
-		{			
-			case 0: Выдернуть данные из таблицы 1
-			case 1: Выдернуть данные из таблицы 2
-			case 2: Выдернуть данные из таблицы 3
+		// Выдергиваю данные по конкретной категории
+		switch($category->id) {			
+			case 0: {
+				$transport = Transport::all();
+				break;
+			}
 		}
-		*/
 
 		// получаю картинки
 		//$images = Images::where('advert_id',  $record->id )->get();
@@ -73,8 +71,8 @@ class ResultsController extends Controller {
     public function getResultsByPlace($_region, $place, $_category) {
 
     	// получаю имена на русском
-    	$region    = Regions::select('name')->where('url',  $_region )->first();
-    	$category  = Categories::select('id', 'name')->where('url',  $_category )->first();
+    	$region = Regions::select('name')->where('url',  $_region )->first();
+    	$category = Categories::select('id', 'name')->where('url',  $_category )->first();
     	
     	// получаю объявления
     	$items = Adverts::where('category_id',  $region->id)->get();
