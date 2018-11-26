@@ -36,7 +36,7 @@ class ResultsController extends Controller {
 			
 			// транспорт
 			case 0: {
-				$transport = Transport::select('type', 'mark', 'year')->where('advert_category_id',  'id-шник подкатегории' )->first();
+				$transport = Transport::select('type', 'mark', 'year')->where('id',  'advert_category_id' )->first();
 				break;
 			}
 		}
