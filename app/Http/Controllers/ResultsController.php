@@ -26,20 +26,18 @@ class ResultsController extends Controller {
 		// ---------------------------------------------------------------------------
 
     	// получаю имя на русском
-		$record = Categories::select('id', 'name')->where('url',  $request->path() )->first();
+		$category = Categories::select('id', 'name')->where('url',  $request->path() )->first();
 
 		// получаю объявления
-		$items = Adverts::where('category_id',  $record->id )->get();
+		$items = Adverts::where('category_id',  $category->id )->get();
 
 
 		/*		
-		switch(category_id)  //
-		{
-			
+		switch($category->id)  //
+		{			
 			case 0: Выдернуть данные из таблицы 1
 			case 1: Выдернуть данные из таблицы 2
 			case 2: Выдернуть данные из таблицы 3
-
 		}
 		*/
 
@@ -48,7 +46,7 @@ class ResultsController extends Controller {
 		$images = Images::all();
 		
 		// передаю во вьюху
-     	return view('results')->with("title", $record->name." в Казахстане")->with("items", $items)->with("images", $images);
+     	return view('results')->with("title", $category->name." в Казахстане")->with("items", $items)->with("images", $images);
     }
 
     // ---------------------------------------------------
