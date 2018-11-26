@@ -34,7 +34,7 @@ class ResultsController extends Controller {
 		// Выдергиваю данные по конкретной категории
 		switch($category->id) {			
 			case 0: {
-				$transport = Transport::all();
+				$transport = Transport::select('id', 'type', 'mark', 'year')->where('id',  'id-шник подкатегории' )->first();
 				break;
 			}
 		}
