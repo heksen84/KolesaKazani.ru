@@ -29,12 +29,14 @@ class ResultsController extends Controller {
 		$category = Categories::select('id', 'name')->where('url',  $request->path() )->first();
 
 		// получаю объявления
-		$items = Adverts::where('category_id',  $category->id )->get();
+		$advert = Adverts::where('category_id',  $category->id )->get();
 
 		// Выдергиваю данные по конкретной категории
-		switch($category->id) {			
+		switch($category->id) {
+			
+			// транспорт
 			case 0: {
-				$transport = Transport::select('id', 'type', 'mark', 'year')->where('id',  'id-шник подкатегории' )->first();
+				$transport = Transport::select('type', 'mark', 'year')->where('advert_category_id',  'id-шник подкатегории' )->first();
 				break;
 			}
 		}
@@ -44,7 +46,7 @@ class ResultsController extends Controller {
 		$images = Images::all();
 		
 		// передаю во вьюху
-     	return view('results')->with("title", $category->name." в Казахстане")->with("items", $items)->with("images", $images);
+     	return view('results')->with("title", $category->name." в Казахстане")->with("items", $advert)->with("images", $images);
     }
 
     // ---------------------------------------------------
