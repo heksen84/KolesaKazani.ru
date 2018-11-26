@@ -20,6 +20,8 @@ class ResultsController extends Controller {
     // ---------------------------------------------------
     public function getResultsByCategory(Request $request) {
 
+		\Debugbar::info("Выборка!");
+
 		// ---------------------------------------------------------------------------
 		// 1. Нужно определить категорию объявления
 		// 2. Вернуть название категории например: Audi 100, 1999г. 1000000 тенге.
@@ -36,7 +38,8 @@ class ResultsController extends Controller {
 			
 			// транспорт
 			case 0: {
-				$transport = Transport::select('type', 'mark', 'year')->where('id',  'advert_category_id' )->first();
+				$transport = Transport::select('type', 'mark', 'year')->where('id',  $advert->advert_category_id )->first();
+				\Debugbar::info($transport);
 				break;
 			}
 		}
