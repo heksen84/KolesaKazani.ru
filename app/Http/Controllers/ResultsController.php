@@ -27,9 +27,21 @@ class ResultsController extends Controller {
 
     	// получаю имя на русском
 		$record = Categories::select('id', 'name')->where('url',  $request->path() )->first();
-		
+
 		// получаю объявления
 		$items = Adverts::where('category_id',  $record->id )->get();
+
+
+		/*		
+		switch(category_id)  //
+		{
+			
+			case 0: Выдернуть данные из таблицы 1
+			case 1: Выдернуть данные из таблицы 2
+			case 2: Выдернуть данные из таблицы 3
+
+		}
+		*/
 
 		// получаю картинки
 		//$images = Images::where('advert_id',  $record->id )->get();
