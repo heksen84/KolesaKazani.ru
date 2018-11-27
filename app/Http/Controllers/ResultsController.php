@@ -42,7 +42,8 @@ class ResultsController extends Controller {
 		switch($category->id) {
 			
 			// транспорт
-			case 1: {
+			case 1: {				
+				// Выдернуть данные из массива $advert
 				$transport = Transport::select('type', 'mark', 'year')->where('id',  $advert[0]->adv_category_id )->first();
 				\Debugbar::info("transport :".$transport);
 				break;
