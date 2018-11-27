@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+use App\Transport;
 use App\Adverts;
 use App\Categories;
 use App\Regions;
@@ -30,16 +31,21 @@ class ResultsController extends Controller {
     	// получаю имя на русском
 		$category = Categories::select('id', 'name')->where('url',  $request->path() )->first();
 
+		\Debugbar::info("category_id :".$category->id);
+
 		// получаю объявления
 		$advert = Adverts::where('category_id',  $category->id )->get();
+
+		\Debugbar::info($advert[0]->adv_category_id);
+		//\Debugbar::info($advert->adv_category_id);
 
 		// Выдергиваю данные по конкретной категории
 		switch($category->id) {
 			
 			// транспорт
-			case 0: {
-				$transport = Transport::select('type', 'mark', 'year')->where('id',  $advert->advert_category_id )->first();
-				\Debugbar::info($transport);
+			case 1: {
+//$transport = Transport::select('type', 'mark', 'year')->where('id',  $advert->adv_category_id )->first();
+//				\Debugbar::info($transport);
 				break;
 			}
 		}
@@ -59,7 +65,7 @@ class ResultsController extends Controller {
 
     	// получаю имена на русском
     	$region = Regions::select('name')->where('url',  $_region )->first();
-    	$category = Categories::select('id', 'name')->where('url',  $_category )->first();
+    	//$category = Categories::select('id', 'name')->where('url',  $_category )->first();
     	// получаю объявления
     	$items = Adverts::where('category_id',  0)->get();
 		//$images = Images::where('advert_id',  $record->id )->get();
