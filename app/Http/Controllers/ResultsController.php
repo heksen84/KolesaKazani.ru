@@ -37,15 +37,14 @@ class ResultsController extends Controller {
 		$advert = Adverts::where('category_id',  $category->id )->get();
 
 		\Debugbar::info($advert[0]->adv_category_id);
-		//\Debugbar::info($advert->adv_category_id);
 
 		// Выдергиваю данные по конкретной категории
 		switch($category->id) {
 			
 			// транспорт
 			case 1: {
-//$transport = Transport::select('type', 'mark', 'year')->where('id',  $advert->adv_category_id )->first();
-//				\Debugbar::info($transport);
+				$transport = Transport::select('type', 'mark', 'year')->where('id',  $advert[0]->adv_category_id )->first();
+				\Debugbar::info($transport);
 				break;
 			}
 		}
