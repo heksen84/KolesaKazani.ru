@@ -44,7 +44,7 @@ class ResultsController extends Controller {
 			// транспорт
 			case 1: {
 				$transport = Transport::select('type', 'mark', 'year')->where('id',  $advert[0]->adv_category_id )->first();
-				\Debugbar::info($transport);
+				\Debugbar::info("transport :".$transport);
 				break;
 			}
 		}
