@@ -37,14 +37,16 @@ class ResultsController extends Controller {
 		// получаю объявления
 		$adverts = Adverts::where('category_id',  $category->id )->get();
 
-		\Debugbar::info($adverts[0]->adv_category_id);
+		\Debugbar::info("аррайчик :".$adverts[0]->adv_category_id);
+
+
 
 		// Выдергиваю данные по конкретной категории
 		switch($category->id) {
 			
 			// транспорт
 			case 1: {
-				
+
 				// Т.к. объявлений много выдернуть данные из массива $advert (IN или загнать в цикл)
 				$transport = Transport::select('type', 'mark', 'year')->where('id',  $adverts[0]->adv_category_id )->first();
 				\Debugbar::info("transport :".$transport);
@@ -53,7 +55,8 @@ class ResultsController extends Controller {
 				->join('car_type', 'type', '=', 'id_car_type')
 				->join('car_mark', 'mark', '=', 'id_car_mark')
 				->select('car_type.name', 'car_mark.name', 'car_mark.name_rus')
-				->where('id', $adverts[0]->adv_category_id)
+				//->where('id', $adverts[0]->adv_category_id)
+				//->whereIn('id', [1, 2, 3])
 				->get();
 
 				\Debugbar::info("Вот оно :".$craz);
