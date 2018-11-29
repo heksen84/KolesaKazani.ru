@@ -57,6 +57,11 @@ class ResultsController extends Controller {
 
 				\Debugbar::info("Вот оно :".$craz);
 
+				/*
+				-----------------------------------
+				
+				-----------------------------------*/
+
 				break;
 			}
 		}
