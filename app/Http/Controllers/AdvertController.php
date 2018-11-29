@@ -99,7 +99,7 @@ class AdvertController extends Controller {
 
                     $transport = new Transport();
                     $transport->type = 0;
-                    $transport->mark = 0;
+                    $transport->mark = $data["mark_id"];
                     $transport->year = 1999;
                     $transport->steering_position = 0;
                     $transport->mileage = 0;

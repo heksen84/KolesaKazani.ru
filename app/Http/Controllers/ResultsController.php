@@ -22,7 +22,7 @@ class ResultsController extends Controller {
     // ---------------------------------------------------
     public function getResultsByCategory(Request $request) {
 
-		\Debugbar::info("Выборка!");
+		\Debugbar::info($request);
 
 		// ---------------------------------------------------------------------------
 		// 1. Нужно определить категорию объявления
@@ -39,6 +39,8 @@ class ResultsController extends Controller {
 		$items 	 = Adverts::where('category_id',  $category->id )->get();
 
 		\Debugbar::info($items);
+
+		$craz = null;
 
 		// --------------------------------------------------------
 		// Выдергиваю данные по конкретной категории
