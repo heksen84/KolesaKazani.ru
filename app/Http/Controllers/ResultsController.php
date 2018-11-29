@@ -55,11 +55,15 @@ class ResultsController extends Controller {
 				->whereIn('id', $sub_ids)
 				->get();
 
-				\Debugbar::info("Вот оно :".$craz);
+				\Debugbar::info("Вот оно что:".$craz);
 
 				/*
 				-----------------------------------
-				
+				На выходе:
+				-----------------------
+				Ауди 100, 1999г
+				Павлодар
+				Цена
 				-----------------------------------*/
 
 				break;
