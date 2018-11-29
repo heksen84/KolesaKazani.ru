@@ -64,6 +64,8 @@ class ResultsController extends Controller {
 я				 Ауди 100, 1999г
 				 Павлодар
 				 Цена
+
+				 SELECT * FROM adverts INNER JOIN adv_transport ON adverts_sub_id = transport_id INNER JOIN car_type ... INNER JOIN car_mark
 				-----------------------------------*/
 
 				break;
