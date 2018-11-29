@@ -34,9 +34,9 @@ class ResultsController extends Controller {
 		\Debugbar::info("category_id :".$category->id);
 
 		// получаю объявления
-		$advert = Adverts::where('category_id',  $category->id )->get();
+		$adverts = Adverts::where('category_id',  $category->id )->get();
 
-		\Debugbar::info($advert[0]->adv_category_id);
+		\Debugbar::info($adverts[0]->adv_category_id);
 
 		// Выдергиваю данные по конкретной категории
 		switch($category->id) {
@@ -44,7 +44,7 @@ class ResultsController extends Controller {
 			// транспорт
 			case 1: {				
 				// Т.к. объявлений много выдернуть данные из массива $advert (IN или загнать в цикл)
-				$transport = Transport::select('type', 'mark', 'year')->where('id',  $advert[0]->adv_category_id )->first();
+				$transport = Transport::select('type', 'mark', 'year')->where('id',  $adverts[0]->adv_category_id )->first();
 				\Debugbar::info("transport :".$transport);
 				break;
 			}
@@ -53,9 +53,14 @@ class ResultsController extends Controller {
 		// получаю картинки
 		//$images = Images::where('advert_id',  $record->id )->get();
 		$images = Images::all();
+
+		/*
+		----------------------------------------------------
+		Должны вернуться итемы с их развёрнутой информацией
+		----------------------------------------------------*/
 		
 		// передаю во вьюху
-     	return view('results')->with("title", $category->name." в Казахстане")->with("items", $advert)->with("images", $images);
+     	return view('results')->with("title", $category->name." в Казахстане")->with("items", $adverts)->with("images", $images);
     }
 
     // ---------------------------------------------------
