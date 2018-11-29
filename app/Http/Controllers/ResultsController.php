@@ -35,11 +35,9 @@ class ResultsController extends Controller {
 		\Debugbar::info("category_id :".$category->id);
 
 		// получаю объявления
-		$adverts = Adverts::where('category_id',  $category->id )->get();
+		$adverts = Adverts::select("adv_category_id")->where('category_id',  $category->id )->get();
 
-		\Debugbar::info("аррайчик :".$adverts[0]->adv_category_id);
-
-
+		\Debugbar::info("аррайчик :".$adverts);
 
 		// Выдергиваю данные по конкретной категории
 		switch($category->id) {
@@ -47,16 +45,11 @@ class ResultsController extends Controller {
 			// транспорт
 			case 1: {
 
-				// Т.к. объявлений много выдернуть данные из массива $advert (IN или загнать в цикл)
-				$transport = Transport::select('type', 'mark', 'year')->where('id',  $adverts[0]->adv_category_id )->first();
-				\Debugbar::info("transport :".$transport);
-
 				$craz = DB::table('adv_transport')
 				->join('car_type', 'type', '=', 'id_car_type')
 				->join('car_mark', 'mark', '=', 'id_car_mark')
 				->select('car_type.name', 'car_mark.name', 'car_mark.name_rus')
-				//->where('id', $adverts[0]->adv_category_id)
-				//->whereIn('id', [1, 2, 3])
+				->whereIn('id', $adverts)
 				->get();
 
 				\Debugbar::info("Вот оно :".$craz);
@@ -66,31 +59,7 @@ class ResultsController extends Controller {
 		}
 
 		// получаю картинки
-		//$images = Images::where('advert_id',  $record->id )->get();
 		$images = Images::all();
-
-		
-
-		/*
-		--------------------------------------------------------------------
-
-		Должны вернуться итемы (adverts) с их развёрнутой информацией
-		Нужно ДЖОЙНИТЬ!
-
-		$craz = DB::table('adverts')
-				->join('car_type', 'adv_transport.type', '=', 'car_type.id_car_type')
-				->join('car_mark', 'adv_transport.mark', '=', 'car_mark.id_car_mark')
-				->select('adverts.*', 'car_type.name', 'car_mark.name', 'car_mark.name_rus')
-				->get();
-				
-
-		$users = DB::table('users')
-	            ->join('contacts', 'users.id', '=', 'contacts.user_id')
-        	    ->join('orders', 'users.id', '=', 'orders.user_id')
-	            ->select('users.*', 'contacts.phone', 'orders.price')
-        	    ->get();
-
-		--------------------------------------------------------------------*/
 		
 		// передаю во вьюху
      	return view('results')->with("title", $category->name." в Казахстане")->with("items", $adverts)->with("images", $images)->with("craz", $craz);
