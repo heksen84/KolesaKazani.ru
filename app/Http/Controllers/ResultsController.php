@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Transport;
 use App\Adverts;
@@ -42,10 +43,21 @@ class ResultsController extends Controller {
 		switch($category->id) {
 			
 			// транспорт
-			case 1: {				
+			case 1: {
+				
 				// Т.к. объявлений много выдернуть данные из массива $advert (IN или загнать в цикл)
 				$transport = Transport::select('type', 'mark', 'year')->where('id',  $adverts[0]->adv_category_id )->first();
 				\Debugbar::info("transport :".$transport);
+
+				$craz = DB::table('adv_transport')
+				->join('car_type', 'type', '=', 'id_car_type')
+				->join('car_mark', 'mark', '=', 'id_car_mark')
+				->select('car_type.name', 'car_mark.name', 'car_mark.name_rus')
+				->where('id', $adverts[0]->adv_category_id)
+				->get();
+
+				\Debugbar::info("Вот оно :".$craz);
+
 				break;
 			}
 		}
@@ -54,15 +66,18 @@ class ResultsController extends Controller {
 		//$images = Images::where('advert_id',  $record->id )->get();
 		$images = Images::all();
 
+		
+
 		/*
 		--------------------------------------------------------------------
 
 		Должны вернуться итемы (adverts) с их развёрнутой информацией
 		Нужно ДЖОЙНИТЬ!
 
-		$users = DB::table('adverts')
+		$craz = DB::table('adverts')
 				->join('car_type', 'adv_transport.type', '=', 'car_type.id_car_type')
 				->join('car_mark', 'adv_transport.mark', '=', 'car_mark.id_car_mark')
+				->select('adverts.*', 'car_type.name', 'car_mark.name', 'car_mark.name_rus')
 				->get();
 				
 
@@ -75,7 +90,7 @@ class ResultsController extends Controller {
 		--------------------------------------------------------------------*/
 		
 		// передаю во вьюху
-     	return view('results')->with("title", $category->name." в Казахстане")->with("items", $adverts)->with("images", $images);
+     	return view('results')->with("title", $category->name." в Казахстане")->with("items", $adverts)->with("images", $images)->with("craz", $craz);
     }
 
     // ---------------------------------------------------
