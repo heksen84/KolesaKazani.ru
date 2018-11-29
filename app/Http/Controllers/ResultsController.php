@@ -60,6 +60,12 @@ class ResultsController extends Controller {
 		Должны вернуться итемы (adverts) с их развёрнутой информацией
 		Нужно ДЖОЙНИТЬ!
 
+		$users = DB::table('adverts')
+				->join('car_type', 'adv_transport.type', '=', 'car_type.id_car_type')
+				->join('car_mark', 'adv_transport.mark', '=', 'car_mark.id_car_mark')
+				->get();
+				
+
 		$users = DB::table('users')
 	            ->join('contacts', 'users.id', '=', 'contacts.user_id')
         	    ->join('orders', 'users.id', '=', 'orders.user_id')
