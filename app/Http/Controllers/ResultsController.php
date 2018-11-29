@@ -35,11 +35,14 @@ class ResultsController extends Controller {
 		\Debugbar::info("category_id :".$category->id);
 
 		// получаю объявления
-		$adverts = Adverts::select("adv_category_id")->where('category_id',  $category->id )->get();
+		$sub_ids = Adverts::select("adv_category_id")->where('category_id',  $category->id )->pluck("adv_category_id")->all();
+		$items 	 = Adverts::where('category_id',  $category->id )->get();
 
-		\Debugbar::info("аррайчик :".$adverts);
+		\Debugbar::info($items);
 
+		// --------------------------------------------------------
 		// Выдергиваю данные по конкретной категории
+		// --------------------------------------------------------
 		switch($category->id) {
 			
 			// транспорт
@@ -49,7 +52,7 @@ class ResultsController extends Controller {
 				->join('car_type', 'type', '=', 'id_car_type')
 				->join('car_mark', 'mark', '=', 'id_car_mark')
 				->select('car_type.name', 'car_mark.name', 'car_mark.name_rus')
-				->whereIn('id', $adverts)
+				->whereIn('id', $sub_ids)
 				->get();
 
 				\Debugbar::info("Вот оно :".$craz);
@@ -62,7 +65,7 @@ class ResultsController extends Controller {
 		$images = Images::all();
 		
 		// передаю во вьюху
-     	return view('results')->with("title", $category->name." в Казахстане")->with("items", $adverts)->with("images", $images)->with("craz", $craz);
+     	return view('results')->with("title", $category->name." в Казахстане")->with("items", $items)->with("images", $images)->with("craz", $craz);
     }
 
     // ---------------------------------------------------
