@@ -106,7 +106,7 @@ class AdvertController extends Controller {
                     $transport->steering_position   = $data["rule_position"];      // положение руля
                     $transport->mileage             = $data["mileage"];            // пробег
                     $transport->engine_type         = $data["engine_type"];        // тип движка
-                    $transport->customs = 0;
+                    $transport->customs             = 0;
                     $transport->save();
 
                     // указываем id' шник
