@@ -37,14 +37,14 @@ export default {
         type_transport: 
         [
           { value: null, text: '-- Выберите вид транспорта --' },
-          { value: 1, text: 'Легковой автомобиль' },
-          { value: 2, text: 'Грузовой автомобиль' },
-          { value: 3, text: 'Мототехника' },
-          { value: 4, text: 'Спецтехника' },
-          { value: 5, text: 'Ретро-автомобиль' },
-          { value: 6, text: 'Водный транспорт' },
-          { value: 7, text: 'Велосипед' },
-          { value: 8, text: 'Воздушный транспорт' }
+          { value: 0, text: 'Легковой автомобиль' },
+          { value: 1, text: 'Грузовой автомобиль' },
+          { value: 2, text: 'Мототехника' },
+          { value: 3, text: 'Спецтехника' },
+          { value: 4, text: 'Ретро-автомобиль' },
+          { value: 5, text: 'Водный транспорт' },
+          { value: 6, text: 'Велосипед' },
+          { value: 7, text: 'Воздушный транспорт' }
         ],
 
         // марки автомобилей
@@ -82,19 +82,20 @@ export default {
       else
         this.$store.commit("hideOtherFields");
 
-      this.transport_chars.transport_id = transport_id;
+      this.transport_chars.transport_type = transport_id;
 
       switch(transport_id) {
+
         case 1: { 
           // автомобили
           this.carmark=[];
-
           get('/getCarsMarks').then((res) => {
             this.carmark = res.data;
             console.log(this.this.carmark);
           }).catch((err) => {});
           break;
        }
+
       }
     },
 
