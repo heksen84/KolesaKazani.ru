@@ -1707,6 +1707,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
    },
    created: function created() {
       this.transport_chars = this.$root.advert_data;
+
+      // значения по умолчанию
+      this.transport_chars.rule_position = 0;
+      this.transport_chars.fuel_type = 0;
+      this.transport_chars.customs = 0;
+      this.transport_chars.release_date = 0;
+      this.transport_chars.mileage = 0;
    },
 
 
