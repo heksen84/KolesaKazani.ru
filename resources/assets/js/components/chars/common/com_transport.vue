@@ -53,8 +53,8 @@ export default {
       mileage: null,
 
       helm_position: [
-        { value: 0, text: 'Справа' },
-        { value: 1, text: 'Слева' }
+        { value: 0, text: 'Слева' },
+        { value: 1, text: 'Справа' }
       ],
         
       fuel_type: 

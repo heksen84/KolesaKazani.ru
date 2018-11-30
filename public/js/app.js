@@ -1700,7 +1700,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          release_date: null,
          mileage: null,
 
-         helm_position: [{ value: 0, text: 'Справа' }, { value: 1, text: 'Слева' }],
+         helm_position: [{ value: 0, text: 'Слева' }, { value: 1, text: 'Справа' }],
 
          fuel_type: [{ value: 0, text: 'Бензин' }, { value: 1, text: 'Дизель' }, { value: 2, text: 'Газ-бензин' }, { value: 3, text: 'Газ' }, { value: 4, text: 'Гибрид' }, { value: 5, text: 'Электричество' }]
       };
