@@ -94,7 +94,9 @@ class AdvertController extends Controller {
 
             switch($category) {
 
+                // --------------------------------
                 // транспорт
+                // --------------------------------
                 case 1: {
 
                     $transport = new Transport();
