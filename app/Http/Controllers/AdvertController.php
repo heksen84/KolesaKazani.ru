@@ -94,6 +94,9 @@ class AdvertController extends Controller {
 
             switch($category) {
 
+
+                // FIXME: Обозвать переменные одинаковыми именами steering_position, engine_type и т.д.
+
                 // --------------------------------
                 // транспорт
                 // --------------------------------
@@ -105,7 +108,7 @@ class AdvertController extends Controller {
                     $transport->year                = $data["release_date"];       // год выпуска
                     $transport->steering_position   = $data["rule_position"];      // положение руля
                     $transport->mileage             = $data["mileage"];            // пробег
-                    $transport->engine_type         = $data["engine_type"];        // тип движка
+                    $transport->engine_type         = $data["fuel_type"];        // тип движка
                     $transport->customs             = 0;
                     $transport->save();
 
