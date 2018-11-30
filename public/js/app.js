@@ -35379,10 +35379,12 @@ var render = function() {
                 _vm._v("-- Выберите положение руля --")
               ]),
               _vm._v(" "),
-              _vm._l(_vm.helm_position, function(item) {
-                return _c("option", { domProps: { value: item.value } }, [
-                  _vm._v(_vm._s(item.text))
-                ])
+              _vm._l(_vm.helm_position, function(item, index) {
+                return _c(
+                  "option",
+                  { key: index, domProps: { value: item.value } },
+                  [_vm._v(_vm._s(item.text))]
+                )
               })
             ],
             2
@@ -35433,10 +35435,12 @@ var render = function() {
                 expression: "selected.fuel_type"
               }
             },
-            _vm._l(_vm.fuel_type, function(item) {
-              return _c("option", { domProps: { value: item.value } }, [
-                _vm._v(_vm._s(item.text))
-              ])
+            _vm._l(_vm.fuel_type, function(item, index) {
+              return _c(
+                "option",
+                { key: index, domProps: { value: item.value } },
+                [_vm._v(_vm._s(item.text))]
+              )
             })
           )
         ],

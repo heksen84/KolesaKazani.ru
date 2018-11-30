@@ -9,7 +9,7 @@
     <b-form-group label="Положение руля:">
         <b-form-select v-model="selected.helm_position" class="mb-2 mr-sm-2 mb-sm-2" @change="SetHelmPosition">
            <option :value="null">-- Выберите положение руля --</option>
-           <option v-for="item in helm_position" :value="item.value">{{item.text}}</option>
+           <option v-for="(item, index) in helm_position" :value="item.value" :key="index">{{item.text}}</option>
         </b-form-select>
     </b-form-group>
 
@@ -21,7 +21,7 @@
 
      <b-form-group label="Тип двигателя:">
         <b-form-select v-model="selected.fuel_type" class="mb-2 mr-sm-2 mb-sm-2" @change="SetFuelType">
-           <option v-for="item in fuel_type" :value="item.value">{{item.text}}</option>
+           <option v-for="(item, index) in fuel_type" :value="item.value" :key="index">{{item.text}}</option>
         </b-form-select>
     </b-form-group>
 
