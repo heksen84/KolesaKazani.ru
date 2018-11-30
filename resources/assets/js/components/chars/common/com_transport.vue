@@ -70,7 +70,8 @@ export default {
 	},
   
   created() {
-     this.transport_chars = this.$root.advert_data;     
+
+     //this.transport_chars = this.$root.advert_data;     
      
      // значения по умолчанию
      this.transport_chars.rule_position = 0;
@@ -84,8 +85,8 @@ export default {
   methods: {
 
      // положение руля
-     SetHelmPosition(positon_id) {
-        this.transport_chars.rule_position = positon_id;
+     SetHelmPosition(position_id) {
+        this.transport_chars.rule_position = position_id;
      },
 
      // тип топлива

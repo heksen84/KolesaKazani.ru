@@ -1706,7 +1706,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       };
    },
    created: function created() {
-      this.transport_chars = this.$root.advert_data;
+
+      //this.transport_chars = this.$root.advert_data;     
 
       // значения по умолчанию
       this.transport_chars.rule_position = 0;
@@ -1721,8 +1722,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
    methods: {
 
       // положение руля
-      SetHelmPosition: function SetHelmPosition(positon_id) {
-         this.transport_chars.rule_position = positon_id;
+      SetHelmPosition: function SetHelmPosition(position_id) {
+         this.transport_chars.rule_position = position_id;
       },
 
 
