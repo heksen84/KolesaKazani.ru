@@ -114,7 +114,9 @@ class AdvertController extends Controller {
                     break;
                 }
 
+                // --------------------------------
                 // недвижимость
+                // --------------------------------
                 case 2: {
                     
                     $realestate = new RealEstate();
