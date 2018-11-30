@@ -71,7 +71,7 @@ export default {
   
   created() {
 
-     //this.transport_chars = this.$root.advert_data;     
+     this.transport_chars = this.$root.advert_data; // получаю ссылку на массив данных объявления
      
      // значения по умолчанию
      this.transport_chars.rule_position = 0;
