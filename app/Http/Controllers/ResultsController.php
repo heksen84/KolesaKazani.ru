@@ -50,6 +50,11 @@ class ResultsController extends Controller {
 			// транспорт
 			case 1: {
 
+				/*
+				SELECT DISTINCT text,price,car_mark.name FROM `adverts` JOIN 
+				(adv_transport, car_mark, car_model) ON (car_mark.id_car_mark=adv_transport.mark)
+				*/
+
 				$craz = DB::table('adv_transport')
 				->join('car_type', 'type', '=', 'id_car_type')
 				->join('car_mark', 'mark', '=', 'id_car_mark')
