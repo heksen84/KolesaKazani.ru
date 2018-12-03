@@ -81,6 +81,9 @@
 			VIP
 		</b-col>	
 	</b-row>
+
+
+	<div v-for="item in results" :key="item">{{ item.mark }} {{ item.model }}</div>
 </div>
 
 </b-container>
@@ -107,7 +110,7 @@ import { get } from "./../helpers/api"
 
 export default {
 
-	props: ["data", "images"],
+	props: ["data", "images", "results"],
 
 	data () {
     return 	{
@@ -155,6 +158,8 @@ export default {
 	},
 	created() {
 		this.update();
+
+		console.log(this.results)
 	},
 	components: { item },
   		methods: {

@@ -54,14 +54,22 @@ class ResultsController extends Controller {
 				SELECT car_mark.name, car_model.name, year, mileage, price, text FROM `adverts` FULL JOIN (adv_transport, car_mark, car_model) ON (adv_transport.mark=car_mark.id_car_mark AND adv_category_id=adv_transport.id AND adv_transport.model = car_model.id_car_model)
 				*/
 
-				$craz = DB::table('adv_transport')
-				->join('car_type', 'type', '=', 'id_car_type')
-				->join('car_mark', 'mark', '=', 'id_car_mark')
-				->select('car_type.name', 'car_mark.name', 'car_mark.name_rus')
-				->whereIn('id', $sub_ids)
-				->get();
+				$results = DB::select(
+					"SELECT car_mark.name as mark, car_model.name as model, year, mileage, price, text FROM `adverts` 
+					FULL JOIN (adv_transport, car_mark, car_model) ON 
+					(adv_transport.mark=car_mark.id_car_mark AND 
+					adv_category_id=adv_transport.id AND 
+					adv_transport.model = car_model.id_car_model)"
+					);
+				
 
-				\Debugbar::info("Вот оно что:".$craz);
+				/*$craz = DB::table('adverts')
+				->join('adv_transport', 'type', '=', 'id_car_type')
+				->join('car_mark', 'mark', '=', 'id_car_mark')
+				->select('car_mark.name', 'car_model.name', 'year', 'mileage', 'price', 'text')
+				->get();*/
+
+				//\Debugbar::info("Вот оно что:".$craz);*/
 
 				/*
 				-----------------------------------
@@ -82,7 +90,7 @@ class ResultsController extends Controller {
 		$images = Images::all();
 		
 		// передаю во вьюху
-     	return view('results')->with("title", $category->name." в Казахстане")->with("items", $items)->with("images", $images)->with("craz", $craz);
+     	return view('results')->with("title", $category->name." в Казахстане")->with("items", $items)->with("images", $images)->with("results", json_encode($results));
     }
 
     // ---------------------------------------------------
