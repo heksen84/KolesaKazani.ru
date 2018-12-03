@@ -50,7 +50,9 @@ class ResultsController extends Controller {
 			// транспорт
 			case 1: {
 
-				//SELECT name, price, text, year, mileage FROM `adverts` FULL JOIN (adv_transport, car_mark) ON (adv_transport.mark=car_mark.id_car_mark AND adv_category_id=adv_transport.id) 
+				/*
+				SELECT car_mark.name, car_model.name, year, mileage, price, text FROM `adverts` FULL JOIN (adv_transport, car_mark, car_model) ON (adv_transport.mark=car_mark.id_car_mark AND adv_category_id=adv_transport.id AND adv_transport.model = car_model.id_car_model)
+				*/
 
 				$craz = DB::table('adv_transport')
 				->join('car_type', 'type', '=', 'id_car_type')
