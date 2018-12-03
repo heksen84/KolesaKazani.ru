@@ -35851,7 +35851,11 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", [_vm._v("Цена: "), _c("b", [_vm._v(_vm._s(_vm.price))])]),
+          _c("div", [
+            _vm._v("Цена: "),
+            _c("b", [_vm._v(_vm._s(_vm.price))]),
+            _vm._v(" тенге")
+          ]),
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),

@@ -4,7 +4,7 @@
     <b-img src="https://picsum.photos/300/150/?image=41" width="120%" height="120" style="display:inline-block"/>
     <div style="width:55%;position:relative;top:-115px;left:125px;overflow:hidden">
       <div style="font-weight:bold">{{ title }} {{ text }} <span style="font-weight:normal">{{ year }}г.</span></div>
-      <div>Цена: <b>{{ price }}</b></div>
+      <div>Цена: <b>{{ price }}</b> тенге</div>
       <br>
       <b-button size="sm" variant="outline-success">Подробнее</b-button>
     </div>
