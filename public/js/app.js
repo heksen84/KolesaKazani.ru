@@ -2057,7 +2057,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ['id', 'photo', 'title', 'text', 'price', "images"],
+  props: ['id', 'photo', 'title', 'text', 'price', "images", "year"],
 
   data: function data() {
     return {};
@@ -35844,7 +35844,16 @@ var render = function() {
           }
         },
         [
-          _c("div", [_vm._v(_vm._s(_vm.title) + " " + _vm._s(_vm.text))]),
+          _c("div", { staticStyle: { "font-weight": "bold" } }, [
+            _vm._v(_vm._s(_vm.title) + " " + _vm._s(_vm.text) + " "),
+            _c("span", { staticStyle: { "font-weight": "normal" } }, [
+              _vm._v(_vm._s(_vm.year) + "г.")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", [_vm._v("Цена: "), _c("b", [_vm._v(_vm._s(_vm.price))])]),
+          _vm._v(" "),
+          _c("br"),
           _vm._v(" "),
           _c(
             "b-button",
@@ -36350,10 +36359,11 @@ var render = function() {
                   return _c("item", {
                     key: index,
                     attrs: {
-                      id: item.id,
+                      id: item.advert_id,
                       title: item.mark,
                       text: item.model,
                       price: item.price,
+                      year: item.year,
                       images: _vm.images
                     }
                   })

@@ -55,7 +55,8 @@ class ResultsController extends Controller {
 				*/
 
 				$results = DB::select(
-					"SELECT car_mark.name as mark, car_model.name as model, year, mileage, price, text FROM `adverts` 
+					"SELECT car_mark.name as mark, car_model.name as model, adv_transport.id, year, advert_id, mileage, price, text 
+					FROM `adverts` 
 					FULL JOIN (adv_transport, car_mark, car_model) ON 
 					(adv_transport.mark=car_mark.id_car_mark AND 
 					adv_category_id=adv_transport.id AND 
