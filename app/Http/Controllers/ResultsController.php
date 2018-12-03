@@ -59,16 +59,16 @@ class ResultsController extends Controller {
 					car_mark.name as mark, 
 					car_model.name as model, 
 					adv_transport.id,
-					advert_id, 
+					adv.id, 
 					year,  
 					mileage, 
-					price, 
+					adv.price, 
 					text 
-					FROM `adverts`
+					FROM `adverts` as adv
 					INNER JOIN (adv_transport, car_mark, car_model) ON 
 					(
 						adv_transport.mark=car_mark.id_car_mark AND 
-						adv_category_id=adv_transport.id AND 
+						adv.adv_category_id=adv_transport.id AND 
 						adv_transport.model = car_model.id_car_model
 					)"
 					);
