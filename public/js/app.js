@@ -36363,7 +36363,7 @@ var render = function() {
                   return _c("item", {
                     key: index,
                     attrs: {
-                      id: item.advert_id,
+                      id: item.id,
                       title: item.mark,
                       text: item.model,
                       price: item.price,

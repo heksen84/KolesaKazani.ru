@@ -33,14 +33,9 @@ class ResultsController extends Controller {
 		$category = Categories::select('id', 'name')->where('url',  $request->path() )->first();
 
 		\Debugbar::info("category_id :".$category->id);
-
-		// получаю объявления
-		$sub_ids = Adverts::select("adv_category_id")->where('category_id',  $category->id )->pluck("adv_category_id")->all();
-		$items 	 = Adverts::where('category_id',  $category->id )->get();
+		$items = Adverts::where('category_id',  $category->id )->get();
 
 		\Debugbar::info($items);
-
-		$craz = null;
 
 		// --------------------------------------------------------
 		// Выдергиваю данные по конкретной категории
@@ -49,10 +44,6 @@ class ResultsController extends Controller {
 			
 			// транспорт
 			case 1: {
-
-				/*
-				SELECT car_mark.name, car_model.name, year, mileage, price, text FROM `adverts` FULL JOIN (adv_transport, car_mark, car_model) ON (adv_transport.mark=car_mark.id_car_mark AND adv_category_id=adv_transport.id AND adv_transport.model = car_model.id_car_model)
-				*/
 
 				$results = DB::select(
 					"SELECT 
@@ -72,26 +63,6 @@ class ResultsController extends Controller {
 						adv_transport.model = car_model.id_car_model
 					)"
 					);
-				
-
-				/*$craz = DB::table('adverts')
-				->join('adv_transport', 'type', '=', 'id_car_type')
-				->join('car_mark', 'mark', '=', 'id_car_mark')
-				->select('car_mark.name', 'car_model.name', 'year', 'mileage', 'price', 'text')
-				->get();*/
-
-				//\Debugbar::info("Вот оно что:".$craz);*/
-
-				/*
-				-----------------------------------
-				 На выходе:
-				-----------------------
-я				 Ауди 100, 1999г
-				 Павлодар
-				 Цена
-
-				 SELECT * FROM adverts INNER JOIN adv_transport ON adverts_sub_id = transport_id INNER JOIN car_type ... INNER JOIN car_mark
-				-----------------------------------*/
 
 				break;
 			}
