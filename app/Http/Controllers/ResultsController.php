@@ -42,7 +42,9 @@ class ResultsController extends Controller {
 		// --------------------------------------------------------
 		switch($category->id) {
 			
+			// ------------------------
 			// транспорт
+			// ------------------------
 			case 1: {
 
 				$results = DB::select(
