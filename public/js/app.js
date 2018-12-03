@@ -35844,13 +35844,7 @@ var render = function() {
           }
         },
         [
-          _c("span", { staticStyle: { "font-weight": "bold" } }, [
-            _vm._v(
-              "12322222234324234234234232222222222222222222222222222222222222222222eeeeeeeeeeeeeeeeeeeeeeeee"
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", [_vm._v(_vm._s(_vm.text))]),
+          _c("div", [_vm._v(_vm._s(_vm.title) + " " + _vm._s(_vm.text))]),
           _vm._v(" "),
           _c(
             "b-button",
@@ -36352,13 +36346,13 @@ var render = function() {
               _c(
                 "b-col",
                 { attrs: { cols: "12", sm: "12", md: "8", lg: "8", xl: "8" } },
-                _vm._l(_vm.items, function(item, index) {
+                _vm._l(_vm.results, function(item, index) {
                   return _c("item", {
                     key: index,
                     attrs: {
                       id: item.id,
-                      title: item.title,
-                      text: item.text,
+                      title: item.mark,
+                      text: item.model,
                       price: item.price,
                       images: _vm.images
                     }
@@ -36373,15 +36367,9 @@ var render = function() {
               )
             ],
             1
-          ),
-          _vm._v(" "),
-          _vm._l(_vm.results, function(item) {
-            return _c("div", { key: item }, [
-              _vm._v(_vm._s(item.mark) + " " + _vm._s(item.model))
-            ])
-          })
+          )
         ],
-        2
+        1
       )
     ],
     1

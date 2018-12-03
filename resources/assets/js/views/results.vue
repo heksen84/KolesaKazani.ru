@@ -74,7 +74,7 @@
 		</b-col>
 
 		<b-col cols="12" sm="12" md="8" lg="8" xl="8">
-			<item v-for="(item,index) in items" :key="index" :id="item.id" :title="item.title" :text="item.text" :price="item.price" :images="images"></item>
+			<item v-for="(item,index) in results" :key="index" :id="item.id" :title="item.mark" :text="item.model" :price="item.price" :images="images"></item>
 		</b-col>
 
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
@@ -83,7 +83,7 @@
 	</b-row>
 
 
-	<div v-for="item in results" :key="item">{{ item.mark }} {{ item.model }}</div>
+	<!--<div v-for="item in results" :key="item">{{ item.mark }} {{ item.model }}</div>-->
 </div>
 
 </b-container>
