@@ -50,12 +50,12 @@ class ResultsController extends Controller {
 				$results = DB::select(
 					"SELECT 
 					car_mark.name as mark, 
-					car_model.name as model, 
-					adv_transport.id,
+					car_model.name as model,
 					adv.id, 
+					adv_transport.id,
+					adv.price,  
 					year,  
-					mileage, 
-					adv.price, 
+					mileage,
 					text 
 					FROM `adverts` as adv
 					INNER JOIN (adv_transport, car_mark, car_model) ON 
