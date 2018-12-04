@@ -10,7 +10,6 @@
 	</b-row>
 </b-container>
 </template>
-</template>
 <script>
 export default {
 	props: ["item"],
