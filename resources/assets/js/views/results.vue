@@ -167,8 +167,8 @@ export default {
  			  window.history.back();
   			},
   			update() {
-  				this.count = Object.keys(this.items).length;
-					this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
+  				this.count = Object.keys(this.results).length;
+				this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
   			},
   			getSearchData() {
   				console.log(this.filters);

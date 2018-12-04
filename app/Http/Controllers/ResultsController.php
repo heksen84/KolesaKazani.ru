@@ -48,7 +48,7 @@ class ResultsController extends Controller {
 			case 1: {
 
 				$results = DB::select(
-					"SELECT 
+					"SELECT					
 					car_mark.name as mark, 
 					car_model.name as model,
 					adv.id as advert_id, 

@@ -3143,6 +3143,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["item"],
@@ -3576,7 +3577,7 @@ function num2str(n, text_forms) {
       window.history.back();
     },
     update: function update() {
-      this.count = Object.keys(this.items).length;
+      this.count = Object.keys(this.results).length;
       this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
     },
     getSearchData: function getSearchData() {
@@ -36244,7 +36245,8 @@ var render = function() {
                   on: { click: _vm.closeAndReturn }
                 },
                 [_vm._v("X")]
-              )
+              ),
+              _vm._v("\n      " + _vm._s(_vm.item.text) + "\n\t  ")
             ]
           )
         ],
