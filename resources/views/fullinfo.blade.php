@@ -8,13 +8,12 @@
         <meta name="description" content="Доска объявлений Дамеля">
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Доска объявлений Дамеля</title>
-	      <link rel="icon" href="{{ asset('public/shop.ico') }}">
+        <title>!!!</title>
+	    <link rel="icon" href="{{ asset('public/shop.ico') }}">
     </head>
     <body>
-<div id="app">
-    <fullinfo :item="{{ $item }}"></fullinfo>
-</div>
+        123
+
 </body>
 </html>
 <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">

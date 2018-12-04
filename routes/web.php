@@ -11,6 +11,8 @@ Route::post('checkPhotos',  'TestController@checkPhotos');
 Route::get('moderation',  function () { return view('moderation'); });
 Route::get('moderation/{advert_id}',  function () { return view('moderation_advert'); });
 
+//Route::get('details/{id}', array('as' => 'id', 'uses' => 'AdvertController@getFullInfo'));
+
 // Реклама на сайте
 Route::get('advertisers',  function () { return view('advertisers'); });
 
@@ -32,11 +34,7 @@ Route::get('hobbi-i-otdyh', 			'ResultsController@getResultsByCategory');
 Route::get('uslugi', 					'ResultsController@getResultsByCategory');
 Route::get('drugoe', 					'ResultsController@getResultsByCategory');
 
-// категории по региону
-Route::get('{region}/{category}', 'ResultsController@getResultsByRegion');
-
-// категории по региону и местности
-Route::get('{region}/{place}/{category}', 'ResultsController@getResultsByPlace');
+Route::get('details/{id}', ['uses' => 'AdvertController@getFullInfo']);
 
 // базовые контроллеры
 Route::post('create', 			 'AdvertController@createAdvert');
@@ -49,11 +47,13 @@ Route::get('home',	 		 	 'CabinetController@index');
 Route::get('home/{advert_id}',	 'CabinetController@index');
 Route::get('categories', 		 'CategoriesController@index');
 
+
 // авто
 Route::get('getCarsMarks',  'AdvertController@getCarsMarks' );
 Route::get('getCarsModels', 'AdvertController@getCarsModels' );
 
 Route::get('search',  function () { return view('search')->with("items", "123"); });
+
 
 // перенести в контроллер Categories
 Route::get('/category/{id}', function ($id) { 
@@ -63,12 +63,16 @@ Route::get('/category/{id}', function ($id) {
 		mb_strtolower($categories[0]->name));
 });
 
-Route::get('getSearchData', 'SearchController@getSearchData');
-//Route::get('details/{id}', array('as' => 'id', 'uses' => 'AdvertController@getFullInfo'));
 
-Route::get('details/{id}', ['uses' => 'AdvertController@getFullInfo']);
+Route::get('getSearchData', 'SearchController@getSearchData');
 Route::get('location/{country}/{region}/{place}', ['uses' => 'AdvertController@getFullInfo']);
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+// категории по региону
+Route::get('{region}/{category}', 'ResultsController@getResultsByRegion');
+// категории по региону и местности
+Route::get('{region}/{place}/{category}', 'ResultsController@getResultsByPlace');
+
 
 /*
 ------------------------------------------------

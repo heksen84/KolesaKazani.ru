@@ -29,7 +29,12 @@ export default {
   components: { avatarka },
   methods: {
     details(event) {
-        window.location='/details/'+this.id;  
+
+        //alert("!");
+        //window.location='/details/'+this.id;  
+        window.location.href ='/details/123';  
+        //window.location='/details';  
+        //window.location='/home';  
     }
   }
 }

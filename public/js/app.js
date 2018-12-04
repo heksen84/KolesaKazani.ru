@@ -2070,7 +2070,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   components: { avatarka: __WEBPACK_IMPORTED_MODULE_0__avatarka___default.a },
   methods: {
     details: function details(event) {
-      window.location = '/details/' + this.id;
+
+      //alert("!");
+      //window.location='/details/'+this.id;  
+      window.location.href = '/details/123';
+      //window.location='/details';  
+      //window.location='/home';  
     }
   }
 });
