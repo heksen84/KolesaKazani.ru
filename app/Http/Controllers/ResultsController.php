@@ -51,7 +51,7 @@ class ResultsController extends Controller {
 					"SELECT 
 					car_mark.name as mark, 
 					car_model.name as model,
-					adv.id, 
+					adv.id as advert_id, 
 					adv_transport.id,
 					adv.price,  
 					year,  
