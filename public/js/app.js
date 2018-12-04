@@ -3517,6 +3517,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // ------------------------------
@@ -3558,7 +3579,7 @@ function num2str(n, text_forms) {
 
       options_price: [{ value: null, text: '-- Цена --' }, { value: '0', text: 'Цена по возрастанию' }, { value: '1', text: 'Цена по убыванию' }],
 
-      options_sdelka: [{ value: null, text: '-- Вид сделки --' }, { value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Отдам даром' }, { value: '4', text: 'Сдача в аренду' }],
+      options_sdelka: [{ value: null, text: '-- Вид сделки --' }, { value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }],
 
       options_actual: [{ value: null, text: '-- Актуальность --' }, { value: '0', text: 'Сначала новые' }, { value: '1', text: 'Сначала старые' }],
 
@@ -12629,7 +12650,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -36311,6 +36332,98 @@ var render = function() {
       _vm._v(" "),
       _c("br"),
       _vm._v(" "),
+      _vm.count > 1
+        ? _c(
+            "b-row",
+            [
+              _c("b-col", {
+                attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" }
+              }),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
+                [
+                  _c("b-form-select", {
+                    staticClass: "mb-3",
+                    attrs: { options: _vm.options_price },
+                    on: { change: _vm.getSearchData },
+                    model: {
+                      value: _vm.filters.price,
+                      callback: function($$v) {
+                        _vm.$set(_vm.filters, "price", $$v)
+                      },
+                      expression: "filters.price"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
+                [
+                  _c("b-form-select", {
+                    staticClass: "mb-3",
+                    attrs: { options: _vm.options_sdelka },
+                    on: { change: _vm.getSearchData },
+                    model: {
+                      value: _vm.filters.sdelka,
+                      callback: function($$v) {
+                        _vm.$set(_vm.filters, "sdelka", $$v)
+                      },
+                      expression: "filters.sdelka"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
+                [
+                  _c("b-form-select", {
+                    staticClass: "mb-3",
+                    attrs: { options: _vm.options_location },
+                    on: { change: _vm.getSearchData },
+                    model: {
+                      value: _vm.filters.location,
+                      callback: function($$v) {
+                        _vm.$set(_vm.filters, "location", $$v)
+                      },
+                      expression: "filters.location"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
+                [
+                  _c("b-form-select", {
+                    staticClass: "mb-3",
+                    attrs: { options: _vm.options_actual },
+                    on: { change: _vm.getSearchData },
+                    model: {
+                      value: _vm.filters.actual,
+                      callback: function($$v) {
+                        _vm.$set(_vm.filters, "actual", $$v)
+                      },
+                      expression: "filters.actual"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _c(
         "div",
         { staticClass: "text-center" },
@@ -51176,7 +51289,7 @@ module.exports = Component.exports
     max_loaded_images: 10,
 
     // стандартные операции
-    options_sdelka: [{ value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Отдам даром' }, { value: '4', text: 'Сдача в аренду' }],
+    options_sdelka: [{ value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }],
 
     // наш объект объявления, куда размещаются все пункты
     advert_data: {},
