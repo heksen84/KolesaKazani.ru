@@ -2070,12 +2070,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   components: { avatarka: __WEBPACK_IMPORTED_MODULE_0__avatarka___default.a },
   methods: {
     details: function details(event) {
-
-      //alert("!");
-      //window.location='/details/'+this.id;  
-      window.location.href = '/details/123';
-      //window.location='/details';  
-      //window.location='/home';  
+      window.location = '/details/' + this.id;
     }
   }
 });
@@ -3144,21 +3139,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["item"],
-  created: function created() {},
+  created: function created() {
+
+    console.log(this.item);
+  },
   data: function data() {
-    return {
-
-      placemarks: [{
-        coords: [54.8, 39.8],
-        properties: {}, // define properties here
-        options: {}, // define options here
-        clusterName: "1"
-      }]
-
-    };
+    return;
+    {}
   },
 
   components: {},
@@ -36267,7 +36259,12 @@ var render = function() {
                 },
                 [_vm._v("X")]
               ),
-              _vm._v("\n      " + _vm._s(_vm.item.text) + "\n\t  ")
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("h1", [_vm._v(_vm._s(_vm.item[0].text))]),
+              _vm._v(" "),
+              _c("h2", [_vm._v(_vm._s(_vm.item[0].price) + " тенге")])
             ]
           )
         ],
