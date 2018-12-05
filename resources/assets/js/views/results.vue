@@ -28,33 +28,26 @@
 		</b-col>
 	</b-row>
 
-
+	<!-- VIP BLOCK -->
 	<div class="vip_block">
 		<h3 v-for="(i, index) in results" :key="index" style="height:340px;border:1px solid white;text-align:center"></h3>
 	</div>
 
-<div class="text-center">
-	<b-row>
-		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-			VIP
-		</b-col>
+	<div class="text-center">
+		<b-row>
+			<b-col cols="12" sm="12" md="2" lg="2" xl="2">VIP</b-col>
+			<b-col cols="12" sm="12" md="8" lg="8" xl="8">
+				<item v-for="(item,index) in results" :key="index" :id="item.advert_id" :title="item.mark" :text="item.model" :price="item.price" :year="item.year" :images="images"></item>
+			</b-col>
+			<b-col cols="12" sm="12" md="2" lg="2" xl="2">VIP</b-col>	
+		</b-row>
 
-		<b-col cols="12" sm="12" md="8" lg="8" xl="8">
-			<item v-for="(item,index) in results" :key="index" :id="item.advert_id" :title="item.mark" :text="item.model" :price="item.price" :year="item.year" :images="images"></item>
-		</b-col>
-
-		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-			VIP
-		</b-col>	
-	</b-row>
-
-	<b-row v-if="count>1">
-		<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
-			<b-button variant="primary" style="margin:10px" @click="loadMore">загрузить ещё</b-button>
-		</b-col>
-	</b-row>
-
-</div>
+		<b-row v-if="count>1">
+			<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
+				<b-button variant="primary" style="margin:10px" @click="loadMore">загрузить ещё</b-button>
+			</b-col>
+		</b-row>
+	</div>
 
 </b-container>
 </template>
