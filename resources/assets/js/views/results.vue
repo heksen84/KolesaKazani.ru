@@ -29,64 +29,9 @@
 	</b-row>
 
 
-	<!-- БАЗОВЫЕ ФИЛЬТРЫ -->
-<!--<b-row v-if="count>1">
-		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		Выгрузить в эксель
-		</b-col>
-		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="filters.price" :options="options_price" class="mb-3" @change="getSearchData" />
-		</b-col>
-
-		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="filters.sdelka" :options="options_sdelka" class="mb-3" @change="getSearchData" />
-		</b-col>
-
-		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  	<b-form-select v-model="filters.location" :options="options_location" class="mb-3" @change="getSearchData" />
-		</b-col>
--->
-		<!--<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		 	<b-form-select v-model="filters.actual" :options="options_actual" class="mb-3" size="sm" @change="getSearchData"/>
-		</b-col>
-	</b-row>-->
-
-	<!-- ДОПОЛНИТЕЛЬНЫЕ ФИЛЬТРЫ -->
-	<!--<b-row v-if="count>1">
-		<b-col cols="12" sm="12" md="2" lg="2" xl="2"></b-col>
-
-		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="filters.price" :options="options_price" class="mb-3" size="sm" @change="getSearchData"/>
-		</b-col>
-
-		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="filters.sdelka" :options="options_sdelka" class="mb-3" size="sm" @change="getSearchData"/>
-		</b-col>
-
-		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  	<b-form-select v-model="filters.location" :options="options_location" class="mb-3" size="sm" @change="getSearchData"/>
-		</b-col>
-
-		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		 	<b-form-select v-model="filters.actual" :options="options_actual" class="mb-3" size="sm" @change="getSearchData"/>
-		</b-col>
-	</b-row>-->
-
-	<!--<b-row v-for="(item,index) in items" :key="index">
-		<b-col cols="12" sm="12" md="9" lg="9" xl="9">
-			<item :id="item.id" :title="item.title" :text="item.text" :price="item.price" :images="images"></item>			
-		</b-col>
-	</b-row>
-
 	<div class="vip_block">
-		<h3 v-for="(i, index) in items" :key="index" style="height:340px;border:1px solid white;text-align:center"></h3>
+		<h3 v-for="(i, index) in results" :key="index" style="height:340px;border:1px solid white;text-align:center"></h3>
 	</div>
-
-	<b-row v-if="count>1">
-		<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
-			<b-button variant="primary" style="margin:10px" @click="loadMore">загрузить ещё</b-button>
-		</b-col>
-	</b-row>-->
 
 <div class="text-center">
 	<b-row>
@@ -103,8 +48,12 @@
 		</b-col>	
 	</b-row>
 
+	<b-row v-if="count>1">
+		<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
+			<b-button variant="primary" style="margin:10px" @click="loadMore">загрузить ещё</b-button>
+		</b-col>
+	</b-row>
 
-	<!--<div v-for="item in results" :key="item">{{ item.mark }} {{ item.model }}</div>-->
 </div>
 
 </b-container>
