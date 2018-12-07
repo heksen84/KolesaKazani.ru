@@ -250,7 +250,7 @@ class AdvertController extends Controller {
         $item = DB::table("adverts")->where("id", $id)->get()->first();
         
         // подкатегория
-        $subcategory = $item->adv_category_id;
+        //$subcategory = $item->adv_category_id;
                         
         // ----------------------------------------------------------------
         // определить категорию объявления и вернуть необходимый результат
@@ -281,8 +281,10 @@ class AdvertController extends Controller {
                 );
 
                 \Debugbar::info($results);
+
+                $title = "Продам ".$results[0]->mark." ".$results[0]->model." ".$results[0]->year." года";
                 
-                return view("fullinfo")->with("item", json_encode($results) );                
+                return view("fullinfo")->with("item", json_encode($results) )->with("title", $title);                
             }
 
             // недвижимость
