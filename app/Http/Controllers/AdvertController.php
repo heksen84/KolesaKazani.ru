@@ -267,7 +267,8 @@ class AdvertController extends Controller {
 					adv.id as advert_id, 
                     adv.category_id as category_id,
 					adv_transport.id,
-					adv.price,  
+					adv.price,
+                    adv.contacts,  
 					year,  
 					mileage,
 					text 
