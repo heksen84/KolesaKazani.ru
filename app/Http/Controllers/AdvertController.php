@@ -242,6 +242,7 @@ class AdvertController extends Controller {
     /*
     -------------------------------------------
     Получить полную информацию об объявлении
+    ПЕРЕТАЩИТЬ В РЕЗУЛЬТАТЫ
     -------------------------------------------*/
     public function getFullInfo($id) {
         
@@ -258,6 +259,26 @@ class AdvertController extends Controller {
             
             // транспорт
             case 1: {
+
+                /*$results = DB::select(
+					"SELECT					
+					car_mark.name as mark, 
+					car_model.name as model,
+					adv.id as advert_id, 
+					adv_transport.id,
+					adv.price,  
+					year,  
+					mileage,
+					text 
+					FROM `adverts` as adv
+					INNER JOIN (adv_transport, car_mark, car_model) ON 
+					(
+						adv_transport.mark=car_mark.id_car_mark AND 
+						adv.adv_category_id=adv_transport.id AND 
+						adv_transport.model = car_model.id_car_model
+					)"
+                );
+                */
                 break;
             }
 
