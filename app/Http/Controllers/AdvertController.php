@@ -247,7 +247,7 @@ class AdvertController extends Controller {
     public function getFullInfo($id) {
         
         // выбираю все поля по нужному айдишнику
-        $item = DB::table("adverts")->where("id", $id)->get();
+        $item = DB::table("adverts")->where("id", $id)->get()->first();
         
         // подкатегория
         $subcategory = $item->adv_category_id;
@@ -260,7 +260,7 @@ class AdvertController extends Controller {
             // транспорт
             case 1: {
 
-                /*$results = DB::select(
+                $results = DB::select(
 					"SELECT					
 					car_mark.name as mark, 
 					car_model.name as model,
@@ -271,15 +271,15 @@ class AdvertController extends Controller {
 					mileage,
 					text 
 					FROM `adverts` as adv
-					INNER JOIN (adv_transport, car_mark, car_model) ON 
-					(
+					INNER JOIN (adv_transport, car_mark, car_model) ON (
 						adv_transport.mark=car_mark.id_car_mark AND 
 						adv.adv_category_id=adv_transport.id AND 
 						adv_transport.model = car_model.id_car_model
-					)"
+					) WHERE adv.id=".$id
                 );
-                */
-                
+
+                \Debugbar::info($results);
+
                 break;
             }
 
@@ -298,7 +298,7 @@ class AdvertController extends Controller {
             case 10: break;
         }
 
-        return view('fullinfo')->with("item", $item );
+        return view("fullinfo")->with("item", json_encode($item) );
     }
 
     /*
