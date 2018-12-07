@@ -7,22 +7,23 @@
 			<h1>{{ item[0].text }}</h1>
 			<h2>{{ item[0].price }} тенге</h2>
 			<h5>тел. : {{ item[0].contacts }}</h5>
+			
+			-----------------------------------------------------------------
+			{{ string }}
 		</b-col>
 	</b-row>
 </b-container>
 </template>
 <script>
 export default {
-	props: ["item"],
+	props: ["item", "string"],
 	created() {
   
     console.log(this.item)
   
   },
-	data () {
-    return 	
-    {
-    
+	data() {
+    return {    
     }
 	},
 components: { },

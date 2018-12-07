@@ -3141,16 +3141,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["item"],
+  props: ["item", "string"],
   created: function created() {
 
     console.log(this.item);
   },
   data: function data() {
-    return;
-    {}
+    return {};
   },
 
   components: {},
@@ -36208,7 +36210,12 @@ var render = function() {
               _vm._v(" "),
               _c("h2", [_vm._v(_vm._s(_vm.item[0].price) + " тенге")]),
               _vm._v(" "),
-              _c("h5", [_vm._v("тел. : " + _vm._s(_vm.item[0].contacts))])
+              _c("h5", [_vm._v("тел. : " + _vm._s(_vm.item[0].contacts))]),
+              _vm._v(
+                "\n\t\t\t\n\t\t\t-----------------------------------------------------------------\n\t\t\t" +
+                  _vm._s(_vm.string) +
+                  "\n\t\t"
+              )
             ]
           )
         ],

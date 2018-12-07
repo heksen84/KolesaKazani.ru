@@ -252,6 +252,7 @@ class AdvertController extends Controller {
         // подкатегория
         $subcategory = $item->adv_category_id;
         
+        $string = "";
         // ----------------------------------------------------------------
         // определить категорию объявления и вернуть необходимый результат
         // ----------------------------------------------------------------
@@ -280,6 +281,9 @@ class AdvertController extends Controller {
 
                 \Debugbar::info($results);
 
+                $string = $results[0]->mark." ".$results[0]->model." ".$results[0]->price." тенге ".$results[0]->year." год ".$results[0]->mileage;
+                \Debugbar::info($string);
+
                 break;
             }
 
@@ -298,7 +302,7 @@ class AdvertController extends Controller {
             case 10: break;
         }
 
-        return view("fullinfo")->with("item", json_encode($item) );
+        return view("fullinfo")->with("item", json_encode($results) )->with("description", "123");
     }
 
     /*
