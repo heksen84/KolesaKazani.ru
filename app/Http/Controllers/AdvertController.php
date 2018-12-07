@@ -244,6 +244,7 @@ class AdvertController extends Controller {
     Получить полную информацию об объявлении
     -------------------------------------------*/
     public function getFullInfo($id) {
+        
         $item = DB::table('adverts')->where("id", $id)->get();
         $subcategory = $item->adv_category_id;
         
