@@ -3144,15 +3144,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["item", "string"],
+  props: ["item"],
   created: function created() {
 
     console.log(this.item);
+    this.category = this.item[0].category_id;
+    console.log(this.category);
   },
   data: function data() {
-    return {};
+    return {
+      category: null
+    };
   },
 
   components: {},
@@ -36206,16 +36223,48 @@ var render = function() {
               _vm._v(" "),
               _c("br"),
               _vm._v(" "),
-              _c("h1", [_vm._v(_vm._s(_vm.item[0].text))]),
-              _vm._v(" "),
-              _c("h2", [_vm._v(_vm._s(_vm.item[0].price) + " тенге")]),
-              _vm._v(" "),
-              _c("h5", [_vm._v("тел. : " + _vm._s(_vm.item[0].contacts))]),
+              _vm.category == 1
+                ? _c("div", [
+                    _c("h4", [
+                      _vm._v(
+                        _vm._s(_vm.item[0].mark) +
+                          ", " +
+                          _vm._s(_vm.item[0].model) +
+                          ", " +
+                          _vm._s(_vm.item[0].year) +
+                          " год."
+                      )
+                    ])
+                  ])
+                : _vm._e(),
               _vm._v(
-                "\n\t\t\t\n\t\t\t-----------------------------------------------------------------\n\t\t\t" +
-                  _vm._s(_vm.string) +
-                  "\n\t\t"
-              )
+                "\n\n\t\t\t----------------------------------------------------\n\n\t\t\t"
+              ),
+              _vm.category == 2
+                ? _c("div", [_vm._v("Недвижимость")])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.category == 3
+                ? _c("div", [_vm._v("Бытовая техника")])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.category == 4
+                ? _c("div", [_vm._v("Работа и бизнес")])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.category == 5
+                ? _c("div", [_vm._v("Для дома и дачи")])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.category == 6 ? _c("div", [_vm._v("Личные вещи")]) : _vm._e(),
+              _vm._v(" "),
+              _c("h5", [_vm._v("Дополнительно: " + _vm._s(_vm.item[0].text))]),
+              _vm._v(" "),
+              _c("h5", [
+                _vm._v("Цена: " + _vm._s(_vm.item[0].price) + " тенге")
+              ]),
+              _vm._v(" "),
+              _c("h5", [_vm._v("тел. : " + _vm._s(_vm.item[0].contacts))])
             ]
           )
         ],

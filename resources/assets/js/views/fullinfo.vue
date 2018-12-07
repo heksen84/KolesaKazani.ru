@@ -4,26 +4,42 @@
 	  <b-col cols="12" sm="12" md="12" lg="10" xl="10" class="create_advert_col">
 		  <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>     
 			<br>
-			<h1>{{ item[0].text }}</h1>
-			<h2>{{ item[0].price }} тенге</h2>
+
+
+			<!-- ТРАНСПОРТ -->
+			<div v-if="category==1">				
+				<h4>{{ item[0].mark }}, {{ item[0].model }}, {{ item[0].year}} год.</h4>
+			</div>
+
+			----------------------------------------------------
+
+			<div v-if="category==2">Недвижимость</div>
+			<div v-if="category==3">Бытовая техника</div>
+			<div v-if="category==4">Работа и бизнес</div>
+			<div v-if="category==5">Для дома и дачи</div>
+			<div v-if="category==6">Личные вещи</div>			
+
+			<h5>Дополнительно: {{ item[0].text }}</h5>
+			<h5>Цена: {{ item[0].price }} тенге</h5>
 			<h5>тел. : {{ item[0].contacts }}</h5>
 			
-			-----------------------------------------------------------------
-			{{ string }}
 		</b-col>
 	</b-row>
 </b-container>
 </template>
 <script>
 export default {
-	props: ["item", "string"],
+	props: ["item"],
 	created() {
   
     console.log(this.item)
-  
+		this.category=this.item[0].category_id;
+		console.log(this.category)
+
   },
 	data() {
-    return {    
+    return {
+			category: null
     }
 	},
 components: { },
