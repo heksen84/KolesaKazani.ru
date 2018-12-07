@@ -252,11 +252,17 @@ class AdvertController extends Controller {
         // определить категорию объявления и вернуть необходимый результат
         // ----------------------------------------------------------------
         switch($item->category_id) {
+            
+            // транспорт
             case 1: {
-
                 break;
             }
-            case 2: break;
+
+            // недвижимость
+            case 2: { 
+                break;
+            }
+
             case 3: break;
             case 4: break;
             case 5: break;
