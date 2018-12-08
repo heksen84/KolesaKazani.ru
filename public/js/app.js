@@ -35012,7 +35012,8 @@ var render = function() {
                     width: "160px",
                     "text-align": "center",
                     position: "relative",
-                    top: "3px"
+                    top: "3px",
+                    right: "10px"
                   },
                   attrs: { id: "button_login" },
                   on: { click: _vm.login }
@@ -36297,7 +36298,7 @@ var render = function() {
                   staticClass: "close_button shadow_text",
                   staticStyle: {
                     color: "white",
-                    border: "1px solid white",
+                    border: "2px solid white",
                     padding: "5px"
                   },
                   attrs: { title: "Закрыть страницу" },

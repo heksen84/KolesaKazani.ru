@@ -20,7 +20,7 @@
           </b-modal> 
 
         <b-col id="welcome_menu" v-show="auth">
-          <div class="button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>         
+          <div class="button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px;right:10px" @click="login">мои объявления</div>         
         </b-col>        
 
         <b-col style="text-align:center" v-show="!auth">
