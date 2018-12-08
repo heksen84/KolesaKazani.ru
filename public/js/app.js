@@ -3156,6 +3156,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -36249,8 +36251,13 @@ var render = function() {
                 _vm._v("Цена: " + _vm._s(_vm.item[0].price) + " тенге")
               ]),
               _vm._v(" "),
-              _c("h5", [_vm._v("тел. : " + _vm._s(_vm.item[0].contacts))])
-            ]
+              _c("h5", [_vm._v("тел. : " + _vm._s(_vm.item[0].contacts))]),
+              _vm._v(" "),
+              _vm._l(_vm.item[0].images, function(i, index) {
+                return _c("div", { key: index }, [_vm._v(_vm._s(i))])
+              })
+            ],
+            2
           )
         ],
         1

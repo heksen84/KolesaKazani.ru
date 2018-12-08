@@ -272,13 +272,16 @@ class AdvertController extends Controller {
                     adv.contacts,  
 					year,  
 					mileage,
-					text 
+					text,
+                    image as images
 					FROM `adverts` as adv
-					INNER JOIN (adv_transport, car_mark, car_model, categories) ON (
+					INNER JOIN (adv_transport, car_mark, car_model, categories, images) ON (
 						adv_transport.mark = car_mark.id_car_mark AND 
 						adv.adv_category_id = adv_transport.id AND 
 						adv_transport.model = car_model.id_car_model AND
-                        categories.id=adv.category_id
+                        categories.id=adv.category_id AND
+                        advert_id=images.advert_id
+
 					) WHERE adv.id=".$id
                 );
 
