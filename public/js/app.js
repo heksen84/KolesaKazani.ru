@@ -36254,7 +36254,7 @@ var render = function() {
               _c("h5", [_vm._v("тел. : " + _vm._s(_vm.item[0].contacts))]),
               _vm._v(" "),
               _vm._l(_vm.item[0].images, function(i, index) {
-                return _c("div", { key: index }, [_vm._v(_vm._s(i))])
+                return _c("span", { key: index }, [_vm._v(_vm._s(i))])
               })
             ],
             2
