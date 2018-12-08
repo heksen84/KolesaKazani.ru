@@ -5,10 +5,9 @@
 		  <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>     
 			<br>
 
-
 			<!-- ТРАНСПОРТ -->
 			<div v-if="category==1">				
-				<h4>Продам {{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года.</h4>
+				<h4>{{ item[0].category_name }} {{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года.</h4>
 			</div>
 
 			----------------------------------------------
@@ -29,6 +28,7 @@
 </template>
 <script>
 export default {
+	
 	props: ["item"],
 	created() {
   

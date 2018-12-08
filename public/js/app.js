@@ -3156,9 +3156,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+
   props: ["item"],
   created: function created() {
 
@@ -36209,7 +36209,8 @@ var render = function() {
                 ? _c("div", [
                     _c("h4", [
                       _vm._v(
-                        "Продам " +
+                        _vm._s(_vm.item[0].category_name) +
+                          " " +
                           _vm._s(_vm.item[0].mark) +
                           " " +
                           _vm._s(_vm.item[0].model) +
