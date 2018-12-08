@@ -28,7 +28,7 @@
 </template>
 <script>
 export default {
-	
+
 	props: ["item"],
 	created() {
   
