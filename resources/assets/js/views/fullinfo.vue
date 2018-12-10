@@ -7,10 +7,10 @@
 
 			<!-- ТРАНСПОРТ -->
 			<div v-if="category==1">				
-				<h4>{{ item[0].deal_name_2 }} {{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года.</h4>
+				<h1 style="font-size:200%">{{ item[0].deal_name_2 }} {{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года</h1>
 			</div>
 
-			----------------------------------------------
+			<hr>
 
 			<div v-if="category==2">Недвижимость</div>
 			<div v-if="category==3">Бытовая техника</div>

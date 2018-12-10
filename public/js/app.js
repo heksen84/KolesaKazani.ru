@@ -36233,7 +36233,7 @@ var render = function() {
               _vm._v(" "),
               _vm.category == 1
                 ? _c("div", [
-                    _c("h4", [
+                    _c("h1", { staticStyle: { "font-size": "200%" } }, [
                       _vm._v(
                         _vm._s(_vm.item[0].deal_name_2) +
                           " " +
@@ -36242,14 +36242,14 @@ var render = function() {
                           _vm._s(_vm.item[0].model) +
                           " " +
                           _vm._s(_vm.item[0].year) +
-                          " года."
+                          " года"
                       )
                     ])
                   ])
                 : _vm._e(),
-              _vm._v(
-                "\n\n\t\t\t----------------------------------------------\n\n\t\t\t"
-              ),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
               _vm.category == 2
                 ? _c("div", [_vm._v("Недвижимость")])
                 : _vm._e(),
