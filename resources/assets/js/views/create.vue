@@ -18,7 +18,7 @@
 
 			<b-form @submit="onSubmit">
 			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px;margin-top:-5px">
-				 <b-form-radio-group id="deal_group" stacked :options="sdelka" name="radioOpenions" @change="setDeal"></b-form-radio-group>
+				 <b-form-radio-group id="deal_group" stacked :options="dealtypes" name="radioOpenions" @change="setDeal"></b-form-radio-group>
 			</b-form-group>
 
 			<b-form-group label="Категория товара или услуги:" label-for="categories" style="margin-top:30px;width:260px" v-if="deal_id!=null">
@@ -174,7 +174,7 @@ function initBigMap() {
 
 // Логика
 export default {
-	props: ["items"],
+	props: ["items", "dealtypes"],
 	data () {
     return 	{
 		
@@ -185,7 +185,7 @@ export default {
 				базовые поля объявления
 			-----------------------------*/
 
-    		sdelka: this.$root.options_sdelka,
+    		//sdelka: this.$root.options_sdelka,
     		category: null,
 			deal_id: null,
 			text: "",
@@ -217,6 +217,9 @@ export default {
 
 	// Событие: компонент создан
 	created() {
+
+
+		console.log(this.dealtypes)
 		
 		this.$root.advert_data.adv_info 	= null; // добавляю формально поле доп. информация						
 

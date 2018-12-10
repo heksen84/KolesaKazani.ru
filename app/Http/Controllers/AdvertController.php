@@ -15,6 +15,7 @@ use App\Categories;
 use App\Transport;
 use App\RealEstate;
 use App\Appliances;
+use App\DealType;
 use DB;
 
 //use \SitemapController;
@@ -30,7 +31,7 @@ class AdvertController extends Controller {
     Новое объявление
     -----------------------------------*/
  	public function newAdvert() {
- 		return Auth::user()? view('create')->with( "items", Categories::all() ) : view('auth\login');
+ 		return Auth::user()? view('create')->with( "items", Categories::all() )->with( "dealtypes", DealType::all()->toJson() ) : view('auth\login');
  	}
 
     /*

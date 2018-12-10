@@ -13,7 +13,7 @@
 </head>
 <body>
 <div id="app">
-  <create :items="{{ $items }}"></create>
+  <create :items="{{ $items }}" :dealtypes="{{ $dealtypes }}"></create>
 </div>
 </body>
 </html>
