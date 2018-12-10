@@ -36328,8 +36328,8 @@ var render = function() {
                   staticClass: "close_button shadow_text",
                   staticStyle: {
                     color: "white",
-                    border: "2px solid white",
-                    padding: "5px"
+                    border: "1px solid white",
+                    padding: "6px"
                   },
                   attrs: { title: "Закрыть страницу" },
                   on: { click: _vm.closeAndReturn }

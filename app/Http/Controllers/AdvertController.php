@@ -289,8 +289,7 @@ class AdvertController extends Controller {
 
                 \Debugbar::info($results);
 
-                $title = $results[0]->deal_name_2." ".$results[0]->mark." ".$results[0]->model." ".$results[0]->year." года";
-                
+                $title = $results[0]->deal_name_2." ".$results[0]->mark." ".$results[0]->model." ".$results[0]->year." года";                
                 return view("fullinfo")->with("item", json_encode($results) )->with("title", $title);                
             }
 
