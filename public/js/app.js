@@ -2740,6 +2740,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 // ----------------------------------------------------
@@ -37287,15 +37290,24 @@ var render = function() {
                       }
                     },
                     [
-                      _c("b-form-radio-group", {
-                        attrs: {
-                          id: "deal_group",
-                          stacked: "",
-                          options: _vm.dealtypes,
-                          name: "radioOpenions"
+                      _c(
+                        "b-form-radio-group",
+                        {
+                          attrs: {
+                            id: "deal_group",
+                            stacked: "",
+                            name: "radioOpenions"
+                          },
+                          on: { change: _vm.setDeal }
                         },
-                        on: { change: _vm.setDeal }
-                      })
+                        _vm._l(_vm.dealtypes, function(i, index) {
+                          return _c(
+                            "b-form-radio",
+                            { key: index, attrs: { value: i.id } },
+                            [_vm._v(_vm._s(i.deal_name))]
+                          )
+                        })
+                      )
                     ],
                     1
                   ),

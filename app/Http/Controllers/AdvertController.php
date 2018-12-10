@@ -262,8 +262,8 @@ class AdvertController extends Controller {
             case 1: {
 
                 $results = DB::select(
-					"SELECT
-                    categories.name as category_name,					
+					"SELECT                    
+
 					car_mark.name as mark, 
 					car_model.name as model,
 					adv.id as advert_id, 
@@ -274,13 +274,15 @@ class AdvertController extends Controller {
 					year,  
 					mileage,
 					text,
+                    deal_name,
                     image as images
 					FROM `adverts` as adv
-					INNER JOIN (adv_transport, car_mark, car_model, categories, images) ON (
+					INNER JOIN (adv_transport, car_mark, car_model, categories, images, dealtype) ON (
 						adv_transport.mark = car_mark.id_car_mark AND 
 						adv.adv_category_id = adv_transport.id AND 
 						adv_transport.model = car_model.id_car_model AND
                         categories.id=adv.category_id AND
+                        categories.id=dealtype.id AND 
                         advert_id=images.advert_id
 
 					) WHERE adv.id=".$id
@@ -288,7 +290,7 @@ class AdvertController extends Controller {
 
                 \Debugbar::info($results);
 
-                $title = $results[0]->category_name." ".$results[0]->mark." ".$results[0]->model." ".$results[0]->year." года";
+                $title = $results[0]->deal_name." ".$results[0]->mark." ".$results[0]->model." ".$results[0]->year." года";
                 
                 return view("fullinfo")->with("item", json_encode($results) )->with("title", $title);                
             }
