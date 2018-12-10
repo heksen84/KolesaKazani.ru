@@ -7,7 +7,7 @@
 
 			<!-- ТРАНСПОРТ -->
 			<div v-if="category==1">				
-				<h4>{{ item[0].category_name }} {{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года.</h4>
+				<h4>{{ item[0].deal_name_2 }} {{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года.</h4>
 			</div>
 
 			----------------------------------------------

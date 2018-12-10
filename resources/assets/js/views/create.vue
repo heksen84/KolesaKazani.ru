@@ -20,7 +20,7 @@
 			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px;margin-top:-5px">
 				 <!--<b-form-radio-group id="deal_group" stacked :options="dealtypes" name="radioOpenions" @change="setDeal"></b-form-radio-group>-->
 				 <b-form-radio-group id="deal_group" stacked name="radioOpenions" @change="setDeal">
-				 	<b-form-radio v-for="(i,index) in dealtypes" :value="i.id" :key="index">{{ i.deal_name }}</b-form-radio>
+				 	<b-form-radio v-for="(i,index) in dealtypes" :value="i.id" :key="index">{{ i.deal_name_1 }}</b-form-radio>
 				 </b-form-radio-group>
 			</b-form-group>
 

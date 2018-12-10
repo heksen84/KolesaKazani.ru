@@ -263,7 +263,7 @@ class AdvertController extends Controller {
 
                 $results = DB::select(
 					"SELECT                    
-
+                    deal_name_2,
 					car_mark.name as mark, 
 					car_model.name as model,
 					adv.id as advert_id, 
@@ -273,8 +273,7 @@ class AdvertController extends Controller {
                     adv.contacts,  
 					year,  
 					mileage,
-					text,
-                    deal_name,
+					text,                    
                     image as images
 					FROM `adverts` as adv
 					INNER JOIN (adv_transport, car_mark, car_model, categories, images, dealtype) ON (
@@ -290,7 +289,7 @@ class AdvertController extends Controller {
 
                 \Debugbar::info($results);
 
-                $title = $results[0]->deal_name." ".$results[0]->mark." ".$results[0]->model." ".$results[0]->year." года";
+                $title = $results[0]->deal_name_2." ".$results[0]->mark." ".$results[0]->model." ".$results[0]->year." года";
                 
                 return view("fullinfo")->with("item", json_encode($results) )->with("title", $title);                
             }

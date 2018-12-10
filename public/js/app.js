@@ -36235,7 +36235,7 @@ var render = function() {
                 ? _c("div", [
                     _c("h4", [
                       _vm._v(
-                        _vm._s(_vm.item[0].category_name) +
+                        _vm._s(_vm.item[0].deal_name_2) +
                           " " +
                           _vm._s(_vm.item[0].mark) +
                           " " +
@@ -37304,7 +37304,7 @@ var render = function() {
                           return _c(
                             "b-form-radio",
                             { key: index, attrs: { value: i.id } },
-                            [_vm._v(_vm._s(i.deal_name))]
+                            [_vm._v(_vm._s(i.deal_name_1))]
                           )
                         })
                       )
