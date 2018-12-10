@@ -3163,6 +3163,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -36216,7 +36217,7 @@ var render = function() {
             "b-col",
             {
               staticClass: "create_advert_col",
-              attrs: { cols: "12", sm: "12", md: "12", lg: "10", xl: "10" }
+              attrs: { cols: "12", sm: "12", md: "12", lg: "8", xl: "8" }
             },
             [
               _c(
@@ -36233,17 +36234,15 @@ var render = function() {
               _vm._v(" "),
               _vm.category == 1
                 ? _c("div", [
-                    _c("h1", { staticStyle: { "font-size": "200%" } }, [
-                      _vm._v(
-                        _vm._s(_vm.item[0].deal_name_2) +
-                          " " +
+                    _c("h1", { staticStyle: { "font-size": "190%" } }, [
+                      _c("b", [
+                        _vm._v(
                           _vm._s(_vm.item[0].mark) +
-                          " " +
-                          _vm._s(_vm.item[0].model) +
-                          " " +
-                          _vm._s(_vm.item[0].year) +
-                          " года"
-                      )
+                            " " +
+                            _vm._s(_vm.item[0].model)
+                        )
+                      ]),
+                      _vm._v(" " + _vm._s(_vm.item[0].year) + " года")
                     ])
                   ])
                 : _vm._e(),

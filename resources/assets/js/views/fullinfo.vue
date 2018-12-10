@@ -1,13 +1,14 @@
 <template>
 	<b-container fluid class="mycontainer">
 	<b-row>
-	  <b-col cols="12" sm="12" md="12" lg="10" xl="10" class="create_advert_col">
+	  <b-col cols="12" sm="12" md="12" lg="8" xl="8" class="create_advert_col">
 		  <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>     
 			<br>
 
 			<!-- ТРАНСПОРТ -->
 			<div v-if="category==1">				
-				<h1 style="font-size:200%">{{ item[0].deal_name_2 }} {{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года</h1>
+				<!--<h1 style="font-size:190%">{{ item[0].deal_name_2 }} <b>{{ item[0].mark }} {{ item[0].model }}</b> {{ item[0].year}} года в</h1>-->
+				<h1 style="font-size:190%"><b>{{ item[0].mark }} {{ item[0].model }}</b> {{ item[0].year}} года</h1>
 			</div>
 
 			<hr>
