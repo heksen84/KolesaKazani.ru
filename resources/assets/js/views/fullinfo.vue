@@ -33,6 +33,7 @@
 export default {
 
 	props: ["item"],
+	
 	created() {
   
     console.log(this.item)
