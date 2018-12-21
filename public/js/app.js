@@ -3286,6 +3286,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 //import petrovich from 'petrovich';
@@ -3315,8 +3320,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // вызываем Петровича как функцию, указав падеж:
     //console.log(petrovich(person, 'prepositional'));
 
+
     var placeName = localStorage.getItem("placeName");
     var urlRegAndPlace = localStorage.getItem("urlRegAndPlace");
+
+    //alert(placeName);
 
     if (placeName == null) this.selectedPlaceName = "Весь казахстан";else this.selectedPlaceName = placeName;
 
@@ -3329,6 +3337,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }).catch((err) => {});*/
 
   },
+
 
   computed: {},
 
@@ -3350,6 +3359,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     openLocationWindow: function openLocationWindow() {
       var _this = this;
+
+      //alert(this.selectedPlaceName)
 
       this.buttonAllCountry = true;
       this.buttonAllRegion = false;
@@ -3386,6 +3397,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).catch(function (err) {});
     },
     selectPlace: function selectPlace(e) {
+
       this.buttonAllCountry = false;
       this.selectedPlaceName = e.name;
       this.locationDialog = false;

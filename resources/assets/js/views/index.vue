@@ -114,15 +114,19 @@ export default {
   },
   created() {
 
+
   /*var person = {
     gender: 'androgynous',
     first: 'Павлодар'    
   };*/
     // вызываем Петровича как функцию, указав падеж:
     //console.log(petrovich(person, 'prepositional'));
+    
 
     var placeName = localStorage.getItem("placeName");
     var urlRegAndPlace = localStorage.getItem("urlRegAndPlace");
+
+    //alert(placeName);
 
     if(placeName==null)
       this.selectedPlaceName = "Весь казахстан";
@@ -142,6 +146,7 @@ export default {
     }).catch((err) => {});*/
       
   },
+
   computed: {
   },
 
@@ -167,6 +172,8 @@ export default {
     },
     
     openLocationWindow() {
+
+      //alert(this.selectedPlaceName)
 
       this.buttonAllCountry=true;
       this.buttonAllRegion=false;
@@ -206,6 +213,8 @@ export default {
     },
 
     selectPlace(e) {
+      
+
       this.buttonAllCountry=false;
       this.selectedPlaceName=e.name;
       this.locationDialog=false;
