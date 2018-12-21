@@ -247,8 +247,12 @@ class AdvertController extends Controller {
     -------------------------------------------*/
     public function getFullInfo($id) {
         
+        $title   = "";
+        $results = [];
+        $images  = [];
+        
         // выбираю все поля по нужному айдишнику
-        $item = DB::table("adverts")->where("id", $id)->get()->first();
+        $item = DB::table("adverts")->where("id", $id)->get()->first();        
                                 
         // ----------------------------------------------------------------
         // определить категорию объявления и вернуть необходимый результат
@@ -279,17 +283,11 @@ class AdvertController extends Controller {
                         categories.id=adv.category_id AND
                         categories.id=dealtype.id
 					) WHERE adv.id=".$id." LIMIT 1"
-                );
-
-                \Debugbar::info($results);
-                
-                $images = DB::select("SELECT image FROM images WHERE advert_id=".$id);
-
-                \Debugbar::info($images);
-
-                // определить местоположение
+                );                
+                                                
                 $title = $results[0]->deal_name_2." ".$results[0]->mark." ".$results[0]->model." ".$results[0]->year." года в";                
-                return view("fullinfo")->with("item", json_encode($results) )->with("images", json_encode($images))->with("title", $title);                
+
+                \Debugbar::info($results);                                                
             }
 
             // недвижимость
@@ -307,7 +305,9 @@ class AdvertController extends Controller {
             case 10: break;
         }
 
-        return view("fullinfo")->with("item", json_encode($results) )->with("description", $string);
+        $images = DB::select("SELECT image FROM images WHERE advert_id=".$id);
+
+        return view("fullinfo")->with("item", json_encode($results) )->with("images", json_encode($images))->with("title", $title); 
     }
 
     /*
