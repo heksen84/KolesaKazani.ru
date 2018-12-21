@@ -23,7 +23,10 @@
 			<h5>Цена: {{ item[0].price }} тенге</h5>
 			<h5>тел. : {{ item[0].contacts }}</h5>
 
-			<span v-for="(i,index) in item[0].images" :key="index">{{ i }}</span>
+			<hr>
+			<!--<h6 v-for="(i,index) in images" :key="index">{{ i.image }}</h6>-->
+
+			<b-img v-for="(i,index) in images" :key="index" :src="'../storage/app/images/'+i.image" style="padding:3px"/>
 			
 		</b-col>
 	</b-row>
