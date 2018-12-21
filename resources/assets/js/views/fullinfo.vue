@@ -26,9 +26,9 @@
 			<hr>
 			<!--<h6 v-for="(i,index) in images" :key="index">{{ i.image }}</h6>-->
 
-			<div style="text-align:center">
-			<b-img :src="'../storage/app/images/'+images[1].image" fluid/>
-			<b-img v-for="(i,index) in images" :key="index" :src="'../storage/app/images/'+i.image" style="margin:1px;margin-bottom:8px" width="80" height="80"/>
+			<div style="text-align:center">			
+				<b-img v-for="(i,index) in images" :key="index" :src="'../storage/app/images/'+i.image" style="margin:1px;margin-bottom:8px" width="80" height="80" @click="selectImage(index)"/>
+				<b-img :src="'../storage/app/images/'+images[image_index].image" fluid style="margin-bottom:20px"/>
 			</div>
 			
 		</b-col>
@@ -51,11 +51,15 @@ export default {
   },
 	data() {
     return {
-			category: null
+			category: null,
+			image_index: 0
     }
 	},
 components: { },
   methods: {
+		selectImage(index) {
+      this.image_index=index;
+    },
     closeAndReturn() {
       window.history.back();
     }

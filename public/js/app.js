@@ -3185,12 +3185,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	data: function data() {
 		return {
-			category: null
+			category: null,
+			image_index: 0
 		};
 	},
 
 	components: {},
 	methods: {
+		selectImage: function selectImage(index) {
+			this.image_index = index;
+		},
 		closeAndReturn: function closeAndReturn() {
 			window.history.back();
 		}
@@ -36302,13 +36306,6 @@ var render = function() {
                 "div",
                 { staticStyle: { "text-align": "center" } },
                 [
-                  _c("b-img", {
-                    attrs: {
-                      src: "../storage/app/images/" + _vm.images[1].image,
-                      fluid: ""
-                    }
-                  }),
-                  _vm._v(" "),
                   _vm._l(_vm.images, function(i, index) {
                     return _c("b-img", {
                       key: index,
@@ -36317,8 +36314,23 @@ var render = function() {
                         src: "../storage/app/images/" + i.image,
                         width: "80",
                         height: "80"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.selectImage(index)
+                        }
                       }
                     })
+                  }),
+                  _vm._v(" "),
+                  _c("b-img", {
+                    staticStyle: { "margin-bottom": "20px" },
+                    attrs: {
+                      src:
+                        "../storage/app/images/" +
+                        _vm.images[_vm.image_index].image,
+                      fluid: ""
+                    }
                   })
                 ],
                 2
