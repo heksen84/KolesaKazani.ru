@@ -26,7 +26,9 @@
 			<hr>
 			<!--<h6 v-for="(i,index) in images" :key="index">{{ i.image }}</h6>-->
 
-			<b-img v-for="(i,index) in images" :key="index" :src="'../storage/app/images/'+i.image" style="padding:3px"/>
+			<div style="text-align:center">
+			<b-img v-for="(i,index) in images" :key="index" :src="'../storage/app/images/'+i.image" style="margin:1px;margin-bottom:8px" width="70" height="70"/>
+			</div>
 			
 		</b-col>
 	</b-row>
