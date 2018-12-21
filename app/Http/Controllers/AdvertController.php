@@ -249,15 +249,12 @@ class AdvertController extends Controller {
         
         // выбираю все поля по нужному айдишнику
         $item = DB::table("adverts")->where("id", $id)->get()->first();
-        
-        // подкатегория
-        //$subcategory = $item->adv_category_id;
-                        
+                                
         // ----------------------------------------------------------------
         // определить категорию объявления и вернуть необходимый результат
         // ----------------------------------------------------------------
         switch($item->category_id) {
-            
+
             // транспорт
             case 1: {
 
@@ -272,7 +269,7 @@ class AdvertController extends Controller {
 					adv.price,
                     adv.contacts,  
 					year,  
-					mileage,
+					mileage,                    
 					text
 					FROM `adverts` as adv
 					INNER JOIN (adv_transport, car_mark, car_model, categories, dealtype) ON (
@@ -281,14 +278,18 @@ class AdvertController extends Controller {
 						adv_transport.model = car_model.id_car_model AND
                         categories.id=adv.category_id AND
                         categories.id=dealtype.id
-					) WHERE adv.id=".$id
+					) WHERE adv.id=".$id." LIMIT 1"
                 );
 
                 \Debugbar::info($results);
+                
+                $images = DB::select("SELECT image FROM images WHERE advert_id=".$id);
+
+                \Debugbar::info($images);
 
                 // определить местоположение
                 $title = $results[0]->deal_name_2." ".$results[0]->mark." ".$results[0]->model." ".$results[0]->year." года в";                
-                return view("fullinfo")->with("item", json_encode($results) )->with("title", $title);                
+                return view("fullinfo")->with("item", json_encode($results) )->with("images", json_encode($images))->with("title", $title);                
             }
 
             // недвижимость

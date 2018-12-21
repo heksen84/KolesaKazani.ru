@@ -32,13 +32,15 @@
 <script>
 export default {
 
-	props: ["item"],
+	props: ["item", "images"],
 	
 	created() {
-  
-    console.log(this.item)
+      
 		this.category=this.item[0].category_id;
+		
 		console.log(this.category)
+		console.log(this.item)
+		console.log(this.images)
 
   },
 	data() {
