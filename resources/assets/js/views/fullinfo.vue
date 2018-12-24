@@ -1,7 +1,7 @@
 <template>
 	<b-container fluid class="mycontainer">
 	<b-row>
-	  <b-col cols="12" sm="12" md="12" lg="8" xl="8" class="create_advert_col">
+	  <b-col cols="12" sm="12" md="12" lg="10" xl="10" class="create_advert_col">
 		  <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>     
 			<br>
 
@@ -24,11 +24,16 @@
 			<h5>тел. : {{ item[0].contacts }}</h5>
 
 			<hr>
-			<!--<h6 v-for="(i,index) in images" :key="index">{{ i.image }}</h6>-->
 
-			<div style="text-align:center">			
-				<b-img v-for="(i,index) in images" :key="index" :src="'../storage/app/images/'+i.image" style="margin:1px;margin-bottom:8px" width="80" height="80" @click="selectImage(index)"/>
-				<b-img :src="'../storage/app/images/'+images[image_index].image" fluid style="margin-bottom:20px"/>
+			<div style="text-align:center" v-if="images.length>0">							
+				<b-img :src="'../storage/app/images/'+images[image_index].image" fluid style="margin-bottom:5px"/>
+				<div>
+					<b-img v-for="(i,index) in images" :key="index" :src="'../storage/app/images/'+i.image" style="margin:1px;margin-bottom:8px" width="80" height="80" @click="selectImage(index)"/>					
+				</div>
+			</div>
+
+			<div style="text-align:center;margin-bottom:20px">							
+				<b-button variant="primary">закрыть</b-button>
 			</div>
 			
 		</b-col>
@@ -52,7 +57,7 @@ export default {
 	data() {
     return {
 			category: null,
-			image_index: 0
+			image_index: 1
     }
 	},
 components: { },

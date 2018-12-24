@@ -207,8 +207,8 @@ class AdvertController extends Controller {
                 $filename = str_random(32).".".$img->getClientOriginalExtension();
                 $image_resize = Image::make($img->getRealPath());
                 
-                // изменяю размер с соотношением пропорций              
-                $image_resize->resize(800, null, function ($constraint) {
+                // изменяю размер с соотношением пропорций
+                $image_resize->resize(800, 600, function ($constraint) {
                     $constraint->aspectRatio();
                 });
 

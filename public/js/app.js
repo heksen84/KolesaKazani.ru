@@ -3170,6 +3170,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -3186,7 +3191,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	data: function data() {
 		return {
 			category: null,
-			image_index: 0
+			image_index: 1
 		};
 	},
 
@@ -36242,7 +36247,7 @@ var render = function() {
             "b-col",
             {
               staticClass: "create_advert_col",
-              attrs: { cols: "12", sm: "12", md: "12", lg: "8", xl: "8" }
+              attrs: { cols: "12", sm: "12", md: "12", lg: "10", xl: "10" }
             },
             [
               _c(
@@ -36302,38 +36307,62 @@ var render = function() {
               _vm._v(" "),
               _c("hr"),
               _vm._v(" "),
+              _vm.images.length > 0
+                ? _c(
+                    "div",
+                    { staticStyle: { "text-align": "center" } },
+                    [
+                      _c("b-img", {
+                        staticStyle: { "margin-bottom": "5px" },
+                        attrs: {
+                          src:
+                            "../storage/app/images/" +
+                            _vm.images[_vm.image_index].image,
+                          fluid: ""
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        _vm._l(_vm.images, function(i, index) {
+                          return _c("b-img", {
+                            key: index,
+                            staticStyle: {
+                              margin: "1px",
+                              "margin-bottom": "8px"
+                            },
+                            attrs: {
+                              src: "../storage/app/images/" + i.image,
+                              width: "80",
+                              height: "80"
+                            },
+                            on: {
+                              click: function($event) {
+                                _vm.selectImage(index)
+                              }
+                            }
+                          })
+                        })
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
               _c(
                 "div",
-                { staticStyle: { "text-align": "center" } },
+                {
+                  staticStyle: {
+                    "text-align": "center",
+                    "margin-bottom": "20px"
+                  }
+                },
                 [
-                  _vm._l(_vm.images, function(i, index) {
-                    return _c("b-img", {
-                      key: index,
-                      staticStyle: { margin: "1px", "margin-bottom": "8px" },
-                      attrs: {
-                        src: "../storage/app/images/" + i.image,
-                        width: "80",
-                        height: "80"
-                      },
-                      on: {
-                        click: function($event) {
-                          _vm.selectImage(index)
-                        }
-                      }
-                    })
-                  }),
-                  _vm._v(" "),
-                  _c("b-img", {
-                    staticStyle: { "margin-bottom": "20px" },
-                    attrs: {
-                      src:
-                        "../storage/app/images/" +
-                        _vm.images[_vm.image_index].image,
-                      fluid: ""
-                    }
-                  })
+                  _c("b-button", { attrs: { variant: "primary" } }, [
+                    _vm._v("закрыть")
+                  ])
                 ],
-                2
+                1
               )
             ]
           )
