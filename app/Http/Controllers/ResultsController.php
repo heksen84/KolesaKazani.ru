@@ -71,10 +71,12 @@ class ResultsController extends Controller {
 		}
 
 		// получаю картинки
-		$images = Images::all();
+		//$images = Images::all();
+
+		$images = DB::select("SELECT image FROM images WHERE advert_id IN (SELECT id FROM adverts)");
 		
 		// передаю во вьюху
-     	return view('results')->with("title", $category->name." в Казахстане")->with("items", $items)->with("images", $images)->with("results", json_encode($results));
+     	return view('results')->with("title", $category->name." в Казахстане")->with("items", $items)->with("images", json_encode($images))->with("results", json_encode($results));
     }
 
     // ---------------------------------------------------
