@@ -2057,7 +2057,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ['id', 'photo', 'title', 'text', 'price', "images", "year"],
+  props: ['id', 'photo', 'title', 'text', 'price', "image", "year"],
 
   data: function data() {
     return {};
@@ -3553,7 +3553,7 @@ function num2str(n, text_forms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ["data", "images", "results"],
+  props: ["data", "results"],
 
   data: function data() {
     return {
@@ -35823,7 +35823,7 @@ var render = function() {
       _c("b-img", {
         staticStyle: { display: "inline-block" },
         attrs: {
-          src: "https://picsum.photos/300/150/?image=41",
+          src: "storage/app/images/" + _vm.image,
           width: "120%",
           height: "120"
         }
@@ -36554,7 +36554,7 @@ var render = function() {
                       text: item.model,
                       price: item.price,
                       year: item.year,
-                      images: _vm.images
+                      image: item.image
                     }
                   })
                 })

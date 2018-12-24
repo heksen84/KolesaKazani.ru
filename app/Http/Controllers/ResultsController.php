@@ -56,7 +56,8 @@ class ResultsController extends Controller {
 					adv.price,  
 					year,  
 					mileage,
-					text 
+					text,
+					(SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
 					FROM `adverts` as adv
 					INNER JOIN (adv_transport, car_mark, car_model) ON 
 					(
@@ -69,14 +70,9 @@ class ResultsController extends Controller {
 				break;
 			}
 		}
-
-		// получаю картинки
-		//$images = Images::all();
-
-		$images = DB::select("SELECT image FROM images WHERE advert_id IN (SELECT id FROM adverts)");
 		
 		// передаю во вьюху
-     	return view('results')->with("title", $category->name." в Казахстане")->with("items", $items)->with("images", json_encode($images))->with("results", json_encode($results));
+     	return view('results')->with("title", $category->name." в Казахстане")->with("items", $items)->with("results", json_encode($results));
     }
 
     // ---------------------------------------------------

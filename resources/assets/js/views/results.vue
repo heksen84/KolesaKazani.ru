@@ -37,7 +37,7 @@
 		<b-row>
 			<b-col cols="12" sm="12" md="2" lg="2" xl="2">VIP</b-col>
 			<b-col cols="12" sm="12" md="8" lg="8" xl="8">
-				<item v-for="(item,index) in results" :key="index" :id="item.advert_id" :title="item.mark" :text="item.model" :price="item.price" :year="item.year" :images="images"></item>
+				<item v-for="(item,index) in results" :key="index" :id="item.advert_id" :title="item.mark" :text="item.model" :price="item.price" :year="item.year" :image="item.image"></item>
 			</b-col>
 			<b-col cols="12" sm="12" md="2" lg="2" xl="2">VIP</b-col>	
 		</b-row>
@@ -73,7 +73,7 @@ import { get } from "./../helpers/api"
 
 export default {
 
-	props: ["data", "images", "results"],
+	props: ["data", "results"],
 
 	data () {
     return 	{
