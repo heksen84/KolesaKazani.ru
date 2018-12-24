@@ -33,7 +33,7 @@
 			</div>
 
 			<div style="text-align:center;margin-bottom:20px">							
-				<b-button variant="primary">закрыть</b-button>
+				<b-button variant="primary" @click="closeAndReturn">закрыть</b-button>
 			</div>
 			
 		</b-col>

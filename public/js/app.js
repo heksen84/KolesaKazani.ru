@@ -36358,9 +36358,14 @@ var render = function() {
                   }
                 },
                 [
-                  _c("b-button", { attrs: { variant: "primary" } }, [
-                    _vm._v("закрыть")
-                  ])
+                  _c(
+                    "b-button",
+                    {
+                      attrs: { variant: "primary" },
+                      on: { click: _vm.closeAndReturn }
+                    },
+                    [_vm._v("закрыть")]
+                  )
                 ],
                 1
               )
