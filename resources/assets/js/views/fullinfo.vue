@@ -32,7 +32,9 @@
 				</div>
 			</div>
 
+
 			<div style="text-align:center;margin-bottom:20px">							
+				<hr>
 				<b-button variant="primary" @click="closeAndReturn">закрыть</b-button>
 			</div>
 			
