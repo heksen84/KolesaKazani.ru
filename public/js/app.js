@@ -3193,7 +3193,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	data: function data() {
 		return {
 			category: null,
-			image_index: 1
+			image_index: 0
 		};
 	},
 
@@ -36569,7 +36569,7 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _vm.count > 1
+          _vm.count > 10
             ? _c(
                 "b-row",
                 [

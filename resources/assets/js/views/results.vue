@@ -42,7 +42,7 @@
 			<b-col cols="12" sm="12" md="2" lg="2" xl="2">VIP</b-col>	
 		</b-row>
 
-		<b-row v-if="count>1">
+		<b-row v-if="count>10">
 			<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
 				<b-button variant="primary" style="margin:10px" @click="loadMore">загрузить ещё</b-button>
 			</b-col>
