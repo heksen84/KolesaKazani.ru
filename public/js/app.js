@@ -2053,6 +2053,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -35820,14 +35821,23 @@ var render = function() {
     "div",
     { staticClass: "item", on: { click: _vm.details } },
     [
-      _c("b-img", {
-        staticStyle: { display: "inline-block" },
-        attrs: {
-          src: "storage/app/images/" + _vm.image,
-          width: "120%",
-          height: "120"
-        }
-      }),
+      _vm.image != null
+        ? _c("b-img", {
+            staticStyle: { display: "inline-block" },
+            attrs: {
+              src: "storage/app/images/" + _vm.image,
+              width: "120%",
+              height: "120"
+            }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.image == null
+        ? _c("b-img", {
+            staticStyle: { display: "inline-block", background: "grey" },
+            attrs: { width: "120%", height: "120" }
+          })
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "div",
@@ -36288,7 +36298,7 @@ var render = function() {
               _vm._v(" "),
               _c("h5", [_vm._v("тел. : " + _vm._s(_vm.item[0].contacts))]),
               _vm._v(" "),
-              _c("hr"),
+              _vm.images.length > 0 ? _c("hr") : _vm._e(),
               _vm._v(" "),
               _vm.images.length > 0
                 ? _c(

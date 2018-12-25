@@ -23,7 +23,7 @@
 			<h5>Цена: {{ item[0].price }} тенге</h5>
 			<h5>тел. : {{ item[0].contacts }}</h5>
 
-			<hr>
+			<hr v-if="images.length>0">
 
 			<div style="text-align:center" v-if="images.length>0">							
 				<b-img :src="'../storage/app/images/'+images[image_index].image" fluid style="margin-bottom:5px"/>
