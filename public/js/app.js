@@ -35834,11 +35834,8 @@ var render = function() {
       _vm._v(" "),
       _vm.image == null
         ? _c("b-img", {
-            staticStyle: {
-              display: "inline-block",
-              background: "rgb(100,200,200)"
-            },
-            attrs: { width: "120%", height: "120" }
+            staticStyle: { display: "inline-block", background: "white" },
+            attrs: { width: "0", height: "120" }
           })
         : _vm._e(),
       _vm._v(" "),
