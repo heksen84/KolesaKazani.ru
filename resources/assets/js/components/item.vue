@@ -2,7 +2,7 @@
 
   <div class="item" @click="details">
     <b-img :src="'storage/app/images/'+image" width="120%" height="120" style="display:inline-block" v-if="image!=null"/>
-    <b-img width="120%" height="120" style="display:inline-block;background:grey" v-if="image==null"/>
+    <b-img width="120%" height="120" style="display:inline-block;background:rgb(100,200,200)" v-if="image==null"/>
     <div style="width:55%;position:relative;top:-115px;left:125px;overflow:hidden">
       <div style="font-weight:bold">{{ title }} {{ text }} <span style="font-weight:normal">{{ year }}г.</span></div>
       <div>Цена: <b>{{ price }}</b> тенге</div>
