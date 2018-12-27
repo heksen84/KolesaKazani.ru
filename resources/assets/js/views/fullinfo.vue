@@ -6,9 +6,18 @@
 			<br>
 
 			<!-- ТРАНСПОРТ -->
-			<div v-if="category==1">				
+			<div v-if="category==1">
+				
 				<!--<h1 style="font-size:190%">{{ item[0].deal_name_2 }} <b>{{ item[0].mark }} {{ item[0].model }}</b> {{ item[0].year}} года в</h1>-->
 				<h1 style="font-size:190%"><b>{{ item[0].mark }} {{ item[0].model }}</b> {{ item[0].year}} года</h1>
+
+				<hr>
+
+				<h5>Год выпуска: {{ item[0].year}}</h5>
+				<h5>Тип движка:</h5>
+				<h5>Пробег: </h5>
+				<h5>Положениея руля:</h5>
+			
 			</div>
 
 			<hr>
@@ -23,7 +32,13 @@
 			<h5>Цена: {{ item[0].price }} тенге</h5>
 			<h5>тел. : {{ item[0].contacts }}</h5>
 
+
 			<hr v-if="images.length>0">
+			
+			<div v-if="images.length<=0" style="text-align:center">
+				<hr>
+				<h5>Без фото</h5>
+			</div>
 
 			<div style="text-align:center" v-if="images.length>0">							
 				<b-img :src="'../storage/app/images/'+images[image_index].image" fluid style="margin-bottom:5px"/>

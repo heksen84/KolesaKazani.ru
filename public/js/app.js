@@ -3178,6 +3178,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -36266,7 +36281,19 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" " + _vm._s(_vm.item[0].year) + " года")
-                    ])
+                    ]),
+                    _vm._v(" "),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c("h5", [
+                      _vm._v("Год выпуска: " + _vm._s(_vm.item[0].year))
+                    ]),
+                    _vm._v(" "),
+                    _c("h5", [_vm._v("Тип движка:")]),
+                    _vm._v(" "),
+                    _c("h5", [_vm._v("Пробег: ")]),
+                    _vm._v(" "),
+                    _c("h5", [_vm._v("Положениея руля:")])
                   ])
                 : _vm._e(),
               _vm._v(" "),
@@ -36299,6 +36326,14 @@ var render = function() {
               _c("h5", [_vm._v("тел. : " + _vm._s(_vm.item[0].contacts))]),
               _vm._v(" "),
               _vm.images.length > 0 ? _c("hr") : _vm._e(),
+              _vm._v(" "),
+              _vm.images.length <= 0
+                ? _c("div", { staticStyle: { "text-align": "center" } }, [
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c("h5", [_vm._v("Без фото")])
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _vm.images.length > 0
                 ? _c(
