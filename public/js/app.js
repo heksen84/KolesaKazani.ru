@@ -36286,7 +36286,7 @@ var render = function() {
                     _c("hr"),
                     _vm._v(" "),
                     _c("h5", [
-                      _vm._v("Год выпуска: " + _vm._s(_vm.item[0].year))
+                      _vm._v("Год выпуска: " + _vm._s(_vm.item[0].year) + " г.")
                     ]),
                     _vm._v(" "),
                     _c("h5", [_vm._v("Тип движка:")]),
@@ -36447,7 +36447,8 @@ var render = function() {
                   staticClass: "close_button shadow_text",
                   staticStyle: {
                     color: "white",
-                    border: "1px solid white",
+                    border: "2px solid white",
+                    "border-radius": "5px",
                     padding: "6px"
                   },
                   attrs: { title: "Закрыть страницу" },

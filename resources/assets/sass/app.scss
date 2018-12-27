@@ -270,17 +270,12 @@ body {
 
 .close_button {
   font-size: 110%;
-  position:absolute;
+  position: absolute;
   top:16px;
   left:94%;
   cursor:pointer;
-  font-weight: 650;
-  color:rgb(50,50,50);
-}
-
-.close_button:hover {
-  /*font-weight: bold;*/
-  text-decoration: underline;
+  font-weight: 600;
+  color:rgb(30,30,30);
 }
 
 .custom-file-input:lang(en)~.custom-file-label::after {

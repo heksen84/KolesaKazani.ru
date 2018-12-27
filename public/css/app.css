@@ -271,13 +271,8 @@ body {
   top: 16px;
   left: 94%;
   cursor: pointer;
-  font-weight: 650;
-  color: #323232;
-}
-
-.close_button:hover {
-  /*font-weight: bold;*/
-  text-decoration: underline;
+  font-weight: 600;
+  color: #1e1e1e;
 }
 
 .custom-file-input:lang(en) ~ .custom-file-label::after {
