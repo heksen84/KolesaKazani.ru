@@ -8,15 +8,14 @@
 			<!-- ТРАНСПОРТ -->
 			<div v-if="category==1">
 				
-				<!--<h1 style="font-size:190%">{{ item[0].deal_name_2 }} <b>{{ item[0].mark }} {{ item[0].model }}</b> {{ item[0].year}} года в</h1>-->
-				<h1 style="font-size:190%"><b>{{ item[0].mark }} {{ item[0].model }}</b> {{ item[0].year}} года</h1>
+				<h1 style="font-size:190%"><b>{{ item[0].mark }} {{ item[0].model }}, {{ item[0].year}} года</b></h1>
 
 				<hr>
 
-				<h5>Год выпуска: {{ item[0].year}} г.</h5>
-				<h5>Тип движка:</h5>
-				<h5>Пробег: </h5>
-				<h5>Положениея руля:</h5>
+				<h5>Год выпуска: <b>{{ item[0].year}} г.</b></h5>
+				<h5>Тип двигателя:</h5>
+				<h5>Пробег: <b>{{ item[0].mileage}} км.</b></h5>
+				<h5>Положение руля:</h5>
 			
 			</div>
 
@@ -28,9 +27,9 @@
 			<div v-if="category==5">Для дома и дачи</div>
 			<div v-if="category==6">Личные вещи</div>			
 
-			<h5>Дополнительно: {{ item[0].text }}</h5>
-			<h5>Цена: {{ item[0].price }} тенге</h5>
-			<h5>тел. : {{ item[0].contacts }}</h5>
+			<h5>Дополнительно: <b>{{ item[0].text }}</b></h5>
+			<h5>Цена: <b>{{ item[0].price }} тенге</b></h5>
+			<h5>тел. :<b>{{ item[0].contacts }}</b></h5>
 
 
 			<hr v-if="images.length>0">
@@ -62,15 +61,10 @@ export default {
 
 	props: ["item", "images"],
 	
-	created() {
-      
-		this.category=this.item[0].category_id;
-		
-		console.log(this.category)
-		console.log(this.item)
-		console.log(this.images)
-
-  },
+	created() {      
+		this.category=this.item[0].category_id;			
+		console.log(this.item)		
+  	},
 	data() {
     return {
 			category: null,
