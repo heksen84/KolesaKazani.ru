@@ -3549,8 +3549,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 // ------------------------------
@@ -3599,23 +3597,35 @@ function num2str(n, text_forms) {
       options_location: [{ value: null, text: '-- Расположение --' }, { value: '0', text: 'Рядом со мной' }, { value: '1', text: 'Любое расстояние' }]
     };
   },
+
+
+  // компонент создан
   created: function created() {
     this.update();
-
     console.log(this.results);
   },
 
   components: { item: __WEBPACK_IMPORTED_MODULE_0__components_item___default.a },
   methods: {
+
+    // закрыть экран
     closeAndReturn: function closeAndReturn() {
       window.history.back();
     },
+
+
+    // ---  
     update: function update() {
       this.count = Object.keys(this.results).length;
       this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
     },
-    getSearchData: function getSearchData() {
+
+
+    // фильтры  
+    setFilter: function setFilter() {
       var _this = this;
+
+      alert("okay!");
 
       console.log(this.filters);
       Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])('/getSearchData', { "data": this.filters }).then(function (res) {
@@ -3624,8 +3634,11 @@ function num2str(n, text_forms) {
         _this.update();
       }).catch(function (err) {});
     },
+
+
+    // загрузить ещё
     loadMore: function loadMore() {
-      this.getSearchData();
+      this.setFilter();
     }
   }
 });
@@ -12663,7 +12676,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -36508,7 +36521,7 @@ var render = function() {
             "b-row",
             [
               _c("b-col", {
-                attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" }
+                attrs: { cols: "12", sm: "12", md: "3", lg: "3", xl: "3" }
               }),
               _vm._v(" "),
               _c(
@@ -36518,7 +36531,7 @@ var render = function() {
                   _c("b-form-select", {
                     staticClass: "mb-3",
                     attrs: { options: _vm.options_price },
-                    on: { change: _vm.getSearchData },
+                    on: { change: _vm.setFilter },
                     model: {
                       value: _vm.filters.price,
                       callback: function($$v) {
@@ -36538,7 +36551,7 @@ var render = function() {
                   _c("b-form-select", {
                     staticClass: "mb-3",
                     attrs: { options: _vm.options_sdelka },
-                    on: { change: _vm.getSearchData },
+                    on: { change: _vm.setFilter },
                     model: {
                       value: _vm.filters.sdelka,
                       callback: function($$v) {
@@ -36557,28 +36570,8 @@ var render = function() {
                 [
                   _c("b-form-select", {
                     staticClass: "mb-3",
-                    attrs: { options: _vm.options_location },
-                    on: { change: _vm.getSearchData },
-                    model: {
-                      value: _vm.filters.location,
-                      callback: function($$v) {
-                        _vm.$set(_vm.filters, "location", $$v)
-                      },
-                      expression: "filters.location"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-col",
-                { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
-                [
-                  _c("b-form-select", {
-                    staticClass: "mb-3",
                     attrs: { options: _vm.options_actual },
-                    on: { change: _vm.getSearchData },
+                    on: { change: _vm.setFilter },
                     model: {
                       value: _vm.filters.actual,
                       callback: function($$v) {
