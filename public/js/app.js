@@ -1940,6 +1940,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -2026,6 +2027,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       this.transport_chars.model_id = model_id;
       console.log(this.transport_chars.model_id);
+
+      //this.$store.commit("hideOtherFields");
     }
   }
 }, 'components', { "com-transport": __WEBPACK_IMPORTED_MODULE_1__common_com_transport_vue___default.a }));

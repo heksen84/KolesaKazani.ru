@@ -14,6 +14,7 @@
     </b-form-group>
 
     <b-form-group label="Модель:" v-if="selected.carmark!=null && selected.type_transport==1">
+    <!--<b-form-group label="Модель:" v-if="selected.type_transport==1">-->
         <b-form-select v-model="selected.model" class="mb-2 mr-sm-2 mb-sm-2" @change="selectModel">
            <option :value="null">-- Выберите модель --</option>
            <option v-for="item in models" :value="item.id_car_model" :key="item.id_car_model">{{item.name}}</option>
@@ -110,7 +111,7 @@ export default {
 
         this.models=[];
         this.models = res.data;
-        this.selected.model=null;
+        this.selected.model=null;        
         
         }).catch((err) => 
         {
@@ -123,6 +124,8 @@ export default {
 
       this.transport_chars.model_id = model_id;
       console.log(this.transport_chars.model_id);
+
+      //this.$store.commit("hideOtherFields");
 
     }
   },
