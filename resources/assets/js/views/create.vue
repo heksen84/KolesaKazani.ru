@@ -90,7 +90,7 @@
 				</b-form-group>
 
 				<b-form-group label="Контактный номер:" style="text-align:center">
-			 		<b-form-input type="number" id="price" placeholder="+7(XXX)XXXXXXX" style="width:250px;display:inline" :formatter="setPrice" required></b-form-input>
+			 		<b-form-input type="number" id="price" placeholder="+7(XXX)XXXXXXX" style="width:250px;display:inline" :formatter="setPhoneNumber" required></b-form-input>
 				</b-form-group>
 
 				<!-- Город, Село и т.д. -->
@@ -192,7 +192,8 @@ export default {
     		category: null,
 			deal_id: null,
 			text: "",
-			price: 0, 
+			price: 0,
+			number: 0,
 			preview_images: [],
 			real_images: [],
 			root: false,
@@ -340,11 +341,22 @@ export default {
   		},
 
   		setPrice(price) {
+			
 			if (price < 0) return;
   			this.$root.advert_data.adv_price=price;
         	this.price = price;
         	return price;
-  		},
+		},
+
+
+		setPhoneNumber(number) {
+			
+			if (number < 0) return;
+  			this.$root.advert_data.adv_phone=number;
+        	this.number = number;
+        	return number;
+		},
+		  		  
   		
   		setDeal(deal_id) {
   			this.$root.advert_data.adv_deal=deal_id;

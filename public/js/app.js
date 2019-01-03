@@ -2807,6 +2807,7 @@ function forEach(data, callback) {
 			deal_id: null,
 			text: "",
 			price: 0,
+			number: 0,
 			preview_images: [],
 			real_images: [],
 			root: false,
@@ -2952,10 +2953,18 @@ function forEach(data, callback) {
 			this.$root.advert_data.adv_info = info;
 		},
 		setPrice: function setPrice(price) {
+
 			if (price < 0) return;
 			this.$root.advert_data.adv_price = price;
 			this.price = price;
 			return price;
+		},
+		setPhoneNumber: function setPhoneNumber(number) {
+
+			if (number < 0) return;
+			this.$root.advert_data.adv_phone = number;
+			this.number = number;
+			return number;
 		},
 		setDeal: function setDeal(deal_id) {
 			this.$root.advert_data.adv_deal = deal_id;
@@ -37643,7 +37652,7 @@ var render = function() {
                               type: "number",
                               id: "price",
                               placeholder: "+7(XXX)XXXXXXX",
-                              formatter: _vm.setPrice,
+                              formatter: _vm.setPhoneNumber,
                               required: ""
                             }
                           })
