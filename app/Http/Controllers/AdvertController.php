@@ -50,6 +50,7 @@ class AdvertController extends Controller {
             "adv_deal"      => "required",
             "adv_category"  => "required", 
             "adv_price"     => "required|numeric",
+            "adv_phone"     => "required|numeric",
             "images.*"      => "image|mimes:jpeg,png,jpg",
             "region_id"     => "required|numeric",
             "city_id"       => "required|numeric"
@@ -62,6 +63,8 @@ class AdvertController extends Controller {
             "adv_category.required"    => "Укажите категорию товара или услуги",
             "adv_price.required"       => "Укажите цену",
             "adv_price.numeric"        => "Введите числовое значение для цены",
+            "adv_phone.required"       => "Укажите телефон",
+            "adv_phone.numeric"        => "Введите числовое значение для номера телефона",            
             "images.*.image"           => "Только изображения!",
             "region_id.required"       => "Укажите регион",
             "region_id.numeric"        => "Введите числовое значение для региона",
@@ -78,6 +81,7 @@ class AdvertController extends Controller {
         $category   = $data["adv_category"];
         $text       = $data["adv_info"];
         $price      = $data["adv_price"];
+        $phone      = $data["adv_phone"];
         $region_id  = $data["region_id"];
         $city_id    = $data["city_id"];
         
@@ -86,7 +90,7 @@ class AdvertController extends Controller {
             $advert = new Adverts();
      		$advert->user_id   		 = Auth::id();
         	$advert->text  			 = $text;
-        	$advert->contacts  		 = null; 
+        	$advert->contacts  		 = $phone; 
         	$advert->price  		 = $price;
         	$advert->category_id  	 = $category;
             $advert->adv_category_id = 0;
