@@ -283,14 +283,18 @@ class AdvertController extends Controller {
 					mileage,
                     steering_position,
                     engine_type,
-                    customs
+                    customs,
+                    kz_region.name as region_name,
+                    kz_city.name as city_name
 					FROM `adverts` as adv
-					INNER JOIN (adv_transport, car_mark, car_model, categories, dealtype) ON (
+					INNER JOIN (adv_transport, car_mark, car_model, categories, dealtype, kz_city, kz_region) ON (
 						adv_transport.mark = car_mark.id_car_mark AND 
 						adv.adv_category_id = adv_transport.id AND 
 						adv_transport.model = car_model.id_car_model AND
                         categories.id=adv.category_id AND
-                        categories.id=dealtype.id
+                        categories.id=dealtype.id AND
+                        kz_city.city_id=adv.city_id AND
+                        kz_region.region_id=adv.region_id
 					) WHERE adv.id=".$id." LIMIT 1"
                 );                
                                                 

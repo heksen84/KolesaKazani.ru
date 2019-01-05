@@ -5,6 +5,8 @@
 		  <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>     
 			<br>
 
+			<b>{{ item[0].region_name }}, {{ item[0].city_name }}</b>
+
 			<!-- ТРАНСПОРТ -->
 			<div v-if="category==1">
 				<h1 style="font-size:190%"><b>{{ item[0].mark }} {{ item[0].model }}, {{ item[0].year}} года</b></h1>
