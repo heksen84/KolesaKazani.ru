@@ -279,7 +279,9 @@ class AdvertController extends Controller {
 					adv.price,
                     adv.contacts,  
 					year,  
-					mileage,                    
+					mileage,
+                    steering_position,
+                    engine_type,                    
 					text
 					FROM `adverts` as adv
 					INNER JOIN (adv_transport, car_mark, car_model, categories, dealtype) ON (

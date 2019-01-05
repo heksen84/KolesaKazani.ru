@@ -3207,6 +3207,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -36316,7 +36322,32 @@ var render = function() {
                       _vm._v(" г.")
                     ]),
                     _vm._v(" "),
-                    _c("h5", [_vm._v("Тип двигателя:")]),
+                    _c("h5", [
+                      _vm._v("Тип двигателя:\n\t\t\t\t\t"),
+                      _vm.item[0].engine_type == 0
+                        ? _c("b", [_vm._v("бензин")])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.item[0].engine_type == 1
+                        ? _c("b", [_vm._v("дизель")])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.item[0].engine_type == 2
+                        ? _c("b", [_vm._v("газ-бензин")])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.item[0].engine_type == 3
+                        ? _c("b", [_vm._v("газ")])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.item[0].engine_type == 4
+                        ? _c("b", [_vm._v("гибрид")])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.item[0].engine_type == 5
+                        ? _c("b", [_vm._v("электричество")])
+                        : _vm._e()
+                    ]),
                     _vm._v(" "),
                     _c("h5", [
                       _vm._v("Пробег: "),
@@ -36324,9 +36355,21 @@ var render = function() {
                       _vm._v(" км.")
                     ]),
                     _vm._v(" "),
-                    _c("h5", [_vm._v("Положение руля:")])
+                    _c("h5", [
+                      _vm._v("Положение руля: \n\t\t\t\t\t"),
+                      _vm.item[0].steering_position == 0
+                        ? _c("b", [_vm._v("слева")])
+                        : _c("b", [_vm._v("справа")])
+                    ])
                   ])
                 : _vm._e(),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _c("h5", [
+                _vm._v("Дополнительно: "),
+                _c("b", [_vm._v(_vm._s(_vm.item[0].text))])
+              ]),
               _vm._v(" "),
               _c("hr"),
               _vm._v(" "),
@@ -36347,11 +36390,6 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               _vm.category == 6 ? _c("div", [_vm._v("Личные вещи")]) : _vm._e(),
-              _vm._v(" "),
-              _c("h5", [
-                _vm._v("Дополнительно: "),
-                _c("b", [_vm._v(_vm._s(_vm.item[0].text))])
-              ]),
               _vm._v(" "),
               _c("h5", [
                 _vm._v("Цена: "),
