@@ -3213,6 +3213,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -36323,7 +36329,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("h5", [
-                      _vm._v("Тип двигателя:\n\t\t\t\t\t"),
+                      _vm._v("Вид топлива:\n\t\t\t\t\t"),
                       _vm.item[0].engine_type == 0
                         ? _c("b", [_vm._v("бензин")])
                         : _vm._e(),
@@ -36359,6 +36365,13 @@ var render = function() {
                       _vm._v("Положение руля: \n\t\t\t\t\t"),
                       _vm.item[0].steering_position == 0
                         ? _c("b", [_vm._v("слева")])
+                        : _c("b", [_vm._v("справа")])
+                    ]),
+                    _vm._v(" "),
+                    _c("h5", [
+                      _vm._v("Растоможен: \n\t\t\t\t\t"),
+                      _vm.item[0].steering_position == 0
+                        ? _c("b", [_vm._v("ДА \t(?)")])
                         : _c("b", [_vm._v("справа")])
                     ])
                   ])

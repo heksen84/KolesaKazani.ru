@@ -10,7 +10,7 @@
 				<h1 style="font-size:190%"><b>{{ item[0].mark }} {{ item[0].model }}, {{ item[0].year}} года</b></h1>
 				<hr>
 				<h5>Год выпуска: <b>{{ item[0].year }}</b> г.</h5>
-				<h5>Тип двигателя:
+				<h5>Вид топлива:
 					<b v-if="item[0].engine_type==0">бензин</b>
 					<b v-if="item[0].engine_type==1">дизель</b>
 					<b v-if="item[0].engine_type==2">газ-бензин</b>
@@ -23,6 +23,12 @@
 					<b v-if="item[0].steering_position==0">слева</b>
 					<b v-else>справа</b>
 				</h5>
+
+				<h5>Растоможен: 
+					<b v-if="item[0].steering_position==0">ДА 	(?)</b>
+					<b v-else>справа</b>
+				</h5>
+
 			</div>
 			<hr>
 				<h5>Дополнительно: <b>{{ item[0].text }}</b></h5>
