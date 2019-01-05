@@ -140,6 +140,7 @@ import transport from '../components/chars/transport';
 import realestate from '../components/chars/realestate';
 
 var preview_images_array=[];
+
 var mapCoords=[];
 var myPlacemark;
 var bigmap, smallmap;
@@ -221,11 +222,9 @@ export default {
 
 	// Событие: компонент создан
 	created() {
-
-
 		console.log(this.dealtypes)
 		
-		this.$root.advert_data.adv_info 	= null; // добавляю формально поле доп. информация						
+		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация						
 
 		ymaps.ready(initBigMap);
 		ymaps.ready(initSmallMap);

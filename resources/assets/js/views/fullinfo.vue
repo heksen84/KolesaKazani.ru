@@ -67,8 +67,6 @@
 				<hr>
 				<b>{{ item[0].region_name }}, {{ item[0].city_name }}</b>
 				<div id="map" style="width: 100%; height: 400px"></div>
-
-
 				<hr>
 				<b-button variant="primary" @click="closeAndReturn">закрыть</b-button>
 			</div>
@@ -78,12 +76,38 @@
 </b-container>
 </template>
 <script>
+
+var mapCoords=[];
+var myPlacemark;
+var bigmap;
+
+function initBigMap() {
+
+		mapCoords = [51.08, 71.26];
+    	bigmap = new ymaps.Map ("map", { center: mapCoords, zoom: 10 });
+
+		//Добавляем элементы управления
+		//bigmap.controls.add('zoomControl');
+		bigmap.behaviors.enable('scrollZoom');
+			
+		myPlacemark = new ymaps.Placemark([55.76, 37.64]);
+		bigmap.geoObjects.add(myPlacemark);
+
+    	bigmap.events.add('click', function (e) {
+        	mapCoords = e.get('coordPosition');
+			myPlacemark.geometry.setCoordinates(mapCoords);
+		});			
+}
+
 export default {
 
 	props: ["item", "images"],
 	
 	created() {      
-		this.category=this.item[0].category_id;			
+		this.category=this.item[0].category_id;	
+		
+		ymaps.ready(initBigMap);
+
 		console.log(this.item)		
   	},
 	data() {
