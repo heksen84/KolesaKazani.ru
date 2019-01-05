@@ -4,6 +4,7 @@
 	  <b-col cols="12" sm="12" md="12" lg="10" xl="10" class="create_advert_col">
 		  <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>     
 			<br>
+
 			<!-- ТРАНСПОРТ -->
 			<div v-if="category==1">
 				<h1 style="font-size:190%"><b>{{ item[0].mark }} {{ item[0].model }}, {{ item[0].year}} года</b></h1>
@@ -23,10 +24,10 @@
 					<b v-else>справа</b>
 				</h5>
 			</div>
-
 			<hr>
 				<h5>Дополнительно: <b>{{ item[0].text }}</b></h5>
 			<hr>
+
 			<!-- НЕДВИЖИМОСТЬ -->
 			<div v-if="category==2">Недвижимость</div>
 			<div v-if="category==3">Бытовая техника</div>
@@ -39,7 +40,6 @@
 				тел: <b v-if="item[0].contacts!=null">{{ item[0].contacts }}</b>
 				<b v-else>не указан</b>
 			</h5>
-
 
 			<hr v-if="images.length>0">
 			
