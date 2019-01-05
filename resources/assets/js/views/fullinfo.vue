@@ -66,6 +66,7 @@
 			<div style="text-align:center;margin-bottom:20px">
 				<hr>
 				<b>{{ item[0].region_name }}, {{ item[0].city_name }}</b>
+				<br v-for="i in 2">
 				<div id="map" style="width: 100%; height: 400px"></div>
 				<hr>
 				<b-button variant="primary" @click="closeAndReturn">закрыть</b-button>
