@@ -12,9 +12,9 @@
 
 				<hr>
 
-				<h5>Год выпуска: <b>{{ item[0].year}} г.</b></h5>
+				<h5>Год выпуска: <b>{{ item[0].year}}</b> г.</h5>
 				<h5>Тип двигателя:</h5>
-				<h5>Пробег: <b>{{ item[0].mileage}} км.</b></h5>
+				<h5>Пробег: <b>{{ item[0].mileage}}</b> км.</h5>
 				<h5>Положение руля:</h5>
 			
 			</div>
@@ -28,8 +28,11 @@
 			<div v-if="category==6">Личные вещи</div>			
 
 			<h5>Дополнительно: <b>{{ item[0].text }}</b></h5>
-			<h5>Цена: <b>{{ item[0].price }} тенге</b></h5>
-			<h5>тел. :<b>{{ item[0].contacts }}</b></h5>
+			<h5>Цена: <b>{{ item[0].price }}</b> тенге</h5>
+			<h5>
+				тел: <b v-if="item[0].contacts!=null">{{ item[0].contacts }}</b>
+				<b v-else>не указан</b>
+			</h5>
 
 
 			<hr v-if="images.length>0">
