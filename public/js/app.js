@@ -3221,6 +3221,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -36387,14 +36391,10 @@ var render = function() {
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _c("hr"),
-              _vm._v(" "),
               _c("h5", [
                 _vm._v("Дополнительно: "),
                 _c("b", [_vm._v(_vm._s(_vm.item[0].text))])
               ]),
-              _vm._v(" "),
-              _c("hr"),
               _vm._v(" "),
               _vm.category == 2
                 ? _c("div", [_vm._v("Недвижимость")])
@@ -36413,6 +36413,8 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               _vm.category == 6 ? _c("div", [_vm._v("Личные вещи")]) : _vm._e(),
+              _vm._v(" "),
+              _c("br"),
               _vm._v(" "),
               _c("h5", [
                 _vm._v("Цена: "),
@@ -36488,6 +36490,21 @@ var render = function() {
                   }
                 },
                 [
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c("b", [
+                    _vm._v(
+                      _vm._s(_vm.item[0].region_name) +
+                        ", " +
+                        _vm._s(_vm.item[0].city_name)
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", {
+                    staticStyle: { width: "100%", height: "400px" },
+                    attrs: { id: "map" }
+                  }),
+                  _vm._v(" "),
                   _c("hr"),
                   _vm._v(" "),
                   _c(

@@ -32,10 +32,8 @@
 				</h5>
 
 			</div>
-
-			<hr>
-				<h5>Дополнительно: <b>{{ item[0].text }}</b></h5>
-			<hr>
+			
+			<h5>Дополнительно: <b>{{ item[0].text }}</b></h5>
 
 			<!-- НЕДВИЖИМОСТЬ -->
 			<div v-if="category==2">Недвижимость</div>
@@ -44,6 +42,7 @@
 			<div v-if="category==5">Для дома и дачи</div>
 			<div v-if="category==6">Личные вещи</div>			
 
+			<br>
 			<h5>Цена: <b>{{ item[0].price }}</b> тенге</h5>
 			<h5>
 				тел: <b v-if="item[0].contacts!=null">{{ item[0].contacts }}</b>
@@ -64,7 +63,12 @@
 				</div>
 			</div>
 
-			<div style="text-align:center;margin-bottom:20px">							
+			<div style="text-align:center;margin-bottom:20px">
+				<hr>
+				<b>{{ item[0].region_name }}, {{ item[0].city_name }}</b>
+				<div id="map" style="width: 100%; height: 400px"></div>
+
+
 				<hr>
 				<b-button variant="primary" @click="closeAndReturn">закрыть</b-button>
 			</div>
