@@ -25,8 +25,8 @@
 				</h5>
 
 				<h5>Растоможен: 
-					<b v-if="item[0].steering_position==0">ДА 	(?)</b>
-					<b v-else>справа</b>
+					<b v-if="item[0].customs==0">да</b>
+					<b v-else>нет</b>
 				</h5>
 
 			</div>

@@ -36370,9 +36370,9 @@ var render = function() {
                     _vm._v(" "),
                     _c("h5", [
                       _vm._v("Растоможен: \n\t\t\t\t\t"),
-                      _vm.item[0].steering_position == 0
-                        ? _c("b", [_vm._v("ДА \t(?)")])
-                        : _c("b", [_vm._v("справа")])
+                      _vm.item[0].customs == 0
+                        ? _c("b", [_vm._v("да")])
+                        : _c("b", [_vm._v("нет")])
                     ])
                   ])
                 : _vm._e(),
