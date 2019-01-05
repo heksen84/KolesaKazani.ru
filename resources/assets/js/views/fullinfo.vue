@@ -32,6 +32,7 @@
 				</h5>
 
 			</div>
+
 			<hr>
 				<h5>Дополнительно: <b>{{ item[0].text }}</b></h5>
 			<hr>
@@ -62,7 +63,6 @@
 					<b-img v-for="(i,index) in images" :key="index" :src="'../storage/app/images/'+i.image" style="margin:1px;margin-bottom:8px" width="80" height="80" @click="selectImage(index)"/>					
 				</div>
 			</div>
-
 
 			<div style="text-align:center;margin-bottom:20px">							
 				<hr>
