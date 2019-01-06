@@ -84,8 +84,7 @@ var myPlacemark;
 var bigmap;
 
 function initMap() {
-    bigmap = new ymaps.Map ("map", { center: mapCoords, zoom: 10 });
-	bigmap.behaviors.enable('scrollZoom');			
+    bigmap = new ymaps.Map ("map", { center: mapCoords, zoom: 11 });			
 }
 
 export default {
