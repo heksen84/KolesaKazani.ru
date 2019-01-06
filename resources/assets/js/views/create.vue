@@ -179,6 +179,7 @@ function initBigMap() {
 // Логика
 export default {
 	props: ["items", "dealtypes"],
+	
 	data () {
     return 	{
 		

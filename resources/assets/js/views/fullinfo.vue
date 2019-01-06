@@ -83,33 +83,22 @@ var mapCoords=[];
 var myPlacemark;
 var bigmap;
 
-function initBigMap() {
-
-		mapCoords = [51.08, 71.26];
-    	bigmap = new ymaps.Map ("map", { center: mapCoords, zoom: 10 });
-
-		//Добавляем элементы управления
-		//bigmap.controls.add('zoomControl');
-		bigmap.behaviors.enable('scrollZoom');
-			
-		myPlacemark = new ymaps.Placemark([55.76, 37.64]);
-		bigmap.geoObjects.add(myPlacemark);
-
-    	bigmap.events.add('click', function (e) {
-        	mapCoords = e.get('coordPosition');
-			myPlacemark.geometry.setCoordinates(mapCoords);
-		});			
+function initMap() {
+    bigmap = new ymaps.Map ("map", { center: mapCoords, zoom: 10 });
+	bigmap.behaviors.enable('scrollZoom');			
 }
 
 export default {
 
 	props: ["item", "images"],
 	
-	created() {      
+	created() {
+
 		this.category=this.item[0].category_id;	
 		
-		ymaps.ready(initBigMap);
-
+		mapCoords=[this.item[0].coord_lat, this.item[0].coord_lon];
+		ymaps.ready(initMap);
+		
 		console.log(this.item)		
   	},
 	data() {

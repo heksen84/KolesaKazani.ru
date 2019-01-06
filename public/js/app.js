@@ -2796,6 +2796,7 @@ function forEach(data, callback) {
 // Логика
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ["items", "dealtypes"],
+
 	data: function data() {
 		return {
 
@@ -3232,51 +3233,40 @@ var mapCoords = [];
 var myPlacemark;
 var bigmap;
 
-function initBigMap() {
-
-		mapCoords = [51.08, 71.26];
-		bigmap = new ymaps.Map("map", { center: mapCoords, zoom: 10 });
-
-		//Добавляем элементы управления
-		//bigmap.controls.add('zoomControl');
-		bigmap.behaviors.enable('scrollZoom');
-
-		myPlacemark = new ymaps.Placemark([55.76, 37.64]);
-		bigmap.geoObjects.add(myPlacemark);
-
-		bigmap.events.add('click', function (e) {
-				mapCoords = e.get('coordPosition');
-				myPlacemark.geometry.setCoordinates(mapCoords);
-		});
+function initMap() {
+	bigmap = new ymaps.Map("map", { center: mapCoords, zoom: 10 });
+	bigmap.behaviors.enable('scrollZoom');
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-		props: ["item", "images"],
+	props: ["item", "images"],
 
-		created: function created() {
-				this.category = this.item[0].category_id;
+	created: function created() {
 
-				ymaps.ready(initBigMap);
+		this.category = this.item[0].category_id;
 
-				console.log(this.item);
+		mapCoords = [this.item[0].coord_lat, this.item[0].coord_lon];
+		ymaps.ready(initMap);
+
+		console.log(this.item);
+	},
+	data: function data() {
+		return {
+			category: null,
+			image_index: 0
+		};
+	},
+
+	components: {},
+	methods: {
+		selectImage: function selectImage(index) {
+			this.image_index = index;
 		},
-		data: function data() {
-				return {
-						category: null,
-						image_index: 0
-				};
-		},
-
-		components: {},
-		methods: {
-				selectImage: function selectImage(index) {
-						this.image_index = index;
-				},
-				closeAndReturn: function closeAndReturn() {
-						window.history.back();
-				}
+		closeAndReturn: function closeAndReturn() {
+			window.history.back();
 		}
+	}
 });
 
 /***/ }),
