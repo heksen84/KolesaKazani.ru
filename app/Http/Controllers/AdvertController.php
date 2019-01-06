@@ -265,9 +265,6 @@ class AdvertController extends Controller {
 
             // транспорт
             case 1: {
-
-                // Выбрать тип двигателя и положение руля
-
                 $results = DB::select(
 					"SELECT                    
                     deal_name_2,
