@@ -35487,7 +35487,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "b-form-group",
-        { attrs: { label: "Тип двигателя:" } },
+        { attrs: { label: "Вид топлива:" } },
         [
           _c(
             "b-form-select",

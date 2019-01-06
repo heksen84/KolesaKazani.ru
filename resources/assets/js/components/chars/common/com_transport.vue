@@ -19,7 +19,7 @@
        <b-form-input type="number" v-model="mileage" placeholder="Введите пробег" class="mb-2 mr-sm-2 mb-sm-2" style="width:145px" :formatter="SetMileage" required></b-form-input>
     </b-form-group>
 
-     <b-form-group label="Тип двигателя:">
+     <b-form-group label="Вид топлива:">
         <b-form-select v-model="selected.fuel_type" class="mb-2 mr-sm-2 mb-sm-2" @change="SetFuelType">
            <option v-for="(item, index) in fuel_type" :value="item.value" :key="index">{{item.text}}</option>
         </b-form-select>
