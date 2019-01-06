@@ -36521,7 +36521,11 @@ var render = function() {
                   _vm._v(" "),
                   _vm.item[0].coord_lat != 0 && _vm.item[0].coord_lon != 0
                     ? _c("div", {
-                        staticStyle: { width: "100%", height: "400px" },
+                        staticStyle: {
+                          "margin-top": "10px",
+                          width: "100%",
+                          height: "400px"
+                        },
                         attrs: { id: "map" }
                       })
                     : _vm._e(),
