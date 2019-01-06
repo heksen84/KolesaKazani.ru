@@ -300,7 +300,7 @@ class AdvertController extends Controller {
 					) WHERE adv.id=".$id." LIMIT 1"
                 );                
                                                 
-                $title = $results[0]->deal_name_2." ".$results[0]->mark." ".$results[0]->model." ".$results[0]->year." года в";                
+                $title = $results[0]->deal_name_2." ".$results[0]->mark." ".$results[0]->model." ".$results[0]->year." года в ".$results[0]->city_name;                
 
                 \Debugbar::info($results);                                                
             }
