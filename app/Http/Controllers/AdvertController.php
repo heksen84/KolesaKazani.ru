@@ -76,7 +76,7 @@ class AdvertController extends Controller {
         $validator = Validator::make( $data, $rules, $messages );
 
         if ( $validator->fails() )  
-            return response()->json(["result"=>"usr.error", "msg"=>$validator->errors()->first()]);                    
+            return response()->json( ["result"=>"usr.error", "msg" => $validator->errors()->first()] );                    
 
         $category   = $data["adv_category"];
         $text       = $data["adv_info"];
@@ -108,10 +108,16 @@ class AdvertController extends Controller {
                 // --------------------------------
                 case 1: {
 
+                    $transport->type = $data["transport_type"];   // тип транспорта: легковой / грузовой и т.д.
+
                     $transport = new Transport();
-                    $transport->type                = $data["transport_type"];     // тип транспорта: легковой / грузовой и т.д.
-                    $transport->mark                = $data["mark_id"];            // id марки авто
-                    $transport->model               = $data["model_id"];           // id марки авто
+                    
+                    if ($data["transport_type"]==1) {
+                        $transport->mark  = $data["mark_id"];            // id марки авто
+                        $transport->model = $data["model_id"];           // id модели авто
+                    }
+
+                    // общие данные данные для транспорта
                     $transport->year                = $data["release_date"];       // год выпуска
                     $transport->steering_position   = $data["rule_position"];      // положение руля
                     $transport->mileage             = $data["mileage"];            // пробег
@@ -119,8 +125,8 @@ class AdvertController extends Controller {
                     $transport->customs             = $data["customs"];            // растаможка
                     $transport->save();
 
-                    // указываем id' шник
-                    $advert->adv_category_id = $transport->id;
+                    $advert->adv_category_id = $transport->id;  // указываем id' шник
+
                     break;
                 }
 
