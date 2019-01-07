@@ -28,16 +28,18 @@
 
 	<!-- VIP BLOCK -->
 	<div class="vip_block">
-		<h3 v-for="(i, index) in results" :key="index" style="height:340px;border:1px solid white;text-align:center"></h3>
+		<h3 v-for="(i, index) in results" :key="index" style="font-size:14px;height:340px;border:1px solid white;text-align:center">рекламка</h3>
 	</div>
 
 	<div class="text-center">
 		<b-row>
-			<b-col cols="12" sm="12" md="2" lg="2" xl="2">VIP</b-col>
+			<b-col cols="12" sm="12" md="2" lg="2" xl="2">
+				VIP
+			</b-col>
 			<b-col cols="12" sm="12" md="8" lg="8" xl="8">
 				<item v-for="(item,index) in results" :key="index" :id="item.advert_id" :title="item.mark" :text="item.model" :price="item.price" :year="item.year" :image="item.image"></item>
 			</b-col>
-			<b-col cols="12" sm="12" md="2" lg="2" xl="2">VIP</b-col>	
+			<!--<b-col cols="12" sm="12" md="2" lg="2" xl="2">VIP567</b-col>-->	
 		</b-row>
 
 		<b-row v-if="count>10">
@@ -75,7 +77,6 @@ export default {
 
 	data () {
 	return 	{
-		
     			items: this.data,
     			count: 0,
     			count_string: "",
