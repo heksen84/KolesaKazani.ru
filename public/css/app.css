@@ -19,25 +19,25 @@ input[type="number"] {
 }
 
 ::-webkit-scrollbar-thumb {
-  width: 7px;
+  width: 8px;
   background: white;
   border: 1px solid grey;
   border-radius: 2px;
 }
 
 ::-webkit-scrollbar {
-  width: 7px;
-  background: #646464;
+  width: 8px;
+  background: #6464b4;
 }
 
 ::-webkit-scrollbar:horizontal {
   height: 7px;
-  background: #646464;
+  background: #6464b4;
 }
 
 ::-webkit-scrollbar-thumb:horizontal {
   height: 7px;
-  background: #646464;
+  background: #6464b4;
 }
 
 ::-webkit-input-placeholder {
