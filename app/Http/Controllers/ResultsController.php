@@ -64,7 +64,7 @@ class ResultsController extends Controller {
 						adv_transport.mark=car_mark.id_car_mark AND 
 						adv.adv_category_id=adv_transport.id AND 
 						adv_transport.model = car_model.id_car_model
-					) LIMIT 0, 100"
+					) ORDER BY price ASC LIMIT 0,1000"
 				);
 
 				break;
