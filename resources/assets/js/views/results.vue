@@ -74,19 +74,21 @@ export default {
 	props: ["data", "results"],
 
 	data () {
-    return 	{
-    		items: this.data,
-    		count: 0,
-    		count_string: "",
-   	  	slide: 0,
-      	sliding: null,
+	return 	{
+		
+    			items: this.data,
+    			count: 0,
+    			count_string: "",
+   	  			slide: 0,
+      			sliding: null,
 
-      	filters: {
-      		price: null,
-      		sdelka: null,
-      		actual: null,
-      		location: null
-      },
+				filters: 
+				{
+      				price: null,
+      				sdelka: null,
+      				actual: null,
+      				location: null
+      			},
 
       options_price: [
         { value: null, text: '-- Цена --' },
