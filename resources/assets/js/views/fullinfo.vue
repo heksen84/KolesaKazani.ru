@@ -27,7 +27,7 @@
 				</h5>
 
 				<h5>Растоможен: 
-					<b v-if="item[0].customs==0">да</b>
+					<b v-if="item[0].customs==1">да</b>
 					<b v-else>нет</b>
 				</h5>
 
@@ -95,8 +95,11 @@ export default {
 
 		this.category=this.item[0].category_id;	
 		
-		mapCoords=[this.item[0].coord_lat, this.item[0].coord_lon];
-		ymaps.ready(initMap);
+		// не инициализировать карту, если координаты 0,0
+		if (this.item[0].coord_lat!=0 && this.item[0].coord_lon!=0) {
+			mapCoords=[this.item[0].coord_lat, this.item[0].coord_lon];
+			ymaps.ready(initMap);
+		}
 		
 		console.log(this.item)		
   	},

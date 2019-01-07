@@ -1712,7 +1712,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // значения по умолчанию
       this.transport_chars.rule_position = 0;
       this.transport_chars.fuel_type = 0;
-      this.transport_chars.customs = 0;
+      this.transport_chars.customs = 1;
       this.transport_chars.release_date = 0;
       this.transport_chars.mileage = 0;
    },
@@ -3245,8 +3245,11 @@ function initMap() {
 
 		this.category = this.item[0].category_id;
 
-		mapCoords = [this.item[0].coord_lat, this.item[0].coord_lon];
-		ymaps.ready(initMap);
+		// не инициализировать карту, если координаты 0,0
+		if (this.item[0].coord_lat != 0 && this.item[0].coord_lon != 0) {
+			mapCoords = [this.item[0].coord_lat, this.item[0].coord_lon];
+			ymaps.ready(initMap);
+		}
 
 		console.log(this.item);
 	},
@@ -36400,7 +36403,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("h5", [
                       _vm._v("Растоможен: \n\t\t\t\t\t"),
-                      _vm.item[0].customs == 0
+                      _vm.item[0].customs == 1
                         ? _c("b", [_vm._v("да")])
                         : _c("b", [_vm._v("нет")])
                     ])

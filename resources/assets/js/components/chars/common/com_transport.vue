@@ -74,11 +74,11 @@ export default {
      this.transport_chars = this.$root.advert_data; // получаю ссылку на массив данных объявления
      
      // значения по умолчанию
-     this.transport_chars.rule_position = 0;
-     this.transport_chars.fuel_type = 0;
-     this.transport_chars.customs = 0;
-     this.transport_chars.release_date = 0;
-     this.transport_chars.mileage = 0;
+     this.transport_chars.rule_position   = 0;
+     this.transport_chars.fuel_type       = 0;
+     this.transport_chars.customs         = 1;
+     this.transport_chars.release_date    = 0;
+     this.transport_chars.mileage         = 0;
   },
 
   components: {},
