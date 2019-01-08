@@ -69,6 +69,23 @@ class ResultsController extends Controller {
 
 				break;
 			}
+			
+			// ------------------------
+			// недвижимость
+			// ------------------------
+			case 2: 
+			{			
+				break;
+			}
+
+			// ------------------------
+			// бытовая техника
+			// ------------------------
+			case 3: 
+			{
+				$results = DB::select("SELECT * FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
+				break;
+			}
 		}
 		
 		// передаю во вьюху
