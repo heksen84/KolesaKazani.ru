@@ -104,11 +104,11 @@ export default {
       console.log("Ёбтель :"+data)
 
         // показываю дополнительные поля
-        this.$store.commit("showOtherFields");
+        this.$store.commit("ShowOtherFields", true);
      
         switch(data) {
           case null: {
-            this.$store.commit("hideOtherFields");
+            this.$store.commit("ShowOtherFields", false);
             break;
           }
           case 0: {

@@ -1850,12 +1850,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       console.log("Ёбтель :" + data);
 
       // показываю дополнительные поля
-      this.$store.commit("showOtherFields");
+      this.$store.commit("ShowOtherFields", true);
 
       switch (data) {
         case null:
           {
-            this.$store.commit("hideOtherFields");
+            this.$store.commit("ShowOtherFields", false);
             break;
           }
         case 0:
@@ -1988,7 +1988,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.$store.commit("hideOtherFields");*/
 
       this.$store.commit("ShowCommonTransport", false);
-      this.$store.commit("hideOtherFields");
+      this.$store.commit("ShowOtherFields", false);
 
       this.transport_chars.transport_type = transport_id;
 
@@ -2015,7 +2015,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       this.$store.commit("ShowCommonTransport", false);
-      this.$store.commit("hideOtherFields");
+      this.$store.commit("ShowOtherFields", false);
 
       this.transport_chars.mark_id = mark_id;
 
@@ -2038,7 +2038,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.transport_chars.model_id = model_id;
       console.log(this.transport_chars.model_id);
       this.$store.commit("ShowCommonTransport", true);
-      this.$store.commit("showOtherFields");
+      this.$store.commit("ShowOtherFields", true);
       //this.$store.commit("hideOtherFields");
     }
   }
@@ -3004,80 +3004,87 @@ function forEach(data, callback) {
 			// сбрасываю карту
 			this.coordinates_set = false;
 			// сбрасываю дополнительные поля
-			this.$store.commit("hideOtherFields");
+			this.$store.commit("ShowOtherFields", false);
 			// добавляю категорию
 			this.$root.advert_data.adv_category = data;
-			// по умолчанию показываю доп. поля
-			this.$store.commit("showOtherFields");
+			// по умолчанию показываю доп. поля			
 
 			switch (data) {
 				case null:
 					{
 						this.resetCategories(data);
 						this.root = true;
-						this.$store.commit("hideOtherFields");
+						this.$store.commit("ShowOtherFields", false);
 						break;
 					}
 				case 1:
 					{
 						this.resetCategories(data);
 						this.transport = true;
-						this.$store.commit("hideOtherFields");
+						this.$store.commit("ShowOtherFields", false);
 						break;
 					}
 				case 2:
 					{
 						this.resetCategories(data);
 						this.real_estate = true;
-						this.$store.commit("hideOtherFields");
+						this.$store.commit("ShowOtherFields", true);
 						break;
 					}
 				case 3:
 					{
 						this.resetCategories(data);
 						this.appliances = true;
+						this.$store.commit("ShowOtherFields", true);
 						break;
 					}
 				case 4:
 					{
 						this.resetCategories(data);
 						this.work_and_buisness = true;
+						this.$store.commit("ShowOtherFields", true);
 						break;
 					}
 				case 5:
 					{
 						this.resetCategories(data);
 						this.for_home = true;
+						this.$store.commit("ShowOtherFields", true);
 						break;
 					}
 				case 6:
 					{
 						this.resetCategories(data);
 						this.personal_effects = true;
+						this.$store.commit("ShowOtherFields", true);
 						break;
 					}
 				case 7:
 					{
 						this.resetCategories(data);
 						this.animals = true;
+						this.$store.commit("ShowOtherFields", true);
 						break;
 					}
 				case 8:
 					{
 						this.resetCategories(data);
 						this.hobbies_and_leisure = true;
+						this.$store.commit("ShowOtherFields", true);
 						break;
 					}
 				case 9:
 					{
 						this.resetCategories(data);
 						this.services = true;
+						this.$store.commit("ShowOtherFields", true);
 						break;
 					}
 				case 10:
 					{
 						this.resetCategories(data);
 						this.other = true;
+						this.$store.commit("ShowOtherFields", true);
 						break;
 					}
 			}
@@ -51339,11 +51346,8 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
   },
 
   mutations: {
-    showOtherFields: function showOtherFields(state) {
-      state.show_other_fields = true;
-    },
-    hideOtherFields: function hideOtherFields(state) {
-      state.show_other_fields = false;
+    ShowOtherFields: function ShowOtherFields(state, value) {
+      state.show_other_fields = value;
     },
     ShowCommonTransport: function ShowCommonTransport(state, value) {
       state.show_common_transport = value;

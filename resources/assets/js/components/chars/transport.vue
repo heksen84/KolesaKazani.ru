@@ -84,7 +84,7 @@ export default {
         this.$store.commit("hideOtherFields");*/
 
       this.$store.commit("ShowCommonTransport", false);
-      this.$store.commit("hideOtherFields");
+      this.$store.commit("ShowOtherFields", false);
 
       this.transport_chars.transport_type = transport_id;
 
@@ -108,7 +108,7 @@ export default {
     selectMark(mark_id) {
       
       this.$store.commit("ShowCommonTransport", false);
-      this.$store.commit("hideOtherFields");
+      this.$store.commit("ShowOtherFields", false);
 
       this.transport_chars.mark_id = mark_id;
 
@@ -132,7 +132,7 @@ export default {
       this.transport_chars.model_id = model_id;
       console.log(this.transport_chars.model_id);
       this.$store.commit("ShowCommonTransport", true);
-      this.$store.commit("showOtherFields");
+      this.$store.commit("ShowOtherFields", true);
       //this.$store.commit("hideOtherFields");
 
     }

@@ -378,69 +378,76 @@ export default {
 			// сбрасываю карту
 			this.coordinates_set=false;
 			// сбрасываю дополнительные поля
-			this.$store.commit("hideOtherFields");
+			this.$store.commit("ShowOtherFields", false);
 			// добавляю категорию
 			this.$root.advert_data.adv_category=data;
-			// по умолчанию показываю доп. поля
-			this.$store.commit("showOtherFields"); 
+			// по умолчанию показываю доп. поля			
 
   			switch(data) {
   				case null: {
   					this.resetCategories(data); 
 					  this.root=true; 
-					  this.$store.commit("hideOtherFields"); 
+					  this.$store.commit("ShowOtherFields", false);
   					break;
   				}
   				case 1: { 
   					this.resetCategories(data); 
 					  this.transport=true; 
-					  this.$store.commit("hideOtherFields"); 
+					  this.$store.commit("ShowOtherFields", false);
   					break; 
   				} 
   				case 2: { 
   					this.resetCategories(data); 
 					  this.real_estate=true; 
-					  this.$store.commit("hideOtherFields"); 
+					  this.$store.commit("ShowOtherFields", true);
   					break; 
   				}
   				case 3: { 
   					this.resetCategories(data); 
-  					this.appliances=true; 
+					  this.appliances=true; 
+					  this.$store.commit("ShowOtherFields", true);
   					break; 
   				}
   				case 4: { 
   					this.resetCategories(data); 
-  					this.work_and_buisness=true; 
+					  this.work_and_buisness=true;
+					  this.$store.commit("ShowOtherFields", true); 
   					break; 
   				}
   				case 5: { 
   					this.resetCategories(data); 
-  					this.for_home=true; 
+					  this.for_home=true; 
+					  this.$store.commit("ShowOtherFields", true);
   					break; 
   				}
   				case 6: { 
   					this.resetCategories(data); 
-  					this.personal_effects=true; 
+					  this.personal_effects=true; 
+					  this.$store.commit("ShowOtherFields", true);
   					break; 
   				}
   				case 7: { 
   					this.resetCategories(data); 
-  					this.animals=true; 
+					this.animals=true;
+					this.$store.commit("ShowOtherFields", true); 
   					break; 
   				}
   				case 8: { 
   					this.resetCategories(data); 
-  					this.hobbies_and_leisure=true; 
+					this.hobbies_and_leisure=true; 
+					this.$store.commit("ShowOtherFields", true);
   					break; 
   				}
   				case 9: { 
   					this.resetCategories(data); 
-  					this.services=true; 
+					this.services=true;
+					this.$store.commit("ShowOtherFields", true);
   					break; 
   				}
   				case 10: { 
   					this.resetCategories(data); 
-  					this.other=true; 
+					this.other=true;
+					this.$store.commit("ShowOtherFields", true);
   					break; 
   				}
   			}
