@@ -1982,9 +1982,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     selectTransportType: function selectTransportType(transport_id) {
       var _this = this;
 
-      if (transport_id) this.$store.commit("showOtherFields");else this.$store.commit("hideOtherFields");
+      /*if (transport_id)
+        this.$store.commit("showOtherFields");
+      else
+        this.$store.commit("hideOtherFields");*/
 
       this.$store.commit("ShowCommonTransport", false);
+      this.$store.commit("hideOtherFields");
+
       this.transport_chars.transport_type = transport_id;
 
       switch (transport_id) {
@@ -2010,6 +2015,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       this.$store.commit("ShowCommonTransport", false);
+      this.$store.commit("hideOtherFields");
+
       this.transport_chars.mark_id = mark_id;
 
       console.log(this.transport_chars.mark_id);
@@ -2031,6 +2038,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.transport_chars.model_id = model_id;
       console.log(this.transport_chars.model_id);
       this.$store.commit("ShowCommonTransport", true);
+      this.$store.commit("showOtherFields");
       //this.$store.commit("hideOtherFields");
     }
   }

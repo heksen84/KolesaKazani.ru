@@ -78,12 +78,14 @@ export default {
     -----------------------------------*/
     selectTransportType(transport_id) {
 
-      if (transport_id)
+      /*if (transport_id)
         this.$store.commit("showOtherFields");
       else
-        this.$store.commit("hideOtherFields");
+        this.$store.commit("hideOtherFields");*/
 
       this.$store.commit("ShowCommonTransport", false);
+      this.$store.commit("hideOtherFields");
+
       this.transport_chars.transport_type = transport_id;
 
       switch(transport_id) {
@@ -106,6 +108,8 @@ export default {
     selectMark(mark_id) {
       
       this.$store.commit("ShowCommonTransport", false);
+      this.$store.commit("hideOtherFields");
+
       this.transport_chars.mark_id = mark_id;
 
       console.log(this.transport_chars.mark_id);
@@ -128,6 +132,7 @@ export default {
       this.transport_chars.model_id = model_id;
       console.log(this.transport_chars.model_id);
       this.$store.commit("ShowCommonTransport", true);
+      this.$store.commit("showOtherFields");
       //this.$store.commit("hideOtherFields");
 
     }
