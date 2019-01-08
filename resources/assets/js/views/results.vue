@@ -37,7 +37,18 @@
 				VIP
 			</b-col>
 			<b-col cols="12" sm="12" md="8" lg="8" xl="8">
-				<item v-for="(item,index) in results" :key="index" :id="item.advert_id" :title="item.mark" :text="item.model" :price="item.price" :year="item.year" :image="item.image"></item>
+				<item v-for="(item,index) in results" 
+				
+				:key="index" 
+				:id="item.advert_id" 
+				:title="item.mark" 
+				:text="item.model" 
+				:price="item.price" 
+				:year="item.year" 
+				:image="item.image"
+				:category_id="item.category_id"
+				
+				></item>
 			</b-col>
 			<!--<b-col cols="12" sm="12" md="2" lg="2" xl="2">VIP567</b-col>-->	
 		</b-row>

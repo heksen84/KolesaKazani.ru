@@ -53,7 +53,8 @@ class ResultsController extends Controller {
 					car_model.name as model,
 					adv.id as advert_id, 
 					adv_transport.id,
-					adv.price,  
+					adv.price,
+					adv.category_id,  
 					year,  
 					mileage,
 					text,
@@ -73,16 +74,70 @@ class ResultsController extends Controller {
 			// ------------------------
 			// недвижимость
 			// ------------------------
-			case 2: 
-			{			
+			case 2: {			
 				break;
 			}
 
 			// ------------------------
 			// бытовая техника
 			// ------------------------
-			case 3: 
-			{
+			case 3: {
+				$results = DB::select("SELECT * FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
+				break;
+			}
+
+			// ------------------------
+			// работа и бизнес
+			// ------------------------
+			case 4: {
+				$results = DB::select("SELECT * FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
+				break;
+			}
+
+			// ------------------------
+			// для дома и дачи
+			// ------------------------
+			case 5: {
+				$results = DB::select("SELECT * FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
+				break;
+			}
+
+			// ------------------------
+			// личные вещи
+			// ------------------------
+			case 6: {
+				$results = DB::select("SELECT * FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
+				break;
+			}
+
+			// ------------------------
+			// животные
+			// ------------------------
+			case 7: {
+				$results = DB::select("SELECT * FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
+				break;
+			}
+
+			// ------------------------
+			// хобби и отдых
+			// ------------------------
+			case 8: {
+				$results = DB::select("SELECT * FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
+				break;
+			}
+
+			// ------------------------
+			// услуги
+			// ------------------------
+			case 9: {
+				$results = DB::select("SELECT * FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
+				break;
+			}
+
+			// ------------------------
+			// другое
+			// ------------------------
+			case 10: {
 				$results = DB::select("SELECT * FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
 				break;
 			}
