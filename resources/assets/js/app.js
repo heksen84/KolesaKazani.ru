@@ -63,16 +63,24 @@ Vue.use(Notifications)
 // Реактивное хранилище
 // -----------------------------------
 const store = new Vuex.Store({
-    state: {
-      show_other_fields: false  // дополнительные поля в объявлении (поле доп. информация, и.т.д.)
+
+    state: 
+    {
+      show_other_fields: false,  // дополнительные поля в объявлении (поле доп. информация, и.т.д.)
+      show_common_transport: false
     },
-    mutations: {
+
+    mutations: 
+    {
       showOtherFields (state) {
         state.show_other_fields=true;
       },
       hideOtherFields (state) {
         state.show_other_fields=false;
-      }
+      },
+      ShowCommonTransport (state, value) {
+        state.show_common_transport=value;
+      },
     }
 })
 

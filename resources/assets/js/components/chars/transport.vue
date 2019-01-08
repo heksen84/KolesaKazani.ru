@@ -22,7 +22,7 @@
     </b-form-group>
 
     <!-- общий компонент для транспорта -->
-    <com-transport v-if="[1,2,5].indexOf(selected.type_transport) !== -1 && selected.type_transport!=null"></com-transport>
+    <com-transport v-if="[1,2,5].indexOf(selected.type_transport) !== -1 && selected.type_transport!=null" v-show="this.$store.state.show_common_transport"></com-transport>
     
     </b-form>
 </template>
@@ -83,6 +83,7 @@ export default {
       else
         this.$store.commit("hideOtherFields");
 
+      this.$store.commit("ShowCommonTransport", false);
       this.transport_chars.transport_type = transport_id;
 
       switch(transport_id) {
@@ -103,8 +104,10 @@ export default {
     // change марки
     // ------------------------
     selectMark(mark_id) {
-
+      
+      this.$store.commit("ShowCommonTransport", false);
       this.transport_chars.mark_id = mark_id;
+
       console.log(this.transport_chars.mark_id);
       
       get('/getCarsModels?mark_id='+mark_id).then((res) => {
@@ -124,7 +127,7 @@ export default {
 
       this.transport_chars.model_id = model_id;
       console.log(this.transport_chars.model_id);
-
+      this.$store.commit("ShowCommonTransport", true);
       //this.$store.commit("hideOtherFields");
 
     }

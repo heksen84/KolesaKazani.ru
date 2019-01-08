@@ -1984,6 +1984,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (transport_id) this.$store.commit("showOtherFields");else this.$store.commit("hideOtherFields");
 
+      this.$store.commit("ShowCommonTransport", false);
       this.transport_chars.transport_type = transport_id;
 
       switch (transport_id) {
@@ -2008,7 +2009,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     selectMark: function selectMark(mark_id) {
       var _this2 = this;
 
+      this.$store.commit("ShowCommonTransport", false);
       this.transport_chars.mark_id = mark_id;
+
       console.log(this.transport_chars.mark_id);
 
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsModels?mark_id=' + mark_id).then(function (res) {
@@ -2027,7 +2030,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       this.transport_chars.model_id = model_id;
       console.log(this.transport_chars.model_id);
-
+      this.$store.commit("ShowCommonTransport", true);
       //this.$store.commit("hideOtherFields");
     }
   }
@@ -36164,7 +36167,16 @@ var render = function() {
       _vm._v(" "),
       [1, 2, 5].indexOf(_vm.selected.type_transport) !== -1 &&
       _vm.selected.type_transport != null
-        ? _c("com-transport")
+        ? _c("com-transport", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: this.$store.state.show_common_transport,
+                expression: "this.$store.state.show_common_transport"
+              }
+            ]
+          })
         : _vm._e()
     ],
     1
@@ -51312,15 +51324,21 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_32_vue
 // Реактивное хранилище
 // -----------------------------------
 var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
+
   state: {
-    show_other_fields: false // дополнительные поля в объявлении (поле доп. информация, и.т.д.)
+    show_other_fields: false, // дополнительные поля в объявлении (поле доп. информация, и.т.д.)
+    show_common_transport: false
   },
+
   mutations: {
     showOtherFields: function showOtherFields(state) {
       state.show_other_fields = true;
     },
     hideOtherFields: function hideOtherFields(state) {
       state.show_other_fields = false;
+    },
+    ShowCommonTransport: function ShowCommonTransport(state, value) {
+      state.show_common_transport = value;
     }
   }
 });
