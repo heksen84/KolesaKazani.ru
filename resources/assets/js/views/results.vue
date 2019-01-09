@@ -41,8 +41,7 @@
 				:image="item.image"
 				:id="item.advert_id" 
 				:title="item.title" 				
-				:price="item.price" 
-				:year="item.year" 				
+				:price="item.price"
 				:category_id="item.category_id"
 				:key="index"				
 				></item>

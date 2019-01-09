@@ -59,11 +59,11 @@ class ResultsController extends Controller {
 
 				$results = DB::select(
 					"SELECT
-					concat(car_mark.name, ' ', car_model.name) AS title,
+					concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
 					adv.id as advert_id, 
 					adv.price,
 					adv.category_id,  
-					year,  
+					/*year,*/  
 					mileage,
 					text,
 					(SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
