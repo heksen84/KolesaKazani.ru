@@ -60,10 +60,7 @@ class ResultsController extends Controller {
 				$results = DB::select(
 					"SELECT
 					concat(car_mark.name, ' ', car_model.name) AS title,
-					/*car_mark.name as mark, 
-					car_model.name as model,*/
 					adv.id as advert_id, 
-					/*adv_transport.id,*/
 					adv.price,
 					adv.category_id,  
 					year,  
