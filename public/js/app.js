@@ -2068,7 +2068,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -35974,7 +35973,7 @@ var render = function() {
         },
         [
           _c("div", { staticStyle: { "font-weight": "bold" } }, [
-            _vm._v(_vm._s(_vm.title) + " " + _vm._s(_vm.text))
+            _vm._v(_vm._s(_vm.title))
           ]),
           _vm._v(" "),
           _c("div", [
