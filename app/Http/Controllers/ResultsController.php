@@ -157,15 +157,18 @@ class ResultsController extends Controller {
 				break;
 			}*/
 
-			default: {
-				$results = DB::select(
+			default: 
+			{
+				$results = DB::select
+				(
 					"SELECT 
 					id, 
 					text as title, 
 					price, 
 					category_id,					
 					(SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image
-					FROM `adverts` AS adv WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");					
+					FROM `adverts` AS adv WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000"
+				);
 			}
 		}
 		
