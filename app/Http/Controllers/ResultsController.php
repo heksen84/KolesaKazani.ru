@@ -82,7 +82,7 @@ class ResultsController extends Controller {
 			// ------------------------
 			// недвижимость
 			// ------------------------
-			case 2: {			
+			/*case 2: {			
 				break;
 			}
 
@@ -155,6 +155,17 @@ class ResultsController extends Controller {
 			case 10: {
 				$results = DB::select("SELECT * FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
 				break;
+			}*/
+
+			default: {
+				$results = DB::select(
+					"SELECT 
+					id, 
+					text as title, 
+					price, 
+					category_id,					
+					(SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image
+					FROM `adverts` AS adv WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");					
 			}
 		}
 		
