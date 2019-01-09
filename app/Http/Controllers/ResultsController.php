@@ -90,8 +90,15 @@ class ResultsController extends Controller {
 			// бытовая техника
 			// ------------------------
 			case 3: {
-				$results = DB::select("SELECT id, text as title, price FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
-				break;
+				$results = DB::select(
+					"SELECT 
+					id, 
+					text as title, 
+					price, 
+					category_id,					
+					(SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image
+					FROM `adverts` AS adv WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
+					break;
 			}
 
 			// ------------------------
