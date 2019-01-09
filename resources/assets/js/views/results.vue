@@ -41,8 +41,7 @@
 				
 				:key="index" 
 				:id="item.advert_id" 
-				:title="item.mark" 
-				:text="item.model" 
+				:title="item.title" 				
 				:price="item.price" 
 				:year="item.year" 
 				:image="item.image"

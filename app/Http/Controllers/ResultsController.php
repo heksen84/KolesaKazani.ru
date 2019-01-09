@@ -41,6 +41,16 @@ class ResultsController extends Controller {
 		// Выдергиваю данные по конкретной категории
 		// --------------------------------------------------------
 		switch($category->id) {
+
+			/*
+			-------------------------------------------
+			*** Должно быть так: ***
+			Заголовок (например: audi 100) - title
+			Цена (5000) - price			
+			-------------------------------------------*/
+
+
+
 			
 			// ------------------------
 			// транспорт
@@ -48,11 +58,12 @@ class ResultsController extends Controller {
 			case 1: {
 
 				$results = DB::select(
-					"SELECT					
-					car_mark.name as mark, 
-					car_model.name as model,
+					"SELECT
+					concat(car_mark.name, ' ', car_model.name) AS title,
+					/*car_mark.name as mark, 
+					car_model.name as model,*/
 					adv.id as advert_id, 
-					adv_transport.id,
+					/*adv_transport.id,*/
 					adv.price,
 					adv.category_id,  
 					year,  
@@ -82,7 +93,7 @@ class ResultsController extends Controller {
 			// бытовая техника
 			// ------------------------
 			case 3: {
-				$results = DB::select("SELECT * FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
+				$results = DB::select("SELECT id, text as title, price FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
 				break;
 			}
 
