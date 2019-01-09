@@ -18,7 +18,7 @@
 import avatarka from "./avatarka"
 export default {
   
-  props: [ "id", "photo", "title", "text", "price", "image", "year", "category_id" ],
+  props: [ "id", "image", "title", "price", "year", "category_id" ],
 
   data () {
     return 	{}
