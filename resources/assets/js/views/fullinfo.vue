@@ -7,7 +7,9 @@
 
 			<b>{{ item[0].region_name }}, {{ item[0].city_name }}</b>
 
-			<!-- ТРАНСПОРТ -->
+			<!--======================================================================================================
+			    ТРАНСПОРТ
+			  ======================================================================================================-->
 			<div v-if="category==1">
 				<h1 style="font-size:190%"><b>{{ item[0].mark }} {{ item[0].model }}, {{ item[0].year}} года</b></h1>
 				<hr>
@@ -31,18 +33,29 @@
 					<b v-else>нет</b>
 				</h5>
 
-			</div>
-			
-			<h5>Дополнительно: <b>{{ item[0].text }}</b></h5>
+				<h5>Дополнительно: <b>{{ item[0].text }}</b></h5>
 
-			<!-- НЕДВИЖИМОСТЬ -->
-			<div v-if="category==2">Недвижимость</div>
-			<div v-if="category==3">Бытовая техника</div>
+			</div>
+
+
+			<!-- Всё остальное -->
+			<h5 v-else>
+				<br>
+					<b>{{ item[0].text }}</b>
+				<br>
+				<br>
+			</h5>						
+
+			<!--<div v-if="category==2">Недвижимость</div>
+			
+			<div v-if="category==3">
+				<h5><b>{{ item[0].text }}</b></h5>
+			</div>
+
 			<div v-if="category==4">Работа и бизнес</div>
 			<div v-if="category==5">Для дома и дачи</div>
-			<div v-if="category==6">Личные вещи</div>			
+			<div v-if="category==6">Личные вещи</div>-->
 
-			<br>
 			<h5>Цена: <b>{{ item[0].price }}</b> тенге</h5>
 			<h5>
 				тел: <b v-if="item[0].contacts!=null">{{ item[0].contacts }}</b>
