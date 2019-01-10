@@ -169,7 +169,7 @@ class ResultsController extends Controller {
 				$results = DB::select
 				(
 					"SELECT 
-					id, 
+					id as advert_id, 
 					text as title, 
 					price, 
 					category_id,					
