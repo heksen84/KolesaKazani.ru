@@ -198,14 +198,11 @@ class AdvertController extends Controller {
                 $advert->coord_lon = 0;
             }
 
-
             // FIXME: сделать проверку на сохранение и если что грохнуть сохраненную подкатегорию
             // и разобраться, что там с сохранением суммы
             
             $advert->save(); // сохраняю основную информацию 
             
-    
-
             /*
             ------------------------------------------
             Сохраняю картинки
@@ -273,7 +270,8 @@ class AdvertController extends Controller {
             // транспорт (развёрнутая информация)
             // -----------------------------------------
             case 1: {
-                $results = DB::select(
+                $results = DB::select
+                (
 					"SELECT                    
                         deal_name_2,
 					    car_mark.name as mark, 
@@ -294,7 +292,8 @@ class AdvertController extends Controller {
                         kz_region.name as region_name,
                         kz_city.name as city_name
 					FROM `adverts` as adv
-					INNER JOIN (adv_transport, car_mark, car_model, categories, dealtype, kz_city, kz_region) ON (
+					INNER JOIN (adv_transport, car_mark, car_model, categories, dealtype, kz_city, kz_region) ON 
+                    (
 						adv_transport.mark = car_mark.id_car_mark AND 
 						adv.adv_category_id = adv_transport.id AND 
 						adv_transport.model = car_model.id_car_model AND
@@ -302,7 +301,8 @@ class AdvertController extends Controller {
                         categories.id=dealtype.id AND
                         kz_city.city_id=adv.city_id AND
                         kz_region.region_id=adv.region_id
-					) WHERE adv.id=".$id." LIMIT 1"
+					) 
+                    WHERE adv.id=".$id." LIMIT 1"
                 );                
                                                 
                 $title = $results[0]->deal_name_2." ".$results[0]->mark." ".$results[0]->model." ".$results[0]->year." года в ".$results[0]->city_name;                
@@ -332,28 +332,31 @@ class AdvertController extends Controller {
             case 10: break;*/
 
             default: {
-                $results = DB::select(
+                $results = DB::select
+                (
                     "SELECT
-                            deal_name_2,
-                            adv.id as advert_id, 
-                            adv.category_id as category_id,				
-                            adv.price,
-                            adv.contacts,
-                            adv.text,
-                            adv.coord_lat,
-                            adv.coord_lon,
-                            kz_region.name as region_name,
-                            kz_city.name as city_name              
-                    FROM `adverts` as adv INNER JOIN (categories, dealtype, kz_city, kz_region) ON (
-                            categories.id=adv.category_id AND
-                            categories.id=dealtype.id AND
-                            kz_city.city_id=adv.city_id AND
-                            kz_region.region_id=adv.region_id
-                    ) WHERE adv.id=".$id." LIMIT 1");                            
+                        deal_name_2,
+                        adv.id as advert_id,
+                        adv.price,
+                        adv.contacts,
+                        adv.text,
+                        adv.coord_lat,
+                        adv.coord_lon,
+                        kz_region.name as region_name,
+                        kz_city.name as city_name              
+                    FROM `adverts` as adv INNER JOIN (categories, dealtype, kz_city, kz_region) ON 
+                    (
+                        categories.id=dealtype.id AND
+                        kz_city.city_id=adv.city_id AND
+                        kz_region.region_id=adv.region_id
+                    ) 
+                    WHERE adv.id=".$id." LIMIT 1"
+                );
                     
-                    //$title = $results[0]->deal_name_2." ".$results[0]->text." года в ".$results[0]->city_name;
-                    $title="";
-                    \Debugbar::info($results);
+                \Debugbar::info("Hello ebt!");                    
+                \Debugbar::info($results);
+
+                $title = $results[0]->deal_name_2." ".$results[0]->text." года в ".$results[0]->city_name;
             }
         }
 
@@ -370,7 +373,8 @@ class AdvertController extends Controller {
 
         $redis = Redis::connection();
 
-        try {								
+        try 
+        {								
             $redis->ping();
             $car_marks = $redis->get("car_marks");
             if (!$car_marks) {
