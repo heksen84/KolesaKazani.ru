@@ -22,7 +22,7 @@
     </b-form-group>
 
     <!-- общий компонент для транспорта -->
-    <com-transport v-if="[1,2,5].indexOf(selected.type_transport) !== -1 && selected.type_transport!=null" v-show="this.$store.state.show_common_transport"></com-transport>
+    <com-transport v-if="[1,2,5].indexOf(selected.type_transport) !== -1 && selected.type_transport!=null && this.$store.state.show_common_transport"></com-transport>
     
     </b-form>
 </template>

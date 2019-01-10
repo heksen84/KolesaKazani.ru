@@ -36176,17 +36176,9 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       [1, 2, 5].indexOf(_vm.selected.type_transport) !== -1 &&
-      _vm.selected.type_transport != null
-        ? _c("com-transport", {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: this.$store.state.show_common_transport,
-                expression: "this.$store.state.show_common_transport"
-              }
-            ]
-          })
+      _vm.selected.type_transport != null &&
+      this.$store.state.show_common_transport
+        ? _c("com-transport")
         : _vm._e()
     ],
     1

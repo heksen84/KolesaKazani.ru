@@ -106,11 +106,10 @@ class AdvertController extends Controller {
                 // --------------------------------
                 // транспорт
                 // --------------------------------
-                case 1: {
+                case 1: {                    
 
+                    $transport = new Transport();                    
                     $transport->type = $data["transport_type"];   // тип транспорта: легковой / грузовой и т.д.
-
-                    $transport = new Transport();
                     
                     if ($data["transport_type"]==1) {
                         $transport->mark  = $data["mark_id"];            // id марки авто
