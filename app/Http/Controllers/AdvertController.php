@@ -269,28 +269,30 @@ class AdvertController extends Controller {
         // ----------------------------------------------------------------
         switch($item->category_id) {
 
-            // транспорт
+            // -----------------------------------------
+            // транспорт (развёрнутая информация)
+            // -----------------------------------------
             case 1: {
                 $results = DB::select(
 					"SELECT                    
-                    deal_name_2,
-					car_mark.name as mark, 
-					car_model.name as model,
-					adv.id as advert_id, 
-                    adv.category_id as category_id,
-					adv_transport.id,
-					adv.price,
-                    adv.contacts,
-					adv.text,
-                    adv.coord_lat,
-                    adv.coord_lon,  
-					year,  
-					mileage,
-                    steering_position,
-                    engine_type,
-                    customs,
-                    kz_region.name as region_name,
-                    kz_city.name as city_name
+                        deal_name_2,
+					    car_mark.name as mark, 
+					    car_model.name as model,
+					    adv.id as advert_id, 
+                        adv.category_id as category_id,					
+					    adv.price,
+                        adv.contacts,
+					    adv.text,
+                        adv.coord_lat,
+                        adv.coord_lon,
+                        adv_transport.id,
+					    year,  
+					    mileage,
+                        steering_position,
+                        engine_type,
+                        customs,
+                        kz_region.name as region_name,
+                        kz_city.name as city_name
 					FROM `adverts` as adv
 					INNER JOIN (adv_transport, car_mark, car_model, categories, dealtype, kz_city, kz_region) ON (
 						adv_transport.mark = car_mark.id_car_mark AND 
@@ -308,12 +310,40 @@ class AdvertController extends Controller {
                 \Debugbar::info($results);                                                
             }
 
-            // недвижимость
+            // -----------------------------------------
+            // недвижимость (развёрнутая информация)
+            // -----------------------------------------
             case 2: { 
                 break;
             }
 
-            case 3: break;
+            // -----------------------------------------
+            // бытовая техника (развёрнутая информация)
+            // -----------------------------------------
+            case 3: 
+            $results = DB::select(
+            "SELECT
+                    deal_name_2,
+                	adv.id as advert_id, 
+                    adv.category_id as category_id,				
+					adv.price,
+                    adv.contacts,
+					adv.text,
+                    adv.coord_lat,
+                    adv.coord_lon,
+                    kz_region.name as region_name,
+                    kz_city.name as city_name              
+            FROM `adverts` as adv INNER JOIN (categories, dealtype, kz_city, kz_region) ON (
+                    categories.id=adv.category_id AND
+                    categories.id=dealtype.id AND
+                    kz_city.city_id=adv.city_id AND
+                    kz_region.region_id=adv.region_id
+            ) WHERE adv.id=".$id." LIMIT 1");                            
+            
+            $title = $results[0]->deal_name_2." ".$results[0]->text." года в ".$results[0]->city_name;
+            \Debugbar::info($results);                                                
+            break;
+            
             case 4: break;
             case 5: break;
             case 6: break;
