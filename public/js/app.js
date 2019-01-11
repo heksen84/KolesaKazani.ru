@@ -37623,7 +37623,10 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _vm.category != null && _vm.category != 7
+                  _vm.category != null &&
+                  _vm.category != 4 &&
+                  _vm.category != 9 &&
+                  _vm.category != 10
                     ? _c(
                         "b-form-group",
                         {
