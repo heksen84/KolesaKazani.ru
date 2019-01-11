@@ -37630,7 +37630,7 @@ var render = function() {
                     ? _c(
                         "b-form-group",
                         {
-                          staticStyle: { width: "270px", "margin-top": "-5px" },
+                          staticStyle: { width: "270px" },
                           attrs: {
                             label: "Вид сделки:",
                             "label-for": "default_group"
@@ -37708,7 +37708,7 @@ var render = function() {
                         "b-form-group",
                         {
                           attrs: {
-                            label: "Информация:",
+                            label: "Описание:",
                             "label-for": "addit_info"
                           }
                         },
@@ -37716,7 +37716,7 @@ var render = function() {
                           _c("b-form-textarea", {
                             attrs: {
                               id: "addit_info",
-                              placeholder: "Введите информацию об объявлении",
+                              placeholder: "Введите описание",
                               rows: 4,
                               "max-rows": 4
                             },
