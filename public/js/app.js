@@ -1982,20 +1982,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     selectTransportType: function selectTransportType(transport_id) {
       var _this = this;
 
-      /*if (transport_id)
-        this.$store.commit("showOtherFields");
-      else
-        this.$store.commit("hideOtherFields");*/
+      //console.log(transport_id)
 
-      this.$store.commit("ShowCommonTransport", false);
-      this.$store.commit("ShowOtherFields", false);
+      if (transport_id == null) {
+        this.$store.commit("ShowCommonTransport", false);
+        this.$store.commit("ShowOtherFields", false);
+      } else {
+        this.$store.commit("ShowCommonTransport", true);
+        this.$store.commit("ShowOtherFields", true);
+      }
 
       this.transport_chars.transport_type = transport_id;
 
       switch (transport_id) {
+
+        // --------------------------
+        // автомобили
+        // --------------------------
         case 1:
           {
-            // автомобили
+
+            this.$store.commit("ShowCommonTransport", false);
+            this.$store.commit("ShowOtherFields", false);
+
             this.carmark = [];
 
             Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsMarks').then(function (res) {
@@ -3166,6 +3175,7 @@ function forEach(data, callback) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //

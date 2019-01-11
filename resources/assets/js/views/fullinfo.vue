@@ -1,3 +1,4 @@
+<!-- переименовать в details.vue -->
 <template>
 	<b-container fluid class="mycontainer">
 	<b-row>

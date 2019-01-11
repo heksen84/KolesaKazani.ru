@@ -78,28 +78,41 @@ export default {
     -----------------------------------*/
     selectTransportType(transport_id) {
 
-      /*if (transport_id)
-        this.$store.commit("showOtherFields");
-      else
-        this.$store.commit("hideOtherFields");*/
-
-      this.$store.commit("ShowCommonTransport", false);
-      this.$store.commit("ShowOtherFields", false);
+      //console.log(transport_id)
+      
+      if (transport_id==null) {
+        this.$store.commit("ShowCommonTransport", false);
+        this.$store.commit("ShowOtherFields", false);       
+      }      
+      else {
+        this.$store.commit("ShowCommonTransport", true);
+        this.$store.commit("ShowOtherFields", true);       
+      }
 
       this.transport_chars.transport_type = transport_id;
 
       switch(transport_id) {
-        case 1: { 
-          // автомобили
+        
+        // --------------------------
+        // автомобили
+        // --------------------------
+        case 1: {
+
+          this.$store.commit("ShowCommonTransport", false);
+          this.$store.commit("ShowOtherFields", false);
+                    
           this.carmark=[];
 
-          get('/getCarsMarks').then((res) => {
-            this.carmark = res.data;
+          get('/getCarsMarks').then((res) => {            
+            this.carmark = res.data;                        
             console.log(this.this.carmark);
-          }).catch((err) => {});
+          }).catch((err) => {
+
+          });
           break;
        }
       }
+
     },
 
     // ------------------------
