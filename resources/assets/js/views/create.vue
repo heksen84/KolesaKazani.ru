@@ -17,19 +17,21 @@
 		  <hr>
 
 			<b-form @submit="onSubmit">
-			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px;margin-top:-5px">
-				 <!--<b-form-radio-group id="deal_group" stacked :options="dealtypes" name="radioOpenions" @change="setDeal"></b-form-radio-group>-->
-				 <b-form-radio-group id="deal_group" stacked name="radioOpenions" @change="setDeal">
+
+			<b-form-group label="Категория товара или услуги:" label-for="categories" style="width:260px">
+			<b-form-select class="mb-3" @change="changeCategory" v-model="category">
+				<option :value=null>-- Выберите категорию --</option>
+				<option v-for="item in items" :value="item.id" :key="item.name">{{item.name}}</option>
+			</b-form-select>
+			</b-form-group>
+
+			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px;margin-top:-5px" v-if="category!=null && category!=7">				
+				 <b-form-radio-group id="deal_group" stacked name="radioOpenions" @change="setDeal" v-model="sdelka">
 				 	<b-form-radio v-for="(i,index) in dealtypes" :value="i.id" :key="index">{{ i.deal_name_1 }}</b-form-radio>
 				 </b-form-radio-group>
 			</b-form-group>
 
-			<b-form-group label="Категория товара или услуги:" label-for="categories" style="margin-top:30px;width:260px" v-if="deal_id!=null">
-				<b-form-select class="mb-3" @change="changeCategory" v-model="category">
-					 <option :value=null>-- Выберите категорию --</option>
-					 <option v-for="item in items" :value="item.id" :key="item.name">{{item.name}}</option>
-				</b-form-select>
-			</b-form-group>
+			<br>			
 			
 			<!-- Категории -->
 			<div v-if="root"></div>
@@ -178,6 +180,7 @@ function initBigMap() {
 
 // Логика
 export default {
+	
 	props: ["items", "dealtypes"],
 	
 	data () {
@@ -186,12 +189,12 @@ export default {
 			setCoordsDialog:false,
 			coordinates_set:false,
 
-			/*-----------------------------
-				базовые поля объявления
-			-----------------------------*/
-
-    		//sdelka: this.$root.options_sdelka,
-    		category: null,
+			/*
+			-----------------------------
+			 базовые поля объявления
+			-----------------------------*/			
+			category: null,
+			sdelka:0,
 			deal_id: null,
 			text: "",
 			price: 0,

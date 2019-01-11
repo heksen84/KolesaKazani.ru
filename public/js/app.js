@@ -2767,6 +2767,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 // ----------------------------------------------------
@@ -2815,6 +2817,7 @@ function forEach(data, callback) {
 
 // Логика
 /* harmony default export */ __webpack_exports__["default"] = ({
+
 	props: ["items", "dealtypes"],
 
 	data: function data() {
@@ -2823,12 +2826,12 @@ function forEach(data, callback) {
 			setCoordsDialog: false,
 			coordinates_set: false,
 
-			/*-----------------------------
-   	базовые поля объявления
+			/*
+   -----------------------------
+    базовые поля объявления
    -----------------------------*/
-
-			//sdelka: this.$root.options_sdelka,
 			category: null,
+			sdelka: 0,
 			deal_id: null,
 			text: "",
 			price: 0,
@@ -37581,81 +37584,87 @@ var render = function() {
                   _c(
                     "b-form-group",
                     {
-                      staticStyle: { width: "270px", "margin-top": "-5px" },
+                      staticStyle: { width: "260px" },
                       attrs: {
-                        label: "Вид сделки:",
-                        "label-for": "default_group"
+                        label: "Категория товара или услуги:",
+                        "label-for": "categories"
                       }
                     },
                     [
                       _c(
-                        "b-form-radio-group",
+                        "b-form-select",
                         {
-                          attrs: {
-                            id: "deal_group",
-                            stacked: "",
-                            name: "radioOpenions"
-                          },
-                          on: { change: _vm.setDeal }
+                          staticClass: "mb-3",
+                          on: { change: _vm.changeCategory },
+                          model: {
+                            value: _vm.category,
+                            callback: function($$v) {
+                              _vm.category = $$v
+                            },
+                            expression: "category"
+                          }
                         },
-                        _vm._l(_vm.dealtypes, function(i, index) {
-                          return _c(
-                            "b-form-radio",
-                            { key: index, attrs: { value: i.id } },
-                            [_vm._v(_vm._s(i.deal_name_1))]
-                          )
-                        })
+                        [
+                          _c("option", { domProps: { value: null } }, [
+                            _vm._v("-- Выберите категорию --")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.items, function(item) {
+                            return _c(
+                              "option",
+                              { key: item.name, domProps: { value: item.id } },
+                              [_vm._v(_vm._s(item.name))]
+                            )
+                          })
+                        ],
+                        2
                       )
                     ],
                     1
                   ),
                   _vm._v(" "),
-                  _vm.deal_id != null
+                  _vm.category != null && _vm.category != 7
                     ? _c(
                         "b-form-group",
                         {
-                          staticStyle: { "margin-top": "30px", width: "260px" },
+                          staticStyle: { width: "270px", "margin-top": "-5px" },
                           attrs: {
-                            label: "Категория товара или услуги:",
-                            "label-for": "categories"
+                            label: "Вид сделки:",
+                            "label-for": "default_group"
                           }
                         },
                         [
                           _c(
-                            "b-form-select",
+                            "b-form-radio-group",
                             {
-                              staticClass: "mb-3",
-                              on: { change: _vm.changeCategory },
+                              attrs: {
+                                id: "deal_group",
+                                stacked: "",
+                                name: "radioOpenions"
+                              },
+                              on: { change: _vm.setDeal },
                               model: {
-                                value: _vm.category,
+                                value: _vm.sdelka,
                                 callback: function($$v) {
-                                  _vm.category = $$v
+                                  _vm.sdelka = $$v
                                 },
-                                expression: "category"
+                                expression: "sdelka"
                               }
                             },
-                            [
-                              _c("option", { domProps: { value: null } }, [
-                                _vm._v("-- Выберите категорию --")
-                              ]),
-                              _vm._v(" "),
-                              _vm._l(_vm.items, function(item) {
-                                return _c(
-                                  "option",
-                                  {
-                                    key: item.name,
-                                    domProps: { value: item.id }
-                                  },
-                                  [_vm._v(_vm._s(item.name))]
-                                )
-                              })
-                            ],
-                            2
+                            _vm._l(_vm.dealtypes, function(i, index) {
+                              return _c(
+                                "b-form-radio",
+                                { key: index, attrs: { value: i.id } },
+                                [_vm._v(_vm._s(i.deal_name_1))]
+                              )
+                            })
                           )
                         ],
                         1
                       )
                     : _vm._e(),
+                  _vm._v(" "),
+                  _c("br"),
                   _vm._v(" "),
                   _vm.root
                     ? _c("div")
