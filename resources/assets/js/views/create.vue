@@ -69,9 +69,9 @@
 			<!-- Дополнительные поля -->
 			<div v-show="this.$store.state.show_other_fields">
 
-				<b-form-group label="Дополнительная информация:" label-for="addit_info">
+				<b-form-group label="Информация:" label-for="addit_info">
 			 	<b-form-textarea id="addit_info"
-								placeholder="Введите дополнительную информацию"
+								placeholder="Введите информацию об объявлении"
 								:rows="4"
 								:max-rows="4" @input="setInfo" v-model="text">
 	 		 	</b-form-textarea>

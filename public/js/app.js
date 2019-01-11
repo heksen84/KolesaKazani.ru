@@ -37708,7 +37708,7 @@ var render = function() {
                         "b-form-group",
                         {
                           attrs: {
-                            label: "Дополнительная информация:",
+                            label: "Информация:",
                             "label-for": "addit_info"
                           }
                         },
@@ -37716,7 +37716,7 @@ var render = function() {
                           _c("b-form-textarea", {
                             attrs: {
                               id: "addit_info",
-                              placeholder: "Введите дополнительную информацию",
+                              placeholder: "Введите информацию об объявлении",
                               rows: 4,
                               "max-rows": 4
                             },
