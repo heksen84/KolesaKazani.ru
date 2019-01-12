@@ -194,7 +194,7 @@ export default {
 			 базовые поля объявления
 			-----------------------------*/			
 			category: null,
-			sdelka:0,
+			sdelka: 1,
 			deal_id: null,
 			text: "",
 			price: 0,
@@ -203,9 +203,9 @@ export default {
 			real_images: [],
 			root: false,
 			regions: [],
-			regions_model:null,
+			regions_model: null,
 			places: [],
-			places_model:null,
+			places_model: null,
 			
 			/*-------------------------
 				категории 
