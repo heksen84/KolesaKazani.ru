@@ -91,8 +91,9 @@
 				</div>
 				</b-form-group>
 
-				<b-form-group label="Контактный номер:" style="text-align:center">
-			 		<b-form-input type="number" id="price" placeholder="+7(XXX)XXXXXXX" style="width:250px;display:inline" :formatter="setPhoneNumber" required></b-form-input>
+				<b-form-group label="Контактный номер:" style="text-align:center;font-weight:bold">
+					<p style="margin-top:-7px;font-weight:normal">(можно указать несколько номеров через запятую)</p>
+			 		<b-form-input type="text" id="price" placeholder="Введите номер (-а)" style="width:250px;display:inline;text-align:center" :formatter="setPhoneNumber" required></b-form-input>
 				</b-form-group>
 
 				<!-- Город, Село и т.д. -->
@@ -194,7 +195,7 @@ export default {
 			 базовые поля объявления
 			-----------------------------*/			
 			category: null,
-			sdelka: 1,
+			sdelka: 0,
 			deal_id: null,
 			text: "",
 			price: 0,
@@ -225,13 +226,15 @@ export default {
 	},
 
 	// Событие: компонент создан
-	created() {
-		console.log(this.dealtypes)
+	created() {		
 		
-		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация						
+		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация		
+		this.sdelka=0;		
 
 		ymaps.ready(initBigMap);
 		ymaps.ready(initSmallMap);
+
+		console.log(this.dealtypes)
 
 		// -----------------------------
 		// Получаем регионы
