@@ -195,7 +195,7 @@ export default {
 			 базовые поля объявления
 			-----------------------------*/			
 			category: null,
-			sdelka: 0,
+			sdelka: 1,
 			deal_id: null,
 			text: "",
 			price: 0,
@@ -229,7 +229,7 @@ export default {
 	created() {		
 		
 		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация		
-		this.sdelka=0;		
+		//this.sdelka=0;		
 
 		ymaps.ready(initBigMap);
 		ymaps.ready(initSmallMap);
@@ -366,7 +366,8 @@ export default {
   		
   		setDeal(deal_id) {
   			this.$root.advert_data.adv_deal=deal_id;
-        	this.deal_id=deal_id;
+			this.deal_id=deal_id;
+			//alert(this.deal_id)
   		},
 
   		/*
