@@ -63,16 +63,26 @@
         </b-col>
     </b-row>
 
-    <div id="categories_title" class="shadow_text">категории</div>
-    
-    <!-- категории -->
+    <!-- КАТЕГОРИИ -->
+    <div v-if="show_categories">    
+    <div id="categories_title" class="shadow_text">категории</div>        
     <b-row v-for="i in Object.keys(items).length" v-bind:key=i>
       <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in items.slice((i - 1) * 4, i * 4)" v-bind:key=item.id>
-        <a :href="urlRegAndPlace+'/'+item.url">
+        <a :href="urlRegAndPlace+'/'+item.url" @click="showSubcat($event)">
         <div class="category_item">{{ item.name }}
           <!--<span style="font-size:13px;color:rgb(170,255,170);float:right;margin-top:4px" :id="item.id">{{ getCategoryCountById(item.id) }}</span>-->
         </div>
         </a>
+      </b-col>
+    </b-row>
+
+    </div>
+
+    <!-- ПОД КАТЕГОРИИ -->
+    <b-row v-if="!show_categories">
+      <b-col cols="12" sm="12" md="12" lg="3" xl="3">        
+        <div id="categories_title" class="shadow_text">под категории</div>
+        <h2 @click="closeSubCats" style="cursor:pointer">x</h2>
       </b-col>
     </b-row>
 
@@ -101,6 +111,9 @@ export default {
 
   data () {
     return {
+
+      show_categories:true,
+
       regions: [],
       places: [],
       location: null,
@@ -151,7 +164,13 @@ export default {
   },
 
   methods: {
-
+    showSubcat(e) {
+      e.preventDefault();
+      this.show_categories=false;
+    },
+    closeSubCats() {
+      this.show_categories=true;
+    },
     getCategoryCountById(id) {
       /*get('getCategoryCountById?category_id='+id).then((res) => {
           return res;

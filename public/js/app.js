@@ -3420,6 +3420,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 //import petrovich from 'petrovich';
@@ -3429,6 +3439,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   data: function data() {
     return {
+
+      show_categories: true,
+
       regions: [],
       places: [],
       location: null,
@@ -3471,6 +3484,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   computed: {},
 
   methods: {
+    showSubcat: function showSubcat(e) {
+      e.preventDefault();
+      this.show_categories = false;
+    },
+    closeSubCats: function closeSubCats() {
+      this.show_categories = true;
+    },
     getCategoryCountById: function getCategoryCountById(id) {
       /*get('getCategoryCountById?category_id='+id).then((res) => {
           return res;
@@ -35353,38 +35373,96 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "shadow_text", attrs: { id: "categories_title" } },
-        [_vm._v("категории")]
-      ),
-      _vm._v(" "),
-      _vm._l(Object.keys(_vm.items).length, function(i) {
-        return _c(
-          "b-row",
-          { key: i },
-          _vm._l(_vm.items.slice((i - 1) * 4, i * 4), function(item) {
-            return _c(
-              "b-col",
-              {
-                key: item.id,
-                attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
-              },
-              [
-                _c(
-                  "a",
-                  { attrs: { href: _vm.urlRegAndPlace + "/" + item.url } },
-                  [
-                    _c("div", { staticClass: "category_item" }, [
-                      _vm._v(_vm._s(item.name) + "\n          ")
-                    ])
-                  ]
+      _vm.show_categories
+        ? _c(
+            "div",
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "shadow_text",
+                  attrs: { id: "categories_title" }
+                },
+                [_vm._v("категории")]
+              ),
+              _vm._v(" "),
+              _vm._l(Object.keys(_vm.items).length, function(i) {
+                return _c(
+                  "b-row",
+                  { key: i },
+                  _vm._l(_vm.items.slice((i - 1) * 4, i * 4), function(item) {
+                    return _c(
+                      "b-col",
+                      {
+                        key: item.id,
+                        attrs: {
+                          cols: "12",
+                          sm: "12",
+                          md: "12",
+                          lg: "3",
+                          xl: "3"
+                        }
+                      },
+                      [
+                        _c(
+                          "a",
+                          {
+                            attrs: {
+                              href: _vm.urlRegAndPlace + "/" + item.url
+                            },
+                            on: {
+                              click: function($event) {
+                                _vm.showSubcat($event)
+                              }
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "category_item" }, [
+                              _vm._v(_vm._s(item.name) + "\n          ")
+                            ])
+                          ]
+                        )
+                      ]
+                    )
+                  })
                 )
-              ]
-            )
-          })
-        )
-      }),
+              })
+            ],
+            2
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      !_vm.show_categories
+        ? _c(
+            "b-row",
+            [
+              _c(
+                "b-col",
+                { attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" } },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "shadow_text",
+                      attrs: { id: "categories_title" }
+                    },
+                    [_vm._v("под категории")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "h2",
+                    {
+                      staticStyle: { cursor: "pointer" },
+                      on: { click: _vm.closeSubCats }
+                    },
+                    [_vm._v("x")]
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c("b-row", { staticStyle: { "margin-top": "80px" } }, [
         _c("h5", [_vm._v("VIP объявления")])
@@ -35419,7 +35497,7 @@ var render = function() {
         ])
       ])
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
