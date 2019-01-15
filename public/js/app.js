@@ -35453,6 +35453,7 @@ var render = function() {
                     "h2",
                     {
                       staticStyle: { cursor: "pointer" },
+                      attrs: { title: "закрыть под категории" },
                       on: { click: _vm.closeSubCats }
                     },
                     [_vm._v("x")]
