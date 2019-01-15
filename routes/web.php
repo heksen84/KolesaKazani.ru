@@ -23,7 +23,8 @@ Route::get('getCategoryCounts', 'WelcomeController@getCategoryCounts');
 Route::get('/util/str2url', 'UtilsController@str2url');
 
 // категории по всему Казахстану
-Route::get('transport', 				'ResultsController@getResultsByCategory');
+//Route::get('transport', 				'ResultsController@getResultsByCategory');
+Route::get('transport', 				'SubCatController@showSubCategory');
 Route::get('nedvizhimost', 				'ResultsController@getResultsByCategory');
 Route::get('bytovaya-tehnika', 			'ResultsController@getResultsByCategory');
 Route::get('rabota-i-biznes', 			'ResultsController@getResultsByCategory');
