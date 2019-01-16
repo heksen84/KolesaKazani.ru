@@ -35549,9 +35549,11 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _c("b-row", { staticStyle: { "margin-top": "80px" } }, [
-        _c("h5", [_vm._v("VIP объявления")])
-      ]),
+      _c(
+        "b-row",
+        { staticClass: "shadow_text", staticStyle: { "margin-top": "80px" } },
+        [_c("h5", [_vm._v("VIP объявления")])]
+      ),
       _vm._v(" "),
       _c(
         "b-row",
