@@ -82,10 +82,12 @@
       <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="margin:auto">        
         <div id="categories_title" class="shadow_text">подкатегории</div>
         <h2 @click="closeSubCats" style="cursor:pointer" title="закрыть под категории" class="shadow_text">x</h2>
-        <h5 v-for="(i,index) in subcats" :key="index" class="shadow_text">{{ i.name }}</h5>
+        <h5 v-for="(item,index) in subcats" :key="index" class="shadow_text" :v-if="displaySubItem(item.category_id)">{{ item.name }} {{item.category_id}}</h5>
       </b-col>
     </b-row>
 
+
+    <!--<h5 v-for="item in new_arr" class="shadow_text">{{ item.id }}</h5>-->
 
     <!-- КАТЕГОРИИ -->
     <!--<div v-if="!show_categories">    
@@ -126,9 +128,24 @@ export default {
   data () {
     
     // переменные
-    return { 
+    return {
+      /*todos: [
+      {
+        id: 1,
+        title: 'Помыть посуду'
+      },
+      {
+        id: 2,
+        title: 'Вынести мусор'
+      },
+      {
+        id: 3,
+        title: 'Подстричь газон'
+      }
+      ],*/
+      //new_arr: [{"id":1,"name":"Грузовой автомобиль","category_id":1},{"id":2,"name":"Легковой автомобиль","category_id":1},{"id":3,"name":"Мототехника","category_id":1},{"id":4,"name":"Спецтехника","category_id":1},{"id":5,"name":"Ретро-автомобиль","category_id":1},{"id":6,"name":"Водный транспорт","category_id":1},{"id":7,"name":"Велосипед","category_id":1},{"id":8,"name":"Воздушный транспорт","category_id":1},{"id":9,"name":"Что-то ещё","category_id":2}], 
       show_categories: true,
-     // subcats: [],      
+      selected_category_id: null,
       regions: [],
       places:  [],
       location: null,
@@ -144,6 +161,13 @@ export default {
 
   // компонент создан
   created() {
+    
+    console.log("---------------------")
+    console.log(this.items)
+
+    this.new_arr=JSON.stringify(this.subcats);
+
+    console.log(this.new_arr)
 
     /*get("getSubCats").then((res) => {
       console.log(res)
@@ -176,10 +200,20 @@ export default {
   },
 
   mounted() {},
-  computed: {},
+  computed: {
+  },
 
   // методы компонента
   methods: {
+
+      displaySubItem: function (item) {        
+      console.log("hello :"+item)
+      if (item==2) {      
+      return true;
+      }
+      else
+      return false;
+    },
     
     // ----------------------------
     // показать подкатегории
@@ -187,9 +221,11 @@ export default {
     showSubcats(e, cat_id) {
 
       e.preventDefault();
+
+      this.selected_category_id=cat_id;
       this.show_categories=false;
       
-      console.log(cat_id)
+      console.log(this.selected_category_id)
 
       // получаю подкатегории по id категории
       /*get('getSubcategoryById?category_id='+cat_id).then((res) => {

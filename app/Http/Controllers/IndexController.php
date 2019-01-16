@@ -75,6 +75,6 @@ class IndexController extends Controller {
 				$categories = Categories::all();
 			}
 					
-        	return view('index')->with("items", $categories)->with("subcats", SubCats::all()->toJson())->with("count", Categories::count())->with("auth", Auth::user()?1:0);
+        	return view('index')->with("items", $categories)->with("subcats", json_encode(SubCats::all()->toArray()))->with("count", Categories::count())->with("auth", Auth::user()?1:0);
     	}
 }

@@ -3442,6 +3442,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -3455,8 +3457,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     // переменные
     return {
+      /*todos: [
+      {
+        id: 1,
+        title: 'Помыть посуду'
+      },
+      {
+        id: 2,
+        title: 'Вынести мусор'
+      },
+      {
+        id: 3,
+        title: 'Подстричь газон'
+      }
+      ],*/
+      //new_arr: [{"id":1,"name":"Грузовой автомобиль","category_id":1},{"id":2,"name":"Легковой автомобиль","category_id":1},{"id":3,"name":"Мототехника","category_id":1},{"id":4,"name":"Спецтехника","category_id":1},{"id":5,"name":"Ретро-автомобиль","category_id":1},{"id":6,"name":"Водный транспорт","category_id":1},{"id":7,"name":"Велосипед","category_id":1},{"id":8,"name":"Воздушный транспорт","category_id":1},{"id":9,"name":"Что-то ещё","category_id":2}], 
       show_categories: true,
-      // subcats: [],      
+      selected_category_id: null,
       regions: [],
       places: [],
       location: null,
@@ -3472,6 +3489,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   // компонент создан
   created: function created() {
+
+    console.log("---------------------");
+    console.log(this.items);
+
+    this.new_arr = JSON.stringify(this.subcats);
+
+    console.log(this.new_arr);
 
     /*get("getSubCats").then((res) => {
       console.log(res)
@@ -3501,15 +3525,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   // методы компонента
   methods: {
 
+    displaySubItem: function displaySubItem(item) {
+      console.log("hello :" + item);
+      if (item == 2) {
+        return true;
+      } else return false;
+    },
+
     // ----------------------------
     // показать подкатегории
     // ----------------------------
     showSubcats: function showSubcats(e, cat_id) {
 
       e.preventDefault();
+
+      this.selected_category_id = cat_id;
       this.show_categories = false;
 
-      console.log(cat_id);
+      console.log(this.selected_category_id);
 
       // получаю подкатегории по id категории
       /*get('getSubcategoryById?category_id='+cat_id).then((res) => {
@@ -35502,11 +35535,19 @@ var render = function() {
                     [_vm._v("x")]
                   ),
                   _vm._v(" "),
-                  _vm._l(_vm.subcats, function(i, index) {
+                  _vm._l(_vm.subcats, function(item, index) {
                     return _c(
                       "h5",
-                      { key: index, staticClass: "shadow_text" },
-                      [_vm._v(_vm._s(i.name))]
+                      {
+                        key: index,
+                        staticClass: "shadow_text",
+                        attrs: { "v-if": _vm.displaySubItem(item.category_id) }
+                      },
+                      [
+                        _vm._v(
+                          _vm._s(item.name) + " " + _vm._s(item.category_id)
+                        )
+                      ]
                     )
                   })
                 ],
