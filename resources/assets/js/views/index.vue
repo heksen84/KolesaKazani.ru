@@ -82,24 +82,9 @@
       <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="margin:auto">        
         <div id="categories_title" class="shadow_text">подкатегории</div>
         <h2 @click="closeSubCats" style="cursor:pointer" title="закрыть под категории" class="shadow_text">x</h2>
-        <h5 v-for="(item,index) in subcats" :key="index" class="shadow_text" :v-if="displaySubItem(item.category_id)">{{ item.name }} {{item.category_id}}</h5>
+        <h5 v-for="(item,index) in this.$root.subcats" :key="index" class="shadow_text" v-show="displaySubItem(item.category_id)">{{ item.name }}</h5>
       </b-col>
     </b-row>
-
-
-    <!--<h5 v-for="item in new_arr" class="shadow_text">{{ item.id }}</h5>-->
-
-    <!-- КАТЕГОРИИ -->
-    <!--<div v-if="!show_categories">    
-      <div class="shadow_text">подкатегории</div>        
-        <b-row v-for="i in Object.keys(subcats).length" v-bind:key=i>
-          <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in items.slice((i - 1) * 4, i * 4)" v-bind:key=item.id>
-          
-            <div class="category_item">{{ item.name }}</div >
-
-          </b-col>
-        </b-row>        
-    </div>-->
 
     <!-- VIP -->
     <b-row style="margin-top:80px"><h5>VIP объявления</h5></b-row>
@@ -123,7 +108,7 @@ import { get } from './../helpers/api'
 
 export default {
   
-  props: ["items", "subcats", "auth", "count"], // входящие данные
+  props: ["items", "auth", "count"], // входящие данные
 
   data () {
     
@@ -206,9 +191,8 @@ export default {
   // методы компонента
   methods: {
 
-      displaySubItem: function (item) {        
-      console.log("hello :"+item)
-      if (item==2) {      
+      displaySubItem: function (item) { 
+      if (item==this.selected_category_id) {      
       return true;
       }
       else

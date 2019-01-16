@@ -3429,21 +3429,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -3451,7 +3436,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ["items", "subcats", "auth", "count"], // входящие данные
+  props: ["items", "auth", "count"], // входящие данные
 
   data: function data() {
 
@@ -3526,8 +3511,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
 
     displaySubItem: function displaySubItem(item) {
-      console.log("hello :" + item);
-      if (item == 2) {
+      if (item == this.selected_category_id) {
         return true;
       } else return false;
     },
@@ -35535,19 +35519,22 @@ var render = function() {
                     [_vm._v("x")]
                   ),
                   _vm._v(" "),
-                  _vm._l(_vm.subcats, function(item, index) {
+                  _vm._l(this.$root.subcats, function(item, index) {
                     return _c(
                       "h5",
                       {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.displaySubItem(item.category_id),
+                            expression: "displaySubItem(item.category_id)"
+                          }
+                        ],
                         key: index,
-                        staticClass: "shadow_text",
-                        attrs: { "v-if": _vm.displaySubItem(item.category_id) }
+                        staticClass: "shadow_text"
                       },
-                      [
-                        _vm._v(
-                          _vm._s(item.name) + " " + _vm._s(item.category_id)
-                        )
-                      ]
+                      [_vm._v(_vm._s(item.name))]
                     )
                   })
                 ],
@@ -51872,7 +51859,11 @@ module.exports = Component.exports
     // стандартные операции
     options_sdelka: [{ value: '1', text: 'Покупка' }, { value: '2', text: 'Продажа' }, { value: '3', text: 'Обмен' }, { value: '4', text: 'Частичный обмен' }, { value: '5', text: 'Отдам даром' }, { value: '6', text: 'Сдача в аренду' }],
 
-    // наш объект объявления, куда размещаются все пункты
+    subcats: [{ name: 'Грузовой автомобиль', category_id: 1 }, { name: 'Легковой автомобиль', category_id: 1 }, { name: 'Мототехника', category_id: 1 }, { name: 'Спецтехника', category_id: 1 }, { name: 'Ретро-автомобиль', category_id: 1 }, { name: 'Водный транспорт', category_id: 1 }, { name: 'Квартира', category_id: 2 }, { name: 'Комната', category_id: 2 }, { name: 'Дом, дача, коттедж', category_id: 2 }, { name: 'Земельный участок', category_id: 2 }, { name: 'Гараж или машиноместо', category_id: 2 }, { name: 'Коммерческая недвижимость', category_id: 2 }, { name: 'Недвижимость за рубежом', category_id: 2 }],
+
+    // --------------------------------------------------------
+    // наш объект объявления, куда размещается объявление
+    // --------------------------------------------------------
     advert_data: {},
 
     // глобальный объект для алертов
