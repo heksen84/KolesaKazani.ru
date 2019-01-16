@@ -3428,6 +3428,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3435,14 +3449,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ["items", "auth", "count"], // входящие данные
+  props: ["items", "subcats", "auth", "count"], // входящие данные
 
   data: function data() {
 
     // переменные
     return {
       show_categories: true,
-      subcats: [],
+      // subcats: [],      
       regions: [],
       places: [],
       location: null,
@@ -3459,10 +3473,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   // компонент создан
   created: function created() {
 
-    Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("getSubCats").then(function (res) {
-      console.log(res);
+    /*get("getSubCats").then((res) => {
+      console.log(res)
       //this.subcats=res;
-    }).catch(function (err) {});
+    }).catch((err) => {});*/
 
     /*var person = {
       gender: 'androgynous',
@@ -35463,7 +35477,10 @@ var render = function() {
             [
               _c(
                 "b-col",
-                { attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" } },
+                {
+                  staticStyle: { margin: "auto" },
+                  attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
+                },
                 [
                   _c(
                     "div",
@@ -35477,13 +35494,23 @@ var render = function() {
                   _c(
                     "h2",
                     {
+                      staticClass: "shadow_text",
                       staticStyle: { cursor: "pointer" },
                       attrs: { title: "закрыть под категории" },
                       on: { click: _vm.closeSubCats }
                     },
                     [_vm._v("x")]
-                  )
-                ]
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.subcats, function(i, index) {
+                    return _c(
+                      "h5",
+                      { key: index, staticClass: "shadow_text" },
+                      [_vm._v(_vm._s(i.name))]
+                    )
+                  })
+                ],
+                2
               )
             ],
             1

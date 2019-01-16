@@ -49,6 +49,8 @@ Route::get('home/{advert_id}',	 'CabinetController@index');
 Route::get('categories', 		 'CategoriesController@index');
 
 
+Route::get('getSubCats',  'SubCatsController@getSubCats' );
+
 // авто
 Route::get('getCarsMarks',  'AdvertController@getCarsMarks' );
 Route::get('getCarsModels', 'AdvertController@getCarsModels' );
