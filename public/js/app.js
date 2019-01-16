@@ -3429,6 +3429,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -35491,58 +35496,69 @@ var render = function() {
       _vm._v(" "),
       !_vm.show_categories
         ? _c(
-            "b-row",
+            "div",
             [
               _c(
-                "b-col",
+                "h2",
                 {
-                  staticStyle: { margin: "auto" },
-                  attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
+                  staticClass: "shadow_text",
+                  staticStyle: { cursor: "pointer" },
+                  attrs: { title: "закрыть под категории" },
+                  on: { click: _vm.closeSubCats }
                 },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "shadow_text",
-                      attrs: { id: "categories_title" }
-                    },
-                    [_vm._v("подкатегории")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "h2",
-                    {
-                      staticClass: "shadow_text",
-                      staticStyle: { cursor: "pointer" },
-                      attrs: { title: "закрыть под категории" },
-                      on: { click: _vm.closeSubCats }
-                    },
-                    [_vm._v("x")]
-                  ),
-                  _vm._v(" "),
-                  _vm._l(_vm.subcats, function(item, index) {
+                [_vm._v("x")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "shadow_text",
+                  attrs: { id: "categories_title" }
+                },
+                [_vm._v("подкатегории")]
+              ),
+              _vm._v(" "),
+              _vm._l(Object.keys(_vm.subcats).length, function(i) {
+                return _c(
+                  "b-row",
+                  { key: i },
+                  _vm._l(_vm.subcats.slice((i - 1) * 4, i * 4), function(item) {
                     return _c(
-                      "h5",
+                      "b-col",
                       {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.displaySubItem(item.category_id),
-                            expression: "displaySubItem(item.category_id)"
-                          }
-                        ],
-                        key: index,
-                        staticClass: "shadow_text"
+                        key: item.id,
+                        attrs: {
+                          cols: "12",
+                          sm: "12",
+                          md: "12",
+                          lg: "3",
+                          xl: "3"
+                        }
                       },
-                      [_vm._v(_vm._s(item.name))]
+                      [
+                        _c(
+                          "div",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.displaySubItem(item.category_id),
+                                expression: "displaySubItem(item.category_id)"
+                              }
+                            ],
+                            staticClass: "category_item",
+                            staticStyle: { "font-size": "19px", width: "260px" }
+                          },
+                          [_vm._v(_vm._s(item.name) + "\n              ")]
+                        )
+                      ]
                     )
                   })
-                ],
-                2
-              )
+                )
+              })
             ],
-            1
+            2
           )
         : _vm._e(),
       _vm._v(" "),
