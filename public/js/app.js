@@ -35547,7 +35547,7 @@ var render = function() {
                               }
                             ],
                             staticClass: "category_item",
-                            staticStyle: { width: "270px" }
+                            staticStyle: { width: "260px" }
                           },
                           [_vm._v(_vm._s(item.name) + "\n              ")]
                         )
