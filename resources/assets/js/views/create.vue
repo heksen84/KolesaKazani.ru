@@ -92,7 +92,7 @@
 				</b-form-group>
 
 				<b-form-group label="Контактный номер:" style="text-align:center;font-weight:bold">
-					<p style="margin-top:-7px;font-weight:normal">(можно указать несколько номеров через запятую)</p>
+					<p style="margin-top:-7px;font-weight:normal">(через запятую можно указать несколько номеров)</p>
 			 		<b-form-input type="text" id="price" placeholder="Введите номер (-а)" style="width:250px;display:inline;text-align:center" :formatter="setPhoneNumber" required></b-form-input>
 				</b-form-group>
 

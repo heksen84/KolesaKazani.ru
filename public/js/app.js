@@ -35519,7 +35519,7 @@ var render = function() {
                     },
                     [_vm._v("x")]
                   ),
-                  _vm._v("\n        >"),
+                  _vm._v(" "),
                   _vm._l(this.$root.subcats, function(item, index) {
                     return _c(
                       "h5",
@@ -37974,7 +37974,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "(можно указать несколько номеров через запятую)"
+                                "(через запятую можно указать несколько номеров)"
                               )
                             ]
                           ),
