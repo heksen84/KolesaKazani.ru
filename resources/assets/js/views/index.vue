@@ -65,57 +65,58 @@
 
     <!-- КАТЕГОРИИ -->
     <div v-if="show_categories">    
-    <div id="categories_title" class="shadow_text">категории</div>        
-    <b-row v-for="i in Object.keys(items).length" v-bind:key=i>
-      <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in items.slice((i - 1) * 4, i * 4)" v-bind:key=item.id>
-        <a :href="urlRegAndPlace+'/'+item.url" @click="showSubcat($event)">
-        <div class="category_item">{{ item.name }}
-          <!--<span style="font-size:13px;color:rgb(170,255,170);float:right;margin-top:4px" :id="item.id">{{ getCategoryCountById(item.id) }}</span>-->
-        </div>
-        </a>
-      </b-col>
-    </b-row>
-
+      <div id="categories_title" class="shadow_text">категории</div>        
+        <b-row v-for="i in Object.keys(items).length" v-bind:key=i>
+          <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in items.slice((i - 1) * 4, i * 4)" v-bind:key=item.id>
+            <a :href="urlRegAndPlace+'/'+item.url" @click="showSubcats($event, item.id)">
+              <div class="category_item">{{ item.name }}
+              <!--<span style="font-size:13px;color:rgb(170,255,170);float:right;margin-top:4px" :id="item.id">{{ getCategoryCountById(item.id) }}</span>-->
+              </div>
+            </a>
+          </b-col>
+        </b-row>
     </div>
 
-    <!-- ПОД КАТЕГОРИИ -->
+    <!-- ПОДКАТЕГОРИИ -->
     <b-row v-if="!show_categories">
       <b-col cols="12" sm="12" md="12" lg="3" xl="3">        
-        <div id="categories_title" class="shadow_text">под категории</div>
+        <div id="categories_title" class="shadow_text">подкатегории</div>
         <h2 @click="closeSubCats" style="cursor:pointer" title="закрыть под категории">x</h2>
       </b-col>
     </b-row>
 
+    <!-- VIP -->
+    <b-row style="margin-top:80px"><h5>VIP объявления</h5></b-row>
+      <b-row>    
+        <b-col v-for="i in 10" style="border:1px solid rgb(255,255,255);margin:3px;padding:50px;opacity:0.5" v-bind:key="i"></b-col>
+      </b-row>
 
-<!-- VIP -->
+    <!-- ПОДВАЛ -->
+    <b-row>
+      <div id="footer"><a href="advertisers" class="underline_link">Реклама на сайте</a> | <a href="about" class="underline_link">Разработано студией AksuSoftware 2018 (c)</a></div>
+    </b-row>
 
-<b-row style="margin-top:80px"><h5>VIP объявления</h5></b-row>
-
-<b-row>    
-    <b-col v-for="i in 10" style="border:1px solid rgb(255,255,255);margin:3px;padding:50px;opacity:0.5" v-bind:key="i"></b-col>
-</b-row>
-
-<!-- ПОДВАЛ -->
-<b-row>
-  <div id="footer"><a href="advertisers" class="underline_link">Реклама на сайте</a> | <a href="about" class="underline_link">Разработано студией AksuSoftware 2018 (c)</a></div>
-</b-row>
-
-</b-container>
+  </b-container>
 </template>
+
+<!-- ЛОГИКА -->
 <script>
+
 import { get } from './../helpers/api'
 //import petrovich from 'petrovich';
 
 export default {
-  props: ["items", "auth", "count"],
+  
+  props: ["items", "auth", "count"], // входящие данные
 
   data () {
-    return {
-
-      show_categories:true,
-
+    
+    // переменные
+    return { 
+      show_categories: true,
+      subcats: [],      
       regions: [],
-      places: [],
+      places:  [],
       location: null,
       locationDialog: false,
       locationDialogTitle: "",
@@ -124,8 +125,16 @@ export default {
       buttonAllRegion: false,
       regionName: ""
     }
+
   },
+
+  // компонент создан
   created() {
+
+    get("getSubCats").then((res) => {
+      console.log(res)
+      //this.subcats=res;
+    }).catch((err) => {});
 
 
   /*var person = {
@@ -135,7 +144,6 @@ export default {
     // вызываем Петровича как функцию, указав падеж:
     //console.log(petrovich(person, 'prepositional'));
     
-
     var placeName = localStorage.getItem("placeName");
     var urlRegAndPlace = localStorage.getItem("urlRegAndPlace");
 
@@ -150,32 +158,44 @@ export default {
       this.urlRegAndPlace = "";
     else 
       this.urlRegAndPlace = urlRegAndPlace;
-      
-  },
-  mounted() {
 
-    /*get('/getCategoryCounts').then((res) => {
-          this.regions=res.data;
-    }).catch((err) => {});*/
-      
   },
 
-  computed: {
-  },
+  mounted() {},
+  computed: {},
 
+  // методы компонента
   methods: {
-    showSubcat(e) {
+    
+    // ----------------------------
+    // показать подкатегории
+    // ----------------------------
+    showSubcats(e, cat_id) {
+
       e.preventDefault();
       this.show_categories=false;
+      
+      console.log(cat_id)
+
+      // получаю подкатегории по id категории
+      /*get('getSubcategoryById?category_id='+cat_id).then((res) => {
+          this.subcats=res;
+      }).catch((err) => {});*/
+
     },
+
+    // ----------------------------
+    // скрыть подкатегории
+    // ----------------------------
     closeSubCats() {
       this.show_categories=true;
     },
+
     getCategoryCountById(id) {
       /*get('getCategoryCountById?category_id='+id).then((res) => {
           return res;
       }).catch((err) => {});*/
-      return "-";
+      return "|";
     },
 
     login() {
@@ -201,6 +221,7 @@ export default {
       this.places={};
       this.regions={};
 
+      // получаю регионы
       get('/getRegions').then((res) => {
           console.log(res.data);
           
@@ -231,6 +252,9 @@ export default {
 
     },
 
+    // ----------------------------------------------------------
+    // Выбор города, села, и т.д.
+    // ----------------------------------------------------------
     selectPlace(e) {
       
 

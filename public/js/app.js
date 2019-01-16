@@ -3428,20 +3428,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
+
 
 
 //import petrovich from 'petrovich';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["items", "auth", "count"],
+
+  props: ["items", "auth", "count"], // входящие данные
 
   data: function data() {
+
+    // переменные
     return {
-
       show_categories: true,
-
+      subcats: [],
       regions: [],
       places: [],
       location: null,
@@ -3453,7 +3454,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       regionName: ""
     };
   },
+
+
+  // компонент создан
   created: function created() {
+
+    Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("getSubCats").then(function (res) {
+      console.log(res);
+      //this.subcats=res;
+    }).catch(function (err) {});
 
     /*var person = {
       gender: 'androgynous',
@@ -3461,7 +3470,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };*/
     // вызываем Петровича как функцию, указав падеж:
     //console.log(petrovich(person, 'prepositional'));
-
 
     var placeName = localStorage.getItem("placeName");
     var urlRegAndPlace = localStorage.getItem("urlRegAndPlace");
@@ -3472,22 +3480,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     if (urlRegAndPlace == null) this.urlRegAndPlace = "";else this.urlRegAndPlace = urlRegAndPlace;
   },
-  mounted: function mounted() {
-
-    /*get('/getCategoryCounts').then((res) => {
-          this.regions=res.data;
-    }).catch((err) => {});*/
-
-  },
-
+  mounted: function mounted() {},
 
   computed: {},
 
+  // методы компонента
   methods: {
-    showSubcat: function showSubcat(e) {
+
+    // ----------------------------
+    // показать подкатегории
+    // ----------------------------
+    showSubcats: function showSubcats(e, cat_id) {
+
       e.preventDefault();
       this.show_categories = false;
+
+      console.log(cat_id);
+
+      // получаю подкатегории по id категории
+      /*get('getSubcategoryById?category_id='+cat_id).then((res) => {
+          this.subcats=res;
+      }).catch((err) => {});*/
     },
+
+
+    // ----------------------------
+    // скрыть подкатегории
+    // ----------------------------
     closeSubCats: function closeSubCats() {
       this.show_categories = true;
     },
@@ -3495,7 +3514,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       /*get('getCategoryCountById?category_id='+id).then((res) => {
           return res;
       }).catch((err) => {});*/
-      return "-";
+      return "|";
     },
     login: function login() {
       window.location = '/login';
@@ -3518,6 +3537,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.places = {};
       this.regions = {};
 
+      // получаю регионы
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getRegions').then(function (res) {
         console.log(res.data);
 
@@ -3545,6 +3565,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(res.data);
       }).catch(function (err) {});
     },
+
+
+    // ----------------------------------------------------------
+    // Выбор города, села, и т.д.
+    // ----------------------------------------------------------
     selectPlace: function selectPlace(e) {
 
       this.buttonAllCountry = false;
@@ -35412,13 +35437,13 @@ var render = function() {
                             },
                             on: {
                               click: function($event) {
-                                _vm.showSubcat($event)
+                                _vm.showSubcats($event, item.id)
                               }
                             }
                           },
                           [
                             _c("div", { staticClass: "category_item" }, [
-                              _vm._v(_vm._s(item.name) + "\n          ")
+                              _vm._v(_vm._s(item.name) + "\n              ")
                             ])
                           ]
                         )
@@ -35446,7 +35471,7 @@ var render = function() {
                       staticClass: "shadow_text",
                       attrs: { id: "categories_title" }
                     },
-                    [_vm._v("под категории")]
+                    [_vm._v("подкатегории")]
                   ),
                   _vm._v(" "),
                   _c(
