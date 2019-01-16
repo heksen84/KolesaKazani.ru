@@ -206,7 +206,7 @@ body {
   font-size: 18px;
   width: 230px;
   background: grey;
-  color: #f0f0f0;
+  color: white;
   opacity: 0.9;
 }
 
@@ -246,9 +246,10 @@ body {
 }
 
 .shadow_text {
+  text-decoration: underline;
   color: #fff;
   letter-spacing: 2px;
-  text-shadow: -1px -1px 0 #505050, 1px -1px 0 #505050, -1px 1px 0 #505050, 1px 1px 0 #505050;
+  text-shadow: -1px -1px 0 #323232, 1px -1px 0 #323232, -1px 1px 0 #323232, 1px 1px 0 #323232;
 }
 
 .result_info_col {

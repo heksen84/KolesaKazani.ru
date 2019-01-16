@@ -2832,7 +2832,7 @@ function forEach(data, callback) {
     базовые поля объявления
    -----------------------------*/
 			category: null,
-			sdelka: 1,
+			sdelka: 0,
 			deal_id: null,
 			text: "",
 			price: 0,
@@ -3326,6 +3326,9 @@ function initMap() {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+//
+//
+//
 //
 //
 //
@@ -35419,11 +35422,13 @@ var render = function() {
       _vm.show_categories
         ? _c(
             "div",
+            { staticStyle: { "text-align": "center" } },
             [
               _c(
                 "div",
                 {
                   staticClass: "shadow_text",
+                  staticStyle: { "margin-bottom": "20px" },
                   attrs: { id: "categories_title" }
                 },
                 [_vm._v("категории")]
@@ -35478,22 +35483,13 @@ var render = function() {
       !_vm.show_categories
         ? _c(
             "div",
+            { staticStyle: { "text-align": "center" } },
             [
-              _c(
-                "h2",
-                {
-                  staticClass: "shadow_text",
-                  staticStyle: { cursor: "pointer", "font-size": "20px" },
-                  attrs: { title: "закрыть под категории" },
-                  on: { click: _vm.closeSubCats }
-                },
-                [_vm._v("назад(x)")]
-              ),
-              _vm._v(" "),
               _c(
                 "div",
                 {
                   staticClass: "shadow_text",
+                  staticStyle: { "margin-bottom": "20px" },
                   attrs: { id: "categories_title" }
                 },
                 [_vm._v("подкатегории")]
@@ -35537,7 +35533,18 @@ var render = function() {
                     )
                   })
                 )
-              })
+              }),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c(
+                "b-button",
+                {
+                  attrs: { variant: "success", size: "sm" },
+                  on: { click: _vm.closeSubCats }
+                },
+                [_vm._v("назад")]
+              )
             ],
             2
           )

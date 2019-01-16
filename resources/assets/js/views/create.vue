@@ -195,7 +195,7 @@ export default {
 			 базовые поля объявления
 			-----------------------------*/			
 			category: null,
-			sdelka: 1,
+			sdelka: 0,
 			deal_id: null,
 			text: "",
 			price: 0,

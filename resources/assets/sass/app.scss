@@ -5,8 +5,8 @@
 }
 
 // константы
-$shadow_text_color: rgb(80,80,80);
-$scroll_bar_back_color: rgb(100,150,150);
+$shadow_text_color: rgb(50, 50, 50);
+$scroll_bar_back_color: rgb(100, 150, 150);
 $scroll_bar_width: 8px;
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -208,7 +208,7 @@ body {
   font-size: 18px;
   width: 230px;
   background: grey;
-  color: rgb(240,240,240);
+  color: white;
   opacity: 0.9;  
 }
 .category_item:hover {
@@ -247,6 +247,8 @@ body {
 }
 
 .shadow_text {
+
+  text-decoration: underline;
  color: #fff;
  letter-spacing: 2px;
  text-shadow:   
