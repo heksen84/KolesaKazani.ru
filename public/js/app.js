@@ -3433,7 +3433,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -35548,7 +35547,7 @@ var render = function() {
                               }
                             ],
                             staticClass: "category_item",
-                            staticStyle: { "font-size": "18px", width: "270px" }
+                            staticStyle: { width: "270px" }
                           },
                           [_vm._v(_vm._s(item.name) + "\n              ")]
                         )
