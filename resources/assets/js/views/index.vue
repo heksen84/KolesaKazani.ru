@@ -83,7 +83,7 @@
       <div id="categories_title" class="shadow_text">подкатегории</div>        
         <b-row v-for="i in Object.keys(subcats).length" v-bind:key=i>
           <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in subcats.slice((i - 1) * 4, i * 4)" v-bind:key=item.id>            
-              <div class="category_item" style="width:260px" v-show="displaySubItem(item.category_id)">{{ item.name }}
+              <div class="category_item" style="width:280px;font-size:17px" v-show="displaySubItem(item.category_id)">{{ item.name }}
               <!--<span style="font-size:13px;color:rgb(170,255,170);float:right;margin-top:4px" :id="item.id">{{ getCategoryCountById(item.id) }}</span>-->
               </div>            
           </b-col>
