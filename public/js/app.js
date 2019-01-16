@@ -35502,11 +35502,11 @@ var render = function() {
                 "h2",
                 {
                   staticClass: "shadow_text",
-                  staticStyle: { cursor: "pointer" },
+                  staticStyle: { cursor: "pointer", "font-size": "20px" },
                   attrs: { title: "закрыть под категории" },
                   on: { click: _vm.closeSubCats }
                 },
-                [_vm._v("x")]
+                [_vm._v("назад(x)")]
               ),
               _vm._v(" "),
               _c(
@@ -35548,7 +35548,7 @@ var render = function() {
                               }
                             ],
                             staticClass: "category_item",
-                            staticStyle: { "font-size": "19px", width: "260px" }
+                            staticStyle: { "font-size": "18px", width: "270px" }
                           },
                           [_vm._v(_vm._s(item.name) + "\n              ")]
                         )
