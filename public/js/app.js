@@ -3436,7 +3436,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ["items", "auth", "count"], // входящие данные
+  props: ["items", "auth", "count", "subcats"], // входящие данные
 
   data: function data() {
 
@@ -3475,6 +3475,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   // компонент создан
   created: function created() {
 
+    console.log(this.subcats);
     console.log("---------------------");
     console.log(this.items);
 
@@ -35518,7 +35519,7 @@ var render = function() {
                     },
                     [_vm._v("x")]
                   ),
-                  _vm._v(" "),
+                  _vm._v("\n        >"),
                   _vm._l(this.$root.subcats, function(item, index) {
                     return _c(
                       "h5",
@@ -51859,7 +51860,8 @@ module.exports = Component.exports
     // стандартные операции
     options_sdelka: [{ value: '1', text: 'Покупка' }, { value: '2', text: 'Продажа' }, { value: '3', text: 'Обмен' }, { value: '4', text: 'Частичный обмен' }, { value: '5', text: 'Отдам даром' }, { value: '6', text: 'Сдача в аренду' }],
 
-    subcats: [{ name: 'Грузовой автомобиль', category_id: 1 }, { name: 'Легковой автомобиль', category_id: 1 }, { name: 'Мототехника', category_id: 1 }, { name: 'Спецтехника', category_id: 1 }, { name: 'Ретро-автомобиль', category_id: 1 }, { name: 'Водный транспорт', category_id: 1 }, { name: 'Квартира', category_id: 2 }, { name: 'Комната', category_id: 2 }, { name: 'Дом, дача, коттедж', category_id: 2 }, { name: 'Земельный участок', category_id: 2 }, { name: 'Гараж или машиноместо', category_id: 2 }, { name: 'Коммерческая недвижимость', category_id: 2 }, { name: 'Недвижимость за рубежом', category_id: 2 }],
+    // подкатегории
+    subcats: [{ name: 'Грузовой автомобиль', url: "gruzovoy_automobil", category_id: 1 }, { name: 'Легковой автомобиль', url: "legkovoy_automobil", category_id: 1 }, { name: 'Мототехника', url: "mototechnika", category_id: 1 }, { name: 'Спецтехника', url: "spectehinka", category_id: 1 }, { name: 'Ретро-автомобиль', url: "", category_id: 1 }, { name: 'Водный транспорт', url: "", category_id: 1 }, { name: 'Квартира', url: "", category_id: 2 }, { name: 'Комната', url: "", category_id: 2 }, { name: 'Дом, дача, коттедж', url: "", category_id: 2 }, { name: 'Земельный участок', url: "", category_id: 2 }, { name: 'Гараж или машиноместо', url: "", category_id: 2 }, { name: 'Коммерческая недвижимость', url: "", category_id: 2 }, { name: 'Недвижимость за рубежом', url: "", category_id: 2 }],
 
     // --------------------------------------------------------
     // наш объект объявления, куда размещается объявление

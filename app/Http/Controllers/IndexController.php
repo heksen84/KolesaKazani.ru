@@ -11,6 +11,7 @@ use App\Regions;
 use App\Places;
 use App\SubCats;
 
+use DB;
 
 class IndexController extends Controller {
 
@@ -74,7 +75,9 @@ class IndexController extends Controller {
 				\Debugbar::warning($e->getMessage());
 				$categories = Categories::all();
 			}
+
+			$res = DB::table('SubCats')->get()->toJson();
 					
-        	return view('index')->with("items", $categories)->with("count", Categories::count())->with("auth", Auth::user()?1:0);
+        	return view('index')->with("items", $categories)->with("subcats", $res)->with("count", Categories::count())->with("auth", Auth::user()?1:0);
     	}
 }

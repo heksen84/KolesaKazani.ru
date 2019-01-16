@@ -82,7 +82,7 @@
       <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="margin:auto">        
         <div id="categories_title" class="shadow_text">подкатегории</div>
         <h2 @click="closeSubCats" style="cursor:pointer" title="закрыть под категории" class="shadow_text">x</h2>
-        <h5 v-for="(item,index) in this.$root.subcats" :key="index" class="shadow_text" v-show="displaySubItem(item.category_id)">{{ item.name }}</h5>
+        ><h5 v-for="(item,index) in this.$root.subcats" :key="index" class="shadow_text" v-show="displaySubItem(item.category_id)">{{ item.name }}</h5>
       </b-col>
     </b-row>
 
@@ -108,7 +108,7 @@ import { get } from './../helpers/api'
 
 export default {
   
-  props: ["items", "auth", "count"], // входящие данные
+  props: ["items", "auth", "count", "subcats"], // входящие данные
 
   data () {
     
@@ -147,6 +147,7 @@ export default {
   // компонент создан
   created() {
     
+    console.log(this.subcats)
     console.log("---------------------")
     console.log(this.items)
 
