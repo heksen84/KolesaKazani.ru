@@ -35520,7 +35520,7 @@ var render = function() {
                     [_vm._v("x")]
                   ),
                   _vm._v(" "),
-                  _vm._l(this.$root.subcats, function(item, index) {
+                  _vm._l(_vm.subcats, function(item, index) {
                     return _c(
                       "h5",
                       {

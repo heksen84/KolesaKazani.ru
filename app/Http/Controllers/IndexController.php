@@ -76,8 +76,8 @@ class IndexController extends Controller {
 				$categories = Categories::all();
 			}
 
-			$res = DB::table('SubCats')->get()->toJson();
+			//$res = DB::table('SubCats')->get()->toJson();
 					
-        	return view('index')->with("items", $categories)->with("subcats", $res)->with("count", Categories::count())->with("auth", Auth::user()?1:0);
+        	return view('index')->with("items", $categories)->with("subcats", SubCats::all() )->with("count", Categories::count())->with("auth", Auth::user()?1:0);
     	}
 }
