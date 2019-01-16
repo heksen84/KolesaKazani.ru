@@ -3435,7 +3435,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -35428,7 +35427,7 @@ var render = function() {
                 "div",
                 {
                   staticClass: "shadow_text",
-                  staticStyle: { "margin-bottom": "20px" },
+                  staticStyle: { "margin-bottom": "18px" },
                   attrs: { id: "categories_title" }
                 },
                 [_vm._v("категории")]
@@ -35489,7 +35488,7 @@ var render = function() {
                 "div",
                 {
                   staticClass: "shadow_text",
-                  staticStyle: { "margin-bottom": "20px" },
+                  staticStyle: { "margin-bottom": "18px" },
                   attrs: { id: "categories_title" }
                 },
                 [_vm._v("подкатегории")]
