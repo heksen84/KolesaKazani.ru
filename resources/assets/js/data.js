@@ -18,7 +18,7 @@ export default {
     ],
 
     // подкатегории
-    subcats:
+    /*subcats:
     [
         { name: 'Грузовой автомобиль',       url: "gruzovoy_automobil",  category_id: 1 },
         { name: 'Легковой автомобиль',       url: "legkovoy_automobil",  category_id: 1 },
@@ -34,7 +34,7 @@ export default {
         { name: 'Коммерческая недвижимость', url: "",  category_id: 2 },
         { name: 'Недвижимость за рубежом',   url: "",  category_id: 2 },
         
-    ],
+    ],*/
 
     // --------------------------------------------------------
     // наш объект объявления, куда размещается объявление

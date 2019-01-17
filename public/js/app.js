@@ -3518,27 +3518,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
 
     displaySubItem: function displaySubItem(item) {
-      if (item == this.selected_category_id) {
-        return true;
-      } else return false;
+      if (item == this.selected_category_id) return true;
+      return false;
     },
 
     // ----------------------------
     // показать подкатегории
     // ----------------------------
     showSubcats: function showSubcats(e, cat_id) {
+      // --------------------------------------------------------------------------------              
+      // посчитать кол-во элементов в подгруппе, если 0 - то сделать редирект сходу,
+      // если больше то показать подгруппы
+      // --------------------------------------------------------------------------------
 
-      e.preventDefault();
+      var total = 0;
 
-      this.selected_category_id = cat_id;
-      this.show_categories = false;
+      for (var i = 0; i < Object.keys(this.subcats).length; i++) {
+        if (this.subcats[i].category_id === cat_id) total++;
+      }
 
-      console.log(this.selected_category_id);
-
-      // получаю подкатегории по id категории
-      /*get('getSubcategoryById?category_id='+cat_id).then((res) => {
-          this.subcats=res;
-      }).catch((err) => {});*/
+      if (total > 0) {
+        e.preventDefault(); // отрубаю редирект
+        this.selected_category_id = cat_id;
+        this.show_categories = false;
+      }
     },
 
 
@@ -51896,7 +51899,23 @@ module.exports = Component.exports
     options_sdelka: [{ value: '1', text: 'Покупка' }, { value: '2', text: 'Продажа' }, { value: '3', text: 'Обмен' }, { value: '4', text: 'Частичный обмен' }, { value: '5', text: 'Отдам даром' }, { value: '6', text: 'Сдача в аренду' }],
 
     // подкатегории
-    subcats: [{ name: 'Грузовой автомобиль', url: "gruzovoy_automobil", category_id: 1 }, { name: 'Легковой автомобиль', url: "legkovoy_automobil", category_id: 1 }, { name: 'Мототехника', url: "mototechnika", category_id: 1 }, { name: 'Спецтехника', url: "spectehinka", category_id: 1 }, { name: 'Ретро-автомобиль', url: "", category_id: 1 }, { name: 'Водный транспорт', url: "", category_id: 1 }, { name: 'Квартира', url: "", category_id: 2 }, { name: 'Комната', url: "", category_id: 2 }, { name: 'Дом, дача, коттедж', url: "", category_id: 2 }, { name: 'Земельный участок', url: "", category_id: 2 }, { name: 'Гараж или машиноместо', url: "", category_id: 2 }, { name: 'Коммерческая недвижимость', url: "", category_id: 2 }, { name: 'Недвижимость за рубежом', url: "", category_id: 2 }],
+    /*subcats:
+    [
+        { name: 'Грузовой автомобиль',       url: "gruzovoy_automobil",  category_id: 1 },
+        { name: 'Легковой автомобиль',       url: "legkovoy_automobil",  category_id: 1 },
+        { name: 'Мототехника',               url: "mototechnika",        category_id: 1 },
+        { name: 'Спецтехника',               url: "spectehinka",         category_id: 1 },
+        { name: 'Ретро-автомобиль',          url: "",  category_id: 1 },
+        { name: 'Водный транспорт',          url: "",  category_id: 1 },
+        { name: 'Квартира',                  url: "",  category_id: 2 },
+        { name: 'Комната',                   url: "",  category_id: 2 },
+        { name: 'Дом, дача, коттедж',        url: "",  category_id: 2 },
+        { name: 'Земельный участок',   	     url: "",  category_id: 2 },
+        { name: 'Гараж или машиноместо',     url: "",  category_id: 2 },
+        { name: 'Коммерческая недвижимость', url: "",  category_id: 2 },
+        { name: 'Недвижимость за рубежом',   url: "",  category_id: 2 },
+        
+    ],*/
 
     // --------------------------------------------------------
     // наш объект объявления, куда размещается объявление

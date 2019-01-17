@@ -198,31 +198,32 @@ export default {
   // методы компонента
   methods: {
 
-      displaySubItem: function (item) { 
-      if (item==this.selected_category_id) {      
-      return true;
-      }
-      else
-      return false;
+      displaySubItem: function (item) {         
+        if (item==this.selected_category_id) return true;          
+        return false;
     },
     
     // ----------------------------
     // показать подкатегории
     // ----------------------------
     showSubcats(e, cat_id) {
-
-      e.preventDefault();
-
-      this.selected_category_id=cat_id;
-      this.show_categories=false;
+      // --------------------------------------------------------------------------------              
+      // посчитать кол-во элементов в подгруппе, если 0 - то сделать редирект сходу,
+      // если больше то показать подгруппы
+      // --------------------------------------------------------------------------------
       
-      console.log(this.selected_category_id)
+      var total=0;
 
-      // получаю подкатегории по id категории
-      /*get('getSubcategoryById?category_id='+cat_id).then((res) => {
-          this.subcats=res;
-      }).catch((err) => {});*/
-
+      for (var i=0; i<Object.keys(this.subcats).length; i++) {
+         if (this.subcats[i].category_id===cat_id)
+          total++;
+      }
+      
+      if (total>0) {
+        e.preventDefault(); // отрубаю редирект
+        this.selected_category_id=cat_id;
+        this.show_categories=false;
+      }
     },
 
     // ----------------------------
