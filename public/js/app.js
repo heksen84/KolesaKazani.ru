@@ -3549,7 +3549,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // скрыть подкатегории
     // ----------------------------
     closeSubCats: function closeSubCats() {
-      this.show_categories = true;
+      if (!this.show_categories) this.show_categories = true;
     },
     getCategoryCountById: function getCategoryCountById(id) {
       /*get('getCategoryCountById?category_id='+id).then((res) => {
@@ -35350,24 +35350,31 @@ var render = function() {
               attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
             },
             [
-              _c("div", { attrs: { id: "logo_block" } }, [
-                _c("div", { attrs: { id: "logo_block_text" } }, [
-                  _vm._v("Дамеля")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticStyle: {
-                      "font-size": "16px",
-                      color: "yellow",
-                      "margin-top": "-13px",
-                      "letter-spacing": "2px"
-                    }
-                  },
-                  [_vm._v("доска объявлений")]
-                )
-              ])
+              _c(
+                "div",
+                {
+                  attrs: { id: "logo_block" },
+                  on: { click: _vm.closeSubCats }
+                },
+                [
+                  _c("div", { attrs: { id: "logo_block_text" } }, [
+                    _vm._v("Дамеля")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticStyle: {
+                        "font-size": "16px",
+                        color: "yellow",
+                        "margin-top": "-13px",
+                        "letter-spacing": "2px"
+                      }
+                    },
+                    [_vm._v("доска объявлений")]
+                  )
+                ]
+              )
             ]
           ),
           _vm._v(" "),

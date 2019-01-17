@@ -39,7 +39,7 @@
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
 
         <!-- Логотип -->        
-          <div id="logo_block">
+          <div id="logo_block" @click="closeSubCats">
             <div id="logo_block_text">Дамеля</div>
             <div style="font-size:16px;color:yellow;margin-top:-13px;letter-spacing:2px;">доска объявлений</div>
           </div>
@@ -230,7 +230,7 @@ export default {
     // скрыть подкатегории
     // ----------------------------
     closeSubCats() {
-      this.show_categories=true;
+      if (!this.show_categories) this.show_categories=true;
     },
 
     getCategoryCountById(id) {
