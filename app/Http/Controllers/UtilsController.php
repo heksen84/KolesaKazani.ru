@@ -10,6 +10,7 @@ use App\Adverts;
 use App\Categories;
 use App\Regions;
 use App\Places;
+use App\SubCats;
 
 function rus2translit($string) {
     $converter = array(
@@ -56,7 +57,7 @@ class UtilsController extends Controller {
 
     public function str2url(Request $request) {
 
-    	$regions 	= Regions::all();
+/*    	$regions 	= Regions::all();
     	$places 	= Places::all();
 
     	foreach ($regions as $region) {
@@ -71,4 +72,14 @@ class UtilsController extends Controller {
 			$place->save();
 		}
     }
+*/
+
+	$subcats = SubCats::all();
+    	foreach ($subcats as $subcat) {
+		echo str2url($subcat->name)."<br>";
+		$subcat->url=str2url($subcat->name);
+		$subcat->save();
+	}
+}
+
 }
