@@ -8,7 +8,7 @@
 		</b-row>
 	<br>
 
-	<!-- стандартный фильтры -->
+	<!-- общие фильтры -->
 	<b-row v-if="count>1">				
 		<b-col cols="12" sm="12" md="3" lg="3" xl="3"></b-col>
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
@@ -21,7 +21,6 @@
 		 	<b-form-select v-model="filters.actual" :options="options_actual" class="mb-0" @change="setFilter" size="sm"/>
 		</b-col>
 	</b-row>
-
 
 	<!-- Фильтр тачек -->
 	<b-row v-if="category===1">				
@@ -100,21 +99,22 @@ export default {
 
 	props: ["data", "results", "category"],
 
-	data () {
+	data () {		
 	return 	{
-    			items: this.data,
-    			count: 0,
-    			count_string: "",
-   	  			slide: 0,
-      			sliding: null,
 
-				filters: 
-				{
-      				price: null,
-      				sdelka: null,
-      				actual: null,
-      				location: null
-      			},
+    	items: this.data,
+    	count: 0,
+    	count_string: "",
+   	  	slide: 0,
+      	sliding: null,
+
+		filters: 
+		{
+    		price: null,
+      		sdelka: null,
+      		actual: null,
+      		location: null
+    	},
 
       options_price: [
         { value: null, text: '-- Цена --' },
