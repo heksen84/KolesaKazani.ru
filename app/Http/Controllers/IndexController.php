@@ -63,21 +63,28 @@ class IndexController extends Controller {
 						
 			$redis = Redis::connection();
 
-			try {								
-					$redis->ping();	// проверяю включен-ли redis
-					$categories = $redis->get("categories"); // получаю массив категорий
-					if (!$categories) { // если массив пуст,
-						$redis->set("categories", Categories::all()); // .. делаю выборку в новую переменную
-						$categories = $redis->get("categories"); // получаю данные из редиса
-					}
+			try 
+			{								
+				$redis->ping();	// проверяю включен-ли redis
+				$categories = $redis->get("categories"); // получаю массив категорий
+				if (!$categories) // если массив пуст
+				{ 
+					$redis->set("categories", Categories::all()); // .. делаю выборку в новую переменную
+					$categories = $redis->get("categories"); // получаю данные из редиса
+				}
 			}
 			catch(\Exception $e) {
 				\Debugbar::warning($e->getMessage());
 				$categories = Categories::all();
 			}
 
-			//$res = DB::table('SubCats')->get()->toJson();
+			// подкатегории
+			$subcats = DB::table('categories')
+            ->join('subcats', 'subcats.category_id', '=', 'categories.id')
+            ->select(DB::raw("subcats.id, subcats.name, subcats.category_id, concat(categories.url,'/',subcats.url) as url"))
+			->get();
+
 					
-        	return view('index')->with("items", $categories)->with("subcats", SubCats::all() )->with("count", Categories::count())->with("auth", Auth::user()?1:0);
+        	return view('index')->with("items", $categories)->with("subcats", $subcats )->with("count", Categories::count())->with("auth", Auth::user()?1:0);
     	}
 }
