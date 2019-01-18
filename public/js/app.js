@@ -3734,6 +3734,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // ------------------------------
@@ -3756,7 +3774,7 @@ function num2str(n, text_forms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ["data", "results"],
+  props: ["data", "results", "category"],
 
   data: function data() {
     return {
@@ -12861,7 +12879,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -36892,8 +36910,8 @@ var render = function() {
                 { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
                 [
                   _c("b-form-select", {
-                    staticClass: "mb-3",
-                    attrs: { options: _vm.options_price },
+                    staticClass: "mb-0",
+                    attrs: { options: _vm.options_price, size: "sm" },
                     on: { change: _vm.setFilter },
                     model: {
                       value: _vm.filters.price,
@@ -36912,8 +36930,8 @@ var render = function() {
                 { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
                 [
                   _c("b-form-select", {
-                    staticClass: "mb-3",
-                    attrs: { options: _vm.options_sdelka },
+                    staticClass: "mb-0",
+                    attrs: { options: _vm.options_sdelka, size: "sm" },
                     on: { change: _vm.setFilter },
                     model: {
                       value: _vm.filters.sdelka,
@@ -36932,8 +36950,8 @@ var render = function() {
                 { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
                 [
                   _c("b-form-select", {
-                    staticClass: "mb-3",
-                    attrs: { options: _vm.options_actual },
+                    staticClass: "mb-0",
+                    attrs: { options: _vm.options_actual, size: "sm" },
                     on: { change: _vm.setFilter },
                     model: {
                       value: _vm.filters.actual,
@@ -36941,6 +36959,78 @@ var render = function() {
                         _vm.$set(_vm.filters, "actual", $$v)
                       },
                       expression: "filters.actual"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.category === 1
+        ? _c(
+            "b-row",
+            [
+              _c("b-col", {
+                attrs: { cols: "12", sm: "12", md: "3", lg: "3", xl: "3" }
+              }),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
+                [
+                  _c("b-form-select", {
+                    staticClass: "mb-0",
+                    attrs: { options: _vm.options_price, size: "sm" },
+                    on: { change: _vm.setFilter },
+                    model: {
+                      value: _vm.filters.price,
+                      callback: function($$v) {
+                        _vm.$set(_vm.filters, "price", $$v)
+                      },
+                      expression: "filters.price"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
+                [
+                  _c("b-form-select", {
+                    staticClass: "mb-0",
+                    attrs: { options: _vm.options_price, size: "sm" },
+                    on: { change: _vm.setFilter },
+                    model: {
+                      value: _vm.filters.price,
+                      callback: function($$v) {
+                        _vm.$set(_vm.filters, "price", $$v)
+                      },
+                      expression: "filters.price"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
+                [
+                  _c("b-form-select", {
+                    staticClass: "mb-0",
+                    attrs: { options: _vm.options_price, size: "sm" },
+                    on: { change: _vm.setFilter },
+                    model: {
+                      value: _vm.filters.price,
+                      callback: function($$v) {
+                        _vm.$set(_vm.filters, "price", $$v)
+                      },
+                      expression: "filters.price"
                     }
                   })
                 ],
@@ -36973,7 +37063,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "text-center" },
+        { staticClass: "text-center", staticStyle: { "margin-top": "3px" } },
         [
           _c(
             "b-row",
