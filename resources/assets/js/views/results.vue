@@ -12,13 +12,13 @@
 	<b-row v-if="count>1">				
 		<b-col cols="12" sm="12" md="3" lg="3" xl="3"></b-col>
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="filters.price" :options="options_price" class="mb-0" @change="setFilter" size="sm" />
+		  <b-form-select v-model="filters.price" :options="options_price" class="mb-1" @change="setFilter"/>
 		</b-col>
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="filters.sdelka" :options="options_sdelka" class="mb-0" @change="setFilter" size="sm"/>
+		  <b-form-select v-model="filters.sdelka" :options="options_sdelka" class="mb-1" @change="setFilter"/>
 		</b-col>
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		 	<b-form-select v-model="filters.actual" :options="options_actual" class="mb-0" @change="setFilter" size="sm"/>
+		 	<b-form-select v-model="filters.actual" :options="options_actual" class="mb-1" @change="setFilter"/>
 		</b-col>
 	</b-row>
 
@@ -28,17 +28,17 @@
 		
 		<!-- марки -->
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="filters.price" :options="options_price" class="mb-0" @change="setFilter" size="sm"/>
+		  <b-form-select v-model="filters.price" :options="options_price" class="mb-1" @change="setFilter"/>
 		</b-col>		
 
 		<!-- модели -->
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="filters.price" :options="options_price" class="mb-0" @change="setFilter" size="sm"/>
+		  <b-form-select v-model="filters.price" :options="options_price" class="mb-1" @change="setFilter"/>
 		</b-col>		
 
 		<!-- модели -->
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="filters.price" :options="options_price" class="mb-0" @change="setFilter" size="sm"/>
+		  <b-form-select v-model="filters.price" :options="options_price" class="mb-1" @change="setFilter"/>
 		</b-col>		
 		
 	</b-row>
