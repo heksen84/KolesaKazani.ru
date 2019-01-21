@@ -50,14 +50,15 @@ Route::get('drugoe', 					'ResultsController@getResultsByCategory');
 // подкатегории
 // ------------------------------------
 // транспорт
-Route::get('gruzovoy-avtomobil', 	  		'ResultsController@getResultsByCategory');
-Route::get('legkovoy-avtomobil', 	  		'ResultsController@getResultsByCategory');
-Route::get('mototehnika', 			  		'ResultsController@getResultsByCategory');
-Route::get('spectehnika', 			  		'ResultsController@getResultsByCategory');
-Route::get('retro-avtomobil', 		  		'ResultsController@getResultsByCategory');
-Route::get('vodnyy-transport', 		  		'ResultsController@getResultsByCategory');
-Route::get('velosiped', 			  		'ResultsController@getResultsByCategory');
-Route::get('vozdushnyy-transport',	  		'ResultsController@getResultsByCategory');
+Route::get('transport/gruzovoy-avtomobil', 	  		'SubCatsController@getResultsByCategory');
+Route::get('transport/legkovoy-avtomobil', 	  		'SubCatsController@getResultsByCategory');
+Route::get('transport/mototehnika', 			  	'SubCatsController@getResultsByCategory');
+Route::get('transport/spectehnika', 			  	'SubCatsController@getResultsByCategory');
+Route::get('transport/retro-avtomobil', 		  	'SubCatsController@getResultsByCategory');
+Route::get('transport/vodnyy-transport', 		  	'SubCatsController@getResultsByCategory');
+Route::get('transport/velosiped', 			  		'SubCatsController@getResultsByCategory');
+Route::get('transport/vozdushnyy-transport',	  	'SubCatsController@getResultsByCategory');
+
 // недвижимость
 Route::get('kvartira', 				  		'ResultsController@getResultsByCategory');
 Route::get('komnata', 				  		'ResultsController@getResultsByCategory');
