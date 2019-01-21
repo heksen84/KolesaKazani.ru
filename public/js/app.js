@@ -2832,7 +2832,7 @@ function forEach(data, callback) {
     базовые поля объявления
    -----------------------------*/
 			category: null,
-			sdelka: 0,
+			sdelka: null,
 			deal_id: null,
 			text: "",
 			price: 0,
