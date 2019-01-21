@@ -157,9 +157,8 @@ export default {
     console.log("---------------------")
     console.log(this.items)*/
 
-    this.new_arr=JSON.stringify(this.subcats);
-
-    console.log(this.new_arr)
+    /*this.new_arr=JSON.stringify(this.subcats);
+    console.log(this.new_arr)*/
 
     /*get("getSubCats").then((res) => {
       console.log(res)
