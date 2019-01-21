@@ -3481,9 +3481,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   // компонент создан
   created: function created() {
 
-    console.log(this.subcats);
-    console.log("---------------------");
-    console.log(this.items);
+    /*console.log(this.subcats)
+    console.log("---------------------")
+    console.log(this.items)*/
 
     this.new_arr = JSON.stringify(this.subcats);
 
