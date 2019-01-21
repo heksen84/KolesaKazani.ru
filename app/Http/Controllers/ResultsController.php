@@ -22,15 +22,11 @@ class ResultsController extends Controller {
     // ---------------------------------------------------
     public function getResultsByCategory(Request $request) {
 
-		\Debugbar::info($request);
+		//\Debugbar::info($request);
 
     	// получаю имя на русском
 		$category = Categories::select('id', 'name')->where('url',  $request->path() )->first();
-
-		\Debugbar::info("category_id :".$category->id);
 		$items = Adverts::where('category_id',  $category->id )->get();
-
-		\Debugbar::info($items);
 
 		// --------------------------------------------------------
 		// Выдергиваю данные по конкретной категории

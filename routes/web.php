@@ -50,14 +50,20 @@ Route::get('drugoe', 					'ResultsController@getResultsByCategory');
 // подкатегории
 // ------------------------------------
 // транспорт
-Route::get('transport/gruzovoy-avtomobil', 	  		'SubCatsController@getResultsByCategory');
+/*Route::get('transport/gruzovoy-avtomobil', 	  		'SubCatsController@getResultsByCategory');
 Route::get('transport/legkovoy-avtomobil', 	  		'SubCatsController@getResultsByCategory');
 Route::get('transport/mototehnika', 			  	'SubCatsController@getResultsByCategory');
 Route::get('transport/spectehnika', 			  	'SubCatsController@getResultsByCategory');
 Route::get('transport/retro-avtomobil', 		  	'SubCatsController@getResultsByCategory');
 Route::get('transport/vodnyy-transport', 		  	'SubCatsController@getResultsByCategory');
-Route::get('transport/velosiped', 			  		'SubCatsController@getResultsByCategory');
-Route::get('transport/vozdushnyy-transport',	  	'SubCatsController@getResultsByCategory');
+Route::get('transport/velosiped', 			  		'ResultsController@getResultsByCategory');
+Route::get('transport/vozdushnyy-transport',	  	'ResultsController@getResultsByCategory');*/
+
+
+// Весь КЗ
+Route::get('transport/{subcat}',					['uses' => 'SubCatsController@getResultsByCategory']);
+Route::get('{region}/transport/{subcat}',			['uses' => 'SubCatsController@getResultsByCategory']);
+Route::get('{region}/{place}/transport/{subcat}',	['uses' => 'SubCatsController@getResultsByCategory']);
 
 // недвижимость
 Route::get('kvartira', 				  		'ResultsController@getResultsByCategory');
