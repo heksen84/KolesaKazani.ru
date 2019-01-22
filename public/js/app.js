@@ -35632,11 +35632,15 @@ var render = function() {
           _c(
             "a",
             { staticClass: "underline_link", attrs: { href: "advertisers" } },
-            [_vm._v("Реклама на сайте")]
+            [_vm._v("Реклама")]
           ),
           _vm._v(" | "),
+          _c("a", { staticClass: "underline_link", attrs: { href: "rules" } }, [
+            _vm._v("Правила сайта")
+          ]),
+          _vm._v(" | "),
           _c("a", { staticClass: "underline_link", attrs: { href: "about" } }, [
-            _vm._v("Разработано студией AksuSoftware 2018 (c)")
+            _vm._v("О сайте")
           ])
         ])
       ])

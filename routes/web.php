@@ -61,9 +61,11 @@ Route::get('transport/vozdushnyy-transport',	  	'ResultsController@getResultsByC
 
 
 // Весь КЗ
-Route::get('transport/{subcat}',					['uses' => 'SubCatsController@getResultsByCategory']);
+/*Route::get('transport/{subcat}',					['uses' => 'SubCatsController@getResultsByCategory']);
 Route::get('{region}/transport/{subcat}',			['uses' => 'SubCatsController@getResultsByCategory']);
-Route::get('{region}/{place}/transport/{subcat}',	['uses' => 'SubCatsController@getResultsByCategory']);
+Route::get('{region}/{place}/transport/{subcat}',	['uses' => 'SubCatsController@getResultsByCategory']);*/
+
+
 
 // недвижимость
 Route::get('kvartira', 				  		'ResultsController@getResultsByCategory');
@@ -77,7 +79,10 @@ Route::get('nedvizhimost-za-rubezhom', 		'ResultsController@getResultsByCategory
 // ------------------------------------
 // детали объявления
 // ------------------------------------
-Route::get('details/{id}', ['uses' => 'AdvertController@getFullInfo']);
+Route::get('details/{id}', 'AdvertController@getFullInfo');
+
+// подкатегории
+Route::get('{category}/{subcat}', 'SubCatsController@getResultsByCategory');
 
 // ------------------------------------
 // базовые контроллеры
@@ -113,7 +118,7 @@ Route::get('/category/{id}', function ($id) {
 });
 
 Route::get('getSearchData', 'SearchController@getSearchData');
-Route::get('location/{country}/{region}/{place}', ['uses' => 'AdvertController@getFullInfo']);
+Route::get('location/{country}/{region}/{place}', 'AdvertController@getFullInfo');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 // ------------------------------------
