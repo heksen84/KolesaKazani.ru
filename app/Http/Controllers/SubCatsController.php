@@ -13,26 +13,29 @@ class SubCatsController extends Controller
 
     public function getResultsByCategory(Request $request, $category, $subcat) {
 
-        \Debugbar::info($category);
+        \Debugbar::info("!!".$category);
         \Debugbar::info($subcat);
 
 
         // получаю имя на русском
-		$category = Categories::select('id', 'name')->where('url',  "transport" )->first();
-        $items = Adverts::where('category_id',  $category->id )->get();
+		$category_name = SubCats::select('id', 'name')->where('url',  $subcat )->first();
+        //$items = Adverts::where('category_id',  $category->id )->get();
 
         $results = "";
+        
+
         
         
         switch($category) {
 
             case "transport": {
-                                
-                if ($subcat=="gruzovoy-avtomobil") {
-                    break;
-                }
+
+                \Debugbar::info("hello1");
 
                 if ($subcat=="legkovoy-avtomobil") {
+
+                    \Debugbar::info("hello2");
+
 
 
                     $results = DB::select(
@@ -54,7 +57,13 @@ class SubCatsController extends Controller
                         ) ORDER BY price ASC LIMIT 0,1000"
                     );
 
+                    
+                    \Debugbar::info($results);
 
+                    break;
+                }
+                                
+                if ($subcat=="gruzovoy-avtomobil") {
                     break;
                 }
 
@@ -89,7 +98,7 @@ class SubCatsController extends Controller
             }
         }
 
-     	return view('results')->with("title", "подкатегории")->with("items", $items)->with("results", json_encode($results))->with("category", $category);
+     	return view('results')->with("title", "подкатегории")->with("items", "items")->with("results", json_encode($results))->with("category", $category_name);
     }
 
 }
