@@ -18,8 +18,8 @@ class SubCatsController extends Controller
 
 
         // получаю имя на русском
-		$category_name = SubCats::select('id', 'name')->where('url',  $subcat )->first();
-        //$items = Adverts::where('category_id',  $category->id )->get();
+		$categories = SubCats::select('id', 'name')->where('url',  $subcat )->first();
+        $items = Adverts::where('category_id',  $categories->id )->get();
 
         $results = "";
         
@@ -98,7 +98,7 @@ class SubCatsController extends Controller
             }
         }
 
-     	return view('results')->with("title", "подкатегории")->with("items", "items")->with("results", json_encode($results))->with("category", $category_name);
+     	return view('results')->with("title", "подкатегории")->with("items", $items)->with("results", json_encode($results))->with("category", $categories);
     }
 
 }
