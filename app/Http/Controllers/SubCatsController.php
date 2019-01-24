@@ -13,35 +13,23 @@ class SubCatsController extends Controller
 
     public function getResultsByCategory(Request $request, $category, $subcat) {
 
-        \Debugbar::info("!!".$category);
-        \Debugbar::info($subcat);
-
-
         // получаю имя на русском
 		$categories = SubCats::select('id', 'name')->where('url',  $subcat )->first();
         $items = Adverts::where('category_id',  $categories->id )->get();
-
-        $results = "";
         
-
         switch($category) {
 
             case "transport": {
 
-                \Debugbar::info("hello1");
-
                 // Легковой транспорт
                 if ($subcat=="legkovoy-avtomobil") {
-
-                    \Debugbar::info("hello2");
 
                     $results = DB::select(
                         "SELECT
                         concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
                         adv.id as advert_id, 
                         adv.price,
-                        adv.category_id,  
-                        /*year,*/  
+                        adv.category_id,
                         mileage,
                         text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
@@ -54,9 +42,6 @@ class SubCatsController extends Controller
                         ) WHERE adv_category_id=1 ORDER BY price ASC LIMIT 0,1000"
                     );
 
-                    
-                    \Debugbar::info($results);
-
                     break;
                 }
                                 
@@ -68,8 +53,7 @@ class SubCatsController extends Controller
                         concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
                         adv.id as advert_id, 
                         adv.price,
-                        adv.category_id,  
-                        /*year,*/  
+                        adv.category_id,
                         mileage,
                         text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
@@ -82,7 +66,6 @@ class SubCatsController extends Controller
                         ) WHERE adv_category_id=2 ORDER BY price ASC LIMIT 0,1000"
                     );
 
-
                     break;
                 }
 
@@ -94,8 +77,7 @@ class SubCatsController extends Controller
                         concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
                         adv.id as advert_id, 
                         adv.price,
-                        adv.category_id,  
-                        /*year,*/  
+                        adv.category_id,
                         mileage,
                         text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
@@ -119,8 +101,7 @@ class SubCatsController extends Controller
                         concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
                         adv.id as advert_id, 
                         adv.price,
-                        adv.category_id,  
-                        /*year,*/  
+                        adv.category_id,
                         mileage,
                         text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
@@ -144,8 +125,7 @@ class SubCatsController extends Controller
                         concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
                         adv.id as advert_id, 
                         adv.price,
-                        adv.category_id,  
-                        /*year,*/  
+                        adv.category_id,
                         mileage,
                         text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
@@ -169,8 +149,7 @@ class SubCatsController extends Controller
                         concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
                         adv.id as advert_id, 
                         adv.price,
-                        adv.category_id,  
-                        /*year,*/  
+                        adv.category_id,
                         mileage,
                         text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
@@ -194,8 +173,7 @@ class SubCatsController extends Controller
                         concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
                         adv.id as advert_id, 
                         adv.price,
-                        adv.category_id,  
-                        /*year,*/  
+                        adv.category_id,
                         mileage,
                         text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
@@ -219,8 +197,7 @@ class SubCatsController extends Controller
                         concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
                         adv.id as advert_id, 
                         adv.price,
-                        adv.category_id,  
-                        /*year,*/  
+                        adv.category_id,
                         mileage,
                         text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
