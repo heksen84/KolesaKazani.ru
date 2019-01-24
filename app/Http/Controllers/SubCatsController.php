@@ -211,8 +211,7 @@ class SubCatsController extends Controller
                     );
 
                     break;
-                }                
-
+                }
             }
         }
 
