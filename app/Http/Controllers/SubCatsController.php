@@ -10,6 +10,8 @@ use App\Categories;
 
 class SubCatsController extends Controller
 {
+    // максимальное число записей при выборке
+    private $records_limit = 1000;
 
     public function getResultsByCategory(Request $request, $category, $subcat) {
 
@@ -39,7 +41,7 @@ class SubCatsController extends Controller
                             adv_transport.mark=car_mark.id_car_mark AND 
                             adv.adv_category_id=adv_transport.id AND 
                             adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_category_id=1 ORDER BY price ASC LIMIT 0,1000"
+                        ) WHERE adv_category_id=1 ORDER BY price ASC LIMIT 0,".$this->records_limit
                     );
 
                     break;
@@ -63,7 +65,7 @@ class SubCatsController extends Controller
                             adv_transport.mark=car_mark.id_car_mark AND 
                             adv.adv_category_id=adv_transport.id AND 
                             adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_category_id=2 ORDER BY price ASC LIMIT 0,1000"
+                        ) WHERE adv_category_id=2 ORDER BY price ASC LIMIT 0,".$this->records_limit
                     );
 
                     break;
@@ -87,7 +89,7 @@ class SubCatsController extends Controller
                             adv_transport.mark=car_mark.id_car_mark AND 
                             adv.adv_category_id=adv_transport.id AND 
                             adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_category_id=3 ORDER BY price ASC LIMIT 0,1000"
+                        ) WHERE adv_category_id=3 ORDER BY price ASC LIMIT 0,".$this->records_limit
                     );
 
                     break;
@@ -111,7 +113,7 @@ class SubCatsController extends Controller
                             adv_transport.mark=car_mark.id_car_mark AND 
                             adv.adv_category_id=adv_transport.id AND 
                             adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_category_id=4 ORDER BY price ASC LIMIT 0,1000"
+                        ) WHERE adv_category_id=4 ORDER BY price ASC LIMIT 0,".$this->records_limit
                     );
 
                     break;
@@ -135,7 +137,7 @@ class SubCatsController extends Controller
                             adv_transport.mark=car_mark.id_car_mark AND 
                             adv.adv_category_id=adv_transport.id AND 
                             adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_category_id=5 ORDER BY price ASC LIMIT 0,1000"
+                        ) WHERE adv_category_id=5 ORDER BY price ASC LIMIT 0,".$this->records_limit
                     );
 
                     break;
@@ -159,7 +161,7 @@ class SubCatsController extends Controller
                             adv_transport.mark=car_mark.id_car_mark AND 
                             adv.adv_category_id=adv_transport.id AND 
                             adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_category_id=6 ORDER BY price ASC LIMIT 0,1000"
+                        ) WHERE adv_category_id=6 ORDER BY price ASC LIMIT 0,".$this->records_limit
                     );
 
                     break;
@@ -183,7 +185,7 @@ class SubCatsController extends Controller
                             adv_transport.mark=car_mark.id_car_mark AND 
                             adv.adv_category_id=adv_transport.id AND 
                             adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_category_id=7 ORDER BY price ASC LIMIT 0,1000"
+                        ) WHERE adv_category_id=7 ORDER BY price ASC LIMIT 0,".$this->records_limit
                     );
 
                     break;
@@ -207,7 +209,7 @@ class SubCatsController extends Controller
                             adv_transport.mark=car_mark.id_car_mark AND 
                             adv.adv_category_id=adv_transport.id AND 
                             adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_category_id=8 ORDER BY price ASC LIMIT 0,1000"
+                        ) WHERE adv_category_id=8 ORDER BY price ASC LIMIT 0,".$this->records_limit
                     );
 
                     break;
