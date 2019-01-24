@@ -24,19 +24,16 @@ class SubCatsController extends Controller
         $results = "";
         
 
-        
-        
         switch($category) {
 
             case "transport": {
 
                 \Debugbar::info("hello1");
 
+                // Легковой транспорт
                 if ($subcat=="legkovoy-avtomobil") {
 
                     \Debugbar::info("hello2");
-
-
 
                     $results = DB::select(
                         "SELECT
@@ -54,7 +51,7 @@ class SubCatsController extends Controller
                             adv_transport.mark=car_mark.id_car_mark AND 
                             adv.adv_category_id=adv_transport.id AND 
                             adv_transport.model = car_model.id_car_model
-                        ) ORDER BY price ASC LIMIT 0,1000"
+                        ) WHERE adv_category_id=1 ORDER BY price ASC LIMIT 0,1000"
                     );
 
                     
@@ -63,35 +60,179 @@ class SubCatsController extends Controller
                     break;
                 }
                                 
+                // Грузовой транспорт
                 if ($subcat=="gruzovoy-avtomobil") {
+
+                    $results = DB::select(
+                        "SELECT
+                        concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
+                        adv.id as advert_id, 
+                        adv.price,
+                        adv.category_id,  
+                        /*year,*/  
+                        mileage,
+                        text,
+                        (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
+                        FROM `adverts` as adv
+                        INNER JOIN (adv_transport, car_mark, car_model) ON 
+                        (
+                            adv_transport.mark=car_mark.id_car_mark AND 
+                            adv.adv_category_id=adv_transport.id AND 
+                            adv_transport.model = car_model.id_car_model
+                        ) WHERE adv_category_id=2 ORDER BY price ASC LIMIT 0,1000"
+                    );
+
+
                     break;
                 }
 
-                if ($subcat=="mototehnika") {                    
+                // Мототехника
+                if ($subcat=="mototehnika") {
+                    
+                    $results = DB::select(
+                        "SELECT
+                        concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
+                        adv.id as advert_id, 
+                        adv.price,
+                        adv.category_id,  
+                        /*year,*/  
+                        mileage,
+                        text,
+                        (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
+                        FROM `adverts` as adv
+                        INNER JOIN (adv_transport, car_mark, car_model) ON 
+                        (
+                            adv_transport.mark=car_mark.id_car_mark AND 
+                            adv.adv_category_id=adv_transport.id AND 
+                            adv_transport.model = car_model.id_car_model
+                        ) WHERE adv_category_id=3 ORDER BY price ASC LIMIT 0,1000"
+                    );
+
                     break;
                 }                
 
-                if ($subcat=="spectehnika") {                    
+                // Спецтехника
+                if ($subcat=="spectehnika") {
+                    
+                    $results = DB::select(
+                        "SELECT
+                        concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
+                        adv.id as advert_id, 
+                        adv.price,
+                        adv.category_id,  
+                        /*year,*/  
+                        mileage,
+                        text,
+                        (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
+                        FROM `adverts` as adv
+                        INNER JOIN (adv_transport, car_mark, car_model) ON 
+                        (
+                            adv_transport.mark=car_mark.id_car_mark AND 
+                            adv.adv_category_id=adv_transport.id AND 
+                            adv_transport.model = car_model.id_car_model
+                        ) WHERE adv_category_id=4 ORDER BY price ASC LIMIT 0,1000"
+                    );
+
                     break;
                 }   
 
-                if ($subcat=="retro-avtomobil") {                    
+                // Ретроавтомобиль
+                if ($subcat=="retro-avtomobil") { 
+                    
+                    $results = DB::select(
+                        "SELECT
+                        concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
+                        adv.id as advert_id, 
+                        adv.price,
+                        adv.category_id,  
+                        /*year,*/  
+                        mileage,
+                        text,
+                        (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
+                        FROM `adverts` as adv
+                        INNER JOIN (adv_transport, car_mark, car_model) ON 
+                        (
+                            adv_transport.mark=car_mark.id_car_mark AND 
+                            adv.adv_category_id=adv_transport.id AND 
+                            adv_transport.model = car_model.id_car_model
+                        ) WHERE adv_category_id=5 ORDER BY price ASC LIMIT 0,1000"
+                    );
+
                     break;
                 }                               
 
-                if ($subcat=="vodnyy-transport") {                    
+                // Водный транспорт
+                if ($subcat=="vodnyy-transport") {
+                    
+                    $results = DB::select(
+                        "SELECT
+                        concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
+                        adv.id as advert_id, 
+                        adv.price,
+                        adv.category_id,  
+                        /*year,*/  
+                        mileage,
+                        text,
+                        (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
+                        FROM `adverts` as adv
+                        INNER JOIN (adv_transport, car_mark, car_model) ON 
+                        (
+                            adv_transport.mark=car_mark.id_car_mark AND 
+                            adv.adv_category_id=adv_transport.id AND 
+                            adv_transport.model = car_model.id_car_model
+                        ) WHERE adv_category_id=6 ORDER BY price ASC LIMIT 0,1000"
+                    );
+
                     break;
                 }                               
 
-                if ($subcat=="velosiped") {                    
+                // Велосипед
+                if ($subcat=="velosiped") {
+                    
+                    $results = DB::select(
+                        "SELECT
+                        concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
+                        adv.id as advert_id, 
+                        adv.price,
+                        adv.category_id,  
+                        /*year,*/  
+                        mileage,
+                        text,
+                        (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
+                        FROM `adverts` as adv
+                        INNER JOIN (adv_transport, car_mark, car_model) ON 
+                        (
+                            adv_transport.mark=car_mark.id_car_mark AND 
+                            adv.adv_category_id=adv_transport.id AND 
+                            adv_transport.model = car_model.id_car_model
+                        ) WHERE adv_category_id=7 ORDER BY price ASC LIMIT 0,1000"
+                    );
+
                     break;
                 }                               
 
-                if ($subcat=="velosiped") {                    
-                    break;
-                }
+                // Воздушный транспорт
+                if ($subcat=="vozdushnyy-transport") {
+                    
+                    $results = DB::select(
+                        "SELECT
+                        concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
+                        adv.id as advert_id, 
+                        adv.price,
+                        adv.category_id,  
+                        /*year,*/  
+                        mileage,
+                        text,
+                        (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
+                        FROM `adverts` as adv
+                        INNER JOIN (adv_transport, car_mark, car_model) ON 
+                        (
+                            adv_transport.mark=car_mark.id_car_mark AND 
+                            adv.adv_category_id=adv_transport.id AND 
+                            adv_transport.model = car_model.id_car_model
+                        ) WHERE adv_category_id=8 ORDER BY price ASC LIMIT 0,1000"
+                    );
 
-                if ($subcat=="vozdushnyy-transport") {                    
                     break;
                 }                
 
