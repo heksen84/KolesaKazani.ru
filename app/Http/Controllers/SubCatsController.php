@@ -15,7 +15,9 @@ class SubCatsController extends Controller
 
     public function getResultsByCategory(Request $request, $category, $subcat) {
 
+        // -------------------------
         // получаю имя на русском
+        // -------------------------
 		$categories = SubCats::select('id', 'name')->where('url',  $subcat )->first();
         $items = Adverts::where('category_id',  $categories->id )->get();
         
@@ -41,7 +43,7 @@ class SubCatsController extends Controller
                             adv_transport.mark=car_mark.id_car_mark AND 
                             adv.adv_category_id=adv_transport.id AND 
                             adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_category_id=1 ORDER BY price ASC LIMIT 0,".$this->records_limit
+                        ) WHERE adv_transport.type=1 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
 
                     break;
@@ -65,7 +67,7 @@ class SubCatsController extends Controller
                             adv_transport.mark=car_mark.id_car_mark AND 
                             adv.adv_category_id=adv_transport.id AND 
                             adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_category_id=2 ORDER BY price ASC LIMIT 0,".$this->records_limit
+                        ) WHERE adv_transport.type=2 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
 
                     break;

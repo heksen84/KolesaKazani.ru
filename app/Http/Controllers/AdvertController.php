@@ -42,7 +42,9 @@ class AdvertController extends Controller {
 
         $data = $request->all();
     
+        \Debugbar::info("--------------------------");
         \Debugbar::info($data);
+        \Debugbar::info("--------------------------");
 
         // правила валидации      
         $rules = 
@@ -200,6 +202,8 @@ class AdvertController extends Controller {
 
             // FIXME: сделать проверку на сохранение и если что грохнуть сохраненную подкатегорию
             // и разобраться, что там с сохранением суммы
+
+            \Debugbar::info("id подкатегории :".$advert->adv_category_id);            
             
             $advert->save(); // сохраняю основную информацию 
             
