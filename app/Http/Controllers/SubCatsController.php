@@ -108,7 +108,7 @@ class SubCatsController extends Controller
                         INNER JOIN (adv_transport) ON 
                         (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=3 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
+                        ) WHERE adv_transport.type=4 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
                     break;
                 }   
@@ -128,7 +128,7 @@ class SubCatsController extends Controller
                         INNER JOIN (adv_transport) ON 
                         (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=3 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
+                        ) WHERE adv_transport.type=5 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
                     break;
                 }                               
@@ -148,7 +148,7 @@ class SubCatsController extends Controller
                         INNER JOIN (adv_transport) ON 
                         (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=3 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
+                        ) WHERE adv_transport.type=6 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
                     break;
                 }                               
@@ -168,7 +168,7 @@ class SubCatsController extends Controller
                         INNER JOIN (adv_transport) ON 
                         (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=3 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
+                        ) WHERE adv_transport.type=7 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
                     break;
                 }                               
@@ -188,7 +188,7 @@ class SubCatsController extends Controller
                         INNER JOIN (adv_transport) ON 
                         (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=3 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
+                        ) WHERE adv_transport.type=8 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
                     break;
                 }

@@ -112,23 +112,26 @@ class AdvertController extends Controller {
 
                     $transport = new Transport();                    
                     
-                    $transport->type = $data["transport_type"];   // тип транспорта: легковой / грузовой и т.д.
-                    $transport->mark  = null;
-                    $transport->model = null;                    
+                    $transport->type                = $data["transport_type"];   // тип транспорта: легковой / грузовой и т.д.
+                    $transport->mark                = null;
+                    $transport->model               = null;
+                    $transport->year                = null;
+                    $transport->steering_position   = null;
+                    $transport->mileage             = null;
+                    $transport->engine_type         = null;
+                    $transport->customs             = null;
                     
-                    // легковушки
-                    if ($data["transport_type"]==1) {
-                        $transport->mark  = $data["mark_id"];            // id марки авто
-                        $transport->model = $data["model_id"];           // id модели авто
+                    // легковушки или ретро-авто
+                    if ($data["transport_type"]==1 || $data["transport_type"]==5) {
+                        $transport->mark                = $data["mark_id"];            // id марки авто
+                        $transport->model               = $data["model_id"];           // id модели авто                        
+                        $transport->year                = $data["release_date"];       // год выпуска
+                        $transport->steering_position   = $data["rule_position"];      // положение руля
+                        $transport->mileage             = $data["mileage"];            // пробег
+                        $transport->engine_type         = $data["fuel_type"];          // тип движка
+                        $transport->customs             = $data["customs"];            // растаможка
                     }
-
-                    
-                    // общие данные данные для транспорта
-                    $transport->year                = $data["release_date"];       // год выпуска
-                    $transport->steering_position   = $data["rule_position"];      // положение руля
-                    $transport->mileage             = $data["mileage"];            // пробег
-                    $transport->engine_type         = $data["fuel_type"];          // тип движка
-                    $transport->customs             = $data["customs"];            // растаможка
+                                        
                     $transport->save();
 
                     $advert->adv_category_id = $transport->id;  // указываем id' шник
