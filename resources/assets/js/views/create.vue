@@ -195,7 +195,7 @@ export default {
 			 базовые поля объявления
 			-----------------------------*/			
 			category: null,
-			sdelka: null,
+			sdelka: 0, // покупка по умолчанию
 			deal_id: null,
 			text: "",
 			price: 0,
@@ -228,8 +228,8 @@ export default {
 	// Событие: компонент создан
 	created() {		
 		
-		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация		
-		//this.sdelka=0;		
+		this.$root.advert_data.adv_deal = 0;	// покупка по умолчанию
+		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация				
 
 		ymaps.ready(initBigMap);
 		ymaps.ready(initSmallMap);

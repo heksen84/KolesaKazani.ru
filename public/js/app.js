@@ -2832,7 +2832,7 @@ function forEach(data, callback) {
     базовые поля объявления
    -----------------------------*/
 			category: null,
-			sdelka: null,
+			sdelka: 0, // покупка по умолчанию
 			deal_id: null,
 			text: "",
 			price: 0,
@@ -2867,8 +2867,8 @@ function forEach(data, callback) {
 	created: function created() {
 		var _this = this;
 
-		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация		
-		//this.sdelka=0;		
+		this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
+		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация				
 
 		ymaps.ready(initBigMap);
 		ymaps.ready(initSmallMap);
@@ -51996,7 +51996,7 @@ module.exports = Component.exports
     max_loaded_images: 10,
 
     // стандартные операции
-    options_sdelka: [{ value: '1', text: 'Покупка' }, { value: '2', text: 'Продажа' }, { value: '3', text: 'Обмен' }, { value: '4', text: 'Частичный обмен' }, { value: '5', text: 'Отдам даром' }, { value: '6', text: 'Сдача в аренду' }],
+    options_sdelka: [{ value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }],
 
     // подкатегории
     /*subcats:
