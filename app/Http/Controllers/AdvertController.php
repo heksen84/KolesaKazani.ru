@@ -111,13 +111,18 @@ class AdvertController extends Controller {
                 case 1: {                    
 
                     $transport = new Transport();                    
-                    $transport->type = $data["transport_type"];   // тип транспорта: легковой / грузовой и т.д.
                     
+                    $transport->type = $data["transport_type"];   // тип транспорта: легковой / грузовой и т.д.
+                    $transport->mark  = null;
+                    $transport->model = null;                    
+                    
+                    // легковушки
                     if ($data["transport_type"]==1) {
                         $transport->mark  = $data["mark_id"];            // id марки авто
                         $transport->model = $data["model_id"];           // id модели авто
                     }
 
+                    
                     // общие данные данные для транспорта
                     $transport->year                = $data["release_date"];       // год выпуска
                     $transport->steering_position   = $data["rule_position"];      // положение руля

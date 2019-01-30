@@ -27,6 +27,8 @@ class SubCatsController extends Controller
 
                 // Легковой транспорт
                 if ($subcat=="legkovoy-avtomobil") {
+                    
+                    $adv_transport_type=1;
 
                     $results = DB::select(
                         "SELECT
@@ -54,7 +56,7 @@ class SubCatsController extends Controller
 
                     $results = DB::select(
                         "SELECT
-                        concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
+                        text AS title,
                         adv.id as advert_id, 
                         adv.price,
                         adv.category_id,
@@ -62,11 +64,9 @@ class SubCatsController extends Controller
                         text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
-                        INNER JOIN (adv_transport, car_mark, car_model) ON 
+                        INNER JOIN (adv_transport) ON 
                         (
-                            adv_transport.mark=car_mark.id_car_mark AND 
-                            adv.adv_category_id=adv_transport.id AND 
-                            adv_transport.model = car_model.id_car_model
+                            adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=2 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
 
@@ -74,11 +74,10 @@ class SubCatsController extends Controller
                 }
 
                 // Мототехника
-                if ($subcat=="mototehnika") {
-                    
+                if ($subcat=="mototehnika") {                                        
                     $results = DB::select(
                         "SELECT
-                        concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
+                        text AS title,
                         adv.id as advert_id, 
                         adv.price,
                         adv.category_id,
@@ -86,23 +85,19 @@ class SubCatsController extends Controller
                         text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
-                        INNER JOIN (adv_transport, car_mark, car_model) ON 
+                        INNER JOIN (adv_transport) ON 
                         (
-                            adv_transport.mark=car_mark.id_car_mark AND 
-                            adv.adv_category_id=adv_transport.id AND 
-                            adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_category_id=3 ORDER BY price ASC LIMIT 0,".$this->records_limit
+                            adv.adv_category_id=adv_transport.id
+                        ) WHERE adv_transport.type=3 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
-
                     break;
                 }                
 
                 // Спецтехника
-                if ($subcat=="spectehnika") {
-                    
+                if ($subcat=="spectehnika") {                    
                     $results = DB::select(
                         "SELECT
-                        concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
+                        text AS title,
                         adv.id as advert_id, 
                         adv.price,
                         adv.category_id,
@@ -110,23 +105,19 @@ class SubCatsController extends Controller
                         text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
-                        INNER JOIN (adv_transport, car_mark, car_model) ON 
+                        INNER JOIN (adv_transport) ON 
                         (
-                            adv_transport.mark=car_mark.id_car_mark AND 
-                            adv.adv_category_id=adv_transport.id AND 
-                            adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_category_id=4 ORDER BY price ASC LIMIT 0,".$this->records_limit
+                            adv.adv_category_id=adv_transport.id
+                        ) WHERE adv_transport.type=3 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
-
                     break;
                 }   
 
                 // Ретроавтомобиль
-                if ($subcat=="retro-avtomobil") { 
-                    
+                if ($subcat=="retro-avtomobil") {                     
                     $results = DB::select(
                         "SELECT
-                        concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
+                        text AS title,
                         adv.id as advert_id, 
                         adv.price,
                         adv.category_id,
@@ -134,23 +125,19 @@ class SubCatsController extends Controller
                         text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
-                        INNER JOIN (adv_transport, car_mark, car_model) ON 
+                        INNER JOIN (adv_transport) ON 
                         (
-                            adv_transport.mark=car_mark.id_car_mark AND 
-                            adv.adv_category_id=adv_transport.id AND 
-                            adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_category_id=5 ORDER BY price ASC LIMIT 0,".$this->records_limit
+                            adv.adv_category_id=adv_transport.id
+                        ) WHERE adv_transport.type=3 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
-
                     break;
                 }                               
 
                 // Водный транспорт
-                if ($subcat=="vodnyy-transport") {
-                    
+                if ($subcat=="vodnyy-transport") {                    
                     $results = DB::select(
                         "SELECT
-                        concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
+                        text AS title,
                         adv.id as advert_id, 
                         adv.price,
                         adv.category_id,
@@ -158,23 +145,19 @@ class SubCatsController extends Controller
                         text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
-                        INNER JOIN (adv_transport, car_mark, car_model) ON 
+                        INNER JOIN (adv_transport) ON 
                         (
-                            adv_transport.mark=car_mark.id_car_mark AND 
-                            adv.adv_category_id=adv_transport.id AND 
-                            adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_category_id=6 ORDER BY price ASC LIMIT 0,".$this->records_limit
+                            adv.adv_category_id=adv_transport.id
+                        ) WHERE adv_transport.type=3 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
-
                     break;
                 }                               
 
                 // Велосипед
-                if ($subcat=="velosiped") {
-                    
+                if ($subcat=="velosiped") {                    
                     $results = DB::select(
                         "SELECT
-                        concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
+                        text AS title,
                         adv.id as advert_id, 
                         adv.price,
                         adv.category_id,
@@ -182,23 +165,19 @@ class SubCatsController extends Controller
                         text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
-                        INNER JOIN (adv_transport, car_mark, car_model) ON 
+                        INNER JOIN (adv_transport) ON 
                         (
-                            adv_transport.mark=car_mark.id_car_mark AND 
-                            adv.adv_category_id=adv_transport.id AND 
-                            adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_category_id=7 ORDER BY price ASC LIMIT 0,".$this->records_limit
+                            adv.adv_category_id=adv_transport.id
+                        ) WHERE adv_transport.type=3 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
-
                     break;
                 }                               
 
                 // Воздушный транспорт
-                if ($subcat=="vozdushnyy-transport") {
-                    
+                if ($subcat=="vozdushnyy-transport") {                    
                     $results = DB::select(
                         "SELECT
-                        concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
+                        text AS title,
                         adv.id as advert_id, 
                         adv.price,
                         adv.category_id,
@@ -206,18 +185,16 @@ class SubCatsController extends Controller
                         text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
-                        INNER JOIN (adv_transport, car_mark, car_model) ON 
+                        INNER JOIN (adv_transport) ON 
                         (
-                            adv_transport.mark=car_mark.id_car_mark AND 
-                            adv.adv_category_id=adv_transport.id AND 
-                            adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_category_id=8 ORDER BY price ASC LIMIT 0,".$this->records_limit
+                            adv.adv_category_id=adv_transport.id
+                        ) WHERE adv_transport.type=3 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
-
                     break;
                 }
             }
-        }
+        }        
+
 
      	return view('results')->with("title", "подкатегории")->with("items", $items)->with("results", json_encode($results))->with("category", $categories);
     }
