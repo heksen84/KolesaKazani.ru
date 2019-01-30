@@ -1741,9 +1741,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       // год выпуска
       SetReleaseDate: function SetReleaseDate(date) {
+
          var d = new Date();
-         if (date < 0 || date > d.getFullYear()) return;
+
+         if (date < 0 || date > d.getFullYear()) return this.release_date;
+
          this.transport_chars.release_date = date;
+
          return date;
       },
 

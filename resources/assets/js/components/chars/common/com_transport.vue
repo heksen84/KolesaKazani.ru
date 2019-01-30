@@ -101,10 +101,15 @@ export default {
 
      // год выпуска
      SetReleaseDate(date) {
+
         var d = new Date();
-        if (date<0 || date>d.getFullYear()) return;
-        this.transport_chars.release_date = date;
-        return date;
+        
+        if ( date < 0 || date > d.getFullYear() ) 
+         return this.release_date;
+
+         this.transport_chars.release_date = date;
+
+         return date;
      },
 
      // пробег
