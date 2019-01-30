@@ -46,7 +46,9 @@ class AdvertController extends Controller {
         \Debugbar::info($data);
         \Debugbar::info("--------------------------");
 
-        // правила валидации      
+        // ---------------------------
+        // правила валидации
+        // ---------------------------
         $rules = 
         [
             "adv_deal"      => "required",
@@ -58,7 +60,9 @@ class AdvertController extends Controller {
             "city_id"       => "required|numeric"
         ]; 
 
+        // ---------------------------
         // сообщения валидации
+        // ---------------------------
         $messages = 
         [
             "adv_deal.required"        => "Укажите вид сделки", 
@@ -74,7 +78,7 @@ class AdvertController extends Controller {
             "city_id.numeric"          => "Введите числовое значение для расположения"
         ]; 
 
-        // проверяем
+        // проверка
         $validator = Validator::make( $data, $rules, $messages );
 
         if ( $validator->fails() )  
