@@ -121,10 +121,19 @@ class AdvertController extends Controller {
                     $transport->engine_type         = null;
                     $transport->customs             = null;
                     
-                    // легковушки или ретро-авто
-                    if ($data["transport_type"]==1 || $data["transport_type"]==5) {
+                    // легковушки
+                    if ($data["transport_type"]==1) {
                         $transport->mark                = $data["mark_id"];            // id марки авто
                         $transport->model               = $data["model_id"];           // id модели авто                        
+                        $transport->year                = $data["release_date"];       // год выпуска
+                        $transport->steering_position   = $data["rule_position"];      // положение руля
+                        $transport->mileage             = $data["mileage"];            // пробег
+                        $transport->engine_type         = $data["fuel_type"];          // тип движка
+                        $transport->customs             = $data["customs"];            // растаможка
+                    }
+
+                    // ретро-авто
+                    if ($data["transport_type"]==5) {
                         $transport->year                = $data["release_date"];       // год выпуска
                         $transport->steering_position   = $data["rule_position"];      // положение руля
                         $transport->mileage             = $data["mileage"];            // пробег
