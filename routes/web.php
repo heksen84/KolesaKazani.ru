@@ -22,6 +22,9 @@ Route::get('moderation/{advert_id}',  function () { return view('moderation_adve
 // ------------------------------------
 Route::get('advertisers',  function () { return view('advertisers'); });
 
+// О сайте...
+Route::get('about',  function () { return view('about'); });
+
 
 Route::get('getCategoryCountById', 'WelcomeController@getCategoryCountById');
 Route::get('getCategoryCounts', 'WelcomeController@getCategoryCounts');
