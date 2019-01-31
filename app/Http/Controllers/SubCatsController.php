@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Adverts;
 use App\SubCats;
 use App\Categories;
+use App\RealEstate;
 
 class SubCatsController extends Controller
 {
@@ -190,6 +191,41 @@ class SubCatsController extends Controller
                             adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=8 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
+                    break;
+                }
+            }
+
+            /*
+            ------------------------------------------------------------
+
+            НЕДВИЖИМОСТЬ
+
+            ------------------------------------------------------------*/
+
+            case "nedvizhimost": {
+
+                // квартира
+                // adv_realestate
+                // id, property_type, floor, floors_house, rooms, area, ownership, kind_of_object
+
+                if ($subcat=="kvartira") {
+
+                    $results = DB::select
+                    (
+                        "SELECT
+                        adv.id as advert_id, 
+                        adv.price,
+                        adv.category_id,
+                        text,                        
+                        (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
+                        adv_realestate.id,
+                        concat(adv_realestate.rooms, ' комнат ', adv_realestate.floor, ' этаж') AS title
+                        FROM `adverts` as adv
+                        INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) ORDER BY price ASC LIMIT 0,".$this->records_limit                    
+                    );
+
+                    \Debugbar::info($results);
+
                     break;
                 }
             }
