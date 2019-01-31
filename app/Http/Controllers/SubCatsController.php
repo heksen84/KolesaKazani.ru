@@ -203,11 +203,11 @@ class SubCatsController extends Controller
             ------------------------------------------------------------*/
 
             case "nedvizhimost": {
-
-                // квартира
+                
                 // adv_realestate
                 // id, property_type, floor, floors_house, rooms, area, ownership, kind_of_object
 
+                // квартира
                 if ($subcat=="kvartira") {
 
                     $results = DB::select
@@ -228,6 +228,36 @@ class SubCatsController extends Controller
 
                     break;
                 }
+
+                // комната
+                if ($subcat=="komnata") {
+                    break;
+                }
+
+                // дом, дача, коттедж
+                if ($subcat=="dom-dacha-kottedzh") {
+                    break;
+                }
+
+                // земельный участок
+                if ($subcat=="zemel-nyy-uchastok") {
+                    break;
+                }
+                
+                // гараж или машиноместо
+                if ($subcat=="garazh-ili-mashinomesto") {
+                    break;
+                }
+
+                // коммерческая недвижимость
+                if ($subcat=="kommercheskaya-nedvizhimost") {
+                    break;
+                }
+                
+                // недвижимость за рубежом
+                if ($subcat=="nedvizhimost-za-rubezhom") {
+                    break;
+                }                                
             }
         }        
 
