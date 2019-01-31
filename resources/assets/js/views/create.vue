@@ -89,8 +89,8 @@
 
 				<b-form-group label="Контактные номера:" style="text-align:center;font-weight:bold;text-decoration:underline">
 			 		<b-form-input type="text" placeholder="Введите номер 1" style="width:250px;display:inline;text-align:center"   :formatter="setPhoneNumber" required></b-form-input>
-					<b-form-input type="text" placeholder="Введите номер 2" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber" required></b-form-input>
-					<b-form-input type="text" placeholder="Введите номер 3" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber" required></b-form-input>
+					<b-form-input type="text" placeholder="Введите номер 2" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber"></b-form-input>
+					<b-form-input type="text" placeholder="Введите номер 3" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber"></b-form-input>
 				</b-form-group>
 
 				<!-- Город, Село и т.д. -->

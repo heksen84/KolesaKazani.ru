@@ -38133,8 +38133,7 @@ var render = function() {
                             attrs: {
                               type: "text",
                               placeholder: "Введите номер 2",
-                              formatter: _vm.setPhoneNumber,
-                              required: ""
+                              formatter: _vm.setPhoneNumber
                             }
                           }),
                           _vm._v(" "),
@@ -38147,8 +38146,7 @@ var render = function() {
                             attrs: {
                               type: "text",
                               placeholder: "Введите номер 3",
-                              formatter: _vm.setPhoneNumber,
-                              required: ""
+                              formatter: _vm.setPhoneNumber
                             }
                           })
                         ],
