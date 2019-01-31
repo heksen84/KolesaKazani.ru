@@ -73,7 +73,7 @@ class SubCatsController extends Controller
                         ) WHERE adv_transport.type=2 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
 
-                    $title="Грузовой автомобиль";
+                    $title="Грузовой транспорт";
 
                     break;
                 }
