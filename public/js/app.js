@@ -38112,7 +38112,7 @@ var render = function() {
                         [
                           _c("b-form-input", {
                             staticStyle: {
-                              width: "250px",
+                              width: "280px",
                               display: "inline",
                               "text-align": "center"
                             },
@@ -38126,26 +38126,26 @@ var render = function() {
                           _vm._v(" "),
                           _c("b-form-input", {
                             staticStyle: {
-                              width: "250px",
+                              width: "280px",
                               "text-align": "center",
                               margin: "5px auto"
                             },
                             attrs: {
                               type: "text",
-                              placeholder: "Введите номер 2",
+                              placeholder: "Введите номер 2 (не обязательно)",
                               formatter: _vm.setPhoneNumber
                             }
                           }),
                           _vm._v(" "),
                           _c("b-form-input", {
                             staticStyle: {
-                              width: "250px",
+                              width: "280px",
                               "text-align": "center",
                               margin: "5px auto"
                             },
                             attrs: {
                               type: "text",
-                              placeholder: "Введите номер 3",
+                              placeholder: "Введите номер 3 (не обязательно)",
                               formatter: _vm.setPhoneNumber
                             }
                           })
