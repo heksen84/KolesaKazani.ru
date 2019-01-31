@@ -164,7 +164,7 @@ class ResultsController extends Controller {
 		}
 		
 		// передаю во вьюху
-     	return view('results')->with("title", $category->name." в Казахстане")->with("items", $items)->with("results", json_encode($results))->with("category", $category->id);
+     	return view('results')->with("title", "Купить, продать, обменять или сдать ".mb_strtolower($category->name)." в Казахстане")->with("items", $items)->with("results", json_encode($results))->with("category", $category->id);
     }
 
     // ---------------------------------------------------
