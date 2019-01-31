@@ -27,6 +27,8 @@ class ResultsController extends Controller {
     	// получаю имя на русском
 		$category = Categories::select('id', 'name')->where('url',  $request->path() )->first();
 		$items = Adverts::where('category_id',  $category->id )->get();
+		$results = [];
+		$title = "";
 
 		// --------------------------------------------------------
 		// Выдергиваю данные по конкретной категории
@@ -67,44 +69,38 @@ class ResultsController extends Controller {
 					) ORDER BY price ASC LIMIT 0,1000"
 				);
 
+				$title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
+
 				break;
 			}
 			
 			// ------------------------
 			// недвижимость
 			// ------------------------
-			/*case 2: {			
-				break;
+			case 2: {			
+				$title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
 			}
 
 			// ------------------------
 			// бытовая техника
 			// ------------------------
 			case 3: {
-				$results = DB::select(
-					"SELECT 
-					id, 
-					text as title, 
-					price, 
-					category_id,					
-					(SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image
-					FROM `adverts` AS adv WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
-					break;
+				$title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
 			}
 
 			// ------------------------
 			// работа и бизнес
 			// ------------------------
 			case 4: {
-				$results = DB::select("SELECT * FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
+				$title = "Предложения о ".mb_strtolower($category->name);				
 				break;
 			}
 
 			// ------------------------
 			// для дома и дачи
 			// ------------------------
-			case 5: {
-				$results = DB::select("SELECT * FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
+			case 5: {				
+				$title = "Всё ".mb_strtolower($category->name);				
 				break;
 			}
 
@@ -112,7 +108,7 @@ class ResultsController extends Controller {
 			// личные вещи
 			// ------------------------
 			case 6: {
-				$results = DB::select("SELECT * FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
+				$title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
 				break;
 			}
 
@@ -120,7 +116,7 @@ class ResultsController extends Controller {
 			// животные
 			// ------------------------
 			case 7: {
-				$results = DB::select("SELECT * FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
+				$title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
 				break;
 			}
 
@@ -128,7 +124,7 @@ class ResultsController extends Controller {
 			// хобби и отдых
 			// ------------------------
 			case 8: {
-				$results = DB::select("SELECT * FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
+				$title = "Всё для ".mb_strtolower($category->name);
 				break;
 			}
 
@@ -136,7 +132,8 @@ class ResultsController extends Controller {
 			// услуги
 			// ------------------------
 			case 9: {
-				$results = DB::select("SELECT * FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
+				$title = "Предоставление ".mb_strtolower($category->name);
+				//$results = DB::select("SELECT * FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
 				break;
 			}
 
@@ -144,9 +141,10 @@ class ResultsController extends Controller {
 			// другое
 			// ------------------------
 			case 10: {
-				$results = DB::select("SELECT * FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
+				$title = "Различные предложения";
+				//$results = DB::select("SELECT * FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
 				break;
-			}*/
+			}
 
 			default: 
 			{
@@ -164,7 +162,7 @@ class ResultsController extends Controller {
 		}
 		
 		// передаю во вьюху
-     	return view('results')->with("title", "Купить, продать, обменять или сдать ".mb_strtolower($category->name)." в Казахстане")->with("items", $items)->with("results", json_encode($results))->with("category", $category->id);
+     	return view('results')->with("title", $title." в Казахстане")->with("items", $items)->with("results", json_encode($results))->with("category", $category->id);
     }
 
     // ---------------------------------------------------
