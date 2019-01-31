@@ -21,15 +21,15 @@ class SubCatsController extends Controller
         // -------------------------
 		$categories = SubCats::select('id', 'name')->where('url',  $subcat )->first();
         $items = Adverts::where('category_id',  $categories->id )->get();
+        $title = "";
         
         switch($category) {
 
-            case "transport": {
+            case "transport": {                
 
                 // Легковой транспорт
                 if ($subcat=="legkovoy-avtomobil") {
-                    
-                    $adv_transport_type=1;
+                                    
 
                     $results = DB::select(
                         "SELECT
@@ -48,6 +48,8 @@ class SubCatsController extends Controller
                             adv_transport.model = car_model.id_car_model
                         ) WHERE adv_transport.type=1 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
+
+                    $title="Легковой автомобиль";
 
                     break;
                 }
@@ -71,6 +73,8 @@ class SubCatsController extends Controller
                         ) WHERE adv_transport.type=2 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
 
+                    $title="Грузовой автомобиль";
+
                     break;
                 }
 
@@ -91,6 +95,9 @@ class SubCatsController extends Controller
                             adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=3 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
+
+                    $title="Мототехника";
+
                     break;
                 }                
 
@@ -111,6 +118,9 @@ class SubCatsController extends Controller
                             adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=4 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
+
+                    $title="Спецтехника";
+
                     break;
                 }   
 
@@ -131,6 +141,9 @@ class SubCatsController extends Controller
                             adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=5 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
+
+                    $title="Спецтехника";
+
                     break;
                 }                               
 
@@ -151,6 +164,9 @@ class SubCatsController extends Controller
                             adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=6 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
+
+                    $title="Водный транспорт";
+
                     break;
                 }                               
 
@@ -171,6 +187,9 @@ class SubCatsController extends Controller
                             adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=7 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
+
+                    $title="Велосипед";
+
                     break;
                 }                               
 
@@ -191,6 +210,9 @@ class SubCatsController extends Controller
                             adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=8 ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );
+
+                    $title="Воздушный транспорт";
+
                     break;
                 }
             }
@@ -226,16 +248,24 @@ class SubCatsController extends Controller
 
                     \Debugbar::info($results);
 
+                    $title="Квартира";
+
                     break;
                 }
 
                 // комната
                 if ($subcat=="komnata") {
+
+                    $title="Комната";
+
                     break;
                 }
 
                 // дом, дача, коттедж
                 if ($subcat=="dom-dacha-kottedzh") {
+                    
+                    $title="Дом, дача, коттедж";
+                    
                     break;
                 }
 
@@ -262,7 +292,7 @@ class SubCatsController extends Controller
         }        
 
 
-     	return view('results')->with("title", "подкатегории")->with("items", $items)->with("results", json_encode($results))->with("category", $categories);
+     	return view('results')->with("title", $title." в Казахстане")->with("items", $items)->with("results", json_encode($results))->with("category", $categories);
     }
 
 }
