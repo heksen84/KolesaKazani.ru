@@ -100,7 +100,7 @@
 
     <!-- ПОДВАЛ -->
     <b-row>
-      <div id="footer"><a href="advertisers" class="underline_link">Реклама</a> | <a href="rules" class="underline_link">Правила сайта</a> | <a href="about" class="underline_link">О сайте</a></div>
+      <div id="footer"><a href="advertisers" class="underline_link">Реклама</a> | <a href="rules" class="underline_link">Правила сайта</a> | <a href="about" class="underline_link">О сайте</a><br>beta версия</div>
     </b-row>
 
   </b-container>
