@@ -2771,9 +2771,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 // ----------------------------------------------------
@@ -2788,6 +2785,12 @@ var preview_images_array = [];
 var mapCoords = [];
 var myPlacemark;
 var bigmap, smallmap;
+
+/*
+---------------------------------------------------------
+ Инициализация большой карты (карта назначения координат)
+---------------------------------------------------------
+*/
 
 function initBigMap() {
 
@@ -38101,26 +38104,12 @@ var render = function() {
                         {
                           staticStyle: {
                             "text-align": "center",
-                            "font-weight": "bold"
+                            "font-weight": "bold",
+                            "text-decoration": "underline"
                           },
-                          attrs: { label: "Контактный номер:" }
+                          attrs: { label: "Контактные номера:" }
                         },
                         [
-                          _c(
-                            "p",
-                            {
-                              staticStyle: {
-                                "margin-top": "-7px",
-                                "font-weight": "normal"
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "(через запятую можно указать несколько номеров)"
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
                           _c("b-form-input", {
                             staticStyle: {
                               width: "250px",
@@ -38129,8 +38118,35 @@ var render = function() {
                             },
                             attrs: {
                               type: "text",
-                              id: "price",
-                              placeholder: "Введите номер (-а)",
+                              placeholder: "Введите номер 1",
+                              formatter: _vm.setPhoneNumber,
+                              required: ""
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("b-form-input", {
+                            staticStyle: {
+                              width: "250px",
+                              "text-align": "center",
+                              margin: "5px auto"
+                            },
+                            attrs: {
+                              type: "text",
+                              placeholder: "Введите номер 2",
+                              formatter: _vm.setPhoneNumber,
+                              required: ""
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("b-form-input", {
+                            staticStyle: {
+                              width: "250px",
+                              "text-align": "center",
+                              margin: "5px auto"
+                            },
+                            attrs: {
+                              type: "text",
+                              placeholder: "Введите номер 3",
                               formatter: _vm.setPhoneNumber,
                               required: ""
                             }

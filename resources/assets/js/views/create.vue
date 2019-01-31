@@ -70,11 +70,7 @@
 			<div v-show="this.$store.state.show_other_fields">
 
 				<b-form-group label="Описание:" label-for="addit_info">
-			 	<b-form-textarea id="addit_info"
-								placeholder="Введите описание"
-								:rows="4"
-								:max-rows="4" @input="setInfo" v-model="text">
-	 		 	</b-form-textarea>
+			 		<b-form-textarea id="addit_info" placeholder="Введите описание" :rows="4" :max-rows="4" @input="setInfo" v-model="text"></b-form-textarea>
 				</b-form-group>			
 
 				<!-- Цена -->
@@ -91,9 +87,10 @@
 				</div>
 				</b-form-group>
 
-				<b-form-group label="Контактный номер:" style="text-align:center;font-weight:bold">
-					<p style="margin-top:-7px;font-weight:normal">(через запятую можно указать несколько номеров)</p>
-			 		<b-form-input type="text" id="price" placeholder="Введите номер (-а)" style="width:250px;display:inline;text-align:center" :formatter="setPhoneNumber" required></b-form-input>
+				<b-form-group label="Контактные номера:" style="text-align:center;font-weight:bold;text-decoration:underline">
+			 		<b-form-input type="text" placeholder="Введите номер 1" style="width:250px;display:inline;text-align:center"   :formatter="setPhoneNumber" required></b-form-input>
+					<b-form-input type="text" placeholder="Введите номер 2" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber" required></b-form-input>
+					<b-form-input type="text" placeholder="Введите номер 3" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber" required></b-form-input>
 				</b-form-group>
 
 				<!-- Город, Село и т.д. -->
@@ -147,6 +144,12 @@ var preview_images_array=[];
 var mapCoords=[];
 var myPlacemark;
 var bigmap, smallmap;
+
+/*
+---------------------------------------------------------
+ Инициализация большой карты (карта назначения координат)
+---------------------------------------------------------
+*/
 
 function initBigMap() {
 
