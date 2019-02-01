@@ -88,9 +88,9 @@
 				</b-form-group>
 
 				<b-form-group label="Контактные номера:" style="text-align:center;font-weight:bold;text-decoration:underline">
-			 		<b-form-input type="text" placeholder="Контактный номер 1" style="width:250px;display:inline;text-align:center"   :formatter="setPhoneNumber" required></b-form-input>
-					<b-form-input type="text" placeholder="Контактный номер 2" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber"></b-form-input>
-					<b-form-input type="text" placeholder="Контактный номер 3" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber"></b-form-input>
+			 		<b-form-input v-model.trim="phone1" type="text" placeholder="Контактный номер 1" style="width:250px;display:inline;text-align:center" :state="setPhoneNumber(1)" required></b-form-input>
+					<b-form-input v-model.trim="phone2" type="text" placeholder="Контактный номер 2" style="width:250px;text-align:center;margin: 5px auto" :state="setPhoneNumber(2)"></b-form-input>
+					<b-form-input v-model.trim="phone3" type="text" placeholder="Контактный номер 3" style="width:250px;text-align:center;margin: 5px auto" :state="setPhoneNumber(3)"></b-form-input>
 				</b-form-group>
 
 				<!-- Город, Село и т.д. -->
@@ -210,6 +210,9 @@ export default {
 			regions_model: null,
 			places: [],
 			places_model: null,
+			phone1: null,
+			phone2: null,
+			phone3: null,
 			
 			/*-------------------------
 				категории 
@@ -359,11 +362,27 @@ export default {
 
 
 		setPhoneNumber(number) {
+
+			switch(number) {
+				case 1: {
+					  this.$root.advert_data.adv_phone1=this.phone1;
+					  break;
+				}
+				case 2: {
+					  this.$root.advert_data.adv_phone2=this.phone2;
+					  break;
+				}
+				case 3: {
+					  this.$root.advert_data.adv_phone2=this.phone3;
+					  break;
+				}
+			}
 			
-			if (number < 0) return;
+/*			if (number < 0) return;
   			this.$root.advert_data.adv_phone=number;
         	this.number = number;
-        	return number;
+			return number;
+*/				
 		},
 		  		  
   		

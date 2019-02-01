@@ -2851,6 +2851,9 @@ function forEach(data, callback) {
 			regions_model: null,
 			places: [],
 			places_model: null,
+			phone1: null,
+			phone2: null,
+			phone3: null,
 
 			/*-------------------------
    	категории 
@@ -2998,10 +3001,29 @@ function forEach(data, callback) {
 		},
 		setPhoneNumber: function setPhoneNumber(number) {
 
-			if (number < 0) return;
-			this.$root.advert_data.adv_phone = number;
-			this.number = number;
-			return number;
+			switch (number) {
+				case 1:
+					{
+						this.$root.advert_data.adv_phone1 = this.phone1;
+						break;
+					}
+				case 2:
+					{
+						this.$root.advert_data.adv_phone2 = this.phone2;
+						break;
+					}
+				case 3:
+					{
+						this.$root.advert_data.adv_phone2 = this.phone3;
+						break;
+					}
+			}
+
+			/*			if (number < 0) return;
+     			this.$root.advert_data.adv_phone=number;
+           	this.number = number;
+   			return number;
+   */
 		},
 		setDeal: function setDeal(deal_id) {
 			this.$root.advert_data.adv_deal = deal_id;
@@ -38121,8 +38143,16 @@ var render = function() {
                             attrs: {
                               type: "text",
                               placeholder: "Контактный номер 1",
-                              formatter: _vm.setPhoneNumber,
+                              state: _vm.setPhoneNumber(1),
                               required: ""
+                            },
+                            model: {
+                              value: _vm.phone1,
+                              callback: function($$v) {
+                                _vm.phone1 =
+                                  typeof $$v === "string" ? $$v.trim() : $$v
+                              },
+                              expression: "phone1"
                             }
                           }),
                           _vm._v(" "),
@@ -38135,7 +38165,15 @@ var render = function() {
                             attrs: {
                               type: "text",
                               placeholder: "Контактный номер 2",
-                              formatter: _vm.setPhoneNumber
+                              state: _vm.setPhoneNumber(2)
+                            },
+                            model: {
+                              value: _vm.phone2,
+                              callback: function($$v) {
+                                _vm.phone2 =
+                                  typeof $$v === "string" ? $$v.trim() : $$v
+                              },
+                              expression: "phone2"
                             }
                           }),
                           _vm._v(" "),
@@ -38148,7 +38186,15 @@ var render = function() {
                             attrs: {
                               type: "text",
                               placeholder: "Контактный номер 3",
-                              formatter: _vm.setPhoneNumber
+                              state: _vm.setPhoneNumber(3)
+                            },
+                            model: {
+                              value: _vm.phone3,
+                              callback: function($$v) {
+                                _vm.phone3 =
+                                  typeof $$v === "string" ? $$v.trim() : $$v
+                              },
+                              expression: "phone3"
                             }
                           })
                         ],
