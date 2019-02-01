@@ -90,12 +90,13 @@ class AdvertController extends Controller {
         $text       = $data["adv_info"];
         $price      = $data["adv_price"];
         $phone1     = $data["adv_phone1"];
-        $phone2     = $data["adv_phone2"];
-        $phone3     = $data["adv_phone3"];
+
+        if (isset($data["adv_phone2"])) $phone2 = $data["adv_phone2"];
+        if (isset($data["adv_phone3"])) $phone3 = $data["adv_phone3"];
+
         $region_id  = $data["region_id"];
         $city_id    = $data["city_id"];
-        
-        
+                
      	try {
      			
             $advert = new Adverts();
