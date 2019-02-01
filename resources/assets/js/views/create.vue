@@ -373,16 +373,10 @@ export default {
 					  break;
 				}
 				case 3: {
-					  this.$root.advert_data.adv_phone2=this.phone3;
+					  this.$root.advert_data.adv_phone3=this.phone3;
 					  break;
 				}
 			}
-			
-/*			if (number < 0) return;
-  			this.$root.advert_data.adv_phone=number;
-        	this.number = number;
-			return number;
-*/				
 		},
 		  		  
   		
