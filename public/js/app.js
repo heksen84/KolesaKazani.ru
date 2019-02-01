@@ -2771,6 +2771,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 // ----------------------------------------------------
@@ -2842,7 +2849,7 @@ function forEach(data, callback) {
 			sdelka: 0, // покупка по умолчанию
 			deal_id: null,
 			text: "",
-			price: 0,
+			price: "",
 			number: 0,
 			preview_images: [],
 			real_images: [],
@@ -38075,6 +38082,13 @@ var render = function() {
                               placeholder: "Цена",
                               formatter: _vm.setPrice,
                               required: ""
+                            },
+                            model: {
+                              value: _vm.price,
+                              callback: function($$v) {
+                                _vm.price = $$v
+                              },
+                              expression: "price"
                             }
                           }),
                           _vm._v(
@@ -38125,7 +38139,7 @@ var render = function() {
                             "font-weight": "bold",
                             "text-decoration": "underline"
                           },
-                          attrs: { label: "Контактные номера:" }
+                          attrs: { label: "Контакты:" }
                         },
                         [
                           _c("b-form-input", {
@@ -38150,215 +38164,245 @@ var render = function() {
                             }
                           }),
                           _vm._v(" "),
-                          _vm.phone1.length > 2
-                            ? _c("b-form-input", {
-                                staticStyle: {
-                                  width: "250px",
-                                  "text-align": "center",
-                                  margin: "5px auto"
-                                },
-                                attrs: {
-                                  type: "text",
-                                  placeholder: "Контактный номер 2",
-                                  state: _vm.setPhoneNumber(2)
-                                },
-                                model: {
-                                  value: _vm.phone2,
-                                  callback: function($$v) {
-                                    _vm.phone2 =
-                                      typeof $$v === "string" ? $$v.trim() : $$v
-                                  },
-                                  expression: "phone2"
-                                }
-                              })
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.phone2.length > 2
-                            ? _c("b-form-input", {
-                                staticStyle: {
-                                  width: "250px",
-                                  "text-align": "center",
-                                  margin: "5px auto"
-                                },
-                                attrs: {
-                                  type: "text",
-                                  placeholder: "Контактный номер 3",
-                                  state: _vm.setPhoneNumber(3)
-                                },
-                                model: {
-                                  value: _vm.phone3,
-                                  callback: function($$v) {
-                                    _vm.phone3 =
-                                      typeof $$v === "string" ? $$v.trim() : $$v
-                                  },
-                                  expression: "phone3"
-                                }
-                              })
+                          _vm.phone1.length > 4
+                            ? _c(
+                                "div",
+                                [
+                                  _c("b-form-input", {
+                                    staticStyle: {
+                                      width: "250px",
+                                      "text-align": "center",
+                                      margin: "5px auto"
+                                    },
+                                    attrs: {
+                                      type: "text",
+                                      placeholder: "Контактный номер 2",
+                                      state: _vm.setPhoneNumber(2)
+                                    },
+                                    model: {
+                                      value: _vm.phone2,
+                                      callback: function($$v) {
+                                        _vm.phone2 =
+                                          typeof $$v === "string"
+                                            ? $$v.trim()
+                                            : $$v
+                                      },
+                                      expression: "phone2"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("b-form-input", {
+                                    staticStyle: {
+                                      width: "250px",
+                                      "text-align": "center",
+                                      margin: "5px auto"
+                                    },
+                                    attrs: {
+                                      type: "text",
+                                      placeholder: "Контактный номер 3",
+                                      state: _vm.setPhoneNumber(3)
+                                    },
+                                    model: {
+                                      value: _vm.phone3,
+                                      callback: function($$v) {
+                                        _vm.phone3 =
+                                          typeof $$v === "string"
+                                            ? $$v.trim()
+                                            : $$v
+                                      },
+                                      expression: "phone3"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
                             : _vm._e()
                         ],
                         1
                       ),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticStyle: {
-                            "text-align": "center",
-                            "margin-top": "50px",
-                            "margin-bottom": "0px"
-                          }
-                        },
-                        [_vm._v("Расположение")]
-                      ),
-                      _vm._v(" "),
-                      _vm.regions.length > 0
+                      _vm.phone1.length > 4
                         ? _c(
-                            "b-form-group",
-                            {
-                              staticStyle: { width: "280px", margin: "auto" },
-                              attrs: { label: "Регион:" }
-                            },
+                            "div",
                             [
                               _c(
-                                "b-form-select",
+                                "div",
                                 {
-                                  staticClass: "mb-3",
-                                  on: { change: _vm.changeRegion },
-                                  model: {
-                                    value: _vm.regions_model,
-                                    callback: function($$v) {
-                                      _vm.regions_model = $$v
+                                  staticStyle: {
+                                    "text-align": "center",
+                                    "margin-top": "50px",
+                                    "margin-bottom": "0px"
+                                  }
+                                },
+                                [_vm._v("Расположение")]
+                              ),
+                              _vm._v(" "),
+                              _vm.regions.length > 0
+                                ? _c(
+                                    "b-form-group",
+                                    {
+                                      staticStyle: {
+                                        width: "280px",
+                                        margin: "auto"
+                                      },
+                                      attrs: { label: "Регион:" }
                                     },
-                                    expression: "regions_model"
+                                    [
+                                      _c(
+                                        "b-form-select",
+                                        {
+                                          staticClass: "mb-3",
+                                          on: { change: _vm.changeRegion },
+                                          model: {
+                                            value: _vm.regions_model,
+                                            callback: function($$v) {
+                                              _vm.regions_model = $$v
+                                            },
+                                            expression: "regions_model"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "option",
+                                            { domProps: { value: null } },
+                                            [_vm._v("-- Выберите регион --")]
+                                          ),
+                                          _vm._v(" "),
+                                          _vm._l(_vm.regions, function(item) {
+                                            return _c(
+                                              "option",
+                                              {
+                                                key: item.name,
+                                                domProps: {
+                                                  value: item.region_id
+                                                }
+                                              },
+                                              [_vm._v(_vm._s(item.name))]
+                                            )
+                                          })
+                                        ],
+                                        2
+                                      )
+                                    ],
+                                    1
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.places.length > 0
+                                ? _c(
+                                    "b-form-group",
+                                    {
+                                      staticStyle: {
+                                        width: "280px",
+                                        margin: "auto"
+                                      },
+                                      attrs: { label: "Местность:" }
+                                    },
+                                    [
+                                      _c(
+                                        "b-form-select",
+                                        {
+                                          staticClass: "mb-3",
+                                          on: { change: _vm.changePlace },
+                                          model: {
+                                            value: _vm.places_model,
+                                            callback: function($$v) {
+                                              _vm.places_model = $$v
+                                            },
+                                            expression: "places_model"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "option",
+                                            { domProps: { value: null } },
+                                            [_vm._v("-- Выберите местность --")]
+                                          ),
+                                          _vm._v(" "),
+                                          _vm._l(_vm.places, function(item) {
+                                            return _c(
+                                              "option",
+                                              {
+                                                key: item.name,
+                                                domProps: {
+                                                  value: item.city_id
+                                                }
+                                              },
+                                              [_vm._v(_vm._s(item.name))]
+                                            )
+                                          })
+                                        ],
+                                        2
+                                      )
+                                    ],
+                                    1
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c(
+                                "b-form-group",
+                                { staticStyle: { "text-align": "center" } },
+                                [
+                                  _c("div", {
+                                    directives: [
+                                      {
+                                        name: "show",
+                                        rawName: "v-show",
+                                        value: _vm.coordinates_set,
+                                        expression: "coordinates_set"
+                                      }
+                                    ],
+                                    staticStyle: {
+                                      border: "2px solid rgb(180,180,180)",
+                                      "margin-bottom": "10px",
+                                      width: "100%",
+                                      height: "200px"
+                                    },
+                                    attrs: { id: "smallmap" },
+                                    on: { click: _vm.showSetCoordsDialog }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "b-button",
+                                    {
+                                      attrs: { variant: "primary" },
+                                      on: { click: _vm.showSetCoordsDialog }
+                                    },
+                                    [_vm._v("отметить на карте")]
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("hr"),
+                              _vm._v(" "),
+                              _c(
+                                "b-form-group",
+                                {
+                                  staticStyle: {
+                                    "text-align": "center",
+                                    margin: "25px"
                                   }
                                 },
                                 [
-                                  _c("option", { domProps: { value: null } }, [
-                                    _vm._v("-- Выберите регион --")
-                                  ]),
-                                  _vm._v(" "),
-                                  _vm._l(_vm.regions, function(item) {
-                                    return _c(
-                                      "option",
-                                      {
-                                        key: item.name,
-                                        domProps: { value: item.region_id }
-                                      },
-                                      [_vm._v(_vm._s(item.name))]
-                                    )
-                                  })
+                                  _c(
+                                    "b-button",
+                                    {
+                                      attrs: {
+                                        type: "onSubmit",
+                                        variant: "outline-primary",
+                                        title: "Опубликовать объявление"
+                                      }
+                                    },
+                                    [_vm._v("ОПУБЛИКОВАТЬ")]
+                                  )
                                 ],
-                                2
+                                1
                               )
                             ],
                             1
                           )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.places.length > 0
-                        ? _c(
-                            "b-form-group",
-                            {
-                              staticStyle: { width: "280px", margin: "auto" },
-                              attrs: { label: "Местность:" }
-                            },
-                            [
-                              _c(
-                                "b-form-select",
-                                {
-                                  staticClass: "mb-3",
-                                  on: { change: _vm.changePlace },
-                                  model: {
-                                    value: _vm.places_model,
-                                    callback: function($$v) {
-                                      _vm.places_model = $$v
-                                    },
-                                    expression: "places_model"
-                                  }
-                                },
-                                [
-                                  _c("option", { domProps: { value: null } }, [
-                                    _vm._v("-- Выберите местность --")
-                                  ]),
-                                  _vm._v(" "),
-                                  _vm._l(_vm.places, function(item) {
-                                    return _c(
-                                      "option",
-                                      {
-                                        key: item.name,
-                                        domProps: { value: item.city_id }
-                                      },
-                                      [_vm._v(_vm._s(item.name))]
-                                    )
-                                  })
-                                ],
-                                2
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        { staticStyle: { "text-align": "center" } },
-                        [
-                          _c("div", {
-                            directives: [
-                              {
-                                name: "show",
-                                rawName: "v-show",
-                                value: _vm.coordinates_set,
-                                expression: "coordinates_set"
-                              }
-                            ],
-                            staticStyle: {
-                              border: "2px solid rgb(180,180,180)",
-                              "margin-bottom": "10px",
-                              width: "100%",
-                              height: "200px"
-                            },
-                            attrs: { id: "smallmap" },
-                            on: { click: _vm.showSetCoordsDialog }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "b-button",
-                            {
-                              attrs: { variant: "primary" },
-                              on: { click: _vm.showSetCoordsDialog }
-                            },
-                            [_vm._v("отметить на карте")]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("hr"),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        {
-                          staticStyle: {
-                            "text-align": "center",
-                            margin: "25px"
-                          }
-                        },
-                        [
-                          _c(
-                            "b-button",
-                            {
-                              attrs: {
-                                type: "onSubmit",
-                                variant: "outline-primary",
-                                title: "Опубликовать объявление"
-                              }
-                            },
-                            [_vm._v("ОПУБЛИКОВАТЬ")]
-                          )
-                        ],
-                        1
-                      )
+                        : _vm._e()
                     ],
                     1
                   )

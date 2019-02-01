@@ -75,9 +75,9 @@
 
 				<!-- Цена -->
 				<b-form-group label-for="price" style="text-align:center">
-			 		<b-form-input type="number" id="price" placeholder="Цена" style="width:150px;display:inline;font-weight:bold" :formatter="setPrice" required></b-form-input>
+			 		<b-form-input v-model="price" type="number" id="price" placeholder="Цена" style="width:150px;display:inline;font-weight:bold" :formatter="setPrice" required></b-form-input>
 					&nbsp;{{ this.$root.money_full_name }}
-				</b-form-group>			
+				</b-form-group>
 
 				<!-- Фотографии -->
 				<b-form-group label="Фотографии:">
@@ -87,11 +87,16 @@
 				</div>
 				</b-form-group>
 
-				<b-form-group label="Контактные номера:" style="text-align:center;font-weight:bold;text-decoration:underline">
+				<b-form-group label="Контакты:" style="text-align:center;font-weight:bold;text-decoration:underline">
 			 		<b-form-input v-model.trim="phone1" type="text" placeholder="Контактный номер 1" style="width:250px;display:inline;text-align:center" :state="setPhoneNumber(1)" required></b-form-input>
-					<b-form-input v-if="phone1.length>2" v-model.trim="phone2" type="text" placeholder="Контактный номер 2" style="width:250px;text-align:center;margin: 5px auto" :state="setPhoneNumber(2)"></b-form-input>
-					<b-form-input v-if="phone2.length>2" v-model.trim="phone3" type="text" placeholder="Контактный номер 3" style="width:250px;text-align:center;margin: 5px auto" :state="setPhoneNumber(3)"></b-form-input>
+					<div v-if="phone1.length>4">
+						<b-form-input v-model.trim="phone2" type="text" placeholder="Контактный номер 2" style="width:250px;text-align:center;margin: 5px auto" :state="setPhoneNumber(2)"></b-form-input>
+						<b-form-input v-model.trim="phone3" type="text" placeholder="Контактный номер 3" style="width:250px;text-align:center;margin: 5px auto" :state="setPhoneNumber(3)"></b-form-input>
+					</div>
 				</b-form-group>
+
+
+				<div v-if="phone1.length>4">
 
 				<!-- Город, Село и т.д. -->
 				<div style="text-align:center;margin-top:50px;margin-bottom:0px">Расположение</div>
@@ -123,6 +128,8 @@
 				<b-form-group style="text-align:center;margin:25px">
 					<b-button type="onSubmit" variant="outline-primary" title="Опубликовать объявление">ОПУБЛИКОВАТЬ</b-button>
 				</b-form-group>
+			
+			</div>
 
 			</div>			
 		</b-form>
@@ -201,7 +208,7 @@ export default {
 			sdelka: 0, // покупка по умолчанию
 			deal_id: null,
 			text: "",
-			price: 0,
+			price: "",
 			number: 0,
 			preview_images: [],
 			real_images: [],
