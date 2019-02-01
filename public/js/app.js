@@ -2778,6 +2778,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 // ----------------------------------------------------
@@ -2796,9 +2801,7 @@ var bigmap, smallmap;
 /*
 ---------------------------------------------------------
  Инициализация большой карты (карта назначения координат)
----------------------------------------------------------
-*/
-
+---------------------------------------------------------*/
 function initBigMap() {
 
 	mapCoords = [51.08, 71.26];
@@ -2838,12 +2841,16 @@ function forEach(data, callback) {
 	data: function data() {
 		return {
 
+			// константы
+			const_phone1_length: 4,
+
+			// данные карты
 			setCoordsDialog: false,
 			coordinates_set: false,
 
 			/*
    -----------------------------
-    базовые поля объявления
+   базовые поля объявления
    -----------------------------*/
 			category: null,
 			sdelka: 0, // покупка по умолчанию
@@ -2863,9 +2870,8 @@ function forEach(data, callback) {
 			phone3: "",
 
 			/*-------------------------
-   	категории 
+   категории 
    -------------------------*/
-
 			transport: false, // транспорт
 			real_estate: false, // недвижимость
 			appliances: false, // бытовая техника
@@ -2880,7 +2886,9 @@ function forEach(data, callback) {
 	},
 
 
+	// -------------------------------
 	// Событие: компонент создан
+	// -------------------------------
 	created: function created() {
 		var _this = this;
 
@@ -2905,6 +2913,15 @@ function forEach(data, callback) {
 
 	components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default.a },
 	methods: {
+
+		/*clearField(field) {
+  			console.log(field);
+  			switch(field) {
+  		case "phone1": this.phone1=""; break;
+  		case "phone2": this.phone2=""; break;
+  		case "phone3": this.phone3=""; break;
+  	}
+  },*/
 
 		// обработка выбора региона
 		changeRegion: function changeRegion(region_id) {
@@ -38136,10 +38153,9 @@ var render = function() {
                         {
                           staticStyle: {
                             "text-align": "center",
-                            "font-weight": "bold",
-                            "text-decoration": "underline"
+                            "font-weight": "bold"
                           },
-                          attrs: { label: "Контакты:" }
+                          attrs: { label: "<ins>Контакты:</ins>" }
                         },
                         [
                           _c("b-form-input", {
@@ -38164,7 +38180,7 @@ var render = function() {
                             }
                           }),
                           _vm._v(" "),
-                          _vm.phone1.length > 4
+                          _vm.phone1.length > _vm.const_phone1_length
                             ? _c(
                                 "div",
                                 [
@@ -38221,7 +38237,7 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _vm.phone1.length > 4
+                      _vm.phone1.length > _vm.const_phone1_length
                         ? _c(
                             "div",
                             [

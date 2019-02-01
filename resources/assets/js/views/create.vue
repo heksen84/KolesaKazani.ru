@@ -87,16 +87,21 @@
 				</div>
 				</b-form-group>
 
-				<b-form-group label="Контакты:" style="text-align:center;font-weight:bold;text-decoration:underline">
-			 		<b-form-input v-model.trim="phone1" type="text" placeholder="Контактный номер 1" style="width:250px;display:inline;text-align:center" :state="setPhoneNumber(1)" required></b-form-input>
-					<div v-if="phone1.length>4">
+				<b-form-group label="<ins>Контакты:</ins>" style="text-align:center;font-weight:bold">
+			 	
+				 	<b-form-input v-model.trim="phone1" type="text" placeholder="Контактный номер 1" style="width:250px;display:inline;text-align:center" :state="setPhoneNumber(1)" required></b-form-input>
+							<!--<span style="margin-left:10px;color:grey;cursor:pointer" title="очистить поле" @click="clearField('phone1')">X</span>-->
+					<div v-if="phone1.length>const_phone1_length">
 						<b-form-input v-model.trim="phone2" type="text" placeholder="Контактный номер 2" style="width:250px;text-align:center;margin: 5px auto" :state="setPhoneNumber(2)"></b-form-input>
+							<!--<span style="color:grey;cursor:pointer" title="очистить поле" @click="clearField('phone2')">X</span>-->
 						<b-form-input v-model.trim="phone3" type="text" placeholder="Контактный номер 3" style="width:250px;text-align:center;margin: 5px auto" :state="setPhoneNumber(3)"></b-form-input>
+							<!--<span style="margin-left:10px;color:grey" title="очистить поле" @click="clearField('phone3')">X</span>-->
 					</div>
+				
 				</b-form-group>
 
 
-				<div v-if="phone1.length>4">
+				<div v-if="phone1.length>const_phone1_length">
 
 				<!-- Город, Село и т.д. -->
 				<div style="text-align:center;margin-top:50px;margin-bottom:0px">Расположение</div>
@@ -155,9 +160,7 @@ var bigmap, smallmap;
 /*
 ---------------------------------------------------------
  Инициализация большой карты (карта назначения координат)
----------------------------------------------------------
-*/
-
+---------------------------------------------------------*/
 function initBigMap() {
 
 		mapCoords = [51.08, 71.26];
@@ -196,16 +199,20 @@ export default {
 	
 	data () {
     return 	{
+
+			// константы
+			const_phone1_length: 4,
 		
-			setCoordsDialog:false,
-			coordinates_set:false,
+			// данные карты
+			setCoordsDialog: false,
+			coordinates_set: false,
 
 			/*
 			-----------------------------
-			 базовые поля объявления
+			базовые поля объявления
 			-----------------------------*/			
 			category: null,
-			sdelka: 0, // покупка по умолчанию
+			sdelka: 0, 			// покупка по умолчанию
 			deal_id: null,
 			text: "",
 			price: "",
@@ -222,9 +229,8 @@ export default {
 			phone3: "",
 			
 			/*-------------------------
-				категории 
+			категории 
 			-------------------------*/
-
 			transport:false,			// транспорт
 			real_estate:false,			// недвижимость
 			appliances:false,			// бытовая техника
@@ -238,7 +244,9 @@ export default {
 		}
 	},
 
+	// -------------------------------
 	// Событие: компонент создан
+	// -------------------------------
 	created() {		
 		
 		this.$root.advert_data.adv_deal = 0;	// покупка по умолчанию
@@ -262,6 +270,17 @@ export default {
 
 	components: { transport, realestate },
   	methods: {
+
+		/*clearField(field) {
+
+			console.log(field);
+
+			switch(field) {
+				case "phone1": this.phone1=""; break;
+				case "phone2": this.phone2=""; break;
+				case "phone3": this.phone3=""; break;
+			}
+		},*/
 
 		// обработка выбора региона
 		changeRegion(region_id) {
