@@ -74,7 +74,7 @@
 				</b-form-group>			
 
 				<!-- Цена -->
-				<b-form-group label-for="price" style="text-align:center">
+				<b-form-group label-for="price" style="text-align:center" v-if="category!=4">
 			 		<b-form-input v-model="price" type="number" id="price" placeholder="Цена" style="width:150px;display:inline;font-weight:bold" :formatter="setPrice" required></b-form-input>
 					&nbsp;{{ this.$root.money_full_name }}
 				</b-form-group>

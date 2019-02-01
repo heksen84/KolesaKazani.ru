@@ -38080,42 +38080,44 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        {
-                          staticStyle: { "text-align": "center" },
-                          attrs: { "label-for": "price" }
-                        },
-                        [
-                          _c("b-form-input", {
-                            staticStyle: {
-                              width: "150px",
-                              display: "inline",
-                              "font-weight": "bold"
+                      _vm.category != 4
+                        ? _c(
+                            "b-form-group",
+                            {
+                              staticStyle: { "text-align": "center" },
+                              attrs: { "label-for": "price" }
                             },
-                            attrs: {
-                              type: "number",
-                              id: "price",
-                              placeholder: "Цена",
-                              formatter: _vm.setPrice,
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.price,
-                              callback: function($$v) {
-                                _vm.price = $$v
-                              },
-                              expression: "price"
-                            }
-                          }),
-                          _vm._v(
-                            "\n\t\t\t\t\t " +
-                              _vm._s(this.$root.money_full_name) +
-                              "\n\t\t\t\t"
+                            [
+                              _c("b-form-input", {
+                                staticStyle: {
+                                  width: "150px",
+                                  display: "inline",
+                                  "font-weight": "bold"
+                                },
+                                attrs: {
+                                  type: "number",
+                                  id: "price",
+                                  placeholder: "Цена",
+                                  formatter: _vm.setPrice,
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.price,
+                                  callback: function($$v) {
+                                    _vm.price = $$v
+                                  },
+                                  expression: "price"
+                                }
+                              }),
+                              _vm._v(
+                                "\n\t\t\t\t\t " +
+                                  _vm._s(this.$root.money_full_name) +
+                                  "\n\t\t\t\t"
+                              )
+                            ],
+                            1
                           )
-                        ],
-                        1
-                      ),
+                        : _vm._e(),
                       _vm._v(" "),
                       _c("b-form-group", { attrs: { label: "Фотографии:" } }, [
                         _c(
