@@ -100,9 +100,10 @@ class AdvertController extends Controller {
      	try {
      			
             $advert = new Adverts();
-     		$advert->user_id   		 = Auth::id();
-        	$advert->text  			 = $text;
-            $advert->phone1  		 = $phone1; 
+
+     		$advert->user_id = Auth::id();
+        	$advert->text  	 = $text;
+            $advert->phone1  = $phone1; 
 
             if (isset($data["adv_phone2"])) $advert->phone2 = $phone2; 
             if (isset($data["adv_phone3"])) $advert->phone3 = $phone3; 
@@ -114,7 +115,6 @@ class AdvertController extends Controller {
             $advert->city_id         = $city_id;
 
             switch($category) {
-
 
                 // FIXME: Обозвать переменные одинаковыми именами steering_position, engine_type и т.д.
 
