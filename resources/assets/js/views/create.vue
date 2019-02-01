@@ -89,8 +89,8 @@
 
 				<b-form-group label="Контактные номера:" style="text-align:center;font-weight:bold;text-decoration:underline">
 			 		<b-form-input v-model.trim="phone1" type="text" placeholder="Контактный номер 1" style="width:250px;display:inline;text-align:center" :state="setPhoneNumber(1)" required></b-form-input>
-					<b-form-input v-model.trim="phone2" type="text" placeholder="Контактный номер 2" style="width:250px;text-align:center;margin: 5px auto" :state="setPhoneNumber(2)"></b-form-input>
-					<b-form-input v-model.trim="phone3" type="text" placeholder="Контактный номер 3" style="width:250px;text-align:center;margin: 5px auto" :state="setPhoneNumber(3)"></b-form-input>
+					<b-form-input v-if="phone1.length>2" v-model.trim="phone2" type="text" placeholder="Контактный номер 2" style="width:250px;text-align:center;margin: 5px auto" :state="setPhoneNumber(2)"></b-form-input>
+					<b-form-input v-if="phone2.length>2" v-model.trim="phone3" type="text" placeholder="Контактный номер 3" style="width:250px;text-align:center;margin: 5px auto" :state="setPhoneNumber(3)"></b-form-input>
 				</b-form-group>
 
 				<!-- Город, Село и т.д. -->
@@ -210,9 +210,9 @@ export default {
 			regions_model: null,
 			places: [],
 			places_model: null,
-			phone1: null,
-			phone2: null,
-			phone3: null,
+			phone1: "",
+			phone2: "",
+			phone3: "",
 			
 			/*-------------------------
 				категории 

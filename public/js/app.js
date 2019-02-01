@@ -2851,9 +2851,9 @@ function forEach(data, callback) {
 			regions_model: null,
 			places: [],
 			places_model: null,
-			phone1: null,
-			phone2: null,
-			phone3: null,
+			phone1: "",
+			phone2: "",
+			phone3: "",
 
 			/*-------------------------
    	категории 
@@ -38150,47 +38150,51 @@ var render = function() {
                             }
                           }),
                           _vm._v(" "),
-                          _c("b-form-input", {
-                            staticStyle: {
-                              width: "250px",
-                              "text-align": "center",
-                              margin: "5px auto"
-                            },
-                            attrs: {
-                              type: "text",
-                              placeholder: "Контактный номер 2",
-                              state: _vm.setPhoneNumber(2)
-                            },
-                            model: {
-                              value: _vm.phone2,
-                              callback: function($$v) {
-                                _vm.phone2 =
-                                  typeof $$v === "string" ? $$v.trim() : $$v
-                              },
-                              expression: "phone2"
-                            }
-                          }),
+                          _vm.phone1.length > 2
+                            ? _c("b-form-input", {
+                                staticStyle: {
+                                  width: "250px",
+                                  "text-align": "center",
+                                  margin: "5px auto"
+                                },
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Контактный номер 2",
+                                  state: _vm.setPhoneNumber(2)
+                                },
+                                model: {
+                                  value: _vm.phone2,
+                                  callback: function($$v) {
+                                    _vm.phone2 =
+                                      typeof $$v === "string" ? $$v.trim() : $$v
+                                  },
+                                  expression: "phone2"
+                                }
+                              })
+                            : _vm._e(),
                           _vm._v(" "),
-                          _c("b-form-input", {
-                            staticStyle: {
-                              width: "250px",
-                              "text-align": "center",
-                              margin: "5px auto"
-                            },
-                            attrs: {
-                              type: "text",
-                              placeholder: "Контактный номер 3",
-                              state: _vm.setPhoneNumber(3)
-                            },
-                            model: {
-                              value: _vm.phone3,
-                              callback: function($$v) {
-                                _vm.phone3 =
-                                  typeof $$v === "string" ? $$v.trim() : $$v
-                              },
-                              expression: "phone3"
-                            }
-                          })
+                          _vm.phone2.length > 2
+                            ? _c("b-form-input", {
+                                staticStyle: {
+                                  width: "250px",
+                                  "text-align": "center",
+                                  margin: "5px auto"
+                                },
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Контактный номер 3",
+                                  state: _vm.setPhoneNumber(3)
+                                },
+                                model: {
+                                  value: _vm.phone3,
+                                  callback: function($$v) {
+                                    _vm.phone3 =
+                                      typeof $$v === "string" ? $$v.trim() : $$v
+                                  },
+                                  expression: "phone3"
+                                }
+                              })
+                            : _vm._e()
                         ],
                         1
                       ),

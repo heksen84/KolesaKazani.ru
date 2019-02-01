@@ -102,7 +102,11 @@ class AdvertController extends Controller {
             $advert = new Adverts();
      		$advert->user_id   		 = Auth::id();
         	$advert->text  			 = $text;
-        	$advert->contacts  		 = $phone1; 
+            $advert->phone1  		 = $phone1; 
+
+            if (isset($data["adv_phone2"])) $advert->phone2 = $phone2; 
+            if (isset($data["adv_phone3"])) $advert->phone3 = $phone3; 
+
         	$advert->price  		 = $price;
         	$advert->category_id  	 = $category;
             $advert->adv_category_id = 0;
