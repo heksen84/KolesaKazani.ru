@@ -100,7 +100,6 @@
 				
 				</b-form-group>
 
-
 				<div v-show="phone1.length>const_phone1_length">
 
 				<!-- Город, Село и т.д. -->
@@ -135,7 +134,6 @@
 				</b-form-group>
 			
 			</div>
-
 			</div>			
 		</b-form>
 	</b-col>
