@@ -3054,9 +3054,11 @@ function forEach(data, callback) {
 			}
 		},
 		setDeal: function setDeal(deal_id) {
+
+			//if (deal_id==null) this.coordinates_set=false;
+
 			this.$root.advert_data.adv_deal = deal_id;
 			this.deal_id = deal_id;
-			//alert(this.deal_id)
 		},
 
 
