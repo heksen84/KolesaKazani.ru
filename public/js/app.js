@@ -2957,7 +2957,7 @@ function forEach(data, callback) {
 			mapCoords.push(lanlng[0]);
 			mapCoords.push(lanlng[1]);
 
-			bigmap.setCenter(mapCoords, 14, "bigmap");
+			bigmap.setCenter(mapCoords, 15, "bigmap");
 			smallmap.setCenter(mapCoords, 11, "smallmap");
 
 			myPlacemark1.geometry.setCoordinates(mapCoords);
