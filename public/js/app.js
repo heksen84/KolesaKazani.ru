@@ -2809,7 +2809,7 @@ function initMaps() {
 	mapCoords = [51.08, 71.26];
 
 	bigmap = new ymaps.Map("bigmap", { center: mapCoords, zoom: 10 });
-	smallmap = new ymaps.Map("smallmap", { center: mapCoords, zoom: 10 });
+	smallmap = new ymaps.Map("smallmap", { center: mapCoords, zoom: 9 });
 
 	// запрещаю перемение по мини карте
 	smallmap.behaviors.disable("drag");
@@ -2827,7 +2827,7 @@ function initMaps() {
 		mapCoords = e.get('coordPosition');
 		myPlacemark1.geometry.setCoordinates(mapCoords);
 		myPlacemark2.geometry.setCoordinates(mapCoords);
-		smallmap.setCenter(mapCoords, 10, "smallmap");
+		smallmap.setCenter(mapCoords, 14, "smallmap");
 	});
 }
 
@@ -2946,10 +2946,27 @@ function forEach(data, callback) {
 
 
 		// обработка выбора местоположения
-		changePlace: function changePlace(city_id, coords) {
-			console.log(city_id);
-			this.$root.advert_data.city_id = city_id;
+		changePlace: function changePlace(items) {
+
+			var arr = items.replace(" ", "").split("@");
+			var city_id = arr[0];
+			var coords = arr[1];
+			var lanlng = coords.split(",");
+
+			mapCoords = [];
+			mapCoords.push(lanlng[0]);
+			mapCoords.push(lanlng[1]);
+
+			bigmap.setCenter(mapCoords, 14, "bigmap");
+			smallmap.setCenter(mapCoords, 11, "smallmap");
+
+			myPlacemark1.geometry.setCoordinates(mapCoords);
+			myPlacemark2.geometry.setCoordinates(mapCoords);
+
 			this.placeChanged = true;
+			this.coordinates_set = true;
+
+			this.$root.advert_data.city_id = city_id;
 		},
 
 
@@ -38359,7 +38376,10 @@ var render = function() {
                                           "option",
                                           {
                                             key: item.name,
-                                            domProps: { value: item.city_id }
+                                            domProps: {
+                                              value:
+                                                item.city_id + "@" + item.coords
+                                            }
                                           },
                                           [_vm._v(_vm._s(item.name))]
                                         )
@@ -38413,7 +38433,7 @@ var render = function() {
                                   attrs: { variant: "primary" },
                                   on: { click: _vm.showSetCoordsDialog }
                                 },
-                                [_vm._v("уточнить на карте")]
+                                [_vm._v("уточнить расположение")]
                               )
                             ],
                             1

@@ -116,14 +116,14 @@
 				<b-form-group label="Местность:" style="width:280px;margin:auto" v-if="places.length>0">
 				<b-form-select class="mb-3" @change="changePlace" v-model="places_model">
 					 <option :value=null>-- Выберите местность --</option>
-					 <option v-for="item in places" :value="item.city_id" :key="item.name">{{item.name}}</option>
+					 <option v-for="item in places" :value="item.city_id+'@'+item.coords" :key="item.name">{{item.name}}</option>
 				</b-form-select>
 				</b-form-group>
 
 				<!-- Расположение на карте -->
 				<b-form-group style="text-align:center" v-show="placeChanged && places_model!=null">
 					<div id="smallmap" style="border:1px solid rgb(180,180,180);margin-bottom:10px;width: 100%; height: 200px" v-show="coordinates_set"></div>
-					<b-button variant="primary" @click="showSetCoordsDialog">уточнить на карте</b-button>
+					<b-button variant="primary" @click="showSetCoordsDialog">уточнить расположение</b-button>
 				</b-form-group>
 
 				<hr>
@@ -168,7 +168,7 @@ function initMaps() {
 		mapCoords = [51.08, 71.26];
 
 		bigmap = new ymaps.Map ("bigmap", { center: mapCoords, zoom: 10 });
-		smallmap = new ymaps.Map ("smallmap", { center: mapCoords, zoom: 10 });
+		smallmap = new ymaps.Map ("smallmap", { center: mapCoords, zoom: 9 });
 
 		// запрещаю перемение по мини карте
 		smallmap.behaviors.disable("drag");
@@ -186,7 +186,7 @@ function initMaps() {
         	mapCoords = e.get('coordPosition');
 			myPlacemark1.geometry.setCoordinates(mapCoords);
 			myPlacemark2.geometry.setCoordinates(mapCoords);
-			smallmap.setCenter(mapCoords, 10, "smallmap");
+			smallmap.setCenter(mapCoords, 14, "smallmap");
 		});			
 	}				
 
@@ -304,10 +304,27 @@ export default {
 		},
 
 		// обработка выбора местоположения
-		changePlace(city_id, coords) {
-			console.log(city_id)
-			this.$root.advert_data.city_id = city_id;
+		changePlace(items) {
+
+			var arr = items.replace(" ", "").split("@");
+			var city_id = arr[0];
+			var coords = arr[1];
+			var lanlng = coords.split(",")
+
+			mapCoords=[];
+			mapCoords.push(lanlng[0])
+			mapCoords.push(lanlng[1])
+
+			bigmap.setCenter(mapCoords, 14, "bigmap");
+			smallmap.setCenter(mapCoords, 11, "smallmap");
+
+			myPlacemark1.geometry.setCoordinates(mapCoords);
+			myPlacemark2.geometry.setCoordinates(mapCoords);
+
 			this.placeChanged = true;
+			this.coordinates_set = true;
+
+			this.$root.advert_data.city_id = city_id;
 		},
 
 		// ------------------------------------------------
