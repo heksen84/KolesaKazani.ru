@@ -40,14 +40,14 @@
 
         <!-- Логотип -->        
           <div id="logo_block" @click="closeSubCats">
-            <div id="logo_block_text">Дамеля</div>
-            <div style="font-size:16px;color:yellow;margin-top:-13px;letter-spacing:2px;">доска объявлений</div>
+            <div id="logo_block_text">{{ this.$store.state.str_title }}</div>
+            <div style="font-size:16px;color:yellow;margin-top:-13px;letter-spacing:2px;">{{ this.$store.state.str_desc }}</div>
           </div>
 
         </b-col>
 
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
-          <input type="text" id="search_string" placeholder="Поиск по сайту"/>
+          <input type="text" id="search_string" :placeholder="$store.state.str_search_placeholder"/>
           <button id="button_search" @click="search" title="Найти что требуется">найти</button>
 
           <!-- кнопки выбора региона и т.п.-->
@@ -152,6 +152,8 @@ export default {
 
   // компонент создан
   created() {
+
+    this.$store.commit("SetLanguage", "ru")
     
     /*console.log(this.subcats)
     console.log("---------------------")

@@ -76,10 +76,9 @@ const store = new Vuex.Store({
       str_my_adverts: "",
       str_title: "",
       str_desc: "",
-      str_lang: "",
       str_search_placeholder: "",
       str_button_search: "",
-      str_create_advert: "",
+      str_create_advert: ""
     },
 
     mutations: {
@@ -91,10 +90,14 @@ const store = new Vuex.Store({
         if (lang == "ru") {
           state.str_title = "Дамеля"
           state.str_desc = "доска объявлений"
+          state.str_search_placeholder = "поиск по сайту"
         }
         
         // казахский язык
         if (lang == "kz") {
+          state.str_title = "Дамеля"
+          state.str_desc = "хабарландыру тақтасы"
+          state.str_search_placeholder = "cайт бойынша іздеу"
         }
 
       },

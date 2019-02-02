@@ -3570,6 +3570,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   // компонент создан
   created: function created() {
 
+    this.$store.commit("SetLanguage", "ru");
+
     /*console.log(this.subcats)
     console.log("---------------------")
     console.log(this.items)*/
@@ -35446,7 +35448,7 @@ var render = function() {
                 },
                 [
                   _c("div", { attrs: { id: "logo_block_text" } }, [
-                    _vm._v("Дамеля")
+                    _vm._v(_vm._s(this.$store.state.str_title))
                   ]),
                   _vm._v(" "),
                   _c(
@@ -35459,7 +35461,7 @@ var render = function() {
                         "letter-spacing": "2px"
                       }
                     },
-                    [_vm._v("доска объявлений")]
+                    [_vm._v(_vm._s(this.$store.state.str_desc))]
                   )
                 ]
               )
@@ -35477,7 +35479,7 @@ var render = function() {
                 attrs: {
                   type: "text",
                   id: "search_string",
-                  placeholder: "Поиск по сайту"
+                  placeholder: _vm.$store.state.str_search_placeholder
                 }
               }),
               _vm._v(" "),
@@ -51855,7 +51857,6 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
     str_my_adverts: "",
     str_title: "",
     str_desc: "",
-    str_lang: "",
     str_search_placeholder: "",
     str_button_search: "",
     str_create_advert: ""
@@ -51870,10 +51871,15 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
       if (lang == "ru") {
         state.str_title = "Дамеля";
         state.str_desc = "доска объявлений";
+        state.str_search_placeholder = "поиск по сайту";
       }
 
       // казахский язык
-      if (lang == "kz") {}
+      if (lang == "kz") {
+        state.str_title = "Дамеля";
+        state.str_desc = "хабарландыру тақтасы";
+        state.str_search_placeholder = "cайт бойынша іздеу";
+      }
     },
     ShowOtherFields: function ShowOtherFields(state, value) {
       state.show_other_fields = value;
