@@ -123,7 +123,7 @@
 
 				<!-- Расположение на карте -->
 				<b-form-group style="text-align:center" v-show="placeChanged && places_model!=null">
-					<div id="smallmap" style="border:2px solid rgb(180,180,180);margin-bottom:10px;width: 100%; height: 200px" v-show="coordinates_set" @click="showSetCoordsDialog"></div>
+					<div id="smallmap" style="border:1px solid rgb(180,180,180);margin-bottom:10px;width: 100%; height: 200px" v-show="coordinates_set" @click="showSetCoordsDialog"></div>
 					<b-button variant="primary" @click="showSetCoordsDialog">отметить на карте</b-button>
 				</b-form-group>
 
