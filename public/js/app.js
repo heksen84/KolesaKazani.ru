@@ -3570,7 +3570,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   // компонент создан
   created: function created() {
 
-    this.$store.commit("SetLanguage", "ru");
+    this.$store.commit("SetLang", "ru");
 
     /*console.log(this.subcats)
     console.log("---------------------")
@@ -51865,7 +51865,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
   mutations: {
 
     // установить язык
-    SetLanguage: function SetLanguage(state, lang) {
+    SetLang: function SetLang(state, lang) {
 
       // русский язык
       if (lang == "ru") {

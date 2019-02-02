@@ -153,7 +153,7 @@ export default {
   // компонент создан
   created() {
 
-    this.$store.commit("SetLanguage", "ru")
+    this.$store.commit("SetLang", "ru")
     
     /*console.log(this.subcats)
     console.log("---------------------")

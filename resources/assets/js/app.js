@@ -84,7 +84,7 @@ const store = new Vuex.Store({
     mutations: {
       
       // установить язык
-      SetLanguage (state, lang) {
+      SetLang (state, lang) {
         
         // русский язык
         if (lang == "ru") {
@@ -109,7 +109,7 @@ const store = new Vuex.Store({
       ShowCommonTransport (state, value) {
         state.show_common_transport=value;
       }
-      
+
     }
 })
 
