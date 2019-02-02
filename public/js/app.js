@@ -2827,7 +2827,6 @@ function initMaps() {
 		mapCoords = e.get('coordPosition');
 		myPlacemark1.geometry.setCoordinates(mapCoords);
 		myPlacemark2.geometry.setCoordinates(mapCoords);
-
 		smallmap.setCenter(mapCoords, 10, "smallmap");
 	});
 }
@@ -2862,7 +2861,7 @@ function forEach(data, callback) {
    базовые поля объявления
    -----------------------------*/
 			category: null,
-			sdelka: 0, // покупка по умолчанию
+			sdelka: 0,
 			deal_id: null,
 			text: "",
 			price: "",
