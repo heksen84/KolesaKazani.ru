@@ -4,7 +4,7 @@
 		<b-row>
 
 		 <!-- карта -->
-          <b-modal size="lg" v-model="setCoordsDialog" style="text-align:center;color:rgb(50,50,50)" hide-footer title="Местоположение">
+          <b-modal size="lg" v-model="setCoordsDialog" style="text-align:center;color:rgb(50,50,50)" hide-footer title="Уточнить на карте">
 			  <div id="bigmap" style="width: 100%; height: 400px"></div>
 			<br/>
 			<b-button variant="primary" @click="setCoords" id="setCoordsBtn">Сохранить</b-button>
@@ -123,7 +123,7 @@
 				<!-- Расположение на карте -->
 				<b-form-group style="text-align:center" v-show="placeChanged && places_model!=null">
 					<div id="smallmap" style="border:1px solid rgb(180,180,180);margin-bottom:10px;width: 100%; height: 200px" v-show="coordinates_set"></div>
-					<b-button variant="primary" @click="showSetCoordsDialog">отметить на карте</b-button>
+					<b-button variant="primary" @click="showSetCoordsDialog">уточнить на карте</b-button>
 				</b-form-group>
 
 				<hr>
@@ -304,7 +304,7 @@ export default {
 		},
 
 		// обработка выбора местоположения
-		changePlace(city_id) {
+		changePlace(city_id, coords) {
 			console.log(city_id)
 			this.$root.advert_data.city_id = city_id;
 			this.placeChanged = true;

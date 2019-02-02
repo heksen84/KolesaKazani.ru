@@ -2946,7 +2946,7 @@ function forEach(data, callback) {
 
 
 		// обработка выбора местоположения
-		changePlace: function changePlace(city_id) {
+		changePlace: function changePlace(city_id, coords) {
 			console.log(city_id);
 			this.$root.advert_data.city_id = city_id;
 			this.placeChanged = true;
@@ -37875,7 +37875,11 @@ var render = function() {
             "b-modal",
             {
               staticStyle: { "text-align": "center", color: "rgb(50,50,50)" },
-              attrs: { size: "lg", "hide-footer": "", title: "Местоположение" },
+              attrs: {
+                size: "lg",
+                "hide-footer": "",
+                title: "Уточнить на карте"
+              },
               model: {
                 value: _vm.setCoordsDialog,
                 callback: function($$v) {
@@ -38409,7 +38413,7 @@ var render = function() {
                                   attrs: { variant: "primary" },
                                   on: { click: _vm.showSetCoordsDialog }
                                 },
-                                [_vm._v("отметить на карте")]
+                                [_vm._v("уточнить на карте")]
                               )
                             ],
                             1
