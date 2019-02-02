@@ -101,12 +101,15 @@ const store = new Vuex.Store({
         }
 
       },
+
       ShowOtherFields (state, value) {
         state.show_other_fields=value;
       },
+
       ShowCommonTransport (state, value) {
         state.show_common_transport=value;
-      },
+      }
+      
     }
 })
 
