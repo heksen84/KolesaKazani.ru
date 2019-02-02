@@ -5,7 +5,7 @@
 
 		 <!-- карта -->
           <b-modal size="lg" v-model="setCoordsDialog" style="text-align:center;color:rgb(50,50,50)" hide-footer title="Местоположение">
-			  <div id="map" style="width: 100%; height: 400px"></div>
+			  <div id="bigmap" style="width: 100%; height: 400px"></div>
 			<br/>
 			<b-button variant="primary" @click="setCoords" id="setCoordsBtn">Сохранить</b-button>
           </b-modal> 	
@@ -101,7 +101,7 @@
 				</b-form-group>
 
 
-				<div v-if="phone1.length>const_phone1_length">
+				<div v-show="phone1.length>const_phone1_length">
 
 				<!-- Город, Село и т.д. -->
 				<div style="text-align:center;margin-top:50px;margin-bottom:0px">Расположение</div>
@@ -122,7 +122,7 @@
 				</b-form-group>
 
 				<!-- Расположение на карте -->
-				<b-form-group style="text-align:center">
+				<b-form-group style="text-align:center" v-show="placeChanged && places_model!=null">
 					<div id="smallmap" style="border:2px solid rgb(180,180,180);margin-bottom:10px;width: 100%; height: 200px" v-show="coordinates_set" @click="showSetCoordsDialog"></div>
 					<b-button variant="primary" @click="showSetCoordsDialog">отметить на карте</b-button>
 				</b-form-group>
@@ -154,34 +154,44 @@ import realestate from '../components/chars/realestate';
 var preview_images_array=[];
 
 var mapCoords=[];
-var myPlacemark;
-var bigmap, smallmap;
+var myPlacemark1=null;
+var myPlacemark2=null;
+var bigmap=null;
+var smallmap=null;
 
 /*
 ---------------------------------------------------------
  Инициализация большой карты (карта назначения координат)
 ---------------------------------------------------------*/
-function initBigMap() {
+function initMaps() {
 
+		// координаты по умолчанию для всех карт
 		mapCoords = [51.08, 71.26];
-    	bigmap = new ymaps.Map ("map", { center: mapCoords, zoom: 10 });
 
-		//Добавляем элементы управления
-		//bigmap.controls.add('zoomControl');
-		bigmap.behaviors.enable('scrollZoom');
+		bigmap = new ymaps.Map ("bigmap", { center: mapCoords, zoom: 10 });
+		smallmap = new ymaps.Map ("smallmap", { center: mapCoords, zoom: 10 });
+
+		// запрещаю перемение по мини карте
+		smallmap.behaviors.disable("drag");
+
+		// включаю скролл на большой карте
+		bigmap.behaviors.enable("scrollZoom");
 			
-		myPlacemark = new ymaps.Placemark([55.76, 37.64]);
-		bigmap.geoObjects.add(myPlacemark);
+		myPlacemark1 = new ymaps.Placemark(mapCoords);
+		myPlacemark2 = new ymaps.Placemark(mapCoords);
 
-    	bigmap.events.add('click', function (e) {
+		bigmap.geoObjects.add(myPlacemark1);
+		smallmap.geoObjects.add(myPlacemark2);
+
+    	bigmap.events.add("click", function (e) {
         	mapCoords = e.get('coordPosition');
-			myPlacemark.geometry.setCoordinates(mapCoords);
+			myPlacemark1.geometry.setCoordinates(mapCoords);
+			myPlacemark2.geometry.setCoordinates(mapCoords);
+
+			smallmap.setCenter(mapCoords, 10, "smallmap");
+
 		});			
 	}				
-
-	function initSmallMap() {			
-		smallmap = new ymaps.Map ("smallmap", { center: mapCoords, zoom: 10 });
-	}
 
 	// Для заполнения изображений
 	function forEach(data, callback) { 
@@ -202,10 +212,11 @@ export default {
 
 			// константы
 			const_phone1_length: 4,
-		
+
 			// данные карты
 			setCoordsDialog: false,
 			coordinates_set: false,
+			placeChanged: false,
 
 			/*
 			-----------------------------
@@ -252,8 +263,7 @@ export default {
 		this.$root.advert_data.adv_deal = 0;	// покупка по умолчанию
 		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация				
 
-		ymaps.ready(initBigMap);
-		ymaps.ready(initSmallMap);
+		ymaps.ready(initMaps);
 
 		console.log(this.dealtypes)
 
@@ -300,6 +310,7 @@ export default {
 		changePlace(city_id) {
 			console.log(city_id)
 			this.$root.advert_data.city_id = city_id;
+			this.placeChanged = true;
 		},
 
 		// ------------------------------------------------
