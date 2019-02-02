@@ -64,14 +64,40 @@ Vue.use(Notifications)
 // -----------------------------------
 const store = new Vuex.Store({
 
-    state: 
-    {
-      show_other_fields: false,  // дополнительные поля в объявлении (поле доп. информация, и.т.д.)
-      show_common_transport: false
+    state: {
+      
+      // дополнительные поля в объявлении (поле доп. информация, и.т.д.)
+      show_other_fields: false,
+      show_common_transport: false,
+
+      // мультиязычность
+      str_login: "",
+      str_register: "",
+      str_my_adverts: "",
+      str_title: "",
+      str_desc: "",
+      str_lang: "",
+      str_search_placeholder: "",
+      str_button_search: "",
+      str_create_advert: "",
     },
 
-    mutations: 
-    {
+    mutations: {
+      
+      // установить язык
+      SetLanguage (state, lang) {
+        
+        // русский язык
+        if (lang == "ru") {
+          state.str_title = "Дамеля"
+          state.str_desc = "доска объявлений"
+        }
+        
+        // казахский язык
+        if (lang == "kz") {
+        }
+
+      },
       ShowOtherFields (state, value) {
         state.show_other_fields=value;
       },

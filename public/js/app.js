@@ -51844,11 +51844,37 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_32_vue
 var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
 
   state: {
-    show_other_fields: false, // дополнительные поля в объявлении (поле доп. информация, и.т.д.)
-    show_common_transport: false
+
+    // дополнительные поля в объявлении (поле доп. информация, и.т.д.)
+    show_other_fields: false,
+    show_common_transport: false,
+
+    // мультиязычность
+    str_login: "",
+    str_register: "",
+    str_my_adverts: "",
+    str_title: "",
+    str_desc: "",
+    str_lang: "",
+    str_search_placeholder: "",
+    str_button_search: "",
+    str_create_advert: ""
   },
 
   mutations: {
+
+    // установить язык
+    SetLanguage: function SetLanguage(state, lang) {
+
+      // русский язык
+      if (lang == "ru") {
+        state.str_title = "Дамеля";
+        state.str_desc = "доска объявлений";
+      }
+
+      // казахский язык
+      if (lang == "kz") {}
+    },
     ShowOtherFields: function ShowOtherFields(state, value) {
       state.show_other_fields = value;
     },
