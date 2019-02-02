@@ -51867,14 +51867,14 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
     // установить язык
     SetLang: function SetLang(state, lang) {
 
-      // русский язык
+      // русский
       if (lang == "ru") {
         state.str_title = "Дамеля";
         state.str_desc = "доска объявлений";
         state.str_search_placeholder = "поиск по сайту";
       }
 
-      // казахский язык
+      // казахский
       if (lang == "kz") {
         state.str_title = "Дамеля";
         state.str_desc = "хабарландыру тақтасы";
