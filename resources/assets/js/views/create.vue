@@ -103,7 +103,7 @@
 				<div v-show="phone1.length>const_phone1_length">
 
 				<!-- Город, Село и т.д. -->
-				<div style="text-align:center;margin-top:50px;margin-bottom:0px">Расположение</div>
+				<div style="text-align:center;margin-top:50px;margin-bottom:0px;font-weight:bold">Расположение</div>
 				
 				<!-- выпадающий список регионов -->
 				<b-form-group label="Регион:" style="width:280px;margin:auto" v-if="regions.length>0">

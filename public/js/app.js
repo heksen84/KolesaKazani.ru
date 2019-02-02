@@ -38285,7 +38285,8 @@ var render = function() {
                               staticStyle: {
                                 "text-align": "center",
                                 "margin-top": "50px",
-                                "margin-bottom": "0px"
+                                "margin-bottom": "0px",
+                                "font-weight": "bold"
                               }
                             },
                             [_vm._v("Расположение")]
