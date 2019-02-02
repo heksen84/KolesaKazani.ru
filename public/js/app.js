@@ -38403,8 +38403,7 @@ var render = function() {
                                   width: "100%",
                                   height: "200px"
                                 },
-                                attrs: { id: "smallmap" },
-                                on: { click: _vm.showSetCoordsDialog }
+                                attrs: { id: "smallmap" }
                               }),
                               _vm._v(" "),
                               _c(
