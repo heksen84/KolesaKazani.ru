@@ -19,10 +19,10 @@
 			<b-form @submit="onSubmit">
 
 			<b-form-group label="Категория товара или услуги:" label-for="categories" style="width:260px">
-			<b-form-select class="mb-3" @change="changeCategory" v-model="category">
-				<option :value=null>-- Выберите категорию --</option>
-				<option v-for="item in items" :value="item.id" :key="item.name">{{item.name}}</option>
-			</b-form-select>
+				<b-form-select class="mb-3" @change="changeCategory" v-model="category">
+					<option :value=null>-- Выберите категорию --</option>
+					<option v-for="item in items" :value="item.id" :key="item.name">{{item.name}}</option>
+				</b-form-select>
 			</b-form-group>
 
 			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px" v-if="category!=null && category!=4 && category!=9">
