@@ -153,6 +153,7 @@ import realestate from '../components/chars/realestate';
 
 var preview_images_array=[];
 
+// карты
 var mapCoords=[];
 var myPlacemark1=null;
 var myPlacemark2=null;
@@ -385,10 +386,12 @@ export default {
 			 this.other=false;				        // другое 
   		},
 
+		// описание
   		setInfo(info) {
 			this.$root.advert_data.adv_info=info;
   		},
 
+		// установить цену
   		setPrice(price) {
 			
 			if (price < 0) return;
@@ -397,7 +400,7 @@ export default {
         	return price;
 		},
 
-
+		// телефоны
 		setPhoneNumber(number) {
 
 			switch(number) {
@@ -416,7 +419,7 @@ export default {
 			}
 		},
 		  		  
-  		
+		// вид сделки
   		setDeal(deal_id) {
 
 			//if (deal_id==null) this.coordinates_set=false;
@@ -430,17 +433,18 @@ export default {
   		 Изменения в категориях
   		--------------------------*/
   		changeCategory(data) {
-
-			//console.log(data);
 			
 			// сбрасываю фотки			
 			document.querySelector("input[type=file]").value = "";
 
 			this.preview_images=[];
+
 			// сбрасываю карту
 			this.coordinates_set=false;
+
 			// сбрасываю дополнительные поля
 			this.$store.commit("ShowOtherFields", false);
+
 			// добавляю категорию
 			this.$root.advert_data.adv_category=data;
 			// по умолчанию показываю доп. поля			

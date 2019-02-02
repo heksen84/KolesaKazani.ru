@@ -2794,6 +2794,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var preview_images_array = [];
 
+// карты
 var mapCoords = [];
 var myPlacemark1 = null;
 var myPlacemark2 = null;
@@ -3023,9 +3024,15 @@ function forEach(data, callback) {
 			this.services = false; // услуги
 			this.other = false; // другое 
 		},
+
+
+		// описание
 		setInfo: function setInfo(info) {
 			this.$root.advert_data.adv_info = info;
 		},
+
+
+		// установить цену
 		setPrice: function setPrice(price) {
 
 			if (price < 0) return;
@@ -3033,6 +3040,9 @@ function forEach(data, callback) {
 			this.price = price;
 			return price;
 		},
+
+
+		// телефоны
 		setPhoneNumber: function setPhoneNumber(number) {
 
 			switch (number) {
@@ -3053,6 +3063,9 @@ function forEach(data, callback) {
 					}
 			}
 		},
+
+
+		// вид сделки
 		setDeal: function setDeal(deal_id) {
 
 			//if (deal_id==null) this.coordinates_set=false;
@@ -3068,16 +3081,17 @@ function forEach(data, callback) {
   --------------------------*/
 		changeCategory: function changeCategory(data) {
 
-			//console.log(data);
-
 			// сбрасываю фотки			
 			document.querySelector("input[type=file]").value = "";
 
 			this.preview_images = [];
+
 			// сбрасываю карту
 			this.coordinates_set = false;
+
 			// сбрасываю дополнительные поля
 			this.$store.commit("ShowOtherFields", false);
+
 			// добавляю категорию
 			this.$root.advert_data.adv_category = data;
 			// по умолчанию показываю доп. поля			
