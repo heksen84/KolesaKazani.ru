@@ -2948,6 +2948,8 @@ function forEach(data, callback) {
 		// обработка выбора местоположения
 		changePlace: function changePlace(items) {
 
+			if (items == null) return;
+
 			var arr = items.replace(" ", "").split("@");
 			var city_id = arr[0];
 			var coords = arr[1];
