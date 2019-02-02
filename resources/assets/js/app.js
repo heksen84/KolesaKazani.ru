@@ -110,6 +110,7 @@ const store = new Vuex.Store({
     }
 })
 
+// экземляр приложения vue
 const app = new Vue({
     el: '#app',
     store,

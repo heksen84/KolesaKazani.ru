@@ -51890,6 +51890,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
   }
 });
 
+// экземляр приложения vue
 var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
   el: '#app',
   store: store,
