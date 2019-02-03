@@ -14,11 +14,9 @@
           <hr v-if="buttonAllRegion">
           <button style="color:black;display:block;margin:auto;margin-top:-5px" v-if="buttonAllRegion" @click="selectAllRegion">Вся область</button>
         </b-modal> 
-
         <b-col id="welcome_menu" v-show="auth">
           <div class="button" id="button_login" style="width:160px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>         
         </b-col>        
-
         <b-col style="text-align:center" v-show="!auth">
           <div class="button" id="button_login" style="margin-top:3px" @click="login">Вход</div>
           <div class="button" id="button_reg" style="margin-top:3px" @click="register">Регистрация</div>
@@ -76,7 +74,6 @@
         </b-row>
         <br>
         <b-button @click="closeSubCats" variant="success" size="sm">назад</b-button>
-        
     </div>
 
     <!-- VIP -->
