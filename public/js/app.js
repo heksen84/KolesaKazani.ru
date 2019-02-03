@@ -3509,6 +3509,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -35332,7 +35334,23 @@ var render = function() {
                 {
                   staticClass: "button",
                   staticStyle: {
-                    width: "160px",
+                    width: "120px",
+                    "text-align": "center",
+                    position: "relative",
+                    top: "3px",
+                    background: "rgb(100,100,200)"
+                  },
+                  on: { click: _vm.setLang }
+                },
+                [_vm._v(_vm._s(_vm.lang))]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "button",
+                  staticStyle: {
+                    width: "100px",
                     "text-align": "center",
                     position: "relative",
                     top: "3px"
@@ -35379,6 +35397,21 @@ var render = function() {
                   on: { click: _vm.register }
                 },
                 [_vm._v("Регистрация")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "button",
+                  staticStyle: {
+                    width: "100px",
+                    "text-align": "center",
+                    position: "relative",
+                    background: "rgb(100,100,200)"
+                  },
+                  on: { click: _vm.setLang }
+                },
+                [_vm._v(_vm._s(_vm.lang))]
               )
             ]
           )
