@@ -40,7 +40,7 @@ Route::get('/util/str2url', 'UtilsController@str2url');
 Route::get('transport', 				'ResultsController@getResultsByCategory');
 //Route::get('transport', 				'SubCatController@showSubCategory');
 Route::get('nedvizhimost', 				'ResultsController@getResultsByCategory');
-Route::get('bytovaya-tehnika', 			'ResultsController@getResultsByCategory');
+Route::get('elektronika', 				'ResultsController@getResultsByCategory');
 Route::get('rabota-i-biznes', 			'ResultsController@getResultsByCategory');
 Route::get('dlya-doma-i-dachi',			'ResultsController@getResultsByCategory');
 Route::get('lichnye-veschi', 			'ResultsController@getResultsByCategory');
