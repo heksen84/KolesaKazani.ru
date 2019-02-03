@@ -8,11 +8,11 @@
           <b-button variant="link" style="color:black" v-for="i in regions" :key="i.region_id" @click="selectLocation(i)">{{i.name}}
           </b-button>
           <hr v-if="buttonAllCountry">
-          <b-button variant="link" v-if="buttonAllCountry" @click="selectAllCountry">Весь Казахстан</b-button>
+          <b-button variant="link" v-if="buttonAllCountry" @click="selectAllCountry" style="margin-top:-15px">Весь Казахстан</b-button>
           <!-- города, cёлы, аулы, деревни -->
           <b-button variant="link" style="color:black" v-for="i in places" :key="i.city_id" @click="selectPlace(i)">{{i.name}}</b-button>
           <hr v-if="buttonAllRegion">
-          <button style="color:black;display:block;margin:auto;margin-top:-5px" v-if="buttonAllRegion" @click="selectAllRegion">Вся область</button>
+          <b-button variant="link" style="margin-top:-5px" v-if="buttonAllRegion" @click="selectAllRegion">Вся область</b-button>
         </b-modal> 
         <b-col id="welcome_menu" v-show="auth">
           <div class="button" id="button_login" style="width:150px;text-align:center;position:relative;top:3px;margin-left:10px" @click="login">мои объявления</div>
