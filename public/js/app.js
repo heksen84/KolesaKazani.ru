@@ -3526,7 +3526,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     // переменные
     return {
-      lang: "рус",
+      lang: "русский",
       show_categories: true,
       selected_category_id: null,
       regions: [],
@@ -3563,10 +3563,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     // установка языка
     setLang: function setLang() {
-      var ru = "рус";
+      var ru = "русский";
       if (this.lang == ru) {
         this.$store.commit("SetLang", "kz");
-        this.lang = "каз";
+        this.lang = "казакша";
       } else {
         this.$store.commit("SetLang", "ru");
         this.lang = ru;
