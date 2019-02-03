@@ -3516,14 +3516,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -35298,7 +35290,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v(_vm._s(i.name) + "\n            ")]
+                  [_vm._v(_vm._s(i.name) + "\n        ")]
                 )
               }),
               _vm._v(" "),
@@ -35580,7 +35572,7 @@ var render = function() {
                           },
                           [
                             _c("div", { staticClass: "category_item" }, [
-                              _vm._v(_vm._s(item.name) + "\n              ")
+                              _vm._v(_vm._s(item.name) + "\n            ")
                             ])
                           ]
                         )
