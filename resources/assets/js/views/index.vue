@@ -2,7 +2,6 @@
 <template>
   <b-container fluid class="mycontainer">
     <b-row>
-
         <!-- окно выбоа региона и местоположения -->
         <b-modal v-model="locationDialog" style="text-align:center;color:rgb(50,50,50)" hide-footer :title="locationDialogTitle">
           <!-- регионы -->
@@ -23,19 +22,16 @@
         <b-col style="text-align:center" v-show="!auth">
           <div class="button" id="button_login" style="margin-top:3px" @click="login">Вход</div>
           <div class="button" id="button_reg" style="margin-top:3px" @click="register">Регистрация</div>
-        </b-col>
-        
+        </b-col>     
     </b-row>
 
     <b-row style="margin-top:2px">
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
-
-        <!-- Логотип -->        
+          <!-- Логотип -->        
           <div id="logo_block" @click="closeSubCats">
             <div id="logo_block_text">{{ this.$store.state.str_title }}</div>
             <div style="font-size:16px;color:yellow;margin-top:-13px;letter-spacing:2px;">{{ this.$store.state.str_desc }}</div>
           </div>
-
         </b-col>
 
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
