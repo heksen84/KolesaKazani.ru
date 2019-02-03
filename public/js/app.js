@@ -35453,7 +35453,7 @@ var render = function() {
                   attrs: { id: "button_search", title: "Найти что требуется" },
                   on: { click: _vm.search }
                 },
-                [_vm._v("найти")]
+                [_vm._v(_vm._s(this.$store.state.str_button_search))]
               ),
               _vm._v(" "),
               _c(
@@ -51845,6 +51845,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
         state.str_title = "Дамеля";
         state.str_desc = "доска объявлений";
         state.str_search_placeholder = "поиск по сайту";
+        state.str_button_search = "поиск";
       }
 
       // казахский
@@ -51852,6 +51853,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
         state.str_title = "Дамеля";
         state.str_desc = "хабарландыру тақтасы";
         state.str_search_placeholder = "cайт бойынша іздеу";
+        state.str_button_search = "іздеу";
       }
     },
     ShowOtherFields: function ShowOtherFields(state, value) {

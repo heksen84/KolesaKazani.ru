@@ -40,7 +40,7 @@
 
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
           <input type="text" id="search_string" :placeholder="$store.state.str_search_placeholder"/>
-          <button id="button_search" @click="search" title="Найти что требуется">найти</button>
+          <button id="button_search" @click="search" title="Найти что требуется">{{ this.$store.state.str_button_search }}</button>
 
           <!-- кнопки выбора региона и т.п.-->
           <div id="index_select_region_and_other_button_block">
