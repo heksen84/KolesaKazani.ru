@@ -66,6 +66,7 @@
       <b-form-group style="text-align:center;margin-top:-15px">
         <b-button type="submit" variant="primary">Продолжить</b-button>
       </b-form-group>
+      <br>
     </b-form>
   </b-col>
   </b-row>

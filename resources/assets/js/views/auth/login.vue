@@ -45,6 +45,7 @@
         Ещё не зарегистрированы?&nbsp;<b-link style="color:grey;font-weight:bold" href="/register"><br>Регистрация</b-link>                        
       </div>
       </b-form-group>
+      <br>
     </b-form>
   </b-col>
   </b-row>
