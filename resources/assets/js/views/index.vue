@@ -19,7 +19,7 @@
           <!--<div class="button" style="width:50px;text-align:center;position:relative;top:3px;background:rgb(100,100,200);margin-right:10px" @click="setLang">{{ lang }}</div>-->   
         </b-col>        
         <b-col style="text-align:center;margin-top:10px" v-show="!auth">
-          <div class="button" id="button_login" style="margin-left:20px" @click="login">Вход</div>
+          <div class="button" id="button_login" style="margin-left:15px" @click="login">Вход</div>
           <div class="button" id="button_reg" @click="register">Регистрация</div>
           <!--<div class="button" style="width:50px;text-align:center;position:relative;background:rgb(100,100,200);float:right;top:3px;margin-right:10px" @click="setLang">{{ lang }}</div>-->
         </b-col>     
