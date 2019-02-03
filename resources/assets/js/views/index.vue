@@ -25,6 +25,7 @@
 
     <b-row style="margin-top:2px">
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
+          
           <!-- Логотип -->        
           <div id="logo_block" @click="closeSubCats">
             <div id="logo_block_text">{{ this.$store.state.str_title }}</div>
