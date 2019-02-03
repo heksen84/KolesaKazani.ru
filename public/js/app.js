@@ -3519,6 +3519,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   props: ["items", "auth", "count", "subcats"], // входящие данные
 
   data: function data() {
+
     // переменные
     return {
       lang: "русский",

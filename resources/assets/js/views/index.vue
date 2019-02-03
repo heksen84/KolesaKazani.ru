@@ -102,6 +102,7 @@ export default {
   props: ["items", "auth", "count", "subcats"], // входящие данные
 
   data () {
+    
     // переменные
     return {
       lang: "русский",
