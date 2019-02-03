@@ -100,7 +100,7 @@
 
     <!-- ПОДВАЛ -->
     <b-row>
-      <div id="footer"><a href="advertisers" class="underline_link">Реклама</a> | <a href="rules" class="underline_link">Правила сайта</a> | <a href="about" class="underline_link">О сайте</a><br>beta версия</div>
+      <div id="footer"><a href="advertisers" class="underline_link">Реклама</a> | <a href="rules" class="underline_link">Правила сайта</a> | <a href="about" class="underline_link">О сайте</a> | <span @click="setLang">Язык: <span style="color:rgb(210,255,210);cursor:pointer">{{ lang }}</span></span><br>beta версия</div>
     </b-row>
 
   </b-container>
@@ -120,21 +120,7 @@ export default {
     
     // переменные
     return {
-      /*todos: [
-      {
-        id: 1,
-        title: 'Помыть посуду'
-      },
-      {
-        id: 2,
-        title: 'Вынести мусор'
-      },
-      {
-        id: 3,
-        title: 'Подстричь газон'
-      }
-      ],*/
-      //new_arr: [{"id":1,"name":"Грузовой автомобиль","category_id":1},{"id":2,"name":"Легковой автомобиль","category_id":1},{"id":3,"name":"Мототехника","category_id":1},{"id":4,"name":"Спецтехника","category_id":1},{"id":5,"name":"Ретро-автомобиль","category_id":1},{"id":6,"name":"Водный транспорт","category_id":1},{"id":7,"name":"Велосипед","category_id":1},{"id":8,"name":"Воздушный транспорт","category_id":1},{"id":9,"name":"Что-то ещё","category_id":2}], 
+      lang: "русский",
       show_categories: true,
       selected_category_id: null,
       regions: [],
@@ -198,6 +184,18 @@ export default {
 
   // методы компонента
   methods: {
+
+    setLang() {
+      var ru = "русский";
+      if (this.lang==ru) {
+      this.$store.commit("SetLang", "kz")
+      this.lang="казакша";
+      }
+      else {
+        this.$store.commit("SetLang", "ru")
+        this.lang=ru;
+      }
+    },
 
       displaySubItem: function (item) {         
         if (item==this.selected_category_id) return true;          

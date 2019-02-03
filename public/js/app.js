@@ -3537,21 +3537,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     // переменные
     return {
-      /*todos: [
-      {
-        id: 1,
-        title: 'Помыть посуду'
-      },
-      {
-        id: 2,
-        title: 'Вынести мусор'
-      },
-      {
-        id: 3,
-        title: 'Подстричь газон'
-      }
-      ],*/
-      //new_arr: [{"id":1,"name":"Грузовой автомобиль","category_id":1},{"id":2,"name":"Легковой автомобиль","category_id":1},{"id":3,"name":"Мототехника","category_id":1},{"id":4,"name":"Спецтехника","category_id":1},{"id":5,"name":"Ретро-автомобиль","category_id":1},{"id":6,"name":"Водный транспорт","category_id":1},{"id":7,"name":"Велосипед","category_id":1},{"id":8,"name":"Воздушный транспорт","category_id":1},{"id":9,"name":"Что-то ещё","category_id":2}], 
+      lang: "русский",
       show_categories: true,
       selected_category_id: null,
       regions: [],
@@ -3606,6 +3592,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   // методы компонента
   methods: {
+    setLang: function setLang() {
+      var ru = "русский";
+      if (this.lang == ru) {
+        this.$store.commit("SetLang", "kz");
+        this.lang = "казакша";
+      } else {
+        this.$store.commit("SetLang", "ru");
+        this.lang = ru;
+      }
+    },
+
 
     displaySubItem: function displaySubItem(item) {
       if (item == this.selected_category_id) return true;
@@ -35714,6 +35711,15 @@ var render = function() {
           _vm._v(" | "),
           _c("a", { staticClass: "underline_link", attrs: { href: "about" } }, [
             _vm._v("О сайте")
+          ]),
+          _vm._v(" | "),
+          _c("span", { on: { click: _vm.setLang } }, [
+            _vm._v("Язык: "),
+            _c(
+              "span",
+              { staticStyle: { color: "rgb(210,255,210)", cursor: "pointer" } },
+              [_vm._v(_vm._s(_vm.lang))]
+            )
           ]),
           _c("br"),
           _vm._v("beta версия")
