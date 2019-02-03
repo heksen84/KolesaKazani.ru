@@ -15,13 +15,13 @@
           <button style="color:black;display:block;margin:auto;margin-top:-5px" v-if="buttonAllRegion" @click="selectAllRegion">Вся область</button>
         </b-modal> 
         <b-col id="welcome_menu" v-show="auth">
-          <div class="button" style="width:120px;text-align:center;position:relative;top:3px;background:rgb(100,100,200)" @click="setLang">{{ lang }}</div>
-          <div class="button" id="button_login" style="width:100px;text-align:center;position:relative;top:3px" @click="login">мои объявления</div>         
+          <div class="button" id="button_login" style="width:150px;text-align:center;position:relative;top:3px;margin-left:10px" @click="login">мои объявления</div>
+          <!--<div class="button" style="width:50px;text-align:center;position:relative;top:3px;background:rgb(100,100,200);margin-right:10px" @click="setLang">{{ lang }}</div>-->   
         </b-col>        
-        <b-col style="text-align:center" v-show="!auth">
-          <div class="button" id="button_login" style="margin-top:3px" @click="login">Вход</div>
-          <div class="button" id="button_reg" style="margin-top:3px" @click="register">Регистрация</div>
-          <div class="button" style="width:100px;text-align:center;position:relative;background:rgb(100,100,200)" @click="setLang">{{ lang }}</div>
+        <b-col style="text-align:center;margin-top:10px" v-show="!auth">
+          <div class="button" id="button_login" style="margin-left:20px" @click="login">Вход</div>
+          <div class="button" id="button_reg" @click="register">Регистрация</div>
+          <!--<div class="button" style="width:50px;text-align:center;position:relative;background:rgb(100,100,200);float:right;top:3px;margin-right:10px" @click="setLang">{{ lang }}</div>-->
         </b-col>     
     </b-row>
 
@@ -107,7 +107,7 @@ export default {
     
     // переменные
     return {
-      lang: "русский",
+      lang: "рус",
       show_categories: true,
       selected_category_id: null,
       regions: [],
@@ -149,10 +149,10 @@ export default {
 
     // установка языка
     setLang() {
-      var ru = "русский";
+      var ru = "рус";
       if (this.lang==ru) {
       this.$store.commit("SetLang", "kz")
-      this.lang="казакша";
+      this.lang="каз";
       }
       else {
         this.$store.commit("SetLang", "ru")

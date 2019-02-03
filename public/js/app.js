@@ -3524,7 +3524,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     // переменные
     return {
-      lang: "русский",
+      lang: "рус",
       show_categories: true,
       selected_category_id: null,
       regions: [],
@@ -3561,10 +3561,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     // установка языка
     setLang: function setLang() {
-      var ru = "русский";
+      var ru = "рус";
       if (this.lang == ru) {
         this.$store.commit("SetLang", "kz");
-        this.lang = "казакша";
+        this.lang = "каз";
       } else {
         this.$store.commit("SetLang", "ru");
         this.lang = ru;
@@ -35334,26 +35334,11 @@ var render = function() {
                 {
                   staticClass: "button",
                   staticStyle: {
-                    width: "120px",
+                    width: "150px",
                     "text-align": "center",
                     position: "relative",
                     top: "3px",
-                    background: "rgb(100,100,200)"
-                  },
-                  on: { click: _vm.setLang }
-                },
-                [_vm._v(_vm._s(_vm.lang))]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "button",
-                  staticStyle: {
-                    width: "100px",
-                    "text-align": "center",
-                    position: "relative",
-                    top: "3px"
+                    "margin-left": "10px"
                   },
                   attrs: { id: "button_login" },
                   on: { click: _vm.login }
@@ -35374,14 +35359,14 @@ var render = function() {
                   expression: "!auth"
                 }
               ],
-              staticStyle: { "text-align": "center" }
+              staticStyle: { "text-align": "center", "margin-top": "10px" }
             },
             [
               _c(
                 "div",
                 {
                   staticClass: "button",
-                  staticStyle: { "margin-top": "3px" },
+                  staticStyle: { "margin-left": "20px" },
                   attrs: { id: "button_login" },
                   on: { click: _vm.login }
                 },
@@ -35392,26 +35377,10 @@ var render = function() {
                 "div",
                 {
                   staticClass: "button",
-                  staticStyle: { "margin-top": "3px" },
                   attrs: { id: "button_reg" },
                   on: { click: _vm.register }
                 },
                 [_vm._v("Регистрация")]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "button",
-                  staticStyle: {
-                    width: "100px",
-                    "text-align": "center",
-                    position: "relative",
-                    background: "rgb(100,100,200)"
-                  },
-                  on: { click: _vm.setLang }
-                },
-                [_vm._v(_vm._s(_vm.lang))]
               )
             ]
           )
