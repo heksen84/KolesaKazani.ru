@@ -3410,9 +3410,284 @@ function initMap() {
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/views/index.vue":
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed: SyntaxError: C:/OSPanel/domains/damelya/resources/assets/js/views/index.vue: Unexpected token, expected ; (110:21)\n\n\u001b[0m \u001b[90m 108 | \u001b[39m    {\n \u001b[90m 109 | \u001b[39m      lang\u001b[33m:\u001b[39m \u001b[32m\"русский\"\u001b[39m\u001b[33m,\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 110 | \u001b[39m      show_categories\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m     | \u001b[39m                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 111 | \u001b[39m      selected_category_id\u001b[33m:\u001b[39m \u001b[36mnull\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 112 | \u001b[39m      regions\u001b[33m:\u001b[39m []\u001b[33m,\u001b[39m\n \u001b[90m 113 | \u001b[39m      places\u001b[33m:\u001b[39m  []\u001b[33m,\u001b[39m\u001b[0m\n");
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+//import petrovich from 'petrovich';
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+  props: ["items", "auth", "count", "subcats"], // входящие данные
+
+  data: function data() {
+    // переменные
+    return {
+      lang: "русский",
+      show_categories: true,
+      selected_category_id: null,
+      regions: [],
+      places: [],
+      location: null,
+      locationDialog: false,
+      locationDialogTitle: "",
+      urlRegAndPlace: "",
+      buttonAllCountry: true,
+      buttonAllRegion: false,
+      regionName: ""
+    };
+  },
+
+
+  // компонент создан
+  created: function created() {
+
+    this.$store.commit("SetLang", "ru");
+
+    var placeName = localStorage.getItem("placeName");
+    var urlRegAndPlace = localStorage.getItem("urlRegAndPlace");
+
+    if (placeName == null) this.selectedPlaceName = "Весь казахстан";else this.selectedPlaceName = placeName;
+
+    if (urlRegAndPlace == null) this.urlRegAndPlace = "";else this.urlRegAndPlace = urlRegAndPlace;
+  },
+  mounted: function mounted() {},
+
+  computed: {},
+
+  // методы компонента
+  methods: {
+
+    // установка языка
+    setLang: function setLang() {
+      var ru = "русский";
+      if (this.lang == ru) {
+        this.$store.commit("SetLang", "kz");
+        this.lang = "казакша";
+      } else {
+        this.$store.commit("SetLang", "ru");
+        this.lang = ru;
+      }
+    },
+
+
+    displaySubItem: function displaySubItem(item) {
+      if (item == this.selected_category_id) return true;
+      return false;
+    },
+
+    // ----------------------------
+    // показать подкатегории
+    // ----------------------------
+    showSubcats: function showSubcats(e, cat_id) {
+
+      var total = 0;
+
+      for (var i = 0; i < Object.keys(this.subcats).length; i++) {
+        if (this.subcats[i].category_id === cat_id) total++;
+      }
+
+      if (total > 0) {
+        e.preventDefault(); // отрубаю редирект
+        this.selected_category_id = cat_id;
+        this.show_categories = false;
+      }
+    },
+
+
+    // ----------------------------
+    // скрыть подкатегории
+    // ----------------------------
+    closeSubCats: function closeSubCats() {
+      if (!this.show_categories) this.show_categories = true;
+    },
+    getCategoryCountById: function getCategoryCountById(id) {
+      /*get('getCategoryCountById?category_id='+id).then((res) => {
+          return res;
+      }).catch((err) => {});*/
+      return "|";
+    },
+    login: function login() {
+      window.location = '/login';
+    },
+    register: function register() {
+      window.location = '/register';
+    },
+    search: function search() {
+      window.location = '/search';
+    },
+    openLocationWindow: function openLocationWindow() {
+      var _this = this;
+
+      this.buttonAllCountry = true;
+      this.buttonAllRegion = false;
+      this.locationDialog = true;
+      this.locationDialogTitle = "Выберите регион";
+      this.places = {};
+      this.regions = {};
+
+      // получаю регионы
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getRegions').then(function (res) {
+        console.log(res.data);
+
+        _this.regions = res.data;
+      }).catch(function (err) {});
+    },
+
+
+    // ----------------------------------------------------------
+    // Выбор региона либо локального места жительства в диалоге
+    // ----------------------------------------------------------
+    selectLocation: function selectLocation(e) {
+      var _this2 = this;
+
+      this.regionName = e.name;
+      this.buttonAllCountry = false;
+      this.buttonAllRegion = true;
+      this.urlRegAndPlace = e.url;
+      this.regions = [];
+      this.locationDialogTitle = "Выберите расположение";
+
+      // Получить города / сёлы
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('getPlaces?region_id=' + e.region_id).then(function (res) {
+        _this2.places = res.data;
+        console.log(res.data);
+      }).catch(function (err) {});
+    },
+
+
+    // ----------------------------------------------------------
+    // Выбор города, села, и т.д.
+    // ----------------------------------------------------------
+    selectPlace: function selectPlace(e) {
+
+      this.buttonAllCountry = false;
+      this.selectedPlaceName = e.name;
+      this.locationDialog = false;
+      this.urlRegAndPlace = this.urlRegAndPlace + "/" + e.url;
+
+      // сохраняю в localStorage
+      localStorage.setItem("placeName", this.selectedPlaceName);
+      localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);
+    },
+    selectAllCountry: function selectAllCountry(e) {
+      this.selectedPlaceName = "Весь Казахстан";
+      this.urlRegAndPlace = "";
+      this.locationDialog = false;
+
+      // сохраняю в localStorage
+      localStorage.setItem("placeName", this.selectedPlaceName);
+      localStorage.setItem("urlRegAndPlace", "");
+    },
+    selectAllRegion: function selectAllRegion(e) {
+      this.selectedPlaceName = this.regionName;
+      this.locationDialog = false;
+      this.buttonAllCountry = false;
+
+      // сохраняю в localStorage
+      localStorage.setItem("placeName", this.selectedPlaceName);
+      localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);
+    }
+  }
+});
 
 /***/ }),
 

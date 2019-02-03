@@ -102,15 +102,13 @@ export default {
   props: ["items", "auth", "count", "subcats"], // входящие данные
 
   data () {
-    
     // переменные
-    return 
-    {
+    return {
       lang: "русский",
       show_categories: true,
       selected_category_id: null,
       regions: [],
-      places:  [],
+      places: [],
       location: null,
       locationDialog: false,
       locationDialogTitle: "",
