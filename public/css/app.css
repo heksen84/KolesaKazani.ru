@@ -370,7 +370,7 @@ a:active {
 
 @media screen and (max-width: 1024px) {
   #welcome_menu {
-    margin-top: 10px;
+    margin-top: 3px;
   }
 
   #new_advert_block {
