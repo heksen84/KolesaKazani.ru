@@ -92,6 +92,7 @@ const store = new Vuex.Store({
           state.str_desc = "доска объявлений"
           state.str_search_placeholder = "поиск по сайту"
           state.str_button_search = "поиск"
+          state.str_create_advert = "подать объявление"
           
         }
         
@@ -101,6 +102,7 @@ const store = new Vuex.Store({
           state.str_desc = "хабарландыру тақтасы"
           state.str_search_placeholder = "cайт бойынша іздеу"
           state.str_button_search = "іздеу"
+          state.str_create_advert = "хабарландыру орналастырыңыз"
         }
 
       },

@@ -51,7 +51,7 @@
         </b-col>
 
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center" title="Подать новое объявление">
-          <a href="/podat-obyavlenie"><div id="new_advert_block">подать объявление</div></a>
+          <a href="/podat-obyavlenie"><div id="new_advert_block">{{ this.$store.state.str_create_advert }}</div></a>
         </b-col>
     </b-row>
 

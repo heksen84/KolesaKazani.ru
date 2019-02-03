@@ -35491,7 +35491,7 @@ var render = function() {
             [
               _c("a", { attrs: { href: "/podat-obyavlenie" } }, [
                 _c("div", { attrs: { id: "new_advert_block" } }, [
-                  _vm._v("подать объявление")
+                  _vm._v(_vm._s(this.$store.state.str_create_advert))
                 ])
               ])
             ]
@@ -51846,6 +51846,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
         state.str_desc = "доска объявлений";
         state.str_search_placeholder = "поиск по сайту";
         state.str_button_search = "поиск";
+        state.str_create_advert = "подать объявление";
       }
 
       // казахский
@@ -51854,6 +51855,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
         state.str_desc = "хабарландыру тақтасы";
         state.str_search_placeholder = "cайт бойынша іздеу";
         state.str_button_search = "іздеу";
+        state.str_create_advert = "хабарландыру орналастырыңыз";
       }
     },
     ShowOtherFields: function ShowOtherFields(state, value) {
