@@ -35639,7 +35639,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "b-row",
-        { staticClass: "shadow_text", staticStyle: { "margin-top": "80px" } },
+        { staticClass: "shadow_text", staticStyle: { "margin-top": "65px" } },
         [_c("h5", [_vm._v("VIP объявления")])]
       ),
       _vm._v(" "),
@@ -35682,8 +35682,7 @@ var render = function() {
               [_vm._v(_vm._s(_vm.lang))]
             )
           ]),
-          _c("br"),
-          _vm._v("beta версия")
+          _vm._v(" | beta версия")
         ])
       ])
     ],

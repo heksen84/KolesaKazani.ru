@@ -80,14 +80,14 @@
     </div>
 
     <!-- VIP -->
-    <b-row style="margin-top:80px" class="shadow_text"><h5>VIP объявления</h5></b-row>
+    <b-row style="margin-top:65px" class="shadow_text"><h5>VIP объявления</h5></b-row>
       <b-row>    
         <b-col v-for="i in 10" style="border:1px solid rgb(255,255,255);margin:3px;padding:50px;opacity:0.5" v-bind:key="i"></b-col>
       </b-row>
 
     <!-- ПОДВАЛ -->
     <b-row>
-      <div id="footer"><a href="advertisers" class="underline_link">Реклама</a> | <a href="rules" class="underline_link">Правила сайта</a> | <a href="about" class="underline_link">О сайте</a> | <span @click="setLang">Язык: <span style="color:rgb(210,255,210);cursor:pointer">{{ lang }}</span></span><br>beta версия</div>
+      <div id="footer"><a href="advertisers" class="underline_link">Реклама</a> | <a href="rules" class="underline_link">Правила сайта</a> | <a href="about" class="underline_link">О сайте</a> | <span @click="setLang">Язык: <span style="color:rgb(210,255,210);cursor:pointer">{{ lang }}</span></span> | beta версия</div>
     </b-row>
 
   </b-container>
