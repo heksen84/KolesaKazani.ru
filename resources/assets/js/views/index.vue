@@ -133,30 +133,8 @@ export default {
 
     this.$store.commit("SetLang", "ru")
     
-    /*console.log(this.subcats)
-    console.log("---------------------")
-    console.log(this.items)*/
-
-    /*this.new_arr=JSON.stringify(this.subcats);
-    console.log(this.new_arr)*/
-
-    /*get("getSubCats").then((res) => {
-      console.log(res)
-      //this.subcats=res;
-    }).catch((err) => {});*/
-
-
-  /*var person = {
-    gender: 'androgynous',
-    first: 'Павлодар'    
-  };*/
-    // вызываем Петровича как функцию, указав падеж:
-    //console.log(petrovich(person, 'prepositional'));
-    
     var placeName = localStorage.getItem("placeName");
     var urlRegAndPlace = localStorage.getItem("urlRegAndPlace");
-
-    //alert(placeName);
 
     if(placeName==null)
       this.selectedPlaceName = "Весь казахстан";
@@ -167,16 +145,15 @@ export default {
       this.urlRegAndPlace = "";
     else 
       this.urlRegAndPlace = urlRegAndPlace;
-
   },
 
   mounted() {},
-  computed: {
-  },
+  computed: {},
 
   // методы компонента
   methods: {
 
+    // установка языка
     setLang() {
       var ru = "русский";
       if (this.lang==ru) {
@@ -189,20 +166,16 @@ export default {
       }
     },
 
-      displaySubItem: function (item) {         
-        if (item==this.selected_category_id) return true;          
-        return false;
+    displaySubItem: function (item) {         
+      if (item==this.selected_category_id) return true;          
+      return false;
     },
     
     // ----------------------------
     // показать подкатегории
     // ----------------------------
     showSubcats(e, cat_id) {
-      // --------------------------------------------------------------------------------              
-      // посчитать кол-во элементов в подгруппе, если 0 - то сделать редирект сходу,
-      // если больше то показать подгруппы
-      // --------------------------------------------------------------------------------
-      
+
       var total=0;
 
       for (var i=0; i<Object.keys(this.subcats).length; i++) {
@@ -244,8 +217,6 @@ export default {
     },
     
     openLocationWindow() {
-
-      //alert(this.selectedPlaceName)
 
       this.buttonAllCountry=true;
       this.buttonAllRegion=false;
@@ -290,7 +261,6 @@ export default {
     // ----------------------------------------------------------
     selectPlace(e) {
       
-
       this.buttonAllCountry=false;
       this.selectedPlaceName=e.name;
       this.locationDialog=false;

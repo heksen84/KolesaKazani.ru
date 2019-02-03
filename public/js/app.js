@@ -3550,29 +3550,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     this.$store.commit("SetLang", "ru");
 
-    /*console.log(this.subcats)
-    console.log("---------------------")
-    console.log(this.items)*/
-
-    /*this.new_arr=JSON.stringify(this.subcats);
-    console.log(this.new_arr)*/
-
-    /*get("getSubCats").then((res) => {
-      console.log(res)
-      //this.subcats=res;
-    }).catch((err) => {});*/
-
-    /*var person = {
-      gender: 'androgynous',
-      first: 'Павлодар'    
-    };*/
-    // вызываем Петровича как функцию, указав падеж:
-    //console.log(petrovich(person, 'prepositional'));
-
     var placeName = localStorage.getItem("placeName");
     var urlRegAndPlace = localStorage.getItem("urlRegAndPlace");
-
-    //alert(placeName);
 
     if (placeName == null) this.selectedPlaceName = "Весь казахстан";else this.selectedPlaceName = placeName;
 
@@ -3584,6 +3563,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   // методы компонента
   methods: {
+
+    // установка языка
     setLang: function setLang() {
       var ru = "русский";
       if (this.lang == ru) {
@@ -3605,10 +3586,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // показать подкатегории
     // ----------------------------
     showSubcats: function showSubcats(e, cat_id) {
-      // --------------------------------------------------------------------------------              
-      // посчитать кол-во элементов в подгруппе, если 0 - то сделать редирект сходу,
-      // если больше то показать подгруппы
-      // --------------------------------------------------------------------------------
 
       var total = 0;
 
@@ -3647,8 +3624,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     openLocationWindow: function openLocationWindow() {
       var _this = this;
-
-      //alert(this.selectedPlaceName)
 
       this.buttonAllCountry = true;
       this.buttonAllRegion = false;
