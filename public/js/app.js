@@ -2865,7 +2865,7 @@ function forEach(data, callback) {
 			category: null,
 			sdelka: 0,
 			deal_id: null,
-			text: "",
+			info: "",
 			price: "",
 			number: 0,
 			preview_images: [],
@@ -2902,18 +2902,11 @@ function forEach(data, callback) {
 	created: function created() {
 		var _this = this;
 
-		this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
-		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация				
-
 		ymaps.ready(initMaps);
 
-		console.log(this.dealtypes);
-
-		// -----------------------------
-		// Получаем регионы
-		// -----------------------------
-		Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getRegions').then(function (res) {
+		Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/getRegions").then(function (res) {
 			_this.regions = res.data;
+			_this.advReset();
 		}).catch(function (err) {
 			console.log("Не возможно загрузить регионы!");
 		});
@@ -3095,22 +3088,42 @@ function forEach(data, callback) {
 		},
 
 
+		// сброс объявления
+		advReset: function advReset() {
+
+			// сбрасываю фотки			
+			document.querySelector("input[type=file]").value = "";
+
+			// сброс массива объявления и переинициализация его
+			this.$root.advert_data = [];
+			this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
+			this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
+			this.$root.advert_data.adv_price = "";
+			this.$root.advert_data.adv_phone1 = "";
+			this.$root.advert_data.adv_phone2 = "";
+			this.$root.advert_data.adv_phone3 = "";
+
+			// сброс моделей
+			this.info = "";
+			this.phone1 = "";
+			this.phone2 = "";
+			this.phone3 = "";
+			this.regions_model = null;
+			this.places_model = null;
+			this.preview_images = [];
+			this.coordinates_set = false;
+
+			// сбрасываю дополнительные поля
+			this.$store.commit("ShowOtherFields", false);
+		},
+
 		/*
   --------------------------
    Изменения в категориях
   --------------------------*/
 		changeCategory: function changeCategory(data) {
 
-			// сбрасываю фотки			
-			document.querySelector("input[type=file]").value = "";
-
-			this.preview_images = [];
-
-			// сбрасываю карту
-			this.coordinates_set = false;
-
-			// сбрасываю дополнительные поля
-			this.$store.commit("ShowOtherFields", false);
+			this.advReset();
 
 			// добавляю категорию
 			this.$root.advert_data.adv_category = data;
@@ -38071,11 +38084,11 @@ var render = function() {
                             },
                             on: { input: _vm.setInfo },
                             model: {
-                              value: _vm.text,
+                              value: _vm.info,
                               callback: function($$v) {
-                                _vm.text = $$v
+                                _vm.info = $$v
                               },
-                              expression: "text"
+                              expression: "info"
                             }
                           })
                         ],
@@ -38268,106 +38281,92 @@ var render = function() {
                             [_vm._v("Расположение")]
                           ),
                           _vm._v(" "),
-                          _vm.regions.length > 0
-                            ? _c(
-                                "b-form-group",
+                          _c(
+                            "b-form-group",
+                            {
+                              staticStyle: { width: "280px", margin: "auto" },
+                              attrs: { label: "Регион:" }
+                            },
+                            [
+                              _c(
+                                "b-form-select",
                                 {
-                                  staticStyle: {
-                                    width: "280px",
-                                    margin: "auto"
-                                  },
-                                  attrs: { label: "Регион:" }
+                                  staticClass: "mb-3",
+                                  on: { change: _vm.changeRegion },
+                                  model: {
+                                    value: _vm.regions_model,
+                                    callback: function($$v) {
+                                      _vm.regions_model = $$v
+                                    },
+                                    expression: "regions_model"
+                                  }
                                 },
                                 [
-                                  _c(
-                                    "b-form-select",
-                                    {
-                                      staticClass: "mb-3",
-                                      on: { change: _vm.changeRegion },
-                                      model: {
-                                        value: _vm.regions_model,
-                                        callback: function($$v) {
-                                          _vm.regions_model = $$v
-                                        },
-                                        expression: "regions_model"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        { domProps: { value: null } },
-                                        [_vm._v("-- Выберите регион --")]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm._l(_vm.regions, function(item) {
-                                        return _c(
-                                          "option",
-                                          {
-                                            key: item.name,
-                                            domProps: { value: item.region_id }
-                                          },
-                                          [_vm._v(_vm._s(item.name))]
-                                        )
-                                      })
-                                    ],
-                                    2
-                                  )
+                                  _c("option", { domProps: { value: null } }, [
+                                    _vm._v("-- Выберите регион --")
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.regions, function(item) {
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: item.name,
+                                        domProps: { value: item.region_id }
+                                      },
+                                      [_vm._v(_vm._s(item.name))]
+                                    )
+                                  })
                                 ],
-                                1
+                                2
                               )
-                            : _vm._e(),
+                            ],
+                            1
+                          ),
                           _vm._v(" "),
-                          _vm.places.length > 0
-                            ? _c(
-                                "b-form-group",
+                          _c(
+                            "b-form-group",
+                            {
+                              staticStyle: { width: "280px", margin: "auto" },
+                              attrs: { label: "Местность:" }
+                            },
+                            [
+                              _c(
+                                "b-form-select",
                                 {
-                                  staticStyle: {
-                                    width: "280px",
-                                    margin: "auto"
-                                  },
-                                  attrs: { label: "Местность:" }
+                                  staticClass: "mb-3",
+                                  on: { change: _vm.changePlace },
+                                  model: {
+                                    value: _vm.places_model,
+                                    callback: function($$v) {
+                                      _vm.places_model = $$v
+                                    },
+                                    expression: "places_model"
+                                  }
                                 },
                                 [
-                                  _c(
-                                    "b-form-select",
-                                    {
-                                      staticClass: "mb-3",
-                                      on: { change: _vm.changePlace },
-                                      model: {
-                                        value: _vm.places_model,
-                                        callback: function($$v) {
-                                          _vm.places_model = $$v
-                                        },
-                                        expression: "places_model"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        { domProps: { value: null } },
-                                        [_vm._v("-- Выберите местность --")]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm._l(_vm.places, function(item) {
-                                        return _c(
-                                          "option",
-                                          {
-                                            key: item.name,
-                                            domProps: {
-                                              value:
-                                                item.city_id + "@" + item.coords
-                                            }
-                                          },
-                                          [_vm._v(_vm._s(item.name))]
-                                        )
-                                      })
-                                    ],
-                                    2
-                                  )
+                                  _c("option", { domProps: { value: null } }, [
+                                    _vm._v("-- Выберите местность --")
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.places, function(item) {
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: item.name,
+                                        domProps: {
+                                          value:
+                                            item.city_id + "@" + item.coords
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(item.name))]
+                                    )
+                                  })
                                 ],
-                                1
+                                2
                               )
-                            : _vm._e(),
+                            ],
+                            1
+                          ),
                           _vm._v(" "),
                           _c(
                             "b-form-group",

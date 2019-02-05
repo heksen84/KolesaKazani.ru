@@ -70,7 +70,7 @@
 			<div v-show="this.$store.state.show_other_fields">
 
 				<b-form-group label="Описание:" label-for="addit_info">
-			 		<b-form-textarea id="addit_info" placeholder="Введите описание" :rows="4" :max-rows="4" @input="setInfo" v-model="text"></b-form-textarea>
+			 		<b-form-textarea id="addit_info" placeholder="Введите описание" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></b-form-textarea>
 				</b-form-group>			
 
 				<!-- Цена -->
@@ -106,14 +106,14 @@
 				<div style="text-align:center;margin-top:50px;margin-bottom:0px;font-weight:bold">Расположение</div>
 				
 				<!-- выпадающий список регионов -->
-				<b-form-group label="Регион:" style="width:280px;margin:auto" v-if="regions.length>0">
+				<b-form-group label="Регион:" style="width:280px;margin:auto">
 				<b-form-select class="mb-3" @change="changeRegion" v-model="regions_model">
 					 <option :value=null>-- Выберите регион --</option>
 					 <option v-for="item in regions" :value="item.region_id" :key="item.name">{{item.name}}</option>
 				</b-form-select>
 				</b-form-group>
 
-				<b-form-group label="Местность:" style="width:280px;margin:auto" v-if="places.length>0">
+				<b-form-group label="Местность:" style="width:280px;margin:auto">
 				<b-form-select class="mb-3" @change="changePlace" v-model="places_model">
 					 <option :value=null>-- Выберите местность --</option>
 					 <option v-for="item in places" :value="item.city_id+'@'+item.coords" :key="item.name">{{item.name}}</option>
@@ -222,7 +222,7 @@ export default {
 			category: null,
 			sdelka: 0,
 			deal_id: null,
-			text: "",
+			info: "",
 			price: "",
 			number: 0,
 			preview_images: [],
@@ -255,24 +255,17 @@ export default {
 	// -------------------------------
 	// Событие: компонент создан
 	// -------------------------------
-	created() {		
-		
-		this.$root.advert_data.adv_deal = 0;	// покупка по умолчанию
-		this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация				
+	created() {
 
 		ymaps.ready(initMaps);
-
-		console.log(this.dealtypes)
-
-		// -----------------------------
-		// Получаем регионы
-		// -----------------------------
-		get('/getRegions').then((res) => {
+		
+		get("/getRegions").then((res) => {
 		  this.regions=res.data;
+		  this.advReset();
       	}).catch((err) => {
 			console.log("Не возможно загрузить регионы!");
 		});
-
+		
 	},
 
 	components: { transport, realestate },
@@ -445,22 +438,41 @@ export default {
 			this.deal_id=deal_id;
   		},
 
+		// сброс объявления
+		advReset() {
+
+			// сбрасываю фотки			
+			document.querySelector("input[type=file]").value = "";
+
+			// сброс массива объявления и переинициализация его
+			this.$root.advert_data=[];
+			this.$root.advert_data.adv_deal = 0;	// покупка по умолчанию
+			this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
+			this.$root.advert_data.adv_price = "";
+			this.$root.advert_data.adv_phone1 = "";
+			this.$root.advert_data.adv_phone2 = "";
+			this.$root.advert_data.adv_phone3 = "";
+
+			// сброс моделей
+			this.info = "";
+			this.phone1 = "";
+			this.phone2 = "";
+			this.phone3 = "";
+			this.regions_model = null;
+			this.places_model = null;
+			this.preview_images = [];
+			this.coordinates_set=false;
+
+			// сбрасываю дополнительные поля
+			this.$store.commit("ShowOtherFields", false);
+		},
   		/*
   		--------------------------
   		 Изменения в категориях
   		--------------------------*/
   		changeCategory(data) {
 			
-			// сбрасываю фотки			
-			document.querySelector("input[type=file]").value = "";
-
-			this.preview_images=[];
-
-			// сбрасываю карту
-			this.coordinates_set=false;
-
-			// сбрасываю дополнительные поля
-			this.$store.commit("ShowOtherFields", false);
+			this.advReset();
 
 			// добавляю категорию
 			this.$root.advert_data.adv_category=data;
