@@ -3106,6 +3106,8 @@ function forEach(data, callback) {
 				this.hobbies_and_leisure = false; // хобби и отдых
 				this.services = false; // услуги
 				this.other = false; // другое
+				// и добавляю категорию
+				this.$root.advert_data.adv_category = category_data;
 			}
 
 			// сбрасываю фотки			
@@ -3122,9 +3124,6 @@ function forEach(data, callback) {
 		changeCategory: function changeCategory(data) {
 
 			this.advReset(data);
-
-			// добавляю категорию
-			this.$root.advert_data.adv_category = data;
 
 			switch (data) {
 				case null:
