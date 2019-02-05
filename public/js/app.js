@@ -3510,6 +3510,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -35662,24 +35667,24 @@ var render = function() {
             { staticClass: "underline_link", attrs: { href: "advertisers" } },
             [_vm._v("Реклама")]
           ),
-          _vm._v(" | "),
+          _vm._v(" | \n      "),
           _c("a", { staticClass: "underline_link", attrs: { href: "rules" } }, [
             _vm._v("Правила сайта")
           ]),
-          _vm._v(" | "),
+          _vm._v(" | \n      "),
           _c("a", { staticClass: "underline_link", attrs: { href: "about" } }, [
             _vm._v("О сайте")
           ]),
-          _vm._v(" | "),
+          _vm._v(" | \n      "),
           _c("span", { on: { click: _vm.setLang } }, [
             _vm._v("Язык: "),
             _c(
               "span",
-              { staticStyle: { color: "rgb(210,255,210)", cursor: "pointer" } },
+              { staticStyle: { color: "rgb(180,255,180)", cursor: "pointer" } },
               [_vm._v(_vm._s(_vm.lang))]
             )
           ]),
-          _vm._v(" | beta версия")
+          _vm._v(" | \n      beta версия\n    ")
         ])
       ])
     ],
