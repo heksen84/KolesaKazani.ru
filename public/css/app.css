@@ -207,8 +207,8 @@ body {
   width: 230px;
   color: white;
   opacity: 0.9;
-  background-image: -webkit-gradient(linear, right top, left top, from(#656594), to(#6b6b80));
-  background-image: linear-gradient(to left, #656594, #6b6b80);
+  background-image: -webkit-gradient(linear, right top, left top, from(#666683), to(#71718a));
+  background-image: linear-gradient(to left, #666683, #71718a);
 }
 
 .category_item:hover {
