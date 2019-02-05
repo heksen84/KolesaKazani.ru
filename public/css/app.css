@@ -208,6 +208,8 @@ body {
   background: #787878;
   color: white;
   opacity: 0.9;
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(214, 21, 21, 0)), to(#5a5a82));
+  background-image: linear-gradient(to right, rgba(214, 21, 21, 0), #5a5a82);
 }
 
 .category_item:hover {
