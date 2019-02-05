@@ -422,30 +422,12 @@ export default {
   			this.$root.advert_data.adv_deal=deal_id;
 			this.deal_id=deal_id;
 		  },
-		  
-		// Сброс данных при выборе категории
-  		resetCategories(data) {
-  			this.root=false;				    // по умолчанию
-  			this.transport=false;			    // транспорт
-  			this.real_estate=false;			    // недвижимость
-  			this.appliances=false;			    // электроника
-  			this.work_and_buisness=false; 	    // работа и бизнес
-  			this.for_home=false;			    // для дома и дачи
-  			this.personal_effects=false;	    // личные вещи
-			this.animals=false;				    // животные
-			this.hobbies_and_leisure=false;	  	// хобби и отдых
-			this.services=false;			    // услуги
-			this.other=false;				    // другое 
-  		},
 
 		// сброс объявления
 		advReset(data) {
 
-			// сбрасываю фотки			
-			document.querySelector("input[type=file]").value = "";
-
 			// сброс массива объявления и переинициализация его
-			this.$root.advert_data=[];
+			this.$root.advert_data = [];
 			this.$root.advert_data.adv_deal = 0;	// покупка по умолчанию
 			this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
 			this.$root.advert_data.adv_price = "";
@@ -463,11 +445,26 @@ export default {
 			this.preview_images = [];
 			this.coordinates_set = false;
 
+			// сброс категорий
+			if (data!=null) {
+			this.root=false;				    // по умолчанию
+  			this.transport=false;			    // транспорт
+  			this.real_estate=false;			    // недвижимость
+  			this.appliances=false;			    // электроника
+  			this.work_and_buisness=false; 	    // работа и бизнес
+  			this.for_home=false;			    // для дома и дачи
+  			this.personal_effects=false;	    // личные вещи
+			this.animals=false;				    // животные
+			this.hobbies_and_leisure=false;	  	// хобби и отдых
+			this.services=false;			    // услуги
+			this.other=false;				    // другое
+			}
+
+			// сбрасываю фотки			
+			document.querySelector("input[type=file]").value = "";
+
 			// сбрасываю дополнительные поля
 			this.$store.commit("ShowOtherFields", false);
-
-			if (data!=null) 
-				this.resetCategories(data);
 		},
   		/*
   		--------------------------
@@ -494,12 +491,12 @@ export default {
   				case 2: {  
 					  this.real_estate=true; 
 					  this.$store.commit("ShowOtherFields", true);
-  					break; 
-  				}
+					  break;
+				} 
   				case 3: {
 					  this.appliances=true; 
 					  this.$store.commit("ShowOtherFields", true);
-  					break; 
+  					  break; 
   				}
   				case 4: {
 					  this.work_and_buisness=true;

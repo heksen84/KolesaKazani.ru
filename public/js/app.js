@@ -3072,27 +3072,8 @@ function forEach(data, callback) {
 		},
 
 
-		// Сброс данных при выборе категории
-		resetCategories: function resetCategories(data) {
-			this.root = false; // по умолчанию
-			this.transport = false; // транспорт
-			this.real_estate = false; // недвижимость
-			this.appliances = false; // электроника
-			this.work_and_buisness = false; // работа и бизнес
-			this.for_home = false; // для дома и дачи
-			this.personal_effects = false; // личные вещи
-			this.animals = false; // животные
-			this.hobbies_and_leisure = false; // хобби и отдых
-			this.services = false; // услуги
-			this.other = false; // другое 
-		},
-
-
 		// сброс объявления
 		advReset: function advReset(data) {
-
-			// сбрасываю фотки			
-			document.querySelector("input[type=file]").value = "";
 
 			// сброс массива объявления и переинициализация его
 			this.$root.advert_data = [];
@@ -3113,10 +3094,26 @@ function forEach(data, callback) {
 			this.preview_images = [];
 			this.coordinates_set = false;
 
+			// сброс категорий
+			if (data != null) {
+				this.root = false; // по умолчанию
+				this.transport = false; // транспорт
+				this.real_estate = false; // недвижимость
+				this.appliances = false; // электроника
+				this.work_and_buisness = false; // работа и бизнес
+				this.for_home = false; // для дома и дачи
+				this.personal_effects = false; // личные вещи
+				this.animals = false; // животные
+				this.hobbies_and_leisure = false; // хобби и отдых
+				this.services = false; // услуги
+				this.other = false; // другое
+			}
+
+			// сбрасываю фотки			
+			document.querySelector("input[type=file]").value = "";
+
 			// сбрасываю дополнительные поля
 			this.$store.commit("ShowOtherFields", false);
-
-			if (data != null) this.resetCategories(data);
 		},
 
 		/*
