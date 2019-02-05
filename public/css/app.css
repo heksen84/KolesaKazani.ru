@@ -27,17 +27,17 @@ input[type="number"] {
 
 ::-webkit-scrollbar {
   width: 8px;
-  background: #649696;
+  background: #505050;
 }
 
 ::-webkit-scrollbar:horizontal {
   height: 7px;
-  background: #649696;
+  background: #505050;
 }
 
 ::-webkit-scrollbar-thumb:horizontal {
   height: 7px;
-  background: #649696;
+  background: #505050;
 }
 
 ::-webkit-input-placeholder {
