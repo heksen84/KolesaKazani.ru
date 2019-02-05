@@ -465,7 +465,7 @@ export default {
 			// сбрасываю фотки			
 			document.querySelector("input[type=file]").value = "";
 		},
-		
+
   		/*
   		--------------------------
   		 Изменения в категориях
@@ -563,7 +563,8 @@ export default {
 		// ---------------------------------------------------
 		// Отправить пост запрос на создание объявления
 		// ---------------------------------------------------
-		axios.post("/create", formData, {
+		axios.post("/create", formData, 
+		{
 			headers: { 'Content-Type': 'multipart/form-data' }
         }).then(response => {
               console.log(response);
@@ -581,13 +582,16 @@ export default {
 			  this.$root.$notify({group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error'});
 		})
     },
-
+	
+	// -------------------------------------
 	// Показать диалог выбора расположения
+	// -------------------------------------
 	showSetCoordsDialog() {
 
 		this.setCoordsDialog=true;
 
 		if (!navigator.geolocation) {
+
 			// navigator.geolocation не поддерживается
 			console.log("navigator.geolocation error");
 		}

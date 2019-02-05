@@ -3239,12 +3239,15 @@ function forEach(data, callback) {
 		},
 
 
+		// -------------------------------------
 		// Показать диалог выбора расположения
+		// -------------------------------------
 		showSetCoordsDialog: function showSetCoordsDialog() {
 
 			this.setCoordsDialog = true;
 
 			if (!navigator.geolocation) {
+
 				// navigator.geolocation не поддерживается
 				console.log("navigator.geolocation error");
 			} else {
