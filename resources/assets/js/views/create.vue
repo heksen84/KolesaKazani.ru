@@ -79,6 +79,8 @@
 					&nbsp;{{ this.$root.money_full_name }}
 				</b-form-group>
 
+				<div v-show="price.length>0">
+					
 				<!-- Фотографии -->
 				<b-form-group label="Фотографии:">
 				<div style="text-align:center">
@@ -99,6 +101,7 @@
 					</div>
 				
 				</b-form-group>
+				</div>
 
 				<div v-show="phone1.length>const_phone1_length">
 
@@ -113,7 +116,7 @@
 				</b-form-select>
 				</b-form-group>
 
-				<b-form-group label="Местность:" style="width:280px;margin:auto" v-if="regions_model!=null">
+				<b-form-group label="Местность:" style="width:280px;margin:auto" v-show="regions_model!=null">
 				<b-form-select class="mb-3" @change="changePlace" v-model="places_model">
 					 <option :value=null>-- Выберите местность --</option>
 					 <option v-for="item in places" :value="item.city_id+'@'+item.coords" :key="item.name">{{item.name}}</option>
@@ -129,7 +132,7 @@
 				<hr>
 
 				<!-- Публикация -->
-				<b-form-group style="text-align:center;margin:25px" v-if="places_model!=null">
+				<b-form-group style="text-align:center;margin:25px" v-show="places_model!=null">
 					<b-button type="onSubmit" variant="outline-primary" title="Опубликовать объявление">ОПУБЛИКОВАТЬ</b-button>
 				</b-form-group>
 			
