@@ -202,7 +202,7 @@ function initMaps() {
 // Логика
 export default {
 	
-	props: ["items", "dealtypes"],
+	props: ["items", "dealtypes", "regions"],
 	
 	data () {
     return 	{
@@ -228,7 +228,7 @@ export default {
 			preview_images: [],
 			real_images: [],
 			root: false,
-			regions: [],
+			//regions: [],
 			regions_model: null,
 			places: [],
 			places_model: null,
@@ -257,19 +257,8 @@ export default {
 	// Событие: компонент создан
 	// -------------------------------
 	created() {
-
 		ymaps.ready(initMaps);
-		
-		// перенести выборку в контроллер
-		get("/getRegions").then((res) => { 
-
-			this.regions=res.data; 
-			this.advReset();
-
-		}).catch((err) => {
-			console.log("Не возможно загрузить регионы!");
-		});
-
+		this.advReset();
 	},
 
 	components: { transport, realestate },

@@ -2845,7 +2845,7 @@ function forEach(data, callback) {
 // Логика
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-	props: ["items", "dealtypes"],
+	props: ["items", "dealtypes", "regions"],
 
 	data: function data() {
 		return {
@@ -2871,7 +2871,7 @@ function forEach(data, callback) {
 			preview_images: [],
 			real_images: [],
 			root: false,
-			regions: [],
+			//regions: [],
 			regions_model: null,
 			places: [],
 			places_model: null,
@@ -2901,18 +2901,8 @@ function forEach(data, callback) {
 	// Событие: компонент создан
 	// -------------------------------
 	created: function created() {
-		var _this = this;
-
 		ymaps.ready(initMaps);
-
-		// перенести выборку в контроллер
-		Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/getRegions").then(function (res) {
-
-			_this.regions = res.data;
-			_this.advReset();
-		}).catch(function (err) {
-			console.log("Не возможно загрузить регионы!");
-		});
+		this.advReset();
 	},
 
 
@@ -2930,14 +2920,14 @@ function forEach(data, callback) {
 
 		// обработка выбора региона
 		changeRegion: function changeRegion(region_id) {
-			var _this2 = this;
+			var _this = this;
 
 			this.$root.advert_data.region_id = region_id;
 
 			// Получить города / сёлы
 			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('getPlaces?region_id=' + region_id).then(function (res) {
-				_this2.places = res.data;
-				_this2.places_model = null;
+				_this.places = res.data;
+				_this.places_model = null;
 				console.log(res.data);
 			}).catch(function (err) {});
 		},
@@ -3207,7 +3197,7 @@ function forEach(data, callback) {
   Сохранить объявление
   ----------------------------*/
 		onSubmit: function onSubmit(evt) {
-			var _this3 = this;
+			var _this2 = this;
 
 			evt.preventDefault();
 
@@ -3230,12 +3220,12 @@ function forEach(data, callback) {
 				headers: { 'Content-Type': 'multipart/form-data' }
 			}).then(function (response) {
 				console.log(response);
-				if (response.data.result == "db.error") _this3.$root.$notify({ group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error' });else if (response.data.result == "usr.error") _this3.$root.$notify({ group: 'foo', text: "<h6>" + response.data.msg + "</h6>", type: 'error' });else alert("Объявление размещено");
+				if (response.data.result == "db.error") _this2.$root.$notify({ group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error' });else if (response.data.result == "usr.error") _this2.$root.$notify({ group: 'foo', text: "<h6>" + response.data.msg + "</h6>", type: 'error' });else alert("Объявление размещено");
 				//	else 
 				//	window.location="home"; // переходим в личный кабинет
 			}).catch(function (error) {
 				console.log(error.response);
-				_this3.$root.$notify({ group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error' });
+				_this2.$root.$notify({ group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error' });
 			});
 		},
 
