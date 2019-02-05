@@ -3095,7 +3095,6 @@ function forEach(data, callback) {
 
 			// сброс категорий
 			if (category_data != null) {
-
 				this.root = false; // по умолчанию
 				this.transport = false; // транспорт
 				this.real_estate = false; // недвижимость
@@ -3107,16 +3106,10 @@ function forEach(data, callback) {
 				this.hobbies_and_leisure = false; // хобби и отдых
 				this.services = false; // услуги
 				this.other = false; // другое
-
-				// и добавляю категорию
-				this.$root.advert_data.adv_category = category_data;
 			}
 
 			// сбрасываю фотки			
 			document.querySelector("input[type=file]").value = "";
-
-			// сбрасываю дополнительные поля
-			this.$store.commit("ShowOtherFields", false);
 		},
 
 		/*
@@ -3125,7 +3118,14 @@ function forEach(data, callback) {
   --------------------------*/
 		changeCategory: function changeCategory(data) {
 
+			// сброс объявления при выборе категории
 			this.advReset(data);
+
+			// добавляю категории
+			this.$root.advert_data.adv_category = data;
+
+			// скрываю дополнительные поля
+			this.$store.commit("ShowOtherFields", false);
 
 			switch (data) {
 				case null:
