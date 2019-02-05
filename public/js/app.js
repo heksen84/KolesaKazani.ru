@@ -3237,7 +3237,6 @@ function forEach(data, callback) {
 			this.setCoordsDialog = true;
 
 			if (!navigator.geolocation) {
-
 				// navigator.geolocation не поддерживается
 				console.log("navigator.geolocation error");
 			} else {
