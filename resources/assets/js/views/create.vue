@@ -260,7 +260,12 @@ export default {
 
 		ymaps.ready(initMaps);
 		
-		get("/getRegions").then((res) => { this.regions=res.data; this.advReset(); }).catch((err) => {
+		get("/getRegions").then((res) => { 
+
+			this.regions=res.data; 
+			this.advReset();
+
+		}).catch((err) => {
 			console.log("Не возможно загрузить регионы!");
 		});
 
@@ -420,7 +425,7 @@ export default {
 			this.deal_id=deal_id;
 		  },
 
-		// сброс объявления
+		// сброс данных объявления
 		advReset(category_data) {
 
 			// сброс массива объявления и переинициализация его
@@ -460,6 +465,7 @@ export default {
 			// сбрасываю фотки			
 			document.querySelector("input[type=file]").value = "";
 		},
+		
   		/*
   		--------------------------
   		 Изменения в категориях
