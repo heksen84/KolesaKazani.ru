@@ -79,8 +79,6 @@
 					&nbsp;{{ this.$root.money_full_name }}
 				</b-form-group>
 
-				<div v-show="price.length>0">
-					
 				<!-- Фотографии -->
 				<b-form-group label="Фотографии:">
 				<div style="text-align:center">
@@ -101,7 +99,6 @@
 					</div>
 				
 				</b-form-group>
-				</div>
 
 				<div v-show="phone1.length>const_phone1_length">
 

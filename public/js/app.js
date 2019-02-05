@@ -2783,9 +2783,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 // ----------------------------------------------------
@@ -38129,145 +38126,122 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
+                      _c("b-form-group", { attrs: { label: "Фотографии:" } }, [
+                        _c(
+                          "div",
+                          { staticStyle: { "text-align": "center" } },
+                          [
+                            _vm._l(_vm.preview_images, function(i, index) {
+                              return _c("b-img", {
+                                key: i.name,
+                                staticClass: "image",
+                                attrs: { src: i.src, title: i.name },
+                                on: {
+                                  click: function($event) {
+                                    _vm.deletePhoto(index)
+                                  }
+                                }
+                              })
+                            }),
+                            _vm._v(" "),
+                            _c("b-form-file", {
+                              staticClass: "mt-2",
+                              attrs: {
+                                multiple: "",
+                                accept: ".png, .jpg, .jpeg"
+                              },
+                              on: { change: _vm.loadImage }
+                            })
+                          ],
+                          2
+                        )
+                      ]),
+                      _vm._v(" "),
                       _c(
-                        "div",
+                        "b-form-group",
                         {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value: _vm.price.length > 0,
-                              expression: "price.length>0"
-                            }
-                          ]
+                          staticStyle: {
+                            "text-align": "center",
+                            "font-weight": "bold"
+                          },
+                          attrs: { label: "<ins>Контакты:</ins>" }
                         },
                         [
-                          _c(
-                            "b-form-group",
-                            { attrs: { label: "Фотографии:" } },
-                            [
-                              _c(
+                          _c("b-form-input", {
+                            staticStyle: {
+                              width: "250px",
+                              display: "inline",
+                              "text-align": "center"
+                            },
+                            attrs: {
+                              type: "text",
+                              placeholder: "Контактный номер 1",
+                              state: _vm.setPhoneNumber(1),
+                              required: ""
+                            },
+                            model: {
+                              value: _vm.phone1,
+                              callback: function($$v) {
+                                _vm.phone1 =
+                                  typeof $$v === "string" ? $$v.trim() : $$v
+                              },
+                              expression: "phone1"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.phone1.length > _vm.const_phone1_length
+                            ? _c(
                                 "div",
-                                { staticStyle: { "text-align": "center" } },
                                 [
-                                  _vm._l(_vm.preview_images, function(
-                                    i,
-                                    index
-                                  ) {
-                                    return _c("b-img", {
-                                      key: i.name,
-                                      staticClass: "image",
-                                      attrs: { src: i.src, title: i.name },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.deletePhoto(index)
-                                        }
-                                      }
-                                    })
+                                  _c("b-form-input", {
+                                    staticStyle: {
+                                      width: "250px",
+                                      "text-align": "center",
+                                      margin: "5px auto"
+                                    },
+                                    attrs: {
+                                      type: "text",
+                                      placeholder: "Контактный номер 2",
+                                      state: _vm.setPhoneNumber(2)
+                                    },
+                                    model: {
+                                      value: _vm.phone2,
+                                      callback: function($$v) {
+                                        _vm.phone2 =
+                                          typeof $$v === "string"
+                                            ? $$v.trim()
+                                            : $$v
+                                      },
+                                      expression: "phone2"
+                                    }
                                   }),
                                   _vm._v(" "),
-                                  _c("b-form-file", {
-                                    staticClass: "mt-2",
-                                    attrs: {
-                                      multiple: "",
-                                      accept: ".png, .jpg, .jpeg"
+                                  _c("b-form-input", {
+                                    staticStyle: {
+                                      width: "250px",
+                                      "text-align": "center",
+                                      margin: "5px auto"
                                     },
-                                    on: { change: _vm.loadImage }
+                                    attrs: {
+                                      type: "text",
+                                      placeholder: "Контактный номер 3",
+                                      state: _vm.setPhoneNumber(3)
+                                    },
+                                    model: {
+                                      value: _vm.phone3,
+                                      callback: function($$v) {
+                                        _vm.phone3 =
+                                          typeof $$v === "string"
+                                            ? $$v.trim()
+                                            : $$v
+                                      },
+                                      expression: "phone3"
+                                    }
                                   })
                                 ],
-                                2
+                                1
                               )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-form-group",
-                            {
-                              staticStyle: {
-                                "text-align": "center",
-                                "font-weight": "bold"
-                              },
-                              attrs: { label: "<ins>Контакты:</ins>" }
-                            },
-                            [
-                              _c("b-form-input", {
-                                staticStyle: {
-                                  width: "250px",
-                                  display: "inline",
-                                  "text-align": "center"
-                                },
-                                attrs: {
-                                  type: "text",
-                                  placeholder: "Контактный номер 1",
-                                  state: _vm.setPhoneNumber(1),
-                                  required: ""
-                                },
-                                model: {
-                                  value: _vm.phone1,
-                                  callback: function($$v) {
-                                    _vm.phone1 =
-                                      typeof $$v === "string" ? $$v.trim() : $$v
-                                  },
-                                  expression: "phone1"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _vm.phone1.length > _vm.const_phone1_length
-                                ? _c(
-                                    "div",
-                                    [
-                                      _c("b-form-input", {
-                                        staticStyle: {
-                                          width: "250px",
-                                          "text-align": "center",
-                                          margin: "5px auto"
-                                        },
-                                        attrs: {
-                                          type: "text",
-                                          placeholder: "Контактный номер 2",
-                                          state: _vm.setPhoneNumber(2)
-                                        },
-                                        model: {
-                                          value: _vm.phone2,
-                                          callback: function($$v) {
-                                            _vm.phone2 =
-                                              typeof $$v === "string"
-                                                ? $$v.trim()
-                                                : $$v
-                                          },
-                                          expression: "phone2"
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("b-form-input", {
-                                        staticStyle: {
-                                          width: "250px",
-                                          "text-align": "center",
-                                          margin: "5px auto"
-                                        },
-                                        attrs: {
-                                          type: "text",
-                                          placeholder: "Контактный номер 3",
-                                          state: _vm.setPhoneNumber(3)
-                                        },
-                                        model: {
-                                          value: _vm.phone3,
-                                          callback: function($$v) {
-                                            _vm.phone3 =
-                                              typeof $$v === "string"
-                                                ? $$v.trim()
-                                                : $$v
-                                          },
-                                          expression: "phone3"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  )
-                                : _vm._e()
-                            ],
-                            1
-                          )
+                            : _vm._e()
                         ],
                         1
                       ),
