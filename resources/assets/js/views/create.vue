@@ -326,7 +326,12 @@ export default {
 			this.placeChanged = true;
 			this.coordinates_set = true;
 
+			// записываю id городи или деревни
 			this.$root.advert_data.city_id = city_id;
+
+			// записываю координаты
+			this.$root.advert_data.adv_coords=[];
+			this.$root.advert_data.adv_coords=mapCoords;
 		},
 
 		// ------------------------------------------------
@@ -408,7 +413,6 @@ export default {
 
 		// установить цену
   		setPrice(price) {
-			
 			if (price < 0) return;
   			this.$root.advert_data.adv_price=price;
         	this.price = price;
@@ -436,9 +440,7 @@ export default {
 		  		  
 		// вид сделки
   		setDeal(deal_id) {
-
 			//if (deal_id==null) this.coordinates_set=false;
-
   			this.$root.advert_data.adv_deal=deal_id;
 			this.deal_id=deal_id;
   		},
@@ -538,7 +540,8 @@ export default {
 		----------------------------
 		  Сохранить объявление
 		----------------------------*/
-    	onSubmit(evt) {			
+    	onSubmit(evt) {
+
 		evt.preventDefault();
 
 		var formData = new FormData();
@@ -556,7 +559,7 @@ export default {
 		// ---------------------------------------------------
 		// Отправить пост запрос на создание объявления
 		// ---------------------------------------------------
-		axios.post('/create', formData, {
+		axios.post("/create", formData, {
 			headers: { 'Content-Type': 'multipart/form-data' }
         }).then(response => {
               console.log(response);
@@ -566,7 +569,7 @@ export default {
 			if (response.data.result=="usr.error")
 			this.$root.$notify({group: 'foo', text: "<h6>"+response.data.msg+"</h6>", type: 'error'});
 			else
-			alert("ok");
+			alert("Объявление размещено");
 			//	else 
 			//	window.location="home"; // переходим в личный кабинет
         }).catch(error => {

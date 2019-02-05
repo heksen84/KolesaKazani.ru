@@ -156,6 +156,7 @@ class AdvertController extends Controller {
                                         
                     $transport->save();
 
+                    // записываю id подкатегории
                     $advert->adv_category_id = $transport->id;  // указываем id' шник
 
                     break;
@@ -175,12 +176,14 @@ class AdvertController extends Controller {
                     $realestate->ownership = 0;
                     $realestate->kind_of_object = 0;
                     $realestate->save();
-                    $realestate->adv_category_id = $realestate->id;
+
+                    // записываю id подкатегории
+                    $advert->adv_category_id = $realestate->id;
                     
                     break;
                 }
 
-                // бытовая техника
+                // электроника
                 case 3: {
                     //$appliances= new Appliances();
                     break;

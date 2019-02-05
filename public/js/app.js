@@ -2970,7 +2970,12 @@ function forEach(data, callback) {
 			this.placeChanged = true;
 			this.coordinates_set = true;
 
+			// записываю id городи или деревни
 			this.$root.advert_data.city_id = city_id;
+
+			// записываю координаты
+			this.$root.advert_data.adv_coords = [];
+			this.$root.advert_data.adv_coords = mapCoords;
 		},
 
 
@@ -3052,7 +3057,6 @@ function forEach(data, callback) {
 
 		// установить цену
 		setPrice: function setPrice(price) {
-
 			if (price < 0) return;
 			this.$root.advert_data.adv_price = price;
 			this.price = price;
@@ -3085,9 +3089,7 @@ function forEach(data, callback) {
 
 		// вид сделки
 		setDeal: function setDeal(deal_id) {
-
 			//if (deal_id==null) this.coordinates_set=false;
-
 			this.$root.advert_data.adv_deal = deal_id;
 			this.deal_id = deal_id;
 		},
@@ -3220,11 +3222,11 @@ function forEach(data, callback) {
 			// ---------------------------------------------------
 			// Отправить пост запрос на создание объявления
 			// ---------------------------------------------------
-			axios.post('/create', formData, {
+			axios.post("/create", formData, {
 				headers: { 'Content-Type': 'multipart/form-data' }
 			}).then(function (response) {
 				console.log(response);
-				if (response.data.result == "db.error") _this3.$root.$notify({ group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error' });else if (response.data.result == "usr.error") _this3.$root.$notify({ group: 'foo', text: "<h6>" + response.data.msg + "</h6>", type: 'error' });else alert("ok");
+				if (response.data.result == "db.error") _this3.$root.$notify({ group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error' });else if (response.data.result == "usr.error") _this3.$root.$notify({ group: 'foo', text: "<h6>" + response.data.msg + "</h6>", type: 'error' });else alert("Объявление размещено");
 				//	else 
 				//	window.location="home"; // переходим в личный кабинет
 			}).catch(function (error) {
