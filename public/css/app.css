@@ -205,10 +205,9 @@ body {
   padding-left: 12px;
   font-size: 18px;
   width: 230px;
+  background: #787878;
   color: white;
   opacity: 0.9;
-  background-image: -webkit-gradient(linear, left top, right top, from(#72707a), to(#747480));
-  background-image: linear-gradient(to right, #72707a, #747480);
 }
 
 .category_item:hover {
