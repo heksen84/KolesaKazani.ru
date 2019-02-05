@@ -451,10 +451,9 @@ export default {
 			this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
 			this.$root.advert_data.adv_price = "";
 			this.$root.advert_data.adv_phone1 = "";
-			this.$root.advert_data.adv_phone2 = "";
-			this.$root.advert_data.adv_phone3 = "";
 
 			// сброс моделей
+			this.sdelka = 0;
 			this.price = "";
 			this.info = "";
 			this.phone1 = "";
@@ -463,7 +462,7 @@ export default {
 			this.regions_model = null;
 			this.places_model = null;
 			this.preview_images = [];
-			this.coordinates_set=false;
+			this.coordinates_set = false;
 
 			// сбрасываю дополнительные поля
 			this.$store.commit("ShowOtherFields", false);
