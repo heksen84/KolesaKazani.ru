@@ -265,7 +265,7 @@ export default {
       	}).catch((err) => {
 			console.log("Не возможно загрузить регионы!");
 		});
-		
+
 	},
 
 	components: { transport, realestate },
@@ -473,10 +473,8 @@ export default {
   		changeCategory(data) {
 			
 			this.advReset();
-
 			// добавляю категорию
-			this.$root.advert_data.adv_category=data;
-			// по умолчанию показываю доп. поля			
+			this.$root.advert_data.adv_category=data;		
 
   			switch(data) {
   				case null: {

@@ -3124,10 +3124,8 @@ function forEach(data, callback) {
 		changeCategory: function changeCategory(data) {
 
 			this.advReset();
-
 			// добавляю категорию
 			this.$root.advert_data.adv_category = data;
-			// по умолчанию показываю доп. поля			
 
 			switch (data) {
 				case null:
