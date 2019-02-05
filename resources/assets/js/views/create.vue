@@ -260,10 +260,7 @@ export default {
 
 		ymaps.ready(initMaps);
 		
-		get("/getRegions").then((res) => {
-		  this.regions=res.data;
-		  this.advReset();
-      	}).catch((err) => {
+		get("/getRegions").then((res) => { this.regions=res.data; this.advReset(); }).catch((err) => {
 			console.log("Не возможно загрузить регионы!");
 		});
 
@@ -428,7 +425,7 @@ export default {
 
 			// сброс массива объявления и переинициализация его
 			this.$root.advert_data = [];
-			this.$root.advert_data.adv_deal = 0;	// покупка по умолчанию
+			this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
 			this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
 			this.$root.advert_data.adv_price = "";
 			this.$root.advert_data.adv_phone1 = "";

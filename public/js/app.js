@@ -2906,8 +2906,7 @@ function forEach(data, callback) {
 		ymaps.ready(initMaps);
 
 		Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/getRegions").then(function (res) {
-			_this.regions = res.data;
-			_this.advReset();
+			_this.regions = res.data;_this.advReset();
 		}).catch(function (err) {
 			console.log("Не возможно загрузить регионы!");
 		});
