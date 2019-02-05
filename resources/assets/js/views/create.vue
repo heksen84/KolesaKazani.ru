@@ -113,7 +113,7 @@
 				</b-form-select>
 				</b-form-group>
 
-				<b-form-group label="Местность:" style="width:280px;margin:auto">
+				<b-form-group label="Местность:" style="width:280px;margin:auto" v-if="regions_model!=null">
 				<b-form-select class="mb-3" @change="changePlace" v-model="places_model">
 					 <option :value=null>-- Выберите местность --</option>
 					 <option v-for="item in places" :value="item.city_id+'@'+item.coords" :key="item.name">{{item.name}}</option>
@@ -129,7 +129,7 @@
 				<hr>
 
 				<!-- Публикация -->
-				<b-form-group style="text-align:center;margin:25px">
+				<b-form-group style="text-align:center;margin:25px" v-if="places_model!=null">
 					<b-button type="onSubmit" variant="outline-primary" title="Опубликовать объявление">ОПУБЛИКОВАТЬ</b-button>
 				</b-form-group>
 			
@@ -236,7 +236,8 @@ export default {
 			phone2: "",
 			phone3: "",
 			
-			/*-------------------------
+			/*
+			-------------------------
 			категории 
 			-------------------------*/
 			transport:false,			// транспорт
@@ -439,7 +440,7 @@ export default {
   		},
 
 		// сброс объявления
-		advReset() {
+		advReset(data) {
 
 			// сбрасываю фотки			
 			document.querySelector("input[type=file]").value = "";
@@ -454,6 +455,7 @@ export default {
 			this.$root.advert_data.adv_phone3 = "";
 
 			// сброс моделей
+			this.price = "";
 			this.info = "";
 			this.phone1 = "";
 			this.phone2 = "";
@@ -465,6 +467,9 @@ export default {
 
 			// сбрасываю дополнительные поля
 			this.$store.commit("ShowOtherFields", false);
+
+			if (data!=null) 
+				this.resetCategories(data);
 		},
   		/*
   		--------------------------
@@ -472,73 +477,63 @@ export default {
   		--------------------------*/
   		changeCategory(data) {
 			
-			this.advReset();
+			this.advReset(data);
+
 			// добавляю категорию
 			this.$root.advert_data.adv_category=data;		
 
   			switch(data) {
   				case null: {
-  					this.resetCategories(data); 
 					  this.root=true; 
 					  this.$store.commit("ShowOtherFields", false);
   					break;
   				}
-  				case 1: { 
-  					this.resetCategories(data); 
+  				case 1: {
 					  this.transport=true; 
 					  this.$store.commit("ShowOtherFields", false);
   					break; 
   				} 
-  				case 2: { 
-  					this.resetCategories(data); 
+  				case 2: {  
 					  this.real_estate=true; 
 					  this.$store.commit("ShowOtherFields", true);
   					break; 
   				}
-  				case 3: { 
-  					this.resetCategories(data); 
+  				case 3: {
 					  this.appliances=true; 
 					  this.$store.commit("ShowOtherFields", true);
   					break; 
   				}
-  				case 4: { 
-  					this.resetCategories(data); 
+  				case 4: {
 					  this.work_and_buisness=true;
 					  this.$store.commit("ShowOtherFields", true); 
   					break; 
   				}
-  				case 5: { 
-  					this.resetCategories(data); 
+  				case 5: {
 					  this.for_home=true; 
 					  this.$store.commit("ShowOtherFields", true);
   					break; 
   				}
-  				case 6: { 
-  					this.resetCategories(data); 
+  				case 6: {
 					  this.personal_effects=true; 
 					  this.$store.commit("ShowOtherFields", true);
   					break; 
   				}
-  				case 7: { 
-  					this.resetCategories(data); 
+  				case 7: {
 					this.animals=true;
 					this.$store.commit("ShowOtherFields", true); 
   					break; 
   				}
-  				case 8: { 
-  					this.resetCategories(data); 
+  				case 8: {
 					this.hobbies_and_leisure=true; 
 					this.$store.commit("ShowOtherFields", true);
   					break; 
   				}
   				case 9: { 
-  					this.resetCategories(data); 
 					this.services=true;
 					this.$store.commit("ShowOtherFields", true);
   					break; 
   				}
-  				case 10: { 
-  					this.resetCategories(data); 
+  				case 10: {
 					this.other=true;
 					this.$store.commit("ShowOtherFields", true);
   					break; 

@@ -2879,7 +2879,8 @@ function forEach(data, callback) {
 			phone2: "",
 			phone3: "",
 
-			/*-------------------------
+			/*
+   -------------------------
    категории 
    -------------------------*/
 			transport: false, // транспорт
@@ -3089,7 +3090,7 @@ function forEach(data, callback) {
 
 
 		// сброс объявления
-		advReset: function advReset() {
+		advReset: function advReset(data) {
 
 			// сбрасываю фотки			
 			document.querySelector("input[type=file]").value = "";
@@ -3104,6 +3105,7 @@ function forEach(data, callback) {
 			this.$root.advert_data.adv_phone3 = "";
 
 			// сброс моделей
+			this.price = "";
 			this.info = "";
 			this.phone1 = "";
 			this.phone2 = "";
@@ -3115,6 +3117,8 @@ function forEach(data, callback) {
 
 			// сбрасываю дополнительные поля
 			this.$store.commit("ShowOtherFields", false);
+
+			if (data != null) this.resetCategories(data);
 		},
 
 		/*
@@ -3123,84 +3127,74 @@ function forEach(data, callback) {
   --------------------------*/
 		changeCategory: function changeCategory(data) {
 
-			this.advReset();
+			this.advReset(data);
+
 			// добавляю категорию
 			this.$root.advert_data.adv_category = data;
 
 			switch (data) {
 				case null:
 					{
-						this.resetCategories(data);
 						this.root = true;
 						this.$store.commit("ShowOtherFields", false);
 						break;
 					}
 				case 1:
 					{
-						this.resetCategories(data);
 						this.transport = true;
 						this.$store.commit("ShowOtherFields", false);
 						break;
 					}
 				case 2:
 					{
-						this.resetCategories(data);
 						this.real_estate = true;
 						this.$store.commit("ShowOtherFields", true);
 						break;
 					}
 				case 3:
 					{
-						this.resetCategories(data);
 						this.appliances = true;
 						this.$store.commit("ShowOtherFields", true);
 						break;
 					}
 				case 4:
 					{
-						this.resetCategories(data);
 						this.work_and_buisness = true;
 						this.$store.commit("ShowOtherFields", true);
 						break;
 					}
 				case 5:
 					{
-						this.resetCategories(data);
 						this.for_home = true;
 						this.$store.commit("ShowOtherFields", true);
 						break;
 					}
 				case 6:
 					{
-						this.resetCategories(data);
 						this.personal_effects = true;
 						this.$store.commit("ShowOtherFields", true);
 						break;
 					}
 				case 7:
 					{
-						this.resetCategories(data);
 						this.animals = true;
 						this.$store.commit("ShowOtherFields", true);
 						break;
 					}
 				case 8:
 					{
-						this.resetCategories(data);
 						this.hobbies_and_leisure = true;
 						this.$store.commit("ShowOtherFields", true);
 						break;
 					}
 				case 9:
 					{
-						this.resetCategories(data);
 						this.services = true;
 						this.$store.commit("ShowOtherFields", true);
 						break;
 					}
 				case 10:
 					{
-						this.resetCategories(data);
 						this.other = true;
 						this.$store.commit("ShowOtherFields", true);
 						break;
@@ -38321,50 +38315,57 @@ var render = function() {
                             1
                           ),
                           _vm._v(" "),
-                          _c(
-                            "b-form-group",
-                            {
-                              staticStyle: { width: "280px", margin: "auto" },
-                              attrs: { label: "Местность:" }
-                            },
-                            [
-                              _c(
-                                "b-form-select",
+                          _vm.regions_model != null
+                            ? _c(
+                                "b-form-group",
                                 {
-                                  staticClass: "mb-3",
-                                  on: { change: _vm.changePlace },
-                                  model: {
-                                    value: _vm.places_model,
-                                    callback: function($$v) {
-                                      _vm.places_model = $$v
-                                    },
-                                    expression: "places_model"
-                                  }
+                                  staticStyle: {
+                                    width: "280px",
+                                    margin: "auto"
+                                  },
+                                  attrs: { label: "Местность:" }
                                 },
                                 [
-                                  _c("option", { domProps: { value: null } }, [
-                                    _vm._v("-- Выберите местность --")
-                                  ]),
-                                  _vm._v(" "),
-                                  _vm._l(_vm.places, function(item) {
-                                    return _c(
-                                      "option",
-                                      {
-                                        key: item.name,
-                                        domProps: {
-                                          value:
-                                            item.city_id + "@" + item.coords
-                                        }
-                                      },
-                                      [_vm._v(_vm._s(item.name))]
-                                    )
-                                  })
+                                  _c(
+                                    "b-form-select",
+                                    {
+                                      staticClass: "mb-3",
+                                      on: { change: _vm.changePlace },
+                                      model: {
+                                        value: _vm.places_model,
+                                        callback: function($$v) {
+                                          _vm.places_model = $$v
+                                        },
+                                        expression: "places_model"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        { domProps: { value: null } },
+                                        [_vm._v("-- Выберите местность --")]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.places, function(item) {
+                                        return _c(
+                                          "option",
+                                          {
+                                            key: item.name,
+                                            domProps: {
+                                              value:
+                                                item.city_id + "@" + item.coords
+                                            }
+                                          },
+                                          [_vm._v(_vm._s(item.name))]
+                                        )
+                                      })
+                                    ],
+                                    2
+                                  )
                                 ],
-                                2
+                                1
                               )
-                            ],
-                            1
-                          ),
+                            : _vm._e(),
                           _vm._v(" "),
                           _c(
                             "b-form-group",
@@ -38415,29 +38416,31 @@ var render = function() {
                           _vm._v(" "),
                           _c("hr"),
                           _vm._v(" "),
-                          _c(
-                            "b-form-group",
-                            {
-                              staticStyle: {
-                                "text-align": "center",
-                                margin: "25px"
-                              }
-                            },
-                            [
-                              _c(
-                                "b-button",
+                          _vm.places_model != null
+                            ? _c(
+                                "b-form-group",
                                 {
-                                  attrs: {
-                                    type: "onSubmit",
-                                    variant: "outline-primary",
-                                    title: "Опубликовать объявление"
+                                  staticStyle: {
+                                    "text-align": "center",
+                                    margin: "25px"
                                   }
                                 },
-                                [_vm._v("ОПУБЛИКОВАТЬ")]
+                                [
+                                  _c(
+                                    "b-button",
+                                    {
+                                      attrs: {
+                                        type: "onSubmit",
+                                        variant: "outline-primary",
+                                        title: "Опубликовать объявление"
+                                      }
+                                    },
+                                    [_vm._v("ОПУБЛИКОВАТЬ")]
+                                  )
+                                ],
+                                1
                               )
-                            ],
-                            1
-                          )
+                            : _vm._e()
                         ],
                         1
                       )
