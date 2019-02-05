@@ -444,6 +444,7 @@ export default {
 
 			// сброс категорий
 			if (category_data!=null) {
+				
 			this.root=false;				    // по умолчанию
   			this.transport=false;			    // транспорт
   			this.real_estate=false;			    // недвижимость
@@ -455,8 +456,10 @@ export default {
 			this.hobbies_and_leisure=false;	  	// хобби и отдых
 			this.services=false;			    // услуги
 			this.other=false;				    // другое
+
 			// и добавляю категорию
 			this.$root.advert_data.adv_category=category_data;
+
 			}
 
 			// сбрасываю фотки			
