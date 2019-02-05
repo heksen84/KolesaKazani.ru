@@ -2944,7 +2944,7 @@ function forEach(data, callback) {
 		// обработка выбора местоположения
 		changePlace: function changePlace(items) {
 
-			if (items == null) return;
+			if (items == null) return; // не обрабатыать если null
 
 			var arr = items.replace(" ", "").split("@");
 			var city_id = arr[0];
@@ -3067,7 +3067,6 @@ function forEach(data, callback) {
 
 		// вид сделки
 		setDeal: function setDeal(deal_id) {
-			//if (deal_id==null) this.coordinates_set=false;
 			this.$root.advert_data.adv_deal = deal_id;
 			this.deal_id = deal_id;
 		},

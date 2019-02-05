@@ -300,7 +300,7 @@ export default {
 		// обработка выбора местоположения
 		changePlace(items) {
 
-			if (items==null) return;
+			if (items==null) return; // не обрабатыать если null
 
 			var arr = items.replace(" ", "").split("@");
 			var city_id = arr[0];
@@ -419,7 +419,6 @@ export default {
 		  		  
 		// вид сделки
   		setDeal(deal_id) {
-			//if (deal_id==null) this.coordinates_set=false;
   			this.$root.advert_data.adv_deal=deal_id;
 			this.deal_id=deal_id;
 		  },
