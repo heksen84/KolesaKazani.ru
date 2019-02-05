@@ -2871,7 +2871,6 @@ function forEach(data, callback) {
 			preview_images: [],
 			real_images: [],
 			root: false,
-			//regions: [],
 			regions_model: null,
 			places: [],
 			places_model: null,
