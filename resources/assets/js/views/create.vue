@@ -424,7 +424,7 @@ export default {
 		  },
 
 		// сброс объявления
-		advReset(data) {
+		advReset(category_data) {
 
 			// сброс массива объявления и переинициализация его
 			this.$root.advert_data = [];
@@ -446,7 +446,7 @@ export default {
 			this.coordinates_set = false;
 
 			// сброс категорий
-			if (data!=null) {
+			if (category_data!=null) {
 			this.root=false;				    // по умолчанию
   			this.transport=false;			    // транспорт
   			this.real_estate=false;			    // недвижимость

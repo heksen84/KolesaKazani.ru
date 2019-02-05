@@ -3073,7 +3073,7 @@ function forEach(data, callback) {
 
 
 		// сброс объявления
-		advReset: function advReset(data) {
+		advReset: function advReset(category_data) {
 
 			// сброс массива объявления и переинициализация его
 			this.$root.advert_data = [];
@@ -3095,7 +3095,7 @@ function forEach(data, callback) {
 			this.coordinates_set = false;
 
 			// сброс категорий
-			if (data != null) {
+			if (category_data != null) {
 				this.root = false; // по умолчанию
 				this.transport = false; // транспорт
 				this.real_estate = false; // недвижимость
