@@ -260,6 +260,7 @@ export default {
 
 		ymaps.ready(initMaps);
 		
+		// перенести выборку в контроллер
 		get("/getRegions").then((res) => { 
 
 			this.regions=res.data; 
