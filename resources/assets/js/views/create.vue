@@ -385,21 +385,6 @@ export default {
  			window.history.back();
   		},
 
-  		// Сброс данных при выборе категории
-  		resetCategories(data) {
-  			 this.root=false;				        // по умолчанию
-  			 this.transport=false;			        // транспорт
-  			 this.real_estate=false;			    // недвижимость
-  			 this.appliances=false;			        // бытовая техника
-  			 this.work_and_buisness=false; 	    	// работа и бизнес
-  			 this.for_home=false;			        // для дома и дачи
-  			 this.personal_effects=false;	      	// личные вещи
-			 this.animals=false;				    // животные
-			 this.hobbies_and_leisure=false;	  	// хобби и отдых
-			 this.services=false;			        // услуги
-			 this.other=false;				        // другое 
-  		},
-
 		// описание
   		setInfo(info) {
 			this.$root.advert_data.adv_info=info;
@@ -437,6 +422,21 @@ export default {
 			//if (deal_id==null) this.coordinates_set=false;
   			this.$root.advert_data.adv_deal=deal_id;
 			this.deal_id=deal_id;
+		  },
+		  
+		// Сброс данных при выборе категории
+  		resetCategories(data) {
+  			this.root=false;				    // по умолчанию
+  			this.transport=false;			    // транспорт
+  			this.real_estate=false;			    // недвижимость
+  			this.appliances=false;			    // электроника
+  			this.work_and_buisness=false; 	    // работа и бизнес
+  			this.for_home=false;			    // для дома и дачи
+  			this.personal_effects=false;	    // личные вещи
+			this.animals=false;				    // животные
+			this.hobbies_and_leisure=false;	  	// хобби и отдых
+			this.services=false;			    // услуги
+			this.other=false;				    // другое 
   		},
 
 		// сброс объявления
