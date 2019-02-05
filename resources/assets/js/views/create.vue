@@ -406,16 +406,16 @@ export default {
 
 			switch(number) {
 				case 1: {
-					  this.$root.advert_data.adv_phone1=this.phone1;
-					  break;
+					this.$root.advert_data.adv_phone1=this.phone1;
+					break;
 				}
 				case 2: {
-					  this.$root.advert_data.adv_phone2=this.phone2;
-					  break;
+					this.$root.advert_data.adv_phone2=this.phone2;
+					break;
 				}
 				case 3: {
-					  this.$root.advert_data.adv_phone3=this.phone3;
-					  break;
+					this.$root.advert_data.adv_phone3=this.phone3;
+					break;
 				}
 			}
 		},
