@@ -3553,7 +3553,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   // компонент создан
   created: function created() {
 
-    this.$store.commit("SetLang", "ru");
+    var lang = localStorage.getItem("lang");
+    console.log(lang);
+
+    if (lang != null) {
+      this.$store.commit("SetLang", lang);
+      if (lang == "ru") this.lang = "русский";else this.lang = "казакша";
+    } else {
+      this.$store.commit("SetLang", "ru");
+      this.lang = "русский";
+    }
 
     var placeName = localStorage.getItem("placeName");
     var urlRegAndPlace = localStorage.getItem("urlRegAndPlace");
@@ -3575,9 +3584,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (this.lang == ru) {
         this.$store.commit("SetLang", "kz");
         this.lang = "казакша";
+        localStorage.setItem("lang", "kz");
       } else {
         this.$store.commit("SetLang", "ru");
         this.lang = ru;
+        localStorage.setItem("lang", "ru");
       }
     },
 

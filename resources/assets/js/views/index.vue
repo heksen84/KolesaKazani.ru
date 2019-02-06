@@ -128,9 +128,23 @@ export default {
 
   // компонент создан
   created() {
-
-    this.$store.commit("SetLang", "ru")
     
+    var lang = localStorage.getItem("lang")
+    console.log(lang)
+
+    if (lang!=null) {
+      this.$store.commit("SetLang", lang)
+      if (lang=="ru")
+        this.lang="русский";
+      else
+        this.lang="казакша";
+    }
+    else {
+      this.$store.commit("SetLang", "ru")
+      this.lang="русский";
+    }
+    
+
     var placeName = localStorage.getItem("placeName");
     var urlRegAndPlace = localStorage.getItem("urlRegAndPlace");
 
@@ -154,13 +168,17 @@ export default {
     // установка языка
     setLang() {
       var ru = "русский";
-      if (this.lang==ru) {
-      this.$store.commit("SetLang", "kz")
-      this.lang="казакша";
+      if (this.lang==ru) 
+      {
+        this.$store.commit("SetLang", "kz")
+        this.lang="казакша";
+        localStorage.setItem("lang", "kz")
       }
-      else {
+      else 
+      {
         this.$store.commit("SetLang", "ru")
         this.lang=ru;
+        localStorage.setItem("lang", "ru")
       }
     },
 
