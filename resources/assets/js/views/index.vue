@@ -15,10 +15,10 @@
           <b-button variant="link" style="margin-top:-5px" v-if="buttonAllRegion" @click="selectAllRegion">Вся область</b-button>
         </b-modal> 
         <b-col id="welcome_menu" v-show="auth">
-          <div class="button" id="button_login" style="width:150px;text-align:center;position:relative;top:3px;margin-left:10px" @click="login">мои объявления</div>
+          <div class="button" id="button_login" style="text-align:center;position:relative;top:4px;margin-left:10px" @click="login">{{ this.$store.state.str_my_adverts }}</div>
           <!--<div class="button" style="width:50px;text-align:center;position:relative;top:3px;background:rgb(100,100,200);margin-right:10px" @click="setLang">{{ lang }}</div>-->   
         </b-col>        
-        <b-col style="text-align:center;margin-top:10px" v-show="!auth">
+        <b-col style="text-align:center;top:4px" v-show="!auth">
           <div class="button" id="button_login" style="margin-left:17px" @click="login">Вход</div>
           <div class="button" id="button_reg" @click="register">Регистрация</div>
           <!--<div class="button" style="width:50px;text-align:center;position:relative;background:rgb(100,100,200);float:right;top:3px;margin-right:10px" @click="setLang">{{ lang }}</div>-->

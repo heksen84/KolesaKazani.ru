@@ -35341,16 +35341,15 @@ var render = function() {
                 {
                   staticClass: "button",
                   staticStyle: {
-                    width: "150px",
                     "text-align": "center",
                     position: "relative",
-                    top: "3px",
+                    top: "4px",
                     "margin-left": "10px"
                   },
                   attrs: { id: "button_login" },
                   on: { click: _vm.login }
                 },
-                [_vm._v("мои объявления")]
+                [_vm._v(_vm._s(this.$store.state.str_my_adverts))]
               )
             ]
           ),
@@ -35366,7 +35365,7 @@ var render = function() {
                   expression: "!auth"
                 }
               ],
-              staticStyle: { "text-align": "center", "margin-top": "10px" }
+              staticStyle: { "text-align": "center", top: "4px" }
             },
             [
               _c(
@@ -51759,6 +51758,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32_vue_notification__ = __webpack_require__("./node_modules/vue-notification/dist/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32_vue_notification___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_32_vue_notification__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
@@ -51825,7 +51826,7 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_32_vue
 // -----------------------------------
 var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
 
-  state: {
+  state: _defineProperty({
 
     // дополнительные поля в объявлении (поле доп. информация, и.т.д.)
     show_other_fields: false,
@@ -51840,7 +51841,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
     str_search_placeholder: "",
     str_button_search: "",
     str_create_advert: ""
-  },
+  }, 'str_my_adverts', ""),
 
   mutations: {
 
@@ -51854,6 +51855,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
         state.str_search_placeholder = "поиск по сайту";
         state.str_button_search = "поиск";
         state.str_create_advert = "подать объявление";
+        state.str_my_adverts = "мои объявления";
       }
 
       // казахский
@@ -51863,6 +51865,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
         state.str_search_placeholder = "cайт бойынша іздеу";
         state.str_button_search = "іздеу";
         state.str_create_advert = "хабарландыру орналастырыңыз";
+        state.str_my_adverts = "менің хабарландыруларым";
       }
     },
     ShowOtherFields: function ShowOtherFields(state, value) {
