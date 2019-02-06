@@ -1851,7 +1851,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // --------------------------------
     changeProperyType: function changeProperyType(property_id) {
 
-      console.log("Вид недвижимости :" + data);
+      console.log("Вид недвижимости: " + property_id);
 
       // показываю дополнительные поля
       this.$store.commit("ShowOtherFields", true);
@@ -37892,7 +37892,7 @@ var render = function() {
             },
             [
               _c("div", {
-                staticStyle: { width: "100%", height: "400px" },
+                staticStyle: { width: "100%", height: "300px" },
                 attrs: { id: "bigmap" }
               }),
               _vm._v(" "),
@@ -37900,10 +37900,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "b-button",
-                {
-                  attrs: { variant: "primary", id: "setCoordsBtn" },
-                  on: { click: _vm.setCoords }
-                },
+                { attrs: { variant: "primary" }, on: { click: _vm.setCoords } },
                 [_vm._v("Сохранить")]
               )
             ],

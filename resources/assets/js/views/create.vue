@@ -5,9 +5,9 @@
 
 		 <!-- карта -->
           <b-modal size="lg" v-model="setCoordsDialog" style="text-align:center;color:rgb(50,50,50)" hide-footer title="Уточнить на карте">
-			  <div id="bigmap" style="width: 100%; height: 400px"></div>
+			  <div id="bigmap" style="width: 100%; height: 300px"></div>
 			<br/>
-			<b-button variant="primary" @click="setCoords" id="setCoordsBtn">Сохранить</b-button>
+			<b-button variant="primary" @click="setCoords">Сохранить</b-button>
           </b-modal> 	
 
 		  <b-col cols="12" sm="12" md="12" lg="10" xl="10" class="create_advert_col">

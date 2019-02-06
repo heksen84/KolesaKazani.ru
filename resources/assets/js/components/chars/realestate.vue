@@ -101,7 +101,7 @@ export default {
     // --------------------------------
     changeProperyType(property_id) {
 
-        console.log("Вид недвижимости :"+data)
+        console.log("Вид недвижимости: "+property_id)
 
         // показываю дополнительные поля
         this.$store.commit("ShowOtherFields", true);
