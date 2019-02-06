@@ -99,14 +99,14 @@ export default {
     // --------------------------------
     // изменения в недвижимости
     // --------------------------------
-    changeProperyType(data) {
+    changeProperyType(property_id) {
 
-        console.log("Ёбтель :"+data)
+        console.log("Вид недвижимости :"+data)
 
         // показываю дополнительные поля
         this.$store.commit("ShowOtherFields", true);
      
-        switch(data) {
+        switch(property_id) {
           case null: {
             this.$store.commit("ShowOtherFields", false);
             break;
@@ -142,27 +142,27 @@ export default {
         }
       },
 
-      changeFloor(data) {
+      changeFloor(floor_num) {
 
       },
 
-      changeNumberOfFloors(data) {
+      changeNumberOfFloors(number_of_floors) {
 
       },
 
-      changeNumberOfRooms(data) {
+      changeNumberOfRooms(number_of_rooms) {
 
       },
 
-      changeTotalArea(data) {
+      changeTotalArea(area_num) {
 
       },
 
-      changePropertyRights(data) {
+      changePropertyRights(property_num) {
 
       },
 
-      changeObjectType(data) {
+      changeObjectType(object_num) {
 
       }
 

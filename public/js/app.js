@@ -1849,14 +1849,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // --------------------------------
     // изменения в недвижимости
     // --------------------------------
-    changeProperyType: function changeProperyType(data) {
+    changeProperyType: function changeProperyType(property_id) {
 
-      console.log("Ёбтель :" + data);
+      console.log("Вид недвижимости :" + data);
 
       // показываю дополнительные поля
       this.$store.commit("ShowOtherFields", true);
 
-      switch (data) {
+      switch (property_id) {
         case null:
           {
             this.$store.commit("ShowOtherFields", false);
@@ -1901,12 +1901,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
       }
     },
-    changeFloor: function changeFloor(data) {},
-    changeNumberOfFloors: function changeNumberOfFloors(data) {},
-    changeNumberOfRooms: function changeNumberOfRooms(data) {},
-    changeTotalArea: function changeTotalArea(data) {},
-    changePropertyRights: function changePropertyRights(data) {},
-    changeObjectType: function changeObjectType(data) {}
+    changeFloor: function changeFloor(floor_num) {},
+    changeNumberOfFloors: function changeNumberOfFloors(number_of_floors) {},
+    changeNumberOfRooms: function changeNumberOfRooms(number_of_rooms) {},
+    changeTotalArea: function changeTotalArea(area_num) {},
+    changePropertyRights: function changePropertyRights(property_num) {},
+    changeObjectType: function changeObjectType(object_num) {}
   }
 });
 
