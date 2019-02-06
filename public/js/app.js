@@ -35580,6 +35580,10 @@ var render = function() {
               _c(
                 "b-button",
                 {
+                  staticStyle: {
+                    border: "1px solid white",
+                    "font-size": "14px"
+                  },
                   attrs: {
                     variant: "primary",
                     size: "sm",
@@ -35587,7 +35591,7 @@ var render = function() {
                   },
                   on: { click: _vm.closeSubCats }
                 },
-                [_vm._v("Вернуться к категориям")]
+                [_vm._v("↺ Вернуться к категориям")]
               ),
               _vm._v(" "),
               _vm._l(Object.keys(_vm.subcats).length, function(i) {
