@@ -208,7 +208,7 @@ export default {
     return 	{
 
 			// константы
-			const_phone1_length: 4,
+			const_phone1_length: 2,
 
 			// данные карты
 			setCoordsDialog: false,

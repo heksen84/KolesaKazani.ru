@@ -2851,7 +2851,7 @@ function forEach(data, callback) {
 		return {
 
 			// константы
-			const_phone1_length: 4,
+			const_phone1_length: 2,
 
 			// данные карты
 			setCoordsDialog: false,
@@ -3414,7 +3414,6 @@ function initMap() {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
-//
 //
 //
 //
@@ -35572,6 +35571,16 @@ var render = function() {
                 [_vm._v("подкатегории")]
               ),
               _vm._v(" "),
+              _c(
+                "b-button",
+                {
+                  staticStyle: { "margin-bottom": "10px" },
+                  attrs: { variant: "primary", size: "sm" },
+                  on: { click: _vm.closeSubCats }
+                },
+                [_vm._v("Вернуться к категориям")]
+              ),
+              _vm._v(" "),
               _vm._l(Object.keys(_vm.subcats).length, function(i) {
                 return _c(
                   "b-row",
@@ -35622,18 +35631,7 @@ var render = function() {
                     )
                   })
                 )
-              }),
-              _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
-              _c(
-                "b-button",
-                {
-                  attrs: { variant: "success", size: "sm" },
-                  on: { click: _vm.closeSubCats }
-                },
-                [_vm._v("назад")]
-              )
+              })
             ],
             2
           )
