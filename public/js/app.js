@@ -1849,7 +1849,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // --------------------------------
     // изменения в недвижимости
     // --------------------------------
-    changeRealEstate: function changeRealEstate(data) {
+    changeProperyType: function changeProperyType(data) {
 
       console.log("Ёбтель :" + data);
 
@@ -1900,7 +1900,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             break;
           }
       }
-    }
+    },
+    changeFloor: function changeFloor(data) {},
+    changeNumberOfFloors: function changeNumberOfFloors(data) {},
+    changeNumberOfRooms: function changeNumberOfRooms(data) {},
+    changeTotalArea: function changeTotalArea(data) {},
+    changePropertyRights: function changePropertyRights(data) {},
+    changeObjectType: function changeObjectType(data) {}
   }
 });
 
@@ -37634,7 +37640,7 @@ var render = function() {
             "b-form-select",
             {
               staticClass: "mb-2 mr-sm-2 mb-sm-2",
-              on: { change: _vm.changeRealEstate },
+              on: { change: _vm.changeProperyType },
               model: {
                 value: _vm.selected_type,
                 callback: function($$v) {
@@ -37665,7 +37671,7 @@ var render = function() {
                 "b-form-select",
                 {
                   staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                  on: { change: _vm.changeRealEstate },
+                  on: { change: _vm.changeFloor },
                   model: {
                     value: _vm.selected_room_count,
                     callback: function($$v) {
@@ -37696,7 +37702,7 @@ var render = function() {
                 {
                   staticClass: "mb-2 mr-sm-2 mb-sm-2",
                   staticStyle: { width: "120px" },
-                  on: { change: _vm.changeRealEstate },
+                  on: { change: _vm.changeNumberOfFloors },
                   model: {
                     value: _vm.selected_room_count,
                     callback: function($$v) {
@@ -37727,7 +37733,7 @@ var render = function() {
                 {
                   staticClass: "mb-2 mr-sm-2 mb-sm-2",
                   staticStyle: { width: "152px" },
-                  on: { change: _vm.changeRealEstate },
+                  on: { change: _vm.changeNumberOfRooms },
                   model: {
                     value: _vm.selected_room_count,
                     callback: function($$v) {
@@ -37757,6 +37763,7 @@ var render = function() {
                 staticClass: "mb-2 mr-sm-2 mb-sm-2",
                 staticStyle: { width: "160px" },
                 attrs: { type: "number", placeholder: "Введите площадь" },
+                on: { change: _vm.changeTotalArea },
                 model: {
                   value: _vm.area,
                   callback: function($$v) {
@@ -37780,7 +37787,7 @@ var render = function() {
                 {
                   staticClass: "mb-2 mr-sm-2 mb-sm-2",
                   staticStyle: { width: "175px" },
-                  on: { change: _vm.changeRealEstate },
+                  on: { change: _vm.changePropertyRights },
                   model: {
                     value: _vm.selected_property_rights,
                     callback: function($$v) {
@@ -37812,7 +37819,7 @@ var render = function() {
                 {
                   staticClass: "mb-2 mr-sm-2 mb-sm-2",
                   staticStyle: { width: "175px" },
-                  on: { change: _vm.changeRealEstate },
+                  on: { change: _vm.changeObjectType },
                   model: {
                     value: _vm.selected_object_type,
                     callback: function($$v) {

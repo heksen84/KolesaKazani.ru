@@ -2,43 +2,43 @@
   <b-form inline style="margin-top:-18px;">
 
 	<b-form-group label="Вид недвижимости:">
-        <b-form-select v-model="selected_type" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate">
+        <b-form-select v-model="selected_type" class="mb-2 mr-sm-2 mb-sm-2" @change="changeProperyType">
            <option v-for="item in type" :value="item.value" :key="item.value">{{item.text}}</option>
         </b-form-select>
   </b-form-group>
 
 <b-form-group label="Этаж:" v-if="selected.apartment && selected_type==0 || selected_type==1">
-         <b-form-select v-model="selected_room_count" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate">
+         <b-form-select v-model="selected_room_count" class="mb-2 mr-sm-2 mb-sm-2" @change="changeFloor">
            <option v-for="i in 60" :value="i" :key="i">{{ i }}</option>
         </b-form-select>
 </b-form-group>
 
 <b-form-group label="Этажей в доме:" v-if="selected.apartment && selected_type==0 || selected_type==1">
-         <b-form-select v-model="selected_room_count" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate" style="width:120px">
+         <b-form-select v-model="selected_room_count" class="mb-2 mr-sm-2 mb-sm-2" @change="changeNumberOfFloors" style="width:120px">
            <option v-for="i in 100" :value="i" :key="i">{{ i }}</option>
         </b-form-select>
 </b-form-group>
 
 <b-form-group label="Количество комнат:" v-if="selected.apartment && selected_type==0 || selected_type==1">
-         <b-form-select v-model="selected_room_count" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate" style="width:152px">
+         <b-form-select v-model="selected_room_count" class="mb-2 mr-sm-2 mb-sm-2" @change="changeNumberOfRooms" style="width:152px">
            <option v-for="i in 10" :value="i" :key="i">{{ i }}</option>
         </b-form-select>
 </b-form-group>
 
 <b-form-group label="Общая площадь:" v-if="selected.apartment && selected_type==0 || selected_type==1">
-        <b-form-input type="number" v-model="area" class="mb-2 mr-sm-2 mb-sm-2" style="width:160px" placeholder="Введите площадь"></b-form-input>
+        <b-form-input type="number" v-model="area" class="mb-2 mr-sm-2 mb-sm-2" @change="changeTotalArea" style="width:160px" placeholder="Введите площадь"></b-form-input>
 </b-form-group>
 
 
 <b-form-group label="Право собственности:" v-if="selected_type!=null">
-        <b-form-select v-model="selected_property_rights" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate" style="width:175px">
+        <b-form-select v-model="selected_property_rights" class="mb-2 mr-sm-2 mb-sm-2" @change="changePropertyRights" style="width:175px">
            <option v-for="item in property_rights" :value="item.value" :key="item.value">{{item.text}}</option>
         </b-form-select>
 </b-form-group>
 
 
 <b-form-group label="Вид объекта:" v-if="selected_type!=null">
-        <b-form-select v-model="selected_object_type" class="mb-2 mr-sm-2 mb-sm-2" @change="changeRealEstate" style="width:175px">
+        <b-form-select v-model="selected_object_type" class="mb-2 mr-sm-2 mb-sm-2" @change="changeObjectType" style="width:175px">
            <option v-for="item in object_type" :value="item.value" :key="item.value">{{item.text}}</option>
         </b-form-select>
 </b-form-group>
@@ -99,7 +99,7 @@ export default {
     // --------------------------------
     // изменения в недвижимости
     // --------------------------------
-    changeRealEstate(data) {
+    changeProperyType(data) {
 
       console.log("Ёбтель :"+data)
 
@@ -140,7 +140,44 @@ export default {
             break; 
           }
         }
+      },
+
+      changeFloor(data) {
+        
+      },
+
+      changeNumberOfFloors(data) {
+
+      },
+
+      changeNumberOfRooms(data) {
+
+      },
+
+      changeTotalArea(data) {
+
+      },
+
+      changePropertyRights(data) {
+
+      },
+
+      changeObjectType(data) {
+
       }
+
+
+
+      
+
+
+
+
+
+
+
+
+
   }
 }
 </script>
