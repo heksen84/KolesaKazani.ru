@@ -101,7 +101,7 @@ export default {
     // --------------------------------
     changeProperyType(data) {
 
-      console.log("Ёбтель :"+data)
+        console.log("Ёбтель :"+data)
 
         // показываю дополнительные поля
         this.$store.commit("ShowOtherFields", true);
@@ -143,7 +143,7 @@ export default {
       },
 
       changeFloor(data) {
-        
+
       },
 
       changeNumberOfFloors(data) {
