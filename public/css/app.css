@@ -122,6 +122,12 @@ body {
   font-weight: 550;
 }
 
+#close_subcats_btn {
+  margin-bottom: 10px;
+  margin-top: -10px;
+  margin-left: 25px;
+}
+
 .form {
   text-align: left;
   margin: 60px auto;
@@ -368,6 +374,10 @@ a:active {
 }
 
 @media screen and (max-width: 1024px) {
+  #close_subcats_btn {
+    margin-left: 0px;
+  }
+
   #welcome_menu {
     margin-top: 3px;
   }

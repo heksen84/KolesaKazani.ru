@@ -35581,11 +35581,11 @@ var render = function() {
               _c(
                 "b-button",
                 {
-                  staticStyle: {
-                    "margin-bottom": "10px",
-                    "margin-top": "-10px"
+                  attrs: {
+                    variant: "primary",
+                    size: "sm",
+                    id: "close_subcats_btn"
                   },
-                  attrs: { variant: "primary", size: "sm" },
                   on: { click: _vm.closeSubCats }
                 },
                 [_vm._v("Вернуться к категориям")]
