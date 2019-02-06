@@ -35343,7 +35343,7 @@ var render = function() {
                   staticStyle: {
                     "text-align": "center",
                     position: "relative",
-                    top: "4px",
+                    top: "5px",
                     "margin-left": "10px"
                   },
                   attrs: { id: "button_login" },
@@ -35365,7 +35365,7 @@ var render = function() {
                   expression: "!auth"
                 }
               ],
-              staticStyle: { "text-align": "center", top: "4px" }
+              staticStyle: { "text-align": "center", top: "5px" }
             },
             [
               _c(
