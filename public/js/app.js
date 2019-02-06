@@ -35583,8 +35583,7 @@ var render = function() {
                 {
                   staticStyle: {
                     "margin-bottom": "10px",
-                    "margin-top": "-10px",
-                    "margin-left": "20px"
+                    "margin-top": "-10px"
                   },
                   attrs: { variant: "primary", size: "sm" },
                   on: { click: _vm.closeSubCats }
