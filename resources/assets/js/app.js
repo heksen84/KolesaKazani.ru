@@ -79,7 +79,8 @@ const store = new Vuex.Store({
       str_search_placeholder: "",
       str_button_search: "",
       str_create_advert: "",
-      str_my_adverts: ""
+      str_my_adverts: "",
+      str_location: ""
     },
 
     mutations: {
@@ -95,6 +96,7 @@ const store = new Vuex.Store({
           state.str_button_search = "поиск"
           state.str_create_advert = "подать объявление"
           state.str_my_adverts = "мои объявления"
+          state.str_location = "расположение"
 
           
         }
@@ -107,6 +109,7 @@ const store = new Vuex.Store({
           state.str_button_search = "іздеу"
           state.str_create_advert = "хабарландыру орналастырыңыз"
           state.str_my_adverts = "менің хабарландыруларым"
+          state.str_location = "орналасқан"
           
         }
 
