@@ -451,8 +451,9 @@ export default {
 			this.other=false;				    // другое
 			}
 
-			// сбрасываю фотки			
-			document.querySelector("input[type=file]").value = "";
+			// сбрасываю фотки
+			var photos = document.querySelector("input[type=file]");
+			if (photos!=null) photos.value = "";
 		},
 
   		/*
