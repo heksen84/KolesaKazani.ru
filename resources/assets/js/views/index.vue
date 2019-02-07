@@ -53,7 +53,7 @@
 
     <!-- КАТЕГОРИИ -->
     <div v-if="show_categories" style="text-align:center">    
-      <div id="categories_title" class="shadow_text" style="margin-bottom:18px">категории</div>        
+      <div id="categories_title" class="shadow_text" style="margin-bottom:15px">категории</div>        
         <b-row v-for="i in Object.keys(items).length" v-bind:key=i>
           <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in items.slice((i - 1) * 4, i * 4)" v-bind:key=item.id>
             <a :href="urlRegAndPlace+'/'+item.url" @click="showSubcats($event, item.id)">

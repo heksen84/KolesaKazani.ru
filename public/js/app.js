@@ -35561,7 +35561,7 @@ var render = function() {
                 "div",
                 {
                   staticClass: "shadow_text",
-                  staticStyle: { "margin-bottom": "18px" },
+                  staticStyle: { "margin-bottom": "15px" },
                   attrs: { id: "categories_title" }
                 },
                 [_vm._v("категории")]
