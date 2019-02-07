@@ -159,7 +159,6 @@ export default {
       changeNumberOfFloors(number_of_floors) {
         console.log("Этажей :"+number_of_floors)
         this.realestate_chars.number_of_floors = number_of_floors;
-        
       },
 
       changeNumberOfRooms(number_of_rooms) {

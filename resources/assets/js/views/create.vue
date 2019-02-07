@@ -123,7 +123,7 @@
 				<!-- Расположение на карте -->
 				<b-form-group style="text-align:center" v-show="placeChanged && places_model!=null">
 					<div id="smallmap" style="border:1px solid rgb(180,180,180);margin-bottom:10px;width: 100%; height: 200px" v-show="coordinates_set"></div>
-					<b-button variant="primary" @click="showSetCoordsDialog">уточнить расположение</b-button>
+					<b-button variant="primary" @click="showSetCoordsDialog">уточнить местоположение</b-button>
 				</b-form-group>
 
 				<hr>

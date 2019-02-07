@@ -38461,7 +38461,7 @@ var render = function() {
                                   attrs: { variant: "primary" },
                                   on: { click: _vm.showSetCoordsDialog }
                                 },
-                                [_vm._v("уточнить расположение")]
+                                [_vm._v("уточнить местоположение")]
                               )
                             ],
                             1
