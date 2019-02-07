@@ -14,7 +14,7 @@
 <center>
 	<ins><h1>Информация о сайте</h1></ins>
 	<h3>Сайт разработат студией ITClub</h3>
-        <b>ТОО "ITClub" 2019(c)</b>
+        <b>ТОО "ITClub" 2019 (c)</b>
 </center>
 </body>
 </html>
