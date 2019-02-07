@@ -35652,7 +35652,7 @@ var render = function() {
                     },
                     on: { click: _vm.closeSubCats }
                   },
-                  [_vm._v("Вернуться к категориям ↺")]
+                  [_vm._v("↺ Вернуться к категориям")]
                 ),
                 _vm._v(" "),
                 _vm._l(Object.keys(_vm.subcats).length, function(i) {
