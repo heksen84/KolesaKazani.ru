@@ -53,6 +53,7 @@
 
 
     <div id="categories_line">
+      
     <!-- КАТЕГОРИИ -->
     <div v-if="show_categories" style="text-align:center">    
       <div id="categories_title" class="shadow_text" style="margin-bottom:15px">категории</div>        
