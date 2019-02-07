@@ -35571,7 +35571,7 @@ var render = function() {
                   "div",
                   {
                     staticClass: "shadow_text",
-                    staticStyle: { "margin-bottom": "15px" },
+                    staticStyle: { "margin-bottom": "18px" },
                     attrs: { id: "categories_title" }
                   },
                   [_vm._v("категории")]
@@ -35632,7 +35632,7 @@ var render = function() {
                   "div",
                   {
                     staticClass: "shadow_text",
-                    staticStyle: { "margin-bottom": "15px" },
+                    staticStyle: { "margin-bottom": "18px" },
                     attrs: { id: "categories_title" }
                   },
                   [_vm._v("подкатегории")]
