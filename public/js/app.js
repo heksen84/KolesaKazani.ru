@@ -1901,12 +1901,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
       }
     },
-    changeFloor: function changeFloor(floor_num) {},
-    changeNumberOfFloors: function changeNumberOfFloors(number_of_floors) {},
-    changeNumberOfRooms: function changeNumberOfRooms(number_of_rooms) {},
-    changeTotalArea: function changeTotalArea(area_num) {},
-    changePropertyRights: function changePropertyRights(property_num) {},
-    changeObjectType: function changeObjectType(object_num) {}
+    changeFloor: function changeFloor(floor_num) {
+      console.log("Этаж :" + floor_num);
+    },
+    changeNumberOfFloors: function changeNumberOfFloors(number_of_floors) {
+      console.log("Этажей :" + number_of_floors);
+    },
+    changeNumberOfRooms: function changeNumberOfRooms(number_of_rooms) {
+      console.log("Комнат :" + number_of_rooms);
+    },
+    changeTotalArea: function changeTotalArea(area_num) {
+      console.log("Этажей :" + area_num);
+    },
+    changePropertyRights: function changePropertyRights(property_num) {
+      console.log("Собственность :" + property_num);
+    },
+    changeObjectType: function changeObjectType(object_type) {
+      console.log("Вид объекта :" + object_type);
+    }
   }
 });
 
@@ -37787,7 +37799,7 @@ var render = function() {
                 staticClass: "mb-2 mr-sm-2 mb-sm-2",
                 staticStyle: { width: "160px" },
                 attrs: { type: "number", placeholder: "Введите площадь" },
-                on: { change: _vm.changeTotalArea },
+                on: { input: _vm.changeTotalArea },
                 model: {
                   value: _vm.area,
                   callback: function($$v) {

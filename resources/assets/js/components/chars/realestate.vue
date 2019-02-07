@@ -26,7 +26,7 @@
 </b-form-group>
 
 <b-form-group label="Общая площадь:" v-if="selected.apartment && selected_type==0 || selected_type==1">
-        <b-form-input type="number" v-model="area" class="mb-2 mr-sm-2 mb-sm-2" @change="changeTotalArea" style="width:160px" placeholder="Введите площадь"></b-form-input>
+        <b-form-input type="number" v-model="area" class="mb-2 mr-sm-2 mb-sm-2" @input="changeTotalArea" style="width:160px" placeholder="Введите площадь"></b-form-input>
 </b-form-group>
 
 
@@ -143,27 +143,27 @@ export default {
       },
 
       changeFloor(floor_num) {
-
+        console.log("Этаж :"+floor_num)
       },
 
       changeNumberOfFloors(number_of_floors) {
-
+        console.log("Этажей :"+number_of_floors)
       },
 
       changeNumberOfRooms(number_of_rooms) {
-
+        console.log("Комнат :"+number_of_rooms)
       },
 
       changeTotalArea(area_num) {
-
+        console.log("Этажей :"+area_num)
       },
 
       changePropertyRights(property_num) {
-
+        console.log("Собственность :"+property_num)
       },
 
-      changeObjectType(object_num) {
-
+      changeObjectType(object_type) {
+        console.log("Вид объекта :"+object_type)
       }
 
 
