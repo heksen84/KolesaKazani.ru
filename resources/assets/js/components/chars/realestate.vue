@@ -8,25 +8,25 @@
   </b-form-group>
 
 <b-form-group label="Этаж:" v-if="selected.apartment && selected_type==0 || selected_type==1">
-         <b-form-select v-model="selected_room_count" class="mb-2 mr-sm-2 mb-sm-2" @change="changeFloor">
+         <b-form-select v-model="selected_floor" class="mb-2 mr-sm-2 mb-sm-2" @change="changeFloor">
            <option v-for="i in 60" :value="i" :key="i">{{ i }}</option>
         </b-form-select>
 </b-form-group>
 
 <b-form-group label="Этажей в доме:" v-if="selected.apartment && selected_type==0 || selected_type==1">
-         <b-form-select v-model="selected_room_count" class="mb-2 mr-sm-2 mb-sm-2" @change="changeNumberOfFloors" style="width:120px">
+         <b-form-select v-model="selected_number_of_floors" class="mb-2 mr-sm-2 mb-sm-2" @change="changeNumberOfFloors" style="width:120px">
            <option v-for="i in 100" :value="i" :key="i">{{ i }}</option>
         </b-form-select>
 </b-form-group>
 
 <b-form-group label="Количество комнат:" v-if="selected.apartment && selected_type==0 || selected_type==1">
-         <b-form-select v-model="selected_room_count" class="mb-2 mr-sm-2 mb-sm-2" @change="changeNumberOfRooms" style="width:152px">
+         <b-form-select v-model="selected_number_of_rooms" class="mb-2 mr-sm-2 mb-sm-2" @change="changeNumberOfRooms" style="width:152px">
            <option v-for="i in 10" :value="i" :key="i">{{ i }}</option>
         </b-form-select>
 </b-form-group>
 
 <b-form-group label="Общая площадь:" v-if="selected.apartment && selected_type==0 || selected_type==1">
-        <b-form-input type="number" v-model="area" class="mb-2 mr-sm-2 mb-sm-2" @input="changeTotalArea" style="width:160px" placeholder="Введите площадь"></b-form-input>
+        <b-form-input type="number" v-model="input_area" class="mb-2 mr-sm-2 mb-sm-2" @input="changeTotalArea" style="width:160px" placeholder="Введите площадь"></b-form-input>
 </b-form-group>
 
 
@@ -50,6 +50,9 @@
 export default {
   data () {
     return 	{
+
+        realestate_chars: null,
+
         object_type: 
         [
           { value: 0, text: 'Вторичка' },
@@ -73,12 +76,14 @@ export default {
           { value: 6, text: 'Коммерческая недвижимость' },
           { value: 7, text: 'Недвижимость за рубежом' }
         ],
-
-        area: null,        
+        
         selected_type: null,
+        selected_floor: 1,
+        selected_number_of_floors: 5,
+        selected_number_of_rooms: 1,
+        input_area: null,
         selected_property_rights: 0,
-        selected_room_count: 1,
-        selected_object_type:0,
+        selected_object_type: 0,
 
         selected: {
           apartment:false,
@@ -92,6 +97,17 @@ export default {
 		}
 	},
   created() {
+    this.realestate_chars = this.$root.advert_data;
+
+    //this.selected_floor = 1;
+   // this.selected_floor_count = 5;
+    //this.selected_room_count = 1;
+
+    this.realestate_chars.floor_num = 1;
+    this.realestate_chars.number_of_floors = 1;
+    this.realestate_chars.number_of_rooms = 1;
+
+
   },
   components: {},
   methods: {
@@ -102,6 +118,8 @@ export default {
     changeProperyType(property_id) {
 
         console.log("Вид недвижимости: "+property_id)
+
+        this.realestate_chars.property_type = property_id;
 
         // показываю дополнительные поля
         this.$store.commit("ShowOtherFields", true);
@@ -144,39 +162,34 @@ export default {
 
       changeFloor(floor_num) {
         console.log("Этаж :"+floor_num)
+        this.realestate_chars.floor_num = floor_num;
       },
 
       changeNumberOfFloors(number_of_floors) {
         console.log("Этажей :"+number_of_floors)
+        this.realestate_chars.number_of_floors = number_of_floors;
+        
       },
 
       changeNumberOfRooms(number_of_rooms) {
         console.log("Комнат :"+number_of_rooms)
+        this.realestate_chars.number_of_rooms = number_of_rooms;
       },
 
       changeTotalArea(area_num) {
         console.log("Этажей :"+area_num)
+        this.realestate_chars.area_num = area_num;
       },
 
       changePropertyRights(property_num) {
         console.log("Собственность :"+property_num)
+        this.realestate_chars.property_num = property_num;
       },
 
       changeObjectType(object_type) {
         console.log("Вид объекта :"+object_type)
+        this.realestate_chars.object_type = object_type;
       }
-
-
-
-      
-
-
-
-
-
-
-
-
 
   }
 }
