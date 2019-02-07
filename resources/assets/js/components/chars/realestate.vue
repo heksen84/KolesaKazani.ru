@@ -95,7 +95,11 @@ export default {
 		}
 	},
   created() {
-    this.realestate_chars = this.$root.advert_data;
+
+    this.realestate_chars = this.$root.advert_data; // указатель на массив объявления
+
+    // значения недвижимости по умолчанию
+    this.realestate_chars.property_type = 0;
     this.realestate_chars.floor_num = 1;
     this.realestate_chars.number_of_floors = 5;
     this.realestate_chars.number_of_rooms = 1;
