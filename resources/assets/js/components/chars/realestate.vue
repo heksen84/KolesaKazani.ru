@@ -99,6 +99,8 @@ export default {
     this.realestate_chars.floor_num = 1;
     this.realestate_chars.number_of_floors = 5;
     this.realestate_chars.number_of_rooms = 1;
+    this.realestate_chars.property_num = 0;
+    this.realestate_chars.object_type = 0;
   },
   components: {},
   methods: {

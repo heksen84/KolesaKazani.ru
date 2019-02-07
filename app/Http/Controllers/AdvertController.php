@@ -172,13 +172,13 @@ class AdvertController extends Controller {
                 case 2: 
                 {                    
                     $realestate = new RealEstate();
-                    $realestate->property_type = 0;
-                    $realestate->floor = 0;
-                    $realestate->floors_house = 0;
-                    $realestate->rooms = 0;
-                    $realestate->area = 0;
-                    $realestate->ownership = 0;
-                    $realestate->kind_of_object = 0;
+                    $realestate->property_type = $data["property_type"];
+                    $realestate->floor = $data["floor_num"];
+                    $realestate->floors_house = $data["number_of_floors"];
+                    $realestate->rooms = $data["number_of_rooms"];
+                    $realestate->area = $data["area_num"];
+                    $realestate->ownership = $data["property_num"];
+                    $realestate->kind_of_object = $data["object_type"];
                     $realestate->save();
 
                     // записываю id подкатегории
