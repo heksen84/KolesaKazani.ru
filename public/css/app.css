@@ -122,6 +122,10 @@ body {
   font-weight: 550;
 }
 
+#categories_line {
+  margin-top: -10px;
+}
+
 #close_subcats_btn {
   margin-bottom: 10px;
   margin-top: -10px;
@@ -374,6 +378,10 @@ a:active {
 }
 
 @media screen and (max-width: 1024px) {
+  #categories_line {
+    margin-top: 0px;
+  }
+
   #close_subcats_btn {
     margin-left: -5px;
   }

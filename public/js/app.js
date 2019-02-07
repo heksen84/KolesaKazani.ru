@@ -35555,7 +35555,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("div", { staticStyle: { "margin-top": "-5px" } }, [
+      _c("div", { attrs: { id: "categories_line" } }, [
         _vm.show_categories
           ? _c(
               "div",
@@ -35565,7 +35565,7 @@ var render = function() {
                   "div",
                   {
                     staticClass: "shadow_text",
-                    staticStyle: { "margin-bottom": "12px" },
+                    staticStyle: { "margin-bottom": "15px" },
                     attrs: { id: "categories_title" }
                   },
                   [_vm._v("категории")]
