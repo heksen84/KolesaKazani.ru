@@ -123,7 +123,7 @@ body {
 }
 
 #categories_line {
-  margin-top: -5px;
+  margin-top: -15px;
 }
 
 #close_subcats_btn {
@@ -255,7 +255,6 @@ body {
 }
 
 .shadow_text {
-  text-decoration: underline;
   color: #fff;
   letter-spacing: 2px;
   text-shadow: -1px -1px 0 #323232, 1px -1px 0 #323232, -1px 1px 0 #323232, 1px 1px 0 #323232;

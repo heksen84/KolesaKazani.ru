@@ -35720,7 +35720,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "b-row",
-        { staticClass: "shadow_text", staticStyle: { "margin-top": "60px" } },
+        { staticClass: "shadow_text", staticStyle: { "margin-top": "50px" } },
         [_c("h5", [_vm._v("VIP объявления")])]
       ),
       _vm._v(" "),
