@@ -179,6 +179,7 @@ class AdvertController extends Controller {
                     $realestate->area = $data["area_num"];
                     $realestate->ownership = $data["property_num"];
                     $realestate->kind_of_object = $data["object_type"];
+                    
                     $realestate->save();
 
                     // записываю id подкатегории
