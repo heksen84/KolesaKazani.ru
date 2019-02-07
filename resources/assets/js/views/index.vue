@@ -91,10 +91,9 @@
     <!-- ПОДВАЛ -->
     <b-row>
       <div id="footer"><a href="advertisers" class="underline_link">Реклама</a> | 
-        <a href="rules" class="underline_link">Правила сайта</a> | 
-        <a href="about" class="underline_link">О сайте</a> | 
-        <span @click="setLang">Язык: <span style="color:rgb(180,255,180);cursor:pointer">{{ lang }}</span></span> | 
-        beta версия
+        <a href="rules" class="underline_link">Правила сайта</a> |  
+        <span @click="setLang">Язык: <span style="color:rgb(180,255,180);cursor:pointer">{{ lang }}</span></span> |
+        <a href="about" class="underline_link">О сайте</a>
       </div>
     </b-row>
 
