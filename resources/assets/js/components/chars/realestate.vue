@@ -96,16 +96,9 @@ export default {
 	},
   created() {
     this.realestate_chars = this.$root.advert_data;
-
-    //this.selected_floor = 1;
-   // this.selected_floor_count = 5;
-    //this.selected_room_count = 1;
-
     this.realestate_chars.floor_num = 1;
-    this.realestate_chars.number_of_floors = 1;
+    this.realestate_chars.number_of_floors = 5;
     this.realestate_chars.number_of_rooms = 1;
-
-
   },
   components: {},
   methods: {
