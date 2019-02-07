@@ -51,9 +51,11 @@
         </b-col>
     </b-row>
 
+
+    <div style="margin-top:-5px">
     <!-- КАТЕГОРИИ -->
     <div v-if="show_categories" style="text-align:center">    
-      <div id="categories_title" class="shadow_text" style="margin-bottom:15px">категории</div>        
+      <div id="categories_title" class="shadow_text" style="margin-bottom:12px">категории</div>        
         <b-row v-for="i in Object.keys(items).length" v-bind:key=i>
           <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in items.slice((i - 1) * 4, i * 4)" v-bind:key=item.id>
             <a :href="urlRegAndPlace+'/'+item.url" @click="showSubcats($event, item.id)">
@@ -67,7 +69,7 @@
 
     <!-- ПОДКАТЕГОРИИ -->  
     <div v-if="!show_categories" style="text-align:center">
-      <div id="categories_title" class="shadow_text" style="margin-bottom:18px">подкатегории</div>  
+      <div id="categories_title" class="shadow_text" style="margin-bottom:15px">подкатегории</div>  
       <b-button @click="closeSubCats" variant="primary" style="border:1px solid white;font-size:14px" size="sm" id="close_subcats_btn">&#8634; Вернуться к категориям</b-button>      
         <b-row v-for="i in Object.keys(subcats).length" v-bind:key=i>
           <b-col cols="12" sm="12" md="12" lg="3" xl="3" v-for="item in subcats.slice((i - 1) * 4, i * 4)" v-bind:key=item.id>            
@@ -76,6 +78,7 @@
               </a>
           </b-col>
         </b-row>
+    </div>
     </div>
 
     <!-- VIP -->

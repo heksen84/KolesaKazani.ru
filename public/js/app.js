@@ -3552,6 +3552,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -35552,154 +35555,162 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm.show_categories
-        ? _c(
-            "div",
-            { staticStyle: { "text-align": "center" } },
-            [
-              _c(
-                "div",
-                {
-                  staticClass: "shadow_text",
-                  staticStyle: { "margin-bottom": "15px" },
-                  attrs: { id: "categories_title" }
-                },
-                [_vm._v("категории")]
-              ),
-              _vm._v(" "),
-              _vm._l(Object.keys(_vm.items).length, function(i) {
-                return _c(
-                  "b-row",
-                  { key: i },
-                  _vm._l(_vm.items.slice((i - 1) * 4, i * 4), function(item) {
-                    return _c(
-                      "b-col",
-                      {
-                        key: item.id,
-                        attrs: {
-                          cols: "12",
-                          sm: "12",
-                          md: "12",
-                          lg: "3",
-                          xl: "3"
-                        }
-                      },
-                      [
-                        _c(
-                          "a",
-                          {
-                            attrs: {
-                              href: _vm.urlRegAndPlace + "/" + item.url
-                            },
-                            on: {
-                              click: function($event) {
-                                _vm.showSubcats($event, item.id)
-                              }
-                            }
-                          },
-                          [
-                            _c("div", { staticClass: "category_item" }, [
-                              _vm._v(_vm._s(item.name) + "\n            ")
-                            ])
-                          ]
-                        )
-                      ]
-                    )
-                  })
-                )
-              })
-            ],
-            2
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      !_vm.show_categories
-        ? _c(
-            "div",
-            { staticStyle: { "text-align": "center" } },
-            [
-              _c(
-                "div",
-                {
-                  staticClass: "shadow_text",
-                  staticStyle: { "margin-bottom": "18px" },
-                  attrs: { id: "categories_title" }
-                },
-                [_vm._v("подкатегории")]
-              ),
-              _vm._v(" "),
-              _c(
-                "b-button",
-                {
-                  staticStyle: {
-                    border: "1px solid white",
-                    "font-size": "14px"
+      _c("div", { staticStyle: { "margin-top": "-5px" } }, [
+        _vm.show_categories
+          ? _c(
+              "div",
+              { staticStyle: { "text-align": "center" } },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "shadow_text",
+                    staticStyle: { "margin-bottom": "12px" },
+                    attrs: { id: "categories_title" }
                   },
-                  attrs: {
-                    variant: "primary",
-                    size: "sm",
-                    id: "close_subcats_btn"
-                  },
-                  on: { click: _vm.closeSubCats }
-                },
-                [_vm._v("↺ Вернуться к категориям")]
-              ),
-              _vm._v(" "),
-              _vm._l(Object.keys(_vm.subcats).length, function(i) {
-                return _c(
-                  "b-row",
-                  { key: i },
-                  _vm._l(_vm.subcats.slice((i - 1) * 4, i * 4), function(item) {
-                    return _c(
-                      "b-col",
-                      {
-                        key: item.id,
-                        attrs: {
-                          cols: "12",
-                          sm: "12",
-                          md: "12",
-                          lg: "3",
-                          xl: "3"
-                        }
-                      },
-                      [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: _vm.urlRegAndPlace + "/" + item.url }
-                          },
-                          [
-                            _c(
-                              "div",
-                              {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: _vm.displaySubItem(item.category_id),
-                                    expression:
-                                      "displaySubItem(item.category_id)"
-                                  }
-                                ],
-                                staticClass: "category_item",
-                                staticStyle: {
-                                  width: "280px",
-                                  "font-size": "17px"
-                                }
+                  [_vm._v("категории")]
+                ),
+                _vm._v(" "),
+                _vm._l(Object.keys(_vm.items).length, function(i) {
+                  return _c(
+                    "b-row",
+                    { key: i },
+                    _vm._l(_vm.items.slice((i - 1) * 4, i * 4), function(item) {
+                      return _c(
+                        "b-col",
+                        {
+                          key: item.id,
+                          attrs: {
+                            cols: "12",
+                            sm: "12",
+                            md: "12",
+                            lg: "3",
+                            xl: "3"
+                          }
+                        },
+                        [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: _vm.urlRegAndPlace + "/" + item.url
                               },
-                              [_vm._v(_vm._s(item.name))]
-                            )
-                          ]
-                        )
-                      ]
-                    )
-                  })
-                )
-              })
-            ],
-            2
-          )
-        : _vm._e(),
+                              on: {
+                                click: function($event) {
+                                  _vm.showSubcats($event, item.id)
+                                }
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "category_item" }, [
+                                _vm._v(_vm._s(item.name) + "\n            ")
+                              ])
+                            ]
+                          )
+                        ]
+                      )
+                    })
+                  )
+                })
+              ],
+              2
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        !_vm.show_categories
+          ? _c(
+              "div",
+              { staticStyle: { "text-align": "center" } },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "shadow_text",
+                    staticStyle: { "margin-bottom": "15px" },
+                    attrs: { id: "categories_title" }
+                  },
+                  [_vm._v("подкатегории")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-button",
+                  {
+                    staticStyle: {
+                      border: "1px solid white",
+                      "font-size": "14px"
+                    },
+                    attrs: {
+                      variant: "primary",
+                      size: "sm",
+                      id: "close_subcats_btn"
+                    },
+                    on: { click: _vm.closeSubCats }
+                  },
+                  [_vm._v("↺ Вернуться к категориям")]
+                ),
+                _vm._v(" "),
+                _vm._l(Object.keys(_vm.subcats).length, function(i) {
+                  return _c(
+                    "b-row",
+                    { key: i },
+                    _vm._l(_vm.subcats.slice((i - 1) * 4, i * 4), function(
+                      item
+                    ) {
+                      return _c(
+                        "b-col",
+                        {
+                          key: item.id,
+                          attrs: {
+                            cols: "12",
+                            sm: "12",
+                            md: "12",
+                            lg: "3",
+                            xl: "3"
+                          }
+                        },
+                        [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: _vm.urlRegAndPlace + "/" + item.url
+                              }
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.displaySubItem(
+                                        item.category_id
+                                      ),
+                                      expression:
+                                        "displaySubItem(item.category_id)"
+                                    }
+                                  ],
+                                  staticClass: "category_item",
+                                  staticStyle: {
+                                    width: "280px",
+                                    "font-size": "17px"
+                                  }
+                                },
+                                [_vm._v(_vm._s(item.name))]
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    })
+                  )
+                })
+              ],
+              2
+            )
+          : _vm._e()
+      ]),
       _vm._v(" "),
       _c(
         "b-row",
