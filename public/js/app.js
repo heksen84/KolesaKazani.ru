@@ -2206,6 +2206,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2220,6 +2225,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    authVK: function authVK() {
+      alert("vk");
+    },
+    authOK: function authOK() {
+      alert("ok");
+    },
     closeAndReturn: function closeAndReturn() {
       window.history.back();
     },
@@ -37611,8 +37622,39 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "b-form-group",
-                    { staticStyle: { "text-align": "center" } },
+                    {
+                      staticStyle: {
+                        "text-align": "center",
+                        "margin-top": "-30px"
+                      }
+                    },
                     [
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("img", {
+                        attrs: {
+                          src: "public/images/vkontakte_PNG3.png",
+                          width: "45",
+                          height: "45",
+                          alt: "vk"
+                        },
+                        on: { click: _vm.authVK }
+                      }),
+                      _vm._v(" "),
+                      _c("img", {
+                        attrs: {
+                          src: "public/images/odnoklassniki_PNG29.png",
+                          width: "45",
+                          height: "45",
+                          alt: "ok"
+                        },
+                        on: { click: _vm.authOK }
+                      }),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
                       _c(
                         "b-button",
                         { attrs: { type: "submit", variant: "primary" } },
@@ -37663,9 +37705,7 @@ var render = function() {
                       ],
                       1
                     )
-                  ]),
-                  _vm._v(" "),
-                  _c("br")
+                  ])
                 ],
                 1
               )

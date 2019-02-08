@@ -34,18 +34,23 @@
           <b-form-checkbox value="me">запомнить меня</b-form-checkbox>
         </b-form-checkbox-group>
       </b-form-group>
-      <b-form-group style="text-align:center">
+      <b-form-group style="text-align:center;margin-top:-30px">
+        <br>
+         <img @click="authVK" src="public/images/vkontakte_PNG3.png" width="45" height="45" alt="vk">
+         <img @click="authOK" src="public/images/odnoklassniki_PNG29.png" width="45" height="45" alt="ok">
+          <br>
+          <br>
           <b-button type="submit" variant="primary">Войти</b-button>
         <hr>
       </b-form-group>
       <b-form-group>
+
       <div style="text-align:center;margin-top:-20px">        
         Забыли пароль?&nbsp;<b-link style="color:grey;font-weight:bold" href="/password/reset"><br>Восстановить вход</b-link>
         <br>
         Ещё не зарегистрированы?&nbsp;<b-link style="color:grey;font-weight:bold" href="/register"><br>Регистрация</b-link>                        
       </div>
       </b-form-group>
-      <br>
     </b-form>
   </b-col>
   </b-row>
@@ -65,6 +70,15 @@ export default {
     }
   },
   methods: {
+
+    authVK() {
+        alert("vk")
+    },
+
+     authOK() {
+        alert("ok")
+    },
+
     closeAndReturn() {
  			  window.history.back();
   	},
