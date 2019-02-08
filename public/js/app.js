@@ -37633,7 +37633,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("img", {
                         attrs: {
-                          src: "public/images/vkontakte_PNG3.png",
+                          src: "public/images/vk.png",
                           width: "45",
                           height: "45",
                           alt: "vk"
@@ -37643,7 +37643,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("img", {
                         attrs: {
-                          src: "public/images/odnoklassniki_PNG29.png",
+                          src: "public/images/ok.png",
                           width: "45",
                           height: "45",
                           alt: "ok"

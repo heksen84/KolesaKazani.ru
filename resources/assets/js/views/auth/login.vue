@@ -36,8 +36,8 @@
       </b-form-group>
       <b-form-group style="text-align:center;margin-top:-30px">
         <br>
-         <img @click="authVK" src="public/images/vkontakte_PNG3.png" width="45" height="45" alt="vk">
-         <img @click="authOK" src="public/images/odnoklassniki_PNG29.png" width="45" height="45" alt="ok">
+         <img @click="authVK" src="public/images/vk.png" width="45" height="45" alt="vk">
+         <img @click="authOK" src="public/images/ok.png" width="45" height="45" alt="ok">
           <br>
           <br>
           <b-button type="submit" variant="primary">Войти</b-button>
