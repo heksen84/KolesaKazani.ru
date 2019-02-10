@@ -3,12 +3,13 @@
   <div class="item" @click="details">
     <b-img :src="'storage/app/images/'+image" width="120%" height="120" style="display:inline-block" v-if="image!=null"/>
     <b-img width="0" height="120" style="display:inline-block;background:white" v-if="image==null"/>
+    
     <div style="width:55%;position:relative;top:-115px;left:125px;overflow:hidden">      
-        <div style="font-weight:bold">{{ title }}</div>
-        <div>Цена: <b>{{ price }}</b> тенге</div>
-      <br>
-      <b-button size="sm" variant="outline-success">Подробнее</b-button>
+        <b>{{ title }}</b>
+        <div>Цена: {{ price }} тенге</div>
+        <b-button style="margin-top:5px" size="sm" variant="outline-success">Подробнее</b-button>
     </div>
+
   </div>
     
 </template>

@@ -2122,6 +2122,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -36357,21 +36358,16 @@ var render = function() {
           }
         },
         [
-          _c("div", { staticStyle: { "font-weight": "bold" } }, [
-            _vm._v(_vm._s(_vm.title))
-          ]),
+          _c("b", [_vm._v(_vm._s(_vm.title))]),
           _vm._v(" "),
-          _c("div", [
-            _vm._v("Цена: "),
-            _c("b", [_vm._v(_vm._s(_vm.price))]),
-            _vm._v(" тенге")
-          ]),
-          _vm._v(" "),
-          _c("br"),
+          _c("div", [_vm._v("Цена: " + _vm._s(_vm.price) + " тенге")]),
           _vm._v(" "),
           _c(
             "b-button",
-            { attrs: { size: "sm", variant: "outline-success" } },
+            {
+              staticStyle: { "margin-top": "5px" },
+              attrs: { size: "sm", variant: "outline-success" }
+            },
             [_vm._v("Подробнее")]
           )
         ],

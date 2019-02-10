@@ -241,7 +241,7 @@ class SubCatsController extends Controller
                         text,                        
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
                         adv_realestate.id,
-                        concat(adv_realestate.rooms, ' комнат ', adv_realestate.floor, ' этаж') AS title
+                        concat(adv_realestate.rooms, ' комнатная квартира, ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаж, ', adv_realestate.area, ' кв. м.' ) AS title
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) ORDER BY price ASC LIMIT 0,".$this->records_limit                    
                     );

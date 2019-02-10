@@ -117,6 +117,7 @@ class AdvertController extends Controller {
             $advert->adv_category_id = 0;
             $advert->region_id       = $region_id;
             $advert->city_id         = $city_id;
+            $advert->lang            = "ru";
 
             switch($category) {
 
