@@ -37005,9 +37005,9 @@ var render = function() {
                   staticClass: "close_button shadow_text",
                   staticStyle: {
                     color: "white",
-                    border: "2px solid white",
+                    border: "1px solid white",
                     "border-radius": "5px",
-                    padding: "6px"
+                    padding: "5px"
                   },
                   attrs: { title: "Закрыть страницу" },
                   on: { click: _vm.closeAndReturn }
