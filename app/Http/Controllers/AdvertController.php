@@ -129,14 +129,14 @@ class AdvertController extends Controller {
 
                     $transport = new Transport();                    
                     
-                    $transport->type                = $data["transport_type"];   // тип транспорта: легковой / грузовой и т.д.
-                    $transport->mark                = null;
-                    $transport->model               = null;
-                    $transport->year                = null;
-                    $transport->steering_position   = null;
-                    $transport->mileage             = null;
-                    $transport->engine_type         = null;
-                    $transport->customs             = null;
+                    $transport->type                    = $data["transport_type"];   // тип транспорта: легковой / грузовой и т.д.
+                    $transport->mark                    = null;
+                    $transport->model                   = null;
+                    $transport->year                    = null;
+                    $transport->steering_position       = null;
+                    $transport->mileage                 = null;
+                    $transport->engine_type             = null;
+                    $transport->customs                 = null;
                     
                     // легковушки
                     if ($data["transport_type"]==1) {
