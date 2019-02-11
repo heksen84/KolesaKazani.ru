@@ -345,11 +345,11 @@ export default {
 						return false;
 
         		var image  = files[i]
-				var reader = new FileReader();
+						var reader = new FileReader();
 
-  				reader.onload = (function(theFile) {
+  					reader.onload = (function(theFile) {
 
-          		return function(e) {
+          	return function(e) {
 					if (theFile.type=="image/jpeg" || theFile.type=="image/pjpeg" || theFile.type=="image/png") {					
 						preview_images.push({ "name": theFile.name, "src": e.target.result });
 						real_images.push(theFile);
