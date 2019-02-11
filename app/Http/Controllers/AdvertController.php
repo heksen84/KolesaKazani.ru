@@ -233,8 +233,7 @@ class AdvertController extends Controller {
                 $advert->coord_lon = $coords[1];
                 \Debugbar::info($coords);
             }
-            else 
-            {
+            else {
                 $advert->coord_lat = 0;
                 $advert->coord_lon = 0;
             }
