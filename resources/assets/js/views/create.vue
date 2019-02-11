@@ -183,10 +183,10 @@ function initMaps() {
 		smallmap.geoObjects.add(myPlacemark2);
 
     	bigmap.events.add("click", function (e) {
-        	mapCoords = e.get('coordPosition');
-			myPlacemark1.geometry.setCoordinates(mapCoords);
-			myPlacemark2.geometry.setCoordinates(mapCoords);
-			smallmap.setCenter(mapCoords, 14, "smallmap");
+      	mapCoords = e.get('coordPosition');
+				myPlacemark1.geometry.setCoordinates(mapCoords);
+				myPlacemark2.geometry.setCoordinates(mapCoords);
+				smallmap.setCenter(mapCoords, 14, "smallmap");
 		});			
 	}				
 
