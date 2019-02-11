@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
-use Intervention\Image\ImageManagerStatic as Image;
 use Validator;
-use App\Images;
 use App\Adverts;
 use App\CarMark;
 use App\CarModel;
@@ -253,34 +251,8 @@ class AdvertController extends Controller {
             Сохраняю картинки
             ------------------------------------------*/
 
-            \App\Jobs\loadImages::dispatch();
+            \App\Jobs\loadImages::dispatch($request, $advert->id);
             
-            if ($request->images)
-            foreach($request->file("images") as $img) {
-
-                $filename = str_random(32).".".$img->getClientOriginalExtension();
-                $image_resize = Image::make($img->getRealPath());
-                
-                // изменяю размер с соотношением пропорций
-                $image_resize->resize(800, 600, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-
-                // пишу текст в картинку
-                $image_resize->text(env("APP_URL"), 8,25, function($font) {
-                    $font->file(public_path()."/fonts/Brushie.ttf");
-                    $font->color(array(255,255,255,1));
-                    $font->size(26);
-                });
-
-                // ... и сохраняю в хранилище
-                $image_resize->save(storage_path().'/app/images/' .$filename);
-                $image = new Images();
-                $image->advert_id = $advert->id;
-                $image->image = $filename;                
-                $image->save();
-            }
-
             /*SitemapController::addUrl("Моя url");
             SitemapController::removeUrl("Моя url");*/
 
