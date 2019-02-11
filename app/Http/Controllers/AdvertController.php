@@ -252,6 +252,8 @@ class AdvertController extends Controller {
             ------------------------------------------
             Сохраняю картинки
             ------------------------------------------*/
+
+            \App\Jobs\loadImages::dispatch();
             
             if ($request->images)
             foreach($request->file("images") as $img) {
