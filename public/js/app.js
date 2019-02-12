@@ -1954,41 +1954,70 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_com_transport_vue__ = __webpack_require__("./resources/assets/js/components/chars/common/com_transport.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__common_com_transport_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__common_com_transport_vue__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
-
-/* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
+/* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
 
@@ -2007,18 +2036,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         helm_position: null,
         fuel_type: 0,
         car_customs: 1
-      }
+      },
+
+      release_date: null,
+      mileage: null,
+
+      helm_position: [{ value: 0, text: 'Слева' }, { value: 1, text: 'Справа' }],
+
+      fuel_type: [{ value: 0, text: 'Бензин' }, { value: 1, text: 'Дизель' }, { value: 2, text: 'Газ-бензин' }, { value: 3, text: 'Газ' }, { value: 4, text: 'Гибрид' }, { value: 5, text: 'Электричество' }]
+
     };
   },
 
 
+  //components: { "com-transport": comtransport },
+
   // компонент создан
   created: function created() {
+
     this.transport_chars = this.$root.advert_data;
+    // значения по умолчанию
+    this.transport_chars.rule_position = 0;
+    this.transport_chars.fuel_type = 0;
+    this.transport_chars.customs = 1;
+    this.transport_chars.release_date = 0;
+    this.transport_chars.mileage = 0;
   },
 
 
-  components: {},
+  computed: {
+    getComTransport: function getComTransport() {
+      // 1,2,3,5 - категории транспорта
+      return [1, 2, 3, 5].indexOf(this.selected.type_transport) !== -1 && this.selected.type_transport != null && this.$store.state.show_common_transport;
+    }
+  },
   methods: {
 
     /*
@@ -2079,20 +2130,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
 
 
-    // ------------------------
+    // ------------------------------------------------
     // change марки
-    // ------------------------
+    // ------------------------------------------------
     selectMark: function selectMark(mark_id) {
       var _this2 = this;
 
       this.$store.commit("ShowCommonTransport", false);
       this.$store.commit("ShowOtherFields", false);
-
       this.transport_chars.mark_id = mark_id;
 
       console.log(this.transport_chars.mark_id);
 
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsModels?mark_id=' + mark_id).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/getCarsModels?mark_id=" + mark_id).then(function (res) {
 
         _this2.models = [];
         _this2.models = res.data;
@@ -2105,15 +2155,48 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     // change модели
     selectModel: function selectModel(model_id) {
-
       this.transport_chars.model_id = model_id;
       console.log(this.transport_chars.model_id);
       this.$store.commit("ShowCommonTransport", true);
       this.$store.commit("ShowOtherFields", true);
-      //this.$store.commit("hideOtherFields");
+    },
+
+
+    // положение руля
+    SetHelmPosition: function SetHelmPosition(position_id) {
+      this.transport_chars.rule_position = position_id;
+    },
+
+
+    // тип топлива
+    SetFuelType: function SetFuelType(fuel_type) {
+      this.transport_chars.fuel_type = fuel_type;
+    },
+
+
+    // растаможка
+    SetTransportCustoms: function SetTransportCustoms(customs_id) {
+      this.transport_chars.customs = customs_id;
+    },
+
+
+    // год выпуска
+    SetReleaseDate: function SetReleaseDate(date) {
+      var d = new Date();
+      if (date < 0 || date > d.getFullYear()) return this.release_date;
+      this.transport_chars.release_date = date;
+      return date;
+    },
+
+
+    // пробег
+    SetMileage: function SetMileage(mileage) {
+      if (mileage < 0 || mileage > 10000000) return;
+      this.transport_chars.mileage = mileage;
+      return mileage;
     }
   }
-}, 'components', { "com-transport": __WEBPACK_IMPORTED_MODULE_1__common_com_transport_vue___default.a }));
+});
 
 /***/ }),
 
@@ -36593,10 +36676,157 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      [1, 2, 5].indexOf(_vm.selected.type_transport) !== -1 &&
-      _vm.selected.type_transport != null &&
-      this.$store.state.show_common_transport
-        ? _c("com-transport")
+      _vm.getComTransport
+        ? _c(
+            "b-form-group",
+            { attrs: { label: "Год выпуска:" } },
+            [
+              _c("b-form-input", {
+                staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                staticStyle: { width: "130px" },
+                attrs: {
+                  placeholder: "Введите год",
+                  type: "number",
+                  formatter: _vm.SetReleaseDate,
+                  required: ""
+                },
+                model: {
+                  value: _vm.release_date,
+                  callback: function($$v) {
+                    _vm.release_date = $$v
+                  },
+                  expression: "release_date"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.getComTransport && _vm.selected.type_transport != 3
+        ? _c(
+            "b-form-group",
+            { attrs: { label: "Положение руля:" } },
+            [
+              _c(
+                "b-form-select",
+                {
+                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                  on: { change: _vm.SetHelmPosition },
+                  model: {
+                    value: _vm.selected.helm_position,
+                    callback: function($$v) {
+                      _vm.$set(_vm.selected, "helm_position", $$v)
+                    },
+                    expression: "selected.helm_position"
+                  }
+                },
+                [
+                  _c("option", { domProps: { value: null } }, [
+                    _vm._v("-- Выберите положение руля --")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.helm_position, function(item, index) {
+                    return _c(
+                      "option",
+                      { key: index, domProps: { value: item.value } },
+                      [_vm._v(_vm._s(item.text))]
+                    )
+                  })
+                ],
+                2
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.getComTransport
+        ? _c(
+            "b-form-group",
+            { attrs: { label: "Пробег(км):" } },
+            [
+              _c("b-form-input", {
+                staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                staticStyle: { width: "145px" },
+                attrs: {
+                  type: "number",
+                  placeholder: "Введите пробег",
+                  formatter: _vm.SetMileage,
+                  required: ""
+                },
+                model: {
+                  value: _vm.mileage,
+                  callback: function($$v) {
+                    _vm.mileage = $$v
+                  },
+                  expression: "mileage"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.getComTransport
+        ? _c(
+            "b-form-group",
+            { attrs: { label: "Вид топлива:" } },
+            [
+              _c(
+                "b-form-select",
+                {
+                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                  on: { change: _vm.SetFuelType },
+                  model: {
+                    value: _vm.selected.fuel_type,
+                    callback: function($$v) {
+                      _vm.$set(_vm.selected, "fuel_type", $$v)
+                    },
+                    expression: "selected.fuel_type"
+                  }
+                },
+                _vm._l(_vm.fuel_type, function(item, index) {
+                  return _c(
+                    "option",
+                    { key: index, domProps: { value: item.value } },
+                    [_vm._v(_vm._s(item.text))]
+                  )
+                })
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.getComTransport
+        ? _c(
+            "b-form-group",
+            { attrs: { label: "Растаможен:" } },
+            [
+              _c(
+                "b-form-select",
+                {
+                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                  staticStyle: { width: "100px" },
+                  on: { change: _vm.SetTransportCustoms },
+                  model: {
+                    value: _vm.selected.car_customs,
+                    callback: function($$v) {
+                      _vm.$set(_vm.selected, "car_customs", $$v)
+                    },
+                    expression: "selected.car_customs"
+                  }
+                },
+                [
+                  _c("option", { domProps: { value: 1 } }, [_vm._v("Да")]),
+                  _vm._v(" "),
+                  _c("option", { domProps: { value: 0 } }, [_vm._v("Нет")])
+                ]
+              )
+            ],
+            1
+          )
         : _vm._e()
     ],
     1
@@ -51982,7 +52212,6 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_32_vue
 var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
 
   state: (_state = {
-
     // дополнительные поля в объявлении (поле доп. информация, и.т.д.)
     show_other_fields: false,
     show_common_transport: false,

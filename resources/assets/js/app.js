@@ -64,8 +64,7 @@ Vue.use(Notifications)
 // -----------------------------------
 const store = new Vuex.Store({
 
-    state: {
-      
+    state: {      
       // дополнительные поля в объявлении (поле доп. информация, и.т.д.)
       show_other_fields: false,
       show_common_transport: false,
@@ -96,9 +95,7 @@ const store = new Vuex.Store({
           state.str_button_search = "поиск"
           state.str_create_advert = "подать объявление"
           state.str_my_adverts = "мои объявления"
-          state.str_location = "расположение"
-
-          
+          state.str_location = "расположение"          
         }
         
         // казахский
@@ -109,8 +106,7 @@ const store = new Vuex.Store({
           state.str_button_search = "іздеу"
           state.str_create_advert = "хабарландыру орналастырыңыз"
           state.str_my_adverts = "менің хабарландыруларым"
-          state.str_location = "орналасқан"
-          
+          state.str_location = "орналасқан"          
         }
 
       },

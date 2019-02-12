@@ -14,15 +14,46 @@
     </b-form-group>
 
     <b-form-group label="Модель:" v-if="selected.carmark!=null && selected.type_transport==1">
-    <!--<b-form-group label="Модель:" v-if="selected.type_transport==1">-->
         <b-form-select v-model="selected.model" class="mb-2 mr-sm-2 mb-sm-2" @change="selectModel">
            <option :value="null">-- Выберите модель --</option>
            <option v-for="item in models" :value="item.id_car_model" :key="item.id_car_model">{{item.name}}</option>
         </b-form-select>
     </b-form-group>
 
-    <!-- общий компонент для транспорта -->
-    <com-transport v-if="[1,2,5].indexOf(selected.type_transport) !== -1 && selected.type_transport!=null && this.$store.state.show_common_transport"></com-transport>  
+  <!-------------------------------------------------------------
+    
+    Общие характеристики для всего транспорта
+    
+    ------------------------------------------------------------->
+   <b-form-group label="Год выпуска:" v-if="getComTransport">
+       <b-form-input placeholder="Введите год" type="number" v-model="release_date" class="mb-2 mr-sm-2 mb-sm-2" style="width:130px" :formatter="SetReleaseDate" required></b-form-input>
+   </b-form-group>
+
+    <b-form-group label="Положение руля:" v-if="getComTransport && selected.type_transport!=3">
+        <b-form-select v-model="selected.helm_position" class="mb-2 mr-sm-2 mb-sm-2" @change="SetHelmPosition">
+           <option :value="null">-- Выберите положение руля --</option>
+           <option v-for="(item, index) in helm_position" :value="item.value" :key="index">{{item.text}}</option>
+        </b-form-select>
+    </b-form-group>
+
+    <b-form-group label="Пробег(км):" v-if="getComTransport">
+       <b-form-input type="number" v-model="mileage" placeholder="Введите пробег" class="mb-2 mr-sm-2 mb-sm-2" style="width:145px" :formatter="SetMileage" required></b-form-input>
+    </b-form-group>
+
+     <b-form-group label="Вид топлива:" v-if="getComTransport">
+        <b-form-select v-model="selected.fuel_type" class="mb-2 mr-sm-2 mb-sm-2" @change="SetFuelType">
+           <option v-for="(item, index) in fuel_type" :value="item.value" :key="index">{{item.text}}</option>
+        </b-form-select>
+    </b-form-group>
+
+    <b-form-group label="Растаможен:" v-if="getComTransport">
+        <b-form-select style="width:100px" v-model="selected.car_customs" class="mb-2 mr-sm-2 mb-sm-2" @change="SetTransportCustoms">
+           <option :value="1">Да</option>
+           <option :value="0">Нет</option>
+        </b-form-select>
+    </b-form-group>
+
+    <!--<com-transport v-if="getComTransport"></com-transport>  -->
   </b-form>
 </template>
 
@@ -61,18 +92,52 @@ export default {
           helm_position: null,
           fuel_type: 0,
           car_customs: 1
-        }
+        },
+
+        release_date: null,
+        mileage: null,
+
+        helm_position: 
+        [
+          { value: 0, text: 'Слева' },
+          { value: 1, text: 'Справа' }
+        ],
+        
+        fuel_type: 
+        [
+          { value: 0, text: 'Бензин' },
+          { value: 1, text: 'Дизель' },
+          { value: 2, text: 'Газ-бензин' },
+          { value: 3, text: 'Газ' },
+          { value: 4, text: 'Гибрид' },
+          { value: 5, text: 'Электричество' }
+        ]
+
 		  }
 	},
 
+  //components: { "com-transport": comtransport },
+
   // компонент создан
   created() {
+
     this.transport_chars = this.$root.advert_data;
+    // значения по умолчанию
+     this.transport_chars.rule_position   = 0;
+     this.transport_chars.fuel_type       = 0;
+     this.transport_chars.customs         = 1;
+     this.transport_chars.release_date    = 0;
+     this.transport_chars.mileage         = 0;
   },
-
-  components: {},
+  
+  computed: {
+    getComTransport() {
+      // 1,2,3,5 - категории транспорта
+      return [1,2,3,5].indexOf(this.selected.type_transport) !== -1 && this.selected.type_transport!=null && this.$store.state.show_common_transport;
+    }
+  },
   methods: {
-
+    
     /*
     -----------------------------------
       Вид транспорта
@@ -129,41 +194,66 @@ export default {
 
     },
 
-    // ------------------------
+    // ------------------------------------------------
     // change марки
-    // ------------------------
+    // ------------------------------------------------
     selectMark(mark_id) {
       
       this.$store.commit("ShowCommonTransport", false);
       this.$store.commit("ShowOtherFields", false);
-
       this.transport_chars.mark_id = mark_id;
 
       console.log(this.transport_chars.mark_id);
       
-      get('/getCarsModels?mark_id='+mark_id).then((res) => {
+      get("/getCarsModels?mark_id="+mark_id).then((res) => {
 
         this.models=[];
         this.models = res.data;
         this.selected.model=null;        
         
-        }).catch((err) => 
-        {
+      }).catch((err) => {
           console.log(err);
-        });
+      });
     },
 
     // change модели
     selectModel(model_id) {
-
       this.transport_chars.model_id = model_id;
       console.log(this.transport_chars.model_id);
       this.$store.commit("ShowCommonTransport", true);
       this.$store.commit("ShowOtherFields", true);
-      //this.$store.commit("hideOtherFields");
+    },
 
-    }
+    // положение руля
+     SetHelmPosition(position_id) {
+        this.transport_chars.rule_position = position_id;
+     },
+
+     // тип топлива
+     SetFuelType(fuel_type) {
+        this.transport_chars.fuel_type = fuel_type;
+     },
+     
+     // растаможка
+     SetTransportCustoms(customs_id) {
+        this.transport_chars.customs = customs_id;
+     },
+
+     // год выпуска
+     SetReleaseDate(date) {
+      var d = new Date();        
+      if ( date < 0 || date > d.getFullYear() ) 
+        return this.release_date;
+        this.transport_chars.release_date = date;
+        return date;
+     },
+
+     // пробег
+     SetMileage(mileage) {
+        if (mileage<0 || mileage>10000000) return;
+        this.transport_chars.mileage = mileage;
+        return mileage;
+     }
   },
-  components: { "com-transport": comtransport }
 }
 </script>
