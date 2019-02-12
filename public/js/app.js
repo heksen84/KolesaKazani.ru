@@ -3300,7 +3300,7 @@ function forEach(data, callback) {
 				case 2:
 					{
 						this.real_estate = true;
-						this.$store.commit("ShowFinalFields", true);
+						this.$store.commit("ShowFinalFields", false);
 						break;
 					}
 				case 3:
