@@ -1,8 +1,8 @@
 <template>
 <b-form inline>
 
-<!-- INPUT -->
-<b-form-group label="Год выпуска:">
+   <!-- INPUT -->
+   <b-form-group label="Год выпуска:">
        <b-form-input placeholder="Введите год" type="number" v-model="release_date" class="mb-2 mr-sm-2 mb-sm-2" style="width:130px" :formatter="SetReleaseDate" required></b-form-input>
     </b-form-group>
 
@@ -12,7 +12,6 @@
            <option v-for="(item, index) in helm_position" :value="item.value" :key="index">{{item.text}}</option>
         </b-form-select>
     </b-form-group>
-
 
     <!-- INPUT -->
     <b-form-group label="Пробег(км):">
@@ -66,7 +65,8 @@ export default {
           { value: 4, text: 'Гибрид' },
           { value: 5, text: 'Электричество' }
       ]
-		}
+      }
+      
 	},
   
   created() {     
