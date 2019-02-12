@@ -3090,7 +3090,9 @@ function forEach(data, callback) {
 		},
 
 
+		// -----------------------------------
 		// обработка выбора местоположения
+		// -----------------------------------
 		changePlace: function changePlace(items) {
 
 			if (items == null) return; // не обрабатыать если null
