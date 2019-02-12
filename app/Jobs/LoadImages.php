@@ -20,8 +20,7 @@ class LoadImages implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Request $request, $advert_id)
-    {
+    public function __construct(Request $request, $advert_id) {
         if ($request->images)
         foreach($request->file("images") as $img) {
 
