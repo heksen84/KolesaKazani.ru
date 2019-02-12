@@ -2935,6 +2935,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 // ----------------------------------------------------
@@ -3219,6 +3220,8 @@ function forEach(data, callback) {
 		// сброс данных объявления
 		advReset: function advReset(category_data) {
 
+			this.$store.commit("SetRequiredInfo", false);
+
 			// сброс массива объявления и переинициализация его
 			this.$root.advert_data = [];
 			this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
@@ -3297,48 +3300,56 @@ function forEach(data, callback) {
 					{
 						this.appliances = true;
 						this.$store.commit("ShowFinalFields", true);
+						this.$store.commit("SetRequiredInfo", true);
 						break;
 					}
 				case 4:
 					{
 						this.work_and_buisness = true;
 						this.$store.commit("ShowFinalFields", true);
+						this.$store.commit("SetRequiredInfo", true);
 						break;
 					}
 				case 5:
 					{
 						this.for_home = true;
 						this.$store.commit("ShowFinalFields", true);
+						this.$store.commit("SetRequiredInfo", true);
 						break;
 					}
 				case 6:
 					{
 						this.personal_effects = true;
 						this.$store.commit("ShowFinalFields", true);
+						this.$store.commit("SetRequiredInfo", true);
 						break;
 					}
 				case 7:
 					{
 						this.animals = true;
 						this.$store.commit("ShowFinalFields", true);
+						this.$store.commit("SetRequiredInfo", true);
 						break;
 					}
 				case 8:
 					{
 						this.hobbies_and_leisure = true;
 						this.$store.commit("ShowFinalFields", true);
+						this.$store.commit("SetRequiredInfo", true);
 						break;
 					}
 				case 9:
 					{
 						this.services = true;
 						this.$store.commit("ShowFinalFields", true);
+						this.$store.commit("SetRequiredInfo", true);
 						break;
 					}
 				case 10:
 					{
 						this.other = true;
 						this.$store.commit("ShowFinalFields", true);
+						this.$store.commit("SetRequiredInfo", true);
 						break;
 					}
 			}
@@ -38450,22 +38461,44 @@ var render = function() {
                           }
                         },
                         [
-                          _c("b-form-textarea", {
-                            attrs: {
-                              id: "addit_info",
-                              placeholder: "Введите описание",
-                              rows: 4,
-                              "max-rows": 4
-                            },
-                            on: { input: _vm.setInfo },
-                            model: {
-                              value: _vm.info,
-                              callback: function($$v) {
-                                _vm.info = $$v
-                              },
-                              expression: "info"
-                            }
-                          })
+                          !_vm.$store.state.required_info
+                            ? _c("b-form-textarea", {
+                                attrs: {
+                                  id: "addit_info",
+                                  placeholder: "Введите описание",
+                                  rows: 4,
+                                  "max-rows": 4
+                                },
+                                on: { input: _vm.setInfo },
+                                model: {
+                                  value: _vm.info,
+                                  callback: function($$v) {
+                                    _vm.info = $$v
+                                  },
+                                  expression: "info"
+                                }
+                              })
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.$store.state.required_info
+                            ? _c("b-form-textarea", {
+                                attrs: {
+                                  required: "",
+                                  id: "addit_info",
+                                  placeholder: "Введите описание",
+                                  rows: 4,
+                                  "max-rows": 4
+                                },
+                                on: { input: _vm.setInfo },
+                                model: {
+                                  value: _vm.info,
+                                  callback: function($$v) {
+                                    _vm.info = $$v
+                                  },
+                                  expression: "info"
+                                }
+                              })
+                            : _vm._e()
                         ],
                         1
                       ),
@@ -52219,6 +52252,8 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
     show_final_fields: false,
     show_common_transport: false,
 
+    required_info: false, // обязательное поле дополнительной информации
+
     // *****************************************************************
     //  мультиязычность
     // *****************************************************************
@@ -52258,6 +52293,9 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
         state.str_my_adverts = "менің хабарландыруларым";
         state.str_location = "орналасқан";
       }
+    },
+    SetRequiredInfo: function SetRequiredInfo(state, value) {
+      state.required_info = value;
     },
     ShowFinalFields: function ShowFinalFields(state, value) {
       state.show_final_fields = value;

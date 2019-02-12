@@ -70,7 +70,8 @@
 			<div v-show="this.$store.state.show_final_fields">
 
 				<b-form-group label="Описание:" label-for="addit_info">
-			 		<b-form-textarea id="addit_info" placeholder="Введите описание" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></b-form-textarea>
+			 		<b-form-textarea v-if="!$store.state.required_info" id="addit_info" placeholder="Введите описание" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></b-form-textarea>
+					<b-form-textarea v-if="$store.state.required_info" required id="addit_info" placeholder="Введите описание" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></b-form-textarea>
 				</b-form-group>			
 
 				<!-- Цена -->
@@ -418,6 +419,8 @@ export default {
 		// сброс данных объявления
 		advReset(category_data) {
 
+			this.$store.commit("SetRequiredInfo", false);
+
 			// сброс массива объявления и переинициализация его
 			this.$root.advert_data = [];
 			this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
@@ -491,41 +494,49 @@ export default {
   				case 3: {
 					  this.appliances=true; 
 					  this.$store.commit("ShowFinalFields", true);
+					  this.$store.commit("SetRequiredInfo", true);
   					  break; 
   				}
   				case 4: {
 					  this.work_and_buisness=true;
-					  this.$store.commit("ShowFinalFields", true); 
+					  this.$store.commit("ShowFinalFields", true);
+					  this.$store.commit("SetRequiredInfo", true); 
   					break; 
   				}
   				case 5: {
 					  this.for_home=true; 
 					  this.$store.commit("ShowFinalFields", true);
+					  this.$store.commit("SetRequiredInfo", true);
   					break; 
   				}
   				case 6: {
 					  this.personal_effects=true; 
 					  this.$store.commit("ShowFinalFields", true);
+					  this.$store.commit("SetRequiredInfo", true);
   					break; 
   				}
   				case 7: {
 					this.animals=true;
-					this.$store.commit("ShowFinalFields", true); 
+					this.$store.commit("ShowFinalFields", true);
+					this.$store.commit("SetRequiredInfo", true);					
   					break; 
   				}
   				case 8: {
 					this.hobbies_and_leisure=true; 
 					this.$store.commit("ShowFinalFields", true);
+					this.$store.commit("SetRequiredInfo", true);
   					break; 
   				}
   				case 9: { 
 					this.services=true;
 					this.$store.commit("ShowFinalFields", true);
+					this.$store.commit("SetRequiredInfo", true);
   					break; 
   				}
   				case 10: {
 					this.other=true;
 					this.$store.commit("ShowFinalFields", true);
+					this.$store.commit("SetRequiredInfo", true);
   					break; 
   				}
   			}

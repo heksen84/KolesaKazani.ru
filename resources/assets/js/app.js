@@ -72,6 +72,8 @@ const store = new Vuex.Store({
       show_final_fields: false,
       show_common_transport: false,
 
+      required_info: false, // обязательное поле дополнительной информации
+
       // *****************************************************************
       //  мультиязычность
       // *****************************************************************
@@ -114,6 +116,10 @@ const store = new Vuex.Store({
           state.str_location = "орналасқан"          
         }
 
+      },
+
+      SetRequiredInfo (state, value) {
+        state.required_info=value;
       },
 
       ShowFinalFields (state, value) {

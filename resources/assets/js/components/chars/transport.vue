@@ -82,7 +82,7 @@ export default {
         carmark: [],
         models:  [],
 
-        transport_chars: null,
+        transport_chars: null,        
 
         selected: 
         {
