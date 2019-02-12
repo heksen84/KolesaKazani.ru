@@ -2070,6 +2070,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return [1, 2, 3, 5].indexOf(this.selected.type_transport) !== -1 && this.selected.type_transport != null && this.$store.state.show_common_transport;
     }
   },
+
   methods: {
 
     /*
