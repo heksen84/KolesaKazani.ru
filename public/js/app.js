@@ -3370,6 +3370,8 @@ function forEach(data, callback) {
 
 			var formData = new FormData();
 
+			if (this.$root.advert_data.adv_price == null || this.$root.advert_data.adv_price == "") this.$root.advert_data.adv_price = 0;
+
 			// записываю значения полей
 			forEach(this.$root.advert_data, function (key, value) {
 				formData.append(key, value);
@@ -3378,14 +3380,12 @@ function forEach(data, callback) {
 			// Записываю изображения
 			for (var i = 0; i < this.real_images.length; i++) {
 				formData.append('images[' + i + ']', this.real_images[i]);
-			}
-
+			} // ---------------------------------------------------
+			//
+			// РАЗМЕЩЕНИЕ ОБЪЯВЛЕНИЯ
+			//
 			// ---------------------------------------------------
-			// Отправить пост запрос на создание объявления
-			// ---------------------------------------------------
-			axios.post("/create", formData, {
-				headers: { 'Content-Type': 'multipart/form-data' }
-			}).then(function (response) {
+			axios.post("/create", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(function (response) {
 				console.log(response);
 				if (response.data.result == "db.error") _this2.$root.$notify({ group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error' });else if (response.data.result == "usr.error") _this2.$root.$notify({ group: 'foo', text: "<h6>" + response.data.msg + "</h6>", type: 'error' });else alert("Объявление размещено");
 				//	else 
@@ -3404,17 +3404,15 @@ function forEach(data, callback) {
 
 			this.setCoordsDialog = true;
 
-			if (!navigator.geolocation) {
-				// navigator.geolocation не поддерживается
-				console.log("navigator.geolocation error");
-			} else {
-				navigator.geolocation.getCurrentPosition(function (position) {
-					var lat = position.coords.latitude;
-					var lon = position.coords.longitude;
-					var geoCoords = [lat, lon];
-					myPlacemark.geometry.setCoordinates(getCoords);
-				});
-			}
+			if (!navigator.geolocation) console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается		
+			else {
+					navigator.geolocation.getCurrentPosition(function (position) {
+						var lat = position.coords.latitude;
+						var lon = position.coords.longitude;
+						var geoCoords = [lat, lon];
+						myPlacemark.geometry.setCoordinates(getCoords);
+					});
+				}
 		},
 
 

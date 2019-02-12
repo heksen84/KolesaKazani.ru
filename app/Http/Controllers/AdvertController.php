@@ -81,7 +81,7 @@ class AdvertController extends Controller {
             "city_id.required"         => "Укажите расположение",
             "city_id.numeric"          => "Введите числовое значение для расположения"
         ]; 
-
+        
         // проверка
         $validator = Validator::make( $data, $rules, $messages );
 

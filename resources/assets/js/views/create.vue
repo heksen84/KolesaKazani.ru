@@ -552,37 +552,38 @@ export default {
 
 		var formData = new FormData();
 
+		if (this.$root.advert_data.adv_price==null || this.$root.advert_data.adv_price=="") this.$root.advert_data.adv_price=0;
+
 		// записываю значения полей
 		forEach(this.$root.advert_data, function(key, value) {
 			formData.append(key, value);
 		})
 
 		// Записываю изображения
-		for( var i=0; i < this.real_images.length; i++ ) {
-          	formData.append('images['+i+']', this.real_images[i]);
-		}
-		
+		for( var i=0; i < this.real_images.length; i++ )
+          	formData.append('images['+i+']', this.real_images[i]);		
+				
+
 		// ---------------------------------------------------
-		// Отправить пост запрос на создание объявления
+		//
+		// РАЗМЕЩЕНИЕ ОБЪЯВЛЕНИЯ
+		//
 		// ---------------------------------------------------
-		axios.post("/create", formData, 
-		{
-			headers: { 'Content-Type': 'multipart/form-data' }
-        }).then(response => {
+		axios.post("/create", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {
               console.log(response);
 			if (response.data.result=="db.error")
 				this.$root.$notify({group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error'});
 			else
-			if (response.data.result=="usr.error")
-			this.$root.$notify({group: 'foo', text: "<h6>"+response.data.msg+"</h6>", type: 'error'});
-			else
-			alert("Объявление размещено");
-			//	else 
-			//	window.location="home"; // переходим в личный кабинет
-        }).catch(error => {
+				if (response.data.result=="usr.error")
+				this.$root.$notify({group: 'foo', text: "<h6>"+response.data.msg+"</h6>", type: 'error'});
+				else
+				alert("Объявление размещено");
+				//	else 
+				//	window.location="home"; // переходим в личный кабинет
+        	}).catch(error => {
 			  console.log(error.response)
 			  this.$root.$notify({group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error'});
-		})
+			})
     },
 	
 	// -------------------------------------
@@ -592,10 +593,7 @@ export default {
 
 		this.setCoordsDialog=true;
 
-		if (!navigator.geolocation) {
-			// navigator.geolocation не поддерживается
-			console.log("navigator.geolocation error");
-		}
+		if (!navigator.geolocation) console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается		
 		else {
 				navigator.geolocation.getCurrentPosition(function(position) {				
 				var lat = position.coords.latitude;
