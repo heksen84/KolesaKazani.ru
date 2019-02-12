@@ -2079,6 +2079,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     selectTransportType: function selectTransportType(transport_id) {
       var _this = this;
 
+      this.$store.commit("SetRequiredInfo", true);
+
       console.log(transport_id);
 
       if (transport_id == null) {
@@ -2101,10 +2103,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.$store.commit("ShowCommonTransport", false);
             this.$store.commit("ShowFinalFields", false);
-
             this.carmark = [];
 
-            Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getCarsMarks').then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/getCarsMarks").then(function (res) {
               _this.carmark = res.data;
               console.log(_this.this.carmark);
             }).catch(function (err) {});
@@ -2138,6 +2139,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.$store.commit("ShowCommonTransport", false);
       this.$store.commit("ShowFinalFields", false);
+      this.$store.commit("SetRequiredInfo", false);
+
       this.transport_chars.mark_id = mark_id;
 
       console.log(this.transport_chars.mark_id);

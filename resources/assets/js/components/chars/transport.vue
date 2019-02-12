@@ -144,6 +144,8 @@ export default {
     -----------------------------------*/
     selectTransportType(transport_id) {
 
+      this.$store.commit("SetRequiredInfo", true);
+
       console.log(transport_id)
       
       if (transport_id==null) {
@@ -165,11 +167,10 @@ export default {
         case 1: {
 
           this.$store.commit("ShowCommonTransport", false);
-          this.$store.commit("ShowFinalFields", false);
-                    
+          this.$store.commit("ShowFinalFields", false);                              
           this.carmark=[];
 
-          get('/getCarsMarks').then((res) => {            
+          get("/getCarsMarks").then((res) => {            
             this.carmark = res.data;                        
             console.log(this.this.carmark);
           }).catch((err) => {
@@ -201,6 +202,8 @@ export default {
       
       this.$store.commit("ShowCommonTransport", false);
       this.$store.commit("ShowFinalFields", false);
+      this.$store.commit("SetRequiredInfo", false);
+      
       this.transport_chars.mark_id = mark_id;
 
       console.log(this.transport_chars.mark_id);
