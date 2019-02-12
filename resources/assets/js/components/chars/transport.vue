@@ -78,7 +78,7 @@ export default {
     -----------------------------------*/
     selectTransportType(transport_id) {
 
-      //console.log(transport_id)
+      console.log(transport_id)
       
       if (transport_id==null) {
         this.$store.commit("ShowCommonTransport", false);
@@ -111,6 +111,19 @@ export default {
           });
           break;
        }
+
+        case 2: {          
+          break;
+       }
+
+       case 3: {          
+          break;
+       }
+
+       case 4: {
+          break;
+       }
+
       }
 
     },

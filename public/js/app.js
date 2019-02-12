@@ -1707,7 +1707,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
    },
    created: function created() {
 
-      this.transport_chars = this.$root.advert_data; // получаю ссылку на массив данных объявления
+      this.transport_chars = this.$root.advert_data; // получаю ссылку на массив данных объявления          
 
       // значения по умолчанию
       this.transport_chars.rule_position = 0;
@@ -2027,7 +2027,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     selectTransportType: function selectTransportType(transport_id) {
       var _this = this;
 
-      //console.log(transport_id)
+      console.log(transport_id);
 
       if (transport_id == null) {
         this.$store.commit("ShowCommonTransport", false);
@@ -2058,6 +2058,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             }).catch(function (err) {});
             break;
           }
+
+        case 2:
+          {
+            break;
+          }
+
+        case 3:
+          {
+            break;
+          }
+
+        case 4:
+          {
+            break;
+          }
+
       }
     },
 

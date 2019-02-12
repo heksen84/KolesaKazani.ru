@@ -36,7 +36,7 @@
 </template>
 
 <script>
-export default {
+export default {  
   data () {
     return 	{
 
@@ -69,9 +69,9 @@ export default {
 		}
 	},
   
-  created() {
+  created() {     
 
-     this.transport_chars = this.$root.advert_data; // получаю ссылку на массив данных объявления
+     this.transport_chars = this.$root.advert_data; // получаю ссылку на массив данных объявления          
      
      // значения по умолчанию
      this.transport_chars.rule_position   = 0;
