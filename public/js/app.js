@@ -1984,7 +1984,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -1998,6 +1997,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // марки автомобилей
       carmark: [],
       models: [],
+
       transport_chars: null,
 
       selected: {
@@ -2008,9 +2008,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         fuel_type: 0,
         car_customs: 1
       }
-
     };
   },
+
+
+  // компонент создан
   created: function created() {
     this.transport_chars = this.$root.advert_data;
   },

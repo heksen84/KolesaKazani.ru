@@ -1,5 +1,5 @@
 <template>
-    <b-form inline style="margin-top:-18px;">
+  <b-form inline style="margin-top:-18px;">
     <b-form-group label="Вид транспорта:">
         <b-form-select v-model="selected.type_transport" class="mb-2 mr-sm-2 mb-sm-2"  @change="selectTransportType">
            <option v-for="item in type_transport" :value="item.value" :key="item.value">{{item.text}}</option>
@@ -22,9 +22,8 @@
     </b-form-group>
 
     <!-- общий компонент для транспорта -->
-    <com-transport v-if="[1,2,5].indexOf(selected.type_transport) !== -1 && selected.type_transport!=null && this.$store.state.show_common_transport"></com-transport>
-    
-    </b-form>
+    <com-transport v-if="[1,2,5].indexOf(selected.type_transport) !== -1 && selected.type_transport!=null && this.$store.state.show_common_transport"></com-transport>  
+  </b-form>
 </template>
 
 <script>
@@ -49,22 +48,24 @@ export default {
         ],
 
         // марки автомобилей
-        carmark:[],
-        models:[],
-        transport_chars:null,
+        carmark: [],
+        models:  [],
 
-        selected: {
+        transport_chars: null,
+
+        selected: 
+        {
           type_transport: null,
           carmark: null,
           model: null,
           helm_position: null,
           fuel_type: 0,
           car_customs: 1
-      }
-
-		}
+        }
+		  }
 	},
 
+  // компонент создан
   created() {
     this.transport_chars = this.$root.advert_data;
   },
