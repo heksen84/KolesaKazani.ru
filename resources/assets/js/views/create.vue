@@ -569,7 +569,6 @@ export default {
 		for( var i=0; i < this.real_images.length; i++ )
           	formData.append('images['+i+']', this.real_images[i]);		
 				
-
 		// ---------------------------------------------------
 		//
 		// РАЗМЕЩЕНИЕ ОБЪЯВЛЕНИЯ
