@@ -64,12 +64,17 @@ Vue.use(Notifications)
 // -----------------------------------
 const store = new Vuex.Store({
 
-    state: {      
-      // дополнительные поля в объявлении (поле доп. информация, и.т.д.)
-      show_other_fields: false,
+    state: { 
+      
+      // *****************************************************************
+      //  дополнительные поля в объявлении (поле доп. информация, и.т.д.)
+      // *****************************************************************
+      show_final_fields: false,
       show_common_transport: false,
 
-      // мультиязычность
+      // *****************************************************************
+      //  мультиязычность
+      // *****************************************************************
       str_login: "",
       str_register: "",
       str_my_adverts: "",
@@ -111,8 +116,8 @@ const store = new Vuex.Store({
 
       },
 
-      ShowOtherFields (state, value) {
-        state.show_other_fields=value;
+      ShowFinalFields (state, value) {
+        state.show_final_fields=value;
       },
 
       ShowCommonTransport (state, value) {

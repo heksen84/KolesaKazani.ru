@@ -67,7 +67,7 @@
 			<h1 v-else-if="other"></h1>
 
 			<!-- Дополнительные поля -->
-			<div v-show="this.$store.state.show_other_fields">
+			<div v-show="this.$store.state.show_final_fields">
 
 				<b-form-group label="Описание:" label-for="addit_info">
 			 		<b-form-textarea id="addit_info" placeholder="Введите описание" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></b-form-textarea>
@@ -470,62 +470,62 @@ export default {
 			this.$root.advert_data.adv_category=data;
 			
 			// скрываю дополнительные поля
-			this.$store.commit("ShowOtherFields", false);
+			this.$store.commit("ShowFinalFields", false);
 
   			switch(data) {
   				case null: {
 					  this.root=true; 
-					  this.$store.commit("ShowOtherFields", false);
+					  this.$store.commit("ShowFinalFields", false);
   					break;
   				}
   				case 1: {
 					  this.transport=true; 
-					  this.$store.commit("ShowOtherFields", false);
+					  this.$store.commit("ShowFinalFields", false);
   					break; 
   				} 
   				case 2: {  
 					  this.real_estate=true; 
-					  this.$store.commit("ShowOtherFields", true);
+					  this.$store.commit("ShowFinalFields", true);
 					  break;
 				} 
   				case 3: {
 					  this.appliances=true; 
-					  this.$store.commit("ShowOtherFields", true);
+					  this.$store.commit("ShowFinalFields", true);
   					  break; 
   				}
   				case 4: {
 					  this.work_and_buisness=true;
-					  this.$store.commit("ShowOtherFields", true); 
+					  this.$store.commit("ShowFinalFields", true); 
   					break; 
   				}
   				case 5: {
 					  this.for_home=true; 
-					  this.$store.commit("ShowOtherFields", true);
+					  this.$store.commit("ShowFinalFields", true);
   					break; 
   				}
   				case 6: {
 					  this.personal_effects=true; 
-					  this.$store.commit("ShowOtherFields", true);
+					  this.$store.commit("ShowFinalFields", true);
   					break; 
   				}
   				case 7: {
 					this.animals=true;
-					this.$store.commit("ShowOtherFields", true); 
+					this.$store.commit("ShowFinalFields", true); 
   					break; 
   				}
   				case 8: {
 					this.hobbies_and_leisure=true; 
-					this.$store.commit("ShowOtherFields", true);
+					this.$store.commit("ShowFinalFields", true);
   					break; 
   				}
   				case 9: { 
 					this.services=true;
-					this.$store.commit("ShowOtherFields", true);
+					this.$store.commit("ShowFinalFields", true);
   					break; 
   				}
   				case 10: {
 					this.other=true;
-					this.$store.commit("ShowOtherFields", true);
+					this.$store.commit("ShowFinalFields", true);
   					break; 
   				}
   			}

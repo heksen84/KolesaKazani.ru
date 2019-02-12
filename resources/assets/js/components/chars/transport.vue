@@ -148,11 +148,11 @@ export default {
       
       if (transport_id==null) {
         this.$store.commit("ShowCommonTransport", false);
-        this.$store.commit("ShowOtherFields", false);       
+        this.$store.commit("ShowFinalFields", false);       
       }      
       else {
         this.$store.commit("ShowCommonTransport", true);
-        this.$store.commit("ShowOtherFields", true);       
+        this.$store.commit("ShowFinalFields", true);       
       }
 
       this.transport_chars.transport_type = transport_id;
@@ -165,7 +165,7 @@ export default {
         case 1: {
 
           this.$store.commit("ShowCommonTransport", false);
-          this.$store.commit("ShowOtherFields", false);
+          this.$store.commit("ShowFinalFields", false);
                     
           this.carmark=[];
 
@@ -200,7 +200,7 @@ export default {
     selectMark(mark_id) {
       
       this.$store.commit("ShowCommonTransport", false);
-      this.$store.commit("ShowOtherFields", false);
+      this.$store.commit("ShowFinalFields", false);
       this.transport_chars.mark_id = mark_id;
 
       console.log(this.transport_chars.mark_id);
@@ -221,7 +221,7 @@ export default {
       this.transport_chars.model_id = model_id;
       console.log(this.transport_chars.model_id);
       this.$store.commit("ShowCommonTransport", true);
-      this.$store.commit("ShowOtherFields", true);
+      this.$store.commit("ShowFinalFields", true);
     },
 
     // положение руля

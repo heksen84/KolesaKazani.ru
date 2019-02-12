@@ -1870,12 +1870,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.realestate_chars.property_type = property_id;
 
       // показываю дополнительные поля
-      this.$store.commit("ShowOtherFields", true);
+      this.$store.commit("ShowFinalFields", true);
 
       switch (property_id) {
         case null:
           {
-            this.$store.commit("ShowOtherFields", false);
+            this.$store.commit("ShowFinalFields", false);
             break;
           }
         case 0:
@@ -2083,10 +2083,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       if (transport_id == null) {
         this.$store.commit("ShowCommonTransport", false);
-        this.$store.commit("ShowOtherFields", false);
+        this.$store.commit("ShowFinalFields", false);
       } else {
         this.$store.commit("ShowCommonTransport", true);
-        this.$store.commit("ShowOtherFields", true);
+        this.$store.commit("ShowFinalFields", true);
       }
 
       this.transport_chars.transport_type = transport_id;
@@ -2100,7 +2100,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           {
 
             this.$store.commit("ShowCommonTransport", false);
-            this.$store.commit("ShowOtherFields", false);
+            this.$store.commit("ShowFinalFields", false);
 
             this.carmark = [];
 
@@ -2137,7 +2137,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       this.$store.commit("ShowCommonTransport", false);
-      this.$store.commit("ShowOtherFields", false);
+      this.$store.commit("ShowFinalFields", false);
       this.transport_chars.mark_id = mark_id;
 
       console.log(this.transport_chars.mark_id);
@@ -2158,7 +2158,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.transport_chars.model_id = model_id;
       console.log(this.transport_chars.model_id);
       this.$store.commit("ShowCommonTransport", true);
-      this.$store.commit("ShowOtherFields", true);
+      this.$store.commit("ShowFinalFields", true);
     },
 
 
@@ -3272,73 +3272,73 @@ function forEach(data, callback) {
 			this.$root.advert_data.adv_category = data;
 
 			// скрываю дополнительные поля
-			this.$store.commit("ShowOtherFields", false);
+			this.$store.commit("ShowFinalFields", false);
 
 			switch (data) {
 				case null:
 					{
 						this.root = true;
-						this.$store.commit("ShowOtherFields", false);
+						this.$store.commit("ShowFinalFields", false);
 						break;
 					}
 				case 1:
 					{
 						this.transport = true;
-						this.$store.commit("ShowOtherFields", false);
+						this.$store.commit("ShowFinalFields", false);
 						break;
 					}
 				case 2:
 					{
 						this.real_estate = true;
-						this.$store.commit("ShowOtherFields", true);
+						this.$store.commit("ShowFinalFields", true);
 						break;
 					}
 				case 3:
 					{
 						this.appliances = true;
-						this.$store.commit("ShowOtherFields", true);
+						this.$store.commit("ShowFinalFields", true);
 						break;
 					}
 				case 4:
 					{
 						this.work_and_buisness = true;
-						this.$store.commit("ShowOtherFields", true);
+						this.$store.commit("ShowFinalFields", true);
 						break;
 					}
 				case 5:
 					{
 						this.for_home = true;
-						this.$store.commit("ShowOtherFields", true);
+						this.$store.commit("ShowFinalFields", true);
 						break;
 					}
 				case 6:
 					{
 						this.personal_effects = true;
-						this.$store.commit("ShowOtherFields", true);
+						this.$store.commit("ShowFinalFields", true);
 						break;
 					}
 				case 7:
 					{
 						this.animals = true;
-						this.$store.commit("ShowOtherFields", true);
+						this.$store.commit("ShowFinalFields", true);
 						break;
 					}
 				case 8:
 					{
 						this.hobbies_and_leisure = true;
-						this.$store.commit("ShowOtherFields", true);
+						this.$store.commit("ShowFinalFields", true);
 						break;
 					}
 				case 9:
 					{
 						this.services = true;
-						this.$store.commit("ShowOtherFields", true);
+						this.$store.commit("ShowFinalFields", true);
 						break;
 					}
 				case 10:
 					{
 						this.other = true;
-						this.$store.commit("ShowOtherFields", true);
+						this.$store.commit("ShowFinalFields", true);
 						break;
 					}
 			}
@@ -38435,8 +38435,8 @@ var render = function() {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: this.$store.state.show_other_fields,
-                          expression: "this.$store.state.show_other_fields"
+                          value: this.$store.state.show_final_fields,
+                          expression: "this.$store.state.show_final_fields"
                         }
                       ]
                     },
@@ -52212,11 +52212,16 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_32_vue
 var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
 
   state: (_state = {
-    // дополнительные поля в объявлении (поле доп. информация, и.т.д.)
-    show_other_fields: false,
+
+    // *****************************************************************
+    //  дополнительные поля в объявлении (поле доп. информация, и.т.д.)
+    // *****************************************************************
+    show_final_fields: false,
     show_common_transport: false,
 
-    // мультиязычность
+    // *****************************************************************
+    //  мультиязычность
+    // *****************************************************************
     str_login: "",
     str_register: "",
     str_my_adverts: "",
@@ -52254,8 +52259,8 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
         state.str_location = "орналасқан";
       }
     },
-    ShowOtherFields: function ShowOtherFields(state, value) {
-      state.show_other_fields = value;
+    ShowFinalFields: function ShowFinalFields(state, value) {
+      state.show_final_fields = value;
     },
     ShowCommonTransport: function ShowCommonTransport(state, value) {
       state.show_common_transport = value;

@@ -120,11 +120,11 @@ export default {
         this.realestate_chars.property_type = property_id;
 
         // показываю дополнительные поля
-        this.$store.commit("ShowOtherFields", true);
+        this.$store.commit("ShowFinalFields", true);
      
         switch(property_id) {
           case null: {
-            this.$store.commit("ShowOtherFields", false);
+            this.$store.commit("ShowFinalFields", false);
             break;
           }
           case 0: {
