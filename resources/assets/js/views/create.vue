@@ -413,46 +413,46 @@ export default {
 		// вид сделки
   		setDeal(deal_id) {
   			this.$root.advert_data.adv_deal=deal_id;
-			this.deal_id=deal_id;
-		  },
+				this.deal_id=deal_id;
+		},
 
 		// сброс данных объявления
 		advReset(category_data) {
 
-			this.$store.commit("SetRequiredInfo", false);
+				this.$store.commit("SetRequiredInfo", false);
 
-			// сброс массива объявления и переинициализация его
-			this.$root.advert_data = [];
-			this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
-			this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
-			this.$root.advert_data.adv_price = "";
-			this.$root.advert_data.adv_phone1 = "";
+				// сброс массива объявления и переинициализация его
+				this.$root.advert_data = [];
+				this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
+				this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
+				this.$root.advert_data.adv_price = "";
+				this.$root.advert_data.adv_phone1 = "";
 
-			// сброс моделей
-			this.sdelka = 0;
-			this.price = "";
-			this.info = "";
-			this.phone1 = "";
-			this.phone2 = "";
-			this.phone3 = "";
-			this.regions_model = null;
-			this.places_model = null;
-			this.preview_images = [];
-			this.coordinates_set = false;
+				// сброс моделей
+				this.sdelka = 0;
+				this.price = "";
+				this.info = "";
+				this.phone1 = "";
+				this.phone2 = "";
+				this.phone3 = "";
+				this.regions_model = null;
+				this.places_model = null;
+				this.preview_images = [];
+				this.coordinates_set = false;
 
 			// сброс категорий
 			if (category_data!=null) {
-			this.root=false;				    // по умолчанию
+				this.root=false;				    // по умолчанию
   			this.transport=false;			    // транспорт
   			this.real_estate=false;			    // недвижимость
   			this.appliances=false;			    // электроника
   			this.work_and_buisness=false; 	    // работа и бизнес
   			this.for_home=false;			    // для дома и дачи
   			this.personal_effects=false;	    // личные вещи
-			this.animals=false;				    // животные
-			this.hobbies_and_leisure=false;	  	// хобби и отдых
-			this.services=false;			    // услуги
-			this.other=false;				    // другое
+				this.animals=false;				    // животные
+				this.hobbies_and_leisure=false;	  	// хобби и отдых
+				this.services=false;			    // услуги
+				this.other=false;				    // другое
 			}
 
 			// сбрасываю фотки
