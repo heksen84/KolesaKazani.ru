@@ -145,6 +145,7 @@ export default {
     selectTransportType(transport_id) {
 
       this.$store.commit("SetRequiredInfo", true);
+      this.$store.commit("ResetField", "price");
 
       console.log(transport_id)
       

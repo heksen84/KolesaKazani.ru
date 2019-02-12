@@ -383,7 +383,7 @@ export default {
 			this.$root.advert_data.adv_info=info;
   		},
 
-		// установить цену
+			// установить цену
   		setPrice(price) {
 			if (price < 0) return;
   			this.$root.advert_data.adv_price=price;
@@ -570,7 +570,9 @@ export default {
 		//
 		// ---------------------------------------------------
 		axios.post("/create", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {
-              console.log(response);
+			
+			console.log(response);
+			
 			if (response.data.result=="db.error")
 				this.$root.$notify({group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error'});
 			else

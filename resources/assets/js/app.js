@@ -65,12 +65,18 @@ Vue.use(Notifications)
 const store = new Vuex.Store({
 
     state: { 
+
+      // ********************************
+      // стандартные поля объявления
+      // ********************************
+      price: "",
       
       // *****************************************************************
       //  дополнительные поля в объявлении (поле доп. информация, и.т.д.)
       // *****************************************************************
       show_final_fields: false,
       show_common_transport: false,
+
 
       required_info: false, // обязательное поле дополнительной информации
 
@@ -90,6 +96,12 @@ const store = new Vuex.Store({
     },
 
     mutations: {
+
+      ResetField(state, field_name) {
+        switch(field_name) {
+          case "price": state.price=""; break;
+        }
+      },
       
       // установить язык
       SetLang (state, lang) {
