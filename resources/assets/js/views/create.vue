@@ -546,15 +546,19 @@ export default {
 		----------------------------
 		  Сохранить объявление
 		----------------------------*/
-    	onSubmit(evt) {
+    onSubmit(evt) {
 
 		evt.preventDefault();
 
 		var formData = new FormData();
 
-		if (this.$root.advert_data.adv_price==null || this.$root.advert_data.adv_price=="") this.$root.advert_data.adv_price=0;
+		// устанавливаю цену если она пустая, т.к. бэкенду нужна цена
+		if (this.$root.advert_data.adv_price==null || this.$root.advert_data.adv_price=="") 
+			this.$root.advert_data.adv_price=0;
 
+		// -------------------------------
 		// записываю значения полей
+		// -------------------------------
 		forEach(this.$root.advert_data, function(key, value) {
 			formData.append(key, value);
 		})

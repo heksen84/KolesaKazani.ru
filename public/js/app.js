@@ -3371,9 +3371,12 @@ function forEach(data, callback) {
 
 			var formData = new FormData();
 
+			// устанавливаю цену если она пустая, т.к. бэкенду нужна цена
 			if (this.$root.advert_data.adv_price == null || this.$root.advert_data.adv_price == "") this.$root.advert_data.adv_price = 0;
 
+			// -------------------------------
 			// записываю значения полей
+			// -------------------------------
 			forEach(this.$root.advert_data, function (key, value) {
 				formData.append(key, value);
 			});
