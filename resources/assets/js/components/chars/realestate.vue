@@ -13,19 +13,19 @@
         </b-form-select>
 </b-form-group>
 
-<b-form-group label="Этажей в доме:" v-if="selected.apartment && selected_type==0 || selected_type==1">
+<b-form-group label="Этажей в доме:" v-if="selected.apartment && selected_type==0 || selected_type==1 || selected_type==2">
          <b-form-select v-model="selected_number_of_floors" class="mb-2 mr-sm-2 mb-sm-2" @change="changeNumberOfFloors" style="width:120px">
            <option v-for="i in 100" :value="i" :key="i">{{ i }}</option>
         </b-form-select>
 </b-form-group>
 
-<b-form-group label="Количество комнат:" v-if="selected.apartment && selected_type==0 || selected_type==1">
+<b-form-group label="Количество комнат:" v-if="selected.apartment && selected_type==0 && selected_type!=1 || selected_type==2">
          <b-form-select v-model="selected_number_of_rooms" class="mb-2 mr-sm-2 mb-sm-2" @change="changeNumberOfRooms" style="width:152px">
            <option v-for="i in 10" :value="i" :key="i">{{ i }}</option>
         </b-form-select>
 </b-form-group>
 
-<b-form-group label="Общая площадь:" v-if="selected.apartment && selected_type==0 || selected_type==1">
+<b-form-group label="Общая площадь:" v-if="selected.apartment && selected_type==0 || selected_type==1 || selected_type==2 || selected_type==3 || selected_type==6 || selected_type==7">
         <b-form-input type="number" v-model="input_area" class="mb-2 mr-sm-2 mb-sm-2" @input="changeTotalArea" style="width:160px" placeholder="Введите площадь"></b-form-input>
 </b-form-group>
 
@@ -35,7 +35,7 @@
         </b-form-select>
 </b-form-group>
 
-<b-form-group label="Вид объекта:" v-if="selected_type!=null">
+<b-form-group label="Вид объекта:" v-if="selected_type!=null && selected_type!=3 && selected_type!=5">
         <b-form-select v-model="selected_object_type" class="mb-2 mr-sm-2 mb-sm-2" @change="changeObjectType" style="width:175px">
            <option v-for="item in object_type" :value="item.value" :key="item.value">{{item.text}}</option>
         </b-form-select>
