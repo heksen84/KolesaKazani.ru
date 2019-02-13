@@ -93,6 +93,7 @@ const store = new Vuex.Store({
       str_create_advert: "",
       str_my_adverts: "",
       str_location: ""
+      
     },
 
     mutations: {

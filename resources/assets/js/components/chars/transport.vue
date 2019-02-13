@@ -65,6 +65,8 @@ export default {
   data () {
     return 	{
 
+        placeholder_info_text: "Введите текст объявления, например: ",
+
         type_transport: 
         [
           { value: null, text: '-- Выберите вид транспорта --' },
@@ -76,7 +78,7 @@ export default {
           { value: 6, text: 'Водный транспорт' },
           { value: 7, text: 'Велосипед' },
           { value: 8, text: 'Воздушный транспорт' }
-        ],
+        ],        
 
         // марки автомобилей
         carmark: [],
@@ -177,28 +179,30 @@ export default {
           this.$store.commit("SetPlaceholderInfoText", "Введите дополнительное описание.");
 
           this.carmark=[];
-
           get("/getCarsMarks").then((res) => {            
+            
             this.carmark = res.data;                        
             console.log(this.this.carmark);
-          }).catch((err) => {
 
+          }).catch((err) => {
+              console.log(err);
           });
+
           break;
        }
 
         case 2: {
-            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам Камаз 2009 г. в хорошем состоянии.");
+            this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам Камаз 2009 г. в хорошем состоянии.");
           break;
        }
 
        case 3: {
-            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам мотоцикл Yamaha 2015 г. в отличном состоянии.");          
+            this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам мотоцикл Yamaha 2015 г. в отличном состоянии.");          
           break;
        }
 
        case 4: {
-            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам прицеп.");          
+            this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам прицеп.");          
           break;
        }
 
@@ -208,22 +212,20 @@ export default {
        }
 
        case 6: {            
-          this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам моторную лодку в хорошем состоянии.");          
+          this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам моторную лодку в хорошем состоянии.");          
           break;
        }
 
        case 7: {            
-          this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам новый велосипед.");          
+          this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам новый велосипед.");          
           break;
        }
 
        case 8: {            
-          this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам двухместный самолёт.");          
+          this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам двухместный самолёт.");          
           break;
        }
-
-       
-
+      
       }
 
     },
