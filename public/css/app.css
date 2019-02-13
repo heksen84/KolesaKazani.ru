@@ -241,12 +241,12 @@ body {
   color: black;
   height: 120px;
   border: 1px solid grey;
-  border-radius: 3px;
   width: 100%;
   text-align: left;
   display: inline-block;
   /* word-wrap: break-word;*/
   word-break: break-all;
+  margin-top: -2px;
 }
 
 .image {
