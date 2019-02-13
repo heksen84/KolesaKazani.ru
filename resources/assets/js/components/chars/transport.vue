@@ -53,13 +53,11 @@
         </b-form-select>
     </b-form-group>
 
-    <!--<com-transport v-if="getComTransport"></com-transport>  -->
   </b-form>
 </template>
 
 <script>
 import { post, get, interceptors } from '../../helpers/api'
-import comtransport from './common/com_transport.vue';
 
 export default {
   data () {
