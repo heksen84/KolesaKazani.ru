@@ -3228,6 +3228,7 @@ function forEach(data, callback) {
 						this.appliances = true;
 						this.$store.commit("ShowFinalFields", true);
 						this.$store.commit("SetRequiredInfo", true);
+						this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам телевизор Samsung б/у в отличном состоянии");
 						break;
 					}
 				case 4:
@@ -3235,6 +3236,7 @@ function forEach(data, callback) {
 						this.work_and_buisness = true;
 						this.$store.commit("ShowFinalFields", true);
 						this.$store.commit("SetRequiredInfo", true);
+						this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Требуются разнорабочие");
 						break;
 					}
 				case 5:
@@ -3242,6 +3244,7 @@ function forEach(data, callback) {
 						this.for_home = true;
 						this.$store.commit("ShowFinalFields", true);
 						this.$store.commit("SetRequiredInfo", true);
+						this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Куплю картофель");
 						break;
 					}
 				case 6:
@@ -3249,6 +3252,7 @@ function forEach(data, callback) {
 						this.personal_effects = true;
 						this.$store.commit("ShowFinalFields", true);
 						this.$store.commit("SetRequiredInfo", true);
+						this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам пуховик");
 						break;
 					}
 				case 7:
@@ -3256,6 +3260,7 @@ function forEach(data, callback) {
 						this.animals = true;
 						this.$store.commit("ShowFinalFields", true);
 						this.$store.commit("SetRequiredInfo", true);
+						this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам щенков хаски");
 						break;
 					}
 				case 8:
@@ -3270,6 +3275,7 @@ function forEach(data, callback) {
 						this.services = true;
 						this.$store.commit("ShowFinalFields", true);
 						this.$store.commit("SetRequiredInfo", true);
+						this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Распечатка текста");
 						break;
 					}
 				case 10:

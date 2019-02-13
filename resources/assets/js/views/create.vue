@@ -446,12 +446,12 @@ export default {
 			// сброс категорий
 			if (category_data!=null) {
 				this.root=false;				    // по умолчанию
-  			this.transport=false;			    // транспорт
-  			this.real_estate=false;			    // недвижимость
-  			this.appliances=false;			    // электроника
-  			this.work_and_buisness=false; 	    // работа и бизнес
-  			this.for_home=false;			    // для дома и дачи
-  			this.personal_effects=false;	    // личные вещи
+  				this.transport=false;			    // транспорт
+  				this.real_estate=false;			    // недвижимость
+  				this.appliances=false;			    // электроника
+  				this.work_and_buisness=false; 	    // работа и бизнес
+  				this.for_home=false;			    // для дома и дачи
+  				this.personal_effects=false;	    // личные вещи
 				this.animals=false;				    // животные
 				this.hobbies_and_leisure=false;	  	// хобби и отдых
 				this.services=false;			    // услуги
@@ -498,42 +498,48 @@ export default {
 					  this.appliances=true; 
 					  this.$store.commit("ShowFinalFields", true);
 					  this.$store.commit("SetRequiredInfo", true);
+					  this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам телевизор Samsung б/у в отличном состоянии");
   					  break; 
   				}
   				case 4: {
 					  this.work_and_buisness=true;
 					  this.$store.commit("ShowFinalFields", true);
-					  this.$store.commit("SetRequiredInfo", true); 
+					  this.$store.commit("SetRequiredInfo", true);
+					  this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Требуются разнорабочие"); 
   					break; 
   				}
   				case 5: {
 					  this.for_home=true; 
 					  this.$store.commit("ShowFinalFields", true);
 					  this.$store.commit("SetRequiredInfo", true);
+					  this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Куплю картофель"); 
   					break; 
   				}
   				case 6: {
 					  this.personal_effects=true; 
 					  this.$store.commit("ShowFinalFields", true);
 					  this.$store.commit("SetRequiredInfo", true);
+					  this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам пуховик"); 
   					break; 
   				}
   				case 7: {
 					this.animals=true;
 					this.$store.commit("ShowFinalFields", true);
 					this.$store.commit("SetRequiredInfo", true);					
+					this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам щенков хаски"); 
   					break; 
   				}
   				case 8: {
 					this.hobbies_and_leisure=true; 
 					this.$store.commit("ShowFinalFields", true);
-					this.$store.commit("SetRequiredInfo", true);
+					this.$store.commit("SetRequiredInfo", true);					
   					break; 
   				}
   				case 9: { 
 					this.services=true;
 					this.$store.commit("ShowFinalFields", true);
 					this.$store.commit("SetRequiredInfo", true);
+					this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Распечатка текста"); 
   					break; 
   				}
   				case 10: {
