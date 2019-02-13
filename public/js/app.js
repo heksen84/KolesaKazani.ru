@@ -36228,7 +36228,7 @@ var render = function() {
           staticStyle: {
             width: "55%",
             position: "relative",
-            top: "-115px",
+            top: "-113px",
             left: "129px",
             overflow: "hidden"
           }
