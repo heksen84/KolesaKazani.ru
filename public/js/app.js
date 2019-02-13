@@ -1962,6 +1962,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$store.commit("ResetField", "price");
       this.$store.commit("SetPlaceholderInfoText", "default");
 
+      this.selected.model = null;
+
       console.log(transport_id);
 
       if (transport_id == null) {

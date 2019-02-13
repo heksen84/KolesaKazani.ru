@@ -150,11 +150,13 @@ export default {
       this.$store.commit("ResetField", "price");
       this.$store.commit("SetPlaceholderInfoText", "default");
 
+      this.selected.model = null;
+
       console.log(transport_id)
       
       if (transport_id==null) {
         this.$store.commit("ShowCommonTransport", false);
-        this.$store.commit("ShowFinalFields", false);       
+        this.$store.commit("ShowFinalFields", false);               
       }      
       else {
         this.$store.commit("ShowCommonTransport", true);
