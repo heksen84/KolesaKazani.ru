@@ -36205,8 +36205,8 @@ var render = function() {
             staticStyle: { display: "inline-block" },
             attrs: {
               src: "../storage/app/images/" + _vm.image,
-              width: "120",
-              height: "120"
+              width: "118",
+              height: "118"
             }
           })
         : _vm._e(),
@@ -36216,8 +36216,8 @@ var render = function() {
             staticStyle: { display: "inline-block" },
             attrs: {
               src: "../public/images/_nofoto.jpg",
-              width: "120",
-              height: "120"
+              width: "118",
+              height: "118"
             }
           })
         : _vm._e(),

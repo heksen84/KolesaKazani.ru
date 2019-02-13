@@ -1,8 +1,8 @@
 <template>
 
   <div class="item" @click="details">
-    <b-img :src="'../storage/app/images/'+image" width="120" height="120" style="display:inline-block" v-if="image!=null"/>
-    <b-img :src="'../public/images/_nofoto.jpg'" width="120" height="120" style="display:inline-block" v-if="image==null"/>
+    <b-img :src="'../storage/app/images/'+image" width="118" height="118" style="display:inline-block" v-if="image!=null"/>
+    <b-img :src="'../public/images/_nofoto.jpg'" width="118" height="118" style="display:inline-block" v-if="image==null"/>
 
     <div style="width:55%;position:relative;top:-115px;left:129px;overflow:hidden">      
         <b>{{ title }}</b>
