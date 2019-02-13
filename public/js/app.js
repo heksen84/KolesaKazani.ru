@@ -1889,6 +1889,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -36321,6 +36323,21 @@ var render = function() {
     "b-form",
     { staticStyle: { "margin-top": "-18px" }, attrs: { inline: "" } },
     [
+      [1, 2, 3, 5].indexOf(this.selected.type_transport) !== -1 &&
+      this.selected.type_transport != null
+        ? _c(
+            "div",
+            {
+              staticStyle: {
+                width: "100%",
+                "margin-bottom": "10px",
+                "text-decoration": "underline"
+              }
+            },
+            [_vm._v("Характеристики:")]
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _c(
         "b-form-group",
         { attrs: { label: "Вид транспорта:" } },
@@ -38215,7 +38232,7 @@ var render = function() {
                         "b-form-group",
                         {
                           attrs: {
-                            label: "Описание:",
+                            label: "<ins>Описание:</ins>",
                             "label-for": "addit_info"
                           }
                         },

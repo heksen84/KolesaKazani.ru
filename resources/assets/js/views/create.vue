@@ -36,7 +36,7 @@
 			<!-- Категории -->
 			<div v-if="root"></div>
 
-			<!-- транспорт -->
+			<!-- транспорт -->			
 			<transport v-else-if="transport"/>
 
 			<!-- недвижимость -->
@@ -69,7 +69,7 @@
 			<!-- Дополнительные поля -->
 			<div v-show="this.$store.state.show_final_fields">
 
-				<b-form-group label="Описание:" label-for="addit_info">
+				<b-form-group label="<ins>Описание:</ins>" label-for="addit_info">
 			 		<b-form-textarea v-if="!$store.state.required_info" id="addit_info" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></b-form-textarea>
 					<b-form-textarea v-if="$store.state.required_info" required id="addit_info" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></b-form-textarea>
 				</b-form-group>			
