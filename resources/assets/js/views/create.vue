@@ -70,8 +70,8 @@
 			<div v-show="this.$store.state.show_final_fields">
 
 				<b-form-group label="Описание:" label-for="addit_info">
-			 		<b-form-textarea v-if="!$store.state.required_info" id="addit_info" placeholder="Введите описание" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></b-form-textarea>
-					<b-form-textarea v-if="$store.state.required_info" required id="addit_info" placeholder="Введите описание" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></b-form-textarea>
+			 		<b-form-textarea v-if="!$store.state.required_info" id="addit_info" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></b-form-textarea>
+					<b-form-textarea v-if="$store.state.required_info" required id="addit_info" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></b-form-textarea>
 				</b-form-group>			
 
 				<!-- Цена -->
@@ -422,6 +422,7 @@ export default {
 		advReset(category_data) {
 
 				this.$store.commit("SetRequiredInfo", false);
+				this.$store.commit("SetPlaceholderInfoText", "default");
 
 				// сброс массива объявления и переинициализация его
 				this.$root.advert_data = [];

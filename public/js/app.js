@@ -1930,6 +1930,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   created: function created() {
 
     this.transport_chars = this.$root.advert_data;
+
     // значения по умолчанию
     this.transport_chars.rule_position = 0;
     this.transport_chars.fuel_type = 0;
@@ -1957,6 +1958,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.$store.commit("SetRequiredInfo", true);
       this.$store.commit("ResetField", "price");
+      this.$store.commit("SetPlaceholderInfoText", "default");
 
       console.log(transport_id);
 
@@ -1980,6 +1982,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.$store.commit("ShowCommonTransport", false);
             this.$store.commit("ShowFinalFields", false);
+            this.$store.commit("SetPlaceholderInfoText", "Введите дополнительное описание.");
+
             this.carmark = [];
 
             Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/getCarsMarks").then(function (res) {
@@ -1991,11 +1995,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         case 2:
           {
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления например: Продам Камаз 2009 г. в хорошем состоянии.");
             break;
           }
 
         case 3:
           {
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления например: Продам мотоцикл Yamaha 2015 г. в отличном состоянии.");
             break;
           }
 
@@ -3103,6 +3109,7 @@ function forEach(data, callback) {
 		advReset: function advReset(category_data) {
 
 			this.$store.commit("SetRequiredInfo", false);
+			this.$store.commit("SetPlaceholderInfoText", "default");
 
 			// сброс массива объявления и переинициализация его
 			this.$root.advert_data = [];
@@ -38192,7 +38199,8 @@ var render = function() {
                             ? _c("b-form-textarea", {
                                 attrs: {
                                   id: "addit_info",
-                                  placeholder: "Введите описание",
+                                  placeholder:
+                                    _vm.$store.state.placeholder_info_text,
                                   rows: 4,
                                   "max-rows": 4
                                 },
@@ -38212,7 +38220,8 @@ var render = function() {
                                 attrs: {
                                   required: "",
                                   id: "addit_info",
-                                  placeholder: "Введите описание",
+                                  placeholder:
+                                    _vm.$store.state.placeholder_info_text,
                                   rows: 4,
                                   "max-rows": 4
                                 },
@@ -51977,14 +51986,14 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
     // стандартные поля объявления
     // ********************************
     price: "",
+    placeholder_info_text: "",
+    required_info: false, // обязательное поле дополнительной информации
 
     // *****************************************************************
     //  дополнительные поля в объявлении (поле доп. информация, и.т.д.)
     // *****************************************************************
     show_final_fields: false,
     show_common_transport: false,
-
-    required_info: false, // обязательное поле дополнительной информации
 
     // *****************************************************************
     //  мультиязычность
@@ -52000,6 +52009,14 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
   }, _defineProperty(_state, 'str_my_adverts', ""), _defineProperty(_state, 'str_location', ""), _state),
 
   mutations: {
+
+    // установить текст подсказки в поле описание
+    SetPlaceholderInfoText: function SetPlaceholderInfoText(state, text) {
+      if (text == "default") state.placeholder_info_text = "Введите текст объявления";else state.placeholder_info_text = text;
+    },
+
+
+    // сбросить содержимое поля
     ResetField: function ResetField(state, field_name) {
       switch (field_name) {
         case "price":

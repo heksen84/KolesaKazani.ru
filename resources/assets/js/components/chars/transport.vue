@@ -120,12 +120,13 @@ export default {
   created() {
 
     this.transport_chars = this.$root.advert_data;
+    
     // значения по умолчанию
-     this.transport_chars.rule_position   = 0;
-     this.transport_chars.fuel_type       = 0;
-     this.transport_chars.customs         = 1;
-     this.transport_chars.release_date    = 0;
-     this.transport_chars.mileage         = 0;
+    this.transport_chars.rule_position   = 0;
+    this.transport_chars.fuel_type       = 0;
+    this.transport_chars.customs         = 1;
+    this.transport_chars.release_date    = 0;
+    this.transport_chars.mileage         = 0;
   },
   
   computed: {
@@ -145,6 +146,7 @@ export default {
 
       this.$store.commit("SetRequiredInfo", true);
       this.$store.commit("ResetField", "price");
+      this.$store.commit("SetPlaceholderInfoText", "default");
 
       console.log(transport_id)
       
@@ -167,7 +169,9 @@ export default {
         case 1: {
 
           this.$store.commit("ShowCommonTransport", false);
-          this.$store.commit("ShowFinalFields", false);                              
+          this.$store.commit("ShowFinalFields", false);                                        
+          this.$store.commit("SetPlaceholderInfoText", "Введите дополнительное описание.");
+
           this.carmark=[];
 
           get("/getCarsMarks").then((res) => {            
@@ -179,11 +183,13 @@ export default {
           break;
        }
 
-        case 2: {          
+        case 2: {
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления например: Продам Камаз 2009 г. в хорошем состоянии.");
           break;
        }
 
-       case 3: {          
+       case 3: {
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления например: Продам мотоцикл Yamaha 2015 г. в отличном состоянии.");          
           break;
        }
 

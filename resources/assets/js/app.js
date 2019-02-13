@@ -70,6 +70,8 @@ const store = new Vuex.Store({
       // стандартные поля объявления
       // ********************************
       price: "",
+      placeholder_info_text: "",
+      required_info: false,       // обязательное поле дополнительной информации
       
       // *****************************************************************
       //  дополнительные поля в объявлении (поле доп. информация, и.т.д.)
@@ -77,8 +79,6 @@ const store = new Vuex.Store({
       show_final_fields: false,
       show_common_transport: false,
 
-
-      required_info: false, // обязательное поле дополнительной информации
 
       // *****************************************************************
       //  мультиязычность
@@ -97,6 +97,15 @@ const store = new Vuex.Store({
 
     mutations: {
 
+      // установить текст подсказки в поле описание
+      SetPlaceholderInfoText(state, text) {
+        if (text=="default") 
+          state.placeholder_info_text = "Введите текст объявления"
+        else
+          state.placeholder_info_text = text;
+      },
+
+      // сбросить содержимое поля
       ResetField(state, field_name) {
         switch(field_name) {
           case "price": state.price=""; break;
