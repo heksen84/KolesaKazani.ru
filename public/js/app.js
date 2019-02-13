@@ -1980,9 +1980,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       switch (transport_id) {
 
-        // --------------------------
-        // автомобили
-        // --------------------------
+        // легковой транспорт
         case 1:
           {
 
@@ -2002,42 +2000,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             break;
           }
 
+        // грузовой транспорт
         case 2:
           {
             this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text + "Продам Камаз 2009 г. в хорошем состоянии.");
             break;
           }
 
+        // мототехника
         case 3:
           {
             this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text + "Продам мотоцикл Yamaha 2015 г. в отличном состоянии.");
             break;
           }
 
+        // спецтехника
         case 4:
           {
             this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text + "Продам прицеп.");
             break;
           }
 
-        // ретро
+        // ретроавто
         case 5:
           {
             break;
           }
 
+        // водный транспорт
         case 6:
           {
             this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text + "Продам моторную лодку в хорошем состоянии.");
             break;
           }
 
+        // велосипеды
         case 7:
           {
             this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text + "Продам новый велосипед.");
             break;
           }
 
+        // воздушный транспорт
         case 8:
           {
             this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text + "Продам двухместный самолёт.");
