@@ -2112,7 +2112,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {};
   },
   created: function created() {
-    console.log(this.images);
+    console.log("картинка :" + this.image);
   },
 
 
@@ -36171,8 +36171,8 @@ var render = function() {
         ? _c("b-img", {
             staticStyle: { display: "inline-block" },
             attrs: {
-              src: "storage/app/images/" + _vm.image,
-              width: "120%",
+              src: "../storage/app/images/" + _vm.image,
+              width: "120",
               height: "120"
             }
           })
@@ -36180,8 +36180,12 @@ var render = function() {
       _vm._v(" "),
       _vm.image == null
         ? _c("b-img", {
-            staticStyle: { display: "inline-block", background: "white" },
-            attrs: { width: "0", height: "120" }
+            staticStyle: { display: "inline-block" },
+            attrs: {
+              src: "../storage/app/images/_nofoto.jpg",
+              width: "120",
+              height: "120"
+            }
           })
         : _vm._e(),
       _vm._v(" "),
@@ -36192,7 +36196,7 @@ var render = function() {
             width: "55%",
             position: "relative",
             top: "-115px",
-            left: "125px",
+            left: "129px",
             overflow: "hidden"
           }
         },

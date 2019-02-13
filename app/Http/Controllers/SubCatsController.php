@@ -75,6 +75,8 @@ class SubCatsController extends Controller
 
                     $title="Грузовой транспорт";
 
+                    \Debugbar::info($results);
+
                     break;
                 }
 
