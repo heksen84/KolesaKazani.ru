@@ -249,6 +249,14 @@ body {
   margin-top: -2px;
 }
 
+.item-content {
+  position: relative;
+  top: -113px;
+  left: 129px;
+  overflow: hidden;
+  width: 55%;
+}
+
 .image {
   width: 80px;
   height: 80px;
