@@ -36182,7 +36182,7 @@ var render = function() {
         ? _c("b-img", {
             staticStyle: { display: "inline-block" },
             attrs: {
-              src: "../storage/app/images/_nofoto.jpg",
+              src: "../public/images/_nofoto.jpg",
               width: "120",
               height: "120"
             }
