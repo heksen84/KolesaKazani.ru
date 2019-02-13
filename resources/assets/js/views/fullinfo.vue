@@ -32,7 +32,7 @@
 					<b v-if="item[0].customs==1">да</b>
 					<b v-else>нет</b>
 				</h5>
-				<h5>Дополнительно: <b>{{ item[0].text }}</b></h5>
+				<h5>Описание: <b>{{ item[0].text }}</b></h5>
 			</div>
 
 
@@ -56,12 +56,10 @@
 
 			<h5>Цена: <b>{{ item[0].price }}</b> тенге</h5>
 			<h5>
-				<ins>контакты:</ins>				
-				<div style="margin-top:10px"> 
-					<b v-if="item[0].phone1!=null">{{ item[0].phone1 }}</b>
-					<b v-if="item[0].phone2!=null">{{ item[0].phone2 }}</b>
-					<b v-if="item[0].phone3!=null">{{ item[0].phone3 }}</b>
-				</div>				
+				Контакты:
+				<b v-if="item[0].phone1!=null">{{ item[0].phone1 }}</b><span v-if="item[0].phone2!=null">,</span>
+				<b v-if="item[0].phone2!=null">{{ item[0].phone2 }}</b><span v-if="item[0].phone3!=null">,</span>
+				<b v-if="item[0].phone3!=null">{{ item[0].phone3 }}</b>			
 			</h5>
 			<hr v-if="images.length>0">		
 			<div v-if="images.length<=0" style="text-align:center">

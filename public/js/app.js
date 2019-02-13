@@ -3405,8 +3405,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 var mapCoords = [];
@@ -36822,7 +36820,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("h5", [
-                      _vm._v("Дополнительно: "),
+                      _vm._v("Описание: "),
                       _c("b", [_vm._v(_vm._s(_vm.item[0].text))])
                     ])
                   ])
@@ -36843,21 +36841,24 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("h5", [
-                _c("ins", [_vm._v("контакты:")]),
+                _vm._v("\n\t\t\t\tКонтакты:\n\t\t\t\t"),
+                _vm.item[0].phone1 != null
+                  ? _c("b", [_vm._v(_vm._s(_vm.item[0].phone1))])
+                  : _vm._e(),
+                _vm.item[0].phone2 != null
+                  ? _c("span", [_vm._v(",")])
+                  : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticStyle: { "margin-top": "10px" } }, [
-                  _vm.item[0].phone1 != null
-                    ? _c("b", [_vm._v(_vm._s(_vm.item[0].phone1))])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.item[0].phone2 != null
-                    ? _c("b", [_vm._v(_vm._s(_vm.item[0].phone2))])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.item[0].phone3 != null
-                    ? _c("b", [_vm._v(_vm._s(_vm.item[0].phone3))])
-                    : _vm._e()
-                ])
+                _vm.item[0].phone2 != null
+                  ? _c("b", [_vm._v(_vm._s(_vm.item[0].phone2))])
+                  : _vm._e(),
+                _vm.item[0].phone3 != null
+                  ? _c("span", [_vm._v(",")])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.item[0].phone3 != null
+                  ? _c("b", [_vm._v(_vm._s(_vm.item[0].phone3))])
+                  : _vm._e()
               ]),
               _vm._v(" "),
               _vm.images.length > 0 ? _c("hr") : _vm._e(),
