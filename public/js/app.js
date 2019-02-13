@@ -2007,6 +2007,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         case 4:
           {
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления например: Продам прицеп.");
+            break;
+          }
+
+        // ретро
+        case 5:
+          {
+            break;
+          }
+
+        case 6:
+          {
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления например: Продам моторную лодку в хорошем состоянии.");
+            break;
+          }
+
+        case 7:
+          {
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления например: Продам новый велосипед.");
+            break;
+          }
+
+        case 8:
+          {
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления например: Продам двухместный самолёт.");
             break;
           }
 
