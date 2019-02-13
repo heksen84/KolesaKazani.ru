@@ -8,9 +8,9 @@
 
 			<b>{{ item[0].region_name }}, {{ item[0].city_name }}</b>
 
-			<!--======================================================================================================
+			<!--------------------------------------------------------------------------------------------------------
 			    ТРАНСПОРТ
-			  ======================================================================================================-->
+			  -------------------------------------------------------------------------------------------------------->
 			<div v-if="category==1">
 				<h1 style="font-size:190%"><b>{{ item[0].mark }} {{ item[0].model }}, {{ item[0].year}} года</b></h1>
 				<hr>
@@ -28,14 +28,11 @@
 					<b v-if="item[0].steering_position==0">слева</b>
 					<b v-else>справа</b>
 				</h5>
-
 				<h5>Растоможен: 
 					<b v-if="item[0].customs==1">да</b>
 					<b v-else>нет</b>
 				</h5>
-
 				<h5>Дополнительно: <b>{{ item[0].text }}</b></h5>
-
 			</div>
 
 
@@ -59,34 +56,32 @@
 
 			<h5>Цена: <b>{{ item[0].price }}</b> тенге</h5>
 			<h5>
-				тел: <b v-if="item[0].contacts!=null">{{ item[0].contacts }}</b>
-				<b v-else>не указан</b>
+				<ins>контакты:</ins>				
+				<div style="margin-top:10px"> 
+					<b v-if="item[0].phone1!=null">{{ item[0].phone1 }}</b>
+					<b v-if="item[0].phone2!=null">{{ item[0].phone2 }}</b>
+					<b v-if="item[0].phone3!=null">{{ item[0].phone3 }}</b>
+				</div>				
 			</h5>
-
-			<hr v-if="images.length>0">
-			
+			<hr v-if="images.length>0">		
 			<div v-if="images.length<=0" style="text-align:center">
 				<hr>
 				<h5>Без фото</h5>
 			</div>
-
 			<div style="text-align:center" v-if="images.length>0">							
 				<b-img :src="'../storage/app/images/'+images[image_index].image" fluid style="margin-bottom:5px"/>
 				<div>
 					<b-img v-for="(i,index) in images" :key="index" :src="'../storage/app/images/'+i.image" style="margin:1px;margin-bottom:8px" width="80" height="80" @click="selectImage(index)"/>					
 				</div>
 			</div>
-
 			<div style="text-align:center;margin-bottom:20px">
-				<hr>
-				<b><ins>{{ item[0].region_name }}, {{ item[0].city_name }}</ins></b>
-				
+			<hr>
+				<b><ins>{{ item[0].region_name }}, {{ item[0].city_name }}</ins></b>				
 				<!-- КАРТА -->
 				<div id="map" style="margin-top:10px; width: 100%; height: 400px" v-if="item[0].coord_lat!=0 && item[0].coord_lon!=0"></div>
 				<hr>
 				<b-button variant="primary" @click="closeAndReturn">закрыть</b-button>
-			</div>
-			
+			</div>			
 		</b-col>
 	</b-row>
 </b-container>

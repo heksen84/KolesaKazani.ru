@@ -297,7 +297,9 @@ class AdvertController extends Controller {
 					    adv.id as advert_id, 
                         adv.category_id as category_id,					
 					    adv.price,
-                        adv.contacts,
+                        adv.phone1,
+                        adv.phone2,
+                        adv.phone3,
 					    adv.text,
                         adv.coord_lat,
                         adv.coord_lon,
@@ -312,7 +314,7 @@ class AdvertController extends Controller {
 					FROM `adverts` as adv
 					INNER JOIN (adv_transport, car_mark, car_model, categories, dealtype, kz_city, kz_region) ON 
                     (
-						adv_transport.mark = car_mark.id_car_mark AND 
+						adv_transport.mark  = car_mark.id_car_mark AND 
 						adv.adv_category_id = adv_transport.id AND 
 						adv_transport.model = car_model.id_car_model AND
                         categories.id=adv.category_id AND
@@ -356,7 +358,9 @@ class AdvertController extends Controller {
                         deal_name_2,
                         adv.id as advert_id,
                         adv.price,
-                        adv.contacts,
+                        adv.phone1,
+                        adv.phone2,
+                        adv.phone3,
                         adv.text,
                         adv.coord_lat,
                         adv.coord_lon,
