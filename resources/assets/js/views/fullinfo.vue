@@ -93,7 +93,7 @@ var myPlacemark;
 var bigmap;
 
 function initMap() {
-    bigmap = new ymaps.Map ("map", { center: mapCoords, zoom: 11 });			
+    bigmap = new ymaps.Map ("map", { center: mapCoords, zoom: 13 });			
 }
 
 export default {
