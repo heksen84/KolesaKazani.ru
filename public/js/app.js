@@ -1999,19 +1999,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         case 2:
           {
-            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления например: Продам Камаз 2009 г. в хорошем состоянии.");
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам Камаз 2009 г. в хорошем состоянии.");
             break;
           }
 
         case 3:
           {
-            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления например: Продам мотоцикл Yamaha 2015 г. в отличном состоянии.");
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам мотоцикл Yamaha 2015 г. в отличном состоянии.");
             break;
           }
 
         case 4:
           {
-            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления например: Продам прицеп.");
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам прицеп.");
             break;
           }
 
@@ -2023,19 +2023,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         case 6:
           {
-            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления например: Продам моторную лодку в хорошем состоянии.");
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам моторную лодку в хорошем состоянии.");
             break;
           }
 
         case 7:
           {
-            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления например: Продам новый велосипед.");
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам новый велосипед.");
             break;
           }
 
         case 8:
           {
-            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления например: Продам двухместный самолёт.");
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам двухместный самолёт.");
             break;
           }
 
