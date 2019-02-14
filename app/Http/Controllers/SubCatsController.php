@@ -56,6 +56,7 @@ class SubCatsController extends Controller
                                 
                 // Грузовой транспорт
                 if ($subcat=="gruzovoy-avtomobil") {
+                    
 
                     $results = DB::select(
                         "SELECT

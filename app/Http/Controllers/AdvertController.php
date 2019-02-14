@@ -272,8 +272,8 @@ class AdvertController extends Controller {
     -------------------------------------------*/
     public function getFullInfo($id) {
         
-        $title   = "";
-        $results = [];
+        $title = ""; 
+        $results = []; 
         $images  = [];
         
         // выбираю все поля по нужному айдишнику
@@ -288,7 +288,20 @@ class AdvertController extends Controller {
             // транспорт (развёрнутая информация)
             // -----------------------------------------
             case 1: {
-                $results = DB::select
+
+                
+                // Если есть подкатегория (adv_category_id!=null)
+                // нужно понять где грузовик, а где легковушка
+                // SELECT adv_transport.type WHERE и switch его
+                                
+                $transport = DB::table("adv_transport")->where("id", $item->adv_category_id)->get()->first();                
+                
+                switch($transport->type) {
+                    
+                    // легковушки
+                    case 1: {
+
+                        $results = DB::select
                 (
 					"SELECT                    
                         deal_name_2,
@@ -314,9 +327,9 @@ class AdvertController extends Controller {
 					FROM `adverts` as adv
 					INNER JOIN (adv_transport, car_mark, car_model, categories, dealtype, kz_city, kz_region) ON 
                     (
-						adv_transport.mark  = car_mark.id_car_mark AND 
-						adv.adv_category_id = adv_transport.id AND 
-						adv_transport.model = car_model.id_car_model AND
+						adv.adv_category_id = adv_transport.id AND
+                        adv_transport.mark  = car_mark.id_car_mark AND 
+						adv_transport.model = car_model.id_car_model AND                        				
                         categories.id=adv.category_id AND
                         categories.id=dealtype.id AND
                         kz_city.city_id=adv.city_id AND
@@ -324,8 +337,58 @@ class AdvertController extends Controller {
 					) 
                     WHERE adv.id=".$id." LIMIT 1"
                 );                
-                                                
+                
                 $title = $results[0]->deal_name_2." ".$results[0]->mark." ".$results[0]->model." ".$results[0]->year." года в ".$results[0]->city_name;                
+
+                break;
+                    }
+
+                    // грузовое авто   
+                    case 2: {
+                        
+                        $results = DB::select
+                (
+					"SELECT                    
+                        deal_name_2,
+					    adv.id as advert_id, 
+                        adv.category_id as category_id,					
+					    adv.price,
+                        adv.phone1,
+                        adv.phone2,
+                        adv.phone3,
+					    adv.text,
+                        adv.coord_lat,
+                        adv.coord_lon,
+                        adv_transport.id,
+					    year,  
+					    mileage,
+                        steering_position,
+                        engine_type,
+                        customs,
+                        kz_region.name as region_name,
+                        kz_city.name as city_name
+					FROM `adverts` as adv
+					INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON 
+                    (						
+						categories.id=adv.category_id AND
+                        adv.adv_category_id = adv_transport.id AND 					                        
+                        categories.id=dealtype.id AND
+                        kz_city.city_id=adv.city_id AND
+                        kz_region.region_id=adv.region_id
+					) 
+                    WHERE adv.id=".$id." LIMIT 1");
+
+
+                        break;
+                    }
+
+                    $title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;                
+                }
+
+
+
+                
+                                                                                    
 
                 \Debugbar::info($results);                                                
             }
