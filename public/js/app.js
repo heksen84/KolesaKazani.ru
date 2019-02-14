@@ -3880,8 +3880,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 // ------------------------------
@@ -13025,7 +13023,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -37147,38 +37145,6 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm.filter
-        ? _c(
-            "b-row",
-            [
-              _c(
-                "b-col",
-                {
-                  staticStyle: { "text-align": "center" },
-                  attrs: { cols: "12", sm: "12", md: "12", lg: "12", xl: "12" }
-                },
-                [
-                  _c(
-                    "b-button",
-                    {
-                      staticStyle: { margin: "10px" },
-                      attrs: { variant: "secondary" },
-                      on: {
-                        click: function($event) {
-                          _vm.filter = false
-                        }
-                      }
-                    },
-                    [_vm._v("Применить фильтр")]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
       _vm.category === 1
         ? _c(
             "b-row",
@@ -37243,6 +37209,38 @@ var render = function() {
                       expression: "filters.price"
                     }
                   })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.filter
+        ? _c(
+            "b-row",
+            [
+              _c(
+                "b-col",
+                {
+                  staticStyle: { "text-align": "center" },
+                  attrs: { cols: "12", sm: "12", md: "12", lg: "12", xl: "12" }
+                },
+                [
+                  _c(
+                    "b-button",
+                    {
+                      staticStyle: { margin: "10px" },
+                      attrs: { variant: "secondary" },
+                      on: {
+                        click: function($event) {
+                          _vm.filter = false
+                        }
+                      }
+                    },
+                    [_vm._v("Применить фильтр")]
+                  )
                 ],
                 1
               )
