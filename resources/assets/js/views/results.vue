@@ -10,7 +10,7 @@
 	
 	<b-row v-if="count>3">
 			<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
-				<b-button variant="warning" style="margin:10px;" size="sm" @click="showFilter">{{ filter_text }}</b-button>
+				<b-button variant="success" style="margin:10px;" size="sm" @click="showFilter">{{ filter_text }}</b-button>
 			</b-col>
 	</b-row>
 
@@ -50,7 +50,7 @@
 
 	<b-row v-if="filter">
 			<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
-				<b-button variant="secondary" style="margin:10px;" @click="filter=false">Применить фильтр</b-button>
+				<b-button variant="secondary" style="margin:10px;" @click="showFilter">Применить фильтр</b-button>
 			</b-col>
 	</b-row>
 
