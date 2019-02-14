@@ -116,7 +116,7 @@ export default {
 	return 	{
 
 			filter: false,
-			filter_text: "Показать фильтр",
+			filter_text: "Отфильтровать",
 			
     	items: this.data,
     	count: 0,
@@ -175,7 +175,7 @@ export default {
 				if (this.filter) 
 				{
 					this.filter=false
-					this.filter_text="Показать фильтр";
+					this.filter_text="Отфильтровать";
 				}
 				else 
 				{

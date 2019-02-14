@@ -3908,7 +3908,7 @@ function num2str(n, text_forms) {
     return {
 
       filter: false,
-      filter_text: "Показать фильтр",
+      filter_text: "Отфильтровать",
 
       items: this.data,
       count: 0,
@@ -3947,7 +3947,7 @@ function num2str(n, text_forms) {
     showFilter: function showFilter() {
       if (this.filter) {
         this.filter = false;
-        this.filter_text = "Показать фильтр";
+        this.filter_text = "Отфильтровать";
       } else {
         this.filter = true;
         this.filter_text = "Скрыть фильтр";
