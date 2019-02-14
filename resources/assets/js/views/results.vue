@@ -10,7 +10,7 @@
 	
 	<b-row v-if="count>3">
 			<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
-				<b-button variant="warning" style="margin:10px;" size="sm" @click="showFilter">Показать фильтр</b-button>
+				<b-button variant="warning" style="margin:10px;" size="sm" @click="showFilter">{{ filter_text }}</b-button>
 			</b-col>
 	</b-row>
 
@@ -118,6 +118,8 @@ export default {
 	return 	{
 
 			filter: false,
+			filter_text: "Показать фильтр",
+			
     	items: this.data,
     	count: 0,
     	count_string: "",
@@ -172,7 +174,16 @@ export default {
 
 			// показать / скрыть фильтр
 			showFilter() {
-				this.filter?this.filter=false:this.filter=true;
+				if (this.filter) 
+				{
+					this.filter=false
+					this.filter_text="Показать фильтр";
+				}
+				else 
+				{
+					this.filter=true;
+					this.filter_text="Скрыть фильтр";
+				}				
 			},
 			
 			// закрыть экран
