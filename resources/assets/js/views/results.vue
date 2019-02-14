@@ -7,9 +7,15 @@
 			</b-col>
 		</b-row>
 	<br>
+	
+	<b-row v-if="count>10">
+			<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
+				<b-button variant="warning" style="margin:10px;" size="sm" @click="showFilter">Показать фильтр</b-button>
+			</b-col>
+	</b-row>
 
 	<!-- общие фильтры -->
-	<b-row v-if="count>1">				
+	<b-row v-if="count>1 && filter">				
 		<b-col cols="12" sm="12" md="3" lg="3" xl="3"></b-col>
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 		  <b-form-select v-model="filters.price" :options="options_price" class="mb-1" @change="setFilter"/>
@@ -18,9 +24,16 @@
 		  <b-form-select v-model="filters.sdelka" :options="options_sdelka" class="mb-1" @change="setFilter"/>
 		</b-col>
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		 	<b-form-select v-model="filters.actual" :options="options_actual" class="mb-1" @change="setFilter"/>
-		</b-col>
+		 	<b-form-select v-model="filters.actual" :options="options_actual" class="mb-1" @change="setFilter"/>			
+		</b-col>		
 	</b-row>
+
+	<b-row v-if="filter">
+			<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
+				<b-button variant="secondary" style="margin:10px;" @click="filter=false">Применить фильтр</b-button>
+			</b-col>
+	</b-row>
+		
 
 	<!-- Фильтр тачек -->
 	<b-row v-if="category===1">				
@@ -104,11 +117,12 @@ export default {
 	data () {		
 	return 	{
 
+			filter: false,
     	items: this.data,
     	count: 0,
     	count_string: "",
-   	  	slide: 0,
-      	sliding: null,
+   	  slide: 0,
+      sliding: null,
 
 		filters: 
 		{
@@ -155,6 +169,11 @@ export default {
 	},
 	components: { item },
   		methods: {
+
+			// показать / скрыть фильтр
+			showFilter() {
+				this.filter?this.filter=false:this.filter=true;
+			},
 			
 			// закрыть экран
 			closeAndReturn() {

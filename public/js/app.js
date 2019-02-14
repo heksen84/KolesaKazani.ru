@@ -3869,6 +3869,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // ------------------------------
@@ -3896,6 +3909,7 @@ function num2str(n, text_forms) {
   data: function data() {
     return {
 
+      filter: false,
       items: this.data,
       count: 0,
       count_string: "",
@@ -3928,6 +3942,12 @@ function num2str(n, text_forms) {
 
   components: { item: __WEBPACK_IMPORTED_MODULE_0__components_item___default.a },
   methods: {
+
+    // показать / скрыть фильтр
+    showFilter: function showFilter() {
+      this.filter ? this.filter = false : this.filter = true;
+    },
+
 
     // закрыть экран
     closeAndReturn: function closeAndReturn() {
@@ -12997,7 +13017,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -37019,7 +37039,35 @@ var render = function() {
       _vm._v(" "),
       _c("br"),
       _vm._v(" "),
-      _vm.count > 1
+      _vm.count > 10
+        ? _c(
+            "b-row",
+            [
+              _c(
+                "b-col",
+                {
+                  staticStyle: { "text-align": "center" },
+                  attrs: { cols: "12", sm: "12", md: "12", lg: "12", xl: "12" }
+                },
+                [
+                  _c(
+                    "b-button",
+                    {
+                      staticStyle: { margin: "10px" },
+                      attrs: { variant: "warning", size: "sm" },
+                      on: { click: _vm.showFilter }
+                    },
+                    [_vm._v("Показать фильтр")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.count > 1 && _vm.filter
         ? _c(
             "b-row",
             [
@@ -37083,6 +37131,38 @@ var render = function() {
                       expression: "filters.actual"
                     }
                   })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.filter
+        ? _c(
+            "b-row",
+            [
+              _c(
+                "b-col",
+                {
+                  staticStyle: { "text-align": "center" },
+                  attrs: { cols: "12", sm: "12", md: "12", lg: "12", xl: "12" }
+                },
+                [
+                  _c(
+                    "b-button",
+                    {
+                      staticStyle: { margin: "10px" },
+                      attrs: { variant: "secondary" },
+                      on: {
+                        click: function($event) {
+                          _vm.filter = false
+                        }
+                      }
+                    },
+                    [_vm._v("Применить фильтр")]
+                  )
                 ],
                 1
               )
