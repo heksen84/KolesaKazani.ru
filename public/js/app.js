@@ -37039,7 +37039,7 @@ var render = function() {
       _vm._v(" "),
       _c("br"),
       _vm._v(" "),
-      _vm.count > 10
+      _vm.count > 3
         ? _c(
             "b-row",
             [
