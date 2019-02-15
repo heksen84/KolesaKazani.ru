@@ -129,14 +129,14 @@ class AdvertController extends Controller {
 
                     $transport = new Transport();                    
                     
-                    $transport->type                    = $data["transport_type"];   // тип транспорта: легковой / грузовой и т.д.
-                    $transport->mark                    = null;
-                    $transport->model                   = null;
-                    $transport->year                    = null;
-                    $transport->steering_position       = null;
-                    $transport->mileage                 = null;
-                    $transport->engine_type             = null;
-                    $transport->customs                 = null;
+                    $transport->type                 = $data["transport_type"];   // тип транспорта: легковой / грузовой и т.д.
+                    $transport->mark                 = null;
+                    $transport->model                = null;
+                    $transport->year                 = null;
+                    $transport->steering_position    = null;
+                    $transport->mileage              = null;
+                    $transport->engine_type          = null;
+                    $transport->customs              = null;
                     
                     // легковушки
                     if ($data["transport_type"]==1) {
@@ -149,6 +149,27 @@ class AdvertController extends Controller {
                         $transport->customs             = $data["customs"];            // растаможка
                     }
 
+                    // грузовой
+                    if ($data["transport_type"]==2) {
+                        $transport->year                = $data["release_date"];       // год выпуска
+                        $transport->steering_position   = $data["rule_position"];      // положение руля
+                        $transport->mileage             = $data["mileage"];            // пробег
+                        $transport->engine_type         = $data["fuel_type"];          // тип движка
+                        $transport->customs             = $data["customs"];            // растаможка
+                    }
+
+                    // мото
+                    if ($data["transport_type"]==3) {
+                        $transport->year                = $data["release_date"];       // год выпуска
+                        $transport->mileage             = $data["mileage"];            // пробег
+                        $transport->engine_type         = $data["fuel_type"];          // тип движка
+                        $transport->customs             = $data["customs"];            // растаможка
+                    }
+
+                    // спецтехника
+                    if ($data["transport_type"]==4) {                    
+                    }
+
                     // ретро-авто
                     if ($data["transport_type"]==5) {
                         $transport->year                = $data["release_date"];       // год выпуска
@@ -156,6 +177,18 @@ class AdvertController extends Controller {
                         $transport->mileage             = $data["mileage"];            // пробег
                         $transport->engine_type         = $data["fuel_type"];          // тип движка
                         $transport->customs             = $data["customs"];            // растаможка
+                    }
+
+                    // водный транспорт
+                    if ($data["transport_type"]==6) {                    
+                    }
+
+                    // велосипед
+                    if ($data["transport_type"]==7) {                    
+                    }
+
+                    // воздушный транспорт
+                    if ($data["transport_type"]==8) {                    
                     }
                                         
                     $transport->save();
@@ -379,6 +412,8 @@ class AdvertController extends Controller {
                             kz_region.region_id=adv.region_id
 					    ) 
                         WHERE adv.id=".$id." LIMIT 1");
+
+                        \Debugbar::info($results);
 
                         $title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
                         break;
