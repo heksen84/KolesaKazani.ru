@@ -37334,7 +37334,10 @@ var render = function() {
                   _c(
                     "b-button",
                     {
-                      staticStyle: { margin: "10px" },
+                      staticStyle: {
+                        margin: "10px",
+                        border: "1px solid white"
+                      },
                       attrs: { variant: "primary" },
                       on: { click: _vm.showFilter }
                     },
