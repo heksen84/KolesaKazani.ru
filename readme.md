@@ -1,6 +1,4 @@
-image jobs:
-https://code.tutsplus.com/ru/tutorials/deferring-tasks-in-laravel-using-queues--cms-29957
-
+https://ospanel.io/forum/viewtopic.php?t=3397
 -----------------------------------------------------------------------
  Разделить компоненты по страничка (что-бы не всё грузилось сразу)
 -----------------------------------------------------------------------
