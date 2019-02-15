@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -37334,7 +37334,10 @@ var render = function() {
                   _c(
                     "b-button",
                     {
-                      staticStyle: { margin: "10px" },
+                      staticStyle: {
+                        margin: "10px",
+                        border: "1px solid white"
+                      },
                       attrs: { variant: "primary" },
                       on: { click: _vm.showFilter }
                     },
@@ -52027,6 +52030,7 @@ module.exports = function(module) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__data__ = __webpack_require__("./resources/assets/js/data.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__("./node_modules/vue/dist/vue.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue__);
@@ -52229,7 +52233,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
 
 // экземляр приложения vue
 //const app = new Vue({
-/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
+/* harmony default export */ __webpack_exports__["default"] = (new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
   el: '#app',
   store: store,
   data: __WEBPACK_IMPORTED_MODULE_0__data__["a" /* default */],
@@ -52489,7 +52493,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__("./resources/assets/js/app.js");
 
 
-__WEBPACK_IMPORTED_MODULE_0__app__["a" /* default */].$mount('#app');
+__WEBPACK_IMPORTED_MODULE_0__app__["default"].$mount('#app');
 
 /***/ }),
 
@@ -53121,18 +53125,10 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ "./resources/assets/sass/app.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 0:
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__("./resources/assets/js/entry-client.js");
-module.exports = __webpack_require__("./resources/assets/sass/app.scss");
+module.exports = __webpack_require__("./resources/assets/js/entry-client.js");
 
 
 /***/ })
