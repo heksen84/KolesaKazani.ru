@@ -8,9 +8,13 @@
 
 			<b>{{ item[0].region_name }}, {{ item[0].city_name }}</b>
 
-			<!--------------------------------------------------------------------------------------------------------
-			    ТРАНСПОРТ
-			  -------------------------------------------------------------------------------------------------------->
+		
+		<!-----------------------------------------------------------
+			РАЗВЁРНУТОЕ ОБЪЯВЛЕНИЕ
+		 ------------------------------------------------------------>
+		<div v-if="full">
+			
+			<!-- ТРАНСПОРТ --->
 			<div v-if="category==1">
 				<h1 style="font-size:190%"><b>{{ item[0].mark }} {{ item[0].model }}, {{ item[0].year}} года</b></h1>
 				<hr>
@@ -35,7 +39,6 @@
 				<h5>Описание: <b>{{ item[0].text }}</b></h5>
 			</div>
 
-
 			<!-- Всё остальное -->
 			<h5 v-else>
 				<br>
@@ -43,41 +46,66 @@
 				<br>
 				<br>
 			</h5>						
+		</div> <!-- end full -->
 
-			<!--<div v-if="category==2">Недвижимость</div>
-			
-			<div v-if="category==3">
-				<h5><b>{{ item[0].text }}</b></h5>
-			</div>
+		
+		<!-----------------------------------------------------------
+		   КОРОТКОЕ ОБЪЯВЛЕНИЕ
+		 ------------------------------------------------------------>
+		<div v-if="!full">			
+			<hr>			
+				<h5><b>{{ item[0].text }}</b></h5>			
+			<hr>		
 
-			<div v-if="category==4">Работа и бизнес</div>
-			<div v-if="category==5">Для дома и дачи</div>
-			<div v-if="category==6">Личные вещи</div>-->
+			<div v-if="category==1">				
+				<h5>Год выпуска: <b>{{ item[0].year }}</b> г.</h5>
+				<h5>Вид топлива:
+					<b v-if="item[0].engine_type==0">бензин</b>
+					<b v-if="item[0].engine_type==1">дизель</b>
+					<b v-if="item[0].engine_type==2">газ-бензин</b>
+					<b v-if="item[0].engine_type==3">газ</b>
+					<b v-if="item[0].engine_type==4">гибрид</b>
+					<b v-if="item[0].engine_type==5">электричество</b>
+				</h5>
+				<h5>Пробег: <b>{{ item[0].mileage }}</b> км.</h5>
+				<h5>Положение руля: 
+					<b v-if="item[0].steering_position==0">слева</b>
+					<b v-else>справа</b>
+				</h5>
+				<h5>Растоможен: 
+					<b v-if="item[0].customs==1">да</b>
+					<b v-else>нет</b>
+				</h5>			
+			</div>
+		</div> <!-- end short -->
 
-			<h5>Цена: <b>{{ item[0].price }}</b> тенге</h5>
-			<h5>
-				Контакты:
-				<b v-if="item[0].phone1!=null">{{ item[0].phone1 }}</b><span v-if="item[0].phone2!=null">,</span>
-				<b v-if="item[0].phone2!=null">{{ item[0].phone2 }}</b><span v-if="item[0].phone3!=null">,</span>
-				<b v-if="item[0].phone3!=null">{{ item[0].phone3 }}</b>			
-			</h5>
-			<hr v-if="images.length>0">		
-			<div v-if="images.length<=0" style="text-align:center">
-				<hr>
-				<h5>Без фото</h5>
-			</div>
-			<div style="text-align:center" v-if="images.length>0">							
-				<b-img :src="'../storage/app/images/'+images[image_index].image" fluid style="margin-bottom:5px"/>
-				<div>
-					<b-img v-for="(i,index) in images" :key="index" :src="'../storage/app/images/'+i.image" style="margin:1px;margin-bottom:8px" width="80" height="80" @click="selectImage(index)"/>					
-				</div>
-			</div>
-			<div style="text-align:center;margin-bottom:20px">
+		<!-------------------------------------------------
+			ОБЩАЯ ИНФОРМАЦИЯ
+		  ------------------------------------------------->
+		<h5>Цена: <b>{{ item[0].price }}</b> тенге</h5>
+		<h5>
+			Контакты:
+			<b v-if="item[0].phone1!=null">{{ item[0].phone1 }}</b><span v-if="item[0].phone2!=null">,</span>
+			<b v-if="item[0].phone2!=null">{{ item[0].phone2 }}</b><span v-if="item[0].phone3!=null">,</span>
+			<b v-if="item[0].phone3!=null">{{ item[0].phone3 }}</b>			
+		</h5>
+		<hr v-if="images.length>0">		
+		<div v-if="images.length<=0" style="text-align:center">
 			<hr>
-				<b><ins>{{ item[0].region_name }}, {{ item[0].city_name }}</ins></b>				
-				<!-- КАРТА -->
-				<div id="map" style="margin-top:10px; width: 100%; height: 400px" v-if="item[0].coord_lat!=0 && item[0].coord_lon!=0"></div>
-				<hr>
+			<h5>Без фото</h5>
+		</div>
+		<div style="text-align:center" v-if="images.length>0">							
+			<b-img :src="'../storage/app/images/'+images[image_index].image" fluid style="margin-bottom:5px"/>
+			<div>
+				<b-img v-for="(i,index) in images" :key="index" :src="'../storage/app/images/'+i.image" style="margin:1px;margin-bottom:8px" width="80" height="80" @click="selectImage(index)"/>					
+			</div>
+		</div>
+		<div style="text-align:center;margin-bottom:20px">
+		<hr>
+			<b><ins>{{ item[0].region_name }}, {{ item[0].city_name }}</ins></b>				
+			<!-- КАРТА -->
+			<div id="map" style="margin-top:10px; width: 100%; height: 400px" v-if="item[0].coord_lat!=0 && item[0].coord_lon!=0"></div>
+			<hr>
 				<b-button variant="primary" @click="closeAndReturn">закрыть</b-button>
 			</div>			
 		</b-col>
@@ -96,26 +124,32 @@ function initMap() {
 
 export default {
 
-	props: ["item", "images"],
+	props: ["item", "images", "full"], // входящие данные
 	
 	created() {
 
+		console.log(this.full)
+		console.log(this.item)
+
 		this.category=this.item[0].category_id;	
 		
+		// ----------------------------------------------------------
 		// не инициализировать карту, если координаты 0,0
+		// ----------------------------------------------------------
 		if (this.item[0].coord_lat!=0 && this.item[0].coord_lon!=0) {
 			mapCoords=[this.item[0].coord_lat, this.item[0].coord_lon];
 			ymaps.ready(initMap);
-		}
-		
-		console.log(this.item)		
+		}				
   	},
+	
 	data() {
+
     return {
-			category: null,
-			image_index: 0
-    }
-	},
+		category: null,
+		image_index: 0
+	}
+	
+},
 components: { },
   methods: {
 		selectImage(index) {

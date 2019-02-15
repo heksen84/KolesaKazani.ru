@@ -275,9 +275,11 @@ class AdvertController extends Controller {
         $title = ""; 
         $results = []; 
         $images  = [];
+        $adv_full_info = false;
         
         // выбираю все поля по нужному айдишнику
-        $item = DB::table("adverts")->where("id", $id)->get()->first();        
+        $item = DB::table("adverts")->where("id", $id)->get()->first();
+                
                                 
         // ----------------------------------------------------------------
         // определить категорию объявления и вернуть необходимый результат
@@ -299,6 +301,8 @@ class AdvertController extends Controller {
                     
                     // легковушки
                     case 1: {
+
+                        $adv_full_info = true; // развёрнутое объявление
 
                         $results = DB::select
                         (
@@ -336,8 +340,8 @@ class AdvertController extends Controller {
 					    ) 
                         WHERE adv.id=".$id." LIMIT 1"
                     );                
-
-                    $title = $results[0]->deal_name_2." ".$results[0]->mark." ".$results[0]->model." ".$results[0]->year." года в ".$results[0]->city_name;                
+                    
+                    $title = $results[0]->deal_name_2." ".$results[0]->mark." ".$results[0]->model." ".$results[0]->year." года в ".$results[0]->city_name;
                     break;
                     }
 
@@ -472,14 +476,14 @@ class AdvertController extends Controller {
                     
                 \Debugbar::info("Hello ebt!");                    
                 \Debugbar::info($results);
-
+                
                 $title = $results[0]->deal_name_2." ".$results[0]->text." года в ".$results[0]->city_name;
             }
         }
 
         $images = DB::select("SELECT image FROM images WHERE advert_id=".$id);
 
-        return view("fullinfo")->with("item", json_encode($results) )->with("images", json_encode($images))->with("title", $title); 
+        return view("fullinfo")->with("item", json_encode($results) )->with("images", json_encode($images))->with("title", $title)->with("full", json_encode($adv_full_info));
     }
 
     /*
