@@ -156,7 +156,8 @@ const store = new Vuex.Store({
 })
 
 // экземляр приложения vue
-const app = new Vue({
+//const app = new Vue({
+export default new Vue({
     el: '#app',
     store,
     data: data,

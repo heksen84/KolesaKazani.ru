@@ -50,7 +50,7 @@
 
 	<b-row v-if="filter">
 			<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
-				<b-button variant="primary" style="margin:10px" @click="showFilter">Применить фильтр</b-button>
+				<b-button variant="primary" style="margin:10px;border:1px solid white" @click="showFilter">Применить фильтр</b-button>
 			</b-col>
 	</b-row>
 
