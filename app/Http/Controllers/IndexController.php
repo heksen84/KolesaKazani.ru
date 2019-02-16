@@ -84,7 +84,10 @@ class IndexController extends Controller {
             ->select(DB::raw("subcats.id, subcats.name, subcats.category_id, concat(categories.url,'/',subcats.url) as url"))
 			->get();
 
-					
-        	return view('index')->with("items", $categories)->with("subcats", $subcats )->with("count", Categories::count())->with("auth", Auth::user()?1:0);
+			
+			$v8 = new \V8Js();
+			$jsOutput = $v8->executeString("var msg = 3*21; 'Равно='+msg");
+
+        	return view('index')->with("ssr", $jsOutput)->with("items", $categories)->with("subcats", $subcats )->with("count", Categories::count())->with("auth", Auth::user()?1:0);
     	}
 }

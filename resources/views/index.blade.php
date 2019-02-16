@@ -13,6 +13,7 @@
 </head>
 <body>
 <div id="app">
+  {{$ssr}}
   <index :items="{{ $items }}" :subcats = "{{ $subcats}}" :auth="{{ $auth }}" :count="{{ $count }}"></index>
 </div>
 </body>
