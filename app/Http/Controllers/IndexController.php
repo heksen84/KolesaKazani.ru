@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\File;
 
 use App\Categories;
 use App\Regions;
@@ -86,7 +87,16 @@ class IndexController extends Controller {
 
 			
 			$v8 = new \V8Js();
-			$jsOutput = $v8->executeString("var msg = 3*21; 'Равно='+msg");
+	/*		//$jsOutput = $v8->executeString("var msg = 3*21; 'Равно='+msg");
+			$jsOutput =
+<<<EOT
+var process = { env: { VUE_ENV: "server", NODE_ENV: "production" } }; 
+this.global = { process: process };
+EOT;
+
+$jsOutput  += File::get(public_path('js/entry-server.js'));
+*/
+$jsOutput="";
 
         	return view('index')->with("ssr", $jsOutput)->with("items", $categories)->with("subcats", $subcats )->with("count", Categories::count())->with("auth", Auth::user()?1:0);
     	}
