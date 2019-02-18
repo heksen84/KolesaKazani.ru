@@ -84,19 +84,8 @@ class IndexController extends Controller {
             ->join('subcats', 'subcats.category_id', '=', 'categories.id')
             ->select(DB::raw("subcats.id, subcats.name, subcats.category_id, concat(categories.url,'/',subcats.url) as url"))
 			->get();
-
 			
-			$v8 = new \V8Js();
-	/*		//$jsOutput = $v8->executeString("var msg = 3*21; 'Равно='+msg");
-			$jsOutput =
-<<<EOT
-var process = { env: { VUE_ENV: "server", NODE_ENV: "production" } }; 
-this.global = { process: process };
-EOT;
-
-$jsOutput  += File::get(public_path('js/entry-server.js'));
-*/
-$jsOutput="";
+			$jsOutput="";
 
         	return view('index')->with("ssr", $jsOutput)->with("items", $categories)->with("subcats", $subcats )->with("count", Categories::count())->with("auth", Auth::user()?1:0);
     	}
