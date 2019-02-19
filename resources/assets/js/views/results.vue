@@ -2,7 +2,7 @@
 	<b-container fluid class="mycontainer">		
 		<b-row>
 			<b-col cols="12" sm="12" md="10" lg="10" xl="10" class="result_info_col">
-				<div class="close_button shadow_text" title="Закрыть страницу" @click="closeAndReturn" style="color:white;border:1px solid white;border-radius:3px;padding:7px;background:rgb(100,100,200)">X</div>
+				<div class="close_button shadow_text" title="Закрыть страницу" @click="closeAndReturn" style="color:white;border:1px solid white;border-radius:5px;padding:7px;background:rgb(100,100,200)">X</div>
 				<h1 class="shadow_text title_text">{{ count  }} {{ count_string }} </h1>
 			</b-col>
 		</b-row>
@@ -11,6 +11,7 @@
 	<b-row v-if="count>3">
 			<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
 				<b-button variant="success" style="margin:10px" size="sm" @click="showFilter">{{ filter_text }}</b-button>
+				<!--<span title="Закрыть страницу" @click="closeAndReturn" style="width:30px;color:grey;font-weight:800">X</span>-->
 			</b-col>
 	</b-row>
 
