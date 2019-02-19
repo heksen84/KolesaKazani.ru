@@ -13,4 +13,13 @@ register.vue: b-form, b-input, разметка
 sendemail.vue: b-form, b-input, разметка
 passwordreset.vue: b-form, b-input, разметка
 
+1. Сделать поиск по Казахстану
+2. Сделать поиск по Регионам
+3. Сделать поиск по Городам
+
+Очистка sitemap.xml раз в месяц (сделать cron скрипт sitemap_clean.php)
+таблица urls
+id, url, advert_id
+Бежим по всем полям стучимся по адресу если 404, то удаляем запись из хml и запись в urls
+
 
