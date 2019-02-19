@@ -3921,12 +3921,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // функция склонений слов
 // ------------------------------
 function num2str(n, text_forms) {
-  n = Math.abs(n) % 100;
-  var n1 = n % 10;
-  if (n > 10 && n < 20) return text_forms[2];
-  if (n1 > 1 && n1 < 5) return text_forms[1];
-  if (n1 == 1) return text_forms[0];
-  return text_forms[2];
+	n = Math.abs(n) % 100;
+	var n1 = n % 10;
+	if (n > 10 && n < 20) return text_forms[2];
+	if (n1 > 1 && n1 < 5) return text_forms[1];
+	if (n1 == 1) return text_forms[0];
+	return text_forms[2];
 }
 
 // ------------------------------------
@@ -3937,92 +3937,97 @@ function num2str(n, text_forms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ["data", "results", "category"],
+	props: ["data", "results", "category"],
 
-  data: function data() {
-    return {
+	data: function data() {
+		return {
 
-      filter: false,
-      filter_text: "Отфильтровать",
+			loadMoreCountShow: 3,
 
-      items: this.data,
-      count: 0,
-      count_string: "",
-      slide: 0,
-      sliding: null,
+			filter: false,
+			filter_text: "Отфильтровать",
 
-      filters: {
-        price: null,
-        sdelka: null,
-        actual: null,
-        location: null
-      },
+			items: this.data,
+			count: 0,
+			count_string: "",
+			slide: 0,
+			sliding: null,
 
-      options_price: [{ value: null, text: '-- Цена --' }, { value: '0', text: 'Цена по возрастанию' }, { value: '1', text: 'Цена по убыванию' }],
+			filters: {
+				price: null,
+				sdelka: null,
+				actual: null,
+				location: null
+			},
 
-      options_sdelka: [{ value: null, text: '-- Вид сделки --' }, { value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }],
+			options_price: [{ value: null, text: '-- Цена --' }, { value: '0', text: 'Цена по возрастанию' }, { value: '1', text: 'Цена по убыванию' }],
 
-      options_actual: [{ value: null, text: '-- Актуальность --' }, { value: '0', text: 'Сначала новые' }, { value: '1', text: 'Сначала старые' }],
+			options_sdelka: [{ value: null, text: '-- Вид сделки --' }, { value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }],
 
-      options_location: [{ value: null, text: '-- Расположение --' }, { value: '0', text: 'Рядом со мной' }, { value: '1', text: 'Любое расстояние' }]
-    };
-  },
+			options_actual: [{ value: null, text: '-- Актуальность --' }, { value: '0', text: 'Сначала новые' }, { value: '1', text: 'Сначала старые' }],
 
-
-  // компонент создан
-  created: function created() {
-    this.update();
-    console.log(this.results);
-  },
-
-  components: { item: __WEBPACK_IMPORTED_MODULE_0__components_item___default.a },
-  methods: {
-
-    // показать / скрыть фильтр
-    showFilter: function showFilter() {
-      if (this.filter) {
-        this.filter = false;
-        this.filter_text = "Отфильтровать";
-      } else {
-        this.filter = true;
-        this.filter_text = "Скрыть фильтр";
-      }
-    },
+			options_location: [{ value: null, text: '-- Расположение --' }, { value: '0', text: 'Рядом со мной' }, { value: '1', text: 'Любое расстояние' }]
+		};
+	},
 
 
-    // закрыть экран
-    closeAndReturn: function closeAndReturn() {
-      window.history.back();
-    },
+	// компонент создан
+	created: function created() {
+		this.update();
+		console.log(this.results);
+	},
+
+	components: { item: __WEBPACK_IMPORTED_MODULE_0__components_item___default.a },
+	methods: {
+
+		// показать / скрыть фильтр
+		showFilter: function showFilter() {
+			if (this.filter) {
+				this.filter = false;
+				this.filter_text = "Отфильтровать";
+			} else {
+				this.filter = true;
+				this.filter_text = "Скрыть фильтр";
+			}
+		},
 
 
-    // ---  
-    update: function update() {
-      this.count = Object.keys(this.results).length;
-      this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
-    },
+		// закрыть экран
+		closeAndReturn: function closeAndReturn() {
+			window.history.back();
+		},
 
 
-    // фильтры  
-    setFilter: function setFilter() {
-      var _this = this;
-
-      alert("okay!");
-
-      console.log(this.filters);
-      Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])('/getSearchData', { "data": this.filters }).then(function (res) {
-        console.log(res.data);
-        _this.items = res.data;
-        _this.update();
-      }).catch(function (err) {});
-    },
+		// ---  
+		update: function update() {
+			this.count = Object.keys(this.results).length;
+			this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
+		},
 
 
-    // загрузить ещё
-    loadMore: function loadMore() {
-      this.setFilter();
-    }
-  }
+		// фильтры  
+		setFilter: function setFilter() {
+			var _this = this;
+
+			//alert("okay!")
+			//console.log(this.filters);
+
+			// передать фильтра, record_start, recordsLimit т.е. loadMoreCountShow
+			Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])("/getResults", { "data": this.filters }).then(function (res) {
+				console.log(res.data);
+				_this.items = res.data;
+				_this.update();
+			}).catch(function (err) {
+				console.log(err);
+			});
+		},
+
+
+		// загрузить ещё
+		loadMore: function loadMore() {
+			this.setFilter();
+		}
+	}
 });
 
 /***/ }),
@@ -13058,7 +13063,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -37411,7 +37416,7 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _vm.count > 10
+          _vm.count > _vm.loadMoreCountShow
             ? _c(
                 "b-row",
                 [

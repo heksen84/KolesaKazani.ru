@@ -120,7 +120,7 @@ Route::get('/category/{id}', function ($id) {
 		mb_strtolower($categories[0]->name));
 });
 
-Route::get('getSearchData', 'SearchController@getSearchData');
+Route::get('getResults', 'SearchController@getSearchData');
 Route::get('location/{country}/{region}/{place}', 'AdvertController@getFullInfo');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 

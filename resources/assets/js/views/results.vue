@@ -79,7 +79,7 @@
 			<!--<b-col cols="12" sm="12" md="2" lg="2" xl="2">VIP567</b-col>-->	
 		</b-row>
 
-		<b-row v-if="count>10">
+		<b-row v-if="count>loadMoreCountShow">
 			<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
 				<b-button variant="primary" style="margin:10px" @click="loadMore">загрузить ещё</b-button>
 			</b-col>
@@ -114,6 +114,8 @@ export default {
 
 	data () {		
 	return 	{
+
+			loadMoreCountShow: 3,
 
 			filter: false,
 			filter_text: "Отфильтровать",
@@ -192,26 +194,30 @@ export default {
 			// ---  
 			update() {
   				this.count = Object.keys(this.results).length;
-				this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
-			  },
+					this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
+			},
 			  
 			// фильтры  
-  			setFilter() {
+  		setFilter() {
 
-				alert("okay!")
+			//alert("okay!")
+			//console.log(this.filters);
+			
+			// передать фильтра, record_start, recordsLimit т.е. loadMoreCountShow
+  		get("/getResults", { "data": this.filters } ).then((res) => {
+  			console.log(res.data);
+				this.items=res.data;
+				this.update();
+			}).catch((err) => {
+				console.log(err)
+			});
 
-  				console.log(this.filters);
-  				get('/getSearchData', { "data": this.filters } ).then((res) => {
-  					console.log(res.data);
-						this.items=res.data;
-						this.update();
-					}).catch((err) => {});
 			},
 			
 			// загрузить ещё
 			loadMore() {
-    			this.setFilter();
-    		}
+    		this.setFilter();
+    	}
 	}
 }
 </script>
