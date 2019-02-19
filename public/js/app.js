@@ -3442,6 +3442,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 var mapCoords = [];
@@ -36984,6 +36985,8 @@ var render = function() {
                     "div",
                     { staticStyle: { "text-align": "center" } },
                     [
+                      _c("hr"),
+                      _vm._v(" "),
                       _c("b-img", {
                         staticStyle: { "margin-bottom": "5px" },
                         attrs: {

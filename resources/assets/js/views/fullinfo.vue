@@ -93,7 +93,8 @@
 			<hr>
 			<h5>Без фото</h5>
 		</div>
-		<div style="text-align:center" v-if="images.length>0">							
+		<div style="text-align:center" v-if="images.length>0">	
+			<hr>						
 			<b-img :src="'../storage/app/images/'+images[image_index].image" fluid style="margin-bottom:5px"/>
 			<div>
 				<b-img v-for="(i,index) in images" :key="index" :src="'../storage/app/images/'+i.image" style="margin:1px;margin-bottom:8px" width="80" height="80" @click="selectImage(index)"/>					
