@@ -16,9 +16,9 @@ use App\Images;
 
 
 class ResultsController extends Controller {
-
-	// максимальное число записей при выборке
-    private $records_limit = 1000;
+	
+	private $start_record  = 0;
+	private $records_limit = 1000; // максимальное число записей при выборке
 
 	// ---------------------------------------------------
     // результаты по всей стране
@@ -55,7 +55,7 @@ class ResultsController extends Controller {
 						adv_transport.mark=car_mark.id_car_mark AND 
 						adv.adv_category_id=adv_transport.id AND 
 						adv_transport.model = car_model.id_car_model
-					) ORDER BY price ASC LIMIT 0,".$this->records_limit
+					) ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit
 				);
 
 				$title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
@@ -66,8 +66,7 @@ class ResultsController extends Controller {
 			// Вся недвижимость Казахстана (damelya.kz/nedvizhimost)
 			case 2: {
 
-				$results = DB::select
-                    (				
+				$results = DB::select(				
 						"SELECT
 						concat(adv_realestate.rooms, ' комнатная квартира, ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаж, ', adv_realestate.area, ' кв. м.' ) AS title,
                         adv.id as advert_id, 
@@ -77,7 +76,8 @@ class ResultsController extends Controller {
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
                         adv_realestate.id
                         FROM `adverts` as adv
-                        INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) ORDER BY price ASC LIMIT 0,".$this->records_limit
+                        INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
+						ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit
                     );
 
                     \Debugbar::info($results);
@@ -97,23 +97,29 @@ class ResultsController extends Controller {
 				if ($category->id==9) $title = "Услуги ".mb_strtolower($category->name);
 				if ($category->id==10) $title = "Различные предложения ".mb_strtolower($category->name);
 
-				$results = DB::select
-				(
+				$results = DB::select(
 					"SELECT 
 					id as advert_id, 
 					text as title, 
 					price, 
 					category_id,					
 					(SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image
-					FROM `adverts` AS adv WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000"
+					FROM `adverts` AS adv WHERE category_id=".$category->id." ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit
 				);
 
 				\Debugbar::info($results);
 			}
 		}
 		
-		// передаю во вьюху
-     	return view('results')->with("title", $title." в Казахстане")->with("items", $items)->with("results", json_encode($results))->with("category", $category->id);
+		 // --------------------------------------
+		 // передаю во вьюху
+		 // --------------------------------------
+		 return view("results")
+		 ->with("title", $title." в Казахстане")
+		 ->with("items", $items)
+		 ->with("results", json_encode($results))
+		 ->with("category", $category->id)
+		 ->with("start_record", $this->start_record)
     }
 
     // ---------------------------------------------------
