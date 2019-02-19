@@ -37118,8 +37118,9 @@ var render = function() {
                   staticStyle: {
                     color: "white",
                     border: "1px solid white",
-                    "border-radius": "5px",
-                    padding: "5px"
+                    "border-radius": "3px",
+                    padding: "7px",
+                    background: "rgb(100,100,200)"
                   },
                   attrs: { title: "Закрыть страницу" },
                   on: { click: _vm.closeAndReturn }
