@@ -54,8 +54,7 @@
 		<div v-if="!full">						
 
 			<hr>			
-				<h5><b>{{ item[0].text }}</b></h5>			
-			<hr>		
+				<h5><b>{{ item[0].text }}</b></h5>					
 
 			<div v-if="item[0].category_id==1">				
 				<h5>Год выпуска: <b>{{ item[0].year }}</b> г.</h5>
@@ -89,7 +88,7 @@
 			<b v-if="item[0].phone2!=null">{{ item[0].phone2 }}</b><span v-if="item[0].phone3!=null">,</span>
 			<b v-if="item[0].phone3!=null">{{ item[0].phone3 }}</b>			
 		</h5>
-		<hr v-if="images.length>0">		
+		
 		<div v-if="images.length<=0" style="text-align:center">
 			<hr>
 			<h5>Без фото</h5>
