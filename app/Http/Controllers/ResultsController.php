@@ -35,16 +35,6 @@ class ResultsController extends Controller {
 		// --------------------------------------------------------
 		switch($category->id) {
 
-			// --------------------------------------------
-			// СДЕЛАТЬ ТЭГИ К ОБЪЯВЛЕНИЮ ДЛЯ ПОИСКА
-			// --------------------------------------------
-			
-			// id, tag, advert_id
-			// 0, audi 100, 5
-			// 1, куплю, 	5
-			// 2, 190000, 	5
-			// 3, авто, 	5
-			
 			// ------------------------
 			// транспорт
 			// ------------------------
@@ -61,8 +51,7 @@ class ResultsController extends Controller {
 					text,
 					(SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
 					FROM `adverts` as adv
-					INNER JOIN (adv_transport, car_mark, car_model) ON 
-					(
+					INNER JOIN (adv_transport, car_mark, car_model) ON (
 						adv_transport.mark=car_mark.id_car_mark AND 
 						adv.adv_category_id=adv_transport.id AND 
 						adv_transport.model = car_model.id_car_model
@@ -72,82 +61,21 @@ class ResultsController extends Controller {
 				$title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
 
 				break;
-			}
+			}						
 			
-			// ------------------------
-			// недвижимость
-			// ------------------------
-			case 2: {			
-				$title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
-			}
+			// Всё остальное
+			default: {
 
-			// ------------------------
-			// бытовая техника
-			// ------------------------
-			case 3: {
-				$title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
-			}
+				if ($category->id==2) $title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
+				if ($category->id==3) $title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
+				if ($category->id==4) $title = "Предложения о ".mb_strtolower($category->name);
+				if ($category->id==5) $title = "Всё ".mb_strtolower($category->name);
+				if ($category->id==6) $title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
+				if ($category->id==7) $title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
+				if ($category->id==8) $title = "Всё для ".mb_strtolower($category->name);
+				if ($category->id==9) $title = "Услуги ".mb_strtolower($category->name);
+				if ($category->id==10) $title = "Различные предложения ".mb_strtolower($category->name);
 
-			// ------------------------
-			// работа и бизнес
-			// ------------------------
-			case 4: {
-				$title = "Предложения о ".mb_strtolower($category->name);				
-				break;
-			}
-
-			// ------------------------
-			// для дома и дачи
-			// ------------------------
-			case 5: {				
-				$title = "Всё ".mb_strtolower($category->name);				
-				break;
-			}
-
-			// ------------------------
-			// личные вещи
-			// ------------------------
-			case 6: {
-				$title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
-				break;
-			}
-
-			// ------------------------
-			// животные
-			// ------------------------
-			case 7: {
-				$title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
-				break;
-			}
-
-			// ------------------------
-			// хобби и отдых
-			// ------------------------
-			case 8: {
-				$title = "Всё для ".mb_strtolower($category->name);
-				break;
-			}
-
-			// ------------------------
-			// услуги
-			// ------------------------
-			case 9: {
-				$title = "Предоставление ".mb_strtolower($category->name);
-				//$results = DB::select("SELECT * FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
-				break;
-			}
-
-			// ------------------------
-			// другое
-			// ------------------------
-			case 10: {
-				$title = "Различные предложения";
-				//$results = DB::select("SELECT * FROM `adverts` WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000");
-				break;
-			}
-
-			default: 
-			{
 				$results = DB::select
 				(
 					"SELECT 
@@ -158,6 +86,8 @@ class ResultsController extends Controller {
 					(SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image
 					FROM `adverts` AS adv WHERE category_id=".$category->id." ORDER BY price ASC LIMIT 0,1000"
 				);
+
+				\Debugbar::info($results);
 			}
 		}
 		
