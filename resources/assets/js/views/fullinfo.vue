@@ -135,6 +135,8 @@ export default {
 	},
 
 	created() {
+
+	console.log(this.item[0]);
 		
 	// не инициализировать карту, если координаты 0,0
 	if (this.item[0].coord_lat!=0 && this.item[0].coord_lon!=0) {

@@ -312,7 +312,7 @@ class AdvertController extends Controller {
         
         // выбираю все поля по нужному айдишнику
         $item = DB::table("adverts")->where("id", $id)->get()->first();
-                
+                        
                                 
         // ----------------------------------------------------------------
         // определить категорию объявления и вернуть необходимый результат
@@ -373,6 +373,8 @@ class AdvertController extends Controller {
 					    ) 
                         WHERE adv.id=".$id." LIMIT 1"
                     );                
+
+                    \Debugbar::info($results);
                     
                     $title = $results[0]->deal_name_2." ".$results[0]->mark." ".$results[0]->model." ".$results[0]->year." года в ".$results[0]->city_name;
                     break;
@@ -468,6 +470,9 @@ class AdvertController extends Controller {
             // недвижимость (развёрнутая информация)
             // -----------------------------------------
             case 2: { 
+
+                \Debugbar::info("nedv");
+
                 break;
             }
 
