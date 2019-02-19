@@ -76,20 +76,12 @@
 
 				<!-- Цена -->
 				<b-form-group label-for="price" style="text-align:center" v-if="category!=4">
-			 		<b-form-input v-model="price" type="number" id="price" placeholder="Цена" style="width:150px;display:inline;font-weight:bold" :formatter="setPrice" required></b-form-input>
+			 		<b-form-input v-model="price" type="number" id="price" placeholder="Цена" style="margin-left:40px;width:130px;display:inline;font-weight:bold" :formatter="setPrice" required></b-form-input>
 					&nbsp;{{ this.$root.money_full_name }}
 				</b-form-group>
 
-				<!-- Фотографии -->
-				<b-form-group label="Фотографии:">
-				<div style="text-align:center">
-					<b-img v-for="(i, index) in preview_images" :src="i.src" :key="i.name" @click="deletePhoto(index)" class="image" :title="i.name"/>
-					<b-form-file multiple accept=".png, .jpg, .jpeg" class="mt-2" @change="loadImage"></b-form-file>
-				</div>
-				</b-form-group>
 
-				<b-form-group label="<ins>Контакты:</ins>" style="text-align:center;font-weight:bold">
-			 	
+				<b-form-group label="<ins>Контакты:</ins>" style="text-align:center;font-weight:bold">			 	
 				 	<b-form-input v-model.trim="phone1" type="text" placeholder="Контактный номер 1" style="width:250px;display:inline;text-align:center" :state="setPhoneNumber(1)" required></b-form-input>
 							<!--<span style="margin-left:10px;color:grey;cursor:pointer" title="очистить поле" @click="clearField('phone1')">X</span>-->
 					<div v-if="phone1.length>const_phone1_length">
@@ -97,9 +89,17 @@
 							<!--<span style="color:grey;cursor:pointer" title="очистить поле" @click="clearField('phone2')">X</span>-->
 						<b-form-input v-model.trim="phone3" type="text" placeholder="Контактный номер 3" style="width:250px;text-align:center;margin: 5px auto" :state="setPhoneNumber(3)"></b-form-input>
 							<!--<span style="margin-left:10px;color:grey" title="очистить поле" @click="clearField('phone3')">X</span>-->
-					</div>
-				
+					</div>				
 				</b-form-group>
+
+
+				<!-- Фотографии -->
+				<b-form-group label="Фотографии:">
+				<div style="text-align:center">
+					<b-img v-for="(i, index) in preview_images" :src="i.src" :key="i.name" @click="deletePhoto(index)" class="image" :title="i.name"/>
+					<b-form-file multiple accept=".png, .jpg, .jpeg" class="mt-2" @change="loadImage"></b-form-file>
+				</div>
+				</b-form-group>				
 
 				<div v-show="phone1.length>const_phone1_length">
 
