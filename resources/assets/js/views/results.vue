@@ -29,7 +29,7 @@
 	</b-row>
 
 	<!-- Фильтр тачек -->
-	<b-row v-if="category===1">
+	<b-row v-if="category==1 && count>1 && filter">
 		<b-col cols="12" sm="12" md="3" lg="3" xl="3"></b-col>
 		
 		<!-- марки -->
