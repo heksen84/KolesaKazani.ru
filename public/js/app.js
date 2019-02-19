@@ -38545,36 +38545,45 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _c("b-form-group", { attrs: { label: "Фотографии:" } }, [
-                        _c(
-                          "div",
-                          { staticStyle: { "text-align": "center" } },
-                          [
-                            _vm._l(_vm.preview_images, function(i, index) {
-                              return _c("b-img", {
-                                key: i.name,
-                                staticClass: "image",
-                                attrs: { src: i.src, title: i.name },
-                                on: {
-                                  click: function($event) {
-                                    _vm.deletePhoto(index)
-                                  }
-                                }
-                              })
-                            }),
-                            _vm._v(" "),
-                            _c("b-form-file", {
-                              staticClass: "mt-2",
-                              attrs: {
-                                multiple: "",
-                                accept: ".png, .jpg, .jpeg"
-                              },
-                              on: { change: _vm.loadImage }
-                            })
-                          ],
-                          2
-                        )
-                      ]),
+                      _vm.phone1.length > _vm.const_phone1_length
+                        ? _c(
+                            "b-form-group",
+                            { attrs: { label: "Фотографии:" } },
+                            [
+                              _c(
+                                "div",
+                                { staticStyle: { "text-align": "center" } },
+                                [
+                                  _vm._l(_vm.preview_images, function(
+                                    i,
+                                    index
+                                  ) {
+                                    return _c("b-img", {
+                                      key: i.name,
+                                      staticClass: "image",
+                                      attrs: { src: i.src, title: i.name },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.deletePhoto(index)
+                                        }
+                                      }
+                                    })
+                                  }),
+                                  _vm._v(" "),
+                                  _c("b-form-file", {
+                                    staticClass: "mt-2",
+                                    attrs: {
+                                      multiple: "",
+                                      accept: ".png, .jpg, .jpeg"
+                                    },
+                                    on: { change: _vm.loadImage }
+                                  })
+                                ],
+                                2
+                              )
+                            ]
+                          )
+                        : _vm._e(),
                       _vm._v(" "),
                       _c(
                         "div",

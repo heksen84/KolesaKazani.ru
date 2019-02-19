@@ -94,7 +94,7 @@
 
 
 				<!-- Фотографии -->
-				<b-form-group label="Фотографии:">
+				<b-form-group label="Фотографии:" v-if="phone1.length>const_phone1_length">
 				<div style="text-align:center">
 					<b-img v-for="(i, index) in preview_images" :src="i.src" :key="i.name" @click="deletePhoto(index)" class="image" :title="i.name"/>
 					<b-form-file multiple accept=".png, .jpg, .jpeg" class="mt-2" @change="loadImage"></b-form-file>
