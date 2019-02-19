@@ -17,6 +17,9 @@ use App\Images;
 
 class ResultsController extends Controller {
 
+	// максимальное число записей при выборке
+    private $records_limit = 1000;
+
 	// ---------------------------------------------------
     // результаты по всей стране
     // ---------------------------------------------------
@@ -52,7 +55,7 @@ class ResultsController extends Controller {
 						adv_transport.mark=car_mark.id_car_mark AND 
 						adv.adv_category_id=adv_transport.id AND 
 						adv_transport.model = car_model.id_car_model
-					) ORDER BY price ASC LIMIT 0,1000"
+					) ORDER BY price ASC LIMIT 0,".$this->records_limit
 				);
 
 				$title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
@@ -72,9 +75,9 @@ class ResultsController extends Controller {
                         adv.category_id,
                         text,                        
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
-                        adv_realestate.id,                        
+                        adv_realestate.id
                         FROM `adverts` as adv
-                        INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) ORDER BY price ASC LIMIT 0,".$this->records_limit                    
+                        INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) ORDER BY price ASC LIMIT 0,".$this->records_limit
                     );
 
                     \Debugbar::info($results);
