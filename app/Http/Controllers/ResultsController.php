@@ -119,7 +119,7 @@ class ResultsController extends Controller {
 		 ->with("items", $items)
 		 ->with("results", json_encode($results))
 		 ->with("category", $category->id)
-		 ->with("start_record", $this->start_record)
+		 ->with("start_record", $this->start_record);
     }
 
     // ---------------------------------------------------
