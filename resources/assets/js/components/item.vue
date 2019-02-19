@@ -5,7 +5,7 @@
     <div class="item-content">      
       <b>{{ title }}</b>
         <div v-if="category_id!=4">Цена: {{ price }} тенге</div>
-        <br v-if="category_id= =4">
+        <br v-if="category_id==4">
       <b-button style="margin-top:5px" size="sm" variant="outline-success">Подробнее</b-button>
     </div>
   </div>
