@@ -31,13 +31,11 @@ class ResultsController extends Controller {
 		$title = "";
 
 		// --------------------------------------------------------
-		// Выдергиваю данные по конкретной категории
+		// Беру данные по конкретной категории
 		// --------------------------------------------------------
 		switch($category->id) {
 
-			// ------------------------
-			// транспорт
-			// ------------------------
+			// Вся автотранспорт Казахстана (damelya.kz/transport)
 			case 1: {
 
 				$results = DB::select(
@@ -45,8 +43,7 @@ class ResultsController extends Controller {
 					concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
 					adv.id as advert_id, 
 					adv.price,
-					adv.category_id,  
-					/*year,*/  
+					adv.category_id,
 					mileage,
 					text,
 					(SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
@@ -61,12 +58,33 @@ class ResultsController extends Controller {
 				$title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
 
 				break;
-			}						
+			}
+			
+			// Вся недвижимость Казахстана (damelya.kz/nedvizhimost)
+			case 2: {
+
+				$results = DB::select
+                    (				
+						"SELECT
+						concat(adv_realestate.rooms, ' комнатная квартира, ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаж, ', adv_realestate.area, ' кв. м.' ) AS title,
+                        adv.id as advert_id, 
+                        adv.price,
+                        adv.category_id,
+                        text,                        
+                        (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
+                        adv_realestate.id,                        
+                        FROM `adverts` as adv
+                        INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) ORDER BY price ASC LIMIT 0,".$this->records_limit                    
+                    );
+
+                    \Debugbar::info($results);
+
+                    $title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
+			}
 			
 			// Всё остальное
 			default: {
 
-				if ($category->id==2) $title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
 				if ($category->id==3) $title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
 				if ($category->id==4) $title = "Предложения о ".mb_strtolower($category->name);
 				if ($category->id==5) $title = "Всё ".mb_strtolower($category->name);

@@ -30,7 +30,6 @@ class SubCatsController extends Controller
                 // Легковой транспорт
                 if ($subcat=="legkovoy-avtomobil") {
                                     
-
                     $results = DB::select(
                         "SELECT
                         concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
