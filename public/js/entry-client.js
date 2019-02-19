@@ -3450,45 +3450,37 @@ var myPlacemark;
 var bigmap;
 
 function initMap() {
-		bigmap = new ymaps.Map("map", { center: mapCoords, zoom: 13 });
+	bigmap = new ymaps.Map("map", { center: mapCoords, zoom: 13 });
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-		props: ["item", "images", "full"], // входящие данные
+	props: ["item", "images", "full"], // входящие данные
 
-		created: function created() {
+	components: {},
 
-				console.log(this.full);
-				console.log(this.item);
+	data: function data() {
+		return {
+			image_index: 0
+		};
+	},
+	created: function created() {
 
-				this.category = this.item[0].category_id;
-
-				// ----------------------------------------------------------
-				// не инициализировать карту, если координаты 0,0
-				// ----------------------------------------------------------
-				if (this.item[0].coord_lat != 0 && this.item[0].coord_lon != 0) {
-						mapCoords = [this.item[0].coord_lat, this.item[0].coord_lon];
-						ymaps.ready(initMap);
-				}
-		},
-		data: function data() {
-
-				return {
-						category: null,
-						image_index: 0
-				};
-		},
-
-		components: {},
-		methods: {
-				selectImage: function selectImage(index) {
-						this.image_index = index;
-				},
-				closeAndReturn: function closeAndReturn() {
-						window.history.back();
-				}
+		// не инициализировать карту, если координаты 0,0
+		if (this.item[0].coord_lat != 0 && this.item[0].coord_lon != 0) {
+			mapCoords = [this.item[0].coord_lat, this.item[0].coord_lon];
+			ymaps.ready(initMap);
 		}
+	},
+
+	methods: {
+		selectImage: function selectImage(index) {
+			this.image_index = index;
+		},
+		closeAndReturn: function closeAndReturn() {
+			window.history.back();
+		}
+	}
 });
 
 /***/ }),
@@ -4014,7 +4006,9 @@ function num2str(n, text_forms) {
 
 			// передать фильтра, record_start, recordsLimit т.е. loadMoreCountShow
 			Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])("/getResults", { "data": this.filters }).then(function (res) {
+				console.log("------------------------");
 				console.log(res.data);
+				console.log("------------------------");
 				_this.items = res.data;
 				_this.update();
 			}).catch(function (err) {
@@ -13063,7 +13057,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -36813,7 +36807,7 @@ var render = function() {
               _vm._v(" "),
               _vm.full
                 ? _c("div", [
-                    _vm.category == 1
+                    _vm.item[0].category_id == 1
                       ? _c("div", [
                           _c("h1", { staticStyle: { "font-size": "190%" } }, [
                             _c("b", [
@@ -36908,7 +36902,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("hr"),
                     _vm._v(" "),
-                    _vm.category == 1
+                    _vm.item[0].category_id == 1
                       ? _c("div", [
                           _c("h5", [
                             _vm._v("Год выпуска: "),
@@ -36967,11 +36961,13 @@ var render = function() {
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _c("h5", [
-                _vm._v("Цена: "),
-                _c("b", [_vm._v(_vm._s(_vm.item[0].price))]),
-                _vm._v(" тенге")
-              ]),
+              _vm.item[0].category_id != 4
+                ? _c("h5", [
+                    _vm._v("Цена: "),
+                    _c("b", [_vm._v(_vm._s(_vm.item[0].price))]),
+                    _vm._v(" тенге")
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _c("h5", [
                 _vm._v("\n\t\t\tКонтакты:\n\t\t\t"),

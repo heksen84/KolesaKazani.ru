@@ -205,7 +205,9 @@ export default {
 			
 			// передать фильтра, record_start, recordsLimit т.е. loadMoreCountShow
   		get("/getResults", { "data": this.filters } ).then((res) => {
-  			console.log(res.data);
+				console.log("------------------------");
+				console.log(res.data);
+				console.log("------------------------");
 				this.items=res.data;
 				this.update();
 			}).catch((err) => {

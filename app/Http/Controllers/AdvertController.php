@@ -428,7 +428,7 @@ class AdvertController extends Controller {
                     "SELECT                    
                     deal_name_2,
                     adv.id as advert_id, 
-                    adv.category_id as category_id,					
+                    adv.category_id,
                     adv.price,
                     adv.phone1,
                     adv.phone2,
@@ -490,6 +490,7 @@ class AdvertController extends Controller {
                 (
                     "SELECT
                         deal_name_2,
+                        adv.category_id,
                         adv.id as advert_id,
                         adv.price,
                         adv.phone1,
@@ -518,7 +519,11 @@ class AdvertController extends Controller {
 
         $images = DB::select("SELECT image FROM images WHERE advert_id=".$id);
 
-        return view("fullinfo")->with("item", json_encode($results) )->with("images", json_encode($images))->with("title", $title)->with("full", json_encode($adv_full_info));
+        return view("fullinfo")
+        ->with("item", json_encode($results) )
+        ->with("images", json_encode($images))
+        ->with("title", $title)
+        ->with("full", json_encode($adv_full_info));
     }
 
     /*
