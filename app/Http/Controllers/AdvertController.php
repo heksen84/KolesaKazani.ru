@@ -423,40 +423,40 @@ class AdvertController extends Controller {
             // мототехника
             case 3: {
                         
-                $results = DB::select
-                (
-                    "SELECT                    
-                    deal_name_2,
-                    adv.id as advert_id, 
-                    adv.category_id,
-                    adv.price,
-                    adv.phone1,
-                    adv.phone2,
-                    adv.phone3,
-                    adv.text,
-                    adv.coord_lat,
-                    adv.coord_lon,
-                    adv_transport.id,
-                    year,  
-                    mileage,
-                    steering_position,
-                    engine_type,
-                    customs,
-                    kz_region.name as region_name,
-                    kz_city.name as city_name
-                FROM `adverts` as adv
-                INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON 
-                (						
-                    categories.id=adv.category_id AND
-                    adv.adv_category_id = adv_transport.id AND 					                        
-                    categories.id=dealtype.id AND
-                    kz_city.city_id=adv.city_id AND
-                    kz_region.region_id=adv.region_id
-                ) 
-                WHERE adv.id=".$id." LIMIT 1");
+                        $results = DB::select
+                        (
+                            "SELECT                    
+                            deal_name_2,
+                            adv.id as advert_id, 
+                            adv.category_id,
+                            adv.price,
+                            adv.phone1,
+                            adv.phone2,
+                            adv.phone3,
+                            adv.text,
+                            adv.coord_lat,
+                            adv.coord_lon,
+                            adv_transport.id,
+                            year,  
+                            mileage,
+                            steering_position,
+                            engine_type,
+                            customs,
+                            kz_region.name as region_name,
+                            kz_city.name as city_name
+                        FROM `adverts` as adv
+                        INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON 
+                        (						
+                            categories.id=adv.category_id AND
+                            adv.adv_category_id = adv_transport.id AND 					                        
+                            categories.id=dealtype.id AND
+                            kz_city.city_id=adv.city_id AND
+                            kz_region.region_id=adv.region_id
+                        ) 
+                        WHERE adv.id=".$id." LIMIT 1");
 
-                $title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
-                break;
+                        $title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
+                        break;
             }
                     
         }                                                                        
@@ -486,44 +486,44 @@ class AdvertController extends Controller {
             case 10: break;*/
 
             default: {
-                $results = DB::select
-                (
-                    "SELECT
-                        deal_name_2,
-                        adv.category_id,
-                        adv.id as advert_id,
-                        adv.price,
-                        adv.phone1,
-                        adv.phone2,
-                        adv.phone3,
-                        adv.text,
-                        adv.coord_lat,
-                        adv.coord_lon,
-                        kz_region.name as region_name,
-                        kz_city.name as city_name              
-                    FROM `adverts` as adv INNER JOIN (categories, dealtype, kz_city, kz_region) ON 
+                    $results = DB::select
                     (
-                        categories.id=dealtype.id AND
-                        kz_city.city_id=adv.city_id AND
-                        kz_region.region_id=adv.region_id
-                    ) 
-                    WHERE adv.id=".$id." LIMIT 1"
-                );
+                        "SELECT
+                            deal_name_2,
+                            adv.category_id,
+                            adv.id as advert_id,
+                            adv.price,
+                            adv.phone1,
+                            adv.phone2,
+                            adv.phone3,
+                            adv.text,
+                            adv.coord_lat,
+                            adv.coord_lon,
+                            kz_region.name as region_name,
+                            kz_city.name as city_name              
+                        FROM `adverts` as adv INNER JOIN (categories, dealtype, kz_city, kz_region) ON 
+                        (
+                            categories.id=dealtype.id AND
+                            kz_city.city_id=adv.city_id AND
+                            kz_region.region_id=adv.region_id
+                        ) 
+                        WHERE adv.id=".$id." LIMIT 1"
+                    );
                     
-                \Debugbar::info("Hello ebt!");                    
-                \Debugbar::info($results);
+                    \Debugbar::info("Hello ebt!");                    
+                    \Debugbar::info($results);
                 
-                $title = $results[0]->deal_name_2." ".$results[0]->text." года в ".$results[0]->city_name;
+                    $title = $results[0]->deal_name_2." ".$results[0]->text." года в ".$results[0]->city_name;
+                }
             }
-        }
 
-        $images = DB::select("SELECT image FROM images WHERE advert_id=".$id);
+            $images = DB::select("SELECT image FROM images WHERE advert_id=".$id);
 
-        return view("fullinfo")
-        ->with("item", json_encode($results) )
-        ->with("images", json_encode($images))
-        ->with("title", $title)
-        ->with("full", json_encode($adv_full_info));
+            return view("fullinfo")
+            ->with("item", json_encode($results) )
+            ->with("images", json_encode($images))
+            ->with("title", $title)
+            ->with("full", json_encode($adv_full_info));
     }
 
     /*
