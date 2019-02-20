@@ -357,8 +357,9 @@ class AdvertController extends Controller {
     -------------------------------------------*/
     public function getFullInfoByUrl($url) {
 
+        //\Debugbar::info(substr($url,0,10));
         // влепить сюда обрезанный индекс с url
-        $urls = Urls::select("advert_id")->where("url",  $url )->first();
+        $urls = Urls::select("advert_id")->where("url", $url )->first();
         return $this->getFullInfo($urls->advert_id);
     }
 
