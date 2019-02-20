@@ -312,8 +312,7 @@ class AdvertController extends Controller {
         
         // выбираю все поля по нужному айдишнику
         $item = DB::table("adverts")->where("id", $id)->get()->first();
-                        
-                                
+                                                        
         // ----------------------------------------------------------------
         // определить категорию объявления и вернуть необходимый результат
         // ----------------------------------------------------------------
@@ -323,11 +322,7 @@ class AdvertController extends Controller {
             // транспорт (развёрнутая информация)
             // -----------------------------------------
             case 1: {
-                
-                // Если есть подкатегория (adv_category_id!=null)
-                // нужно понять где грузовик, а где легковушка
-                // SELECT adv_transport.type WHERE и switch его
-                                
+
                 $transport = DB::table("adv_transport")->where("id", $item->adv_category_id)->get()->first();                
                 
                 switch($transport->type) {
@@ -517,7 +512,6 @@ class AdvertController extends Controller {
                         WHERE adv.id=".$id." LIMIT 1"
                     );
                     
-                    \Debugbar::info("Hello ebt!");                    
                     \Debugbar::info($results);
                 
                     $title = $results[0]->deal_name_2." ".$results[0]->text." года в ".$results[0]->city_name;
@@ -541,8 +535,7 @@ class AdvertController extends Controller {
 
         $redis = Redis::connection();
 
-        try 
-        {								
+        try {								
             $redis->ping();
             $car_marks = $redis->get("car_marks");
             if (!$car_marks) {

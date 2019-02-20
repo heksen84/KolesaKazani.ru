@@ -17,6 +17,7 @@ use App\Images;
 
 class ResultsController extends Controller {
 	
+	// частные переменные
 	private $start_record  = 0;
 	private $records_limit = 1000; // максимальное число записей при выборке
 	private $order_fileds  = [];   // поля сортировки
@@ -25,8 +26,6 @@ class ResultsController extends Controller {
     // результаты по всей стране
     // ---------------------------------------------------
     public function getResultsByCategory(Request $request) {
-
-		//\Debugbar::info($request);
 
     	// получаю имя на русском
 		$category = Categories::select("id", "name")->where("url",  $request->path() )->first();
@@ -66,9 +65,7 @@ class ResultsController extends Controller {
 
 				\Debugbar::info($results);
 
-				//$title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
 				$title = "Объявления о покупке, продаже, обмене или сдаче транспорта в аренду в Казахстане";
-
 				break;				                          				
 			}
 			
@@ -92,27 +89,33 @@ class ResultsController extends Controller {
 
                     \Debugbar::info($results);
 
+					// seo title
 					$title = "Объявления о покупке, продаже, обмене или сдаче недвижимости в аренду в Казахстане";
+					break;
 			}
 			
 			// Всё остальное
 			default: {
+
+				// --------------------------------
+				// Заголовки title для SEO
+				// --------------------------------				
 				// электроника
-				if ($category->id==3) $title = "Объявления о покупке, продаже, обмене или сдаче электроники В Казахстане"
+				if ($category->id==3) $title = "Объявления о покупке, продаже, обмене или сдаче электроники В Казахстане";
 				// работа и бизнес
-				if ($category->id==4) $title = "Обяъвления о работе и бизнесе в Казахстане"
+				if ($category->id==4) $title = "Обяъвления о работе и бизнесе в Казахстане";
 				// для дома и дачи
-				if ($category->id==5) $title = "Объявления категории для дома и дачи в Казахстанe"
+				if ($category->id==5) $title = "Объявления категории для дома и дачи в Казахстанe";
 				// личные вещи
-				if ($category->id==6) $title = "Объявления о покупке, продаже, обмене или сдаче"
+				if ($category->id==6) $title = "Объявления о покупке, продаже, обмене или сдаче";
 				// животные
-				if ($category->id==7) $title = "Объявления о покупке, продаже, обмене или сдаче"
+				if ($category->id==7) $title = "Объявления о покупке, продаже, обмене или сдаче";
 				// хобби и отдых
-				if ($category->id==8) $title = "Объявления категории хобби и отдых в Казахстанe"
+				if ($category->id==8) $title = "Объявления категории хобби и отдых в Казахстанe";
 				// услуги
-				if ($category->id==9) $title = "Объявления категории услуги в Казахстанe"
+				if ($category->id==9) $title = "Объявления категории услуги в Казахстанe";
 				// другое
-				if ($category->id==10) $title = "Различные предложения в Казахстане"
+				if ($category->id==10) $title = "Различные предложения в Казахстане";
 
 				// общий select
 				$results = DB::select(
@@ -133,7 +136,7 @@ class ResultsController extends Controller {
 		 // передаю во вьюху
 		 // --------------------------------------
 		 return view("results")
-		 ->with("title", $title." в Казахстане")
+		 ->with("title", $title)
 		 ->with("items", $items)
 		 ->with("results", json_encode($results))
 		 ->with("category", $category->id)
@@ -146,8 +149,9 @@ class ResultsController extends Controller {
     public function getResultsByRegion($_region, $_category) {
 
     	// получаю имена на русском
-    	$region = Regions::select('name')->where('url',  $_region )->first();
-    	//$category = Categories::select('id', 'name')->where('url',  $_category )->first();
+		$region = Regions::select('name')->where('url',  $_region )->first();		
+		//$category = Categories::select('id', 'name')->where('url',  $_category )->first();
+		
     	// получаю объявления
     	$items = Adverts::where('category_id',  0)->get();
 		//$images = Images::where('advert_id',  $record->id )->get();
@@ -164,7 +168,9 @@ class ResultsController extends Controller {
     public function getResultsByPlace($_region, $place, $_category) {
 
     	// получаю имена на русском
-    	$region = Regions::select('name')->where('url',  $_region )->first();
+		$region = Regions::select('name')->where('url',  $_region )->first();
+		
+		// получаю имя и id на русском
     	$category = Categories::select('id', 'name')->where('url',  $_category )->first();
     	
     	// получаю объявления
