@@ -324,7 +324,7 @@ class AdvertController extends Controller {
             // Закидываю данные в таблицу urls для SEO
             $urls = new Urls();
             
-            $urls->url = substr($advert->id."-".str2url($text), 0, 100);
+            $urls->url = substr($advert->id."_".str2url($text), 0, 100);
             $urls->advert_id = $advert->id;
             $urls->save();
              
@@ -349,10 +349,21 @@ class AdvertController extends Controller {
      	return $data;
     }
 
+
     /*
     -------------------------------------------
     Получить полную информацию об объявлении
-    ПЕРЕТАЩИТЬ В РЕЗУЛЬТАТЫ
+    по url
+    -------------------------------------------*/
+    public function getFullInfoByUrl($url) {    
+        $urls = Urls::select("advert_id")->where("url",  $url )->first();
+        return $this->getFullInfo($urls->advert_id);
+    }
+
+    /*
+    -------------------------------------------
+    Получить полную информацию об объявлении
+    по id
     -------------------------------------------*/
     public function getFullInfo($id) {
         
