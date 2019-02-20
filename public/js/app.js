@@ -1874,7 +1874,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       placeholder_info_text: "Введите текст объявления, например: ",
 
-      type_transport: [{ value: null, text: '-- Выберите вид транспорта --' }, { value: 1, text: 'Легковой автомобиль' }, { value: 2, text: 'Грузовой автомобиль' }, { value: 3, text: 'Мототехника' }, { value: 4, text: 'Спецтехника' }, { value: 5, text: 'Ретро-автомобиль' }, { value: 6, text: 'Водный транспорт' }, { value: 7, text: 'Велосипед' }, { value: 8, text: 'Воздушный транспорт' }],
+      type_transport: [{ value: null, text: '-- Выберите вид транспорта --' }, { value: 0, text: 'Легковой автомобиль' }, { value: 1, text: 'Грузовой автомобиль' }, { value: 2, text: 'Мототехника' }, { value: 3, text: 'Спецтехника' }, { value: 4, text: 'Ретро-автомобиль' }, { value: 5, text: 'Водный транспорт' }, { value: 6, text: 'Велосипед' }, { value: 7, text: 'Воздушный транспорт' }],
 
       // марки автомобилей
       carmark: [],
@@ -1902,8 +1902,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
 
-  //components: { "com-transport": comtransport },
-
   // компонент создан
   created: function created() {
 
@@ -1920,8 +1918,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   computed: {
     getComTransport: function getComTransport() {
-      // 1,2,3,5 - категории транспорта
-      return [1, 2, 3, 5].indexOf(this.selected.type_transport) !== -1 && this.selected.type_transport != null && this.$store.state.show_common_transport;
+      // категории транспорта
+      return [0, 1, 2, 4].indexOf(this.selected.type_transport) != -1 && this.selected.type_transport != null && this.$store.state.show_common_transport;
     }
   },
 
@@ -1955,18 +1953,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       switch (transport_id) {
 
         // легковой транспорт
-        case 1:
+        case 0:
           {
 
             this.$store.commit("ShowCommonTransport", false);
             this.$store.commit("ShowFinalFields", false);
             this.$store.commit("SetPlaceholderInfoText", "Введите дополнительное описание.");
-
             this.carmark = [];
+
             Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/getCarsMarks").then(function (res) {
 
               _this.carmark = res.data;
-              console.log(_this.this.carmark);
+              console.log(_this.carmark);
             }).catch(function (err) {
               console.log(err);
             });
@@ -1975,48 +1973,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
 
         // грузовой транспорт
-        case 2:
+        case 1:
           {
             this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text + "Продам Камаз 2009 г. в хорошем состоянии.");
             break;
           }
 
         // мототехника
-        case 3:
+        case 2:
           {
             this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text + "Продам мотоцикл Yamaha 2015 г. в отличном состоянии.");
             break;
           }
 
         // спецтехника
-        case 4:
+        case 3:
           {
             this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text + "Продам прицеп.");
             break;
           }
 
         // ретроавто
-        case 5:
+        case 4:
           {
             break;
           }
 
         // водный транспорт
-        case 6:
+        case 5:
           {
             this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text + "Продам моторную лодку в хорошем состоянии.");
             break;
           }
 
         // велосипеды
-        case 7:
+        case 6:
           {
             this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text + "Продам новый велосипед.");
             break;
           }
 
         // воздушный транспорт
-        case 8:
+        case 7:
           {
             this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text + "Продам двухместный самолёт.");
             break;
@@ -2035,7 +2033,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$store.commit("ShowCommonTransport", false);
       this.$store.commit("ShowFinalFields", false);
       this.$store.commit("SetRequiredInfo", false);
-
       this.transport_chars.mark_id = mark_id;
 
       console.log(this.transport_chars.mark_id);
@@ -36355,7 +36352,7 @@ var render = function() {
     "b-form",
     { staticStyle: { "margin-top": "-18px" }, attrs: { inline: "" } },
     [
-      [1, 2, 3, 5].indexOf(this.selected.type_transport) !== -1 &&
+      [0, 1, 2, 4].indexOf(this.selected.type_transport) != -1 &&
       this.selected.type_transport != null
         ? _c(
             "div",
@@ -36399,7 +36396,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm.carmark && _vm.selected.type_transport == 1
+      _vm.carmark && _vm.selected.type_transport == 0
         ? _c(
             "b-form-group",
             { attrs: { label: "Марка автомобиля:" } },
@@ -36440,7 +36437,7 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm.selected.carmark != null && _vm.selected.type_transport == 1
+      _vm.selected.carmark != null && _vm.selected.type_transport == 0
         ? _c(
             "b-form-group",
             { attrs: { label: "Модель:" } },
@@ -36508,7 +36505,7 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm.getComTransport && _vm.selected.type_transport != 3
+      _vm.getComTransport && _vm.selected.type_transport != 2
         ? _c(
             "b-form-group",
             { attrs: { label: "Положение руля:" } },

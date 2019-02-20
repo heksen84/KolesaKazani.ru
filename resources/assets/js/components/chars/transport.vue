@@ -1,6 +1,6 @@
 <template>
   <b-form inline style="margin-top:-18px;">
-    <div style="width:100%;margin-bottom:10px;text-decoration:underline" v-if="[1,2,3,5].indexOf(this.selected.type_transport) !== -1 && this.selected.type_transport!=null">Характеристики:</div>
+    <div style="width:100%;margin-bottom:10px;text-decoration:underline" v-if="[0,1,2,4].indexOf(this.selected.type_transport) != -1 && this.selected.type_transport!=null">Характеристики:</div>
     
     <b-form-group label="Вид транспорта:">
         <b-form-select v-model="selected.type_transport" class="mb-2 mr-sm-2 mb-sm-2"  @change="selectTransportType">
@@ -8,14 +8,14 @@
         </b-form-select>
     </b-form-group>
 
-    <b-form-group label="Марка автомобиля:" v-if="carmark && selected.type_transport==1">
+    <b-form-group label="Марка автомобиля:" v-if="carmark && selected.type_transport==0">
         <b-form-select v-model="selected.carmark" class="mb-2 mr-sm-2 mb-sm-2" @change="selectMark">
            <option :value="null">-- Выберите марку автомобиля --</option>
            <option v-for="item in carmark" :value="item.id_car_mark" :key="item.id_car_mark">{{item.name}}</option>
         </b-form-select>
     </b-form-group>
 
-    <b-form-group label="Модель:" v-if="selected.carmark!=null && selected.type_transport==1">
+    <b-form-group label="Модель:" v-if="selected.carmark!=null && selected.type_transport==0">
         <b-form-select v-model="selected.model" class="mb-2 mr-sm-2 mb-sm-2" @change="selectModel">
            <option :value="null">-- Выберите модель --</option>
            <option v-for="item in models" :value="item.id_car_model" :key="item.id_car_model">{{item.name}}</option>
@@ -31,7 +31,7 @@
        <b-form-input placeholder="Введите год" type="number" v-model="release_date" class="mb-2 mr-sm-2 mb-sm-2" style="width:130px" :formatter="SetReleaseDate" required></b-form-input>
    </b-form-group>
 
-    <b-form-group label="Положение руля:" v-if="getComTransport && selected.type_transport!=3">
+    <b-form-group label="Положение руля:" v-if="getComTransport && selected.type_transport!=2">
         <b-form-select v-model="selected.helm_position" class="mb-2 mr-sm-2 mb-sm-2" @change="SetHelmPosition">
            <option :value="null">-- Выберите положение руля --</option>
            <option v-for="(item, index) in helm_position" :value="item.value" :key="index">{{item.text}}</option>
@@ -70,14 +70,14 @@ export default {
         type_transport: 
         [
           { value: null, text: '-- Выберите вид транспорта --' },
-          { value: 1, text: 'Легковой автомобиль' },
-          { value: 2, text: 'Грузовой автомобиль' },
-          { value: 3, text: 'Мототехника' },
-          { value: 4, text: 'Спецтехника' },
-          { value: 5, text: 'Ретро-автомобиль' },
-          { value: 6, text: 'Водный транспорт' },
-          { value: 7, text: 'Велосипед' },
-          { value: 8, text: 'Воздушный транспорт' }
+          { value: 0, text: 'Легковой автомобиль' },
+          { value: 1, text: 'Грузовой автомобиль' },
+          { value: 2, text: 'Мототехника' },
+          { value: 3, text: 'Спецтехника' },
+          { value: 4, text: 'Ретро-автомобиль' },
+          { value: 5, text: 'Водный транспорт' },
+          { value: 6, text: 'Велосипед' },
+          { value: 7, text: 'Воздушный транспорт' }
         ],        
 
         // марки автомобилей
@@ -118,8 +118,6 @@ export default {
 		  }
 	},
 
-  //components: { "com-transport": comtransport },
-
   // компонент создан
   created() {
 
@@ -135,8 +133,8 @@ export default {
   
   computed: {
     getComTransport() {
-      // 1,2,3,5 - категории транспорта
-      return [1,2,3,5].indexOf(this.selected.type_transport) !== -1 && this.selected.type_transport!=null && this.$store.state.show_common_transport;
+      // категории транспорта
+      return [0,1,2,4].indexOf(this.selected.type_transport) != -1 && this.selected.type_transport!=null && this.$store.state.show_common_transport;      
     }
   },
   
@@ -156,33 +154,31 @@ export default {
 
       console.log(transport_id)
       
-      if (transport_id==null) 
-      {
+      if (transport_id==null) {
         this.$store.commit("ShowCommonTransport", false);
         this.$store.commit("ShowFinalFields", false);               
       }      
-      else 
-      {
+      else {
         this.$store.commit("ShowCommonTransport", true);
         this.$store.commit("ShowFinalFields", true);       
       }
 
       this.transport_chars.transport_type = transport_id;
-
+                
       switch(transport_id) {
                 
         // легковой транспорт
-        case 1: {
+        case 0: {
 
-          this.$store.commit("ShowCommonTransport", false);
+          this.$store.commit("ShowCommonTransport", false);          
           this.$store.commit("ShowFinalFields", false);                                        
           this.$store.commit("SetPlaceholderInfoText", "Введите дополнительное описание.");
-
           this.carmark=[];
-          get("/getCarsMarks").then((res) => {            
+                      
+          get("/getCarsMarks").then((res) => {
             
             this.carmark = res.data;                        
-            console.log(this.this.carmark);
+            console.log(this.carmark);
 
           }).catch((err) => {
               console.log(err);
@@ -192,48 +188,47 @@ export default {
        }
 
         // грузовой транспорт
-        case 2: {
+        case 1: {
             this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам Камаз 2009 г. в хорошем состоянии.");
           break;
        }
 
       // мототехника
-       case 3: {
+       case 2: {
             this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам мотоцикл Yamaha 2015 г. в отличном состоянии.");          
           break;
        }
 
       // спецтехника
-       case 4: {
+       case 3: {
             this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам прицеп.");          
           break;
        }
 
        // ретроавто
-       case 5: {            
+       case 4: {            
           break;
        }
       
       // водный транспорт
-       case 6: {            
+       case 5: {            
           this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам моторную лодку в хорошем состоянии.");          
           break;
        }
 
       // велосипеды
-       case 7: {            
+       case 6: {            
           this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам новый велосипед.");          
           break;
        }
 
       // воздушный транспорт
-       case 8: {            
+       case 7: {            
           this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам двухместный самолёт.");          
           break;
        }
-      
+             
       }
-
     },
 
     // ------------------------------------------------
@@ -243,8 +238,7 @@ export default {
       
       this.$store.commit("ShowCommonTransport", false);
       this.$store.commit("ShowFinalFields", false);
-      this.$store.commit("SetRequiredInfo", false);
-      
+      this.$store.commit("SetRequiredInfo", false);      
       this.transport_chars.mark_id = mark_id;
 
       console.log(this.transport_chars.mark_id);
@@ -268,7 +262,7 @@ export default {
       this.$store.commit("ShowFinalFields", true);
     },
 
-    // положение руля
+     // положение руля
      SetHelmPosition(position_id) {
         this.transport_chars.rule_position = position_id;
      },

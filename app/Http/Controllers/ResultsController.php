@@ -28,8 +28,8 @@ class ResultsController extends Controller {
 		//\Debugbar::info($request);
 
     	// получаю имя на русском
-		$category = Categories::select('id', 'name')->where('url',  $request->path() )->first();
-		$items = Adverts::where('category_id',  $category->id )->get();
+		$category = Categories::select("id", "name")->where("url",  $request->path() )->first();
+		$items = Adverts::where("category_id",  $category->id )->get();
 		$results = [];
 		$title = "";
 
@@ -41,26 +41,59 @@ class ResultsController extends Controller {
 			// Вся автотранспорт Казахстана (damelya.kz/transport)
 			case 1: {
 
-				$results = DB::select(
-					"SELECT
-					concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
-					adv.id as advert_id, 
-					adv.price,
-					adv.category_id,
-					mileage,
-					text,
-					(SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
-					FROM `adverts` as adv
-					INNER JOIN (adv_transport, car_mark, car_model) ON (
-						adv_transport.mark=car_mark.id_car_mark AND 
-						adv.adv_category_id=adv_transport.id AND 
-						adv_transport.model = car_model.id_car_model
-					) ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit
-				);
+				$transport = DB::table("adv_transport")->where("id", $items[0]->adv_category_id)->get()->first();                
+                
+                switch($transport->type) {
 
-				$title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
+					// выборка всех легковых авто
+					case 0: {
+						$results = DB::select(
+							"SELECT
+							concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
+							adv.id as advert_id, 
+							adv.price,
+							adv.category_id,
+							mileage,
+							text,
+							(SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
+							FROM `adverts` as adv
+							INNER JOIN (adv_transport, car_mark, car_model) ON (
+								adv_transport.mark=car_mark.id_car_mark AND 
+								adv.adv_category_id=adv_transport.id AND 
+								adv_transport.model = car_model.id_car_model
+							) ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit
+						);
+		
+						$title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
+		
+						break;
+					}
 
-				break;
+					// выборка всех грузовых авто
+					case 1: {
+						$results = DB::select(
+							"SELECT
+							concat(adv.mileage, ' ', year, ' г.') AS title,
+							adv.id as advert_id, 
+							adv.price,
+							adv.category_id,
+							mileage,
+							text,
+							(SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
+							FROM `adverts` as adv
+							INNER JOIN (adv_transport, car_mark, car_model) ON (
+								adv_transport.mark=car_mark.id_car_mark AND 
+								adv.adv_category_id=adv_transport.id AND 
+								adv_transport.model = car_model.id_car_model
+							) ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit
+						);
+		
+						$title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
+		
+						break;
+					}
+				}
+				
 			}
 			
 			// Вся недвижимость Казахстана (damelya.kz/nedvizhimost)
