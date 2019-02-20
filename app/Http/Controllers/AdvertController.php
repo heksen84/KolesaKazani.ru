@@ -355,7 +355,9 @@ class AdvertController extends Controller {
     Получить полную информацию об объявлении
     по url
     -------------------------------------------*/
-    public function getFullInfoByUrl($url) {    
+    public function getFullInfoByUrl($url) {
+
+        // влепить сюда обрезанный индекс с url
         $urls = Urls::select("advert_id")->where("url",  $url )->first();
         return $this->getFullInfo($urls->advert_id);
     }
