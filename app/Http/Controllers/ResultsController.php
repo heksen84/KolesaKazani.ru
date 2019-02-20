@@ -43,7 +43,6 @@ class ResultsController extends Controller {
 
 				$results = DB::select(
 					"SELECT
-					adv_transport.type,
 					(SELECT CASE adv_transport.type 
 						WHEN 0 THEN concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.')						
 						ELSE adv.text
@@ -66,7 +65,7 @@ class ResultsController extends Controller {
 				\Debugbar::info($results);
 
 				$title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
-				break;				
+				break;				                          				
 			}
 			
 			// Вся недвижимость Казахстана (damelya.kz/nedvizhimost)
@@ -80,7 +79,7 @@ class ResultsController extends Controller {
                         adv.category_id,
                         text,                        
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
-                        	adv_realestate.id
+                        adv_realestate.id
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
 						ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit
