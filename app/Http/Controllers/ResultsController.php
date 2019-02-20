@@ -65,7 +65,9 @@ class ResultsController extends Controller {
 
 				\Debugbar::info($results);
 
-				$title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
+				//$title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
+				$title = "Объявления о покупке, продаже, обмене или сдаче транспорта в аренду в Казахстане";
+
 				break;				                          				
 			}
 			
@@ -89,7 +91,9 @@ class ResultsController extends Controller {
 
                     \Debugbar::info($results);
 
-                    $title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
+					//$title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
+					//$title = "Объявления о покупке, продаже, обмене или сдаче транспорта в аренду в Казахстане";
+					$title = "Объявления о покупке, продаже, обмене или сдаче недвижимости в аренду в Казахстане";
 			}
 			
 			// Всё остальное
