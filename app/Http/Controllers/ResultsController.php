@@ -19,6 +19,7 @@ class ResultsController extends Controller {
 	
 	private $start_record  = 0;
 	private $records_limit = 1000; // максимальное число записей при выборке
+	private $order_fileds  = [];   // поля сортировки
 
 	// ---------------------------------------------------
     // результаты по всей стране
@@ -91,23 +92,29 @@ class ResultsController extends Controller {
 
                     \Debugbar::info($results);
 
-					//$title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
-					//$title = "Объявления о покупке, продаже, обмене или сдаче транспорта в аренду в Казахстане";
 					$title = "Объявления о покупке, продаже, обмене или сдаче недвижимости в аренду в Казахстане";
 			}
 			
 			// Всё остальное
-			default: {				
+			default: {
+				// электроника
+				if ($category->id==3) $title = "Объявления о покупке, продаже, обмене или сдаче электроники В Казахстане"
+				// работа и бизнес
+				if ($category->id==4) $title = "Обяъвления о работе и бизнесе в Казахстане"
+				// для дома и дачи
+				if ($category->id==5) $title = "Объявления категории для дома и дачи в Казахстанe"
+				// личные вещи
+				if ($category->id==6) $title = "Объявления о покупке, продаже, обмене или сдаче"
+				// животные
+				if ($category->id==7) $title = "Объявления о покупке, продаже, обмене или сдаче"
+				// хобби и отдых
+				if ($category->id==8) $title = "Объявления категории хобби и отдых в Казахстанe"
+				// услуги
+				if ($category->id==9) $title = "Объявления категории услуги в Казахстанe"
+				// другое
+				if ($category->id==10) $title = "Различные предложения в Казахстане"
 
-				if ($category->id==3) $title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
-				if ($category->id==4) $title = "Предложения о ".mb_strtolower($category->name);
-				if ($category->id==5) $title = "Всё ".mb_strtolower($category->name);
-				if ($category->id==6) $title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
-				if ($category->id==7) $title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
-				if ($category->id==8) $title = "Всё для ".mb_strtolower($category->name);
-				if ($category->id==9) $title = "Услуги ".mb_strtolower($category->name);
-				if ($category->id==10) $title = "Различные предложения ".mb_strtolower($category->name);
-
+				// общий select
 				$results = DB::select(
 					"SELECT 
 					id as advert_id, 
