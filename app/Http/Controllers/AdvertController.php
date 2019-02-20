@@ -359,6 +359,8 @@ class AdvertController extends Controller {
 
         //\Debugbar::info(substr($url,0,10));
         // влепить сюда обрезанный индекс с url
+
+        //$results = DB::select("SELECT advert_id FROM urls WHERE 
         $urls = Urls::select("advert_id")->where("url", $url )->first();
         return $this->getFullInfo($urls->advert_id);
     }
