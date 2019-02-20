@@ -73,18 +73,18 @@ class ResultsController extends Controller {
 			case 2: {
 
 				$results = DB::select(				
-						"SELECT
-						concat(adv_realestate.rooms, ' комнатная квартира, ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаж, ', adv_realestate.area, ' кв. м.' ) AS title,
-                        adv.id as advert_id, 
-                        adv.price,
-                        adv.category_id,
-                        text,                        
-                        (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
-                        adv_realestate.id
-                        FROM `adverts` as adv
-                        INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
+					"SELECT
+					concat(adv_realestate.rooms, ' комнатная квартира, ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаж, ', adv_realestate.area, ' кв. м.' ) AS title,
+                    adv.id as advert_id, 
+                    adv.price,
+                    adv.category_id,
+                    text,                        
+                    (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
+                    	adv_realestate.id
+                    FROM `adverts` as adv
+                    INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
 						WHERE adv.category_id=2 
-						ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit
+					ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit
                     );
 
                     \Debugbar::info($results);
@@ -93,7 +93,7 @@ class ResultsController extends Controller {
 			}
 			
 			// Всё остальное
-			default: {
+			default: {				
 
 				if ($category->id==3) $title = "Объявления о покупке, продаже, обмене или сдаче ".mb_strtolower($category->name);
 				if ($category->id==4) $title = "Предложения о ".mb_strtolower($category->name);
