@@ -355,14 +355,13 @@ class AdvertController extends Controller {
     Получить полную информацию об объявлении
     по url
     -------------------------------------------*/
-    public function getFullInfoByUrl($url) {
+    public function getFullInfoByUrl($url) {    
+        
+        //$urls = Urls::select("advert_id")->where("url",  $url )->first();
+        //return $this->getFullInfo($urls->advert_id);
 
-        //\Debugbar::info(substr($url,0,10));
-        // влепить сюда обрезанный индекс с url
-
-        //$results = DB::select("SELECT advert_id FROM urls WHERE 
-        $urls = Urls::select("advert_id")->where("url", $url )->first();
-        return $this->getFullInfo($urls->advert_id);
+        $results = DB::select("SELECT advert_id FROM urls WHERE MATCH(url) AGAINST('".$url."')"); // fulltext search
+        return $this->getFullInfo($results[0]->advert_id);
     }
 
     /*
