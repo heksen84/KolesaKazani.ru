@@ -61,7 +61,7 @@ class ResultsController extends Controller {
 					adv.adv_category_id = adv_transport.id AND 
 					adv_transport.mark = car_mark.id_car_mark AND 						
 					adv_transport.model = car_model.id_car_model
-					) WHERE adv.category_id=1 
+					) WHERE adv.category_id=1 AND adv.adv_category_id=1
 					ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit
 				);
 
@@ -87,7 +87,7 @@ class ResultsController extends Controller {
                     adv_realestate.id
                     FROM `adverts` as adv
                     INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-					WHERE adv.category_id=2 
+					WHERE adv.category_id=2 AND adv.adv_category_id=2
 					ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit
                 );
 
@@ -132,7 +132,8 @@ class ResultsController extends Controller {
 					price, 
 					category_id,					
 					(SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image
-					FROM `adverts` AS adv WHERE category_id=".$category->id." ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit
+					FROM `adverts` AS adv WHERE category_id=".$category->id." 
+					ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit
 				);
 
 				\Debugbar::info($results);

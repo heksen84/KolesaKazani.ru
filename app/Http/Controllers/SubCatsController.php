@@ -47,10 +47,12 @@ class SubCatsController extends Controller
                             adv_transport.mark=car_mark.id_car_mark AND 
                             adv.adv_category_id=adv_transport.id AND 
                             adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_transport.type=0 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ) WHERE 
+                        adv_transport.type=0 AND adv.adv_category_id=1 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     $title="Легковой автомобиль";
+                    \Debugbar::info($results);
 
                     break;
                 }
@@ -74,7 +76,7 @@ class SubCatsController extends Controller
                         INNER JOIN (adv_transport) ON 
                         (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=1 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ) WHERE adv_transport.type=1 AND adv.adv_category_id=1 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     $title="Грузовой транспорт";
@@ -101,7 +103,7 @@ class SubCatsController extends Controller
                         INNER JOIN (adv_transport) ON 
                         (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=2 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ) WHERE adv_transport.type=2 AND adv.adv_category_id=1 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     $title="Мототехника";
@@ -126,7 +128,7 @@ class SubCatsController extends Controller
                         INNER JOIN (adv_transport) ON 
                         (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=3 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ) WHERE adv_transport.type=3 AND adv.adv_category_id=1 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     $title="Спецтехника";
@@ -151,7 +153,7 @@ class SubCatsController extends Controller
                         INNER JOIN (adv_transport) ON 
                         (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=4 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ) WHERE adv_transport.type=4 AND adv.adv_category_id=1 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     $title="Спецтехника";
@@ -176,7 +178,7 @@ class SubCatsController extends Controller
                         INNER JOIN (adv_transport) ON 
                         (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=5 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ) WHERE adv_transport.type=5 AND adv.adv_category_id=1 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     $title="Водный транспорт";
@@ -201,7 +203,7 @@ class SubCatsController extends Controller
                         INNER JOIN (adv_transport) ON 
                         (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=6 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ) WHERE adv_transport.type=6 AND adv.adv_category_id=1 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     $title="Велосипед";
@@ -226,7 +228,7 @@ class SubCatsController extends Controller
                         INNER JOIN (adv_transport) ON 
                         (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=7 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ) WHERE adv_transport.type=7 AND adv.adv_category_id=1 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     $title="Воздушный транспорт";
@@ -264,7 +266,7 @@ class SubCatsController extends Controller
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=0
+                        WHERE adv_realestate.property_type=0 AND adv.adv_category_id=2
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -292,7 +294,7 @@ class SubCatsController extends Controller
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=1
+                        WHERE adv_realestate.property_type=1 AND adv.adv_category_id=2
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -320,7 +322,7 @@ class SubCatsController extends Controller
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=2
+                        WHERE adv_realestate.property_type=2 AND adv.adv_category_id=2
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -349,7 +351,7 @@ class SubCatsController extends Controller
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=3
+                        WHERE adv_realestate.property_type=3 AND adv.adv_category_id=2
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -375,7 +377,7 @@ class SubCatsController extends Controller
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=4
+                        WHERE adv_realestate.property_type=4 AND adv.adv_category_id=2
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -401,7 +403,7 @@ class SubCatsController extends Controller
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=5
+                        WHERE adv_realestate.property_type=5 AND adv.adv_category_id=2
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -427,7 +429,7 @@ class SubCatsController extends Controller
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=6
+                        WHERE adv_realestate.property_type=6 AND adv.adv_category_id=2
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
