@@ -37146,14 +37146,10 @@ var render = function() {
                 "div",
                 {
                   staticClass: "close_button shadow_text",
-                  staticStyle: {
-                    color: "white",
-                    border: "1px solid white",
-                    "border-radius": "5px",
-                    padding: "7px",
-                    background: "rgb(100,100,200)"
+                  attrs: {
+                    id: "results_close_button",
+                    title: "Закрыть страницу"
                   },
-                  attrs: { title: "Закрыть страницу" },
                   on: { click: _vm.closeAndReturn }
                 },
                 [_vm._v("X")]

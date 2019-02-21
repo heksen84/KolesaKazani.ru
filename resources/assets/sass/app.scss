@@ -82,6 +82,18 @@ body {
   text-align:right;
 }
 
+#results_close_button {
+  color:white;
+  border:1px solid white;
+  border-radius:5px;
+  padding:7px;
+  background:rgb(100,100,200);
+}
+
+#results_close_button:hover {
+  background:rgb(120,120,220);
+}
+
 .alert {
   margin: 5px auto;
   width:430px;
@@ -225,7 +237,7 @@ body {
   //background-image: linear-gradient(to right, rgb(116, 115, 122), rgb(116, 116, 128)); 
 }
 .category_item:hover {
-// background: rgb(130,130,130);
+ background: rgb(130,130,130);
  font-weight:bold;
 }
 

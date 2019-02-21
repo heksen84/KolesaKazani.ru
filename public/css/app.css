@@ -79,6 +79,18 @@ body {
   text-align: right;
 }
 
+#results_close_button {
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 7px;
+  background: #6464c8;
+}
+
+#results_close_button:hover {
+  background: #7878dc;
+}
+
 .alert {
   margin: 5px auto;
   width: 430px;
@@ -221,6 +233,7 @@ body {
 }
 
 .category_item:hover {
+  background: #828282;
   font-weight: bold;
 }
 
