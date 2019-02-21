@@ -246,7 +246,7 @@ class SubCatsController extends Controller
                     (
                         "SELECT
                         adv.deal,
-                        concat(adv_realestate.rooms, ' комнатная квартира, ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаж, ', adv_realestate.area, ' кв. м.' ) AS title,
+                        concat(adv_realestate.rooms, ' комнатную квартиру, ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаж, ', adv_realestate.area, ' кв. м.' ) AS title,
                         adv.id as advert_id, 
                         adv.price,
                         adv.category_id,
