@@ -2121,7 +2121,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ["id", "image", "title", "price", "category_id", "deal"],
+    props: ["id", "image", "title", "price", "category_id", "deal", "full"],
     methods: {
         details: function details(event) {
             window.location = '/details/' + this.id;
@@ -3821,6 +3821,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_item__ = __webpack_require__("./resources/assets/js/components/item.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_item___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_item__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+//
 //
 //
 //
@@ -13067,7 +13068,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -36270,15 +36271,19 @@ var render = function() {
         "div",
         { staticClass: "item-content" },
         [
-          _vm.deal == 0 ? _c("b", [_vm._v("Куплю")]) : _vm._e(),
+          _vm.deal == 0 && _vm.full ? _c("b", [_vm._v("Куплю")]) : _vm._e(),
           _vm._v(" "),
-          _vm.deal == 1 ? _c("b", [_vm._v("Продам")]) : _vm._e(),
+          _vm.deal == 1 && _vm.full ? _c("b", [_vm._v("Продам")]) : _vm._e(),
           _vm._v(" "),
-          _vm.deal == 2 ? _c("b", [_vm._v("Обменяю")]) : _vm._e(),
+          _vm.deal == 2 && _vm.full ? _c("b", [_vm._v("Обменяю")]) : _vm._e(),
           _vm._v(" "),
-          _vm.deal == 3 ? _c("b", [_vm._v("Отдам даром")]) : _vm._e(),
+          _vm.deal == 3 && _vm.full
+            ? _c("b", [_vm._v("Отдам даром")])
+            : _vm._e(),
           _vm._v(" "),
-          _vm.deal == 4 ? _c("b", [_vm._v("Сдам в аренду")]) : _vm._e(),
+          _vm.deal == 4 && _vm.full
+            ? _c("b", [_vm._v("Сдам в аренду")])
+            : _vm._e(),
           _vm._v(" "),
           _c("b", [_vm._v(_vm._s(_vm.title))]),
           _vm._v(" "),
@@ -37423,7 +37428,8 @@ var render = function() {
                       title: item.title,
                       price: item.price,
                       category_id: item.category_id,
-                      deal: item.deal
+                      deal: item.deal,
+                      full: item.full
                     }
                   })
                 })

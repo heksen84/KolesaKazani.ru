@@ -161,6 +161,7 @@ class AdvertController extends Controller {
             $advert->city_id         = $city_id;
             $advert->lang            = "ru";
             $advert->vip             = false;
+            $advert->full            = false;
 
             switch($category) {
 
@@ -191,6 +192,8 @@ class AdvertController extends Controller {
                         $transport->mileage             = $data["mileage"];            // пробег
                         $transport->engine_type         = $data["fuel_type"];          // тип движка
                         $transport->customs             = $data["customs"];            // растаможка
+                        
+                        $advert->full = true; // полное объявление с моделями (в item будет указан вид сделки)
                     }
 
                     // грузовой
