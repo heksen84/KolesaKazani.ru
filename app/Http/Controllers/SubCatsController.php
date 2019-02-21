@@ -39,7 +39,6 @@ class SubCatsController extends Controller
                         adv.price,
                         adv.category_id,
                         mileage,
-                        text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport, car_mark, car_model) ON 
@@ -47,8 +46,8 @@ class SubCatsController extends Controller
                             adv_transport.mark=car_mark.id_car_mark AND 
                             adv.adv_category_id=adv_transport.id AND 
                             adv_transport.model = car_model.id_car_model
-                        ) WHERE 
-                        adv_transport.type=0 AND adv.adv_category_id=1 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ) WHERE adv_transport.type=0 AND adv.category_id=1
+                        ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     $title="Легковой автомобиль";
@@ -70,13 +69,13 @@ class SubCatsController extends Controller
                         adv.price,
                         adv.category_id,
                         mileage,
-                        text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON 
                         (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=1 AND adv.adv_category_id=1 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ) WHERE adv_transport.type=1 AND adv.category_id=1 
+                        ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     $title="Грузовой транспорт";
@@ -97,15 +96,19 @@ class SubCatsController extends Controller
                         adv.price,
                         adv.category_id,
                         mileage,
-                        text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON 
                         (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=2 AND adv.adv_category_id=1 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ) WHERE adv_transport.type=2 AND adv.category_id=1
+                        ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
+                    \Debugbar::info("moto");
+                    
+                    \Debugbar::info($results);
+                    
                     $title="Мототехника";
 
                     break;
@@ -122,13 +125,13 @@ class SubCatsController extends Controller
                         adv.price,
                         adv.category_id,
                         mileage,
-                        text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON 
                         (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=3 AND adv.adv_category_id=1 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ) WHERE adv_transport.type=3 AND adv.category_id=1 
+                        ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     $title="Спецтехника";
@@ -147,13 +150,13 @@ class SubCatsController extends Controller
                         adv.price,
                         adv.category_id,
                         mileage,
-                        text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON 
                         (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=4 AND adv.adv_category_id=1 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ) WHERE adv_transport.type=4 AND adv.category_id=1 
+                        ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     $title="Спецтехника";
@@ -172,13 +175,13 @@ class SubCatsController extends Controller
                         adv.price,
                         adv.category_id,
                         mileage,
-                        text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON 
                         (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=5 AND adv.adv_category_id=1 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ) WHERE adv_transport.type=5  AND adv.category_id=1 
+                        ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     $title="Водный транспорт";
@@ -197,13 +200,13 @@ class SubCatsController extends Controller
                         adv.price,
                         adv.category_id,
                         mileage,
-                        text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON 
                         (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=6 AND adv.adv_category_id=1 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ) WHERE adv_transport.type=6  AND adv.category_id=1 
+                        ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     $title="Велосипед";
@@ -222,13 +225,13 @@ class SubCatsController extends Controller
                         adv.price,
                         adv.category_id,
                         mileage,
-                        text,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON 
                         (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=7 AND adv.adv_category_id=1 ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ) WHERE adv_transport.type=7 AND adv.category_id=1
+                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     $title="Воздушный транспорт";
@@ -252,21 +255,19 @@ class SubCatsController extends Controller
                 // квартира
                 if ($subcat=="kvartira") {
 
-                    $results = DB::select
-                    (
+                    $results = DB::select(
                         "SELECT
                         adv.deal,
                         adv.full,
                         concat(adv_realestate.rooms, ' комнатную квартиру, ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаж, ', adv_realestate.area, ' кв. м.' ) AS title,
                         adv.id as advert_id, 
                         adv.price,
-                        adv.category_id,
-                        text,                        
+                        adv.category_id,              
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=0 AND adv.adv_category_id=2
+                        WHERE adv_realestate.property_type=0 AND adv.category_id=2
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -280,21 +281,19 @@ class SubCatsController extends Controller
                 // комната
                 if ($subcat=="komnata") {
 
-                    $results = DB::select
-                    (
+                    $results = DB::select(
                         "SELECT
                         adv.deal,
                         adv.full,
                         concat('Комната ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаж, ', adv_realestate.area, ' кв. м.' ) AS title,
                         adv.id as advert_id, 
                         adv.price,
-                        adv.category_id,
-                        text,                        
+                        adv.category_id,                 
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=1 AND adv.adv_category_id=2
+                        WHERE adv_realestate.property_type=1 AND adv.category_id=2
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -308,21 +307,19 @@ class SubCatsController extends Controller
                 // дом, дача, коттедж
                 if ($subcat=="dom-dacha-kottedzh") {
 
-                    $results = DB::select
-                    (
+                    $results = DB::select(
                         "SELECT
                         adv.deal,
                         adv.full,
                         concat(adv_realestate.rooms, ' комнат, ', adv_realestate.floors_house, ' этажей, ', adv_realestate.area, ' кв. м.' ) AS title,
                         adv.id as advert_id, 
                         adv.price,
-                        adv.category_id,
-                        text,                        
+                        adv.category_id,                 
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=2 AND adv.adv_category_id=2
+                        WHERE adv_realestate.property_type=2 AND adv.category_id=2
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -337,8 +334,7 @@ class SubCatsController extends Controller
                 // земельный участок
                 if ($subcat=="zemel-nyy-uchastok") {
 
-                    $results = DB::select
-                    (
+                    $results = DB::select(
                         "SELECT
                         adv.deal,
                         adv.full,
@@ -346,12 +342,11 @@ class SubCatsController extends Controller
                         adv.id as advert_id, 
                         adv.price,
                         adv.category_id,
-                        text,                        
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=3 AND adv.adv_category_id=2
+                        WHERE adv_realestate.property_type=3 AND adv.category_id=2
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -363,21 +358,19 @@ class SubCatsController extends Controller
                 // гараж или машиноместо
                 if ($subcat=="garazh-ili-mashinomesto") {
 
-                    $results = DB::select
-                    (
+                    $results = DB::select(
                         "SELECT
                         adv.deal,
                         adv.full,
                         concat('Гараж или машиноместо' ) AS title,
                         adv.id as advert_id, 
                         adv.price,
-                        adv.category_id,
-                        text,                        
+                        adv.category_id,             
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=4 AND adv.adv_category_id=2
+                        WHERE adv_realestate.property_type=4 AND adv.category_id=2
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -389,21 +382,19 @@ class SubCatsController extends Controller
                 // коммерческая недвижимость
                 if ($subcat=="kommercheskaya-nedvizhimost") {
 
-                    $results = DB::select
-                    (
+                    $results = DB::select(
                         "SELECT
                         adv.deal,
                         adv.full,
                         concat('Недвижимость ', adv_realestate.area, ' кв. м.' ) AS title,
                         adv.id as advert_id, 
                         adv.price,
-                        adv.category_id,
-                        text,                        
+                        adv.category_id,                     
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=5 AND adv.adv_category_id=2
+                        WHERE adv_realestate.property_type=5 AND adv.category_id=2
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -415,21 +406,19 @@ class SubCatsController extends Controller
                 // недвижимость за рубежом
                 if ($subcat=="nedvizhimost-za-rubezhom") {
 
-                    $results = DB::select
-                    (
+                    $results = DB::select(
                         "SELECT
                         adv.deal,
                         adv.full,
                         concat('Недвижимость ', adv_realestate.area, ' кв. м.' ) AS title,
                         adv.id as advert_id, 
                         adv.price,
-                        adv.category_id,
-                        text,                        
+                        adv.category_id,                   
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=6 AND adv.adv_category_id=2
+                        WHERE adv_realestate.property_type=6 AND adv.category_id=2
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
