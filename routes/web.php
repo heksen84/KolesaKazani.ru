@@ -82,7 +82,7 @@ Route::get('nedvizhimost-za-rubezhom', 		'ResultsController@getResultsByCategory
 // ------------------------------------
 // детали объявления
 // ------------------------------------
-Route::get('objavlenie/{url}', 'AdvertController@getFullInfoByUrl'); // для СЕО
+Route::get('obyavlenie/{url}', 'AdvertController@getFullInfoByUrl'); // для СЕО
 Route::get('details/{id}', 'AdvertController@getFullInfo');
 
 // подкатегории
