@@ -2119,14 +2119,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ["id", "image", "title", "price", "category_id", "deal", "full"],
-    methods: {
-        details: function details(event) {
-            window.location = '/details/' + this.id;
-        }
+  props: ["id", "image", "title", "price", "category_id", "deal", "full"],
+  created: function created() {
+    console.log("---:" + this.full);
+  },
+
+  methods: {
+    details: function details(event) {
+      window.location = '/details/' + this.id;
     }
+  }
 });
 
 /***/ }),

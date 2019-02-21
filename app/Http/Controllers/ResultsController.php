@@ -43,7 +43,8 @@ class ResultsController extends Controller {
 
 				$results = DB::select(
 					"SELECT
-					adv.deal,					
+					adv.deal,
+					adv.full,
 					(SELECT CASE adv_transport.type 
 					WHEN 0 THEN concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.')						
 					ELSE adv.text
@@ -76,6 +77,7 @@ class ResultsController extends Controller {
 				$results = DB::select(					
 					"SELECT
 					adv.deal,
+					adv.full,
 					concat(adv_realestate.rooms, ' комнатную квартиру, ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаже, ', adv_realestate.area, ' кв. м.' ) AS title,
                     adv.id as advert_id, 
                     adv.price,
@@ -123,7 +125,8 @@ class ResultsController extends Controller {
 				// общий select
 				$results = DB::select(					
 					"SELECT
-					adv.deal, 
+					adv.deal,
+					adv.full, 
 					id as advert_id, 
 					text as title, 
 					price, 
