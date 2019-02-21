@@ -36804,6 +36804,7 @@ var render = function() {
                 "div",
                 {
                   staticClass: "close_button",
+                  staticStyle: { "font-size": "20px" },
                   attrs: { title: "Закрыть страницу" },
                   on: { click: _vm.closeAndReturn }
                 },
