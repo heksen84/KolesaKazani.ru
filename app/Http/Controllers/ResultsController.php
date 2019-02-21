@@ -43,22 +43,23 @@ class ResultsController extends Controller {
 
 				$results = DB::select(
 					"SELECT
+					adv.deal,					
 					(SELECT CASE adv_transport.type 
-						WHEN 0 THEN concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.')						
-						ELSE adv.text
-						END FROM adv_transport 
+					WHEN 0 THEN concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.')						
+					ELSE adv.text
+					END FROM adv_transport 
 					WHERE adv_transport.id IN (SELECT adv.adv_category_id FROM adverts)) AS title, 
-						adv.id as advert_id, 
-						adv.price,
-						adv.category_id,
-						mileage,
-						text,
+					adv.id as advert_id, 
+					adv.price,
+					adv.category_id,
+					mileage,
+					text,
 					(SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
-						FROM `adverts` as adv
+					FROM `adverts` as adv
 					LEFT OUTER JOIN (adv_transport, car_mark, car_model) ON (
-						adv.adv_category_id = adv_transport.id AND 
-						adv_transport.mark = car_mark.id_car_mark AND 						
-						adv_transport.model = car_model.id_car_model
+					adv.adv_category_id = adv_transport.id AND 
+					adv_transport.mark = car_mark.id_car_mark AND 						
+					adv_transport.model = car_model.id_car_model
 					) WHERE adv.category_id=1 
 					ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit
 				);
@@ -72,20 +73,21 @@ class ResultsController extends Controller {
 			// Вся недвижимость Казахстана (damelya.kz/nedvizhimost)
 			case 2: {
 
-				$results = DB::select(				
+				$results = DB::select(					
 					"SELECT
-					concat(adv_realestate.rooms, ' комнатная квартира, ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаж, ', adv_realestate.area, ' кв. м.' ) AS title,
+					adv.deal,
+					concat(adv_realestate.rooms, ' комнатную квартиру, ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаже, ', adv_realestate.area, ' кв. м.' ) AS title,
                     adv.id as advert_id, 
                     adv.price,
                     adv.category_id,
                     text,                        
                     (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
-                    	adv_realestate.id
+                    adv_realestate.id
                     FROM `adverts` as adv
                     INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-						WHERE adv.category_id=2 
+					WHERE adv.category_id=2 
 					ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit
-                    );
+                );
 
                     \Debugbar::info($results);
 
@@ -97,9 +99,10 @@ class ResultsController extends Controller {
 			// Всё остальное
 			default: {
 
-				// --------------------------------
-				// Заголовки title для SEO
-				// --------------------------------				
+				/* --------------------------------
+				    Заголовки title для SEO
+				   --------------------------------*/
+
 				// электроника
 				if ($category->id==3) $title = "Объявления о покупке, продаже, обмене или сдаче электроники В Казахстане";
 				// работа и бизнес
@@ -118,8 +121,9 @@ class ResultsController extends Controller {
 				if ($category->id==10) $title = "Различные предложения в Казахстане";
 
 				// общий select
-				$results = DB::select(
-					"SELECT 
+				$results = DB::select(					
+					"SELECT
+					adv.deal, 
 					id as advert_id, 
 					text as title, 
 					price, 

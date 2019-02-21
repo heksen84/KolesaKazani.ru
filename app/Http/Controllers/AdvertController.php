@@ -131,6 +131,7 @@ class AdvertController extends Controller {
             return response()->json( ["result"=>"usr.error", "msg" => $validator->errors()->first()] );                    
 
         $category   = $data["adv_category"];
+        $deal       = $data["adv_deal"]; // Вид сделки
         $text       = $data["adv_info"];
         $price      = $data["adv_price"];
         $phone1     = $data["adv_phone1"];
@@ -153,7 +154,8 @@ class AdvertController extends Controller {
             if (isset($data["adv_phone3"])) $advert->phone3 = $phone3; 
 
         	$advert->price  		 = $price;
-        	$advert->category_id  	 = $category;
+            $advert->category_id  	 = $category;
+            $advert->deal  	         = $deal;
             $advert->adv_category_id = 0;
             $advert->region_id       = $region_id;
             $advert->city_id         = $city_id;

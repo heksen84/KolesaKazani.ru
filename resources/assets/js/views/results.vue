@@ -73,6 +73,7 @@
 					:title="item.title" 				
 					:price="item.price"
 					:category_id="item.category_id"
+					:deal="item.deal"
 					:key="index">
 				</item>
 				
