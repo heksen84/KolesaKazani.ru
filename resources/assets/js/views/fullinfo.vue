@@ -3,7 +3,7 @@
 	<b-container fluid class="mycontainer">
 	<b-row>
 	  <b-col cols="12" sm="12" md="12" lg="10" xl="10" class="create_advert_col">
-		  <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>     
+		  <div class="close_button" title="Закрыть страницу"  @click="closeAndReturn">X</div>     
 			<br>
 
 			<b>{{ item[0].region_name }}, {{ item[0].city_name }}</b>			

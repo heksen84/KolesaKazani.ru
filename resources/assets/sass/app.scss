@@ -86,8 +86,9 @@ body {
   color:white;
   border:1px solid white;
   border-radius:5px;
-  padding:7px;
+  padding:6px;
   background:rgb(100,100,200);
+  font-size:17px;
 }
 
 #results_close_button:hover {
@@ -306,12 +307,11 @@ body {
 }
 
 .close_button {
-  font-size: 110%;
   position: absolute;
   top:16px;
   left:94%;
   cursor:pointer;
-  font-weight: 700;
+  font-weight: 500;
   color:rgb(30,30,30);
 }
 
