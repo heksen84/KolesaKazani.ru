@@ -33,13 +33,17 @@ class IndexController extends Controller {
 			$redis = Redis::connection();
 
 			try {								
-					$redis->ping();
+					
+				$redis->ping();
+				$regions = $redis->get("regions");
+					
+				if (!$regions) {
+					$redis->set("regions", Regions::orderBy('name', 'asc')->get());
 					$regions = $redis->get("regions");
-					if (!$regions) {
-						$redis->set("regions", Regions::orderBy('name', 'asc')->get());
-						$regions = $redis->get("regions");
-					}
+				}
+
 			}
+			
 			catch(\Exception $e) {
 					\Debugbar::warning($e->getMessage());
 					$regions = Regions::orderBy('name', 'asc')->get()->toJson();
@@ -60,20 +64,21 @@ class IndexController extends Controller {
 		-------------------------------------
 		 Получить категории
 		-------------------------------------*/
-        public function getCategories(Request $request) {
+        public function getCategories(Request $request) {			
 						
 			$redis = Redis::connection();
 
-			try 
-			{								
+			try {
+
 				$redis->ping();	// проверяю включен-ли redis
 				$categories = $redis->get("categories"); // получаю массив категорий
-				if (!$categories) // если массив пуст
-				{ 
+				
+				if (!$categories) { 
 					$redis->set("categories", Categories::all()); // .. делаю выборку в новую переменную
 					$categories = $redis->get("categories"); // получаю данные из редиса
 				}
 			}
+			
 			catch(\Exception $e) {
 				\Debugbar::warning($e->getMessage());
 				$categories = Categories::all();
@@ -85,8 +90,13 @@ class IndexController extends Controller {
             ->select(DB::raw("subcats.id, subcats.name, subcats.category_id, concat(categories.url,'/',subcats.url) as url"))
 			->get();
 			
-			$jsOutput="";
+			$jsOutput = "";
 
-        	return view('index')->with("ssr", $jsOutput)->with("items", $categories)->with("subcats", $subcats )->with("count", Categories::count())->with("auth", Auth::user()?1:0);
+			return view("index")
+			->with("ssr", $jsOutput)
+			->with("items", $categories)
+			->with("subcats", $subcats )
+			->with("count", Categories::count())
+			->with("auth", Auth::user()?1:0);
     	}
 }
