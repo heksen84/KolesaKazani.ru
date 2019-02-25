@@ -3453,6 +3453,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 var mapCoords = [];
@@ -36895,6 +36902,8 @@ var render = function() {
               _vm._v(" "),
               _vm.full
                 ? _c("div", [
+                    _vm._v("\n\n\t\t\tfull\n\t\t\t\n\t\t\t"),
+                    _vm._v(" "),
                     _vm.item[0].category_id == 1
                       ? _c("div", [
                           _c("h1", { staticStyle: { "font-size": "190%" } }, [
@@ -36951,12 +36960,14 @@ var render = function() {
                             _vm._v(" км.")
                           ]),
                           _vm._v(" "),
-                          _c("h5", [
-                            _vm._v("Положение руля: \n\t\t\t\t\t"),
-                            _vm.item[0].steering_position == 0
-                              ? _c("b", [_vm._v("слева")])
-                              : _c("b", [_vm._v("справа")])
-                          ]),
+                          _vm.item[0].steering_position != null
+                            ? _c("h5", [
+                                _vm._v("Положение руля: \n\t\t\t\t\t"),
+                                _vm.item[0].steering_position == 0 && null
+                                  ? _c("b", [_vm._v("слева")])
+                                  : _c("b", [_vm._v("справа")])
+                              ])
+                            : _vm._e(),
                           _vm._v(" "),
                           _c("h5", [
                             _vm._v("Растоможен: \n\t\t\t\t\t"),
@@ -36984,6 +36995,7 @@ var render = function() {
               _vm._v(" "),
               !_vm.full
                 ? _c("div", [
+                    _vm._v("\t\t\t\t\t\t\n\n\t\t\tshort\n\n\t\t\t"),
                     _c("hr"),
                     _vm._v(" "),
                     _c("h5", [_c("b", [_vm._v(_vm._s(_vm.item[0].text))])]),
@@ -37029,12 +37041,14 @@ var render = function() {
                             _vm._v(" км.")
                           ]),
                           _vm._v(" "),
-                          _c("h5", [
-                            _vm._v("Положение руля: \n\t\t\t\t\t"),
-                            _vm.item[0].steering_position == 0
-                              ? _c("b", [_vm._v("слева")])
-                              : _c("b", [_vm._v("справа")])
-                          ]),
+                          _vm.item[0].steering_position != null
+                            ? _c("h5", [
+                                _vm._v("Положение руля: \n\t\t\t\t\t"),
+                                _vm.item[0].steering_position == 0
+                                  ? _c("b", [_vm._v("слева")])
+                                  : _c("b", [_vm._v("справа")])
+                              ])
+                            : _vm._e(),
                           _vm._v(" "),
                           _c("h5", [
                             _vm._v("Растоможен: \n\t\t\t\t\t"),
