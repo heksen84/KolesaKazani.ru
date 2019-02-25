@@ -14,6 +14,7 @@ class CabinetController extends Controller
     }
 
     public function index() {
+
         $items = DB::table('adverts')->where('user_id', Auth::id())->select('text')->get();
         return view('cabinet')->with("items", $items );
     }

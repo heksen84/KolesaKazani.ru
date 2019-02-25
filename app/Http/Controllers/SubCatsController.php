@@ -161,7 +161,7 @@ class SubCatsController extends Controller
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
-                    $title="Спецтехника";
+                    $title="Ретро авто";
 
                     break;
                 }                               

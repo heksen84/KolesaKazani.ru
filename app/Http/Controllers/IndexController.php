@@ -16,56 +16,14 @@ use DB;
 
 class IndexController extends Controller {
 
-		public function getCategoryCountById(Request $request) {
-			return 0;
-		}
+		private $lang=null;
 
-		public function getCategoryCounts(Request $request) {
-			return 0;
-		}
-
-		/*
-		---------------------------------------------
-		Регионы
-		---------------------------------------------*/
-		public function getRegions(Request $request) {
-
-			$redis = Redis::connection();
-
-			try {								
-					
-				$redis->ping();
-				$regions = $redis->get("regions");
-					
-				if (!$regions) {
-					$redis->set("regions", Regions::orderBy('name', 'asc')->get());
-					$regions = $redis->get("regions");
-				}
-
-			}
-			
-			catch(\Exception $e) {
-					\Debugbar::warning($e->getMessage());
-					$regions = Regions::orderBy('name', 'asc')->get()->toJson();
-			}
-
-			return $regions;
-		}
-
-		/*
-		---------------------------------------------
-		Города, сёла, деревни
-		---------------------------------------------*/
-		public function getPlaces(Request $request) {
-			return Places::where('region_id',  $request->region_id )->orderBy('name', 'asc')->get();
-		}
-		
 		/*
 		-------------------------------------
 		 Получить категории
 		-------------------------------------*/
-        public function getCategories(Request $request) {			
-						
+        public function getCategories(Request $request) {	
+												
 			$redis = Redis::connection();
 
 			try {
@@ -92,11 +50,51 @@ class IndexController extends Controller {
 			
 			$jsOutput = "";
 
-			return view("index")
-			->with("ssr", $jsOutput)
-			->with("items", $categories)
-			->with("subcats", $subcats )
-			->with("count", Categories::count())
-			->with("auth", Auth::user()?1:0);
-    	}
+			return view("index")->with("ssr", $jsOutput)->with("items", $categories)->with("subcats", $subcats )->with("count", Categories::count())->with("auth", Auth::user()?1:0);
+		}
+		
+		// ------------------------------------
+		// init
+		// ------------------------------------
+		public function init(Request $request) {		
+			/*\Cache::store('database')->flush();
+		 	$lang = \Cache::store('database')->forever('lang', 'ru');*/
+		 	$lang = \Cache::store("database")->get("lang");
+		 	\Debugbar::info($lang);
+		 	return $this->getCategories($request);
+		}
+
+		/*
+		---------------------------------------------
+		Регионы
+		---------------------------------------------*/
+		public function getRegions(Request $request) {
+
+			$redis = Redis::connection();
+
+			try {								
+				$redis->ping();
+				$regions = $redis->get("regions");
+					
+				if (!$regions) {
+					$redis->set("regions", Regions::orderBy('name', 'asc')->get());
+					$regions = $redis->get("regions");
+				}
+			}
+			
+			catch(\Exception $e) {
+					\Debugbar::warning($e->getMessage());
+					$regions = Regions::orderBy('name', 'asc')->get()->toJson();
+			}
+
+			return $regions;
+		}
+
+		/*
+		---------------------------------------------
+		Города, сёла, деревни
+		---------------------------------------------*/
+		public function getPlaces(Request $request) {
+			return Places::where('region_id',  $request->region_id )->orderBy('name', 'asc')->get();
+		}				
 }

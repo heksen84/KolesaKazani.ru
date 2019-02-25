@@ -93,7 +93,7 @@ Route::get('{category}/{subcat}', 'SubCatsController@getResultsByCategory');
 // ------------------------------------
 Route::post('create', 			 'AdvertController@createAdvert');
 Route::get('podat-obyavlenie', 	 'AdvertController@newAdvert');
-Route::get('/', 				 'IndexController@getCategories');
+Route::get('/', 				 'IndexController@init');
 Route::get('getRegions', 		 'IndexController@getRegions');
 Route::get('getPlaces', 		 'IndexController@getPlaces');
 Route::get('getUser', 			 'UserController@getUser');
