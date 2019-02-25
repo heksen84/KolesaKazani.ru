@@ -610,6 +610,114 @@ class AdvertController extends Controller {
 
             $title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
             break;
+        }
+        
+        // водный
+        case 5: {
+                        
+            $results = DB::select
+            (
+                "SELECT                    
+                deal_name_2,
+                adv.id as advert_id, 
+                adv.category_id as category_id,					
+                adv.price,
+                adv.phone1,
+                adv.phone2,
+                adv.phone3,
+                adv.text,
+                adv.coord_lat,
+                adv.coord_lon,
+                adv_transport.id,
+                kz_region.name as region_name,
+                kz_city.name as city_name
+            FROM `adverts` as adv
+            INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON 
+            (						
+                categories.id=adv.category_id AND
+                adv.adv_category_id = adv_transport.id AND 					                        
+                categories.id=dealtype.id AND
+                kz_city.city_id=adv.city_id AND
+                kz_region.region_id=adv.region_id
+            ) 
+            WHERE adv.id=".$id." LIMIT 1");
+
+            \Debugbar::info($results);
+
+            $title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
+            break;
+        }
+        
+        // велосипед
+        case 6: {
+                        
+            $results = DB::select
+            (
+                "SELECT                    
+                deal_name_2,
+                adv.id as advert_id, 
+                adv.category_id as category_id,					
+                adv.price,
+                adv.phone1,
+                adv.phone2,
+                adv.phone3,
+                adv.text,
+                adv.coord_lat,
+                adv.coord_lon,
+                adv_transport.id,
+                kz_region.name as region_name,
+                kz_city.name as city_name
+            FROM `adverts` as adv
+            INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON 
+            (						
+                categories.id=adv.category_id AND
+                adv.adv_category_id = adv_transport.id AND 					                        
+                categories.id=dealtype.id AND
+                kz_city.city_id=adv.city_id AND
+                kz_region.region_id=adv.region_id
+            ) 
+            WHERE adv.id=".$id." LIMIT 1");
+
+            \Debugbar::info($results);
+
+            $title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
+            break;
+        }
+        
+        // воздушный
+        case 7: {
+                        
+            $results = DB::select
+            (
+                "SELECT                    
+                deal_name_2,
+                adv.id as advert_id, 
+                adv.category_id as category_id,					
+                adv.price,
+                adv.phone1,
+                adv.phone2,
+                adv.phone3,
+                adv.text,
+                adv.coord_lat,
+                adv.coord_lon,
+                adv_transport.id,
+                kz_region.name as region_name,
+                kz_city.name as city_name
+            FROM `adverts` as adv
+            INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON 
+            (						
+                categories.id=adv.category_id AND
+                adv.adv_category_id = adv_transport.id AND 					                        
+                categories.id=dealtype.id AND
+                kz_city.city_id=adv.city_id AND
+                kz_region.region_id=adv.region_id
+            ) 
+            WHERE adv.id=".$id." LIMIT 1");
+
+            \Debugbar::info($results);
+
+            $title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
+            break;
         }                    
                     
     }                                                                        
