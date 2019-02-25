@@ -7,7 +7,7 @@
 			<br>
 
 			<b>{{ item[0].region_name }}, {{ item[0].city_name }}</b>			
-		
+			<hr v-if="!full">
 			<!-- ТРАНСПОРТ --->
 			<div v-if="item[0].category_id==1">
 				<h1 v-if="full" style="font-size:190%">
@@ -38,29 +38,24 @@
 
 			<!-- Всё остальное -->
 			<h5 v-else>
-				<br>
 					<b>{{ item[0].text }}</b>
-				<br>
-				<br>
+				<hr>
 			</h5>		
 	
 		<!-------------------------------------------------
 			ОБЩАЯ ИНФОРМАЦИЯ
 		  ------------------------------------------------->
-		<h5 v-if="item[0].category_id!=4">Цена: <b>{{ item[0].price }}</b> тенге</h5>
-		<h5>
-			Контакты:
+		<h5 v-if="item[0].category_id!=4 && item[0].price!=null">Цена: <b>{{ item[0].price }}</b> тенге</h5>
+		<h5>Контакты:
 			<b v-if="item[0].phone1!=null">{{ item[0].phone1 }}</b><span v-if="item[0].phone2!=null">,</span>
 			<b v-if="item[0].phone2!=null">{{ item[0].phone2 }}</b><span v-if="item[0].phone3!=null">,</span>
 			<b v-if="item[0].phone3!=null">{{ item[0].phone3 }}</b>			
 		</h5>
 		
 		<div v-if="images.length<=0" style="text-align:center">
-			<hr>
 			<h5>Без фото</h5>
 		</div>
-		<div style="text-align:center" v-if="images.length>0">	
-			<hr>						
+		<div style="text-align:center" v-if="images.length>0">			
 			<b-img :src="'../storage/app/images/'+images[image_index].image" fluid style="margin-bottom:5px"/>
 			<div>
 				<b-img v-for="(i,index) in images" :key="index" :src="'../storage/app/images/'+i.image" style="margin:1px;margin-bottom:8px" width="80" height="80" @click="selectImage(index)"/>					

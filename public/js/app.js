@@ -3414,11 +3414,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 var mapCoords = [];
@@ -36859,6 +36854,8 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
+              !_vm.full ? _c("hr") : _vm._e(),
+              _vm._v(" "),
               _vm.item[0].category_id == 1
                 ? _c("div", [
                     _vm.full
@@ -36953,16 +36950,12 @@ var render = function() {
                       : _vm._e()
                   ])
                 : _c("h5", [
-                    _c("br"),
-                    _vm._v(" "),
                     _c("b", [_vm._v(_vm._s(_vm.item[0].text))]),
                     _vm._v(" "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("br")
+                    _c("hr")
                   ]),
               _vm._v(" "),
-              _vm.item[0].category_id != 4
+              _vm.item[0].category_id != 4 && _vm.item[0].price != null
                 ? _c("h5", [
                     _vm._v("Цена: "),
                     _c("b", [_vm._v(_vm._s(_vm.item[0].price))]),
@@ -36971,7 +36964,7 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               _c("h5", [
-                _vm._v("\n\t\t\tКонтакты:\n\t\t\t"),
+                _vm._v("Контакты:\n\t\t\t"),
                 _vm.item[0].phone1 != null
                   ? _c("b", [_vm._v(_vm._s(_vm.item[0].phone1))])
                   : _vm._e(),
@@ -36993,8 +36986,6 @@ var render = function() {
               _vm._v(" "),
               _vm.images.length <= 0
                 ? _c("div", { staticStyle: { "text-align": "center" } }, [
-                    _c("hr"),
-                    _vm._v(" "),
                     _c("h5", [_vm._v("Без фото")])
                   ])
                 : _vm._e(),
@@ -37004,8 +36995,6 @@ var render = function() {
                     "div",
                     { staticStyle: { "text-align": "center" } },
                     [
-                      _c("hr"),
-                      _vm._v(" "),
                       _c("b-img", {
                         staticStyle: { "margin-bottom": "5px" },
                         attrs: {
