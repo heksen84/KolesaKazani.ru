@@ -93,8 +93,7 @@ class AdvertController extends Controller {
         // ---------------------------
         // правила валидации
         // ---------------------------
-        $rules = 
-        [
+        $rules = [
             "adv_deal"      => "required",
             "adv_category"  => "required", 
             "adv_price"     => "required|numeric",
@@ -107,8 +106,7 @@ class AdvertController extends Controller {
         // ---------------------------
         // сообщения валидации
         // ---------------------------
-        $messages = 
-        [
+        $messages = [
             "adv_deal.required"        => "Укажите вид сделки", 
             "adv_category.required"    => "Укажите категорию товара или услуги",
             "adv_price.required"       => "Укажите цену",
@@ -318,18 +316,15 @@ class AdvertController extends Controller {
                 $advert->coord_lon = $coords[1];
                 \Debugbar::info($coords);
             }
-            else {
+            else 
+            {
                 $advert->coord_lat = 0;
                 $advert->coord_lon = 0;
             }
 
-            // FIXME: сделать проверку на сохранение и если что грохнуть сохраненную подкатегорию
-            // и разобраться, что там с сохранением суммы
-
             \Debugbar::info("id подкатегории :".$advert->adv_category_id);            
             
             $advert->save(); // сохраняю основную информацию 
-
             
             // Закидываю данные в таблицу urls для SEO
             $urls = new Urls();
@@ -337,8 +332,7 @@ class AdvertController extends Controller {
             $urls->url = substr($advert->id."_".str2url($text), 0, 100);
             $urls->advert_id = $advert->id;
             $urls->save();
-             
-            
+                         
             /*
             ------------------------------------------
             Сохраняю картинки
@@ -358,7 +352,6 @@ class AdvertController extends Controller {
      	
      	return $data;
     }
-
 
     /*
     -------------------------------------------
@@ -494,7 +487,6 @@ class AdvertController extends Controller {
                         break;
                 }                    
             
-
             // мототехника
             case 2: {
                         
