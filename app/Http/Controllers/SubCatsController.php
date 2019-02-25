@@ -105,8 +105,7 @@ class SubCatsController extends Controller
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
-                    \Debugbar::info("moto");
-                    
+                    \Debugbar::info("moto");                    
                     \Debugbar::info($results);
                     
                     $title="Мототехника";
@@ -133,6 +132,9 @@ class SubCatsController extends Controller
                         ) WHERE adv_transport.type=3 AND adv.category_id=1 
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
+
+                    \Debugbar::info("spectechika");                    
+                    \Debugbar::info($results);
 
                     $title="Спецтехника";
 
