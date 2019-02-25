@@ -492,7 +492,7 @@ class AdvertController extends Controller {
 
                         $title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
                         break;
-                    }                    
+                }                    
             
 
             // мототехника
@@ -513,8 +513,7 @@ class AdvertController extends Controller {
                             adv.coord_lon,
                             adv_transport.id,
                             year,  
-                            mileage,
-                            steering_position,
+                            mileage,                            
                             engine_type,
                             customs,
                             kz_region.name as region_name,
@@ -533,223 +532,114 @@ class AdvertController extends Controller {
                         $title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
                         break;
             }
-                    
-        }                                                                        
 
-            \Debugbar::info($results);                                                
-    }
-            
             // спецтехника
-            case 3: { 
-
+            case 3: {
+                        
                 $results = DB::select
-                        (
-                            "SELECT                    
-                            deal_name_2,
-                            adv.id as advert_id, 
-                            adv.category_id,
-                            adv.price,
-                            adv.phone1,
-                            adv.phone2,
-                            adv.phone3,
-                            adv.text,
-                            adv.coord_lat,
-                            adv.coord_lon,
-                            adv_transport.id,
-                            year,  
-                            mileage,
-                            steering_position,
-                            engine_type,
-                            customs,
-                            kz_region.name as region_name,
-                            kz_city.name as city_name
-                        FROM `adverts` as adv
-                        INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON 
-                        (						
-                            categories.id=adv.category_id AND
-                            adv.adv_category_id = adv_transport.id AND 					                        
-                            categories.id=dealtype.id AND
-                            kz_city.city_id=adv.city_id AND
-                            kz_region.region_id=adv.region_id
-                        ) 
-                        WHERE adv.id=".$id." LIMIT 1");
+                (
+                    "SELECT                    
+                    deal_name_2,
+                    adv.id as advert_id, 
+                    adv.category_id,
+                    adv.price,
+                    adv.phone1,
+                    adv.phone2,
+                    adv.phone3,
+                    adv.text,
+                    adv.coord_lat,
+                    adv.coord_lon,
+                    adv_transport.id,
+                    year,  
+                    mileage,                            
+                    engine_type,
+                    customs,
+                    kz_region.name as region_name,
+                    kz_city.name as city_name
+                FROM `adverts` as adv
+                INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON 
+                (						
+                    categories.id=adv.category_id AND
+                    adv.adv_category_id = adv_transport.id AND 					                        
+                    categories.id=dealtype.id AND
+                    kz_city.city_id=adv.city_id AND
+                    kz_region.region_id=adv.region_id
+                ) 
+                WHERE adv.id=".$id." LIMIT 1");
 
-                        $title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
-                        break;
-                
-                \Debugbar::info("spectekhnika");
+                $title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
+                break;
+        }
+
+        // ретро авто   
+        case 4: {
+                        
+            $results = DB::select
+            (
+                "SELECT                    
+                deal_name_2,
+                adv.id as advert_id, 
+                adv.category_id as category_id,					
+                adv.price,
+                adv.phone1,
+                adv.phone2,
+                adv.phone3,
+                adv.text,
+                adv.coord_lat,
+                adv.coord_lon,
+                adv_transport.id,
+                year,  
+                mileage,
+                steering_position,
+                engine_type,
+                customs,
+                kz_region.name as region_name,
+                kz_city.name as city_name
+            FROM `adverts` as adv
+            INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON 
+            (						
+                categories.id=adv.category_id AND
+                adv.adv_category_id = adv_transport.id AND 					                        
+                categories.id=dealtype.id AND
+                kz_city.city_id=adv.city_id AND
+                kz_region.region_id=adv.region_id
+            ) 
+            WHERE adv.id=".$id." LIMIT 1");
+
+            \Debugbar::info($results);
+
+            $title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
+            break;
+        }                    
+                    
+    }                                                                        
+
+        \Debugbar::info($results);                                                
+    }
+
+            // -----------------------------------------
+            // недвижимость (развёрнутая информация)
+            // -----------------------------------------
+            case 2: { 
+
+                \Debugbar::info("nedv");
 
                 break;
             }
 
-
-            // ретро-авто
-            case 4: { 
-
-                $results = DB::select
-                        (
-                            "SELECT                    
-                            deal_name_2,
-                            adv.id as advert_id, 
-                            adv.category_id,
-                            adv.price,
-                            adv.phone1,
-                            adv.phone2,
-                            adv.phone3,
-                            adv.text,
-                            adv.coord_lat,
-                            adv.coord_lon,
-                            adv_transport.id,
-                            year,  
-                            mileage,
-                            steering_position,
-                            engine_type,
-                            customs,
-                            kz_region.name as region_name,
-                            kz_city.name as city_name
-                        FROM `adverts` as adv
-                        INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON 
-                        (						
-                            categories.id=adv.category_id AND
-                            adv.adv_category_id = adv_transport.id AND 					                        
-                            categories.id=dealtype.id AND
-                            kz_city.city_id=adv.city_id AND
-                            kz_region.region_id=adv.region_id
-                        ) 
-                        WHERE adv.id=".$id." LIMIT 1");
-
-                        $title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
-                        break;
-                
-                \Debugbar::info("retro avto");
-
-                break;
-            }
-
-            // водный транспорт
-            case 4: { 
-
-                $results = DB::select
-                        (
-                            "SELECT                    
-                            deal_name_2,
-                            adv.id as advert_id, 
-                            adv.category_id,
-                            adv.price,
-                            adv.phone1,
-                            adv.phone2,
-                            adv.phone3,
-                            adv.text,
-                            adv.coord_lat,
-                            adv.coord_lon,
-                            adv_transport.id,
-                            year,  
-                            engine_type,
-                            customs,
-                            kz_region.name as region_name,
-                            kz_city.name as city_name
-                        FROM `adverts` as adv
-                        INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON 
-                        (						
-                            categories.id=adv.category_id AND
-                            adv.adv_category_id = adv_transport.id AND 					                        
-                            categories.id=dealtype.id AND
-                            kz_city.city_id=adv.city_id AND
-                            kz_region.region_id=adv.region_id
-                        ) 
-                        WHERE adv.id=".$id." LIMIT 1");
-
-                        $title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
-                        break;
-                
-                \Debugbar::info("Водный транспорт");
-
-                break;
-            }
-
-            // велосипед
-            case 5: { 
-
-                $results = DB::select
-                        (
-                            "SELECT                    
-                            deal_name_2,
-                            adv.id as advert_id, 
-                            adv.category_id,
-                            adv.price,
-                            adv.phone1,
-                            adv.phone2,
-                            adv.phone3,
-                            adv.text,
-                            adv.coord_lat,
-                            adv.coord_lon,
-                            adv_transport.id,
-                            year,                            
-                            customs,
-                            kz_region.name as region_name,
-                            kz_city.name as city_name
-                        FROM `adverts` as adv
-                        INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON 
-                        (						
-                            categories.id=adv.category_id AND
-                            adv.adv_category_id = adv_transport.id AND 					                        
-                            categories.id=dealtype.id AND
-                            kz_city.city_id=adv.city_id AND
-                            kz_region.region_id=adv.region_id
-                        ) 
-                        WHERE adv.id=".$id." LIMIT 1");
-
-                        $title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
-                        break;
-                
-                \Debugbar::info("Велосипед");
-
-                break;
-            }
-
-            // воздушный транспорт
-            case 6: { 
-
-                $results = DB::select
-                        (
-                            "SELECT                    
-                            deal_name_2,
-                            adv.id as advert_id, 
-                            adv.category_id,
-                            adv.price,
-                            adv.phone1,
-                            adv.phone2,
-                            adv.phone3,
-                            adv.text,
-                            adv.coord_lat,
-                            adv.coord_lon,
-                            adv_transport.id,
-                            year,  
-                            mileage,
-                            steering_position,
-                            engine_type,
-                            customs,
-                            kz_region.name as region_name,
-                            kz_city.name as city_name
-                        FROM `adverts` as adv
-                        INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON 
-                        (						
-                            categories.id=adv.category_id AND
-                            adv.adv_category_id = adv_transport.id AND 					                        
-                            categories.id=dealtype.id AND
-                            kz_city.city_id=adv.city_id AND
-                            kz_region.region_id=adv.region_id
-                        ) 
-                        WHERE adv.id=".$id." LIMIT 1");
-
-                        $title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
-                        break;
-                
-                \Debugbar::info("воздушный транспорт");
-
-                break;
-            }
-
+            // -----------------------------------------
+            // бытовая техника (развёрнутая информация)
+            // -----------------------------------------
+            /*case 3:             
+            break;
+            
+            case 4: break;
+            case 5: break;
+            case 6: break;
+            case 7: break;
+            case 8: break;
+            case 9: break;
+            case 10: break;*/
 
             default: {
                     $results = DB::select

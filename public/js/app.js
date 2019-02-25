@@ -3419,47 +3419,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 var mapCoords = [];
@@ -36900,166 +36859,108 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm.full
+              _vm.item[0].category_id == 1
                 ? _c("div", [
-                    _vm._v("\n\n\t\t\tfull\n\t\t\t\n\t\t\t"),
-                    _vm._v(" "),
-                    _vm.item[0].category_id == 1
-                      ? _c("div", [
-                          _c("h1", { staticStyle: { "font-size": "190%" } }, [
-                            _c("b", [
-                              _vm._v(
-                                _vm._s(_vm.item[0].mark) +
-                                  " " +
-                                  _vm._s(_vm.item[0].model) +
-                                  ", " +
-                                  _vm._s(_vm.item[0].year) +
-                                  " года"
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("hr"),
-                          _vm._v(" "),
-                          _c("h5", [
-                            _vm._v("Год выпуска: "),
-                            _c("b", [_vm._v(_vm._s(_vm.item[0].year))]),
-                            _vm._v(" г.")
-                          ]),
-                          _vm._v(" "),
-                          _c("h5", [
-                            _vm._v("Вид топлива:\n\t\t\t\t\t"),
-                            _vm.item[0].engine_type == 0
-                              ? _c("b", [_vm._v("бензин")])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.item[0].engine_type == 1
-                              ? _c("b", [_vm._v("дизель")])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.item[0].engine_type == 2
-                              ? _c("b", [_vm._v("газ-бензин")])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.item[0].engine_type == 3
-                              ? _c("b", [_vm._v("газ")])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.item[0].engine_type == 4
-                              ? _c("b", [_vm._v("гибрид")])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.item[0].engine_type == 5
-                              ? _c("b", [_vm._v("электричество")])
-                              : _vm._e()
-                          ]),
-                          _vm._v(" "),
-                          _c("h5", [
-                            _vm._v("Пробег: "),
-                            _c("b", [_vm._v(_vm._s(_vm.item[0].mileage))]),
-                            _vm._v(" км.")
-                          ]),
-                          _vm._v(" "),
-                          _vm.item[0].steering_position != null
-                            ? _c("h5", [
-                                _vm._v("Положение руля: \n\t\t\t\t\t"),
-                                _vm.item[0].steering_position == 0 && null
-                                  ? _c("b", [_vm._v("слева")])
-                                  : _c("b", [_vm._v("справа")])
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _c("h5", [
-                            _vm._v("Растоможен: \n\t\t\t\t\t"),
-                            _vm.item[0].customs == 1
-                              ? _c("b", [_vm._v("да")])
-                              : _c("b", [_vm._v("нет")])
-                          ]),
-                          _vm._v(" "),
-                          _c("h5", [
-                            _vm._v("Описание: "),
-                            _c("b", [_vm._v(_vm._s(_vm.item[0].text))])
+                    _vm.full
+                      ? _c("h1", { staticStyle: { "font-size": "190%" } }, [
+                          _c("b", [
+                            _vm._v(
+                              _vm._s(_vm.item[0].mark) +
+                                " " +
+                                _vm._s(_vm.item[0].model) +
+                                ", " +
+                                _vm._s(_vm.item[0].year) +
+                                " года"
+                            )
                           ])
                         ])
-                      : _c("h5", [
-                          _c("br"),
-                          _vm._v(" "),
-                          _c("b", [_vm._v(_vm._s(_vm.item[0].text))]),
-                          _vm._v(" "),
-                          _c("br"),
-                          _vm._v(" "),
-                          _c("br")
-                        ])
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              !_vm.full
-                ? _c("div", [
-                    _vm._v("\t\t\t\t\t\t\n\n\t\t\tshort\n\n\t\t\t"),
+                      : _vm._e(),
+                    _vm._v(" "),
                     _c("hr"),
                     _vm._v(" "),
-                    _c("h5", [_c("b", [_vm._v(_vm._s(_vm.item[0].text))])]),
+                    !_vm.full && _vm.item[0].text != null
+                      ? _c("h5", [_c("b", [_vm._v(_vm._s(_vm.item[0].text))])])
+                      : _vm._e(),
                     _vm._v(" "),
-                    _vm.item[0].category_id == 1
-                      ? _c("div", [
-                          _c("h5", [
-                            _vm._v("Год выпуска: "),
-                            _c("b", [_vm._v(_vm._s(_vm.item[0].year))]),
-                            _vm._v(" г.")
-                          ]),
-                          _vm._v(" "),
-                          _c("h5", [
-                            _vm._v("Вид топлива:\n\t\t\t\t\t"),
-                            _vm.item[0].engine_type == 0
-                              ? _c("b", [_vm._v("бензин")])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.item[0].engine_type == 1
-                              ? _c("b", [_vm._v("дизель")])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.item[0].engine_type == 2
-                              ? _c("b", [_vm._v("газ-бензин")])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.item[0].engine_type == 3
-                              ? _c("b", [_vm._v("газ")])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.item[0].engine_type == 4
-                              ? _c("b", [_vm._v("гибрид")])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.item[0].engine_type == 5
-                              ? _c("b", [_vm._v("электричество")])
-                              : _vm._e()
-                          ]),
-                          _vm._v(" "),
-                          _c("h5", [
-                            _vm._v("Пробег: "),
-                            _c("b", [_vm._v(_vm._s(_vm.item[0].mileage))]),
-                            _vm._v(" км.")
-                          ]),
-                          _vm._v(" "),
-                          _vm.item[0].steering_position != null
-                            ? _c("h5", [
-                                _vm._v("Положение руля: \n\t\t\t\t\t"),
-                                _vm.item[0].steering_position == 0
-                                  ? _c("b", [_vm._v("слева")])
-                                  : _c("b", [_vm._v("справа")])
-                              ])
+                    _vm.item[0].year != null
+                      ? _c("h5", [
+                          _vm._v("Год выпуска: "),
+                          _c("b", [_vm._v(_vm._s(_vm.item[0].year))]),
+                          _vm._v(" г.")
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.item[0].engine_type != null
+                      ? _c("h5", [
+                          _vm._v("Вид топлива:\n\t\t\t\t\t"),
+                          _vm.item[0].engine_type == 0
+                            ? _c("b", [_vm._v("бензин")])
                             : _vm._e(),
                           _vm._v(" "),
-                          _c("h5", [
-                            _vm._v("Растоможен: \n\t\t\t\t\t"),
-                            _vm.item[0].customs == 1
-                              ? _c("b", [_vm._v("да")])
-                              : _c("b", [_vm._v("нет")])
-                          ])
+                          _vm.item[0].engine_type == 1
+                            ? _c("b", [_vm._v("дизель")])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.item[0].engine_type == 2
+                            ? _c("b", [_vm._v("газ-бензин")])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.item[0].engine_type == 3
+                            ? _c("b", [_vm._v("газ")])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.item[0].engine_type == 4
+                            ? _c("b", [_vm._v("гибрид")])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.item[0].engine_type == 5
+                            ? _c("b", [_vm._v("электричество")])
+                            : _vm._e()
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.item[0].mileage != null
+                      ? _c("h5", [
+                          _vm._v("Пробег: "),
+                          _c("b", [_vm._v(_vm._s(_vm.item[0].mileage))]),
+                          _vm._v(" км.")
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.item[0].steering_position != null
+                      ? _c("h5", [
+                          _vm._v("Положение руля: \n\t\t\t\t\t"),
+                          _vm.item[0].steering_position == 0
+                            ? _c("b", [_vm._v("слева")])
+                            : _c("b", [_vm._v("справа")])
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.item[0].customs != null
+                      ? _c("h5", [
+                          _vm._v("Растоможен: \n\t\t\t\t\t"),
+                          _vm.item[0].customs == 1
+                            ? _c("b", [_vm._v("да")])
+                            : _c("b", [_vm._v("нет")])
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.full && _vm.item[0].text != null
+                      ? _c("h5", [
+                          _vm._v("Описание: "),
+                          _c("b", [_vm._v(_vm._s(_vm.item[0].text))])
                         ])
                       : _vm._e()
                   ])
-                : _vm._e(),
+                : _c("h5", [
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("b", [_vm._v(_vm._s(_vm.item[0].text))]),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("br")
+                  ]),
               _vm._v(" "),
               _vm.item[0].category_id != 4
                 ? _c("h5", [

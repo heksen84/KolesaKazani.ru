@@ -8,19 +8,15 @@
 
 			<b>{{ item[0].region_name }}, {{ item[0].city_name }}</b>			
 		
-		<!-----------------------------------------------------------
-			РАЗВЁРНУТОЕ ОБЪЯВЛЕНИЕ
-		 ------------------------------------------------------------>
-		<div v-if="full">
-
-			full
-			
 			<!-- ТРАНСПОРТ --->
 			<div v-if="item[0].category_id==1">
-				<h1 style="font-size:190%"><b>{{ item[0].mark }} {{ item[0].model }}, {{ item[0].year}} года</b></h1>
+				<h1 v-if="full" style="font-size:190%">
+					<b>{{ item[0].mark }} {{ item[0].model }}, {{ item[0].year}} года</b>
+				</h1>
 				<hr>
-				<h5>Год выпуска: <b>{{ item[0].year }}</b> г.</h5>
-				<h5>Вид топлива:
+				<h5 v-if="!full && item[0].text!=null"><b>{{ item[0].text }}</b></h5>
+				<h5 v-if="item[0].year!=null">Год выпуска: <b>{{ item[0].year }}</b> г.</h5>
+				<h5 v-if="item[0].engine_type!=null">Вид топлива:
 					<b v-if="item[0].engine_type==0">бензин</b>
 					<b v-if="item[0].engine_type==1">дизель</b>
 					<b v-if="item[0].engine_type==2">газ-бензин</b>
@@ -28,16 +24,16 @@
 					<b v-if="item[0].engine_type==4">гибрид</b>
 					<b v-if="item[0].engine_type==5">электричество</b>
 				</h5>
-				<h5>Пробег: <b>{{ item[0].mileage }}</b> км.</h5>
+				<h5 v-if="item[0].mileage!=null">Пробег: <b>{{ item[0].mileage }}</b> км.</h5>
 				<h5 v-if="item[0].steering_position!=null">Положение руля: 
-					<b v-if="item[0].steering_position==0 && null">слева</b>
+					<b v-if="item[0].steering_position==0">слева</b>
 					<b v-else>справа</b>
 				</h5>
-				<h5>Растоможен: 
+				<h5 v-if="item[0].customs!=null">Растоможен: 
 					<b v-if="item[0].customs==1">да</b>
 					<b v-else>нет</b>
 				</h5>
-				<h5>Описание: <b>{{ item[0].text }}</b></h5>
+				<h5 v-if="full && item[0].text!=null">Описание: <b>{{ item[0].text }}</b></h5>
 			</div>
 
 			<!-- Всё остальное -->
@@ -46,45 +42,8 @@
 					<b>{{ item[0].text }}</b>
 				<br>
 				<br>
-			</h5>						
-		</div> <!-- end full -->
-
-		
-		<!-----------------------------------------------------------
-		   КОРОТКОЕ ОБЪЯВЛЕНИЕ (БЕЗ МАРОК И МОДЕЛЕЙ)
-		 ------------------------------------------------------------>
-		<div v-if="!full">						
-
-			short
-
-			<hr>			
-				<h5><b>{{ item[0].text }}</b></h5>					
-
-			<div v-if="item[0].category_id==1">				
-				<h5>Год выпуска: <b>{{ item[0].year }}</b> г.</h5>
-				<h5>Вид топлива:
-					<b v-if="item[0].engine_type==0">бензин</b>
-					<b v-if="item[0].engine_type==1">дизель</b>
-					<b v-if="item[0].engine_type==2">газ-бензин</b>
-					<b v-if="item[0].engine_type==3">газ</b>
-					<b v-if="item[0].engine_type==4">гибрид</b>
-					<b v-if="item[0].engine_type==5">электричество</b>
-				</h5>
-				<h5>Пробег: <b>{{ item[0].mileage }}</b> км.</h5>
-				<h5 v-if="item[0].steering_position!=null">Положение руля: 
-					<b v-if="item[0].steering_position==0">слева</b>
-					<b v-else>справа</b>
-				</h5>
-				<h5>Растоможен: 
-					<b v-if="item[0].customs==1">да</b>
-					<b v-else>нет</b>
-				</h5>			
-			</div>
-
-
-			
-		</div> <!-- end short -->
-
+			</h5>		
+	
 		<!-------------------------------------------------
 			ОБЩАЯ ИНФОРМАЦИЯ
 		  ------------------------------------------------->
