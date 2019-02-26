@@ -3612,6 +3612,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -35878,6 +35883,10 @@ var render = function() {
               2
             )
           : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("b-row", { staticStyle: { "margin-top": "20px" } }, [
+        _c("h5", { staticStyle: { margin: "auto" } }, [_vm._v("Google Advert")])
       ]),
       _vm._v(" "),
       _c(

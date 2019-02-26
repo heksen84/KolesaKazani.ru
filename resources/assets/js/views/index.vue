@@ -82,6 +82,11 @@
     </div>
     </div>
 
+    <!-- РЕКЛАМА -->
+    <b-row style="margin-top:20px">
+      <h5 style="margin:auto">Google Advert</h5>
+    </b-row>
+
     <!-- VIP -->
     <b-row style="margin-top:75px" class="shadow_text"><h5>VIP объявления</h5></b-row>
       <b-row>    
