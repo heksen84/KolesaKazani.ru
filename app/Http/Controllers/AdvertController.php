@@ -730,8 +730,7 @@ class AdvertController extends Controller {
                     ( adv.adv_category_id=adv_realestate.id ) 
                     WHERE adv.id=".$id." LIMIT 1");                
 
-                $title="Недвижимость";
-                $results="123";                
+                $title="Недвижимость";             
             }
 
             // категории без развёрнутой информации
