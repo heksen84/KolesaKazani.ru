@@ -3415,6 +3415,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var mapCoords = [];
@@ -3448,8 +3467,17 @@ function initMap() {
 
 	// компонент создан
 	created: function created() {
+
+		if (!this.item[0]) {
+			console.log("нет данных");
+			return;
+		}
+
 		console.log(this.item[0]);
+
+		// -----------------------------------------------------
 		// не инициализировать карту, если координаты 0,0
+		// -----------------------------------------------------
 		if (this.item[0].coord_lat != 0 && this.item[0].coord_lon != 0) {
 			mapCoords = [this.item[0].coord_lat, this.item[0].coord_lon];
 			ymaps.ready(initMap);
@@ -36838,262 +36866,281 @@ var render = function() {
       _c(
         "b-row",
         [
-          _c(
-            "b-col",
-            {
-              staticClass: "create_advert_col",
-              attrs: { cols: "12", sm: "12", md: "12", lg: "10", xl: "10" }
-            },
-            [
-              _c(
-                "div",
+          _vm.item[0] == undefined
+            ? _c(
+                "b-col",
                 {
-                  staticClass: "close_button",
-                  staticStyle: { "font-size": "20px" },
-                  attrs: { title: "Закрыть страницу" },
-                  on: { click: _vm.closeAndReturn }
+                  staticStyle: { "text-align": "center", "margin-top": "20px" },
+                  attrs: { cols: "12", sm: "12", md: "12", lg: "10", xl: "10" }
                 },
-                [_vm._v("X")]
-              ),
-              _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
-              _c("b", [
-                _vm._v(
-                  _vm._s(_vm.item[0].region_name) +
-                    ", " +
-                    _vm._s(_vm.item[0].city_name)
-                )
-              ]),
-              _vm._v(" "),
-              !_vm.full ? _c("hr") : _vm._e(),
-              _vm._v(" "),
-              _vm.item[0].category_id == 1
-                ? _c("div", [
-                    _vm.full
-                      ? _c("h1", { staticStyle: { "font-size": "190%" } }, [
-                          _c("b", [
-                            _vm._v(
-                              _vm._s(_vm.item[0].mark) +
-                                " " +
-                                _vm._s(_vm.item[0].model) +
-                                ", " +
-                                _vm._s(_vm.item[0].year) +
-                                " года"
-                            )
-                          ])
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _c("hr"),
-                    _vm._v(" "),
-                    !_vm.full && _vm.item[0].text != null
-                      ? _c("h5", [_c("b", [_vm._v(_vm._s(_vm.item[0].text))])])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.item[0].year != null
-                      ? _c("h5", [
-                          _vm._v("Год выпуска: "),
-                          _c("b", [_vm._v(_vm._s(_vm.item[0].year))]),
-                          _vm._v(" г.")
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.item[0].engine_type != null
-                      ? _c("h5", [
-                          _vm._v("Вид топлива:\n\t\t\t\t\t"),
-                          _vm.item[0].engine_type == 0
-                            ? _c("b", [_vm._v("бензин")])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.item[0].engine_type == 1
-                            ? _c("b", [_vm._v("дизель")])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.item[0].engine_type == 2
-                            ? _c("b", [_vm._v("газ-бензин")])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.item[0].engine_type == 3
-                            ? _c("b", [_vm._v("газ")])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.item[0].engine_type == 4
-                            ? _c("b", [_vm._v("гибрид")])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.item[0].engine_type == 5
-                            ? _c("b", [_vm._v("электричество")])
-                            : _vm._e()
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.item[0].mileage != null
-                      ? _c("h5", [
-                          _vm._v("Пробег: "),
-                          _c("b", [_vm._v(_vm._s(_vm.item[0].mileage))]),
-                          _vm._v(" км.")
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.item[0].steering_position != null
-                      ? _c("h5", [
-                          _vm._v("Положение руля: \n\t\t\t\t\t"),
-                          _vm.item[0].steering_position == 0
-                            ? _c("b", [_vm._v("слева")])
-                            : _c("b", [_vm._v("справа")])
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.item[0].customs != null
-                      ? _c("h5", [
-                          _vm._v("Растоможен: \n\t\t\t\t\t"),
-                          _vm.item[0].customs == 1
-                            ? _c("b", [_vm._v("да")])
-                            : _c("b", [_vm._v("нет")])
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.full && _vm.item[0].text != null
-                      ? _c("h5", [
-                          _vm._v("Описание: "),
-                          _c("b", [_vm._v(_vm._s(_vm.item[0].text))])
-                        ])
-                      : _vm._e()
-                  ])
-                : _c("h5", [
-                    _c("b", [_vm._v(_vm._s(_vm.item[0].text))]),
-                    _vm._v(" "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("br")
+                [
+                  _c("div", { staticStyle: { "font-size": "44px" } }, [
+                    _vm._v("нет данных")
                   ]),
-              _vm._v(" "),
-              _vm.item[0].category_id != 4 && _vm.item[0].price != null
-                ? _c("h5", [
-                    _vm._v("Цена: "),
-                    _c("b", [_vm._v(_vm._s(_vm.item[0].price))]),
-                    _vm._v(" тенге")
+                  _vm._v(" "),
+                  _c("b", [
+                    _c("a", { attrs: { href: "/" } }, [
+                      _vm._v("Перейсти на главную страницу")
+                    ])
                   ])
-                : _vm._e(),
-              _vm._v(" "),
-              _c("h5", [
-                _vm._v("Контакты:\n\t\t\t"),
-                _vm.item[0].phone1 != null
-                  ? _c("b", [_vm._v(_vm._s(_vm.item[0].phone1))])
-                  : _vm._e(),
-                _vm.item[0].phone2 != null
-                  ? _c("span", [_vm._v(",")])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.item[0].phone2 != null
-                  ? _c("b", [_vm._v(_vm._s(_vm.item[0].phone2))])
-                  : _vm._e(),
-                _vm.item[0].phone3 != null
-                  ? _c("span", [_vm._v(",")])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.item[0].phone3 != null
-                  ? _c("b", [_vm._v(_vm._s(_vm.item[0].phone3))])
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _vm.images.length <= 0
-                ? _c("div", { staticStyle: { "text-align": "center" } }, [
-                    _c("h5", [_vm._v("Без фото")])
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.images.length > 0
-                ? _c(
+                ]
+              )
+            : _c(
+                "b-col",
+                {
+                  staticClass: "create_advert_col",
+                  attrs: { cols: "12", sm: "12", md: "12", lg: "10", xl: "10" }
+                },
+                [
+                  _c(
                     "div",
-                    { staticStyle: { "text-align": "center" } },
+                    {
+                      staticClass: "close_button",
+                      staticStyle: { "font-size": "20px" },
+                      attrs: { title: "Закрыть страницу" },
+                      on: { click: _vm.closeAndReturn }
+                    },
+                    [_vm._v("X")]
+                  ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("b", [
+                    _vm._v(
+                      _vm._s(_vm.item[0].region_name) +
+                        ", " +
+                        _vm._s(_vm.item[0].city_name)
+                    )
+                  ]),
+                  _vm._v(" "),
+                  !_vm.full ? _c("hr") : _vm._e(),
+                  _vm._v(" "),
+                  _vm.item[0].category_id == 1
+                    ? _c("div", [
+                        _vm.full
+                          ? _c("h1", { staticStyle: { "font-size": "190%" } }, [
+                              _c("b", [
+                                _vm._v(
+                                  _vm._s(_vm.item[0].mark) +
+                                    " " +
+                                    _vm._s(_vm.item[0].model) +
+                                    ", " +
+                                    _vm._s(_vm.item[0].year) +
+                                    " года"
+                                )
+                              ])
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("hr"),
+                        _vm._v(" "),
+                        !_vm.full && _vm.item[0].text != null
+                          ? _c("h5", [
+                              _c("b", [_vm._v(_vm._s(_vm.item[0].text))])
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.item[0].year != null
+                          ? _c("h5", [
+                              _vm._v("Год выпуска: "),
+                              _c("b", [_vm._v(_vm._s(_vm.item[0].year))]),
+                              _vm._v(" г.")
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.item[0].engine_type != null
+                          ? _c("h5", [
+                              _vm._v("Вид топлива:\n\t\t\t\t\t"),
+                              _vm.item[0].engine_type == 0
+                                ? _c("b", [_vm._v("бензин")])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].engine_type == 1
+                                ? _c("b", [_vm._v("дизель")])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].engine_type == 2
+                                ? _c("b", [_vm._v("газ-бензин")])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].engine_type == 3
+                                ? _c("b", [_vm._v("газ")])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].engine_type == 4
+                                ? _c("b", [_vm._v("гибрид")])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].engine_type == 5
+                                ? _c("b", [_vm._v("электричество")])
+                                : _vm._e()
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.item[0].mileage != null
+                          ? _c("h5", [
+                              _vm._v("Пробег: "),
+                              _c("b", [_vm._v(_vm._s(_vm.item[0].mileage))]),
+                              _vm._v(" км.")
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.item[0].steering_position != null
+                          ? _c("h5", [
+                              _vm._v("Положение руля: \n\t\t\t\t\t"),
+                              _vm.item[0].steering_position == 0
+                                ? _c("b", [_vm._v("слева")])
+                                : _c("b", [_vm._v("справа")])
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.item[0].customs != null
+                          ? _c("h5", [
+                              _vm._v("Растоможен: \n\t\t\t\t\t"),
+                              _vm.item[0].customs == 1
+                                ? _c("b", [_vm._v("да")])
+                                : _c("b", [_vm._v("нет")])
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.full && _vm.item[0].text != null
+                          ? _c("h5", [
+                              _vm._v("Описание: "),
+                              _c("b", [_vm._v(_vm._s(_vm.item[0].text))])
+                            ])
+                          : _vm._e()
+                      ])
+                    : _c("h5", [
+                        _c("b", [_vm._v(_vm._s(_vm.item[0].text))]),
+                        _c("br"),
+                        _c("br")
+                      ]),
+                  _vm._v(" "),
+                  _vm.item[0].category_id != 4 && _vm.item[0].price != null
+                    ? _c("h5", [
+                        _vm._v("Цена: "),
+                        _c("b", [_vm._v(_vm._s(_vm.item[0].price))]),
+                        _vm._v(" тенге")
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("h5", [
+                    _vm._v("Контакты:\n\t\t\t"),
+                    _vm.item[0].phone1 != null
+                      ? _c("b", [_vm._v(_vm._s(_vm.item[0].phone1))])
+                      : _vm._e(),
+                    _vm.item[0].phone2 != null
+                      ? _c("span", [_vm._v(",")])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.item[0].phone2 != null
+                      ? _c("b", [_vm._v(_vm._s(_vm.item[0].phone2))])
+                      : _vm._e(),
+                    _vm.item[0].phone3 != null
+                      ? _c("span", [_vm._v(",")])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.item[0].phone3 != null
+                      ? _c("b", [_vm._v(_vm._s(_vm.item[0].phone3))])
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _vm.images.length <= 0
+                    ? _c("div", { staticStyle: { "text-align": "center" } }, [
+                        _c("h5", [_vm._v("Без фото")])
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.images.length > 0
+                    ? _c(
+                        "div",
+                        { staticStyle: { "text-align": "center" } },
+                        [
+                          _c("b-img", {
+                            staticStyle: { "margin-bottom": "5px" },
+                            attrs: {
+                              src:
+                                "../storage/app/images/" +
+                                _vm.images[_vm.image_index].image,
+                              fluid: ""
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            _vm._l(_vm.images, function(i, index) {
+                              return _c("b-img", {
+                                key: index,
+                                staticStyle: {
+                                  margin: "1px",
+                                  "margin-bottom": "8px"
+                                },
+                                attrs: {
+                                  src: "../storage/app/images/" + i.image,
+                                  width: "80",
+                                  height: "80"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.selectImage(index)
+                                  }
+                                }
+                              })
+                            }),
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticStyle: {
+                        "text-align": "center",
+                        "margin-bottom": "20px"
+                      }
+                    },
                     [
-                      _c("b-img", {
-                        staticStyle: { "margin-bottom": "5px" },
-                        attrs: {
-                          src:
-                            "../storage/app/images/" +
-                            _vm.images[_vm.image_index].image,
-                          fluid: ""
-                        }
-                      }),
+                      _c("hr"),
+                      _vm._v(" "),
+                      _c("b", [
+                        _c("ins", [
+                          _vm._v(
+                            _vm._s(_vm.item[0].region_name) +
+                              ", " +
+                              _vm._s(_vm.item[0].city_name)
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _vm.item[0].coord_lat != 0 && _vm.item[0].coord_lon != 0
+                        ? _c("div", {
+                            staticStyle: {
+                              "margin-top": "10px",
+                              width: "100%",
+                              height: "400px"
+                            },
+                            attrs: { id: "map" }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("hr"),
                       _vm._v(" "),
                       _c(
-                        "div",
-                        _vm._l(_vm.images, function(i, index) {
-                          return _c("b-img", {
-                            key: index,
-                            staticStyle: {
-                              margin: "1px",
-                              "margin-bottom": "8px"
-                            },
-                            attrs: {
-                              src: "../storage/app/images/" + i.image,
-                              width: "80",
-                              height: "80"
-                            },
-                            on: {
-                              click: function($event) {
-                                return _vm.selectImage(index)
-                              }
-                            }
-                          })
-                        }),
-                        1
+                        "b-button",
+                        {
+                          attrs: { variant: "primary" },
+                          on: { click: _vm.closeAndReturn }
+                        },
+                        [_vm._v("закрыть")]
                       )
                     ],
                     1
                   )
-                : _vm._e(),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticStyle: {
-                    "text-align": "center",
-                    "margin-bottom": "20px"
-                  }
-                },
-                [
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("b", [
-                    _c("ins", [
-                      _vm._v(
-                        _vm._s(_vm.item[0].region_name) +
-                          ", " +
-                          _vm._s(_vm.item[0].city_name)
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _vm.item[0].coord_lat != 0 && _vm.item[0].coord_lon != 0
-                    ? _c("div", {
-                        staticStyle: {
-                          "margin-top": "10px",
-                          width: "100%",
-                          height: "400px"
-                        },
-                        attrs: { id: "map" }
-                      })
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c(
-                    "b-button",
-                    {
-                      attrs: { variant: "primary" },
-                      on: { click: _vm.closeAndReturn }
-                    },
-                    [_vm._v("закрыть")]
-                  )
-                ],
-                1
+                ]
               )
-            ]
-          )
         ],
         1
       )
