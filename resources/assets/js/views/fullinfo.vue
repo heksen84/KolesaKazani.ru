@@ -15,7 +15,7 @@
 
 			<b>{{ item[0].region_name }}, {{ item[0].city_name }}</b>			
 			
-			<hr v-if="!full">
+			<hr v-if="!full"> <!-- Чёоточка -->
 
 			<!-- Транспорт --->
 			<div v-if="item[0].category_id==1">
@@ -46,13 +46,13 @@
 			</div>
 
 			<!-- Недвижимость --->
-			<!--<div v-if="item[0].category_id==2">
+			<div v-if="item[0].category_id==2">
 				123123
-			</div>-->
+			</div>
 
 			<!-- Всё остальное -->
 			<h5 v-else>
-					<b>{{ item[0].text }}</b><br><br>
+				<b>{{ item[0].text }}</b><br><br>
 			</h5>		
 	
 		<!-------------------------------------------------

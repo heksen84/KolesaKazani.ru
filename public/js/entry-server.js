@@ -37010,6 +37010,10 @@ var render = function() {
                             ])
                           : _vm._e()
                       ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.item[0].category_id == 2
+                    ? _c("div", [_vm._v("\n\t\t\t\t123123\n\t\t\t")])
                     : _c("h5", [
                         _c("b", [_vm._v(_vm._s(_vm.item[0].text))]),
                         _c("br"),
