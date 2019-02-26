@@ -3434,6 +3434,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 var mapCoords = [];
@@ -36932,7 +36937,7 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        _c("hr"),
+                        _vm.full ? _c("hr") : _vm._e(),
                         _vm._v(" "),
                         !_vm.full && _vm.item[0].text != null
                           ? _c("h5", [
@@ -37010,7 +37015,11 @@ var render = function() {
                             ])
                           : _vm._e()
                       ])
-                    : _vm._e(),
+                    : _c("h5", [
+                        _c("b", [_vm._v(_vm._s(_vm.item[0].text))]),
+                        _c("br"),
+                        _c("br")
+                      ]),
                   _vm._v(" "),
                   _vm.item[0].category_id == 2
                     ? _c("div", [
@@ -37018,11 +37027,7 @@ var render = function() {
                           "\n\t\t\t\t" + _vm._s(_vm.item[0].text) + "\n\t\t\t"
                         )
                       ])
-                    : _c("h5", [
-                        _c("b", [_vm._v(_vm._s(_vm.item[0].text))]),
-                        _c("br"),
-                        _c("br")
-                      ]),
+                    : _vm._e(),
                   _vm._v(" "),
                   _vm.item[0].category_id != 4 && _vm.item[0].price != null
                     ? _c("h5", [

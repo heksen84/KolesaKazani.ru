@@ -13,18 +13,22 @@
 		  <div class="close_button" title="Закрыть страницу" style="font-size:20px" @click="closeAndReturn">X</div>     
 			<br>
 
+			<!-- размещение -->
 			<b>{{ item[0].region_name }}, {{ item[0].city_name }}</b>			
 			
 			<hr v-if="!full"> <!-- Чёрточка -->
 
 			<!-- Транспорт --->
 			<div v-if="item[0].category_id==1">
+				
 				<h1 v-if="full" style="font-size:190%">
 					<b>{{ item[0].mark }} {{ item[0].model }}, {{ item[0].year}} года</b>
 				</h1>
-				<hr>
+
+				<hr v-if="full">
 				<h5 v-if="!full && item[0].text!=null"><b>{{ item[0].text }}</b></h5>
 				<h5 v-if="item[0].year!=null">Год выпуска: <b>{{ item[0].year }}</b> г.</h5>
+				
 				<h5 v-if="item[0].engine_type!=null">Вид топлива:
 					<b v-if="item[0].engine_type==0">бензин</b>
 					<b v-if="item[0].engine_type==1">дизель</b>
@@ -33,6 +37,7 @@
 					<b v-if="item[0].engine_type==4">гибрид</b>
 					<b v-if="item[0].engine_type==5">электричество</b>
 				</h5>
+				
 				<h5 v-if="item[0].mileage!=null">Пробег: <b>{{ item[0].mileage }}</b> км.</h5>
 				<h5 v-if="item[0].steering_position!=null">Положение руля: 
 					<b v-if="item[0].steering_position==0">слева</b>
@@ -44,17 +49,17 @@
 				</h5>
 				<h5 v-if="full && item[0].text!=null">Описание: <b>{{ item[0].text }}</b></h5>
 			</div>
+			<!-- Всё остальное -->
+			<h5 v-else>
+				<b>{{ item[0].text }}</b><br><br>
+			</h5>
 
 			<!-- Недвижимость --->
 			<div v-if="item[0].category_id==2">
 				{{ item[0].text }}
 			</div>
 
-			<!-- Всё остальное -->
-			<h5 v-else>
-				<b>{{ item[0].text }}</b><br><br>
-			</h5>		
-	
+			
 		<!-------------------------------------------------
 			ОБЩАЯ ИНФОРМАЦИЯ
 		  ------------------------------------------------->
