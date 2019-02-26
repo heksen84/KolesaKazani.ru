@@ -3418,17 +3418,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 var mapCoords = [];
-var myPlacemark;
-var bigmap;
+var placemark;
+var map;
 
+/*
+---------------------------
+Инициализация карты
+----------------------------*/
 function initMap() {
-	bigmap = new ymaps.Map("map", { center: mapCoords, zoom: 13 });
+	map = new ymaps.Map("map", { center: mapCoords, zoom: 13 });
+	placemark = new ymaps.Placemark(mapCoords);
+	map.geoObjects.add(placemark);
 }
 
+// ------------------
+// компонент
+// ------------------
 /* harmony default export */ __webpack_exports__["default"] = ({
 
 	props: ["item", "images", "full"], // входящие данные
-
 	components: {},
 
 	data: function data() {
@@ -3436,10 +3444,11 @@ function initMap() {
 			image_index: 0
 		};
 	},
+
+
+	// компонент создан
 	created: function created() {
-
 		console.log(this.item[0]);
-
 		// не инициализировать карту, если координаты 0,0
 		if (this.item[0].coord_lat != 0 && this.item[0].coord_lon != 0) {
 			mapCoords = [this.item[0].coord_lat, this.item[0].coord_lon];
@@ -3447,6 +3456,8 @@ function initMap() {
 		}
 	},
 
+
+	// методы компонента
 	methods: {
 		selectImage: function selectImage(index) {
 			this.image_index = index;

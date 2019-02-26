@@ -77,41 +77,50 @@
 <script>
 
 var mapCoords=[];
-var myPlacemark;
-var bigmap;
+var placemark;
+var map;
 
+/*
+---------------------------
+Инициализация карты
+----------------------------*/
 function initMap() {
-    bigmap = new ymaps.Map ("map", { center: mapCoords, zoom: 13 });			
+  map = new ymaps.Map ("map", { center: mapCoords, zoom: 13 });			
+	placemark = new ymaps.Placemark(mapCoords);
+	map.geoObjects.add(placemark);
 }
 
+// ------------------
+// компонент
+// ------------------
 export default {
 
-	props: ["item", "images", "full"], // входящие данные
-	
-	components: {},
+props: ["item", "images", "full"], // входящие данные
+components: {},
 
-	data() {
-    return {
-			image_index: 0
-		}
-	},
+data() {
+   return {
+		image_index: 0
+	}
+},
 
-	created() {
-
-	console.log(this.item[0]);
-		
+// компонент создан
+created() {
+	console.log(this.item[0]);		
 	// не инициализировать карту, если координаты 0,0
 	if (this.item[0].coord_lat!=0 && this.item[0].coord_lon!=0) {
 		mapCoords=[this.item[0].coord_lat, this.item[0].coord_lon];
-		ymaps.ready(initMap);
+		ymaps.ready(initMap);		
 	}	  
 },
- methods: {
+
+// методы компонента
+methods: {
 	selectImage(index) {
-     this.image_index=index;
-  },
-  closeAndReturn() {
-    window.history.back();
+   this.image_index=index;
+ },
+closeAndReturn() {
+   window.history.back();
   }
 }
 }
