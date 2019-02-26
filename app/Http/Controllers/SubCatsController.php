@@ -259,9 +259,9 @@ class SubCatsController extends Controller
 
                     $results = DB::select(
                         "SELECT
-                        adv.deal,
-                        adv.full,
                         concat(adv_realestate.rooms, ' комнатную квартиру, ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаж, ', adv_realestate.area, ' кв. м.' ) AS title,
+                        adv.deal,
+                        adv.full,                        
                         adv.id as advert_id, 
                         adv.price,
                         adv.category_id,              
@@ -285,9 +285,9 @@ class SubCatsController extends Controller
 
                     $results = DB::select(
                         "SELECT
-                        adv.deal,
-                        adv.full,
                         concat('Комната ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаж, ', adv_realestate.area, ' кв. м.' ) AS title,
+                        adv.deal,
+                        adv.full,                        
                         adv.id as advert_id, 
                         adv.price,
                         adv.category_id,                 
@@ -311,9 +311,9 @@ class SubCatsController extends Controller
 
                     $results = DB::select(
                         "SELECT
-                        adv.deal,
-                        adv.full,
                         concat(adv_realestate.rooms, ' комнат, ', adv_realestate.floors_house, ' этажей, ', adv_realestate.area, ' кв. м.' ) AS title,
+                        adv.deal,
+                        adv.full,                        
                         adv.id as advert_id, 
                         adv.price,
                         adv.category_id,                 
@@ -338,9 +338,9 @@ class SubCatsController extends Controller
 
                     $results = DB::select(
                         "SELECT
-                        adv.deal,
-                        adv.full,
                         concat('Земельный участок ', adv_realestate.area, ' кв. м.' ) AS title,
+                        adv.deal,
+                        adv.full,                        
                         adv.id as advert_id, 
                         adv.price,
                         adv.category_id,
@@ -362,9 +362,9 @@ class SubCatsController extends Controller
 
                     $results = DB::select(
                         "SELECT
-                        adv.deal,
-                        adv.full,
                         concat('Гараж или машиноместо' ) AS title,
+                        adv.deal,
+                        adv.full,                        
                         adv.id as advert_id, 
                         adv.price,
                         adv.category_id,             
@@ -386,9 +386,9 @@ class SubCatsController extends Controller
 
                     $results = DB::select(
                         "SELECT
-                        adv.deal,
-                        adv.full,
                         concat('Недвижимость ', adv_realestate.area, ' кв. м.' ) AS title,
+                        adv.deal,
+                        adv.full,                        
                         adv.id as advert_id, 
                         adv.price,
                         adv.category_id,                     
@@ -410,9 +410,9 @@ class SubCatsController extends Controller
 
                     $results = DB::select(
                         "SELECT
-                        adv.deal,
-                        adv.full,
                         concat('Недвижимость ', adv_realestate.area, ' кв. м.' ) AS title,
+                        adv.deal,
+                        adv.full,                        
                         adv.id as advert_id, 
                         adv.price,
                         adv.category_id,                   

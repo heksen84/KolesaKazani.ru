@@ -316,8 +316,7 @@ class AdvertController extends Controller {
                 $advert->coord_lon = $coords[1];
                 \Debugbar::info($coords);
             }
-            else 
-            {
+            else {
                 $advert->coord_lat = 0;
                 $advert->coord_lon = 0;
             }
@@ -337,17 +336,14 @@ class AdvertController extends Controller {
             ------------------------------------------
             Сохраняю картинки
             ------------------------------------------*/
-
             \App\Jobs\loadImages::dispatch($request, $advert->id);
             
             /*SitemapController::addUrl("Моя url");
             SitemapController::removeUrl("Моя url");*/
-
             return $advert->id;
-		}
-		
+		}		
         catch(\Exception $e) {
-               return response()->json(["result"=>"db.error", "msg"=>$e->getMessage()]);  
+               return response()->json( ["result"=>"db.error", "msg"=>$e->getMessage()] );  
     	}
      	
      	return $data;
@@ -373,26 +369,22 @@ class AdvertController extends Controller {
     по id
     -------------------------------------------*/
     public function getFullInfo($id) {
-        
-        $title   = ""; 
+                
         $results = []; 
         $images  = [];
         $adv_full_info = false;
+        $title = ""; 
         
         // выбираю все поля по нужному айдишнику
-        $item = DB::table("adverts")->where("id", $id)->get()->first();
-                                                        
-        // ----------------------------------------------------------------
-        // определить категорию объявления и вернуть необходимый результат
-        // ----------------------------------------------------------------
-        switch($item->category_id) {
+        $item = DB::table("adverts")->where("id", $id)->get()->first();                                                                
+        \Debugbar::info("Категория :".$item->category_id);
 
-            // -----------------------------------------
-            // транспорт (развёрнутая информация)
-            // -----------------------------------------
-            case 1: {
+        // -----------------------------------------
+        // транспорт (развёрнутая информация)
+        // -----------------------------------------
+        if ($item->category_id==1) {
 
-                $transport = DB::table("adv_transport")->where("id", $item->adv_category_id)->get()->first();                
+            $transport = DB::table("adv_transport")->where("id", $item->adv_category_id)->get()->first();                
                 
                 switch($transport->type) {
                     
@@ -440,7 +432,7 @@ class AdvertController extends Controller {
                     
                     $title = $results[0]->deal_name_2." ".$results[0]->mark." ".$results[0]->model." ".$results[0]->year." года в ".$results[0]->city_name;
                     break;
-                    }
+            }
 
             // грузовое авто   
             case 1: {
@@ -486,26 +478,26 @@ class AdvertController extends Controller {
             // мототехника
             case 2: {
                         
-                        $results = DB::select
-                        (
-                            "SELECT                    
-                            deal_name_2,
-                            adv.id as advert_id, 
-                            adv.category_id,
-                            adv.price,
-                            adv.phone1,
-                            adv.phone2,
-                            adv.phone3,
-                            adv.text,
-                            adv.coord_lat,
-                            adv.coord_lon,
-                            adv_transport.id,
-                            year,  
-                            mileage,                            
-                            engine_type,
-                            customs,
-                            kz_region.name as region_name,
-                            kz_city.name as city_name
+                    $results = DB::select
+                    (
+                        "SELECT                    
+                         deal_name_2,
+                         adv.id as advert_id, 
+                         adv.category_id,
+                         adv.price,
+                         adv.phone1,
+                         adv.phone2,
+                         adv.phone3,
+                         adv.text,
+                         adv.coord_lat,
+                         adv.coord_lon,
+                         adv_transport.id,
+                         year,  
+                         mileage,                            
+                         engine_type,
+                         customs,
+                         kz_region.name as region_name,
+                         kz_city.name as city_name
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON 
                         (						
@@ -553,9 +545,8 @@ class AdvertController extends Controller {
 
             //    $title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
                 $title="Спецтехника";
-
                 break;
-        }
+            }
 
             // ретро авто   
             case 4: {
@@ -632,7 +623,6 @@ class AdvertController extends Controller {
 
                 //$title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
                 $title="Водный транспорт";
-
                 break;
             }
         
@@ -670,7 +660,6 @@ class AdvertController extends Controller {
 
                 //$title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
                 $title="Велосипед";
-
                 break;
             }
         
@@ -708,40 +697,12 @@ class AdvertController extends Controller {
 
                 //$title = $results[0]->deal_name_2.$results[0]->city_name;
                 $title="Воздушный транспорт";
-
                 break;
             }                    
                     
-        }                                                                        
-
-        \Debugbar::info($results);                                                
-    }
-
-            // -----------------------------------------
-            // НЕДВИЖИМОСТЬ (развёрнутая информация)
-            // -----------------------------------------
-            case 2: { 
-
-                \Debugbar::info("nedv");
-
-                break;
-            }
-
-            // -----------------------------------------
-            // бытовая техника (развёрнутая информация)
-            // -----------------------------------------
-            /*case 3:             
-            break;
+        }  // end transport                                                                      
             
-            case 4: break;
-            case 5: break;
-            case 6: break;
-            case 7: break;
-            case 8: break;
-            case 9: break;
-            case 10: break;*/
-
-            default: {
+            /*default: {
                     $results = DB::select
                     (
                         "SELECT
@@ -769,11 +730,44 @@ class AdvertController extends Controller {
                     \Debugbar::info($results);
                 
                     $title = $results[0]->deal_name_2." ".$results[0]->text." года в ".$results[0]->city_name;
-                }
+                }*/
+
             }
 
+            // -----------------------------------------
+            // НЕДВИЖИМОСТЬ (развёрнутая информация)
+            // -----------------------------------------
+            if ($item->category_id==2) { 
+
+                \Debugbar::info("nedv");
+
+                $results = DB::select(
+                    "SELECT                    
+                    adv.id as advert_id, 
+                    adv_realestate.rooms, 
+                    adv_realestate.floor,
+                    adv_realestate.floors_house,
+                    adv_realestate.area,
+                    adv.deal,
+                    adv.full,
+                    adv.text,                    
+                    adv.price,
+                    adv.category_id,
+                    adv_realestate.id                        
+                    FROM `adverts` as adv
+                    INNER JOIN (adv_realestate) ON 
+                    ( adv.adv_category_id=adv_realestate.id ) 
+                    WHERE adv.id=".$id." LIMIT 1");                
+
+                $title="Недвижимость";
+                $results="123";                
+
+            }
+
+            // выбираю изображения
             $images = DB::select("SELECT image FROM images WHERE advert_id=".$id);
 
+            // передаю данные во вьюху
             return view("fullinfo")
             ->with("item", json_encode($results) )
             ->with("images", json_encode($images))
