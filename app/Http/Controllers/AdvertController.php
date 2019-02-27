@@ -137,8 +137,8 @@ class AdvertController extends Controller {
         if (isset($data["adv_phone2"])) $phone2 = $data["adv_phone2"];
         if (isset($data["adv_phone3"])) $phone3 = $data["adv_phone3"];
 
-        $region_id  = $data["region_id"];
-        $city_id    = $data["city_id"];
+        $region_id = $data["region_id"];
+        $city_id = $data["city_id"];
                 
      	try {
      			
@@ -247,8 +247,7 @@ class AdvertController extends Controller {
                 // --------------------------------
                 // недвижимость
                 // --------------------------------
-                case 2: 
-                {                    
+                case 2: {                    
                     $realestate = new RealEstate();
                     $realestate->property_type = $data["property_type"];
                     $realestate->floor = $data["floor_num"];
@@ -266,8 +265,7 @@ class AdvertController extends Controller {
                     $realestate->save();
 
                     // записываю id подкатегории
-                    $advert->adv_category_id = $realestate->id;
-                    
+                    $advert->adv_category_id = $realestate->id;                    
                     break;
                 }
 
@@ -393,8 +391,7 @@ class AdvertController extends Controller {
 
                         $adv_full_info = true; // развёрнутое объявление
 
-                        $results = DB::select
-                        (
+                        $results = DB::select(
 					        "SELECT                    
                             deal_name_2,
 					        car_mark.name as mark, 
@@ -417,8 +414,7 @@ class AdvertController extends Controller {
                             kz_region.name as region_name,
                             kz_city.name as city_name
 					    FROM `adverts` as adv
-					    INNER JOIN (adv_transport, car_mark, car_model, categories, dealtype, kz_city, kz_region) ON 
-                        (
+					    INNER JOIN (adv_transport, car_mark, car_model, categories, dealtype, kz_city, kz_region) ON (
 						    adv.adv_category_id = adv_transport.id AND
                             adv_transport.mark  = car_mark.id_car_mark AND 
 						    adv_transport.model = car_model.id_car_model AND                        				
@@ -437,8 +433,7 @@ class AdvertController extends Controller {
             // грузовое авто   
             case 1: {
                         
-                        $results = DB::select
-                        (
+                        $results = DB::select(
 					        "SELECT                    
                             deal_name_2,
 					        adv.id as advert_id, 
@@ -459,8 +454,7 @@ class AdvertController extends Controller {
                             kz_region.name as region_name,
                             kz_city.name as city_name
 					    FROM `adverts` as adv
-					    INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON 
-                        (						
+					    INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON (						
 						    categories.id=adv.category_id AND
                             adv.adv_category_id = adv_transport.id AND 					                        
                             categories.id=dealtype.id AND
@@ -478,8 +472,7 @@ class AdvertController extends Controller {
             // мототехника
             case 2: {
                         
-                    $results = DB::select
-                    (
+                    $results = DB::select(
                         "SELECT                    
                          deal_name_2,
                          adv.id as advert_id, 
@@ -499,8 +492,7 @@ class AdvertController extends Controller {
                          kz_region.name as region_name,
                          kz_city.name as city_name
                         FROM `adverts` as adv
-                        INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON 
-                        (						
+                        INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON (						
                             categories.id=adv.category_id AND
                             adv.adv_category_id = adv_transport.id AND 					                        
                             categories.id=dealtype.id AND
@@ -516,8 +508,7 @@ class AdvertController extends Controller {
             // спецтехника
             case 3: {
                         
-                $results = DB::select
-                (
+                $results = DB::select(
                     "SELECT                    
                     deal_name_2,
                     adv.id as advert_id, 
@@ -533,8 +524,7 @@ class AdvertController extends Controller {
                     kz_region.name as region_name,
                     kz_city.name as city_name
                 FROM `adverts` as adv
-                INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON 
-                (						
+                INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON (						
                     categories.id=adv.category_id AND
                     adv.adv_category_id = adv_transport.id AND 					                        
                     categories.id=dealtype.id AND
@@ -551,8 +541,7 @@ class AdvertController extends Controller {
             // ретро авто   
             case 4: {
                         
-                $results = DB::select
-                (
+                $results = DB::select(
                     "SELECT                    
                     deal_name_2,
                     adv.id as advert_id, 
@@ -573,8 +562,7 @@ class AdvertController extends Controller {
                     kz_region.name as region_name,
                     kz_city.name as city_name
                 FROM `adverts` as adv
-                INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON 
-                (						
+                INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON (						
                     categories.id=adv.category_id AND
                     adv.adv_category_id = adv_transport.id AND 					                        
                     categories.id=dealtype.id AND
@@ -592,8 +580,7 @@ class AdvertController extends Controller {
             // водный
             case 5: {
                         
-                $results = DB::select
-                (
+                $results = DB::select(
                     "SELECT                    
                     deal_name_2,
                     adv.id as advert_id, 
@@ -609,8 +596,7 @@ class AdvertController extends Controller {
                     kz_region.name as region_name,
                     kz_city.name as city_name
                 FROM `adverts` as adv
-                INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON 
-                (						
+                INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON (						
                     categories.id=adv.category_id AND
                     adv.adv_category_id = adv_transport.id AND 					                        
                     categories.id=dealtype.id AND
@@ -627,10 +613,8 @@ class AdvertController extends Controller {
             }
         
             // велосипед
-            case 6: {
-                        
-                $results = DB::select
-                (
+            case 6: {                        
+                $results = DB::select(
                     "SELECT                    
                     deal_name_2,
                     adv.id as advert_id, 
@@ -646,8 +630,7 @@ class AdvertController extends Controller {
                     kz_region.name as region_name,
                     kz_city.name as city_name
                 FROM `adverts` as adv
-                INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON 
-                (						
+                INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON (						
                     categories.id=adv.category_id AND
                     adv.adv_category_id = adv_transport.id AND 					                        
                     categories.id=dealtype.id AND
@@ -666,8 +649,7 @@ class AdvertController extends Controller {
             // воздушный
             case 7: {
                         
-                $results = DB::select
-                (
+                $results = DB::select(
                     "SELECT                    
                     deal_name_2,
                     adv.id as advert_id, 
@@ -683,8 +665,7 @@ class AdvertController extends Controller {
                     kz_region.name as region_name,
                     kz_city.name as city_name
                 FROM `adverts` as adv
-                INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON 
-                (						
+                INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON (						
                     categories.id=adv.category_id AND
                     adv.adv_category_id = adv_transport.id AND 					                        
                     categories.id=dealtype.id AND
@@ -708,41 +689,47 @@ class AdvertController extends Controller {
             // -----------------------------------------
             // НЕДВИЖИМОСТЬ (развёрнутая информация)
             // -----------------------------------------
-            if ($item->category_id==2) { 
+            if ($item->category_id==2) {
 
-                \Debugbar::info("nedv");
+                $realestate = DB::table("adv_realestate")->where("id", $item->adv_category_id)->get()->first();
 
-                $results = DB::select(
-                    "SELECT                    
-                    adv.id as advert_id, 
-                    adv.category_id,
-                    adv_realestate.id,
-                    adv_realestate.rooms, 
-                    adv_realestate.floor,
-                    adv_realestate.floors_house,
-                    adv_realestate.area,                    
-                    adv.deal,
-                    adv.full,
-                    adv.phone1,
-                    adv.phone2,
-                    adv.phone3,
-                    adv.text,                    
-                    adv.price,                    
-                    kz_region.name as region_name,
-                    kz_city.name as city_name                        
-                    FROM `adverts` as adv
-                    INNER JOIN (adv_realestate, kz_city, kz_region) ON 
-                    ( 
-                        adv.adv_category_id=adv_realestate.id AND
-                        kz_city.city_id=adv.city_id AND
-                        kz_region.region_id=adv.region_id
-                    ) 
-                    WHERE adv.id=".$id." LIMIT 1");                
+                switch($realestate->property_type) {
 
-                $title="Недвижимость";             
+                    case 0: {
+                        $results = DB::select(
+                        "SELECT                    
+                            adv.id as advert_id, 
+                            adv.category_id,
+                            adv_realestate.id,
+                            adv_realestate.rooms, 
+                            adv_realestate.floor,
+                            adv_realestate.floors_house,
+                            adv_realestate.area,                    
+                            adv.deal,
+                            adv.full,
+                            adv.phone1,
+                            adv.phone2,
+                            adv.phone3,
+                            adv.text,                    
+                            adv.price,                    
+                            kz_region.name as region_name,
+                            kz_city.name as city_name                        
+                        FROM `adverts` as adv
+                        INNER JOIN (adv_realestate, kz_city, kz_region) ON ( 
+                            adv.adv_category_id=adv_realestate.id AND
+                            kz_city.city_id=adv.city_id AND
+                            kz_region.region_id=adv.region_id
+                        ) 
+                        WHERE adv.id=".$id." LIMIT 1");                
+
+                        $title="Недвижимость";                                 
+                    }
+                }
             }
 
+            // ----------------------------------------
             // категории без развёрнутой информации
+            // ----------------------------------------
             if ( $item->category_id==3 || 
                  $item->category_id==4 || 
                  $item->category_id==5 || 
@@ -752,23 +739,21 @@ class AdvertController extends Controller {
                  $item->category_id==9 || 
                  $item->category_id==10) { 
             
-                $results = DB::select
-                (
+                $results = DB::select(
                     "SELECT
-                        deal_name_2,
-                        adv.category_id,
-                        adv.id as advert_id,
-                        adv.price,
-                        adv.phone1,
-                        adv.phone2,
-                        adv.phone3,
-                        adv.text,
-                        adv.coord_lat,
-                        adv.coord_lon,
-                        kz_region.name as region_name,
-                        kz_city.name as city_name              
-                    FROM `adverts` as adv INNER JOIN (categories, dealtype, kz_city, kz_region) ON 
-                    (
+                    deal_name_2,
+                    adv.category_id,
+                    adv.id as advert_id,
+                    adv.price,
+                    adv.phone1,
+                    adv.phone2,
+                    adv.phone3,
+                    adv.text,
+                    adv.coord_lat,
+                    adv.coord_lon,
+                    kz_region.name as region_name,
+                    kz_city.name as city_name              
+                    FROM `adverts` as adv INNER JOIN (categories, dealtype, kz_city, kz_region) ON (
                         categories.id=dealtype.id AND
                         kz_city.city_id=adv.city_id AND
                         kz_region.region_id=adv.region_id
