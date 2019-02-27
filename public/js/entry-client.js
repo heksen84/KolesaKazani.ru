@@ -3461,8 +3461,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 var mapCoords = [];
@@ -37074,13 +37072,13 @@ var render = function() {
                               ? _c("span", [_vm._v("Сдам в аренду")])
                               : _vm._e(),
                             _vm._v(
-                              "\n\n\t\t\t\t" +
+                              "\n\n\t\t\t\t\t\t" +
                                 _vm._s(_vm.item[0].rooms) +
                                 " комнатную квартиру, " +
                                 _vm._s(_vm.item[0].floor) +
                                 "/" +
                                 _vm._s(_vm.item[0].floors_house) +
-                                " этаж\n\t\t\t\t\n\t\t\t\t"
+                                " этаж\t\t\n\t\t\t\t\t"
                             )
                           ])
                         ]),
