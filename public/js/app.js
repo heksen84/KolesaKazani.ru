@@ -3449,6 +3449,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var mapCoords = [];
@@ -37038,6 +37052,39 @@ var render = function() {
                   _vm._v(" "),
                   _vm.item[0].category_id == 2
                     ? _c("div", [
+                        _c("h3", [
+                          _c("b", [
+                            _vm.item[0].deal == 0
+                              ? _c("span", [_vm._v("Куплю")])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.item[0].deal == 1
+                              ? _c("span", [_vm._v("Продам")])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.item[0].deal == 2
+                              ? _c("span", [_vm._v("Обменяю")])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.item[0].deal == 3
+                              ? _c("span", [_vm._v("Отдам даром")])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.item[0].deal == 4
+                              ? _c("span", [_vm._v("Сдам в аренду")])
+                              : _vm._e(),
+                            _vm._v(
+                              "\n\n\t\t\t\t" +
+                                _vm._s(_vm.item[0].rooms) +
+                                " комнатную квартиру, " +
+                                _vm._s(_vm.item[0].floor) +
+                                "/" +
+                                _vm._s(_vm.item[0].floors_house) +
+                                " этаж\n\t\t\t\t\n\t\t\t\t"
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
                         _c("h5", [
                           _vm._v("Количество комнат:"),
                           _c("b", [_vm._v(" " + _vm._s(_vm.item[0].rooms))])

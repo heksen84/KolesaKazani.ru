@@ -696,6 +696,7 @@ class AdvertController extends Controller {
                 switch($realestate->property_type) {
 
                     case 0: {
+                        
                         $results = DB::select(
                         "SELECT                    
                             adv.id as advert_id, 
