@@ -3439,6 +3439,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var mapCoords = [];
@@ -37024,17 +37034,54 @@ var render = function() {
                             ])
                           : _vm._e()
                       ])
-                    : _c("h5", [
-                        _c("b", [_vm._v(_vm._s(_vm.item[0].text))]),
-                        _c("br"),
-                        _c("br")
-                      ]),
+                    : _vm._e(),
                   _vm._v(" "),
                   _vm.item[0].category_id == 2
                     ? _c("div", [
-                        _vm._v(
-                          "\n\t\t\t\t" + _vm._s(_vm.item[0].text) + "\n\t\t\t"
-                        )
+                        _c("h5", [
+                          _vm._v("Количество комнат:"),
+                          _c("b", [_vm._v(" " + _vm._s(_vm.item[0].rooms))])
+                        ]),
+                        _vm._v(" "),
+                        _c("h5", [
+                          _vm._v("Этаж:"),
+                          _c("b", [_vm._v(" " + _vm._s(_vm.item[0].floor))])
+                        ]),
+                        _vm._v(" "),
+                        _c("h5", [
+                          _vm._v("Количество этажей:"),
+                          _c("b", [
+                            _vm._v(" " + _vm._s(_vm.item[0].floors_house))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("h5", [
+                          _vm._v("Площадь:"),
+                          _c("b", [_vm._v(" " + _vm._s(_vm.item[0].area))])
+                        ]),
+                        _vm._v(" "),
+                        _vm.full && _vm.item[0].text != null
+                          ? _c("h5", [
+                              _vm._v("Описание: "),
+                              _c("b", [_vm._v(_vm._s(_vm.item[0].text))])
+                            ])
+                          : _vm._e()
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.item[0].category_id == 3 ||
+                  _vm.item[0].category_id == 4 ||
+                  _vm.item[0].category_id == 5 ||
+                  _vm.item[0].category_id == 6 ||
+                  _vm.item[0].category_id == 7 ||
+                  _vm.item[0].category_id == 8 ||
+                  _vm.item[0].category_id == 9 ||
+                  _vm.item[0].category_id == 10
+                    ? _c("h5", [
+                        _c("b", [_vm._v(_vm._s(_vm.item[0].text))]),
+                        _vm._v(" "),
+                        _c("br"),
+                        _c("br")
                       ])
                     : _vm._e(),
                   _vm._v(" "),

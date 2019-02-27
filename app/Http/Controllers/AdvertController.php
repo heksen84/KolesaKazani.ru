@@ -715,19 +715,28 @@ class AdvertController extends Controller {
                 $results = DB::select(
                     "SELECT                    
                     adv.id as advert_id, 
+                    adv.category_id,
+                    adv_realestate.id,
                     adv_realestate.rooms, 
                     adv_realestate.floor,
                     adv_realestate.floors_house,
-                    adv_realestate.area,
+                    adv_realestate.area,                    
                     adv.deal,
                     adv.full,
+                    adv.phone1,
+                    adv.phone2,
+                    adv.phone3,
                     adv.text,                    
-                    adv.price,
-                    adv.category_id,
-                    adv_realestate.id                        
+                    adv.price,                    
+                    kz_region.name as region_name,
+                    kz_city.name as city_name                        
                     FROM `adverts` as adv
-                    INNER JOIN (adv_realestate) ON 
-                    ( adv.adv_category_id=adv_realestate.id ) 
+                    INNER JOIN (adv_realestate, kz_city, kz_region) ON 
+                    ( 
+                        adv.adv_category_id=adv_realestate.id AND
+                        kz_city.city_id=adv.city_id AND
+                        kz_region.region_id=adv.region_id
+                    ) 
                     WHERE adv.id=".$id." LIMIT 1");                
 
                 $title="Недвижимость";             

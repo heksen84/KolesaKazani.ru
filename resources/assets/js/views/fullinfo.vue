@@ -49,17 +49,31 @@
 				</h5>
 				<h5 v-if="full && item[0].text!=null">Описание: <b>{{ item[0].text }}</b></h5>
 			</div>
-			<!-- Всё остальное -->
-			<h5 v-else>
-				<b>{{ item[0].text }}</b><br><br>
-			</h5>
 
 			<!-- Недвижимость --->
 			<div v-if="item[0].category_id==2">
-				{{ item[0].text }}
+				<h5>Количество комнат:<b> {{ item[0].rooms }}</b></h5>
+				<h5>Этаж:<b> {{ item[0].floor }}</b></h5>
+				<h5>Количество этажей:<b> {{ item[0].floors_house }}</b></h5>
+				<h5>Площадь:<b> {{ item[0].area }}</b></h5>
+				<h5 v-if="full && item[0].text!=null">Описание: <b>{{ item[0].text }}</b></h5>
 			</div>
 
-			
+
+			<!-- Всё остальное -->
+			<h5 v-if="item[0].category_id==3 || 
+				item[0].category_id==4 || 
+				item[0].category_id==5 ||
+				item[0].category_id==6 ||
+				item[0].category_id==7 ||
+				item[0].category_id==8 ||
+				item[0].category_id==9 ||
+				item[0].category_id==10">			
+				<b>{{ item[0].text }}</b>
+				<br><br>			
+			</h5>
+
+
 		<!-------------------------------------------------
 			ОБЩАЯ ИНФОРМАЦИЯ
 		  ------------------------------------------------->
@@ -82,18 +96,14 @@
 		</div>
 		
 		<div style="text-align:center;margin-bottom:20px">
-		<hr>
-			
+		<hr>			
 			<!-- Регион / Город / Село -->
-			<b><ins>{{ item[0].region_name }}, {{ item[0].city_name }}</ins></b>				
-
+			<b><ins>{{ item[0].region_name }}, {{ item[0].city_name }}</ins></b>
 			<!-- Карта -->
 			<div id="map" style="margin-top:10px; width: 100%; height: 400px" v-if="item[0].coord_lat!=0 && item[0].coord_lon!=0"></div>
-
 			<hr>
 				<b-button variant="primary" @click="closeAndReturn">закрыть</b-button>
 			</div>		
-
 		</b-col>
 	</b-row>
 </b-container>
