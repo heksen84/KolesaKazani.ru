@@ -395,9 +395,10 @@ class AdvertController extends Controller {
 					        "SELECT                    
                             deal_name_2,
 					        car_mark.name as mark, 
-					        car_model.name as model,
+					        car_model.name as model,                            
 					        adv.id as advert_id, 
-                            adv.category_id as category_id,					
+                            adv.category_id as category_id,
+                            adv.deal,
 					        adv.price,
                             adv.phone1,
                             adv.phone2,
@@ -416,15 +417,19 @@ class AdvertController extends Controller {
 					    FROM `adverts` as adv
 					    INNER JOIN (adv_transport, car_mark, car_model, categories, dealtype, kz_city, kz_region) ON (
 						    adv.adv_category_id = adv_transport.id AND
-                            adv_transport.mark  = car_mark.id_car_mark AND 
+                            adv_transport.mark = car_mark.id_car_mark AND 
 						    adv_transport.model = car_model.id_car_model AND                        				
-                            categories.id=adv.category_id AND
-                            categories.id=dealtype.id AND
+                            adv.deal=dealtype.id AND
+                            categories.id=adv.category_id AND                            
                             kz_city.city_id=adv.city_id AND
                             kz_region.region_id=adv.region_id
 					    ) 
                         WHERE adv.id=".$id." LIMIT 1"
-                    );                
+                    );
+                    
+                    \Debugbar::info($results[0]->deal);
+                    \Debugbar::info($results[0]->deal_name_2);
+                    \Debugbar::info($results[0]->advert_id);
                     
                     $title = $results[0]->deal_name_2." ".$results[0]->mark." ".$results[0]->model." ".$results[0]->year." года в ".$results[0]->city_name;
                     break;
@@ -437,7 +442,8 @@ class AdvertController extends Controller {
 					        "SELECT                    
                             deal_name_2,
 					        adv.id as advert_id, 
-                            adv.category_id as category_id,					
+                            adv.category_id as category_id,
+                            adv.deal,
 					        adv.price,
                             adv.phone1,
                             adv.phone2,
@@ -456,8 +462,8 @@ class AdvertController extends Controller {
 					    FROM `adverts` as adv
 					    INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON (						
 						    categories.id=adv.category_id AND
-                            adv.adv_category_id = adv_transport.id AND 					                        
-                            categories.id=dealtype.id AND
+                            adv.deal=dealtype.id AND
+                            adv.adv_category_id = adv_transport.id AND
                             kz_city.city_id=adv.city_id AND
                             kz_region.region_id=adv.region_id
 					    ) 
@@ -465,7 +471,7 @@ class AdvertController extends Controller {
 
                         \Debugbar::info($results);
 
-                        $title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
+                        $title = $results[0]->text." в ".$results[0]->city_name." ".$results[0]->year." г.в.";
                         break;
                 }                    
             
@@ -477,6 +483,7 @@ class AdvertController extends Controller {
                          deal_name_2,
                          adv.id as advert_id, 
                          adv.category_id,
+                         adv.deal,
                          adv.price,
                          adv.phone1,
                          adv.phone2,
@@ -494,14 +501,14 @@ class AdvertController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON (						
                             categories.id=adv.category_id AND
-                            adv.adv_category_id = adv_transport.id AND 					                        
-                            categories.id=dealtype.id AND
+                            adv.deal=dealtype.id AND
+                            adv.adv_category_id = adv_transport.id AND
                             kz_city.city_id=adv.city_id AND
                             kz_region.region_id=adv.region_id
                         ) 
                         WHERE adv.id=".$id." LIMIT 1");
 
-                        $title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
+                        $title = $results[0]->text." в ".$results[0]->city_name." ".$results[0]->year." г.в.";
                         break;
             }
 
@@ -513,6 +520,7 @@ class AdvertController extends Controller {
                     deal_name_2,
                     adv.id as advert_id, 
                     adv.category_id,
+                    adv.deal,
                     adv.price,
                     adv.phone1,
                     adv.phone2,
@@ -526,15 +534,14 @@ class AdvertController extends Controller {
                 FROM `adverts` as adv
                 INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON (						
                     categories.id=adv.category_id AND
-                    adv.adv_category_id = adv_transport.id AND 					                        
-                    categories.id=dealtype.id AND
+                    adv.deal=dealtype.id AND
+                    adv.adv_category_id = adv_transport.id AND                    
                     kz_city.city_id=adv.city_id AND
                     kz_region.region_id=adv.region_id
                 ) 
                 WHERE adv.id=".$id." LIMIT 1");
 
-            //    $title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
-                $title="Спецтехника";
+                $title = $results[0]->text." в ".$results[0]->city_name." ".$results[0]->year." г.в.";
                 break;
             }
 
@@ -545,7 +552,8 @@ class AdvertController extends Controller {
                     "SELECT                    
                     deal_name_2,
                     adv.id as advert_id, 
-                    adv.category_id as category_id,					
+                    adv.category_id as category_id,
+                    adv.deal,
                     adv.price,
                     adv.phone1,
                     adv.phone2,
@@ -564,16 +572,14 @@ class AdvertController extends Controller {
                 FROM `adverts` as adv
                 INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON (						
                     categories.id=adv.category_id AND
-                    adv.adv_category_id = adv_transport.id AND 					                        
-                    categories.id=dealtype.id AND
+                    adv.deal=dealtype.id AND
+                    adv.adv_category_id = adv_transport.id AND
                     kz_city.city_id=adv.city_id AND
                     kz_region.region_id=adv.region_id
                 ) 
                 WHERE adv.id=".$id." LIMIT 1");
 
-                \Debugbar::info($results);
-
-                $title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
+                $title = $results[0]->text." в ".$results[0]->city_name." ".$results[0]->year." г.в.";
                 break;
             }
         
@@ -584,7 +590,8 @@ class AdvertController extends Controller {
                     "SELECT                    
                     deal_name_2,
                     adv.id as advert_id, 
-                    adv.category_id as category_id,					
+                    adv.category_id as category_id,
+                    adv.deal,
                     adv.price,
                     adv.phone1,
                     adv.phone2,
@@ -598,17 +605,14 @@ class AdvertController extends Controller {
                 FROM `adverts` as adv
                 INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON (						
                     categories.id=adv.category_id AND
-                    adv.adv_category_id = adv_transport.id AND 					                        
-                    categories.id=dealtype.id AND
+                    adv.adv_category_id = adv_transport.id AND
+                    adv.deal=dealtype.id AND                    
                     kz_city.city_id=adv.city_id AND
                     kz_region.region_id=adv.region_id
                 ) 
                 WHERE adv.id=".$id." LIMIT 1");
 
-                \Debugbar::info($results);
-
-                //$title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
-                $title="Водный транспорт";
+                $title = $results[0]->text." в ".$results[0]->city_name." ".$results[0]->year." г.в.";
                 break;
             }
         
@@ -618,7 +622,8 @@ class AdvertController extends Controller {
                     "SELECT                    
                     deal_name_2,
                     adv.id as advert_id, 
-                    adv.category_id as category_id,					
+                    adv.category_id as category_id,
+                    adv.deal,
                     adv.price,
                     adv.phone1,
                     adv.phone2,
@@ -632,17 +637,14 @@ class AdvertController extends Controller {
                 FROM `adverts` as adv
                 INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON (						
                     categories.id=adv.category_id AND
-                    adv.adv_category_id = adv_transport.id AND 					                        
-                    categories.id=dealtype.id AND
+                    adv.adv_category_id = adv_transport.id AND
+                    adv.deal=dealtype.id AND                    
                     kz_city.city_id=adv.city_id AND
                     kz_region.region_id=adv.region_id
                 ) 
-                WHERE adv.id=".$id." LIMIT 1");
+                WHERE adv.id=".$id." LIMIT 1");                
 
-                \Debugbar::info($results);
-
-                //$title = $results[0]->deal_name_2.$results[0]->year." года в ".$results[0]->city_name;
-                $title="Велосипед";
+                $title = $results[0]->text." в ".$results[0]->city_name." ".$results[0]->year." г.в.";
                 break;
             }
         
@@ -653,7 +655,8 @@ class AdvertController extends Controller {
                     "SELECT                    
                     deal_name_2,
                     adv.id as advert_id, 
-                    adv.category_id as category_id,					
+                    adv.category_id as category_id,
+                    adv.deal,
                     adv.price,
                     adv.phone1,
                     adv.phone2,
@@ -667,17 +670,14 @@ class AdvertController extends Controller {
                 FROM `adverts` as adv
                 INNER JOIN (adv_transport, categories, dealtype, kz_city, kz_region) ON (						
                     categories.id=adv.category_id AND
-                    adv.adv_category_id = adv_transport.id AND 					                        
-                    categories.id=dealtype.id AND
+                    adv.deal=dealtype.id AND
+                    adv.adv_category_id = adv_transport.id AND                    
                     kz_city.city_id=adv.city_id AND
                     kz_region.region_id=adv.region_id
                 ) 
                 WHERE adv.id=".$id." LIMIT 1");
 
-                \Debugbar::info($results);
-
-                //$title = $results[0]->deal_name_2.$results[0]->city_name;
-                $title="Воздушный транспорт";
+                $title = $results[0]->text." в ".$results[0]->city_name." ".$results[0]->year." г.в.";
                 break;
             }                    
                     
@@ -718,12 +718,14 @@ class AdvertController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate, kz_city, kz_region) ON ( 
                             adv.adv_category_id=adv_realestate.id AND
+                            adv.deal=dealtype.id AND
                             kz_city.city_id=adv.city_id AND
                             kz_region.region_id=adv.region_id
                         ) 
                         WHERE adv.id=".$id." LIMIT 1");                
 
                         $title="Недвижимость";                                 
+                        break;
                     }
                 }
             }
@@ -756,13 +758,13 @@ class AdvertController extends Controller {
                     kz_city.name as city_name              
                     FROM `adverts` as adv INNER JOIN (categories, dealtype, kz_city, kz_region) ON (
                         categories.id=dealtype.id AND
+                        adv.deal=dealtype.id AND
                         kz_city.city_id=adv.city_id AND
                         kz_region.region_id=adv.region_id
                     ) 
                     WHERE adv.id=".$id." LIMIT 1"
                 );
-                
-                \Debugbar::info($results);
+                                
                 $title = $results[0]->deal_name_2." ".$results[0]->text." года в ".$results[0]->city_name;
             }
 

@@ -21,8 +21,16 @@
 			<!-- Транспорт --->
 			<div v-if="item[0].category_id==1">
 				
+				<!-- Заголовок -->
 				<h1 v-if="full" style="font-size:190%">
-					<b>{{ item[0].mark }} {{ item[0].model }}, {{ item[0].year}} года</b>
+					<b>
+						<span v-if="item[0].deal==0">Куплю</span>
+        				<span v-if="item[0].deal==1">Продам</span>
+        				<span v-if="item[0].deal==2">Обменяю</span>
+        				<span v-if="item[0].deal==3">Отдам даром</span>
+        				<span v-if="item[0].deal==4">Сдам в аренду</span>
+						{{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года
+					</b>
 				</h1>
 
 				<hr v-if="full">
@@ -53,17 +61,17 @@
 			<!-- Недвижимость --->
 			<div v-if="item[0].category_id==2">
 
-				<h3>
+				<!-- Заголовок -->
+				<h1 style="font-size:190%">
 					<b>
 						<span v-if="item[0].deal==0">Куплю</span>
         				<span v-if="item[0].deal==1">Продам</span>
         				<span v-if="item[0].deal==2">Обменяю</span>
         				<span v-if="item[0].deal==3">Отдам даром</span>
         				<span v-if="item[0].deal==4">Сдам в аренду</span>
-
 						{{ item[0].rooms }} комнатную квартиру, {{ item[0].floor }}/{{ item[0].floors_house }} этаж		
 					</b>
-				</h3>
+				</h1>
 
 				<h5>Количество комнат:<b> {{ item[0].rooms }}</b></h5>
 				<h5>Этаж:<b> {{ item[0].floor }}</b></h5>

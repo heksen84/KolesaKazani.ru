@@ -73,14 +73,15 @@
 			 		<b-form-textarea v-if="!$store.state.required_info" id="addit_info" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></b-form-textarea>
 					<b-form-textarea v-if="$store.state.required_info" required id="addit_info" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></b-form-textarea>
 				</b-form-group>			
-
+				
 				<!-- Цена -->
 				<b-form-group label-for="price" style="text-align:center" v-if="category!=4">
-			 		<b-form-input v-model="price" type="number" id="price" placeholder="Цена" style="margin-left:40px;width:130px;display:inline;font-weight:bold" :formatter="setPrice" required></b-form-input>
+			 		<b-form-input v-model="price" type="text" id="price" placeholder="Цена" style="text-align:center;margin-left:40px;width:130px;display:inline;font-weight:bold" :formatter="setPrice" required></b-form-input>
 					&nbsp;{{ this.$root.money_full_name }}
+					<div style="margin-top:10px;color:green">{{ summ_str }}</div>
 				</b-form-group>
 
-
+				<!-- Контакты -->
 				<b-form-group label="<ins>Контакты:</ins>" style="text-align:center;font-weight:bold">			 	
 				 	<b-form-input v-model.trim="phone1" type="text" placeholder="Контактный номер 1" style="width:250px;display:inline;text-align:center" :state="setPhoneNumber(1)" required></b-form-input>
 							<!--<span style="margin-left:10px;color:grey;cursor:pointer" title="очистить поле" @click="clearField('phone1')">X</span>-->
@@ -159,6 +160,99 @@ var myPlacemark2=null;
 var bigmap=null;
 var smallmap=null;
 
+
+    /**
+     * Преобразует строку в массив
+     */
+    function str_split(string, length) {
+        var chunks, len, pos;
+        
+        string = (string == null) ? "" : string;
+        length =  (length == null) ? 1 : length;
+        
+        var chunks = [];
+        var pos = 0;
+        var len = string.length;
+        while (pos < len) {
+            chunks.push(string.slice(pos, pos += length));
+        }
+        
+        return chunks;
+		};
+		
+		 /**
+     * Склоняем словоформу
+     */
+    function morph(number, titles) {
+        var cases = [2, 0, 1, 1, 1, 2];
+        return titles[ (number>4 && number<20)? 2 : cases[Math.min(number, 5)] ];
+		};
+		
+		/**
+    * Возвращает сумму прописью
+    */
+    function number_to_string (num) {
+            var def_translite = {
+                null: 'ноль',
+                a1: ['один','два','три','четыре','пять','шесть','семь','восемь','девять'],
+                a2: ['одна','две','три','четыре','пять','шесть','семь','восемь','девять'],
+                a10: ['десять','одиннадцать','двенадцать','тринадцать','четырнадцать','пятнадцать','шестнадцать','семнадцать','восемнадцать','девятнадцать'],
+                a20: ['двадцать','тридцать','сорок','пятьдесят','шестьдесят','семьдесят','восемьдесят','девяносто'],
+                a100: ['сто','двести','триста','четыреста','пятьсот','шестьсот','семьсот','восемьсот','девятьсот'],
+								uc: ['тиын', 'тиын', 'тиын'],
+								//uc: ['копейка', 'копейки', 'копеек'],
+								//ur: ['рубль', 'рубля', 'рублей'],
+								ur: ['тенге', 'тенге', 'тенге'],
+                u3: ['тысяча', 'тысячи', 'тысяч'],
+                u2: ['миллион', 'миллиона', 'миллионов'],
+                u1: ['миллиард', 'миллиарда', 'миллиардов'],
+            }
+        var i1, i2, i3, kop, out, rub, v, zeros, _ref, _ref1, _ref2, ax;
+        
+        _ref = parseFloat(num).toFixed(2).split('.'), rub = _ref[0], kop = _ref[1];
+        var leading_zeros = 12 - rub.length;
+        if (leading_zeros < 0) {
+            return false;
+        }
+        
+        var zeros = [];
+        while (leading_zeros--) {
+            zeros.push('0');
+        }
+        rub = zeros.join('') + rub;
+        var out = [];
+        if (rub > 0) {
+            // Разбиваем число по три символа
+            _ref1 = str_split(rub, 3);
+            for (var i = -1; i < _ref1.length;i++) {
+                v = _ref1[i];
+                if (!(v > 0)) continue;
+                _ref2 = str_split(v, 1), i1 = parseInt(_ref2[0]), i2 = parseInt(_ref2[1]), i3 = parseInt(_ref2[2]);
+                out.push(def_translite.a100[i1-1]); // 1xx-9xx
+                ax = (i+1 == 3) ? 'a2' : 'a1';
+                if (i2 > 1) {
+                    out.push(def_translite.a20[i2-2] + (i3 > 0 ?  ' ' + def_translite[ax][i3-1] : '')); // 20-99
+                } else {
+                    out.push(i2 > 0 ? def_translite.a10[i3] : def_translite[ax][i3-1]); // 10-19 | 1-9
+                }
+                
+                if (_ref1.length > i+1){
+                    var name = def_translite['u'+(i+1)];
+                    out.push(morph(v,name));
+                }
+            }
+        } else {
+            out.push(def_translite.null);
+        }
+        // Дописываем название "рубли"
+        out.push(morph(rub, def_translite.ur));
+        // Дописываем название "копейка"
+        //out.push(kop + ' ' + morph(kop, def_translite.uc));
+        
+        // Объединяем маcсив в строку, удаляем лишние пробелы и возвращаем результат
+        return out.join(' ').replace(RegExp(' {2,}', 'g'), ' ').trimLeft();
+    };
+
 /*
 ---------------------------------------------------------
  Инициализация большой карты (карта назначения координат)
@@ -207,6 +301,8 @@ export default {
 	
 	data () {
     return 	{
+
+			summ_str: "", // сумма прописью
 
 			// константы
 			const_phone1_length: 2,
@@ -389,7 +485,11 @@ export default {
   		setPrice(price) {
 			if (price < 0) return;
   			this.$root.advert_data.adv_price=price;
-        	this.price = price;
+					this.price = price;
+					
+					//console.log(number_to_string(price));
+					this.summ_str=number_to_string(price);
+
         	return price;
 		},
 
