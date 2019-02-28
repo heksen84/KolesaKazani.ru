@@ -2848,9 +2848,10 @@ var myPlacemark2 = null;
 var bigmap = null;
 var smallmap = null;
 
-/**
- * Преобразует строку в массив
- */
+/*
+------------------------------
+ Преобразует строку в массив
+------------------------------*/
 function str_split(string, length) {
 	var chunks, len, pos;
 
@@ -2867,17 +2868,19 @@ function str_split(string, length) {
 	return chunks;
 };
 
-/**
-  * Склоняем словоформу
-  */
+/*
+------------------------------
+ Склоняем словоформу
+------------------------------*/
 function morph(number, titles) {
 	var cases = [2, 0, 1, 1, 1, 2];
 	return titles[number > 4 && number < 20 ? 2 : cases[Math.min(number, 5)]];
 };
 
-/**
-  * Возвращает сумму прописью
-  */
+/*
+------------------------------
+ Возвращает сумму прописью
+------------------------------*/
 function number_to_string(num) {
 	var def_translite = {
 		null: 'ноль',
@@ -2894,6 +2897,7 @@ function number_to_string(num) {
 		u2: ['миллион', 'миллиона', 'миллионов'],
 		u1: ['миллиард', 'миллиарда', 'миллиардов']
 	};
+
 	var i1, i2, i3, kop, out, rub, v, zeros, _ref, _ref1, _ref2, ax;
 
 	_ref = parseFloat(num).toFixed(2).split('.'), rub = _ref[0], kop = _ref[1];
