@@ -3203,6 +3203,10 @@ function forEach(data, callback) {
 						this.$root.advert_data.adv_phone3 = this.phone3;
 						break;
 					}
+
+					return number;
+
+				//alert(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/.test('+7(705)8675457'))
 			}
 		},
 
@@ -38792,7 +38796,7 @@ var render = function() {
                             attrs: {
                               type: "text",
                               placeholder: "Контактный номер 1",
-                              state: _vm.setPhoneNumber(1),
+                              formatter: _vm.setPhoneNumber(1),
                               required: ""
                             },
                             model: {
@@ -38818,7 +38822,7 @@ var render = function() {
                                     attrs: {
                                       type: "text",
                                       placeholder: "Контактный номер 2",
-                                      state: _vm.setPhoneNumber(2)
+                                      formatter: _vm.setPhoneNumber(2)
                                     },
                                     model: {
                                       value: _vm.phone2,
@@ -38841,7 +38845,7 @@ var render = function() {
                                     attrs: {
                                       type: "text",
                                       placeholder: "Контактный номер 3",
-                                      state: _vm.setPhoneNumber(3)
+                                      formatter: _vm.setPhoneNumber(3)
                                     },
                                     model: {
                                       value: _vm.phone3,

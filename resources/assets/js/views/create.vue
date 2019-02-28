@@ -83,12 +83,12 @@
 
 				<!-- Контакты -->
 				<b-form-group label="<ins>Контакты:</ins>" style="text-align:center;font-weight:bold">			 	
-				 	<b-form-input v-model.trim="phone1" type="text" placeholder="Контактный номер 1" style="width:250px;display:inline;text-align:center" :state="setPhoneNumber(1)" required></b-form-input>
+				 	<b-form-input v-model.trim="phone1" type="text" placeholder="Контактный номер 1" style="width:250px;display:inline;text-align:center" :formatter="setPhoneNumber(1)" required></b-form-input>
 							<!--<span style="margin-left:10px;color:grey;cursor:pointer" title="очистить поле" @click="clearField('phone1')">X</span>-->
 					<div v-if="phone1.length>const_phone1_length">
-						<b-form-input v-model.trim="phone2" type="text" placeholder="Контактный номер 2" style="width:250px;text-align:center;margin: 5px auto" :state="setPhoneNumber(2)"></b-form-input>
+						<b-form-input v-model.trim="phone2" type="text" placeholder="Контактный номер 2" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber(2)"></b-form-input>
 							<!--<span style="color:grey;cursor:pointer" title="очистить поле" @click="clearField('phone2')">X</span>-->
-						<b-form-input v-model.trim="phone3" type="text" placeholder="Контактный номер 3" style="width:250px;text-align:center;margin: 5px auto" :state="setPhoneNumber(3)"></b-form-input>
+						<b-form-input v-model.trim="phone3" type="text" placeholder="Контактный номер 3" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber(3)"></b-form-input>
 							<!--<span style="margin-left:10px;color:grey" title="очистить поле" @click="clearField('phone3')">X</span>-->
 					</div>				
 				</b-form-group>
@@ -511,6 +511,10 @@ export default {
 					this.$root.advert_data.adv_phone3=this.phone3;
 					break;
 				}
+
+				return number;
+
+				//alert(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/.test('+7(705)8675457'))
 			}
 		},
 		  		  
