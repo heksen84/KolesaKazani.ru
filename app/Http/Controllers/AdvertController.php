@@ -756,8 +756,7 @@ class AdvertController extends Controller {
                     adv.coord_lon,
                     kz_region.name as region_name,
                     kz_city.name as city_name              
-                    FROM `adverts` as adv INNER JOIN (categories, dealtype, kz_city, kz_region) ON (
-                        categories.id=dealtype.id AND
+                    FROM `adverts` as adv INNER JOIN (dealtype, kz_city, kz_region) ON (
                         adv.deal=dealtype.id AND
                         kz_city.city_id=adv.city_id AND
                         kz_region.region_id=adv.region_id
@@ -765,7 +764,7 @@ class AdvertController extends Controller {
                     WHERE adv.id=".$id." LIMIT 1"
                 );
                                 
-                $title = $results[0]->deal_name_2." ".$results[0]->text." года в ".$results[0]->city_name;
+                $title = $results[0]->text." в ".$results[0]->city_name;
             }
 
             // выбираю изображения
