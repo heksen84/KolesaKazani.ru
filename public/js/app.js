@@ -3461,6 +3461,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 var mapCoords = [];
@@ -36970,7 +36971,7 @@ var render = function() {
                         _vm._v(" "),
                         _vm.full ? _c("hr") : _vm._e(),
                         _vm._v(" "),
-                        !_vm.full && _vm.item[0].text != null
+                        !_vm.full && _vm.item[0].text != "null"
                           ? _c("h5", [
                               _c("b", [_vm._v(_vm._s(_vm.item[0].text))])
                             ])
@@ -37039,7 +37040,7 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        _vm.full && _vm.item[0].text != null
+                        _vm.full && _vm.item[0].text != "null"
                           ? _c("h5", [
                               _vm._v("Описание: "),
                               _c("b", [_vm._v(_vm._s(_vm.item[0].text))])
@@ -37105,7 +37106,7 @@ var render = function() {
                           _c("b", [_vm._v(" " + _vm._s(_vm.item[0].area))])
                         ]),
                         _vm._v(" "),
-                        _vm.full && _vm.item[0].text != null
+                        _vm.full && _vm.item[0].text != "null"
                           ? _c("h5", [
                               _vm._v("Описание: "),
                               _c("b", [_vm._v(_vm._s(_vm.item[0].text))])
@@ -37121,7 +37122,7 @@ var render = function() {
                   _vm.item[0].category_id == 7 ||
                   _vm.item[0].category_id == 8 ||
                   _vm.item[0].category_id == 9 ||
-                  _vm.item[0].category_id == 10
+                  (_vm.item[0].category_id == 10 && _vm.item[0].text != "null")
                     ? _c("h5", [
                         _c("b", [_vm._v(_vm._s(_vm.item[0].text))]),
                         _vm._v(" "),

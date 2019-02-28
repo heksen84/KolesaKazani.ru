@@ -26,7 +26,7 @@
 				</h1>
 
 				<hr v-if="full">
-				<h5 v-if="!full && item[0].text!=null"><b>{{ item[0].text }}</b></h5>
+				<h5 v-if="!full && item[0].text!='null'"><b>{{ item[0].text }}</b></h5>
 				<h5 v-if="item[0].year!=null">Год выпуска: <b>{{ item[0].year }}</b> г.</h5>
 				
 				<h5 v-if="item[0].engine_type!=null">Вид топлива:
@@ -47,7 +47,7 @@
 					<b v-if="item[0].customs==1">да</b>
 					<b v-else>нет</b>
 				</h5>
-				<h5 v-if="full && item[0].text!=null">Описание: <b>{{ item[0].text }}</b></h5>
+				<h5 v-if="full && item[0].text!='null'">Описание: <b>{{ item[0].text }}</b></h5>
 			</div>
 
 			<!-- Недвижимость --->
@@ -69,7 +69,7 @@
 				<h5>Этаж:<b> {{ item[0].floor }}</b></h5>
 				<h5>Количество этажей:<b> {{ item[0].floors_house }}</b></h5>
 				<h5>Площадь:<b> {{ item[0].area }}</b></h5>
-				<h5 v-if="full && item[0].text!=null">Описание: <b>{{ item[0].text }}</b></h5>
+				<h5 v-if="full && item[0].text!='null'">Описание: <b>{{ item[0].text }}</b></h5>
 			</div>
 
 			<!-- Всё остальное -->
@@ -80,7 +80,8 @@
 				item[0].category_id==7 ||
 				item[0].category_id==8 ||
 				item[0].category_id==9 ||
-				item[0].category_id==10">			
+				item[0].category_id==10 && 
+				item[0].text!='null'">			
 				<b>{{ item[0].text }}</b>
 				<br><br>			
 			</h5>
