@@ -93,7 +93,6 @@
 					</div>				
 				</b-form-group>
 
-
 				<!-- Фотографии -->
 				<b-form-group label="Фотографии:" v-if="phone1.length>const_phone1_length">
 				<div style="text-align:center">
