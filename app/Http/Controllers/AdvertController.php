@@ -595,7 +595,7 @@ class AdvertController extends Controller {
                     adv.price,
                     adv.phone1,
                     adv.phone2,
-                    adv.phone3,
+                    adv.phone3,                    
                     adv.text,
                     adv.coord_lat,
                     adv.coord_lon,
@@ -612,7 +612,7 @@ class AdvertController extends Controller {
                 ) 
                 WHERE adv.id=".$id." LIMIT 1");
 
-                $title = $results[0]->text." в ".$results[0]->city_name." ".$results[0]->year." г.в.";
+                $title = $results[0]->text." в ".$results[0]->city_name;
                 break;
             }
         
