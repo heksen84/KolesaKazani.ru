@@ -25,7 +25,6 @@ class ResultsController extends Controller {
     // результаты по всей стране
     // ---------------------------------------------------
     public function getResultsByCategory(Request $request) {
-		
 
     	// получаю имя на русском
 		$category = Categories::select("id", "name")->where("url",  $request->path() )->first();
@@ -43,16 +42,16 @@ class ResultsController extends Controller {
 
 				$results = DB::select(
 					"SELECT
+					adv.id as advert_id, 
+					adv.price,
+					adv.category_id,
 					adv.deal,
 					adv.full,
 					(SELECT CASE adv_transport.type 
 					WHEN 0 THEN concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.')						
 					ELSE adv.text
 					END FROM adv_transport 
-					WHERE adv_transport.id IN (SELECT adv.adv_category_id FROM adverts)) AS title, 
-					adv.id as advert_id, 
-					adv.price,
-					adv.category_id,
+					WHERE adv_transport.id IN (SELECT adv.adv_category_id FROM adverts)) AS title, 					
 					mileage,
 					text,
 					(SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
@@ -76,10 +75,10 @@ class ResultsController extends Controller {
 
 				$results = DB::select(					
 					"SELECT
-					adv.deal,
-					adv.full,
 					concat(adv_realestate.rooms, ' комнатную квартиру, ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаже, ', adv_realestate.area, ' кв. м.' ) AS title,
-                    adv.id as advert_id, 
+					adv.id as advert_id,
+					adv.deal,
+					adv.full,                    
                     adv.price,
                     adv.category_id,
                     text,                        
@@ -104,7 +103,7 @@ class ResultsController extends Controller {
 				/* --------------------------------
 				    Заголовки title для SEO
 				   --------------------------------*/
-
+				   
 				// электроника
 				if ($category->id==3) $title = "Объявления о покупке, продаже, обмене или сдаче электроники В Казахстане";
 				// работа и бизнес
@@ -125,9 +124,9 @@ class ResultsController extends Controller {
 				// общий select
 				$results = DB::select(					
 					"SELECT
+					id as advert_id,
 					adv.deal,
-					adv.full, 
-					id as advert_id, 
+					adv.full,
 					text as title, 
 					price, 
 					category_id,					
