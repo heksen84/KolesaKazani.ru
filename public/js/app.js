@@ -37021,11 +37021,12 @@ var render = function() {
             ? _c(
                 "b-col",
                 {
+                  staticClass: "shadow_text",
                   staticStyle: { "text-align": "center", "margin-top": "20px" },
-                  attrs: { cols: "12", sm: "12", md: "12", lg: "10", xl: "10" }
+                  attrs: { cols: "12", sm: "12", md: "12", lg: "12", xl: "12" }
                 },
                 [
-                  _c("div", { staticStyle: { "font-size": "44px" } }, [
+                  _c("div", { staticStyle: { "font-size": "40px" } }, [
                     _vm._v("нет данных")
                   ]),
                   _vm._v(" "),
