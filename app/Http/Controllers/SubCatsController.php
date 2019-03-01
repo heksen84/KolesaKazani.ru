@@ -18,7 +18,6 @@ class SubCatsController extends Controller
     public function getResultsByCategory(Request $request, $category, $subcat) {
 
         $petrovich = new Petrovich(Petrovich::GENDER_MALE);
-		\Debugbar::info($petrovich->firstname("Калкаман", Petrovich::CASE_PREPOSITIONAL));
 
         // ---------------------------------------------------------------------------
         // получаю имя на русском
@@ -226,8 +225,7 @@ class SubCatsController extends Controller
                         mileage,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
-                        INNER JOIN (adv_transport) ON 
-                        (
+                        INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=7 AND adv.category_id=1
                          ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
