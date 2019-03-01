@@ -35,7 +35,7 @@ class Helper {
     
         public static function str2url($str) {
             // переводим в транслит
-            $str = Helper::rus2translit($str);
+            $str = self::rus2translit($str);
             // в нижний регистр
             $str = strtolower($str);
             // заменям все ненужное нам на "-"
