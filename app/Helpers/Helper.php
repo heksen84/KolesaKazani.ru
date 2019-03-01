@@ -4,7 +4,7 @@ namespace App\Helpers;
  
 class Helper {
 
-         private function rus2translit($string) {
+        private static function rus2translit($string) {
             $converter = array(
                 'а' => 'a',   'б' => 'b',   'в' => 'v',
                 'г' => 'g',   'д' => 'd',   'е' => 'e',
@@ -35,7 +35,7 @@ class Helper {
     
         public static function str2url($str) {
             // переводим в транслит
-            $str = $this->rus2translit($str);
+            $str = Helper::rus2translit($str);
             // в нижний регистр
             $str = strtolower($str);
             // заменям все ненужное нам на "-"
