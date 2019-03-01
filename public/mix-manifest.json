@@ -1,8 +1,8 @@
 {
-    "/js/entry-server.js": "/js/entry-server.js",
-    "/js/entry-client.js": "/js/entry-client.js",
-    "/js/app.js": "/js/app.js",
-    "/js/index-client.js": "/js/index-client.js",
-    "/css/app.css": "/css/app.css",
-    "/js/index-server.js": "/js/index-server.js"
+    "/js/entry-server.js": "/js/entry-server.js?id=77c023ba6f90f8a7b7c0",
+    "/js/entry-client.js": "/js/entry-client.js?id=04271b35ac9e399aac88",
+    "/js/app.js": "/js/app.js?id=9c28f09bf1094bbb20bd",
+    "/js/index-client.js": "/js/index-client.js?id=620e21db4b1f3b2416aa",
+    "/css/app.css": "/css/app.css?id=456f4700107e2b19356c",
+    "/js/index-server.js": "/js/index-server.js?id=ae3d99a678a248143dad"
 }
