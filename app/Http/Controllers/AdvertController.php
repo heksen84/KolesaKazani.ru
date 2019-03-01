@@ -758,6 +758,7 @@ class AdvertController extends Controller {
                     deal_name_2,
                     adv.category_id,
                     adv.id as advert_id,
+                    adv.deal,
                     adv.price,
                     adv.phone1,
                     adv.phone2,
