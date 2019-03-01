@@ -20,9 +20,9 @@ class SubCatsController extends Controller
         $petrovich = new Petrovich(Petrovich::GENDER_MALE);
 		\Debugbar::info($petrovich->firstname("Калкаман", Petrovich::CASE_PREPOSITIONAL));
 
-        // -------------------------
+        // ---------------------------------------------------------------------------
         // получаю имя на русском
-        // -------------------------
+        // ---------------------------------------------------------------------------
 		$categories = SubCats::select('id', 'name')->where('url',  $subcat )->first();
         $items = Adverts::where('category_id',  $categories->id )->get();
         $title = "";
@@ -36,17 +36,16 @@ class SubCatsController extends Controller
                                     
                     $results = DB::select(
                         "SELECT
-                        adv.deal,
-                        adv.full,
                         concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
                         adv.id as advert_id, 
+                        adv.deal,
+                        adv.full,                                                
                         adv.price,
                         adv.category_id,
                         mileage,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
-                        INNER JOIN (adv_transport, car_mark, car_model) ON 
-                        (
+                        INNER JOIN (adv_transport, car_mark, car_model) ON (
                             adv_transport.mark=car_mark.id_car_mark AND 
                             adv.adv_category_id=adv_transport.id AND 
                             adv_transport.model = car_model.id_car_model
@@ -66,17 +65,16 @@ class SubCatsController extends Controller
 
                     $results = DB::select(
                         "SELECT
-                        adv.deal,
-                        adv.full,
-                        text AS title,
                         adv.id as advert_id, 
+                        adv.deal,
+                        adv.full,                                                
                         adv.price,
                         adv.category_id,
+                        text AS title,
                         mileage,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
-                        INNER JOIN (adv_transport) ON 
-                        (
+                        INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=1 AND adv.category_id=1 
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
@@ -93,17 +91,16 @@ class SubCatsController extends Controller
                 if ($subcat=="mototehnika") {                                        
                     $results = DB::select(
                         "SELECT
+                        adv.id as advert_id,
                         adv.deal,
-                        adv.full,
-                        text AS title,
-                        adv.id as advert_id, 
+                        adv.full,                                                
                         adv.price,
                         adv.category_id,
+                        text AS title,
                         mileage,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
-                        INNER JOIN (adv_transport) ON 
-                        (
+                        INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=2 AND adv.category_id=1
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
@@ -121,17 +118,16 @@ class SubCatsController extends Controller
                 if ($subcat=="spectehnika") {                    
                     $results = DB::select(
                         "SELECT
+                        adv.id as advert_id,
                         adv.deal,
                         adv.full,
-                        text AS title,
-                        adv.id as advert_id, 
                         adv.price,
                         adv.category_id,
+                        text AS title,
                         mileage,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
-                        INNER JOIN (adv_transport) ON 
-                        (
+                        INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=3 AND adv.category_id=1 
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
@@ -149,17 +145,16 @@ class SubCatsController extends Controller
                 if ($subcat=="retro-avtomobil") {                     
                     $results = DB::select(
                         "SELECT
+                        adv.id as advert_id,
                         adv.deal,
                         adv.full,
-                        text AS title,
-                        adv.id as advert_id, 
                         adv.price,
                         adv.category_id,
+                        text AS title,
                         mileage,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
-                        INNER JOIN (adv_transport) ON 
-                        (
+                        INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=4 AND adv.category_id=1 
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
@@ -174,17 +169,16 @@ class SubCatsController extends Controller
                 if ($subcat=="vodnyy-transport") {                    
                     $results = DB::select(
                         "SELECT
+                        adv.id as advert_id,
                         adv.deal,
                         adv.full,
-                        text AS title,
-                        adv.id as advert_id, 
                         adv.price,
                         adv.category_id,
+                        text AS title,
                         mileage,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
-                        INNER JOIN (adv_transport) ON 
-                        (
+                        INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=5  AND adv.category_id=1 
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
@@ -199,17 +193,16 @@ class SubCatsController extends Controller
                 if ($subcat=="velosiped") {                    
                     $results = DB::select(
                         "SELECT
-                        adv.deal,
-                        adv.full,
-                        text AS title,
                         adv.id as advert_id, 
+                        adv.deal,
+                        adv.full,                                                
                         adv.price,
                         adv.category_id,
+                        text AS title,
                         mileage,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
-                        INNER JOIN (adv_transport) ON 
-                        (
+                        INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=6  AND adv.category_id=1 
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
@@ -224,12 +217,12 @@ class SubCatsController extends Controller
                 if ($subcat=="vozdushnyy-transport") {                    
                     $results = DB::select(
                         "SELECT
+                        adv.id as advert_id,
                         adv.deal,
-                        adv.full,
-                        text AS title,
-                        adv.id as advert_id, 
+                        adv.full,                                     
                         adv.price,
                         adv.category_id,
+                        text AS title,
                         mileage,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
@@ -264,11 +257,11 @@ class SubCatsController extends Controller
                     $results = DB::select(
                         "SELECT
                         concat(adv_realestate.rooms, ' комнатную квартиру, ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаж, ', adv_realestate.area, ' кв. м.' ) AS title,
-                        adv.deal,
-                        adv.full,                        
                         adv.id as advert_id, 
+                        adv.deal,
+                        adv.full,
                         adv.price,
-                        adv.category_id,              
+                        adv.category_id,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
                         adv_realestate.id                        
                         FROM `adverts` as adv
@@ -290,11 +283,11 @@ class SubCatsController extends Controller
                     $results = DB::select(
                         "SELECT
                         concat('Комната ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаж, ', adv_realestate.area, ' кв. м.' ) AS title,
+                        adv.id as advert_id,
                         adv.deal,
-                        adv.full,                        
-                        adv.id as advert_id, 
+                        adv.full,
                         adv.price,
-                        adv.category_id,                 
+                        adv.category_id,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
                         adv_realestate.id                        
                         FROM `adverts` as adv
@@ -316,9 +309,9 @@ class SubCatsController extends Controller
                     $results = DB::select(
                         "SELECT
                         concat(adv_realestate.rooms, ' комнат, ', adv_realestate.floors_house, ' этажей, ', adv_realestate.area, ' кв. м.' ) AS title,
+                        adv.id as advert_id,
                         adv.deal,
-                        adv.full,                        
-                        adv.id as advert_id, 
+                        adv.full,
                         adv.price,
                         adv.category_id,                 
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
@@ -330,10 +323,8 @@ class SubCatsController extends Controller
                     );
 
                     \Debugbar::info($results);
-                    
-                    
-                    $title="Дом, дача, коттедж";
-                    
+                                        
+                    $title="Дом, дача, коттедж";                    
                     break;
                 }
 
@@ -343,9 +334,9 @@ class SubCatsController extends Controller
                     $results = DB::select(
                         "SELECT
                         concat('Земельный участок ', adv_realestate.area, ' кв. м.' ) AS title,
+                        adv.id as advert_id,
                         adv.deal,
-                        adv.full,                        
-                        adv.id as advert_id, 
+                        adv.full,                                      
                         adv.price,
                         adv.category_id,
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
@@ -367,9 +358,9 @@ class SubCatsController extends Controller
                     $results = DB::select(
                         "SELECT
                         concat('Гараж или машиноместо' ) AS title,
+                        adv.id as advert_id,
                         adv.deal,
-                        adv.full,                        
-                        adv.id as advert_id, 
+                        adv.full,
                         adv.price,
                         adv.category_id,             
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
@@ -391,11 +382,11 @@ class SubCatsController extends Controller
                     $results = DB::select(
                         "SELECT
                         concat('Недвижимость ', adv_realestate.area, ' кв. м.' ) AS title,
+                        adv.id as advert_id,
                         adv.deal,
-                        adv.full,                        
-                        adv.id as advert_id, 
+                        adv.full,                         
                         adv.price,
-                        adv.category_id,                     
+                        adv.category_id,                 
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
                         adv_realestate.id                        
                         FROM `adverts` as adv
@@ -415,9 +406,9 @@ class SubCatsController extends Controller
                     $results = DB::select(
                         "SELECT
                         concat('Недвижимость ', adv_realestate.area, ' кв. м.' ) AS title,
+                        adv.id as advert_id,
                         adv.deal,
-                        adv.full,                        
-                        adv.id as advert_id, 
+                        adv.full,
                         adv.price,
                         adv.category_id,                   
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
@@ -434,7 +425,6 @@ class SubCatsController extends Controller
                 }                                
             }
         }        
-
 
      	return view('results')->with("title", $title." в Казахстане")->with("items", $items)->with("results", json_encode($results))->with("category", $categories);
     }
