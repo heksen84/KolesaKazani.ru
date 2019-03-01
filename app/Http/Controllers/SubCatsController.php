@@ -8,6 +8,7 @@ use App\Adverts;
 use App\SubCats;
 use App\Categories;
 use App\RealEstate;
+use App\Helpers\Petrovich;
 
 class SubCatsController extends Controller
 {
@@ -15,6 +16,9 @@ class SubCatsController extends Controller
     private $records_limit = 1000; // максимальное число записей при выборке
 
     public function getResultsByCategory(Request $request, $category, $subcat) {
+
+        $petrovich = new Petrovich(Petrovich::GENDER_MALE);
+		\Debugbar::info($petrovich->firstname("Калкаман", Petrovich::CASE_PREPOSITIONAL));
 
         // -------------------------
         // получаю имя на русском

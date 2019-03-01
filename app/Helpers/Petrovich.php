@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Helpers;
+
 class Petrovich {
 
     private $rules; //Правила

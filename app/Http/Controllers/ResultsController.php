@@ -14,7 +14,6 @@ use App\Regions;
 use App\Places;
 use App\Images;
 
-
 class ResultsController extends Controller {
 	
 	// частные переменные
@@ -26,6 +25,7 @@ class ResultsController extends Controller {
     // результаты по всей стране
     // ---------------------------------------------------
     public function getResultsByCategory(Request $request) {
+		
 
     	// получаю имя на русском
 		$category = Categories::select("id", "name")->where("url",  $request->path() )->first();
