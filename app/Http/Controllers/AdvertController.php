@@ -329,16 +329,17 @@ class AdvertController extends Controller {
     -------------------------------------------*/
     public function getFullInfo($id) {
                 
-        $results = []; 
-        $images  = [];
+        $results    = []; 
+        $images     = [];        
+        $title      = "";
+        $str_price  = "";
+
         $adv_full_info = false;
-        $title = ""; 
 
         $petrovich = new Petrovich(Petrovich::GENDER_MALE);		
         
         // выбираю все поля по нужному айдишнику
         $item = DB::table("adverts")->where("id", $id)->get()->first();                                                                
-        \Debugbar::info("Категория :".$item->category_id);
 
         // -----------------------------------------
         // транспорт (развёрнутая информация)
@@ -389,13 +390,14 @@ class AdvertController extends Controller {
 					    ) 
                         WHERE adv.id=".$id." LIMIT 1"
                     );
+
+                    if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
+                        $str_price = " за ".$results[0]->price." тенге";
+                                        
+                    $title = $results[0]->deal_name_2." ".$results[0]->mark." ".$results[0]->model." ".$results[0]->year
+                    ." года в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)
+                    .$str_price;
                     
-                    
-                    $title = $results[0]->deal_name_2.
-                    " ".$results[0]->mark.
-                    " ".$results[0]->model.
-                    " ".$results[0]->year.
-                    " года в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL);
                     break;
             }
 
@@ -435,7 +437,13 @@ class AdvertController extends Controller {
 
                         \Debugbar::info($results);
 
-                        $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$results[0]->year." г.в.";                        
+                        if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
+                            $str_price = " за ".$results[0]->price." тенге";
+
+                        $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)
+                        ." ".$results[0]->year." г.в."
+                        .$str_price;
+
                         break;
                 }                    
             
@@ -472,7 +480,13 @@ class AdvertController extends Controller {
                         ) 
                         WHERE adv.id=".$id." LIMIT 1");
 
-                        $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$results[0]->year." г.в.";
+                        if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
+                            $str_price = " за ".$results[0]->price." тенге";
+
+                        $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." "
+                        .$results[0]->year." г.в."
+                        .$price;
+                        
                         break;
             }
 
@@ -505,7 +519,14 @@ class AdvertController extends Controller {
                 ) 
                 WHERE adv.id=".$id." LIMIT 1");
 
-                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$results[0]->year." г.в.";
+                if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
+                    $str_price = " за ".$results[0]->price." тенге";
+
+                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)
+                ." "
+                .$results[0]->year." г.в."
+                .$str_price;
+
                 break;
             }
 
@@ -543,7 +564,14 @@ class AdvertController extends Controller {
                 ) 
                 WHERE adv.id=".$id." LIMIT 1");
 
-                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$results[0]->year." г.в.";
+                if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
+                    $str_price = " за ".$results[0]->price." тенге";
+
+                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)
+                ." ".$results[0]->year
+                ." г.в."
+                .$str_price;
+
                 break;
             }
         
@@ -576,7 +604,13 @@ class AdvertController extends Controller {
                 ) 
                 WHERE adv.id=".$id." LIMIT 1");
 
-                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL);
+
+                if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
+                    $str_price = " за ".$results[0]->price." тенге";
+
+                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)
+                .$str_price;
+
                 break;
             }
         
@@ -606,9 +640,14 @@ class AdvertController extends Controller {
                     kz_city.city_id=adv.city_id AND
                     kz_region.region_id=adv.region_id
                 ) 
-                WHERE adv.id=".$id." LIMIT 1");                
+                WHERE adv.id=".$id." LIMIT 1");
 
-                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$results[0]->year." г.в.";
+                if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
+                    $str_price = " за ".$results[0]->price." тенге";
+
+                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$results[0]->year." г.в."
+                .$str_price;
+
                 break;
             }
         
@@ -641,7 +680,12 @@ class AdvertController extends Controller {
                 ) 
                 WHERE adv.id=".$id." LIMIT 1");
 
-                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$results[0]->year." г.в.";
+                if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
+                    $str_price = " за ".$results[0]->price." тенге";
+
+                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$results[0]->year." г.в."
+                .$str_price;
+
                 break;
             }                    
                     
@@ -686,9 +730,12 @@ class AdvertController extends Controller {
                             kz_city.city_id=adv.city_id AND
                             kz_region.region_id=adv.region_id
                         ) 
-                        WHERE adv.id=".$id." LIMIT 1");                
+                        WHERE adv.id=".$id." LIMIT 1");
 
-                        $title="Недвижимость";                                 
+                        if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
+                            $str_price = " за ".$results[0]->price." тенге";
+
+                        $title="Недвижимость".$str_price;
                         break;
                     }
                 }
@@ -727,8 +774,11 @@ class AdvertController extends Controller {
                     ) 
                     WHERE adv.id=".$id." LIMIT 1"
                 );
+
+                if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
+                    $str_price = " за ".$results[0]->price." тенге";
                                 
-                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL);
+                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL).$str_price;
             }
 
             // выбираю изображения
