@@ -706,7 +706,8 @@ class AdvertController extends Controller {
                     case 0: {
                         
                         $results = DB::select(
-                        "SELECT                    
+                        "SELECT
+                            deal_name_2,                    
                             adv.id as advert_id, 
                             adv.category_id,
                             adv_realestate.id,
@@ -734,8 +735,9 @@ class AdvertController extends Controller {
 
                         if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
                             $str_price = " за ".$results[0]->price." тенге";
+                            
 
-                        $title="Недвижимость".$str_price;
+                        $title = $results[0]->deal_name_2." ".$results[0]->rooms." комнатную квартиру, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$str_price;
                         break;
                     }
                 }
