@@ -1721,6 +1721,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       console.log("Вид недвижимости: " + property_id);
 
       this.realestate_chars.property_type = property_id;
+      this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления");
 
       // показываю дополнительные поля
       this.$store.commit("ShowFinalFields", true);
@@ -1734,18 +1735,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         case 0:
           {
             this.selected.apartment = true;
+            this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
             break;
           }
         case 1:
           {
+            this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
             break;
           }
         case 2:
           {
+            this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
             break;
           }
         case 3:
           {
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам земельный участок");
             break;
           }
         case 4:

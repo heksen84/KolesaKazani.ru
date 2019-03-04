@@ -116,8 +116,9 @@ export default {
     changeProperyType(property_id) {
 
         console.log("Вид недвижимости: "+property_id)
-
+        
         this.realestate_chars.property_type = property_id;
+        this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления"); 
 
         // показываю дополнительные поля
         this.$store.commit("ShowFinalFields", true);
@@ -129,15 +130,19 @@ export default {
           }
           case 0: {
             this.selected.apartment=true;
+            this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию"); 
             break;
           }
           case 1: {
+            this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию"); 
             break; 
           } 
-          case 2: { 
+          case 2: {
+            this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");  
             break; 
           }
-          case 3: { 
+          case 3: {
+              this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам земельный участок"); 
             break; 
           }
           case 4: { 
