@@ -724,7 +724,7 @@ class AdvertController extends Controller {
                             kz_region.name as region_name,
                             kz_city.name as city_name                        
                         FROM `adverts` as adv
-                        INNER JOIN (adv_realestate, kz_city, kz_region) ON ( 
+                        INNER JOIN (adv_realestate, dealtype, kz_city, kz_region) ON ( 
                             adv.adv_category_id=adv_realestate.id AND
                             adv.deal=dealtype.id AND
                             kz_city.city_id=adv.city_id AND
