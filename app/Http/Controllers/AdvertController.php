@@ -703,6 +703,7 @@ class AdvertController extends Controller {
 
                 switch($realestate->property_type) {
 
+                    // квартиры
                     case 0: {
                         
                         $results = DB::select(
@@ -738,6 +739,88 @@ class AdvertController extends Controller {
                             
 
                         $title = $results[0]->deal_name_2." ".$results[0]->rooms." комнатную квартиру, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$str_price;
+                        break;
+                    }
+
+                    // комната
+                    case 1: {
+
+                        //\Debugbar::info("Я тута!");
+                        
+                        $results = DB::select(
+                        "SELECT
+                            deal_name_2,                    
+                            adv.id as advert_id, 
+                            adv.category_id,
+                            adv_realestate.id,
+                            adv_realestate.rooms, 
+                            adv_realestate.floor,
+                            adv_realestate.floors_house,
+                            adv_realestate.area,                    
+                            adv.deal,
+                            adv.full,
+                            adv.phone1,
+                            adv.phone2,
+                            adv.phone3,
+                            adv.text,                    
+                            adv.price,                    
+                            kz_region.name as region_name,
+                            kz_city.name as city_name                        
+                        FROM `adverts` as adv
+                        INNER JOIN (adv_realestate, dealtype, kz_city, kz_region) ON ( 
+                            adv.adv_category_id=adv_realestate.id AND
+                            adv.deal=dealtype.id AND
+                            kz_city.city_id=adv.city_id AND
+                            kz_region.region_id=adv.region_id
+                        ) 
+                        WHERE adv.id=".$id." LIMIT 1");
+
+                        if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
+                            $str_price = " за ".$results[0]->price." тенге";
+                            
+
+                        $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$str_price;
+                        break;
+                    }
+
+                    // Дом, дача, коттедж
+                    case 2: {
+
+                        //\Debugbar::info("Я тута!");
+                        
+                        $results = DB::select(
+                        "SELECT
+                            deal_name_2,                    
+                            adv.id as advert_id, 
+                            adv.category_id,
+                            adv_realestate.id,
+                            adv_realestate.rooms, 
+                            adv_realestate.floor,
+                            adv_realestate.floors_house,
+                            adv_realestate.area,                    
+                            adv.deal,
+                            adv.full,
+                            adv.phone1,
+                            adv.phone2,
+                            adv.phone3,
+                            adv.text,                    
+                            adv.price,                    
+                            kz_region.name as region_name,
+                            kz_city.name as city_name                        
+                        FROM `adverts` as adv
+                        INNER JOIN (adv_realestate, dealtype, kz_city, kz_region) ON ( 
+                            adv.adv_category_id=adv_realestate.id AND
+                            adv.deal=dealtype.id AND
+                            kz_city.city_id=adv.city_id AND
+                            kz_region.region_id=adv.region_id
+                        ) 
+                        WHERE adv.id=".$id." LIMIT 1");
+
+                        if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
+                            $str_price = " за ".$results[0]->price." тенге";
+                            
+
+                        $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$str_price;
                         break;
                     }
                 }
