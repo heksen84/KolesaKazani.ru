@@ -2648,36 +2648,57 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
 
 	props: ["items"],
+	components: {},
 
+	// данные компонента
 	data: function data() {
 		return {
 			_items: []
 		};
 	},
+
+
+	// компонент создан
 	created: function created() {
-
 		this._items = this.items;
-
 		for (var i = 0; i < this._items.length; i++) {
 			this._items[i].Действие = "";
 		}
 	},
 
-	components: {},
+
+	// методы
 	methods: {
-		goUp: function goUp() {
-			alert("Поднять вверх");
-		},
-		deleteAdvert: function deleteAdvert() {
-			alert("Удалить объявление");
+
+		// ---------------------------------
+		// поднять объявление в верх
+		// ---------------------------------
+		advertGoUp: function advertGoUp() {
+			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/advertGoUp").then(function (res) {}).catch(function (err) {
+				console.log(err);
+			});
 		},
 
 
-		// ВЫХОД
+		// ---------------------------------
+		// удалить объявление
+		// ---------------------------------
+		advertDelete: function advertDelete() {
+			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/advertDelete").then(function (res) {}).catch(function (err) {
+				console.log(err);
+			});
+		},
+
+
+		// ---------------------------------
+		// Выйти из кабинета
+		// ---------------------------------
 		logout: function logout() {
 			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/logout').then(function (res) {
 				window.location = '/';
-			}).catch(function (err) {});
+			}).catch(function (err) {
+				console.log(err);
+			});
 		},
 		goHome: function goHome() {
 			window.location = '/';
@@ -37003,7 +37024,7 @@ var render = function() {
                             "b-button",
                             {
                               attrs: { size: "sm", variant: "outline-success" },
-                              on: { click: _vm.goUp }
+                              on: { click: _vm.advertGoUp }
                             },
                             [_vm._v("поднять в вверх")]
                           ),
@@ -37012,7 +37033,7 @@ var render = function() {
                             "b-button",
                             {
                               attrs: { size: "sm", variant: "link" },
-                              on: { click: _vm.deleteAdvert }
+                              on: { click: _vm.advertDelete }
                             },
                             [_vm._v("удалить")]
                           )

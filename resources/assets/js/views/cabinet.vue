@@ -22,8 +22,8 @@
 			<b-table hover :items="_items" style="background:white;color:black">
 
 			<template slot="Действие">
-        <b-button size="sm" variant="outline-success" @click="goUp">поднять в вверх</b-button>
-				<b-button size="sm" variant="link" @click="deleteAdvert">удалить</b-button>
+        <b-button size="sm" variant="outline-success" @click="advertGoUp">поднять в вверх</b-button>
+				<b-button size="sm" variant="link" @click="advertDelete">удалить</b-button>
       </template>
 
 			</b-table>
@@ -37,36 +37,55 @@
 import { get } from './../helpers/api'
 export default {
 	
-	props: ["items"],
+props: ["items"],
+components: {},
 
-	data () {
+// данные компонента
+data () {
     return 	{
     	_items: []
 	}
 },
-created() {
-		
-		this._items = this.items;
-		
+
+// компонент создан
+created() {		
+		this._items = this.items;		
 		for (var i=0;i<this._items.length;i++)			
 			this._items[i].Действие = "";		
 },
-components: {},
-  methods: {
 
-		goUp() {
-			alert("Поднять вверх")
+// методы
+methods: {
+
+		// ---------------------------------
+		// поднять объявление в верх
+		// ---------------------------------
+		advertGoUp() {		
+		get("/advertGoUp").then((res) => {
+			}).catch((err) => {
+				console.log(err)
+			});
 		},
-		deleteAdvert() {
-			alert("Удалить объявление")
+		
+		// ---------------------------------
+		// удалить объявление
+		// ---------------------------------
+		advertDelete() {			
+			get("/advertDelete").then((res) => {				
+			}).catch((err) => {
+				console.log(err)
+			});
 		},
 
-
-  	// ВЫХОД
+		// ---------------------------------
+		// Выйти из кабинета
+		// ---------------------------------
     logout() {
 			get('/logout').then((res) => {
 				window.location='/';
-			}).catch((err) => {});
+			}).catch((err) => {
+				console.log(err)
+			});
     },
     
     goHome() {
