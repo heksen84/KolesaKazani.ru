@@ -19,7 +19,14 @@
 	<b-row>
 		<b-col>
 			<h5 class="shadow_text" style="text-align:left">мои объявления</h5>
-			<b-table hover :items="_items" style="background:white;color:black"></b-table>
+			<b-table hover :items="_items" style="background:white;color:black">
+
+			<template slot="Действие">
+        <b-button size="sm" variant="outline-success" @click="goUp">поднять в вверх</b-button>
+				<b-button size="sm" variant="link" @click="deleteAdvert">удалить</b-button>
+      </template>
+
+			</b-table>
 		</b-col>
 	</b-row>
 	</b-container>
@@ -37,21 +44,23 @@ export default {
     	_items: []
 	}
 },
-	created() {
+created() {
+		
 		this._items = this.items;
-
-		console.log(this._items );
-
-		for (var i=0;i<this._items.length;i++) {
-			this._items[i]["1"]="продлить";
-			this._items[i]["2"]="скрыть из выдачи";
-			this._items[i]["3"]="удалить";
-			console.log(this._items[i]);
-		}
-		console.log(this._items);
+		
+		for (var i=0;i<this._items.length;i++)			
+			this._items[i].Действие = "";		
 },
 components: {},
   methods: {
+
+		goUp() {
+			alert("Поднять вверх")
+		},
+		deleteAdvert() {
+			alert("Удалить объявление")
+		},
+
 
   	// ВЫХОД
     logout() {

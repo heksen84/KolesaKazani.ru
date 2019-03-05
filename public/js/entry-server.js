@@ -2635,6 +2635,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2648,21 +2655,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		};
 	},
 	created: function created() {
+
 		this._items = this.items;
 
-		console.log(this._items);
-
 		for (var i = 0; i < this._items.length; i++) {
-			this._items[i]["1"] = "продлить";
-			this._items[i]["2"] = "скрыть из выдачи";
-			this._items[i]["3"] = "удалить";
-			console.log(this._items[i]);
+			this._items[i].Действие = "";
 		}
-		console.log(this._items);
 	},
 
 	components: {},
 	methods: {
+		goUp: function goUp() {
+			alert("Поднять вверх");
+		},
+		deleteAdvert: function deleteAdvert() {
+			alert("Удалить объявление");
+		},
+
 
 		// ВЫХОД
 		logout: function logout() {
@@ -36979,10 +36988,40 @@ var render = function() {
                     [_vm._v("мои объявления")]
                   ),
                   _vm._v(" "),
-                  _c("b-table", {
-                    staticStyle: { background: "white", color: "black" },
-                    attrs: { hover: "", items: _vm._items }
-                  })
+                  _c(
+                    "b-table",
+                    {
+                      staticStyle: { background: "white", color: "black" },
+                      attrs: { hover: "", items: _vm._items }
+                    },
+                    [
+                      _c(
+                        "template",
+                        { slot: "Действие" },
+                        [
+                          _c(
+                            "b-button",
+                            {
+                              attrs: { size: "sm", variant: "outline-success" },
+                              on: { click: _vm.goUp }
+                            },
+                            [_vm._v("поднять в вверх")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-button",
+                            {
+                              attrs: { size: "sm", variant: "link" },
+                              on: { click: _vm.deleteAdvert }
+                            },
+                            [_vm._v("удалить")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    2
+                  )
                 ],
                 1
               )
