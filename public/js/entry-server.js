@@ -3611,6 +3611,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 var mapCoords = [];
@@ -37122,10 +37125,10 @@ var render = function() {
                   _vm._v(" "),
                   _c("br"),
                   _vm._v(" "),
-                  _c("b", [
+                  _c("h5", [
                     _vm._v(
                       _vm._s(_vm.item[0].region_name) +
-                        ", " +
+                        " " +
                         _vm._s(_vm.item[0].city_name)
                     )
                   ]),
@@ -37136,38 +37139,38 @@ var render = function() {
                     ? _c("div", [
                         _vm.full
                           ? _c("h1", { staticStyle: { "font-size": "190%" } }, [
-                              _c("b", [
-                                _vm.item[0].deal == 0
-                                  ? _c("span", [_vm._v("Куплю")])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _vm.item[0].deal == 1
-                                  ? _c("span", [_vm._v("Продам")])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _vm.item[0].deal == 2
-                                  ? _c("span", [_vm._v("Обменяю")])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _vm.item[0].deal == 3
-                                  ? _c("span", [_vm._v("Отдам даром")])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _vm.item[0].deal == 4
-                                  ? _c("span", [_vm._v("Сдам в аренду")])
-                                  : _vm._e(),
-                                _vm._v(
-                                  "\n\t\t\t\t\t\t" +
-                                    _vm._s(_vm.item[0].mark) +
-                                    " " +
-                                    _vm._s(_vm.item[0].model) +
-                                    " " +
-                                    _vm._s(_vm.item[0].year) +
-                                    " года\n\t\t\t\t\t"
-                                )
-                              ])
+                              _vm.item[0].deal == 0
+                                ? _c("span", [_vm._v("Куплю")])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 1
+                                ? _c("span", [_vm._v("Продам")])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 2
+                                ? _c("span", [_vm._v("Обменяю")])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 3
+                                ? _c("span", [_vm._v("Отдам даром")])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 4
+                                ? _c("span", [_vm._v("Сдам в аренду")])
+                                : _vm._e(),
+                              _vm._v(
+                                "\n\t\t\t\t\t" +
+                                  _vm._s(_vm.item[0].mark) +
+                                  " " +
+                                  _vm._s(_vm.item[0].model) +
+                                  " " +
+                                  _vm._s(_vm.item[0].year) +
+                                  " года\t\t\t\t\t\n\t\t\t\t"
+                              )
                             ])
                           : _vm._e(),
+                        _vm._v(" "),
+                        _c("br"),
                         _vm._v(" "),
                         _vm.full ? _c("hr") : _vm._e(),
                         _vm._v(" "),
@@ -37189,36 +37192,38 @@ var render = function() {
                           ? _c("h5", [
                               _vm._v("Вид топлива:\n\t\t\t\t\t"),
                               _vm.item[0].engine_type == 0
-                                ? _c("b", [_vm._v("бензин")])
+                                ? _c("span", [_vm._v("бензин")])
                                 : _vm._e(),
                               _vm._v(" "),
                               _vm.item[0].engine_type == 1
-                                ? _c("b", [_vm._v("дизель")])
+                                ? _c("span", [_vm._v("дизель")])
                                 : _vm._e(),
                               _vm._v(" "),
                               _vm.item[0].engine_type == 2
-                                ? _c("b", [_vm._v("газ-бензин")])
+                                ? _c("span", [_vm._v("газ-бензин")])
                                 : _vm._e(),
                               _vm._v(" "),
                               _vm.item[0].engine_type == 3
-                                ? _c("b", [_vm._v("газ")])
+                                ? _c("span", [_vm._v("газ")])
                                 : _vm._e(),
                               _vm._v(" "),
                               _vm.item[0].engine_type == 4
-                                ? _c("b", [_vm._v("гибрид")])
+                                ? _c("span", [_vm._v("гибрид")])
                                 : _vm._e(),
                               _vm._v(" "),
                               _vm.item[0].engine_type == 5
-                                ? _c("b", [_vm._v("электричество")])
+                                ? _c("span", [_vm._v("электричество")])
                                 : _vm._e()
                             ])
                           : _vm._e(),
                         _vm._v(" "),
                         _vm.item[0].mileage != null
                           ? _c("h5", [
-                              _vm._v("Пробег: "),
-                              _c("b", [_vm._v(_vm._s(_vm.item[0].mileage))]),
-                              _vm._v(" км.")
+                              _vm._v(
+                                "Пробег: " +
+                                  _vm._s(_vm.item[0].mileage) +
+                                  " км."
+                              )
                             ])
                           : _vm._e(),
                         _vm._v(" "),
@@ -37226,8 +37231,8 @@ var render = function() {
                           ? _c("h5", [
                               _vm._v("Положение руля: \n\t\t\t\t\t"),
                               _vm.item[0].steering_position == 0
-                                ? _c("b", [_vm._v("слева")])
-                                : _c("b", [_vm._v("справа")])
+                                ? _c("span", [_vm._v("слева")])
+                                : _c("span", [_vm._v("справа")])
                             ])
                           : _vm._e(),
                         _vm._v(" "),
@@ -37235,8 +37240,8 @@ var render = function() {
                           ? _c("h5", [
                               _vm._v("Растоможен: \n\t\t\t\t\t"),
                               _vm.item[0].customs == 1
-                                ? _c("b", [_vm._v("да")])
-                                : _c("b", [_vm._v("нет")])
+                                ? _c("span", [_vm._v("да")])
+                                : _c("span", [_vm._v("нет")])
                             ])
                           : _vm._e(),
                         _vm._v(" "),
@@ -37252,64 +37257,62 @@ var render = function() {
                   _vm.item[0].category_id == 2
                     ? _c("div", [
                         _c("h1", { staticStyle: { "font-size": "190%" } }, [
-                          _c("b", [
-                            _vm.item[0].deal == 0
-                              ? _c("span", [_vm._v("Куплю")])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.item[0].deal == 1
-                              ? _c("span", [_vm._v("Продам")])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.item[0].deal == 2
-                              ? _c("span", [_vm._v("Обменяю")])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.item[0].deal == 3
-                              ? _c("span", [_vm._v("Отдам даром")])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.item[0].deal == 4
-                              ? _c("span", [_vm._v("Сдам в аренду")])
-                              : _vm._e(),
-                            _vm._v(
-                              "\n\t\t\t\t\t\t" +
-                                _vm._s(_vm.item[0].rooms) +
-                                " комнатную квартиру, " +
-                                _vm._s(_vm.item[0].floor) +
-                                "/" +
-                                _vm._s(_vm.item[0].floors_house) +
-                                " этаж\t\t\n\t\t\t\t\t"
-                            )
-                          ])
+                          _vm.item[0].deal == 0
+                            ? _c("span", [_vm._v("Куплю")])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.item[0].deal == 1
+                            ? _c("span", [_vm._v("Продам")])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.item[0].deal == 2
+                            ? _c("span", [_vm._v("Обменяю")])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.item[0].deal == 3
+                            ? _c("span", [_vm._v("Отдам даром")])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.item[0].deal == 4
+                            ? _c("span", [_vm._v("Сдам в аренду")])
+                            : _vm._e(),
+                          _vm._v(
+                            "\n\t\t\t\t\t" +
+                              _vm._s(_vm.item[0].rooms) +
+                              " комнатную квартиру " +
+                              _vm._s(_vm.item[0].floor) +
+                              "/" +
+                              _vm._s(_vm.item[0].floors_house) +
+                              " этаж\n\t\t\t\t"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("h5", [
+                          _vm._v(
+                            "Количество комнат: " + _vm._s(_vm.item[0].rooms)
+                          )
                         ]),
                         _vm._v(" "),
                         _c("h5", [
-                          _vm._v("Количество комнат:"),
-                          _c("b", [_vm._v(" " + _vm._s(_vm.item[0].rooms))])
+                          _vm._v("Этаж: " + _vm._s(_vm.item[0].floor))
                         ]),
                         _vm._v(" "),
                         _c("h5", [
-                          _vm._v("Этаж:"),
-                          _c("b", [_vm._v(" " + _vm._s(_vm.item[0].floor))])
+                          _vm._v(
+                            "Количество этажей: " +
+                              _vm._s(_vm.item[0].floors_house)
+                          )
                         ]),
                         _vm._v(" "),
                         _c("h5", [
-                          _vm._v("Количество этажей:"),
-                          _c("b", [
-                            _vm._v(" " + _vm._s(_vm.item[0].floors_house))
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("h5", [
-                          _vm._v("Площадь:"),
-                          _c("b", [_vm._v(" " + _vm._s(_vm.item[0].area))])
+                          _vm._v("Площадь: " + _vm._s(_vm.item[0].area) + " ")
                         ]),
                         _vm._v(" "),
                         _vm.full && _vm.item[0].text != "null"
                           ? _c("h5", [
-                              _vm._v("Описание: "),
-                              _c("b", [_vm._v(_vm._s(_vm.item[0].text))])
+                              _vm._v("Описание: " + _vm._s(_vm.item[0].text))
                             ])
                           : _vm._e()
                       ])
@@ -37324,8 +37327,11 @@ var render = function() {
                   _vm.item[0].category_id == 9 ||
                   (_vm.item[0].category_id == 10 && _vm.item[0].text != "null")
                     ? _c("h5", [
-                        _c("b", [_vm._v(_vm._s(_vm.item[0].text))]),
-                        _vm._v(" "),
+                        _vm._v(
+                          "\t\t\t\n\t\t\t\t" +
+                            _vm._s(_vm.item[0].text) +
+                            "\n\t\t\t\t"
+                        ),
                         _c("br"),
                         _c("br")
                       ])
@@ -37333,32 +37339,32 @@ var render = function() {
                   _vm._v(" "),
                   _vm.item[0].category_id != 4 && _vm.item[0].price != null
                     ? _c("h5", [
-                        _vm._v("Цена: "),
-                        _c("b", [_vm._v(_vm._s(_vm.item[0].price))]),
-                        _vm._v(" тенге")
+                        _vm._v("Цена: " + _vm._s(_vm.item[0].price) + " тенге")
                       ])
                     : _vm._e(),
                   _vm._v(" "),
                   _c("h5", [
-                    _vm._v("Контакты:\n\t\t\t"),
+                    _vm._v("Контакты:\n\t\t\t\t"),
                     _vm.item[0].phone1 != null
-                      ? _c("b", [_vm._v(_vm._s(_vm.item[0].phone1))])
+                      ? _c("span", [_vm._v(_vm._s(_vm.item[0].phone1))])
                       : _vm._e(),
                     _vm.item[0].phone2 != null
                       ? _c("span", [_vm._v(",")])
                       : _vm._e(),
                     _vm._v(" "),
                     _vm.item[0].phone2 != null
-                      ? _c("b", [_vm._v(_vm._s(_vm.item[0].phone2))])
+                      ? _c("span", [_vm._v(_vm._s(_vm.item[0].phone2))])
                       : _vm._e(),
                     _vm.item[0].phone3 != null
                       ? _c("span", [_vm._v(",")])
                       : _vm._e(),
                     _vm._v(" "),
                     _vm.item[0].phone3 != null
-                      ? _c("b", [_vm._v(_vm._s(_vm.item[0].phone3))])
+                      ? _c("span", [_vm._v(_vm._s(_vm.item[0].phone3))])
                       : _vm._e()
                   ]),
+                  _vm._v(" "),
+                  _c("br"),
                   _vm._v(" "),
                   _vm.images.length <= 0
                     ? _c("div", { staticStyle: { "text-align": "center" } }, [

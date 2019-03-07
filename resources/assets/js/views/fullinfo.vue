@@ -13,8 +13,8 @@
 		  <div class="close_button" title="Закрыть страницу" style="font-size:20px" @click="closeAndReturn">X</div>     
 			<br>
 
-			<!-- размещение -->
-			<b>{{ item[0].region_name }}, {{ item[0].city_name }}</b>			
+			<!-- размещение: регион / город / село -->
+			<h5>{{ item[0].region_name }} {{ item[0].city_name }}</h5>			
 			
 			<hr v-if="!full"> <!-- Чёрточка -->
 
@@ -22,38 +22,38 @@
 			<div v-if="item[0].category_id==1">
 				
 				<!-- Заголовок -->
-				<h1 v-if="full" style="font-size:190%">
-					<b>
-						<span v-if="item[0].deal==0">Куплю</span>
-        				<span v-if="item[0].deal==1">Продам</span>
-        				<span v-if="item[0].deal==2">Обменяю</span>
-        				<span v-if="item[0].deal==3">Отдам даром</span>
-        				<span v-if="item[0].deal==4">Сдам в аренду</span>
-						{{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года
-					</b>
+				<h1 v-if="full" style="font-size:190%">					
+					<span v-if="item[0].deal==0">Куплю</span>
+        			<span v-if="item[0].deal==1">Продам</span>
+        			<span v-if="item[0].deal==2">Обменяю</span>
+        			<span v-if="item[0].deal==3">Отдам даром</span>
+        			<span v-if="item[0].deal==4">Сдам в аренду</span>
+					{{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года					
 				</h1>
+
+				<br>
 
 				<hr v-if="full">
 				<h5 v-if="!full && item[0].text!='null'"><b>{{ item[0].text }}</b></h5>
 				<h5 v-if="item[0].year!=null">Год выпуска: <b>{{ item[0].year }}</b> г.</h5>
 				
 				<h5 v-if="item[0].engine_type!=null">Вид топлива:
-					<b v-if="item[0].engine_type==0">бензин</b>
-					<b v-if="item[0].engine_type==1">дизель</b>
-					<b v-if="item[0].engine_type==2">газ-бензин</b>
-					<b v-if="item[0].engine_type==3">газ</b>
-					<b v-if="item[0].engine_type==4">гибрид</b>
-					<b v-if="item[0].engine_type==5">электричество</b>
+					<span v-if="item[0].engine_type==0">бензин</span>
+					<span v-if="item[0].engine_type==1">дизель</span>
+					<span v-if="item[0].engine_type==2">газ-бензин</span>
+					<span v-if="item[0].engine_type==3">газ</span>
+					<span v-if="item[0].engine_type==4">гибрид</span>
+					<span v-if="item[0].engine_type==5">электричество</span>				
 				</h5>
 				
-				<h5 v-if="item[0].mileage!=null">Пробег: <b>{{ item[0].mileage }}</b> км.</h5>
+				<h5 v-if="item[0].mileage!=null">Пробег: {{ item[0].mileage }} км.</h5>
 				<h5 v-if="item[0].steering_position!=null">Положение руля: 
-					<b v-if="item[0].steering_position==0">слева</b>
-					<b v-else>справа</b>
+					<span v-if="item[0].steering_position==0">слева</span>
+					<span v-else>справа</span>
 				</h5>
 				<h5 v-if="item[0].customs!=null">Растоможен: 
-					<b v-if="item[0].customs==1">да</b>
-					<b v-else>нет</b>
+					<span v-if="item[0].customs==1">да</span>
+					<span v-else>нет</span>
 				</h5>
 				<h5 v-if="full && item[0].text!='null'">Описание: <b>{{ item[0].text }}</b></h5>
 			</div>
@@ -62,22 +62,22 @@
 			<div v-if="item[0].category_id==2">
 
 				<!-- Заголовок -->
-				<h1 style="font-size:190%">
-					<b>
-						<span v-if="item[0].deal==0">Куплю</span>
-        				<span v-if="item[0].deal==1">Продам</span>
-        				<span v-if="item[0].deal==2">Обменяю</span>
-        				<span v-if="item[0].deal==3">Отдам даром</span>
-        				<span v-if="item[0].deal==4">Сдам в аренду</span>
-						{{ item[0].rooms }} комнатную квартиру, {{ item[0].floor }}/{{ item[0].floors_house }} этаж		
-					</b>
+				<h1 style="font-size:190%">					
+					<span v-if="item[0].deal==0">Куплю</span>
+        			<span v-if="item[0].deal==1">Продам</span>
+        			<span v-if="item[0].deal==2">Обменяю</span>
+        			<span v-if="item[0].deal==3">Отдам даром</span>
+        			<span v-if="item[0].deal==4">Сдам в аренду</span>
+					{{ item[0].rooms }} комнатную квартиру {{ item[0].floor }}/{{ item[0].floors_house }} этаж
 				</h1>
 
-				<h5>Количество комнат:<b> {{ item[0].rooms }}</b></h5>
-				<h5>Этаж:<b> {{ item[0].floor }}</b></h5>
-				<h5>Количество этажей:<b> {{ item[0].floors_house }}</b></h5>
-				<h5>Площадь:<b> {{ item[0].area }}</b></h5>
-				<h5 v-if="full && item[0].text!='null'">Описание: <b>{{ item[0].text }}</b></h5>
+				<br>
+
+				<h5>Количество комнат: {{ item[0].rooms }}</h5>
+				<h5>Этаж: {{ item[0].floor }}</h5>
+				<h5>Количество этажей: {{ item[0].floors_house }}</h5>
+				<h5>Площадь: {{ item[0].area }} </h5>
+				<h5 v-if="full && item[0].text!='null'">Описание: {{ item[0].text }}</h5>
 			</div>
 
 			<!-- Всё остальное -->
@@ -90,25 +90,28 @@
 				item[0].category_id==9 ||
 				item[0].category_id==10 && 
 				item[0].text!='null'">			
-				<b>{{ item[0].text }}</b>
+				{{ item[0].text }}
 				<br><br>			
 			</h5>
 
+			<!-------------------------------------------------
+				ОБЩАЯ ИНФОРМАЦИЯ
+		  	------------------------------------------------->
+		
+			<h5 v-if="item[0].category_id!=4 && item[0].price!=null">Цена: {{ item[0].price }} тенге</h5>		
 
-		<!-------------------------------------------------
-			ОБЩАЯ ИНФОРМАЦИЯ
-		  ------------------------------------------------->
-		<h5 v-if="item[0].category_id!=4 && item[0].price!=null">Цена: <b>{{ item[0].price }}</b> тенге</h5>
-		<h5>Контакты:
-			<b v-if="item[0].phone1!=null">{{ item[0].phone1 }}</b><span v-if="item[0].phone2!=null">,</span>
-			<b v-if="item[0].phone2!=null">{{ item[0].phone2 }}</b><span v-if="item[0].phone3!=null">,</span>
-			<b v-if="item[0].phone3!=null">{{ item[0].phone3 }}</b>			
-		</h5>
+			<h5>Контакты:
+				<span v-if="item[0].phone1!=null">{{ item[0].phone1 }}</span><span v-if="item[0].phone2!=null">,</span>
+				<span v-if="item[0].phone2!=null">{{ item[0].phone2 }}</span><span v-if="item[0].phone3!=null">,</span>
+				<span v-if="item[0].phone3!=null">{{ item[0].phone3 }}</span>			
+			</h5>
+
+		<br>
 		
 		<div v-if="images.length<=0" style="text-align:center">
 			<h5>Без фото</h5>
-		</div>
-		
+		</div>				
+
 		<div style="text-align:center" v-if="images.length>0">			
 			<b-img :src="'../storage/app/images/'+images[image_index].image" fluid style="margin-bottom:5px"/>
 			<div>

@@ -738,7 +738,7 @@ class AdvertController extends Controller {
                             $str_price = " за ".$results[0]->price." тенге";
                             
 
-                        $title = $results[0]->deal_name_2." ".$results[0]->rooms." комнатную квартиру, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$str_price;
+                        $title = $results[0]->deal_name_2." ".$results[0]->rooms." комнатную квартиру ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$str_price;
                         break;
                     }
 
