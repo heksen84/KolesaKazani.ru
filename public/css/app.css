@@ -84,12 +84,12 @@ body {
   border: 1px solid white;
   border-radius: 5px;
   padding: 6px;
-  background: #6464c8;
+  background: #787878;
   font-size: 17px;
 }
 
 #results_close_button:hover {
-  background: #7878dc;
+  background: #646464;
 }
 
 .alert {
