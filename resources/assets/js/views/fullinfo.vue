@@ -10,11 +10,13 @@
 		</b-col>
 
 		<b-col v-else cols="12" sm="12" md="12" lg="10" xl="10" class="create_advert_col">
-		  <div class="close_button" title="Закрыть страницу" style="font-size:20px" @click="closeAndReturn">X</div>     
+		  <div class="close_button" title="Закрыть страницу" style="font-size:20px;font-weight:bold" @click="closeAndReturn">X</div>     
 			<br>
 
 			<!-- размещение: регион / город / село -->
-			<h5>{{ item[0].region_name }} {{ item[0].city_name }}</h5>			
+			<h5>{{ item[0].region_name }} {{ item[0].city_name }}</h5>
+
+			<hr>			
 			
 			<hr v-if="!full"> <!-- Чёрточка -->
 
@@ -30,8 +32,7 @@
         			<span v-if="item[0].deal==4">Сдам в аренду</span>
 					{{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года					
 				</h1>
-
-				<br>
+				
 
 				<hr v-if="full">
 				<h5 v-if="!full && item[0].text!='null'"><b>{{ item[0].text }}</b></h5>
@@ -71,7 +72,7 @@
 					{{ item[0].rooms }} комнатную квартиру {{ item[0].floor }}/{{ item[0].floors_house }} этаж
 				</h1>
 
-				<br>
+				<hr>
 
 				<h5>Количество комнат: {{ item[0].rooms }}</h5>
 				<h5>Этаж: {{ item[0].floor }}</h5>
@@ -96,8 +97,7 @@
 
 			<!-------------------------------------------------
 				ОБЩАЯ ИНФОРМАЦИЯ
-		  	------------------------------------------------->
-		
+		  	------------------------------------------------->		
 			<h5 v-if="item[0].category_id!=4 && item[0].price!=null">Цена: {{ item[0].price }} тенге</h5>		
 
 			<h5>Контакты:
@@ -121,8 +121,7 @@
 		
 		<div style="text-align:center;margin-bottom:20px">
 		<hr>			
-			<!-- Регион / Город / Село -->
-			<b><ins>{{ item[0].region_name }}, {{ item[0].city_name }}</ins></b>
+						
 			<!-- Карта -->
 			<div id="map" style="margin-top:10px; width: 100%; height: 400px" v-if="item[0].coord_lat!=0 && item[0].coord_lon!=0"></div>
 			<hr>

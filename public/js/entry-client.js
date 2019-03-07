@@ -3613,7 +3613,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 var mapCoords = [];
@@ -37116,7 +37115,10 @@ var render = function() {
                     "div",
                     {
                       staticClass: "close_button",
-                      staticStyle: { "font-size": "20px" },
+                      staticStyle: {
+                        "font-size": "20px",
+                        "font-weight": "bold"
+                      },
                       attrs: { title: "Закрыть страницу" },
                       on: { click: _vm.closeAndReturn }
                     },
@@ -37132,6 +37134,8 @@ var render = function() {
                         _vm._s(_vm.item[0].city_name)
                     )
                   ]),
+                  _vm._v(" "),
+                  _c("hr"),
                   _vm._v(" "),
                   !_vm.full ? _c("hr") : _vm._e(),
                   _vm._v(" "),
@@ -37169,8 +37173,6 @@ var render = function() {
                               )
                             ])
                           : _vm._e(),
-                        _vm._v(" "),
-                        _c("br"),
                         _vm._v(" "),
                         _vm.full ? _c("hr") : _vm._e(),
                         _vm._v(" "),
@@ -37287,7 +37289,7 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _c("br"),
+                        _c("hr"),
                         _vm._v(" "),
                         _c("h5", [
                           _vm._v(
@@ -37425,16 +37427,6 @@ var render = function() {
                     },
                     [
                       _c("hr"),
-                      _vm._v(" "),
-                      _c("b", [
-                        _c("ins", [
-                          _vm._v(
-                            _vm._s(_vm.item[0].region_name) +
-                              ", " +
-                              _vm._s(_vm.item[0].city_name)
-                          )
-                        ])
-                      ]),
                       _vm._v(" "),
                       _vm.item[0].coord_lat != 0 && _vm.item[0].coord_lon != 0
                         ? _c("div", {
