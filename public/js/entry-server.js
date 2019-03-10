@@ -37392,7 +37392,7 @@ var render = function() {
                   _vm.item[0].category_id == 8 ||
                   _vm.item[0].category_id == 9 ||
                   (_vm.item[0].category_id == 10 && _vm.item[0].text != "null")
-                    ? _c("h5", [
+                    ? _c("div", [
                         _c("h1", [_vm._v(_vm._s(_vm.item[0].text))]),
                         _vm._v(" "),
                         _c("hr")

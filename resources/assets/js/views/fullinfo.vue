@@ -74,7 +74,7 @@
 			</div>
 
 			<!-- Всё остальное -->
-			<h5 v-if="item[0].category_id==3 || 
+			<div v-if="item[0].category_id==3 || 
 				item[0].category_id==4 || 
 				item[0].category_id==5 ||
 				item[0].category_id==6 ||
@@ -85,7 +85,7 @@
 				item[0].text!='null'">			
 				<h1>{{ item[0].text }}</h1>
 				<hr>			
-			</h5>
+			</div>
 
 			<!-------------------------------------------------
 				ОБЩАЯ ИНФОРМАЦИЯ
