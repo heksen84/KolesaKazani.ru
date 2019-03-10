@@ -30,7 +30,9 @@
         		<h1 v-if="full && item[0].deal==4">Сдам в аренду {{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года</h1>
 				
 				<hr v-if="full">
-				<h5 v-if="!full && item[0].text!='null'"><b>{{ item[0].text }}</b></h5>
+
+				<h1 v-if="!full && item[0].text!='null'">{{ item[0].text }}</h1>
+				
 				<h5 v-if="item[0].year!=null">Год выпуска: <b>{{ item[0].year }}</b> г.</h5>
 				
 				<h5 v-if="item[0].engine_type!=null">Вид топлива:
