@@ -3643,6 +3643,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 var mapCoords = [];
 var placemark;
@@ -37529,28 +37532,36 @@ var render = function() {
                       _c("hr"),
                       _vm._v(" "),
                       _vm.item[0].coord_lat != 0 && _vm.item[0].coord_lon != 0
-                        ? _c("div", {
-                            staticStyle: {
-                              "margin-top": "10px",
-                              width: "100%",
-                              height: "400px"
-                            },
-                            attrs: { id: "map" }
-                          })
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c("hr"),
-                      _vm._v(" "),
-                      _c(
-                        "b-button",
-                        {
-                          attrs: { variant: "primary" },
-                          on: { click: _vm.closeAndReturn }
-                        },
-                        [_vm._v("закрыть")]
-                      )
-                    ],
-                    1
+                        ? _c(
+                            "div",
+                            [
+                              _vm._v(
+                                "\n\t\t\t\tМестоположение на карте\n\t\t\t\t"
+                              ),
+                              _c("div", {
+                                staticStyle: {
+                                  "margin-top": "10px",
+                                  width: "100%",
+                                  height: "400px"
+                                },
+                                attrs: { id: "map" }
+                              }),
+                              _vm._v(" "),
+                              _c("hr"),
+                              _vm._v(" "),
+                              _c(
+                                "b-button",
+                                {
+                                  attrs: { variant: "primary" },
+                                  on: { click: _vm.closeAndReturn }
+                                },
+                                [_vm._v("закрыть")]
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e()
+                    ]
                   )
                 ]
               )

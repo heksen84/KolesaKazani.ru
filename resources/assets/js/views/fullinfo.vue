@@ -110,12 +110,15 @@
 		
 		<div style="text-align:center;margin-bottom:20px">
 		<hr>			
-						
-			<!-- Карта -->
-			<div id="map" style="margin-top:10px; width: 100%; height: 400px" v-if="item[0].coord_lat!=0 && item[0].coord_lon!=0"></div>
-			<hr>
-				<b-button variant="primary" @click="closeAndReturn">закрыть</b-button>
-			</div>		
+
+			<div v-if="item[0].coord_lat!=0 && item[0].coord_lon!=0">
+				Местоположение на карте
+				<div id="map" style="margin-top:10px; width: 100%; height: 400px"></div>
+					<hr>
+					<b-button variant="primary" @click="closeAndReturn">закрыть</b-button>
+				</div>
+			</div>
+
 		</b-col>
 	</b-row>
 </b-container>
