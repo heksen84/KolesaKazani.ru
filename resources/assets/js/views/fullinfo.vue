@@ -6,7 +6,7 @@
 		<!-- проверка на наличие входящих данных -->
 		<b-col cols="12" sm="12" md="12" lg="12" xl="12" v-if="item[0]==undefined" style="text-align:center;margin-top:20px" class="shadow_text">
 			<div style="font-size:40px">нет данных</div>
-			<b><a href="/">Перейсти на главную страницу</a></b>
+			<b><a href="/">Вернуться на главную страницу</a></b>
 		</b-col>
 
 		<b-col v-else cols="12" sm="12" md="12" lg="10" xl="10" class="create_advert_col">
