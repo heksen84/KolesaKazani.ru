@@ -25,7 +25,10 @@
 				</b-form-select>
 			</b-form-group>
 
-			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px" v-if="category!=null && category!=4 && category!=9">
+
+<!--			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px" v-if="category!=null && category!=4 && category!=9">-->
+			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px" 
+			v-if="category!=null && category!=3 && category!=4 && category!=5 && category!=6 && category!=7 && category!=8 && category!=9 && category!=10">
 				 <b-form-radio-group id="deal_group" stacked name="radioOpenions" @change="setDeal" v-model="sdelka">
 				 	<b-form-radio v-for="(i,index) in dealtypes" :value="i.id" :key="index">{{ i.deal_name_1 }}</b-form-radio>
 				 </b-form-radio-group>
@@ -69,7 +72,7 @@
 			<!-- Дополнительные поля -->
 			<div v-show="this.$store.state.show_final_fields">
 
-				<b-form-group label="<ins>Описание:</ins>" label-for="addit_info">
+				<b-form-group :label="$store.state.info_label_description" label-for="addit_info">
 			 		<b-form-textarea v-if="!$store.state.required_info" id="addit_info" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></b-form-textarea>
 					<b-form-textarea v-if="$store.state.required_info" required id="addit_info" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></b-form-textarea>
 				</b-form-group>			
@@ -85,7 +88,7 @@
 				<b-form-group label="<ins>Контакты:</ins>" style="text-align:center;font-weight:bold">			 	
 				 	<b-form-input v-model.trim="phone1" type="text" placeholder="Контактный номер 1" style="width:250px;display:inline;text-align:center" :formatter="setPhoneNumber(1)" required></b-form-input>
 							<!--<span style="margin-left:10px;color:grey;cursor:pointer" title="очистить поле" @click="clearField('phone1')">X</span>-->
-					<div v-if="phone1.length>const_phone1_length">
+					<div v-if="phone1.length > const_phone1_length">
 						<b-form-input v-model.trim="phone2" type="text" placeholder="Контактный номер 2" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber(2)"></b-form-input>
 							<!--<span style="color:grey;cursor:pointer" title="очистить поле" @click="clearField('phone2')">X</span>-->
 						<b-form-input v-model.trim="phone3" type="text" placeholder="Контактный номер 3" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber(3)"></b-form-input>
@@ -101,7 +104,7 @@
 				</div>
 				</b-form-group>				
 
-				<div v-show="phone1.length>const_phone1_length">
+				<div v-show="phone1.length > const_phone1_length">
 
 				<!-- Город, Село и т.д. -->
 				<div style="text-align:center;margin-top:50px;margin-bottom:0px;font-weight:bold">Расположение</div>
@@ -379,8 +382,10 @@ export default {
 
 			this.$root.advert_data.region_id = region_id;
 
+			// -------------------------------
 			// Получить города / сёлы
-      		get('getPlaces?region_id='+region_id).then((res) => {
+			// -------------------------------
+      		get("getPlaces?region_id="+region_id).then((res) => {
 				  this.places=res.data;
 				  this.places_model=null;
           		console.log(res.data);
@@ -527,14 +532,37 @@ export default {
 		// сброс данных объявления
 		advReset(category_data) {
 
+				console.log("--------------------")
+				console.log(category_data)
+				console.log("--------------------")
+
 				this.$store.commit("SetRequiredInfo", false);
 				this.$store.commit("SetPlaceholderInfoText", "default");
 
 				// сброс массива объявления и переинициализация его
 				this.$root.advert_data = [];
-				this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
+
+				// ----------------------------------------------------------------------------------------------------------------
+				// Не использовать операции сделки во всех категориях, т.к. пользователь может ввести описание объявления сам. 
+				// Типа: Продам то-то-то-то или Куплю то-то-то-то
+				// ----------------------------------------------------------------------------------------------------------------
+				switch(category_data) {
+					case 3: this.$root.advert_data.adv_deal = ""; break; 
+					case 4: this.$root.advert_data.adv_deal = ""; break; 
+					case 5: this.$root.advert_data.adv_deal = ""; break; 
+					case 6: this.$root.advert_data.adv_deal = ""; break; 
+					case 7: this.$root.advert_data.adv_deal = ""; break; 
+					case 8: this.$root.advert_data.adv_deal = ""; break; 
+					case 9: this.$root.advert_data.adv_deal = ""; break; 
+					case 10: this.$root.advert_data.adv_deal = ""; break; 
+					default: this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
+				}
+				
+				//this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
+
+
 				this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
-				this.$root.advert_data.adv_price = "";
+				this.$root.advert_data.adv_price  = "";
 				this.$root.advert_data.adv_phone1 = "";
 
 				// сброс моделей

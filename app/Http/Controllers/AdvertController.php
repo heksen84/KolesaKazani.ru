@@ -54,8 +54,9 @@ class AdvertController extends Controller {
         // ---------------------------
         // правила валидации
         // ---------------------------
-        $rules = [
-            "adv_deal"      => "required",
+        $rules = 
+        [
+            //"adv_deal"      => "required",
             "adv_category"  => "required", 
             "adv_price"     => "required|numeric",
             "adv_phone1"    => "required|numeric",
@@ -114,11 +115,11 @@ class AdvertController extends Controller {
 
         	$advert->price  		 = $price;
             $advert->category_id  	 = $category;
-            $advert->deal  	         = $deal;
-            $advert->adv_category_id = 0;
+            $advert->deal  	         = $deal;            
             $advert->region_id       = $region_id;
             $advert->city_id         = $city_id;
             $advert->lang            = "ru";
+            $advert->adv_category_id = 0;            
             $advert->vip             = false;
             $advert->full            = false;
 
@@ -208,18 +209,19 @@ class AdvertController extends Controller {
                 // --------------------------------
                 // недвижимость
                 // --------------------------------
-                case 2: {                    
+                case 2: {
+
                     $realestate = new RealEstate();
-                    $realestate->property_type = $data["property_type"];
-                    $realestate->floor = $data["floor_num"];
-                    $realestate->floors_house = $data["number_of_floors"];
-                    $realestate->rooms = $data["number_of_rooms"];
-                    $realestate->area = $data["area_num"];
-                    $realestate->ownership = $data["property_num"];
+                    $realestate->property_type  = $data["property_type"];
+                    $realestate->floor          = $data["floor_num"];
+                    $realestate->floors_house   = $data["number_of_floors"];
+                    $realestate->rooms          = $data["number_of_rooms"];
+                    $realestate->area           = $data["area_num"];
+                    $realestate->ownership      = $data["property_num"];
                     $realestate->kind_of_object = $data["object_type"];
 
                     // квартира
-                    if ($data["property_type"]==0) {
+                    if ( $data["property_type"]==0 ) {
                         $advert->full = true; // полное объявление с хар-ками (в item будет указан вид сделки)
                     }
                     
@@ -959,6 +961,7 @@ class AdvertController extends Controller {
 
             // ----------------------------------------
             // категории без развёрнутой информации
+            // описание пользователя
             // ----------------------------------------
             if ( $item->category_id==3 || 
                  $item->category_id==4 || 
@@ -967,14 +970,14 @@ class AdvertController extends Controller {
                  $item->category_id==7 || 
                  $item->category_id==8 || 
                  $item->category_id==9 || 
-                 $item->category_id==10) { 
+                 $item->category_id==10) {                      
             
                 $results = DB::select(
                     "SELECT
-                    deal_name_2,
+                    /*deal_name_2,*/
                     adv.category_id,
                     adv.id as advert_id,
-                    adv.deal,
+                    /*adv.deal,*/
                     adv.price,
                     adv.phone1,
                     adv.phone2,
@@ -984,14 +987,19 @@ class AdvertController extends Controller {
                     adv.coord_lon,
                     kz_region.name as region_name,
                     kz_city.name as city_name              
-                    FROM `adverts` as adv INNER JOIN (dealtype, kz_city, kz_region) ON (
-                        adv.deal=dealtype.id AND
+                    /*FROM `adverts` as adv INNER JOIN (dealtype, kz_city, kz_region) ON (*/
+                    FROM `adverts` as adv INNER JOIN (kz_city, kz_region) ON (
+                        /*adv.deal=dealtype.id AND*/
                         kz_city.city_id=adv.city_id AND
                         kz_region.region_id=adv.region_id
                     ) WHERE adv.id=".$id." LIMIT 1"
                 );
+
+                if ( $results[0]->price >0 )
+                    $str_price = " за ".$results[0]->price." тенге";
                                 
-                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL).$this->getStrPrice($results);
+                //$title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL).$this->getStrPrice($results);
+                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL).$str_price;
             }
 
             // выбираю изображения

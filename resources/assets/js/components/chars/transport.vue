@@ -172,7 +172,8 @@ export default {
 
           this.$store.commit("ShowCommonTransport", false);          
           this.$store.commit("ShowFinalFields", false);                                        
-          this.$store.commit("SetPlaceholderInfoText", "Введите дополнительное описание.");
+          this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
+
           this.carmark=[];
                       
           get("/getCarsMarks").then((res) => {

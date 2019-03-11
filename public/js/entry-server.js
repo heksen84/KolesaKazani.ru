@@ -1963,7 +1963,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.$store.commit("ShowCommonTransport", false);
             this.$store.commit("ShowFinalFields", false);
-            this.$store.commit("SetPlaceholderInfoText", "Введите дополнительное описание.");
+            this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
+
             this.carmark = [];
 
             Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/getCarsMarks").then(function (res) {
@@ -2864,6 +2865,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 // ----------------------------------------------------
@@ -3103,8 +3107,10 @@ function forEach(data, callback) {
 
 			this.$root.advert_data.region_id = region_id;
 
+			// -------------------------------
 			// Получить города / сёлы
-			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('getPlaces?region_id=' + region_id).then(function (res) {
+			// -------------------------------
+			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("getPlaces?region_id=" + region_id).then(function (res) {
 				_this.places = res.data;
 				_this.places_model = null;
 				console.log(res.data);
@@ -3256,12 +3262,44 @@ function forEach(data, callback) {
 		// сброс данных объявления
 		advReset: function advReset(category_data) {
 
+			console.log("--------------------");
+			console.log(category_data);
+			console.log("--------------------");
+
 			this.$store.commit("SetRequiredInfo", false);
 			this.$store.commit("SetPlaceholderInfoText", "default");
 
 			// сброс массива объявления и переинициализация его
 			this.$root.advert_data = [];
-			this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
+
+			// ----------------------------------------------------------------------------------------------------------------
+			// Не использовать операции сделки во всех категориях, т.к. пользователь может ввести описание объявления сам. 
+			// Типа: Продам то-то-то-то или Куплю то-то-то-то
+			// ----------------------------------------------------------------------------------------------------------------
+			switch (category_data) {
+				case 3:
+					this.$root.advert_data.adv_deal = "";break;
+				case 4:
+					this.$root.advert_data.adv_deal = "";break;
+				case 5:
+					this.$root.advert_data.adv_deal = "";break;
+				case 6:
+					this.$root.advert_data.adv_deal = "";break;
+				case 7:
+					this.$root.advert_data.adv_deal = "";break;
+				case 8:
+					this.$root.advert_data.adv_deal = "";break;
+				case 9:
+					this.$root.advert_data.adv_deal = "";break;
+				case 10:
+					this.$root.advert_data.adv_deal = "";break;
+				default:
+					this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
+			}
+
+			//this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
+
+
 			this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
 			this.$root.advert_data.adv_price = "";
 			this.$root.advert_data.adv_phone1 = "";
@@ -38720,7 +38758,15 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _vm.category != null && _vm.category != 4 && _vm.category != 9
+                  _vm.category != null &&
+                  _vm.category != 3 &&
+                  _vm.category != 4 &&
+                  _vm.category != 5 &&
+                  _vm.category != 6 &&
+                  _vm.category != 7 &&
+                  _vm.category != 8 &&
+                  _vm.category != 9 &&
+                  _vm.category != 10
                     ? _c(
                         "b-form-group",
                         {
@@ -38803,7 +38849,7 @@ var render = function() {
                         "b-form-group",
                         {
                           attrs: {
-                            label: "<ins>Описание:</ins>",
+                            label: _vm.$store.state.info_label_description,
                             "label-for": "addit_info"
                           }
                         },
@@ -39041,7 +39087,7 @@ var render = function() {
                               rawName: "v-show",
                               value:
                                 _vm.phone1.length > _vm.const_phone1_length,
-                              expression: "phone1.length>const_phone1_length"
+                              expression: "phone1.length > const_phone1_length"
                             }
                           ]
                         },
@@ -53725,12 +53771,15 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
 
   state: (_state = {
 
+    required_info: false, // обязательное поле дополнительной информации
+
     // ********************************
     // стандартные поля объявления
     // ********************************
     price: "",
+
+    info_label_description: "Текст объявления",
     placeholder_info_text: "",
-    required_info: false, // обязательное поле дополнительной информации
 
     // *****************************************************************
     //  дополнительные поля в объявлении (поле доп. информация, и.т.д.)
