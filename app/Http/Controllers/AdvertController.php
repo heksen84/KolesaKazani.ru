@@ -321,6 +321,14 @@ class AdvertController extends Controller {
         $results = DB::select("SELECT advert_id FROM urls WHERE MATCH(url) AGAINST('".$url."')"); // fulltext search
         return $this->getFullInfo($results[0]->advert_id);
     }
+    
+
+    private function getStrPrice($results) {
+        if ( $results[0]->price >0 && in_array($results[0]->deal, [0,1,4]) ) {
+            $str_price = " за ".$results[0]->price." тенге";
+            return $str_price;
+        }    
+    }
 
     /*
     -------------------------------------------
@@ -387,16 +395,12 @@ class AdvertController extends Controller {
                             categories.id=adv.category_id AND                            
                             kz_city.city_id=adv.city_id AND
                             kz_region.region_id=adv.region_id
-					    ) 
-                        WHERE adv.id=".$id." LIMIT 1"
+					    ) WHERE adv.id=".$id." LIMIT 1"
                     );
-
-                    if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
-                        $str_price = " за ".$results[0]->price." тенге";
                                         
                     $title = $results[0]->deal_name_2." ".$results[0]->mark." ".$results[0]->model." ".$results[0]->year
                     ." года в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)
-                    .$str_price;
+                    .$this->getStrPrice($results);
                     
                     break;
             }
@@ -432,17 +436,14 @@ class AdvertController extends Controller {
                             adv.adv_category_id = adv_transport.id AND
                             kz_city.city_id=adv.city_id AND
                             kz_region.region_id=adv.region_id
-					    ) 
-                        WHERE adv.id=".$id." LIMIT 1");
+					    ) WHERE adv.id=".$id." LIMIT 1");
 
                         \Debugbar::info($results);
 
-                        if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
-                            $str_price = " за ".$results[0]->price." тенге";
-
+                        
                         $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)
                         ." ".$results[0]->year." г.в."
-                        .$str_price;
+                        .$this->getStrPrice($results);
 
                         break;
                 }                    
@@ -477,14 +478,11 @@ class AdvertController extends Controller {
                             adv.adv_category_id = adv_transport.id AND
                             kz_city.city_id=adv.city_id AND
                             kz_region.region_id=adv.region_id
-                        ) 
-                        WHERE adv.id=".$id." LIMIT 1");
+                        ) WHERE adv.id=".$id." LIMIT 1");
 
-                        if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
-                            $str_price = " за ".$results[0]->price." тенге";
-
+                        
                         $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$results[0]->year." г.в."
-                        .$str_price;
+                        .$this->getStrPrice($results);
                         
                         break;
             }
@@ -515,13 +513,9 @@ class AdvertController extends Controller {
                     adv.adv_category_id = adv_transport.id AND                    
                     kz_city.city_id=adv.city_id AND
                     kz_region.region_id=adv.region_id
-                ) 
-                WHERE adv.id=".$id." LIMIT 1");
+                ) WHERE adv.id=".$id." LIMIT 1");
 
-                if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
-                    $str_price = " за ".$results[0]->price." тенге";
-
-                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$str_price;
+                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$this->getStrPrice($results);
 
                 break;
             }
@@ -557,16 +551,11 @@ class AdvertController extends Controller {
                     adv.adv_category_id = adv_transport.id AND
                     kz_city.city_id=adv.city_id AND
                     kz_region.region_id=adv.region_id
-                ) 
-                WHERE adv.id=".$id." LIMIT 1");
+                ) WHERE adv.id=".$id." LIMIT 1");
 
-                if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
-                    $str_price = " за ".$results[0]->price." тенге";
 
-                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)
-                ." ".$results[0]->year
-                ." г.в."
-                .$str_price;
+                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$results[0]->year." г.в."
+                .$this->getStrPrice($results);
 
                 break;
             }
@@ -597,15 +586,11 @@ class AdvertController extends Controller {
                     adv.deal=dealtype.id AND                    
                     kz_city.city_id=adv.city_id AND
                     kz_region.region_id=adv.region_id
-                ) 
-                WHERE adv.id=".$id." LIMIT 1");
+                ) WHERE adv.id=".$id." LIMIT 1");
 
-
-                if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
-                    $str_price = " за ".$results[0]->price." тенге";
 
                 $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)
-                .$str_price;
+                .$this->getStrPrice($results);
 
                 break;
             }
@@ -635,14 +620,9 @@ class AdvertController extends Controller {
                     adv.deal=dealtype.id AND                    
                     kz_city.city_id=adv.city_id AND
                     kz_region.region_id=adv.region_id
-                ) 
-                WHERE adv.id=".$id." LIMIT 1");
-
-                if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
-                    $str_price = " за ".$results[0]->price." тенге";
-
-                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$results[0]->year." г.в."
-                .$str_price;
+                ) WHERE adv.id=".$id." LIMIT 1");
+                
+                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$this->getStrPrice($results);
 
                 break;
             }
@@ -673,14 +653,9 @@ class AdvertController extends Controller {
                     adv.adv_category_id = adv_transport.id AND                    
                     kz_city.city_id=adv.city_id AND
                     kz_region.region_id=adv.region_id
-                ) 
-                WHERE adv.id=".$id." LIMIT 1");
+                ) WHERE adv.id=".$id." LIMIT 1");
 
-                if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
-                    $str_price = " за ".$results[0]->price." тенге";
-
-                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$results[0]->year." г.в."
-                .$str_price;
+                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$this->getStrPrice($results);
 
                 break;
             }                    
@@ -727,21 +702,15 @@ class AdvertController extends Controller {
                             adv.deal=dealtype.id AND
                             kz_city.city_id=adv.city_id AND
                             kz_region.region_id=adv.region_id
-                        ) 
-                        WHERE adv.id=".$id." LIMIT 1");
-
-                        if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
-                            $str_price = " за ".$results[0]->price." тенге";
-                            
-
-                        $title = $results[0]->deal_name_2." ".$results[0]->rooms." комнатную квартиру ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$str_price;
+                        ) WHERE adv.id=".$id." LIMIT 1");
+                
+                        $title = $results[0]->deal_name_2." ".$results[0]->rooms." комнатную квартиру ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." "
+                        .$this->getStrPrice($results);
                         break;
                     }
 
                     // комната
                     case 1: {
-
-                        //\Debugbar::info("Я тута!");
                         
                         $results = DB::select(
                         "SELECT
@@ -768,21 +737,16 @@ class AdvertController extends Controller {
                             adv.deal=dealtype.id AND
                             kz_city.city_id=adv.city_id AND
                             kz_region.region_id=adv.region_id
-                        ) 
-                        WHERE adv.id=".$id." LIMIT 1");
+                        ) WHERE adv.id=".$id." LIMIT 1");
 
-                        if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
-                            $str_price = " за ".$results[0]->price." тенге";
-                            
+                        $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." "
+                        .$this->getStrPrice($results);
 
-                        $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$str_price;
                         break;
                     }
 
                     // Дом, дача, коттедж
                     case 2: {
-
-                        //\Debugbar::info("Я тута!");
                         
                         $results = DB::select(
                         "SELECT
@@ -809,21 +773,15 @@ class AdvertController extends Controller {
                             adv.deal=dealtype.id AND
                             kz_city.city_id=adv.city_id AND
                             kz_region.region_id=adv.region_id
-                        ) 
-                        WHERE adv.id=".$id." LIMIT 1");
+                        ) WHERE adv.id=".$id." LIMIT 1");                            
 
-                        if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
-                            $str_price = " за ".$results[0]->price." тенге";
-                            
-
-                        $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$str_price;
+                        $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." "
+                        .$this->getStrPrice($results);
                         break;
                     }
 
                     // Земельный участок
                     case 3: {
-
-                        //\Debugbar::info("Я тута!");
                         
                         $results = DB::select(
                         "SELECT
@@ -850,21 +808,15 @@ class AdvertController extends Controller {
                             adv.deal=dealtype.id AND
                             kz_city.city_id=adv.city_id AND
                             kz_region.region_id=adv.region_id
-                        ) 
-                        WHERE adv.id=".$id." LIMIT 1");
-
-                        if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
-                            $str_price = " за ".$results[0]->price." тенге";
-                            
-
-                        $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$str_price;
+                        ) WHERE adv.id=".$id." LIMIT 1");
+                        
+                        $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." "
+                        .$this->getStrPrice($results);
                         break;
                     }
 
                     // Земельный участок
                     case 3: {
-
-                        //\Debugbar::info("Я тута!");
                         
                         $results = DB::select(
                         "SELECT
@@ -891,21 +843,15 @@ class AdvertController extends Controller {
                             adv.deal=dealtype.id AND
                             kz_city.city_id=adv.city_id AND
                             kz_region.region_id=adv.region_id
-                        ) 
-                        WHERE adv.id=".$id." LIMIT 1");
-
-                        if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
-                            $str_price = " за ".$results[0]->price." тенге";
+                        ) WHERE adv.id=".$id." LIMIT 1");
                             
-
-                        $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$str_price;
+                        $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." "
+                        .$this->getStrPrice($results);
                         break;
                     }
 
                     // Гараж или машиноместо
                     case 4: {
-
-                        //\Debugbar::info("Я тута!");
                         
                         $results = DB::select(
                         "SELECT
@@ -932,21 +878,15 @@ class AdvertController extends Controller {
                             adv.deal=dealtype.id AND
                             kz_city.city_id=adv.city_id AND
                             kz_region.region_id=adv.region_id
-                        ) 
-                        WHERE adv.id=".$id." LIMIT 1");
-
-                        if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
-                            $str_price = " за ".$results[0]->price." тенге";
+                        ) WHERE adv.id=".$id." LIMIT 1");
                             
-
-                        $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$str_price;
+                        $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." "
+                        .$this->getStrPrice($results);
                         break;
                     }
 
                     // Коммерческая недвижимость
                     case 5: {
-
-                        //\Debugbar::info("Я тута!");
                         
                         $results = DB::select(
                         "SELECT
@@ -973,21 +913,15 @@ class AdvertController extends Controller {
                             adv.deal=dealtype.id AND
                             kz_city.city_id=adv.city_id AND
                             kz_region.region_id=adv.region_id
-                        ) 
-                        WHERE adv.id=".$id." LIMIT 1");
+                        ) WHERE adv.id=".$id." LIMIT 1");
 
-                        if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
-                            $str_price = " за ".$results[0]->price." тенге";
-                            
-
-                        $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$str_price;
+                        $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." "
+                        .$this->getStrPrice($results);
                         break;
                     }
 
                     // Недвижимость за рубежом
                     case 6: {
-
-                        //\Debugbar::info("Я тута!");
                         
                         $results = DB::select(
                         "SELECT
@@ -1014,14 +948,10 @@ class AdvertController extends Controller {
                             adv.deal=dealtype.id AND
                             kz_city.city_id=adv.city_id AND
                             kz_region.region_id=adv.region_id
-                        ) 
-                        WHERE adv.id=".$id." LIMIT 1");
+                        ) WHERE adv.id=".$id." LIMIT 1");
 
-                        if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
-                            $str_price = " за ".$results[0]->price." тенге";
-                            
-
-                        $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$str_price;
+                        $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." "
+                        .$this->getStrPrice($results);
                         break;
                     }
                 }
@@ -1058,14 +988,10 @@ class AdvertController extends Controller {
                         adv.deal=dealtype.id AND
                         kz_city.city_id=adv.city_id AND
                         kz_region.region_id=adv.region_id
-                    ) 
-                    WHERE adv.id=".$id." LIMIT 1"
+                    ) WHERE adv.id=".$id." LIMIT 1"
                 );
-
-                if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
-                    $str_price = " за ".$results[0]->price." тенге";
                                 
-                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL).$str_price;
+                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL).$this->getStrPrice($results);
             }
 
             // выбираю изображения
