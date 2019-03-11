@@ -483,9 +483,8 @@ class AdvertController extends Controller {
                         if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
                             $str_price = " за ".$results[0]->price." тенге";
 
-                        $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." "
-                        .$results[0]->year." г.в."
-                        .$price;
+                        $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$results[0]->year." г.в."
+                        .$str_price;
                         
                         break;
             }
@@ -522,10 +521,7 @@ class AdvertController extends Controller {
                 if ($results[0]->price>0 && in_array($results[0]->deal, [0,1,4]))
                     $str_price = " за ".$results[0]->price." тенге";
 
-                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)
-                ." "
-                .$results[0]->year." г.в."
-                .$str_price;
+                $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$str_price;
 
                 break;
             }

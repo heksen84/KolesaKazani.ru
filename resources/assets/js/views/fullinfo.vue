@@ -33,7 +33,7 @@
 
 				<h1 v-if="!full && item[0].text!='null'">{{ item[0].text }}</h1>
 				
-				<h5 v-if="item[0].year!=null">Год выпуска: <b>{{ item[0].year }}</b> г.</h5>
+				<h5 v-if="item[0].year!=null">Год выпуска: {{ item[0].year }} г.</h5>
 				
 				<h5 v-if="item[0].engine_type!=null">Вид топлива:
 					<span v-if="item[0].engine_type==0">бензин</span>

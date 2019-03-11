@@ -37209,9 +37209,11 @@ var render = function() {
                         _vm._v(" "),
                         _vm.item[0].year != null
                           ? _c("h5", [
-                              _vm._v("Год выпуска: "),
-                              _c("b", [_vm._v(_vm._s(_vm.item[0].year))]),
-                              _vm._v(" г.")
+                              _vm._v(
+                                "Год выпуска: " +
+                                  _vm._s(_vm.item[0].year) +
+                                  " г."
+                              )
                             ])
                           : _vm._e(),
                         _vm._v(" "),
