@@ -148,7 +148,8 @@ export default {
 
       this.$store.commit("SetRequiredInfo", true);
       this.$store.commit("ResetField", "price");
-      this.$store.commit("SetPlaceholderInfoText", "default");
+      this.$store.commit("SetPlaceholderInfoText",  "default");
+      this.$store.commit("SetInfoLabelDescription", "default");
       
       this.selected.model = null;
 
@@ -171,7 +172,8 @@ export default {
         case 0: {
 
           this.$store.commit("ShowCommonTransport", false);          
-          this.$store.commit("ShowFinalFields", false);                                        
+          this.$store.commit("ShowFinalFields", false);                                                  
+          this.$store.commit("SetInfoLabelDescription", "Дополнительно");
           this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
 
           this.carmark=[];

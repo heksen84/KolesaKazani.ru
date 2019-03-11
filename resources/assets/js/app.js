@@ -65,26 +65,12 @@ Vue.use(Notifications)
 const store = new Vuex.Store({
 
     state: { 
-
       required_info: false,       // обязательное поле дополнительной информации
-
-      // ********************************
-      // стандартные поля объявления
-      // ********************************
-      price: "",
-      
-      info_label_description: "Текст объявления",
-      placeholder_info_text: "",      
-      
-      // *****************************************************************
-      //  дополнительные поля в объявлении (поле доп. информация, и.т.д.)
-      // *****************************************************************
+      price: "",      
+      info_label_description: "",
+      placeholder_info_text:  "",      
       show_final_fields: false,
       show_common_transport: false,
-
-      // *****************************************************************
-      //  мультиязычность
-      // *****************************************************************
       str_login: "",
       str_register: "",
       str_my_adverts: "",
@@ -94,11 +80,18 @@ const store = new Vuex.Store({
       str_button_search: "",
       str_create_advert: "",
       str_my_adverts: "",
-      str_location: ""
-      
+      str_location: ""      
     },
 
     mutations: {
+
+      // установить заголовок доп. информации / текста объявления
+      SetInfoLabelDescription( state, text ) {
+        if (text=="default") 
+          state.info_label_description = "Текст объявления"
+        else
+          state.info_label_description = text;
+      },
 
       // установить текст подсказки в поле описание
       SetPlaceholderInfoText(state, text) {

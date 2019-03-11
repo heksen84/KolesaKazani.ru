@@ -16,9 +16,6 @@
 			<!-- размещение: регион / город / село -->
 			<h5>{{ item[0].region_name }} {{ item[0].city_name }}</h5>
 
-			
-			<!--<hr v-if="!full">--> <!-- Чёрточка -->
-
 			<!-- Транспорт --->
 			<div v-if="item[0].category_id==1">
 				
@@ -76,16 +73,14 @@
 			</div>
 
 			<!-- Всё остальное -->
-			<div v-if="item[0].category_id==3 || 
-				item[0].category_id==4 || 
-				item[0].category_id==5 ||
-				item[0].category_id==6 ||
-				item[0].category_id==7 ||
+			<div v-if="item[0].category_id==3 || item[0].category_id==4 || item[0].category_id==5 || item[0].category_id==6 ||item[0].category_id==7 ||
 				item[0].category_id==8 ||
 				item[0].category_id==9 ||
 				item[0].category_id==10 && 
-				item[0].text!='null'">			
+				item[0].text!='null'">
+
 				<h1>{{ item[0].text }}</h1>
+
 				<hr>			
 			</div>
 
@@ -125,8 +120,8 @@
 	</b-row>
 </b-container>
 </template>
-<script>
 
+<script>
 var mapCoords=[];
 var placemark;
 var map;
@@ -165,9 +160,9 @@ created() {
 
 	console.log(this.item[0]);
 
-	// -----------------------------------------------------
+	// -------------------------------------------------------------
 	// не инициализировать карту, если координаты 0,0
-	// -----------------------------------------------------
+	// -------------------------------------------------------------
 	if (this.item[0].coord_lat!=0 && this.item[0].coord_lon!=0) {
 		mapCoords=[this.item[0].coord_lat, this.item[0].coord_lon];
 		ymaps.ready(initMap);		
@@ -176,9 +171,11 @@ created() {
 
 // методы компонента
 methods: {
-	selectImage(index) {
-   this.image_index=index;
- },
+selectImage(index) {
+  this.image_index=index;
+},
+
+// закрыть и вернуться на пред. страницу
 closeAndReturn() {
    window.history.back();
   }

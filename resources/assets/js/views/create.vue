@@ -594,7 +594,8 @@ export default {
 
 			// сбрасываю фотки
 			var photos = document.querySelector("input[type=file]");
-			if (photos!=null) photos.value = "";
+			if (photos!=null) 
+				photos.value = "";
 		},
 
   		/*

@@ -1940,6 +1940,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$store.commit("SetRequiredInfo", true);
       this.$store.commit("ResetField", "price");
       this.$store.commit("SetPlaceholderInfoText", "default");
+      this.$store.commit("SetInfoLabelDescription", "default");
 
       this.selected.model = null;
 
@@ -1963,6 +1964,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.$store.commit("ShowCommonTransport", false);
             this.$store.commit("ShowFinalFields", false);
+            this.$store.commit("SetInfoLabelDescription", "Дополнительно");
             this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
 
             this.carmark = [];
@@ -3641,11 +3643,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-
 
 var mapCoords = [];
 var placemark;
@@ -3686,9 +3683,9 @@ function initMap() {
 
 		console.log(this.item[0]);
 
-		// -----------------------------------------------------
+		// -------------------------------------------------------------
 		// не инициализировать карту, если координаты 0,0
-		// -----------------------------------------------------
+		// -------------------------------------------------------------
 		if (this.item[0].coord_lat != 0 && this.item[0].coord_lon != 0) {
 			mapCoords = [this.item[0].coord_lat, this.item[0].coord_lon];
 			ymaps.ready(initMap);
@@ -3701,6 +3698,9 @@ function initMap() {
 		selectImage: function selectImage(index) {
 			this.image_index = index;
 		},
+
+
+		// закрыть и вернуться на пред. страницу
 		closeAndReturn: function closeAndReturn() {
 			window.history.back();
 		}
@@ -53770,26 +53770,12 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_32_vue
 var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
 
   state: (_state = {
-
     required_info: false, // обязательное поле дополнительной информации
-
-    // ********************************
-    // стандартные поля объявления
-    // ********************************
     price: "",
-
-    info_label_description: "Текст объявления",
+    info_label_description: "",
     placeholder_info_text: "",
-
-    // *****************************************************************
-    //  дополнительные поля в объявлении (поле доп. информация, и.т.д.)
-    // *****************************************************************
     show_final_fields: false,
     show_common_transport: false,
-
-    // *****************************************************************
-    //  мультиязычность
-    // *****************************************************************
     str_login: "",
     str_register: "",
     str_my_adverts: "",
@@ -53801,6 +53787,12 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
   }, _defineProperty(_state, 'str_my_adverts', ""), _defineProperty(_state, 'str_location', ""), _state),
 
   mutations: {
+
+    // установить заголовок доп. информации / текста объявления
+    SetInfoLabelDescription: function SetInfoLabelDescription(state, text) {
+      if (text == "default") state.info_label_description = "Текст объявления";else state.info_label_description = text;
+    },
+
 
     // установить текст подсказки в поле описание
     SetPlaceholderInfoText: function SetPlaceholderInfoText(state, text) {
