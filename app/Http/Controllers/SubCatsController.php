@@ -52,7 +52,8 @@ class SubCatsController extends Controller
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
-                    $title="Легковой автомобиль";
+                    $title="Покупка, продажа, обмен, сдача в аренду легковых автомобилей";
+
                     \Debugbar::info($results);
 
                     break;
@@ -79,7 +80,7 @@ class SubCatsController extends Controller
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
-                    $title="Грузовой транспорт";
+                    $title="Покупка, продажа, обмен, сдача в аренду грузового транспорта";
 
                     \Debugbar::info($results);
 
@@ -108,7 +109,7 @@ class SubCatsController extends Controller
                     \Debugbar::info("moto");                    
                     \Debugbar::info($results);
                     
-                    $title="Мототехника";
+                    $title="Покупка, продажа, обмен, сдача в аренду мототехники";
 
                     break;
                 }                
@@ -132,10 +133,9 @@ class SubCatsController extends Controller
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
-                    \Debugbar::info("spectechika");                    
                     \Debugbar::info($results);
 
-                    $title="Спецтехника";
+                    $title="Покупка, продажа, обмен, сдача в аренду спецтехники";
 
                     break;
                 }   
@@ -159,7 +159,7 @@ class SubCatsController extends Controller
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
-                    $title="Ретро авто";
+                    $title="Покупка, продажа, обмен, сдача в аренду ретро автомобилей";
 
                     break;
                 }                               
@@ -183,7 +183,7 @@ class SubCatsController extends Controller
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
-                    $title="Водный транспорт";
+                    $title="Покупка, продажа, обмен, сдача в аренду водного транспорта";
 
                     break;
                 }                               
@@ -207,7 +207,7 @@ class SubCatsController extends Controller
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
-                    $title="Велосипед";
+                    $title="Покупка, продажа, обмен, сдача в аренду велосипеда";
 
                     break;
                 }                               
@@ -231,7 +231,7 @@ class SubCatsController extends Controller
                          ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
-                    $title="Воздушный транспорт";
+                    $title="Покупка, продажа, обмен, сдача в аренду воздушного транспорта";
 
                     break;
                 }
@@ -270,7 +270,7 @@ class SubCatsController extends Controller
 
                     \Debugbar::info($results);
 
-                    $title="Квартира";
+                    $title="Покупка, продажа, обмен, сдача в аренду квартиры";
 
                     break;
                 }
@@ -296,7 +296,7 @@ class SubCatsController extends Controller
 
                     \Debugbar::info($results);
 
-                    $title="Комната";
+                    $title="Покупка, продажа, обмен, сдача в аренду комнаты";
 
                     break;
                 }
@@ -322,7 +322,8 @@ class SubCatsController extends Controller
 
                     \Debugbar::info($results);
                                         
-                    $title="Дом, дача, коттедж";                    
+                    $title="Покупка, продажа, обмен, сдача в аренду дома, дачи, коттеджа";
+
                     break;
                 }
 
@@ -346,6 +347,8 @@ class SubCatsController extends Controller
                     );
 
                     \Debugbar::info($results);
+
+                    $title="Покупка, продажа, обмен, сдача в аренду земельного участка";
 
                     break;
                 }
@@ -371,6 +374,8 @@ class SubCatsController extends Controller
 
                     \Debugbar::info($results);
 
+                    $title="Покупка, продажа, обмен, сдача в аренду гаража или машиноместа";
+
                     break;
                 }
 
@@ -392,8 +397,10 @@ class SubCatsController extends Controller
                         WHERE adv_realestate.property_type=5 AND adv.category_id=2
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
-
+                
                     \Debugbar::info($results);
+
+                    $title="Покупка, продажа, обмен, сдача в аренду коммерческой недвижимости";
 
                     break;
                 }
@@ -418,6 +425,8 @@ class SubCatsController extends Controller
                     );
 
                     \Debugbar::info($results);
+
+                    $title="Покупка, продажа, обмен, сдача в аренду недвижимости за рубежом";
 
                     break;
                 }                                
