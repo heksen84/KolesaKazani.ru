@@ -7,7 +7,7 @@
         </b-form-select>
   </b-form-group>
 
-<b-form-group label="Тип строения:" v-if="selected_type==2">
+<b-form-group label="Вид строения:" v-if="selected_type==2">
          <b-form-select v-model="selected_type_of_building" class="mb-2 mr-sm-2 mb-sm-2" @change="changeTypeOfBuilding">
            <option v-for="item in type_of_building" :value="item.value" :key="item.value">{{ item.text }}</option>
         </b-form-select>
