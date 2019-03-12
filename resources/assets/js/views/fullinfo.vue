@@ -11,10 +11,7 @@
 
 		<b-col v-else cols="12" sm="12" md="12" lg="10" xl="10" class="create_advert_col">
 		  <div class="close_button" title="Закрыть страницу" style="font-size:20px;font-weight:bold" @click="closeAndReturn">X</div>     
-			<br>
-
-			<!-- размещение: регион / город / село -->
-			<h5>{{ item[0].region_name }} {{ item[0].city_name }}</h5>
+			<br>			
 
 			<!-- Транспорт --->
 			<div v-if="item[0].category_id==1">
@@ -25,6 +22,9 @@
         		<h1 v-if="full && item[0].deal==2">Обменяю {{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года</h1>
         		<h1 v-if="full && item[0].deal==3">Отдам даром {{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года</h1>
         		<h1 v-if="full && item[0].deal==4">Сдам в аренду {{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года</h1>
+
+				<!-- размещение: регион / город / село -->
+				<h2>{{ item[0].region_name }} {{ item[0].city_name }}</h2>
 				
 				<hr v-if="full">
 
@@ -62,6 +62,9 @@
         		<h1 v-if="item[0].deal==2">Обменяю {{ item[0].rooms }} комнатную квартиру {{ item[0].floor }}/{{ item[0].floors_house }} этаж</h1>
         		<h1 v-if="item[0].deal==3">Отдам даром {{ item[0].rooms }} комнатную квартиру {{ item[0].floor }}/{{ item[0].floors_house }} этаж</h1>
         		<h1 v-if="item[0].deal==4">Сдам в аренду {{ item[0].rooms }} комнатную квартиру {{ item[0].floor }}/{{ item[0].floors_house }} этаж</h1>
+
+				<!-- размещение: регион / город / село -->
+				<h2>{{ item[0].region_name }} {{ item[0].city_name }}</h2>
 				
 				<hr>
 
@@ -77,9 +80,12 @@
 				item[0].category_id==8 ||
 				item[0].category_id==9 ||
 				item[0].category_id==10 && 
-				item[0].text!='null'">
+				item[0].text!='null'">				
 
 				<h1>{{ item[0].text }}</h1>
+
+				<!-- размещение: регион / город / село -->
+				<h2>{{ item[0].region_name }} {{ item[0].city_name }}</h2>
 
 				<hr>			
 			</div>

@@ -64,7 +64,7 @@ html {
 
 body {
   color: white;
-  background: #e6e6e6;
+  background: white;
   background-image: url("/images/site/fon.jpg");
   background-size: cover;
   background-position: center;
@@ -77,6 +77,14 @@ body {
 
 h1 {
   font-size: 190%;
+}
+
+h2 {
+  font-size: 115%;
+}
+
+h3 {
+  font-size: 100%;
 }
 
 #welcome_menu {
