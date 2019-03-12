@@ -12,10 +12,12 @@ use App\Helpers\Petrovich;
 
 class SubCatsController extends Controller
 {
+
     private $start_record  = 0;    
     private $records_limit = 1000; // максимальное число записей при выборке
 
     public function getResultsByCategory(Request $request, $category, $subcat) {
+
 
         $petrovich = new Petrovich(Petrovich::GENDER_MALE);
 
@@ -50,12 +52,11 @@ class SubCatsController extends Controller
                             adv_transport.model = car_model.id_car_model
                         ) WHERE adv_transport.type=0 AND adv.category_id=1
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
-                    );
-
-                    $title="Покупка, продажа, обмен, сдача в аренду легковых автомобилей";
+                    );                    
 
                     \Debugbar::info($results);
 
+                    $title="Покупка, продажа, обмен, сдача в аренду легковых автомобилей";
                     break;
                 }
                                 
@@ -80,10 +81,9 @@ class SubCatsController extends Controller
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
-                    $title="Покупка, продажа, обмен, сдача в аренду грузового транспорта";
-
                     \Debugbar::info($results);
 
+                    $title="Покупка, продажа, обмен, сдача в аренду грузового транспорта";
                     break;
                 }
 
@@ -106,11 +106,9 @@ class SubCatsController extends Controller
                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
-                    \Debugbar::info("moto");                    
                     \Debugbar::info($results);
                     
                     $title="Покупка, продажа, обмен, сдача в аренду мототехники";
-
                     break;
                 }                
 
@@ -136,7 +134,6 @@ class SubCatsController extends Controller
                     \Debugbar::info($results);
 
                     $title="Покупка, продажа, обмен, сдача в аренду спецтехники";
-
                     break;
                 }   
 
@@ -160,7 +157,6 @@ class SubCatsController extends Controller
                     );
 
                     $title="Покупка, продажа, обмен, сдача в аренду ретро автомобилей";
-
                     break;
                 }                               
 
@@ -184,7 +180,6 @@ class SubCatsController extends Controller
                     );
 
                     $title="Покупка, продажа, обмен, сдача в аренду водного транспорта";
-
                     break;
                 }                               
 
@@ -208,7 +203,6 @@ class SubCatsController extends Controller
                     );
 
                     $title="Покупка, продажа, обмен, сдача в аренду велосипеда";
-
                     break;
                 }                               
 
@@ -232,7 +226,6 @@ class SubCatsController extends Controller
                     );
 
                     $title="Покупка, продажа, обмен, сдача в аренду воздушного транспорта";
-
                     break;
                 }
             }
@@ -271,7 +264,6 @@ class SubCatsController extends Controller
                     \Debugbar::info($results);
 
                     $title="Покупка, продажа, обмен, сдача в аренду квартиры";
-
                     break;
                 }
 
@@ -297,7 +289,6 @@ class SubCatsController extends Controller
                     \Debugbar::info($results);
 
                     $title="Покупка, продажа, обмен, сдача в аренду комнаты";
-
                     break;
                 }
 
@@ -306,14 +297,20 @@ class SubCatsController extends Controller
 
                     $results = DB::select(
                         "SELECT
-                        concat(adv_realestate.rooms, ' комнат, ', adv_realestate.floors_house, ' этажей, ', adv_realestate.area, ' кв. м.' ) AS title,
+                        CASE adv_realestate.type_of_building 
+                            WHEN 0 THEN concat('Дом ', adv_realestate.rooms, ' комн. ', adv_realestate.floors_house, ' этажей, ', adv_realestate.area, ' кв. м.' )
+                            WHEN 1 THEN concat('Дача ', adv_realestate.rooms, ' комн. ', adv_realestate.floors_house, ' этажей, ', adv_realestate.area, ' кв. м.' )
+                            WHEN 2 THEN concat('Коттедж ', adv_realestate.rooms, ' комн. ', adv_realestate.floors_house, ' этажей, ', adv_realestate.area, ' кв. м.' )
+                        ELSE '' 
+                        END AS title,
                         adv.id as advert_id,
                         adv.deal,
                         adv.full,
                         adv.price,
-                        adv.category_id,                 
+                        adv.category_id,            
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image,
-                        adv_realestate.id                        
+                        adv_realestate.id/*,
+                        adv_realestate.type_of_building*/
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
                         WHERE adv_realestate.property_type=2 AND adv.category_id=2
@@ -323,7 +320,6 @@ class SubCatsController extends Controller
                     \Debugbar::info($results);
                                         
                     $title="Покупка, продажа, обмен, сдача в аренду дома, дачи, коттеджа";
-
                     break;
                 }
 
@@ -349,7 +345,6 @@ class SubCatsController extends Controller
                     \Debugbar::info($results);
 
                     $title="Покупка, продажа, обмен, сдача в аренду земельного участка";
-
                     break;
                 }
                 
@@ -375,7 +370,6 @@ class SubCatsController extends Controller
                     \Debugbar::info($results);
 
                     $title="Покупка, продажа, обмен, сдача в аренду гаража или машиноместа";
-
                     break;
                 }
 
@@ -401,7 +395,6 @@ class SubCatsController extends Controller
                     \Debugbar::info($results);
 
                     $title="Покупка, продажа, обмен, сдача в аренду коммерческой недвижимости";
-
                     break;
                 }
                 
@@ -427,7 +420,6 @@ class SubCatsController extends Controller
                     \Debugbar::info($results);
 
                     $title="Покупка, продажа, обмен, сдача в аренду недвижимости за рубежом";
-
                     break;
                 }                                
             }

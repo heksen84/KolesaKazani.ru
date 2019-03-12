@@ -54,8 +54,7 @@ class AdvertController extends Controller {
         // ---------------------------
         // правила валидации
         // ---------------------------
-        $rules = 
-        [
+        $rules = [
             //"adv_deal"      => "required",
             "adv_category"  => "required", 
             "adv_price"     => "required|numeric",
@@ -219,6 +218,10 @@ class AdvertController extends Controller {
                     $realestate->area           = $data["area_num"];
                     $realestate->ownership      = $data["property_num"];
                     $realestate->kind_of_object = $data["object_type"];
+
+                    // Дом, Дача, Коттедж
+                    if (isset($data["type_of_building"]))
+                        $realestate->type_of_building = $data["type_of_building"];
 
                     // квартира
                     if ( $data["property_type"]==0 ) {

@@ -7,13 +7,19 @@
         </b-form-select>
   </b-form-group>
 
+<b-form-group label="Вид строения:" v-if="selected_type==2">
+         <b-form-select v-model="selected_type_of_building" class="mb-2 mr-sm-2 mb-sm-2" @change="changeTypeOfBuilding">
+           <option v-for="item in type_of_building" :value="item.value" :key="item.value">{{ item.text }}</option>
+        </b-form-select>
+</b-form-group>  
+
 <b-form-group label="Этаж:" v-if="selected.apartment && selected_type==0 || selected_type==1">
          <b-form-select v-model="selected_floor" class="mb-2 mr-sm-2 mb-sm-2" @change="changeFloor">
            <option v-for="i in 60" :value="i" :key="i">{{ i }}</option>
         </b-form-select>
 </b-form-group>
 
-<b-form-group label="Этажей в доме:" v-if="selected.apartment && selected_type==0 || selected_type==1 || selected_type==2">
+<b-form-group label="Всего этажей:" v-if="selected.apartment && selected_type==0 || selected_type==1 || selected_type==2">
          <b-form-select v-model="selected_number_of_floors" class="mb-2 mr-sm-2 mb-sm-2" @change="changeNumberOfFloors" style="width:120px">
            <option v-for="i in 100" :value="i" :key="i">{{ i }}</option>
         </b-form-select>
@@ -51,6 +57,13 @@ export default {
 
         realestate_chars: null,
 
+        type_of_building: 
+        [
+          { value: 0, text: 'Дом' },
+          { value: 1, text: 'Дача' },
+          { value: 2, text: 'Коттедж' }         
+        ],
+
         object_type: 
         [
           { value: 0, text: 'Вторичка' },
@@ -74,7 +87,8 @@ export default {
           { value: 6, text: 'Коммерческая недвижимость' },
           { value: 7, text: 'Недвижимость за рубежом' }
         ],
-        
+
+        selected_type_of_building: 0,
         selected_type: null,
         selected_floor: 1,
         selected_number_of_floors: 5,
@@ -100,6 +114,7 @@ export default {
 
     // значения недвижимости по умолчанию
     this.realestate_chars.property_type = 0;
+    this.realestate_chars.type_of_building = 0, // дом
     this.realestate_chars.floor_num = 1;
     this.realestate_chars.number_of_floors = 5;
     this.realestate_chars.number_of_rooms = 1;
@@ -109,6 +124,11 @@ export default {
   },
   components: {},
   methods: {
+  
+    // тип строения: дом, дача, коттедж
+    changeTypeOfBuilding(type) {
+      this.realestate_chars.type_of_building = type;
+    },
 
     // --------------------------------
     // изменения в недвижимости
@@ -118,10 +138,10 @@ export default {
         console.log("Вид недвижимости: "+property_id)
         
         this.realestate_chars.property_type = property_id;
-        this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления"); 
 
-        // показываю дополнительные поля
-        this.$store.commit("ShowFinalFields", true);
+        this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления"); 
+        this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");         
+        this.$store.commit("ShowFinalFields", true); // показываю дополнительные поля
      
         switch(property_id) {
           case null: {
@@ -129,16 +149,13 @@ export default {
             break;
           }
           case 0: {
-            this.selected.apartment=true;
-            this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию"); 
+            this.selected.apartment=true;            
             break;
           }
           case 1: {
-            this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию"); 
             break; 
           } 
           case 2: {
-            this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");  
             break; 
           }
           case 3: {
@@ -192,7 +209,6 @@ export default {
         console.log("Вид объекта :"+object_type)
         this.realestate_chars.object_type = object_type;
       }
-
   }
 }
 </script>

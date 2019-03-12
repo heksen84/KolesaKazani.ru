@@ -1666,6 +1666,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1673,10 +1679,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       realestate_chars: null,
 
+      type_of_building: [{ value: 0, text: 'Дом' }, { value: 1, text: 'Дача' }, { value: 2, text: 'Коттедж' }],
+
       object_type: [{ value: 0, text: 'Вторичка' }, { value: 1, text: 'Новостройка' }],
       property_rights: [{ value: 0, text: 'Собственник' }, { value: 1, text: 'Посредник' }],
       type: [{ value: null, text: '-- Выберите вид недвижимости --' }, { value: 0, text: 'Квартира' }, { value: 1, text: 'Комната' }, { value: 2, text: 'Дом, дача, коттедж' }, { value: 3, text: 'Земельный участок' }, { value: 5, text: 'Гараж или машиноместо' }, { value: 6, text: 'Коммерческая недвижимость' }, { value: 7, text: 'Недвижимость за рубежом' }],
 
+      selected_type_of_building: 0,
       selected_type: null,
       selected_floor: 1,
       selected_number_of_floors: 5,
@@ -1702,6 +1711,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     // значения недвижимости по умолчанию
     this.realestate_chars.property_type = 0;
+    this.realestate_chars.type_of_building = 0, // дом
     this.realestate_chars.floor_num = 1;
     this.realestate_chars.number_of_floors = 5;
     this.realestate_chars.number_of_rooms = 1;
@@ -1713,6 +1723,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   components: {},
   methods: {
 
+    // тип строения: дом, дача, коттедж
+    changeTypeOfBuilding: function changeTypeOfBuilding(type) {
+      this.realestate_chars.type_of_building = type;
+    },
+
+
     // --------------------------------
     // изменения в недвижимости
     // --------------------------------
@@ -1721,10 +1737,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       console.log("Вид недвижимости: " + property_id);
 
       this.realestate_chars.property_type = property_id;
-      this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления");
 
-      // показываю дополнительные поля
-      this.$store.commit("ShowFinalFields", true);
+      this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления");
+      this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
+      this.$store.commit("ShowFinalFields", true); // показываю дополнительные поля
 
       switch (property_id) {
         case null:
@@ -1735,17 +1751,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         case 0:
           {
             this.selected.apartment = true;
-            this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
             break;
           }
         case 1:
           {
-            this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
             break;
           }
         case 2:
           {
-            this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
             break;
           }
         case 3:
@@ -38435,6 +38448,38 @@ var render = function() {
         1
       ),
       _vm._v(" "),
+      _vm.selected_type == 2
+        ? _c(
+            "b-form-group",
+            { attrs: { label: "Вид строения:" } },
+            [
+              _c(
+                "b-form-select",
+                {
+                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                  on: { change: _vm.changeTypeOfBuilding },
+                  model: {
+                    value: _vm.selected_type_of_building,
+                    callback: function($$v) {
+                      _vm.selected_type_of_building = $$v
+                    },
+                    expression: "selected_type_of_building"
+                  }
+                },
+                _vm._l(_vm.type_of_building, function(item) {
+                  return _c(
+                    "option",
+                    { key: item.value, domProps: { value: item.value } },
+                    [_vm._v(_vm._s(item.text))]
+                  )
+                }),
+                0
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
       (_vm.selected.apartment && _vm.selected_type == 0) ||
       _vm.selected_type == 1
         ? _c(
@@ -38471,7 +38516,7 @@ var render = function() {
       _vm.selected_type == 2
         ? _c(
             "b-form-group",
-            { attrs: { label: "Этажей в доме:" } },
+            { attrs: { label: "Всего этажей:" } },
             [
               _c(
                 "b-form-select",
