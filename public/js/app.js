@@ -38451,7 +38451,7 @@ var render = function() {
       _vm.selected_type == 2
         ? _c(
             "b-form-group",
-            { attrs: { label: "Вид строения:" } },
+            { attrs: { label: "Тип строения:" } },
             [
               _c(
                 "b-form-select",
