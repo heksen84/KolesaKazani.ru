@@ -39579,7 +39579,7 @@ var render = function() {
                                 },
                                 attrs: {
                                   maxlength: "10",
-                                  type: "text",
+                                  type: "number",
                                   id: "price",
                                   placeholder: "Цена",
                                   formatter: _vm.setPrice,

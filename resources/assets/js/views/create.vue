@@ -79,7 +79,7 @@
 				
 				<!-- Цена -->
 				<b-form-group label-for="price" style="text-align:center" v-if="category!=4">
-			 		<b-form-input maxlength="10" v-model="price" type="text" id="price" placeholder="Цена" style="text-align:center;margin-left:40px;width:130px;display:inline;font-weight:bold" :formatter="setPrice" required></b-form-input>
+			 		<b-form-input maxlength="10" v-model="price" type="number" id="price" placeholder="Цена" style="text-align:center;margin-left:40px;width:130px;display:inline;font-weight:bold" :formatter="setPrice" required></b-form-input>
 					&nbsp;{{ this.$root.money_full_name }}
 					<div style="margin-top:10px;color:rgb(100,150,100);font-weight:bold">{{ summ_str }}</div>
 				</b-form-group>
