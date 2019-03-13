@@ -661,7 +661,6 @@ class AdvertController extends Controller {
                 ) WHERE adv.id=".$id." LIMIT 1");
 
                 $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$this->getStrPrice($results);
-
                 break;
             }                    
                     
@@ -688,6 +687,7 @@ class AdvertController extends Controller {
                             adv.id as advert_id, 
                             adv.category_id,
                             adv_realestate.id,
+                            adv_realestate.property_type,
                             adv_realestate.rooms, 
                             adv_realestate.floor,
                             adv_realestate.floors_house,
@@ -723,7 +723,8 @@ class AdvertController extends Controller {
                             adv.id as advert_id, 
                             adv.category_id,
                             adv_realestate.id,
-                            adv_realestate.rooms, 
+                            adv_realestate.property_type,
+                            /*adv_realestate.rooms,*/
                             adv_realestate.floor,
                             adv_realestate.floors_house,
                             adv_realestate.area,                    
@@ -759,10 +760,12 @@ class AdvertController extends Controller {
                             adv.id as advert_id, 
                             adv.category_id,
                             adv_realestate.id,
+                            adv_realestate.property_type,
                             adv_realestate.rooms, 
                             adv_realestate.floor,
                             adv_realestate.floors_house,
-                            adv_realestate.area,                    
+                            adv_realestate.area,
+                            adv_realestate.type_of_building,
                             adv.deal,
                             adv.full,
                             adv.phone1,
@@ -794,6 +797,7 @@ class AdvertController extends Controller {
                             adv.id as advert_id, 
                             adv.category_id,
                             adv_realestate.id,
+                            adv_realestate.property_type,
                             adv_realestate.rooms, 
                             adv_realestate.floor,
                             adv_realestate.floors_house,
@@ -829,6 +833,7 @@ class AdvertController extends Controller {
                             adv.id as advert_id, 
                             adv.category_id,
                             adv_realestate.id,
+                            adv_realestate.property_type,
                             adv_realestate.rooms, 
                             adv_realestate.floor,
                             adv_realestate.floors_house,
@@ -863,6 +868,7 @@ class AdvertController extends Controller {
                             deal_name_2,                    
                             adv.id as advert_id, 
                             adv.category_id,
+                            adv_realestate.property_type,
                             adv_realestate.id,
                             adv_realestate.rooms, 
                             adv_realestate.floor,
@@ -899,6 +905,7 @@ class AdvertController extends Controller {
                             adv.id as advert_id, 
                             adv.category_id,
                             adv_realestate.id,
+                            adv_realestate.property_type,
                             adv_realestate.rooms, 
                             adv_realestate.floor,
                             adv_realestate.floors_house,
@@ -934,6 +941,7 @@ class AdvertController extends Controller {
                             adv.id as advert_id, 
                             adv.category_id,
                             adv_realestate.id,
+                            adv_realestate.property_type,
                             adv_realestate.rooms, 
                             adv_realestate.floor,
                             adv_realestate.floors_house,

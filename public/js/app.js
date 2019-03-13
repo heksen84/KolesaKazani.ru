@@ -3665,6 +3665,89 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var mapCoords = [];
 var placemark;
@@ -37345,73 +37428,563 @@ var render = function() {
                   _vm._v(" "),
                   _vm.item[0].category_id == 2
                     ? _c("div", [
-                        _vm.item[0].deal == 0
-                          ? _c("h1", [
-                              _vm._v(
-                                "Куплю " +
-                                  _vm._s(_vm.item[0].rooms) +
-                                  " комнатную квартиру " +
-                                  _vm._s(_vm.item[0].floor) +
-                                  "/" +
-                                  _vm._s(_vm.item[0].floors_house) +
-                                  " этаж"
-                              )
+                        _vm.item[0].property_type == 0
+                          ? _c("div", [
+                              _vm.item[0].deal == 0
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Куплю " +
+                                        _vm._s(_vm.item[0].rooms) +
+                                        " комнатную квартиру " +
+                                        _vm._s(_vm.item[0].floor) +
+                                        "/" +
+                                        _vm._s(_vm.item[0].floors_house) +
+                                        " этаж"
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 1
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Продам " +
+                                        _vm._s(_vm.item[0].rooms) +
+                                        " комнатную квартиру " +
+                                        _vm._s(_vm.item[0].floor) +
+                                        "/" +
+                                        _vm._s(_vm.item[0].floors_house) +
+                                        " этаж"
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 2
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Обменяю " +
+                                        _vm._s(_vm.item[0].rooms) +
+                                        " комнатную квартиру " +
+                                        _vm._s(_vm.item[0].floor) +
+                                        "/" +
+                                        _vm._s(_vm.item[0].floors_house) +
+                                        " этаж"
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 3
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Отдам даром " +
+                                        _vm._s(_vm.item[0].rooms) +
+                                        " комнатную квартиру " +
+                                        _vm._s(_vm.item[0].floor) +
+                                        "/" +
+                                        _vm._s(_vm.item[0].floors_house) +
+                                        " этаж"
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 4
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Сдам в аренду " +
+                                        _vm._s(_vm.item[0].rooms) +
+                                        " комнатную квартиру " +
+                                        _vm._s(_vm.item[0].floor) +
+                                        "/" +
+                                        _vm._s(_vm.item[0].floors_house) +
+                                        " этаж"
+                                    )
+                                  ])
+                                : _vm._e()
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        _vm.item[0].deal == 1
-                          ? _c("h1", [
-                              _vm._v(
-                                "Продам " +
-                                  _vm._s(_vm.item[0].rooms) +
-                                  " комнатную квартиру " +
-                                  _vm._s(_vm.item[0].floor) +
-                                  "/" +
-                                  _vm._s(_vm.item[0].floors_house) +
-                                  " этаж"
-                              )
+                        _vm.item[0].property_type == 1
+                          ? _c("div", [
+                              _vm.item[0].deal == 0
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Куплю комнату " +
+                                        _vm._s(_vm.item[0].floor) +
+                                        "/" +
+                                        _vm._s(_vm.item[0].floors_house) +
+                                        " этаж"
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 1
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Продам комнату " +
+                                        _vm._s(_vm.item[0].floor) +
+                                        "/" +
+                                        _vm._s(_vm.item[0].floors_house) +
+                                        " этаж"
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 2
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Обменяю комнату " +
+                                        _vm._s(_vm.item[0].floor) +
+                                        "/" +
+                                        _vm._s(_vm.item[0].floors_house) +
+                                        " этаж"
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 3
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Отдам даром комнату " +
+                                        _vm._s(_vm.item[0].floor) +
+                                        "/" +
+                                        _vm._s(_vm.item[0].floors_house) +
+                                        " этаж"
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 4
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Сдам в аренду комнату " +
+                                        _vm._s(_vm.item[0].floor) +
+                                        "/" +
+                                        _vm._s(_vm.item[0].floors_house) +
+                                        " этаж"
+                                    )
+                                  ])
+                                : _vm._e()
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        _vm.item[0].deal == 2
-                          ? _c("h1", [
-                              _vm._v(
-                                "Обменяю " +
-                                  _vm._s(_vm.item[0].rooms) +
-                                  " комнатную квартиру " +
-                                  _vm._s(_vm.item[0].floor) +
-                                  "/" +
-                                  _vm._s(_vm.item[0].floors_house) +
-                                  " этаж"
-                              )
+                        _vm.item[0].property_type == 2
+                          ? _c("div", [
+                              _vm.item[0].type_of_building == 0
+                                ? _c("div", [
+                                    _vm.item[0].deal == 0
+                                      ? _c("h1", [
+                                          _vm._v(
+                                            "Куплю дом " +
+                                              _vm._s(_vm.item[0].rooms) +
+                                              " комнат " +
+                                              _vm._s(_vm.item[0].floor) +
+                                              "/" +
+                                              _vm._s(_vm.item[0].floors_house) +
+                                              " этаж"
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.item[0].deal == 1
+                                      ? _c("h1", [
+                                          _vm._v(
+                                            "Продам дом " +
+                                              _vm._s(_vm.item[0].rooms) +
+                                              " комнат " +
+                                              _vm._s(_vm.item[0].floor) +
+                                              "/" +
+                                              _vm._s(_vm.item[0].floors_house) +
+                                              " этаж"
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.item[0].deal == 2
+                                      ? _c("h1", [
+                                          _vm._v(
+                                            "Обменяю дом " +
+                                              _vm._s(_vm.item[0].rooms) +
+                                              " комнат " +
+                                              _vm._s(_vm.item[0].floor) +
+                                              "/" +
+                                              _vm._s(_vm.item[0].floors_house) +
+                                              " этаж"
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.item[0].deal == 3
+                                      ? _c("h1", [
+                                          _vm._v(
+                                            "Отдам даром дом " +
+                                              _vm._s(_vm.item[0].rooms) +
+                                              " комнат " +
+                                              _vm._s(_vm.item[0].floor) +
+                                              "/" +
+                                              _vm._s(_vm.item[0].floors_house) +
+                                              " этаж"
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.item[0].deal == 4
+                                      ? _c("h1", [
+                                          _vm._v(
+                                            "Сдам в аренду дом " +
+                                              _vm._s(_vm.item[0].rooms) +
+                                              " комнат " +
+                                              _vm._s(_vm.item[0].floor) +
+                                              "/" +
+                                              _vm._s(_vm.item[0].floors_house) +
+                                              " этаж"
+                                          )
+                                        ])
+                                      : _vm._e()
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].type_of_building == 1
+                                ? _c("div", [
+                                    _vm.item[0].deal == 0
+                                      ? _c("h1", [
+                                          _vm._v(
+                                            "Куплю дачу " +
+                                              _vm._s(_vm.item[0].rooms) +
+                                              " комнат " +
+                                              _vm._s(_vm.item[0].floor) +
+                                              "/" +
+                                              _vm._s(_vm.item[0].floors_house) +
+                                              " этаж"
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.item[0].deal == 1
+                                      ? _c("h1", [
+                                          _vm._v(
+                                            "Продам дачу " +
+                                              _vm._s(_vm.item[0].rooms) +
+                                              " комнат " +
+                                              _vm._s(_vm.item[0].floor) +
+                                              "/" +
+                                              _vm._s(_vm.item[0].floors_house) +
+                                              " этаж"
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.item[0].deal == 2
+                                      ? _c("h1", [
+                                          _vm._v(
+                                            "Обменяю дачу " +
+                                              _vm._s(_vm.item[0].rooms) +
+                                              " комнат " +
+                                              _vm._s(_vm.item[0].floor) +
+                                              "/" +
+                                              _vm._s(_vm.item[0].floors_house) +
+                                              " этаж"
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.item[0].deal == 3
+                                      ? _c("h1", [
+                                          _vm._v(
+                                            "Отдам даром дачу " +
+                                              _vm._s(_vm.item[0].rooms) +
+                                              " комнат " +
+                                              _vm._s(_vm.item[0].floor) +
+                                              "/" +
+                                              _vm._s(_vm.item[0].floors_house) +
+                                              " этаж"
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.item[0].deal == 4
+                                      ? _c("h1", [
+                                          _vm._v(
+                                            "Сдам в аренду дачу " +
+                                              _vm._s(_vm.item[0].rooms) +
+                                              " комнат " +
+                                              _vm._s(_vm.item[0].floor) +
+                                              "/" +
+                                              _vm._s(_vm.item[0].floors_house) +
+                                              " этаж"
+                                          )
+                                        ])
+                                      : _vm._e()
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].type_of_building == 2
+                                ? _c("div", [
+                                    _vm.item[0].deal == 0
+                                      ? _c("h1", [
+                                          _vm._v(
+                                            "Куплю коттедж " +
+                                              _vm._s(_vm.item[0].rooms) +
+                                              " комнат " +
+                                              _vm._s(_vm.item[0].floor) +
+                                              "/" +
+                                              _vm._s(_vm.item[0].floors_house) +
+                                              " этаж"
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.item[0].deal == 1
+                                      ? _c("h1", [
+                                          _vm._v(
+                                            "Продам коттедж " +
+                                              _vm._s(_vm.item[0].rooms) +
+                                              " комнат " +
+                                              _vm._s(_vm.item[0].floor) +
+                                              "/" +
+                                              _vm._s(_vm.item[0].floors_house) +
+                                              " этаж"
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.item[0].deal == 2
+                                      ? _c("h1", [
+                                          _vm._v(
+                                            "Обменяю коттедж " +
+                                              _vm._s(_vm.item[0].rooms) +
+                                              " комнат " +
+                                              _vm._s(_vm.item[0].floor) +
+                                              "/" +
+                                              _vm._s(_vm.item[0].floors_house) +
+                                              " этаж"
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.item[0].deal == 3
+                                      ? _c("h1", [
+                                          _vm._v(
+                                            "Отдам даром коттедж " +
+                                              _vm._s(_vm.item[0].rooms) +
+                                              " комнат " +
+                                              _vm._s(_vm.item[0].floor) +
+                                              "/" +
+                                              _vm._s(_vm.item[0].floors_house) +
+                                              " этаж"
+                                          )
+                                        ])
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.item[0].deal == 4
+                                      ? _c("h1", [
+                                          _vm._v(
+                                            "Сдам в аренду коттедж " +
+                                              _vm._s(_vm.item[0].rooms) +
+                                              " комнат " +
+                                              _vm._s(_vm.item[0].floor) +
+                                              "/" +
+                                              _vm._s(_vm.item[0].floors_house) +
+                                              " этаж"
+                                          )
+                                        ])
+                                      : _vm._e()
+                                  ])
+                                : _vm._e()
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        _vm.item[0].deal == 3
-                          ? _c("h1", [
-                              _vm._v(
-                                "Отдам даром " +
-                                  _vm._s(_vm.item[0].rooms) +
-                                  " комнатную квартиру " +
-                                  _vm._s(_vm.item[0].floor) +
-                                  "/" +
-                                  _vm._s(_vm.item[0].floors_house) +
-                                  " этаж"
-                              )
+                        _vm.item[0].property_type == 3
+                          ? _c("div", [
+                              _vm.item[0].deal == 0
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Куплю земельный участок. Размер " +
+                                        _vm._s(_vm.item[0].area)
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 1
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Продам земельный участок. Размер " +
+                                        _vm._s(_vm.item[0].area)
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 2
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Обменяю земельный участок. Размер " +
+                                        _vm._s(_vm.item[0].area)
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 3
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Отдам даром земельный участок. Размер " +
+                                        _vm._s(_vm.item[0].area)
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 4
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Сдам в аренду земельный участок. Размер " +
+                                        _vm._s(_vm.item[0].area)
+                                    )
+                                  ])
+                                : _vm._e()
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        _vm.item[0].deal == 4
-                          ? _c("h1", [
-                              _vm._v(
-                                "Сдам в аренду " +
-                                  _vm._s(_vm.item[0].rooms) +
-                                  " комнатную квартиру " +
-                                  _vm._s(_vm.item[0].floor) +
-                                  "/" +
-                                  _vm._s(_vm.item[0].floors_house) +
-                                  " этаж"
-                              )
+                        _vm.item[0].property_type == 4
+                          ? _c("div", [
+                              _vm.item[0].deal == 0
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Куплю гараж. Размер " +
+                                        _vm._s(_vm.item[0].area)
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 1
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Продам гараж. Размер " +
+                                        _vm._s(_vm.item[0].area)
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 2
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Обменяю гараж. Размер " +
+                                        _vm._s(_vm.item[0].area)
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 3
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Отдам гараж. Размер " +
+                                        _vm._s(_vm.item[0].area)
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 4
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Сдам в аренду гараж. Размер " +
+                                        _vm._s(_vm.item[0].area)
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.item[0].property_type == 5
+                          ? _c("div", [
+                              _vm.item[0].deal == 0
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Куплю коммерческую недвижимость. Размер " +
+                                        _vm._s(_vm.item[0].area)
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 1
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Продам коммерческую недвижимость Размер " +
+                                        _vm._s(_vm.item[0].area)
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 2
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Обменяю коммерческую недвижимость. Размер " +
+                                        _vm._s(_vm.item[0].area)
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 3
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Отдам коммерческую недвижимость. Размер " +
+                                        _vm._s(_vm.item[0].area)
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 4
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Сдам в аренду коммерческую недвижимость. Размер " +
+                                        _vm._s(_vm.item[0].area)
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.item[0].property_type == 6
+                          ? _c("div", [
+                              _vm.item[0].deal == 0
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Куплю недвижимость за рубежом. Размер " +
+                                        _vm._s(_vm.item[0].area)
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 1
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Продам недвижимость за рубежом. Размер " +
+                                        _vm._s(_vm.item[0].area)
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 2
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Обменяю недвижимость за рубежом. Размер " +
+                                        _vm._s(_vm.item[0].area)
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 3
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Отдам недвижимость за рубежом. Размер " +
+                                        _vm._s(_vm.item[0].area)
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.item[0].deal == 4
+                                ? _c("h1", [
+                                    _vm._v(
+                                      "Сдам в аренду недвижимость за рубежом. Размер " +
+                                        _vm._s(_vm.item[0].area)
+                                    )
+                                  ])
+                                : _vm._e()
                             ])
                           : _vm._e(),
                         _vm._v(" "),
@@ -37425,11 +37998,14 @@ var render = function() {
                         _vm._v(" "),
                         _c("hr"),
                         _vm._v(" "),
-                        _c("h5", [
-                          _vm._v(
-                            "Количество комнат: " + _vm._s(_vm.item[0].rooms)
-                          )
-                        ]),
+                        _vm.item[0].rooms
+                          ? _c("h5", [
+                              _vm._v(
+                                "Количество комнат: " +
+                                  _vm._s(_vm.item[0].rooms)
+                              )
+                            ])
+                          : _vm._e(),
                         _vm._v(" "),
                         _c("h5", [
                           _vm._v("Этаж: " + _vm._s(_vm.item[0].floor))
