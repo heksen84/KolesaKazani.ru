@@ -217,6 +217,7 @@
 </template>
 
 <script>
+
 var mapCoords=[];
 var placemark;
 var map;
@@ -237,7 +238,6 @@ function initMap() {
 export default {
 
 props: ["item", "images", "full"], // входящие данные
-components: {},
 
 data() {
    return {
