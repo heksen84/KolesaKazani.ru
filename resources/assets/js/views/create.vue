@@ -86,14 +86,14 @@
 
 				<!-- Контакты -->
 				<b-form-group label="<ins>Контакты:</ins>" style="text-align:center;font-weight:bold">			 	
-				 	<b-form-input v-model.trim="phone1" type="text" placeholder="Контактный номер 1" style="width:250px;display:inline;text-align:center" :formatter="setPhoneNumber(1)" required></b-form-input>
-							<!--<span style="margin-left:10px;color:grey;cursor:pointer" title="очистить поле" @click="clearField('phone1')">X</span>-->
+				 	
+					 <b-form-input :state="checkPhone1State" v-model.trim="phone1" type="text" placeholder="Контактный номер 1" style="width:250px;display:inline;text-align:center" :formatter="setPhoneNumber(1)" required></b-form-input>
+
 					<div v-if="phone1.length > const_phone1_length">
-						<b-form-input v-model.trim="phone2" type="text" placeholder="Контактный номер 2" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber(2)"></b-form-input>
-							<!--<span style="color:grey;cursor:pointer" title="очистить поле" @click="clearField('phone2')">X</span>-->
-						<b-form-input v-model.trim="phone3" type="text" placeholder="Контактный номер 3" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber(3)"></b-form-input>
-							<!--<span style="margin-left:10px;color:grey" title="очистить поле" @click="clearField('phone3')">X</span>-->
-					</div>				
+						<b-form-input :state="checkPhone2State" v-model.trim="phone2" type="text" placeholder="Контактный номер 2" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber(2)"></b-form-input>
+						<b-form-input :state="checkPhone3State" v-model.trim="phone3" type="text" placeholder="Контактный номер 3" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber(3)"></b-form-input>
+					</div>
+
 				</b-form-group>
 
 				<!-- Фотографии -->
@@ -359,23 +359,26 @@ export default {
 	// Событие: компонент создан
 	// -------------------------------
 	created() {
+
+		//alert(/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/.test(number))
 		ymaps.ready(initMaps);
 		this.advReset();
 	},
 
 	components: { transport, realestate },
+
+	computed: {
+		checkPhone1State() {
+			return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,12}(\s*)?$/.test(this.phone1)? true:null;
+		},
+		checkPhone2State() {
+			return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,12}(\s*)?$/.test(this.phone2)? true:null;
+		},
+		checkPhone3State() {
+			return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,12}(\s*)?$/.test(this.phone3)? true:null;
+		}
+	},
   	methods: {
-
-		/*clearField(field) {
-
-			console.log(field);
-
-			switch(field) {
-				case "phone1": this.phone1=""; break;
-				case "phone2": this.phone2=""; break;
-				case "phone3": this.phone3=""; break;
-			}
-		},*/
 
 		// обработка выбора региона
 		changeRegion(region_id) {
@@ -490,21 +493,22 @@ export default {
 
 			// установить цену
   		setPrice(price) {
+			
 			if (price < 0) return;
-  			this.$root.advert_data.adv_price=price;
-					this.price = price;
-					
-					//console.log(number_to_string(price));
-					this.summ_str=number_to_string(price);
+
+			this.$root.advert_data.adv_price = price;
+			this.price = price;
+			this.summ_str = number_to_string(price);
 
         	return price;
 		},
 
 		// телефоны
-		setPhoneNumber(number) {
+		setPhoneNumber(number) {			
 
 			switch(number) {
 				case 1: {
+					//console.log(/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/.test(number))
 					this.$root.advert_data.adv_phone1=this.phone1;
 					break;
 				}
@@ -518,8 +522,7 @@ export default {
 				}
 
 				return number;
-
-				//alert(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/.test('+7(705)8675457'))
+				
 			}
 		},
 		  		  

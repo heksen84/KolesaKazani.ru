@@ -3099,22 +3099,30 @@ function forEach(data, callback) {
 	// Событие: компонент создан
 	// -------------------------------
 	created: function created() {
+
+		//alert(/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/.test(number))
 		ymaps.ready(initMaps);
 		this.advReset();
 	},
 
 
 	components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default.a },
-	methods: {
 
-		/*clearField(field) {
-  			console.log(field);
-  			switch(field) {
-  		case "phone1": this.phone1=""; break;
-  		case "phone2": this.phone2=""; break;
-  		case "phone3": this.phone3=""; break;
-  	}
-  },*/
+	computed: {
+		checkPhone1State: function checkPhone1State() {
+			return (/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,12}(\s*)?$/.test(this.phone1) ? true : null
+			);
+		},
+		checkPhone2State: function checkPhone2State() {
+			return (/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,12}(\s*)?$/.test(this.phone2) ? true : null
+			);
+		},
+		checkPhone3State: function checkPhone3State() {
+			return (/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,12}(\s*)?$/.test(this.phone3) ? true : null
+			);
+		}
+	},
+	methods: {
 
 		// обработка выбора региона
 		changeRegion: function changeRegion(region_id) {
@@ -3229,11 +3237,11 @@ function forEach(data, callback) {
 
 		// установить цену
 		setPrice: function setPrice(price) {
+
 			if (price < 0) return;
+
 			this.$root.advert_data.adv_price = price;
 			this.price = price;
-
-			//console.log(number_to_string(price));
 			this.summ_str = number_to_string(price);
 
 			return price;
@@ -3246,6 +3254,7 @@ function forEach(data, callback) {
 			switch (number) {
 				case 1:
 					{
+						//console.log(/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/.test(number))
 						this.$root.advert_data.adv_phone1 = this.phone1;
 						break;
 					}
@@ -3262,7 +3271,6 @@ function forEach(data, callback) {
 
 					return number;
 
-				//alert(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/.test('+7(705)8675457'))
 			}
 		},
 
@@ -39622,6 +39630,7 @@ var render = function() {
                               "text-align": "center"
                             },
                             attrs: {
+                              state: _vm.checkPhone1State,
                               type: "text",
                               placeholder: "Контактный номер 1",
                               formatter: _vm.setPhoneNumber(1),
@@ -39648,6 +39657,7 @@ var render = function() {
                                       margin: "5px auto"
                                     },
                                     attrs: {
+                                      state: _vm.checkPhone2State,
                                       type: "text",
                                       placeholder: "Контактный номер 2",
                                       formatter: _vm.setPhoneNumber(2)
@@ -39671,6 +39681,7 @@ var render = function() {
                                       margin: "5px auto"
                                     },
                                     attrs: {
+                                      state: _vm.checkPhone3State,
                                       type: "text",
                                       placeholder: "Контактный номер 3",
                                       formatter: _vm.setPhoneNumber(3)
