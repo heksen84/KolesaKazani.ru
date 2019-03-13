@@ -39578,19 +39578,11 @@ var render = function() {
                                   "font-weight": "bold"
                                 },
                                 attrs: {
-                                  maxlength: "10",
                                   type: "number",
                                   id: "price",
                                   placeholder: "Цена",
                                   formatter: _vm.setPrice,
                                   required: ""
-                                },
-                                model: {
-                                  value: _vm.price,
-                                  callback: function($$v) {
-                                    _vm.price = $$v
-                                  },
-                                  expression: "price"
                                 }
                               }),
                               _vm._v(
