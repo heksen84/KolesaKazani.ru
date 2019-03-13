@@ -158,7 +158,11 @@
 
 			</div> <!-- end недвижимость -->
 
-			<!-- Всё остальное -->
+			<!--------------------------------------------------------
+			   
+				КАТЕГОРИИ БЕЗ ХАРАКТЕРИСТИК
+			   
+			  --------------------------------------------------------->
 			<div v-if="item[0].category_id==3 || item[0].category_id==4 || item[0].category_id==5 || item[0].category_id==6 ||item[0].category_id==7 ||
 				item[0].category_id==8 ||
 				item[0].category_id==9 ||
@@ -183,18 +187,17 @@
 				<span v-if="item[0].phone2!=null">{{ item[0].phone2 }}</span><span v-if="item[0].phone3!=null">,</span>
 				<span v-if="item[0].phone3!=null">{{ item[0].phone3 }}</span>			
 			</h5>
-
 		<br>
 		
-		<div v-if="images.length<=0" style="text-align:center">
-			<h5>Без фото</h5>
-		</div>				
+		<!-------------------------------------------------
+			ФОТО
+		------------------------------------------------->		
+		<div v-if="images.length <=0 " style="text-align:center"><h5>Без фото</h5></div>				
 
-		<div style="text-align:center" v-if="images.length>0">			
+		<div style="text-align:center" v-if="images.length > 0">			
 			<b-img :src="'../storage/app/images/'+images[image_index].image" fluid style="margin-bottom:5px"/>
-			<div>
-				<b-img v-for="(i,index) in images" :key="index" :src="'../storage/app/images/'+i.image" style="margin:1px;margin-bottom:8px" width="80" height="80" @click="selectImage(index)"/>					
-			</div>
+			<br>
+			<b-img v-for="(i,index) in images" :key="index" :src="'../storage/app/images/'+i.image" style="margin:1px;margin-bottom:8px" width="80" height="80" @click="selectImage(index)"/>
 		</div>
 		
 		<div style="text-align:center;margin-bottom:20px">
