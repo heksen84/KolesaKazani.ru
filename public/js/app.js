@@ -39593,7 +39593,8 @@ var render = function() {
                                 {
                                   staticStyle: {
                                     "margin-top": "10px",
-                                    color: "rgb(100,150,100)"
+                                    color: "rgb(100,150,100)",
+                                    "font-weight": "bold"
                                   }
                                 },
                                 [_vm._v(_vm._s(_vm.summ_str))]
