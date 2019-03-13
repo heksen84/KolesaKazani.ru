@@ -79,7 +79,7 @@
 				
 				<!-- Цена -->
 				<b-form-group label-for="price" style="text-align:center" v-if="category!=4">
-			 		<b-form-input v-model="price" type="text" id="price" placeholder="Цена" style="text-align:center;margin-left:40px;width:130px;display:inline;font-weight:bold" :formatter="setPrice" required></b-form-input>
+			 		<b-form-input maxlength="10" v-model="price" type="text" id="price" placeholder="Цена" style="text-align:center;margin-left:40px;width:130px;display:inline;font-weight:bold" :formatter="setPrice" required></b-form-input>
 					&nbsp;{{ this.$root.money_full_name }}
 					<div style="margin-top:10px;color:rgb(100,150,100);font-weight:bold">{{ summ_str }}</div>
 				</b-form-group>
@@ -87,11 +87,11 @@
 				<!-- Контакты -->
 				<b-form-group label="<ins>Контакты:</ins>" style="text-align:center;font-weight:bold">			 	
 				 	
-					 <b-form-input :state="checkPhone1State" v-model.trim="phone1" type="text" placeholder="Контактный номер 1" style="width:250px;display:inline;text-align:center" :formatter="setPhoneNumber(1)" required></b-form-input>
+					 <b-form-input maxlength="14" :state="checkPhone1State" v-model.trim="phone1" type="text" placeholder="Контактный номер 1" style="width:250px;display:inline;text-align:center" :formatter="setPhoneNumber(1)" required></b-form-input>
 
 					<div v-if="phone1.length > const_phone1_length">
-						<b-form-input :state="checkPhone2State" v-model.trim="phone2" type="text" placeholder="Контактный номер 2" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber(2)"></b-form-input>
-						<b-form-input :state="checkPhone3State" v-model.trim="phone3" type="text" placeholder="Контактный номер 3" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber(3)"></b-form-input>
+						<b-form-input maxlength="14" :state="checkPhone2State" v-model.trim="phone2" type="text" placeholder="Контактный номер 2" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber(2)"></b-form-input>
+						<b-form-input maxlength="14" :state="checkPhone3State" v-model.trim="phone3" type="text" placeholder="Контактный номер 3" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber(3)"></b-form-input>
 					</div>
 
 				</b-form-group>
@@ -359,8 +359,6 @@ export default {
 	// Событие: компонент создан
 	// -------------------------------
 	created() {
-
-		//alert(/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/.test(number))
 		ymaps.ready(initMaps);
 		this.advReset();
 	},
@@ -369,13 +367,19 @@ export default {
 
 	computed: {
 		checkPhone1State() {
-			return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,12}(\s*)?$/.test(this.phone1)? true:null;
+			if (this.phone1.length>=10)
+			return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){7,14}(\s*)?$/.test(this.phone1)? true:false;
+			return null;
 		},
 		checkPhone2State() {
-			return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,12}(\s*)?$/.test(this.phone2)? true:null;
+			if (this.phone2.length>=10)
+			return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){7,14}(\s*)?$/.test(this.phone2)? true:false;
+			return null;
 		},
 		checkPhone3State() {
-			return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,12}(\s*)?$/.test(this.phone3)? true:null;
+			if (this.phone3.length>=10)
+			return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){7,14}(\s*)?$/.test(this.phone3)? true:false;
+			return null;
 		}
 	},
   	methods: {
@@ -508,7 +512,6 @@ export default {
 
 			switch(number) {
 				case 1: {
-					//console.log(/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/.test(number))
 					this.$root.advert_data.adv_phone1=this.phone1;
 					break;
 				}
@@ -521,7 +524,7 @@ export default {
 					break;
 				}
 
-				return number;
+//				return number;
 				
 			}
 		},

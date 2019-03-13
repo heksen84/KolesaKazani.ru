@@ -3099,8 +3099,6 @@ function forEach(data, callback) {
 	// Событие: компонент создан
 	// -------------------------------
 	created: function created() {
-
-		//alert(/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/.test(number))
 		ymaps.ready(initMaps);
 		this.advReset();
 	},
@@ -3110,16 +3108,19 @@ function forEach(data, callback) {
 
 	computed: {
 		checkPhone1State: function checkPhone1State() {
-			return (/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,12}(\s*)?$/.test(this.phone1) ? true : null
+			if (this.phone1.length >= 10) return (/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){7,14}(\s*)?$/.test(this.phone1) ? true : false
 			);
+			return null;
 		},
 		checkPhone2State: function checkPhone2State() {
-			return (/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,12}(\s*)?$/.test(this.phone2) ? true : null
+			if (this.phone2.length >= 10) return (/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){7,14}(\s*)?$/.test(this.phone2) ? true : false
 			);
+			return null;
 		},
 		checkPhone3State: function checkPhone3State() {
-			return (/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,12}(\s*)?$/.test(this.phone3) ? true : null
+			if (this.phone3.length >= 10) return (/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){7,14}(\s*)?$/.test(this.phone3) ? true : false
 			);
+			return null;
 		}
 	},
 	methods: {
@@ -3254,7 +3255,6 @@ function forEach(data, callback) {
 			switch (number) {
 				case 1:
 					{
-						//console.log(/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/.test(number))
 						this.$root.advert_data.adv_phone1 = this.phone1;
 						break;
 					}
@@ -3269,7 +3269,7 @@ function forEach(data, callback) {
 						break;
 					}
 
-					return number;
+				//				return number;
 
 			}
 		},
@@ -39578,6 +39578,7 @@ var render = function() {
                                   "font-weight": "bold"
                                 },
                                 attrs: {
+                                  maxlength: "10",
                                   type: "text",
                                   id: "price",
                                   placeholder: "Цена",
@@ -39630,6 +39631,7 @@ var render = function() {
                               "text-align": "center"
                             },
                             attrs: {
+                              maxlength: "14",
                               state: _vm.checkPhone1State,
                               type: "text",
                               placeholder: "Контактный номер 1",
@@ -39657,6 +39659,7 @@ var render = function() {
                                       margin: "5px auto"
                                     },
                                     attrs: {
+                                      maxlength: "14",
                                       state: _vm.checkPhone2State,
                                       type: "text",
                                       placeholder: "Контактный номер 2",
@@ -39681,6 +39684,7 @@ var render = function() {
                                       margin: "5px auto"
                                     },
                                     attrs: {
+                                      maxlength: "14",
                                       state: _vm.checkPhone3State,
                                       type: "text",
                                       placeholder: "Контактный номер 3",
