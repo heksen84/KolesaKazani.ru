@@ -3050,7 +3050,7 @@ function forEach(data, callback) {
 			summ_str: "", // сумма прописью
 
 			// константы
-			const_phone1_length: 2,
+			const_phone1_max_length: 9,
 
 			// данные карты
 			setCoordsDialog: false,
@@ -4052,10 +4052,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       window.location = '/login';
     },
     register: function register() {
-      window.location = '/register';
+      window.location = "/register";
     },
     search: function search() {
-      window.location = '/search';
+      window.location = "/search";
     },
     openLocationWindow: function openLocationWindow() {
       var _this = this;
@@ -4068,7 +4068,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.regions = {};
 
       // получаю регионы
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/getRegions').then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/getRegions").then(function (res) {
         console.log(res.data);
 
         _this.regions = res.data;
@@ -4090,10 +4090,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.locationDialogTitle = "Выберите расположение";
 
       // Получить города / сёлы
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('getPlaces?region_id=' + e.region_id).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("getPlaces?region_id=" + e.region_id).then(function (res) {
         _this2.places = res.data;
         console.log(res.data);
-      }).catch(function (err) {});
+      }).catch(function (err) {
+        console.log(err);
+      });
     },
 
 
@@ -39644,7 +39646,7 @@ var render = function() {
                             }
                           }),
                           _vm._v(" "),
-                          _vm.phone1.length > _vm.const_phone1_length
+                          _vm.phone1.length > _vm.const_phone1_max_length
                             ? _c(
                                 "div",
                                 [
@@ -39705,7 +39707,7 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
-                      _vm.phone1.length > _vm.const_phone1_length
+                      _vm.phone1.length > _vm.const_phone1_max_length
                         ? _c(
                             "b-form-group",
                             { attrs: { label: "Фотографии:" } },
@@ -39753,8 +39755,9 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value:
-                                _vm.phone1.length > _vm.const_phone1_length,
-                              expression: "phone1.length > const_phone1_length"
+                                _vm.phone1.length > _vm.const_phone1_max_length,
+                              expression:
+                                "phone1.length > const_phone1_max_length"
                             }
                           ]
                         },

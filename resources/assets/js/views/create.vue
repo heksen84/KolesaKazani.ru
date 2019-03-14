@@ -89,7 +89,7 @@
 				 	
 					 <b-form-input maxlength="14" :state="checkPhone1State" v-model.trim="phone1" type="text" placeholder="Контактный номер 1" style="width:250px;display:inline;text-align:center" :formatter="setPhoneNumber(1)" required></b-form-input>
 
-					<div v-if="phone1.length > const_phone1_length">
+					<div v-if="phone1.length > const_phone1_max_length">
 						<b-form-input maxlength="14" :state="checkPhone2State" v-model.trim="phone2" type="text" placeholder="Контактный номер 2" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber(2)"></b-form-input>
 						<b-form-input maxlength="14" :state="checkPhone3State" v-model.trim="phone3" type="text" placeholder="Контактный номер 3" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber(3)"></b-form-input>
 					</div>
@@ -97,14 +97,14 @@
 				</b-form-group>
 
 				<!-- Фотографии -->
-				<b-form-group label="Фотографии:" v-if="phone1.length>const_phone1_length">
+				<b-form-group label="Фотографии:" v-if="phone1.length>const_phone1_max_length">
 				<div style="text-align:center">
 					<b-img v-for="(i, index) in preview_images" :src="i.src" :key="i.name" @click="deletePhoto(index)" class="image" :title="i.name"/>
 					<b-form-file multiple accept=".png, .jpg, .jpeg" class="mt-2" @change="loadImage"></b-form-file>
 				</div>
 				</b-form-group>				
 
-				<div v-show="phone1.length > const_phone1_length">
+				<div v-show="phone1.length > const_phone1_max_length">
 
 				<!-- Город, Село и т.д. -->
 				<div style="text-align:center;margin-top:50px;margin-bottom:0px;font-weight:bold">Расположение</div>
@@ -310,7 +310,7 @@ export default {
 			summ_str: "", // сумма прописью
 
 			// константы
-			const_phone1_length: 2,
+			const_phone1_max_length: 9,
 
 			// данные карты
 			setCoordsDialog: false,

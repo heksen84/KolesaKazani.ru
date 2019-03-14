@@ -233,11 +233,11 @@ export default {
     },
 
     register() {
-      window.location='/register';
+      window.location="/register";
     },
 
     search() {
-      window.location='/search';
+      window.location="/search";
     },
     
     openLocationWindow() {
@@ -250,7 +250,7 @@ export default {
       this.regions={};
 
       // получаю регионы
-      get('/getRegions').then((res) => {
+      get("/getRegions").then((res) => {
           console.log(res.data);
           
           this.regions=res.data;
@@ -273,10 +273,12 @@ export default {
       this.locationDialogTitle="Выберите расположение"
 
       // Получить города / сёлы
-      get('getPlaces?region_id='+e.region_id).then((res) => {
+      get("getPlaces?region_id="+e.region_id).then((res) => {
           this.places=res.data;
           console.log(res.data);
-      }).catch((err) => {});
+      }).catch((err) => {
+        console.log(err)
+      });
 
     },
 
