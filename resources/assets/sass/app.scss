@@ -278,6 +278,10 @@ h3 {
   margin-top: -2px;
 }
 
+.item:hover {
+  background: rgb(240,250,240);
+}
+
 .item-content {
   position:relative;
   top:-113px;
