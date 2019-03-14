@@ -96,12 +96,12 @@ h3 {
   border: 1px solid white;
   border-radius: 5px;
   padding: 6px;
-  background: #7878dc;
+  background: #50a050;
   font-size: 17px;
 }
 
 #results_close_button:hover {
-  background: #6464c8;
+  background: #469646;
 }
 
 .alert {
@@ -273,6 +273,7 @@ h3 {
   /* word-wrap: break-word;*/
   word-break: break-all;
   margin-top: -2px;
+  cursor: pointer;
 }
 
 .item:hover {

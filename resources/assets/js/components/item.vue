@@ -17,7 +17,7 @@
         <!-- сделать перенос на след. строку в услугах (category_id==4) -->        
         <br v-if="category_id==4">
 
-      <b-button style="margin-top:5px" size="sm" variant="outline-success">Подробнее</b-button>
+      <b-button style="margin-top:5px;cursor:default" size="sm" variant="outline-success">Подробнее</b-button>
     </div>
   </div>
 </template>

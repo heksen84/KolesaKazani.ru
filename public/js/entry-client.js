@@ -36696,7 +36696,7 @@ var render = function() {
           _c(
             "b-button",
             {
-              staticStyle: { "margin-top": "5px" },
+              staticStyle: { "margin-top": "5px", cursor: "default" },
               attrs: { size: "sm", variant: "outline-success" }
             },
             [_vm._v("Подробнее")]
