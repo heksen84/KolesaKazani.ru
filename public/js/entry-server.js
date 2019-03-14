@@ -37433,8 +37433,9 @@ var render = function() {
                         _vm._v(" "),
                         _vm.full && _vm.item[0].text != "null"
                           ? _c("h5", [
-                              _vm._v("Описание: "),
-                              _c("b", [_vm._v(_vm._s(_vm.item[0].text))])
+                              _vm._v(
+                                "Дополнительно: " + _vm._s(_vm.item[0].text)
+                              )
                             ])
                           : _vm._e()
                       ])
@@ -38038,7 +38039,9 @@ var render = function() {
                         _vm._v(" "),
                         _vm.full && _vm.item[0].text != "null"
                           ? _c("h5", [
-                              _vm._v("Описание: " + _vm._s(_vm.item[0].text))
+                              _vm._v(
+                                "Дополнительно: " + _vm._s(_vm.item[0].text)
+                              )
                             ])
                           : _vm._e()
                       ])
@@ -39629,7 +39632,7 @@ var render = function() {
                               "text-align": "center"
                             },
                             attrs: {
-                              maxlength: "14",
+                              maxlength: "12",
                               state: _vm.checkPhone1State,
                               type: "text",
                               placeholder: "Контактный номер 1",
@@ -39657,7 +39660,7 @@ var render = function() {
                                       margin: "5px auto"
                                     },
                                     attrs: {
-                                      maxlength: "14",
+                                      maxlength: "12",
                                       state: _vm.checkPhone2State,
                                       type: "text",
                                       placeholder: "Контактный номер 2",
@@ -39682,7 +39685,7 @@ var render = function() {
                                       margin: "5px auto"
                                     },
                                     attrs: {
-                                      maxlength: "14",
+                                      maxlength: "12",
                                       state: _vm.checkPhone3State,
                                       type: "text",
                                       placeholder: "Контактный номер 3",

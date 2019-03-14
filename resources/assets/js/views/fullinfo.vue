@@ -54,7 +54,7 @@
 					<span v-if="item[0].customs==1">да</span>
 					<span v-else>нет</span>
 				</h5>
-				<h5 v-if="full && item[0].text!='null'">Описание: <b>{{ item[0].text }}</b></h5>
+				<h5 v-if="full && item[0].text!='null'">Дополнительно: {{ item[0].text }}</h5>
 			</div>
 
 			<!--------------------------------------------------------
@@ -154,7 +154,7 @@
 				<h5>Этаж: {{ item[0].floor }}</h5>
 				<h5>Количество этажей: {{ item[0].floors_house }}</h5>
 				<h5>Площадь: {{ item[0].area }} </h5>
-				<h5 v-if="full && item[0].text!='null'">Описание: {{ item[0].text }}</h5>
+				<h5 v-if="full && item[0].text!='null'">Дополнительно: {{ item[0].text }}</h5>
 
 			</div> <!-- end недвижимость -->
 
