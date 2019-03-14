@@ -39601,7 +39601,7 @@ var render = function() {
                                 {
                                   staticStyle: {
                                     "margin-top": "10px",
-                                    color: "rgb(100,150,100)",
+                                    color: "rgb(120,120,120)",
                                     "font-weight": "bold"
                                   }
                                 },
