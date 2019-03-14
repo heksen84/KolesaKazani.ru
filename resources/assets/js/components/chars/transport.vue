@@ -291,8 +291,12 @@ export default {
 
      // пробег
      SetMileage(mileage) {
-        if (mileage<0 || mileage>10000000) return;
-        this.transport_chars.mileage = mileage;
+        
+        if (mileage<0 || mileage>10000000) 
+          return this.transport_chars.mileage;
+          
+          this.transport_chars.mileage = mileage;
+                  
         return mileage;
      }
   },

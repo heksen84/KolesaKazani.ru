@@ -31,8 +31,8 @@
         </b-form-select>
 </b-form-group>
 
-<b-form-group label="Общая площадь:" v-if="selected.apartment && selected_type==0 || selected_type==1 || selected_type==2 || selected_type==3 || selected_type==6 || selected_type==7">
-        <b-form-input type="number" v-model="input_area" class="mb-2 mr-sm-2 mb-sm-2" @input="changeTotalArea" style="width:160px" placeholder="Введите площадь"></b-form-input>
+<b-form-group label="Общая площадь(кв.м.):" v-if="selected.apartment && selected_type==0 || selected_type==1 || selected_type==2 || selected_type==3 || selected_type==6 || selected_type==7">
+        <b-form-input type="number" v-model="input_area" class="mb-2 mr-sm-2 mb-sm-2" :formatter="changeTotalArea" style="width:170px" placeholder="Введите площадь"></b-form-input>
 </b-form-group>
 
 <b-form-group label="Право собственности:" v-if="selected_type!=null">
@@ -181,32 +181,32 @@ export default {
       },
 
       changeFloor(floor_num) {
-        console.log("Этаж :"+floor_num)
         this.realestate_chars.floor_num = floor_num;
       },
 
-      changeNumberOfFloors(number_of_floors) {
-        console.log("Этажей :"+number_of_floors)
+      changeNumberOfFloors(number_of_floors) {        
         this.realestate_chars.number_of_floors = number_of_floors;
       },
 
       changeNumberOfRooms(number_of_rooms) {
-        console.log("Комнат :"+number_of_rooms)
         this.realestate_chars.number_of_rooms = number_of_rooms;
       },
 
       changeTotalArea(area_num) {
-        console.log("Этажей :"+area_num)
+
+        if (area_num >= 10000000)
+          return this.input_area;
+
         this.realestate_chars.area_num = area_num;
+        return area_num;
+
       },
 
-      changePropertyRights(property_num) {
-        console.log("Собственность :"+property_num)
+      changePropertyRights(property_num) {        
         this.realestate_chars.property_num = property_num;
       },
 
       changeObjectType(object_type) {
-        console.log("Вид объекта :"+object_type)
         this.realestate_chars.object_type = object_type;
       }
   }

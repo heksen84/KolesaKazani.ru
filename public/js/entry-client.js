@@ -1789,27 +1789,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     changeFloor: function changeFloor(floor_num) {
-      console.log("Этаж :" + floor_num);
       this.realestate_chars.floor_num = floor_num;
     },
     changeNumberOfFloors: function changeNumberOfFloors(number_of_floors) {
-      console.log("Этажей :" + number_of_floors);
       this.realestate_chars.number_of_floors = number_of_floors;
     },
     changeNumberOfRooms: function changeNumberOfRooms(number_of_rooms) {
-      console.log("Комнат :" + number_of_rooms);
       this.realestate_chars.number_of_rooms = number_of_rooms;
     },
     changeTotalArea: function changeTotalArea(area_num) {
-      console.log("Этажей :" + area_num);
+
+      if (area_num >= 10000000) return this.input_area;
+
       this.realestate_chars.area_num = area_num;
+      return area_num;
     },
     changePropertyRights: function changePropertyRights(property_num) {
-      console.log("Собственность :" + property_num);
       this.realestate_chars.property_num = property_num;
     },
     changeObjectType: function changeObjectType(object_type) {
-      console.log("Вид объекта :" + object_type);
       this.realestate_chars.object_type = object_type;
     }
   }
@@ -2107,8 +2105,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     // пробег
     SetMileage: function SetMileage(mileage) {
-      if (mileage < 0 || mileage > 10000000) return;
+
+      if (mileage < 0 || mileage > 10000000) return this.transport_chars.mileage;
+
       this.transport_chars.mileage = mileage;
+
       return mileage;
     }
   }
@@ -3241,8 +3242,8 @@ function forEach(data, callback) {
 
 			if (price < 0 || price > 10000000000) return this.price;
 
-			this.$root.advert_data.adv_price = price;
 			this.price = price;
+			this.$root.advert_data.adv_price = price;
 			this.summ_str = number_to_string(price);
 
 			return price;
@@ -39193,13 +39194,16 @@ var render = function() {
       _vm.selected_type == 7
         ? _c(
             "b-form-group",
-            { attrs: { label: "Общая площадь:" } },
+            { attrs: { label: "Общая площадь(кв.м.):" } },
             [
               _c("b-form-input", {
                 staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                staticStyle: { width: "160px" },
-                attrs: { type: "number", placeholder: "Введите площадь" },
-                on: { input: _vm.changeTotalArea },
+                staticStyle: { width: "170px" },
+                attrs: {
+                  type: "number",
+                  formatter: _vm.changeTotalArea,
+                  placeholder: "Введите площадь"
+                },
                 model: {
                   value: _vm.input_area,
                   callback: function($$v) {
