@@ -498,7 +498,8 @@ export default {
 			// установить цену
   		setPrice(price) {
 			
-			if (price < 0) return;
+			if (price < 0 || price > 10000000000) 
+				return this.price;
 
 			this.$root.advert_data.adv_price = price;
 			this.price = price;
