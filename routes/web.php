@@ -65,7 +65,16 @@ Route::get('{region}/{place}/transport/{subcat}',	['uses' => 'SubCatsController@
 
 Route::get('{region}/transport/{subcat}',	 ['uses' => 'ResultsController@getResultsByRegion']);
 Route::get('{region}/nedvizhimost/{subcat}', ['uses' => 'ResultsController@getResultsByRegion']);
-Route::get('{region}/elektronika/{subcat}',  ['uses' => 'ResultsController@getResultsByRegion']);
+
+// по региону без подкатегорий 
+Route::get('{region}/elektronika',  		 ['uses' => 'ResultsController@getResultsByRegion']);
+Route::get('{region}/rabota-i-biznes',  	 ['uses' => 'ResultsController@getResultsByRegion']);
+Route::get('{region}/dlya-doma-i-dachi',  	 ['uses' => 'ResultsController@getResultsByRegion']);
+Route::get('{region}/lichnye-veschi',  	 	 ['uses' => 'ResultsController@getResultsByRegion']);
+Route::get('{region}/zhivotnye',  	 	 	 ['uses' => 'ResultsController@getResultsByRegion']);
+Route::get('{region}/hobbi-i-otdyh',  	 	 ['uses' => 'ResultsController@getResultsByRegion']);
+Route::get('{region}/uslugi',  	 	 		 ['uses' => 'ResultsController@getResultsByRegion']);
+Route::get('{region}/drugoe',  	 	 		 ['uses' => 'ResultsController@getResultsByRegion']);
 
 
 // недвижимость
