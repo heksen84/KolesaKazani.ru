@@ -33,7 +33,6 @@ Route::get('/util/str2url', 'UtilsController@str2url');
 // категории по всему Казахстану
 // ------------------------------------
 Route::get('transport', 				'ResultsController@getResultsByCategory');
-//Route::get('transport', 				'SubCatController@showSubCategory');
 Route::get('nedvizhimost', 				'ResultsController@getResultsByCategory');
 Route::get('elektronika', 				'ResultsController@getResultsByCategory');
 Route::get('rabota-i-biznes', 			'ResultsController@getResultsByCategory');
@@ -63,8 +62,8 @@ Route::get('transport/vozdushnyy-transport',	  	'ResultsController@getResultsByC
 Route::get('{region}/transport/{subcat}',			['uses' => 'SubCatsController@getResultsByCategory']);
 Route::get('{region}/{place}/transport/{subcat}',	['uses' => 'SubCatsController@getResultsByCategory']);*/
 
-Route::get('{region}/transport/{subcat}',	 ['uses' => 'ResultsController@getResultsByRegion']);
-Route::get('{region}/nedvizhimost/{subcat}', ['uses' => 'ResultsController@getResultsByRegion']);
+Route::get('{region}/transport/{subcat}',	 ['uses' => 'ResultsController@getResultsByRegionWithDetailedInfo']);
+Route::get('{region}/nedvizhimost/{subcat}', ['uses' => 'ResultsController@getResultsByRegionWithDetailedInfo']);
 
 // по региону без подкатегорий 
 Route::get('{region}/elektronika',  		 ['uses' => 'ResultsController@getResultsByRegion']);

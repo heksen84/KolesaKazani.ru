@@ -139,9 +139,9 @@ class ResultsController extends Controller {
 			}
 		}
 		
-		 // --------------------------------------
-		 // передаю во вьюху
-		 // --------------------------------------
+		 // --------------------------
+		 // передаю данные во вьюху
+		 // --------------------------
 		 return view("results")
 		 ->with("title", $title)
 		 ->with("items", $items)
@@ -150,13 +150,13 @@ class ResultsController extends Controller {
 		 ->with("start_record", $this->start_record);
     }
 
-    // ---------------------------------------------------
-	// результаты по всему региону
-	// ---------------------------------------------------
-    public function getResultsByRegion($_region, $_category) {
+    // ----------------------------------------------------
+	// результаты по всему региону c детальной информацией
+	// ----------------------------------------------------
+    public function getResultsByRegionWithDetailedInfo($_region, $_category) {
 
     	// получаю имена на русском
-		$region = Regions::select('name')->where('url',  $_region )->first();		
+		$results = Regions::select('name')->where('url',  $_region )->first();		
 		//$category = Categories::select('id', 'name')->where('url',  $_category )->first();
 		
     	// получаю объявления
@@ -167,7 +167,25 @@ class ResultsController extends Controller {
     	// передаю во вьюху
 		//return view('results')->with("items", $items)->with("title", $_category->name." в ".$_region->name)->with("images", "123");
 		return;
-    }
+	}
+	// ----------------------------------------------------
+	// результаты по всему региону без деталей
+	// ----------------------------------------------------
+	public function getResultsByRegion($region) {
+
+    	// получаю имена на русском
+		$results = Regions::select('name')->where('url',  $region )->first();		
+		//$category = Categories::select('id', 'name')->where('url',  $_category )->first();
+		
+    	// получаю объявления
+    	$items = Adverts::where('category_id',  0)->get();
+		//$images = Images::where('advert_id',  $record->id )->get();
+        // !!!! НЕТ РЕГИОНА !!! зависит от локации
+
+    	// передаю во вьюху
+		//return view('results')->with("items", $items)->with("title", $_category->name." в ".$_region->name)->with("images", "123");
+		return;
+	}
 
 	// ---------------------------------------------------
     // результаты по городу, деревне
