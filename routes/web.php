@@ -9,11 +9,6 @@ Auth::routes();
 Route::get('test',  function () { return view('test'); });
 Route::post('checkPhotos',  'TestController@checkPhotos');
 
-// ------------------------------------
-// Модерация
-// ------------------------------------
-Route::get('moderation',  function () { return view('moderation'); });
-Route::get('moderation/{advert_id}',  function () { return view('moderation_advert'); });
 
 //Route::get('details/{id}', array('as' => 'id', 'uses' => 'AdvertController@getFullInfo'));
 
@@ -68,6 +63,9 @@ Route::get('transport/vozdushnyy-transport',	  	'ResultsController@getResultsByC
 Route::get('{region}/transport/{subcat}',			['uses' => 'SubCatsController@getResultsByCategory']);
 Route::get('{region}/{place}/transport/{subcat}',	['uses' => 'SubCatsController@getResultsByCategory']);*/
 
+Route::get('{region}/transport/{subcat}',	 ['uses' => 'ResultsController@getResultsByRegion']);
+Route::get('{region}/nedvizhimost/{subcat}', ['uses' => 'ResultsController@getResultsByRegion']);
+Route::get('{region}/elektronika/{subcat}',  ['uses' => 'ResultsController@getResultsByRegion']);
 
 
 // недвижимость
@@ -91,14 +89,14 @@ Route::get('{category}/{subcat}', 'SubCatsController@getResultsByCategory');
 // ------------------------------------
 // базовые контроллеры
 // ------------------------------------
+Route::get('/', 				 'IndexController@init');
+Route::get('home',	 		 	 'CabinetController@index');
+Route::get('home/{advert_id}',	 'CabinetController@index');
 Route::post('create', 			 'AdvertController@createAdvert');
 Route::get('podat-obyavlenie', 	 'AdvertController@newAdvert');
-Route::get('/', 				 'IndexController@init');
 Route::get('getRegions', 		 'IndexController@getRegions');
 Route::get('getPlaces', 		 'IndexController@getPlaces');
 Route::get('getUser', 			 'UserController@getUser');
-Route::get('home',	 		 	 'CabinetController@index');
-Route::get('home/{advert_id}',	 'CabinetController@index');
 Route::get('categories', 		 'CategoriesController@index');
 
 Route::get('getSubCats',  'SubCatsController@getSubCats' );
@@ -140,3 +138,5 @@ Route::get('{region}/{place}/{category}', 'ResultsController@getResultsByPlace')
  Панель администратора
 ------------------------------------------------*/
 Route::get('admin', 'AdminController@login');
+Route::get('moderation',  function () { return view('moderation'); });
+Route::get('moderation/{advert_id}',  function () { return view('moderation_advert'); });
