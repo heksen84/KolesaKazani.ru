@@ -1,13 +1,13 @@
 <template>
 	<b-container fluid class="mycontainer_adv">
     <notifications group="foo" position="top center"/>
-		<b-row>
+	<b-row>
 
-		 <!-- карта -->
+	  <!-- карта -->
       <b-modal size="lg" v-model="setCoordsDialog" style="text-align:center;color:rgb(50,50,50)" hide-footer title="Уточнить на карте">
-			  <div id="bigmap" style="width: 100%; height: 300px"></div>
+			<div id="bigmap" style="width: 100%; height: 300px"></div>
 			<br/>
-				<b-button variant="primary" @click="setCoords">Сохранить</b-button>
+			<b-button variant="primary" @click="setCoords">Сохранить</b-button>
       </b-modal> 	
 
 		  <b-col cols="12" sm="12" md="12" lg="10" xl="10" class="create_advert_col">
@@ -16,8 +16,6 @@
 
 		  <hr>
 
-			<b-form @submit="onSubmit">
-
 			<b-form-group label="Категория товара или услуги:" label-for="categories" style="width:260px">
 				<b-form-select class="mb-3" @change="changeCategory" v-model="category">
 					<option :value=null>-- Выберите категорию --</option>
@@ -25,8 +23,6 @@
 				</b-form-select>
 			</b-form-group>
 
-
-<!--			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px" v-if="category!=null && category!=4 && category!=9">-->
 			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px" 
 			v-if="category!=null && category!=3 && category!=4 && category!=5 && category!=6 && category!=7 && category!=8 && category!=9 && category!=10">
 				 <b-form-radio-group id="deal_group" stacked name="radioOpenions" @change="setDeal" v-model="sdelka">
@@ -34,7 +30,9 @@
 				 </b-form-radio-group>
 			</b-form-group>
 
-			<br>			
+			<br>
+
+			<b-form @submit="onSubmit">			
 			
 			<!-- Категории -->
 			<div v-if="root"></div>
@@ -68,6 +66,7 @@
 
 			<!-- услуги -->
 			<h1 v-else-if="other"></h1>
+
 
 			<!-- Дополнительные поля -->
 			<div v-show="this.$store.state.show_final_fields">

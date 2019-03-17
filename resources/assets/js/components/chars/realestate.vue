@@ -1,5 +1,5 @@
 <template>
-  <b-form inline style="margin-top:-18px;">
+  <div class="form-inline">
 
 	<b-form-group label="Вид недвижимости:">
         <b-form-select v-model="selected_type" class="mb-2 mr-sm-2 mb-sm-2" @change="changeProperyType">
@@ -47,7 +47,7 @@
         </b-form-select>
 </b-form-group>
 
-</b-form>
+</div>
 </template>
 
 <script>

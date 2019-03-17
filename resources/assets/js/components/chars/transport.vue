@@ -1,5 +1,6 @@
 <template>
-  <b-form inline style="margin-top:-18px;">
+  <div class="form-inline">
+    
     <div style="width:100%;margin-bottom:10px;text-decoration:underline" v-if="[0,1,2,4].indexOf(this.selected.type_transport) != -1 && this.selected.type_transport!=null">Характеристики:</div>
     
     <b-form-group label="Вид транспорта:">
@@ -55,7 +56,7 @@
         </b-form-select>
     </b-form-group>
 
-  </b-form>
+  </div>
 </template>
 
 <script>
@@ -132,8 +133,9 @@ export default {
   },
   
   computed: {
-    getComTransport() {
-      // категории транспорта
+    
+    // категории транспорта
+    getComTransport() { 
       return [0,1,2,4].indexOf(this.selected.type_transport) != -1 && this.selected.type_transport!=null && this.$store.state.show_common_transport;      
     }
   },

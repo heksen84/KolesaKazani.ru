@@ -1881,6 +1881,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -1933,8 +1934,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
   computed: {
+
+    // категории транспорта
     getComTransport: function getComTransport() {
-      // категории транспорта
       return [0, 1, 2, 4].indexOf(this.selected.type_transport) != -1 && this.selected.type_transport != null && this.$store.state.show_common_transport;
     }
   },
@@ -2740,7 +2742,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_chars_transport__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate__ = __webpack_require__("./resources/assets/js/components/chars/realestate.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_chars_realestate__);
-//
 //
 //
 //
@@ -36770,8 +36771,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "b-form",
-    { staticStyle: { "margin-top": "-18px" }, attrs: { inline: "" } },
+    "div",
+    { staticClass: "form-inline" },
     [
       [0, 1, 2, 4].indexOf(this.selected.type_transport) != -1 &&
       this.selected.type_transport != null
@@ -39024,8 +39025,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "b-form",
-    { staticStyle: { "margin-top": "-18px" }, attrs: { inline: "" } },
+    "div",
+    { staticClass: "form-inline" },
     [
       _c(
         "b-form-group",
@@ -39381,103 +39382,103 @@ var render = function() {
               _c("hr"),
               _vm._v(" "),
               _c(
-                "b-form",
-                { on: { submit: _vm.onSubmit } },
+                "b-form-group",
+                {
+                  staticStyle: { width: "260px" },
+                  attrs: {
+                    label: "Категория товара или услуги:",
+                    "label-for": "categories"
+                  }
+                },
                 [
                   _c(
+                    "b-form-select",
+                    {
+                      staticClass: "mb-3",
+                      on: { change: _vm.changeCategory },
+                      model: {
+                        value: _vm.category,
+                        callback: function($$v) {
+                          _vm.category = $$v
+                        },
+                        expression: "category"
+                      }
+                    },
+                    [
+                      _c("option", { domProps: { value: null } }, [
+                        _vm._v("-- Выберите категорию --")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.items, function(item) {
+                        return _c(
+                          "option",
+                          { key: item.name, domProps: { value: item.id } },
+                          [_vm._v(_vm._s(item.name))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm.category != null &&
+              _vm.category != 3 &&
+              _vm.category != 4 &&
+              _vm.category != 5 &&
+              _vm.category != 6 &&
+              _vm.category != 7 &&
+              _vm.category != 8 &&
+              _vm.category != 9 &&
+              _vm.category != 10
+                ? _c(
                     "b-form-group",
                     {
-                      staticStyle: { width: "260px" },
+                      staticStyle: { width: "270px" },
                       attrs: {
-                        label: "Категория товара или услуги:",
-                        "label-for": "categories"
+                        label: "Вид сделки:",
+                        "label-for": "default_group"
                       }
                     },
                     [
                       _c(
-                        "b-form-select",
+                        "b-form-radio-group",
                         {
-                          staticClass: "mb-3",
-                          on: { change: _vm.changeCategory },
+                          attrs: {
+                            id: "deal_group",
+                            stacked: "",
+                            name: "radioOpenions"
+                          },
+                          on: { change: _vm.setDeal },
                           model: {
-                            value: _vm.category,
+                            value: _vm.sdelka,
                             callback: function($$v) {
-                              _vm.category = $$v
+                              _vm.sdelka = $$v
                             },
-                            expression: "category"
+                            expression: "sdelka"
                           }
                         },
-                        [
-                          _c("option", { domProps: { value: null } }, [
-                            _vm._v("-- Выберите категорию --")
-                          ]),
-                          _vm._v(" "),
-                          _vm._l(_vm.items, function(item) {
-                            return _c(
-                              "option",
-                              { key: item.name, domProps: { value: item.id } },
-                              [_vm._v(_vm._s(item.name))]
-                            )
-                          })
-                        ],
-                        2
+                        _vm._l(_vm.dealtypes, function(i, index) {
+                          return _c(
+                            "b-form-radio",
+                            { key: index, attrs: { value: i.id } },
+                            [_vm._v(_vm._s(i.deal_name_1))]
+                          )
+                        }),
+                        1
                       )
                     ],
                     1
-                  ),
-                  _vm._v(" "),
-                  _vm.category != null &&
-                  _vm.category != 3 &&
-                  _vm.category != 4 &&
-                  _vm.category != 5 &&
-                  _vm.category != 6 &&
-                  _vm.category != 7 &&
-                  _vm.category != 8 &&
-                  _vm.category != 9 &&
-                  _vm.category != 10
-                    ? _c(
-                        "b-form-group",
-                        {
-                          staticStyle: { width: "270px" },
-                          attrs: {
-                            label: "Вид сделки:",
-                            "label-for": "default_group"
-                          }
-                        },
-                        [
-                          _c(
-                            "b-form-radio-group",
-                            {
-                              attrs: {
-                                id: "deal_group",
-                                stacked: "",
-                                name: "radioOpenions"
-                              },
-                              on: { change: _vm.setDeal },
-                              model: {
-                                value: _vm.sdelka,
-                                callback: function($$v) {
-                                  _vm.sdelka = $$v
-                                },
-                                expression: "sdelka"
-                              }
-                            },
-                            _vm._l(_vm.dealtypes, function(i, index) {
-                              return _c(
-                                "b-form-radio",
-                                { key: index, attrs: { value: i.id } },
-                                [_vm._v(_vm._s(i.deal_name_1))]
-                              )
-                            }),
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c(
+                "b-form",
+                { on: { submit: _vm.onSubmit } },
+                [
                   _vm.root
                     ? _c("div")
                     : _vm.transport
