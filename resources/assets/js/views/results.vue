@@ -177,13 +177,11 @@ export default {
 
 			// показать / скрыть фильтр
 			showFilter() {
-				if (this.filter) 
-				{
+				if (this.filter) {
 					this.filter=false
 					this.filter_text="Отфильтровать";
 				}
-				else 
-				{
+				else {
 					this.filter=true;
 					this.filter_text="Скрыть фильтр";
 				}				
@@ -191,10 +189,6 @@ export default {
 			
 			// закрыть экран
 			closeAndReturn() {
-				//console.log(window.history)
-				//console.log(window.history.length)
-				//window.history.length >2 ? window.history.back():window.location.href = "/";
-
 				window.history.back()
 			},
 			  
@@ -207,20 +201,16 @@ export default {
 			// фильтры  
   		setFilter() {
 
-			//alert("okay!")
-			//console.log(this.filters);
-			
-			// передать фильтра, record_start, recordsLimit т.е. loadMoreCountShow
-  		get("/getResults", { "data": this.filters } ).then((res) => {
-				console.log("------------------------");
-				console.log(res.data);
-				console.log("------------------------");
-				this.items=res.data;
-				this.update();
-			}).catch((err) => {
-				console.log(err)
-			});
-
+				// передать фильтра, record_start, recordsLimit т.е. loadMoreCountShow
+  			get("/getResults", { "data": this.filters } ).then((res) => {
+					console.log("------------------------");
+					console.log(res.data);
+					console.log("------------------------");
+					this.items=res.data;
+					this.update();
+				}).catch((err) => {
+					console.log(err)
+				});
 			},
 			
 			// загрузить ещё

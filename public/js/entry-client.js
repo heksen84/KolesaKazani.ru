@@ -2145,6 +2145,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id", "image", "title", "price", "category_id", "deal", "full"],
@@ -4337,10 +4338,6 @@ function num2str(n, text_forms) {
 
 		// закрыть экран
 		closeAndReturn: function closeAndReturn() {
-			//console.log(window.history)
-			//console.log(window.history.length)
-			//window.history.length >2 ? window.history.back():window.location.href = "/";
-
 			window.history.back();
 		},
 
@@ -4355,9 +4352,6 @@ function num2str(n, text_forms) {
 		// фильтры  
 		setFilter: function setFilter() {
 			var _this = this;
-
-			//alert("okay!")
-			//console.log(this.filters);
 
 			// передать фильтра, record_start, recordsLimit т.е. loadMoreCountShow
 			Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])("/getResults", { "data": this.filters }).then(function (res) {
@@ -13412,7 +13406,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -36671,19 +36665,15 @@ var render = function() {
         "div",
         { staticClass: "item-content" },
         [
-          _vm.deal == 0 && _vm.full ? _c("b", [_vm._v("Куплю")]) : _vm._e(),
+          _vm.deal == 0 ? _c("b", [_vm._v("Куплю")]) : _vm._e(),
           _vm._v(" "),
-          _vm.deal == 1 && _vm.full ? _c("b", [_vm._v("Продам")]) : _vm._e(),
+          _vm.deal == 1 ? _c("b", [_vm._v("Продам")]) : _vm._e(),
           _vm._v(" "),
-          _vm.deal == 2 && _vm.full ? _c("b", [_vm._v("Обменяю")]) : _vm._e(),
+          _vm.deal == 2 ? _c("b", [_vm._v("Обменяю")]) : _vm._e(),
           _vm._v(" "),
-          _vm.deal == 3 && _vm.full
-            ? _c("b", [_vm._v("Отдам даром")])
-            : _vm._e(),
+          _vm.deal == 3 ? _c("b", [_vm._v("Отдам даром")]) : _vm._e(),
           _vm._v(" "),
-          _vm.deal == 4 && _vm.full
-            ? _c("b", [_vm._v("Сдам в аренду")])
-            : _vm._e(),
+          _vm.deal == 4 ? _c("b", [_vm._v("Сдам в аренду")]) : _vm._e(),
           _vm._v(" "),
           _c("b", [_vm._v(_vm._s(_vm.title))]),
           _vm._v(" "),
