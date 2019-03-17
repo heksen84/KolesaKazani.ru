@@ -670,12 +670,12 @@ class AdvertController extends Controller {
         }  // end transport                                                                      
                         
 
-            }
+         }
 
-            // -----------------------------------------
-            // НЕДВИЖИМОСТЬ (развёрнутая информация)
-            // -----------------------------------------
-            if ($item->category_id==2) {
+        // -----------------------------------------
+        // НЕДВИЖИМОСТЬ (развёрнутая информация)
+        // -----------------------------------------
+        if ($item->category_id==2) {
 
                 $realestate = DB::table("adv_realestate")->where("id", $item->adv_category_id)->get()->first();
 
