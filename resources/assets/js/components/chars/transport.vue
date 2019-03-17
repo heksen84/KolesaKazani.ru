@@ -178,14 +178,11 @@ export default {
           this.carmark=[];
                       
           get("/getCarsMarks").then((res) => {
-            
             this.carmark = res.data;                        
             console.log(this.carmark);
-
           }).catch((err) => {
               console.log(err);
           });
-
           break;
        }
 

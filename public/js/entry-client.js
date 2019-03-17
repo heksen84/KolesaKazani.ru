@@ -1978,13 +1978,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.carmark = [];
 
             Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/getCarsMarks").then(function (res) {
-
               _this.carmark = res.data;
               console.log(_this.carmark);
             }).catch(function (err) {
               console.log(err);
             });
-
             break;
           }
 
