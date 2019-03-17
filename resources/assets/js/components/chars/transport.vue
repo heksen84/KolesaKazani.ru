@@ -1,7 +1,6 @@
 <template>
   <div class="form-inline">
     <div style="width:100%;margin-bottom:10px;text-decoration:underline" v-if="[0,1,2,4].indexOf(this.selected.type_transport) != -1 && this.selected.type_transport!=null">Характеристики:</div>
-    
     <b-form-group label="Вид транспорта:">
         <b-form-select v-model="selected.type_transport" class="mb-2 mr-sm-2 mb-sm-2"  @change="selectTransportType">
            <option v-for="item in type_transport" :value="item.value" :key="item.value">{{item.text}}</option>
@@ -54,7 +53,6 @@
            <option :value="0">Нет</option>
         </b-form-select>
     </b-form-group>
-
   </div>
 </template>
 
