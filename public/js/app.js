@@ -2146,6 +2146,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id", "image", "title", "price", "category_id", "deal", "full"],
@@ -2908,6 +2909,7 @@ var smallmap = null;
  Преобразует строку в массив
 ------------------------------*/
 function str_split(string, length) {
+
 	var chunks, len, pos;
 
 	string = string == null ? "" : string;
@@ -36665,15 +36667,19 @@ var render = function() {
         "div",
         { staticClass: "item-content" },
         [
-          _vm.deal == 0 ? _c("b", [_vm._v("Куплю")]) : _vm._e(),
+          _vm.deal == 0 && _vm.full ? _c("b", [_vm._v("Куплю")]) : _vm._e(),
           _vm._v(" "),
-          _vm.deal == 1 ? _c("b", [_vm._v("Продам")]) : _vm._e(),
+          _vm.deal == 1 && _vm.full ? _c("b", [_vm._v("Продам")]) : _vm._e(),
           _vm._v(" "),
-          _vm.deal == 2 ? _c("b", [_vm._v("Обменяю")]) : _vm._e(),
+          _vm.deal == 2 && _vm.full ? _c("b", [_vm._v("Обменяю")]) : _vm._e(),
           _vm._v(" "),
-          _vm.deal == 3 ? _c("b", [_vm._v("Отдам даром")]) : _vm._e(),
+          _vm.deal == 3 && _vm.full
+            ? _c("b", [_vm._v("Отдам даром")])
+            : _vm._e(),
           _vm._v(" "),
-          _vm.deal == 4 ? _c("b", [_vm._v("Сдам в аренду")]) : _vm._e(),
+          _vm.deal == 4 && _vm.full
+            ? _c("b", [_vm._v("Сдам в аренду")])
+            : _vm._e(),
           _vm._v(" "),
           _c("b", [_vm._v(_vm._s(_vm.title))]),
           _vm._v(" "),

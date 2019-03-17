@@ -81,7 +81,8 @@ class AdvertController extends Controller {
             "region_id.numeric"        => "Введите числовое значение для региона",
             "city_id.required"         => "Укажите расположение",
             "city_id.numeric"          => "Введите числовое значение для расположения"
-        ]; 
+        ];
+
         
         // проверка
         $validator = Validator::make( $data, $rules, $messages );
@@ -224,10 +225,12 @@ class AdvertController extends Controller {
                         $realestate->type_of_building = $data["type_of_building"];
 
                     // квартира
-                    if ( $data["property_type"]==0 ) {
+                    /*if ( $data["property_type"]==0 ) {
                         $advert->full = true; // полное объявление с хар-ками (в item будет указан вид сделки)
-                    }
+                    }*/
                     
+                    $advert->full = true; // детальное объявление
+
                     $realestate->save();
 
                     // записываю id подкатегории

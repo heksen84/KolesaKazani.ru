@@ -167,6 +167,7 @@ var smallmap=null;
  Преобразует строку в массив
 ------------------------------*/
 function str_split(string, length) {
+
     var chunks, len, pos;
     
     string = (string == null) ? "" : string;
@@ -533,7 +534,7 @@ export default {
 		// вид сделки
   		setDeal(deal_id) {
   			this.$root.advert_data.adv_deal=deal_id;
-				this.deal_id=deal_id;
+			this.deal_id=deal_id;
 		},
 
 		// сброс данных объявления

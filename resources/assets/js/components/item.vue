@@ -4,11 +4,12 @@
     <b-img :src="'../public/images/_nofoto.jpg'" width="118" height="118" style="display:inline-block" v-if="image==null"/>
     <div class="item-content">      
         
-        <b v-if="deal==0">Куплю</b>
-        <b v-if="deal==1">Продам</b>
-        <b v-if="deal==2">Обменяю</b>
-        <b v-if="deal==3">Отдам даром</b>
-        <b v-if="deal==4">Сдам в аренду</b>
+        <!-- приписывать вид сделки только объявлениям с детальными хар-ками-->
+        <b v-if="deal==0 && full">Куплю</b>
+        <b v-if="deal==1 && full">Продам</b>
+        <b v-if="deal==2 && full">Обменяю</b>
+        <b v-if="deal==3 && full">Отдам даром</b>
+        <b v-if="deal==4 && full">Сдам в аренду</b>
         
         <b>{{ title }}</b>
 
