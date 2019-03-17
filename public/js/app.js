@@ -39203,7 +39203,8 @@ var render = function() {
                 attrs: {
                   type: "number",
                   formatter: _vm.changeTotalArea,
-                  placeholder: "Введите площадь"
+                  placeholder: "Введите площадь",
+                  required: ""
                 },
                 model: {
                   value: _vm.input_area,

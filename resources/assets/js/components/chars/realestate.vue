@@ -32,7 +32,7 @@
 </b-form-group>
 
 <b-form-group label="Общая площадь(кв.м.):" v-if="selected.apartment && selected_type==0 || selected_type==1 || selected_type==2 || selected_type==3 || selected_type==6 || selected_type==7">
-        <b-form-input type="number" v-model="input_area" class="mb-2 mr-sm-2 mb-sm-2" :formatter="changeTotalArea" style="width:170px" placeholder="Введите площадь"></b-form-input>
+        <b-form-input type="number" v-model="input_area" class="mb-2 mr-sm-2 mb-sm-2" :formatter="changeTotalArea" style="width:170px" placeholder="Введите площадь" required></b-form-input>
 </b-form-group>
 
 <b-form-group label="Право собственности:" v-if="selected_type!=null">
