@@ -32,7 +32,7 @@
 
 			<br>
 
-			<b-form @submit="onSubmit">			
+			<b-form id="advertform" @submit="onSubmit">			
 			
 			<!-- Категории -->
 			<div v-if="root"></div>
@@ -542,6 +542,12 @@ export default {
 				console.log("--------------------")
 				console.log(category_data)
 				console.log("--------------------")
+
+				var form = document.getElementById("advertform");				
+				
+				if (form) {
+					form.reset();
+				}
 
 				this.$store.commit("SetRequiredInfo", false);
 				this.$store.commit("SetPlaceholderInfoText", "default");

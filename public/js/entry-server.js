@@ -3289,6 +3289,12 @@ function forEach(data, callback) {
 			console.log(category_data);
 			console.log("--------------------");
 
+			var form = document.getElementById("advertform");
+
+			if (form) {
+				form.reset();
+			}
+
 			this.$store.commit("SetRequiredInfo", false);
 			this.$store.commit("SetPlaceholderInfoText", "default");
 
@@ -39475,7 +39481,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "b-form",
-                { on: { submit: _vm.onSubmit } },
+                { attrs: { id: "advertform" }, on: { submit: _vm.onSubmit } },
                 [
                   _vm.root
                     ? _c("div")
