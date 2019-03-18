@@ -80,10 +80,19 @@ const store = new Vuex.Store({
       str_button_search: "",
       str_create_advert: "",
       str_my_adverts: "",
-      str_location: ""      
+      str_location: "",     
+      str_realestate_area_label_text: ""
     },
 
     mutations: {
+
+      // установить заголовок доп. информации / текста объявления
+      SetRealEstateAreaLabelText( state, text ) {
+        if (text=="default") 
+          state.str_realestate_area_label_text = "Общая площадь (кв.м.):"
+        else
+          state.str_realestate_area_label_text = text;
+      },
 
       // установить заголовок доп. информации / текста объявления
       SetInfoLabelDescription( state, text ) {

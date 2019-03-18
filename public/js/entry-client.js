@@ -1738,6 +1738,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления");
       this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
+      this.$store.commit("SetRealEstateAreaLabelText", "default");
       this.$store.commit("ShowFinalFields", true); // показываю дополнительные поля
 
       switch (property_id) {
@@ -1761,6 +1762,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
         case 3:
           {
+            this.$store.commit("SetRealEstateAreaLabelText", "Общая площадь (сот.):");
             this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам земельный участок");
             break;
           }
@@ -39189,7 +39191,9 @@ var render = function() {
       _vm.selected_type == 7
         ? _c(
             "b-form-group",
-            { attrs: { label: "Общая площадь(кв.м.):" } },
+            {
+              attrs: { label: _vm.$store.state.str_realestate_area_label_text }
+            },
             [
               _c("b-form-input", {
                 staticClass: "mb-2 mr-sm-2 mb-sm-2",
@@ -54448,9 +54452,15 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
     str_search_placeholder: "",
     str_button_search: "",
     str_create_advert: ""
-  }, _defineProperty(_state, 'str_my_adverts', ""), _defineProperty(_state, 'str_location', ""), _state),
+  }, _defineProperty(_state, 'str_my_adverts', ""), _defineProperty(_state, 'str_location', ""), _defineProperty(_state, 'str_realestate_area_label_text', ""), _state),
 
   mutations: {
+
+    // установить заголовок доп. информации / текста объявления
+    SetRealEstateAreaLabelText: function SetRealEstateAreaLabelText(state, text) {
+      if (text == "default") state.str_realestate_area_label_text = "Общая площадь (кв.м.):";else state.str_realestate_area_label_text = text;
+    },
+
 
     // установить заголовок доп. информации / текста объявления
     SetInfoLabelDescription: function SetInfoLabelDescription(state, text) {
