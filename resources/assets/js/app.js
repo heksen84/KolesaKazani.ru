@@ -66,12 +66,14 @@ const store = new Vuex.Store({
 
     state: 
     { 
+      // -------------------------------------
       required_info: false,       // обязательное поле дополнительной информации
       price: "",      
       info_label_description: "",
       placeholder_info_text:  "",      
       show_final_fields: false,
       show_common_transport: false,
+      // -------------------------------------
       str_login: "",
       str_register: "",
       str_my_adverts: "",
@@ -119,7 +121,7 @@ const store = new Vuex.Store({
       },
       
       // установить язык
-      SetLang (state, lang) {        
+      SetLang (state, lang) {
         
         if (lang == "ru") { // русский
           state.str_title = "Дамеля"

@@ -54438,12 +54438,14 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_32_vue
 var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
 
   state: (_state = {
+    // -------------------------------------
     required_info: false, // обязательное поле дополнительной информации
     price: "",
     info_label_description: "",
     placeholder_info_text: "",
     show_final_fields: false,
     show_common_transport: false,
+    // -------------------------------------
     str_login: "",
     str_register: "",
     str_my_adverts: "",
