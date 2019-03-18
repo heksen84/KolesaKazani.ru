@@ -38443,7 +38443,7 @@ var render = function() {
                         margin: "10px",
                         border: "1px solid white"
                       },
-                      attrs: { variant: "primary" },
+                      attrs: { size: "sm" },
                       on: { click: _vm.showFilter }
                     },
                     [_vm._v("Применить фильтр")]
