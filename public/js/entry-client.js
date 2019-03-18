@@ -2881,7 +2881,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 // ----------------------------------------------------
@@ -2914,6 +2913,7 @@ function str_split(string, length) {
 	var chunks = [];
 	var pos = 0;
 	var len = string.length;
+
 	while (pos < len) {
 		chunks.push(string.slice(pos, pos += length));
 	}
@@ -3022,7 +3022,8 @@ function initMaps() {
 	smallmap.geoObjects.add(myPlacemark2);
 
 	bigmap.events.add("click", function (e) {
-		mapCoords = e.get('coordPosition');
+
+		mapCoords = e.get("coordPosition");
 		myPlacemark1.geometry.setCoordinates(mapCoords);
 		myPlacemark2.geometry.setCoordinates(mapCoords);
 		smallmap.setCenter(mapCoords, 14, "smallmap");
@@ -3290,10 +3291,11 @@ function forEach(data, callback) {
 			console.log("--------------------");
 
 			var form = document.getElementById("advertform");
-
 			if (form) {
 				form.reset();
 			}
+
+			this.summ_str = "";
 
 			this.$store.commit("SetRequiredInfo", false);
 			this.$store.commit("SetPlaceholderInfoText", "default");
@@ -3327,7 +3329,6 @@ function forEach(data, callback) {
 			}
 
 			//this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
-
 
 			this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
 			this.$root.advert_data.adv_price = "";
