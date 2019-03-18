@@ -50,7 +50,7 @@ class SubCatsController extends Controller
                             adv.adv_category_id=adv_transport.id AND 
                             adv_transport.model = car_model.id_car_model
                         ) WHERE adv_transport.type=0 AND adv.category_id=1
-                        ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );                    
 
                     \Debugbar::info($results);
@@ -76,7 +76,7 @@ class SubCatsController extends Controller
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=1 AND adv.category_id=1 
-                        ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     \Debugbar::info($results);
@@ -101,7 +101,7 @@ class SubCatsController extends Controller
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=2 AND adv.category_id=1
-                        ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     \Debugbar::info($results);
@@ -126,7 +126,7 @@ class SubCatsController extends Controller
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=3 AND adv.category_id=1 
-                        ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     \Debugbar::info($results);
@@ -151,7 +151,7 @@ class SubCatsController extends Controller
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=4 AND adv.category_id=1 
-                        ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     $title="Покупка, продажа, обмен, сдача в аренду ретро автомобилей";
@@ -174,7 +174,7 @@ class SubCatsController extends Controller
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=5  AND adv.category_id=1 
-                        ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     $title="Покупка, продажа, обмен, сдача в аренду водного транспорта";
@@ -197,7 +197,7 @@ class SubCatsController extends Controller
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=6  AND adv.category_id=1 
-                        ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     $title="Покупка, продажа, обмен, сдача в аренду велосипеда";
@@ -220,7 +220,7 @@ class SubCatsController extends Controller
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=7 AND adv.category_id=1
-                         ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     $title="Покупка, продажа, обмен, сдача в аренду воздушного транспорта";
@@ -256,7 +256,7 @@ class SubCatsController extends Controller
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
                         WHERE adv_realestate.property_type=0 AND adv.category_id=2
-                        ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     \Debugbar::info($results);
@@ -281,7 +281,7 @@ class SubCatsController extends Controller
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
                         WHERE adv_realestate.property_type=1 AND adv.category_id=2
-                        ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     \Debugbar::info($results);
@@ -312,7 +312,7 @@ class SubCatsController extends Controller
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
                         WHERE adv_realestate.property_type=2 AND adv.category_id=2
-                        ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     \Debugbar::info($results);
@@ -337,7 +337,7 @@ class SubCatsController extends Controller
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
                         WHERE adv_realestate.property_type=3 AND adv.category_id=2
-                        ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     \Debugbar::info($results);
@@ -362,7 +362,7 @@ class SubCatsController extends Controller
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
                         WHERE adv_realestate.property_type=4 AND adv.category_id=2
-                        ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     \Debugbar::info($results);
@@ -387,7 +387,7 @@ class SubCatsController extends Controller
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
                         WHERE adv_realestate.property_type=5 AND adv.category_id=2
-                        ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
                 
                     \Debugbar::info($results);
@@ -412,7 +412,7 @@ class SubCatsController extends Controller
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
                         WHERE adv_realestate.property_type=6 AND adv.category_id=2
-                        ORDER BY price ASC LIMIT ".$this->start_record.",".$this->records_limit                    
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
                     \Debugbar::info($results);
@@ -423,7 +423,7 @@ class SubCatsController extends Controller
             }
         }        
 
-     	return view('results')->with("title", $title." в Казахстане")->with("items", $items)->with("results", json_encode($results))->with("category", $categories);
+     	return view("results")->with("title", $title." в Казахстане")->with("items", $items)->with("results", json_encode($results))->with("category", $categories);
     }
 
 }
