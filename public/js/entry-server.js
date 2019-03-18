@@ -2142,20 +2142,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["id", "image", "title", "price", "category_id", "deal", "full"],
-  created: function created() {
-    console.log("---:" + this.full);
-  },
+    props: ["id", "created_at", "image", "title", "price", "category_id", "deal", "full", "vip"],
+    created: function created() {},
 
-  methods: {
-    details: function details(event) {
-      window.location = '/details/' + this.id;
+    methods: {
+        details: function details(event) {
+            window.location = '/details/' + this.id;
+        }
     }
-  }
 });
 
 /***/ }),
@@ -4171,6 +4167,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_item__ = __webpack_require__("./resources/assets/js/components/item.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_item___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_item__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+//
+//
 //
 //
 //
@@ -13411,7 +13409,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -36686,11 +36684,27 @@ var render = function() {
           _vm._v(" "),
           _c("b", [_vm._v(_vm._s(_vm.title))]),
           _vm._v(" "),
-          _vm.category_id != 4
-            ? _c("div", [_vm._v("Цена: " + _vm._s(_vm.price) + " тенге")])
+          _c(
+            "div",
+            {
+              staticStyle: {
+                "font-size": "11px",
+                color: "grey",
+                "margin-top": "-3px"
+              }
+            },
+            [_vm._v(_vm._s(_vm.created_at))]
+          ),
+          _vm._v(" "),
+          _vm.category_id != 4 && _vm.price != 0
+            ? _c("div", [
+                _vm._v("цена: "),
+                _c("b", [_vm._v(_vm._s(_vm.price))]),
+                _vm._v(" тенге")
+              ])
             : _vm._e(),
           _vm._v(" "),
-          _vm.category_id == 4 ? _c("br") : _vm._e(),
+          _vm.category_id == 4 || _vm.price == 0 ? _c("br") : _vm._e(),
           _vm._v(" "),
           _c(
             "b-button",
@@ -38498,13 +38512,15 @@ var render = function() {
                   return _c("item", {
                     key: index,
                     attrs: {
-                      image: item.image,
                       id: item.advert_id,
+                      created_at: item.created_at,
+                      category_id: item.category_id,
+                      image: item.image,
                       title: item.title,
                       price: item.price,
-                      category_id: item.category_id,
                       deal: item.deal,
-                      full: item.full
+                      full: item.full,
+                      vip: item.vip
                     }
                   })
                 }),

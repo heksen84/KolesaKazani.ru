@@ -67,14 +67,16 @@
 			</b-col>
 			<b-col cols="12" sm="12" md="8" lg="8" xl="8">
 
-				<item v-for="(item,index) in results" 								
+				<item v-for="(item,index) in results" 													
+					:id="item.advert_id"
+					:created_at="item.created_at"
+					:category_id="item.category_id"					
 					:image="item.image"
-					:id="item.advert_id" 
 					:title="item.title" 				
-					:price="item.price"
-					:category_id="item.category_id"
+					:price="item.price"					
 					:deal="item.deal"
 					:full="item.full"
+					:vip="item.vip"
 					:key="index">
 				</item>
 				

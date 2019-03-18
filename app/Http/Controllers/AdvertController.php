@@ -786,8 +786,16 @@ class AdvertController extends Controller {
                             kz_region.region_id=adv.region_id
                         ) WHERE adv.id=".$id." LIMIT 1");                            
 
-                        $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." "
-                        .$this->getStrPrice($results);
+                        $type_of_building = "";
+
+                        switch($results[0]->type_of_building) {
+                            case 0: $type_of_building = "дом"; break;
+                            case 1: $type_of_building = "дачу"; break;
+                            case 2: $type_of_building = "коттедж"; break;
+                        }
+
+                        $title = $results[0]->deal_name_2." ".$type_of_building." ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".
+                        $petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$this->getStrPrice($results);
                         break;
                     }
 
@@ -822,12 +830,12 @@ class AdvertController extends Controller {
                             kz_region.region_id=adv.region_id
                         ) WHERE adv.id=".$id." LIMIT 1");
                         
-                        $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." "
+                        $title = $results[0]->deal_name_2." земельный участок в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." "
                         .$this->getStrPrice($results);
                         break;
                     }
 
-                    // Земельный участок
+                    // Гараж иил машиноместо
                     case 3: {
                         
                         $results = DB::select(

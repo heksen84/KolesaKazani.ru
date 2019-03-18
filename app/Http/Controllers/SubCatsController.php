@@ -37,7 +37,8 @@ class SubCatsController extends Controller
                     $results = DB::select(
                         "SELECT
                         concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
-                        adv.id as advert_id, 
+                        adv.id as advert_id,
+                        DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                         adv.deal,
                         adv.full,                                                
                         adv.price,
@@ -64,7 +65,8 @@ class SubCatsController extends Controller
                     
                     $results = DB::select(
                         "SELECT
-                        adv.id as advert_id, 
+                        adv.id as advert_id,
+                        DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                         adv.deal,
                         adv.full,                                                
                         adv.price,
@@ -90,6 +92,7 @@ class SubCatsController extends Controller
                     $results = DB::select(
                         "SELECT
                         adv.id as advert_id,
+                        DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                         adv.deal,
                         adv.full,                                                
                         adv.price,
@@ -115,6 +118,7 @@ class SubCatsController extends Controller
                     $results = DB::select(
                         "SELECT
                         adv.id as advert_id,
+                        DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                         adv.deal,
                         adv.full,
                         adv.price,
@@ -140,6 +144,7 @@ class SubCatsController extends Controller
                     $results = DB::select(
                         "SELECT
                         adv.id as advert_id,
+                        DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                         adv.deal,
                         adv.full,
                         adv.price,
@@ -163,6 +168,7 @@ class SubCatsController extends Controller
                     $results = DB::select(
                         "SELECT
                         adv.id as advert_id,
+                        DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                         adv.deal,
                         adv.full,
                         adv.price,
@@ -185,7 +191,8 @@ class SubCatsController extends Controller
                 if ($subcat=="velosiped") {                    
                     $results = DB::select(
                         "SELECT
-                        adv.id as advert_id, 
+                        adv.id as advert_id,
+                        DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                         adv.deal,
                         adv.full,                                                
                         adv.price,
@@ -209,6 +216,7 @@ class SubCatsController extends Controller
                     $results = DB::select(
                         "SELECT
                         adv.id as advert_id,
+                        DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                         adv.deal,
                         adv.full,                                     
                         adv.price,
@@ -246,7 +254,8 @@ class SubCatsController extends Controller
                     $results = DB::select(
                         "SELECT
                         concat(adv_realestate.rooms, ' комнатную квартиру, ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаж, ', adv_realestate.area, ' кв. м.' ) AS title,
-                        adv.id as advert_id, 
+                        adv.id as advert_id,
+                        DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                         adv.deal,
                         adv.full,
                         adv.price,
@@ -272,6 +281,7 @@ class SubCatsController extends Controller
                         "SELECT
                         concat('комнату ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаж, ', adv_realestate.area, ' кв. м.' ) AS title,
                         adv.id as advert_id,
+                        DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                         adv.deal,
                         adv.full,
                         adv.price,
@@ -302,6 +312,7 @@ class SubCatsController extends Controller
                         ELSE '' 
                         END AS title,
                         adv.id as advert_id,
+                        DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                         adv.deal,
                         adv.full,
                         adv.price,
@@ -326,8 +337,9 @@ class SubCatsController extends Controller
 
                     $results = DB::select(
                         "SELECT
-                        concat('земельный участок ', adv_realestate.area, ' кв. м.' ) AS title,
+                        concat('земельный участок ', adv_realestate.area, ' соток' ) AS title,
                         adv.id as advert_id,
+                        DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                         adv.deal,
                         adv.full,                                      
                         adv.price,
@@ -353,6 +365,7 @@ class SubCatsController extends Controller
                         "SELECT
                         concat('гараж или машиноместо' ) AS title,
                         adv.id as advert_id,
+                        DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                         adv.deal,
                         adv.full,
                         adv.price,
@@ -378,6 +391,7 @@ class SubCatsController extends Controller
                         "SELECT
                         concat('недвижимость ', adv_realestate.area, ' кв. м.' ) AS title,
                         adv.id as advert_id,
+                        DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                         adv.deal,
                         adv.full,                         
                         adv.price,
@@ -403,6 +417,7 @@ class SubCatsController extends Controller
                         "SELECT
                         concat('недвижимость ', adv_realestate.area, ' кв. м.' ) AS title,
                         adv.id as advert_id,
+                        DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                         adv.deal,
                         adv.full,
                         adv.price,

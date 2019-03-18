@@ -40,8 +40,9 @@ class ResultsController extends Controller {
 			case 1: {
 
 				$results = DB::select(
-					"SELECT
-					adv.id as advert_id, 
+					"SELECT					
+					adv.id as advert_id,
+					DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
 					adv.price,
 					adv.category_id,
 					adv.deal,
@@ -74,8 +75,9 @@ class ResultsController extends Controller {
 
 				$results = DB::select(					
 					"SELECT
-					concat(adv_realestate.rooms, ' комнатную квартиру, ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаже, ', adv_realestate.area, ' кв. м.' ) AS title,
+					concat(adv_realestate.rooms, ' комнатную квартиру, ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаже, ', adv_realestate.area, ' кв. м.' ) AS title,					
 					adv.id as advert_id,
+					DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
 					adv.deal,
 					adv.full,                    
                     adv.price,
@@ -124,6 +126,7 @@ class ResultsController extends Controller {
 				$results = DB::select(					
 					"SELECT
 					id as advert_id,
+					DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
 					adv.deal,
 					adv.full,
 					text as title, 
