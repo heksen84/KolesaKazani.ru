@@ -54456,7 +54456,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
 
   mutations: {
 
-    // установить заголовок доп. информации / текста объявления
+    // установить заголовок для площади в недвижимости
     SetRealEstateAreaLabelText: function SetRealEstateAreaLabelText(state, text) {
       if (text == "default") state.str_realestate_area_label_text = "Общая площадь (кв.м.):";else state.str_realestate_area_label_text = text;
     },
@@ -54485,9 +54485,8 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
 
     // установить язык
     SetLang: function SetLang(state, lang) {
-
-      // русский
       if (lang == "ru") {
+        // русский
         state.str_title = "Дамеля";
         state.str_desc = "доска объявлений";
         state.str_search_placeholder = "поиск по сайту";
@@ -54496,9 +54495,8 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
         state.str_my_adverts = "мои объявления";
         state.str_location = "расположение";
       }
-
-      // казахский
       if (lang == "kz") {
+        // казахский
         state.str_title = "Дамеля";
         state.str_desc = "хабарландыру тақтасы";
         state.str_search_placeholder = "cайт бойынша іздеу";

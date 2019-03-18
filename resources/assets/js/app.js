@@ -64,7 +64,8 @@ Vue.use(Notifications)
 // -----------------------------------
 const store = new Vuex.Store({
 
-    state: { 
+    state: 
+    { 
       required_info: false,       // обязательное поле дополнительной информации
       price: "",      
       info_label_description: "",
@@ -86,7 +87,7 @@ const store = new Vuex.Store({
 
     mutations: {
 
-      // установить заголовок доп. информации / текста объявления
+      // установить заголовок для площади в недвижимости
       SetRealEstateAreaLabelText( state, text ) {
         if (text=="default") 
           state.str_realestate_area_label_text = "Общая площадь (кв.м.):"
@@ -118,10 +119,8 @@ const store = new Vuex.Store({
       },
       
       // установить язык
-      SetLang (state, lang) {
-        
-        // русский
-        if (lang == "ru") {
+      SetLang (state, lang) {        
+        if (lang == "ru") { // русский
           state.str_title = "Дамеля"
           state.str_desc = "доска объявлений"
           state.str_search_placeholder = "поиск по сайту"
@@ -129,10 +128,8 @@ const store = new Vuex.Store({
           state.str_create_advert = "подать объявление"
           state.str_my_adverts = "мои объявления"
           state.str_location = "расположение"          
-        }
-        
-        // казахский
-        if (lang == "kz") {
+        }                
+        if (lang == "kz") { // казахский
           state.str_title = "Дамеля"
           state.str_desc = "хабарландыру тақтасы"
           state.str_search_placeholder = "cайт бойынша іздеу"
