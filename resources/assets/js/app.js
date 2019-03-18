@@ -120,6 +120,7 @@ const store = new Vuex.Store({
       
       // установить язык
       SetLang (state, lang) {        
+        
         if (lang == "ru") { // русский
           state.str_title = "Дамеля"
           state.str_desc = "доска объявлений"
@@ -129,6 +130,7 @@ const store = new Vuex.Store({
           state.str_my_adverts = "мои объявления"
           state.str_location = "расположение"          
         }                
+        
         if (lang == "kz") { // казахский
           state.str_title = "Дамеля"
           state.str_desc = "хабарландыру тақтасы"

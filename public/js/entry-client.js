@@ -54485,6 +54485,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
 
     // установить язык
     SetLang: function SetLang(state, lang) {
+
       if (lang == "ru") {
         // русский
         state.str_title = "Дамеля";
@@ -54495,6 +54496,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
         state.str_my_adverts = "мои объявления";
         state.str_location = "расположение";
       }
+
       if (lang == "kz") {
         // казахский
         state.str_title = "Дамеля";
