@@ -1762,7 +1762,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
         case 3:
           {
-            this.$store.commit("SetRealEstateAreaLabelText", "Общая площадь (сот.):");
+            this.$store.commit("SetRealEstateAreaLabelText", "Площадь (сот.):");
             this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам земельный участок");
             break;
           }
@@ -39197,7 +39197,7 @@ var render = function() {
             [
               _c("b-form-input", {
                 staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                staticStyle: { width: "170px" },
+                staticStyle: { width: "160px" },
                 attrs: {
                   type: "number",
                   formatter: _vm.changeTotalArea,
@@ -54460,7 +54460,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
 
     // установить заголовок для площади в недвижимости
     SetRealEstateAreaLabelText: function SetRealEstateAreaLabelText(state, text) {
-      if (text == "default") state.str_realestate_area_label_text = "Общая площадь (кв.м.):";else state.str_realestate_area_label_text = text;
+      if (text == "default") state.str_realestate_area_label_text = "Площадь (кв.м.):";else state.str_realestate_area_label_text = text;
     },
 
 

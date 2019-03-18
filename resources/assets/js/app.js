@@ -92,7 +92,7 @@ const store = new Vuex.Store({
       // установить заголовок для площади в недвижимости
       SetRealEstateAreaLabelText( state, text ) {
         if (text=="default") 
-          state.str_realestate_area_label_text = "Общая площадь (кв.м.):"
+          state.str_realestate_area_label_text = "Площадь (кв.м.):"
         else
           state.str_realestate_area_label_text = text;
       },

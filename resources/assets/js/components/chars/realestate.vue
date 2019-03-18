@@ -31,7 +31,7 @@
   </b-form-group>
 
   <b-form-group :label="$store.state.str_realestate_area_label_text" v-if="selected.apartment && selected_type==0 || selected_type==1 || selected_type==2 || selected_type==3 || selected_type==6 || selected_type==7">
-        <b-form-input type="number" v-model="input_area" class="mb-2 mr-sm-2 mb-sm-2" :formatter="changeTotalArea" style="width:170px" placeholder="Введите площадь" required></b-form-input>
+        <b-form-input type="number" v-model="input_area" class="mb-2 mr-sm-2 mb-sm-2" :formatter="changeTotalArea" style="width:160px" placeholder="Введите площадь" required></b-form-input>
   </b-form-group>
 
   <b-form-group label="Право собственности:" v-if="selected_type!=null">
@@ -158,7 +158,7 @@ export default {
             break; 
           }
           case 3: {
-              this.$store.commit("SetRealEstateAreaLabelText", "Общая площадь (сот.):");
+              this.$store.commit("SetRealEstateAreaLabelText", "Площадь (сот.):");
               this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам земельный участок"); 
             break; 
           }
