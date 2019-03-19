@@ -3765,6 +3765,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 var mapCoords = [];
@@ -37306,6 +37308,11 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("br"),
+                  _vm._v(
+                    "\n\n\t\t\tРазмещено " +
+                      _vm._s(_vm.item[0].created_at) +
+                      "\n\n\t\t\t"
+                  ),
                   _vm._v(" "),
                   _vm.item[0].category_id == 1
                     ? _c("div", [

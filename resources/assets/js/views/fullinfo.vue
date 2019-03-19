@@ -11,7 +11,9 @@
 
 		<b-col v-else cols="12" sm="12" md="12" lg="10" xl="10" class="create_advert_col">
 		  <div class="close_button" title="Закрыть страницу" style="font-size:20px;font-weight:bold" @click="closeAndReturn">X</div>     
-			<br>			
+			<br>
+
+			Размещено {{ item[0].created_at }}
 
 			<!--------------------------------------------------------
 			   
