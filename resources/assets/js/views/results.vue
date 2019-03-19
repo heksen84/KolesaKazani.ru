@@ -14,14 +14,16 @@
 			</b-col>
 	</b-row>
 
-	<!-- общие фильтры -->
+	<!------------------------------------
+	  общие фильтры
+	 -------------------------------------->
 	<b-row v-if="count>1 && filter">				
 		<b-col cols="12" sm="12" md="3" lg="3" xl="3"></b-col>
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 		  <b-form-select v-model="filters.price" :options="options_price" class="mb-1"/>
 		</b-col>
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="filters.sdelka" :options="options_sdelka" class="mb-1"/>
+		  <b-form-select v-model="filters.deal" :options="options_deal" class="mb-1"/>
 		</b-col>
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 		 	<b-form-select v-model="filters.actual" :options="options_actual" class="mb-1"/>			
@@ -34,17 +36,17 @@
 		
 		<!-- марки -->
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="filters.price" :options="options_price" class="mb-1"/>
+		  <b-form-select :options="options_price" class="mb-1"/>
 		</b-col>		
 
 		<!-- модели -->
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="filters.price" :options="options_price" class="mb-1"/>
+		  <b-form-select :options="options_price" class="mb-1"/>
 		</b-col>		
 
 		<!-- модели -->
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="filters.price" :options="options_price" class="mb-1"/>
+		  <b-form-select :options="options_price" class="mb-1"/>
 		</b-col>		
 	</b-row>
 
@@ -99,12 +101,12 @@
 // функция склонений слов
 // -----------------------------------------------
 function num2str(n, text_forms) {
-    n = Math.abs(n) % 100;
-    var n1 = n % 10;
-    if (n > 10 && n < 20) return text_forms[2];   
-    if (n1 > 1 && n1 < 5) return text_forms[1];
-    if (n1 == 1) return text_forms[0];
-    return text_forms[2];
+  n = Math.abs(n) % 100;
+  var n1 = n % 10;
+  	if (n > 10 && n < 20) return text_forms[2];   
+  	if (n1 > 1 && n1 < 5) return text_forms[1];
+  	if (n1 == 1) return text_forms[0];
+  return text_forms[2];
 }
 
 // ------------------------------------
@@ -131,11 +133,11 @@ export default {
    	slide: 0,
     sliding: null,
 
+		// фильтра
 		filters: {
     	price: null,
-      sdelka: null,
+      deal: null,
       actual: null,
-      location: null
     },
 
     options_price: [
@@ -144,7 +146,7 @@ export default {
       { value: '1', text: 'Цена по убыванию' },
     ],
 
-    options_sdelka: [
+    options_deal: [
       { value: null, text: '-- Вид сделки --' },
       { value: '0', text: 'Покупка' },
       { value: '1', text: 'Продажа' },
@@ -174,6 +176,9 @@ export default {
 		console.log(this.results)
 	},
 				
+	// -------------------------
+	// Методы компонента
+	// -------------------------
 	methods: {
 
 		update() {
@@ -195,8 +200,15 @@ export default {
 			  
 			// применить фильтр
   		setFilter() {
-	
+
 			// передать фильтра, record_start, recordsLimit т.е. loadMoreCountShow
+
+			/*			
+				[{"price": "asc"}, {"deal": "0"}, "urgency": "olds"]
+				asc  - возрастание, desc - убывание
+			*/
+			
+
   		get("/getResults", { "data": this.filters } ).then((res) => {
 
 					console.log("------------------------");
@@ -204,12 +216,14 @@ export default {
 					console.log("------------------------");
 					
 					this.items=res.data;
-					this.update();					
+					this.update();
+						
 					alert("ajax");
 
 				}).catch((err) => {	
 					console.log(err)
 			});
+
 		},
 			
 		// закрыть экран

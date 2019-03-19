@@ -1,28 +1,13 @@
 <?php
 use Illuminate\Support\Facades\DB;
 
-Auth::routes();
+Auth::routes(); // Стандартные роуты
 
 // ------------------------------------
 //  Пробный методы
 // ------------------------------------
-Route::get('test',  function () { return view('test'); });
-Route::post('checkPhotos',  'TestController@checkPhotos');
-
-
-//Route::get('details/{id}', array('as' => 'id', 'uses' => 'AdvertController@getFullInfo'));
-
-// ------------------------------------
-// Реклама на сайте
-// ------------------------------------
-Route::get('advertisers',  function () { return view('advertisers'); });
-
-// О сайте...
-Route::get('about',  function () { return view('about'); });
-
-
-Route::get('getCategoryCountById', 'WelcomeController@getCategoryCountById');
-Route::get('getCategoryCounts', 'WelcomeController@getCategoryCounts');
+Route::get("test",  function () { return view("test"); });
+Route::post("checkPhotos",  "TestController@checkPhotos");
 
 // ------------------------------------
 // сервисы
@@ -30,8 +15,18 @@ Route::get('getCategoryCounts', 'WelcomeController@getCategoryCounts');
 Route::get('/util/str2url', 'UtilsController@str2url');
 
 // ------------------------------------
-// категории по всему Казахстану
+// Футер
 // ------------------------------------
+Route::get("advertisers", function () { return view("advertisers"); }); // Реклама
+Route::get("about", function () { return view("about"); }); // О сайте...
+
+
+Route::get("getCategoryCountById", 	"WelcomeController@getCategoryCountById");
+Route::get("getCategoryCounts", 	"WelcomeController@getCategoryCounts");
+
+// ------------------------------------------------------------------------------------------------------------
+// Категории по всему Казахстану
+// ------------------------------------------------------------------------------------------------------------
 Route::get('transport', 				'ResultsController@getResultsByCategory');
 Route::get('nedvizhimost', 				'ResultsController@getResultsByCategory');
 Route::get('elektronika', 				'ResultsController@getResultsByCategory');
@@ -55,7 +50,6 @@ Route::get('transport/retro-avtomobil', 		  	'SubCatsController@getResultsByCate
 Route::get('transport/vodnyy-transport', 		  	'SubCatsController@getResultsByCategory');
 Route::get('transport/velosiped', 			  		'ResultsController@getResultsByCategory');
 Route::get('transport/vozdushnyy-transport',	  	'ResultsController@getResultsByCategory');*/
-
 
 // Весь КЗ
 /*Route::get('transport/{subcat}',					['uses' => 'SubCatsController@getResultsByCategory']);
@@ -114,7 +108,6 @@ Route::get('getSubCats',  'SubCatsController@getSubCats' );
 // ------------------------------------
 Route::get('getCarsMarks',  'AdvertController@getCarsMarks' );
 Route::get('getCarsModels', 'AdvertController@getCarsModels' );
-
 Route::get('search',  function () { return view('search')->with("items", "123"); });
 
 // ------------------------------------
@@ -127,7 +120,8 @@ Route::get('/category/{id}', function ($id) {
 		mb_strtolower($categories[0]->name));
 });
 
-Route::get('getResults', 'SearchController@getSearchData');
+//Route::get('getResults', 'SearchController@getSearchData');
+Route::get('getResults', 'ResultsController@getResultsByCategory');
 Route::get('location/{country}/{region}/{place}', 'AdvertController@getFullInfo');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
@@ -142,9 +136,9 @@ Route::get('{region}/{category}', 'ResultsController@getResultsByRegion');
 Route::get('{region}/{place}/{category}', 'ResultsController@getResultsByPlace');
 
 /*
-------------------------------------------------
+------------------------------------------------------------------------------------------------
  Панель администратора
-------------------------------------------------*/
+------------------------------------------------------------------------------------------------*/
 Route::get('admin', 'AdminController@login');
 Route::get('moderation',  function () { return view('moderation'); });
 Route::get('moderation/{advert_id}',  function () { return view('moderation_advert'); });

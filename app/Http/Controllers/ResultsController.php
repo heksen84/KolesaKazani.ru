@@ -25,6 +25,10 @@ class ResultsController extends Controller {
     // ---------------------------------------------------
     public function getResultsByCategory(Request $request) {
 
+		$data = $request->all();
+		
+		\Debugbar::info($data);
+
     	// получаю имя на русском
 		$category = Categories::select("id", "name")->where("url",  $request->path() )->first();
 		$items = Adverts::where("category_id",  $category->id )->get();

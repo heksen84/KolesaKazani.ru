@@ -4265,6 +4265,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 // -----------------------------------------------
@@ -4303,16 +4305,16 @@ function num2str(n, text_forms) {
 			slide: 0,
 			sliding: null,
 
+			// фильтра
 			filters: {
 				price: null,
-				sdelka: null,
-				actual: null,
-				location: null
+				deal: null,
+				actual: null
 			},
 
 			options_price: [{ value: null, text: '-- Цена --' }, { value: '0', text: 'Цена по возрастанию' }, { value: '1', text: 'Цена по убыванию' }],
 
-			options_sdelka: [{ value: null, text: '-- Вид сделки --' }, { value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }],
+			options_deal: [{ value: null, text: '-- Вид сделки --' }, { value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }],
 
 			options_actual: [{ value: null, text: '-- Актуальность --' }, { value: '0', text: 'Сначала новые' }, { value: '1', text: 'Сначала старые' }],
 
@@ -4328,6 +4330,9 @@ function num2str(n, text_forms) {
 	},
 
 
+	// -------------------------
+	// Методы компонента
+	// -------------------------
 	methods: {
 		update: function update() {
 			this.count = Object.keys(this.results).length;
@@ -4352,6 +4357,12 @@ function num2str(n, text_forms) {
 			var _this = this;
 
 			// передать фильтра, record_start, recordsLimit т.е. loadMoreCountShow
+
+			/*			
+   	[{"price": "asc"}, {"deal": "0"}, "urgency": "olds"]
+   	asc  - возрастание, desc - убывание
+   */
+
 			Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])("/getResults", { "data": this.filters }).then(function (res) {
 
 				console.log("------------------------");
@@ -4360,6 +4371,7 @@ function num2str(n, text_forms) {
 
 				_this.items = res.data;
 				_this.update();
+
 				alert("ajax");
 			}).catch(function (err) {
 				console.log(err);
@@ -13413,7 +13425,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -38333,13 +38345,13 @@ var render = function() {
                 [
                   _c("b-form-select", {
                     staticClass: "mb-1",
-                    attrs: { options: _vm.options_sdelka },
+                    attrs: { options: _vm.options_deal },
                     model: {
-                      value: _vm.filters.sdelka,
+                      value: _vm.filters.deal,
                       callback: function($$v) {
-                        _vm.$set(_vm.filters, "sdelka", $$v)
+                        _vm.$set(_vm.filters, "deal", $$v)
                       },
-                      expression: "filters.sdelka"
+                      expression: "filters.deal"
                     }
                   })
                 ],
@@ -38383,14 +38395,7 @@ var render = function() {
                 [
                   _c("b-form-select", {
                     staticClass: "mb-1",
-                    attrs: { options: _vm.options_price },
-                    model: {
-                      value: _vm.filters.price,
-                      callback: function($$v) {
-                        _vm.$set(_vm.filters, "price", $$v)
-                      },
-                      expression: "filters.price"
-                    }
+                    attrs: { options: _vm.options_price }
                   })
                 ],
                 1
@@ -38402,14 +38407,7 @@ var render = function() {
                 [
                   _c("b-form-select", {
                     staticClass: "mb-1",
-                    attrs: { options: _vm.options_price },
-                    model: {
-                      value: _vm.filters.price,
-                      callback: function($$v) {
-                        _vm.$set(_vm.filters, "price", $$v)
-                      },
-                      expression: "filters.price"
-                    }
+                    attrs: { options: _vm.options_price }
                   })
                 ],
                 1
@@ -38421,14 +38419,7 @@ var render = function() {
                 [
                   _c("b-form-select", {
                     staticClass: "mb-1",
-                    attrs: { options: _vm.options_price },
-                    model: {
-                      value: _vm.filters.price,
-                      callback: function($$v) {
-                        _vm.$set(_vm.filters, "price", $$v)
-                      },
-                      expression: "filters.price"
-                    }
+                    attrs: { options: _vm.options_price }
                   })
                 ],
                 1
