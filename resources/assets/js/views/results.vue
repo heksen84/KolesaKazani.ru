@@ -18,13 +18,13 @@
 	<b-row v-if="count>1 && filter">				
 		<b-col cols="12" sm="12" md="3" lg="3" xl="3"></b-col>
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="filters.price" :options="options_price" class="mb-1" @change="setFilter"/>
+		  <b-form-select v-model="filters.price" :options="options_price" class="mb-1"/>
 		</b-col>
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="filters.sdelka" :options="options_sdelka" class="mb-1" @change="setFilter"/>
+		  <b-form-select v-model="filters.sdelka" :options="options_sdelka" class="mb-1"/>
 		</b-col>
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		 	<b-form-select v-model="filters.actual" :options="options_actual" class="mb-1" @change="setFilter"/>			
+		 	<b-form-select v-model="filters.actual" :options="options_actual" class="mb-1"/>			
 		</b-col>		
 	</b-row>
 
@@ -34,23 +34,23 @@
 		
 		<!-- марки -->
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="filters.price" :options="options_price" class="mb-1" @change="setFilter"/>
+		  <b-form-select v-model="filters.price" :options="options_price" class="mb-1"/>
 		</b-col>		
 
 		<!-- модели -->
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="filters.price" :options="options_price" class="mb-1" @change="setFilter"/>
+		  <b-form-select v-model="filters.price" :options="options_price" class="mb-1"/>
 		</b-col>		
 
 		<!-- модели -->
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="filters.price" :options="options_price" class="mb-1" @change="setFilter"/>
+		  <b-form-select v-model="filters.price" :options="options_price" class="mb-1"/>
 		</b-col>		
 	</b-row>
 
 	<b-row v-if="filter">
 			<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
-				<b-button variant="primary" size="sm" style="margin:5px" @click="showFilter">Применить</b-button>
+				<b-button variant="primary" size="sm" style="margin:5px" @click="setFilter">Применить</b-button>
 			</b-col>
 	</b-row>
 
@@ -114,53 +114,52 @@ import { get } from "./../helpers/api"
 
 export default {
 
-	props: ["data", "results", "category"],
+	props: ["data", "results", "category"], // Входящие данные
+
+	components: { item },
 
 	data () {		
 	return 	{
 
-			loadMoreCountShow: 3,
+		loadMoreCountShow: 3,
+		filter: false,
+		filter_text: "Фильтр",			
+    items: this.data,
+    count: 0,
+    count_string: "",
+   	slide: 0,
+    sliding: null,
 
-			filter: false,
-			filter_text: "Фильтр",
-			
-    	items: this.data,
-    	count: 0,
-    	count_string: "",
-   	  slide: 0,
-      sliding: null,
+		filters: {
+    	price: null,
+      sdelka: null,
+      actual: null,
+      location: null
+    },
 
-		filters: 
-		{
-    		price: null,
-      		sdelka: null,
-      		actual: null,
-      		location: null
-    	},
+    options_price: [
+      { value: null, text: '-- Цена --' },
+      { value: '0', text: 'Цена по возрастанию' },
+      { value: '1', text: 'Цена по убыванию' },
+    ],
 
-      options_price: [
-        { value: null, text: '-- Цена --' },
-        { value: '0', text: 'Цена по возрастанию' },
-        { value: '1', text: 'Цена по убыванию' },
-      ],
+    options_sdelka: [
+      { value: null, text: '-- Вид сделки --' },
+      { value: '0', text: 'Покупка' },
+      { value: '1', text: 'Продажа' },
+      { value: '2', text: 'Обмен' },
+      { value: '3', text: 'Частичный обмен' },
+      { value: '4', text: 'Отдам даром' },
+      { value: '5', text: 'Сдача в аренду' }
+    ],
 
-       options_sdelka: [
-        { value: null, text: '-- Вид сделки --' },
-        { value: '0', text: 'Покупка' },
-        { value: '1', text: 'Продажа' },
-        { value: '2', text: 'Обмен' },
-        { value: '3', text: 'Частичный обмен' },
-        { value: '4', text: 'Отдам даром' },
-        { value: '5', text: 'Сдача в аренду' }
-      ],
+    options_actual: [
+      { value: null, text: '-- Актуальность --' },
+      { value: '0', text: 'Сначала новые' },
+      { value: '1', text: 'Сначала старые' },
+    ],
 
-      options_actual: [
-        { value: null, text: '-- Актуальность --' },
-        { value: '0', text: 'Сначала новые' },
-        { value: '1', text: 'Сначала старые' },
-      ],
-
-        options_location: [
+    options_location: [
         { value: null, text: '-- Расположение --' },
         { value: '0', text: 'Рядом со мной' },
         { value: '1', text: 'Любое расстояние' },
@@ -173,13 +172,17 @@ export default {
 		this.update();
 		console.log(this.results)
 	},
-	components: { item },
-			
-			methods: {
+				
+	methods: {
 
-			// показать / скрыть фильтр
-			showFilter() {
-				if (this.filter) {
+		update() {
+  		this.count = Object.keys(this.results).length;
+			this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
+		},
+			
+		// показать / скрыть фильтр
+		showFilter() {
+				if (this.filter) {					
 					this.filter=false
 					this.filter_text="Фильтр";
 				}
@@ -188,37 +191,35 @@ export default {
 					this.filter_text="Скрыть фильтр";
 				}				
 			},
-			
-			// закрыть экран
-			closeAndReturn() {
-				window.history.back()
-			},
 			  
-			// ---  
-			update() {
-  				this.count = Object.keys(this.results).length;
-					this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
-			},
-			  
-			// фильтры  
+			// применить фильтр
   		setFilter() {
+	
+			// передать фильтра, record_start, recordsLimit т.е. loadMoreCountShow
+  		get("/getResults", { "data": this.filters } ).then((res) => {
 
-				// передать фильтра, record_start, recordsLimit т.е. loadMoreCountShow
-  			get("/getResults", { "data": this.filters } ).then((res) => {
 					console.log("------------------------");
 					console.log(res.data);
 					console.log("------------------------");
+					
 					this.items=res.data;
-					this.update();
-				}).catch((err) => {
+					this.update();					
+					alert("ajax");
+
+				}).catch((err) => {	
 					console.log(err)
-				});
-			},
+			});
+		},
 			
-			// загрузить ещё
-			loadMore() {
-    		this.setFilter();
-    	}
+		// закрыть экран
+		closeAndReturn() {
+			window.history.back()
+		},
+			  									
+		// загрузить ещё
+		loadMore() {
+    	this.setFilter();
+    }
 	}
 }
 </script>

@@ -4285,16 +4285,16 @@ function num2str(n, text_forms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-	props: ["data", "results", "category"],
+	props: ["data", "results", "category"], // Входящие данные
+
+	components: { item: __WEBPACK_IMPORTED_MODULE_0__components_item___default.a },
 
 	data: function data() {
 		return {
 
 			loadMoreCountShow: 3,
-
 			filter: false,
 			filter_text: "Фильтр",
-
 			items: this.data,
 			count: 0,
 			count_string: "",
@@ -4325,9 +4325,13 @@ function num2str(n, text_forms) {
 		console.log(this.results);
 	},
 
-	components: { item: __WEBPACK_IMPORTED_MODULE_0__components_item___default.a },
 
 	methods: {
+		update: function update() {
+			this.count = Object.keys(this.results).length;
+			this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
+		},
+
 
 		// показать / скрыть фильтр
 		showFilter: function showFilter() {
@@ -4341,33 +4345,29 @@ function num2str(n, text_forms) {
 		},
 
 
-		// закрыть экран
-		closeAndReturn: function closeAndReturn() {
-			window.history.back();
-		},
-
-
-		// ---  
-		update: function update() {
-			this.count = Object.keys(this.results).length;
-			this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
-		},
-
-
-		// фильтры  
+		// применить фильтр
 		setFilter: function setFilter() {
 			var _this = this;
 
 			// передать фильтра, record_start, recordsLimit т.е. loadMoreCountShow
 			Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])("/getResults", { "data": this.filters }).then(function (res) {
+
 				console.log("------------------------");
 				console.log(res.data);
 				console.log("------------------------");
+
 				_this.items = res.data;
 				_this.update();
+				alert("ajax");
 			}).catch(function (err) {
 				console.log(err);
 			});
+		},
+
+
+		// закрыть экран
+		closeAndReturn: function closeAndReturn() {
+			window.history.back();
 		},
 
 
@@ -13411,7 +13411,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -38313,7 +38313,6 @@ var render = function() {
                   _c("b-form-select", {
                     staticClass: "mb-1",
                     attrs: { options: _vm.options_price },
-                    on: { change: _vm.setFilter },
                     model: {
                       value: _vm.filters.price,
                       callback: function($$v) {
@@ -38333,7 +38332,6 @@ var render = function() {
                   _c("b-form-select", {
                     staticClass: "mb-1",
                     attrs: { options: _vm.options_sdelka },
-                    on: { change: _vm.setFilter },
                     model: {
                       value: _vm.filters.sdelka,
                       callback: function($$v) {
@@ -38353,7 +38351,6 @@ var render = function() {
                   _c("b-form-select", {
                     staticClass: "mb-1",
                     attrs: { options: _vm.options_actual },
-                    on: { change: _vm.setFilter },
                     model: {
                       value: _vm.filters.actual,
                       callback: function($$v) {
@@ -38385,7 +38382,6 @@ var render = function() {
                   _c("b-form-select", {
                     staticClass: "mb-1",
                     attrs: { options: _vm.options_price },
-                    on: { change: _vm.setFilter },
                     model: {
                       value: _vm.filters.price,
                       callback: function($$v) {
@@ -38405,7 +38401,6 @@ var render = function() {
                   _c("b-form-select", {
                     staticClass: "mb-1",
                     attrs: { options: _vm.options_price },
-                    on: { change: _vm.setFilter },
                     model: {
                       value: _vm.filters.price,
                       callback: function($$v) {
@@ -38425,7 +38420,6 @@ var render = function() {
                   _c("b-form-select", {
                     staticClass: "mb-1",
                     attrs: { options: _vm.options_price },
-                    on: { change: _vm.setFilter },
                     model: {
                       value: _vm.filters.price,
                       callback: function($$v) {
@@ -38458,7 +38452,7 @@ var render = function() {
                     {
                       staticStyle: { margin: "5px" },
                       attrs: { variant: "primary", size: "sm" },
-                      on: { click: _vm.showFilter }
+                      on: { click: _vm.setFilter }
                     },
                     [_vm._v("Применить")]
                   )
