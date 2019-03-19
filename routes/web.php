@@ -12,7 +12,7 @@ Route::post("checkPhotos",  "TestController@checkPhotos");
 // ------------------------------------
 // сервисы
 // ------------------------------------
-Route::get('/util/str2url', 'UtilsController@str2url');
+Route::get("/util/str2url", "UtilsController@str2url");
 
 // ------------------------------------
 // Футер
@@ -38,23 +38,6 @@ Route::get('hobbi-i-otdyh', 			'ResultsController@getResultsByCategory');
 Route::get('uslugi', 					'ResultsController@getResultsByCategory');
 Route::get('drugoe', 					'ResultsController@getResultsByCategory');
 
-// ------------------------------------
-// подкатегории
-// ------------------------------------
-// транспорт
-/*Route::get('transport/gruzovoy-avtomobil', 	  		'SubCatsController@getResultsByCategory');
-Route::get('transport/legkovoy-avtomobil', 	  		'SubCatsController@getResultsByCategory');
-Route::get('transport/mototehnika', 			  	'SubCatsController@getResultsByCategory');
-Route::get('transport/spectehnika', 			  	'SubCatsController@getResultsByCategory');
-Route::get('transport/retro-avtomobil', 		  	'SubCatsController@getResultsByCategory');
-Route::get('transport/vodnyy-transport', 		  	'SubCatsController@getResultsByCategory');
-Route::get('transport/velosiped', 			  		'ResultsController@getResultsByCategory');
-Route::get('transport/vozdushnyy-transport',	  	'ResultsController@getResultsByCategory');*/
-
-// Весь КЗ
-/*Route::get('transport/{subcat}',					['uses' => 'SubCatsController@getResultsByCategory']);
-Route::get('{region}/transport/{subcat}',			['uses' => 'SubCatsController@getResultsByCategory']);
-Route::get('{region}/{place}/transport/{subcat}',	['uses' => 'SubCatsController@getResultsByCategory']);*/
 
 Route::get('{region}/transport/{subcat}',	 ['uses' => 'ResultsController@getResultsByRegionWithDetailedInfo']);
 Route::get('{region}/nedvizhimost/{subcat}', ['uses' => 'ResultsController@getResultsByRegionWithDetailedInfo']);
@@ -103,6 +86,7 @@ Route::get('categories', 		 'CategoriesController@index');
 
 Route::get('getSubCats',  'SubCatsController@getSubCats' );
 
+
 // ------------------------------------
 // авто
 // ------------------------------------
@@ -110,20 +94,22 @@ Route::get('getCarsMarks',  'AdvertController@getCarsMarks' );
 Route::get('getCarsModels', 'AdvertController@getCarsModels' );
 Route::get('search',  function () { return view('search')->with("items", "123"); });
 
+
 // ------------------------------------
 // перенести в контроллер Categories
 // ------------------------------------
-Route::get('/category/{id}', function ($id) { 
-	$categories = DB::table('categories')->where('id', $id)->get();
-	$items = DB::table('adverts')->where('category_id', $id)->get();
-	return view('results')->with("items", $items )->with("category_id", $id )->with("category_name", 
-		mb_strtolower($categories[0]->name));
+Route::get("/category/{id}", function ($id) {
+
+	$categories = DB::table('categories')->where("id", $id)->get();
+	$items = DB::table("adverts")->where("category_id", $id)->get();
+	return view("results")->with("items", $items )->with("category_id", $id )->with("category_name", mb_strtolower($categories[0]->name));
+
 });
 
-//Route::get('getResults', 'SearchController@getSearchData');
-Route::get('getResults', 'ResultsController@getResultsByCategory');
-Route::get('location/{country}/{region}/{place}', 'AdvertController@getFullInfo');
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+Route::get("getResults", "ResultsController@getResultsByCategory");
+Route::get("location/{country}/{region}/{place}", "AdvertController@getFullInfo");
+Route::get("logout", "\App\Http\Controllers\Auth\LoginController@logout");
 
 // ------------------------------------
 // категории по региону
