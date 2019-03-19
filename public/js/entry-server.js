@@ -2144,7 +2144,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ["id", "created_at", "image", "title", "price", "category_id", "deal", "full", "vip"],
+
+    props: ["id", "created_at", "image", "title", "price", "category_id", "deal", "full", "vip"], // входящие данные
+
     created: function created() {},
 
     methods: {
@@ -4261,7 +4263,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 // ------------------------------
@@ -4292,7 +4293,7 @@ function num2str(n, text_forms) {
 			loadMoreCountShow: 3,
 
 			filter: false,
-			filter_text: "Отфильтровать",
+			filter_text: "Фильтр",
 
 			items: this.data,
 			count: 0,
@@ -4325,13 +4326,14 @@ function num2str(n, text_forms) {
 	},
 
 	components: { item: __WEBPACK_IMPORTED_MODULE_0__components_item___default.a },
+
 	methods: {
 
 		// показать / скрыть фильтр
 		showFilter: function showFilter() {
 			if (this.filter) {
 				this.filter = false;
-				this.filter_text = "Отфильтровать";
+				this.filter_text = "Фильтр";
 			} else {
 				this.filter = true;
 				this.filter_text = "Скрыть фильтр";
@@ -38282,8 +38284,8 @@ var render = function() {
                   _c(
                     "b-button",
                     {
-                      staticStyle: { margin: "10px" },
-                      attrs: { variant: "success", size: "sm" },
+                      staticStyle: { margin: "5px" },
+                      attrs: { variant: "warning", size: "sm" },
                       on: { click: _vm.showFilter }
                     },
                     [_vm._v(_vm._s(_vm.filter_text))]
@@ -38454,14 +38456,11 @@ var render = function() {
                   _c(
                     "b-button",
                     {
-                      staticStyle: {
-                        margin: "10px",
-                        border: "1px solid white"
-                      },
-                      attrs: { size: "sm" },
+                      staticStyle: { margin: "5px" },
+                      attrs: { variant: "primary", size: "sm" },
                       on: { click: _vm.showFilter }
                     },
-                    [_vm._v("Применить фильтр")]
+                    [_vm._v("Применить")]
                   )
                 ],
                 1

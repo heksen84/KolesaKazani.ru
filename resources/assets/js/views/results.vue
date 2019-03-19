@@ -10,8 +10,7 @@
 	
 	<b-row v-if="count>3">
 			<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
-				<b-button variant="success" style="margin:10px" size="sm" @click="showFilter">{{ filter_text }}</b-button>
-				<!--<span title="Закрыть страницу" @click="closeAndReturn" style="width:30px;color:grey;font-weight:800">X</span>-->
+				<b-button variant="warning" style="margin:5px" size="sm" @click="showFilter">{{ filter_text }}</b-button>
 			</b-col>
 	</b-row>
 
@@ -51,7 +50,7 @@
 
 	<b-row v-if="filter">
 			<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
-				<b-button size="sm" style="margin:10px;border:1px solid white" @click="showFilter">Применить фильтр</b-button>
+				<b-button variant="primary" size="sm" style="margin:5px" @click="showFilter">Применить</b-button>
 			</b-col>
 	</b-row>
 
@@ -123,7 +122,7 @@ export default {
 			loadMoreCountShow: 3,
 
 			filter: false,
-			filter_text: "Отфильтровать",
+			filter_text: "Фильтр",
 			
     	items: this.data,
     	count: 0,
@@ -155,7 +154,7 @@ export default {
         { value: '5', text: 'Сдача в аренду' }
       ],
 
-        options_actual: [
+      options_actual: [
         { value: null, text: '-- Актуальность --' },
         { value: '0', text: 'Сначала новые' },
         { value: '1', text: 'Сначала старые' },
@@ -175,13 +174,14 @@ export default {
 		console.log(this.results)
 	},
 	components: { item },
-  		methods: {
+			
+			methods: {
 
 			// показать / скрыть фильтр
 			showFilter() {
 				if (this.filter) {
 					this.filter=false
-					this.filter_text="Отфильтровать";
+					this.filter_text="Фильтр";
 				}
 				else {
 					this.filter=true;

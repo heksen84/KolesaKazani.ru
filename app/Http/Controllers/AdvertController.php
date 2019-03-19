@@ -290,7 +290,9 @@ class AdvertController extends Controller {
 
             \Debugbar::info("id подкатегории :".$advert->adv_category_id);            
             
-            $advert->save(); // сохраняю основную информацию 
+            $advert->public = true; // публикую объявление сходу
+                        
+            $advert->save();  // СОХРАНЕНИЕ ОБЪЯВЛЕНИЯ
             
             // Закидываю данные в таблицу urls для SEO
             $urls = new Urls();

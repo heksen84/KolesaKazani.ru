@@ -23,7 +23,9 @@
 </template>
 <script>
 export default {
-props: [ "id", "created_at", "image", "title", "price", "category_id", "deal", "full", "vip" ],
+
+props: [ "id", "created_at", "image", "title", "price", "category_id", "deal", "full", "vip" ], // входящие данные
+
 created() {
 },
 methods: {  
