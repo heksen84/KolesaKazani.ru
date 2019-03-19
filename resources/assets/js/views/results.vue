@@ -209,7 +209,7 @@ export default {
 			*/
 			
 
-  		get("/getResultsForSubCategory/123/123", { "data": this.filters } ).then((res) => {
+  		get("/getResultsForSubCategory/transport/legkovoy-avtomobil", { "data": this.filters } ).then((res) => {
 
 					console.log("------------------------");
 					console.log(res.data);
