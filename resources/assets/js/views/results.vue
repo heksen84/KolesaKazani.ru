@@ -66,6 +66,7 @@
 			</b-col>
 			<b-col cols="12" sm="12" md="8" lg="8" xl="8">
 
+				<!-- КОМПОНЕНТ ITEM -->
 				<item v-for="(item,index) in results" 													
 					:id="item.advert_id"
 					:created_at="item.created_at"
@@ -94,9 +95,9 @@
 </template>
 <script>
 
-// ------------------------------
+// -----------------------------------------------
 // функция склонений слов
-// ------------------------------
+// -----------------------------------------------
 function num2str(n, text_forms) {
     n = Math.abs(n) % 100;
     var n1 = n % 10;
@@ -177,7 +178,7 @@ export default {
 
 		update() {
   		this.count = Object.keys(this.results).length;
-			this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
+			this.count_string = num2str(this.count, ["объявление", "объявления", "объявлений"]);
 		},
 			
 		// показать / скрыть фильтр

@@ -264,36 +264,36 @@ function number_to_string (num) {
 ---------------------------------------------------------*/
 function initMaps() {
 
-		// координаты по умолчанию для всех карт
-		mapCoords = [51.08, 71.26];
+	// координаты по умолчанию для всех карт
+	mapCoords = [51.08, 71.26];
 
-		bigmap = new ymaps.Map ("bigmap", { center: mapCoords, zoom: 10 });
-		smallmap = new ymaps.Map ("smallmap", { center: mapCoords, zoom: 9 });
+	bigmap = new ymaps.Map ("bigmap", { center: mapCoords, zoom: 10 });
+	smallmap = new ymaps.Map ("smallmap", { center: mapCoords, zoom: 9 });
 
-		// запрещаю перемение по мини карте
-		smallmap.behaviors.disable("drag");
+	// запрещаю перемение по мини карте
+	smallmap.behaviors.disable("drag");
 
-		// включаю скролл на большой карте
-		bigmap.behaviors.enable("scrollZoom");
+	// включаю скролл на большой карте
+	bigmap.behaviors.enable("scrollZoom");
 			
-		myPlacemark1 = new ymaps.Placemark(mapCoords);
-		myPlacemark2 = new ymaps.Placemark(mapCoords);
+	// формирую метки
+	myPlacemark1 = new ymaps.Placemark(mapCoords);
+	myPlacemark2 = new ymaps.Placemark(mapCoords);
 
-		bigmap.geoObjects.add(myPlacemark1);
-		smallmap.geoObjects.add(myPlacemark2);
+	// добавляю метки на карты
+	bigmap.geoObjects.add(myPlacemark1);
+	smallmap.geoObjects.add(myPlacemark2);
 
-    	bigmap.events.add("click", function (e) {
-
-      	mapCoords = e.get("coordPosition");
+    bigmap.events.add("click", function (e) {
+    	mapCoords = e.get("coordPosition");
 		myPlacemark1.geometry.setCoordinates(mapCoords);
 		myPlacemark2.geometry.setCoordinates(mapCoords);
 		smallmap.setCenter(mapCoords, 14, "smallmap");
+	});			
+}				
 
-		});			
-	}				
-
-	// Для заполнения изображений
-	function forEach(data, callback) { 
+// Для заполнения изображений
+function forEach(data, callback) { 
 	for(var key in data) { 
 		if(data.hasOwnProperty(key)) { 
 			callback(key, data[key]); 
@@ -304,13 +304,17 @@ function initMaps() {
 // Логика
 export default {
 	
-	props: ["items", "dealtypes", "regions"],
+	props: ["items", "dealtypes", "regions"], // Входящие данные
+
+	components: { transport, realestate }, // Используемые компоненты
 	
 	data () {
+
     return 	{
-
-			summ_str: "", // сумма прописью
-
+			
+			// сумма прописью
+			summ_str: "",
+			
 			// константы
 			const_phone1_max_length: 9,
 
@@ -363,9 +367,7 @@ export default {
 	created() {
 		ymaps.ready(initMaps);
 		this.advReset();
-	},
-
-	components: { transport, realestate },
+	},	
 
 	computed: {
 		checkPhone1State() {
@@ -395,8 +397,8 @@ export default {
 			// Получить города / сёлы
 			// -------------------------------
       		get("getPlaces?region_id="+region_id).then((res) => {
-				  this.places=res.data;
-				  this.places_model=null;
+				this.places=res.data;
+				this.places_model=null;
           		console.log(res.data);
 			  }).catch((err) => {});
 			  
@@ -442,39 +444,38 @@ export default {
 		// ------------------------------------------------
   		loadImage(evt) {
 			  
-			var root  = this.$root;  
-			var files = evt.target.files;			
-			var input_images = document.querySelector("input[type=file]");	
-			var preview_images = this.preview_images;		
-			var real_images = this.real_images;
+		var root  = this.$root;  
+		var files = evt.target.files;			
+		var input_images = document.querySelector("input[type=file]");	
+		var preview_images = this.preview_images;		
+		var real_images = this.real_images;
 
-			if (input_images.files.length + preview_images.length > this.$root.max_loaded_images) 
-				return;
+		if (input_images.files.length + preview_images.length > this.$root.max_loaded_images) 
+			return;
 		
-			for (var i=0; i<files.length; i++) {
-				if (i===this.$root.max_loaded_images) break;
+		for (var i=0; i<files.length; i++) {
+			if (i===this.$root.max_loaded_images) break;
 
-				// если уже существует, не обрабатывать изображение
-				for (var j=0; j<preview_images.length; j++)
-					if (files[i].name==preview_images[j].name)
-						return false;
+			// если уже существует, не обрабатывать изображение
+			for (var j=0; j<preview_images.length; j++)
+				if (files[i].name==preview_images[j].name)
+					return false;
 
-        		var image  = files[i]
-						var reader = new FileReader();
+        	var image  = files[i]
+			var reader = new FileReader();
 
-  					reader.onload = (function(theFile) {
+  			reader.onload = (function(theFile) {
 
           	return function(e) {
-					if (theFile.type=="image/jpeg" || theFile.type=="image/pjpeg" || theFile.type=="image/png") {					
-						preview_images.push({ "name": theFile.name, "src": e.target.result });
-						real_images.push(theFile);
-					}
-					else
-					root.$notify({group: 'foo', text: "<h6>Только изображения!</h6>", type: 'error'});				
-          		};
+			if (theFile.type=="image/jpeg" || theFile.type=="image/pjpeg" || theFile.type=="image/png") {					
+				preview_images.push({ "name": theFile.name, "src": e.target.result });
+				real_images.push(theFile);
+			}
+			else
+			root.$notify({group: 'foo', text: "<h6>Только изображения!</h6>", type: 'error'});				
+        };
 
-		  })(image);
-		  
+		})(image);		  
 			reader.readAsDataURL(image);			
 		}
 			input_images.value = "";
@@ -513,19 +514,19 @@ export default {
 		// телефоны
 		setPhoneNumber(number) {			
 
-			switch(number) {
-				case 1: {
-					this.$root.advert_data.adv_phone1=this.phone1;
-					break;
-				}
-				case 2: {
-					this.$root.advert_data.adv_phone2=this.phone2;
-					break;
-				}
-				case 3: {
-					this.$root.advert_data.adv_phone3=this.phone3;
-					break;
-				}
+		switch(number) {
+			case 1: {
+				this.$root.advert_data.adv_phone1=this.phone1;
+				break;
+			}
+			case 2: {
+				this.$root.advert_data.adv_phone2=this.phone2;
+				break;
+			}
+			case 3: {
+				this.$root.advert_data.adv_phone3=this.phone3;
+				break;
+			}
 
 //				return number;
 				
@@ -541,56 +542,55 @@ export default {
 		// сброс данных объявления
 		advReset(category_data) {
 
-				console.log("--------------------")
-				console.log(category_data)
-				console.log("--------------------")
+			console.log("--------------------")
+			console.log(category_data)
+			console.log("--------------------")
 
-				var form = document.getElementById("advertform");				
-				if (form) {
-					form.reset();
-				}
+			var form = document.getElementById("advertform");				
+		
+			if (form) form.reset();
 
-				this.summ_str = "";
+			this.summ_str = "";
 
-				this.$store.commit("SetRequiredInfo", false);
-				this.$store.commit("SetPlaceholderInfoText", "default");
+			this.$store.commit("SetRequiredInfo", false);
+			this.$store.commit("SetPlaceholderInfoText", "default");
 
-				// сброс массива объявления и переинициализация его
-				this.$root.advert_data = [];
+			// сброс массива объявления и переинициализация его
+			this.$root.advert_data = [];
 
-				// ----------------------------------------------------------------------------------------------------------------
-				// Не использовать операции сделки во всех категориях, т.к. пользователь может ввести описание объявления сам. 
-				// Типа: Продам то-то-то-то или Куплю то-то-то-то
-				// ----------------------------------------------------------------------------------------------------------------
-				switch(category_data) {
-					case 3: this.$root.advert_data.adv_deal = ""; break; 
-					case 4: this.$root.advert_data.adv_deal = ""; break; 
-					case 5: this.$root.advert_data.adv_deal = ""; break; 
-					case 6: this.$root.advert_data.adv_deal = ""; break; 
-					case 7: this.$root.advert_data.adv_deal = ""; break; 
-					case 8: this.$root.advert_data.adv_deal = ""; break; 
-					case 9: this.$root.advert_data.adv_deal = ""; break; 
-					case 10: this.$root.advert_data.adv_deal = ""; break; 
-					default: this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
-				}
+			// ----------------------------------------------------------------------------------------------------------------
+			// Не использовать операции сделки во всех категориях, т.к. пользователь может ввести описание объявления сам. 
+			// Типа: Продам то-то-то-то или Куплю то-то-то-то
+			// ----------------------------------------------------------------------------------------------------------------
+			switch(category_data) {
+				case 3: this.$root.advert_data.adv_deal = ""; break; 
+				case 4: this.$root.advert_data.adv_deal = ""; break; 
+				case 5: this.$root.advert_data.adv_deal = ""; break; 
+				case 6: this.$root.advert_data.adv_deal = ""; break; 
+				case 7: this.$root.advert_data.adv_deal = ""; break; 
+				case 8: this.$root.advert_data.adv_deal = ""; break; 
+				case 9: this.$root.advert_data.adv_deal = ""; break; 
+				case 10: this.$root.advert_data.adv_deal = ""; break; 
+				default: this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
+			}
 				
-				//this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
+			//this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
 
-				this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
-				this.$root.advert_data.adv_price  = "";
-				this.$root.advert_data.adv_phone1 = "";
+			this.$root.advert_data.adv_info   = null; // добавляю формально поле доп. информация
+			this.$root.advert_data.adv_price  = "";
+			this.$root.advert_data.adv_phone1 = "";
 
-				// сброс моделей
-				this.sdelka = 0;
-				this.price = "";
-				this.info = "";
-				this.phone1 = "";
-				this.phone2 = "";
-				this.phone3 = "";
-				this.regions_model = null;
-				this.places_model = null;
-				this.preview_images = [];
-				this.coordinates_set = false;
+			// сброс моделей
+			this.sdelka = 0;
+			this.price = "";
+			this.info = "";
+			this.phone1 = "";
+			this.phone2 = "";
+			this.phone3 = "";
+			this.regions_model = null;
+			this.places_model = null;
+			this.preview_images = [];
+			this.coordinates_set = false;
 
 			// сброс категорий
 			if (category_data!=null) {

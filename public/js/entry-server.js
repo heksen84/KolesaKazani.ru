@@ -3013,14 +3013,15 @@ function initMaps() {
 	// включаю скролл на большой карте
 	bigmap.behaviors.enable("scrollZoom");
 
+	// формирую метки
 	myPlacemark1 = new ymaps.Placemark(mapCoords);
 	myPlacemark2 = new ymaps.Placemark(mapCoords);
 
+	// добавляю метки на карты
 	bigmap.geoObjects.add(myPlacemark1);
 	smallmap.geoObjects.add(myPlacemark2);
 
 	bigmap.events.add("click", function (e) {
-
 		mapCoords = e.get("coordPosition");
 		myPlacemark1.geometry.setCoordinates(mapCoords);
 		myPlacemark2.geometry.setCoordinates(mapCoords);
@@ -3040,12 +3041,16 @@ function forEach(data, callback) {
 // Логика
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-	props: ["items", "dealtypes", "regions"],
+	props: ["items", "dealtypes", "regions"], // Входящие данные
+
+	components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default.a }, // Используемые компоненты
 
 	data: function data() {
+
 		return {
 
-			summ_str: "", // сумма прописью
+			// сумма прописью
+			summ_str: "",
 
 			// константы
 			const_phone1_max_length: 9,
@@ -3102,8 +3107,6 @@ function forEach(data, callback) {
 		this.advReset();
 	},
 
-
-	components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default.a },
 
 	computed: {
 		checkPhone1State: function checkPhone1State() {
@@ -3208,7 +3211,6 @@ function forEach(data, callback) {
 						} else root.$notify({ group: 'foo', text: "<h6>Только изображения!</h6>", type: 'error' });
 					};
 				}(image);
-
 				reader.readAsDataURL(image);
 			}
 			input_images.value = "";
@@ -3289,9 +3291,8 @@ function forEach(data, callback) {
 			console.log("--------------------");
 
 			var form = document.getElementById("advertform");
-			if (form) {
-				form.reset();
-			}
+
+			if (form) form.reset();
 
 			this.summ_str = "";
 
@@ -4263,11 +4264,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
-// ------------------------------
+// -----------------------------------------------
 // функция склонений слов
-// ------------------------------
+// -----------------------------------------------
 function num2str(n, text_forms) {
 	n = Math.abs(n) % 100;
 	var n1 = n % 10;
@@ -4329,7 +4331,7 @@ function num2str(n, text_forms) {
 	methods: {
 		update: function update() {
 			this.count = Object.keys(this.results).length;
-			this.count_string = num2str(this.count, ['объявление', 'объявления', 'объявлений']);
+			this.count_string = num2str(this.count, ["объявление", "объявления", "объявлений"]);
 		},
 
 
@@ -13411,7 +13413,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
