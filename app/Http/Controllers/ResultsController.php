@@ -27,6 +27,7 @@ class ResultsController extends Controller {
 
 		// 1. определить категорию
 		// 2. Сделать switch 
+		// использовать этот же метод в routes, но передать название подкатегории
 
 		$data = $request->all();
 		
