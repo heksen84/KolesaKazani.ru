@@ -165,6 +165,8 @@ class ResultsController extends Controller {
 	----------------------------------------*/
 	public function getResultsForSubCategory(Request $request, $category, $subcat) {
 
+		\Debugbar::info("Я тута, я здеся!");
+
         $petrovich = new Petrovich(Petrovich::GENDER_MALE);
 
         // ---------------------------------------------------------------------------

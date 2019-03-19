@@ -70,14 +70,17 @@ Route::get('details/{id}', 'AdvertController@getFullInfo');
 
 // подкатегории
 Route::get('{category}/{subcat}', 'ResultsController@getResultsForSubCategory');
+//Route::get('/getResultsForSubCategory', 'ResultsController@getResultsForSubCategory'); // для axios
+
+Route::get('/getResultsForSubCategory/{category}/{subcat}', 'ResultsController@getResultsForSubCategory');
 
 // ------------------------------------
 // базовые контроллеры
 // ------------------------------------
 Route::get('/', 				 'IndexController@init');
+Route::post('create', 			 'AdvertController@createAdvert');
 Route::get('home',	 		 	 'CabinetController@index');
 Route::get('home/{advert_id}',	 'CabinetController@index');
-Route::post('create', 			 'AdvertController@createAdvert');
 Route::get('podat-obyavlenie', 	 'AdvertController@newAdvert');
 Route::get('getRegions', 		 'IndexController@getRegions');
 Route::get('getPlaces', 		 'IndexController@getPlaces');

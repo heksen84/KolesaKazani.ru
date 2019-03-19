@@ -209,7 +209,7 @@ export default {
 			*/
 			
 
-  		get("/getResults", { "data": this.filters } ).then((res) => {
+  		get("/getResultsForSubCategory/123/123", { "data": this.filters } ).then((res) => {
 
 					console.log("------------------------");
 					console.log(res.data);

@@ -4365,7 +4365,7 @@ function num2str(n, text_forms) {
    	asc  - возрастание, desc - убывание
    */
 
-			Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])("/getResults", { "data": this.filters }).then(function (res) {
+			Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])("/getResultsForSubCategory/123/123", { "data": this.filters }).then(function (res) {
 
 				console.log("------------------------");
 				console.log(res.data);
