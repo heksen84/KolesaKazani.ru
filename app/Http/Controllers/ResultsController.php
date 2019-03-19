@@ -25,6 +25,9 @@ class ResultsController extends Controller {
     // ---------------------------------------------------
     public function getResultsByCategory(Request $request) {
 
+		// 1. определить категорию
+		// 2. Сделать switch 
+
 		$data = $request->all();
 		
 		\Debugbar::info($data);
@@ -144,14 +147,17 @@ class ResultsController extends Controller {
 				\Debugbar::info($results);
 			}
 		}
+
+	    // если указаны фильтры, то вернуть данные на морду (return results)
+        // иначе передать данные во вьюху
 		
-		 // --------------------------
-		 // передаю данные во вьюху
-		 // --------------------------
-		 return view("results")->with("title", $title)->with("items", $items)
-		 ->with("results", json_encode($results))
-		 ->with("category", $category->id)
-		 ->with("start_record", $this->start_record);
+		// --------------------------
+		// передаю данные во вьюху
+		// --------------------------
+		return view("results")->with("title", $title)->with("items", $items)
+		->with("results", json_encode($results))
+		->with("category", $category->id)
+		->with("start_record", $this->start_record);
     }
 
     // ----------------------------------------------------

@@ -436,7 +436,10 @@ class SubCatsController extends Controller
                     break;
                 }                                
             }
-        }        
+        }
+        
+        // если указаны фильтры, то вернуть данные на морду (return results)
+        // иначе передать данные во вьюху
 
      	return view("results")->with("title", $title." в Казахстане")->with("items", $items)->with("results", json_encode($results))->with("category", $categories);
     }
