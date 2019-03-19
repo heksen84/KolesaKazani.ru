@@ -69,7 +69,7 @@ Route::get('obyavlenie/{url}', 'AdvertController@getFullInfoByUrl'); // для �
 Route::get('details/{id}', 'AdvertController@getFullInfo');
 
 // подкатегории
-Route::get('{category}/{subcat}', 'SubCatsController@getResultsByCategory');
+Route::get('{category}/{subcat}', 'ResultsController@getResultsForSubCategory');
 
 // ------------------------------------
 // базовые контроллеры
