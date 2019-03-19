@@ -375,10 +375,9 @@ class AdvertController extends Controller {
 
                         $results = DB::select(
 					        "SELECT                    
-                            deal_name_2,
-					        car_mark.name as mark, 
-					        car_model.name as model,                            
-					        adv.id as advert_id, 
+                            DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at, 
+                            deal_name_2,					        
+					        adv.id as advert_id,                            
                             adv.category_id as category_id,
                             adv.deal,
 					        adv.price,
@@ -389,6 +388,8 @@ class AdvertController extends Controller {
                             adv.coord_lat,
                             adv.coord_lon,
                             adv_transport.id,
+                            car_mark.name as mark, 
+					        car_model.name as model,
 					        year,  
 					        mileage,
                             steering_position,
@@ -420,8 +421,9 @@ class AdvertController extends Controller {
                         
                         $results = DB::select(
 					        "SELECT                    
-                            deal_name_2,
-					        adv.id as advert_id, 
+                            DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
+                            deal_name_2,					        
+                            adv.id as advert_id, 
                             adv.category_id as category_id,
                             adv.deal,
 					        adv.price,
@@ -462,7 +464,8 @@ class AdvertController extends Controller {
             case 2: {
                         
                     $results = DB::select(
-                        "SELECT                    
+                        "SELECT
+                         DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                          deal_name_2,
                          adv.id as advert_id, 
                          adv.category_id,
@@ -501,7 +504,8 @@ class AdvertController extends Controller {
             case 3: {
                         
                 $results = DB::select(
-                    "SELECT                    
+                    "SELECT
+                    DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,                    
                     deal_name_2,
                     adv.id as advert_id, 
                     adv.category_id,
@@ -534,7 +538,8 @@ class AdvertController extends Controller {
             case 4: {
                         
                 $results = DB::select(
-                    "SELECT                    
+                    "SELECT
+                    DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                     deal_name_2,
                     adv.id as advert_id, 
                     adv.category_id as category_id,
@@ -574,7 +579,8 @@ class AdvertController extends Controller {
             case 5: {
                         
                 $results = DB::select(
-                    "SELECT                    
+                    "SELECT
+                    DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                     deal_name_2,
                     adv.id as advert_id, 
                     adv.category_id as category_id,
@@ -608,7 +614,8 @@ class AdvertController extends Controller {
             // велосипед
             case 6: {                        
                 $results = DB::select(
-                    "SELECT                    
+                    "SELECT
+                    DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                     deal_name_2,
                     adv.id as advert_id, 
                     adv.category_id as category_id,
@@ -641,7 +648,8 @@ class AdvertController extends Controller {
             case 7: {
                         
                 $results = DB::select(
-                    "SELECT                    
+                    "SELECT
+                    DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                     deal_name_2,
                     adv.id as advert_id, 
                     adv.category_id as category_id,
@@ -688,7 +696,8 @@ class AdvertController extends Controller {
                         
                         $results = DB::select(
                         "SELECT
-                            deal_name_2,                    
+                            DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
+                            deal_name_2,
                             adv.id as advert_id, 
                             adv.category_id,
                             adv_realestate.id,
@@ -724,7 +733,8 @@ class AdvertController extends Controller {
                         
                         $results = DB::select(
                         "SELECT
-                            deal_name_2,                    
+                            DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
+                            deal_name_2,
                             adv.id as advert_id, 
                             adv.category_id,
                             adv_realestate.id,
@@ -761,6 +771,7 @@ class AdvertController extends Controller {
                         
                         $results = DB::select(
                         "SELECT
+                            DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                             deal_name_2,                    
                             adv.id as advert_id, 
                             adv.category_id,
@@ -806,6 +817,7 @@ class AdvertController extends Controller {
                         
                         $results = DB::select(
                         "SELECT
+                            DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                             deal_name_2,                    
                             adv.id as advert_id, 
                             adv.category_id,
@@ -842,6 +854,7 @@ class AdvertController extends Controller {
                         
                         $results = DB::select(
                         "SELECT
+                            DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                             deal_name_2,                    
                             adv.id as advert_id, 
                             adv.category_id,
@@ -878,6 +891,7 @@ class AdvertController extends Controller {
                         
                         $results = DB::select(
                         "SELECT
+                            DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                             deal_name_2,                    
                             adv.id as advert_id, 
                             adv.category_id,
@@ -914,6 +928,7 @@ class AdvertController extends Controller {
                         
                         $results = DB::select(
                         "SELECT
+                            DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                             deal_name_2,                    
                             adv.id as advert_id, 
                             adv.category_id,
@@ -950,6 +965,7 @@ class AdvertController extends Controller {
                         
                         $results = DB::select(
                         "SELECT
+                            DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                             deal_name_2,                    
                             adv.id as advert_id, 
                             adv.category_id,
@@ -998,6 +1014,7 @@ class AdvertController extends Controller {
             
                 $results = DB::select(
                     "SELECT
+                    DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                     /*deal_name_2,*/
                     adv.category_id,
                     adv.id as advert_id,
@@ -1066,6 +1083,6 @@ class AdvertController extends Controller {
     Выбор моделей авто
     ----------------------------------*/
     public function getCarsModels(Request $request) {
-     	return DB::table('car_model')->where('id_car_mark', $request->mark_id )->get();
+     	return DB::table("car_model")->where("id_car_mark", $request->mark_id )->get();
     }
 }
