@@ -97,11 +97,11 @@ class ResultsController extends Controller {
 					ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit
                 );
 
-                    \Debugbar::info($results);
+                \Debugbar::info($results);
 
-					// seo title
-					$title = "Объявления о покупке, продаже, обмене или сдаче недвижимости в аренду в Казахстане";
-					break;
+				// seo title
+				$title = "Объявления о покупке, продаже, обмене или сдаче недвижимости в аренду в Казахстане";
+				break;
 			}
 			
 			// Всё остальное
@@ -592,7 +592,6 @@ class ResultsController extends Controller {
 
      	return view("results")->with("title", $title." в Казахстане")->with("items", $items)->with("results", json_encode($results))->with("category", $categories);
     }
-
 
     // ----------------------------------------------------
 	// результаты по всему региону c детальной информацией
