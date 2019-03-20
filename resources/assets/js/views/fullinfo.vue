@@ -21,20 +21,19 @@
 
 			  --------------------------------------------------------->
 			<div v-if="item[0].category_id==1">
+
+				<!-- размещение: регион / город / село -->
+				<h2>{{ item[0].region_name }} {{ item[0].city_name }}</h2>
+				<hr>
 				
 				<!-- Заголовок -->				
 				<h1 v-if="full && item[0].deal==0">Куплю {{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года</h1>
         		<h1 v-if="full && item[0].deal==1">Продам {{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года</h1>
         		<h1 v-if="full && item[0].deal==2">Обменяю {{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года</h1>
         		<h1 v-if="full && item[0].deal==3">Отдам даром {{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года</h1>
-        		<h1 v-if="full && item[0].deal==4">Сдам в аренду {{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года</h1>
+        		<h1 v-if="full && item[0].deal==4">Сдам в аренду {{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года</h1>												
 
-				<!-- размещение: регион / город / село -->
-				<h2>{{ item[0].region_name }} {{ item[0].city_name }}</h2>
-				
-				<hr v-if="full">
-
-				<h1 v-if="!full && item[0].text!='null'">{{ item[0].text }}</h1>
+				<h1 v-if="!full && item[0].text!='null'">{{ item[0].text }}</h1>				
 				
 				<h5 v-if="item[0].year!=null">Год выпуска: {{ item[0].year }} г.</h5>
 				
@@ -65,6 +64,10 @@
 			   
 			  --------------------------------------------------------->
 			<div v-if="item[0].category_id==2">
+
+				<!-- размещение: регион / город / село -->
+				<h2>{{ item[0].region_name }} {{ item[0].city_name }}</h2>
+				<hr>
 
 				<!-- Квартиры -->
 				<div v-if="item[0].property_type==0">
@@ -146,11 +149,7 @@
         			<h1 v-if="item[0].deal==2">Обменяю недвижимость за рубежом. Размер {{ item[0].area }}</h1>
         			<h1 v-if="item[0].deal==3">Отдам недвижимость за рубежом. Размер {{ item[0].area }}</h1>
         			<h1 v-if="item[0].deal==4">Сдам в аренду недвижимость за рубежом. Размер {{ item[0].area }}</h1>
-				</div>
-
-				<!-- размещение: регион / город / село -->
-				<h2>{{ item[0].region_name }} {{ item[0].city_name }}</h2>				
-				<hr>
+				</div>				
 
 				<h5 v-if="item[0].rooms">Количество комнат: {{ item[0].rooms }}</h5>
 				<h5>Этаж: {{ item[0].floor }}</h5>
@@ -165,18 +164,21 @@
 				КАТЕГОРИИ БЕЗ ХАРАКТЕРИСТИК
 			   
 			  --------------------------------------------------------->
-			<div v-if="item[0].category_id==3 || item[0].category_id==4 || item[0].category_id==5 || item[0].category_id==6 ||item[0].category_id==7 ||
+			<div v-if="
+				item[0].category_id==3 || 
+				item[0].category_id==4 || 
+				item[0].category_id==5 || 
+				item[0].category_id==6 ||
+				item[0].category_id==7 ||
 				item[0].category_id==8 ||
 				item[0].category_id==9 ||
 				item[0].category_id==10 && 
 				item[0].text!='null'">				
 
-				<h1>{{ item[0].text }}</h1>
-
 				<!-- размещение: регион / город / село -->
 				<h2>{{ item[0].region_name }} {{ item[0].city_name }}</h2>
-
-				<hr>			
+				<hr>
+				<h1>{{ item[0].text }}</h1>								
 			</div>
 
 			<!-------------------------------------------------

@@ -71,8 +71,8 @@
 
 				<!-------- КОМПОНЕНТ ITEM -------->				
 				<item v-for="(item,index) in results" 													
-					:id="item.advert_id"
 					:created_at="item.created_at"
+					:id="item.advert_id"					
 					:category_id="item.category_id"					
 					:image="item.image"
 					:title="item.title" 				
@@ -174,9 +174,13 @@ export default {
 
 	// компонент создан
 	created() {
-		//alert("запрос!")
-		this.update();
-		console.log(this.results)
+	//alert("запрос!")
+	this.update();
+	console.log("-----------------------------")
+	console.log(this.results)
+	console.log(this.category)
+	console.log(this.data)
+	console.log("-----------------------------")
 	},
 				
 	// -------------------------
@@ -210,8 +214,10 @@ export default {
 				[{"price": "asc"}, {"deal": "0"}, "urgency": "olds"]
 				asc  - возрастание, desc - убывание
 			*/
-			
 
+			// т.к. results.vue общий для всех запросов, то значит следует определить категорию/подкатегорию 
+			// к которой будет идти запрос т.е. будет 2 запроса для категорий и для подкатегорий
+			
   		get("/getResultsByCategoryForFront", { "data": this.filters } ).then((res) => {
 
 					console.log("------------------------");

@@ -3767,6 +3767,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 var mapCoords = [];
@@ -4331,7 +4333,11 @@ function num2str(n, text_forms) {
 	created: function created() {
 		//alert("запрос!")
 		this.update();
+		console.log("-----------------------------");
 		console.log(this.results);
+		console.log(this.category);
+		console.log(this.data);
+		console.log("-----------------------------");
 	},
 
 
@@ -4367,6 +4373,9 @@ function num2str(n, text_forms) {
    	[{"price": "asc"}, {"deal": "0"}, "urgency": "olds"]
    	asc  - возрастание, desc - убывание
    */
+
+			// т.к. results.vue общий для всех запросов, то значит следует определить категорию/подкатегорию 
+			// к которой будет идти запрос т.е. будет 2 запроса для категорий и для подкатегорий
 
 			Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])("/getResultsByCategoryForFront", { "data": this.filters }).then(function (res) {
 
@@ -13430,7 +13439,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -37319,6 +37328,16 @@ var render = function() {
                   _vm._v(" "),
                   _vm.item[0].category_id == 1
                     ? _c("div", [
+                        _c("h2", [
+                          _vm._v(
+                            _vm._s(_vm.item[0].region_name) +
+                              " " +
+                              _vm._s(_vm.item[0].city_name)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("hr"),
+                        _vm._v(" "),
                         _vm.full && _vm.item[0].deal == 0
                           ? _c("h1", [
                               _vm._v(
@@ -37388,16 +37407,6 @@ var render = function() {
                               )
                             ])
                           : _vm._e(),
-                        _vm._v(" "),
-                        _c("h2", [
-                          _vm._v(
-                            _vm._s(_vm.item[0].region_name) +
-                              " " +
-                              _vm._s(_vm.item[0].city_name)
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _vm.full ? _c("hr") : _vm._e(),
                         _vm._v(" "),
                         !_vm.full && _vm.item[0].text != "null"
                           ? _c("h1", [_vm._v(_vm._s(_vm.item[0].text))])
@@ -37482,6 +37491,16 @@ var render = function() {
                   _vm._v(" "),
                   _vm.item[0].category_id == 2
                     ? _c("div", [
+                        _c("h2", [
+                          _vm._v(
+                            _vm._s(_vm.item[0].region_name) +
+                              " " +
+                              _vm._s(_vm.item[0].city_name)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("hr"),
+                        _vm._v(" "),
                         _vm.item[0].property_type == 0
                           ? _c("div", [
                               _vm.item[0].deal == 0
@@ -38042,16 +38061,6 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        _c("h2", [
-                          _vm._v(
-                            _vm._s(_vm.item[0].region_name) +
-                              " " +
-                              _vm._s(_vm.item[0].city_name)
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("hr"),
-                        _vm._v(" "),
                         _vm.item[0].rooms
                           ? _c("h5", [
                               _vm._v(
@@ -38095,8 +38104,6 @@ var render = function() {
                   _vm.item[0].category_id == 9 ||
                   (_vm.item[0].category_id == 10 && _vm.item[0].text != "null")
                     ? _c("div", [
-                        _c("h1", [_vm._v(_vm._s(_vm.item[0].text))]),
-                        _vm._v(" "),
                         _c("h2", [
                           _vm._v(
                             _vm._s(_vm.item[0].region_name) +
@@ -38105,7 +38112,9 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _c("hr")
+                        _c("hr"),
+                        _vm._v(" "),
+                        _c("h1", [_vm._v(_vm._s(_vm.item[0].text))])
                       ])
                     : _vm._e(),
                   _vm._v(" "),
@@ -38513,8 +38522,8 @@ var render = function() {
                   return _c("item", {
                     key: index,
                     attrs: {
-                      id: item.advert_id,
                       created_at: item.created_at,
+                      id: item.advert_id,
                       category_id: item.category_id,
                       image: item.image,
                       title: item.title,
