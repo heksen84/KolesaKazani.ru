@@ -26,16 +26,16 @@ Route::get("getCategoryCounts", "WelcomeController@getCategoryCounts");
 // -----------------------------------------------------------------------------------------
 // Категории по всему Казахстану
 // -----------------------------------------------------------------------------------------
-Route::get('transport', 				'ResultsController@getResultsByCategoryForView');
-Route::get('nedvizhimost', 				'ResultsController@getResultsByCategoryForView');
-Route::get('elektronika', 				'ResultsController@getResultsByCategoryForView');
-Route::get('rabota-i-biznes', 			'ResultsController@getResultsByCategoryForView');
-Route::get('dlya-doma-i-dachi',			'ResultsController@getResultsByCategoryForView');
-Route::get('lichnye-veschi', 			'ResultsController@getResultsByCategoryForView');
-Route::get('zhivotnye', 				'ResultsController@getResultsByCategoryForView');
-Route::get('hobbi-i-otdyh', 			'ResultsController@getResultsByCategoryForView');
-Route::get('uslugi', 					'ResultsController@getResultsByCategoryForView');
-Route::get('drugoe', 					'ResultsController@getResultsByCategoryForView');
+Route::get('transport', 		'ResultsController@getResultsByCategoryForView');
+Route::get('nedvizhimost', 		'ResultsController@getResultsByCategoryForView');
+Route::get('elektronika', 		'ResultsController@getResultsByCategoryForView');
+Route::get('rabota-i-biznes', 	'ResultsController@getResultsByCategoryForView');
+Route::get('dlya-doma-i-dachi',	'ResultsController@getResultsByCategoryForView');
+Route::get('lichnye-veschi', 	'ResultsController@getResultsByCategoryForView');
+Route::get('zhivotnye', 		'ResultsController@getResultsByCategoryForView');
+Route::get('hobbi-i-otdyh', 	'ResultsController@getResultsByCategoryForView');
+Route::get('uslugi', 			'ResultsController@getResultsByCategoryForView');
+Route::get('drugoe', 			'ResultsController@getResultsByCategoryForView');
 
 Route::get('{region}/transport/{subcat}',	 ['uses' => 'ResultsController@getResultsByRegionWithDetailedInfo']);
 Route::get('{region}/nedvizhimost/{subcat}', ['uses' => 'ResultsController@getResultsByRegionWithDetailedInfo']);
@@ -87,16 +87,16 @@ Route::get('categories', 		'CategoriesController@index');
 
 Route::get('getSubCats',  'SubCatsController@getSubCats' );
 
-// ------------------------------------
+// ---------------------------------------------------------------
 // авто
-// ------------------------------------
+// ---------------------------------------------------------------
 Route::get('getCarsMarks', 'AdvertController@getCarsMarks' );
 Route::get('getCarsModels', 'AdvertController@getCarsModels' );
 Route::get('search',  function () { return view('search')->with("items", "123"); });
 
-// ------------------------------------
+// ----------------------------------------
 // перенести в контроллер Categories
-// ------------------------------------
+// ----------------------------------------
 Route::get("/category/{id}", function ($id) {
 
 	$categories = DB::table('categories')->where("id", $id)->get();
@@ -104,7 +104,6 @@ Route::get("/category/{id}", function ($id) {
 	return view("results")->with("items", $items )->with("category_id", $id )->with("category_name", mb_strtolower($categories[0]->name));
 
 });
-
 
 Route::get("getResults", "ResultsController@getResultsByCategory");
 Route::get("location/{country}/{region}/{place}", "AdvertController@getFullInfo");
