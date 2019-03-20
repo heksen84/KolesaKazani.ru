@@ -69,7 +69,7 @@
 			</b-col>
 			<b-col cols="12" sm="12" md="8" lg="8" xl="8">
 
-				<!-- КОМПОНЕНТ ITEM -->
+				<!-------- КОМПОНЕНТ ITEM -------->				
 				<item v-for="(item,index) in results" 													
 					:id="item.advert_id"
 					:created_at="item.created_at"
@@ -82,6 +82,7 @@
 					:vip="item.vip"
 					:key="index">
 				</item>
+				<!------------------------------->
 				
 			</b-col>
 			<!--<b-col cols="12" sm="12" md="2" lg="2" xl="2">VIP567</b-col>-->	
@@ -173,6 +174,7 @@ export default {
 
 	// компонент создан
 	created() {
+		//alert("запрос!")
 		this.update();
 		console.log(this.results)
 	},

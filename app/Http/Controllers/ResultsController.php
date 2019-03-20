@@ -20,18 +20,12 @@ class ResultsController extends Controller {
 	
 	// частные переменные
 	private $start_record  = 0;
-	private $records_limit = 1000; // максимальное число записей при выборке
+    private $records_limit = 1000; // максимальное число записей при выборке
+    
+    // test method
+    public function getResults(Request $request) {
 
-	// ---------------------------------------------------
-    // результаты по всей стране
-    // ---------------------------------------------------
-    public function getResultsByCategory(Request $request) {
-
-		// для фильтра
-		$data = $request->all();		
-		\Debugbar::info($data);
-
-    	// получаю имя на русском
+        // получаю имя на русском
 		$category = Categories::select("id", "name")->where("url",  $request->path() )->first();
 		$items = Adverts::where("category_id",  $category->id )->get();
 		$results = [];
@@ -145,24 +139,44 @@ class ResultsController extends Controller {
 
 				\Debugbar::info($results);
 			}
-		}
+        }
+        
+        return array("title"=>$title, "items"=>$items, "results"=>json_encode($results), "category"=>$category->id, "start_record"=>$this->start_record);
+    }
 
-	    // если указаны фильтры, то вернуть данные на морду (return results)
-        // иначе передать данные во вьюху
-		
-		// --------------------------
-		// передаю данные во вьюху
-		// --------------------------
-		return view("results")->with("title", $title)->with("items", $items)
-		->with("results", json_encode($results))
-		->with("category", $category->id)
-		->with("start_record", $this->start_record);
+    // ---------------------------------------------------
+    // результаты по всей стране для вьюхи
+    // ---------------------------------------------------
+    public function getResultsByCategory(Request $request) {
+
+		// для фильтра
+		//$data = $request->all();
+        //\Debugbar::info($data);                
+
+        $result = $this->getResults($request);
+    
+        return view("results")
+        ->with("title", $result["title"])
+        ->with("items", $result["items"])
+		->with("results", $result["results"])
+		->with("category", $result["category"])
+		->with("start_record", $result["start_record"]);
+    }
+    
+    // ---------------------------------------------------
+    // результаты по всей стране для морды
+    // ---------------------------------------------------
+    public function getResultsByCategoryForFront(Request $request) {
+        $result = $this->getResults($request);    
+        return $result;
 	}
 
 	/*
-	----------------------------------------
-	Получить результаты для подкатегории
-	----------------------------------------*/
+    --------------------------------------------------------------------------------
+    
+    Получить результаты для подкатегории
+    
+	--------------------------------------------------------------------------------*/
 	public function getResultsForSubCategory(Request $request, $category, $subcat) {
 
 		\Debugbar::info("Я тута, я здеся!");
@@ -593,12 +607,10 @@ class ResultsController extends Controller {
      	return view("results")->with("title", $title." в Казахстане")->with("items", $items)->with("results", json_encode($results))->with("category", $categories);
     }
 
-    // ----------------------------------------------------
+    // -------------------------------------------------------------------
 	// результаты по всему региону c детальной информацией
-	// ----------------------------------------------------
-    public function getResultsByRegionWithDetailedInfo(Request $request) {
-
-    
+	// -------------------------------------------------------------------
+    public function getResultsByRegionWithDetailedInfo(Request $request) {    
 		return view("results")->with("title", "123123")
 		->with("results", "123")
 		->with("category", "123")
