@@ -22,14 +22,19 @@ class ResultsController extends Controller {
 	private $start_record  = 0;
     private $records_limit = 1000; // максимальное число записей при выборке
     
-    // test method
-    public function getResults(Request $request) {
+    // Получить данные по категории
+    public function getResultsByCategory(Request $request) {
+
+		$results = [];
+        $title = "";
 
         // получаю имя на русском
 		$category = Categories::select("id", "name")->where("url",  $request->path() )->first();
 		$items = Adverts::where("category_id",  $category->id )->get();
-		$results = [];
-		$title = "";
+        
+        // для фильтра
+		//$data = $request->all();
+        //\Debugbar::info($data);                
 
 		// --------------------------------------------------------
 		// Беру данные по конкретной категории
@@ -144,16 +149,12 @@ class ResultsController extends Controller {
         return array("title"=>$title, "items"=>$items, "results"=>json_encode($results), "category"=>$category->id, "start_record"=>$this->start_record);
     }
 
-    // ---------------------------------------------------
+    // -------------------------------------------------------------
     // результаты по всей стране для вьюхи
-    // ---------------------------------------------------
-    public function getResultsByCategory(Request $request) {
-
-		// для фильтра
-		//$data = $request->all();
-        //\Debugbar::info($data);                
-
-        $result = $this->getResults($request);
+    // -------------------------------------------------------------
+    public function getResultsByCategoryForView(Request $request) {
+		
+        $result = $this->getResultsByCategory($request);
     
         return view("results")
         ->with("title", $result["title"])
@@ -163,11 +164,11 @@ class ResultsController extends Controller {
 		->with("start_record", $result["start_record"]);
     }
     
-    // ---------------------------------------------------
+    // ---------------------------------------------------------------
     // результаты по всей стране для морды
-    // ---------------------------------------------------
+    // ---------------------------------------------------------------
     public function getResultsByCategoryForFront(Request $request) {
-        $result = $this->getResults($request);    
+        $result = $this->getResultsByCategory($request);    
         return $result;
 	}
 

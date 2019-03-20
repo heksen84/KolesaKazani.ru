@@ -27,16 +27,16 @@ Route::get("getCategoryCounts", 	"WelcomeController@getCategoryCounts");
 // ------------------------------------------------------------------------------------------------------------
 // Категории по всему Казахстану
 // ------------------------------------------------------------------------------------------------------------
-Route::get('transport', 				'ResultsController@getResultsByCategory');
-Route::get('nedvizhimost', 				'ResultsController@getResultsByCategory');
-Route::get('elektronika', 				'ResultsController@getResultsByCategory');
-Route::get('rabota-i-biznes', 			'ResultsController@getResultsByCategory');
-Route::get('dlya-doma-i-dachi',			'ResultsController@getResultsByCategory');
-Route::get('lichnye-veschi', 			'ResultsController@getResultsByCategory');
-Route::get('zhivotnye', 				'ResultsController@getResultsByCategory');
-Route::get('hobbi-i-otdyh', 			'ResultsController@getResultsByCategory');
-Route::get('uslugi', 					'ResultsController@getResultsByCategory');
-Route::get('drugoe', 					'ResultsController@getResultsByCategory');
+Route::get('transport', 				'ResultsController@getResultsByCategoryForView');
+Route::get('nedvizhimost', 				'ResultsController@getResultsByCategoryForView');
+Route::get('elektronika', 				'ResultsController@getResultsByCategoryForView');
+Route::get('rabota-i-biznes', 			'ResultsController@getResultsByCategoryForView');
+Route::get('dlya-doma-i-dachi',			'ResultsController@getResultsByCategoryForView');
+Route::get('lichnye-veschi', 			'ResultsController@getResultsByCategoryForView');
+Route::get('zhivotnye', 				'ResultsController@getResultsByCategoryForView');
+Route::get('hobbi-i-otdyh', 			'ResultsController@getResultsByCategoryForView');
+Route::get('uslugi', 					'ResultsController@getResultsByCategoryForView');
+Route::get('drugoe', 					'ResultsController@getResultsByCategoryForView');
 
 
 Route::get('{region}/transport/{subcat}',	 ['uses' => 'ResultsController@getResultsByRegionWithDetailedInfo']);
