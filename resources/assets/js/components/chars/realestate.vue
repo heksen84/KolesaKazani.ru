@@ -1,5 +1,5 @@
 <template>
-  <div class="form-inline">
+  <div class="form-inline" v-if="$store.state.deal_selected">
 	<b-form-group label="Вид недвижимости:">
         <b-form-select v-model="selected_type" class="mb-2 mr-sm-2 mb-sm-2" @change="changeProperyType">
           <option v-for="item in type" :value="item.value" :key="item.value">{{item.text}}</option>

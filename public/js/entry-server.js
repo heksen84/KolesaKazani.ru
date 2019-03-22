@@ -3065,7 +3065,7 @@ function forEach(data, callback) {
    базовые поля объявления
    -----------------------------*/
 			category: null,
-			sdelka: 0,
+			sdelka: null,
 			deal_id: null,
 			info: "",
 			price: "",
@@ -3280,6 +3280,7 @@ function forEach(data, callback) {
 		setDeal: function setDeal(deal_id) {
 			this.$root.advert_data.adv_deal = deal_id;
 			this.deal_id = deal_id;
+			this.$store.commit("SetDealSelected", true);
 		},
 
 
@@ -3298,6 +3299,7 @@ function forEach(data, callback) {
 
 			this.$store.commit("SetRequiredInfo", false);
 			this.$store.commit("SetPlaceholderInfoText", "default");
+			this.$store.commit("SetDealSelected", false);
 
 			// сброс массива объявления и переинициализация его
 			this.$root.advert_data = [];
@@ -3334,7 +3336,7 @@ function forEach(data, callback) {
 			this.$root.advert_data.adv_phone1 = "";
 
 			// сброс моделей
-			this.sdelka = 0;
+			this.sdelka = null;
 			this.price = "";
 			this.info = "";
 			this.phone1 = "";
@@ -36816,251 +36818,47 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "form-inline" },
-    [
-      [0, 1, 2, 4].indexOf(this.selected.type_transport) != -1 &&
-      this.selected.type_transport != null
-        ? _c(
-            "div",
-            {
-              staticStyle: {
-                width: "100%",
-                "margin-bottom": "10px",
-                "text-decoration": "underline"
-              }
-            },
-            [_vm._v("Характеристики:")]
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _c(
-        "b-form-group",
-        { attrs: { label: "Вид транспорта:" } },
+  return _vm.$store.state.deal_selected
+    ? _c(
+        "div",
+        { staticClass: "form-inline" },
         [
+          [0, 1, 2, 4].indexOf(this.selected.type_transport) != -1 &&
+          this.selected.type_transport != null
+            ? _c(
+                "div",
+                {
+                  staticStyle: {
+                    width: "100%",
+                    "margin-bottom": "10px",
+                    "text-decoration": "underline"
+                  }
+                },
+                [_vm._v("Характеристики:")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
           _c(
-            "b-form-select",
-            {
-              staticClass: "mb-2 mr-sm-2 mb-sm-2",
-              on: { change: _vm.selectTransportType },
-              model: {
-                value: _vm.selected.type_transport,
-                callback: function($$v) {
-                  _vm.$set(_vm.selected, "type_transport", $$v)
-                },
-                expression: "selected.type_transport"
-              }
-            },
-            _vm._l(_vm.type_transport, function(item) {
-              return _c(
-                "option",
-                { key: item.value, domProps: { value: item.value } },
-                [_vm._v(_vm._s(item.text))]
-              )
-            }),
-            0
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _vm.carmark && _vm.selected.type_transport == 0
-        ? _c(
             "b-form-group",
-            { attrs: { label: "Марка автомобиля:" } },
+            { attrs: { label: "Вид транспорта:" } },
             [
               _c(
                 "b-form-select",
                 {
                   staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                  on: { change: _vm.selectMark },
+                  on: { change: _vm.selectTransportType },
                   model: {
-                    value: _vm.selected.carmark,
+                    value: _vm.selected.type_transport,
                     callback: function($$v) {
-                      _vm.$set(_vm.selected, "carmark", $$v)
+                      _vm.$set(_vm.selected, "type_transport", $$v)
                     },
-                    expression: "selected.carmark"
+                    expression: "selected.type_transport"
                   }
                 },
-                [
-                  _c("option", { domProps: { value: null } }, [
-                    _vm._v("-- Выберите марку автомобиля --")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.carmark, function(item) {
-                    return _c(
-                      "option",
-                      {
-                        key: item.id_car_mark,
-                        domProps: { value: item.id_car_mark }
-                      },
-                      [_vm._v(_vm._s(item.name))]
-                    )
-                  })
-                ],
-                2
-              )
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.selected.carmark != null && _vm.selected.type_transport == 0
-        ? _c(
-            "b-form-group",
-            { attrs: { label: "Модель:" } },
-            [
-              _c(
-                "b-form-select",
-                {
-                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                  on: { change: _vm.selectModel },
-                  model: {
-                    value: _vm.selected.model,
-                    callback: function($$v) {
-                      _vm.$set(_vm.selected, "model", $$v)
-                    },
-                    expression: "selected.model"
-                  }
-                },
-                [
-                  _c("option", { domProps: { value: null } }, [
-                    _vm._v("-- Выберите модель --")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.models, function(item) {
-                    return _c(
-                      "option",
-                      {
-                        key: item.id_car_model,
-                        domProps: { value: item.id_car_model }
-                      },
-                      [_vm._v(_vm._s(item.name))]
-                    )
-                  })
-                ],
-                2
-              )
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.getComTransport
-        ? _c(
-            "b-form-group",
-            { attrs: { label: "Год выпуска:" } },
-            [
-              _c("b-form-input", {
-                staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                staticStyle: { width: "130px" },
-                attrs: {
-                  placeholder: "Введите год",
-                  type: "number",
-                  formatter: _vm.SetReleaseDate,
-                  required: ""
-                },
-                model: {
-                  value: _vm.release_date,
-                  callback: function($$v) {
-                    _vm.release_date = $$v
-                  },
-                  expression: "release_date"
-                }
-              })
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.getComTransport && _vm.selected.type_transport != 2
-        ? _c(
-            "b-form-group",
-            { attrs: { label: "Положение руля:" } },
-            [
-              _c(
-                "b-form-select",
-                {
-                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                  on: { change: _vm.SetHelmPosition },
-                  model: {
-                    value: _vm.selected.helm_position,
-                    callback: function($$v) {
-                      _vm.$set(_vm.selected, "helm_position", $$v)
-                    },
-                    expression: "selected.helm_position"
-                  }
-                },
-                [
-                  _c("option", { domProps: { value: null } }, [
-                    _vm._v("-- Выберите положение руля --")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.helm_position, function(item, index) {
-                    return _c(
-                      "option",
-                      { key: index, domProps: { value: item.value } },
-                      [_vm._v(_vm._s(item.text))]
-                    )
-                  })
-                ],
-                2
-              )
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.getComTransport
-        ? _c(
-            "b-form-group",
-            { attrs: { label: "Пробег(км):" } },
-            [
-              _c("b-form-input", {
-                staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                staticStyle: { width: "145px" },
-                attrs: {
-                  type: "number",
-                  placeholder: "Введите пробег",
-                  formatter: _vm.SetMileage,
-                  required: ""
-                },
-                model: {
-                  value: _vm.mileage,
-                  callback: function($$v) {
-                    _vm.mileage = $$v
-                  },
-                  expression: "mileage"
-                }
-              })
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.getComTransport
-        ? _c(
-            "b-form-group",
-            { attrs: { label: "Вид топлива:" } },
-            [
-              _c(
-                "b-form-select",
-                {
-                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                  on: { change: _vm.SetFuelType },
-                  model: {
-                    value: _vm.selected.fuel_type,
-                    callback: function($$v) {
-                      _vm.$set(_vm.selected, "fuel_type", $$v)
-                    },
-                    expression: "selected.fuel_type"
-                  }
-                },
-                _vm._l(_vm.fuel_type, function(item, index) {
+                _vm._l(_vm.type_transport, function(item) {
                   return _c(
                     "option",
-                    { key: index, domProps: { value: item.value } },
+                    { key: item.value, domProps: { value: item.value } },
                     [_vm._v(_vm._s(item.text))]
                   )
                 }),
@@ -37068,41 +36866,247 @@ var render = function() {
               )
             ],
             1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.getComTransport
-        ? _c(
-            "b-form-group",
-            { attrs: { label: "Растаможен:" } },
-            [
-              _c(
-                "b-form-select",
-                {
-                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                  staticStyle: { width: "100px" },
-                  on: { change: _vm.SetTransportCustoms },
-                  model: {
-                    value: _vm.selected.car_customs,
-                    callback: function($$v) {
-                      _vm.$set(_vm.selected, "car_customs", $$v)
-                    },
-                    expression: "selected.car_customs"
-                  }
-                },
+          ),
+          _vm._v(" "),
+          _vm.carmark && _vm.selected.type_transport == 0
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Марка автомобиля:" } },
                 [
-                  _c("option", { domProps: { value: 1 } }, [_vm._v("Да")]),
-                  _vm._v(" "),
-                  _c("option", { domProps: { value: 0 } }, [_vm._v("Нет")])
-                ]
+                  _c(
+                    "b-form-select",
+                    {
+                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                      on: { change: _vm.selectMark },
+                      model: {
+                        value: _vm.selected.carmark,
+                        callback: function($$v) {
+                          _vm.$set(_vm.selected, "carmark", $$v)
+                        },
+                        expression: "selected.carmark"
+                      }
+                    },
+                    [
+                      _c("option", { domProps: { value: null } }, [
+                        _vm._v("-- Выберите марку автомобиля --")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.carmark, function(item) {
+                        return _c(
+                          "option",
+                          {
+                            key: item.id_car_mark,
+                            domProps: { value: item.id_car_mark }
+                          },
+                          [_vm._v(_vm._s(item.name))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ],
+                1
               )
-            ],
-            1
-          )
-        : _vm._e()
-    ],
-    1
-  )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.selected.carmark != null && _vm.selected.type_transport == 0
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Модель:" } },
+                [
+                  _c(
+                    "b-form-select",
+                    {
+                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                      on: { change: _vm.selectModel },
+                      model: {
+                        value: _vm.selected.model,
+                        callback: function($$v) {
+                          _vm.$set(_vm.selected, "model", $$v)
+                        },
+                        expression: "selected.model"
+                      }
+                    },
+                    [
+                      _c("option", { domProps: { value: null } }, [
+                        _vm._v("-- Выберите модель --")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.models, function(item) {
+                        return _c(
+                          "option",
+                          {
+                            key: item.id_car_model,
+                            domProps: { value: item.id_car_model }
+                          },
+                          [_vm._v(_vm._s(item.name))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.getComTransport
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Год выпуска:" } },
+                [
+                  _c("b-form-input", {
+                    staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                    staticStyle: { width: "130px" },
+                    attrs: {
+                      placeholder: "Введите год",
+                      type: "number",
+                      formatter: _vm.SetReleaseDate,
+                      required: ""
+                    },
+                    model: {
+                      value: _vm.release_date,
+                      callback: function($$v) {
+                        _vm.release_date = $$v
+                      },
+                      expression: "release_date"
+                    }
+                  })
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.getComTransport && _vm.selected.type_transport != 2
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Положение руля:" } },
+                [
+                  _c(
+                    "b-form-select",
+                    {
+                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                      on: { change: _vm.SetHelmPosition },
+                      model: {
+                        value: _vm.selected.helm_position,
+                        callback: function($$v) {
+                          _vm.$set(_vm.selected, "helm_position", $$v)
+                        },
+                        expression: "selected.helm_position"
+                      }
+                    },
+                    [
+                      _c("option", { domProps: { value: null } }, [
+                        _vm._v("-- Выберите положение руля --")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.helm_position, function(item, index) {
+                        return _c(
+                          "option",
+                          { key: index, domProps: { value: item.value } },
+                          [_vm._v(_vm._s(item.text))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.getComTransport
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Пробег(км):" } },
+                [
+                  _c("b-form-input", {
+                    staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                    staticStyle: { width: "145px" },
+                    attrs: {
+                      type: "number",
+                      placeholder: "Введите пробег",
+                      formatter: _vm.SetMileage,
+                      required: ""
+                    },
+                    model: {
+                      value: _vm.mileage,
+                      callback: function($$v) {
+                        _vm.mileage = $$v
+                      },
+                      expression: "mileage"
+                    }
+                  })
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.getComTransport
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Вид топлива:" } },
+                [
+                  _c(
+                    "b-form-select",
+                    {
+                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                      on: { change: _vm.SetFuelType },
+                      model: {
+                        value: _vm.selected.fuel_type,
+                        callback: function($$v) {
+                          _vm.$set(_vm.selected, "fuel_type", $$v)
+                        },
+                        expression: "selected.fuel_type"
+                      }
+                    },
+                    _vm._l(_vm.fuel_type, function(item, index) {
+                      return _c(
+                        "option",
+                        { key: index, domProps: { value: item.value } },
+                        [_vm._v(_vm._s(item.text))]
+                      )
+                    }),
+                    0
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.getComTransport
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Растаможен:" } },
+                [
+                  _c(
+                    "b-form-select",
+                    {
+                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                      staticStyle: { width: "100px" },
+                      on: { change: _vm.SetTransportCustoms },
+                      model: {
+                        value: _vm.selected.car_customs,
+                        callback: function($$v) {
+                          _vm.$set(_vm.selected, "car_customs", $$v)
+                        },
+                        expression: "selected.car_customs"
+                      }
+                    },
+                    [
+                      _c("option", { domProps: { value: 1 } }, [_vm._v("Да")]),
+                      _vm._v(" "),
+                      _c("option", { domProps: { value: 0 } }, [_vm._v("Нет")])
+                    ]
+                  )
+                ],
+                1
+              )
+            : _vm._e()
+        ],
+        1
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -39052,274 +39056,278 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "form-inline" },
-    [
-      _c(
-        "b-form-group",
-        { attrs: { label: "Вид недвижимости:" } },
+  return _vm.$store.state.deal_selected
+    ? _c(
+        "div",
+        { staticClass: "form-inline" },
         [
           _c(
-            "b-form-select",
-            {
-              staticClass: "mb-2 mr-sm-2 mb-sm-2",
-              on: { change: _vm.changeProperyType },
-              model: {
-                value: _vm.selected_type,
-                callback: function($$v) {
-                  _vm.selected_type = $$v
+            "b-form-group",
+            { attrs: { label: "Вид недвижимости:" } },
+            [
+              _c(
+                "b-form-select",
+                {
+                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                  on: { change: _vm.changeProperyType },
+                  model: {
+                    value: _vm.selected_type,
+                    callback: function($$v) {
+                      _vm.selected_type = $$v
+                    },
+                    expression: "selected_type"
+                  }
                 },
-                expression: "selected_type"
-              }
-            },
-            _vm._l(_vm.type, function(item) {
-              return _c(
-                "option",
-                { key: item.value, domProps: { value: item.value } },
-                [_vm._v(_vm._s(item.text))]
+                _vm._l(_vm.type, function(item) {
+                  return _c(
+                    "option",
+                    { key: item.value, domProps: { value: item.value } },
+                    [_vm._v(_vm._s(item.text))]
+                  )
+                }),
+                0
               )
-            }),
-            0
-          )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _vm.selected_type == 2
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Вид строения:" } },
+                [
+                  _c(
+                    "b-form-select",
+                    {
+                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                      on: { change: _vm.changeTypeOfBuilding },
+                      model: {
+                        value: _vm.selected_type_of_building,
+                        callback: function($$v) {
+                          _vm.selected_type_of_building = $$v
+                        },
+                        expression: "selected_type_of_building"
+                      }
+                    },
+                    _vm._l(_vm.type_of_building, function(item) {
+                      return _c(
+                        "option",
+                        { key: item.value, domProps: { value: item.value } },
+                        [_vm._v(_vm._s(item.text))]
+                      )
+                    }),
+                    0
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          (_vm.selected.apartment && _vm.selected_type == 0) ||
+          _vm.selected_type == 1
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Этаж:" } },
+                [
+                  _c(
+                    "b-form-select",
+                    {
+                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                      on: { change: _vm.changeFloor },
+                      model: {
+                        value: _vm.selected_floor,
+                        callback: function($$v) {
+                          _vm.selected_floor = $$v
+                        },
+                        expression: "selected_floor"
+                      }
+                    },
+                    _vm._l(60, function(i) {
+                      return _c("option", { key: i, domProps: { value: i } }, [
+                        _vm._v(_vm._s(i))
+                      ])
+                    }),
+                    0
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          (_vm.selected.apartment && _vm.selected_type == 0) ||
+          _vm.selected_type == 1 ||
+          _vm.selected_type == 2
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Всего этажей:" } },
+                [
+                  _c(
+                    "b-form-select",
+                    {
+                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                      staticStyle: { width: "120px" },
+                      on: { change: _vm.changeNumberOfFloors },
+                      model: {
+                        value: _vm.selected_number_of_floors,
+                        callback: function($$v) {
+                          _vm.selected_number_of_floors = $$v
+                        },
+                        expression: "selected_number_of_floors"
+                      }
+                    },
+                    _vm._l(100, function(i) {
+                      return _c("option", { key: i, domProps: { value: i } }, [
+                        _vm._v(_vm._s(i))
+                      ])
+                    }),
+                    0
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          (_vm.selected.apartment &&
+            _vm.selected_type == 0 &&
+            _vm.selected_type != 1) ||
+          _vm.selected_type == 2
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Количество комнат:" } },
+                [
+                  _c(
+                    "b-form-select",
+                    {
+                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                      staticStyle: { width: "152px" },
+                      on: { change: _vm.changeNumberOfRooms },
+                      model: {
+                        value: _vm.selected_number_of_rooms,
+                        callback: function($$v) {
+                          _vm.selected_number_of_rooms = $$v
+                        },
+                        expression: "selected_number_of_rooms"
+                      }
+                    },
+                    _vm._l(10, function(i) {
+                      return _c("option", { key: i, domProps: { value: i } }, [
+                        _vm._v(_vm._s(i))
+                      ])
+                    }),
+                    0
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          (_vm.selected.apartment && _vm.selected_type == 0) ||
+          _vm.selected_type == 1 ||
+          _vm.selected_type == 2 ||
+          _vm.selected_type == 3 ||
+          _vm.selected_type == 6 ||
+          _vm.selected_type == 7
+            ? _c(
+                "b-form-group",
+                {
+                  attrs: {
+                    label: _vm.$store.state.str_realestate_area_label_text
+                  }
+                },
+                [
+                  _c("b-form-input", {
+                    staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                    staticStyle: { width: "160px" },
+                    attrs: {
+                      type: "number",
+                      formatter: _vm.changeTotalArea,
+                      placeholder: "Введите площадь",
+                      required: ""
+                    },
+                    model: {
+                      value: _vm.input_area,
+                      callback: function($$v) {
+                        _vm.input_area = $$v
+                      },
+                      expression: "input_area"
+                    }
+                  })
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.selected_type != null
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Право собственности:" } },
+                [
+                  _c(
+                    "b-form-select",
+                    {
+                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                      staticStyle: { width: "175px" },
+                      on: { change: _vm.changePropertyRights },
+                      model: {
+                        value: _vm.selected_property_rights,
+                        callback: function($$v) {
+                          _vm.selected_property_rights = $$v
+                        },
+                        expression: "selected_property_rights"
+                      }
+                    },
+                    _vm._l(_vm.property_rights, function(item) {
+                      return _c(
+                        "option",
+                        { key: item.value, domProps: { value: item.value } },
+                        [_vm._v(_vm._s(item.text))]
+                      )
+                    }),
+                    0
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.selected_type != null &&
+          _vm.selected_type != 3 &&
+          _vm.selected_type != 5
+            ? _c(
+                "b-form-group",
+                { attrs: { label: "Вид объекта:" } },
+                [
+                  _c(
+                    "b-form-select",
+                    {
+                      staticClass: "mb-2 mr-sm-2 mb-sm-2",
+                      staticStyle: { width: "175px" },
+                      on: { change: _vm.changeObjectType },
+                      model: {
+                        value: _vm.selected_object_type,
+                        callback: function($$v) {
+                          _vm.selected_object_type = $$v
+                        },
+                        expression: "selected_object_type"
+                      }
+                    },
+                    _vm._l(_vm.object_type, function(item) {
+                      return _c(
+                        "option",
+                        { key: item.value, domProps: { value: item.value } },
+                        [_vm._v(_vm._s(item.text))]
+                      )
+                    }),
+                    0
+                  )
+                ],
+                1
+              )
+            : _vm._e()
         ],
         1
-      ),
-      _vm._v(" "),
-      _vm.selected_type == 2
-        ? _c(
-            "b-form-group",
-            { attrs: { label: "Вид строения:" } },
-            [
-              _c(
-                "b-form-select",
-                {
-                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                  on: { change: _vm.changeTypeOfBuilding },
-                  model: {
-                    value: _vm.selected_type_of_building,
-                    callback: function($$v) {
-                      _vm.selected_type_of_building = $$v
-                    },
-                    expression: "selected_type_of_building"
-                  }
-                },
-                _vm._l(_vm.type_of_building, function(item) {
-                  return _c(
-                    "option",
-                    { key: item.value, domProps: { value: item.value } },
-                    [_vm._v(_vm._s(item.text))]
-                  )
-                }),
-                0
-              )
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      (_vm.selected.apartment && _vm.selected_type == 0) ||
-      _vm.selected_type == 1
-        ? _c(
-            "b-form-group",
-            { attrs: { label: "Этаж:" } },
-            [
-              _c(
-                "b-form-select",
-                {
-                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                  on: { change: _vm.changeFloor },
-                  model: {
-                    value: _vm.selected_floor,
-                    callback: function($$v) {
-                      _vm.selected_floor = $$v
-                    },
-                    expression: "selected_floor"
-                  }
-                },
-                _vm._l(60, function(i) {
-                  return _c("option", { key: i, domProps: { value: i } }, [
-                    _vm._v(_vm._s(i))
-                  ])
-                }),
-                0
-              )
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      (_vm.selected.apartment && _vm.selected_type == 0) ||
-      _vm.selected_type == 1 ||
-      _vm.selected_type == 2
-        ? _c(
-            "b-form-group",
-            { attrs: { label: "Всего этажей:" } },
-            [
-              _c(
-                "b-form-select",
-                {
-                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                  staticStyle: { width: "120px" },
-                  on: { change: _vm.changeNumberOfFloors },
-                  model: {
-                    value: _vm.selected_number_of_floors,
-                    callback: function($$v) {
-                      _vm.selected_number_of_floors = $$v
-                    },
-                    expression: "selected_number_of_floors"
-                  }
-                },
-                _vm._l(100, function(i) {
-                  return _c("option", { key: i, domProps: { value: i } }, [
-                    _vm._v(_vm._s(i))
-                  ])
-                }),
-                0
-              )
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      (_vm.selected.apartment &&
-        _vm.selected_type == 0 &&
-        _vm.selected_type != 1) ||
-      _vm.selected_type == 2
-        ? _c(
-            "b-form-group",
-            { attrs: { label: "Количество комнат:" } },
-            [
-              _c(
-                "b-form-select",
-                {
-                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                  staticStyle: { width: "152px" },
-                  on: { change: _vm.changeNumberOfRooms },
-                  model: {
-                    value: _vm.selected_number_of_rooms,
-                    callback: function($$v) {
-                      _vm.selected_number_of_rooms = $$v
-                    },
-                    expression: "selected_number_of_rooms"
-                  }
-                },
-                _vm._l(10, function(i) {
-                  return _c("option", { key: i, domProps: { value: i } }, [
-                    _vm._v(_vm._s(i))
-                  ])
-                }),
-                0
-              )
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      (_vm.selected.apartment && _vm.selected_type == 0) ||
-      _vm.selected_type == 1 ||
-      _vm.selected_type == 2 ||
-      _vm.selected_type == 3 ||
-      _vm.selected_type == 6 ||
-      _vm.selected_type == 7
-        ? _c(
-            "b-form-group",
-            {
-              attrs: { label: _vm.$store.state.str_realestate_area_label_text }
-            },
-            [
-              _c("b-form-input", {
-                staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                staticStyle: { width: "160px" },
-                attrs: {
-                  type: "number",
-                  formatter: _vm.changeTotalArea,
-                  placeholder: "Введите площадь",
-                  required: ""
-                },
-                model: {
-                  value: _vm.input_area,
-                  callback: function($$v) {
-                    _vm.input_area = $$v
-                  },
-                  expression: "input_area"
-                }
-              })
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.selected_type != null
-        ? _c(
-            "b-form-group",
-            { attrs: { label: "Право собственности:" } },
-            [
-              _c(
-                "b-form-select",
-                {
-                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                  staticStyle: { width: "175px" },
-                  on: { change: _vm.changePropertyRights },
-                  model: {
-                    value: _vm.selected_property_rights,
-                    callback: function($$v) {
-                      _vm.selected_property_rights = $$v
-                    },
-                    expression: "selected_property_rights"
-                  }
-                },
-                _vm._l(_vm.property_rights, function(item) {
-                  return _c(
-                    "option",
-                    { key: item.value, domProps: { value: item.value } },
-                    [_vm._v(_vm._s(item.text))]
-                  )
-                }),
-                0
-              )
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.selected_type != null &&
-      _vm.selected_type != 3 &&
-      _vm.selected_type != 5
-        ? _c(
-            "b-form-group",
-            { attrs: { label: "Вид объекта:" } },
-            [
-              _c(
-                "b-form-select",
-                {
-                  staticClass: "mb-2 mr-sm-2 mb-sm-2",
-                  staticStyle: { width: "175px" },
-                  on: { change: _vm.changeObjectType },
-                  model: {
-                    value: _vm.selected_object_type,
-                    callback: function($$v) {
-                      _vm.selected_object_type = $$v
-                    },
-                    expression: "selected_object_type"
-                  }
-                },
-                _vm._l(_vm.object_type, function(item) {
-                  return _c(
-                    "option",
-                    { key: item.value, domProps: { value: item.value } },
-                    [_vm._v(_vm._s(item.text))]
-                  )
-                }),
-                0
-              )
-            ],
-            1
-          )
-        : _vm._e()
-    ],
-    1
-  )
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -54478,6 +54486,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
     placeholder_info_text: "",
     show_final_fields: false,
     show_common_transport: false,
+    deal_selected: false,
     // -------------------------------------
     str_login: "",
     str_register: "",
@@ -54490,6 +54499,12 @@ var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
   }, _defineProperty(_state, 'str_my_adverts', ""), _defineProperty(_state, 'str_location', ""), _defineProperty(_state, 'str_realestate_area_label_text', ""), _state),
 
   mutations: {
+
+    // ---
+    SetDealSelected: function SetDealSelected(state, value) {
+      state.deal_selected = value;
+    },
+
 
     // установить заголовок для площади в недвижимости
     SetRealEstateAreaLabelText: function SetRealEstateAreaLabelText(state, text) {

@@ -328,7 +328,7 @@ export default {
 			базовые поля объявления
 			-----------------------------*/			
 			category: null,
-			sdelka: 0,
+			sdelka: null,
 			deal_id: null,
 			info: "",
 			price: "",
@@ -537,6 +537,7 @@ export default {
   		setDeal(deal_id) {
   			this.$root.advert_data.adv_deal=deal_id;
 			this.deal_id=deal_id;
+			this.$store.commit("SetDealSelected", true);
 		},
 
 		// сброс данных объявления
@@ -554,6 +555,7 @@ export default {
 
 			this.$store.commit("SetRequiredInfo", false);
 			this.$store.commit("SetPlaceholderInfoText", "default");
+			this.$store.commit("SetDealSelected", false);
 
 			// сброс массива объявления и переинициализация его
 			this.$root.advert_data = [];
@@ -581,7 +583,7 @@ export default {
 			this.$root.advert_data.adv_phone1 = "";
 
 			// сброс моделей
-			this.sdelka = 0;
+			this.sdelka = null;
 			this.price = "";
 			this.info = "";
 			this.phone1 = "";

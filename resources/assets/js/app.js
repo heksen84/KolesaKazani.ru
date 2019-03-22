@@ -73,6 +73,7 @@ const store = new Vuex.Store({
       placeholder_info_text:  "",      
       show_final_fields: false,
       show_common_transport: false,
+      deal_selected: false,
       // -------------------------------------
       str_login: "",
       str_register: "",
@@ -88,6 +89,11 @@ const store = new Vuex.Store({
     },
 
     mutations: {
+
+       // ---
+       SetDealSelected( state, value ) {
+        state.deal_selected=value;
+      },
 
       // установить заголовок для площади в недвижимости
       SetRealEstateAreaLabelText( state, text ) {

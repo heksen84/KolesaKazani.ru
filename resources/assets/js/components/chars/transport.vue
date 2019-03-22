@@ -1,5 +1,5 @@
 <template>
-  <div class="form-inline">
+  <div class="form-inline" v-if="$store.state.deal_selected">
     <div style="width:100%;margin-bottom:10px;text-decoration:underline" v-if="[0,1,2,4].indexOf(this.selected.type_transport) != -1 && this.selected.type_transport!=null">Характеристики:</div>
     <b-form-group label="Вид транспорта:">
         <b-form-select v-model="selected.type_transport" class="mb-2 mr-sm-2 mb-sm-2"  @change="selectTransportType">
