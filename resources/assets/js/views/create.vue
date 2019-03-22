@@ -23,8 +23,7 @@
 				</b-form-select>
 			</b-form-group>
 
-			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px" 
-			v-if="category!=null && category!=3 && category!=4 && category!=5 && category!=6 && category!=7 && category!=8 && category!=9 && category!=10">
+			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px" v-if="category!=null">
 				 <b-form-radio-group id="deal_group" stacked name="radioOpenions" @change="setDeal" v-model="sdelka">
 				 	<b-form-radio v-for="(i,index) in dealtypes" :value="i.id" :key="index">{{ i.deal_name_1 }}</b-form-radio>
 				 </b-form-radio-group>
@@ -68,7 +67,7 @@
 			<h1 v-else-if="other"></h1>
 
 			<!-- Дополнительные поля -->
-			<div v-show="this.$store.state.show_final_fields">
+			<div v-show="this.$store.state.show_final_fields && $store.state.deal_selected">
 
 				<b-form-group :label="$store.state.info_label_description" label-for="addit_info">
 			 		<b-form-textarea v-if="!$store.state.required_info" id="addit_info" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></b-form-textarea>

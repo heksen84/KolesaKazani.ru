@@ -2878,7 +2878,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 // ----------------------------------------------------
@@ -39462,15 +39461,7 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _vm.category != null &&
-              _vm.category != 3 &&
-              _vm.category != 4 &&
-              _vm.category != 5 &&
-              _vm.category != 6 &&
-              _vm.category != 7 &&
-              _vm.category != 8 &&
-              _vm.category != 9 &&
-              _vm.category != 10
+              _vm.category != null
                 ? _c(
                     "b-form-group",
                     {
@@ -39547,8 +39538,11 @@ var render = function() {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: this.$store.state.show_final_fields,
-                          expression: "this.$store.state.show_final_fields"
+                          value:
+                            this.$store.state.show_final_fields &&
+                            _vm.$store.state.deal_selected,
+                          expression:
+                            "this.$store.state.show_final_fields && $store.state.deal_selected"
                         }
                       ]
                     },
