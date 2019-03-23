@@ -429,7 +429,6 @@ class ResultsController extends Controller {
             НЕДВИЖИМОСТЬ
 
             ------------------------------------------------------------*/
-
             case "nedvizhimost": {
                 
                 // adv_realestate
