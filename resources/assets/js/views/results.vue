@@ -183,6 +183,7 @@ export default {
 	console.log(this.category)
 	console.log(this.data)
 	console.log("-----------------------------")*/
+
 	},
 				
 	// -------------------------

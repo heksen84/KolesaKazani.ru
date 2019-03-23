@@ -70,7 +70,7 @@ Route::get('{category}/{subcat}', 'ResultsController@getResultsForSubCategory');
 //Route::get('/getResultsForSubCategory', 'ResultsController@getResultsForSubCategory'); // для axios
 
 Route::get('/getResultsForSubCategory/{category}/{subcat}', 'ResultsController@getResultsForSubCategory');
-Route::get('/getResultsByCategoryForFront', 'ResultsController@getResultsByCategoryForFront');
+Route::get('/getResultsByCategoryForFront/{region}/{place}/{category}/{subcat}', 'ResultsController@getResultsByCategoryForFront');
 //getResultsByCategoryForFront
 
 // ------------------------------------
