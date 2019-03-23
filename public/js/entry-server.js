@@ -36760,7 +36760,7 @@ var render = function() {
             "b-button",
             {
               staticStyle: { "margin-top": "5px", cursor: "default" },
-              attrs: { size: "sm", variant: "outline-primary" }
+              attrs: { size: "sm", variant: "outline-warning" }
             },
             [_vm._v("Подробнее")]
           )
