@@ -215,7 +215,9 @@ export default {
 
 			// если только категория
 			if (this.category_name && !this.subcat && !this.region && !this.place) {
-				url="/getResultsByCategoryForFront?category_name="+this.category_name+
+				url="/getResultsByCategoryForFront?category_name="+
+				this.category_name+
+				"&category_id="+this.category+
 				"&price="+this.filters.price+
 				"&deal="+this.filters.deal+
 				"&actual="+this.filters.actual;

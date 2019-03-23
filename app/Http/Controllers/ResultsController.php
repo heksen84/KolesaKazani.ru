@@ -25,15 +25,17 @@ class ResultsController extends Controller {
     // Получить данные по категории
     public function getResultsByCategory(Request $request) {
 
-        $title="";
+        /*$title="";
         $results=[];
         $category=[];
         $item=[];
+        $category_id=null;*/
 
         $data = $request->all();
 
         if ($data) {
             
+            \Debugbar::info($data["category_id"]);
             \Debugbar::info($data["category_name"]);
             \Debugbar::info($data["price"]);
             \Debugbar::info($data["deal"]);
