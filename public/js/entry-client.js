@@ -4304,7 +4304,7 @@ function num2str(n, text_forms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-	props: ["category", "subcat", "region", "place", "data", "results", "title"], // Входящие данные
+	props: ["category", "category_name", "subcat", "region", "place", "data", "results", "title"], // Входящие данные
 
 	components: { item: __WEBPACK_IMPORTED_MODULE_0__components_item___default.a },
 
@@ -4341,7 +4341,7 @@ function num2str(n, text_forms) {
 	// компонент создан
 	created: function created() {
 
-		alert(this.category);
+		//alert(this.categoryname)
 
 		this.update();
 		/*console.log("-----------------------------")
@@ -4376,28 +4376,25 @@ function num2str(n, text_forms) {
 
 		// применить фильтр
 		setFilter: function setFilter() {
-			var _this = this;
 
-			// передать фильтра, record_start, recordsLimit т.е. loadMoreCountShow
+			var url = "";
 
-			/*			
-   	[{"price": "asc"}, {"deal": "0"}, "urgency": "olds"]
-   	asc  - возрастание, desc - убывание
-   */
+			// если только категория
+			if (this.category_name && !this.subcat && !this.region && !this.place) {
+				url = "/getResultsByCategoryForFront?category_name=" + this.category_name + "&price=" + this.filters.price + "&deal=" + this.filters.deal + "&actual=" + this.filters.actual;
+			}
 
-			// т.к. results.vue общий для всех запросов, то значит следует определить категорию/подкатегорию 
-			// к которой будет идти запрос т.е. будет 2 запроса для категорий и для подкатегорий
-
-			Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])("/getResultsByCategoryForFront", { "data": this.filters }).then(function (res) {
+			// запрос
+			Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])(url).then(function (res) {
 
 				console.log("------------------------");
-				console.log(res.data);
+				console.log(res);
 				console.log("------------------------");
 
-				_this.items = res.data;
-				_this.update();
-
-				alert("ajax");
+				/*	this.items=res.data;
+    	this.update();
+    		
+    	alert("ajax");*/
 			}).catch(function (err) {
 				console.log(err);
 			});
@@ -13450,7 +13447,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -39644,8 +39641,7 @@ var render = function() {
                                 {
                                   staticStyle: {
                                     "margin-top": "10px",
-                                    color: "rgb(120,120,120)",
-                                    "font-weight": "bold"
+                                    color: "green"
                                   }
                                 },
                                 [_vm._v(_vm._s(_vm.summ_str))]

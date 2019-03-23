@@ -119,7 +119,7 @@ import { get } from "./../helpers/api"
 
 export default {
 
-	props: ["category", "subcat", "region", "place", "data", "results", "title"], // Входящие данные
+	props: ["category", "category_name", "subcat", "region", "place", "data", "results", "title"], // Входящие данные
 
 	components: { item },
 
@@ -175,7 +175,7 @@ export default {
 	// компонент создан
 	created() {
 	
-	alert(this.category)
+	//alert(this.categoryname)
 	
 	this.update();
 	/*console.log("-----------------------------")
@@ -211,26 +211,27 @@ export default {
 			// применить фильтр
   		setFilter() {
 
-			// передать фильтра, record_start, recordsLimit т.е. loadMoreCountShow
+			var url = "";
 
-			/*			
-				[{"price": "asc"}, {"deal": "0"}, "urgency": "olds"]
-				asc  - возрастание, desc - убывание
-			*/
-
-			// т.к. results.vue общий для всех запросов, то значит следует определить категорию/подкатегорию 
-			// к которой будет идти запрос т.е. будет 2 запроса для категорий и для подкатегорий
+			// если только категория
+			if (this.category_name && !this.subcat && !this.region && !this.place) {
+				url="/getResultsByCategoryForFront?category_name="+this.category_name+
+				"&price="+this.filters.price+
+				"&deal="+this.filters.deal+
+				"&actual="+this.filters.actual;
+			}
 			
-  		get("/getResultsByCategoryForFront", { "data": this.filters } ).then((res) => {
+			// запрос
+  		get(url).then((res) => {
 
 					console.log("------------------------");
-					console.log(res.data);
+					console.log(res);
 					console.log("------------------------");
 					
-					this.items=res.data;
+				/*	this.items=res.data;
 					this.update();
 						
-					alert("ajax");
+					alert("ajax");*/
 
 				}).catch((err) => {	
 					console.log(err)

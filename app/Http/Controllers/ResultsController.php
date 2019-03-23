@@ -25,17 +25,31 @@ class ResultsController extends Controller {
     // Получить данные по категории
     public function getResultsByCategory(Request $request) {
 
-		$results = [];
-        $title = "";
+        $title="";
+        $results=[];
+        $category=[];
+        $item=[];
 
-        // получаю имя на русском
-		$category = Categories::select("id", "name")->where("url",  $request->path() )->first();
-		$items = Adverts::where("category_id",  $category->id )->get();
+        $data = $request->all();
+
+        if ($data) {
+            
+            \Debugbar::info($data["category_name"]);
+            \Debugbar::info($data["price"]);
+            \Debugbar::info($data["deal"]);
+            \Debugbar::info($data["actual"]);
+
+            // получаю имя на русском
+		    $category = Categories::select("id", "name")->where("url", $data["category_name"] )->first();
+		    $items = Adverts::where("category_id",  $category->id )->get();
+        }
+        else {
+            // получаю имя на русском
+		    $category = Categories::select("id", "name")->where("url",  $request->path() )->first();
+            $items = Adverts::where("category_id",  $category->id )->get();
+        }
         
-        // для фильтра
-		//$data = $request->all();
-        //\Debugbar::info($data);                
-
+       
 		// --------------------------------------------------------
 		// Беру данные по конкретной категории
 		// --------------------------------------------------------
@@ -147,14 +161,15 @@ class ResultsController extends Controller {
         }
 
         // передать id категории
-        \Debugbar::info("Категория: ".$category->id);
+        \Debugbar::info("Категория: ".$request->path() );
         
         return array
         (
             "title"=>$title, 
             "items"=>$items, 
-            "results"=>json_encode($results), 
-            "category"=>$category->id, 
+            "results"=>json_encode($results),
+            "category"=>$category->id,  
+            "category_name"=>json_encode($request->path()), 
             "start_record"=>$this->start_record
         );
 
@@ -171,7 +186,8 @@ class ResultsController extends Controller {
         ->with("title", $result["title"])
         ->with("items", $result["items"])
 		->with("results", $result["results"])
-		->with("category", $result["category"])
+        ->with("category", $result["category"])
+        ->with("category_name", $result["category_name"])
 		->with("start_record", $result["start_record"]);
     }
     
@@ -179,8 +195,8 @@ class ResultsController extends Controller {
     // результаты по всей стране для морды
     // ---------------------------------------------------------------
     public function getResultsByCategoryForFront(Request $request) {
-        $result = $this->getResultsByCategory($request);    
-        return $result;
+        $result = $this->getResultsByCategory($request);
+        return json_encode($request->all());
 	}
 
 	/*
@@ -616,7 +632,12 @@ class ResultsController extends Controller {
         // если указаны фильтры, то вернуть данные на морду (return results)
         // иначе передать данные во вьюху
 
-     	return view("results")->with("title", $title." в Казахстане")->with("items", $items)->with("results", json_encode($results))->with("category", $categories);
+         return view("results")
+         ->with("category_name", json_encode("---"))
+         ->with("title", $title." в Казахстане")
+         ->with("items", $items)
+         ->with("results", json_encode($results))
+         ->with("category", $categories);
     }
 
     // -------------------------------------------------------------------

@@ -13,7 +13,13 @@
 </head>
 <body>
 <div id="app">
-  <results :data="{{ $items }}" :results="{{ $results }}" :category="{{ $category }}" :title="{{ json_encode($title) }}"></results>
+  <results 
+  :data="{{ $items }}" 
+  :results="{{ $results }}" 
+  :category="{{ $category }}" 
+  :category_name="{{ $category_name }}" 
+  :title="{{ json_encode($title) }}">
+  </results>
 </div>
 </body>
 </html>
