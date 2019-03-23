@@ -139,7 +139,7 @@
 				</b-form-group>
 			
 			</div>
-			</div>
+		</div>
 
 		</b-form>
 	</b-col>
