@@ -230,10 +230,8 @@ export default {
 					console.log(res);
 					console.log("------------------------");
 					
-				/*	this.items=res.data;
+					this.items=res.data;
 					this.update();
-						
-					alert("ajax");*/
 
 				}).catch((err) => {	
 					console.log(err)

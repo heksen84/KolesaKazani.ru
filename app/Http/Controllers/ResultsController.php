@@ -34,7 +34,7 @@ class ResultsController extends Controller {
         $data = $request->all();
 
         if ($data) {
-            
+
             \Debugbar::info($data["category_id"]);
             \Debugbar::info($data["category_name"]);
             \Debugbar::info($data["price"]);
@@ -198,7 +198,7 @@ class ResultsController extends Controller {
     // ---------------------------------------------------------------
     public function getResultsByCategoryForFront(Request $request) {
         $result = $this->getResultsByCategory($request);
-        return json_encode($request->all());
+        return $result;
 	}
 
 	/*
