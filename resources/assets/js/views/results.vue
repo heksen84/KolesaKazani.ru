@@ -11,7 +11,7 @@
 	
 	<b-row v-if="count>3">
 			<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
-				<b-button variant="warning" style="margin:5px" size="sm" @click="showFilter">{{ filter_text }}</b-button>
+				<b-button variant="success" style="margin:5px" size="sm" @click="showFilter">{{ filter_text }}</b-button>
 			</b-col>
 	</b-row>
 
@@ -212,6 +212,10 @@ export default {
   		setFilter() {
 
 			var url = "";
+			var ready=false;
+			
+			console.log("Категория: "+this.category_name)
+			console.log("Подкатегория: "+this.subcat)
 
 			// если только категория
 			if (this.category_name && !this.subcat && !this.region && !this.place) {
@@ -221,10 +225,17 @@ export default {
 				"&price="+this.filters.price+
 				"&deal="+this.filters.deal+
 				"&actual="+this.filters.actual;
+				ready=true;
+			}
+
+			if (this.category_name && this.subcat) {
+				alert("подкатегория!")
+				ready=true;
 			}
 			
 			// запрос
-  		get(url).then((res) => {
+			if (ready) {
+  			get(url).then((res) => {
 
 					console.log("------------------------");
 					console.log(res);
@@ -233,10 +244,10 @@ export default {
 					this.items=res.data;
 					this.update();
 
-				}).catch((err) => {	
+					}).catch((err) => {	
 					console.log(err)
-			});
-
+				});
+			}
 		},
 			
 		// закрыть экран

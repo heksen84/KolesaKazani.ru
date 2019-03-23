@@ -4379,24 +4379,36 @@ function num2str(n, text_forms) {
 			var _this = this;
 
 			var url = "";
+			var ready = false;
+
+			console.log("Категория: " + this.category_name);
+			console.log("Подкатегория: " + this.subcat);
 
 			// если только категория
 			if (this.category_name && !this.subcat && !this.region && !this.place) {
 				url = "/getResultsByCategoryForFront?category_name=" + this.category_name + "&category_id=" + this.category + "&price=" + this.filters.price + "&deal=" + this.filters.deal + "&actual=" + this.filters.actual;
+				ready = true;
+			}
+
+			if (this.category_name && this.subcat) {
+				alert("подкатегория!");
+				ready = true;
 			}
 
 			// запрос
-			Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])(url).then(function (res) {
+			if (ready) {
+				Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])(url).then(function (res) {
 
-				console.log("------------------------");
-				console.log(res);
-				console.log("------------------------");
+					console.log("------------------------");
+					console.log(res);
+					console.log("------------------------");
 
-				_this.items = res.data;
-				_this.update();
-			}).catch(function (err) {
-				console.log(err);
-			});
+					_this.items = res.data;
+					_this.update();
+				}).catch(function (err) {
+					console.log(err);
+				});
+			}
 		},
 
 
@@ -13446,7 +13458,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -38332,7 +38344,7 @@ var render = function() {
                     "b-button",
                     {
                       staticStyle: { margin: "5px" },
-                      attrs: { variant: "warning", size: "sm" },
+                      attrs: { variant: "success", size: "sm" },
                       on: { click: _vm.showFilter }
                     },
                     [_vm._v(_vm._s(_vm.filter_text))]
