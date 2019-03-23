@@ -25,12 +25,6 @@ class ResultsController extends Controller {
     // Получить данные по категории
     public function getResultsByCategory(Request $request) {
 
-        /*$title="";
-        $results=[];
-        $category=[];
-        $item=[];
-        $category_id=null;*/
-
         $data = $request->all();
 
         if ($data) {
