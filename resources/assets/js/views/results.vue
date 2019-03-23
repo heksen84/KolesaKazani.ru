@@ -119,7 +119,7 @@ import { get } from "./../helpers/api"
 
 export default {
 
-	props: ["data", "results", "category", "title"], // Входящие данные
+	props: ["category", "subcat", "region", "place", "data", "results", "title"], // Входящие данные
 
 	components: { item },
 
@@ -174,13 +174,15 @@ export default {
 
 	// компонент создан
 	created() {
-	//alert("запрос!")
+	
+	alert(this.category)
+	
 	this.update();
-	console.log("-----------------------------")
+	/*console.log("-----------------------------")
 	console.log(this.results)
 	console.log(this.category)
 	console.log(this.data)
-	console.log("-----------------------------")
+	console.log("-----------------------------")*/
 	},
 				
 	// -------------------------

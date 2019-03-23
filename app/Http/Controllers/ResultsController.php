@@ -145,8 +145,19 @@ class ResultsController extends Controller {
 				\Debugbar::info($results);
 			}
         }
+
+        // передать id категории
+        \Debugbar::info("Категория: ".$category->id);
         
-        return array("title"=>$title, "items"=>$items, "results"=>json_encode($results), "category"=>$category->id, "start_record"=>$this->start_record);
+        return array
+        (
+            "title"=>$title, 
+            "items"=>$items, 
+            "results"=>json_encode($results), 
+            "category"=>$category->id, 
+            "start_record"=>$this->start_record
+        );
+
     }
 
     // -------------------------------------------------------------
