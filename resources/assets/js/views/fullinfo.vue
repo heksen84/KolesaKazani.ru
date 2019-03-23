@@ -33,7 +33,9 @@
         		<h1 v-if="full && item[0].deal==3">Отдам даром {{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года</h1>
         		<h1 v-if="full && item[0].deal==4">Сдам в аренду {{ item[0].mark }} {{ item[0].model }} {{ item[0].year}} года</h1>												
 
-				<h1 v-if="!full && item[0].text!='null'">{{ item[0].text }}</h1>				
+				<h1 v-if="!full && item[0].text!='null'">{{ item[0].text }}</h1>
+
+				<br>				
 				
 				<h5 v-if="item[0].year!=null">Год выпуска: {{ item[0].year }} г.</h5>
 				
@@ -97,6 +99,7 @@
         				<h1 v-if="item[0].deal==3">Отдам даром дом {{ item[0].rooms }} комнат {{ item[0].floor }}/{{ item[0].floors_house }} этаж</h1>
         				<h1 v-if="item[0].deal==4">Сдам в аренду дом {{ item[0].rooms }} комнат {{ item[0].floor }}/{{ item[0].floors_house }} этаж</h1>
 					</div>
+					
 					<!-- Дача -->
 					<div v-if="item[0].type_of_building==1">
 						<h1 v-if="item[0].deal==0">Куплю дачу {{ item[0].rooms }} комнат {{ item[0].floor }}/{{ item[0].floors_house }} этаж</h1>
@@ -149,7 +152,9 @@
         			<h1 v-if="item[0].deal==2">Обменяю недвижимость за рубежом. Размер {{ item[0].area }}</h1>
         			<h1 v-if="item[0].deal==3">Отдам недвижимость за рубежом. Размер {{ item[0].area }}</h1>
         			<h1 v-if="item[0].deal==4">Сдам в аренду недвижимость за рубежом. Размер {{ item[0].area }}</h1>
-				</div>				
+				</div>
+
+				<br>				
 
 				<h5 v-if="item[0].rooms">Количество комнат: {{ item[0].rooms }}</h5>
 				<h5>Этаж: {{ item[0].floor }}</h5>
