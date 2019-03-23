@@ -2878,6 +2878,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 // ----------------------------------------------------
@@ -3371,18 +3374,24 @@ function forEach(data, callback) {
   --------------------------
    Изменения в категориях
   --------------------------*/
-		changeCategory: function changeCategory(data) {
+		changeCategory: function changeCategory(category) {
 
 			// сброс объявления при выборе категории
-			this.advReset(data);
+			this.advReset(category);
+
+			// отрубить вид сделки в категории работа и бизнес
+			if (category == 4) {
+				this.$store.commit("SetDealSelected", true);
+				this.$store.commit("ShowFinalFields", true);
+			}
 
 			// добавляю категории
-			this.$root.advert_data.adv_category = data;
+			this.$root.advert_data.adv_category = category;
 
 			// скрываю дополнительные поля
 			this.$store.commit("ShowFinalFields", false);
 
-			switch (data) {
+			switch (category) {
 				case null:
 					{
 						this.root = true;
@@ -39461,7 +39470,7 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _vm.category != null
+              _vm.category != null && _vm.category != 4
                 ? _c(
                     "b-form-group",
                     {

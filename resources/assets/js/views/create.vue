@@ -23,7 +23,8 @@
 				</b-form-select>
 			</b-form-group>
 
-			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px" v-if="category!=null">
+		
+			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px" v-if="category!=null && category!=4">
 				 <b-form-radio-group id="deal_group" stacked name="radioOpenions" @change="setDeal" v-model="sdelka">
 				 	<b-form-radio v-for="(i,index) in dealtypes" :value="i.id" :key="index">{{ i.deal_name_1 }}</b-form-radio>
 				 </b-form-radio-group>
@@ -135,7 +136,9 @@
 				</b-form-group>
 			
 			</div>
-			</div>			
+			</div>
+
+
 		</b-form>
 	</b-col>
 	</b-row>
@@ -618,18 +621,24 @@ export default {
   		--------------------------
   		 Изменения в категориях
   		--------------------------*/
-  		changeCategory(data) {
+  		changeCategory(category) {
 			
 			// сброс объявления при выборе категории
-			this.advReset(data);
+			this.advReset(category);
+
+			// отрубить вид сделки в категории работа и бизнес
+			if (category==4) {
+				this.$store.commit("SetDealSelected", true);
+				this.$store.commit("ShowFinalFields", true);
+			}
 
 			// добавляю категории
-			this.$root.advert_data.adv_category=data;
+			this.$root.advert_data.adv_category=category;
 			
 			// скрываю дополнительные поля
 			this.$store.commit("ShowFinalFields", false);
 
-  			switch(data) {
+  			switch(category) {
   				case null: {
 					  this.root=true; 
 					  this.$store.commit("ShowFinalFields", false);
