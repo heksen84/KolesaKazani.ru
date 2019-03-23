@@ -2880,6 +2880,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 // ----------------------------------------------------
@@ -39510,12 +39513,24 @@ var render = function() {
                         },
                         _vm._l(_vm.dealtypes, function(i, index) {
                           return _c(
-                            "b-form-radio",
-                            { key: index, attrs: { value: i.id } },
-                            [_vm._v(_vm._s(i.deal_name_1))]
+                            "div",
+                            { key: index },
+                            [
+                              (_vm.category == 1 && i.id != 3) ||
+                              (_vm.category == 2 && i.id != 3) ||
+                              [3, 4, 5, 6, 7, 8, 9, 10].indexOf(_vm.category) >=
+                                0
+                                ? _c(
+                                    "b-form-radio",
+                                    { attrs: { value: i.id } },
+                                    [_vm._v(_vm._s(i.deal_name_1))]
+                                  )
+                                : _vm._e()
+                            ],
+                            1
                           )
                         }),
-                        1
+                        0
                       )
                     ],
                     1

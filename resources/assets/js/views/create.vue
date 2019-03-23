@@ -23,10 +23,13 @@
 				</b-form-select>
 			</b-form-group>
 
-		
+			<!-- отображаю виды сделок -->
 			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px" v-if="category!=null && category!=4">
 				 <b-form-radio-group id="deal_group" stacked name="radioOpenions" @change="setDeal" v-model="sdelka">
-				 	<b-form-radio v-for="(i,index) in dealtypes" :value="i.id" :key="index">{{ i.deal_name_1 }}</b-form-radio>
+					<div v-for="(i,index) in dealtypes" :key="index">
+						<!-- скрываю где не нужно отдам даром -->
+				 		<b-form-radio v-if="category==1 && i.id!=3 || category==2 && i.id!=3 || [3,4,5,6,7,8,9,10].indexOf(category)>=0" :value="i.id" >{{ i.deal_name_1 }}</b-form-radio>
+				 	</div>
 				 </b-form-radio-group>
 			</b-form-group>
 
