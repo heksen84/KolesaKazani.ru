@@ -119,7 +119,8 @@ import { get } from "./../helpers/api"
 
 export default {
 
-	props: ["category", "category_name", "subcat", "region", "place", "data", "results", "title"], // Входящие данные
+	// Входящие данные
+	props: ["category", "category_name", "subcat", "region", "place", "data", "results", "title"],
 
 	components: { item },
 

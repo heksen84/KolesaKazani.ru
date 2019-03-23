@@ -16,7 +16,7 @@
         <div v-if="category_id!=4 && price!=0">цена: <b>{{ price }}</b> тенге</div>        
         <br v-if="category_id==4 || price==0">
 
-        <b-button style="margin-top:5px;cursor:default" size="sm" variant="outline-success">Подробнее</b-button>
+        <b-button style="margin-top:5px;cursor:default" size="sm" variant="outline-primary">Подробнее</b-button>
     </div>
 
   </div>
