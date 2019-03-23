@@ -11,12 +11,11 @@
         <b v-if="deal==3 && full">Отдам даром</b>
         <b v-if="deal==4 && full">Сдам в аренду</b>              
         <b>{{ title }}</b>
-
-        <div style="font-size:11px;color:grey;margin-top:-3px">{{ created_at }}</div>
-        <div v-if="category_id!=4 && price!=0">цена: <b>{{ price }}</b> тенге</div>        
+        <!--<div style="font-size:11px;color:grey;margin-top:-3px">{{ created_at }}</div>-->
+        <div v-if="category_id!=4 && price!=0">{{ price }} тенге</div>        
         <br v-if="category_id==4 || price==0">
 
-        <b-button style="margin-top:5px;cursor:default" size="sm" variant="outline-warning">Подробнее</b-button>
+        <b-button style="margin-top:5px;cursor:default" size="sm" variant="outline-success">Подробнее</b-button>
     </div>
 
   </div>

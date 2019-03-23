@@ -2141,7 +2141,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -36737,24 +36736,8 @@ var render = function() {
           _vm._v(" "),
           _c("b", [_vm._v(_vm._s(_vm.title))]),
           _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticStyle: {
-                "font-size": "11px",
-                color: "grey",
-                "margin-top": "-3px"
-              }
-            },
-            [_vm._v(_vm._s(_vm.created_at))]
-          ),
-          _vm._v(" "),
           _vm.category_id != 4 && _vm.price != 0
-            ? _c("div", [
-                _vm._v("цена: "),
-                _c("b", [_vm._v(_vm._s(_vm.price))]),
-                _vm._v(" тенге")
-              ])
+            ? _c("div", [_vm._v(_vm._s(_vm.price) + " тенге")])
             : _vm._e(),
           _vm._v(" "),
           _vm.category_id == 4 || _vm.price == 0 ? _c("br") : _vm._e(),
@@ -36763,7 +36746,7 @@ var render = function() {
             "b-button",
             {
               staticStyle: { "margin-top": "5px", cursor: "default" },
-              attrs: { size: "sm", variant: "outline-warning" }
+              attrs: { size: "sm", variant: "outline-success" }
             },
             [_vm._v("Подробнее")]
           )
