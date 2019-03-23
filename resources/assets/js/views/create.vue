@@ -724,12 +724,13 @@ export default {
 		var formData = new FormData();
 
 		// устанавливаю цену если она пустая, т.к. бэкенду нужна цена
-		if (this.$root.advert_data.adv_price==null || this.$root.advert_data.adv_price=="") 
+		if (this.$root.advert_data.adv_price==null || 
+			this.$root.advert_data.adv_price=="") 
 			this.$root.advert_data.adv_price=0;
 
-		// -------------------------------
+		// ----------------------------------------------------
 		// записываю значения полей
-		// -------------------------------
+		// ----------------------------------------------------
 		forEach(this.$root.advert_data, function(key, value) {
 			formData.append(key, value);
 		})
@@ -772,12 +773,12 @@ export default {
 		if (!navigator.geolocation) console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается		
 		else {
 				navigator.geolocation.getCurrentPosition(function(position) {				
-				var lat = position.coords.latitude;
-				var lon = position.coords.longitude;
-				var geoCoords=[lat,lon];
-				myPlacemark.geometry.setCoordinates(getCoords);				
-			});
-		}
+					var lat = position.coords.latitude;
+					var lon = position.coords.longitude;
+					var geoCoords=[lat,lon];
+					myPlacemark.geometry.setCoordinates(getCoords);				
+				});
+			}
 	},
 
 	// ---------------------------------
