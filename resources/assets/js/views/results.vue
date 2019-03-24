@@ -96,7 +96,7 @@
 	</div>
 
 	<div class="mt-3" v-if="count>loadMoreCountShow">
-				<b-pagination v-model="currentPage" :total-rows="rows" align="center"/>
+				<b-pagination v-model="currentPage" :total-rows="rows" align="center" @change="changePage"/>
 	</div>
 
 </b-container>
@@ -259,7 +259,11 @@ export default {
 		// загрузить ещё
 		loadMore() {
     	this.setFilter();
-    }
+    },
+
+		changePage(page) {
+			alert(page)
+		}
 	}
 }
 </script>
