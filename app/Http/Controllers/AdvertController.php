@@ -1047,7 +1047,7 @@ class AdvertController extends Controller {
             $images = DB::select("SELECT image FROM images WHERE advert_id=".$id);
 
             // передаю данные во вьюху
-            return view("fullinfo")
+            return view("detailed")
             ->with("item", json_encode($results) )
             ->with("images", json_encode($images))
             ->with("title", $title)

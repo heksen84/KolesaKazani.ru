@@ -28,7 +28,7 @@ props: [ "id", "created_at", "image", "title", "price", "category_id", "deal", "
 created() {
 },
 methods: {  
-    details(event) { window.location='/details/'+this.id;  
+    details(event) { window.location='/podrobno/'+this.id;  
     }
   }
 }
