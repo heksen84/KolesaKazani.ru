@@ -70,7 +70,7 @@
 			<b-col cols="12" sm="12" md="8" lg="8" xl="8">
 
 				<!-------- КОМПОНЕНТ ITEM -------->				
-				<item v-for="(item,index) in results" 													
+				<item v-for="(item,index) in resultsClone" 													
 					:created_at="item.created_at"
 					:id="item.advert_id"					
 					:category_id="item.category_id"					
@@ -133,17 +133,15 @@ export default {
 	data () {		
 	return 	{
 
+		resultsClone: this.results,
 		rows: 100,
     currentPage: 1,
-
 		loadMoreCountShow: 3,			
     items: this.data,
     count: 0,
     count_string: "",
    	slide: 0,
     sliding: null,
-
-		// фильтра
 		filter: true,
 		filter_text: "Скрыть фильтр",
 		filters: {
@@ -151,7 +149,6 @@ export default {
       deal: null,
       actual: null,
     },
-
     options_price: [
       { value: null, text: '-- Цена --' },
       { value: '0', text: 'Цена по возрастанию' },
@@ -242,7 +239,7 @@ export default {
 					console.log(res);
 					console.log("------------------------");
 					
-					this.items=res.data;
+					this.resultsClone=res.data;
 					this.update();
 
 					}).catch((err) => {	

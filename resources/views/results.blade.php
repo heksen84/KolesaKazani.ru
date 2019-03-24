@@ -15,7 +15,7 @@
 <div id="app">
   <results 
   :data="{{ $items }}" 
-  :results="{{ $results }}" 
+  v-bind:results="{{ $results }}" 
   :category="{{ $category }}" 
   :category_name="{{ $category_name }}" 
   :title="{{ json_encode($title) }}">
