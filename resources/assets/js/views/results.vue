@@ -127,9 +127,7 @@ export default {
 	data () {		
 	return 	{
 
-		loadMoreCountShow: 3,
-		filter: false,
-		filter_text: "Фильтр",			
+		loadMoreCountShow: 3,			
     items: this.data,
     count: 0,
     count_string: "",
@@ -137,6 +135,10 @@ export default {
     sliding: null,
 
 		// фильтра
+
+		filter: true,
+		filter_text: "Скрыть фильтр",
+
 		filters: {
     	price: null,
       deal: null,
