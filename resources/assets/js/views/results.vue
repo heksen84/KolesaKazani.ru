@@ -96,7 +96,7 @@
 	</div>
 
 	<div class="mt-3" v-if="count>loadMoreCountShow">
-				<b-pagination align="center"/>
+				<b-pagination v-model="currentPage" :total-rows="rows" align="center"/>
 	</div>
 
 </b-container>
@@ -131,6 +131,9 @@ export default {
 
 	data () {		
 	return 	{
+
+		rows: 100,
+    currentPage: 1,
 
 		loadMoreCountShow: 3,			
     items: this.data,

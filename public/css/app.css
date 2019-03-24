@@ -332,16 +332,6 @@ h3 {
   content: "\434\43E\431\430\432\438\442\44C   \444\43E\442\43E";
 }
 
-a {
-  color: white;
-}
-
-/* unvisited link */
-
-a:link {
-  color: white;
-}
-
 /* visited link */
 
 a:visited {
