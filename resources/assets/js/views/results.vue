@@ -177,16 +177,7 @@ export default {
 
 	// компонент создан
 	created() {
-	
-	//alert(this.categoryname)
-	
-	this.update();
-	/*console.log("-----------------------------")
-	console.log(this.results)
-	console.log(this.category)
-	console.log(this.data)
-	console.log("-----------------------------")*/
-
+		this.update();
 	},
 				
 	// -------------------------
