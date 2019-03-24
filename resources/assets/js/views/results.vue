@@ -9,11 +9,11 @@
 		</b-row>
 	<br>
 	
-	<b-row v-if="count>3">
+<!--	<b-row v-if="count>3">
 			<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
 				<b-button variant="success" style="margin:5px" size="sm" @click="showFilter">{{ filter_text }}</b-button>
 			</b-col>
-	</b-row>
+	</b-row>-->
 
 	<!------------------------------------
 	  общие фильтры

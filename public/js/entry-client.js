@@ -38330,34 +38330,6 @@ var render = function() {
       _vm._v(" "),
       _c("br"),
       _vm._v(" "),
-      _vm.count > 3
-        ? _c(
-            "b-row",
-            [
-              _c(
-                "b-col",
-                {
-                  staticStyle: { "text-align": "center" },
-                  attrs: { cols: "12", sm: "12", md: "12", lg: "12", xl: "12" }
-                },
-                [
-                  _c(
-                    "b-button",
-                    {
-                      staticStyle: { margin: "5px" },
-                      attrs: { variant: "success", size: "sm" },
-                      on: { click: _vm.showFilter }
-                    },
-                    [_vm._v(_vm._s(_vm.filter_text))]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
       _vm.count > 1 && _vm.filter
         ? _c(
             "b-row",
