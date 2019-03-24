@@ -4290,6 +4290,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 // -----------------------------------------------
@@ -4803,7 +4809,7 @@ function handleFocus (evt) {
   if (evt.type === 'focusin') {
     Object(__WEBPACK_IMPORTED_MODULE_4__utils_dom__["a" /* addClass */])(evt.target, 'focus')
   } else if (evt.type === 'focusout') {
-    Object(__WEBPACK_IMPORTED_MODULE_4__utils_dom__["m" /* removeClass */])(evt.target, 'focus')
+    Object(__WEBPACK_IMPORTED_MODULE_4__utils_dom__["n" /* removeClass */])(evt.target, 'focus')
   }
 }
 
@@ -5011,7 +5017,7 @@ const EVENT_TOGGLE = 'bv::toggle::collapse'
     },
     onEnter (el) {
       el.style.height = 0
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["k" /* reflow */])(el)
+      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["l" /* reflow */])(el)
       el.style.height = el.scrollHeight + 'px'
       this.transitioning = true
       // This should be moved out so we can add cancellable events
@@ -5026,7 +5032,7 @@ const EVENT_TOGGLE = 'bv::toggle::collapse'
       el.style.height = 'auto'
       el.style.display = 'block'
       el.style.height = el.getBoundingClientRect().height + 'px'
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["k" /* reflow */])(el)
+      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["l" /* reflow */])(el)
       this.transitioning = true
       el.style.height = 0
       // This should be moved out so we can add cancellable events
@@ -6520,7 +6526,7 @@ const SELECTOR = 'input:not(:disabled),textarea:not(:disabled),select:not(:disab
         return
       }
       // Focus the first non-disabled visible input when the legend element is clicked
-      const inputs = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["o" /* selectAll */])(SELECTOR, this.$refs.content).filter(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["j" /* isVisible */])
+      const inputs = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["p" /* selectAll */])(SELECTOR, this.$refs.content).filter(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["k" /* isVisible */])
       if (inputs[0] && inputs[0].focus) {
         inputs[0].focus()
       }
@@ -6529,7 +6535,7 @@ const SELECTOR = 'input:not(:disabled),textarea:not(:disabled),select:not(:disab
       // Sets the `aria-describedby` attribute on the input if label-for is set.
       // Optionally accepts a string of IDs to remove as the second parameter
       if (this.labelFor && typeof document !== 'undefined') {
-        const input = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["n" /* select */])(`#${this.labelFor}`, this.$refs.content)
+        const input = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["o" /* select */])(`#${this.labelFor}`, this.$refs.content)
         if (input) {
           const adb = 'aria-describedby'
           let ids = (Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["e" /* getAttr */])(input, adb) || '').split(/\s+/)
@@ -6537,9 +6543,9 @@ const SELECTOR = 'input:not(:disabled),textarea:not(:disabled),select:not(:disab
           // Update ID list, preserving any original IDs
           ids = ids.filter(id => remove.indexOf(id) === -1).concat(add || '').join(' ').trim()
           if (ids) {
-            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["p" /* setAttr */])(input, adb, ids)
+            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["q" /* setAttr */])(input, adb, ids)
           } else {
-            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["l" /* removeAttr */])(input, adb)
+            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["m" /* removeAttr */])(input, adb)
           }
         }
       }
@@ -7873,7 +7879,7 @@ const THROTTLE = 100
     },
     checkView () {
       // check bounding box + offset to see if we should show
-      if (!Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["j" /* isVisible */])(this.$el)) {
+      if (!Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["k" /* isVisible */])(this.$el)) {
         // Element is hidden, so skip for now
         return
       }
@@ -9294,7 +9300,7 @@ const OBSERVER_CONFIG = {
       this.resetAdjustments()
       this.resetScrollbar()
       this.is_transitioning = false
-      Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["m" /* removeClass */])(document.body, 'modal-open')
+      Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["n" /* removeClass */])(document.body, 'modal-open')
       this.$nextTick(() => {
         this.is_hidden = this.lazy || false
         this.returnFocusTo()
@@ -9395,11 +9401,11 @@ const OBSERVER_CONFIG = {
       let el = this.returnFocus || this.return_focus || null
       if (typeof el === 'string') {
         // CSS Selector
-        el = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["n" /* select */])(el)
+        el = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["o" /* select */])(el)
       }
       if (el) {
         el = el.$el || el
-        if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["j" /* isVisible */])(el)) {
+        if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["k" /* isVisible */])(el)) {
           el.focus()
         }
       }
@@ -9446,59 +9452,59 @@ const OBSERVER_CONFIG = {
         const body = document.body
         const scrollbarWidth = this.scrollbarWidth
         // Adjust fixed content padding
-        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["o" /* selectAll */])(Selector.FIXED_CONTENT).forEach(el => {
+        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* selectAll */])(Selector.FIXED_CONTENT).forEach(el => {
           const actualPadding = el.style.paddingRight
           const calculatedPadding = computedStyle(el).paddingRight || 0
-          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* setAttr */])(el, 'data-padding-right', actualPadding)
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["q" /* setAttr */])(el, 'data-padding-right', actualPadding)
           el.style.paddingRight = `${parseFloat(calculatedPadding) +
             scrollbarWidth}px`
         })
         // Adjust sticky content margin
-        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["o" /* selectAll */])(Selector.STICKY_CONTENT).forEach(el => {
+        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* selectAll */])(Selector.STICKY_CONTENT).forEach(el => {
           const actualMargin = el.style.marginRight
           const calculatedMargin = computedStyle(el).marginRight || 0
-          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* setAttr */])(el, 'data-margin-right', actualMargin)
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["q" /* setAttr */])(el, 'data-margin-right', actualMargin)
           el.style.marginRight = `${parseFloat(calculatedMargin) -
             scrollbarWidth}px`
         })
         // Adjust navbar-toggler margin
-        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["o" /* selectAll */])(Selector.NAVBAR_TOGGLER).forEach(el => {
+        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* selectAll */])(Selector.NAVBAR_TOGGLER).forEach(el => {
           const actualMargin = el.style.marginRight
           const calculatedMargin = computedStyle(el).marginRight || 0
-          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* setAttr */])(el, 'data-margin-right', actualMargin)
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["q" /* setAttr */])(el, 'data-margin-right', actualMargin)
           el.style.marginRight = `${parseFloat(calculatedMargin) +
             scrollbarWidth}px`
         })
         // Adjust body padding
         const actualPadding = body.style.paddingRight
         const calculatedPadding = computedStyle(body).paddingRight
-        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* setAttr */])(body, 'data-padding-right', actualPadding)
+        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["q" /* setAttr */])(body, 'data-padding-right', actualPadding)
         body.style.paddingRight = `${parseFloat(calculatedPadding) +
           scrollbarWidth}px`
       }
     },
     resetScrollbar () {
       // Restore fixed content padding
-      Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["o" /* selectAll */])(Selector.FIXED_CONTENT).forEach(el => {
+      Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* selectAll */])(Selector.FIXED_CONTENT).forEach(el => {
         if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["g" /* hasAttr */])(el, 'data-padding-right')) {
           el.style.paddingRight = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["e" /* getAttr */])(el, 'data-padding-right') || ''
-          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["l" /* removeAttr */])(el, 'data-padding-right')
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["m" /* removeAttr */])(el, 'data-padding-right')
         }
       })
       // Restore sticky content and navbar-toggler margin
-      Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["o" /* selectAll */])(
+      Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* selectAll */])(
         `${Selector.STICKY_CONTENT}, ${Selector.NAVBAR_TOGGLER}`
       ).forEach(el => {
         if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["g" /* hasAttr */])(el, 'data-margin-right')) {
           el.style.marginRight = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["e" /* getAttr */])(el, 'data-margin-right') || ''
-          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["l" /* removeAttr */])(el, 'data-margin-right')
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["m" /* removeAttr */])(el, 'data-margin-right')
         }
       })
       // Restore body padding
       const body = document.body
       if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["g" /* hasAttr */])(body, 'data-padding-right')) {
         body.style.paddingRight = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["e" /* getAttr */])(body, 'data-padding-right') || ''
-        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["l" /* removeAttr */])(body, 'data-padding-right')
+        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["m" /* removeAttr */])(body, 'data-padding-right')
       }
     }
   },
@@ -9527,7 +9533,7 @@ const OBSERVER_CONFIG = {
     }
     this.setResizeEvent(false)
     // Re-adjust body/navbar/fixed padding/margins (if needed)
-    Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["m" /* removeClass */])(document.body, 'modal-open')
+    Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["n" /* removeClass */])(document.body, 'modal-open')
     this.resetAdjustments()
     this.resetScrollbar()
   }
@@ -10094,6 +10100,99 @@ const props = {
       }),
       children
     )
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/pagination/index.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pagination__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/pagination/pagination.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
+
+
+
+const components = {
+  bPagination: __WEBPACK_IMPORTED_MODULE_0__pagination__["a" /* default */]
+}
+
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/pagination/pagination.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_pagination__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/pagination.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
+
+
+
+const props = {
+  perPage: {
+    type: Number,
+    default: 20
+  },
+  totalRows: {
+    type: Number,
+    default: 20
+  },
+  ariaControls: {
+    type: String,
+    default: null
+  }
+}
+
+// Our render function is brought in from the pagination mixin
+/* harmony default export */ __webpack_exports__["a"] = ({
+  mixins: [ __WEBPACK_IMPORTED_MODULE_0__mixins_pagination__["a" /* default */] ],
+  props,
+  computed: {
+    numberOfPages () {
+      const result = Math.ceil(this.totalRows / this.perPage)
+      return (result < 1) ? 1 : result
+    }
+  },
+  methods: {
+    // These methods are used by the render function
+    onClick (num, evt) {
+      // Handle edge cases where number of pages has changed (i.e. if perPage changes)
+      if (num > this.numberOfPages) {
+        num = this.numberOfPages
+      } else if (num < 1) {
+        num = 1
+      }
+      this.currentPage = num
+      this.$nextTick(() => {
+        // Keep the current button focused if possible
+        const target = evt.target
+        if (Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["k" /* isVisible */])(target) && this.$el.contains(target) && target.focus) {
+          target.focus()
+        } else {
+          this.focusCurrent()
+        }
+      })
+      this.$emit('change', this.currentPage)
+    },
+    makePage (pagenum) {
+      return pagenum
+    },
+    linkProps (pagenum) {
+      return { href: '#' }
+    }
   }
 });
 
@@ -11262,14 +11361,14 @@ const listenTypes = {click: true}
     })
     if (el.tagName !== 'BUTTON') {
       // If element is not a button, we add `role="button"` for accessibility
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["p" /* setAttr */])(el, 'role', 'button')
+      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["q" /* setAttr */])(el, 'role', 'button')
     }
   },
   unbind (el, binding, vnode) {
     Object(__WEBPACK_IMPORTED_MODULE_0__utils_target__["c" /* unbindTargets */])(vnode, binding, listenTypes)
     if (el.tagName !== 'BUTTON') {
       // If element is not a button, we add `role="button"` for accessibility
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["l" /* removeAttr */])(el, 'role', 'button')
+      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["m" /* removeAttr */])(el, 'role', 'button')
     }
   }
 });
@@ -11338,21 +11437,21 @@ const EVENT_STATE = 'bv::collapse::state'
 
     if (inBrowser && vnode.context && targets.length > 0) {
       // Add aria attributes to element
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["p" /* setAttr */])(el, 'aria-controls', targets.join(' '))
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["p" /* setAttr */])(el, 'aria-expanded', 'false')
+      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["q" /* setAttr */])(el, 'aria-controls', targets.join(' '))
+      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["q" /* setAttr */])(el, 'aria-expanded', 'false')
       if (el.tagName !== 'BUTTON') {
         // If element is not a button, we add `role="button"` for accessibility
-        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["p" /* setAttr */])(el, 'role', 'button')
+        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["q" /* setAttr */])(el, 'role', 'button')
       }
 
       // Toggle state hadnler, stored on element
       el[BVT] = function toggleDirectiveHandler (id, state) {
         if (targets.indexOf(id) !== -1) {
           // Set aria-expanded state
-          Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["p" /* setAttr */])(el, 'aria-expanded', state ? 'true' : 'false')
+          Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["q" /* setAttr */])(el, 'aria-expanded', state ? 'true' : 'false')
           // Set/Clear 'collapsed' class state
           if (state) {
-            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["m" /* removeClass */])(el, 'collapsed')
+            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["n" /* removeClass */])(el, 'collapsed')
           } else {
             Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["a" /* addClass */])(el, 'collapsed')
           }
@@ -11429,7 +11528,7 @@ const EVENT_STATE = 'bv::collapse::state'
 
 // Return an Array of visible items
 function filterVisible (els) {
-  return (els || []).filter(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["j" /* isVisible */])
+  return (els || []).filter(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["k" /* isVisible */])
 }
 
 // Dropdown item CSS selectors
@@ -11808,7 +11907,7 @@ const AttachmentMap = {
     },
     getItems () {
       // Get all items
-      return filterVisible(Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["o" /* selectAll */])(ITEM_SELECTOR, this.$refs.menu))
+      return filterVisible(Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* selectAll */])(ITEM_SELECTOR, this.$refs.menu))
     },
     getFirstItem () {
       // Get the first non-disabled item
@@ -12270,6 +12369,500 @@ const BVRL = '__BV_root_listeners__'
 
 /***/ }),
 
+/***/ "./node_modules/bootstrap-vue/src/mixins/pagination.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_range__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/range.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_key_codes__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/key-codes.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_link_link__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/link/link.js");
+/*
+ * Comon props, computed, data, render function, and methods for b-pagination and b-pagination-nav
+ */
+
+
+
+
+
+
+// Make an array of N to N+X
+function makePageArray (startNum, numPages) {
+  return Object(__WEBPACK_IMPORTED_MODULE_0__utils_range__["a" /* default */])(numPages).map(function (value, index) {
+    return { number: index + startNum, className: null }
+  })
+}
+
+// Threshold of limit size when we start/stop showing ellipsis
+const ELLIPSIS_THRESHOLD = 3
+
+// Props object
+const props = {
+  disabled: {
+    type: Boolean,
+    default: false
+  },
+  value: {
+    type: Number,
+    default: 1
+  },
+  limit: {
+    type: Number,
+    default: 5
+  },
+  size: {
+    type: String,
+    default: 'md'
+  },
+  align: {
+    type: String,
+    default: 'left'
+  },
+  hideGotoEndButtons: {
+    type: Boolean,
+    default: false
+  },
+  ariaLabel: {
+    type: String,
+    default: 'Pagination'
+  },
+  labelFirstPage: {
+    type: String,
+    default: 'Goto first page'
+  },
+  firstText: {
+    type: String,
+    default: '&laquo;'
+  },
+  labelPrevPage: {
+    type: String,
+    default: 'Goto previous page'
+  },
+  prevText: {
+    type: String,
+    default: '&lsaquo;'
+  },
+  labelNextPage: {
+    type: String,
+    default: 'Goto next page'
+  },
+  nextText: {
+    type: String,
+    default: '&rsaquo;'
+  },
+  labelLastPage: {
+    type: String,
+    default: 'Goto last page'
+  },
+  lastText: {
+    type: String,
+    default: '&raquo;'
+  },
+  labelPage: {
+    type: String,
+    default: 'Goto page'
+  },
+  hideEllipsis: {
+    type: Boolean,
+    default: false
+  },
+  ellipsisText: {
+    type: String,
+    default: '&hellip;'
+  }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  components: { bLink: __WEBPACK_IMPORTED_MODULE_3__components_link_link__["a" /* default */] },
+  data () {
+    return {
+      showFirstDots: false,
+      showLastDots: false,
+      currentPage: this.value
+    }
+  },
+  props,
+  render (h) {
+    const buttons = []
+
+    // Factory function for prev/next/first/last buttons
+    const makeEndBtns = (linkTo, ariaLabel, btnText, pageTest) => {
+      let button
+      pageTest = pageTest || linkTo // Page # to test against to disable
+      if (this.disabled || this.isActive(pageTest)) {
+        button = h(
+          'li',
+          {
+            class: ['page-item', 'disabled'],
+            attrs: { role: 'none presentation', 'aria-hidden': 'true' }
+          },
+          [
+            h('span', {
+              class: ['page-link'],
+              domProps: { innerHTML: btnText }
+            })
+          ]
+        )
+      } else {
+        button = h(
+          'li',
+          {
+            class: ['page-item'],
+            attrs: { role: 'none presentation' }
+          },
+          [
+            h(
+              'b-link',
+              {
+                class: ['page-link'],
+                props: this.linkProps(linkTo),
+                attrs: {
+                  role: 'menuitem',
+                  tabindex: '-1',
+                  'aria-label': ariaLabel,
+                  'aria-controls': this.ariaControls || null
+                },
+                on: {
+                  click: evt => {
+                    this.onClick(linkTo, evt)
+                  },
+                  keydown: evt => {
+                    // Links don't normally respond to SPACE, so we add that functionality
+                    if (evt.keyCode === __WEBPACK_IMPORTED_MODULE_1__utils_key_codes__["a" /* default */].SPACE) {
+                      evt.preventDefault()
+                      this.onClick(linkTo, evt)
+                    }
+                  }
+                }
+              },
+              [
+                h('span', {
+                  attrs: { 'aria-hidden': 'true' },
+                  domProps: { innerHTML: btnText }
+                })
+              ]
+            )
+          ]
+        )
+      }
+      return button
+    }
+
+    // Ellipsis factory
+    const makeEllipsis = () => {
+      return h(
+        'li',
+        {
+          class: ['page-item', 'disabled', 'd-none', 'd-sm-flex'],
+          attrs: { role: 'separator' }
+        },
+        [
+          h('span', {
+            class: ['page-link'],
+            domProps: { innerHTML: this.ellipsisText }
+          })
+        ]
+      )
+    }
+
+    // Goto First Page button
+    buttons.push(
+      this.hideGotoEndButtons
+        ? h(false)
+        : makeEndBtns(1, this.labelFirstPage, this.firstText)
+    )
+
+    // Goto Previous page button
+    buttons.push(makeEndBtns(this.currentPage - 1, this.labelPrevPage, this.prevText, 1))
+
+    // First Ellipsis Bookend
+    buttons.push(this.showFirstDots ? makeEllipsis() : h(false))
+
+    // Individual Page links
+    this.pageList.forEach(page => {
+      let inner
+      let pageNum = this.makePage(page.number)
+      if (this.disabled) {
+        inner = h('span', {
+          class: ['page-link'],
+          domProps: { innerHTML: pageNum }
+        })
+      } else {
+        const active = this.isActive(page.number)
+        inner = h('b-link', {
+          class: this.pageLinkClasses(page),
+          props: this.linkProps(page.number),
+          attrs: {
+            role: 'menuitemradio',
+            tabindex: active ? '0' : '-1',
+            'aria-controls': this.ariaControls || null,
+            'aria-label': `${this.labelPage} ${page.number}`,
+            'aria-checked': active ? 'true' : 'false',
+            'aria-posinset': page.number,
+            'aria-setsize': this.numberOfPages
+          },
+          domProps: { innerHTML: pageNum },
+          on: {
+            click: evt => {
+              this.onClick(page.number, evt)
+            },
+            keydown: evt => {
+              if (evt.keyCode === __WEBPACK_IMPORTED_MODULE_1__utils_key_codes__["a" /* default */].SPACE) {
+                evt.preventDefault()
+                this.onClick(page.number, evt)
+              }
+            }
+          }
+        })
+      }
+      buttons.push(
+        h(
+          'li',
+          {
+            key: page.number,
+            class: this.pageItemClasses(page),
+            attrs: { role: 'none presentation' }
+          },
+          [inner]
+        )
+      )
+    })
+
+    // Last Ellipsis Bookend
+    buttons.push(this.showLastDots ? makeEllipsis() : h(false))
+
+    // Goto Next page button
+    buttons.push(
+      makeEndBtns(
+        this.currentPage + 1,
+        this.labelNextPage,
+        this.nextText,
+        this.numberOfPages
+      )
+    )
+
+    // Goto Last Page button
+    buttons.push(
+      this.hideGotoEndButtons
+        ? h(false)
+        : makeEndBtns(this.numberOfPages, this.labelLastPage, this.lastText)
+    )
+
+    // Assemble the paginatiom buttons
+    const pagination = h(
+      'ul',
+      {
+        ref: 'ul',
+        class: ['pagination', 'b-pagination', this.btnSize, this.alignment],
+        attrs: {
+          role: 'menubar',
+          'aria-disabled': this.disabled ? 'true' : 'false',
+          'aria-label': this.ariaLabel || null
+        },
+        on: {
+          keydown: evt => {
+            const keyCode = evt.keyCode
+            const shift = evt.shiftKey
+            if (keyCode === __WEBPACK_IMPORTED_MODULE_1__utils_key_codes__["a" /* default */].LEFT) {
+              evt.preventDefault()
+              shift ? this.focusFirst() : this.focusPrev()
+            } else if (keyCode === __WEBPACK_IMPORTED_MODULE_1__utils_key_codes__["a" /* default */].RIGHT) {
+              evt.preventDefault()
+              shift ? this.focusLast() : this.focusNext()
+            }
+          }
+        }
+      },
+      buttons
+    )
+
+    // if we are pagination-nav, wrap in '<nav>' wrapper
+    return this.isNav ? h('nav', {}, [pagination]) : pagination
+  },
+  watch: {
+    currentPage (newPage, oldPage) {
+      if (newPage !== oldPage) {
+        this.$emit('input', newPage)
+      }
+    },
+    value (newValue, oldValue) {
+      if (newValue !== oldValue) {
+        this.currentPage = newValue
+      }
+    }
+  },
+  computed: {
+    btnSize () {
+      return this.size ? `pagination-${this.size}` : ''
+    },
+    alignment () {
+      if (this.align === 'center') {
+        return 'justify-content-center'
+      } else if (this.align === 'end' || this.align === 'right') {
+        return 'justify-content-end'
+      }
+      return ''
+    },
+    pageList () {
+      // Sanity checks
+      if (this.currentPage > this.numberOfPages) {
+        this.currentPage = this.numberOfPages
+      } else if (this.currentPage < 1) {
+        this.currentPage = 1
+      }
+      // - Hide first ellipsis marker
+      this.showFirstDots = false
+      // - Hide last ellipsis marker
+      this.showLastDots = false
+      let numLinks = this.limit
+      let startNum = 1
+      if (this.numberOfPages <= this.limit) {
+        // Special Case: Less pages available than the limit of displayed pages
+        numLinks = this.numberOfPages
+      } else if (
+        this.currentPage < this.limit - 1 &&
+        this.limit > ELLIPSIS_THRESHOLD
+      ) {
+        // We are near the beginning of the page list
+        if (!this.hideEllipsis) {
+          numLinks = this.limit - 1
+          this.showLastDots = true
+        }
+      } else if (
+        this.numberOfPages - this.currentPage + 2 < this.limit &&
+        this.limit > ELLIPSIS_THRESHOLD
+      ) {
+        // We are near the end of the list
+        if (!this.hideEllipsis) {
+          this.showFirstDots = true
+          numLinks = this.limit - 1
+        }
+        startNum = this.numberOfPages - numLinks + 1
+      } else {
+        // We are somewhere in the middle of the page list
+        if (this.limit > ELLIPSIS_THRESHOLD && !this.hideEllipsis) {
+          this.showFirstDots = true
+          this.showLastDots = true
+          numLinks = this.limit - 2
+        }
+        startNum = this.currentPage - Math.floor(numLinks / 2)
+      }
+      // Sanity checks
+      if (startNum < 1) {
+        startNum = 1
+      } else if (startNum > this.numberOfPages - numLinks) {
+        startNum = this.numberOfPages - numLinks + 1
+      }
+      // Generate list of page numbers
+      const pages = makePageArray(startNum, numLinks)
+      // We limit to a total of 3 page buttons on small screens
+      // Ellipsis will also be hidden on small screens
+      if (pages.length > 3) {
+        const idx = this.currentPage - startNum
+        if (idx === 0) {
+          // Keep leftmost 3 buttons visible
+          for (let i = 3; i < pages.length; i++) {
+            pages[i].className = 'd-none d-sm-flex'
+          }
+        } else if (idx === pages.length - 1) {
+          // Keep rightmost 3 buttons visible
+          for (let i = 0; i < pages.length - 3; i++) {
+            pages[i].className = 'd-none d-sm-flex'
+          }
+        } else {
+          // hide left button(s)
+          for (let i = 0; i < idx - 1; i++) {
+            pages[i].className = 'd-none d-sm-flex'
+          }
+          // hide right button(s)
+          for (let i = pages.length - 1; i > idx + 1; i--) {
+            pages[i].className = 'd-none d-sm-flex'
+          }
+        }
+      }
+      return pages
+    }
+  },
+  methods: {
+    isActive (pagenum) {
+      return pagenum === this.currentPage
+    },
+    pageItemClasses (page) {
+      return [
+        'page-item',
+        this.disabled ? 'disabled' : '',
+        this.isActive(page.number) ? 'active' : '',
+        page.className
+      ]
+    },
+    pageLinkClasses (page) {
+      return [
+        'page-link',
+        this.disabled ? 'disabled' : '',
+        // Interim workaround to get better focus styling of active button
+        // See https://github.com/twbs/bootstrap/issues/24838
+        this.isActive(page.number) ? 'btn-primary' : ''
+      ]
+    },
+    getButtons () {
+      // Return only buttons that are visible
+      return Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["p" /* selectAll */])('a.page-link', this.$el).filter(btn => Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["k" /* isVisible */])(btn))
+    },
+    setBtnFocus (btn) {
+      this.$nextTick(() => {
+        btn.focus()
+      })
+    },
+    focusCurrent () {
+      const btn = this.getButtons().find(
+        el => parseInt(Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["e" /* getAttr */])(el, 'aria-posinset'), 10) === this.currentPage
+      )
+      if (btn && btn.focus) {
+        this.setBtnFocus(btn)
+      } else {
+        // Fallback if current page is not in button list
+        this.focusFirst()
+      }
+    },
+    focusFirst () {
+      const btn = this.getButtons().find(el => !Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["i" /* isDisabled */])(el))
+      if (btn && btn.focus && btn !== document.activeElement) {
+        this.setBtnFocus(btn)
+      }
+    },
+    focusLast () {
+      const btn = this.getButtons()
+        .reverse()
+        .find(el => !Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["i" /* isDisabled */])(el))
+      if (btn && btn.focus && btn !== document.activeElement) {
+        this.setBtnFocus(btn)
+      }
+    },
+    focusPrev () {
+      const buttons = this.getButtons()
+      const idx = buttons.indexOf(document.activeElement)
+      if (idx > 0 && !Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["i" /* isDisabled */])(buttons[idx - 1]) && buttons[idx - 1].focus) {
+        this.setBtnFocus(buttons[idx - 1])
+      }
+    },
+    focusNext () {
+      const buttons = this.getButtons()
+      const idx = buttons.indexOf(document.activeElement)
+      const cnt = buttons.length - 1
+      if (
+        idx < cnt &&
+        !Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["i" /* isDisabled */])(buttons[idx + 1]) &&
+        buttons[idx + 1].focus
+      ) {
+        this.setBtnFocus(buttons[idx + 1])
+      }
+    }
+  }
+});
+
+
+/***/ }),
+
 /***/ "./node_modules/bootstrap-vue/src/utils/array.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -12501,7 +13094,7 @@ class BvEvent {
 const isElement = el => {
   return el && el.nodeType === Node.ELEMENT_NODE
 }
-/* harmony export (immutable) */ __webpack_exports__["i"] = isElement;
+/* harmony export (immutable) */ __webpack_exports__["j"] = isElement;
 
 
 // Determine if an HTML element is visible - Faster than CSS check
@@ -12511,7 +13104,7 @@ const isVisible = el => {
            el.getBoundingClientRect().height > 0 &&
            el.getBoundingClientRect().width > 0
 }
-/* harmony export (immutable) */ __webpack_exports__["j"] = isVisible;
+/* harmony export (immutable) */ __webpack_exports__["k"] = isVisible;
 
 
 // Determine if an element is disabled
@@ -12521,7 +13114,7 @@ const isDisabled = el => {
            el.classList.contains('disabled') ||
            Boolean(el.getAttribute('disabled'))
 }
-/* unused harmony export isDisabled */
+/* harmony export (immutable) */ __webpack_exports__["i"] = isDisabled;
 
 
 // Cause/wait-for an element to reflow it's content (adjusting it's height/width)
@@ -12529,7 +13122,7 @@ const reflow = el => {
   // requsting an elements offsetHight will trigger a reflow of the element content
   return isElement(el) && el.offsetHeight
 }
-/* harmony export (immutable) */ __webpack_exports__["k"] = reflow;
+/* harmony export (immutable) */ __webpack_exports__["l"] = reflow;
 
 
 // Select all elements matching selector. Returns [] if none found
@@ -12539,7 +13132,7 @@ const selectAll = (selector, root) => {
   }
   return Object(__WEBPACK_IMPORTED_MODULE_0__array__["c" /* from */])(root.querySelectorAll(selector))
 }
-/* harmony export (immutable) */ __webpack_exports__["o"] = selectAll;
+/* harmony export (immutable) */ __webpack_exports__["p"] = selectAll;
 
 
 // Select a single element, returns null if not found
@@ -12549,7 +13142,7 @@ const select = (selector, root) => {
   }
   return root.querySelector(selector) || null
 }
-/* harmony export (immutable) */ __webpack_exports__["n"] = select;
+/* harmony export (immutable) */ __webpack_exports__["o"] = select;
 
 
 // Determine if an element matches a selector
@@ -12637,7 +13230,7 @@ const removeClass = (el, className) => {
     el.classList.remove(className)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["m"] = removeClass;
+/* harmony export (immutable) */ __webpack_exports__["n"] = removeClass;
 
 
 // Test if an element has a class
@@ -12656,7 +13249,7 @@ const setAttr = (el, attr, value) => {
     el.setAttribute(attr, value)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["p"] = setAttr;
+/* harmony export (immutable) */ __webpack_exports__["q"] = setAttr;
 
 
 // Remove an attribute from an element
@@ -12665,7 +13258,7 @@ const removeAttr = (el, attr) => {
     el.removeAttribute(attr)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["l"] = removeAttr;
+/* harmony export (immutable) */ __webpack_exports__["m"] = removeAttr;
 
 
 // Get an attribute value from an element (returns null if not found)
@@ -13016,7 +13609,7 @@ function observeDOM (el, callback, opts) {
   // Handle case where we might be passed a vue instance
   el = el ? (el.$el || el) : null
   /* istanbul ignore next: dificult to test in JSDOM */
-  if (!Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["i" /* isElement */])(el)) {
+  if (!Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["j" /* isElement */])(el)) {
     // We can't observe somthing that isn't an element
     return null
   }
@@ -13171,6 +13764,19 @@ function vueUse (VuePlugin) {
     window.Vue.use(VuePlugin)
   }
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/utils/range.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * @param {number} length
+ * @return {Array}
+ */
+/* harmony default export */ __webpack_exports__["a"] = (length => Array.apply(null, { length }));
 
 
 /***/ }),
@@ -13458,7 +14064,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -38521,44 +39127,19 @@ var render = function() {
               )
             ],
             1
-          ),
-          _vm._v(" "),
-          _vm.count > _vm.loadMoreCountShow
-            ? _c(
-                "b-row",
-                [
-                  _c(
-                    "b-col",
-                    {
-                      staticStyle: { "text-align": "center" },
-                      attrs: {
-                        cols: "12",
-                        sm: "12",
-                        md: "12",
-                        lg: "12",
-                        xl: "12"
-                      }
-                    },
-                    [
-                      _c(
-                        "b-button",
-                        {
-                          staticStyle: { margin: "10px" },
-                          attrs: { variant: "primary" },
-                          on: { click: _vm.loadMore }
-                        },
-                        [_vm._v("загрузить ещё")]
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            : _vm._e()
+          )
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _vm.count > _vm.loadMoreCountShow
+        ? _c(
+            "div",
+            { staticClass: "mt-3" },
+            [_c("b-pagination", { attrs: { align: "center" } })],
+            1
+          )
+        : _vm._e()
     ],
     1
   )
@@ -54390,9 +54971,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28_bootstrap_vue_src_components_navbar__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/navbar/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29_bootstrap_vue_src_components_modal__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/modal/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30_bootstrap_vue_src_components_alert__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/alert/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32_vue_notification__ = __webpack_require__("./node_modules/vue-notification/dist/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32_vue_notification___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_32_vue_notification__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31_bootstrap_vue_src_components_pagination__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/pagination/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33_vue_notification__ = __webpack_require__("./node_modules/vue-notification/dist/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33_vue_notification___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_33_vue_notification__);
 var _state;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -54435,6 +55017,7 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
 
+
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_15_bootstrap_vue_src_components_layout__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_16_bootstrap_vue_src_components_form__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_17_bootstrap_vue_src_components_form_input__["a" /* default */]);
@@ -54451,17 +55034,18 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_27_boo
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_28_bootstrap_vue_src_components_navbar__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_29_bootstrap_vue_src_components_modal__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_30_bootstrap_vue_src_components_alert__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_31_bootstrap_vue_src_components_pagination__["a" /* default */]);
 
 
-__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_32_vuex__["a" /* default */]);
 
 
-__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_32_vue_notification___default.a);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_33_vue_notification___default.a);
 
 // -----------------------------------
 // Реактивное хранилище
 // -----------------------------------
-var store = new __WEBPACK_IMPORTED_MODULE_31_vuex__["a" /* default */].Store({
+var store = new __WEBPACK_IMPORTED_MODULE_32_vuex__["a" /* default */].Store({
 
   state: (_state = {
     // -------------------------------------

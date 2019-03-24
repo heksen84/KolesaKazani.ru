@@ -88,14 +88,20 @@
 			<!--<b-col cols="12" sm="12" md="2" lg="2" xl="2">VIP567</b-col>-->	
 		</b-row>
 
-		<b-row v-if="count>loadMoreCountShow">
+		<!--<b-row v-if="count>loadMoreCountShow">
 			<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
 				<b-button variant="primary" style="margin:10px" @click="loadMore">загрузить ещё</b-button>
 			</b-col>
-		</b-row>
+		</b-row>-->
+	</div>
+
+	<div class="mt-3" v-if="count>loadMoreCountShow">
+				<b-pagination align="center"/>
 	</div>
 
 </b-container>
+
+
 </template>
 <script>
 

@@ -35,6 +35,8 @@ import radio from 'bootstrap-vue/src/components/form-radio';
 import navbar from 'bootstrap-vue/src/components/navbar';
 import modal from 'bootstrap-vue/src/components/modal';
 import alert from 'bootstrap-vue/src/components/alert';
+import pagination from 'bootstrap-vue/src/components/pagination';
+
 
 Vue.use(layout);
 Vue.use(form);
@@ -52,6 +54,7 @@ Vue.use(radio);
 Vue.use(navbar);
 Vue.use(modal);
 Vue.use(alert);
+Vue.use(pagination);
 
 import Vuex from 'vuex';
 Vue.use(Vuex);
