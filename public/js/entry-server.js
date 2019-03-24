@@ -2659,8 +2659,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-
+	// Входящие данные	
 	props: ["items"],
+
 	components: {},
 
 	// данные компонента
@@ -3043,8 +3044,8 @@ function forEach(data, callback) {
 
 // Логика
 /* harmony default export */ __webpack_exports__["default"] = ({
-
-	props: ["items", "dealtypes", "regions"], // Входящие данные
+	// Входящие данные
+	props: ["items", "dealtypes", "regions"],
 
 	components: { transport: __WEBPACK_IMPORTED_MODULE_1__components_chars_transport___default.a, realestate: __WEBPACK_IMPORTED_MODULE_2__components_chars_realestate___default.a }, // Используемые компоненты
 
@@ -3806,8 +3807,8 @@ function initMap() {
 // компонент
 // ------------------
 /* harmony default export */ __webpack_exports__["default"] = ({
-
-	props: ["item", "images", "full"], // входящие данные
+	// Входящие данные
+	props: ["item", "images", "full"],
 
 	data: function data() {
 		return {
@@ -3972,8 +3973,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //import petrovich from 'petrovich';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-
-  props: ["items", "auth", "count", "subcats"], // входящие данные
+  // Входящие данные
+  props: ["items", "auth", "count", "subcats"],
 
   data: function data() {
 
@@ -4317,6 +4318,7 @@ function num2str(n, text_forms) {
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+
 	// Входящие данные
 	props: ["category", "category_name", "subcat", "region", "place", "data", "results", "title"],
 
@@ -14067,7 +14069,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 

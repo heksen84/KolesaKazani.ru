@@ -36,8 +36,9 @@
 
 import { get } from './../helpers/api'
 export default {
-	
+// Входящие данные	
 props: ["items"],
+
 components: {},
 
 // данные компонента

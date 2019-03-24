@@ -307,8 +307,8 @@ function forEach(data, callback) {
 
 // Логика
 export default {
-	
-	props: ["items", "dealtypes", "regions"], // Входящие данные
+	// Входящие данные
+	props: ["items", "dealtypes", "regions"],
 
 	components: { transport, realestate }, // Используемые компоненты
 	

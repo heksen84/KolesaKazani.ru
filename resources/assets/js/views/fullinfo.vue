@@ -246,8 +246,8 @@ function initMap() {
 // компонент
 // ------------------
 export default {
-
-props: ["item", "images", "full"], // входящие данные
+// Входящие данные
+props: ["item", "images", "full"],
 
 data() {
    return {

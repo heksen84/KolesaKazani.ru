@@ -112,8 +112,8 @@ import { get } from './../helpers/api'
 //import petrovich from 'petrovich';
 
 export default {
-  
-  props: ["items", "auth", "count", "subcats"], // входящие данные
+  // Входящие данные
+  props: ["items", "auth", "count", "subcats"],
 
   data () {
     
