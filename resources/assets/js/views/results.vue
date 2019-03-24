@@ -134,10 +134,8 @@ export default {
     sliding: null,
 
 		// фильтра
-
 		filter: true,
 		filter_text: "Скрыть фильтр",
-
 		filters: {
     	price: null,
       deal: null,
