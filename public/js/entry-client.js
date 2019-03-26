@@ -4294,6 +4294,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // -----------------------------------------------
@@ -4315,7 +4328,6 @@ function num2str(n, text_forms) {
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-
 	// Входящие данные
 	props: ["category", "category_name", "subcat", "region", "place", "data", "results", "title"],
 
@@ -4335,11 +4347,13 @@ function num2str(n, text_forms) {
 			sliding: null,
 			filter: true,
 			filter_text: "Скрыть фильтр",
+
 			filters: {
 				price: null,
 				deal: null,
 				actual: null
 			},
+
 			options_price: [{ value: null, text: '-- Цена --' }, { value: '0', text: 'Цена по возрастанию' }, { value: '1', text: 'Цена по убыванию' }],
 
 			options_deal: [{ value: null, text: '-- Вид сделки --' }, { value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }],
@@ -14066,7 +14080,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -38941,25 +38955,6 @@ var render = function() {
                 [
                   _c("b-form-select", {
                     staticClass: "mb-1",
-                    attrs: { options: _vm.options_price },
-                    model: {
-                      value: _vm.filters.price,
-                      callback: function($$v) {
-                        _vm.$set(_vm.filters, "price", $$v)
-                      },
-                      expression: "filters.price"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-col",
-                { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
-                [
-                  _c("b-form-select", {
-                    staticClass: "mb-1",
                     attrs: { options: _vm.options_deal },
                     model: {
                       value: _vm.filters.deal,
@@ -38975,31 +38970,34 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "b-col",
-                { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
+                { attrs: { cols: "12", sm: "12", md: "1", lg: "1", xl: "1" } },
+                [_c("b", [_vm._v("Цена:")])]
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                { attrs: { cols: "4", sm: "4", md: "2", lg: "2", xl: "2" } },
                 [
-                  _c("b-form-select", {
-                    staticClass: "mb-1",
-                    attrs: { options: _vm.options_actual },
-                    model: {
-                      value: _vm.filters.actual,
-                      callback: function($$v) {
-                        _vm.$set(_vm.filters, "actual", $$v)
-                      },
-                      expression: "filters.actual"
-                    }
+                  _c("b-form-input", {
+                    staticClass: "mb-3",
+                    attrs: { placeholder: "От" }
                   })
                 ],
                 1
-              )
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.filter
-        ? _c(
-            "b-row",
-            [
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                { attrs: { cols: "4", sm: "4", md: "2", lg: "2", xl: "2" } },
+                [
+                  _c("b-form-input", {
+                    staticClass: "mb-3",
+                    attrs: { placeholder: "До" }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
               _c(
                 "b-col",
                 {
@@ -39010,7 +39008,7 @@ var render = function() {
                   _c(
                     "b-button",
                     {
-                      staticStyle: { margin: "5px" },
+                      staticClass: "mb-4",
                       attrs: { variant: "primary", size: "sm" },
                       on: { click: _vm.setFilter }
                     },

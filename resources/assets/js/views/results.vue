@@ -18,7 +18,7 @@
 	<!------------------------------------
 	  общие фильтры
 	 -------------------------------------->
-	<b-row v-if="count>1 && filter">				
+	<!--<b-row v-if="count>1 && filter">				
 		<b-col cols="12" sm="12" md="3" lg="3" xl="3"></b-col>
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 		  <b-form-select v-model="filters.price" :options="options_price" class="mb-1"/>
@@ -29,6 +29,25 @@
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 		 	<b-form-select v-model="filters.actual" :options="options_actual" class="mb-1"/>			
 		</b-col>		
+	</b-row>-->
+
+	<b-row v-if="count>1 && filter">
+		<b-col cols="12" sm="12" md="3" lg="3" xl="3"></b-col>
+		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
+		  <b-form-select v-model="filters.deal" :options="options_deal" class="mb-1"/>
+		</b-col>
+		<b-col cols="12" sm="12" md="1" lg="1" xl="1">			
+		  <b>Цена:</b>
+		</b-col>		
+		<b-col cols="4" sm="4" md="2" lg="2" xl="2">			
+		  <b-form-input class="mb-3" placeholder="От"/>			
+		</b-col>		
+		<b-col cols="4" sm="4" md="2" lg="2" xl="2">			
+		  <b-form-input class="mb-3" placeholder="До"/>			
+		</b-col>
+		<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
+				<b-button variant="primary" size="sm" class="mb-4" @click="setFilter">Применить</b-button>
+		</b-col>
 	</b-row>
 
 	<!-- Фильтр тачек -->
@@ -47,12 +66,6 @@
 		  <b-form-select :options="options_price" class="mb-1"/>
 		</b-col>		
 	</b-row>-->
-
-	<b-row v-if="filter">
-			<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
-				<b-button variant="primary" size="sm" style="margin:5px" @click="setFilter">Применить</b-button>
-			</b-col>
-	</b-row>
 
 	<!-- VIP BLOCK -->
 	<div class="vip_block">
@@ -93,7 +106,7 @@
 	</div>
 
 	<div class="mt-3" v-if="count>loadMoreCountShow">
-				<b-pagination v-model="currentPage" :total-rows="rows" align="center" @change="changePage"/>
+		<b-pagination v-model="currentPage" :total-rows="rows" align="center" @change="changePage"/>
 	</div>
 
 </b-container>
@@ -121,7 +134,6 @@ import item from "../components/item"
 import { get } from "./../helpers/api"
 
 export default {
-	
 	// Входящие данные
 	props: ["category", "category_name", "subcat", "region", "place", "data", "results", "title"],
 
@@ -141,12 +153,14 @@ export default {
     sliding: null,
 		filter: true,
 		filter_text: "Скрыть фильтр",
+
 		filters: {
     	price: null,
       deal: null,
       actual: null,
     },
-    options_price: [
+    
+		options_price: [
       { value: null, text: '-- Цена --' },
       { value: '0', text: 'Цена по возрастанию' },
       { value: '1', text: 'Цена по убыванию' },
