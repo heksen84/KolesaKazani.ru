@@ -2883,6 +2883,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // ----------------------------------------------------
@@ -40209,7 +40217,6 @@ var render = function() {
                             },
                             attrs: {
                               maxlength: "12",
-                              state: _vm.checkPhone1State,
                               type: "text",
                               placeholder: "Контактный номер 1",
                               formatter: _vm.setPhoneNumber(1),
@@ -40237,7 +40244,6 @@ var render = function() {
                                     },
                                     attrs: {
                                       maxlength: "12",
-                                      state: _vm.checkPhone2State,
                                       type: "text",
                                       placeholder: "Контактный номер 2",
                                       formatter: _vm.setPhoneNumber(2)
@@ -40262,7 +40268,6 @@ var render = function() {
                                     },
                                     attrs: {
                                       maxlength: "12",
-                                      state: _vm.checkPhone3State,
                                       type: "text",
                                       placeholder: "Контактный номер 3",
                                       formatter: _vm.setPhoneNumber(3)
