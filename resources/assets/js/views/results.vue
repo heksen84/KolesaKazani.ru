@@ -32,24 +32,21 @@
 	</b-row>
 
 	<!-- Фильтр тачек -->
-	<b-row v-if="category==1 && count>1 && filter">
+<!--	<b-row v-if="category==1 && count>1 && filter">
 		<b-col cols="12" sm="12" md="3" lg="3" xl="3"></b-col>
+				
+		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
+		  <b-form-select :options="options_price" class="mb-1"/>
+		</b-col>		
 		
-		<!-- марки -->
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 		  <b-form-select :options="options_price" class="mb-1"/>
 		</b-col>		
 
-		<!-- модели -->
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 		  <b-form-select :options="options_price" class="mb-1"/>
 		</b-col>		
-
-		<!-- модели -->
-		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select :options="options_price" class="mb-1"/>
-		</b-col>		
-	</b-row>
+	</b-row>-->
 
 	<b-row v-if="filter">
 			<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
