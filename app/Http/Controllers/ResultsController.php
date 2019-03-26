@@ -25,9 +25,15 @@ class ResultsController extends Controller {
     // Получить данные по категории
     public function getResultsByCategory(Request $request) {
 
+        // получаю входящие данные
         $data = $request->all();
 
-        if ($data) {
+        $price_min=0;
+        $price_max=999999999;
+
+
+        // если указан фильтр
+        if ($data) {            
 
             \Debugbar::info($data["category_id"]);
             \Debugbar::info($data["category_name"]);
@@ -35,15 +41,16 @@ class ResultsController extends Controller {
             \Debugbar::info($data["price_min"]);
             \Debugbar::info($data["price_max"]);
 
-            // получаю имя на русском
-		    $category = Categories::select("id", "name")->where("url", $data["category_name"] )->first();
-		    $items = Adverts::where("category_id",  $category->id )->get();
+            $category_name = $data["category_name"];
+            $category_id = $data["category_id"];
+            $price_min = $data["price_min"];
+            $price_max = $data["price_max"];            
         }
-        else {
-            // получаю имя на русском
-		    $category = Categories::select("id", "name")->where("url",  $request->path() )->first();
-            $items = Adverts::where("category_id",  $category->id )->get();
-        }
+        else $category_name = $request->path();
+
+        // получаю имя на русском
+		$category = Categories::select("id", "name")->where("url", $category_name )->first();
+		$items = Adverts::where("category_id",  $category->id )->get();
         
        
 		// --------------------------------------------------------
@@ -148,7 +155,7 @@ class ResultsController extends Controller {
 					price, 
 					category_id,					
 					(SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image
-					FROM `adverts` AS adv WHERE category_id=".$category->id." 
+					FROM `adverts` AS adv WHERE category_id=".$category->id." AND price BETWEEN ".$price_min." AND ".$price_max."
 					ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit
 				);
 

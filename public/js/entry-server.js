@@ -4387,7 +4387,7 @@ function num2str(n, text_forms) {
 	// -------------------------
 	methods: {
 		update: function update() {
-			this.count = Object.keys(this.results).length;
+			this.count = Object.keys(this.resultsClone).length;
 			this.count_string = num2str(this.count, ["объявление", "объявления", "объявлений"]);
 		},
 
