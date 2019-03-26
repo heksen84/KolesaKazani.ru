@@ -28,9 +28,7 @@ class ResultsController extends Controller {
         // получаю входящие данные
         $data = $request->all();
 
-        $price_min=0;
-        $price_max=999999999;
-
+        $filter_string = "";
 
         // если указан фильтр
         if ($data) {            
@@ -40,19 +38,24 @@ class ResultsController extends Controller {
             \Debugbar::info($data["deal"]);
             \Debugbar::info($data["price_min"]);
             \Debugbar::info($data["price_max"]);
-
+            
             $category_name = $data["category_name"];
             $category_id = $data["category_id"];
             $price_min = $data["price_min"];
-            $price_max = $data["price_max"];            
-        }
-        else $category_name = $request->path();
+            $price_max = $data["price_max"];
+            $deal = $data["deal"];
 
+            // строка фильтра
+            $filter_string = " AND price BETWEEN ".$price_min." AND ".$price_max." AND adv.deal=".$deal;
+        }
+        else 
+            $category_name = $request->path();
+
+        
         // получаю имя на русском
 		$category = Categories::select("id", "name")->where("url", $category_name )->first();
-		$items = Adverts::where("category_id",  $category->id )->get();
-        
-       
+        $items = Adverts::where("category_id",  $category->id )->get();        
+               
 		// --------------------------------------------------------
 		// Беру данные по конкретной категории
 		// --------------------------------------------------------
@@ -82,7 +85,7 @@ class ResultsController extends Controller {
 					adv.adv_category_id = adv_transport.id AND 
 					adv_transport.mark = car_mark.id_car_mark AND 						
 					adv_transport.model = car_model.id_car_model
-					) WHERE adv.category_id=1
+					) WHERE adv.category_id=1.$filter_string
 					ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit
 				);
 
@@ -155,8 +158,7 @@ class ResultsController extends Controller {
 					price, 
 					category_id,					
 					(SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image
-					FROM `adverts` AS adv WHERE category_id=".$category->id." AND price BETWEEN ".$price_min." AND ".$price_max."
-					ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit
+                    FROM `adverts` AS adv WHERE category_id=".$category->id.$filter_string." ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit
 				);
 
 				\Debugbar::info($results);
@@ -199,7 +201,7 @@ class ResultsController extends Controller {
     // ---------------------------------------------------------------
     public function getResultsByCategoryForFront(Request $request) {
         $result = $this->getResultsByCategory($request);
-        return response()->json($result);
+        return $result;
 	}
 
 	/*
