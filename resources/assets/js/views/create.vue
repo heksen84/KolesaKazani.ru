@@ -96,11 +96,12 @@
 						<b-form-input maxlength="12" :state="checkPhone3State" v-model.trim="phone3" type="text" placeholder="Контактный номер 3" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber(3)"></b-form-input>
 					</div>-->
 
-					<b-form-input maxlength="12" v-model.trim="phone1" type="text" placeholder="Контактный номер 1" style="width:250px;display:inline;text-align:center" :formatter="setPhoneNumber(1)" required></b-form-input>
+					<b-form-input maxlength="12" v-model.trim="phone1" type="text" placeholder="Контактный номер 1" style="width:250px;display:inline;text-align:center" :formatter="setPhoneNumber(1)" required></b-form-input>&nbsp;&nbsp;&nbsp;
 
-					<div v-if="phone1.length > const_phone1_max_length">
-						<b-form-input maxlength="12" v-model.trim="phone2" type="text" placeholder="Контактный номер 2" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber(2)"></b-form-input>
-						<b-form-input maxlength="12" v-model.trim="phone3" type="text" placeholder="Контактный номер 3" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber(3)"></b-form-input>
+					<div v-if="phone1.length > const_phone1_max_length" style="display:inline">
+						<div><b-form-input maxlength="12" v-model.trim="phone2" type="text" placeholder="Контактный номер 2" style="width:250px;display:inline;text-align:center;margin: 5px auto" :formatter="setPhoneNumber(2)"></b-form-input>&nbsp;*</div>
+						<div><b-form-input maxlength="12" v-model.trim="phone3" type="text" placeholder="Контактный номер 3" style="width:250px;display:inline;text-align:center;margin: 5px auto" :formatter="setPhoneNumber(3)"></b-form-input>&nbsp;*</div>
+						<span style="color:rgb(60,60,60);font-weight:550">* - не обязательное поле</span>
 					</div>
 
 				</b-form-group>

@@ -2891,6 +2891,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 // ----------------------------------------------------
@@ -40250,60 +40251,87 @@ var render = function() {
                               expression: "phone1"
                             }
                           }),
-                          _vm._v(" "),
+                          _vm._v("   \n\n\t\t\t\t\t"),
                           _vm.phone1.length > _vm.const_phone1_max_length
                             ? _c(
                                 "div",
+                                { staticStyle: { display: "inline" } },
                                 [
-                                  _c("b-form-input", {
-                                    staticStyle: {
-                                      width: "250px",
-                                      "text-align": "center",
-                                      margin: "5px auto"
-                                    },
-                                    attrs: {
-                                      maxlength: "12",
-                                      type: "text",
-                                      placeholder: "Контактный номер 2",
-                                      formatter: _vm.setPhoneNumber(2)
-                                    },
-                                    model: {
-                                      value: _vm.phone2,
-                                      callback: function($$v) {
-                                        _vm.phone2 =
-                                          typeof $$v === "string"
-                                            ? $$v.trim()
-                                            : $$v
-                                      },
-                                      expression: "phone2"
-                                    }
-                                  }),
+                                  _c(
+                                    "div",
+                                    [
+                                      _c("b-form-input", {
+                                        staticStyle: {
+                                          width: "250px",
+                                          display: "inline",
+                                          "text-align": "center",
+                                          margin: "5px auto"
+                                        },
+                                        attrs: {
+                                          maxlength: "12",
+                                          type: "text",
+                                          placeholder: "Контактный номер 2",
+                                          formatter: _vm.setPhoneNumber(2)
+                                        },
+                                        model: {
+                                          value: _vm.phone2,
+                                          callback: function($$v) {
+                                            _vm.phone2 =
+                                              typeof $$v === "string"
+                                                ? $$v.trim()
+                                                : $$v
+                                          },
+                                          expression: "phone2"
+                                        }
+                                      }),
+                                      _vm._v(" *")
+                                    ],
+                                    1
+                                  ),
                                   _vm._v(" "),
-                                  _c("b-form-input", {
-                                    staticStyle: {
-                                      width: "250px",
-                                      "text-align": "center",
-                                      margin: "5px auto"
+                                  _c(
+                                    "div",
+                                    [
+                                      _c("b-form-input", {
+                                        staticStyle: {
+                                          width: "250px",
+                                          display: "inline",
+                                          "text-align": "center",
+                                          margin: "5px auto"
+                                        },
+                                        attrs: {
+                                          maxlength: "12",
+                                          type: "text",
+                                          placeholder: "Контактный номер 3",
+                                          formatter: _vm.setPhoneNumber(3)
+                                        },
+                                        model: {
+                                          value: _vm.phone3,
+                                          callback: function($$v) {
+                                            _vm.phone3 =
+                                              typeof $$v === "string"
+                                                ? $$v.trim()
+                                                : $$v
+                                          },
+                                          expression: "phone3"
+                                        }
+                                      }),
+                                      _vm._v(" *")
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticStyle: {
+                                        color: "rgb(60,60,60)",
+                                        "font-weight": "550"
+                                      }
                                     },
-                                    attrs: {
-                                      maxlength: "12",
-                                      type: "text",
-                                      placeholder: "Контактный номер 3",
-                                      formatter: _vm.setPhoneNumber(3)
-                                    },
-                                    model: {
-                                      value: _vm.phone3,
-                                      callback: function($$v) {
-                                        _vm.phone3 =
-                                          typeof $$v === "string"
-                                            ? $$v.trim()
-                                            : $$v
-                                      },
-                                      expression: "phone3"
-                                    }
-                                  })
-                                ],
-                                1
+                                    [_vm._v("* - не обязательное поле")]
+                                  )
+                                ]
                               )
                             : _vm._e()
                         ],
