@@ -4359,8 +4359,8 @@ function num2str(n, text_forms) {
 
 			filters: {
 				deal: null,
-				price_min: 0,
-				price_max: 0
+				price_min: null,
+				price_max: null
 			},
 
 			options_price: [{ value: null, text: '-- Цена --' }, { value: '0', text: 'Цена по возрастанию' }, { value: '1', text: 'Цена по убыванию' }],

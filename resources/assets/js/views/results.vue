@@ -157,8 +157,8 @@ export default {
 
 		filters: {
 			deal: null,
-			price_min: 0,
-			price_max: 0,
+			price_min: null,
+			price_max: null,
     },
     
 		options_price: [
