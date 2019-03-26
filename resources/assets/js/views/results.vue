@@ -40,10 +40,10 @@
 		  <span class="shadow_text" style="font-weight:600">Цена:</span>
 		</b-col>		
 		<b-col cols="4" sm="4" md="2" lg="2" xl="1">			
-		  <b-form-input class="mb-1" placeholder="От" type="number" size="sm"/>			
+		  <b-form-input v-model="filters.price_min" class="mb-1" placeholder="От" type="number" size="sm"/>			
 		</b-col>		
 		<b-col cols="4" sm="4" md="2" lg="2" xl="1">			
-		  <b-form-input class="mb-1" placeholder="До" type="number" size="sm"/>			
+		  <b-form-input v-model="filters.price_max" class="mb-1" placeholder="До" type="number" size="sm"/>			
 		</b-col>
 		<b-col cols="2" sm="2" md="12" lg="2" xl="2" style="text-align:center">
 				<b-button variant="warning" size="sm" class="mb-4" @click="setFilter">Применить</b-button>
@@ -134,7 +134,7 @@ import item from "../components/item"
 import { get } from "./../helpers/api"
 
 export default {
-	
+
 	// Входящие данные
 	props: ["category", "category_name", "subcat", "region", "place", "data", "results", "title"],
 
@@ -156,9 +156,9 @@ export default {
 		filter_text: "Скрыть фильтр",
 
 		filters: {
-    	price: null,
-      deal: null,
-      actual: null,
+			deal: null,
+			price_min: 0,
+			price_max: 0,
     },
     
 		options_price: [
@@ -193,6 +193,8 @@ export default {
 
 	// компонент создан
 	created() {
+
+		console.log(this.results)
 		this.update();
 	},
 				
@@ -229,12 +231,11 @@ export default {
 
 			// если только категория
 			if (this.category_name && !this.subcat && !this.region && !this.place) {
-				url="/getResultsByCategoryForFront?category_name="+
-				this.category_name+
+				url="/getResultsByCategoryForFront?category_name="+this.category_name+
 				"&category_id="+this.category+
-				"&price="+this.filters.price+
 				"&deal="+this.filters.deal+
-				"&actual="+this.filters.actual;
+				"&price_min="+this.filters.price_min+
+				"&price_max="+this.filters.price_max;
 				ready=true;
 			}
 
@@ -251,8 +252,10 @@ export default {
 					console.log(res);
 					console.log("------------------------");
 					
-					this.resultsClone=res.data;
+					this.resultsClone=JSON.parse(res.data.results);
 					this.update();
+
+					alert("окъ")
 
 					}).catch((err) => {	
 					console.log(err)

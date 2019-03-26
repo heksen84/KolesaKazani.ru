@@ -4358,9 +4358,9 @@ function num2str(n, text_forms) {
 			filter_text: "Скрыть фильтр",
 
 			filters: {
-				price: null,
 				deal: null,
-				actual: null
+				price_min: 0,
+				price_max: 0
 			},
 
 			options_price: [{ value: null, text: '-- Цена --' }, { value: '0', text: 'Цена по возрастанию' }, { value: '1', text: 'Цена по убыванию' }],
@@ -4376,6 +4376,8 @@ function num2str(n, text_forms) {
 
 	// компонент создан
 	created: function created() {
+
+		console.log(this.results);
 		this.update();
 	},
 
@@ -4414,7 +4416,7 @@ function num2str(n, text_forms) {
 
 			// если только категория
 			if (this.category_name && !this.subcat && !this.region && !this.place) {
-				url = "/getResultsByCategoryForFront?category_name=" + this.category_name + "&category_id=" + this.category + "&price=" + this.filters.price + "&deal=" + this.filters.deal + "&actual=" + this.filters.actual;
+				url = "/getResultsByCategoryForFront?category_name=" + this.category_name + "&category_id=" + this.category + "&deal=" + this.filters.deal + "&price_min=" + this.filters.price_min + "&price_max=" + this.filters.price_max;
 				ready = true;
 			}
 
@@ -4431,8 +4433,10 @@ function num2str(n, text_forms) {
 					console.log(res);
 					console.log("------------------------");
 
-					_this.resultsClone = res.data;
+					_this.resultsClone = JSON.parse(res.data.results);
 					_this.update();
+
+					alert("окъ");
 				}).catch(function (err) {
 					console.log(err);
 				});
@@ -14089,7 +14093,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -38998,7 +39002,14 @@ var render = function() {
                 [
                   _c("b-form-input", {
                     staticClass: "mb-1",
-                    attrs: { placeholder: "От", type: "number", size: "sm" }
+                    attrs: { placeholder: "От", type: "number", size: "sm" },
+                    model: {
+                      value: _vm.filters.price_min,
+                      callback: function($$v) {
+                        _vm.$set(_vm.filters, "price_min", $$v)
+                      },
+                      expression: "filters.price_min"
+                    }
                   })
                 ],
                 1
@@ -39010,7 +39021,14 @@ var render = function() {
                 [
                   _c("b-form-input", {
                     staticClass: "mb-1",
-                    attrs: { placeholder: "До", type: "number", size: "sm" }
+                    attrs: { placeholder: "До", type: "number", size: "sm" },
+                    model: {
+                      value: _vm.filters.price_max,
+                      callback: function($$v) {
+                        _vm.$set(_vm.filters, "price_max", $$v)
+                      },
+                      expression: "filters.price_max"
+                    }
                   })
                 ],
                 1

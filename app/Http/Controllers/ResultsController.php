@@ -31,9 +31,9 @@ class ResultsController extends Controller {
 
             \Debugbar::info($data["category_id"]);
             \Debugbar::info($data["category_name"]);
-            \Debugbar::info($data["price"]);
             \Debugbar::info($data["deal"]);
-            \Debugbar::info($data["actual"]);
+            \Debugbar::info($data["price_min"]);
+            \Debugbar::info($data["price_max"]);
 
             // получаю имя на русском
 		    $category = Categories::select("id", "name")->where("url", $data["category_name"] )->first();
@@ -192,7 +192,7 @@ class ResultsController extends Controller {
     // ---------------------------------------------------------------
     public function getResultsByCategoryForFront(Request $request) {
         $result = $this->getResultsByCategory($request);
-        return $result;
+        return response()->json($result);
 	}
 
 	/*
