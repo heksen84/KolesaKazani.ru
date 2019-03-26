@@ -17,5 +17,6 @@
   <PasswordReset email_token="{{ $token }}" csrf_token="{{ csrf_token() }}"></PasswordReset>
 </div>
 <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </body>
 </html>

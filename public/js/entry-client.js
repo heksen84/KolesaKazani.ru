@@ -37029,7 +37029,7 @@ var render = function() {
                 [_vm._v("X")]
               ),
               _vm._v(" "),
-              _c("h4", { staticClass: "form_title" }, [
+              _c("h1", { staticClass: "form_title" }, [
                 _vm._v("восстановление доступа")
               ]),
               _vm._v(" "),
@@ -37157,7 +37157,7 @@ var render = function() {
                 [_vm._v("X")]
               ),
               _vm._v(" "),
-              _c("h3", { staticClass: "form_title" }, [_vm._v("сброс пароля")]),
+              _c("h1", { staticClass: "form_title" }, [_vm._v("сброс пароля")]),
               _vm._v(" "),
               _c("hr"),
               _vm._v(" "),
@@ -39207,7 +39207,7 @@ var render = function() {
                 [_vm._v("X")]
               ),
               _vm._v(" "),
-              _c("h3", { staticClass: "form_title" }, [_vm._v("регистрация")]),
+              _c("h1", { staticClass: "form_title" }, [_vm._v("регистрация")]),
               _vm._v(" "),
               _c("hr"),
               _vm._v(" "),
@@ -39303,7 +39303,7 @@ var render = function() {
                           id: "password_confirm",
                           type: "password",
                           required: "",
-                          placeholder: "Подтвердите пароль",
+                          placeholder: "Повторите пароль",
                           state: _vm.confirm_password_state
                         },
                         model: {
@@ -39415,7 +39415,7 @@ var render = function() {
                 [_vm._v("X")]
               ),
               _vm._v(" "),
-              _c("h3", { staticClass: "form_title" }, [_vm._v("вход")]),
+              _c("h1", { staticClass: "form_title" }, [_vm._v("вход")]),
               _vm._v(" "),
               _c("hr"),
               _vm._v(" "),

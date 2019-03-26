@@ -10,7 +10,7 @@
     <!-- ФОРМА -->
     <b-col cols="12" sm="12" md="12" lg="4" xl="4" class="form">    
     <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
-    <h4 class="form_title">восстановление доступа</h4>    
+    <h1 class="form_title">восстановление доступа</h1>    
     <hr>
     <b-form style="width:99%" @submit="sendEmail">
       <b-form-group label="Email адрес:" label-for="email">

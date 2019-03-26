@@ -10,7 +10,7 @@
     <!-- ФОРМА -->
     <b-col cols="12" sm="12" md="12" lg="4" xl="4" class="form">
     <div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
-    <h3 class="form_title">сброс пароля</h3>
+    <h1 class="form_title">сброс пароля</h1>
     <hr>
     <b-form @submit="onSubmit" style="width:99%">
     
