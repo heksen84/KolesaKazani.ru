@@ -82,7 +82,7 @@
 				<b-form-group label-for="price" style="text-align:center" v-if="category!=4">
 			 		<b-form-input type="number" id="price" placeholder="Цена" style="text-align:center;margin-left:40px;width:130px;display:inline;font-weight:bold" :formatter="setPrice" required></b-form-input>
 					&nbsp;{{ this.$root.money_full_name }}
-					<div style="margin-top:10px;color:green">{{ summ_str }}</div>
+					<div style="margin-top:10px;color:green;font-weight:700">{{ summ_str }}</div>
 				</b-form-group>
 
 				<!-- Контакты -->

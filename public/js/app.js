@@ -40189,7 +40189,8 @@ var render = function() {
                                 {
                                   staticStyle: {
                                     "margin-top": "10px",
-                                    color: "green"
+                                    color: "green",
+                                    "font-weight": "700"
                                   }
                                 },
                                 [_vm._v(_vm._s(_vm.summ_str))]
