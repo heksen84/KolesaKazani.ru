@@ -221,6 +221,13 @@ h3 {
   color: #323232;
 }
 
+.phone_input {
+  width: 250px;
+  display: inline-block;
+  text-align: center;
+  margin: 3px auto;
+}
+
 .title_text {
   margin-top: 10px;
   font-size: 130%;
