@@ -38954,8 +38954,8 @@ var render = function() {
                 { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
                 [
                   _c("b-form-select", {
-                    staticClass: "mb-1",
-                    attrs: { options: _vm.options_deal },
+                    staticClass: "mb-2",
+                    attrs: { options: _vm.options_deal, size: "sm" },
                     model: {
                       value: _vm.filters.deal,
                       callback: function($$v) {
@@ -38971,16 +38971,25 @@ var render = function() {
               _c(
                 "b-col",
                 { attrs: { cols: "12", sm: "12", md: "1", lg: "1", xl: "1" } },
-                [_c("b", [_vm._v("Цена:")])]
+                [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "shadow_text",
+                      staticStyle: { "font-weight": "600" }
+                    },
+                    [_vm._v("Цена:")]
+                  )
+                ]
               ),
               _vm._v(" "),
               _c(
                 "b-col",
-                { attrs: { cols: "4", sm: "4", md: "2", lg: "2", xl: "2" } },
+                { attrs: { cols: "4", sm: "4", md: "2", lg: "2", xl: "1" } },
                 [
                   _c("b-form-input", {
-                    staticClass: "mb-3",
-                    attrs: { placeholder: "От" }
+                    staticClass: "mb-1",
+                    attrs: { placeholder: "От", type: "number", size: "sm" }
                   })
                 ],
                 1
@@ -38988,11 +38997,11 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "b-col",
-                { attrs: { cols: "4", sm: "4", md: "2", lg: "2", xl: "2" } },
+                { attrs: { cols: "4", sm: "4", md: "2", lg: "2", xl: "1" } },
                 [
                   _c("b-form-input", {
-                    staticClass: "mb-3",
-                    attrs: { placeholder: "До" }
+                    staticClass: "mb-1",
+                    attrs: { placeholder: "До", type: "number", size: "sm" }
                   })
                 ],
                 1
@@ -39002,14 +39011,14 @@ var render = function() {
                 "b-col",
                 {
                   staticStyle: { "text-align": "center" },
-                  attrs: { cols: "12", sm: "12", md: "12", lg: "12", xl: "12" }
+                  attrs: { cols: "2", sm: "2", md: "12", lg: "2", xl: "2" }
                 },
                 [
                   _c(
                     "b-button",
                     {
                       staticClass: "mb-4",
-                      attrs: { variant: "primary", size: "sm" },
+                      attrs: { variant: "warning", size: "sm" },
                       on: { click: _vm.setFilter }
                     },
                     [_vm._v("Применить")]

@@ -34,19 +34,19 @@
 	<b-row v-if="count>1 && filter">
 		<b-col cols="12" sm="12" md="3" lg="3" xl="3"></b-col>
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <b-form-select v-model="filters.deal" :options="options_deal" class="mb-1"/>
+		  <b-form-select v-model="filters.deal" :options="options_deal" class="mb-2" size="sm"/>
 		</b-col>
 		<b-col cols="12" sm="12" md="1" lg="1" xl="1">			
-		  <b>Цена:</b>
+		  <span class="shadow_text" style="font-weight:600">Цена:</span>
 		</b-col>		
-		<b-col cols="4" sm="4" md="2" lg="2" xl="2">			
-		  <b-form-input class="mb-3" placeholder="От"/>			
+		<b-col cols="4" sm="4" md="2" lg="2" xl="1">			
+		  <b-form-input class="mb-1" placeholder="От" type="number" size="sm"/>			
 		</b-col>		
-		<b-col cols="4" sm="4" md="2" lg="2" xl="2">			
-		  <b-form-input class="mb-3" placeholder="До"/>			
+		<b-col cols="4" sm="4" md="2" lg="2" xl="1">			
+		  <b-form-input class="mb-1" placeholder="До" type="number" size="sm"/>			
 		</b-col>
-		<b-col cols="12" sm="12" md="12" lg="12" xl="12" style="text-align:center">
-				<b-button variant="primary" size="sm" class="mb-4" @click="setFilter">Применить</b-button>
+		<b-col cols="2" sm="2" md="12" lg="2" xl="2" style="text-align:center">
+				<b-button variant="warning" size="sm" class="mb-4" @click="setFilter">Применить</b-button>
 		</b-col>
 	</b-row>
 
