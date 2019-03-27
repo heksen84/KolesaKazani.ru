@@ -168,7 +168,7 @@ export default {
     ],
 
     options_deal: [
-      { value: null, text: '-- Вид сделки --' },
+      { value: null, text: '-- Вcе сделки --' },
       { value: '0', text: 'Покупка' },
       { value: '1', text: 'Продажа' },
       { value: '2', text: 'Обмен' },      

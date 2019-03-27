@@ -4366,7 +4366,7 @@ function num2str(n, text_forms) {
 
 			options_price: [{ value: null, text: '-- Цена --' }, { value: '0', text: 'Цена по возрастанию' }, { value: '1', text: 'Цена по убыванию' }],
 
-			options_deal: [{ value: null, text: '-- Вид сделки --' }, { value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Отдам даром' }, { value: '4', text: 'Сдача в аренду' }],
+			options_deal: [{ value: null, text: '-- Вcе сделки --' }, { value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Отдам даром' }, { value: '4', text: 'Сдача в аренду' }],
 
 			options_actual: [{ value: null, text: '-- Актуальность --' }, { value: '0', text: 'Сначала новые' }, { value: '1', text: 'Сначала старые' }],
 
