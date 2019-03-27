@@ -31,7 +31,7 @@
 		</b-col>		
 	</b-row>-->
 
-	<b-row v-if="count>1 && filter">
+	<b-row>
 		<b-col cols="12" sm="12" md="3" lg="3" xl="3"></b-col>
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 		  <b-form-select v-model="filters.deal" :options="options_deal" class="mb-2" size="sm"/>
@@ -171,10 +171,9 @@ export default {
       { value: null, text: '-- Вид сделки --' },
       { value: '0', text: 'Покупка' },
       { value: '1', text: 'Продажа' },
-      { value: '2', text: 'Обмен' },
-      { value: '3', text: 'Частичный обмен' },
-      { value: '4', text: 'Отдам даром' },
-      { value: '5', text: 'Сдача в аренду' }
+      { value: '2', text: 'Обмен' },      
+      { value: '3', text: 'Отдам даром' },
+      { value: '4', text: 'Сдача в аренду' }
     ],
 
     options_actual: [
@@ -193,7 +192,6 @@ export default {
 
 	// компонент создан
 	created() {
-
 		console.log(this.results)
 		this.update();
 	},
@@ -253,9 +251,7 @@ export default {
 					console.log("------------------------");
 					
 					this.resultsClone=JSON.parse(res.data.results);
-					this.update();
-
-					alert("окъ")
+					this.update();		
 
 					}).catch((err) => {	
 					console.log(err)

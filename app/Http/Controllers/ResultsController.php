@@ -35,22 +35,46 @@ class ResultsController extends Controller {
 
             \Debugbar::info($data["category_id"]);
             \Debugbar::info($data["category_name"]);
-            \Debugbar::info($data["deal"]);
-            \Debugbar::info($data["price_min"]);
-            \Debugbar::info($data["price_max"]);
+            \Debugbar::info("Вид сделки :".$data["deal"]);
+            \Debugbar::info("Цена от :".$data["price_min"]);
+            \Debugbar::info("Цена до :".$data["price_max"]);
             
             $category_name = $data["category_name"];
             $category_id = $data["category_id"];
             $price_min = $data["price_min"];
             $price_max = $data["price_max"];
-            $deal = $data["deal"];
+            $deal = $data["deal"];            
 
-            // строка фильтра
-            $filter_string = " AND price BETWEEN ".$price_min." AND ".$price_max." AND adv.deal=".$deal;
+            // Фильтра
+            if ($deal=="null" && $price_min=="null" && $price_max=="null" || $price_min=="" && $price_max=="")
+                $filter_string = "";
+            else
+            if ($deal=="null" && $price_min=="null" && $price_max=="")
+                $filter_string = "";
+            else
+            if ($deal!="null" && $price_min=="null" && $price_max=="null")
+                $filter_string = " AND adv.deal=".$deal;
+            else            
+            if ($deal!="null" && $price_min==0 && $price_max==0)
+                $filter_string = " AND adv.deal=".$deal;                    
+            else
+            if ($deal=="null" && $price_min=="" || $price_min=="null" && $price_max>=0)
+                $filter_string = " AND price BETWEEN 0 AND ".$price_max;
+            else
+            if ($deal!="null" && $price_min=="" || $price_min=="null" && $price_max>=0)
+                $filter_string = " AND price BETWEEN 0 AND ".$price_max." AND adv.deal=".$deal;
+            else
+            if ($deal=="null" && $price_min>=0 && $price_max>=0)
+                $filter_string = " AND price BETWEEN ".$price_min." AND ".$price_max;
+            else
+            if ($deal!="null" && $price_min>=0 && $price_max>=0)
+                $filter_string = " AND price BETWEEN ".$price_min." AND ".$price_max." AND adv.deal=".$deal;
+            else
+            if ($deal!="null" && $price_min=="null" && $price_max>=0)
+                $filter_string = " AND price BETWEEN 0 AND ".$price_max." AND adv.deal=".$deal;                
         }
-        else 
+        else  
             $category_name = $request->path();
-
         
         // получаю имя на русском
 		$category = Categories::select("id", "name")->where("url", $category_name )->first();

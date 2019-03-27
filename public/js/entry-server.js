@@ -4366,7 +4366,7 @@ function num2str(n, text_forms) {
 
 			options_price: [{ value: null, text: '-- Цена --' }, { value: '0', text: 'Цена по возрастанию' }, { value: '1', text: 'Цена по убыванию' }],
 
-			options_deal: [{ value: null, text: '-- Вид сделки --' }, { value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }],
+			options_deal: [{ value: null, text: '-- Вид сделки --' }, { value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Отдам даром' }, { value: '4', text: 'Сдача в аренду' }],
 
 			options_actual: [{ value: null, text: '-- Актуальность --' }, { value: '0', text: 'Сначала новые' }, { value: '1', text: 'Сначала старые' }],
 
@@ -4377,7 +4377,6 @@ function num2str(n, text_forms) {
 
 	// компонент создан
 	created: function created() {
-
 		console.log(this.results);
 		this.update();
 	},
@@ -4436,8 +4435,6 @@ function num2str(n, text_forms) {
 
 					_this.resultsClone = JSON.parse(res.data.results);
 					_this.update();
-
-					alert("окъ");
 				}).catch(function (err) {
 					console.log(err);
 				});
@@ -14094,7 +14091,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -38955,109 +38952,107 @@ var render = function() {
       _vm._v(" "),
       _c("br"),
       _vm._v(" "),
-      _vm.count > 1 && _vm.filter
-        ? _c(
-            "b-row",
+      _c(
+        "b-row",
+        [
+          _c("b-col", {
+            attrs: { cols: "12", sm: "12", md: "3", lg: "3", xl: "3" }
+          }),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
             [
-              _c("b-col", {
-                attrs: { cols: "12", sm: "12", md: "3", lg: "3", xl: "3" }
-              }),
-              _vm._v(" "),
+              _c("b-form-select", {
+                staticClass: "mb-2",
+                attrs: { options: _vm.options_deal, size: "sm" },
+                model: {
+                  value: _vm.filters.deal,
+                  callback: function($$v) {
+                    _vm.$set(_vm.filters, "deal", $$v)
+                  },
+                  expression: "filters.deal"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { attrs: { cols: "12", sm: "12", md: "1", lg: "1", xl: "1" } },
+            [
               _c(
-                "b-col",
-                { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
-                [
-                  _c("b-form-select", {
-                    staticClass: "mb-2",
-                    attrs: { options: _vm.options_deal, size: "sm" },
-                    model: {
-                      value: _vm.filters.deal,
-                      callback: function($$v) {
-                        _vm.$set(_vm.filters, "deal", $$v)
-                      },
-                      expression: "filters.deal"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-col",
-                { attrs: { cols: "12", sm: "12", md: "1", lg: "1", xl: "1" } },
-                [
-                  _c(
-                    "span",
-                    {
-                      staticClass: "shadow_text",
-                      staticStyle: { "font-weight": "600" }
-                    },
-                    [_vm._v("Цена:")]
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "b-col",
-                { attrs: { cols: "4", sm: "4", md: "2", lg: "2", xl: "1" } },
-                [
-                  _c("b-form-input", {
-                    staticClass: "mb-1",
-                    attrs: { placeholder: "От", type: "number", size: "sm" },
-                    model: {
-                      value: _vm.filters.price_min,
-                      callback: function($$v) {
-                        _vm.$set(_vm.filters, "price_min", $$v)
-                      },
-                      expression: "filters.price_min"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-col",
-                { attrs: { cols: "4", sm: "4", md: "2", lg: "2", xl: "1" } },
-                [
-                  _c("b-form-input", {
-                    staticClass: "mb-1",
-                    attrs: { placeholder: "До", type: "number", size: "sm" },
-                    model: {
-                      value: _vm.filters.price_max,
-                      callback: function($$v) {
-                        _vm.$set(_vm.filters, "price_max", $$v)
-                      },
-                      expression: "filters.price_max"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-col",
+                "span",
                 {
-                  staticStyle: { "text-align": "center" },
-                  attrs: { cols: "2", sm: "2", md: "12", lg: "2", xl: "2" }
+                  staticClass: "shadow_text",
+                  staticStyle: { "font-weight": "600" }
                 },
-                [
-                  _c(
-                    "b-button",
-                    {
-                      staticClass: "mb-4",
-                      attrs: { variant: "warning", size: "sm" },
-                      on: { click: _vm.setFilter }
-                    },
-                    [_vm._v("Применить")]
-                  )
-                ],
-                1
+                [_vm._v("Цена:")]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { attrs: { cols: "4", sm: "4", md: "2", lg: "2", xl: "1" } },
+            [
+              _c("b-form-input", {
+                staticClass: "mb-1",
+                attrs: { placeholder: "От", type: "number", size: "sm" },
+                model: {
+                  value: _vm.filters.price_min,
+                  callback: function($$v) {
+                    _vm.$set(_vm.filters, "price_min", $$v)
+                  },
+                  expression: "filters.price_min"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            { attrs: { cols: "4", sm: "4", md: "2", lg: "2", xl: "1" } },
+            [
+              _c("b-form-input", {
+                staticClass: "mb-1",
+                attrs: { placeholder: "До", type: "number", size: "sm" },
+                model: {
+                  value: _vm.filters.price_max,
+                  callback: function($$v) {
+                    _vm.$set(_vm.filters, "price_max", $$v)
+                  },
+                  expression: "filters.price_max"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            {
+              staticStyle: { "text-align": "center" },
+              attrs: { cols: "2", sm: "2", md: "12", lg: "2", xl: "2" }
+            },
+            [
+              _c(
+                "b-button",
+                {
+                  staticClass: "mb-4",
+                  attrs: { variant: "warning", size: "sm" },
+                  on: { click: _vm.setFilter }
+                },
+                [_vm._v("Применить")]
               )
             ],
             1
           )
-        : _vm._e(),
+        ],
+        1
+      ),
       _vm._v(" "),
       _c(
         "div",
