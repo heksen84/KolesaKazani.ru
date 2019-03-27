@@ -31,7 +31,10 @@ class ResultsController extends Controller {
         $filter_string = "";
 
         // если указан фильтр
-        if ($data) {            
+        if ($data) {
+            
+            
+            // ПРИМЕНИТЬ ВАЛИДАТОР
 
             \Debugbar::info($data["category_id"]);
             \Debugbar::info($data["category_name"]);
