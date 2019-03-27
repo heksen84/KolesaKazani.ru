@@ -19,6 +19,7 @@ use App\Urls;
 use DB;
 use App\Helpers\Petrovich;
 use App\Helpers\Helper;
+use App\Helpers\Sitemap;
 
 //use \SitemapController;
 

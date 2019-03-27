@@ -682,10 +682,7 @@ class ResultsController extends Controller {
 	// результаты по всему региону c детальной информацией
 	// -------------------------------------------------------------------
     public function getResultsByRegionWithDetailedInfo(Request $request) {    
-		return view("results")->with("title", "123123")
-		->with("results", "123")
-		->with("category", "123")
-		->with("items", "123");
+		return view("results")->with("title", "123123")->with("results", "123")->with("category", "123")->with("items", "123");
 	}
 	// ----------------------------------------------------
 	// результаты по всему региону без деталей
