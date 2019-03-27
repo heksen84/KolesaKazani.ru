@@ -53,10 +53,13 @@ class ResultsController extends Controller {
                 $filter_string = "";
             else
             if ($deal!="null" && $price_min=="null" && $price_max=="null")
-                $filter_string = " AND adv.deal=".$deal;
+                $filter_string = " AND adv.deal=".$deal;                            
             else            
             if ($deal!="null" && $price_min==0 && $price_max==0)
                 $filter_string = " AND adv.deal=".$deal;                    
+            else
+            if ($deal!="null" && $price_min=="" && $price_max=="")
+                $filter_string = " AND adv.deal=".$deal;
             else
             if ($deal=="null" && $price_min=="" || $price_min=="null" && $price_max>=0)
                 $filter_string = " AND price BETWEEN 0 AND ".$price_max;
@@ -72,6 +75,10 @@ class ResultsController extends Controller {
             else
             if ($deal!="null" && $price_min=="null" && $price_max>=0)
                 $filter_string = " AND price BETWEEN 0 AND ".$price_max." AND adv.deal=".$deal;                
+            else 
+            $filter_string = ""; // исключение
+
+            \Debugbar::info("str :".$filter_string);
         }
         else  
             $category_name = $request->path();
