@@ -310,6 +310,9 @@ class AdvertController extends Controller {
             
             /*SitemapController::addUrl("Моя url");
             SitemapController::removeUrl("Моя url");*/
+
+            Sitemap::addUrl($urls->url);
+
             return $advert->id;
 		}		
         catch(\Exception $e) {
