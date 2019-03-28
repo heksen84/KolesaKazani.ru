@@ -24,8 +24,6 @@ class Sitemap {
 	// добавить url
 	public static function addUrl($url) {
 
-		// 1. Открыть файл
-		// 2. Если его нет создать и открыть
 		
 		if (file_exists(Sitemap::$sitemap_file)) {
 			
@@ -33,6 +31,10 @@ class Sitemap {
 			
 			\Debugbar::info("Sitemap загружен");
 			\Debugbar::info("Всего элементов:".$sitemap->count());
+
+			if ($sitemap->count()>50000) {
+				// создать новый sitemap и внести его в sitemapindex				
+			}
 
 			date_default_timezone_set("Asia/Almaty");
 
