@@ -19,7 +19,7 @@ class Sitemap {
 	);*/
 
 	private static $sitemap_file = "sitemaps/sitemap.xml";
-	private static $public_path = "https://damelya.kz/obyablenie/";
+	private static $public_path = "damelya:90/obyavlenie/";
 
 	// добавить url
 	public static function addUrl($url) {
