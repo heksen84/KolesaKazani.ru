@@ -21,19 +21,26 @@ class Sitemap {
 	private static $sitemap_file = "sitemaps/sitemap.xml";
 	private static $public_path = "damelya:90/obyavlenie/";
 
+	// -------------------------------------
 	// создать sitemap
+	// -------------------------------------
 	public static function createNew() {			
 
 		$new_sitemap_file = "sitemaps/new_sitemap.xml";
 
 		$file = fopen($new_sitemap_file, "w");
+
+		if (!$file) return false;
 		
+		// генерирую заголовок
 		fwrite($file, '<?xml version="1.0" encoding="UTF-8"?>'."\n");
 		fwrite($file, '<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">'."\n");
 		fwrite($file, '</urlset>');
 		fclose($file);
 
 		$sitemap = simpleXML_load_file($new_sitemap_file);
+
+		if (!$sitemap) return false;
 		
 		Sitemap::$sitemap_file = $new_sitemap_file;
 
@@ -42,10 +49,10 @@ class Sitemap {
 		return $sitemap;
 	}
 
+	// -------------------------------------
 	// добавить url
-	public static function addUrl($url) {
-
-		$sitemap=null;
+	// -------------------------------------
+	public static function addUrl($url) {		
 
 		if (file_exists(Sitemap::$sitemap_file)) {
 			
@@ -57,23 +64,25 @@ class Sitemap {
 			//if ($sitemap->count()>50000) { // более 50000 url				
 			if ($sitemap->count()>3)
 				$sitemap = Sitemap::createNew();
+				
+				if (!$sitemap) return false;				
 
-			date_default_timezone_set("Asia/Almaty");
+				date_default_timezone_set("Asia/Almaty");
 			
-			$record = $sitemap->addChild("url");
-			$record->addChild("loc", Sitemap::$public_path.$url);
-			$record->addChild("lastmod", date("Y-m-d H:i:s"));			
-			$record->addChild("changefreq", "daily");
-			$record->addChild("priority", "2.0");
+				$record = $sitemap->addChild("url");
+				$record->addChild("loc", Sitemap::$public_path.$url);
+				$record->addChild("lastmod", date("Y-m-d H:i:s"));			
+				$record->addChild("changefreq", "daily");
+				$record->addChild("priority", "2.0");
 
-			$dom = new \DOMDocument("1.0", LIBXML_NOBLANKS);
-			$dom->preserveWhiteSpace = false;
-			$dom->formatOutput = true;
-			$dom->loadXML($sitemap->asXML());
-			$dom->saveXML();
-			$dom->save(Sitemap::$sitemap_file);
+				$dom = new \DOMDocument("1.0", LIBXML_NOBLANKS);
+				$dom->preserveWhiteSpace = false;
+				$dom->formatOutput = true;
+				$dom->loadXML($sitemap->asXML());
+				$dom->saveXML();
+				$dom->save(Sitemap::$sitemap_file);
 
-			return true;
+				return true;
 		}
 		else {
 			\Debugbar::info("файл не найден");
@@ -81,7 +90,9 @@ class Sitemap {
 		}
     }
 
+	// -------------------------------------
 	// удалить url
+	// -------------------------------------
 	public static function delUrl($url) {
         return true;
     }
