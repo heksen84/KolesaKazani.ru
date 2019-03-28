@@ -21,10 +21,15 @@ class Sitemap {
 	private static $sitemap_file = "sitemaps/sitemap.xml";
 	private static $public_path = "damelya:90/obyavlenie/";
 
+	// создать sitemap
+	public static function createNew() {
+		\Debugbar::info("Сайтпап создан!");
+		return true;
+	}
+
 	// добавить url
 	public static function addUrl($url) {
 
-		
 		if (file_exists(Sitemap::$sitemap_file)) {
 			
 			$sitemap = simpleXML_load_file(Sitemap::$sitemap_file);
@@ -32,12 +37,13 @@ class Sitemap {
 			\Debugbar::info("Sitemap загружен");
 			\Debugbar::info("Всего элементов:".$sitemap->count());
 
-			if ($sitemap->count()>50000) {
-				// создать новый sitemap и внести его в sitemapindex				
+			if ($sitemap->count()>50000) { // более 50000 url				
+				// создать новый sitemap и внести его в sitemapindex
+				Sitemap::createNew();
 			}
 
 			date_default_timezone_set("Asia/Almaty");
-
+			
 			$record = $sitemap->addChild("url");
 			$record->addChild("loc", Sitemap::$public_path.$url);
 			$record->addChild("lastmod", date("Y-m-d H:i:s"));			
