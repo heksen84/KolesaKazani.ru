@@ -298,19 +298,13 @@ class AdvertController extends Controller {
             // Закидываю данные в таблицу urls для SEO
             $urls = new Urls();
             
-            $urls->url = substr($advert->id."_".Helper::str2url($text), 0, 100);
+            $urls->url = substr($advert->id."-".Helper::str2url($text), 0, 100);
             $urls->advert_id = $advert->id;
             $urls->save();
                          
-            /*
-            ------------------------------------------
-            Сохраняю картинки
-            ------------------------------------------*/
+            // Сохраняю картинки        
             \App\Jobs\loadImages::dispatch($request, $advert->id);
             
-            /*SitemapController::addUrl("Моя url");
-            SitemapController::removeUrl("Моя url");*/
-
             Sitemap::addUrl($urls->url);
 
             return $advert->id;
