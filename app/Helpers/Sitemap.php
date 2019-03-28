@@ -61,26 +61,30 @@ class Sitemap {
 			\Debugbar::info("Sitemap загружен");
 			\Debugbar::info("Всего элементов:".$sitemap->count());
 
-			//if ($sitemap->count()>50000) { // более 50000 url				
-			if ($sitemap->count()>3)
+			if ($sitemap->count()>50000) { // более 50000 url				
+			//if ($sitemap->count()>3)
 				$sitemap = Sitemap::createNew();
 				
 				if (!$sitemap) return false;				
 
 				date_default_timezone_set("Asia/Almaty");
-			
-				$record = $sitemap->addChild("url");
-				$record->addChild("loc", Sitemap::$public_path.$url);
-				$record->addChild("lastmod", date("Y-m-d H:i:s"));			
-				$record->addChild("changefreq", "daily");
-				$record->addChild("priority", "2.0");
 
-				$dom = new \DOMDocument("1.0", LIBXML_NOBLANKS);
-				$dom->preserveWhiteSpace = false;
-				$dom->formatOutput = true;
-				$dom->loadXML($sitemap->asXML());
-				$dom->saveXML();
-				$dom->save(Sitemap::$sitemap_file);
+				//for ($i=0;$i<1000;$i++) {
+			
+					$record = $sitemap->addChild("url");
+					$record->addChild("loc", Sitemap::$public_path.$url);
+					$record->addChild("lastmod", date("Y-m-d H:i:s"));			
+					$record->addChild("changefreq", "daily");
+					$record->addChild("priority", "2.0");
+
+					$dom = new \DOMDocument("1.0", LIBXML_NOBLANKS);
+					$dom->preserveWhiteSpace = false;
+					$dom->formatOutput = true;
+					$dom->loadXML($sitemap->asXML());
+					$dom->saveXML();
+					$dom->save(Sitemap::$sitemap_file);
+
+				//}
 
 				return true;
 		}
@@ -88,12 +92,14 @@ class Sitemap {
 			\Debugbar::info("файл не найден");
 			return false;
 		}
-    }
+	}
+}
 
-	// -------------------------------------------------
-	// удалить url в указанном sitemap'е
-	// -------------------------------------------------
-	public static function delUrl($url, $sitemap_file) {
-        return true;
-    }
+// -------------------------------------------------
+// удалить url в указанном sitemap'е
+// -------------------------------------------------
+public static function delUrl($url, $sitemap_file) {
+    return true;
+}
+
 }
