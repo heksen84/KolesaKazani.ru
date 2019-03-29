@@ -14,11 +14,12 @@
 <body>
 <div id="app">
   <results 
-  :data="{{ $items }}" 
-  v-bind:results="{{ $results }}" 
+  :title="{{ json_encode($title) }}"
   :category="{{ $category }}" 
   :category_name="{{ $category_name }}" 
-  :title="{{ json_encode($title) }}">
+  :results="{{ $results }}" 
+  :data="{{ $items }}"
+  :total_records="{{ $total_records }}">
   </results>
 </div>
 </body>

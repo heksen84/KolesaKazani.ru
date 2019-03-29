@@ -20,13 +20,14 @@ class ResultsController extends Controller {
 	
 	// частные переменные
 	private $start_record  = 0;
-    private $records_limit = 5; // максимальное число записей при выборке
+    private $records_limit = 2; // максимальное число записей при выборке
     
     // Получить данные по категории
     public function getResultsByCategory(Request $request) {
 
         $filter_string = "";
-        
+        $total = 0;
+
         // получаю входящие данные
         $data = $request->all();        
 
@@ -101,6 +102,20 @@ class ResultsController extends Controller {
 			// Вся автотранспорт Казахстана (damelya.kz/transport)
 			case 1: {
 
+                $total = DB::select(
+					"SELECT					
+					COUNT(*) as count
+					FROM `adverts` as adv
+					LEFT OUTER JOIN (adv_transport, car_mark, car_model) ON 
+                    (
+					adv.adv_category_id = adv_transport.id AND 
+					adv_transport.mark = car_mark.id_car_mark AND 						
+					adv_transport.model = car_model.id_car_model
+					) WHERE adv.category_id=1".$filter_string
+                );
+                
+                \Debugbar::info("TOTAL :".$total[0]->count);
+
 				$results = DB::select(
 					"SELECT					
 					adv.id as advert_id,
@@ -134,6 +149,15 @@ class ResultsController extends Controller {
 			
 			// Вся недвижимость Казахстана (damelya.kz/nedvizhimost)
 			case 2: {
+            
+                $total = DB::select(					
+					"SELECT COUNT(*) as count
+                    FROM `adverts` as adv
+                    INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
+					WHERE adv.category_id=2".$filter_string
+                );
+
+                \Debugbar::info("TOTAL :".$total[0]->count);
 
 				$results = DB::select(					
 					"SELECT
@@ -182,10 +206,19 @@ class ResultsController extends Controller {
 				// услуги
 				if ($category->id==9) $title = "Объявления категории услуги в Казахстанe";
 				// другое
-				if ($category->id==10) $title = "Различные предложения в Казахстане";
+                if ($category->id==10) $title = "Различные предложения в Казахстане";
+                
+                
+				$total = DB::select(
+					"SELECT 
+                    COUNT(*) as count
+                    FROM `adverts` AS adv WHERE category_id=".$category->id.$filter_string
+                );
 
+                \Debugbar::info("TOTAL :".$total[0]->count);
+                
 				// общий select
-				$results = DB::select(					
+				$results = DB::select(
 					"SELECT
 					id as advert_id,
 					DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
@@ -212,7 +245,8 @@ class ResultsController extends Controller {
             "results"=>json_encode($results),
             "category"=>$category->id,  
             "category_name"=>json_encode($request->path()), 
-            "start_record"=>$this->start_record
+            "start_record"=>$this->start_record,
+            "total_records"=>$total[0]->count
         );
 
     }
@@ -230,7 +264,8 @@ class ResultsController extends Controller {
 		->with("results", $result["results"])
         ->with("category", $result["category"])
         ->with("category_name", $result["category_name"])
-		->with("start_record", $result["start_record"]);
+        ->with("start_record", $result["start_record"])
+        ->with("total_records", $result["total_records"]);
     }
     
     // ---------------------------------------------------------------

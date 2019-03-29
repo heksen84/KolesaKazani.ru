@@ -105,8 +105,9 @@
 		</b-row>-->
 	</div>
 
-	<div class="mt-3">
-		<b-pagination v-model="currentPage" :total-rows="rows" align="center" @change="changePage"/>
+	<div class="mt-3 text-center">
+		Страницы:
+		<b-pagination v-model="currentPage" :total-rows="totalRows" :per-page="perPage" align="center" @change="changePage" class="mt-2"/>
 	</div>
 
 </b-container>
@@ -121,9 +122,9 @@
 function num2str(n, text_forms) {
   n = Math.abs(n) % 100;
   var n1 = n % 10;
-  	if (n > 10 && n < 20) return text_forms[2];   
-  	if (n1 > 1 && n1 < 5) return text_forms[1];
-  	if (n1 == 1) return text_forms[0];
+  if (n > 10 && n < 20) return text_forms[2];   
+  if (n1 > 1 && n1 < 5) return text_forms[1];
+  if (n1 == 1) return text_forms[0];
   return text_forms[2];
 }
 
@@ -144,11 +145,12 @@ export default {
 	return 	{
 
 		resultsClone: this.results,
+		items: this.data,		
+		totalRows: 100,
+		perPage: 10,
 		start_page: 0,
-		rows: 100,
     currentPage: 1,
-		loadMoreCountShow: 3,			
-    items: this.data,
+		loadMoreCountShow: 3,			    
     count: 0,
     count_string: "",
    	slide: 0,
@@ -254,6 +256,9 @@ export default {
 					
 					this.resultsClone=JSON.parse(res.data.results);
 					this.updateResults();
+					
+					// вверх
+					window.scrollTo(0,0);
 
 					}).catch((err) => {	
 						console.log(err)
@@ -274,7 +279,7 @@ export default {
 		// навигация
 		changePage(page) {
 			this.start_page = page;
-			this.updateData();
+			this.updateData();			
 		}
 	}
 }

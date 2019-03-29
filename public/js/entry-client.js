@@ -4316,6 +4316,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 // -----------------------------------------------
@@ -4347,11 +4348,12 @@ function num2str(n, text_forms) {
 		return {
 
 			resultsClone: this.results,
+			items: this.data,
+			totalRows: 100,
+			perPage: 10,
 			start_page: 0,
-			rows: 100,
 			currentPage: 1,
 			loadMoreCountShow: 3,
-			items: this.data,
 			count: 0,
 			count_string: "",
 			slide: 0,
@@ -4436,6 +4438,9 @@ function num2str(n, text_forms) {
 
 					_this.resultsClone = JSON.parse(res.data.results);
 					_this.updateResults();
+
+					// вверх
+					window.scrollTo(0, 0);
 				}).catch(function (err) {
 					console.log(err);
 				});
@@ -14096,7 +14101,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -39126,10 +39131,16 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "mt-3" },
+        { staticClass: "mt-3 text-center" },
         [
+          _vm._v("\n\t\tСтраницы:\n\t\t"),
           _c("b-pagination", {
-            attrs: { "total-rows": _vm.rows, align: "center" },
+            staticClass: "mt-2",
+            attrs: {
+              "total-rows": _vm.totalRows,
+              "per-page": _vm.perPage,
+              align: "center"
+            },
             on: { change: _vm.changePage },
             model: {
               value: _vm.currentPage,
