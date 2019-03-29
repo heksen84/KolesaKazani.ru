@@ -20,33 +20,36 @@ class ResultsController extends Controller {
 	
 	// частные переменные
 	private $start_record  = 0;
-    private $records_limit = 1000; // максимальное число записей при выборке
+    private $records_limit = 5; // максимальное число записей при выборке
     
     // Получить данные по категории
     public function getResultsByCategory(Request $request) {
 
-        // получаю входящие данные
-        $data = $request->all();
-
         $filter_string = "";
+        
+        // получаю входящие данные
+        $data = $request->all();        
 
         // если указан фильтр
         if ($data) {
-            
-            
+                    
             // ПРИМЕНИТЬ ВАЛИДАТОР
-
             \Debugbar::info($data["category_id"]);
             \Debugbar::info($data["category_name"]);
+            \Debugbar::info("start_page :".$data["start_page"]);
             \Debugbar::info("Вид сделки :".$data["deal"]);
             \Debugbar::info("Цена от :".$data["price_min"]);
             \Debugbar::info("Цена до :".$data["price_max"]);
             
+            $start_page = $data["start_page"];
             $category_name = $data["category_name"];
             $category_id = $data["category_id"];
             $price_min = $data["price_min"];
             $price_max = $data["price_max"];
             $deal = $data["deal"];            
+
+            // определяю начиная с какой записи считывать данные
+            $this->start_record = $this->records_limit*($start_page-1);
 
             // Фильтра
             if ($deal=="null" && $price_min=="null" && $price_max=="null" || $price_min=="" && $price_max=="")

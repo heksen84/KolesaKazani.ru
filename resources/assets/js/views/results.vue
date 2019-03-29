@@ -46,7 +46,7 @@
 		  <b-form-input v-model="filters.price_max" class="mb-1" placeholder="До" type="number" size="sm"/>			
 		</b-col>
 		<b-col cols="2" sm="2" md="12" lg="2" xl="2" style="text-align:center">
-				<b-button variant="warning" size="sm" class="mb-4" @click="setFilter">Применить</b-button>
+				<b-button variant="warning" size="sm" class="mb-4" @click="updateData">Применить</b-button>
 		</b-col>
 	</b-row>
 
@@ -105,7 +105,7 @@
 		</b-row>-->
 	</div>
 
-	<div class="mt-3" v-if="count>loadMoreCountShow">
+	<div class="mt-3">
 		<b-pagination v-model="currentPage" :total-rows="rows" align="center" @change="changePage"/>
 	</div>
 
@@ -144,6 +144,7 @@ export default {
 	return 	{
 
 		resultsClone: this.results,
+		start_page: 0,
 		rows: 100,
     currentPage: 1,
 		loadMoreCountShow: 3,			
@@ -193,7 +194,7 @@ export default {
 	// компонент создан
 	created() {
 		console.log(this.results)
-		this.update();
+		this.updateResults();
 	},
 				
 	// -------------------------
@@ -201,7 +202,7 @@ export default {
 	// -------------------------
 	methods: {
 
-		update() {
+		updateResults() {
   		this.count = Object.keys(this.resultsClone).length;
 			this.count_string = num2str(this.count, ["объявление", "объявления", "объявлений"]);
 		},
@@ -218,8 +219,8 @@ export default {
 				}				
 			},
 			  
-			// применить фильтр
-  		setFilter() {
+			// Обновить данные
+  		updateData() {
 
 			var url = "";
 			var ready=false;
@@ -230,6 +231,7 @@ export default {
 			// если только категория
 			if (this.category_name && !this.subcat && !this.region && !this.place) {
 				url="/getResultsByCategoryForFront?category_name="+this.category_name+
+				"&start_page="+this.start_page+
 				"&category_id="+this.category+
 				"&deal="+this.filters.deal+
 				"&price_min="+this.filters.price_min+
@@ -251,10 +253,10 @@ export default {
 					console.log("------------------------");
 					
 					this.resultsClone=JSON.parse(res.data.results);
-					this.update();		
+					this.updateResults();
 
 					}).catch((err) => {	
-					console.log(err)
+						console.log(err)
 				});
 			}
 		},
@@ -266,11 +268,13 @@ export default {
 			  									
 		// загрузить ещё
 		loadMore() {
-    	this.setFilter();
+    	this.updateData();
     },
 
+		// навигация
 		changePage(page) {
-			alert(page)
+			this.start_page = page;
+			this.updateData();
 		}
 	}
 }

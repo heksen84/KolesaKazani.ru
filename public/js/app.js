@@ -4347,6 +4347,7 @@ function num2str(n, text_forms) {
 		return {
 
 			resultsClone: this.results,
+			start_page: 0,
 			rows: 100,
 			currentPage: 1,
 			loadMoreCountShow: 3,
@@ -4378,7 +4379,7 @@ function num2str(n, text_forms) {
 	// компонент создан
 	created: function created() {
 		console.log(this.results);
-		this.update();
+		this.updateResults();
 	},
 
 
@@ -4386,7 +4387,7 @@ function num2str(n, text_forms) {
 	// Методы компонента
 	// -------------------------
 	methods: {
-		update: function update() {
+		updateResults: function updateResults() {
 			this.count = Object.keys(this.resultsClone).length;
 			this.count_string = num2str(this.count, ["объявление", "объявления", "объявлений"]);
 		},
@@ -4404,8 +4405,8 @@ function num2str(n, text_forms) {
 		},
 
 
-		// применить фильтр
-		setFilter: function setFilter() {
+		// Обновить данные
+		updateData: function updateData() {
 			var _this = this;
 
 			var url = "";
@@ -4416,7 +4417,7 @@ function num2str(n, text_forms) {
 
 			// если только категория
 			if (this.category_name && !this.subcat && !this.region && !this.place) {
-				url = "/getResultsByCategoryForFront?category_name=" + this.category_name + "&category_id=" + this.category + "&deal=" + this.filters.deal + "&price_min=" + this.filters.price_min + "&price_max=" + this.filters.price_max;
+				url = "/getResultsByCategoryForFront?category_name=" + this.category_name + "&start_page=" + this.start_page + "&category_id=" + this.category + "&deal=" + this.filters.deal + "&price_min=" + this.filters.price_min + "&price_max=" + this.filters.price_max;
 				ready = true;
 			}
 
@@ -4434,7 +4435,7 @@ function num2str(n, text_forms) {
 					console.log("------------------------");
 
 					_this.resultsClone = JSON.parse(res.data.results);
-					_this.update();
+					_this.updateResults();
 				}).catch(function (err) {
 					console.log(err);
 				});
@@ -4450,10 +4451,14 @@ function num2str(n, text_forms) {
 
 		// загрузить ещё
 		loadMore: function loadMore() {
-			this.setFilter();
+			this.updateData();
 		},
+
+
+		// навигация
 		changePage: function changePage(page) {
-			alert(page);
+			this.start_page = page;
+			this.updateData();
 		}
 	}
 });
@@ -14091,7 +14096,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -37850,6 +37855,9 @@ var render = function() {
                       attrs: { hover: "", items: _vm._items }
                     },
                     [
+                      _vm._v(
+                        "\t\t\t\r\n\t\t\tСтатус: отклонено (нецензурная лексика)\r\n\t\t\t"
+                      ),
                       _c(
                         "template",
                         { slot: "Действие" },
@@ -39043,7 +39051,7 @@ var render = function() {
                 {
                   staticClass: "mb-4",
                   attrs: { variant: "warning", size: "sm" },
-                  on: { click: _vm.setFilter }
+                  on: { click: _vm.updateData }
                 },
                 [_vm._v("Применить")]
               )
@@ -39116,26 +39124,24 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm.count > _vm.loadMoreCountShow
-        ? _c(
-            "div",
-            { staticClass: "mt-3" },
-            [
-              _c("b-pagination", {
-                attrs: { "total-rows": _vm.rows, align: "center" },
-                on: { change: _vm.changePage },
-                model: {
-                  value: _vm.currentPage,
-                  callback: function($$v) {
-                    _vm.currentPage = $$v
-                  },
-                  expression: "currentPage"
-                }
-              })
-            ],
-            1
-          )
-        : _vm._e()
+      _c(
+        "div",
+        { staticClass: "mt-3" },
+        [
+          _c("b-pagination", {
+            attrs: { "total-rows": _vm.rows, align: "center" },
+            on: { change: _vm.changePage },
+            model: {
+              value: _vm.currentPage,
+              callback: function($$v) {
+                _vm.currentPage = $$v
+              },
+              expression: "currentPage"
+            }
+          })
+        ],
+        1
+      )
     ],
     1
   )
