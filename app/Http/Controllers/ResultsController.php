@@ -20,9 +20,11 @@ class ResultsController extends Controller {
 	
 	// частные переменные
 	private $start_record  = 0;
-    private $records_limit = 2; // максимальное число записей при выборке
+    private $records_limit = 10; // максимальное число записей при выборке
     
+    // ------------------------------------------------------------
     // Получить данные по категории
+    // ------------------------------------------------------------
     public function getResultsByCategory(Request $request) {
 
         $filter_string = "";
@@ -102,10 +104,7 @@ class ResultsController extends Controller {
 			// Вся автотранспорт Казахстана (damelya.kz/transport)
 			case 1: {
 
-                $total = DB::select(
-					"SELECT					
-					COUNT(*) as count
-					FROM `adverts` as adv
+                $total = DB::select("SELECT	COUNT(*) as count FROM `adverts` as adv
 					LEFT OUTER JOIN (adv_transport, car_mark, car_model) ON 
                     (
 					adv.adv_category_id = adv_transport.id AND 
@@ -150,9 +149,7 @@ class ResultsController extends Controller {
 			// Вся недвижимость Казахстана (damelya.kz/nedvizhimost)
 			case 2: {
             
-                $total = DB::select(					
-					"SELECT COUNT(*) as count
-                    FROM `adverts` as adv
+                $total = DB::select("SELECT COUNT(*) as count FROM `adverts` as adv
                     INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
 					WHERE adv.category_id=2".$filter_string
                 );
@@ -209,11 +206,7 @@ class ResultsController extends Controller {
                 if ($category->id==10) $title = "Различные предложения в Казахстане";
                 
                 
-				$total = DB::select(
-					"SELECT 
-                    COUNT(*) as count
-                    FROM `adverts` AS adv WHERE category_id=".$category->id.$filter_string
-                );
+				$total = DB::select("SELECT COUNT(*) as count FROM `adverts` AS adv WHERE category_id=".$category->id.$filter_string);
 
                 \Debugbar::info("TOTAL :".$total[0]->count);
                 

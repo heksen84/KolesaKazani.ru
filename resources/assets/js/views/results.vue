@@ -107,7 +107,7 @@
 
 	<div class="mt-3 text-center">
 		Страницы:
-		<b-pagination v-model="currentPage" :total-rows="totalRows" :per-page="perPage" align="center" @change="changePage" class="mt-2"/>
+		<b-pagination v-model="currentPage" :total-rows="totalRecords" :per-page="perPage" align="center" @change="changePage" class="mt-2"/>
 	</div>
 
 </b-container>
@@ -137,17 +137,16 @@ import { get } from "./../helpers/api"
 export default {
 
 	// Входящие данные
-	props: ["category", "category_name", "subcat", "region", "place", "data", "results", "title"],
+	props: ["category", "category_name", "subcat", "region", "place", "data", "results", "title", "total_records"],
 
 	components: { item },
 
 	data () {		
 	return 	{
-
+		totalRecords: this.total_records,
 		resultsClone: this.results,
-		items: this.data,		
-		totalRows: 100,
-		perPage: 10,
+		items: this.data,				
+		perPage: 10, // макимальное кол-во объявлений на странице
 		start_page: 0,
     currentPage: 1,
 		loadMoreCountShow: 3,			    
@@ -255,6 +254,8 @@ export default {
 					console.log("------------------------");
 					
 					this.resultsClone=JSON.parse(res.data.results);
+					this.totalRecords = res.data.total_records;
+					
 					this.updateResults();
 					
 					// вверх

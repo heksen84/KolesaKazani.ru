@@ -4340,17 +4340,16 @@ function num2str(n, text_forms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
 
 	// Входящие данные
-	props: ["category", "category_name", "subcat", "region", "place", "data", "results", "title"],
+	props: ["category", "category_name", "subcat", "region", "place", "data", "results", "title", "total_records"],
 
 	components: { item: __WEBPACK_IMPORTED_MODULE_0__components_item___default.a },
 
 	data: function data() {
 		return {
-
+			totalRecords: this.total_records,
 			resultsClone: this.results,
 			items: this.data,
-			totalRows: 100,
-			perPage: 10,
+			perPage: 10, // макимальное кол-во объявлений на странице
 			start_page: 0,
 			currentPage: 1,
 			loadMoreCountShow: 3,
@@ -4437,6 +4436,8 @@ function num2str(n, text_forms) {
 					console.log("------------------------");
 
 					_this.resultsClone = JSON.parse(res.data.results);
+					_this.totalRecords = res.data.total_records;
+
 					_this.updateResults();
 
 					// вверх
@@ -14101,7 +14102,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -39137,7 +39138,7 @@ var render = function() {
           _c("b-pagination", {
             staticClass: "mt-2",
             attrs: {
-              "total-rows": _vm.totalRows,
+              "total-rows": _vm.totalRecords,
               "per-page": _vm.perPage,
               align: "center"
             },
