@@ -29,28 +29,28 @@ class ResultsController extends Controller {
 
         $filter_string  = "";
         $total          = 0;
-        $start_page     = null;
-        $category_name  = null;
-        $category_id    = null;
-        $price_min      = null;
-        $price_max      = null;
-        $deal           = null;
+        $start_page     = "null";
+        $category_name  = "null";
+        $category_id    = "null";
+        $price_min      = "null";
+        $price_max      = "null";
+        $deal           = "null";
 
         // получаю входящие данные
         $data = $request->all();        
 
         // если указан фильтр
         if ($data) {
-                    
-                        
+                                            
             if (isset($data["start_page"]))     $start_page     = $data["start_page"];
             if (isset($data["category_name"]))  $category_name  = $data["category_name"];
             if (isset($data["category_id"]))    $category_id    = $data["category_id"];
             if (isset($data["deal"]))           $deal           = $data["deal"];
             if (isset($data["price_min"]))      $price_min      = $data["price_min"];
-            if (isset($data["price_max"]))      $price_max      = $data["price_max"];            
+            if (isset($data["price_max"]))      $price_max      = $data["price_max"];
+            
 
-            // ПРИМЕНИТЬ ВАЛИДАТОР
+            // FIX: ПРИМЕНИТЬ ВАЛИДАТОР
             \Debugbar::info("категория id:".$category_id);
             \Debugbar::info("категория:".$category_name);
             \Debugbar::info("start_page :".$start_page);
@@ -62,71 +62,32 @@ class ResultsController extends Controller {
             if ($start_page >0)
                 $this->start_record = $this->records_limit*($start_page-1);
 
+                // фильтра
                 $price_filter = "";
                 $deal_filter  = "";
 
                 if ($deal!="null")
                     $deal_filter = " AND adv.deal=".$deal;
+                
+                if ($deal=="null" && $price_min=="null" && $price_max=="null") {
+                    $price_filter = "";
+                    $deal_filter  = "";
+                }
 
-                if ($price_min!=null && $price_max!=null)
+                if ($price_min!="null" && $price_max!="null")
                     $price_filter = " AND price BETWEEN ".$price_min." AND ".$price_max;
 
+                if ($price_min=="null" && $price_max>0)
+                    $price_filter = " AND price BETWEEN 0 AND ".$price_max;
+                    
+                if ($price_min>0 && $price_max=="null")
+                    $price_filter = " AND price = ".$price_min;
+
+                
+                                                            
                 $filter_string = $price_filter.$deal_filter;
 
-            // -------------------------------------------------------
-            // Фильтры
-            // -------------------------------------------------------
-            /*if ($deal!="null" && $price_min==null && $price_max=="null")
-                $filter_string = " AND price = ".$price_min;
-            else
-            if ($deal!="null" && $price_min==null && $price_max>0)
-                $filter_string = " AND price = ".$price_max;
-            else
-            if ($deal!="null" && $price_min>0 && $price_max==null)
-                $filter_string = " AND price = ".$price_min;
-            else
-            if ($deal=="null" && $price_min==null && $price_max>0)
-                $filter_string = " AND price = ".$price_max;
-            else
-            if ($deal=="null" && $price_min>0 && $price_max==null)
-                $filter_string = " AND price = ".$price_min;
-            else
-            if ($deal=="null" && $price_min=="0" && $price_max=="0")
-                $filter_string = "";
-            else
-            if ($deal=="null" && $price_min=="null" && $price_max=="null" || $price_min=="" && $price_max=="")
-                $filter_string = "";
-            else
-            if ($deal=="null" && $price_min=="null" && $price_max=="")
-                $filter_string = "";
-            else
-            if ($deal!="null" && $price_min=="null" && $price_max=="null")
-                $filter_string = " AND adv.deal=".$deal;                            
-            else            
-            if ($deal!="null" && $price_min==0 && $price_max==0)
-                $filter_string = " AND adv.deal=".$deal;                    
-            else
-            if ($deal!="null" && $price_min=="" && $price_max=="")
-                $filter_string = " AND adv.deal=".$deal;
-            else
-            if ($deal=="null" && $price_min=="" || $price_min=="null" && $price_max>=0)
-                $filter_string = " AND price BETWEEN 0 AND ".$price_max;
-            else
-            if ($deal!="null" && $price_min=="" || $price_min=="null" && $price_max>=0)
-                $filter_string = " AND price BETWEEN 0 AND ".$price_max." AND adv.deal=".$deal;
-            else
-            if ($deal=="null" && $price_min>0 && $price_max>0)
-                $filter_string = " AND price BETWEEN ".$price_min." AND ".$price_max;
-            else
-            if ($deal!="null" && $price_min>=0 && $price_max>=0)
-                $filter_string = " AND price BETWEEN ".$price_min." AND ".$price_max." AND adv.deal=".$deal;
-            else
-            if ($deal!="null" && $price_min=="null" && $price_max>=0)
-                $filter_string = " AND price BETWEEN 0 AND ".$price_max." AND adv.deal=".$deal;                
-            else 
-                $filter_string = ""; // исключение
-
-            \Debugbar::info("str :".$filter_string);*/
+                \Debugbar::info("str :".$filter_string);
         }
         else  
             $category_name = $request->path();
