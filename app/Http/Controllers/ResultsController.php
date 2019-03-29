@@ -170,7 +170,7 @@ class ResultsController extends Controller {
                     adv_realestate.id
                     FROM `adverts` as adv
                     INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-					WHERE adv.category_id=2
+					WHERE adv.category_id=2.$filter_string
 					ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit
                 );
 
