@@ -104,7 +104,9 @@ class ResultsController extends Controller {
 			// Вся автотранспорт Казахстана (damelya.kz/transport)
 			case 1: {
 
-                $total = DB::select("SELECT	COUNT(*) as count FROM `adverts` as adv
+                $total = DB::select(
+                    "SELECT	
+                    COUNT(*) as count FROM `adverts` as adv
 					LEFT OUTER JOIN (adv_transport, car_mark, car_model) ON 
                     (
 					adv.adv_category_id = adv_transport.id AND 
@@ -151,7 +153,9 @@ class ResultsController extends Controller {
 			// Вся недвижимость Казахстана (damelya.kz/nedvizhimost)
 			case 2: {
             
-                $total = DB::select("SELECT COUNT(*) as count FROM `adverts` as adv
+                $total = DB::select(
+                    "SELECT 
+                    COUNT(*) as count FROM `adverts` as adv
                     INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
 					WHERE adv.category_id=2".$filter_string
                 );
@@ -335,7 +339,8 @@ class ResultsController extends Controller {
                 if ($subcat=="legkovoy-avtomobil") {
 
                     $total = DB::select(
-                        "SELECT COUNT(*) as count 
+                        "SELECT 
+                        COUNT(*) as count 
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport, car_mark, car_model) ON (
                             adv_transport.mark=car_mark.id_car_mark AND 
@@ -375,7 +380,8 @@ class ResultsController extends Controller {
                 if ($subcat=="gruzovoy-avtomobil") {
 
                     $total = DB::select(
-                        "SELECT COUNT(*) as count 
+                        "SELECT 
+                        COUNT(*) as count 
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
@@ -488,7 +494,8 @@ class ResultsController extends Controller {
                 if ($subcat=="retro-avtomobil") {
                     
                     $total = DB::select(
-                        "SELECT COUNT(*) as count
+                        "SELECT 
+                        COUNT(*) as count
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
@@ -523,7 +530,8 @@ class ResultsController extends Controller {
                 if ($subcat=="vodnyy-transport") {
                     
                     $total = DB::select(
-                        "SELECT COUNT(*) as count 
+                        "SELECT 
+                        COUNT(*) as count 
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
@@ -558,7 +566,8 @@ class ResultsController extends Controller {
                 if ($subcat=="velosiped") {
 
                     $total = DB::select(
-                        "SELECT COUNT(*) as count 
+                        "SELECT 
+                        COUNT(*) as count 
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
@@ -593,7 +602,8 @@ class ResultsController extends Controller {
                 if ($subcat=="vozdushnyy-transport") {
                     
                     $total = DB::select(
-                        "SELECT COUNT(*) as count 
+                        "SELECT 
+                        COUNT(*) as count 
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
