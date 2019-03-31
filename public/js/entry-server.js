@@ -39056,7 +39056,8 @@ var render = function() {
                 "b-button",
                 {
                   staticClass: "mb-4",
-                  attrs: { variant: "warning", size: "sm" },
+                  staticStyle: { border: "1px solid white" },
+                  attrs: { variant: "primary", size: "sm" },
                   on: { click: _vm.updateData }
                 },
                 [_vm._v("Применить")]

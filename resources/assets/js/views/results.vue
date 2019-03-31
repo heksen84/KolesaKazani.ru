@@ -46,7 +46,7 @@
 		  <b-form-input v-model="filters.price_max" class="mb-1" placeholder="До" type="number" size="sm"/>			
 		</b-col>
 		<b-col cols="2" sm="2" md="12" lg="2" xl="2" style="text-align:center">
-				<b-button variant="warning" size="sm" class="mb-4" @click="updateData">Применить</b-button>
+				<b-button style="border: 1px solid white" variant="primary" size="sm" class="mb-4" @click="updateData">Применить</b-button>
 		</b-col>
 	</b-row>
 
