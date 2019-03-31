@@ -327,7 +327,7 @@ h3 {
 .close_button {
   cursor: pointer;
   position: absolute;
-  top: 19px;
+  top: 15px;
   right: 20px;
   font-weight: 700;
   color: #505050;
