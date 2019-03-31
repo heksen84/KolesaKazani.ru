@@ -40656,7 +40656,7 @@ var render = function() {
                 [_vm._v("X")]
               ),
               _vm._v(" "),
-              _c("h2", { staticClass: "form_title" }, [_vm._v("модератор")]),
+              _c("h1", { staticClass: "form_title" }, [_vm._v("модератор")]),
               _vm._v(" "),
               _c("hr"),
               _vm._v(" "),

@@ -333,12 +333,12 @@ h3 {
 }
 
 .close_button {
-  position: absolute;
-  top:16px;
-  left:94%;
   cursor:pointer;
-  font-weight: 500;
-  color:rgb(30,30,30);
+  position: absolute;
+  top:19px;
+  right:20px;
+  font-weight: 700;
+  color:rgb(80, 80, 80);
 }
 
 .custom-file-input:lang(en)~.custom-file-label::after {

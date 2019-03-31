@@ -3,7 +3,7 @@
 		<b-row>
 		<b-col cols="12" sm="12" md="9" lg="3" xl="3" class="form">
 		<div class="close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
-    <h2 class="form_title">модератор</h2>    
+    <h1 class="form_title">модератор</h1>    
     <hr>
     <b-form @submit="onSubmit" style="width:99%">
 		<b-form-input maxlength="12" placeholder="логин"></b-form-input>
