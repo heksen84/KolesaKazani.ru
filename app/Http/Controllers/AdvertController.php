@@ -406,7 +406,9 @@ class AdvertController extends Controller {
                             kz_region.region_id=adv.region_id
 					    ) WHERE adv.id=".$id." LIMIT 1"
                     );
-                                        
+                     
+                    $keywords = "";
+                    $description = "";
                     $title = $results[0]->deal_name_2." ".$results[0]->mark." ".$results[0]->model." ".$results[0]->year
                     ." года в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)
                     .$this->getStrPrice($results);
@@ -450,7 +452,8 @@ class AdvertController extends Controller {
 
                         \Debugbar::info($results);
 
-                        
+                        $keywords = "";
+                        $description = "";
                         $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)
                         ." ".$results[0]->year." г.в."
                         .$this->getStrPrice($results);
@@ -491,7 +494,8 @@ class AdvertController extends Controller {
                             kz_region.region_id=adv.region_id
                         ) WHERE adv.id=".$id." LIMIT 1");
 
-                        
+                        $keywords = "";
+                        $description = "";
                         $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$results[0]->year." г.в."
                         .$this->getStrPrice($results);
                         
@@ -527,6 +531,8 @@ class AdvertController extends Controller {
                     kz_region.region_id=adv.region_id
                 ) WHERE adv.id=".$id." LIMIT 1");
 
+                $keywords = "";
+                $description = "";
                 $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$this->getStrPrice($results);
 
                 break;
@@ -566,7 +572,8 @@ class AdvertController extends Controller {
                     kz_region.region_id=adv.region_id
                 ) WHERE adv.id=".$id." LIMIT 1");
 
-
+                $keywords = "";
+                $description = "";    
                 $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$results[0]->year." г.в."
                 .$this->getStrPrice($results);
 
@@ -602,7 +609,8 @@ class AdvertController extends Controller {
                     kz_region.region_id=adv.region_id
                 ) WHERE adv.id=".$id." LIMIT 1");
 
-
+                $keywords = "";
+                $description = "";    
                 $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)
                 .$this->getStrPrice($results);
 
@@ -637,6 +645,8 @@ class AdvertController extends Controller {
                     kz_region.region_id=adv.region_id
                 ) WHERE adv.id=".$id." LIMIT 1");
                 
+                $keywords = "";
+                $description = "";
                 $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$this->getStrPrice($results);
 
                 break;
@@ -671,7 +681,10 @@ class AdvertController extends Controller {
                     kz_region.region_id=adv.region_id
                 ) WHERE adv.id=".$id." LIMIT 1");
 
+                $keywords = "";
+                $description = "";
                 $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$this->getStrPrice($results);
+                
                 break;
             }                    
                     
@@ -721,8 +734,11 @@ class AdvertController extends Controller {
                             kz_region.region_id=adv.region_id
                         ) WHERE adv.id=".$id." LIMIT 1");
                 
+                        $keywords = "";
+                        $description = "";
                         $title = $results[0]->deal_name_2." ".$results[0]->rooms." комнатную квартиру ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." "
                         .$this->getStrPrice($results);
+
                         break;
                     }
 
@@ -758,6 +774,8 @@ class AdvertController extends Controller {
                             kz_region.region_id=adv.region_id
                         ) WHERE adv.id=".$id." LIMIT 1");
 
+                        $keywords = "";
+                        $description = "";
                         $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." "
                         .$this->getStrPrice($results);
 
@@ -805,8 +823,12 @@ class AdvertController extends Controller {
                             case 2: $type_of_building = "коттедж"; break;
                         }
 
+
+                        $keywords = "";
+                        $description = "";
                         $title = $results[0]->deal_name_2." ".$type_of_building." ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".
                         $petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." ".$this->getStrPrice($results);
+                        
                         break;
                     }
 
@@ -842,8 +864,11 @@ class AdvertController extends Controller {
                             kz_region.region_id=adv.region_id
                         ) WHERE adv.id=".$id." LIMIT 1");
                         
+                        $keywords = "";
+                        $description = "";
                         $title = $results[0]->deal_name_2." земельный участок в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." "
                         .$this->getStrPrice($results);
+                        
                         break;
                     }
 
@@ -879,8 +904,11 @@ class AdvertController extends Controller {
                             kz_region.region_id=adv.region_id
                         ) WHERE adv.id=".$id." LIMIT 1");
                             
+                        $keywords = "";
+                        $description = "";
                         $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." "
                         .$this->getStrPrice($results);
+
                         break;
                     }
 
@@ -916,8 +944,11 @@ class AdvertController extends Controller {
                             kz_region.region_id=adv.region_id
                         ) WHERE adv.id=".$id." LIMIT 1");
                             
+                        $keywords = "";
+                        $description = "";
                         $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." "
                         .$this->getStrPrice($results);
+                        
                         break;
                     }
 
@@ -953,8 +984,11 @@ class AdvertController extends Controller {
                             kz_region.region_id=adv.region_id
                         ) WHERE adv.id=".$id." LIMIT 1");
 
+                        $keywords = "";
+                        $description = "";
                         $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." "
                         .$this->getStrPrice($results);
+                        
                         break;
                     }
 
@@ -990,8 +1024,11 @@ class AdvertController extends Controller {
                             kz_region.region_id=adv.region_id
                         ) WHERE adv.id=".$id." LIMIT 1");
 
+                        $keywords = "";
+                        $description = "";
                         $title = $results[0]->deal_name_2." комнату, ".$results[0]->floor."/".$results[0]->floors_house." этаж в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL)." "
                         .$this->getStrPrice($results);
+                        
                         break;
                     }
                 }
@@ -1036,7 +1073,9 @@ class AdvertController extends Controller {
 
                 if ( $results[0]->price >0 )
                     $str_price = " за ".$results[0]->price." тенге";
-                                
+                 
+                $keywords = "";
+                $description = "";    
                 //$title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL).$this->getStrPrice($results);
                 $title = $results[0]->text." в ".$petrovich->firstname($results[0]->city_name, Petrovich::CASE_PREPOSITIONAL).$str_price;
             }
@@ -1046,9 +1085,11 @@ class AdvertController extends Controller {
 
             // передаю данные во вьюху
             return view("detailed")
+            ->with("keywords", $keywords)
+            ->with("description", $description)
+            ->with("title", $title)
             ->with("item", json_encode($results) )
             ->with("images", json_encode($images))
-            ->with("title", $title)
             ->with("full", json_encode($adv_full_info));
     }
 
