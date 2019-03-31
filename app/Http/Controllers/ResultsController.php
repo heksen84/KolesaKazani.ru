@@ -44,7 +44,6 @@ class ResultsController extends Controller {
             if (isset($data["price_min"]))      $price_min      = $data["price_min"];
             if (isset($data["price_max"]))      $price_max      = $data["price_max"];
             
-
             // FIX: ПРИМЕНИТЬ ВАЛИДАТОР
             \Debugbar::info("категория id:".$category_id);
             \Debugbar::info("категория:".$category_name);
