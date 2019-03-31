@@ -142,6 +142,7 @@ class ResultsController extends Controller {
                 $keywords = "";
                 $description = "";
                 $title = "Транспорт в Казахстане";
+                
 				break;				                          				
 			}
 			
@@ -368,6 +369,7 @@ class ResultsController extends Controller {
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду легковых автомобилей";
+
                     break;
                 }
                                 
@@ -406,6 +408,7 @@ class ResultsController extends Controller {
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду грузового транспорта";
+
                     break;
                 }
 
@@ -444,6 +447,7 @@ class ResultsController extends Controller {
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду мототехники";
+
                     break;
                 }                
 
@@ -482,6 +486,7 @@ class ResultsController extends Controller {
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду спецтехники";
+
                     break;
                 }   
 
@@ -518,6 +523,7 @@ class ResultsController extends Controller {
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду ретро автомобилей";
+
                     break;
                 }                               
 
@@ -554,6 +560,7 @@ class ResultsController extends Controller {
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду водного транспорта";
+
                     break;
                 }                               
 
@@ -590,6 +597,7 @@ class ResultsController extends Controller {
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду велосипеда";
+
                     break;
                 }                               
 
@@ -626,6 +634,7 @@ class ResultsController extends Controller {
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду воздушного транспорта";
+
                     break;
                 }
             }
@@ -674,6 +683,7 @@ class ResultsController extends Controller {
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду квартиры";
+
                     break;
                 }
 
@@ -710,6 +720,7 @@ class ResultsController extends Controller {
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду комнаты";
+
                     break;
                 }
 
@@ -752,6 +763,7 @@ class ResultsController extends Controller {
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду дома, дачи, коттеджа";
+
                     break;
                 }
 
@@ -788,6 +800,7 @@ class ResultsController extends Controller {
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду земельного участка";
+
                     break;
                 }
                 
@@ -824,6 +837,7 @@ class ResultsController extends Controller {
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду гаража или машиноместа";
+
                     break;
                 }
 
@@ -860,6 +874,7 @@ class ResultsController extends Controller {
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду коммерческой недвижимости";
+
                     break;
                 }
                 
@@ -896,7 +911,7 @@ class ResultsController extends Controller {
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду недвижимости за рубежом";
-                    
+
                     break;
                 }                                
             }
