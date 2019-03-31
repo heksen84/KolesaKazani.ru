@@ -68,15 +68,15 @@
 	</b-row>-->
 
 	<!-- VIP BLOCK -->
-	<div class="vip_block">
+	<!--<div class="vip_block">
 		<h3 v-for="(i, index) in results" :key="index" style="font-size:14px;height:340px;border:1px solid white;text-align:center">рекламка</h3>
-	</div>
+	</div>-->
 
 	<div class="text-center" style="margin-top:3px">
 		<b-row>
-			<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-				VIP
-			</b-col>
+
+			<b-col cols="12" sm="12" md="2" lg="2" xl="2"></b-col>
+
 			<b-col cols="12" sm="12" md="8" lg="8" xl="8">
 
 				<!-------- КОМПОНЕНТ ITEM -------->				

@@ -39071,37 +39071,14 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "vip_block" },
-        _vm._l(_vm.results, function(i, index) {
-          return _c(
-            "h3",
-            {
-              key: index,
-              staticStyle: {
-                "font-size": "14px",
-                height: "340px",
-                border: "1px solid white",
-                "text-align": "center"
-              }
-            },
-            [_vm._v("рекламка")]
-          )
-        }),
-        0
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
         { staticClass: "text-center", staticStyle: { "margin-top": "3px" } },
         [
           _c(
             "b-row",
             [
-              _c(
-                "b-col",
-                { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
-                [_vm._v("\n\t\t\t\tVIP\n\t\t\t")]
-              ),
+              _c("b-col", {
+                attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" }
+              }),
               _vm._v(" "),
               _c(
                 "b-col",
