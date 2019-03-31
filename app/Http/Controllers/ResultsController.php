@@ -142,7 +142,9 @@ class ResultsController extends Controller {
 
 				\Debugbar::info($results);
 
-				$title = "Транспорт: Объявления о покупке, продаже, обмене или сдаче в аренду транспорта в аренду в Казахстане";
+                $keywords = "";
+                $description = "";
+                $title = "Транспорт в Казахстане";
 				break;				                          				
 			}
 			
@@ -176,8 +178,10 @@ class ResultsController extends Controller {
 
                 \Debugbar::info($results);
 
-				// seo title
-				$title = "Недвижимость: Объявления о покупке, продаже, обмене или сдаче в аренду недвижимости в аренду в Казахстане";
+                $keywords = "123";
+                $description = "333";
+                $title = "Недвижимость в Казахстане";
+                
 				break;
 			}
 			
@@ -189,22 +193,53 @@ class ResultsController extends Controller {
 				   --------------------------------*/
 				   
 				// электроника
-				if ($category->id==3) $title = "Электроника: Объявления о покупке, продаже, обмене или сдаче электроники В Казахстане";
-				// работа и бизнес
-				if ($category->id==4) $title = "Работа и бизнес: Обяъвления о работе и бизнесе в Казахстане";
-				// для дома и дачи
-				if ($category->id==5) $title = "Для дома и дачи: Объявления категории для дома и дачи в Казахстанe";
-				// личные вещи
-				if ($category->id==6) $title = "Личные вещи: Объявления о покупке, продаже, обмене или сдаче аренду личных вещей";
-				// животные
-				if ($category->id==7) $title = "Животные: Объявления о покупке, продаже, обмене или сдаче в аренду животных в Казахстане";
-				// хобби и отдых
-				if ($category->id==8) $title = "Хобби и отдых: Объявления категории хобби и отдых в Казахстанe";
-				// услуги
-				if ($category->id==9) $title = "Услуги: Объявления категории услуги в Казахстанe";
-				// другое
-                if ($category->id==10) $title = "Различные предложения в Казахстане";
-                
+				if ($category->id==3) {
+                    $title = "Электроника: Объявления о покупке, продаже, обмене или сдаче электроники В Казахстане";
+                    $keywords = "";
+                    $description = "";
+                }
+                    // работа и бизнес
+				if ($category->id==4) {
+                    $title = "Работа и бизнес: Обяъвления о работе и бизнесе в Казахстане";
+                    $keywords = "";
+                    $description = "";
+                }
+                    // для дома и дачи
+                if ($category->id==5) {
+                    $title = "Для дома и дачи: Объявления категории для дома и дачи в Казахстанe";
+                    $keywords = "";
+                    $description = "";
+                }
+                    // личные вещи
+                if ($category->id==6) {
+                    $title = "Личные вещи: Объявления о покупке, продаже, обмене или сдаче аренду личных вещей";
+                    $keywords = "";
+                    $description = "";
+                }
+                    // животные
+				if ($category->id==7) {
+                    $title = "Животные: Объявления о покупке, продаже, обмене или сдаче в аренду животных в Казахстане";
+                    $keywords = "";
+                    $description = "";
+                }
+                    // хобби и отдых
+				if ($category->id==8) {
+                    $title = "Хобби и отдых: Объявления категории хобби и отдых в Казахстанe";
+                    $keywords = "";
+                    $description = "";
+                }
+                // услуги
+				if ($category->id==9) {
+                    $title = "Услуги: Объявления категории услуги в Казахстанe";
+                    $keywords = "";
+                    $description = "";
+                }
+                    // другое
+                if ($category->id==10) {
+                    $title = "Различные предложения в Казахстане";
+                    $keywords = "";
+                    $description = "";
+                }
                 
 				$total = DB::select("SELECT COUNT(*) as count FROM `adverts` AS adv WHERE category_id=".$category->id.$filter_string);
 
@@ -233,7 +268,9 @@ class ResultsController extends Controller {
         
         return array
         (
-            "title"=>$title, 
+            "keywords"=>$keywords,
+            "description"=>$description,
+            "title"=>$title,
             "items"=>$items, 
             "results"=>json_encode($results),
             "category"=>$category->id,  
@@ -252,6 +289,8 @@ class ResultsController extends Controller {
         $result = $this->getResultsByCategory($request);
     
         return view("results")
+        ->with("keywords", $result["keywords"])
+        ->with("description", $result["description"])
         ->with("title", $result["title"])
         ->with("items", $result["items"])
 		->with("results", $result["results"])
