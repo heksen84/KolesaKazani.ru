@@ -129,6 +129,6 @@ Route::get('{region}/{place}/{category}', 'ResultsController@getResultsByPlace')
 ------------------------------------------------------------------------------------------------
  Панель администратора
 ------------------------------------------------------------------------------------------------*/
-Route::get('admin', 'AdminController@login');
+Route::get('adminpanel', 'AdminController@login');
 Route::get('moderation',  function () { return view('moderation'); });
 Route::get('moderation/{advert_id}',  function () { return view('moderation_advert'); });

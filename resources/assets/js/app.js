@@ -15,6 +15,8 @@ import sendemail from './views/auth/sendemail.vue';
 import passwordreset from './views/auth/passwordreset.vue';
 import login from './views/auth/login.vue';
 import register from './views/auth/register.vue';
+import adminpanel from './views/adminpanel.vue';
+
 
 // bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -187,6 +189,7 @@ export default new Vue({
       results,
       create,
       detailed,
+      adminpanel
   },
 
   created() {    
