@@ -38,17 +38,15 @@
         <br>
          <img @click="authVK" src="public/images/vk.png" width="45" height="45" alt="vk">
          <img @click="authOK" src="public/images/ok.png" width="45" height="45" alt="ok">
-          <br>
-          <br>
-          <b-button type="submit" variant="primary">Войти</b-button>
+         <hr>
+         <b-button type="submit" variant="primary">Войти</b-button>
         <hr>
       </b-form-group>
       <b-form-group>
 
       <div style="text-align:center;margin-top:-20px">        
         <b-link style="color:grey;font-weight:bold" href="/password/reset">Восстановить вход</b-link><br>или<br>
-        <b-link style="color:grey;font-weight:bold" href="/register">Зарегистрироваться</b-link>  
-        <hr>                      
+        <b-link style="color:grey;font-weight:bold" href="/register">Зарегистрироваться</b-link>                    
       </div>
       </b-form-group>
     </b-form>

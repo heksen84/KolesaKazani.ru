@@ -2260,8 +2260,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -39559,9 +39557,7 @@ var render = function() {
                         on: { click: _vm.authOK }
                       }),
                       _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("br"),
+                      _c("hr"),
                       _vm._v(" "),
                       _c(
                         "b-button",
@@ -39609,9 +39605,7 @@ var render = function() {
                             attrs: { href: "/register" }
                           },
                           [_vm._v("Зарегистрироваться")]
-                        ),
-                        _vm._v(" "),
-                        _c("hr")
+                        )
                       ],
                       1
                     )
