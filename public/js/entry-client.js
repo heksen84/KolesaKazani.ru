@@ -40662,14 +40662,24 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "b-form",
-                { staticStyle: { width: "99%" }, on: { submit: _vm.onSubmit } },
+                { on: { submit: _vm.onSubmit } },
                 [
                   _c("b-form-input", {
-                    attrs: { maxlength: "12", placeholder: "логин" }
+                    staticClass: "mb-1 mr-sm-1 mb-sm-1",
+                    attrs: {
+                      type: "text",
+                      maxlength: "12",
+                      placeholder: "логин"
+                    }
                   }),
                   _vm._v(" "),
                   _c("b-form-input", {
-                    attrs: { maxlength: "12", placeholder: "пароль" }
+                    staticClass: "mb-1 mr-sm-1 mb-sm-1",
+                    attrs: {
+                      type: "password",
+                      maxlength: "12",
+                      placeholder: "пароль"
+                    }
                   }),
                   _vm._v(" "),
                   _c(
