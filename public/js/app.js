@@ -4349,7 +4349,7 @@ function num2str(n, text_forms) {
 			totalRecords: this.total_records,
 			resultsClone: this.results,
 			items: this.data,
-			perPage: 10, // макимальное кол-во объявлений на странице
+			perPage: 5, // макимальное кол-во объявлений на странице
 			start_page: 0,
 			currentPage: 1,
 			loadMoreCountShow: 3,

@@ -15,7 +15,7 @@ class ResultsController extends Controller {
 	
 	// частные переменные
 	private $start_record  = 0;
-    private $records_limit = 10; // максимальное число записей при выборке
+    private $records_limit = 5; // максимальное число записей при выборке
     
     // ------------------------------------------------------------
     // Получить данные по категории
@@ -142,7 +142,7 @@ class ResultsController extends Controller {
                 $keywords = "";
                 $description = "";
                 $title = "Транспорт в Казахстане";
-                
+
 				break;				                          				
 			}
 			
