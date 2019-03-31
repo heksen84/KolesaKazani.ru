@@ -3,18 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\Petrovich;
 use App\Http\Controllers\Controller;
 use App\SubCats;
-use App\Transport;
 use App\Adverts;
 use App\Categories;
 use App\Regions;
-use App\Places;
-use App\Images;
 
 class ResultsController extends Controller {
 	
