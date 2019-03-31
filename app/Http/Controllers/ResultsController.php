@@ -194,51 +194,51 @@ class ResultsController extends Controller {
 				   
 				// электроника
 				if ($category->id==3) {
-                    $title = "Электроника: Объявления о покупке, продаже, обмене или сдаче электроники В Казахстане";
                     $keywords = "";
                     $description = "";
+                    $title = "Электроника: Объявления о покупке, продаже, обмене или сдаче электроники В Казахстане";
                 }
                     // работа и бизнес
 				if ($category->id==4) {
-                    $title = "Работа и бизнес: Обяъвления о работе и бизнесе в Казахстане";
                     $keywords = "";
                     $description = "";
+                    $title = "Работа и бизнес: Обяъвления о работе и бизнесе в Казахстане";
                 }
                     // для дома и дачи
                 if ($category->id==5) {
-                    $title = "Для дома и дачи: Объявления категории для дома и дачи в Казахстанe";
                     $keywords = "";
                     $description = "";
+                    $title = "Для дома и дачи: Объявления категории для дома и дачи в Казахстанe";
                 }
                     // личные вещи
                 if ($category->id==6) {
-                    $title = "Личные вещи: Объявления о покупке, продаже, обмене или сдаче аренду личных вещей";
                     $keywords = "";
                     $description = "";
+                    $title = "Личные вещи: Объявления о покупке, продаже, обмене или сдаче аренду личных вещей";
                 }
                     // животные
 				if ($category->id==7) {
-                    $title = "Животные: Объявления о покупке, продаже, обмене или сдаче в аренду животных в Казахстане";
                     $keywords = "";
                     $description = "";
+                    $title = "Животные: Объявления о покупке, продаже, обмене или сдаче в аренду животных в Казахстане";
                 }
                     // хобби и отдых
 				if ($category->id==8) {
-                    $title = "Хобби и отдых: Объявления категории хобби и отдых в Казахстанe";
                     $keywords = "";
                     $description = "";
+                    $title = "Хобби и отдых: Объявления категории хобби и отдых в Казахстанe";
                 }
                 // услуги
 				if ($category->id==9) {
-                    $title = "Услуги: Объявления категории услуги в Казахстанe";
                     $keywords = "";
                     $description = "";
+                    $title = "Услуги: Объявления категории услуги в Казахстанe";
                 }
                     // другое
                 if ($category->id==10) {
-                    $title = "Различные предложения в Казахстане";
                     $keywords = "";
                     $description = "";
+                    $title = "Различные предложения в Казахстане";
                 }
                 
 				$total = DB::select("SELECT COUNT(*) as count FROM `adverts` AS adv WHERE category_id=".$category->id.$filter_string);
@@ -356,6 +356,8 @@ class ResultsController extends Controller {
 
                     \Debugbar::info($results);
 
+                    $keywords = "";
+                    $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду легковых автомобилей";
                     break;
                 }
@@ -383,6 +385,8 @@ class ResultsController extends Controller {
 
                     \Debugbar::info($results);
 
+                    $keywords = "";
+                    $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду грузового транспорта";
                     break;
                 }
@@ -409,6 +413,8 @@ class ResultsController extends Controller {
 
                     \Debugbar::info($results);
                     
+                    $keywords = "";
+                    $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду мототехники";
                     break;
                 }                
@@ -435,6 +441,8 @@ class ResultsController extends Controller {
 
                     \Debugbar::info($results);
 
+                    $keywords = "";
+                    $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду спецтехники";
                     break;
                 }   
@@ -459,6 +467,8 @@ class ResultsController extends Controller {
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
+                    $keywords = "";
+                    $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду ретро автомобилей";
                     break;
                 }                               
@@ -483,6 +493,8 @@ class ResultsController extends Controller {
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
+                    $keywords = "";
+                    $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду водного транспорта";
                     break;
                 }                               
@@ -507,6 +519,8 @@ class ResultsController extends Controller {
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
+                    $keywords = "";
+                    $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду велосипеда";
                     break;
                 }                               
@@ -531,6 +545,8 @@ class ResultsController extends Controller {
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
+                    $keywords = "";
+                    $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду воздушного транспорта";
                     break;
                 }
@@ -569,6 +585,8 @@ class ResultsController extends Controller {
 
                     \Debugbar::info($results);
 
+                    $keywords = "";
+                    $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду квартиры";
                     break;
                 }
@@ -595,6 +613,8 @@ class ResultsController extends Controller {
 
                     \Debugbar::info($results);
 
+                    $keywords = "";
+                    $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду комнаты";
                     break;
                 }
@@ -626,7 +646,9 @@ class ResultsController extends Controller {
                     );
 
                     \Debugbar::info($results);
-                                        
+                  
+                    $keywords = "";
+                    $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду дома, дачи, коттеджа";
                     break;
                 }
@@ -653,6 +675,8 @@ class ResultsController extends Controller {
 
                     \Debugbar::info($results);
 
+                    $keywords = "";
+                    $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду земельного участка";
                     break;
                 }
@@ -679,6 +703,8 @@ class ResultsController extends Controller {
 
                     \Debugbar::info($results);
 
+                    $keywords = "";
+                    $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду гаража или машиноместа";
                     break;
                 }
@@ -705,6 +731,8 @@ class ResultsController extends Controller {
                 
                     \Debugbar::info($results);
 
+                    $keywords = "";
+                    $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду коммерческой недвижимости";
                     break;
                 }
@@ -731,6 +759,8 @@ class ResultsController extends Controller {
 
                     \Debugbar::info($results);
 
+                    $keywords = "";
+                    $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду недвижимости за рубежом";
                     break;
                 }                                
@@ -742,6 +772,8 @@ class ResultsController extends Controller {
 
          return view("results")
          ->with("category_name", json_encode("---"))
+         ->with("keywords", $keywords)
+         ->with("desciption", $description)
          ->with("title", $title." в Казахстане")
          ->with("items", $items)
          ->with("results", json_encode($results))
