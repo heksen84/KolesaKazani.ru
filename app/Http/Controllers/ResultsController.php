@@ -644,6 +644,14 @@ class ResultsController extends Controller {
                 // квартира
                 if ($subcat=="kvartira") {
 
+                    $total = DB::select(
+                        "SELECT
+                        COUNT(*) as count                        
+                        FROM `adverts` as adv
+                        INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
+                        WHERE adv_realestate.property_type=0 AND adv.category_id=2"                    
+                    );
+
                     $results = DB::select(
                         "SELECT
                         concat(adv_realestate.rooms, ' комнатную квартиру, ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаж, ', adv_realestate.area, ' кв. м.' ) AS title,
@@ -672,6 +680,14 @@ class ResultsController extends Controller {
                 // комната
                 if ($subcat=="komnata") {
 
+                    $total = DB::select(
+                        "SELECT
+                        COUNT(*) as count                        
+                        FROM `adverts` as adv
+                        INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
+                        WHERE adv_realestate.property_type=1 AND adv.category_id=2"                    
+                    );
+
                     $results = DB::select(
                         "SELECT
                         concat('комнату ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаж, ', adv_realestate.area, ' кв. м.' ) AS title,
@@ -699,6 +715,14 @@ class ResultsController extends Controller {
 
                 // дом, дача, коттедж
                 if ($subcat=="dom-dacha-kottedzh") {
+
+                    $total = DB::select(
+                        "SELECT
+                        COUNT(*) as count
+                        FROM `adverts` as adv
+                        INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
+                        WHERE adv_realestate.property_type=2 AND adv.category_id=2"
+                    );
 
                     $results = DB::select(
                         "SELECT
@@ -734,6 +758,14 @@ class ResultsController extends Controller {
                 // земельный участок
                 if ($subcat=="zemel-nyy-uchastok") {
 
+                    $total = DB::select(
+                        "SELECT
+                        COUNT(*) as count                      
+                        FROM `adverts` as adv
+                        INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
+                        WHERE adv_realestate.property_type=3 AND adv.category_id=2"
+                    );
+
                     $results = DB::select(
                         "SELECT
                         concat('земельный участок ', adv_realestate.area, ' соток' ) AS title,
@@ -761,6 +793,14 @@ class ResultsController extends Controller {
                 
                 // гараж или машиноместо
                 if ($subcat=="garazh-ili-mashinomesto") {
+
+                    $total = DB::select(
+                        "SELECT
+                        COUNT(*) as count                        
+                        FROM `adverts` as adv
+                        INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
+                        WHERE adv_realestate.property_type=4 AND adv.category_id=2"                    
+                    );
 
                     $results = DB::select(
                         "SELECT
@@ -790,6 +830,14 @@ class ResultsController extends Controller {
                 // коммерческая недвижимость
                 if ($subcat=="kommercheskaya-nedvizhimost") {
 
+                    $total = DB::select(
+                        "SELECT
+                        COUNT(*) as count                        
+                        FROM `adverts` as adv
+                        INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
+                        WHERE adv_realestate.property_type=5 AND adv.category_id=2"                    
+                    );
+
                     $results = DB::select(
                         "SELECT
                         concat('недвижимость ', adv_realestate.area, ' кв. м.' ) AS title,
@@ -818,6 +866,14 @@ class ResultsController extends Controller {
                 // недвижимость за рубежом
                 if ($subcat=="nedvizhimost-za-rubezhom") {
 
+                    $total = DB::select(
+                        "SELECT
+                        COUNT(*) as count                        
+                        FROM `adverts` as adv
+                        INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
+                        WHERE adv_realestate.property_type=6 AND adv.category_id=2"                    
+                    );
+
                     $results = DB::select(
                         "SELECT
                         concat('недвижимость ', adv_realestate.area, ' кв. м.' ) AS title,
@@ -840,6 +896,7 @@ class ResultsController extends Controller {
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду недвижимости за рубежом";
+                    
                     break;
                 }                                
             }
