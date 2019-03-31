@@ -40239,7 +40239,7 @@ var render = function() {
                                 {
                                   staticStyle: {
                                     "margin-top": "10px",
-                                    color: "green",
+                                    color: "grey",
                                     "font-weight": "700"
                                   }
                                 },
