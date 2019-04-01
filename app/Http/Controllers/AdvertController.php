@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
-use Validator;
 use App\Adverts;
 use App\CarMark;
 use App\Categories;
@@ -14,12 +13,11 @@ use App\RealEstate;
 use App\DealType;
 use App\Regions;
 use App\Urls;
-use DB;
 use App\Helpers\Petrovich;
 use App\Helpers\Helper;
 use App\Helpers\Sitemap;
-
-//use \SitemapController;
+use Validator;
+use DB;
 
 class AdvertController extends Controller {
 
