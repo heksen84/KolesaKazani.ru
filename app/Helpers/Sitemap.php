@@ -74,7 +74,7 @@ class Sitemap {
 				$current_sitemap = $rec->loc;  
 
 				\Debugbar::info("current_sitemap: ".$current_sitemap);
-				
+
 				$pos = strpos($current_sitemap, "sitemaps");
 				\Debugbar::info("sitemap path string pos :".$pos);
 
@@ -90,6 +90,7 @@ class Sitemap {
 				// проверяем наличие файла
 				if (file_exists($current_sitemap)) {
 					
+					// если sitemap больше или равен 50 мб. то ...
 					if (filesize($current_sitemap)>=50000000) {
 
 					// --------------------------------------------------
