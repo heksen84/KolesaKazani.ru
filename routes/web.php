@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\DB;
 Auth::routes(); // Стандартные роуты
 
 //if (env('APP_DEBUG')) {
-	\Debugbar::disable();
-	//\Debugbar::enable();
+	//\Debugbar::disable();
+	\Debugbar::enable();
 //}
 
 // ------------------------------------------------------
