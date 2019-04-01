@@ -63,43 +63,33 @@ class Sitemap {
 		// 1. открываем sitemap index
 		// 2. Читаем кол-во записей берём последний
 		// -------------------------------------------------
-
 		if (file_exists(Sitemap::$sitemap_index_file)) {
 
 			$sitemap_index = simpleXML_load_file(Sitemap::$sitemap_index_file);
 
 			\Debugbar::info("Число записей в индексе sitemap :".$sitemap_index->count());
 
-			if ($sitemap_index->count()>0) {
+			if ($sitemap_index->count() > 0) {
+				$rec = $sitemap_index->sitemap[$sitemap_index->count()-1];		
+				$current_sitemap = $rec->loc;  
 
-			$rec = $sitemap_index->sitemap[$sitemap_index->count()-1];		
-			$current_sitemap = $rec->loc;  
+				\Debugbar::info("current_sitemap: ".$current_sitemap);
+				$pos = strpos($current_sitemap, "sitemaps");
+				\Debugbar::info("sitemap path string pos :".$pos);
 
-			\Debugbar::info("current_sitemap: ".$current_sitemap);
+			 	if ($pos>0)
+			   	$current_sitemap = substr($current_sitemap, $pos, strlen($current_sitemap)-$pos);
+			 	else {
+					\Debugbar::info("Проблема sitemap substr");
+					return false;
+				}
 
-			$pos = strpos($current_sitemap, "sitemaps");
-			
-			\Debugbar::info("sitemap path string pos :".$pos);
+				date_default_timezone_set("Asia/Almaty");
 
-			 if ($pos>0)
-			   $current_sitemap = substr($current_sitemap, $pos, strlen($current_sitemap)-$pos);
-			 else {
-				\Debugbar::info("Проблема sitemap substr");
-				return false;
-			}
-
-			date_default_timezone_set("Asia/Almaty");
-
-			// проверяем наличие файла
-			if (file_exists($current_sitemap)) {
-
-					$sitemap = simpleXML_load_file($current_sitemap);
+				// проверяем наличие файла
+				if (file_exists($current_sitemap)) {
 					
-					//50000000
-
-			    // Если переполнен
-			    // Думаю, что дешевле определить размер файла т.е. не более 50 мб.
-			    if ($sitemap->count()>50000) {
+					if (filesize($current_sitemap)>=50000000) {
 
 					// --------------------------------------------------
 					// получаем имя прибавляем 1 проверяем наличие, 
@@ -108,33 +98,33 @@ class Sitemap {
 					// --------------------------------------------------
 
 			    }
-
 			    // иначе добавляю
 			    else {
+						
+						\Debugbar::info("Добавляю url в ".$current_sitemap."...");
 
-					\Debugbar::info("Добавляю url в ".$current_sitemap."...");
+						$sitemap = simpleXML_load_file($current_sitemap);
 
-					$date_time = date("Y-m-d H:i:s");	
+						$date_time = date("Y-m-d H:i:s");	
+						$record = $sitemap->addChild("url");
+						$record->addChild("loc", Sitemap::$public_path.$url);
+						$record->addChild("lastmod", $date_time);			
+						$record->addChild("changefreq", "daily");
+						$record->addChild("priority", "2.0");
 
-					$record = $sitemap->addChild("url");
-					$record->addChild("loc", Sitemap::$public_path.$url);
-					$record->addChild("lastmod", $date_time);			
-					$record->addChild("changefreq", "daily");
-					$record->addChild("priority", "2.0");
+						$dom = new \DOMDocument("1.0", LIBXML_NOBLANKS);
+						$dom->preserveWhiteSpace = false;
+						$dom->formatOutput = true;
+						$dom->loadXML($sitemap->asXML());
+						$dom->saveXML();
+						$dom->save($current_sitemap);
 
-					$dom = new \DOMDocument("1.0", LIBXML_NOBLANKS);
-					$dom->preserveWhiteSpace = false;
-					$dom->formatOutput = true;
-					$dom->loadXML($sitemap->asXML());
-					$dom->saveXML();
-					$dom->save($current_sitemap);
-
-					$rec->lastmod = $date_time;
-					$dom->loadXML($sitemap_index->asXML());
-					$dom->saveXML();
-					$dom->save(Sitemap::$sitemap_index_file);
+						$rec->lastmod = $date_time;
+						$dom->loadXML($sitemap_index->asXML());
+						$dom->saveXML();
+						$dom->save(Sitemap::$sitemap_index_file);
 		
-					\Debugbar::info("Типо добавил");
+						\Debugbar::info("url добавлен");
 			    }
 			}
 			else {
