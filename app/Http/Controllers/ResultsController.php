@@ -313,7 +313,7 @@ class ResultsController extends Controller {
     Получить результаты для подкатегории
     
 	--------------------------------------------------------------------------------*/
-	public function getResultsForSubCategory(Request $request, $category, $subcat) {
+	public function getResultsForSubCategoryForView(Request $request, $category, $subcat) {
 
 		\Debugbar::info("Я тута, я здеся!");
 
@@ -932,8 +932,14 @@ class ResultsController extends Controller {
     }
 
     // -------------------------------------------------------------------
-	// результаты по всему региону c детальной информацией
-	// -------------------------------------------------------------------
+    // Результаты подкатегорий для морды
+    // -------------------------------------------------------------------
+    public function getResultsForSubCategoryForFront(Request $request) {
+    }
+
+    // -------------------------------------------------------------------
+    // результаты по всему региону c детальной информацией
+    // -------------------------------------------------------------------
     public function getResultsByRegionWithDetailedInfo(Request $request) {    
 		return view("results")->with("title", "123123")->with("results", "123")->with("category", "123")->with("items", "123");
 	}

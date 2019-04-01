@@ -71,10 +71,10 @@ Route::get('obyavlenie/{url}', 'AdvertController@getFullInfoByUrl'); // для �
 Route::get('podrobno/{id}', 'AdvertController@getFullInfo');
 
 // подкатегории
-Route::get('{category}/{subcat}', 'ResultsController@getResultsForSubCategory');
+Route::get('{category}/{subcat}', 'ResultsController@getResultsForSubCategoryForView');
 //Route::get('/getResultsForSubCategory', 'ResultsController@getResultsForSubCategory'); // для axios
 
-Route::get('/getResultsForSubCategory/{category}/{subcat}', 'ResultsController@getResultsForSubCategory');
+Route::get('/getResultsForSubCategory/{category}/{subcat}', 'ResultsController@getResultsForSubCategoryForView');
 Route::get('/getResultsByCategoryForFront', 'ResultsController@getResultsByCategoryForFront');
 
 
