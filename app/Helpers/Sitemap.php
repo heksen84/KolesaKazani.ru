@@ -95,7 +95,8 @@ class Sitemap {
 
 			    $sitemap = simpleXML_load_file($current_sitemap);
 
-			    // если переполнен
+			    // Если переполнен
+			    // Думаю, что дешевле определить размер файла
 			    if ($sitemap->count()>50000) {
 
 
