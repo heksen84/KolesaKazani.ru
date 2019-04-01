@@ -20,10 +20,16 @@ class ResultsController extends Controller {
     // ------------------------------------------------------------
     // Получить данные по категории
     // ------------------------------------------------------------
-    public function getResultsByCategory(Request $request) {
-
+    public function getResultsByCategory(Request $request, $region, $place) {
     	
-	// определить есть-ли входящие переменные типа $region, $place через isset
+
+	if (isset($region)) {
+	 // формируем строку для региона
+	}
+
+	if (isset($place)) {
+	 // формируем строку для города / села
+	}
 
         $filter_string  = "";
         $total          = 0;
@@ -288,7 +294,7 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     public function getResultsByCategoryForView(Request $request) {
 		
-        $result = $this->getResultsByCategory($request);
+        $result = $this->getResultsByCategory($request, null, null);
     
         return view("results")
         ->with("keywords", $result["keywords"])
@@ -306,7 +312,7 @@ class ResultsController extends Controller {
     // результаты по всей стране для морды
     // ---------------------------------------------------------------
     public function getResultsByCategoryForFront(Request $request) {
-        $result = $this->getResultsByCategory($request);
+        $result = $this->getResultsByCategory($request, null, null);
         return $result;
 	}
 
