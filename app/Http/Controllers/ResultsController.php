@@ -13,14 +13,17 @@ use App\Regions;
 
 class ResultsController extends Controller {
 	
-	// частные переменные
-	private $start_record  = 0;
+    // частные переменные
+    private $start_record  = 0;
     private $records_limit = 5; // максимальное число записей при выборке
     
     // ------------------------------------------------------------
     // Получить данные по категории
     // ------------------------------------------------------------
     public function getResultsByCategory(Request $request) {
+
+    	
+	// определить есть-ли входящие переменные типа $region, $place через isset
 
         $filter_string  = "";
         $total          = 0;
