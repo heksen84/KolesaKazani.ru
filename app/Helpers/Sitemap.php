@@ -74,6 +74,7 @@ class Sitemap {
 				$current_sitemap = $rec->loc;  
 
 				\Debugbar::info("current_sitemap: ".$current_sitemap);
+				
 				$pos = strpos($current_sitemap, "sitemaps");
 				\Debugbar::info("sitemap path string pos :".$pos);
 
