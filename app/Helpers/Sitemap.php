@@ -8,19 +8,6 @@ namespace App\Helpers;
 // класс для работы с sitemap.xml
 class Sitemap {
 
-    /*private $sitemaps=array(
-	"sitemap001.xml",
-	"sitemap002.xml",
-	"sitemap003.xml",
-	"sitemap004.xml",
-	"sitemap005.xml",
-	"sitemap006.xml",
-	"sitemap007.xml",
-	"sitemap008.xml",
-	"sitemap009.xml",
-	"sitemap010.xml",
-	);*/
-
 	private static $sitemap_index_file = "sitemaps/sitemap.xml";
 	private static $sitemap_file = "sitemaps/sitemap.xml";
 	private static $public_path = "damelya:90/obyavlenie/";
@@ -70,6 +57,7 @@ class Sitemap {
 			\Debugbar::info("Число записей в индексе sitemap :".$sitemap_index->count());
 
 			if ($sitemap_index->count() > 0) {
+
 				$rec = $sitemap_index->sitemap[$sitemap_index->count()-1];		
 				$current_sitemap = $rec->loc;  
 
@@ -92,6 +80,21 @@ class Sitemap {
 					
 					// если sitemap больше или равен 50 мб. то ...
 					if (filesize($current_sitemap)>=50000000) {
+//					if (filesize($current_sitemap)>=1) {
+
+					$sitemap_num = strpos($current_sitemap, "p_"); // sitema(p_)1
+					$sitemap_ext = strpos($current_sitemap, ".");  // .xml
+
+					// нужно определить длину вырезаемого числа
+					$length = $sitemap_ext-$sitemap_num-2;
+
+					\Debugbar::info("LENGTH :".$length);
+
+				   	$snum = substr($current_sitemap, $sitemap_num+2, $length);
+
+					$nextval = intval($snum)+1;
+
+					\Debugbar::info("NEXTVAL :".$nextval);
 
 					// --------------------------------------------------
 					// получаем имя прибавляем 1 проверяем наличие, 
