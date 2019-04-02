@@ -8,37 +8,55 @@ namespace App\Helpers;
 // класс для работы с sitemap.xml
 class Sitemap {
 
-	private static $sitemap_index_file = "sitemaps/sitemap.xml";
-	private static $sitemap_file = "sitemaps/sitemap.xml";
+	private static $sitemaps = "sitemaps/";
 	private static $public_path = "damelya:90/obyavlenie/";
+	private static $sitemap_index_file = "sitemaps/sitemap.xml";
 
-	// -------------------------------------
+	// ------------------------------------------------
 	// создать sitemap
-	// -------------------------------------
-	public static function createNew($old_filename) {			
+	// ------------------------------------------------
+	public static function createNew($current_sitemap, $sitemap_index) {
 
-		$new_sitemap_file = "sitemaps/new_sitemap.xml";
+	$sitemap_num = strpos($current_sitemap, "p_"); // sitema(p_)1
+	$sitemap_ext = strpos($current_sitemap, ".");  // .xml
 
-		$file = fopen($new_sitemap_file, "w");
+	// нужно определить длину вырезаемого числа
+	$length = $sitemap_ext-$sitemap_num-2;
 
-		if (!$file) return false;
-		
-		// генерирую заголовок
-		fwrite($file, '<?xml version="1.0" encoding="UTF-8"?>'."\n");
-		fwrite($file, '<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">'."\n");
-		fwrite($file, '</urlset>');
-		fclose($file);
+	\Debugbar::info("LENGTH :".$length);
 
-		$sitemap = simpleXML_load_file($new_sitemap_file);
+   	$snum = substr($current_sitemap, $sitemap_num+2, $length);
+	$nextval = intval($snum)+1;
 
-		if (!$sitemap) 
-			return false;
-		
-		Sitemap::$sitemap_file = $new_sitemap_file;
+        \Debugbar::info("NEXTVAL :".$nextval);
 
-		\Debugbar::info("Сайтпап создан!");
+	$new_name = Sitemap::$sitemaps."sitemap_".$nextval.".xml";
 
-		return $sitemap;
+	$file = fopen($new_name, "w");
+
+	if (!$file) 
+		return false;
+
+	// генерирую заголовок
+	fwrite($file, '<?xml version="1.0" encoding="UTF-8"?>'."\n");
+	fwrite($file, '<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">'."\n");
+	fwrite($file, '</urlset>');
+	fclose($file);
+
+	$date_time = date("Y-m-d H:i:s");
+
+	$record = $sitemap_index->addChild("sitemap");
+	$record->addChild("loc", "damelya:90/".$new_name);
+	$record->addChild("lastmod", $date_time);			
+
+	$dom = new \DOMDocument("1.0", LIBXML_NOBLANKS);
+	$dom->preserveWhiteSpace = false;
+	$dom->formatOutput = true;
+	$dom->loadXML($sitemap_index->asXML());
+	$dom->save(Sitemap::$sitemap_index_file);
+
+	return $new_name;
+
 	}
 
 	// -------------------------------------
@@ -67,7 +85,7 @@ class Sitemap {
 				\Debugbar::info("sitemap path string pos :".$pos);
 
 			 	if ($pos>0)
-			   	$current_sitemap = substr($current_sitemap, $pos, strlen($current_sitemap)-$pos);
+			   		$current_sitemap = substr($current_sitemap, $pos, strlen($current_sitemap)-$pos);
 			 	else {
 					\Debugbar::info("Проблема sitemap substr");
 					return false;
@@ -77,60 +95,46 @@ class Sitemap {
 
 				// проверяем наличие файла
 				if (file_exists($current_sitemap)) {
+
+        \Debugbar::info("OKK");
 					
+					$sitemap_created=false;
+
 					// если sitemap больше или равен 50 мб. то ...
-					if (filesize($current_sitemap)>=50000000) {
 //					if (filesize($current_sitemap)>=1) {
+					if (filesize($current_sitemap)>=50000000) {
+					 $current_sitemap = Sitemap::createNew($current_sitemap, $sitemap_index);
+					 $sitemap_created=true;
+					}			   						
+					
+					\Debugbar::info("Добавляю url в ".$current_sitemap."...");
 
-					$sitemap_num = strpos($current_sitemap, "p_"); // sitema(p_)1
-					$sitemap_ext = strpos($current_sitemap, ".");  // .xml
+					$sitemap = simpleXML_load_file($current_sitemap);
+	
+					$date_time = date("Y-m-d H:i:s");
 
-					// нужно определить длину вырезаемого числа
-					$length = $sitemap_ext-$sitemap_num-2;
+					$record = $sitemap->addChild("url");
+					$record->addChild("loc", Sitemap::$public_path.$url);
+					$record->addChild("lastmod", $date_time);			
+					$record->addChild("changefreq", "daily");
+					$record->addChild("priority", "2.0");
 
-					\Debugbar::info("LENGTH :".$length);
+					$dom = new \DOMDocument("1.0", LIBXML_NOBLANKS);
+					$dom->preserveWhiteSpace = false;
+					$dom->formatOutput = true;
+					$dom->loadXML($sitemap->asXML());
+					$dom->saveXML();
+					$dom->save($current_sitemap);
 
-				   	$snum = substr($current_sitemap, $sitemap_num+2, $length);
-
-					$nextval = intval($snum)+1;
-
-					\Debugbar::info("NEXTVAL :".$nextval);
-
-					// --------------------------------------------------
-					// получаем имя прибавляем 1 проверяем наличие, 
-					// записываем его имя в sitemap index
-					// добавляем строку url в sitemap
-					// --------------------------------------------------
-
-			    }
-			    // иначе добавляю
-			    else {
-						
-						\Debugbar::info("Добавляю url в ".$current_sitemap."...");
-
-						$sitemap = simpleXML_load_file($current_sitemap);
-
-						$date_time = date("Y-m-d H:i:s");	
-						$record = $sitemap->addChild("url");
-						$record->addChild("loc", Sitemap::$public_path.$url);
-						$record->addChild("lastmod", $date_time);			
-						$record->addChild("changefreq", "daily");
-						$record->addChild("priority", "2.0");
-
-						$dom = new \DOMDocument("1.0", LIBXML_NOBLANKS);
-						$dom->preserveWhiteSpace = false;
-						$dom->formatOutput = true;
-						$dom->loadXML($sitemap->asXML());
-						$dom->saveXML();
-						$dom->save($current_sitemap);
-
-						$rec->lastmod = $date_time;
-						$dom->loadXML($sitemap_index->asXML());
-						$dom->saveXML();
-						$dom->save(Sitemap::$sitemap_index_file);
+					// обновляю дату в индексе
+					if (!$sitemap_created) {
+					  $rec->lastmod = $date_time;
+					  $dom->loadXML($sitemap_index->asXML());
+					  $dom->saveXML();
+					  $dom->save(Sitemap::$sitemap_index_file);
+					}
 		
-						\Debugbar::info("url добавлен");
-			    }
+					\Debugbar::info("url добавлен");
 			}
 			else {
 			  \Debugbar::error($current_sitemap." не найден");			
@@ -139,13 +143,13 @@ class Sitemap {
 			  	
 		}
 		else {
-			\Debugbar::error("Файл индекса sitemap.xml без записей");
-			return false;		
+		 \Debugbar::error("Файл индекса sitemap.xml без записей");
+		 return false;		
 		}
 	}
 	else {
-		\Debugbar::error("Файл индекса sitemap.xml не найден");
-		return false;
+	\Debugbar::error("Файл индекса sitemap.xml не найден");
+	return false;
 	}
 }
 
