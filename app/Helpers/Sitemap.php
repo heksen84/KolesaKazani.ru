@@ -44,14 +44,20 @@ class Sitemap {
 	fclose($file);
 
 	$record = $sitemap_index->addChild("sitemap");
+
 	$record->addChild("loc", "damelya:90/".$new_name);
 	$record->addChild("lastmod", $date_time);			
 
 	$dom = new \DOMDocument("1.0", LIBXML_NOBLANKS);
+
 	$dom->preserveWhiteSpace = false;
-	$dom->formatOutput = true;
-	$dom->loadXML($sitemap_index->asXML());
-	$dom->save(Sitemap::$sitemap_index_file);
+	$dom->formatOutput = true;	
+
+	if (!$dom->loadXML($sitemap_index->asXML()))
+	 return false;
+	
+	if (!$dom->save(Sitemap::$sitemap_index_file))
+	 return false;
 
 	return $new_name;
 
@@ -104,7 +110,8 @@ class Sitemap {
 //					if (filesize($current_sitemap)>=1) {
 					if (filesize($current_sitemap)>=50000000) {
 					 $current_sitemap = Sitemap::createNew($current_sitemap, $sitemap_index, $date_time);
-					 $sitemap_created=true;
+					 if ($current_sitemap!=false)
+					  $sitemap_created=true;
 					}			   						
 					
 					\Debugbar::info("Добавляю url в ".$current_sitemap."...");
