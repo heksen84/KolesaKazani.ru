@@ -9,6 +9,10 @@
   <sitemap>
     <loc>damelya:90/sitemaps/place.xml</loc>
   </sitemap>
+  </sitemap>
+  <sitemap>
+    <loc>damelya:90/sitemaps/subcats.xml</loc>
+  </sitemap>
   <sitemap>
     <loc>damelya:90/sitemaps/sitemap_1.xml</loc>
     <lastmod>2019-04-02T13:57:59+0600</lastmod>
