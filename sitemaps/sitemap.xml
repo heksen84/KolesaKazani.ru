@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
-    <loc>damelya:90/sitemaps/sitemap_001.xml</loc>
+    <loc>damelya:90/sitemaps/sitemap1.xml</loc>
     <lastmod>2019-04-01 12:12:43</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>damelya:90/sitemaps/sitemap_002.xml</loc>
-    <lastmod>2019-04-01 19:48:39</lastmod>
   </sitemap>
 </sitemapindex>
