@@ -15,7 +15,7 @@ class Sitemap {
 	// ------------------------------------------------
 	// создать sitemap
 	// ------------------------------------------------
-	public static function createNew($current_sitemap, $sitemap_index) {
+	public static function createNew($current_sitemap, $sitemap_index, $date_time) {
 
 	$sitemap_num = strpos($current_sitemap, "p_"); // sitema(p_)1
 	$sitemap_ext = strpos($current_sitemap, ".");  // .xml
@@ -42,8 +42,6 @@ class Sitemap {
 	fwrite($file, '<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">'."\n");
 	fwrite($file, '</urlset>');
 	fclose($file);
-
-	$date_time = date("Y-m-d H:i:s");
 
 	$record = $sitemap_index->addChild("sitemap");
 	$record->addChild("loc", "damelya:90/".$new_name);
@@ -98,26 +96,26 @@ class Sitemap {
 
         \Debugbar::info("OKK");
 					
+					$date_time = date(\DateTime::ISO8601);
+
 					$sitemap_created=false;
 
 					// если sitemap больше или равен 50 мб. то ...
 //					if (filesize($current_sitemap)>=1) {
 					if (filesize($current_sitemap)>=50000000) {
-					 $current_sitemap = Sitemap::createNew($current_sitemap, $sitemap_index);
+					 $current_sitemap = Sitemap::createNew($current_sitemap, $sitemap_index, $date_time);
 					 $sitemap_created=true;
 					}			   						
 					
 					\Debugbar::info("Добавляю url в ".$current_sitemap."...");
 
 					$sitemap = simpleXML_load_file($current_sitemap);
-	
-					$date_time = date("Y-m-d H:i:s");
 
 					$record = $sitemap->addChild("url");
 					$record->addChild("loc", Sitemap::$public_path.$url);
 					$record->addChild("lastmod", $date_time);			
-					$record->addChild("changefreq", "daily");
-					$record->addChild("priority", "2.0");
+					$record->addChild("changefreq", "hourly");
+					$record->addChild("priority", "0.8");
 
 					$dom = new \DOMDocument("1.0", LIBXML_NOBLANKS);
 					$dom->preserveWhiteSpace = false;
