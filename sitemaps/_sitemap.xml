@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>damelya:90/sitemaps/country.xml</loc>
+    <lastmod>2019-04-02T12:21:23+0600</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>damelya:90/sitemaps/region.xml</loc>
+    <lastmod>2019-04-02T12:21:23+0600</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>damelya:90/sitemaps/place.xml</loc>
+    <lastmod>2019-04-02T12:21:23+0600</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>damelya:90/sitemaps/sitemap_1.xml</loc>
+    <lastmod>2019-04-02T13:57:59+0600</lastmod>
+  </sitemap>
+</sitemapindex>

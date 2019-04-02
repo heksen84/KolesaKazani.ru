@@ -10,7 +10,7 @@ class Sitemap {
 
 	private static $sitemaps = "sitemaps/";
 	private static $public_path = "damelya:90/obyavlenie/";
-	private static $sitemap_index_file = "sitemaps/sitemap.xml";
+	private static $sitemap_index_file = "sitemaps/_sitemap.xml";
 
 	// ------------------------------------------------
 	// создать sitemap
@@ -108,7 +108,7 @@ class Sitemap {
 
 					// если sitemap больше или равен 50 мб. то ...
 //					if (filesize($current_sitemap)>=1) {
-					if (filesize($current_sitemap)>=50000000) {
+				        if (filesize($current_sitemap)>=50000000) {
 					 $current_sitemap = Sitemap::createNew($current_sitemap, $sitemap_index, $date_time);
 					 if ($current_sitemap!=false)
 					  $sitemap_created=true;
