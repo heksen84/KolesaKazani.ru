@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: http://damelya/sitemaps/sitemap.xml
+Sitemap: http://damelya/sitemaps/_sitemap.xml
