@@ -39103,7 +39103,7 @@ var render = function() {
       _vm._v(" "),
       _c("br"),
       _vm._v(" "),
-      _vm.total_records > 5
+      _vm.total_records > 3
         ? _c(
             "b-row",
             [
