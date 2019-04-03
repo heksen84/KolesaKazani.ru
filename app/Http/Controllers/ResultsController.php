@@ -328,13 +328,21 @@ class ResultsController extends Controller {
         return $result;
 	}
 
+    // категория по региону
+    public function getResultsByCategoryForRegion(Request $request, $region) {
+    }
+
+    // категория по городу / селу / аулу
+    public function getResultsByCategoryForPlace(Request $request, $region, $place) {
+    }
+
 	/*
     --------------------------------------------------------------------------------
     
     Получить результаты для подкатегории
     
 	--------------------------------------------------------------------------------*/
-	public function getResultsForSubCategory(Request $request, $category, $subcat) {
+	public function getResultsForSubCategory(Request $request, $region, $place, $category, $subcat) {
 
         // проверка на наличие фильтров
         $filterData = $this->getFilterData($request);
@@ -970,7 +978,7 @@ class ResultsController extends Controller {
    // -------------------------------------------------------------------
    public function getResultsForSubCategoryForView(Request $request, $category, $subcat) {
 
-    $result = $this->getResultsForSubCategory($request, $category, $subcat);
+    $result = $this->getResultsForSubCategory($request, null, null, $category, $subcat);
 
     return view("results")
     ->with("category_name", $result["category_name"])
@@ -989,7 +997,7 @@ class ResultsController extends Controller {
    // Результаты подкатегорий для морды
    // -------------------------------------------------------------------
     public function getResultsForSubCategoryForFront(Request $request) {
-	    $result = $this->getResultsForSubCategory($request, null, null);
+	    $result = $this->getResultsForSubCategory($request, null, null, null, null);
 	    return $result;
     }
 
