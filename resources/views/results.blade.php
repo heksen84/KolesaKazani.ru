@@ -17,6 +17,7 @@
   :title="{{ json_encode($title) }}"
   :category="{{ $category }}" 
   :category_name="{{ $category_name }}" 
+  :subcat="{{ $subcat }}" 
   :results="{{ $results }}" 
   :data="{{ $items }}"
   :total_records="{{ $total_records }}">

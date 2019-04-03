@@ -947,7 +947,8 @@ class ResultsController extends Controller {
 	// ---------------------------------------------------------------------
         return array
 	(
-            "category_name"=>json_encode("---"), // ????
+            "category_name"=>json_encode($category),
+            "subcat"=>json_encode($subcat),
             "keywords"=>$keywords,
             "description"=>$description,
             "title"=>$title, 
@@ -968,6 +969,7 @@ class ResultsController extends Controller {
 
          return view("results")
          ->with("category_name", $result["category_name"])
+         ->with("subcat", $result["subcat"])
          ->with("keywords", $result["keywords"])
          ->with("description", $result["description"])
          ->with("title", $result["title"])
