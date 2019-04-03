@@ -105,19 +105,18 @@ class ResultsController extends Controller {
 	if (isset($place)) {
 	 // формируем строку для города / села
 	}
-
         
     // получаю имя на русском
 	$category = Categories::select("id", "name")->where("url", $this->category_name )->first();
     $items = Adverts::where("category_id",  $category->id )->get();        
                
-		// --------------------------------------------------------
-		// Беру данные по конкретной категории
-		// --------------------------------------------------------
-		switch($category->id) {
+    // --------------------------------------------------------
+	// Беру данные по конкретной категории
+	// --------------------------------------------------------
+	switch($category->id) {
 
-			// Вся автотранспорт Казахстана (damelya.kz/transport)
-			case 1: {
+		// Вся автотранспорт Казахстана (damelya.kz/transport)
+		case 1: {
 
                 $total = DB::select(
                     "SELECT	
@@ -208,9 +207,9 @@ class ResultsController extends Controller {
 			// Всё остальное
 			default: {
 
-				/* --------------------------------
-				    Заголовки title для SEO
-				   --------------------------------*/
+			/* --------------------------------
+			    Заголовки title для SEO
+	    	   --------------------------------*/
 				   
 				// электроника
 				if ($category->id==3) {
@@ -336,15 +335,12 @@ class ResultsController extends Controller {
 	--------------------------------------------------------------------------------*/
 	public function getResultsForSubCategory(Request $request, $category, $subcat) {
 
-	\Debugbar::info("Я тута, я здеся!");
-
         $filterData = $this->getFilterData($request);
 
-	\Debugbar::info("КАТЕГОРИЯ: ".$this->category_name);
+	    \Debugbar::info("КАТЕГОРИЯ: ".$this->category_name);
 	
-	if (!$filterData)
+	    if (!$filterData)
             $this->category_name = $request->path();
-
 
         $petrovich = new Petrovich(Petrovich::GENDER_MALE);
 
