@@ -17,6 +17,7 @@ class CreateCanceledTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('advert_id')->index();
             $table->unsignedInteger('reason_id');
+            $table->string('title', 60);
         });
     }
 
