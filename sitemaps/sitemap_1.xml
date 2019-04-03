@@ -42,4 +42,10 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>damelya:90/obyavlenie/216-kupi-pliz</loc>
+    <lastmod>2019-04-03T11:36:23+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

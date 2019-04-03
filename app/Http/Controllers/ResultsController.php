@@ -16,8 +16,16 @@ class ResultsController extends Controller {
     // частные переменные
     private $start_record  = 0;
     private $records_limit = 5; // максимальное число записей при выборке
-    
 
+    private $total          = 0;
+    private $filter_string  = "";   
+    private $start_page     = "null";
+    private $category_name  = "null";
+    private $category_id    = "null";
+    private $price_min      = "null";
+    private $price_max      = "null";
+    private $deal           = "null";
+    
     private function getFilterData($request) {
 
 	   $data = $request->all();
@@ -27,73 +35,53 @@ class ResultsController extends Controller {
 		return false;
 	   }
 
-           $filter_string  = "";   
-           $start_page     = "null";
-           $category_name  = "null";
-           $category_id    = "null";
-           $price_min      = "null";
-           $price_max      = "null";
-           $deal           = "null";
-	   $total          = 0;
-
-            if (isset($data["start_page"]))     $start_page     = $data["start_page"];
-            if (isset($data["category_name"]))  $category_name  = $data["category_name"];
-            if (isset($data["category_id"]))    $category_id    = $data["category_id"];
-            if (isset($data["deal"]))           $deal           = $data["deal"];
-            if (isset($data["price_min"]))      $price_min      = $data["price_min"];
-            if (isset($data["price_max"]))      $price_max      = $data["price_max"];
+            if (isset($data["start_page"]))     $this->start_page     = $data["start_page"];
+            if (isset($data["category_name"]))  $this->category_name  = $data["category_name"];
+            if (isset($data["category_id"]))    $this->category_id    = $data["category_id"];
+            if (isset($data["deal"]))           $this->deal           = $data["deal"];
+            if (isset($data["price_min"]))      $this->price_min      = $data["price_min"];
+            if (isset($data["price_max"]))      $this->price_max      = $data["price_max"];
             
             // FIX: ПРИМЕНИТЬ ВАЛИДАТОР
-            \Debugbar::info("категория id:".$category_id);
-            \Debugbar::info("категория:".$category_name);
-            \Debugbar::info("start_page :".$start_page);
-            \Debugbar::info("Вид сделки :".$deal);
-            \Debugbar::info("Цена от :".$price_min);
-            \Debugbar::info("Цена до :".$price_max);
+            \Debugbar::info("категория id:".$this->category_id);
+            \Debugbar::info("категория:".$this->category_name);
+            \Debugbar::info("start_page :".$this->start_page);
+            \Debugbar::info("Вид сделки :".$this->deal);
+            \Debugbar::info("Цена от :".$this->price_min);
+            \Debugbar::info("Цена до :".$this->price_max);
 
             // определяю начиная с какой записи считывать данные
-            if ($start_page >0)
-                $this->start_record = $this->records_limit*($start_page-1);
+            if ($this->start_page >0)
+                $this->start_record = $this->records_limit*($this->start_page-1);
 
                 // фильтра
-                $price_filter = "";
-                $deal_filter  = "";
+                $this->price_filter = "";
+                $this->deal_filter  = "";
 
-                if ($deal!="null")
-                    $deal_filter = " AND adv.deal=".$deal;
+                if ($this->deal!="null")
+                    $this->deal_filter = " AND adv.deal=".$this->deal;
                 
-                if ($deal=="null" && $price_min=="null" && $price_max=="null") {
-                    $price_filter = "";
-                    $deal_filter  = "";
+                if ($this->deal=="null" && $this->price_min=="null" && $this->price_max=="null") {
+                    $this->price_filter = "";
+                    $this->deal_filter  = "";
                 }
 
-                if ($price_min!="null" && $price_max!="null")
-                    $price_filter = " AND price BETWEEN ".$price_min." AND ".$price_max;
+                if ($this->price_min!="null" && $this->price_max!="null")
+                    $this->price_filter = " AND price BETWEEN ".$this->price_min." AND ".$this->price_max;
 
-                if ($price_min=="null" && $price_max>0)
-                    $price_filter = " AND price BETWEEN 0 AND ".$price_max;
+                if ($this->price_min=="null" && $this->price_max>0)
+                    $this->price_filter = " AND price BETWEEN 0 AND ".$this->price_max;
                     
-                if ($price_min>0 && $price_max=="null")
-                    $price_filter = " AND price = ".$price_min;
+                if ($this->price_min>0 && $this->price_max=="null")
+                    $this->price_filter = " AND price = ".$this->price_min;
 
                                                                             
-                $filter_string = $price_filter.$deal_filter;
+                $this->filter_string = $this->price_filter.$this->deal_filter;
 
-                \Debugbar::info("str :".$filter_string);
+                \Debugbar::info("str :".$this->filter_string);
 
 
-        return array
-        (
-            "filter_string"=>$filter_string,
-            "total"=>$total,
-            "start_page"=>$start_page,
-            "category_name"=>$category_name,
-            "category_id"=>$category_id,
-            "price_min"=>$price_min,
-            "price_max"=>$price_max,
-            "deal"=>$deal,
-          
-        );
+	return true;
 
     }
     // ------------------------------------------------------------
@@ -101,32 +89,12 @@ class ResultsController extends Controller {
     // ------------------------------------------------------------
     public function getResultsByCategory(Request $request, $region, $place) {
 
-	 $filter_string  = "";         
-         $start_page     = "null";
-         $category_name  = "null";
-         $category_id    = "null";
-         $price_min      = "null";
-         $price_max      = "null";
-         $deal           = "null";
-	 $total          = 0;
-
-
         $filterData = $this->getFilterData($request);
+
+	\Debugbar::info("КАТЕГОРИЯ: ".$this->category_name);
 	
-	if ($filterData) {
-
-        $filter_string  = $filterData["filter_string"];
-        $total          = $filterData["total"];
-        $start_page     = $filterData["start_page"];
-        $category_name  = $filterData["category_name"];
-        $category_id    = $filterData["category_id"];
-        $price_min      = $filterData["price_min"];
-        $price_max      = $filterData["price_max"];
-        $deal           = $filterData["deal"];
-
-        }
-        else  
-            $category_name = $request->path();
+	if (!$filterData)
+            $this->category_name = $request->path();
 
 	
 	// Учитываю местоположение
@@ -137,9 +105,10 @@ class ResultsController extends Controller {
 	if (isset($place)) {
 	 // формируем строку для города / села
 	}
+
         
         // получаю имя на русском
-	$category = Categories::select("id", "name")->where("url", $category_name )->first();
+	$category = Categories::select("id", "name")->where("url", $this->category_name )->first();
         $items = Adverts::where("category_id",  $category->id )->get();        
                
 		// --------------------------------------------------------
@@ -158,7 +127,7 @@ class ResultsController extends Controller {
 					adv.adv_category_id = adv_transport.id AND 
 					adv_transport.mark = car_mark.id_car_mark AND 						
 					adv_transport.model = car_model.id_car_model
-					) WHERE adv.category_id=1".$filter_string
+					) WHERE adv.category_id=1"
                 );
                 
                 \Debugbar::info("TOTAL :".$total[0]->count);
@@ -184,7 +153,7 @@ class ResultsController extends Controller {
 					adv.adv_category_id = adv_transport.id AND 
 					adv_transport.mark = car_mark.id_car_mark AND 						
 					adv_transport.model = car_model.id_car_model
-					) WHERE adv.category_id=1.$filter_string
+					) WHERE adv.category_id=1".$this->filter_string."
 					ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit
 				);
 
@@ -204,7 +173,7 @@ class ResultsController extends Controller {
                     "SELECT 
                     COUNT(*) as count FROM `adverts` as adv
                     INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-					WHERE adv.category_id=2".$filter_string
+					WHERE adv.category_id=2"
                 );
 
                 \Debugbar::info("TOTAL :".$total[0]->count);
@@ -223,7 +192,7 @@ class ResultsController extends Controller {
                     adv_realestate.id
                     FROM `adverts` as adv
                     INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-					WHERE adv.category_id=2.$filter_string
+					WHERE adv.category_id=2".$this->filter_string."
 					ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit
                 );
 
@@ -292,7 +261,7 @@ class ResultsController extends Controller {
                     $title = "Различные предложения в Казахстане";
                 }
                 
-				$total = DB::select("SELECT COUNT(*) as count FROM `adverts` AS adv WHERE category_id=".$category->id.$filter_string);
+				$total = DB::select("SELECT COUNT(*) as count FROM `adverts` AS adv WHERE category_id=".$category->id);
 
                 \Debugbar::info("TOTAL :".$total[0]->count);
                 
@@ -307,7 +276,7 @@ class ResultsController extends Controller {
 					price, 
 					category_id,					
 					(SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image
-                    FROM `adverts` AS adv WHERE category_id=".$category->id.$filter_string." ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit
+                    FROM `adverts` AS adv WHERE category_id=".$category->id.$this->filter_string." ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit
 				);
 
 				\Debugbar::info($results);
@@ -367,7 +336,15 @@ class ResultsController extends Controller {
 	--------------------------------------------------------------------------------*/
 	public function getResultsForSubCategory(Request $request, $category, $subcat) {
 
-		\Debugbar::info("Я тута, я здеся!");
+	\Debugbar::info("Я тута, я здеся!");
+
+        $filterData = $this->getFilterData($request);
+
+	\Debugbar::info("КАТЕГОРИЯ: ".$this->category_name);
+	
+	if (!$filterData)
+            $this->category_name = $request->path();
+
 
         $petrovich = new Petrovich(Petrovich::GENDER_MALE);
 
@@ -411,7 +388,7 @@ class ResultsController extends Controller {
                             adv_transport.mark=car_mark.id_car_mark AND 
                             adv.adv_category_id=adv_transport.id AND 
                             adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_transport.type=0 AND adv.category_id=1
+                        ) WHERE adv_transport.type=0 AND adv.category_id=1".$this->filter_string."
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );                    
 
@@ -450,7 +427,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=1 AND adv.category_id=1 
+                        ) WHERE adv_transport.type=1 AND adv.category_id=1".$this->filter_string." 
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -489,7 +466,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=2 AND adv.category_id=1
+                        ) WHERE adv_transport.type=2 AND adv.category_id=1".$this->filter_string."
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -528,7 +505,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=3 AND adv.category_id=1 
+                        ) WHERE adv_transport.type=3 AND adv.category_id=1".$this->filter_string." 
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -567,7 +544,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=4 AND adv.category_id=1 
+                        ) WHERE adv_transport.type=4 AND adv.category_id=1".$this->filter_string." 
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -604,7 +581,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=5  AND adv.category_id=1 
+                        ) WHERE adv_transport.type=5  AND adv.category_id=1".$this->filter_string." 
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -641,7 +618,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=6  AND adv.category_id=1 
+                        ) WHERE adv_transport.type=6  AND adv.category_id=1".$this->filter_string." 
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -678,7 +655,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=7 AND adv.category_id=1
+                        ) WHERE adv_transport.type=7 AND adv.category_id=1".$this->filter_string."
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -725,7 +702,7 @@ class ResultsController extends Controller {
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=0 AND adv.category_id=2
+                        WHERE adv_realestate.property_type=0 AND adv.category_id=2".$this->filter_string."
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -762,7 +739,7 @@ class ResultsController extends Controller {
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=1 AND adv.category_id=2
+                        WHERE adv_realestate.property_type=1 AND adv.category_id=2".$this->filter_string."
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -805,7 +782,7 @@ class ResultsController extends Controller {
                         adv_realestate.type_of_building*/
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=2 AND adv.category_id=2
+                        WHERE adv_realestate.property_type=2 AND adv.category_id=2".$this->filter_string."
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -842,7 +819,7 @@ class ResultsController extends Controller {
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=3 AND adv.category_id=2
+                        WHERE adv_realestate.property_type=3 AND adv.category_id=2".$this->filter_string."
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -879,7 +856,7 @@ class ResultsController extends Controller {
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=4 AND adv.category_id=2
+                        WHERE adv_realestate.property_type=4 AND adv.category_id=2".$this->filter_string."
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -916,7 +893,7 @@ class ResultsController extends Controller {
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=5 AND adv.category_id=2
+                        WHERE adv_realestate.property_type=5 AND adv.category_id=2".$this->filter_string."
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
                 
@@ -953,7 +930,7 @@ class ResultsController extends Controller {
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=6 AND adv.category_id=2
+                        WHERE adv_realestate.property_type=6 AND adv.category_id=2".$this->filter_string."
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
