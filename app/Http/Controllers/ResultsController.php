@@ -18,7 +18,14 @@ class ResultsController extends Controller {
     private $records_limit = 5; // максимальное число записей при выборке
     
 
-    private function getFilterData($data) {
+    private function getFilterData($request) {
+
+	   $data = $request->all();
+
+	   if (!$data) {
+		\Debugbar::info("Фильтр не указан");
+		return false;
+	   }
 
            $filter_string  = "";   
            $start_page     = "null";
@@ -103,12 +110,10 @@ class ResultsController extends Controller {
          $deal           = "null";
 	 $total          = 0;
 
-        // получаю входящие данные
-        $data = $request->all();        
 
-        // если указан фильтр
-        if ($data) {                                            
-           $filterData = $this->getFilterData($data);
+        $filterData = $this->getFilterData($request);
+	
+	if ($filterData) {
 
         $filter_string  = $filterData["filter_string"];
         $total          = $filterData["total"];
