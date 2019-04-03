@@ -315,6 +315,7 @@ class ResultsController extends Controller {
 		->with("results", $result["results"])
         ->with("category", $result["category"])
         ->with("category_name", $result["category_name"])
+        ->with("subcat", "null")
         ->with("start_record", $result["start_record"])
         ->with("total_records", $result["total_records"]);
     }
