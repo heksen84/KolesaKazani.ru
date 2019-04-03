@@ -91,31 +91,29 @@ class ResultsController extends Controller {
     // ------------------------------------------------------------
     public function getResultsByCategory(Request $request, $region, $place) {
 
+        // Проверяю наличие фильтров
         $filterData = $this->getFilterData($request);
-
-	\Debugbar::info("КАТЕГОРИЯ: ".$this->category_name);
-	
-	if (!$filterData)
+    
+        if (!$filterData)
             $this->category_name = $request->path();
-
 	
-	// Учитываю местоположение
-	if (isset($region)) {
-	 // формируем строку для региона
-	}
+	    // Учитываю местоположение
+	    if (isset($region)) {
+	        // формируем строку для региона
+	    }
 
-	if (isset($place)) {
-	 // формируем строку для города / села
-	}
+	    if (isset($place)) {
+	        // формируем строку для города / села
+	    }
         
-    // получаю имя на русском
-	$category = Categories::select("id", "name")->where("url", $this->category_name )->first();
-    $items = Adverts::where("category_id",  $category->id )->get();        
+        // получаю имя на русском
+	    $category = Categories::select("id", "name")->where("url", $this->category_name )->first();
+        $items = Adverts::where("category_id",  $category->id )->get();        
                
-    // --------------------------------------------------------
-	// Беру данные по конкретной категории
-	// --------------------------------------------------------
-	switch($category->id) {
+        // --------------------------------------------------------
+	    // Беру данные по конкретной категории
+	    // --------------------------------------------------------
+	    switch($category->id) {
 
 		// Вся автотранспорт Казахстана (damelya.kz/transport)
 		case 1: {
@@ -338,9 +336,9 @@ class ResultsController extends Controller {
 	--------------------------------------------------------------------------------*/
 	public function getResultsForSubCategory(Request $request, $category, $subcat) {
 
+        // проверка на наличие фильтров
         $filterData = $this->getFilterData($request);
 
-        // Проверяю наличие фильтров
         if ($filterData) {            
             \Debugbar::info("С ФИЛЬТРАМИ!");
             $subcat = $this->subcat;   
@@ -349,13 +347,13 @@ class ResultsController extends Controller {
             \Debugbar::info("БЕЗ ФИЛЬТРОВ!");
             $this->category_name = $request->path();            
         }            
-
-        // ---------------------------------------------------------------------------
+        
         // получаю имя на русском
-        // ---------------------------------------------------------------------------
 		$categories = SubCats::select("id", "name")->where("url",  $filterData?$this->subcat:$subcat )->first();
         $items = Adverts::where("category_id",  $categories->id )->get();
-        $category = $filterData?$this->category_name:$category; // беру имя категории либо с фильтров либо с переменной в контроллере
+        
+        // беру имя категории либо с фильтров либо с переменной в контроллере
+        $category = $filterData?$this->category_name:$category;
         
         switch($category) {
 
@@ -954,16 +952,16 @@ class ResultsController extends Controller {
 	// ---------------------------------------------------------------------
     return array
 	(
-            "category_name"=>json_encode($category),
-            "subcat"=>json_encode($subcat),
-            "keywords"=>$keywords,
-            "description"=>$description,
-            "title"=>$title, 
-            "items"=>$items,
-            "results"=>json_encode($results), 
-            "category"=>$categories,
-            "total_records"=>$this->total[0]->count
-        );
+        "category_name"=>json_encode($category),
+        "subcat"=>json_encode($subcat),
+        "keywords"=>$keywords,
+        "description"=>$description,
+        "title"=>$title, 
+        "items"=>$items,
+        "results"=>json_encode($results), 
+        "category"=>$categories,
+        "total_records"=>$this->total[0]->count
+    );
          
     }
 

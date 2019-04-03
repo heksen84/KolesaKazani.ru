@@ -31,7 +31,7 @@
 		</b-col>		
 	</b-row>-->
 
-	<b-row>
+	<b-row v-if="total_records>5">
 		<b-col cols="12" sm="12" md="3" lg="3" xl="3"></b-col>
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
 		  <b-form-select v-model="filters.deal" :options="options_deal" class="mb-2" size="sm"/>
@@ -105,7 +105,7 @@
 		</b-row>-->
 	</div>
 
-	<div class="mt-3 text-center">
+	<div class="mt-3 text-center" v-if="total_records>5">
 		Страницы:
 		<b-pagination v-model="currentPage" :total-rows="totalRecords" :per-page="perPage" align="center" @change="changePage" class="mt-2"/>
 	</div>

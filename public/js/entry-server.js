@@ -39103,108 +39103,110 @@ var render = function() {
       _vm._v(" "),
       _c("br"),
       _vm._v(" "),
-      _c(
-        "b-row",
-        [
-          _c("b-col", {
-            attrs: { cols: "12", sm: "12", md: "3", lg: "3", xl: "3" }
-          }),
-          _vm._v(" "),
-          _c(
-            "b-col",
-            { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
+      _vm.total_records > 5
+        ? _c(
+            "b-row",
             [
-              _c("b-form-select", {
-                staticClass: "mb-2",
-                attrs: { options: _vm.options_deal, size: "sm" },
-                model: {
-                  value: _vm.filters.deal,
-                  callback: function($$v) {
-                    _vm.$set(_vm.filters, "deal", $$v)
-                  },
-                  expression: "filters.deal"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-col",
-            { attrs: { cols: "12", sm: "12", md: "1", lg: "1", xl: "1" } },
-            [
+              _c("b-col", {
+                attrs: { cols: "12", sm: "12", md: "3", lg: "3", xl: "3" }
+              }),
+              _vm._v(" "),
               _c(
-                "span",
-                {
-                  staticClass: "shadow_text",
-                  staticStyle: { "font-weight": "600" }
-                },
-                [_vm._v("Цена:")]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "b-col",
-            { attrs: { cols: "4", sm: "4", md: "2", lg: "2", xl: "1" } },
-            [
-              _c("b-form-input", {
-                staticClass: "mb-1",
-                attrs: { placeholder: "От", type: "number", size: "sm" },
-                model: {
-                  value: _vm.filters.price_min,
-                  callback: function($$v) {
-                    _vm.$set(_vm.filters, "price_min", $$v)
-                  },
-                  expression: "filters.price_min"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-col",
-            { attrs: { cols: "4", sm: "4", md: "2", lg: "2", xl: "1" } },
-            [
-              _c("b-form-input", {
-                staticClass: "mb-1",
-                attrs: { placeholder: "До", type: "number", size: "sm" },
-                model: {
-                  value: _vm.filters.price_max,
-                  callback: function($$v) {
-                    _vm.$set(_vm.filters, "price_max", $$v)
-                  },
-                  expression: "filters.price_max"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-col",
-            {
-              staticStyle: { "text-align": "center" },
-              attrs: { cols: "2", sm: "2", md: "12", lg: "2", xl: "2" }
-            },
-            [
+                "b-col",
+                { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
+                [
+                  _c("b-form-select", {
+                    staticClass: "mb-2",
+                    attrs: { options: _vm.options_deal, size: "sm" },
+                    model: {
+                      value: _vm.filters.deal,
+                      callback: function($$v) {
+                        _vm.$set(_vm.filters, "deal", $$v)
+                      },
+                      expression: "filters.deal"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
               _c(
-                "b-button",
+                "b-col",
+                { attrs: { cols: "12", sm: "12", md: "1", lg: "1", xl: "1" } },
+                [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "shadow_text",
+                      staticStyle: { "font-weight": "600" }
+                    },
+                    [_vm._v("Цена:")]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                { attrs: { cols: "4", sm: "4", md: "2", lg: "2", xl: "1" } },
+                [
+                  _c("b-form-input", {
+                    staticClass: "mb-1",
+                    attrs: { placeholder: "От", type: "number", size: "sm" },
+                    model: {
+                      value: _vm.filters.price_min,
+                      callback: function($$v) {
+                        _vm.$set(_vm.filters, "price_min", $$v)
+                      },
+                      expression: "filters.price_min"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                { attrs: { cols: "4", sm: "4", md: "2", lg: "2", xl: "1" } },
+                [
+                  _c("b-form-input", {
+                    staticClass: "mb-1",
+                    attrs: { placeholder: "До", type: "number", size: "sm" },
+                    model: {
+                      value: _vm.filters.price_max,
+                      callback: function($$v) {
+                        _vm.$set(_vm.filters, "price_max", $$v)
+                      },
+                      expression: "filters.price_max"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
                 {
-                  staticClass: "mb-4",
-                  staticStyle: { border: "1px solid white" },
-                  attrs: { variant: "primary", size: "sm" },
-                  on: { click: _vm.updateData }
+                  staticStyle: { "text-align": "center" },
+                  attrs: { cols: "2", sm: "2", md: "12", lg: "2", xl: "2" }
                 },
-                [_vm._v("Применить")]
+                [
+                  _c(
+                    "b-button",
+                    {
+                      staticClass: "mb-4",
+                      staticStyle: { border: "1px solid white" },
+                      attrs: { variant: "primary", size: "sm" },
+                      on: { click: _vm.updateData }
+                    },
+                    [_vm._v("Применить")]
+                  )
+                ],
+                1
               )
             ],
             1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "div",
@@ -39245,30 +39247,32 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "mt-3 text-center" },
-        [
-          _vm._v("\n\t\tСтраницы:\n\t\t"),
-          _c("b-pagination", {
-            staticClass: "mt-2",
-            attrs: {
-              "total-rows": _vm.totalRecords,
-              "per-page": _vm.perPage,
-              align: "center"
-            },
-            on: { change: _vm.changePage },
-            model: {
-              value: _vm.currentPage,
-              callback: function($$v) {
-                _vm.currentPage = $$v
-              },
-              expression: "currentPage"
-            }
-          })
-        ],
-        1
-      )
+      _vm.total_records > 5
+        ? _c(
+            "div",
+            { staticClass: "mt-3 text-center" },
+            [
+              _vm._v("\n\t\tСтраницы:\n\t\t"),
+              _c("b-pagination", {
+                staticClass: "mt-2",
+                attrs: {
+                  "total-rows": _vm.totalRecords,
+                  "per-page": _vm.perPage,
+                  align: "center"
+                },
+                on: { change: _vm.changePage },
+                model: {
+                  value: _vm.currentPage,
+                  callback: function($$v) {
+                    _vm.currentPage = $$v
+                  },
+                  expression: "currentPage"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e()
     ],
     1
   )
