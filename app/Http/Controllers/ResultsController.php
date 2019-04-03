@@ -25,7 +25,10 @@ class ResultsController extends Controller {
     private $price_min      = "null";
     private $price_max      = "null";
     private $deal           = "null";
-    
+
+    // -------------------------------------------
+    // Обработка фильтра
+    // -------------------------------------------
     private function getFilterData($request) {
 
 	   $data = $request->all();
@@ -35,51 +38,48 @@ class ResultsController extends Controller {
 		return false;
 	   }
 
-            if (isset($data["start_page"]))     $this->start_page     = $data["start_page"];
-            if (isset($data["category_name"]))  $this->category_name  = $data["category_name"];
-            if (isset($data["category_id"]))    $this->category_id    = $data["category_id"];
-            if (isset($data["deal"]))           $this->deal           = $data["deal"];
-            if (isset($data["price_min"]))      $this->price_min      = $data["price_min"];
-            if (isset($data["price_max"]))      $this->price_max      = $data["price_max"];
+        if (isset($data["start_page"]))     $this->start_page     = $data["start_page"];
+        if (isset($data["category_name"]))  $this->category_name  = $data["category_name"];
+        if (isset($data["category_id"]))    $this->category_id    = $data["category_id"];
+        if (isset($data["deal"]))           $this->deal           = $data["deal"];
+        if (isset($data["price_min"]))      $this->price_min      = $data["price_min"];
+        if (isset($data["price_max"]))      $this->price_max      = $data["price_max"];
             
-            // FIX: ПРИМЕНИТЬ ВАЛИДАТОР
-            \Debugbar::info("категория id:".$this->category_id);
-            \Debugbar::info("категория:".$this->category_name);
-            \Debugbar::info("start_page :".$this->start_page);
-            \Debugbar::info("Вид сделки :".$this->deal);
-            \Debugbar::info("Цена от :".$this->price_min);
-            \Debugbar::info("Цена до :".$this->price_max);
+        // FIX: ПРИМЕНИТЬ ВАЛИДАТОР
+        \Debugbar::info("категория id:".$this->category_id);
+        \Debugbar::info("категория:".$this->category_name);
+        \Debugbar::info("start_page :".$this->start_page);
+        \Debugbar::info("Вид сделки :".$this->deal);
+        \Debugbar::info("Цена от :".$this->price_min);
+        \Debugbar::info("Цена до :".$this->price_max);
 
-            // определяю начиная с какой записи считывать данные
-            if ($this->start_page >0)
-                $this->start_record = $this->records_limit*($this->start_page-1);
+        // определяю начиная с какой записи считывать данные
+        if ($this->start_page >0)
+            $this->start_record = $this->records_limit*($this->start_page-1);
 
-                // фильтра
-                $this->price_filter = "";
-                $this->deal_filter  = "";
+            // фильтра
+            $this->price_filter = "";
+            $this->deal_filter  = "";
 
-                if ($this->deal!="null")
-                    $this->deal_filter = " AND adv.deal=".$this->deal;
+        if ($this->deal!="null")
+            $this->deal_filter = " AND adv.deal=".$this->deal;
                 
-                if ($this->deal=="null" && $this->price_min=="null" && $this->price_max=="null") {
-                    $this->price_filter = "";
-                    $this->deal_filter  = "";
-                }
+        if ($this->deal=="null" && $this->price_min=="null" && $this->price_max=="null") {
+            $this->price_filter = "";
+            $this->deal_filter  = "";
+        }
 
-                if ($this->price_min!="null" && $this->price_max!="null")
-                    $this->price_filter = " AND price BETWEEN ".$this->price_min." AND ".$this->price_max;
+        if ($this->price_min!="null" && $this->price_max!="null")
+            $this->price_filter = " AND price BETWEEN ".$this->price_min." AND ".$this->price_max;
 
-                if ($this->price_min=="null" && $this->price_max>0)
-                    $this->price_filter = " AND price BETWEEN 0 AND ".$this->price_max;
+        if ($this->price_min=="null" && $this->price_max>0)
+            $this->price_filter = " AND price BETWEEN 0 AND ".$this->price_max;
                     
-                if ($this->price_min>0 && $this->price_max=="null")
-                    $this->price_filter = " AND price = ".$this->price_min;
-
+        if ($this->price_min>0 && $this->price_max=="null")
+            $this->price_filter = " AND price = ".$this->price_min;
                                                                             
-                $this->filter_string = $this->price_filter.$this->deal_filter;
-
-                \Debugbar::info("str :".$this->filter_string);
-
+        $this->filter_string = $this->price_filter.$this->deal_filter;
+        \Debugbar::info("str :".$this->filter_string);
 
 	return true;
 
@@ -107,9 +107,9 @@ class ResultsController extends Controller {
 	}
 
         
-        // получаю имя на русском
+    // получаю имя на русском
 	$category = Categories::select("id", "name")->where("url", $this->category_name )->first();
-        $items = Adverts::where("category_id",  $category->id )->get();        
+    $items = Adverts::where("category_id",  $category->id )->get();        
                
 		// --------------------------------------------------------
 		// Беру данные по конкретной категории
