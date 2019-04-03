@@ -966,26 +966,32 @@ class ResultsController extends Controller {
    // -------------------------------------------------------------------
    public function getResultsForSubCategoryForView(Request $request, $category, $subcat) {
 
-	$result = $this->getResultsForSubCategory($request, $category, $subcat);
+    $result = $this->getResultsForSubCategory($request, $category, $subcat);
 
-         return view("results")
-         ->with("category_name", $result["category_name"])
-         ->with("subcat", $result["subcat"])
-         ->with("keywords", $result["keywords"])
-         ->with("description", $result["description"])
-         ->with("title", $result["title"])
-         ->with("items", $result["items"])
-         ->with("results", $result["results"])
-         ->with("category", $result["category"])
-         ->with("total_records", $result["total_records"]);
+    return view("results")
+    ->with("category_name", $result["category_name"])
+    ->with("subcat", $result["subcat"])
+    ->with("keywords", $result["keywords"])
+    ->with("description", $result["description"])
+    ->with("title", $result["title"])
+    ->with("items", $result["items"])
+    ->with("results", $result["results"])
+    ->with("category", $result["category"])
+    ->with("total_records", $result["total_records"]);
+
    }
 
     // -------------------------------------------------------------------
     // Результаты подкатегорий для морды
     // -------------------------------------------------------------------
-    public function getResultsForSubCategoryForFront(Request $request, $category, $subcat) {
-	$result = $this->getResultsForSubCategory($request, $category, $subcat);
-	return $result;
+    /*public function getResultsForSubCategoryForFront(Request $request, $category, $subcat) {
+	    $result = $this->getResultsForSubCategory($request, $category, $subcat);
+	    return $result;
+    }*/
+
+    public function getResultsForSubCategoryForFront(Request $request) {
+	    $result = $this->getResultsForSubCategory($request, null, null);
+	    return $result;
     }
 
     // -------------------------------------------------------------------

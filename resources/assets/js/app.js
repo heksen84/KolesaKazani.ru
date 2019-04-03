@@ -15,7 +15,7 @@ import sendemail from './views/auth/sendemail.vue';
 import passwordreset from './views/auth/passwordreset.vue';
 import login from './views/auth/login.vue';
 import register from './views/auth/register.vue';
-import adminpanel from './views/adminpanel.vue';
+import adminpanel from './views/panels/admin.vue';
 
 
 // bootstrap

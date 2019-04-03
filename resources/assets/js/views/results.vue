@@ -241,7 +241,13 @@ export default {
 			}
 
 			if (this.category_name && this.subcat) {
-				alert("подкатегория!")
+				console.log("подкатегория!")
+				url="/getResultsForSubCategoryForFront?category_name="+this.category_name+
+				"&start_page="+this.start_page+
+				"&category_id="+this.category+
+				"&deal="+this.filters.deal+
+				"&price_min="+this.filters.price_min+
+				"&price_max="+this.filters.price_max;
 				ready=true;
 			}
 			

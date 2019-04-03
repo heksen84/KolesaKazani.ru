@@ -74,6 +74,7 @@ Route::get("podrobno/{id}", "AdvertController@getFullInfo");
 Route::get("{category}/{subcat}", "ResultsController@getResultsForSubCategoryForView");
 Route::get("/getResultsForSubCategory/{category}/{subcat}", "ResultsController@getResultsForSubCategoryForView");
 Route::get("/getResultsByCategoryForFront", "ResultsController@getResultsByCategoryForFront");
+Route::get("/getResultsForSubCategoryForFront", "ResultsController@getResultsForSubCategoryForFront");
 
 // ------------------------------------
 // базовые контроллеры
