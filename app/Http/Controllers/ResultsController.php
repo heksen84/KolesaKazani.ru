@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Helpers\Petrovich;
 use App\Http\Controllers\Controller;
 use App\SubCats;
 use App\Adverts;
@@ -17,10 +16,11 @@ class ResultsController extends Controller {
     private $start_record  = 0;
     private $records_limit = 5; // максимальное число записей при выборке
 
-    private $total          = 0;
+    private $total          = [];
     private $filter_string  = "";   
     private $start_page     = "null";
     private $category_name  = "null";
+    private $subcat         = "null";
     private $category_id    = "null";
     private $price_min      = "null";
     private $price_max      = "null";
@@ -40,6 +40,7 @@ class ResultsController extends Controller {
 
         if (isset($data["start_page"]))     $this->start_page     = $data["start_page"];
         if (isset($data["category_name"]))  $this->category_name  = $data["category_name"];
+        if (isset($data["subcat"]))         $this->subcat         = $data["subcat"];
         if (isset($data["category_id"]))    $this->category_id    = $data["category_id"];
         if (isset($data["deal"]))           $this->deal           = $data["deal"];
         if (isset($data["price_min"]))      $this->price_min      = $data["price_min"];
@@ -48,6 +49,7 @@ class ResultsController extends Controller {
         // FIX: ПРИМЕНИТЬ ВАЛИДАТОР
         \Debugbar::info("категория id:".$this->category_id);
         \Debugbar::info("категория:".$this->category_name);
+        \Debugbar::info("Подкатегория:".$this->subcat);
         \Debugbar::info("start_page :".$this->start_page);
         \Debugbar::info("Вид сделки :".$this->deal);
         \Debugbar::info("Цена от :".$this->price_min);
@@ -118,7 +120,7 @@ class ResultsController extends Controller {
 		// Вся автотранспорт Казахстана (damelya.kz/transport)
 		case 1: {
 
-                $total = DB::select(
+                $this->total = DB::select(
                     "SELECT	
                     COUNT(*) as count FROM `adverts` as adv
 					LEFT OUTER JOIN (adv_transport, car_mark, car_model) ON 
@@ -129,7 +131,7 @@ class ResultsController extends Controller {
 					) WHERE adv.category_id=1"
                 );
                 
-                \Debugbar::info("TOTAL :".$total[0]->count);
+                \Debugbar::info("TOTAL :".$this->total[0]->count);
 
 				$results = DB::select(
 					"SELECT					
@@ -168,14 +170,14 @@ class ResultsController extends Controller {
 			// Вся недвижимость Казахстана (damelya.kz/nedvizhimost)
 			case 2: {
             
-                $total = DB::select(
+                $this->total = DB::select(
                     "SELECT 
                     COUNT(*) as count FROM `adverts` as adv
                     INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
 					WHERE adv.category_id=2"
                 );
 
-                \Debugbar::info("TOTAL :".$total[0]->count);
+                \Debugbar::info("TOTAL :".$this->total[0]->count);
 
 				$results = DB::select(					
 					"SELECT
@@ -260,9 +262,9 @@ class ResultsController extends Controller {
                     $title = "Различные предложения в Казахстане";
                 }
                 
-				$total = DB::select("SELECT COUNT(*) as count FROM `adverts` AS adv WHERE category_id=".$category->id);
+				$this->total = DB::select("SELECT COUNT(*) as count FROM `adverts` AS adv WHERE category_id=".$category->id);
 
-                \Debugbar::info("TOTAL :".$total[0]->count);
+                \Debugbar::info("TOTAL :".$this->total[0]->count);
                 
 				// общий select
 				$results = DB::select(
@@ -295,7 +297,7 @@ class ResultsController extends Controller {
             "category"=>$category->id,  
             "category_name"=>json_encode($request->path()), 
             "start_record"=>$this->start_record,
-            "total_records"=>$total[0]->count
+            "total_records"=>$this->total[0]->count
         );
 
     }
@@ -338,28 +340,31 @@ class ResultsController extends Controller {
 
         $filterData = $this->getFilterData($request);
 
-	    \Debugbar::info("КАТЕГОРИЯ: ".$this->category_name);
-	
-	    if (!$filterData)
-            $this->category_name = $request->path();
-
-        $petrovich = new Petrovich(Petrovich::GENDER_MALE);
+        // Проверяю наличие фильтров
+        if ($filterData) {            
+            \Debugbar::info("С ФИЛЬТРАМИ!");
+            $subcat = $this->subcat;   
+        }
+        else {
+            \Debugbar::info("БЕЗ ФИЛЬТРОВ!");
+            $this->category_name = $request->path();            
+        }            
 
         // ---------------------------------------------------------------------------
         // получаю имя на русском
         // ---------------------------------------------------------------------------
-		$categories = SubCats::select("id", "name")->where("url",  $subcat )->first();
+		$categories = SubCats::select("id", "name")->where("url",  $filterData?$this->subcat:$subcat )->first();
         $items = Adverts::where("category_id",  $categories->id )->get();
-        $title = "";
+        $category = $filterData?$this->category_name:$category; // беру имя категории либо с фильтров либо с переменной в контроллере
         
         switch($category) {
 
-            case "transport": {                
+            case "transport": {
 
                 // Легковой транспорт
                 if ($subcat=="legkovoy-avtomobil") {
 
-                    $total = DB::select(
+                    $this->total = DB::select(
                         "SELECT 
                         COUNT(*) as count 
                         FROM `adverts` as adv
@@ -368,6 +373,7 @@ class ResultsController extends Controller {
                             adv.adv_category_id=adv_transport.id AND 
                             adv_transport.model = car_model.id_car_model
                         ) WHERE adv_transport.type=0 AND adv.category_id=1"); 
+
                                     
                     $results = DB::select(
                         "SELECT
@@ -401,7 +407,7 @@ class ResultsController extends Controller {
                 // Грузовой транспорт
                 if ($subcat=="gruzovoy-avtomobil") {
 
-                    $total = DB::select(
+                    $this->total = DB::select(
                         "SELECT 
                         COUNT(*) as count 
                         FROM `adverts` as adv
@@ -440,7 +446,7 @@ class ResultsController extends Controller {
                 // Мототехника
                 if ($subcat=="mototehnika") {                                        
                    
-                    $total = DB::select(
+                    $this->total = DB::select(
                         "SELECT
                         COUNT(*) as count 
                         FROM `adverts` as adv
@@ -479,7 +485,7 @@ class ResultsController extends Controller {
                 // Спецтехника
                 if ($subcat=="spectehnika") {
 
-                    $total = DB::select(
+                    $this->total = DB::select(
                         "SELECT
                         COUNT(*) as count 
                         FROM `adverts` as adv
@@ -518,7 +524,7 @@ class ResultsController extends Controller {
                 // Ретроавтомобиль
                 if ($subcat=="retro-avtomobil") {
                     
-                    $total = DB::select(
+                    $this->total = DB::select(
                         "SELECT 
                         COUNT(*) as count
                         FROM `adverts` as adv
@@ -555,7 +561,7 @@ class ResultsController extends Controller {
                 // Водный транспорт
                 if ($subcat=="vodnyy-transport") {
                     
-                    $total = DB::select(
+                    $this->total = DB::select(
                         "SELECT 
                         COUNT(*) as count 
                         FROM `adverts` as adv
@@ -592,7 +598,7 @@ class ResultsController extends Controller {
                 // Велосипед
                 if ($subcat=="velosiped") {
 
-                    $total = DB::select(
+                    $this->total = DB::select(
                         "SELECT 
                         COUNT(*) as count 
                         FROM `adverts` as adv
@@ -629,7 +635,7 @@ class ResultsController extends Controller {
                 // Воздушный транспорт
                 if ($subcat=="vozdushnyy-transport") {
                     
-                    $total = DB::select(
+                    $this->total = DB::select(
                         "SELECT 
                         COUNT(*) as count 
                         FROM `adverts` as adv
@@ -678,7 +684,7 @@ class ResultsController extends Controller {
                 // квартира
                 if ($subcat=="kvartira") {
 
-                    $total = DB::select(
+                    $this->total = DB::select(
                         "SELECT
                         COUNT(*) as count                        
                         FROM `adverts` as adv
@@ -715,7 +721,7 @@ class ResultsController extends Controller {
                 // комната
                 if ($subcat=="komnata") {
 
-                    $total = DB::select(
+                    $this->total = DB::select(
                         "SELECT
                         COUNT(*) as count                        
                         FROM `adverts` as adv
@@ -752,7 +758,7 @@ class ResultsController extends Controller {
                 // дом, дача, коттедж
                 if ($subcat=="dom-dacha-kottedzh") {
 
-                    $total = DB::select(
+                    $this->total = DB::select(
                         "SELECT
                         COUNT(*) as count
                         FROM `adverts` as adv
@@ -795,7 +801,7 @@ class ResultsController extends Controller {
                 // земельный участок
                 if ($subcat=="zemel-nyy-uchastok") {
 
-                    $total = DB::select(
+                    $this->total = DB::select(
                         "SELECT
                         COUNT(*) as count                      
                         FROM `adverts` as adv
@@ -832,7 +838,7 @@ class ResultsController extends Controller {
                 // гараж или машиноместо
                 if ($subcat=="garazh-ili-mashinomesto") {
 
-                    $total = DB::select(
+                    $this->total = DB::select(
                         "SELECT
                         COUNT(*) as count                        
                         FROM `adverts` as adv
@@ -869,7 +875,7 @@ class ResultsController extends Controller {
                 // коммерческая недвижимость
                 if ($subcat=="kommercheskaya-nedvizhimost") {
 
-                    $total = DB::select(
+                    $this->total = DB::select(
                         "SELECT
                         COUNT(*) as count                        
                         FROM `adverts` as adv
@@ -906,7 +912,7 @@ class ResultsController extends Controller {
                 // недвижимость за рубежом
                 if ($subcat=="nedvizhimost-za-rubezhom") {
 
-                    $total = DB::select(
+                    $this->total = DB::select(
                         "SELECT
                         COUNT(*) as count                        
                         FROM `adverts` as adv
@@ -940,13 +946,13 @@ class ResultsController extends Controller {
                     break;
                 }                                
             }
-        }
+        }    
         
 	// ---------------------------------------------------------------------
-        // если указаны фильтры, то вернуть данные на морду (return results)
-        // иначе передать данные во вьюху
+    // если указаны фильтры, то вернуть данные на морду (return results)
+    // иначе передать данные во вьюху
 	// ---------------------------------------------------------------------
-        return array
+    return array
 	(
             "category_name"=>json_encode($category),
             "subcat"=>json_encode($subcat),
@@ -956,7 +962,7 @@ class ResultsController extends Controller {
             "items"=>$items,
             "results"=>json_encode($results), 
             "category"=>$categories,
-            "total_records"=>$total[0]->count
+            "total_records"=>$this->total[0]->count
         );
          
     }
@@ -981,14 +987,9 @@ class ResultsController extends Controller {
 
    }
 
-    // -------------------------------------------------------------------
-    // Результаты подкатегорий для морды
-    // -------------------------------------------------------------------
-    /*public function getResultsForSubCategoryForFront(Request $request, $category, $subcat) {
-	    $result = $this->getResultsForSubCategory($request, $category, $subcat);
-	    return $result;
-    }*/
-
+   // -------------------------------------------------------------------
+   // Результаты подкатегорий для морды
+   // -------------------------------------------------------------------
     public function getResultsForSubCategoryForFront(Request $request) {
 	    $result = $this->getResultsForSubCategory($request, null, null);
 	    return $result;
