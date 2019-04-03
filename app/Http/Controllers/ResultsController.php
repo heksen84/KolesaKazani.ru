@@ -17,35 +17,18 @@ class ResultsController extends Controller {
     private $start_record  = 0;
     private $records_limit = 5; // максимальное число записей при выборке
     
-    // ------------------------------------------------------------
-    // Получить данные по категории
-    // ------------------------------------------------------------
-    public function getResultsByCategory(Request $request, $region, $place) {
-    	
 
-	if (isset($region)) {
-	 // формируем строку для региона
-	}
+    private function getFilterData($data) {
 
-	if (isset($place)) {
-	 // формируем строку для города / села
-	}
+           $filter_string  = "";   
+           $start_page     = "null";
+           $category_name  = "null";
+           $category_id    = "null";
+           $price_min      = "null";
+           $price_max      = "null";
+           $deal           = "null";
+	   $total          = 0;
 
-        $filter_string  = "";
-        $total          = 0;
-        $start_page     = "null";
-        $category_name  = "null";
-        $category_id    = "null";
-        $price_min      = "null";
-        $price_max      = "null";
-        $deal           = "null";
-
-        // получаю входящие данные
-        $data = $request->all();        
-
-        // если указан фильтр
-        if ($data) {
-                                            
             if (isset($data["start_page"]))     $start_page     = $data["start_page"];
             if (isset($data["category_name"]))  $category_name  = $data["category_name"];
             if (isset($data["category_id"]))    $category_id    = $data["category_id"];
@@ -86,17 +69,72 @@ class ResultsController extends Controller {
                 if ($price_min>0 && $price_max=="null")
                     $price_filter = " AND price = ".$price_min;
 
-                
-                                                            
+                                                                            
                 $filter_string = $price_filter.$deal_filter;
 
                 \Debugbar::info("str :".$filter_string);
+
+
+        return array
+        (
+            "filter_string"=>$filter_string,
+            "total"=>$total,
+            "start_page"=>$start_page,
+            "category_name"=>$category_name,
+            "category_id"=>$category_id,
+            "price_min"=>$price_min,
+            "price_max"=>$price_max,
+            "deal"=>$deal,
+          
+        );
+
+    }
+    // ------------------------------------------------------------
+    // Получить данные по категории
+    // ------------------------------------------------------------
+    public function getResultsByCategory(Request $request, $region, $place) {
+
+	 $filter_string  = "";         
+         $start_page     = "null";
+         $category_name  = "null";
+         $category_id    = "null";
+         $price_min      = "null";
+         $price_max      = "null";
+         $deal           = "null";
+	 $total          = 0;
+
+        // получаю входящие данные
+        $data = $request->all();        
+
+        // если указан фильтр
+        if ($data) {                                            
+           $filterData = $this->getFilterData($data);
+
+        $filter_string  = $filterData["filter_string"];
+        $total          = $filterData["total"];
+        $start_page     = $filterData["start_page"];
+        $category_name  = $filterData["category_name"];
+        $category_id    = $filterData["category_id"];
+        $price_min      = $filterData["price_min"];
+        $price_max      = $filterData["price_max"];
+        $deal           = $filterData["deal"];
+
         }
         else  
             $category_name = $request->path();
+
+	
+	// Учитываю местоположение
+	if (isset($region)) {
+	 // формируем строку для региона
+	}
+
+	if (isset($place)) {
+	 // формируем строку для города / села
+	}
         
         // получаю имя на русском
-		$category = Categories::select("id", "name")->where("url", $category_name )->first();
+	$category = Categories::select("id", "name")->where("url", $category_name )->first();
         $items = Adverts::where("category_id",  $category->id )->get();        
                
 		// --------------------------------------------------------
