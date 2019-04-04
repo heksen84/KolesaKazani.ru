@@ -58,9 +58,9 @@ Route::get("/getResultsByCategoryForFront", "ResultsController@getResultsByCateg
 Route::get("/getResultsForSubCategory/{category}/{subcat}", "ResultsController@getResultsForSubCategoryForView");
 Route::get("/getResultsForSubCategoryForFront", "ResultsController@getResultsForSubCategoryForFront");
 
-// ------------------------------------
+// ---------------------------------------------------------------
 // базовые контроллеры
-// ------------------------------------
+// ---------------------------------------------------------------
 Route::get("/", 				"IndexController@init");
 Route::post("create", 			"AdvertController@createAdvert");
 Route::get("home",	 		 	"CabinetController@index");
@@ -70,7 +70,6 @@ Route::get("getRegions", 		"IndexController@getRegions");
 Route::get("getPlaces", 		"IndexController@getPlaces");
 Route::get("getUser", 			"UserController@getUser");
 Route::get("categories", 		"CategoriesController@index");
-
 Route::get("getSubCats",  "SubCatsController@getSubCats" );
 
 // ---------------------------------------------------------------

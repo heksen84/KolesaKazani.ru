@@ -35,7 +35,7 @@ class ResultsController extends Controller {
 
         if (isset($url)) {            
             $region = Regions::select("region_id")->where("url", $url )->first();                        
-            $region_string = " AND region_id = ".$region->region_id; // формируем строку для региона
+            $region_string = " AND region_id = ".$region->region_id; // формируем строку региона
             \Debugbar::info($region_string);
             return $region_string;
         }        
@@ -49,7 +49,7 @@ class ResultsController extends Controller {
 
         if (isset($url)) {            
             $place = Places::select("city_id")->where("url", $url )->first();                        
-            $place_string = " AND city_id = ".$place->city_id; // формируем строку для места
+            $place_string = " AND city_id = ".$place->city_id; // формируем строку места
             \Debugbar::info($place_string);
             return $place_string;
         }        
