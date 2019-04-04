@@ -173,9 +173,7 @@ export default {
       { value: '1', text: 'Продажа' },
       { value: '2', text: 'Обмен' },      
       { value: '3', text: 'Отдам даром' },
-			{ value: '4', text: 'Сдача в аренду' },
-			{ value: '5', text: 'Другое' }
-    ],
+      { value: '4', text: 'Сдача в аренду' }    ],
 
     options_actual: [
       { value: null, text: '-- Актуальность --' },
