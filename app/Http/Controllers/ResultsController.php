@@ -89,13 +89,15 @@ class ResultsController extends Controller {
     // ------------------------------------------------------------
     // Получить данные по категории
     // ------------------------------------------------------------
-    public function getResultsByCategory(Request $request, $region, $place) {
+    public function getResultsByCategory(Request $request, $region, $place, $category) {
 
         // Проверяю наличие фильтров
         $filterData = $this->getFilterData($request);
-    
+   
+
+	// Если нет фильтров, то получаем имя категории
         if (!$filterData)
-            $this->category_name = $request->path();
+            $this->category_name = $category;
 	
 	    // Учитываю местоположение
 	    if (isset($region)) {
@@ -105,9 +107,14 @@ class ResultsController extends Controller {
 	    if (isset($place)) {
 	        // формируем строку для города / села
 	    }
+
+
+ 	\Debugbar::info("222:".$this->category_name);
         
         // получаю имя на русском
-	    $category = Categories::select("id", "name")->where("url", $this->category_name )->first();
+	$category = Categories::select("id", "name")->where("url", $this->category_name )->first();
+
+ 	\Debugbar::info("----:".$category);
         $items = Adverts::where("category_id",  $category->id )->get();        
                
         // --------------------------------------------------------
@@ -305,7 +312,8 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     public function getResultsByCategoryForView(Request $request) {
 		
-        $result = $this->getResultsByCategory($request, null, null);
+	$category_name = request()->segment(1);
+        $result = $this->getResultsByCategory($request, null, null, $category_name);
     
         return view("results")
         ->with("keywords", $result["keywords"])
@@ -324,7 +332,9 @@ class ResultsController extends Controller {
     // результаты по всей стране для морды
     // ---------------------------------------------------------------
     public function getResultsByCategoryForFront(Request $request) {
-        $result = $this->getResultsByCategory($request, null, null);
+
+	$category_name = request()->segment(1);
+        $result = $this->getResultsByCategory($request, null, null, $category_name);
         return $result;
 	}
 
@@ -1001,17 +1011,37 @@ class ResultsController extends Controller {
 	    return $result;
     }
 
+
+     // ----------------------------------------------------
+     // Результаты по региону
+     // ----------------------------------------------------
+     public function getResultsByRegion(Request $request, $region) {
+
+	$category_name = request()->segment(2);
+        $result = $this->getResultsByCategory($request, $region, null, $category_name);
+    
+        return view("results")
+        ->with("keywords", $result["keywords"])
+        ->with("description", $result["description"])
+        ->with("title", $result["title"])
+        ->with("items", $result["items"])
+		->with("results", $result["results"])
+        ->with("category", $result["category"])
+        ->with("category_name", $result["category_name"])
+        ->with("subcat", "null")
+        ->with("start_record", $result["start_record"])
+        ->with("total_records", $result["total_records"]);
+
+
+     }
+
+
     // -------------------------------------------------------------------
     // результаты по всему региону c детальной информацией
     // -------------------------------------------------------------------
     public function getResultsByRegionWithDetailedInfo(Request $request) {    
 		return view("results")->with("title", "123123")->with("results", "123")->with("category", "123")->with("items", "123");
-	}
-	// ----------------------------------------------------
-	// результаты по всему региону без деталей
-	// ----------------------------------------------------
-	public function getResultsByRegion($region) {
-	}
+    }
 
 	// ---------------------------------------------------
     // результаты по городу, деревне

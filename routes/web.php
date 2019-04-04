@@ -70,6 +70,7 @@ Route::get("nedvizhimost-za-rubezhom", 		"ResultsController@getResultsByCategory
 Route::get("obyavlenie/{url}", "AdvertController@getFullInfoByUrl"); // для СЕО
 Route::get("podrobno/{id}", "AdvertController@getFullInfo");
 
+
 // подкатегории
 Route::get("{category}/{subcat}", "ResultsController@getResultsForSubCategoryForView");
 Route::get("/getResultsForSubCategory/{category}/{subcat}", "ResultsController@getResultsForSubCategoryForView");
@@ -113,10 +114,11 @@ Route::get("getResults", "ResultsController@getResultsByCategory");
 Route::get("location/{country}/{region}/{place}", "AdvertController@getFullInfo");
 Route::get("logout", "\App\Http\Controllers\Auth\LoginController@logout");
 
+
 // ------------------------------------
 // категории по региону
 // ------------------------------------
-Route::get("{region}/{category}", "ResultsController@getResultsByRegion");
+//Route::get("{region}/{category}", "ResultsController@getResultsByRegion");
 
 // ------------------------------------
 // категории по региону и местности
