@@ -24,10 +24,11 @@
 			</b-form-group>
 
 			<!-- отображаю виды сделок -->
-			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px" v-if="category!=null && category!=4">
+			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px" v-if="category!=null && category!=4 && category!=9">
 				 <b-form-radio-group id="deal_group" stacked name="radioOpenions" @change="setDeal" v-model="sdelka">
 					<div v-for="(i,index) in dealtypes" :key="index">
 						<!-- скрываю где не нужно отдам даром -->
+						<!-- отображать если .. -->
 				 		<b-form-radio v-if="category==1 && i.id!=3 || category==2 && i.id!=3 || [3,4,5,6,7,8,9,10].indexOf(category)>=0" :value="i.id" >{{ i.deal_name_1 }}</b-form-radio>
 				 	</div>
 				 </b-form-radio-group>
@@ -549,6 +550,7 @@ export default {
 		  		  
 		// вид сделки
   		setDeal(deal_id) {
+			console.log(deal_id)
   			this.$root.advert_data.adv_deal=deal_id;
 			this.deal_id=deal_id;
 			this.$store.commit("SetDealSelected", true);
@@ -635,11 +637,14 @@ export default {
   		--------------------------*/
   		changeCategory(category) {
 			
+
 			// сброс объявления при выборе категории
 			this.advReset(category);
 
-			// отрубить вид сделки в категории работа и бизнес
-			if (category==4) {
+			// -----------------------------------------------------------------
+			// отрубить вид сделки в категориях: "работа и бизнес" и "услуги"
+			// -----------------------------------------------------------------
+			if (category==4 || category==9) {
 				this.$store.commit("SetDealSelected", true);
 				this.$store.commit("ShowFinalFields", true);
 			}

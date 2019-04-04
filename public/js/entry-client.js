@@ -2890,6 +2890,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 // ----------------------------------------------------
@@ -3290,6 +3291,7 @@ function forEach(data, callback) {
 
 		// вид сделки
 		setDeal: function setDeal(deal_id) {
+			console.log(deal_id);
 			this.$root.advert_data.adv_deal = deal_id;
 			this.deal_id = deal_id;
 			this.$store.commit("SetDealSelected", true);
@@ -3389,8 +3391,10 @@ function forEach(data, callback) {
 			// сброс объявления при выборе категории
 			this.advReset(category);
 
-			// отрубить вид сделки в категории работа и бизнес
-			if (category == 4) {
+			// -----------------------------------------------------------------
+			// отрубить вид сделки в категориях: "работа и бизнес" и "услуги"
+			// -----------------------------------------------------------------
+			if (category == 4 || category == 9) {
 				this.$store.commit("SetDealSelected", true);
 				this.$store.commit("ShowFinalFields", true);
 			}
@@ -4355,6 +4359,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 // -----------------------------------------------
@@ -4415,6 +4420,9 @@ function num2str(n, text_forms) {
 
 	// компонент создан
 	created: function created() {
+		console.log("---------------------");
+		console.log(this.category);
+		console.log("---------------------");
 		console.log(this.results);
 		this.count = this.total_records;
 		this.count_string = num2str(this.count, ["объявление", "объявления", "объявлений"]);
@@ -14131,7 +14139,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -39105,17 +39113,19 @@ var render = function() {
                 "b-col",
                 { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
                 [
-                  _c("b-form-select", {
-                    staticClass: "mb-2",
-                    attrs: { options: _vm.options_deal, size: "sm" },
-                    model: {
-                      value: _vm.filters.deal,
-                      callback: function($$v) {
-                        _vm.$set(_vm.filters, "deal", $$v)
-                      },
-                      expression: "filters.deal"
-                    }
-                  })
+                  _vm.category != 4 && _vm.category != 9
+                    ? _c("b-form-select", {
+                        staticClass: "mb-2",
+                        attrs: { options: _vm.options_deal, size: "sm" },
+                        model: {
+                          value: _vm.filters.deal,
+                          callback: function($$v) {
+                            _vm.$set(_vm.filters, "deal", $$v)
+                          },
+                          expression: "filters.deal"
+                        }
+                      })
+                    : _vm._e()
                 ],
                 1
               ),
@@ -40141,7 +40151,7 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _vm.category != null && _vm.category != 4
+              _vm.category != null && _vm.category != 4 && _vm.category != 9
                 ? _c(
                     "b-form-group",
                     {
@@ -55485,7 +55495,7 @@ module.exports = Component.exports
     money_small_name: "тнг.",
     max_loaded_images: 10, // максимальное кол-во загружаемых картинок
 
-    options_sdelka: [{ value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Отдам даром' }, { value: '4', text: 'Сдача в аренду' }, { value: '5', text: 'Другое' }],
+    options_sdelka: [{ value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Отдам даром' }, { value: '4', text: 'Сдача в аренду' }],
 
     advert_data: {}, // наш объект объявления, куда размещается объявление
 
