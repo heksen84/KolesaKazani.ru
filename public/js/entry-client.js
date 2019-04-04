@@ -3051,6 +3051,7 @@ function forEach(data, callback) {
 
 // Логика
 /* harmony default export */ __webpack_exports__["default"] = ({
+
 	// Входящие данные
 	props: ["items", "dealtypes", "regions"],
 
@@ -4403,7 +4404,7 @@ function num2str(n, text_forms) {
 
 			options_price: [{ value: null, text: '-- Цена --' }, { value: '0', text: 'Цена по возрастанию' }, { value: '1', text: 'Цена по убыванию' }],
 
-			options_deal: [{ value: null, text: '-- Вcе сделки --' }, { value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Отдам даром' }, { value: '4', text: 'Сдача в аренду' }],
+			options_deal: [{ value: null, text: '-- Вcе сделки --' }, { value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Отдам даром' }, { value: '4', text: 'Сдача в аренду' }, { value: '5', text: 'Другое' }],
 
 			options_actual: [{ value: null, text: '-- Актуальность --' }, { value: '0', text: 'Сначала новые' }, { value: '1', text: 'Сначала старые' }],
 
@@ -14130,7 +14131,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -55482,36 +55483,11 @@ module.exports = Component.exports
 
     money_full_name: "тенге",
     money_small_name: "тнг.",
+    max_loaded_images: 10, // максимальное кол-во загружаемых картинок
 
-    // максимальное кол-во загружаемых картинок
-    max_loaded_images: 10,
+    options_sdelka: [{ value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Отдам даром' }, { value: '4', text: 'Сдача в аренду' }, { value: '5', text: 'Другое' }],
 
-    // стандартные операции
-    options_sdelka: [{ value: '0', text: 'Покупка' }, { value: '1', text: 'Продажа' }, { value: '2', text: 'Обмен' }, { value: '3', text: 'Частичный обмен' }, { value: '4', text: 'Отдам даром' }, { value: '5', text: 'Сдача в аренду' }],
-
-    // подкатегории
-    /*subcats:
-    [
-        { name: 'Грузовой автомобиль',       url: "gruzovoy_automobil",  category_id: 1 },
-        { name: 'Легковой автомобиль',       url: "legkovoy_automobil",  category_id: 1 },
-        { name: 'Мототехника',               url: "mototechnika",        category_id: 1 },
-        { name: 'Спецтехника',               url: "spectehinka",         category_id: 1 },
-        { name: 'Ретро-автомобиль',          url: "",  category_id: 1 },
-        { name: 'Водный транспорт',          url: "",  category_id: 1 },
-        { name: 'Квартира',                  url: "",  category_id: 2 },
-        { name: 'Комната',                   url: "",  category_id: 2 },
-        { name: 'Дом, дача, коттедж',        url: "",  category_id: 2 },
-        { name: 'Земельный участок',   	     url: "",  category_id: 2 },
-        { name: 'Гараж или машиноместо',     url: "",  category_id: 2 },
-        { name: 'Коммерческая недвижимость', url: "",  category_id: 2 },
-        { name: 'Недвижимость за рубежом',   url: "",  category_id: 2 },
-        
-    ],*/
-
-    // --------------------------------------------------------
-    // наш объект объявления, куда размещается объявление
-    // --------------------------------------------------------
-    advert_data: {},
+    advert_data: {}, // наш объект объявления, куда размещается объявление
 
     // глобальный объект для алертов
     alert: {

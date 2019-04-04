@@ -84,4 +84,28 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>damelya:90/obyavlenie/223-prodam-zmeyu-dobruyu-za-2000</loc>
+    <lastmod>2019-04-04T11:44:32+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>damelya:90/obyavlenie/224-prodam-novyy-mafon</loc>
+    <lastmod>2019-04-04T11:48:54+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>damelya:90/obyavlenie/225-raspechatka-teksta</loc>
+    <lastmod>2019-04-04T12:06:56+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>damelya:90/obyavlenie/226-dkgpschk</loc>
+    <lastmod>2019-04-04T12:20:00+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
