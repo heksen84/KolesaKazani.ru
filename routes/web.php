@@ -31,8 +31,8 @@ Route::get("hobbi-i-otdyh", 	"ResultsController@getResultsByCategoryForView");
 Route::get("uslugi", 			"ResultsController@getResultsByCategoryForView");
 Route::get("drugoe", 			"ResultsController@getResultsByCategoryForView");
 
-Route::get("{region}/transport/{subcat}",	 "ResultsController@getResultsByRegionWithDetailedInfo");
-Route::get("{region}/nedvizhimost/{subcat}", "ResultsController@getResultsByRegionWithDetailedInfo");
+Route::get("{region}/transport/{subcat}",	 "ResultsController@getResultsByRegionWithSubCategoryForView");
+Route::get("{region}/nedvizhimost/{subcat}", "ResultsController@getResultsByRegionWithSubCategoryForView");
 
 // категрии по региону
 Route::get("{region}/elektronika",  		 "ResultsController@getResultsByRegionForView");

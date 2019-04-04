@@ -11,12 +11,12 @@ use App\Categories;
 use App\Regions;
 use App\Places;
 
+// Класс возвращает результаты категорий
 class ResultsController extends Controller {
 	
     // частные переменные
-    private $start_record  = 0;
-    private $records_limit = 5; // максимальное число записей при выборке
-
+    private $start_record   = 0;
+    private $records_limit  = 5; // максимальное число записей при выборке
     private $total          = [];
     private $filter_string  = "";   
     private $start_page     = "null";
@@ -29,22 +29,36 @@ class ResultsController extends Controller {
 
 
     // ---------------------------------------------------
-    // Получить строку фильтра по региону
+    // Получить строку фильтра по url региона
     // ---------------------------------------------------
     private function getRegionFilterStringByUrl($url) {
 
         if (isset($url)) {            
             $region = Regions::select("region_id")->where("url", $url )->first();                        
-            $region_string=" AND region_id = ".$region->region_id; // формируем строку для региона
+            $region_string = " AND region_id = ".$region->region_id; // формируем строку для региона
             \Debugbar::info($region_string);
             return $region_string;
         }        
         return false;
     }
 
-    // -------------------------------------------
+    // -----------------------------------------------------------
+    // Получить строку фильтра по url места (город / село / аул )
+    // -----------------------------------------------------------
+    private function getPlaceFilterStringByUrl($url) {
+
+        if (isset($url)) {            
+            $place = Places::select("city_id")->where("url", $url )->first();                        
+            $place_string = " AND city_id = ".$place->city_id; // формируем строку для места
+            \Debugbar::info($place_string);
+            return $place_string;
+        }        
+        return false;
+    }
+
+    // ----------------------------------------
     // Обработка фильтра
-    // -------------------------------------------
+    // ----------------------------------------
     private function getFilterData($request) {
 
 	   $data = $request->all();
@@ -102,9 +116,9 @@ class ResultsController extends Controller {
 	return true;
 
     }
-    // ------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
     // Результаты по категории (общая функция)
-    // ------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
     public function getResultsByCategory(Request $request, $region, $place, $category) {
 
         // Получаю строку фильтра по региону
@@ -121,7 +135,7 @@ class ResultsController extends Controller {
     	$category = Categories::select("id", "name")->where("url", $this->category_name )->first();
         $items = Adverts::where("category_id",  $category->id )->get();        
                
-        // --------------------------------------------------------
+            // --------------------------------------------------------
 	    // Беру данные по конкретной категории
 	    // --------------------------------------------------------
 	    switch($category->id) {
@@ -343,9 +357,9 @@ class ResultsController extends Controller {
         return $result;
 	}
 
-     // ----------------------------------------------------
+     // -----------------------------------------------------------------------
      // Результаты по региону для вьюшки
-     // ----------------------------------------------------
+     // -----------------------------------------------------------------------
      public function getResultsByRegionForView(Request $request, $region) {
 
 	    $category_name = request()->segment(2);
@@ -365,9 +379,9 @@ class ResultsController extends Controller {
 
      }
 
-     // ----------------------------------------------------
+     // -----------------------------------------------------------------------
      // Результаты по региону для морды
-     // ----------------------------------------------------
+     // -----------------------------------------------------------------------
      public function getResultsByRegionForFront(Request $request, $region) {
         
         $category_name = request()->segment(2);
@@ -376,9 +390,9 @@ class ResultsController extends Controller {
 
      }
 
-     // ----------------------------------------------------
+     // -----------------------------------------------------------------------
      // Результаты по городу / селу / аулу
-     // ----------------------------------------------------
+     // -----------------------------------------------------------------------
      public function getResultsByPlaceForView(Request $request, $region, $place) {
 
 	    $category_name = request()->segment(2);
@@ -398,9 +412,9 @@ class ResultsController extends Controller {
 
      }
 
-     // ----------------------------------------------------
+     // -----------------------------------------------------------------------
      // Результаты по городу / селу / аулу для морды
-     // ----------------------------------------------------
+     // -----------------------------------------------------------------------
      public function getResultsByPlaceForFront(Request $request, $region, $place) {
 	    $category_name = request()->segment(2);
         $result = $this->getResultsByCategory($request, $region, null, $category_name);    
@@ -1074,5 +1088,51 @@ class ResultsController extends Controller {
 	    $result = $this->getResultsForSubCategory($request, null, null, null, null);
 	    return $result;
     }
+
+
+    // ---------------------------------------------------------------------------------------
+    // Результаты по региону с под категориями для вьюшки
+    // ---------------------------------------------------------------------------------------
+     public function getResultsByRegionWithSubCategoryForView(Request $request, $region, $subcat) {
+
+	$category_name = request()->segment(2);
+        $result = $this->getResultsByCategory($request, $region, null, $category_name);
+    
+        return view("results")
+        ->with("keywords", $result["keywords"])
+        ->with("description", $result["description"])
+        ->with("title", $result["title"])
+        ->with("items", $result["items"])
+		->with("results", $result["results"])
+        ->with("category", $result["category"])
+        ->with("category_name", $result["category_name"])
+        ->with("subcat", "null")
+        ->with("start_record", $result["start_record"])
+        ->with("total_records", $result["total_records"]);
+
+     }
+
+
+    // ---------------------------------------------------------------------------------------
+    // Результаты по региону с под категориями для морды
+    // ---------------------------------------------------------------------------------------
+     public function getResultsByRegionWithSubCategoryForFront(Request $request, $region, $subcat) {
+
+	$category_name = request()->segment(2);
+        $result = $this->getResultsByCategory($request, $region, null, $category_name);
+    
+        return view("results")
+        ->with("keywords", $result["keywords"])
+        ->with("description", $result["description"])
+        ->with("title", $result["title"])
+        ->with("items", $result["items"])
+		->with("results", $result["results"])
+        ->with("category", $result["category"])
+        ->with("category_name", $result["category_name"])
+        ->with("subcat", "null")
+        ->with("start_record", $result["start_record"])
+        ->with("total_records", $result["total_records"]);
+
+     }
 
 }
