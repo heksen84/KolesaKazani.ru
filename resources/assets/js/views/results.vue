@@ -4,7 +4,7 @@
 			<b-col cols="12" sm="12" md="10" lg="10" xl="10" class="result_info_col">
 				<div class="close_button shadow_text" id="results_close_button" title="Закрыть страницу" @click="closeAndReturn" >X</div>
 				<!--<h1 style="color:black;font-size:20px">{{ title }}</h1>-->
-				<div class="shadow_text title_text">Найдено {{ count  }} {{ count_string }}</div>
+				<div class="shadow_text title_text">Найдено {{ count }} {{ count_string }}</div>
 			</b-col>
 		</b-row>
 	<br>
