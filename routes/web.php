@@ -8,17 +8,8 @@ Auth::routes(); // Стандартные роуты
 	\Debugbar::enable();
 //}
 
-// ------------------------------------------------------------------------
-// Футер
-// ------------------------------------------------------------------------
-Route::get("advertisers", function () { return view("advertisers"); }); // Реклама
-Route::get("about", function () { return view("about"); }); // О сайте...
-
-Route::get("getCategoryCountById", "WelcomeController@getCategoryCountById");
-Route::get("getCategoryCounts", "WelcomeController@getCategoryCounts");
-
 // -----------------------------------------------------------------------------------------
-// Категории по всему Казахстану
+// Результаты по категориям по всему Казахстану
 // -----------------------------------------------------------------------------------------
 Route::get("transport", 		"ResultsController@getResultsByCategoryForView");
 Route::get("nedvizhimost", 		"ResultsController@getResultsByCategoryForView");
@@ -31,10 +22,7 @@ Route::get("hobbi-i-otdyh", 	"ResultsController@getResultsByCategoryForView");
 Route::get("uslugi", 			"ResultsController@getResultsByCategoryForView");
 Route::get("drugoe", 			"ResultsController@getResultsByCategoryForView");
 
-Route::get("{region}/transport/{subcat}",	 "ResultsController@getResultsByRegionWithSubCategoryForView");
-Route::get("{region}/nedvizhimost/{subcat}", "ResultsController@getResultsByRegionWithSubCategoryForView");
-
-// категрии по региону
+// Результаты категории по региону
 Route::get("{region}/elektronika",  		 "ResultsController@getResultsByRegionForView");
 Route::get("{region}/rabota-i-biznes",  	 "ResultsController@getResultsByRegionForView");
 Route::get("{region}/dlya-doma-i-dachi",  	 "ResultsController@getResultsByRegionForView");
@@ -43,6 +31,10 @@ Route::get("{region}/zhivotnye",  	 	 	 "ResultsController@getResultsByRegionFor
 Route::get("{region}/hobbi-i-otdyh",  	 	 "ResultsController@getResultsByRegionForView");
 Route::get("{region}/uslugi",  	 	 		 "ResultsController@getResultsByRegionForView");
 Route::get("{region}/drugoe",  	 	 		 "ResultsController@getResultsByRegionForView");
+
+// Результаты по региону с подкатегориями
+Route::get("{region}/transport/{subcat}",    "ResultsController@getResultsByRegionWithSubCategoryForView");
+Route::get("{region}/nedvizhimost/{subcat}", "ResultsController@getResultsByRegionWithSubCategoryForView");
 
 // категрии по местности
 Route::get("{region}/{place}/elektronika",  		"ResultsController@getResultsByPlaceForView");
@@ -101,10 +93,22 @@ Route::get("getResults", "ResultsController@getResultsByCategory");
 Route::get("location/{country}/{region}/{place}", "AdvertController@getFullInfo");
 Route::get("logout", "\App\Http\Controllers\Auth\LoginController@logout");
 
-// ------------------------------------
+// ------------------------------------------------------------------------
 // категории по региону и местности
-// ------------------------------------
+// ------------------------------------------------------------------------
 Route::get("{region}/{place}/{category}", "ResultsController@getResultsByPlace");
+
+// ------------------------------------------------------------------------
+// Футер
+// ------------------------------------------------------------------------
+// Реклама
+Route::get("advertisers", function () { return view("advertisers"); });
+// О сайте...
+Route::get("about", function () { return view("about"); });
+
+// Вспомогательные методы
+Route::get("getCategoryCountById", "WelcomeController@getCategoryCountById");
+Route::get("getCategoryCounts", "WelcomeController@getCategoryCounts");
 
 /*
 ------------------------------------------------------------------------------------------------
@@ -114,7 +118,9 @@ Route::get("panels/admin", "AdminController@login");
 Route::get("moderation",  function () { return view("moderation"); });
 Route::get("moderation/{advert_id}",  function () { return view("moderation_advert"); });
 
+// -----------------------------------------------------------
 // сервисы
+// -----------------------------------------------------------
 Route::get("test",  function () { return view("test"); });
 Route::post("checkPhotos",  "TestController@checkPhotos");
 Route::get("/util/str2url", "UtilsController@str2url");
