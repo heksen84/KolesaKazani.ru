@@ -112,7 +112,6 @@
 
 </b-container>
 
-
 </template>
 <script>
 
@@ -151,9 +150,7 @@ export default {
     currentPage: 1,
 		loadMoreCountShow: 3,			    
     count: 0,
-    count_string: "",
-   	slide: 0,
-    sliding: null,
+    count_string: "",   	
 		filter: true,
 		filter_text: "Скрыть фильтр",
 
@@ -195,18 +192,14 @@ export default {
 	// компонент создан
 	created() {
 		console.log(this.results)
-		this.updateResults();
+		this.count = this.total_records;
+		this.count_string = num2str(this.count, ["объявление", "объявления", "объявлений"]);
 	},
 				
 	// -------------------------
 	// Методы компонента
 	// -------------------------
 	methods: {
-
-		updateResults() {
-  		this.count = Object.keys(this.resultsClone).length;
-			this.count_string = num2str(this.count, ["объявление", "объявления", "объявлений"]);
-		},
 			
 		// показать / скрыть фильтр
 		showFilter() {
@@ -263,8 +256,6 @@ export default {
 					this.resultsClone=JSON.parse(res.data.results);
 					this.totalRecords = res.data.total_records;
 					
-					this.updateResults();
-					
 					// вверх
 					window.scrollTo(0,0);
 
@@ -281,7 +272,6 @@ export default {
 			  									
 		// загрузить ещё
 		loadMore() {
-    	this.updateData();
     },
 
 		// навигация

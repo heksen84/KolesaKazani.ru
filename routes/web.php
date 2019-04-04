@@ -8,17 +8,6 @@ Auth::routes(); // Стандартные роуты
 	\Debugbar::enable();
 //}
 
-// ------------------------------------------------------
-//  Пробный методы
-// ------------------------------------------------------
-Route::get("test",  function () { return view("test"); });
-Route::post("checkPhotos",  "TestController@checkPhotos");
-
-// ------------------------------------------------------
-// сервисы
-// ------------------------------------------------------
-Route::get("/util/str2url", "UtilsController@str2url");
-
 // ------------------------------------------------------------------------
 // Футер
 // ------------------------------------------------------------------------
@@ -42,27 +31,28 @@ Route::get("hobbi-i-otdyh", 	"ResultsController@getResultsByCategoryForView");
 Route::get("uslugi", 			"ResultsController@getResultsByCategoryForView");
 Route::get("drugoe", 			"ResultsController@getResultsByCategoryForView");
 
-Route::get("{region}/transport/{subcat}",	 ["uses" => "ResultsController@getResultsByRegionWithDetailedInfo"]);
-Route::get("{region}/nedvizhimost/{subcat}", ["uses" => "ResultsController@getResultsByRegionWithDetailedInfo"]);
+Route::get("{region}/transport/{subcat}",	 "ResultsController@getResultsByRegionWithDetailedInfo");
+Route::get("{region}/nedvizhimost/{subcat}", "ResultsController@getResultsByRegionWithDetailedInfo");
 
-// по региону без подкатегорий 
-Route::get("{region}/elektronika",  		 ["uses" => "ResultsController@getResultsByRegion"]);
-Route::get("{region}/rabota-i-biznes",  	 ["uses" => "ResultsController@getResultsByRegion"]);
-Route::get("{region}/dlya-doma-i-dachi",  	 ["uses" => "ResultsController@getResultsByRegion"]);
-Route::get("{region}/lichnye-veschi",  	 	 ["uses" => "ResultsController@getResultsByRegion"]);
-Route::get("{region}/zhivotnye",  	 	 	 ["uses" => "ResultsController@getResultsByRegion"]);
-Route::get("{region}/hobbi-i-otdyh",  	 	 ["uses" => "ResultsController@getResultsByRegion"]);
-Route::get("{region}/uslugi",  	 	 		 ["uses" => "ResultsController@getResultsByRegion"]);
-Route::get("{region}/drugoe",  	 	 		 ["uses" => "ResultsController@getResultsByRegion"]);
+// категрии по региону
+Route::get("{region}/elektronika",  		 "ResultsController@getResultsByRegionForView");
+Route::get("{region}/rabota-i-biznes",  	 "ResultsController@getResultsByRegionForView");
+Route::get("{region}/dlya-doma-i-dachi",  	 "ResultsController@getResultsByRegionForView");
+Route::get("{region}/lichnye-veschi",  	 	 "ResultsController@getResultsByRegionForView");
+Route::get("{region}/zhivotnye",  	 	 	 "ResultsController@getResultsByRegionForView");
+Route::get("{region}/hobbi-i-otdyh",  	 	 "ResultsController@getResultsByRegionForView");
+Route::get("{region}/uslugi",  	 	 		 "ResultsController@getResultsByRegionForView");
+Route::get("{region}/drugoe",  	 	 		 "ResultsController@getResultsByRegionForView");
 
-// недвижимость
-Route::get("kvartira", 				  		"ResultsController@getResultsByCategory");
-Route::get("komnata", 				  		"ResultsController@getResultsByCategory");
-Route::get("dom-dacha-kottedzh",	  		"ResultsController@getResultsByCategory");
-Route::get("zemel-nyy-uchastok",	  		"ResultsController@getResultsByCategory");
-Route::get("garazh-ili-mashinomesto", 		"ResultsController@getResultsByCategory");
-Route::get("kommercheskaya-nedvizhimost", 	"ResultsController@getResultsByCategory");
-Route::get("nedvizhimost-za-rubezhom", 		"ResultsController@getResultsByCategory");
+// категрии по местности
+Route::get("{region}/{place}/elektronika",  		"ResultsController@getResultsByPlaceForView");
+Route::get("{region}/{place}/rabota-i-biznes",  	"ResultsController@getResultsByPlaceForView");
+Route::get("{region}/{place}/dlya-doma-i-dachi",  	"ResultsController@getResultsByPlaceForView");
+Route::get("{region}/{place}/lichnye-veschi",  	 	"ResultsController@getResultsByPlaceForView");
+Route::get("{region}/{place}/zhivotnye",  	 	 	"ResultsController@getResultsByPlaceForView");
+Route::get("{region}/{place}/hobbi-i-otdyh",  	 	"ResultsController@getResultsByPlaceForView");
+Route::get("{region}/{place}/uslugi",  	 	 		"ResultsController@getResultsByPlaceForView");
+Route::get("{region}/{place}/drugoe",  	 	 		"ResultsController@getResultsByPlaceForView");
 
 // ------------------------------------
 // детали объявления
@@ -70,11 +60,10 @@ Route::get("nedvizhimost-za-rubezhom", 		"ResultsController@getResultsByCategory
 Route::get("obyavlenie/{url}", "AdvertController@getFullInfoByUrl"); // для СЕО
 Route::get("podrobno/{id}", "AdvertController@getFullInfo");
 
-
 // подкатегории
 Route::get("{category}/{subcat}", "ResultsController@getResultsForSubCategoryForView");
-Route::get("/getResultsForSubCategory/{category}/{subcat}", "ResultsController@getResultsForSubCategoryForView");
 Route::get("/getResultsByCategoryForFront", "ResultsController@getResultsByCategoryForFront");
+Route::get("/getResultsForSubCategory/{category}/{subcat}", "ResultsController@getResultsForSubCategoryForView");
 Route::get("/getResultsForSubCategoryForFront", "ResultsController@getResultsForSubCategoryForFront");
 
 // ------------------------------------
@@ -103,22 +92,14 @@ Route::get("search",  function () { return view("search")->with("items", "123");
 // перенести в контроллер Categories
 // ----------------------------------------
 Route::get("/category/{id}", function ($id) {
-
 	$categories = DB::table("categories")->where("id", $id)->get();
 	$items = DB::table("adverts")->where("category_id", $id)->get();
 	return view("results")->with("items", $items )->with("category_id", $id )->with("category_name", mb_strtolower($categories[0]->name));
-
 });
 
 Route::get("getResults", "ResultsController@getResultsByCategory");
 Route::get("location/{country}/{region}/{place}", "AdvertController@getFullInfo");
 Route::get("logout", "\App\Http\Controllers\Auth\LoginController@logout");
-
-
-// ------------------------------------
-// категории по региону
-// ------------------------------------
-//Route::get("{region}/{category}", "ResultsController@getResultsByRegion");
 
 // ------------------------------------
 // категории по региону и местности
@@ -132,3 +113,8 @@ Route::get("{region}/{place}/{category}", "ResultsController@getResultsByPlace")
 Route::get("panels/admin", "AdminController@login");
 Route::get("moderation",  function () { return view("moderation"); });
 Route::get("moderation/{advert_id}",  function () { return view("moderation_advert"); });
+
+// сервисы
+Route::get("test",  function () { return view("test"); });
+Route::post("checkPhotos",  "TestController@checkPhotos");
+Route::get("/util/str2url", "UtilsController@str2url");

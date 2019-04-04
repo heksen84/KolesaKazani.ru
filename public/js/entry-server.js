@@ -4354,7 +4354,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 // -----------------------------------------------
@@ -4393,8 +4392,6 @@ function num2str(n, text_forms) {
 			loadMoreCountShow: 3,
 			count: 0,
 			count_string: "",
-			slide: 0,
-			sliding: null,
 			filter: true,
 			filter_text: "Скрыть фильтр",
 
@@ -4418,7 +4415,8 @@ function num2str(n, text_forms) {
 	// компонент создан
 	created: function created() {
 		console.log(this.results);
-		this.updateResults();
+		this.count = this.total_records;
+		this.count_string = num2str(this.count, ["объявление", "объявления", "объявлений"]);
 	},
 
 
@@ -4426,11 +4424,6 @@ function num2str(n, text_forms) {
 	// Методы компонента
 	// -------------------------
 	methods: {
-		updateResults: function updateResults() {
-			this.count = Object.keys(this.resultsClone).length;
-			this.count_string = num2str(this.count, ["объявление", "объявления", "объявлений"]);
-		},
-
 
 		// показать / скрыть фильтр
 		showFilter: function showFilter() {
@@ -4477,8 +4470,6 @@ function num2str(n, text_forms) {
 					_this.resultsClone = JSON.parse(res.data.results);
 					_this.totalRecords = res.data.total_records;
 
-					_this.updateResults();
-
 					// вверх
 					window.scrollTo(0, 0);
 				}).catch(function (err) {
@@ -4495,9 +4486,7 @@ function num2str(n, text_forms) {
 
 
 		// загрузить ещё
-		loadMore: function loadMore() {
-			this.updateData();
-		},
+		loadMore: function loadMore() {},
 
 
 		// навигация
@@ -14141,7 +14130,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
