@@ -8,9 +8,6 @@ use Illuminate\Http\Request;
 class AppController extends Controller
 {
 
-
-
-
     private function render() {
         $renderer_source = File::get(base_path('node_modules/vue-server-renderer/basic.js'));
         $app_source = File::get(public_path('js/entry-server.js'));
@@ -36,12 +33,6 @@ class AppController extends Controller
         $ssr = $this->render();
         return view('app', ['ssr' => $ssr]);
       }
-
-
-
-
-
-
 
     
 }
