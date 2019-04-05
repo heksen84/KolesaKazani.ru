@@ -466,7 +466,7 @@ class ResultsController extends Controller {
                             adv_transport.mark=car_mark.id_car_mark AND 
                             adv.adv_category_id=adv_transport.id AND 
                             adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_transport.type=0 AND adv.category_id=1".$region_string); 
+                        ) WHERE adv_transport.type=0 AND adv.category_id=1".$region_string.$this->filter_string); 
 
                                     
                     $results = DB::select(
@@ -507,7 +507,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=1 AND adv.category_id=1".$region_string
+                        ) WHERE adv_transport.type=1 AND adv.category_id=1".$region_string.$this->filter_string
                     );
                     
                     $results = DB::select(
@@ -546,7 +546,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=2 AND adv.category_id=1".$region_string
+                        ) WHERE adv_transport.type=2 AND adv.category_id=1".$region_string.$this->filter_string
                     );
                     
                     $results = DB::select(
@@ -585,7 +585,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=3 AND adv.category_id=1".$region_string
+                        ) WHERE adv_transport.type=3 AND adv.category_id=1".$region_string.$this->filter_string
                     );
 
                     $results = DB::select(
@@ -624,7 +624,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=4 AND adv.category_id=1".$region_string                   
+                        ) WHERE adv_transport.type=4 AND adv.category_id=1".$region_string.$this->filter_string
                     );
                     
                     $results = DB::select(
@@ -661,7 +661,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=5  AND adv.category_id=1".$region_string
+                        ) WHERE adv_transport.type=5  AND adv.category_id=1".$region_string.$this->filter_string
                     );
 
                     $results = DB::select(
@@ -698,7 +698,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=6  AND adv.category_id=1".$region_string
+                        ) WHERE adv_transport.type=6  AND adv.category_id=1".$region_string.$this->filter_string
                     );
                                         
                     $results = DB::select(
@@ -735,7 +735,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=7 AND adv.category_id=1".$region_string
+                        ) WHERE adv_transport.type=7 AND adv.category_id=1".$region_string.$this->filter_string
                     );
 
                     $results = DB::select(
@@ -783,7 +783,7 @@ class ResultsController extends Controller {
                         COUNT(*) as count                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=0 AND adv.category_id=2".$region_string
+                        WHERE adv_realestate.property_type=0 AND adv.category_id=2".$region_string.$this->filter_string
                     );
 
                     $results = DB::select(
@@ -820,7 +820,7 @@ class ResultsController extends Controller {
                         COUNT(*) as count                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=1 AND adv.category_id=2".$region_string
+                        WHERE adv_realestate.property_type=1 AND adv.category_id=2".$region_string.$this->filter_string
                     );
 
                     $results = DB::select(
@@ -857,7 +857,7 @@ class ResultsController extends Controller {
                         COUNT(*) as count
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=2 AND adv.category_id=2".$region_string
+                        WHERE adv_realestate.property_type=2 AND adv.category_id=2".$region_string.$this->filter_string
                     );
 
                     $results = DB::select(
@@ -900,7 +900,7 @@ class ResultsController extends Controller {
                         COUNT(*) as count                      
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=3 AND adv.category_id=2".$region_string
+                        WHERE adv_realestate.property_type=3 AND adv.category_id=2".$region_string.$this->filter_string
                     );
 
                     $results = DB::select(
@@ -937,7 +937,7 @@ class ResultsController extends Controller {
                         COUNT(*) as count                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=4 AND adv.category_id=2".$region_string
+                        WHERE adv_realestate.property_type=4 AND adv.category_id=2".$region_string.$this->filter_string
                     );
 
                     $results = DB::select(
@@ -974,7 +974,7 @@ class ResultsController extends Controller {
                         COUNT(*) as count                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=5 AND adv.category_id=2".$region_string
+                        WHERE adv_realestate.property_type=5 AND adv.category_id=2".$region_string.$this->filter_string
                     );
 
                     $results = DB::select(
@@ -1011,7 +1011,7 @@ class ResultsController extends Controller {
                         COUNT(*) as count                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=6 AND adv.category_id=2".$region_string
+                        WHERE adv_realestate.property_type=6 AND adv.category_id=2".$region_string.$this->filter_string
                     );
 
                     $results = DB::select(
