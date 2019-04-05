@@ -36506,7 +36506,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-container",
-    { staticClass: "mycontainer", attrs: { fluid: "" } },
+    { staticClass: "mycontainer", attrs: { fluid: "", id: "index_page" } },
     [
       _c(
         "b-row",
@@ -39109,12 +39109,14 @@ var render = function() {
                 attrs: { cols: "12", sm: "12", md: "3", lg: "3", xl: "3" }
               }),
               _vm._v(" "),
-              _c(
-                "b-col",
-                { attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" } },
-                [
-                  _vm.category != 4 && _vm.category != 9
-                    ? _c("b-form-select", {
+              _vm.category != 4 && _vm.category != 9
+                ? _c(
+                    "b-col",
+                    {
+                      attrs: { cols: "12", sm: "12", md: "2", lg: "2", xl: "2" }
+                    },
+                    [
+                      _c("b-form-select", {
                         staticClass: "mb-2",
                         attrs: { options: _vm.options_deal, size: "sm" },
                         model: {
@@ -39125,10 +39127,10 @@ var render = function() {
                           expression: "filters.deal"
                         }
                       })
-                    : _vm._e()
-                ],
-                1
-              ),
+                    ],
+                    1
+                  )
+                : _vm._e(),
               _vm._v(" "),
               _c(
                 "b-col",

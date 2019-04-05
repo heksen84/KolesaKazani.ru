@@ -33,9 +33,9 @@
 
 	<b-row v-if="total_records>3">
 		<b-col cols="12" sm="12" md="3" lg="3" xl="3"></b-col>
-		<b-col cols="12" sm="12" md="2" lg="2" xl="2">
-		  <!-- скрываю выбор сделки в категориях 4 и 9 т.е. в категориях Работа и бизнес и Услуги -->
-		  <b-form-select v-model="filters.deal" :options="options_deal" class="mb-2" size="sm" v-if="category!=4 && category!=9"/>
+		<!-- скрываю выбор сделки в категориях 4 и 9 т.е. в категориях Работа и бизнес и Услуги -->
+		<b-col cols="12" sm="12" md="2" lg="2" xl="2" v-if="category!=4 && category!=9">
+		  <b-form-select v-model="filters.deal" :options="options_deal" class="mb-2" size="sm"/>
 		</b-col>
 		<b-col cols="12" sm="12" md="1" lg="1" xl="1">			
 		  <span class="shadow_text" style="font-weight:600">Цена:</span>

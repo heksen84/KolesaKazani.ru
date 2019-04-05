@@ -75,6 +75,29 @@ body {
   -o-background-size: cover;
 }
 
+/* visited link */
+
+a:visited {
+  color: white;
+}
+
+/* mouse over link */
+
+a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+/* selected link */
+
+a:active {
+  color: white;
+}
+
+#index_page a {
+  color: white;
+}
+
 h1 {
   font-size: 180%;
 }
@@ -102,6 +125,7 @@ h3 {
   padding: 6px;
   background: #6464c8;
   font-size: 17px;
+  width: 25px;
 }
 
 #results_close_button:hover {
@@ -339,19 +363,6 @@ h3 {
   content: "\434\43E\431\430\432\438\442\44C   \444\43E\442\43E";
 }
 
-/* visited link */
-
-a:visited {
-  color: white;
-}
-
-/* mouse over link */
-
-a:hover {
-  color: white;
-  text-decoration: none;
-}
-
 #footer {
   margin: auto;
   margin-top: 5px;
@@ -367,12 +378,6 @@ a:hover {
 
 .underline_link:hover {
   text-decoration: underline;
-}
-
-/* selected link */
-
-a:active {
-  color: white;
 }
 
 #categories_title {

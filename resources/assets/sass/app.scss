@@ -77,6 +77,26 @@ body {
 -o-background-size: cover;
 }
 
+/* visited link */
+a:visited {
+    color: white;
+}
+
+/* mouse over link */
+a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+/* selected link */
+a:active {
+    color: white;
+}
+
+#index_page a {
+    color: white;
+}
+
 h1 {
   font-size: 180%;
 }
@@ -104,6 +124,7 @@ h3 {
   padding:6px;
   background:rgb(100,100,200);
   font-size:17px;
+  width:25px;  
 }
 
 #results_close_button:hover {
@@ -347,17 +368,6 @@ h3 {
     content: "добавить фото";
 }
 
-/* visited link */
-a:visited {
-    color: white;
-}
-
-/* mouse over link */
-a:hover {
-    color: white;
-    text-decoration: none;
-}
-
 #footer {
   margin:auto;
   margin-top:5px;
@@ -373,11 +383,6 @@ a:hover {
 
 .underline_link:hover {
   text-decoration: underline;
-}
-
-/* selected link */
-a:active {
-    color: white;
 }
 
 #addit_info {

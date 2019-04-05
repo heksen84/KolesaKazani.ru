@@ -1,6 +1,6 @@
 <!-- git -->
 <template>
-  <b-container fluid class="mycontainer">
+  <b-container fluid class="mycontainer" id="index_page">
     <b-row>
         <!-- окно выбоа региона и местоположения -->
         <b-modal v-model="locationDialog" style="text-align:center;color:rgb(50,50,50)" hide-footer :title="locationDialogTitle">
