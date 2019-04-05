@@ -232,7 +232,11 @@ export default {
 			},
 
 			changeDeal(deal) {
-				// this.setFilterButtonFilterState(false);
+
+                                this.filters.deal = deal;
+				this.start_page = 0;
+				this.currentPage = 1;
+				this.updateData();
 			},
 			  
 			// Обновить данные
@@ -277,24 +281,9 @@ export default {
 					
 					this.resultsClone=JSON.parse(res.data.results);
 					this.totalRecords = res.data.total_records;
-
-					this.updateData();
 					
 					// вверх
-					window.scrollTo(0,0);
-					
-/*					if(this.filter_button_variant == "primary")
-						this.setFilterButtonFilterState(true);
-					else {
-						
-						this.setFilterButtonFilterState(false);
-						this.filters.deal = null;
-						this.filters.price_min = null;
-						this.filters.price_max = null;
-						
-						this.updateData();
-					}
-*/
+					window.scrollTo(0,0);					
 
 					}).catch((err) => {	
 						console.log(err)
@@ -314,6 +303,11 @@ export default {
 		// навигация
 		changePage(page) {
 			this.start_page = page;
+			
+			// обнуляю дипазан цен
+			this.filters.price_min = null;
+			this.filters.price_max = null;
+
 			this.updateData();			
 		}
 	}
