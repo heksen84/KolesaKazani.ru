@@ -197,16 +197,20 @@ export default {
 		console.log(this.category)
 		console.log("---------------------")
 		console.log(this.results)
-		this.count = this.total_records;
-		this.count_string = num2str(this.count, ["объявление", "объявления", "объявлений"]);
+		this.updateFoundAdvertsCount();
 	},
+	
 				
 	// -------------------------
 	// Методы компонента
 	// -------------------------
 	methods: {
 
-			
+		updateAdvertsFoundCount() {
+			this.count = this.total_records;
+			this.count_string = num2str(this.count, ["объявление", "объявления", "объявлений"]);
+		},			
+
 		// показать / скрыть фильтр
 		showFilter() {
 				if (this.filter) {					
@@ -234,9 +238,9 @@ export default {
 			changeDeal(deal) {
 
                                 this.filters.deal = deal;
-				this.start_page = 0;
-				this.currentPage = 1;
+				this.start_page = 0;				
 				this.updateData();
+				this.currentPage = 1;
 			},
 			  
 			// Обновить данные
@@ -281,6 +285,11 @@ export default {
 					
 					this.resultsClone=JSON.parse(res.data.results);
 					this.totalRecords = res.data.total_records;
+					
+//					alert(this.totalRecords);
+
+					this.updateAdvertsFoundCount();
+					
 					
 					// вверх
 					window.scrollTo(0,0);					
