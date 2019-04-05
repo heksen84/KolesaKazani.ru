@@ -106,7 +106,7 @@
 		</b-row>-->
 	</div>
 
-	<div class="mt-3 text-center" v-if="total_records>5">
+	<div class="mt-3 text-center" v-if="totalRecords>perPage">
 		Страницы:
 		<b-pagination v-model="currentPage" :total-rows="totalRecords" :per-page="perPage" align="center" @change="changePage" class="mt-2"/>
 	</div>

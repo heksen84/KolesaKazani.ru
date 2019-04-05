@@ -39282,7 +39282,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm.total_records > 5
+      _vm.totalRecords > _vm.perPage
         ? _c(
             "div",
             { staticClass: "mt-3 text-center" },
