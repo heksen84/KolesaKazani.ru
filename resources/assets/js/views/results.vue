@@ -35,7 +35,7 @@
 		<b-col cols="12" sm="12" md="3" lg="3" xl="3"></b-col>
 		<!-- скрываю выбор сделки в категориях 4 и 9 т.е. в категориях Работа и бизнес и Услуги -->
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2" v-if="category!=4 && category!=9">
-		  <b-form-select v-model="filters.deal" :options="options_deal" class="mb-2" size="sm"/>
+		  <b-form-select v-model="filters.deal" :options="options_deal" class="mb-2" size="sm" @change="changeDeal"/>
 		</b-col>
 		<b-col cols="12" sm="12" md="1" lg="1" xl="1">			
 		  <span class="shadow_text" style="font-weight:600">Цена:</span>
@@ -47,7 +47,7 @@
 		  <b-form-input v-model="filters.price_max" class="mb-1" placeholder="До" type="number" size="sm"/>			
 		</b-col>
 		<b-col cols="2" sm="2" md="12" lg="2" xl="2" style="text-align:center">
-				<b-button style="border: 1px solid white" variant="primary" size="sm" class="mb-4" @click="updateData">Применить</b-button>
+				<b-button style="border: 1px solid white" :variant="filter_button_variant" size="sm" class="mb-4" @click="updateData">{{ filter_button_text }}</b-button>
 		</b-col>
 	</b-row>
 
@@ -154,6 +154,8 @@ export default {
     count_string: "",   	
 		filter: true,
 		filter_text: "Скрыть фильтр",
+		filter_button_variant: "primary",
+		filter_button_text: "Применить",
 
 		filters: {
 			deal: null,
@@ -203,6 +205,7 @@ export default {
 	// Методы компонента
 	// -------------------------
 	methods: {
+
 			
 		// показать / скрыть фильтр
 		showFilter() {
@@ -214,6 +217,22 @@ export default {
 					this.filter=true;
 					this.filter_text="Скрыть фильтр";
 				}				
+			},
+
+			setFilterButtonFilterState(state) {
+
+				if (state) {
+						this.filter_button_variant="warning";
+						this.filter_button_text="Отменить фильтр";						
+					}
+					else {
+						this.filter_button_variant="primary";
+						this.filter_button_text="Применить";
+					}
+			},
+
+			changeDeal(deal) {
+				this.setFilterButtonFilterState(false);
 			},
 			  
 			// Обновить данные
@@ -261,6 +280,18 @@ export default {
 					
 					// вверх
 					window.scrollTo(0,0);
+					
+					if(this.filter_button_variant == "primary")
+						this.setFilterButtonFilterState(true);
+					else {
+						
+						this.setFilterButtonFilterState(false);
+						this.filters.deal = null;
+						this.filters.price_min = null;
+						this.filters.price_max = null;
+						
+						this.updateData();
+					}
 
 					}).catch((err) => {	
 						console.log(err)

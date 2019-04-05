@@ -4400,6 +4400,8 @@ function num2str(n, text_forms) {
 			count_string: "",
 			filter: true,
 			filter_text: "Скрыть фильтр",
+			filter_button_variant: "primary",
+			filter_button_text: "Применить",
 
 			filters: {
 				deal: null,
@@ -4444,6 +4446,19 @@ function num2str(n, text_forms) {
 				this.filter_text = "Скрыть фильтр";
 			}
 		},
+		setFilterButtonFilterState: function setFilterButtonFilterState(state) {
+
+			if (state) {
+				this.filter_button_variant = "warning";
+				this.filter_button_text = "Отменить фильтр";
+			} else {
+				this.filter_button_variant = "primary";
+				this.filter_button_text = "Применить";
+			}
+		},
+		changeDeal: function changeDeal(deal) {
+			this.setFilterButtonFilterState(false);
+		},
 
 
 		// Обновить данные
@@ -4481,6 +4496,16 @@ function num2str(n, text_forms) {
 
 					// вверх
 					window.scrollTo(0, 0);
+
+					if (_this.filter_button_variant == "primary") _this.setFilterButtonFilterState(1);else {
+						_this.setFilterButtonFilterState(0);
+
+						_this.filters.deal = null;
+						_this.filters.price_min = null;
+						_this.filters.price_max = null;
+
+						_this.updateData();
+					}
 				}).catch(function (err) {
 					console.log(err);
 				});
@@ -14139,7 +14164,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -39119,6 +39144,7 @@ var render = function() {
                       _c("b-form-select", {
                         staticClass: "mb-2",
                         attrs: { options: _vm.options_deal, size: "sm" },
+                        on: { change: _vm.changeDeal },
                         model: {
                           value: _vm.filters.deal,
                           callback: function($$v) {
@@ -39197,10 +39223,10 @@ var render = function() {
                     {
                       staticClass: "mb-4",
                       staticStyle: { border: "1px solid white" },
-                      attrs: { variant: "primary", size: "sm" },
+                      attrs: { variant: _vm.filter_button_variant, size: "sm" },
                       on: { click: _vm.updateData }
                     },
-                    [_vm._v("Применить")]
+                    [_vm._v(_vm._s(_vm.filter_button_text))]
                   )
                 ],
                 1
