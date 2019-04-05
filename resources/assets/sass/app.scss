@@ -1,25 +1,27 @@
+// ----------------------------------------------
+// константы
+// ----------------------------------------------
+$background: rgb(255, 255, 255);
+$shadow_text_color: rgb(50, 50, 50);
+$scroll_bar_back_color: rgb(80, 80, 80);
+$scroll_bar_width: 8px;
+
 @font-face {
  font-family: "carefree";
  src: url("../fonts/carefree.ttf") format("truetype");
  font-weight: normal;
 }
 
-// константы
-$background: rgb(255, 255, 255);
-$shadow_text_color: rgb(50, 50, 50);
-$scroll_bar_back_color: rgb(80, 80, 80);
-$scroll_bar_width: 8px;
-
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-    text-align: center;
+  -webkit-appearance: none;
+  margin: 0;
+  text-align: center;
 }
 
 input[type="number"] {
-    -moz-appearance: textfield;
-    text-align: center;
+  -moz-appearance: textfield;
+  text-align: center;
 }
 
 ::-webkit-scrollbar-thumb{
@@ -77,6 +79,10 @@ body {
 -o-background-size: cover;
 }
 
+#index_page a {
+  color: white;
+}
+
 /* visited link */
 a:visited {
     color: white;
@@ -93,10 +99,6 @@ a:active {
     color: white;
 }
 
-#index_page a {
-    color: white;
-}
-
 h1 {
   font-size: 180%;
 }
@@ -108,10 +110,6 @@ h2 {
 h3 {
   font-size: 100%;
 }
-
-/*h5 {
-  color:rgb(50,50,50);
-}*/
 
 #welcome_menu {
   text-align:right;
@@ -403,7 +401,6 @@ h3 {
 
 // большие мониторы
 @media screen and (min-width:1920px) {
-  
 
 .create_advert_col {
  margin-top: 20px;
@@ -493,7 +490,6 @@ h3 {
 #categories_title {
    margin-top:5px;
 }
-
 
 }
 

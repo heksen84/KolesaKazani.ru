@@ -75,6 +75,10 @@ body {
   -o-background-size: cover;
 }
 
+#index_page a {
+  color: white;
+}
+
 /* visited link */
 
 a:visited {
@@ -94,10 +98,6 @@ a:active {
   color: white;
 }
 
-#index_page a {
-  color: white;
-}
-
 h1 {
   font-size: 180%;
 }
@@ -109,10 +109,6 @@ h2 {
 h3 {
   font-size: 100%;
 }
-
-/*h5 {
-  color:rgb(50,50,50);
-}*/
 
 #welcome_menu {
   text-align: right;
