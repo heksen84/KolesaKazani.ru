@@ -4426,7 +4426,7 @@ function num2str(n, text_forms) {
 		console.log(this.category);
 		console.log("---------------------");
 		console.log(this.results);
-		this.updateFoundAdvertsCount();
+		this.updateAdvertsFoundCount();
 	},
 
 
@@ -4435,7 +4435,7 @@ function num2str(n, text_forms) {
 	// -------------------------
 	methods: {
 		updateAdvertsFoundCount: function updateAdvertsFoundCount() {
-			this.count = this.total_records;
+			this.count = this.totalRecords;
 			this.count_string = num2str(this.count, ["объявление", "объявления", "объявлений"]);
 		},
 

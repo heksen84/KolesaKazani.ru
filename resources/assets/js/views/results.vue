@@ -197,7 +197,7 @@ export default {
 		console.log(this.category)
 		console.log("---------------------")
 		console.log(this.results)
-		this.updateFoundAdvertsCount();
+		this.updateAdvertsFoundCount();
 	},
 	
 				
@@ -207,7 +207,7 @@ export default {
 	methods: {
 
 		updateAdvertsFoundCount() {
-			this.count = this.total_records;
+			this.count = this.totalRecords;
 			this.count_string = num2str(this.count, ["объявление", "объявления", "объявлений"]);
 		},			
 
