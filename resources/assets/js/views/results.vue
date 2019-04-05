@@ -232,7 +232,7 @@ export default {
 			},
 
 			changeDeal(deal) {
-				this.setFilterButtonFilterState(false);
+				// this.setFilterButtonFilterState(false);
 			},
 			  
 			// Обновить данные
@@ -277,11 +277,13 @@ export default {
 					
 					this.resultsClone=JSON.parse(res.data.results);
 					this.totalRecords = res.data.total_records;
+
+					this.updateData();
 					
 					// вверх
 					window.scrollTo(0,0);
 					
-					if(this.filter_button_variant == "primary")
+/*					if(this.filter_button_variant == "primary")
 						this.setFilterButtonFilterState(true);
 					else {
 						
@@ -292,6 +294,7 @@ export default {
 						
 						this.updateData();
 					}
+*/
 
 					}).catch((err) => {	
 						console.log(err)
