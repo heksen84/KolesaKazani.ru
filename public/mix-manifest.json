@@ -1,8 +1,4 @@
 {
-    "/js/entry-server.js": "/js/entry-server.js?id=f3cd47db7ab37f0d2b15",
-    "/js/entry-client.js": "/js/entry-client.js?id=313e212b4ab23c2a1150",
-    "/js/app.js": "/js/app.js?id=74182f453c746d38b841",
-    "/js/index-client.js": "/js/index-client.js?id=620e21db4b1f3b2416aa",
-    "/css/app.css": "/css/app.css?id=e992e987f27df2eb222d",
-    "/js/index-server.js": "/js/index-server.js?id=ae3d99a678a248143dad"
+    "/js/app.js": "/js/app.js?id=31641191f8feaed56436",
+    "/css/app.css": "/css/app.css?id=e992e987f27df2eb222d"
 }

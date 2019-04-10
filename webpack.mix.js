@@ -11,9 +11,16 @@ let mix = require('laravel-mix');
  |
  */
 
-//mix.js('resources/assets/js/app.js', 'public/js').sass('resources/assets/sass/app.scss', 'public/css').version();
+/*mix.options({
+    processCssUrls: false,
+    setResourceRoot: path.normalize('public'),
+    publicPath: path.normalize('public')
+});*/
+
+mix.js('resources/assets/js/app.js', 'public/js').sass('resources/assets/sass/app.scss', 'public/css').version();
+
 //
-mix
+/*mix
 .js('resources/assets/js/index-client.js', 'public/js')
 .js('resources/assets/js/index-server.js', 'public/js')
 .js('resources/assets/js/app.js', 'public/js')
@@ -28,4 +35,4 @@ mix.webpackConfig({
         'vue$': 'vue/dist/vue.js'
       }
     }
-  });
+  });*/

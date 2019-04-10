@@ -24,6 +24,7 @@
         "flexboxgrid": "^6.3.1",
         "material-design-icons-iconfont": "^3.0.3",
         "modules": "^0.4.0",
+        "node-sass": "^4.11.0",
         "npm": "^6.0.1",
         "petrovich": "^0.2.1",
         "to": "^0.2.9",

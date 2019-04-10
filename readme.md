@@ -3,6 +3,7 @@
 - небеса
 - строгая
 
+Если сборка повисла на 95%, то: npm install node-sass --no-bin-links
 
 # Help
 https://ospanel.io/forum/viewtopic.php?t=3397

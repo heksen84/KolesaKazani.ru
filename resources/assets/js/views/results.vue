@@ -223,8 +223,8 @@ export default {
 				}				
 			},
 
+			// Установить состояние кнопки фильтра
 			setFilterButtonFilterState(state) {
-
 				if (state) {
 						this.filter_button_variant="warning";
 						this.filter_button_text="Отменить фильтр";						
@@ -235,9 +235,9 @@ export default {
 					}
 			},
 
+			// Сменить сделку
 			changeDeal(deal) {
-
-                                this.filters.deal = deal;
+        this.filters.deal = deal;
 				this.start_page = 0;				
 				this.updateData();
 				this.currentPage = 1;
@@ -245,35 +245,51 @@ export default {
 			  
 			// Обновить данные
   		updateData() {
-
-			var url = "";
-			var ready=false;
+				var url = "";
+				var ready=false;
 			
-			console.log("Категория: "+this.category_name)
-			console.log("Подкатегория: "+this.subcat)
+				console.log("-----------------------------------------")
+				console.log("Категория: "+this.category_name)
+				console.log("Подкатегория: "+this.subcat)
+				console.log("Регион: "+this.region)
+				console.log("-----------------------------------------")
 
-			// если только категория
-			if (this.category_name && !this.subcat && !this.region && !this.place) {
-				url="/getResultsByCategoryForFront?category_name="+this.category_name+
-				"&start_page="+this.start_page+
-				"&category_id="+this.category+
-				"&deal="+this.filters.deal+
-				"&price_min="+this.filters.price_min+
-				"&price_max="+this.filters.price_max;
-				ready=true;
-			}
+				// Фильтр только для категорий
+				if (this.category_name && !this.subcat && !this.region && !this.place) {
+					url="/getResultsByCategoryForFront?category_name="+this.category_name+
+					"&start_page="+this.start_page+
+					"&category_id="+this.category+
+					"&deal="+this.filters.deal+
+					"&price_min="+this.filters.price_min+
+					"&price_max="+this.filters.price_max;
+					ready=true;
+				}
 
-			if (this.category_name && this.subcat) {
-				console.log("подкатегория!")
-				url="/getResultsForSubCategoryForFront?category_name="+this.category_name+
-				"&subcat="+this.subcat+
-				"&start_page="+this.start_page+
-				"&category_id="+this.category+				
-				"&deal="+this.filters.deal+
-				"&price_min="+this.filters.price_min+
-				"&price_max="+this.filters.price_max;
-				ready=true;
-			}
+				// Фильтр для подкатегорий
+				if (this.category_name && this.subcat) {
+					console.log("подкатегория")
+					url="/getResultsForSubCategoryForFront?category_name="+this.category_name+
+					"&subcat="+this.subcat+
+					"&start_page="+this.start_page+
+					"&category_id="+this.category+				
+					"&deal="+this.filters.deal+
+					"&price_min="+this.filters.price_min+
+					"&price_max="+this.filters.price_max;
+					ready=true;
+				}
+
+				// Фильтр для региона с подкатегориями
+				if (this.category_name && this.subcat && this.region) {
+					console.log("Регион с подкатегориями")
+					url="/getResultsForSubCategoryForFront?category_name="+this.category_name+
+					"&subcat="+this.subcat+
+					"&start_page="+this.start_page+
+					"&category_id="+this.category+				
+					"&deal="+this.filters.deal+
+					"&price_min="+this.filters.price_min+
+					"&price_max="+this.filters.price_max;
+					ready=true;
+				}
 			
 			// запрос
 			if (ready) {
@@ -285,13 +301,9 @@ export default {
 					
 					this.resultsClone=JSON.parse(res.data.results);
 					this.totalRecords = res.data.total_records;
+					this.updateAdvertsFoundCount();					
 					
-//					alert(this.totalRecords);
-
-					this.updateAdvertsFoundCount();
-					
-					
-					// вверх
+					// поднять страницу вверх
 					window.scrollTo(0,0);					
 
 					}).catch((err) => {	
@@ -311,12 +323,12 @@ export default {
 
 		// навигация
 		changePage(page) {
-			this.start_page = page;
+			
+			this.start_page = page;			
 			
 			// обнуляю дипазан цен
 			this.filters.price_min = null;
 			this.filters.price_max = null;
-
 			this.updateData();			
 		}
 	}
