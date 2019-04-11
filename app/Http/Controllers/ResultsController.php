@@ -65,10 +65,38 @@ class ResultsController extends Controller {
 
 	   $data = $request->all();
 
-	   if (!$data) {
-		\Debugbar::info("Фильтр не указан");
-		return false;
-	   }
+	    if (!$data) {
+		    \Debugbar::info("Фильтр не указан");
+		    return false;
+        }
+
+        // ---------------------------
+        // правила валидации
+        // ---------------------------
+        $rules = [                        
+            
+            // определиться string или numeric
+            "price_min"     => "string",
+            "price_max"     => "string",            
+        ]; 
+
+        // ---------------------------
+        // сообщения валидации
+        // ---------------------------
+        $messages = [            
+            "price_min.numeric" => "Введите число",
+            "price_max.numeric" => "Введите число",
+        ];
+        
+        // проверка
+        $validator = \Validator::make( $data, $rules, $messages );
+
+        if ( $validator->fails() )  {
+            \Debugbar::error($validator->errors()->first());
+            return response()->json( ["result"=>"usr.error", "msg" => $validator->errors()->first()] );
+        }
+       
+        // FIX: ПРИМЕНИТЬ ВАЛИДАТОР
 
         if (isset($data["start_page"]))     $this->start_page     = $data["start_page"];
         if (isset($data["category_name"]))  $this->category_name  = $data["category_name"];
@@ -77,10 +105,9 @@ class ResultsController extends Controller {
         if (isset($data["deal"]))           $this->deal           = $data["deal"];
         if (isset($data["price_min"]))      $this->price_min      = $data["price_min"];
         if (isset($data["price_max"]))      $this->price_max      = $data["price_max"];
-	if (isset($data["region"]))         $this->region         = $data["region"];
-	if (isset($data["place"]))          $this->place          = $data["place"];
-            
-        // FIX: ПРИМЕНИТЬ ВАЛИДАТОР
+	    if (isset($data["region"]))         $this->region         = $data["region"];
+	    if (isset($data["place"]))          $this->place          = $data["place"];
+                    
         \Debugbar::info("категория id:".$this->category_id);
         \Debugbar::info("категория:".$this->category_name);
         \Debugbar::info("Подкатегория:".$this->subcat);

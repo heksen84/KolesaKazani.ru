@@ -21,8 +21,9 @@ use DB;
 
 class AdvertController extends Controller {
 
+
     public function getAdverts() {
-	     return Adverts::all()->toJson();
+     return Adverts::all()->toJson();
     }
 
     /*
@@ -30,10 +31,10 @@ class AdvertController extends Controller {
     Новое объявление
     -----------------------------------*/
  	public function newAdvert() {
-         return Auth::user()? view("create")
-         ->with( "items", Categories::all() )
-         ->with( "regions", Regions::all() )
-         ->with( "dealtypes", DealType::all()->toJson() ) : view('auth\login');
+        return Auth::user()? view("create")
+        ->with( "items", Categories::all() )
+        ->with( "regions", Regions::all() )
+        ->with( "dealtypes", DealType::all()->toJson() ) : view('auth\login');
  	}
 
     /*
