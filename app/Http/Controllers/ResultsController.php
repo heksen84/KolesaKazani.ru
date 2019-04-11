@@ -26,6 +26,8 @@ class ResultsController extends Controller {
     private $price_min      = "null";
     private $price_max      = "null";
     private $deal           = "null";
+    private $region         = "null";
+    private $place          = "null";
 
 
     // ---------------------------------------------------
@@ -75,6 +77,8 @@ class ResultsController extends Controller {
         if (isset($data["deal"]))           $this->deal           = $data["deal"];
         if (isset($data["price_min"]))      $this->price_min      = $data["price_min"];
         if (isset($data["price_max"]))      $this->price_max      = $data["price_max"];
+	if (isset($data["region"]))         $this->region         = $data["region"];
+	if (isset($data["place"]))          $this->place          = $data["place"];
             
         // FIX: ПРИМЕНИТЬ ВАЛИДАТОР
         \Debugbar::info("категория id:".$this->category_id);
@@ -84,6 +88,8 @@ class ResultsController extends Controller {
         \Debugbar::info("Вид сделки :".$this->deal);
         \Debugbar::info("Цена от :".$this->price_min);
         \Debugbar::info("Цена до :".$this->price_max);
+        \Debugbar::info("Регион :".$this->region);
+        \Debugbar::info("Место :".$this->place);
 
         // определяю начиная с какой записи считывать данные
         if ($this->start_page >0)
@@ -157,7 +163,9 @@ class ResultsController extends Controller {
                 \Debugbar::info("TOTAL :".$this->total[0]->count);
 
 				$results = DB::select(
-					"SELECT					
+					"SELECT
+					adv.region_id,
+					adv.city_id,
 					adv.id as advert_id,
 					DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
 					adv.price,
@@ -432,18 +440,21 @@ class ResultsController extends Controller {
     
 	--------------------------------------------------------------------------------*/
 	public function getResultsForSubCategory(Request $request, $region, $place, $category, $subcat) {
+
+
+        \Debugbar::info("REGION :".$region);
         
         // Получаю строку фильтра по региону
         $region_string = $this->getRegionFilterStringByUrl($region);
-
-	\Debugbar::info("REGION_STRING :".$region_string);
+        \Debugbar::info($region_string);
 
         // проверка на наличие фильтров
         $filterData = $this->getFilterData($request);
 
         if ($filterData) {            
-            \Debugbar::info("С ФИЛЬТРАМИ!");
-            $subcat = $this->subcat;   
+            \Debugbar::info("С ФИЛЬТРАМИ!");        
+	    $subcat = $this->subcat;
+	    $region_string = $this->getRegionFilterStringByUrl($this->region);
         }
         else {
             \Debugbar::info("БЕЗ ФИЛЬТРОВ!");
@@ -477,6 +488,8 @@ class ResultsController extends Controller {
                                     
                     $results = DB::select(
                         "SELECT
+			adv.region_id,
+			adv.city_id,
                         concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
                         adv.id as advert_id,
                         DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
