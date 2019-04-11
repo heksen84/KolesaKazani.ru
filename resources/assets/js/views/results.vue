@@ -265,7 +265,8 @@ export default {
 					"&category_id="+this.category+
 					"&deal="+this.filters.deal+
 					"&price_min="+this.filters.price_min+
-					"&price_max="+this.filters.price_max;
+					"&price_max="+this.filters.price_max
+					"&region="+this.region;
 					ready=true;
 				}
 
@@ -278,7 +279,8 @@ export default {
 					"&category_id="+this.category+				
 					"&deal="+this.filters.deal+
 					"&price_min="+this.filters.price_min+
-					"&price_max="+this.filters.price_max;
+					"&price_max="+this.filters.price_max+
+					"&region="+this.region;
 					ready=true;
 				}
 

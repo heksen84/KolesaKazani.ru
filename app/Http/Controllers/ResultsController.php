@@ -331,7 +331,6 @@ class ResultsController extends Controller {
             "start_record"=>$this->start_record,
             "total_records"=>$this->total[0]->count
         );
-
     }
 
     // -------------------------------------------------------------
@@ -386,19 +385,17 @@ class ResultsController extends Controller {
         ->with("subcat", "null")
         ->with("start_record", $result["start_record"])
         ->with("total_records", $result["total_records"])
-        ->with("region", "null");
-
+        ->with("region", "null")
+        ->with("place",  "null");
      }
 
      // -----------------------------------------------------------------------
      // Результаты по региону для морды
      // -----------------------------------------------------------------------
-     public function getResultsByRegionForFront(Request $request, $region) {
-        
+     public function getResultsByRegionForFront(Request $request, $region) {        
         $category_name = request()->segment(2);
         $result = $this->getResultsByCategory($request, $region, null, $category_name);
         return $result;
-
      }
 
      // -----------------------------------------------------------------------
@@ -420,7 +417,8 @@ class ResultsController extends Controller {
         ->with("subcat", "null")
         ->with("start_record", $result["start_record"])
         ->with("total_records", $result["total_records"])
-        ->with("region", "null");
+        ->with("region", "null")
+        ->with("place",  "null");
 
      }
 
@@ -441,28 +439,37 @@ class ResultsController extends Controller {
 	--------------------------------------------------------------------------------*/
 	public function getResultsForSubCategory(Request $request, $region, $place, $category, $subcat) {
 
-
         \Debugbar::info("REGION :".$region);
+	
+	    $region_string="";
         
-        // Получаю строку фильтра по региону
-        $region_string = $this->getRegionFilterStringByUrl($region);
-        \Debugbar::info($region_string);
-
         // проверка на наличие фильтров
         $filterData = $this->getFilterData($request);
 
         if ($filterData) {            
-            \Debugbar::info("С ФИЛЬТРАМИ!");        
+
+        \Debugbar::info("С ФИЛЬТРАМИ!");        
 	    $subcat = $this->subcat;
-	    $region_string = $this->getRegionFilterStringByUrl($this->region);
+		
+	     // Если указан регион из фильтра, то получаю строку фильтра по региону
+	    if ($this->region!="null")
+	    	$region_string = $this->getRegionFilterStringByUrl($this->region);
         }
         else {
-            \Debugbar::info("БЕЗ ФИЛЬТРОВ!");
+            
+	      \Debugbar::info("БЕЗ ФИЛЬТРОВ!");
+           
+	     // Если указан регион из контроллера, то получаю строку фильтра по региону
+	     if ($region)
+               $region_string = $this->getRegionFilterStringByUrl($region);
+               
+            \Debugbar::info($region_string);
+
             $this->category_name = $request->path();            
         }            
         
         // получаю имя на русском
-		$categories = SubCats::select("id", "name")->where("url",  $filterData?$this->subcat:$subcat )->first();
+	    $categories = SubCats::select("id", "name")->where("url",  $filterData?$this->subcat:$subcat )->first();
         $items = Adverts::where("category_id",  $categories->id )->get();
         
         // беру имя категории либо с фильтров либо с переменной в контроллере
@@ -488,8 +495,8 @@ class ResultsController extends Controller {
                                     
                     $results = DB::select(
                         "SELECT
-			adv.region_id,
-			adv.city_id,
+			            adv.region_id,
+			            adv.city_id,
                         concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
                         adv.id as advert_id,
                         DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
@@ -1111,27 +1118,24 @@ class ResultsController extends Controller {
 	    return $result;
     }
 
-
     // ---------------------------------------------------------------------------------------
     // Результаты по региону с под категориями для вьюшки
     // ---------------------------------------------------------------------------------------
      public function getResultsByRegionWithSubCategoryForView(Request $request, $region, $subcat) {
 
-	$category_name = request()->segment(2);
-
-	//public function getResultsForSubCategory(Request $request, $region, $place, $category, $subcat) {
+	    $category_name = request()->segment(2);	 // вырезаю категори из url
         $result = $this->getResultsForSubCategory($request, $region, null, $category_name, $subcat);
 
-	\Debugbar::info("REGION :".$region);
+	    \Debugbar::info("REGION :".$region);
     
         return view("results")
         ->with("keywords", $result["keywords"])
         ->with("description", $result["description"])
         ->with("title", $result["title"])
         ->with("items", $result["items"])
-	->with("results", $result["results"])
+	    ->with("results", $result["results"])
         ->with("category", $result["category"])
-	->with("category_name", json_encode($category_name))
+	    ->with("category_name", json_encode($category_name))
         ->with("subcat", json_encode($subcat))
         ->with("start_record", $result["start_record"])
         ->with("total_records", $result["total_records"])
@@ -1146,7 +1150,7 @@ class ResultsController extends Controller {
     // ---------------------------------------------------------------------------------------
      public function getResultsByRegionWithSubCategoryForFront(Request $request, $region, $subcat) {
 
-	$category_name = request()->segment(2);
+	    $category_name = request()->segment(2);
         $result = $this->getResultsByCategory($request, $region, null, $category_name);
     
         return view("results")
@@ -1154,7 +1158,7 @@ class ResultsController extends Controller {
         ->with("description", $result["description"])
         ->with("title", $result["title"])
         ->with("items", $result["items"])
-	->with("results", $result["results"])
+	    ->with("results", $result["results"])
         ->with("category", $result["category"])
         ->with("category_name", $result["category_name"])
         ->with("subcat", "null")
@@ -1163,5 +1167,4 @@ class ResultsController extends Controller {
         ->with("region", "null");
 
      }
-
 }
