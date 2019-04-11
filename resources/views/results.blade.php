@@ -20,7 +20,8 @@
   :subcat="{{ $subcat }}" 
   :results="{{ $results }}" 
   :data="{{ $items }}"
-  :total_records="{{ $total_records }}">
+  :total_records="{{ $total_records }}"
+  :region="{{ $region }}">
   </results>
 </div>
 </body>

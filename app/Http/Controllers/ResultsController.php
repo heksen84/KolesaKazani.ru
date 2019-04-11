@@ -344,7 +344,8 @@ class ResultsController extends Controller {
         ->with("category_name", $result["category_name"])
         ->with("subcat", "null")
         ->with("start_record", $result["start_record"])
-        ->with("total_records", $result["total_records"]);
+        ->with("total_records", $result["total_records"])
+        ->with("region", "null");
     }
     
     // ---------------------------------------------------------------
@@ -375,7 +376,8 @@ class ResultsController extends Controller {
         ->with("category_name", $result["category_name"])
         ->with("subcat", "null")
         ->with("start_record", $result["start_record"])
-        ->with("total_records", $result["total_records"]);
+        ->with("total_records", $result["total_records"])
+        ->with("region", "null");
 
      }
 
@@ -408,7 +410,8 @@ class ResultsController extends Controller {
         ->with("category_name", $result["category_name"])
         ->with("subcat", "null")
         ->with("start_record", $result["start_record"])
-        ->with("total_records", $result["total_records"]);
+        ->with("total_records", $result["total_records"])
+        ->with("region", "null");
 
      }
 
@@ -1077,7 +1080,8 @@ class ResultsController extends Controller {
     ->with("items", $result["items"])
     ->with("results", $result["results"])
     ->with("category", $result["category"])
-    ->with("total_records", $result["total_records"]);
+    ->with("total_records", $result["total_records"])
+    ->with("region", "null");
 
    }
 
@@ -1103,12 +1107,14 @@ class ResultsController extends Controller {
         ->with("description", $result["description"])
         ->with("title", $result["title"])
         ->with("items", $result["items"])
-		->with("results", $result["results"])
+	->with("results", $result["results"])
         ->with("category", $result["category"])
-        ->with("category_name", $result["category_name"])
-        ->with("subcat", "null")
+        //->with("category_name", $result["category_name"])
+	->with("category_name", json_encode($category_name))
+        ->with("subcat", json_encode($subcat))
         ->with("start_record", $result["start_record"])
-        ->with("total_records", $result["total_records"]);
+        ->with("total_records", $result["total_records"])
+        ->with("region", json_encode($region));
 
      }
 
@@ -1131,7 +1137,8 @@ class ResultsController extends Controller {
         ->with("category_name", $result["category_name"])
         ->with("subcat", "null")
         ->with("start_record", $result["start_record"])
-        ->with("total_records", $result["total_records"]);
+        ->with("total_records", $result["total_records"])
+        ->with("region", "null");
 
      }
 

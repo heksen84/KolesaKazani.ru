@@ -193,10 +193,14 @@ export default {
 
 	// компонент создан
 	created() {
-		console.log("---------------------")
-		console.log(this.category)
-		console.log("---------------------")
+
+		console.log("-----------------------------------------")
+		console.log("Категория: "+this.category_name)
+		console.log("Подкатегория: "+this.subcat)
+		console.log("Регион: "+this.region)
+		console.log("-----------------------------------------")
 		console.log(this.results)
+
 		this.updateAdvertsFoundCount();
 	},
 	
