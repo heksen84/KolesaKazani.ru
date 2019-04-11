@@ -435,6 +435,8 @@ class ResultsController extends Controller {
         // Получаю строку фильтра по региону
         $region_string = $this->getRegionFilterStringByUrl($region);
 
+	\Debugbar::info("REGION_STRING :".$region_string);
+
         // проверка на наличие фильтров
         $filterData = $this->getFilterData($request);
 
@@ -1059,6 +1061,7 @@ class ResultsController extends Controller {
         "items"=>$items,
         "results"=>json_encode($results), 
         "category"=>$categories,
+        "start_record"=>$this->start_record,
         "total_records"=>$this->total[0]->count
     );
          
@@ -1100,7 +1103,11 @@ class ResultsController extends Controller {
      public function getResultsByRegionWithSubCategoryForView(Request $request, $region, $subcat) {
 
 	$category_name = request()->segment(2);
-        $result = $this->getResultsByCategory($request, $region, null, $category_name);
+
+	//public function getResultsForSubCategory(Request $request, $region, $place, $category, $subcat) {
+        $result = $this->getResultsForSubCategory($request, $region, null, $category_name, $subcat);
+
+	\Debugbar::info("REGION :".$region);
     
         return view("results")
         ->with("keywords", $result["keywords"])
