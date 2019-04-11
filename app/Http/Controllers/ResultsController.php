@@ -345,7 +345,8 @@ class ResultsController extends Controller {
         ->with("subcat", "null")
         ->with("start_record", $result["start_record"])
         ->with("total_records", $result["total_records"])
-        ->with("region", "null");
+        ->with("region", "null")
+        ->with("place",  "null");
     }
     
     // ---------------------------------------------------------------
@@ -398,7 +399,7 @@ class ResultsController extends Controller {
      public function getResultsByPlaceForView(Request $request, $region, $place) {
 
 	    $category_name = request()->segment(2);
-        $result = $this->getResultsByCategory($request, $region, null, $category_name);
+        $result = $this->getResultsByCategory($request, $region, $place, $category_name);
     
         return view("results")
         ->with("keywords", $result["keywords"])
@@ -420,7 +421,7 @@ class ResultsController extends Controller {
      // -----------------------------------------------------------------------
      public function getResultsByPlaceForFront(Request $request, $region, $place) {
 	    $category_name = request()->segment(2);
-        $result = $this->getResultsByCategory($request, $region, null, $category_name);    
+        $result = $this->getResultsByCategory($request, $region, $place, $category_name);    
         return $result;
      }
 
@@ -1084,7 +1085,8 @@ class ResultsController extends Controller {
     ->with("results", $result["results"])
     ->with("category", $result["category"])
     ->with("total_records", $result["total_records"])
-    ->with("region", "null");
+    ->with("region", "null")
+    ->with("place", "null");
 
    }
 
@@ -1120,7 +1122,8 @@ class ResultsController extends Controller {
         ->with("subcat", json_encode($subcat))
         ->with("start_record", $result["start_record"])
         ->with("total_records", $result["total_records"])
-        ->with("region", json_encode($region));
+        ->with("region", json_encode($region))
+        ->with("place", "null");
 
      }
 

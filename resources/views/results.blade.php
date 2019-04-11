@@ -21,7 +21,8 @@
   :results="{{ $results }}" 
   :data="{{ $items }}"
   :total_records="{{ $total_records }}"
-  :region="{{ $region }}">
+  :region="{{ $region }}"
+  :place="{{ $place }}">
   </results>
 </div>
 </body>

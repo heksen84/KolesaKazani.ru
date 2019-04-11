@@ -37,6 +37,7 @@ Route::get("{region}/transport/{subcat}",    "ResultsController@getResultsByRegi
 Route::get("{region}/nedvizhimost/{subcat}", "ResultsController@getResultsByRegionWithSubCategoryForView");
 
 // категрии по местности
+Route::get("{region}/{place}/transport",  		"ResultsController@getResultsByPlaceForView");
 Route::get("{region}/{place}/elektronika",  		"ResultsController@getResultsByPlaceForView");
 Route::get("{region}/{place}/rabota-i-biznes",  	"ResultsController@getResultsByPlaceForView");
 Route::get("{region}/{place}/dlya-doma-i-dachi",  	"ResultsController@getResultsByPlaceForView");
