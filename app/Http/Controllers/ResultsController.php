@@ -150,23 +150,30 @@ class ResultsController extends Controller {
     // Результаты по категории (общая функция)
     // ----------------------------------------------------------------------------------
     public function getResultsByCategory(Request $request, $region, $place, $category) {
+        
+        $region_string="";
 
-        // Получаю строку фильтра по региону
-        $region_string = $this->getRegionFilterStringByUrl($region);
+        if ($category)
+            $this->category_name = $category;
+
         // Проверяю наличие фильтров
-        $filterData = $this->getFilterData($request);
-   
+        $filterData = $this->getFilterData($request);         
+           
 	    // С фильтрами
-        if ($filterData)
-            $category_name = request()->segment(1);
-        else
-            $this->category_name = $category;        
+        if ($filterData && $this->region!="null") {            
+            $region_string = $this->getRegionFilterStringByUrl($this->region);
+        }
+        
+        // без фильтров
+        if (!$filterData && $region) {            
+            $region_string = $this->getRegionFilterStringByUrl($region);
+        }
         
         // получаю имя на русском
     	$category = Categories::select("id", "name")->where("url", $this->category_name )->first();
         $items = Adverts::where("category_id",  $category->id )->get();        
                
-            // --------------------------------------------------------
+        // --------------------------------------------------------
 	    // Беру данные по конкретной категории
 	    // --------------------------------------------------------
 	    switch($category->id) {
