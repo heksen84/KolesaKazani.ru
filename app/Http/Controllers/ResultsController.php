@@ -67,27 +67,7 @@ class ResultsController extends Controller {
 	   $data = $request->all();
 
 	    if (!$data)
-		    return false;        
-        
-        // правила валидации
-        $rules = [            
-            "price_min" => "string",
-            "price_max" => "string",            
-        ]; 
-        
-        // сообщения валидации
-        $messages = [            
-            "price_min.numeric" => "Введите число",
-            "price_max.numeric" => "Введите число",
-        ];
-        
-        // проверка
-        $validator = \Validator::make( $data, $rules, $messages );
-
-        if ( $validator->fails() )  {
-            \Debugbar::error($validator->errors()->first());
-            return response()->json( ["result"=>"usr.error", "msg" => $validator->errors()->first()] );
-        }        
+		    return false;
 
         if (isset($data["start_page"]))     $this->start_page     = $data["start_page"];
         if (isset($data["category_name"]))  $this->category_name  = $data["category_name"];
@@ -163,7 +143,7 @@ class ResultsController extends Controller {
             $region_string = $this->getRegionFilterStringByUrl($region);
         }
         
-        // получаю имя на русском
+        // Получаю имя категории на русском по url
     	$category = Categories::select("id", "name")->where("url", $this->category_name )->first();
         $items = Adverts::where("category_id",  $category->id )->get();        
                        	    
