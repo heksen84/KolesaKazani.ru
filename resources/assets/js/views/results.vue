@@ -37,16 +37,16 @@
 		<b-col cols="12" sm="12" md="2" lg="2" xl="2" v-if="category!=4 && category!=9">
 		  <b-form-select v-model="filters.deal" :options="options_deal" class="mb-2" size="sm" @change="changeDeal"/>
 		</b-col>
-		<b-col cols="12" sm="12" md="1" lg="1" xl="1" v-if="totalRecords>perPage">			
+		<b-col cols="12" sm="12" md="1" lg="1" xl="1">			
 		  <span class="shadow_text" style="font-weight:600">Цена:</span>
 		</b-col>		
-		<b-col cols="4" sm="4" md="2" lg="2" xl="1" v-if="totalRecords>perPage">			
+		<b-col cols="4" sm="4" md="2" lg="2" xl="1">			
 		  <b-form-input v-model="filters.price_min" class="mb-1" placeholder="От" type="number" size="sm"/>			
 		</b-col>		
-		<b-col cols="4" sm="4" md="2" lg="2" xl="1" v-if="totalRecords>perPage">			
+		<b-col cols="4" sm="4" md="2" lg="2" xl="1">			
 		  <b-form-input v-model="filters.price_max" class="mb-1" placeholder="До" type="number" size="sm"/>			
 		</b-col>
-		<b-col cols="2" sm="2" md="12" lg="2" xl="2" style="text-align:center" v-if="totalRecords>perPage">
+		<b-col cols="2" sm="2" md="12" lg="2" xl="2" style="text-align:center">
 		  <b-button style="border: 1px solid white" :variant="filter_button_variant" size="sm" class="mb-4" @click="updateData">{{ filter_button_text }}</b-button>
 		</b-col>
 	</b-row>

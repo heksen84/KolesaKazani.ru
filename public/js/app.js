@@ -39134,104 +39134,79 @@ var render = function() {
                   )
                 : _vm._e(),
               _vm._v(" "),
-              _vm.totalRecords > _vm.perPage
-                ? _c(
-                    "b-col",
+              _c(
+                "b-col",
+                { attrs: { cols: "12", sm: "12", md: "1", lg: "1", xl: "1" } },
+                [
+                  _c(
+                    "span",
                     {
-                      attrs: { cols: "12", sm: "12", md: "1", lg: "1", xl: "1" }
+                      staticClass: "shadow_text",
+                      staticStyle: { "font-weight": "600" }
                     },
-                    [
-                      _c(
-                        "span",
-                        {
-                          staticClass: "shadow_text",
-                          staticStyle: { "font-weight": "600" }
-                        },
-                        [_vm._v("Цена:")]
-                      )
-                    ]
+                    [_vm._v("Цена:")]
                   )
-                : _vm._e(),
+                ]
+              ),
               _vm._v(" "),
-              _vm.totalRecords > _vm.perPage
-                ? _c(
-                    "b-col",
-                    {
-                      attrs: { cols: "4", sm: "4", md: "2", lg: "2", xl: "1" }
-                    },
-                    [
-                      _c("b-form-input", {
-                        staticClass: "mb-1",
-                        attrs: {
-                          placeholder: "От",
-                          type: "number",
-                          size: "sm"
-                        },
-                        model: {
-                          value: _vm.filters.price_min,
-                          callback: function($$v) {
-                            _vm.$set(_vm.filters, "price_min", $$v)
-                          },
-                          expression: "filters.price_min"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e(),
+              _c(
+                "b-col",
+                { attrs: { cols: "4", sm: "4", md: "2", lg: "2", xl: "1" } },
+                [
+                  _c("b-form-input", {
+                    staticClass: "mb-1",
+                    attrs: { placeholder: "От", type: "number", size: "sm" },
+                    model: {
+                      value: _vm.filters.price_min,
+                      callback: function($$v) {
+                        _vm.$set(_vm.filters, "price_min", $$v)
+                      },
+                      expression: "filters.price_min"
+                    }
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
-              _vm.totalRecords > _vm.perPage
-                ? _c(
-                    "b-col",
-                    {
-                      attrs: { cols: "4", sm: "4", md: "2", lg: "2", xl: "1" }
-                    },
-                    [
-                      _c("b-form-input", {
-                        staticClass: "mb-1",
-                        attrs: {
-                          placeholder: "До",
-                          type: "number",
-                          size: "sm"
-                        },
-                        model: {
-                          value: _vm.filters.price_max,
-                          callback: function($$v) {
-                            _vm.$set(_vm.filters, "price_max", $$v)
-                          },
-                          expression: "filters.price_max"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e(),
+              _c(
+                "b-col",
+                { attrs: { cols: "4", sm: "4", md: "2", lg: "2", xl: "1" } },
+                [
+                  _c("b-form-input", {
+                    staticClass: "mb-1",
+                    attrs: { placeholder: "До", type: "number", size: "sm" },
+                    model: {
+                      value: _vm.filters.price_max,
+                      callback: function($$v) {
+                        _vm.$set(_vm.filters, "price_max", $$v)
+                      },
+                      expression: "filters.price_max"
+                    }
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
-              _vm.totalRecords > _vm.perPage
-                ? _c(
-                    "b-col",
+              _c(
+                "b-col",
+                {
+                  staticStyle: { "text-align": "center" },
+                  attrs: { cols: "2", sm: "2", md: "12", lg: "2", xl: "2" }
+                },
+                [
+                  _c(
+                    "b-button",
                     {
-                      staticStyle: { "text-align": "center" },
-                      attrs: { cols: "2", sm: "2", md: "12", lg: "2", xl: "2" }
+                      staticClass: "mb-4",
+                      staticStyle: { border: "1px solid white" },
+                      attrs: { variant: _vm.filter_button_variant, size: "sm" },
+                      on: { click: _vm.updateData }
                     },
-                    [
-                      _c(
-                        "b-button",
-                        {
-                          staticClass: "mb-4",
-                          staticStyle: { border: "1px solid white" },
-                          attrs: {
-                            variant: _vm.filter_button_variant,
-                            size: "sm"
-                          },
-                          on: { click: _vm.updateData }
-                        },
-                        [_vm._v(_vm._s(_vm.filter_button_text))]
-                      )
-                    ],
-                    1
+                    [_vm._v(_vm._s(_vm.filter_button_text))]
                   )
-                : _vm._e()
+                ],
+                1
+              )
             ],
             1
           )
