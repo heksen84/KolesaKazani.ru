@@ -350,11 +350,11 @@ class AdvertController extends Controller {
     -------------------------------------------*/
     public function getFullInfoByUrl($url) {    
         
-        //$urls = Urls::select("advert_id")->where("url",  $url )->first();
-        //return $this->getFullInfo($urls->advert_id);
+        $urls = Urls::select("advert_id")->where("url",  $url )->first();
+        return $this->getFullInfo($urls->advert_id);
 
-        $results = DB::select("SELECT advert_id FROM urls WHERE MATCH(url) AGAINST('".$url."')"); // fulltext search
-        return $this->getFullInfo($results[0]->advert_id);
+        //$results = DB::select("SELECT advert_id FROM urls WHERE MATCH(url) AGAINST('".$url."')"); // fulltext search
+        //return $this->getFullInfo($results[0]->advert_id);
     }
     
 
