@@ -121,6 +121,8 @@ class AdvertController extends Controller {
             $advert->vip             = false;
             $advert->full            = false;
 
+            $url_text = ""; // строка url в sitemap
+
             switch($category) {
 
                 // FIXME: Обозвать переменные одинаковыми именами steering_position, engine_type и т.д.
@@ -150,6 +152,9 @@ class AdvertController extends Controller {
                         $transport->mileage             = $data["mileage"];            // пробег
                         $transport->engine_type         = $data["fuel_type"];          // тип движка
                         $transport->customs             = $data["customs"];            // растаможка
+
+                        // значение записи url в sitemap.xml
+                        $url_text = "Транспорт легковое авто";
                         
                         $advert->full = true; // полное объявление с моделями (в item будет указан вид сделки)
                     }
@@ -161,6 +166,9 @@ class AdvertController extends Controller {
                         $transport->mileage             = $data["mileage"];            // пробег
                         $transport->engine_type         = $data["fuel_type"];          // тип движка
                         $transport->customs             = $data["customs"];            // растаможка
+
+                        // значение записи url в sitemap.xml
+                        $url_text = "Транспорт грузовое авто";
                     }
 
                     // мото
@@ -169,10 +177,15 @@ class AdvertController extends Controller {
                         $transport->mileage             = $data["mileage"];            // пробег
                         $transport->engine_type         = $data["fuel_type"];          // тип движка
                         $transport->customs             = $data["customs"];            // растаможка
+
+                        // значение записи url в sitemap.xml
+                        $url_text = "Транспорт мото";
                     }
 
                     // спецтехника
-                    if ($data["transport_type"]==3) {                    
+                    if ($data["transport_type"]==3) {                        
+                        // значение записи url в sitemap.xml
+                        $url_text = "Транспорт спецтехника";
                     }
 
                     // ретро-авто
@@ -182,18 +195,27 @@ class AdvertController extends Controller {
                         $transport->mileage             = $data["mileage"];            // пробег
                         $transport->engine_type         = $data["fuel_type"];          // тип движка
                         $transport->customs             = $data["customs"];            // растаможка
+
+                        // значение записи url в sitemap.xml
+                        $url_text = "Транспорт спецтехника";
                     }
 
                     // водный транспорт
-                    if ($data["transport_type"]==5) {                    
+                    if ($data["transport_type"]==5) {
+                        // значение записи url в sitemap.xml
+                        $url_text = "Транспорт водный";
                     }
 
                     // велосипед
-                    if ($data["transport_type"]==6) {                    
+                    if ($data["transport_type"]==6) {
+                        // значение записи url в sitemap.xml
+                        $url_text = "Транспорт велосипед";
                     }
 
                     // воздушный транспорт
-                    if ($data["transport_type"]==7) {                    
+                    if ($data["transport_type"]==7) {
+                        // значение записи url в sitemap.xml
+                        $url_text = "Транспорт воздушный";
                     }
                                         
                     $transport->save();
@@ -232,7 +254,11 @@ class AdvertController extends Controller {
                     $realestate->save();
 
                     // записываю id подкатегории
-                    $advert->adv_category_id = $realestate->id;                    
+                    $advert->adv_category_id = $realestate->id;
+
+                    // значение записи url в sitemap.xml
+                    $url_text = "Недвижимость квартира";
+
                     break;
                 }
 
@@ -294,8 +320,12 @@ class AdvertController extends Controller {
             
             // Закидываю данные в таблицу urls для SEO
             $urls = new Urls();
+
+            // url sitemap
+            if (strlen($text) > 5)
+                $url_text = $text;
             
-            $urls->url = substr($advert->id."-".Helper::str2url($text), 0, 100);
+            $urls->url = substr($advert->id."-".Helper::str2url($url_text), 0, 100);
             $urls->advert_id = $advert->id;
             $urls->save();
                          

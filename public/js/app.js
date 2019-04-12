@@ -4438,13 +4438,15 @@ function num2str(n, text_forms) {
 	// Методы компонента
 	// -------------------------
 	methods: {
+
+		// Обновить кол-во найденных записей в заголовке
 		updateAdvertsFoundCount: function updateAdvertsFoundCount() {
 			this.count = this.totalRecords;
 			this.count_string = num2str(this.count, ["объявление", "объявления", "объявлений"]);
 		},
 
 
-		// показать / скрыть фильтр
+		// Показать / скрыть фильтр
 		showFilter: function showFilter() {
 			if (this.filter) {
 				this.filter = false;
@@ -4490,8 +4492,9 @@ function num2str(n, text_forms) {
 			console.log("Регион: " + this.region);
 			console.log("-----------------------------------------");
 
-			// Фильтр только для категорий
+			// Только для категории
 			if (this.category_name && !this.subcat && !this.region && !this.place) {
+				console.log("Только для категории");
 				url = "/getResultsByCategoryForFront?category_name=" + this.category_name + "&start_page=" + this.start_page + "&category_id=" + this.category + "&deal=" + this.filters.deal + "&price_min=" + this.filters.price_min + "&price_max=" + this.filters.price_max;
 				"&region=" + this.region;
 				ready = true;
@@ -4499,20 +4502,28 @@ function num2str(n, text_forms) {
 
 			// Категории с регионами
 			if (this.region && this.category_name && !this.subcat && !this.place) {
+				console.log("Категории с регионами");
 				url = "/getResultsByRegionForFront?category_name=" + this.category_name + "&subcat=" + this.subcat + "&start_page=" + this.start_page + "&category_id=" + this.category + "&deal=" + this.filters.deal + "&price_min=" + this.filters.price_min + "&price_max=" + this.filters.price_max + "&region=" + this.region;
 				ready = true;
 			}
 
-			// Фильтр для подкатегорий
+			// Подкатегории
 			if (this.category_name && this.subcat) {
-				console.log("подкатегория");
+				console.log("Подкатегории");
 				url = "/getResultsForSubCategoryForFront?category_name=" + this.category_name + "&subcat=" + this.subcat + "&start_page=" + this.start_page + "&category_id=" + this.category + "&deal=" + this.filters.deal + "&price_min=" + this.filters.price_min + "&price_max=" + this.filters.price_max + "&region=" + this.region;
 				ready = true;
 			}
 
-			// Фильтр для региона с подкатегориями
+			// Регион с подкатегориями
 			if (this.category_name && this.subcat && this.region) {
 				console.log("Регион с подкатегориями");
+				url = "/getResultsForSubCategoryForFront?category_name=" + this.category_name + "&subcat=" + this.subcat + "&start_page=" + this.start_page + "&category_id=" + this.category + "&deal=" + this.filters.deal + "&price_min=" + this.filters.price_min + "&price_max=" + this.filters.price_max + "&region=" + this.region;
+				ready = true;
+			}
+
+			// Местность
+			if (this.category_name && !this.subcat && this.region && this.place) {
+				console.log("Местность");
 				url = "/getResultsForSubCategoryForFront?category_name=" + this.category_name + "&subcat=" + this.subcat + "&start_page=" + this.start_page + "&category_id=" + this.category + "&deal=" + this.filters.deal + "&price_min=" + this.filters.price_min + "&price_max=" + this.filters.price_max + "&region=" + this.region;
 				ready = true;
 			}
@@ -14194,7 +14205,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 

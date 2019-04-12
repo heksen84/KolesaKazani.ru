@@ -162,4 +162,40 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>damelya:90/obyavlenie/237-null</loc>
+    <lastmod>2019-04-12T13:54:44+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>damelya:90/obyavlenie/240-Траснпорт Легковое авто2,19753</loc>
+    <lastmod>2019-04-12T14:07:19+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>damelya:90/obyavlenie/241-trasnport-legkovoe-avto2-19753</loc>
+    <lastmod>2019-04-12T14:08:29+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>damelya:90/obyavlenie/242-trancport-legkovoe-avto2-19753</loc>
+    <lastmod>2019-04-12T14:09:12+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>damelya:90/obyavlenie/243-transport-legkovoe-avto2-19753</loc>
+    <lastmod>2019-04-12T14:09:54+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>damelya:90/obyavlenie/244-nedvizhimost-kvartira</loc>
+    <lastmod>2019-04-12T14:15:43+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
