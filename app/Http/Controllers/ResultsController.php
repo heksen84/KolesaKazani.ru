@@ -65,16 +65,13 @@ class ResultsController extends Controller {
 
 	   $data = $request->all();
 
-	    if (!$data) {
-		    \Debugbar::info("Фильтр не указан");
-		    return false;
-        }
+	    if (!$data)
+		    return false;        
 
         // ---------------------------
         // правила валидации
         // ---------------------------
-        $rules = [                        
-            
+        $rules = [
             // определиться string или numeric
             "price_min"     => "string",
             "price_max"     => "string",            
@@ -156,13 +153,14 @@ class ResultsController extends Controller {
 
         // Получаю строку фильтра по региону
         $region_string = $this->getRegionFilterStringByUrl($region);
-
         // Проверяю наличие фильтров
         $filterData = $this->getFilterData($request);
    
-	    // Если нет фильтров, то получаем имя категории из параметра
-        if (!$filterData)
-            $this->category_name = $category;
+	    // С фильтрами
+        if ($filterData)
+            $category_name = request()->segment(1);
+        else
+            $this->category_name = $category;        
         
         // получаю имя на русском
     	$category = Categories::select("id", "name")->where("url", $this->category_name )->first();
@@ -386,10 +384,8 @@ class ResultsController extends Controller {
     // ---------------------------------------------------------------
     // Результаты по всей стране для морды
     // ---------------------------------------------------------------
-    public function getResultsByCategoryForFront(Request $request) {
-
-	    $category_name = request()->segment(1);
-        $result = $this->getResultsByCategory($request, null, null, $category_name);
+    public function getResultsByCategoryForFront(Request $request) {        
+        $result = $this->getResultsByCategory($request, null, null, null);
         return $result;
 	}
 
@@ -408,20 +404,19 @@ class ResultsController extends Controller {
         ->with("items", $result["items"])
 		->with("results", $result["results"])
         ->with("category", $result["category"])
-        ->with("category_name", $result["category_name"])
+        ->with("category_name", json_encode($category_name))
         ->with("subcat", "null")
         ->with("start_record", $result["start_record"])
         ->with("total_records", $result["total_records"])
-        ->with("region", "null")
+        ->with("region", json_encode($region))
         ->with("place",  "null");
      }
 
      // -----------------------------------------------------------------------
      // Результаты по региону для морды
      // -----------------------------------------------------------------------
-     public function getResultsByRegionForFront(Request $request, $region) {        
-        $category_name = request()->segment(2);
-        $result = $this->getResultsByCategory($request, $region, null, $category_name);
+     public function getResultsByRegionForFront(Request $request) {                
+        $result = $this->getResultsByCategory($request, null, null, null);
         return $result;
      }
 

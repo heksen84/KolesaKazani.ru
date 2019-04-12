@@ -249,6 +249,7 @@ export default {
 			  
 			// Обновить данные
   		updateData() {
+				
 				var url = "";
 				var ready=false;
 			
@@ -269,6 +270,19 @@ export default {
 					"&region="+this.region;
 					ready=true;
 				}
+
+				// Категории с регионами
+				if ( this.region && this.category_name && !this.subcat && !this.place) {					
+					url="/getResultsByRegionForFront?category_name="+this.category_name+
+					"&subcat="+this.subcat+
+					"&start_page="+this.start_page+
+					"&category_id="+this.category+				
+					"&deal="+this.filters.deal+
+					"&price_min="+this.filters.price_min+
+					"&price_max="+this.filters.price_max+
+					"&region="+this.region;
+					ready=true;
+				}				
 
 				// Фильтр для подкатегорий
 				if (this.category_name && this.subcat) {

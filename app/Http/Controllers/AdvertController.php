@@ -34,7 +34,7 @@ class AdvertController extends Controller {
         return Auth::user()? view("create")
         ->with( "items", Categories::all() )
         ->with( "regions", Regions::all() )
-        ->with( "dealtypes", DealType::all()->toJson() ) : view('auth\login');
+        ->with( "dealtypes", DealType::all()->toJson() ) : view("auth\login");
  	}
 
     /*
