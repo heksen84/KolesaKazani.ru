@@ -11,7 +11,9 @@ use App\Categories;
 use App\Regions;
 use App\Places;
 
+// --------------------------------------------------------
 // Класс возвращает результаты категорий
+// --------------------------------------------------------
 class ResultsController extends Controller {
 	
     // частные переменные
@@ -67,19 +69,14 @@ class ResultsController extends Controller {
 
 	    if (!$data)
 		    return false;        
-
-        // ---------------------------
+        
         // правила валидации
-        // ---------------------------
-        $rules = [
-            // определиться string или numeric
-            "price_min"     => "string",
-            "price_max"     => "string",            
+        $rules = [            
+            "price_min" => "string",
+            "price_max" => "string",            
         ]; 
-
-        // ---------------------------
+        
         // сообщения валидации
-        // ---------------------------
         $messages = [            
             "price_min.numeric" => "Введите число",
             "price_max.numeric" => "Введите число",
@@ -91,9 +88,7 @@ class ResultsController extends Controller {
         if ( $validator->fails() )  {
             \Debugbar::error($validator->errors()->first());
             return response()->json( ["result"=>"usr.error", "msg" => $validator->errors()->first()] );
-        }
-       
-        // FIX: ПРИМЕНИТЬ ВАЛИДАТОР
+        }        
 
         if (isset($data["start_page"]))     $this->start_page     = $data["start_page"];
         if (isset($data["category_name"]))  $this->category_name  = $data["category_name"];
@@ -159,7 +154,7 @@ class ResultsController extends Controller {
         // Проверяю наличие фильтров
         $filterData = $this->getFilterData($request);         
            
-	    // С фильтрами
+	    // c фильтрами
         if ($filterData && $this->region!="null") {            
             $region_string = $this->getRegionFilterStringByUrl($this->region);
         }
@@ -172,13 +167,11 @@ class ResultsController extends Controller {
         // получаю имя на русском
     	$category = Categories::select("id", "name")->where("url", $this->category_name )->first();
         $items = Adverts::where("category_id",  $category->id )->get();        
-               
+                       	    
+                switch($category->id) {
         // --------------------------------------------------------
-	    // Беру данные по конкретной категории
-	    // --------------------------------------------------------
-	    switch($category->id) {
-
-		// Вся автотранспорт Казахстана (damelya.kz/transport)
+        // Вся автотранспорт Казахстана (damelya.kz/transport)
+        // --------------------------------------------------------
 		case 1: {
 
                 $this->total = DB::select(
@@ -229,8 +222,10 @@ class ResultsController extends Controller {
 
 				break;				                          				
 			}
-			
-			// Вся недвижимость Казахстана (damelya.kz/nedvizhimost)
+            
+            // --------------------------------------------------------
+            // Вся недвижимость Казахстана (damelya.kz/nedvizhimost)
+            // --------------------------------------------------------
 			case 2: {
             
                 $this->total = DB::select(
@@ -268,8 +263,10 @@ class ResultsController extends Controller {
                 
 				break;
 			}
-			
-			// Всё остальное
+            
+            // --------------------------------------------------------
+            // Остальные категории
+            // --------------------------------------------------------
 			default: {
 
 			/* --------------------------------
