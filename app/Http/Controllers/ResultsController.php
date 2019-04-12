@@ -31,7 +31,6 @@ class ResultsController extends Controller {
     private $region         = "null";
     private $place          = "null";
 
-
     // ---------------------------------------------------
     // Получить строку фильтра по url региона
     // ---------------------------------------------------
@@ -168,7 +167,7 @@ class ResultsController extends Controller {
     	$category = Categories::select("id", "name")->where("url", $this->category_name )->first();
         $items = Adverts::where("category_id",  $category->id )->get();        
                        	    
-                switch($category->id) {
+        switch($category->id) {
         // --------------------------------------------------------
         // Вся автотранспорт Казахстана (damelya.kz/transport)
         // --------------------------------------------------------
