@@ -125,7 +125,8 @@ class ResultsController extends Controller {
     // ----------------------------------------------------------------------------------
     public function getResultsByCategory(Request $request, $region, $place, $category) {
         
-        $region_string="";
+        $region_string = "";
+        $place_string = "";
 
         if ($category)
             $this->category_name = $category;
@@ -133,14 +134,24 @@ class ResultsController extends Controller {
         // Проверяю наличие фильтров
         $filterData = $this->getFilterData($request);         
            
-	    // c фильтрами
+	    // регион c фильтрами
         if ($filterData && $this->region!="null") {            
             $region_string = $this->getRegionFilterStringByUrl($this->region);
         }
         
-        // без фильтров
+        // регион без фильтров
         if (!$filterData && $region) {            
             $region_string = $this->getRegionFilterStringByUrl($region);
+        }
+
+        // место c фильтрами
+        if ($filterData && $this->place!="null") {            
+            $place_string = $this->getPlaceFilterStringByUrl($this->place);
+        }
+        
+        // место без фильтров
+        if (!$filterData && $place) {            
+            $place_string = $this->getPlaceFilterStringByUrl($place);
         }
         
         // Получаю имя категории на русском по url
