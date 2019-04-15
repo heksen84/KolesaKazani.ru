@@ -204,4 +204,22 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>damelya:90/obyavlenie/246-otlichnye-uslugi</loc>
+    <lastmod>2019-04-12T17:17:52+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>damelya:90/obyavlenie/247-</loc>
+    <lastmod>2019-04-12T17:56:32+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>damelya:90/obyavlenie/248-hello-123123</loc>
+    <lastmod>2019-04-12T17:58:37+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

@@ -408,8 +408,13 @@ class ResultsController extends Controller {
      // -----------------------------------------------------------------------
      public function getResultsByPlaceForView(Request $request, $region, $place) {
 
-	    $category_name = request()->segment(2);
-        $result = $this->getResultsByCategory($request, $region, $place, $category_name);
+        $category = request()->segment(3); // имя категории
+        
+        \Debugbar::info("Регион :".$region);
+        \Debugbar::info("Место :".$place);
+        \Debugbar::info("Категория:".$category);
+
+        $result = $this->getResultsByCategory($request, $region, $place, $category);
     
         return view("results")
         ->with("keywords", $result["keywords"])
@@ -422,8 +427,8 @@ class ResultsController extends Controller {
         ->with("subcat", "null")
         ->with("start_record", $result["start_record"])
         ->with("total_records", $result["total_records"])
-        ->with("region", "null")
-        ->with("place",  "null");
+        ->with("region", json_encode($region))
+        ->with("place",  json_encode($place));
 
      }
 

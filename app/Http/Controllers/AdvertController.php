@@ -88,11 +88,11 @@ class AdvertController extends Controller {
         if ( $validator->fails() )  
             return response()->json( ["result"=>"usr.error", "msg" => $validator->errors()->first()] );                    
 
-        $category   = $data["adv_category"];
-        $deal       = $data["adv_deal"]; // Вид сделки
-        $text       = $data["adv_info"];
-        $price      = $data["adv_price"];
-        $phone1     = $data["adv_phone1"];
+        $category = $data["adv_category"];
+        $deal     = $data["adv_deal"]; // Вид сделки
+        $text     = $data["adv_info"];
+        $price    = $data["adv_price"];
+        $phone1   = $data["adv_phone1"];
 
         if (isset($data["adv_phone2"])) $phone2 = $data["adv_phone2"];
         if (isset($data["adv_phone3"])) $phone3 = $data["adv_phone3"];
@@ -222,7 +222,6 @@ class AdvertController extends Controller {
 
                     // записываю id подкатегории
                     $advert->adv_category_id = $transport->id;  // указываем id' шник
-
                     break;
                 }
 
@@ -314,8 +313,7 @@ class AdvertController extends Controller {
 
             \Debugbar::info("id подкатегории :".$advert->adv_category_id);            
             
-            $advert->public = true; // публикую объявление сходу
-                        
+            $advert->public = true; // публикую объявление сходу                        
             $advert->save();  // СОХРАНЕНИЕ ОБЪЯВЛЕНИЯ
             
             // Закидываю данные в таблицу urls для SEO
