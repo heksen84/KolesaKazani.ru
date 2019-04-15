@@ -17,9 +17,9 @@ use App\Places;
 class ResultsController extends Controller {
 	
     // частные переменные
-    private $start_record   = 0;
-    private $records_limit  = 15; // максимальное число записей при выборке
     private $total          = [];
+    private $start_record   = 0;
+    private $records_limit  = 15; // максимальное число записей при выборке    
     private $filter_string  = "";   
     private $start_page     = "null";
     private $category_name  = "null";
@@ -357,8 +357,8 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     public function getResultsByCategoryForView(Request $request) {
 		
-	    $category_name = request()->segment(1);
-        $result = $this->getResultsByCategory($request, null, null, $category_name);
+	    $category = request()->segment(1); // вырезаю категорию из url
+        $result = $this->getResultsByCategory($request, null, null, $category);
     
         return view("results")
         ->with("keywords", $result["keywords"])
@@ -388,8 +388,8 @@ class ResultsController extends Controller {
      // -----------------------------------------------------------------------
      public function getResultsByRegionForView(Request $request, $region) {
 
-	    $category_name = request()->segment(2);
-        $result = $this->getResultsByCategory($request, $region, null, $category_name);
+	    $category = request()->segment(2); // вырезаю категорию из url
+        $result = $this->getResultsByCategory($request, $region, null, $category);
     
         return view("results")
         ->with("keywords", $result["keywords"])
@@ -398,7 +398,7 @@ class ResultsController extends Controller {
         ->with("items", $result["items"])
 		->with("results", $result["results"])
         ->with("category", $result["category"])
-        ->with("category_name", json_encode($category_name))
+        ->with("category_name", json_encode($category))
         ->with("subcat", "null")
         ->with("start_record", $result["start_record"])
         ->with("total_records", $result["total_records"])
@@ -419,7 +419,7 @@ class ResultsController extends Controller {
      // -----------------------------------------------------------------------
      public function getResultsByPlaceForView(Request $request, $region, $place) {
 
-        $category = request()->segment(3); // имя категории
+        $category = request()->segment(3); // вырезаю категорию из url
         
         \Debugbar::info("Регион :".$region);
         \Debugbar::info("Место :".$place);
@@ -447,8 +447,8 @@ class ResultsController extends Controller {
      // Результаты по городу / селу / аулу для морды
      // -----------------------------------------------------------------------
      public function getResultsByPlaceForFront(Request $request, $region, $place) {
-	    $category_name = request()->segment(2);
-        $result = $this->getResultsByCategory($request, $region, $place, $category_name);    
+	    $category = request()->segment(2);
+        $result = $this->getResultsByCategory($request, $region, $place, $category);    
         return $result;
      }
 
@@ -458,11 +458,11 @@ class ResultsController extends Controller {
     Получить результаты для подкатегории
     
 	--------------------------------------------------------------------------------*/
-	public function getResultsForSubCategory(Request $request, $region, $place, $category, $subcat) {
-
-        \Debugbar::info("REGION :".$region);
+	public function getResultsForSubCategory(Request $request, $region, $place, $category, $subcat) {        
 	
-	    $region_string="";
+        $region_string="";
+        
+        \Debugbar::info("REGION :".$region);
         
         // проверка на наличие фильтров
         $filterData = $this->getFilterData($request);
@@ -1128,7 +1128,6 @@ class ResultsController extends Controller {
     ->with("total_records", $result["total_records"])
     ->with("region", "null")
     ->with("place", "null");
-
    }
 
    // -------------------------------------------------------------------
@@ -1162,7 +1161,6 @@ class ResultsController extends Controller {
         ->with("total_records", $result["total_records"])
         ->with("region", json_encode($region))
         ->with("place", "null");
-
      }
 
 
@@ -1186,6 +1184,5 @@ class ResultsController extends Controller {
         ->with("start_record", $result["start_record"])
         ->with("total_records", $result["total_records"])
         ->with("region", "null");
-
      }
 }
