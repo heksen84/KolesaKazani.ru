@@ -316,7 +316,7 @@ class ResultsController extends Controller {
                     $title = "Различные предложения в Казахстане";
                 }
                 
-				$this->total = DB::select("SELECT COUNT(*) as count FROM `adverts` AS adv WHERE category_id=".$category->id.$region_string.$this->filter_string);
+				$this->total = DB::select("SELECT COUNT(*) as count FROM `adverts` AS adv WHERE category_id=".$category->id.$region_string.$place_string.$this->filter_string);
 
                 \Debugbar::info("TOTAL :".$this->total[0]->count);
                 
