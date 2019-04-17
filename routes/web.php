@@ -54,13 +54,13 @@ Route::get("{region}/{place}/transport/{subcat}", "ResultsController@getResultsB
 Route::get("{region}/{place}/nedvizhimost/{subcat}",  "ResultsController@getResultsByPlaceForView");
 
 // ------------------------------------------------------------------------
-// детали объявления
+// Детали объявления
 // ------------------------------------------------------------------------
 Route::get("obyavlenie/{url}", "AdvertController@getFullInfoByUrl"); // для СЕО
 Route::get("podrobno/{id}", "AdvertController@getFullInfo");
 
 // ------------------------------------
-// подкатегории
+// Подкатегории
 // ------------------------------------
 Route::get("{category}/{subcat}", "ResultsController@getResultsForSubCategoryForView");
 Route::get("/getResultsByCategoryForFront", "ResultsController@getResultsByCategoryForFront");
@@ -69,7 +69,7 @@ Route::get("/getResultsBySubCategoryForFront", "ResultsController@getResultsForS
 Route::get("/getResultsByPlaceForFront", "ResultsController@getResultsByPlaceForFront");
 
 // ---------------------------------------------------------------
-// базовые контроллеры
+// Базовые контроллеры
 // ---------------------------------------------------------------
 Route::get("/", 				"IndexController@init");
 Route::post("create", 			"AdvertController@createAdvert");
@@ -83,15 +83,15 @@ Route::get("categories", 		"CategoriesController@index");
 Route::get("getSubCats",  		"SubCatsController@getSubCats" );
 
 // ---------------------------------------------------------------
-// авто
+// Авто
 // ---------------------------------------------------------------
 Route::get("getCarsMarks", "AdvertController@getCarsMarks" );
 Route::get("getCarsModels", "AdvertController@getCarsModels" );
 Route::get("search",  function () { return view("search")->with("items", "123"); });
 
-// ----------------------------------------
-// перенести в контроллер Categories
-// ----------------------------------------
+// --------------------------------------------------------------------
+// Перенести в контроллер Categories
+// --------------------------------------------------------------------
 Route::get("/category/{id}", function ($id) {
 	$categories = DB::table("categories")->where("id", $id)->get();
 	$items = DB::table("adverts")->where("category_id", $id)->get();
@@ -103,7 +103,7 @@ Route::get("location/{country}/{region}/{place}", "AdvertController@getFullInfo"
 Route::get("logout", "\App\Http\Controllers\Auth\LoginController@logout");
 
 // ------------------------------------------------------------------------
-// категории по региону и местности
+// Категории по региону и местности
 // ------------------------------------------------------------------------
 Route::get("{region}/{place}/{category}", "ResultsController@getResultsByPlace");
 
@@ -130,8 +130,8 @@ Route::get("moderation",  function () { return view("moderation"); });
 Route::get("moderation/{advert_id}",  function () { return view("moderation_advert"); });
 
 // -----------------------------------------------------------
-// сервисы
+// Сервисы
 // -----------------------------------------------------------
 Route::get("test",  function () { return view("test"); });
-Route::post("checkPhotos",  "TestController@checkPhotos");
+Route::post("checkPhotos", "TestController@checkPhotos");
 Route::get("/util/str2url", "UtilsController@str2url");
