@@ -19,7 +19,7 @@ class ResultsController extends Controller {
     // частные переменные
     private $total          = [];
     private $start_record   = 0;
-    private $records_limit  = 15; // максимальное число записей при выборке    
+    private $records_limit  = 5; // максимальное число записей при выборке    
     private $filter_string  = "";   
     private $start_page     = "null";
     private $category_name  = "null";
@@ -159,9 +159,11 @@ class ResultsController extends Controller {
         $items = Adverts::where("category_id",  $category->id )->get();        
                        	    
         switch($category->id) {
+
         // --------------------------------------------------------
         // Вся автотранспорт Казахстана (damelya.kz/transport)
         // --------------------------------------------------------
+
 		case 1: {
 
                 $this->total = DB::select(
@@ -327,7 +329,7 @@ class ResultsController extends Controller {
 					price, 
 					category_id,					
 					(SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image
-                    FROM `adverts` AS adv WHERE category_id=".$category->id.$this->filter_string.$region_string.
+                    FROM `adverts` AS adv WHERE category_id=".$category->id.$this->filter_string.$region_string.$place_string.
                     " ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit
 				);
 
@@ -446,9 +448,10 @@ class ResultsController extends Controller {
      // -----------------------------------------------------------------------
      // Результаты по городу / селу / аулу для морды
      // -----------------------------------------------------------------------
-     public function getResultsByPlaceForFront(Request $request, $region, $place) {
-	    $category = request()->segment(2);
-        $result = $this->getResultsByCategory($request, $region, $place, $category);    
+     public function getResultsByPlaceForFront(Request $request) {
+        \Debugbar::info("getResultsByPlaceForFront: OK");
+        //$category = request()->segment(2);
+        $result = $this->getResultsByCategory($request, null, null, null);
         return $result;
      }
 

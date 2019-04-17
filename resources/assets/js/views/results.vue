@@ -146,7 +146,7 @@ export default {
 		totalRecords: this.total_records,
 		resultsClone: this.results,
 		items: this.data,				
-		perPage: 15, // макимальное кол-во объявлений на странице
+		perPage: 5, // макимальное кол-во объявлений на странице
 		start_page: 0,
     currentPage: 1,
 		loadMoreCountShow: 3,			    
@@ -198,6 +198,7 @@ export default {
 		console.log("Категория: "+this.category_name)
 		console.log("Подкатегория: "+this.subcat)
 		console.log("Регион: "+this.region)
+		console.log("Место: "+this.place)
 		console.log("-----------------------------------------")
 		console.log(this.results)
 
@@ -289,7 +290,7 @@ export default {
 				// Подкатегории
 				if (this.category_name && this.subcat) {
 					console.log("Подкатегории")
-					url="/getResultsForSubCategoryForFront?category_name="+this.category_name+
+					url="/getResultsBySubCategoryForFront?category_name="+this.category_name+
 					"&subcat="+this.subcat+
 					"&start_page="+this.start_page+
 					"&category_id="+this.category+				
@@ -303,7 +304,7 @@ export default {
 				// Регион с подкатегориями
 				if (this.category_name && this.subcat && this.region) {
 					console.log("Регион с подкатегориями")
-					url="/getResultsForSubCategoryForFront?category_name="+this.category_name+
+					url="/getResultsBySubCategoryForFront?category_name="+this.category_name+
 					"&subcat="+this.subcat+
 					"&start_page="+this.start_page+
 					"&category_id="+this.category+				
@@ -314,18 +315,18 @@ export default {
 					ready=true;
 				}
 
-
 				// Местность
 				if (this.category_name && !this.subcat && this.region && this.place) {
 					console.log("Местность")
-					url="/getResultsForSubCategoryForFront?category_name="+this.category_name+
+					url="/getResultsByPlaceForFront?category_name="+this.category_name+
 					"&subcat="+this.subcat+
 					"&start_page="+this.start_page+
 					"&category_id="+this.category+				
 					"&deal="+this.filters.deal+
 					"&price_min="+this.filters.price_min+
 					"&price_max="+this.filters.price_max+
-					"&region="+this.region;
+					"&region="+this.region,
+					"&place="+this.place;
 					ready=true;
 				}
 			

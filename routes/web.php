@@ -34,7 +34,6 @@ Route::get("{region}/drugoe",  	 	 		 "ResultsController@getResultsByRegionForVi
 
 Route::get("/getResultsByRegionForFront", "ResultsController@getResultsByRegionForFront");
 
-
 // Результаты по региону с подкатегориями
 Route::get("{region}/transport/{subcat}",    "ResultsController@getResultsByRegionWithSubCategoryForView");
 Route::get("{region}/nedvizhimost/{subcat}", "ResultsController@getResultsByRegionWithSubCategoryForView");
@@ -59,8 +58,9 @@ Route::get("podrobno/{id}", "AdvertController@getFullInfo");
 // подкатегории
 Route::get("{category}/{subcat}", "ResultsController@getResultsForSubCategoryForView");
 Route::get("/getResultsByCategoryForFront", "ResultsController@getResultsByCategoryForFront");
-Route::get("/getResultsForSubCategory/{category}/{subcat}", "ResultsController@getResultsForSubCategoryForView");
-Route::get("/getResultsForSubCategoryForFront", "ResultsController@getResultsForSubCategoryForFront");
+Route::get("/getResultsBySubCategory/{category}/{subcat}", "ResultsController@getResultsForSubCategoryForView");
+Route::get("/getResultsBySubCategoryForFront", "ResultsController@getResultsForSubCategoryForFront");
+Route::get("/getResultsByPlaceForFront", "ResultsController@getResultsByPlaceForFront");
 
 // ---------------------------------------------------------------
 // базовые контроллеры
