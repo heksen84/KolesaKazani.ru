@@ -8,9 +8,9 @@ Auth::routes(); // Стандартные роуты
 	\Debugbar::enable();
 //}
 
-// -----------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 // Результаты по категориям по всему Казахстану
-// -----------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 Route::get("transport", 		"ResultsController@getResultsByCategoryForView");
 Route::get("nedvizhimost", 		"ResultsController@getResultsByCategoryForView");
 Route::get("elektronika", 		"ResultsController@getResultsByCategoryForView");
@@ -59,9 +59,9 @@ Route::get("{region}/{place}/nedvizhimost/{subcat}",  "ResultsController@getResu
 Route::get("obyavlenie/{url}", "AdvertController@getFullInfoByUrl"); // для СЕО
 Route::get("podrobno/{id}", "AdvertController@getFullInfo");
 
-// ------------------------------------
+// ------------------------------------------------------------------------------------------------------------
 // Подкатегории
-// ------------------------------------
+// ------------------------------------------------------------------------------------------------------------
 Route::get("{category}/{subcat}", "ResultsController@getResultsForSubCategoryForView");
 Route::get("/getResultsByCategoryForFront", "ResultsController@getResultsByCategoryForFront");
 Route::get("/getResultsBySubCategory/{category}/{subcat}", "ResultsController@getResultsForSubCategoryForView");
@@ -110,12 +110,8 @@ Route::get("{region}/{place}/{category}", "ResultsController@getResultsByPlace")
 // ------------------------------------------------------------------------
 // Футер
 // ------------------------------------------------------------------------
-
-// Реклама
-Route::get("advertisers", function () { return view("advertisers"); });
-
-// О сайте...
-Route::get("about", function () { return view("about"); });
+Route::get("advertisers", function () { return view("advertisers"); }); // Реклама
+Route::get("about", function () { return view("about"); }); // О сайте...
 
 // Вспомогательные методы
 Route::get("getCategoryCountById", "WelcomeController@getCategoryCountById");
