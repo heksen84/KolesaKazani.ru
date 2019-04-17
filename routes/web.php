@@ -80,7 +80,7 @@ Route::get("getRegions", 		"IndexController@getRegions");
 Route::get("getPlaces", 		"IndexController@getPlaces");
 Route::get("getUser", 			"UserController@getUser");
 Route::get("categories", 		"CategoriesController@index");
-Route::get("getSubCats",  "SubCatsController@getSubCats" );
+Route::get("getSubCats",  		"SubCatsController@getSubCats" );
 
 // ---------------------------------------------------------------
 // авто
@@ -110,8 +110,10 @@ Route::get("{region}/{place}/{category}", "ResultsController@getResultsByPlace")
 // ------------------------------------------------------------------------
 // Футер
 // ------------------------------------------------------------------------
+
 // Реклама
 Route::get("advertisers", function () { return view("advertisers"); });
+
 // О сайте...
 Route::get("about", function () { return view("about"); });
 
