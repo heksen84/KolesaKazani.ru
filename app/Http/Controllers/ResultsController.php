@@ -153,6 +153,8 @@ class ResultsController extends Controller {
         if (!$filterData && $place) {            
             $place_string = $this->getPlaceFilterStringByUrl($place);
         }
+
+        \Debugbar::info("CATEGORY_NAME :".$this->category_name);
         
         // Получаю имя категории на русском по url
     	$category = Categories::select("id", "name")->where("url", $this->category_name )->first();
@@ -436,7 +438,7 @@ class ResultsController extends Controller {
         ->with("items", $result["items"])
 		->with("results", $result["results"])
         ->with("category", $result["category"])
-        ->with("category_name", $result["category_name"])
+        ->with("category_name", json_encode($category))
         ->with("subcat", "null")
         ->with("start_record", $result["start_record"])
         ->with("total_records", $result["total_records"])
@@ -450,7 +452,7 @@ class ResultsController extends Controller {
      // -----------------------------------------------------------------------
      public function getResultsByPlaceForFront(Request $request) {
         \Debugbar::info("getResultsByPlaceForFront: OK");
-        //$category = request()->segment(2);
+        $category = request()->segment(2);
         $result = $this->getResultsByCategory($request, null, null, null);
         return $result;
      }
@@ -544,7 +546,6 @@ class ResultsController extends Controller {
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду легковых автомобилей";
-
                     break;
                 }
                                 
