@@ -2890,7 +2890,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 // ----------------------------------------------------
@@ -40382,7 +40381,7 @@ var render = function() {
                               expression: "phone1"
                             }
                           }),
-                          _vm._v("   \n\n\t\t\t\t\t"),
+                          _vm._v(" "),
                           _vm.phone1.length > _vm.const_phone1_max_length
                             ? _c("div", [
                                 _c(
@@ -40406,8 +40405,7 @@ var render = function() {
                                         },
                                         expression: "phone2"
                                       }
-                                    }),
-                                    _vm._v(" *")
+                                    })
                                   ],
                                   1
                                 ),
@@ -40433,21 +40431,9 @@ var render = function() {
                                         },
                                         expression: "phone3"
                                       }
-                                    }),
-                                    _vm._v(" *")
+                                    })
                                   ],
                                   1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "span",
-                                  {
-                                    staticStyle: {
-                                      color: "rgb(60,60,60)",
-                                      "font-weight": "550"
-                                    }
-                                  },
-                                  [_vm._v("* - необязательные поля")]
                                 )
                               ])
                             : _vm._e()
