@@ -264,4 +264,16 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>damelya:90/obyavlenie/256-werwerwerwer</loc>
+    <lastmod>2019-04-17T14:29:38+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>damelya:90/obyavlenie/257-korovka</loc>
+    <lastmod>2019-04-17T14:49:19+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

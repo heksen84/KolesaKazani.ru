@@ -23,39 +23,45 @@ Route::get("uslugi", 			"ResultsController@getResultsByCategoryForView");
 Route::get("drugoe", 			"ResultsController@getResultsByCategoryForView");
 
 // Результаты категории по региону
-Route::get("{region}/elektronika",  		 "ResultsController@getResultsByRegionForView");
-Route::get("{region}/rabota-i-biznes",  	 "ResultsController@getResultsByRegionForView");
-Route::get("{region}/dlya-doma-i-dachi",  	 "ResultsController@getResultsByRegionForView");
-Route::get("{region}/lichnye-veschi",  	 	 "ResultsController@getResultsByRegionForView");
-Route::get("{region}/zhivotnye",  	 	 	 "ResultsController@getResultsByRegionForView");
-Route::get("{region}/hobbi-i-otdyh",  	 	 "ResultsController@getResultsByRegionForView");
-Route::get("{region}/uslugi",  	 	 		 "ResultsController@getResultsByRegionForView");
-Route::get("{region}/drugoe",  	 	 		 "ResultsController@getResultsByRegionForView");
+Route::get("{region}/elektronika",  	 "ResultsController@getResultsByRegionForView");
+Route::get("{region}/rabota-i-biznes",   "ResultsController@getResultsByRegionForView");
+Route::get("{region}/dlya-doma-i-dachi", "ResultsController@getResultsByRegionForView");
+Route::get("{region}/lichnye-veschi",  	 "ResultsController@getResultsByRegionForView");
+Route::get("{region}/zhivotnye",  	 	 "ResultsController@getResultsByRegionForView");
+Route::get("{region}/hobbi-i-otdyh",  	 "ResultsController@getResultsByRegionForView");
+Route::get("{region}/uslugi",  	 	 	 "ResultsController@getResultsByRegionForView");
+Route::get("{region}/drugoe",  	 	 	 "ResultsController@getResultsByRegionForView");
 
 Route::get("/getResultsByRegionForFront", "ResultsController@getResultsByRegionForFront");
 
 // Результаты по региону с подкатегориями
-Route::get("{region}/transport/{subcat}",    "ResultsController@getResultsByRegionWithSubCategoryForView");
-Route::get("{region}/nedvizhimost/{subcat}", "ResultsController@getResultsByRegionWithSubCategoryForView");
+Route::get("{region}/transport/{subcat}", 		"ResultsController@getResultsByRegionWithSubCategoryForView");
+Route::get("{region}/nedvizhimost/{subcat}",	"ResultsController@getResultsByRegionWithSubCategoryForView");
 
-// категрии по местности
-Route::get("{region}/{place}/transport",  			"ResultsController@getResultsByPlaceForView");
-Route::get("{region}/{place}/elektronika",  		"ResultsController@getResultsByPlaceForView");
-Route::get("{region}/{place}/rabota-i-biznes",  	"ResultsController@getResultsByPlaceForView");
-Route::get("{region}/{place}/dlya-doma-i-dachi",  	"ResultsController@getResultsByPlaceForView");
-Route::get("{region}/{place}/lichnye-veschi",  	 	"ResultsController@getResultsByPlaceForView");
-Route::get("{region}/{place}/zhivotnye",  	 	 	"ResultsController@getResultsByPlaceForView");
-Route::get("{region}/{place}/hobbi-i-otdyh",  	 	"ResultsController@getResultsByPlaceForView");
-Route::get("{region}/{place}/uslugi",  	 	 		"ResultsController@getResultsByPlaceForView");
-Route::get("{region}/{place}/drugoe",  	 	 		"ResultsController@getResultsByPlaceForView");
+// Категории по местности
+Route::get("{region}/{place}/transport",  		 "ResultsController@getResultsByPlaceForView");
+Route::get("{region}/{place}/elektronika",  	 "ResultsController@getResultsByPlaceForView");
+Route::get("{region}/{place}/rabota-i-biznes",   "ResultsController@getResultsByPlaceForView");
+Route::get("{region}/{place}/dlya-doma-i-dachi", "ResultsController@getResultsByPlaceForView");
+Route::get("{region}/{place}/lichnye-veschi",  	 "ResultsController@getResultsByPlaceForView");
+Route::get("{region}/{place}/zhivotnye",  	 	 "ResultsController@getResultsByPlaceForView");
+Route::get("{region}/{place}/hobbi-i-otdyh",  	 "ResultsController@getResultsByPlaceForView");
+Route::get("{region}/{place}/uslugi",  	 	 	 "ResultsController@getResultsByPlaceForView");
+Route::get("{region}/{place}/drugoe",  	 	 	 "ResultsController@getResultsByPlaceForView");
 
-// ------------------------------------
+// Категории по местности c подкатегориями
+Route::get("{region}/{place}/transport/{subcat}", "ResultsController@getResultsByPlaceForView");
+Route::get("{region}/{place}/nedvizhimost/{subcat}",  "ResultsController@getResultsByPlaceForView");
+
+// ------------------------------------------------------------------------
 // детали объявления
-// ------------------------------------
+// ------------------------------------------------------------------------
 Route::get("obyavlenie/{url}", "AdvertController@getFullInfoByUrl"); // для СЕО
 Route::get("podrobno/{id}", "AdvertController@getFullInfo");
 
+// ------------------------------------
 // подкатегории
+// ------------------------------------
 Route::get("{category}/{subcat}", "ResultsController@getResultsForSubCategoryForView");
 Route::get("/getResultsByCategoryForFront", "ResultsController@getResultsByCategoryForFront");
 Route::get("/getResultsBySubCategory/{category}/{subcat}", "ResultsController@getResultsForSubCategoryForView");
