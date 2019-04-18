@@ -37390,7 +37390,7 @@ var render = function() {
         ? _c("b-img", {
             staticStyle: { display: "inline-block" },
             attrs: {
-              src: "../storage/app/images/" + _vm.image,
+              src: "/storage/app/images/" + _vm.image,
               width: "118",
               height: "118"
             }
@@ -37401,7 +37401,7 @@ var render = function() {
         ? _c("b-img", {
             staticStyle: { display: "inline-block" },
             attrs: {
-              src: "../public/images/_nofoto.jpg",
+              src: "/public/images/_nofoto.jpg",
               width: "118",
               height: "118"
             }
