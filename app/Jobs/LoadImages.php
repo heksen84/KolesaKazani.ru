@@ -33,10 +33,10 @@ class LoadImages implements ShouldQueue
             });
 
             // пишу текст в картинку
-            $image_resize->text(env("APP_URL"), 8,25, function($font) {
+            $image_resize->text(env("APP_URL"), 8,22, function($font) {
                 $font->file(public_path()."/fonts/Brushie.ttf");
                 $font->color(array(255,255,255,1));
-                $font->size(26);
+                $font->size(18);
             });
 
             // ... и сохраняю в хранилище
