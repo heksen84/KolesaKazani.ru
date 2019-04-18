@@ -466,7 +466,8 @@ class ResultsController extends Controller {
 	public function getResultsForSubCategory(Request $request, $region, $place, $category, $subcat) {        
 	
         $region_string="";
-        
+        $place_string="";
+
         \Debugbar::info("REGION :".$region);
         
         // проверка на наличие фильтров
@@ -477,21 +478,24 @@ class ResultsController extends Controller {
         \Debugbar::info("С ФИЛЬТРАМИ!");        
 	    $subcat = $this->subcat;
 		
-	     // Если указан регион из фильтра, то получаю строку фильтра по региону
+	    // Если указан регион из фильтра, то получаю строку фильтра по региону
 	    if ($this->region!="null")
-	    	$region_string = $this->getRegionFilterStringByUrl($this->region);
-        }
-        else {
-            
-	      \Debugbar::info("БЕЗ ФИЛЬТРОВ!");
-           
-	     // Если указан регион из контроллера, то получаю строку фильтра по региону
-	     if ($region)
-               $region_string = $this->getRegionFilterStringByUrl($region);
-               
-            \Debugbar::info($region_string);
+            $region_string = $this->getRegionFilterStringByUrl($this->region);
 
-            $this->category_name = $request->path();            
+        if ($this->place!="null")
+            $place_string = $this->getPlaceFilterStringByUrl($this->place);                
+
+        }
+        else 
+        {                       	     
+	        if ($region)
+                $region_string = $this->getRegionFilterStringByUrl($region);               
+
+            if ($place)
+                $place_string = $this->getPlaceFilterStringByUrl($place);               
+                
+                \Debugbar::info($region_string);
+                $this->category_name = $request->path();            
         }            
         
         // получаю имя на русском
@@ -500,10 +504,16 @@ class ResultsController extends Controller {
         
         // беру имя категории либо с фильтров либо с переменной в контроллере
         $category = $filterData?$this->category_name:$category;
+
+        \Debugbar::info("HELLO");
+
+        \Debugbar::info("CATEGORY :".$category);
         
         switch($category) {
 
             case "transport": {
+
+                \Debugbar::info("HELLO2");
 
                 // Легковой транспорт
                 if ($subcat=="legkovoy-avtomobil") {
@@ -516,8 +526,8 @@ class ResultsController extends Controller {
                             adv_transport.mark=car_mark.id_car_mark AND 
                             adv.adv_category_id=adv_transport.id AND 
                             adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_transport.type=0 AND adv.category_id=1".$region_string.$this->filter_string); 
-
+                        ) WHERE adv_transport.type=0 AND adv.category_id=1".$region_string.$place_string.$this->filter_string); 
+                    
                                     
                     $results = DB::select(
                         "SELECT
@@ -537,14 +547,14 @@ class ResultsController extends Controller {
                             adv_transport.mark=car_mark.id_car_mark AND 
                             adv.adv_category_id=adv_transport.id AND 
                             adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_transport.type=0 AND adv.category_id=1".$this->filter_string.$region_string."
+                        ) WHERE adv_transport.type=0 AND adv.category_id=1".$this->filter_string.$region_string.$place_string."
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );                    
 
                     \Debugbar::info($results);
 
-                    $keywords = "";
-                    $description = "";
+                    $keywords = "123";
+                    $description = "123";
                     $title="Покупка, продажа, обмен, сдача в аренду легковых автомобилей";
                     break;
                 }
@@ -558,7 +568,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=1 AND adv.category_id=1".$region_string.$this->filter_string
+                        ) WHERE adv_transport.type=1 AND adv.category_id=1".$region_string.$place_string.$this->filter_string
                     );
                     
                     $results = DB::select(
@@ -575,7 +585,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=1 AND adv.category_id=1".$this->filter_string.$region_string." 
+                        ) WHERE adv_transport.type=1 AND adv.category_id=1".$this->filter_string.$region_string.$place_string." 
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -597,7 +607,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=2 AND adv.category_id=1".$region_string.$this->filter_string
+                        ) WHERE adv_transport.type=2 AND adv.category_id=1".$region_string.$place_string.$this->filter_string
                     );
                     
                     $results = DB::select(
@@ -614,7 +624,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=2 AND adv.category_id=1".$this->filter_string.$region_string."
+                        ) WHERE adv_transport.type=2 AND adv.category_id=1".$this->filter_string.$region_string.$place_string."
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -636,7 +646,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=3 AND adv.category_id=1".$region_string.$this->filter_string
+                        ) WHERE adv_transport.type=3 AND adv.category_id=1".$region_string.$place_string.$this->filter_string
                     );
 
                     $results = DB::select(
@@ -653,7 +663,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=3 AND adv.category_id=1".$this->filter_string.$region_string." 
+                        ) WHERE adv_transport.type=3 AND adv.category_id=1".$this->filter_string.$region_string.$place_string." 
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -675,7 +685,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=4 AND adv.category_id=1".$region_string.$this->filter_string
+                        ) WHERE adv_transport.type=4 AND adv.category_id=1".$region_string.$place_string.$this->filter_string
                     );
                     
                     $results = DB::select(
@@ -692,7 +702,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=4 AND adv.category_id=1".$this->filter_string.$region_string." 
+                        ) WHERE adv_transport.type=4 AND adv.category_id=1".$this->filter_string.$region_string.$place_string." 
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -712,7 +722,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=5  AND adv.category_id=1".$region_string.$this->filter_string
+                        ) WHERE adv_transport.type=5  AND adv.category_id=1".$region_string.$place_string.$this->filter_string
                     );
 
                     $results = DB::select(
@@ -729,7 +739,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=5  AND adv.category_id=1".$this->filter_string.$region_string." 
+                        ) WHERE adv_transport.type=5  AND adv.category_id=1".$this->filter_string.$region_string.$place_string." 
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -749,7 +759,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=6  AND adv.category_id=1".$region_string.$this->filter_string
+                        ) WHERE adv_transport.type=6  AND adv.category_id=1".$region_string.$place_string.$this->filter_string
                     );
                                         
                     $results = DB::select(
@@ -766,7 +776,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=6  AND adv.category_id=1".$this->filter_string.$region_string." 
+                        ) WHERE adv_transport.type=6  AND adv.category_id=1".$this->filter_string.$region_string.$place_string." 
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -786,7 +796,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=7 AND adv.category_id=1".$region_string.$this->filter_string
+                        ) WHERE adv_transport.type=7 AND adv.category_id=1".$region_string.$place_string.$this->filter_string
                     );
 
                     $results = DB::select(
@@ -803,7 +813,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=7 AND adv.category_id=1".$this->filter_string.$region_string."
+                        ) WHERE adv_transport.type=7 AND adv.category_id=1".$this->filter_string.$region_string.$place_string."
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -834,7 +844,7 @@ class ResultsController extends Controller {
                         COUNT(*) as count                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=0 AND adv.category_id=2".$region_string.$this->filter_string
+                        WHERE adv_realestate.property_type=0 AND adv.category_id=2".$region_string.$place_string.$this->filter_string
                     );
 
                     $results = DB::select(
@@ -850,7 +860,7 @@ class ResultsController extends Controller {
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=0 AND adv.category_id=2".$this->filter_string.$region_string."
+                        WHERE adv_realestate.property_type=0 AND adv.category_id=2".$this->filter_string.$region_string.$place_string."
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -871,7 +881,7 @@ class ResultsController extends Controller {
                         COUNT(*) as count                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=1 AND adv.category_id=2".$region_string.$this->filter_string
+                        WHERE adv_realestate.property_type=1 AND adv.category_id=2".$region_string.$place_string.$this->filter_string
                     );
 
                     $results = DB::select(
@@ -887,7 +897,7 @@ class ResultsController extends Controller {
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=1 AND adv.category_id=2".$this->filter_string.$region_string."
+                        WHERE adv_realestate.property_type=1 AND adv.category_id=2".$this->filter_string.$region_string.$place_string."
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -908,7 +918,7 @@ class ResultsController extends Controller {
                         COUNT(*) as count
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=2 AND adv.category_id=2".$region_string.$this->filter_string
+                        WHERE adv_realestate.property_type=2 AND adv.category_id=2".$region_string.$place_string.$this->filter_string
                     );
 
                     $results = DB::select(
@@ -930,7 +940,7 @@ class ResultsController extends Controller {
                         adv_realestate.type_of_building*/
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=2 AND adv.category_id=2".$this->filter_string.$region_string."
+                        WHERE adv_realestate.property_type=2 AND adv.category_id=2".$this->filter_string.$region_string.$place_string."
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -951,7 +961,7 @@ class ResultsController extends Controller {
                         COUNT(*) as count                      
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=3 AND adv.category_id=2".$region_string.$this->filter_string
+                        WHERE adv_realestate.property_type=3 AND adv.category_id=2".$region_string.$place_string.$this->filter_string
                     );
 
                     $results = DB::select(
@@ -967,7 +977,7 @@ class ResultsController extends Controller {
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=3 AND adv.category_id=2".$this->filter_string.$region_string."
+                        WHERE adv_realestate.property_type=3 AND adv.category_id=2".$this->filter_string.$region_string.$place_string."
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -988,7 +998,7 @@ class ResultsController extends Controller {
                         COUNT(*) as count                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=4 AND adv.category_id=2".$region_string.$this->filter_string
+                        WHERE adv_realestate.property_type=4 AND adv.category_id=2".$region_string.$place_string.$this->filter_string
                     );
 
                     $results = DB::select(
@@ -1004,7 +1014,7 @@ class ResultsController extends Controller {
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=4 AND adv.category_id=2".$this->filter_string.$region_string."
+                        WHERE adv_realestate.property_type=4 AND adv.category_id=2".$this->filter_string.$region_string.$place_string."
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -1025,7 +1035,7 @@ class ResultsController extends Controller {
                         COUNT(*) as count                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=5 AND adv.category_id=2".$region_string.$this->filter_string
+                        WHERE adv_realestate.property_type=5 AND adv.category_id=2".$region_string.$place_string.$this->filter_string
                     );
 
                     $results = DB::select(
@@ -1041,7 +1051,7 @@ class ResultsController extends Controller {
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=5 AND adv.category_id=2".$this->filter_string.$region_string."
+                        WHERE adv_realestate.property_type=5 AND adv.category_id=2".$this->filter_string.$region_string.$place_string."
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
                 
@@ -1062,7 +1072,7 @@ class ResultsController extends Controller {
                         COUNT(*) as count                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=6 AND adv.category_id=2".$region_string.$this->filter_string
+                        WHERE adv_realestate.property_type=6 AND adv.category_id=2".$region_string.$place_string.$this->filter_string
                     );
 
                     $results = DB::select(
@@ -1078,7 +1088,7 @@ class ResultsController extends Controller {
                         adv_realestate.id                        
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=6 AND adv.category_id=2".$this->filter_string.$region_string."
+                        WHERE adv_realestate.property_type=6 AND adv.category_id=2".$this->filter_string.$region_string.$place_string."
                         ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
                     );
 
@@ -1147,8 +1157,8 @@ class ResultsController extends Controller {
     // ---------------------------------------------------------------------------------------
      public function getResultsByRegionWithSubCategoryForView(Request $request, $region, $subcat) {
 
-	    $category_name = request()->segment(2);	 // вырезаю категори из url
-        $result = $this->getResultsForSubCategory($request, $region, null, $category_name, $subcat);
+	    $category = request()->segment(2);	 // вырезаю категори из url
+        $result = $this->getResultsForSubCategory($request, $region, null, $category, $subcat);
 
 	    \Debugbar::info("REGION :".$region);
     
@@ -1159,7 +1169,7 @@ class ResultsController extends Controller {
         ->with("items", $result["items"])
 	    ->with("results", $result["results"])
         ->with("category", $result["category"])
-	    ->with("category_name", json_encode($category_name))
+	    ->with("category_name", json_encode($category))
         ->with("subcat", json_encode($subcat))
         ->with("start_record", $result["start_record"])
         ->with("total_records", $result["total_records"])
@@ -1167,14 +1177,13 @@ class ResultsController extends Controller {
         ->with("place", "null");
      }
 
-
     // ---------------------------------------------------------------------------------------
     // Результаты по региону с под категориями для морды
     // ---------------------------------------------------------------------------------------
      public function getResultsByRegionWithSubCategoryForFront(Request $request, $region, $subcat) {
 
-	    $category_name = request()->segment(2);
-        $result = $this->getResultsByCategory($request, $region, null, $category_name);
+	    $category = request()->segment(2);
+        $result = $this->getResultsByCategory($request, $region, null, $category);
     
         return view("results")
         ->with("keywords", $result["keywords"])
@@ -1189,4 +1198,30 @@ class ResultsController extends Controller {
         ->with("total_records", $result["total_records"])
         ->with("region", "null");
      }
+
+     // ---------------------------------------------------------------------------------------
+    // Результаты по месту с под категориями для вьюшки
+    // ---------------------------------------------------------------------------------------
+    public function getResultsByPlaceForWithSubCategoryView(Request $request, $region, $place, $subcat) {
+
+	    $category = request()->segment(3);	 // вырезаю категори из url
+        $result = $this->getResultsForSubCategory($request, $region, $place, $category, $subcat);
+
+	    \Debugbar::info("REGION :".$region);
+    
+        return view("results")
+        ->with("keywords", $result["keywords"])
+        ->with("description", $result["description"])
+        ->with("title", $result["title"])
+        ->with("items", $result["items"])
+	    ->with("results", $result["results"])
+        ->with("category", $result["category"])
+	    ->with("category_name", json_encode($category))
+        ->with("subcat", json_encode($subcat))
+        ->with("start_record", $result["start_record"])
+        ->with("total_records", $result["total_records"])
+        ->with("region", json_encode($region))
+        ->with("place", "null");
+     }
+     
 }
