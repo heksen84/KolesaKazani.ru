@@ -288,4 +288,22 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>damelya:90/obyavlenie/260-2342344234234</loc>
+    <lastmod>2019-04-18T10:57:14+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>damelya:90/obyavlenie/261-sdam-mafon-v-arendu</loc>
+    <lastmod>2019-04-18T10:58:44+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>damelya:90/obyavlenie/262-okokokok</loc>
+    <lastmod>2019-04-18T11:00:52+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
