@@ -4531,16 +4531,8 @@ function num2str(n, text_forms) {
 			// Местность c подкатегориями
 			if (this.category_name && this.subcat && this.region && this.place) {
 				console.log("Местность c подкатегориями");
-				/*url="/getResultsByPlaceForFront?category_name="+this.category_name+
-    "&subcat="+this.subcat+
-    "&start_page="+this.start_page+
-    "&category_id="+this.category+				
-    "&deal="+this.filters.deal+
-    "&price_min="+this.filters.price_min+
-    "&price_max="+this.filters.price_max+
-    "&region="+this.region,
-    "&place="+this.place;
-    ready=true;*/
+				url = "/getResultsByPlaceWithSubCategoryForFront?category_name=" + this.category_name + "&subcat=" + this.subcat + "&start_page=" + this.start_page + "&category_id=" + this.category + "&deal=" + this.filters.deal + "&price_min=" + this.filters.price_min + "&price_max=" + this.filters.price_max + "&region=" + this.region, "&place=" + this.place;
+				ready = true;
 			}
 
 			if (ready) {

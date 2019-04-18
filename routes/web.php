@@ -50,8 +50,9 @@ Route::get("{region}/{place}/uslugi",  	 	 	 "ResultsController@getResultsByPlac
 Route::get("{region}/{place}/drugoe",  	 	 	 "ResultsController@getResultsByPlaceForView");
 
 // Категории по местности c подкатегориями
-Route::get("{region}/{place}/transport/{subcat}", 	  "ResultsController@getResultsByPlaceForWithSubCategoryView");
-Route::get("{region}/{place}/nedvizhimost/{subcat}",  "ResultsController@getResultsByPlaceForWithSubCategoryView");
+Route::get("{region}/{place}/transport/{subcat}", 	  	"ResultsController@getResultsByPlaceForWithSubCategoryForView");
+Route::get("{region}/{place}/nedvizhimost/{subcat}",  	"ResultsController@getResultsByPlaceForWithSubCategoryForView");
+Route::get("/getResultsByPlaceWithSubCategoryForFront", "ResultsController@getResultsByPlaceWithSubCategoryForFront");
 
 // ------------------------------------------------------------------------
 // Детали объявления

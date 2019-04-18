@@ -488,14 +488,18 @@ class ResultsController extends Controller {
         }
         else 
         {                       	     
-	        if ($region)
-                $region_string = $this->getRegionFilterStringByUrl($region);               
+	        if ($region) {
+                $region_string = $this->getRegionFilterStringByUrl($region);
+                $this->region = $region;
+            }
 
-            if ($place)
+            if ($place) {
                 $place_string = $this->getPlaceFilterStringByUrl($place);               
+                $this->place = $place;
+            }
                 
-                \Debugbar::info($region_string);
-                $this->category_name = $request->path();            
+            \Debugbar::info($region_string);
+            $this->category_name = $request->path();            
         }            
         
         // получаю имя на русском
@@ -1118,7 +1122,9 @@ class ResultsController extends Controller {
         "results"=>json_encode($results), 
         "category"=>$categories,
         "start_record"=>$this->start_record,
-        "total_records"=>$this->total[0]->count
+        "total_records"=>$this->total[0]->count,
+        "region"=>json_encode($this->region),
+        "place"=>json_encode($this->place)
     );
          
     }
@@ -1199,10 +1205,10 @@ class ResultsController extends Controller {
         ->with("region", "null");
      }
 
-     // ---------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------
     // Результаты по месту с под категориями для вьюшки
     // ---------------------------------------------------------------------------------------
-    public function getResultsByPlaceForWithSubCategoryView(Request $request, $region, $place, $subcat) {
+    public function getResultsByPlaceForWithSubCategoryForView(Request $request, $region, $place, $subcat) {
 
 	    $category = request()->segment(3);	 // вырезаю категори из url
         $result = $this->getResultsForSubCategory($request, $region, $place, $category, $subcat);
@@ -1222,6 +1228,14 @@ class ResultsController extends Controller {
         ->with("total_records", $result["total_records"])
         ->with("region", json_encode($region))
         ->with("place", json_encode($place));
+     }
+
+    // ---------------------------------------------------------------------------------------
+    // Результаты по месту с под категориями для морды
+    // ---------------------------------------------------------------------------------------
+    public function getResultsByPlaceWithSubCategoryForFront(Request $request) {	    
+        $result = $this->getResultsForSubCategory($request, null, null, null, null);    
+        return $result;
      }
      
 }
