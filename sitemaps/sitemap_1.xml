@@ -342,4 +342,22 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>damelya:90/obyavlenie/269-979879878</loc>
+    <lastmod>2019-04-18T12:05:51+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>damelya:90/obyavlenie/270-777777777777777777777777777777777777777777777</loc>
+    <lastmod>2019-04-18T12:18:03+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>damelya:90/obyavlenie/271-123123123</loc>
+    <lastmod>2019-04-18T13:52:31+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

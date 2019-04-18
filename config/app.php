@@ -192,7 +192,7 @@ return [
 
     'aliases' => [
 
-        'Petrovich' => .\App\Helpers\Petrovich\Petrovich::class,
+        'Petrovich' => \App\Helpers\Petrovich\Petrovich::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,

@@ -353,7 +353,7 @@ h3 {
   color: #505050;
 }
 
-.custom-file-input:lang(en) ~ .custom-file-label::after {
+.custom-file-input:lang(ru) ~ .custom-file-label::after {
   background: #64c864;
   color: white;
   content: "\434\43E\431\430\432\438\442\44C   \444\43E\442\43E";
