@@ -4508,14 +4508,14 @@ function num2str(n, text_forms) {
 			}
 
 			// Подкатегории
-			if (this.category_name && this.subcat) {
+			if (this.category_name && this.subcat && !this.region && !this.place) {
 				console.log("Подкатегории");
 				url = "/getResultsBySubCategoryForFront?category_name=" + this.category_name + "&subcat=" + this.subcat + "&start_page=" + this.start_page + "&category_id=" + this.category + "&deal=" + this.filters.deal + "&price_min=" + this.filters.price_min + "&price_max=" + this.filters.price_max + "&region=" + this.region;
 				ready = true;
 			}
 
 			// Регион с подкатегориями
-			if (this.category_name && this.subcat && this.region) {
+			if (this.category_name && this.subcat && this.region && !this.place) {
 				console.log("Регион с подкатегориями");
 				url = "/getResultsBySubCategoryForFront?category_name=" + this.category_name + "&subcat=" + this.subcat + "&start_page=" + this.start_page + "&category_id=" + this.category + "&deal=" + this.filters.deal + "&price_min=" + this.filters.price_min + "&price_max=" + this.filters.price_max + "&region=" + this.region;
 				ready = true;
@@ -4528,8 +4528,24 @@ function num2str(n, text_forms) {
 				ready = true;
 			}
 
-			// запрос
+			// Местность c подкатегориями
+			if (this.category_name && this.subcat && this.region && this.place) {
+				console.log("Местность c подкатегориями");
+				/*url="/getResultsByPlaceForFront?category_name="+this.category_name+
+    "&subcat="+this.subcat+
+    "&start_page="+this.start_page+
+    "&category_id="+this.category+				
+    "&deal="+this.filters.deal+
+    "&price_min="+this.filters.price_min+
+    "&price_max="+this.filters.price_max+
+    "&region="+this.region,
+    "&place="+this.place;
+    ready=true;*/
+			}
+
 			if (ready) {
+
+				// запрос
 				Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])(url).then(function (res) {
 
 					console.log("------------------------");
@@ -14205,7 +14221,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 

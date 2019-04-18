@@ -288,7 +288,7 @@ export default {
 				}				
 
 				// Подкатегории
-				if (this.category_name && this.subcat) {
+				if (this.category_name && this.subcat && !this.region && !this.place) {
 					console.log("Подкатегории")
 					url="/getResultsBySubCategoryForFront?category_name="+this.category_name+
 					"&subcat="+this.subcat+
@@ -302,7 +302,7 @@ export default {
 				}
 
 				// Регион с подкатегориями
-				if (this.category_name && this.subcat && this.region) {
+				if (this.category_name && this.subcat && this.region && !this.place) {
 					console.log("Регион с подкатегориями")
 					url="/getResultsBySubCategoryForFront?category_name="+this.category_name+
 					"&subcat="+this.subcat+
@@ -329,9 +329,25 @@ export default {
 					"&place="+this.place;
 					ready=true;
 				}
-			
-			// запрос
+
+				// Местность c подкатегориями
+				if (this.category_name && this.subcat && this.region && this.place) {
+					console.log("Местность c подкатегориями")
+					/*url="/getResultsByPlaceForFront?category_name="+this.category_name+
+					"&subcat="+this.subcat+
+					"&start_page="+this.start_page+
+					"&category_id="+this.category+				
+					"&deal="+this.filters.deal+
+					"&price_min="+this.filters.price_min+
+					"&price_max="+this.filters.price_max+
+					"&region="+this.region,
+					"&place="+this.place;
+					ready=true;*/
+				}
+						
 			if (ready) {
+
+			  // запрос
   			get(url).then((res) => {
 
 					console.log("------------------------");
