@@ -464,30 +464,29 @@ class ResultsController extends Controller {
     
 	--------------------------------------------------------------------------------*/
 	public function getResultsForSubCategory(Request $request, $region, $place, $category, $subcat) {        
-	
-        $region_string="";
-        $place_string="";
-
+    
         \Debugbar::info("REGION :".$region);
+
+        $region_string="";
+        $place_string="";        
         
         // проверка на наличие фильтров
         $filterData = $this->getFilterData($request);
 
         if ($filterData) {            
-
-        \Debugbar::info("С ФИЛЬТРАМИ!");        
-	    $subcat = $this->subcat;
+            \Debugbar::info("С ФИЛЬТРАМИ!");        
+        
+            $subcat = $this->subcat;
 		
-	    // Если указан регион из фильтра, то получаю строку фильтра по региону
-	    if ($this->region!="null")
-            $region_string = $this->getRegionFilterStringByUrl($this->region);
+    	    // Если указан регион из фильтра, то получаю строку фильтра по региону
+	        if ($this->region!="null")
+                $region_string = $this->getRegionFilterStringByUrl($this->region);
 
-        if ($this->place!="null")
-            $place_string = $this->getPlaceFilterStringByUrl($this->place);                
+            if ($this->place!="null")
+                $place_string = $this->getPlaceFilterStringByUrl($this->place);                
+            }
+            else {                       	     
 
-        }
-        else 
-        {                       	     
 	        if ($region) {
                 $region_string = $this->getRegionFilterStringByUrl($region);
                 $this->region = $region;
@@ -499,6 +498,7 @@ class ResultsController extends Controller {
             }
                 
             \Debugbar::info($region_string);
+
             $this->category_name = $request->path();            
         }            
         
@@ -507,17 +507,13 @@ class ResultsController extends Controller {
         $items = Adverts::where("category_id",  $categories->id )->get();
         
         // беру имя категории либо с фильтров либо с переменной в контроллере
-        $category = $filterData?$this->category_name:$category;
-
-        \Debugbar::info("HELLO");
+        $category = $filterData?$this->category_name:$category;        
 
         \Debugbar::info("CATEGORY :".$category);
         
         switch($category) {
 
-            case "transport": {
-
-                \Debugbar::info("HELLO2");
+            case "transport": {                
 
                 // Легковой транспорт
                 if ($subcat=="legkovoy-avtomobil") {
@@ -829,12 +825,10 @@ class ResultsController extends Controller {
                 }
             }
 
-            /*
-            ------------------------------------------------------------
-
-            НЕДВИЖИМОСТЬ
-
-            ------------------------------------------------------------*/
+            
+            //------------------------------------------------------------
+            // недвижимость
+            //------------------------------------------------------------
             case "nedvizhimost": {
                 
                 // adv_realestate
@@ -1129,9 +1123,9 @@ class ResultsController extends Controller {
          
     }
 
-   // -------------------------------------------------------------------
+   // --------------------------------------------------------------------------------------
    // Результаты подкатегорий для бэка
-   // -------------------------------------------------------------------
+   // --------------------------------------------------------------------------------------
    public function getResultsForSubCategoryForView(Request $request, $category, $subcat) {
 
     $result = $this->getResultsForSubCategory($request, null, null, $category, $subcat);
@@ -1158,9 +1152,9 @@ class ResultsController extends Controller {
 	    return $result;
     }
 
-    // ---------------------------------------------------------------------------------------
+    // -----------------------------------------------------------------------------------------
     // Результаты по региону с под категориями для вьюшки
-    // ---------------------------------------------------------------------------------------
+    // -----------------------------------------------------------------------------------------
      public function getResultsByRegionWithSubCategoryForView(Request $request, $region, $subcat) {
 
 	    $category = request()->segment(2);	 // вырезаю категори из url
@@ -1183,9 +1177,9 @@ class ResultsController extends Controller {
         ->with("place", "null");
      }
 
-    // ---------------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------------------
     // Результаты по региону с под категориями для морды
-    // ---------------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------------------
      public function getResultsByRegionWithSubCategoryForFront(Request $request, $region, $subcat) {
 
 	    $category = request()->segment(2);
@@ -1205,9 +1199,9 @@ class ResultsController extends Controller {
         ->with("region", "null");
      }
 
-    // ---------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------------
     // Результаты по месту с под категориями для вьюшки
-    // ---------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------------
     public function getResultsByPlaceForWithSubCategoryForView(Request $request, $region, $place, $subcat) {
 
 	    $category = request()->segment(3);	 // вырезаю категори из url
@@ -1230,12 +1224,11 @@ class ResultsController extends Controller {
         ->with("place", json_encode($place));
      }
 
-    // ---------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
     // Результаты по месту с под категориями для морды
-    // ---------------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------
     public function getResultsByPlaceWithSubCategoryForFront(Request $request) {	    
         $result = $this->getResultsForSubCategory($request, null, null, null, null);    
         return $result;
-     }
-     
+     }     
 }
