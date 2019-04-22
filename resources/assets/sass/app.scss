@@ -428,7 +428,7 @@ h3 {
 // --------------------------------------------
 // Стандартные мониторы и ноуты
 // --------------------------------------------
-@media screen and (min-width:1224px) {
+/*@media screen and (min-width:1224px) {
 
 .alert {
   margin: 5px auto;
@@ -444,12 +444,9 @@ h3 {
  width: 1000px;
 }
 
-}
+}*/
 
-// --------------------------------------------
-// IPAD'ы PRO
-// --------------------------------------------
-@media screen and (max-width:1024px) {
+@media screen and (max-width:1224px) {
 
 #new_advert_block {
   font-size:10px;
@@ -482,6 +479,13 @@ h3 {
 #login_register_col {
   display:none;
 }
+
+}
+
+// --------------------------------------------
+// IPAD'ы PRO
+// --------------------------------------------
+@media screen and (max-width:1024px) {
 
 #categories_line {
   margin-top:0px;
