@@ -157,9 +157,14 @@ h3 {
   padding-bottom:1px; 
 }
 
+
 .button:hover {
   background: rgb(110,210,110);
 }
+
+.mycontainer_adv {
+  width: 1000px;
+ }
 
 #location {
   width:250px;
@@ -393,9 +398,6 @@ h3 {
   text-decoration: underline;
 }
 
-#addit_info {
-}
-
 #categories_title {
   font-size: 110%;
   margin-top:35px;
@@ -423,36 +425,24 @@ h3 {
  width: 1280px !important; // задаю приоритет
 }
 
-}
-
-// --------------------------------------------
-// Стандартные мониторы и ноуты
-// --------------------------------------------
-/*@media screen and (min-width:1224px) {
-
 .alert {
   margin: 5px auto;
   width:430px;
   margin-bottom:-53px;
 }
 
-.mycontainer {
- width: 1260px;
 }
 
-.mycontainer_adv {
- width: 1000px;
-}
+// --------------------------------------------
+// Стандартные мониторы и ноуты
+// --------------------------------------------
+//@media screen and (min-width:1224px) {
 
-}*/
 
-.mycontainer {
- width: 1260px;
-}
 
-.mycontainer_adv {
- width: 1000px;
-}
+//}
+
+
 
 @media screen and (max-width:1224px) {
 

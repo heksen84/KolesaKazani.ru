@@ -159,6 +159,10 @@ h3 {
   background: #6ed26e;
 }
 
+.mycontainer_adv {
+  width: 1000px;
+}
+
 #location {
   width: 250px;
   margin-top: 1px;
@@ -407,32 +411,12 @@ h3 {
   .mycontainer {
     width: 1280px !important;
   }
-}
 
-/*@media screen and (min-width:1224px) {
-
-.alert {
-  margin: 5px auto;
-  width:430px;
-  margin-bottom:-53px;
-}
-
-.mycontainer {
- width: 1260px;
-}
-
-.mycontainer_adv {
- width: 1000px;
-}
-
-}*/
-
-.mycontainer {
-  width: 1260px;
-}
-
-.mycontainer_adv {
-  width: 1000px;
+  .alert {
+    margin: 5px auto;
+    width: 430px;
+    margin-bottom: -53px;
+  }
 }
 
 @media screen and (max-width: 1224px) {
