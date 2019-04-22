@@ -218,6 +218,7 @@ export default {
 
 		// Показать / скрыть фильтр
 		showFilter() {
+
 				if (this.filter) {					
 					this.filter=false
 					this.filter_text="Фильтр";
@@ -225,11 +226,13 @@ export default {
 				else {
 					this.filter=true;
 					this.filter_text="Скрыть фильтр";
-				}				
+				}
+
 			},
 
 			// Установить состояние кнопки фильтра
 			setFilterButtonFilterState(state) {
+
 				if (state) {
 						this.filter_button_variant="warning";
 						this.filter_button_text="Отменить фильтр";						
@@ -238,14 +241,17 @@ export default {
 						this.filter_button_variant="primary";
 						this.filter_button_text="Применить";
 					}
+
 			},
 
 			// Сменить сделку
 			changeDeal(deal) {
+
         this.filters.deal = deal;
 				this.start_page = 0;				
 				this.updateData();
 				this.currentPage = 1;
+
 			},
 			  
 			// Обновить данные
@@ -389,4 +395,3 @@ export default {
 	}
 }
 </script>
-<style></style>

@@ -112,6 +112,7 @@ import { get } from './../helpers/api'
 //import petrovich from 'petrovich';
 
 export default {
+  
   // Входящие данные
   props: ["items", "auth", "count", "subcats"],
 
@@ -157,9 +158,6 @@ export default {
     urlRegAndPlace==null?this.urlRegAndPlace = "":this.urlRegAndPlace = urlRegAndPlace;
 
   },
-
-  mounted() {},
-  computed: {},
 
   // методы компонента
   methods: {
