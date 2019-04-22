@@ -1,12 +1,8 @@
 <?php
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 Auth::routes(); // Стандартные роуты
-
-//if (env("APP_DEBUG")) {
-	//\Debugbar::disable();
-	\Debugbar::enable();
-//}
 
 // -------------------------------------------------------------------------------
 // Результаты по категориям по всему Казахстану
@@ -88,7 +84,17 @@ Route::get("getSubCats",  		"SubCatsController@getSubCats" );
 // ---------------------------------------------------------------
 Route::get("getCarsMarks", "AdvertController@getCarsMarks" );
 Route::get("getCarsModels", "AdvertController@getCarsModels" );
-Route::get("search",  function () { return view("search")->with("items", "123"); });
+
+// Поиск
+Route::get("search",  function (Request $request) { 	
+	
+	\Debugbar::info($request->input("str"));	
+
+	$arr = explode(" ", $request->input("str"));
+	\Debugbar::info($arr);
+
+	return view("search")->with("items", "123"); 
+});
 
 // --------------------------------------------------------------------
 // Перенести в контроллер Categories

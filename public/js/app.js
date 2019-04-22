@@ -4002,7 +4002,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       urlRegAndPlace: "",
       buttonAllCountry: true,
       buttonAllRegion: false,
-      regionName: ""
+      regionName: "",
+      searchString: ""
     };
   },
 
@@ -4015,7 +4016,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     if (lang != null) {
       this.$store.commit("SetLang", lang);
-      if (lang == "ru") this.lang = "русский";else this.lang = "казакша";
+      lang == "ru" ? this.lang = "русский" : this.lang = "казакша";
     } else {
       this.$store.commit("SetLang", "ru");
       this.lang = "русский";
@@ -4024,9 +4025,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     var placeName = localStorage.getItem("placeName");
     var urlRegAndPlace = localStorage.getItem("urlRegAndPlace");
 
-    if (placeName == null) this.selectedPlaceName = "Весь казахстан";else this.selectedPlaceName = placeName;
-
-    if (urlRegAndPlace == null) this.urlRegAndPlace = "";else this.urlRegAndPlace = urlRegAndPlace;
+    placeName == null ? this.selectedPlaceName = "Весь казахстан" : this.selectedPlaceName = placeName;
+    urlRegAndPlace == null ? this.urlRegAndPlace = "" : this.urlRegAndPlace = urlRegAndPlace;
   },
   mounted: function mounted() {},
 
@@ -4034,6 +4034,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   // методы компонента
   methods: {
+    search: function search() {
+      var str = this.searchString.split(" ").join("+");
+      window.location = "/search?str=" + str;
+    },
+
 
     // установка языка
     setLang: function setLang() {
@@ -4092,9 +4097,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     register: function register() {
       window.location = "/register";
     },
-    search: function search() {
-      window.location = "/search";
-    },
     openLocationWindow: function openLocationWindow() {
       var _this = this;
 
@@ -4108,7 +4110,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // получаю регионы
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/getRegions").then(function (res) {
         console.log(res.data);
-
         _this.regions = res.data;
       }).catch(function (err) {});
     },
@@ -4152,6 +4153,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);
     },
     selectAllCountry: function selectAllCountry(e) {
+
       this.selectedPlaceName = "Весь Казахстан";
       this.urlRegAndPlace = "";
       this.locationDialog = false;
@@ -4161,6 +4163,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       localStorage.setItem("urlRegAndPlace", "");
     },
     selectAllRegion: function selectAllRegion(e) {
+
       this.selectedPlaceName = this.regionName;
       this.locationDialog = false;
       this.buttonAllCountry = false;
@@ -36734,10 +36737,27 @@ var render = function() {
             },
             [
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.searchString,
+                    expression: "searchString"
+                  }
+                ],
                 attrs: {
                   type: "text",
                   id: "search_string",
                   placeholder: _vm.$store.state.str_search_placeholder
+                },
+                domProps: { value: _vm.searchString },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.searchString = $event.target.value
+                  }
                 }
               }),
               _vm._v(" "),

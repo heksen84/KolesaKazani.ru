@@ -36,7 +36,7 @@
         </b-col>
 
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
-          <input type="text" id="search_string" :placeholder="$store.state.str_search_placeholder"/>
+          <input v-model="searchString" type="text" id="search_string" :placeholder="$store.state.str_search_placeholder"/>
           <button id="button_search" @click="search" title="Найти что требуется">{{ this.$store.state.str_button_search }}</button>
 
           <!-- кнопки выбора региона и т.п.-->
@@ -130,7 +130,8 @@ export default {
       urlRegAndPlace: "",
       buttonAllCountry: true,
       buttonAllRegion: false,
-      regionName: ""
+      regionName: "",
+      searchString: ""
     }
   },
 
@@ -142,29 +143,19 @@ export default {
 
     if (lang!=null) {
       this.$store.commit("SetLang", lang)
-      if (lang=="ru")
-        this.lang="русский";
-      else
-        this.lang="казакша";
+      lang=="ru"?this.lang="русский":this.lang="казакша";
     }
     else {
       this.$store.commit("SetLang", "ru")
       this.lang="русский";
     }
     
-
     var placeName = localStorage.getItem("placeName");
     var urlRegAndPlace = localStorage.getItem("urlRegAndPlace");
 
-    if(placeName==null)
-      this.selectedPlaceName = "Весь казахстан";
-    else 
-      this.selectedPlaceName = placeName;
+    placeName==null?this.selectedPlaceName = "Весь казахстан": this.selectedPlaceName = placeName;
+    urlRegAndPlace==null?this.urlRegAndPlace = "":this.urlRegAndPlace = urlRegAndPlace;
 
-    if(urlRegAndPlace==null)
-      this.urlRegAndPlace = "";
-    else 
-      this.urlRegAndPlace = urlRegAndPlace;
   },
 
   mounted() {},
@@ -173,17 +164,20 @@ export default {
   // методы компонента
   methods: {
 
+    search() {
+      var str = this.searchString.split(" ").join("+");
+      window.location="/search?str="+str;
+    },
+
     // установка языка
     setLang() {
       var ru = "русский";
-      if (this.lang==ru) 
-      {
+      if (this.lang==ru) {
         this.$store.commit("SetLang", "kz")
         this.lang="казакша";
         localStorage.setItem("lang", "kz")
       }
-      else 
-      {
+      else {
         this.$store.commit("SetLang", "ru")
         this.lang=ru;
         localStorage.setItem("lang", "ru")
@@ -234,11 +228,7 @@ export default {
 
     register() {
       window.location="/register";
-    },
-
-    search() {
-      window.location="/search";
-    },
+    },    
     
     openLocationWindow() {
 
@@ -251,8 +241,7 @@ export default {
 
       // получаю регионы
       get("/getRegions").then((res) => {
-          console.log(res.data);
-          
+          console.log(res.data);          
           this.regions=res.data;
       }).catch((err) => {
         
@@ -298,6 +287,7 @@ export default {
     },
 
     selectAllCountry(e) {
+
       this.selectedPlaceName="Весь Казахстан";
       this.urlRegAndPlace="";      
       this.locationDialog=false;
@@ -305,9 +295,11 @@ export default {
       // сохраняю в localStorage
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", "");
+
     },
 
     selectAllRegion(e) {
+      
       this.selectedPlaceName=this.regionName;
       this.locationDialog=false;
       this.buttonAllCountry=false;
@@ -315,6 +307,7 @@ export default {
       // сохраняю в localStorage
       localStorage.setItem("placeName", this.selectedPlaceName);
       localStorage.setItem("urlRegAndPlace", this.urlRegAndPlace);
+
     }
   }
 }
