@@ -62,6 +62,10 @@ input[type="number"] {
  text-align: center;
 }
 
+#navbar_menu {
+  display: none;
+}
+
 html {
   color:white;
 }
@@ -77,6 +81,7 @@ body {
 -moz-background-size: cover;
 -webkit-background-size: cover;
 -o-background-size: cover;
+
 }
 
 #index_page a {
@@ -499,6 +504,10 @@ h3 {
 
 body {
  background-image: url('/images/site/fon_750px.jpg');
+}
+
+#navbar_menu {
+  display: block;
 }
 
 #search_string {

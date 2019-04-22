@@ -3978,6 +3978,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -36520,504 +36544,587 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "b-container",
-    { staticClass: "mycontainer", attrs: { fluid: "", id: "index_page" } },
+    "div",
     [
       _c(
-        "b-row",
+        "div",
+        { attrs: { id: "navbar_menu" } },
         [
           _c(
-            "b-modal",
-            {
-              staticStyle: { "text-align": "center", color: "rgb(50,50,50)" },
-              attrs: { "hide-footer": "", title: _vm.locationDialogTitle },
-              model: {
-                value: _vm.locationDialog,
-                callback: function($$v) {
-                  _vm.locationDialog = $$v
-                },
-                expression: "locationDialog"
-              }
-            },
+            "b-navbar",
+            { attrs: { toggleable: "lg", type: "dark", variant: "primary" } },
             [
-              _vm._l(_vm.regions, function(i) {
-                return _c(
-                  "b-button",
-                  {
-                    key: i.region_id,
-                    staticStyle: { color: "black" },
-                    attrs: { variant: "link" },
-                    on: {
-                      click: function($event) {
-                        _vm.selectLocation(i)
-                      }
-                    }
-                  },
-                  [_vm._v(_vm._s(i.name) + "\n        ")]
-                )
-              }),
+              _c("b-navbar-brand", { attrs: { href: "#" } }, [
+                _vm._v("Дамеля")
+              ]),
               _vm._v(" "),
-              _vm.buttonAllCountry ? _c("hr") : _vm._e(),
-              _vm._v(" "),
-              _vm.buttonAllCountry
-                ? _c(
-                    "b-button",
-                    {
-                      staticStyle: { "margin-top": "-15px" },
-                      attrs: { variant: "link" },
-                      on: { click: _vm.selectAllCountry }
-                    },
-                    [_vm._v("Весь Казахстан")]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm._l(_vm.places, function(i) {
-                return _c(
-                  "b-button",
-                  {
-                    key: i.city_id,
-                    staticStyle: { color: "black" },
-                    attrs: { variant: "link" },
-                    on: {
-                      click: function($event) {
-                        _vm.selectPlace(i)
-                      }
-                    }
-                  },
-                  [_vm._v(_vm._s(i.name))]
-                )
-              }),
-              _vm._v(" "),
-              _vm.buttonAllRegion ? _c("hr") : _vm._e(),
-              _vm._v(" "),
-              _vm.buttonAllRegion
-                ? _c(
-                    "b-button",
-                    {
-                      staticStyle: { "margin-top": "-5px" },
-                      attrs: { variant: "link" },
-                      on: { click: _vm.selectAllRegion }
-                    },
-                    [_vm._v("Вся область")]
-                  )
-                : _vm._e()
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "b-col",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.auth,
-                  expression: "auth"
-                }
-              ],
-              attrs: { id: "welcome_menu" }
-            },
-            [
-              _c(
-                "div",
-                {
-                  staticClass: "button",
-                  staticStyle: {
-                    "text-align": "center",
-                    position: "relative",
-                    top: "5px",
-                    "margin-left": "10px"
-                  },
-                  attrs: { id: "button_login" },
-                  on: { click: _vm.login }
-                },
-                [_vm._v(_vm._s(this.$store.state.str_my_adverts))]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "b-col",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: !_vm.auth,
-                  expression: "!auth"
-                }
-              ],
-              staticStyle: { "text-align": "center", top: "5px" }
-            },
-            [
-              _c(
-                "div",
-                {
-                  staticClass: "button",
-                  staticStyle: { "margin-left": "17px" },
-                  attrs: { id: "button_login" },
-                  on: { click: _vm.login }
-                },
-                [_vm._v("Вход")]
-              ),
+              _c("b-navbar-toggle", { attrs: { target: "nav-collapse" } }),
               _vm._v(" "),
               _c(
-                "div",
-                {
-                  staticClass: "button",
-                  attrs: { id: "button_reg" },
-                  on: { click: _vm.register }
-                },
-                [_vm._v("Регистрация")]
-              )
-            ]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-row",
-        { staticStyle: { "margin-top": "2px" } },
-        [
-          _c(
-            "b-col",
-            {
-              staticStyle: { "text-align": "center" },
-              attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
-            },
-            [
-              _c(
-                "div",
-                {
-                  attrs: { id: "logo_block" },
-                  on: { click: _vm.closeSubCats }
-                },
-                [
-                  _c("div", { attrs: { id: "logo_block_text" } }, [
-                    _vm._v(_vm._s(this.$store.state.str_title))
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticStyle: {
-                        "font-size": "16px",
-                        color: "yellow",
-                        "margin-top": "-13px",
-                        "letter-spacing": "2px"
-                      }
-                    },
-                    [_vm._v(_vm._s(this.$store.state.str_desc))]
-                  )
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "b-col",
-            {
-              staticStyle: { "text-align": "center" },
-              attrs: { cols: "12", sm: "12", md: "12", lg: "6", xl: "6" }
-            },
-            [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.searchString,
-                    expression: "searchString"
-                  }
-                ],
-                attrs: {
-                  type: "text",
-                  id: "search_string",
-                  placeholder: _vm.$store.state.str_search_placeholder
-                },
-                domProps: { value: _vm.searchString },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.searchString = $event.target.value
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  attrs: { id: "button_search", title: "Найти что требуется" },
-                  on: { click: _vm.search }
-                },
-                [_vm._v(_vm._s(this.$store.state.str_button_search))]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { attrs: { id: "index_select_region_and_other_button_block" } },
+                "b-collapse",
+                { attrs: { id: "nav-collapse", "is-nav": "" } },
                 [
                   _c(
-                    "b-button",
-                    {
-                      staticClass: "search_options_button mb-1 mr-sm-1 mb-sm-1",
-                      attrs: {
-                        size: "sm",
-                        title: _vm.$store.state.str_location
-                      },
-                      on: { click: _vm.openLocationWindow }
-                    },
+                    "b-navbar-nav",
                     [
-                      _vm._v(
-                        _vm._s(_vm.$store.state.str_location) +
-                          ": " +
-                          _vm._s(_vm.selectedPlaceName)
-                      )
-                    ]
+                      _c("b-nav-item", { attrs: { href: "#" } }, [
+                        _vm._v("Разместить объявление")
+                      ]),
+                      _vm._v(" "),
+                      _c("b-nav-item", { attrs: { href: "#" } }, [
+                        _vm._v("Вход")
+                      ]),
+                      _vm._v(" "),
+                      _c("b-nav-item", { attrs: { href: "#" } }, [
+                        _vm._v("Регистрация")
+                      ])
+                    ],
+                    1
                   )
                 ],
                 1
               )
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "b-col",
-            {
-              staticStyle: { "text-align": "center" },
-              attrs: {
-                cols: "12",
-                sm: "12",
-                md: "12",
-                lg: "3",
-                xl: "3",
-                title: "Подать новое объявление"
-              }
-            },
-            [
-              _c("a", { attrs: { href: "/podat-obyavlenie" } }, [
-                _c("div", { attrs: { id: "new_advert_block" } }, [
-                  _vm._v(_vm._s(this.$store.state.str_create_advert))
-                ])
-              ])
-            ]
+            ],
+            1
           )
         ],
         1
       ),
       _vm._v(" "),
-      _c("div", { attrs: { id: "categories_line" } }, [
-        _vm.show_categories
-          ? _c(
-              "div",
-              { staticStyle: { "text-align": "center" } },
-              [
-                _c(
-                  "div",
-                  {
-                    staticClass: "shadow_text",
-                    staticStyle: { "margin-bottom": "18px" },
-                    attrs: { id: "categories_title" }
+      _c(
+        "b-container",
+        { staticClass: "mycontainer", attrs: { fluid: "", id: "index_page" } },
+        [
+          _c(
+            "b-row",
+            [
+              _c(
+                "b-modal",
+                {
+                  staticStyle: {
+                    "text-align": "center",
+                    color: "rgb(50,50,50)"
                   },
-                  [_vm._v("категории")]
-                ),
-                _vm._v(" "),
-                _vm._l(Object.keys(_vm.items).length, function(i) {
-                  return _c(
-                    "b-row",
-                    { key: i },
-                    _vm._l(_vm.items.slice((i - 1) * 4, i * 4), function(item) {
-                      return _c(
-                        "b-col",
+                  attrs: { "hide-footer": "", title: _vm.locationDialogTitle },
+                  model: {
+                    value: _vm.locationDialog,
+                    callback: function($$v) {
+                      _vm.locationDialog = $$v
+                    },
+                    expression: "locationDialog"
+                  }
+                },
+                [
+                  _vm._l(_vm.regions, function(i) {
+                    return _c(
+                      "b-button",
+                      {
+                        key: i.region_id,
+                        staticStyle: { color: "black" },
+                        attrs: { variant: "link" },
+                        on: {
+                          click: function($event) {
+                            _vm.selectLocation(i)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(i.name) + "\r\n          ")]
+                    )
+                  }),
+                  _vm._v(" "),
+                  _vm.buttonAllCountry ? _c("hr") : _vm._e(),
+                  _vm._v(" "),
+                  _vm.buttonAllCountry
+                    ? _c(
+                        "b-button",
                         {
-                          key: item.id,
-                          attrs: {
-                            cols: "12",
-                            sm: "12",
-                            md: "12",
-                            lg: "3",
-                            xl: "3"
+                          staticStyle: { "margin-top": "-15px" },
+                          attrs: { variant: "link" },
+                          on: { click: _vm.selectAllCountry }
+                        },
+                        [_vm._v("Весь Казахстан")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm._l(_vm.places, function(i) {
+                    return _c(
+                      "b-button",
+                      {
+                        key: i.city_id,
+                        staticStyle: { color: "black" },
+                        attrs: { variant: "link" },
+                        on: {
+                          click: function($event) {
+                            _vm.selectPlace(i)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(i.name))]
+                    )
+                  }),
+                  _vm._v(" "),
+                  _vm.buttonAllRegion ? _c("hr") : _vm._e(),
+                  _vm._v(" "),
+                  _vm.buttonAllRegion
+                    ? _c(
+                        "b-button",
+                        {
+                          staticStyle: { "margin-top": "-5px" },
+                          attrs: { variant: "link" },
+                          on: { click: _vm.selectAllRegion }
+                        },
+                        [_vm._v("Вся область")]
+                      )
+                    : _vm._e()
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.auth,
+                      expression: "auth"
+                    }
+                  ],
+                  attrs: { id: "welcome_menu" }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "button",
+                      staticStyle: {
+                        "text-align": "center",
+                        position: "relative",
+                        top: "5px",
+                        "margin-left": "10px"
+                      },
+                      attrs: { id: "button_login" },
+                      on: { click: _vm.login }
+                    },
+                    [_vm._v(_vm._s(this.$store.state.str_my_adverts))]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: !_vm.auth,
+                      expression: "!auth"
+                    }
+                  ],
+                  staticStyle: { "text-align": "center", top: "5px" }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "button",
+                      staticStyle: { "margin-left": "17px" },
+                      attrs: { id: "button_login" },
+                      on: { click: _vm.login }
+                    },
+                    [_vm._v("Вход")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "button",
+                      attrs: { id: "button_reg" },
+                      on: { click: _vm.register }
+                    },
+                    [_vm._v("Регистрация")]
+                  )
+                ]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-row",
+            { staticStyle: { "margin-top": "2px" } },
+            [
+              _c(
+                "b-col",
+                {
+                  staticStyle: { "text-align": "center" },
+                  attrs: { cols: "12", sm: "12", md: "12", lg: "3", xl: "3" }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      attrs: { id: "logo_block" },
+                      on: { click: _vm.closeSubCats }
+                    },
+                    [
+                      _c("div", { attrs: { id: "logo_block_text" } }, [
+                        _vm._v(_vm._s(this.$store.state.str_title))
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticStyle: {
+                            "font-size": "16px",
+                            color: "yellow",
+                            "margin-top": "-13px",
+                            "letter-spacing": "2px"
                           }
                         },
+                        [_vm._v(_vm._s(this.$store.state.str_desc))]
+                      )
+                    ]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                {
+                  staticStyle: { "text-align": "center" },
+                  attrs: { cols: "12", sm: "12", md: "12", lg: "6", xl: "6" }
+                },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.searchString,
+                        expression: "searchString"
+                      }
+                    ],
+                    attrs: {
+                      type: "text",
+                      id: "search_string",
+                      placeholder: _vm.$store.state.str_search_placeholder
+                    },
+                    domProps: { value: _vm.searchString },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.searchString = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      attrs: {
+                        id: "button_search",
+                        title: "Найти что требуется"
+                      },
+                      on: { click: _vm.search }
+                    },
+                    [_vm._v(_vm._s(this.$store.state.str_button_search))]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      attrs: {
+                        id: "index_select_region_and_other_button_block"
+                      }
+                    },
+                    [
+                      _c(
+                        "b-button",
+                        {
+                          staticClass:
+                            "search_options_button mb-1 mr-sm-1 mb-sm-1",
+                          attrs: {
+                            size: "sm",
+                            title: _vm.$store.state.str_location
+                          },
+                          on: { click: _vm.openLocationWindow }
+                        },
                         [
-                          _c(
-                            "a",
-                            {
-                              attrs: {
-                                href: _vm.urlRegAndPlace + "/" + item.url
-                              },
-                              on: {
-                                click: function($event) {
-                                  _vm.showSubcats($event, item.id)
-                                }
-                              }
-                            },
-                            [
-                              _c("div", { staticClass: "category_item" }, [
-                                _vm._v(_vm._s(item.name) + "\n            ")
-                              ])
-                            ]
+                          _vm._v(
+                            _vm._s(_vm.$store.state.str_location) +
+                              ": " +
+                              _vm._s(_vm.selectedPlaceName)
                           )
                         ]
                       )
-                    })
+                    ],
+                    1
                   )
-                })
-              ],
-              2
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        !_vm.show_categories
-          ? _c(
-              "div",
-              { staticStyle: { "text-align": "center" } },
-              [
-                _c(
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                {
+                  staticStyle: { "text-align": "center" },
+                  attrs: {
+                    cols: "12",
+                    sm: "12",
+                    md: "12",
+                    lg: "3",
+                    xl: "3",
+                    title: "Подать новое объявление"
+                  }
+                },
+                [
+                  _c("a", { attrs: { href: "/podat-obyavlenie" } }, [
+                    _c("div", { attrs: { id: "new_advert_block" } }, [
+                      _vm._v(_vm._s(this.$store.state.str_create_advert))
+                    ])
+                  ])
+                ]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { attrs: { id: "categories_line" } }, [
+            _vm.show_categories
+              ? _c(
                   "div",
-                  {
-                    staticClass: "shadow_text",
-                    staticStyle: { "margin-bottom": "18px" },
-                    attrs: { id: "categories_title" }
-                  },
-                  [_vm._v("подкатегории")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-button",
-                  {
-                    staticStyle: {
-                      border: "1px solid white",
-                      "font-size": "14px"
-                    },
-                    attrs: {
-                      variant: "primary",
-                      size: "sm",
-                      id: "close_subcats_btn"
-                    },
-                    on: { click: _vm.closeSubCats }
-                  },
-                  [_vm._v("↺ Вернуться к категориям")]
-                ),
-                _vm._v(" "),
-                _vm._l(Object.keys(_vm.subcats).length, function(i) {
-                  return _c(
-                    "b-row",
-                    { key: i },
-                    _vm._l(_vm.subcats.slice((i - 1) * 4, i * 4), function(
-                      item
-                    ) {
+                  { staticStyle: { "text-align": "center" } },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "shadow_text",
+                        staticStyle: { "margin-bottom": "18px" },
+                        attrs: { id: "categories_title" }
+                      },
+                      [_vm._v("категории")]
+                    ),
+                    _vm._v(" "),
+                    _vm._l(Object.keys(_vm.items).length, function(i) {
                       return _c(
-                        "b-col",
-                        {
-                          key: item.id,
-                          attrs: {
-                            cols: "12",
-                            sm: "12",
-                            md: "12",
-                            lg: "3",
-                            xl: "3"
-                          }
-                        },
-                        [
-                          _c(
-                            "a",
+                        "b-row",
+                        { key: i },
+                        _vm._l(_vm.items.slice((i - 1) * 4, i * 4), function(
+                          item
+                        ) {
+                          return _c(
+                            "b-col",
                             {
+                              key: item.id,
                               attrs: {
-                                href: _vm.urlRegAndPlace + "/" + item.url
+                                cols: "12",
+                                sm: "12",
+                                md: "12",
+                                lg: "3",
+                                xl: "3"
                               }
                             },
                             [
                               _c(
-                                "div",
+                                "a",
                                 {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: _vm.displaySubItem(
-                                        item.category_id
-                                      ),
-                                      expression:
-                                        "displaySubItem(item.category_id)"
+                                  attrs: {
+                                    href: _vm.urlRegAndPlace + "/" + item.url
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.showSubcats($event, item.id)
                                     }
-                                  ],
-                                  staticClass: "category_item",
-                                  staticStyle: {
-                                    width: "280px",
-                                    "font-size": "17px"
                                   }
                                 },
-                                [_vm._v(_vm._s(item.name))]
+                                [
+                                  _c("div", { staticClass: "category_item" }, [
+                                    _vm._v(
+                                      _vm._s(item.name) + "\r\n              "
+                                    )
+                                  ])
+                                ]
                               )
                             ]
                           )
-                        ]
+                        })
                       )
                     })
-                  )
-                })
-              ],
-              2
-            )
-          : _vm._e()
-      ]),
-      _vm._v(" "),
-      _c("b-row", { staticStyle: { "margin-top": "20px" } }, [
-        _c("h5", { staticStyle: { margin: "auto" } }, [_vm._v("Google Advert")])
-      ]),
-      _vm._v(" "),
-      _c(
-        "b-row",
-        { staticClass: "shadow_text", staticStyle: { "margin-top": "75px" } },
-        [_c("h5", [_vm._v("VIP объявления")])]
-      ),
-      _vm._v(" "),
-      _c(
-        "b-row",
-        _vm._l(10, function(i) {
-          return _c("b-col", {
-            key: i,
-            staticStyle: {
-              border: "1px solid rgb(255,255,255)",
-              margin: "3px",
-              padding: "50px",
-              opacity: "0.5"
-            }
-          })
-        })
-      ),
-      _vm._v(" "),
-      _c("b-row", [
-        _c("div", { attrs: { id: "footer" } }, [
+                  ],
+                  2
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            !_vm.show_categories
+              ? _c(
+                  "div",
+                  { staticStyle: { "text-align": "center" } },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "shadow_text",
+                        staticStyle: { "margin-bottom": "18px" },
+                        attrs: { id: "categories_title" }
+                      },
+                      [_vm._v("подкатегории")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-button",
+                      {
+                        staticStyle: {
+                          border: "1px solid white",
+                          "font-size": "14px"
+                        },
+                        attrs: {
+                          variant: "primary",
+                          size: "sm",
+                          id: "close_subcats_btn"
+                        },
+                        on: { click: _vm.closeSubCats }
+                      },
+                      [_vm._v("↺ Вернуться к категориям")]
+                    ),
+                    _vm._v(" "),
+                    _vm._l(Object.keys(_vm.subcats).length, function(i) {
+                      return _c(
+                        "b-row",
+                        { key: i },
+                        _vm._l(_vm.subcats.slice((i - 1) * 4, i * 4), function(
+                          item
+                        ) {
+                          return _c(
+                            "b-col",
+                            {
+                              key: item.id,
+                              attrs: {
+                                cols: "12",
+                                sm: "12",
+                                md: "12",
+                                lg: "3",
+                                xl: "3"
+                              }
+                            },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    href: _vm.urlRegAndPlace + "/" + item.url
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "show",
+                                          rawName: "v-show",
+                                          value: _vm.displaySubItem(
+                                            item.category_id
+                                          ),
+                                          expression:
+                                            "displaySubItem(item.category_id)"
+                                        }
+                                      ],
+                                      staticClass: "category_item",
+                                      staticStyle: {
+                                        width: "280px",
+                                        "font-size": "17px"
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(item.name))]
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        })
+                      )
+                    })
+                  ],
+                  2
+                )
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("b-row", { staticStyle: { "margin-top": "20px" } }, [
+            _c("h5", { staticStyle: { margin: "auto" } }, [
+              _vm._v("Google Advert")
+            ])
+          ]),
+          _vm._v(" "),
           _c(
-            "a",
-            { staticClass: "underline_link", attrs: { href: "advertisers" } },
-            [_vm._v("Реклама")]
+            "b-row",
+            {
+              staticClass: "shadow_text",
+              staticStyle: { "margin-top": "75px" }
+            },
+            [_c("h5", [_vm._v("VIP объявления")])]
           ),
-          _vm._v(" | \n      "),
-          _c("a", { staticClass: "underline_link", attrs: { href: "rules" } }, [
-            _vm._v("Правила сайта")
-          ]),
-          _vm._v(" |  \n      "),
-          _c("span", { on: { click: _vm.setLang } }, [
-            _vm._v("Язык: "),
-            _c(
-              "span",
-              { staticStyle: { color: "rgb(180,255,180)", cursor: "pointer" } },
-              [_vm._v(_vm._s(_vm.lang))]
-            )
-          ]),
-          _vm._v(" |\n      "),
-          _c("a", { staticClass: "underline_link", attrs: { href: "about" } }, [
-            _vm._v("О сайте")
+          _vm._v(" "),
+          _c(
+            "b-row",
+            _vm._l(10, function(i) {
+              return _c("b-col", {
+                key: i,
+                staticStyle: {
+                  border: "1px solid rgb(255,255,255)",
+                  margin: "3px",
+                  padding: "50px",
+                  opacity: "0.5"
+                }
+              })
+            })
+          ),
+          _vm._v(" "),
+          _c("b-row", [
+            _c("div", { attrs: { id: "footer" } }, [
+              _c(
+                "a",
+                {
+                  staticClass: "underline_link",
+                  attrs: { href: "advertisers" }
+                },
+                [_vm._v("Реклама")]
+              ),
+              _vm._v(" | \r\n        "),
+              _c(
+                "a",
+                { staticClass: "underline_link", attrs: { href: "rules" } },
+                [_vm._v("Правила сайта")]
+              ),
+              _vm._v(" |  \r\n        "),
+              _c("span", { on: { click: _vm.setLang } }, [
+                _vm._v("Язык: "),
+                _c(
+                  "span",
+                  {
+                    staticStyle: {
+                      color: "rgb(180,255,180)",
+                      cursor: "pointer"
+                    }
+                  },
+                  [_vm._v(_vm._s(_vm.lang))]
+                )
+              ]),
+              _vm._v(" |\r\n        "),
+              _c(
+                "a",
+                { staticClass: "underline_link", attrs: { href: "about" } },
+                [_vm._v("О сайте")]
+              )
+            ])
           ])
-        ])
-      ])
+        ],
+        1
+      )
     ],
     1
   )

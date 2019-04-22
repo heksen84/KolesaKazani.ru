@@ -58,6 +58,10 @@ input[type="number"] {
   text-align: center;
 }
 
+#navbar_menu {
+  display: none;
+}
+
 html {
   color: white;
 }
@@ -474,6 +478,10 @@ h3 {
 @media screen and (max-width: 768px) {
   body {
     background-image: url("/images/site/fon_750px.jpg");
+  }
+
+  #navbar_menu {
+    display: block;
   }
 
   #search_string {
