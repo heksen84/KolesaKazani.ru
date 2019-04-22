@@ -36851,7 +36851,7 @@ var render = function() {
                 "b-col",
                 {
                   staticStyle: { "text-align": "center" },
-                  attrs: { cols: "12", sm: "12", md: "12", lg: "6", xl: "6" }
+                  attrs: { cols: "12", sm: "12", md: "12", lg: "12", xl: "6" }
                 },
                 [
                   _c("input", {

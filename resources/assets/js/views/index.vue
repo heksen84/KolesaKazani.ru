@@ -51,7 +51,7 @@
     <b-row style="margin-top:2px">
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
 
-        <!-- кнопки выбора региона и т.п.-->
+          <!-- кнопки выбора региона и т.п.-->
           <div class="index_select_region_and_other_button_block" id="select_location_mobile">
             <b-button class="search_options_button mb-1 mr-sm-1 mb-sm-1" size="sm" @click="openLocationWindow" :title="$store.state.str_location">{{ $store.state.str_location }}: {{ selectedPlaceName }}</b-button>          
           </div>
@@ -64,7 +64,7 @@
 
         </b-col>
 
-        <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
+        <b-col cols="12" sm="12" md="12" lg="12" xl="6" style="text-align:center">
           <input v-model="searchString" type="text" id="search_string" :placeholder="$store.state.str_search_placeholder"/>
           <button id="button_search" @click="search" title="Найти что требуется">{{ this.$store.state.str_button_search }}</button>
 
