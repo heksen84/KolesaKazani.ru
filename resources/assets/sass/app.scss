@@ -161,10 +161,6 @@ h3 {
   background: rgb(110,210,110);
 }
 
-.mycontainer_adv {
-  width: 1000px;
- }
-
 #location {
   width:250px;
   margin-top:1px;
@@ -410,6 +406,10 @@ h3 {
  background:white;
 }
 
+.mycontainer_adv {
+  width: 900px;
+ }
+
 // --------------------------------------------
 // Большие мониторы
 // --------------------------------------------
@@ -508,6 +508,10 @@ h3 {
 // Большие устройства
 // --------------------------------------------
 @media screen and (max-width:960px) {
+
+.mycontainer_adv {
+  width: 100%;
+}
 
 .alert {
   width:100%;
