@@ -10,17 +10,14 @@ use DB;
 
 class SearchController extends Controller {
 
-    public function getSearchData(Request $request) {
+    public function search(Request $request) {      
 
-      $data = $request->input('data');
+      \Debugbar::info($request->input("str"));	
 
-      $price    = $data["price"];
-      $sdelka   = $data["sdelka"];
-      $actual   = $data["actual"];
-      $location = $data["location"];
+	    $arr = explode(" ", $request->input("str"));
+	    \Debugbar::info($arr);
 
-	     return Adverts::all()->toJson();
-
-      //return $data;
+      return view("search")->with("items", "123"); 
+  
     }
 }

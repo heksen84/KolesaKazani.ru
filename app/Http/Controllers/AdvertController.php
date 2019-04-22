@@ -21,9 +21,8 @@ use DB;
 
 class AdvertController extends Controller {
 
-
     public function getAdverts() {
-     return Adverts::all()->toJson();
+        return Adverts::all()->toJson();
     }
 
     /*

@@ -86,15 +86,7 @@ Route::get("getCarsMarks", "AdvertController@getCarsMarks" );
 Route::get("getCarsModels", "AdvertController@getCarsModels" );
 
 // Поиск
-Route::get("search",  function (Request $request) { 	
-	
-	\Debugbar::info($request->input("str"));	
-
-	$arr = explode(" ", $request->input("str"));
-	\Debugbar::info($arr);
-
-	return view("search")->with("items", "123"); 
-});
+Route::get("search", "SearchController@search" );
 
 // --------------------------------------------------------------------
 // Перенести в контроллер Categories
