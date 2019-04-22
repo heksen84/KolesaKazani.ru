@@ -137,7 +137,7 @@ const store = new Vuex.Store({
         if (lang == "ru") { // русский
           state.str_title = "Дамеля"
           state.str_desc = "доска объявлений"
-          state.str_search_placeholder = "поиск по сайту"
+          state.str_search_placeholder = "поиск по объявлениям"
           state.str_button_search = "поиск"
           state.str_create_advert = "подать объявление"
           state.str_my_adverts = "мои объявления"

@@ -4001,7 +4001,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -36555,7 +36554,7 @@ var render = function() {
             { attrs: { toggleable: "lg", type: "dark", variant: "primary" } },
             [
               _c("b-navbar-brand", { attrs: { href: "#" } }, [
-                _vm._v("Дамеля")
+                _vm._v(_vm._s(this.$store.state.str_title))
               ]),
               _vm._v(" "),
               _c("b-navbar-toggle", { attrs: { target: "nav-collapse" } }),
@@ -36569,6 +36568,10 @@ var render = function() {
                     [
                       _c("b-nav-item", { attrs: { href: "#" } }, [
                         _vm._v("Разместить объявление")
+                      ]),
+                      _vm._v(" "),
+                      _c("b-nav-item", { attrs: { href: "#" } }, [
+                        _vm._v("Мои объявления")
                       ]),
                       _vm._v(" "),
                       _c("b-nav-item", { attrs: { href: "#" } }, [
@@ -36878,7 +36881,8 @@ var render = function() {
                     md: "12",
                     lg: "3",
                     xl: "3",
-                    title: "Подать новое объявление"
+                    title: "Подать новое объявление",
+                    id: "new_advert_col"
                   }
                 },
                 [
@@ -53976,7 +53980,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_33_vuex__["a" /* default */].Store({
         // русский
         state.str_title = "Дамеля";
         state.str_desc = "доска объявлений";
-        state.str_search_placeholder = "поиск по сайту";
+        state.str_search_placeholder = "поиск по объявлениям";
         state.str_button_search = "поиск";
         state.str_create_advert = "подать объявление";
         state.str_my_adverts = "мои объявления";

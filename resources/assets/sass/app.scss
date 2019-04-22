@@ -506,8 +506,19 @@ body {
  background-image: url('/images/site/fon_750px.jpg');
 }
 
+#welcome_menu {
+  display: none;
+}
+#logo_block {
+  display: none;
+}
+
 #navbar_menu {
   display: block;
+}
+
+#new_advert_col {
+  display: none;
 }
 
 #search_string {

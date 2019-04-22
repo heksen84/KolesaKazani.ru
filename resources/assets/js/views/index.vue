@@ -5,13 +5,14 @@
 <!-- Верхнее меню -->
 <div id="navbar_menu">
   <b-navbar toggleable="lg" type="dark" variant="primary">
-    <b-navbar-brand href="#">Дамеля</b-navbar-brand>
+    <b-navbar-brand href="#">{{ this.$store.state.str_title }}</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
         <b-nav-item href="#">Разместить объявление</b-nav-item>
+        <b-nav-item href="#">Мои объявления</b-nav-item>
         <b-nav-item href="#">Вход</b-nav-item>
         <b-nav-item href="#">Регистрация</b-nav-item>
       </b-navbar-nav>
@@ -37,13 +38,11 @@
           <b-button variant="link" style="margin-top:-5px" v-if="buttonAllRegion" @click="selectAllRegion">Вся область</b-button>
         </b-modal> 
         <b-col id="welcome_menu" v-show="auth">
-          <div class="button" id="button_login" style="text-align:center;position:relative;top:5px;margin-left:10px" @click="login">{{ this.$store.state.str_my_adverts }}</div>
-          <!--<div class="button" style="width:50px;text-align:center;position:relative;top:3px;background:rgb(100,100,200);margin-right:10px" @click="setLang">{{ lang }}</div>-->   
+          <div class="button" id="button_login" style="text-align:center;position:relative;top:5px;margin-left:10px" @click="login">{{ this.$store.state.str_my_adverts }}</div>          
         </b-col>        
         <b-col style="text-align:center;top:5px" v-show="!auth">
           <div class="button" id="button_login" style="margin-left:17px" @click="login">Вход</div>
-          <div class="button" id="button_reg" @click="register">Регистрация</div>
-          <!--<div class="button" style="width:50px;text-align:center;position:relative;background:rgb(100,100,200);float:right;top:3px;margin-right:10px" @click="setLang">{{ lang }}</div>-->
+          <div class="button" id="button_reg" @click="register">Регистрация</div>          
         </b-col>     
     </b-row>
 
@@ -55,6 +54,7 @@
             <div id="logo_block_text">{{ this.$store.state.str_title }}</div>
             <div style="font-size:16px;color:yellow;margin-top:-13px;letter-spacing:2px;">{{ this.$store.state.str_desc }}</div>
           </div>
+
         </b-col>
 
         <b-col cols="12" sm="12" md="12" lg="6" xl="6" style="text-align:center">
@@ -63,12 +63,11 @@
 
           <!-- кнопки выбора региона и т.п.-->
           <div id="index_select_region_and_other_button_block">
-          <b-button class="search_options_button mb-1 mr-sm-1 mb-sm-1" size="sm" @click="openLocationWindow" :title="$store.state.str_location">{{ $store.state.str_location }}: {{ selectedPlaceName }}</b-button>
-          <!--<b-button class="search_options_button mb-1 mr-sm-1 mb-sm-1" size="sm" style="background:rgb(100,100,150)">Категория</b-button>-->
+          <b-button class="search_options_button mb-1 mr-sm-1 mb-sm-1" size="sm" @click="openLocationWindow" :title="$store.state.str_location">{{ $store.state.str_location }}: {{ selectedPlaceName }}</b-button>          
           </div>
         </b-col>
 
-        <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center" title="Подать новое объявление">
+        <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center" title="Подать новое объявление"  id="new_advert_col">          
           <a href="/podat-obyavlenie"><div id="new_advert_block">{{ this.$store.state.str_create_advert }}</div></a>
         </b-col>
     </b-row>
