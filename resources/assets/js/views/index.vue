@@ -51,6 +51,11 @@
     <b-row style="margin-top:2px">
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
 
+        <!-- кнопки выбора региона и т.п.-->
+          <div class="index_select_region_and_other_button_block" id="select_location_mobile">
+            <b-button class="search_options_button mb-1 mr-sm-1 mb-sm-1" size="sm" @click="openLocationWindow" :title="$store.state.str_location">{{ $store.state.str_location }}: {{ selectedPlaceName }}</b-button>          
+          </div>
+
           <!-- Логотип -->        
           <div id="logo_block" @click="closeSubCats">
             <div id="logo_block_text">{{ this.$store.state.str_title }}</div>
@@ -64,9 +69,10 @@
           <button id="button_search" @click="search" title="Найти что требуется">{{ this.$store.state.str_button_search }}</button>
 
           <!-- кнопки выбора региона и т.п.-->
-          <div id="index_select_region_and_other_button_block">
-          <b-button class="search_options_button mb-1 mr-sm-1 mb-sm-1" size="sm" @click="openLocationWindow" :title="$store.state.str_location">{{ $store.state.str_location }}: {{ selectedPlaceName }}</b-button>          
+          <div class="index_select_region_and_other_button_block" id="select_location_desktop">
+            <b-button class="search_options_button mb-1 mr-sm-1 mb-sm-1" size="sm" @click="openLocationWindow" :title="$store.state.str_location">{{ $store.state.str_location }}: {{ selectedPlaceName }}</b-button>          
           </div>
+
         </b-col>
 
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center" title="Подать новое объявление"  id="new_advert_col">          

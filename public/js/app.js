@@ -4003,6 +4003,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -36786,6 +36792,36 @@ var render = function() {
                   _c(
                     "div",
                     {
+                      staticClass: "index_select_region_and_other_button_block",
+                      attrs: { id: "select_location_mobile" }
+                    },
+                    [
+                      _c(
+                        "b-button",
+                        {
+                          staticClass:
+                            "search_options_button mb-1 mr-sm-1 mb-sm-1",
+                          attrs: {
+                            size: "sm",
+                            title: _vm.$store.state.str_location
+                          },
+                          on: { click: _vm.openLocationWindow }
+                        },
+                        [
+                          _vm._v(
+                            _vm._s(_vm.$store.state.str_location) +
+                              ": " +
+                              _vm._s(_vm.selectedPlaceName)
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
                       attrs: { id: "logo_block" },
                       on: { click: _vm.closeSubCats }
                     },
@@ -36858,9 +36894,8 @@ var render = function() {
                   _c(
                     "div",
                     {
-                      attrs: {
-                        id: "index_select_region_and_other_button_block"
-                      }
+                      staticClass: "index_select_region_and_other_button_block",
+                      attrs: { id: "select_location_desktop" }
                     },
                     [
                       _c(

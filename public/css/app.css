@@ -79,6 +79,11 @@ body {
   -o-background-size: cover;
 }
 
+#select_location_mobile {
+  margin-top: 10px;
+  display: none;
+}
+
 #index_page a {
   color: white;
 }
@@ -199,7 +204,7 @@ h3 {
   font-size: 15px;
 }
 
-#index_select_region_and_other_button_block {
+.index_select_region_and_other_button_block {
   margin-top: 0px;
 }
 
@@ -478,6 +483,14 @@ h3 {
 @media screen and (max-width: 768px) {
   body {
     background-image: url("/images/site/fon_750px.jpg");
+  }
+
+  #select_location_mobile {
+    display: block;
+  }
+
+  #select_location_desktop {
+    display: none;
   }
 
   #welcome_menu {
