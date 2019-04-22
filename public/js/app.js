@@ -4001,6 +4001,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -36566,21 +36568,35 @@ var render = function() {
                   _c(
                     "b-navbar-nav",
                     [
-                      _c("b-nav-item", { attrs: { href: "#" } }, [
-                        _vm._v("Разместить объявление")
-                      ]),
+                      _c(
+                        "b-nav-item",
+                        { attrs: { href: "/podat-obyavlenie" } },
+                        [_vm._v("Подать объявление")]
+                      ),
                       _vm._v(" "),
-                      _c("b-nav-item", { attrs: { href: "#" } }, [
-                        _vm._v("Мои объявления")
-                      ]),
+                      _vm.auth
+                        ? _c("b-nav-item", { attrs: { href: "/home" } }, [
+                            _vm._v("Мои объявления")
+                          ])
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c("b-nav-item", { attrs: { href: "#" } }, [
-                        _vm._v("Вход")
-                      ]),
-                      _vm._v(" "),
-                      _c("b-nav-item", { attrs: { href: "#" } }, [
-                        _vm._v("Регистрация")
-                      ])
+                      !_vm.auth
+                        ? _c(
+                            "div",
+                            [
+                              _c("b-nav-item", { attrs: { href: "/login" } }, [
+                                _vm._v("Вход")
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "b-nav-item",
+                                { attrs: { href: "/register" } },
+                                [_vm._v("Регистрация")]
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e()
                     ],
                     1
                   )
@@ -36726,7 +36742,8 @@ var render = function() {
                       expression: "!auth"
                     }
                   ],
-                  staticStyle: { "text-align": "center", top: "5px" }
+                  staticStyle: { "text-align": "center", top: "5px" },
+                  attrs: { id: "login_register_col" }
                 },
                 [
                   _c(
@@ -38064,7 +38081,7 @@ var render = function() {
               _c(
                 "b-nav-item",
                 { attrs: { href: "#" }, on: { click: _vm.goHome } },
-                [_c("b", [_vm._v("Назад")])]
+                [_vm._v("Назад")]
               )
             ],
             1
@@ -38081,25 +38098,13 @@ var render = function() {
                   _c(
                     "b-nav-item",
                     { attrs: { href: "#" }, on: { click: _vm.createAdvert } },
-                    [
-                      _c("b-button", { attrs: { size: "sm" } }, [
-                        _vm._v("Разместить объявление")
-                      ])
-                    ],
-                    1
+                    [_vm._v("Подать объявление")]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-nav-item",
                     { attrs: { href: "#" }, on: { click: _vm.logout } },
-                    [
-                      _c(
-                        "b-button",
-                        { attrs: { variant: "primary", size: "sm" } },
-                        [_vm._v("Выйти")]
-                      )
-                    ],
-                    1
+                    [_vm._v("Выйти")]
                   )
                 ],
                 1
@@ -53919,7 +53924,7 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_34_vue
 var store = new __WEBPACK_IMPORTED_MODULE_33_vuex__["a" /* default */].Store({
 
   state: (_state = {
-    // -------------------------------------
+
     required_info: false, // обязательное поле дополнительной информации
     price: "",
     info_label_description: "",
@@ -53927,7 +53932,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_33_vuex__["a" /* default */].Store({
     show_final_fields: false,
     show_common_transport: false,
     deal_selected: false,
-    // -------------------------------------
+
     str_login: "",
     str_register: "",
     str_my_adverts: "",
@@ -53939,8 +53944,6 @@ var store = new __WEBPACK_IMPORTED_MODULE_33_vuex__["a" /* default */].Store({
   }, _defineProperty(_state, 'str_my_adverts', ""), _defineProperty(_state, 'str_location', ""), _defineProperty(_state, 'str_realestate_area_label_text', ""), _state),
 
   mutations: {
-
-    // ---
     SetDealSelected: function SetDealSelected(state, value) {
       state.deal_selected = value;
     },
@@ -53991,7 +53994,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_33_vuex__["a" /* default */].Store({
         // казахский
         state.str_title = "Дамеля";
         state.str_desc = "хабарландыру тақтасы";
-        state.str_search_placeholder = "cайт бойынша іздеу";
+        state.str_search_placeholder = "хабарландыруларда іздеу";
         state.str_button_search = "іздеу";
         state.str_create_advert = "хабарландыру орналастырыңыз";
         state.str_my_adverts = "менің хабарландыруларым";

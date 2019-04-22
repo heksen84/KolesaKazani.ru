@@ -496,6 +496,10 @@ h3 {
     display: none;
   }
 
+  #login_register_col {
+    display: none;
+  }
+
   #search_string {
     width: 100%;
   }

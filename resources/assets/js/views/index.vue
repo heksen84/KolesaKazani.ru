@@ -11,10 +11,12 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item href="#">Разместить объявление</b-nav-item>
-        <b-nav-item href="#">Мои объявления</b-nav-item>
-        <b-nav-item href="#">Вход</b-nav-item>
-        <b-nav-item href="#">Регистрация</b-nav-item>
+        <b-nav-item href="/podat-obyavlenie">Подать объявление</b-nav-item>
+        <b-nav-item href="/home" v-if="auth">Мои объявления</b-nav-item>
+	<div v-if="!auth">
+         <b-nav-item href="/login">Вход</b-nav-item>
+         <b-nav-item href="/register">Регистрация</b-nav-item>
+	</div>
       </b-navbar-nav>
             
     </b-collapse>
@@ -40,7 +42,7 @@
         <b-col id="welcome_menu" v-show="auth">
           <div class="button" id="button_login" style="text-align:center;position:relative;top:5px;margin-left:10px" @click="login">{{ this.$store.state.str_my_adverts }}</div>          
         </b-col>        
-        <b-col style="text-align:center;top:5px" v-show="!auth">
+        <b-col style="text-align:center;top:5px" v-show="!auth" id="login_register_col">
           <div class="button" id="button_login" style="margin-left:17px" @click="login">Вход</div>
           <div class="button" id="button_reg" @click="register">Регистрация</div>          
         </b-col>     

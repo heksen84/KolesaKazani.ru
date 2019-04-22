@@ -69,9 +69,8 @@ Vue.use(Notifications)
 // -----------------------------------
 const store = new Vuex.Store({
 
-    state: 
-    { 
-      // -------------------------------------
+    state: { 
+            
       required_info: false,       // обязательное поле дополнительной информации
       price: "",      
       info_label_description: "",
@@ -79,7 +78,7 @@ const store = new Vuex.Store({
       show_final_fields: false,
       show_common_transport: false,
       deal_selected: false,
-      // -------------------------------------
+
       str_login: "",
       str_register: "",
       str_my_adverts: "",
@@ -91,11 +90,11 @@ const store = new Vuex.Store({
       str_my_adverts: "",
       str_location: "",     
       str_realestate_area_label_text: ""
+
     },
 
     mutations: {
-
-       // ---
+      
        SetDealSelected( state, value ) {
         state.deal_selected=value;
       },
@@ -147,7 +146,7 @@ const store = new Vuex.Store({
         if (lang == "kz") { // казахский
           state.str_title = "Дамеля"
           state.str_desc = "хабарландыру тақтасы"
-          state.str_search_placeholder = "cайт бойынша іздеу"
+          state.str_search_placeholder = "хабарландыруларда іздеу"
           state.str_button_search = "іздеу"
           state.str_create_advert = "хабарландыру орналастырыңыз"
           state.str_my_adverts = "менің хабарландыруларым"

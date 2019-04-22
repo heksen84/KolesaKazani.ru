@@ -3,13 +3,13 @@
 <b-navbar toggleable="md" variant="light">
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
   	<b-navbar-nav>
-      <b-nav-item href="#" @click="goHome"><b>Назад</b></b-nav-item>
+      <b-nav-item href="#" @click="goHome">Назад</b-nav-item>
   	</b-navbar-nav>
   
 	<b-collapse is-nav id="nav_collapse">
     <b-navbar-nav class="ml-auto">
-      <b-nav-item href="#" @click="createAdvert"><b-button size="sm">Разместить объявление</b-button></b-nav-item>
-      <b-nav-item href="#" @click="logout"><b-button variant="primary" size="sm">Выйти</b-button></b-nav-item>
+      <b-nav-item href="#" @click="createAdvert">Подать объявление</b-nav-item>
+      <b-nav-item href="#" @click="logout">Выйти</b-nav-item>
     </b-navbar-nav>
   </b-collapse>
 	
