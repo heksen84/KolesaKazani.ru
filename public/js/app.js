@@ -36980,7 +36980,7 @@ var render = function() {
                                 cols: "12",
                                 sm: "12",
                                 md: "12",
-                                lg: "3",
+                                lg: "12",
                                 xl: "3"
                               }
                             },
@@ -37062,7 +37062,7 @@ var render = function() {
                                 cols: "12",
                                 sm: "12",
                                 md: "12",
-                                lg: "3",
+                                lg: "12",
                                 xl: "3"
                               }
                             },

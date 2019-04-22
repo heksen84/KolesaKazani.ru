@@ -427,9 +427,9 @@ h3 {
 @media screen and (min-width:1224px) {
 
 .alert {
-    margin: 5px auto;
-    width:430px;
-    margin-bottom:-53px;
+  margin: 5px auto;
+  width:430px;
+  margin-bottom:-53px;
 }
 
 .mycontainer {
@@ -444,6 +444,38 @@ h3 {
 
 // IPAD'ы PRO
 @media screen and (max-width:1024px) {
+
+#new_advert_block {
+  font-size:10px;
+}
+
+#select_location_mobile{
+  display:block;
+}
+  
+#select_location_desktop{
+  display:none;
+}
+  
+#welcome_menu {
+  display: none;
+}
+
+#logo_block {
+  display: none;
+}
+  
+#navbar_menu {
+  display: block;
+}
+  
+#new_advert_col {
+  display: none;
+}
+
+#login_register_col {
+  display:none;
+}
 
 #categories_line {
   margin-top:0px;
@@ -477,34 +509,6 @@ h3 {
 
 // большие устройства
 @media screen and (max-width:960px) {
-
-
-  #select_location_mobile{
-    display:block;
-  }
-  
-  #select_location_desktop{
-    display:none;
-  }
-  
-  #welcome_menu {
-    display: none;
-  }
-  #logo_block {
-    display: none;
-  }
-  
-  #navbar_menu {
-    display: block;
-  }
-  
-  #new_advert_col {
-    display: none;
-  }
-  #login_register_col {
-    display:none;
-  }
-  
 
 .alert {
   width:100%;
