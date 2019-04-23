@@ -4009,6 +4009,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -4019,9 +4021,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   // Входящие данные
   props: ["items", "auth", "count", "subcats"],
 
+  // переменные
   data: function data() {
-
-    // переменные
     return {
       lang: "русский",
       show_categories: true,
@@ -4040,7 +4041,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
 
-  // компонент создан
+  // Компонент создан
   created: function created() {
 
     var lang = localStorage.getItem("lang");
@@ -4062,15 +4063,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
 
-  // методы компонента
+  // Методы компонента
   methods: {
-    search: function search() {
+
+    // Найти
+    search: function search(evt) {
+      evt.preventDefault();
       var str = this.searchString.split(" ").join("+");
       window.location = "/search?str=" + str;
     },
 
 
-    // установка языка
+    // Установить язык
     setLang: function setLang() {
       var ru = "русский";
       if (this.lang == ru) {
@@ -4090,9 +4094,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return false;
     },
 
-    // ----------------------------
-    // показать подкатегории
-    // ----------------------------
+    // Показать подкатегории    
     showSubcats: function showSubcats(e, cat_id) {
 
       var total = 0;
@@ -4109,24 +4111,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    // ----------------------------
-    // скрыть подкатегории
-    // ----------------------------
+    // Скрыть подкатегории
     closeSubCats: function closeSubCats() {
       if (!this.show_categories) this.show_categories = true;
     },
-    getCategoryCountById: function getCategoryCountById(id) {
-      /*get('getCategoryCountById?category_id='+id).then((res) => {
-          return res;
-      }).catch((err) => {});*/
-      return "|";
-    },
+
+
+    // Авторизация
     login: function login() {
       window.location = '/login';
     },
+
+
+    // Регистрация
     register: function register() {
       window.location = "/register";
     },
+
+
+    // Показать окно расположения
     openLocationWindow: function openLocationWindow() {
       var _this = this;
 
@@ -36854,42 +36857,45 @@ var render = function() {
                   attrs: { cols: "12", sm: "12", md: "12", lg: "12", xl: "6" }
                 },
                 [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.searchString,
-                        expression: "searchString"
-                      }
-                    ],
-                    attrs: {
-                      type: "text",
-                      id: "search_string",
-                      placeholder: _vm.$store.state.str_search_placeholder
-                    },
-                    domProps: { value: _vm.searchString },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                  _c("b-form", { on: { submit: _vm.search } }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.searchString,
+                          expression: "searchString"
                         }
-                        _vm.searchString = $event.target.value
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
+                      ],
                       attrs: {
-                        id: "button_search",
-                        title: "Найти что требуется"
+                        type: "text",
+                        id: "search_string",
+                        placeholder: _vm.$store.state.str_search_placeholder,
+                        required: ""
                       },
-                      on: { click: _vm.search }
-                    },
-                    [_vm._v(_vm._s(this.$store.state.str_button_search))]
-                  ),
+                      domProps: { value: _vm.searchString },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.searchString = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        attrs: {
+                          id: "button_search",
+                          type: "submit",
+                          title: "Найти что требуется"
+                        }
+                      },
+                      [_vm._v(_vm._s(this.$store.state.str_button_search))]
+                    )
+                  ]),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -36920,7 +36926,8 @@ var render = function() {
                     ],
                     1
                   )
-                ]
+                ],
+                1
               ),
               _vm._v(" "),
               _c(

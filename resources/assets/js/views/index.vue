@@ -65,8 +65,10 @@
         </b-col>
 
         <b-col cols="12" sm="12" md="12" lg="12" xl="6" style="text-align:center">
-          <input v-model="searchString" type="text" id="search_string" :placeholder="$store.state.str_search_placeholder"/>
-          <button id="button_search" @click="search" title="Найти что требуется">{{ this.$store.state.str_button_search }}</button>
+          <b-form @submit="search">
+            <input v-model="searchString" type="text" id="search_string" :placeholder="$store.state.str_search_placeholder" required/>
+            <button id="button_search" type="submit" title="Найти что требуется">{{ this.$store.state.str_button_search }}</button>
+          </b-form>
 
           <!-- кнопки выбора региона и т.п.-->
           <div class="index_select_region_and_other_button_block" id="select_location_desktop">
@@ -147,9 +149,8 @@ export default {
   // Входящие данные
   props: ["items", "auth", "count", "subcats"],
 
-  data () {
-    
-    // переменные
+  // переменные
+  data () {      
     return {
       lang: "русский",
       show_categories: true,
@@ -167,7 +168,7 @@ export default {
     }
   },
 
-  // компонент создан
+  // Компонент создан
   created() {
     
     var lang = localStorage.getItem("lang")
@@ -190,15 +191,17 @@ export default {
 
   },
 
-  // методы компонента
+  // Методы компонента
   methods: {
 
-    search() {
+    // Найти
+    search(evt) {
+      evt.preventDefault()
       var str = this.searchString.split(" ").join("+");
       window.location="/search?str="+str;
     },
 
-    // установка языка
+    // Установить язык
     setLang() {
       var ru = "русский";
       if (this.lang==ru) {
@@ -217,10 +220,8 @@ export default {
       if (item==this.selected_category_id) return true;          
       return false;
     },
-    
-    // ----------------------------
-    // показать подкатегории
-    // ----------------------------
+        
+    // Показать подкатегории    
     showSubcats(e, cat_id) {
 
       var total=0;
@@ -236,29 +237,23 @@ export default {
         this.show_categories=false;
       }
     },
-
-    // ----------------------------
-    // скрыть подкатегории
-    // ----------------------------
+    
+    // Скрыть подкатегории
     closeSubCats() {
       if (!this.show_categories) this.show_categories=true;
     },
 
-    getCategoryCountById(id) {
-      /*get('getCategoryCountById?category_id='+id).then((res) => {
-          return res;
-      }).catch((err) => {});*/
-      return "|";
-    },
-
+    // Авторизация
     login() {
       window.location='/login';
     },
 
+    // Регистрация
     register() {
       window.location="/register";
     },    
     
+    // Показать окно расположения
     openLocationWindow() {
 
       this.buttonAllCountry=true;

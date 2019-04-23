@@ -12,7 +12,8 @@ use DB;
 // Класс поиска по строке
 class SearchController extends Controller {
 
-    public function search(Request $request) {
+  // Метод поиска  
+  public function search(Request $request) {
       
       // Получаю входящие данные
       $requestString = $request->input("str"); 
@@ -21,11 +22,11 @@ class SearchController extends Controller {
       \Debugbar::info($requestString);	
       \Debugbar::info($arr);
 
-      // Строка поиска
-      $QuerySearchStr = "MATCH (text) AGAINST ('".$requestString."*' IN BOOLEAN MODE)";
+      // Строка запроса полнотекстового поиска
+      $querySearchStr = "MATCH (text) AGAINST ('".$requestString."*' IN BOOLEAN MODE)";
         
       // Получаю общее кол-во
-      $total = DB::select("SELECT COUNT(*) as count FROM `adverts` AS adv WHERE ".$QuerySearchStr);
+      $total = DB::select("SELECT COUNT(*) as count FROM `adverts` AS adv WHERE ".$querySearchStr);
      
       \Debugbar::info("TOTAL :".$total[0]->count);
             
@@ -40,7 +41,7 @@ class SearchController extends Controller {
         price, 
         category_id,					
         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image
-        FROM `adverts` AS adv WHERE ".$QuerySearchStr." ORDER BY vip DESC, price, created_at DESC LIMIT 0,100"
+        FROM `adverts` AS adv WHERE ".$querySearchStr." ORDER BY vip DESC, price, created_at DESC LIMIT 0,100"
       );
 
       // Получаю имя категории на русском по url
