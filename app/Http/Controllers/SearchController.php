@@ -9,20 +9,28 @@ use App\Adverts;
 use App\Categories;
 use DB;
 
+// Класс поиска по строке
 class SearchController extends Controller {
 
     public function search(Request $request) {
       
+      // Получаю входящие данные
       $requestString = $request->input("str"); 
       $arr = explode(" ", $requestString);
       
       \Debugbar::info($requestString);	
       \Debugbar::info($arr);
+
+      // Строка поиска
+      $QuerySearchStr = "MATCH (text) AGAINST ('".$requestString."*' IN BOOLEAN MODE)";
         
-			$total = DB::select("SELECT COUNT(*) as count FROM `adverts` AS adv WHERE MATCH (text) AGAINST ('".$requestString."*' IN BOOLEAN MODE)");
+      // Получаю общее кол-во
+      $total = DB::select("SELECT COUNT(*) as count FROM `adverts` AS adv WHERE ".$QuerySearchStr);
+     
       \Debugbar::info("TOTAL :".$total[0]->count);
             
-			$results = DB::select(
+      // Получаю выборку
+      $results = DB::select(
         "SELECT
         id as advert_id,
         DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
@@ -32,7 +40,7 @@ class SearchController extends Controller {
         price, 
         category_id,					
         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image
-        FROM `adverts` AS adv WHERE MATCH (text) AGAINST ('".$requestString."*' IN BOOLEAN MODE) ORDER BY vip DESC, price, created_at DESC LIMIT 0,100"
+        FROM `adverts` AS adv WHERE ".$QuerySearchStr." ORDER BY vip DESC, price, created_at DESC LIMIT 0,100"
       );
 
       // Получаю имя категории на русском по url
@@ -41,11 +49,12 @@ class SearchController extends Controller {
       
       \Debugbar::info($results);
 
-      $keywords = "";
-      $description = "";
+      $keywords = $requestString;
+      $description = $requestString;
       $title = "Поиск по запросу: ".$requestString;
 
-      $result =  array
+      // Формирую массив
+      $result = array
       (
         "keywords"=>$keywords,
         "description"=>$description,
@@ -70,8 +79,6 @@ class SearchController extends Controller {
         ->with("start_record", $result["start_record"])
         ->with("total_records", $result["total_records"])
         ->with("region", "null")
-        ->with("place",  "null");
-      
+        ->with("place",  "null");      
     }
-
 }
