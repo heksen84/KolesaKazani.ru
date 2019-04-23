@@ -413,7 +413,7 @@ h3 {
 // --------------------------------------------
 // Большие мониторы
 // --------------------------------------------
-@media screen and (min-width:1920px) {
+@media screen and (max-width:9000px) {
 
 .create_advert_col {
  margin-top: 20px;
@@ -421,7 +421,7 @@ h3 {
 }
 
 .mycontainer {
- width: 1280px !important; // задаю приоритет
+ width: 1280px; // задаю приоритет
 }
 
 .alert {
@@ -432,8 +432,11 @@ h3 {
 
 }
 
-
 @media screen and (max-width:1224px) {
+
+.mycontainer {
+  width: 100%; // задаю приоритет
+}
 
 #new_advert_block {
   font-size:10px;
@@ -467,8 +470,8 @@ h3 {
 #login_register_col {
   display:none;
 }
-// ----------------------------------------------
 
+// ----------------------------------------------
 }
 
 // --------------------------------------------

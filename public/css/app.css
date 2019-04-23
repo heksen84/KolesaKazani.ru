@@ -402,14 +402,14 @@ h3 {
   width: 1000px;
 }
 
-@media screen and (min-width: 1920px) {
+@media screen and (max-width: 9000px) {
   .create_advert_col {
     margin-top: 20px;
     border-radius: 10px;
   }
 
   .mycontainer {
-    width: 1280px !important;
+    width: 1280px;
   }
 
   .alert {
@@ -420,6 +420,10 @@ h3 {
 }
 
 @media screen and (max-width: 1224px) {
+  .mycontainer {
+    width: 100%;
+  }
+
   #new_advert_block {
     font-size: 10px;
   }

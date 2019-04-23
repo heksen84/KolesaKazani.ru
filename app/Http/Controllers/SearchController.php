@@ -17,7 +17,8 @@ class SearchController extends Controller {
       
       // Получаю входящие данные и удаляю не нужные символы.
       // FIXME: Пофиксить. Вылетает с ошибкой
-      $requestString = preg_replace("/[a-zA-Z]/", "", $request->input("str"));
+      //$requestString = preg_replace("/[a-zA-Z]/", "", $request->input("str"));
+	$requestString = $request->input("str");
 
       $arr = explode(" ", $requestString);
       
