@@ -6,19 +6,16 @@
 <div id="navbar_menu">
   <b-navbar toggleable="lg" type="dark" variant="primary">
     <b-navbar-brand href="#">{{ this.$store.state.str_title }}</b-navbar-brand>
-
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
         <b-nav-item href="/podat-obyavlenie">Подать объявление</b-nav-item>
         <b-nav-item href="/home" v-if="auth">Мои объявления</b-nav-item>
-	<div v-if="!auth">
-         <b-nav-item href="/login">Вход</b-nav-item>
-         <b-nav-item href="/register">Регистрация</b-nav-item>
-	</div>
-      </b-navbar-nav>
-            
+	      <div v-if="!auth">
+          <b-nav-item href="/login">Вход</b-nav-item>
+          <b-nav-item href="/register">Регистрация</b-nav-item>
+	      </div>
+      </b-navbar-nav>            
     </b-collapse>
   </b-navbar>
 </div>
@@ -49,8 +46,8 @@
     </b-row>
 
     <b-row style="margin-top:2px">
-        <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
 
+        <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center">
           <!-- кнопки выбора региона и т.п.-->
           <div class="index_select_region_and_other_button_block" id="select_location_mobile">
             <b-button class="search_options_button mb-1 mr-sm-1 mb-sm-1" size="sm" @click="openLocationWindow" :title="$store.state.str_location">{{ $store.state.str_location }}: {{ selectedPlaceName }}</b-button>          
@@ -61,10 +58,10 @@
             <div id="logo_block_text">{{ this.$store.state.str_title }}</div>
             <div style="font-size:16px;color:yellow;margin-top:-13px;letter-spacing:2px;">{{ this.$store.state.str_desc }}</div>
           </div>
-
         </b-col>
 
         <b-col cols="12" sm="12" md="12" lg="12" xl="6" style="text-align:center">
+
           <b-form @submit="search">
             <input v-model="searchString" type="text" id="search_string" :placeholder="$store.state.str_search_placeholder" required/>
             <button id="button_search" type="submit" title="Найти что требуется">{{ this.$store.state.str_button_search }}</button>
@@ -80,8 +77,8 @@
         <b-col cols="12" sm="12" md="12" lg="3" xl="3" style="text-align:center" title="Подать новое объявление"  id="new_advert_col">          
           <a href="/podat-obyavlenie"><div id="new_advert_block">{{ this.$store.state.str_create_advert }}</div></a>
         </b-col>
-    </b-row>
 
+    </b-row>
 
     <div id="categories_line">
 
@@ -140,10 +137,7 @@
 
 <!-- ЛОГИКА -->
 <script>
-
 import { get } from './../helpers/api'
-//import petrovich from 'petrovich';
-
 export default {
   
   // Входящие данные
