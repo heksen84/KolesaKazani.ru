@@ -10,21 +10,20 @@ use App\SubCats;
 use App\Categories;
 use App\Regions;
 use App\Places;
-
 use DB;
-
 
 
 class SearchController extends Controller {
 
-    public function search(Request $request) {      
-
-      \Debugbar::info($request->input("str"));	
-
-	    $arr = explode(" ", $request->input("str"));
+    public function search(Request $request) {
+      
+      $requestString = $request->input("str"); 
+      $arr = explode(" ", $requestString);
+      
+      \Debugbar::info($requestString);	
       \Debugbar::info($arr);
       
-      // общий select
+      
 			$results = DB::select(
         "SELECT
         id as advert_id,
@@ -46,23 +45,20 @@ class SearchController extends Controller {
 
       $keywords = "";
       $description = "";
-      $title = "Поиск по запросу: ".$request->input("str");
-
+      $title = "Поиск по запросу: ".$requestString;
 
       $result =  array
       (
-          "keywords"=>$keywords,
-          "description"=>$description,
-          "title"=>$title,
-          "items"=>$items, 
-          "results"=>json_encode($results),
-          "category"=>$category->id,  
-          "category_name"=>json_encode($request->path()), 
-          "start_record"=>0,
-          "total_records"=>100
+        "keywords"=>$keywords,
+        "description"=>$description,
+        "title"=>$title,
+        "items"=>$items, 
+        "results"=>json_encode($results),
+        "category"=>$category->id,  
+        "category_name"=>json_encode($request->path()), 
+        "start_record"=>0,
+        "total_records"=>100
       );
-
-
 
       return view("results")
         ->with("keywords", $result["keywords"])
@@ -77,10 +73,7 @@ class SearchController extends Controller {
         ->with("total_records", $result["total_records"])
         ->with("region", "null")
         ->with("place",  "null");
-
       
     }
-
-   
 
 }
