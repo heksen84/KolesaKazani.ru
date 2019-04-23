@@ -15,7 +15,8 @@ class SearchController extends Controller {
   // Метод поиска  
   public function search(Request $request) {
       
-      // Получаю входящие данные и удаляю не нужные символы
+      // Получаю входящие данные и удаляю не нужные символы.
+      // Пофиксить. Вылетает с ошибкой		
       $requestString = preg_replace("/[a-zA-Z]/", "", $request->input("str"));
 
       $arr = explode(" ", $requestString);
