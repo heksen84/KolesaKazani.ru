@@ -404,8 +404,7 @@ h3 {
 
 @media screen and (max-width: 9000px) {
   .create_advert_col {
-    margin-top: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
   }
 
   .mycontainer {
