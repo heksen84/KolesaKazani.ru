@@ -10,64 +10,61 @@ class Sitemap {
 
 	private static $sitemaps = "sitemaps/";
 	private static $public_path = "damelya:90/obyavlenie/";
-	private static $sitemap_index_file = "sitemaps/_sitemap.xml";
+	private static $sitemap_index_file = "sitemaps/index.xml";
 
 	// ------------------------------------------------
 	// создать sitemap
 	// ------------------------------------------------
 	public static function createNew($current_sitemap, $sitemap_index, $date_time) {
 
-	$sitemap_num = strpos($current_sitemap, "p_"); // sitema(p_)1
-	$sitemap_ext = strpos($current_sitemap, ".");  // .xml
+		$sitemap_num = strpos($current_sitemap, "p_"); // sitema(p_)1
+		$sitemap_ext = strpos($current_sitemap, ".");  // .xml
 
-	// нужно определить длину вырезаемого числа
-	$length = $sitemap_ext-$sitemap_num-2;
+		// нужно определить длину вырезаемого числа
+		$length = $sitemap_ext-$sitemap_num-2;
 
-	\Debugbar::info("LENGTH :".$length);
+		\Debugbar::info("LENGTH :".$length);
 
    	$snum = substr($current_sitemap, $sitemap_num+2, $length);
-	$nextval = intval($snum)+1;
+		$nextval = intval($snum)+1;
 
-        \Debugbar::info("NEXTVAL :".$nextval);
+    \Debugbar::info("NEXTVAL :".$nextval);
 
-	$new_name = Sitemap::$sitemaps."sitemap_".$nextval.".xml";
+		$new_name = Sitemap::$sitemaps."sitemap_".$nextval.".xml";
 
-	$file = fopen($new_name, "w");
+		$file = fopen($new_name, "w");
 
-	if (!$file) 
-		return false;
+		if (!$file) 
+			return false;
 
-	// генерирую заголовок
-	fwrite($file, '<?xml version="1.0" encoding="UTF-8"?>'."\n");
-	fwrite($file, '<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">'."\n");
-	fwrite($file, '</urlset>');
-	fclose($file);
+		// генерирую заголовок
+		fwrite($file, '<?xml version="1.0" encoding="UTF-8"?>'."\n");
+		fwrite($file, '<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">'."\n");
+		fwrite($file, '</urlset>');
+		fclose($file);
 
-	$record = $sitemap_index->addChild("sitemap");
+		$record = $sitemap_index->addChild("sitemap");
+		$record->addChild("loc", "damelya:90/".$new_name);
+		$record->addChild("lastmod", $date_time);			
 
-	$record->addChild("loc", "damelya:90/".$new_name);
-	$record->addChild("lastmod", $date_time);			
+		$dom = new \DOMDocument("1.0", LIBXML_NOBLANKS);
 
-	$dom = new \DOMDocument("1.0", LIBXML_NOBLANKS);
+		$dom->preserveWhiteSpace = false;
+		$dom->formatOutput = true;	
 
-	$dom->preserveWhiteSpace = false;
-	$dom->formatOutput = true;	
-
-	if (!$dom->loadXML($sitemap_index->asXML()))
-	 return false;
+		if (!$dom->loadXML($sitemap_index->asXML()))
+	 		return false;
 	
-	if (!$dom->save(Sitemap::$sitemap_index_file))
-	 return false;
+		if (!$dom->save(Sitemap::$sitemap_index_file))
+	 		return false;
 
-	return $new_name;
-
+		return $new_name;
 	}
 
 	// -------------------------------------
 	// добавить url
 	// -------------------------------------
-	public static function addUrl($url) {		
-
+	public static function addUrl($url) {
 		// -------------------------------------------------
 		// 1. открываем sitemap index
 		// 2. Читаем кол-во записей берём последний
@@ -107,11 +104,11 @@ class Sitemap {
 					$sitemap_created=false;
 
 					// если sitemap больше или равен 50 мб. то ...
-//					if (filesize($current_sitemap)>=1) {
-				        if (filesize($current_sitemap)>=50000000) {
-					 $current_sitemap = Sitemap::createNew($current_sitemap, $sitemap_index, $date_time);
-					 if ($current_sitemap!=false)
-					  $sitemap_created=true;
+				  if (filesize($current_sitemap)>=50000000) {
+					 	$current_sitemap = Sitemap::createNew($current_sitemap, $sitemap_index, $date_time);
+					 
+						 if ($current_sitemap!=false)
+							$sitemap_created=true;						
 					}			   						
 					
 					\Debugbar::info("Добавляю url в ".$current_sitemap."...");
