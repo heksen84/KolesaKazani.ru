@@ -36635,6 +36635,7 @@ var render = function() {
                       !_vm.auth
                         ? _c(
                             "div",
+                            { staticClass: "form-inline" },
                             [
                               _c("b-nav-item", { attrs: { href: "/login" } }, [
                                 _vm._v("Вход")

@@ -11,7 +11,7 @@
       <b-navbar-nav>
         <b-nav-item href="/podat-obyavlenie">Подать объявление</b-nav-item>
         <b-nav-item href="/home" v-if="auth">Мои объявления</b-nav-item>
-	      <div v-if="!auth">
+	      <div v-if="!auth" class="form-inline">
           <b-nav-item href="/login">Вход</b-nav-item>
           <b-nav-item href="/register">Регистрация</b-nav-item>
 	      </div>
