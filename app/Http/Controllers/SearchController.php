@@ -22,8 +22,7 @@ class SearchController extends Controller {
       
       \Debugbar::info($requestString);	
       \Debugbar::info($arr);
-      
-      
+            
 			$results = DB::select(
         "SELECT
         id as advert_id,
@@ -34,7 +33,7 @@ class SearchController extends Controller {
         price, 
         category_id,					
         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image
-        FROM `adverts` AS adv ORDER BY vip DESC, price, created_at DESC LIMIT 0,100"
+        FROM `adverts` AS adv WHERE MATCH (text) AGAINST ('".$requestString."*' IN BOOLEAN MODE) ORDER BY vip DESC, price, created_at DESC LIMIT 0,100"
       );
 
       // Получаю имя категории на русском по url

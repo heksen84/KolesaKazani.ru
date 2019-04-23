@@ -439,11 +439,12 @@ h3 {
   font-size:10px;
 }
 
-#select_location_mobile{
+// --- скрываю всё лишнее на мобильных устройствах --
+#select_location_mobile {
   display:block;
 }
   
-#select_location_desktop{
+#select_location_desktop {
   display:none;
 }
   
@@ -466,6 +467,7 @@ h3 {
 #login_register_col {
   display:none;
 }
+// ----------------------------------------------
 
 }
 
