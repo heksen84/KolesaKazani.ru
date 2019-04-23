@@ -6,12 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 use App\Adverts;
-use App\SubCats;
 use App\Categories;
-use App\Regions;
-use App\Places;
 use DB;
-
 
 class SearchController extends Controller {
 
@@ -22,6 +18,9 @@ class SearchController extends Controller {
       
       \Debugbar::info($requestString);	
       \Debugbar::info($arr);
+        
+			$total = DB::select("SELECT COUNT(*) as count FROM `adverts` AS adv WHERE MATCH (text) AGAINST ('".$requestString."*' IN BOOLEAN MODE)");
+      \Debugbar::info("TOTAL :".$total[0]->count);
             
 			$results = DB::select(
         "SELECT
@@ -56,7 +55,7 @@ class SearchController extends Controller {
         "category"=>$category->id,  
         "category_name"=>json_encode($request->path()), 
         "start_record"=>0,
-        "total_records"=>100
+        "total_records"=>$total[0]->count
       );
 
       return view("results")
