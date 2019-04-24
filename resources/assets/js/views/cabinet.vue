@@ -19,13 +19,16 @@
 	<b-row>
 		<b-col>
 			<h5 class="shadow_text" style="text-align:left">мои объявления</h5>
-			<b-table responsive hover small :items="_items" style="background:white;color:black">			
-			Статус: отклонено (нецензурная лексика)
-			<template slot="Действие">
+			<b-table responsive hover small :fields="fields" :items="cloneItems" style="background:white;color:black">			
+				
+				<!--Статус: отклонено (нецензурная лексика)
+			
         <b-button size="sm" variant="outline-success" @click="advertGoUp">поднять в вверх</b-button>
-				<b-button size="sm" variant="link" @click="advertDelete">удалить</b-button>
-      </template>
+				<b-button size="sm" variant="link" @click="advertDelete">удалить</b-button>      -->
 
+			<template slot="Действие" slot-scope="row">
+        <b-button variant="success" @click="row.toggleDetails">Дополнительно</b-button>
+      </template>
 			</b-table>
 		</b-col>
 	</b-row>
@@ -35,69 +38,73 @@
 <script>
 
 import { get } from './../helpers/api'
-export default {
-// Входящие данные	
-props: ["items"],
 
-components: {},
+export default {
+	
+props: ["items"], // Входящие данные
 
 // данные компонента
 data () {
     return 	{
-			_items: []
-			
-			
+			cloneItems: [],
+			sortBy: "text",
+			fields: [				
+				{ key: "text", sortable: true },
+        { key: "Действие", sortable: false }
+			]								
 	}
 },
 
 // компонент создан
 created() {		
-		this._items = this.items;		
-		for (var i=0;i<this._items.length;i++)			
-			this._items[i].Действие = "";		
+		this.cloneItems = this.items;
+		console.log(this.cloneItems)
 },
 
 // методы
 methods: {
+	// ---------------------------------
+	// поднять объявление в верх
+	// ---------------------------------
+	advertGoUp() {		
 
-		// ---------------------------------
-		// поднять объявление в верх
-		// ---------------------------------
-		advertGoUp() {		
 		get("/advertGoUp").then((res) => {
 			}).catch((err) => {
 				console.log(err)
-			});
-		},
+		});
+	},
 		
-		// ---------------------------------
-		// удалить объявление
-		// ---------------------------------
-		advertDelete() {			
-			get("/advertDelete").then((res) => {				
+	// ---------------------------------
+	// удалить объявление
+	// ---------------------------------
+	advertDelete() {			
+
+		get("/advertDelete").then((res) => {				
 			}).catch((err) => {
 				console.log(err)
-			});
-		},
+		});
+	},
 
 		// ---------------------------------
 		// Выйти из кабинета
 		// ---------------------------------
-    logout() {
-			get('/logout').then((res) => {
-				window.location='/';
-			}).catch((err) => {
-				console.log(err)
-			});
-    },
+  logout() {
+
+		get('/logout').then((res) => {
+			window.location='/';
+		}).catch((err) => {
+			console.log(err)
+		});
+  },
     
-    goHome() {
-    	window.location='/';
-		},
+  goHome() {
+    window.location='/';
+	},
 		
-    createAdvert() {
-    	window.location='/podat-obyavlenie';
-    }
+  createAdvert() {
+    window.location='/podat-obyavlenie';
+	}
+	
 }
 }
 </script>

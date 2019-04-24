@@ -2653,40 +2653,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	// Входящие данные	
-	props: ["items"],
 
-	components: {},
+	props: ["items"], // Входящие данные
 
 	// данные компонента
 	data: function data() {
 		return {
-			_items: []
-
+			cloneItems: [],
+			sortBy: "text",
+			fields: [{ key: "text", sortable: true }, { key: "Действие", sortable: false }]
 		};
 	},
 
 
 	// компонент создан
 	created: function created() {
-		this._items = this.items;
-		for (var i = 0; i < this._items.length; i++) {
-			this._items[i].Действие = "";
-		}
+		this.cloneItems = this.items;
+		console.log(this.cloneItems);
 	},
 
 
 	// методы
 	methods: {
-
 		// ---------------------------------
 		// поднять объявление в верх
 		// ---------------------------------
 		advertGoUp: function advertGoUp() {
+
 			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/advertGoUp").then(function (res) {}).catch(function (err) {
 				console.log(err);
 			});
@@ -2697,6 +2698,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		// удалить объявление
 		// ---------------------------------
 		advertDelete: function advertDelete() {
+
 			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/advertDelete").then(function (res) {}).catch(function (err) {
 				console.log(err);
 			});
@@ -2707,6 +2709,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		// Выйти из кабинета
 		// ---------------------------------
 		logout: function logout() {
+
 			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/logout').then(function (res) {
 				window.location = '/';
 			}).catch(function (err) {
@@ -38171,48 +38174,33 @@ var render = function() {
                     [_vm._v("мои объявления")]
                   ),
                   _vm._v(" "),
-                  _c(
-                    "b-table",
-                    {
-                      staticStyle: { background: "white", color: "black" },
-                      attrs: {
-                        responsive: "",
-                        hover: "",
-                        small: "",
-                        items: _vm._items
-                      }
+                  _c("b-table", {
+                    staticStyle: { background: "white", color: "black" },
+                    attrs: {
+                      responsive: "",
+                      hover: "",
+                      small: "",
+                      fields: _vm.fields,
+                      items: _vm.cloneItems
                     },
-                    [
-                      _vm._v(
-                        "\t\t\t\r\n\t\t\tСтатус: отклонено (нецензурная лексика)\r\n\t\t\t"
-                      ),
-                      _c(
-                        "template",
-                        { slot: "Действие" },
-                        [
-                          _c(
-                            "b-button",
-                            {
-                              attrs: { size: "sm", variant: "outline-success" },
-                              on: { click: _vm.advertGoUp }
-                            },
-                            [_vm._v("поднять в вверх")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "b-button",
-                            {
-                              attrs: { size: "sm", variant: "link" },
-                              on: { click: _vm.advertDelete }
-                            },
-                            [_vm._v("удалить")]
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    2
-                  )
+                    scopedSlots: _vm._u([
+                      {
+                        key: "Действие",
+                        fn: function(row) {
+                          return [
+                            _c(
+                              "b-button",
+                              {
+                                attrs: { variant: "success" },
+                                on: { click: row.toggleDetails }
+                              },
+                              [_vm._v("Дополнительно")]
+                            )
+                          ]
+                        }
+                      }
+                    ])
+                  })
                 ],
                 1
               )
