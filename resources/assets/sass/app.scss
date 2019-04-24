@@ -424,7 +424,7 @@ h3 {
 }
 
 .mycontainer {
- width: 1280px; // задаю приоритет
+ width: 1280px;
 }
 
 .alert {
@@ -435,10 +435,16 @@ h3 {
 
 }
 
+@media screen and (max-width:1280px) {
+  .mycontainer {
+    width: 100%;
+   }
+}
+
 @media screen and (max-width:1224px) {
 
 .mycontainer {
-  width: 100%; // задаю приоритет
+  width: 100%;
 }
 
 #new_advert_block {
