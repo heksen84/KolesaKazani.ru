@@ -823,7 +823,6 @@ class ResultsController extends Controller {
                     break;
                 }
             }
-
             
             //------------------------------------------------------------
             // недвижимость
