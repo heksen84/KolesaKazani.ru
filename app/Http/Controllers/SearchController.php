@@ -65,7 +65,8 @@ class SearchController extends Controller {
         "results"=>json_encode($results),        
         "category_name"=>json_encode($request->path()), 
         "start_record"=>0,
-        "total_records"=>$total[0]->count
+        "total_records"=>$total[0]->count,
+        "searchString"=>$requestString
       );     
   }
 
@@ -85,12 +86,13 @@ class SearchController extends Controller {
     ->with("category_name", "null")
     ->with("subcat", "null")
     ->with("region", "null")
-    ->with("place", "null");      
+    ->with("place", "null")
+    ->with("searchString", $result["searchString"]);      
   }
 
   // Поиск для морды
   public function searchForFront(Request $request) {
     return $this->search($request);       
   }
-  
+
 }

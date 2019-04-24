@@ -137,7 +137,7 @@ import { get } from "./../helpers/api"
 export default {
 
 	// Входящие данные
-	props: ["category", "category_name", "subcat", "region", "place", "results", "title", "total_records"],
+	props: ["category", "category_name", "subcat", "region", "place", "results", "title", "total_records", "searchString"],
 
 	components: { item },
 
@@ -245,25 +245,17 @@ export default {
 
 			// Сменить сделку
 			changeDeal(deal) {
-
         this.filters.deal = deal;
 				this.start_page = 0;				
 				this.updateData();
 				this.currentPage = 1;
-
 			},
 			  
 			// Обновить данные
   		updateData() {
-				
-				var url = "";
-				var ready=false;
-			
-				console.log("-----------------------------------------")
-				console.log("Категория: "+this.category_name)
-				console.log("Подкатегория: "+this.subcat)
-				console.log("Регион: "+this.region)
-				console.log("-----------------------------------------")
+
+				var url="";
+				var ready=false;				
 
 				// Только для категории
 				if (this.category_name && !this.subcat && !this.region && !this.place) {
@@ -349,15 +341,23 @@ export default {
 					"&place="+this.place;
 					ready=true;
 				}
+
+				// Поиск по запросу
+				if (!this.category_name && !this.subcat && !this.region && !this.place) {
+					console.log("Поиск по запросу")
+					url="/getSearchResults?searchString="+this.category_name+					
+					"&deal="+this.filters.deal+
+					"&price_min="+this.filters.price_min+
+					"&price_max="+this.filters.price_max;					
+					ready=true;
+				}
 						
 			if (ready) {
 
 			  // запрос
   			get(url).then((res) => {
-
-					console.log("------------------------");
+				
 					console.log(res);
-					console.log("------------------------");
 					
 					this.resultsClone=JSON.parse(res.data.results);
 					this.totalRecords = res.data.total_records;

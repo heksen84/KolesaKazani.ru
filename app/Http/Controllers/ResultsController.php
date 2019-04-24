@@ -374,7 +374,8 @@ class ResultsController extends Controller {
         ->with("start_record", $result["start_record"])
         ->with("total_records", $result["total_records"])
         ->with("region", "null")
-        ->with("place",  "null");
+        ->with("place",  "null")
+        ->with("searchString", "null");
     }
     
     // ---------------------------------------------------------------
@@ -404,7 +405,8 @@ class ResultsController extends Controller {
         ->with("start_record", $result["start_record"])
         ->with("total_records", $result["total_records"])
         ->with("region", json_encode($region))
-        ->with("place",  "null");
+        ->with("place",  "null")
+        ->with("searchString", "null");
      }
 
      // -----------------------------------------------------------------------
@@ -439,7 +441,8 @@ class ResultsController extends Controller {
         ->with("start_record", $result["start_record"])
         ->with("total_records", $result["total_records"])
         ->with("region", json_encode($region))
-        ->with("place",  json_encode($place));
+        ->with("place",  json_encode($place))
+        ->with("searchString", "null");
 
      }
 
@@ -1135,7 +1138,8 @@ class ResultsController extends Controller {
     ->with("category", $result["category"])
     ->with("total_records", $result["total_records"])
     ->with("region", "null")
-    ->with("place", "null");
+    ->with("place", "null")
+    ->with("searchString", "null");
    }
 
    // -------------------------------------------------------------------
@@ -1167,7 +1171,8 @@ class ResultsController extends Controller {
         ->with("start_record", $result["start_record"])
         ->with("total_records", $result["total_records"])
         ->with("region", json_encode($region))
-        ->with("place", "null");
+        ->with("place", "null")
+        ->with("searchString", "null");
      }
 
     // ----------------------------------------------------------------------------------------------
@@ -1188,7 +1193,8 @@ class ResultsController extends Controller {
         ->with("subcat", "null")
         ->with("start_record", $result["start_record"])
         ->with("total_records", $result["total_records"])
-        ->with("region", "null");
+        ->with("region", "null")
+        ->with("searchString", "null");
      }
 
     // ---------------------------------------------------------------------------------------------------
@@ -1212,7 +1218,8 @@ class ResultsController extends Controller {
         ->with("start_record", $result["start_record"])
         ->with("total_records", $result["total_records"])
         ->with("region", json_encode($region))
-        ->with("place", json_encode($place));
+        ->with("place", json_encode($place))
+        ->with("searchString", "null");
      }
 
     // --------------------------------------------------------------------------

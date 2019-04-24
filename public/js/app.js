@@ -4412,7 +4412,7 @@ function num2str(n, text_forms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
 
 	// Входящие данные
-	props: ["category", "category_name", "subcat", "region", "place", "results", "title", "total_records"],
+	props: ["category", "category_name", "subcat", "region", "place", "results", "title", "total_records", "searchString"],
 
 	components: { item: __WEBPACK_IMPORTED_MODULE_0__components_item___default.a },
 
@@ -4503,7 +4503,6 @@ function num2str(n, text_forms) {
 
 		// Сменить сделку
 		changeDeal: function changeDeal(deal) {
-
 			this.filters.deal = deal;
 			this.start_page = 0;
 			this.updateData();
@@ -4517,12 +4516,6 @@ function num2str(n, text_forms) {
 
 			var url = "";
 			var ready = false;
-
-			console.log("-----------------------------------------");
-			console.log("Категория: " + this.category_name);
-			console.log("Подкатегория: " + this.subcat);
-			console.log("Регион: " + this.region);
-			console.log("-----------------------------------------");
 
 			// Только для категории
 			if (this.category_name && !this.subcat && !this.region && !this.place) {
@@ -4567,14 +4560,19 @@ function num2str(n, text_forms) {
 				ready = true;
 			}
 
+			// Поиск по запросу
+			if (!this.category_name && !this.subcat && !this.region && !this.place) {
+				console.log("Поиск по запросу");
+				url = "/getSearchResults?searchString=" + this.category_name + "&deal=" + this.filters.deal + "&price_min=" + this.filters.price_min + "&price_max=" + this.filters.price_max;
+				ready = true;
+			}
+
 			if (ready) {
 
 				// запрос
 				Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])(url).then(function (res) {
 
-					console.log("------------------------");
 					console.log(res);
-					console.log("------------------------");
 
 					_this.resultsClone = JSON.parse(res.data.results);
 					_this.totalRecords = res.data.total_records;
