@@ -137,15 +137,14 @@ import { get } from "./../helpers/api"
 export default {
 
 	// Входящие данные
-	props: ["category", "category_name", "subcat", "region", "place", "data", "results", "title", "total_records"],
+	props: ["category", "category_name", "subcat", "region", "place", "results", "title", "total_records"],
 
 	components: { item },
 
 	data () {		
 	return 	{
 		totalRecords: this.total_records,
-		resultsClone: this.results,
-		items: this.data,				
+		resultsClone: this.results,		
 		perPage: 5, // макимальное кол-во объявлений на странице
 		start_page: 0,
     currentPage: 1,

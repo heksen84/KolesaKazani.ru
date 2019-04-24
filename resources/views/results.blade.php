@@ -18,8 +18,7 @@
   :category="{{ $category }}" 
   :category_name="{{ $category_name }}" 
   :subcat="{{ $subcat }}" 
-  :results="{{ $results }}" 
-  :data="{{ $items }}"
+  :results="{{ $results }}"   
   :total_records="{{ $total_records }}"
   :region="{{ $region }}"
   :place="{{ $place }}">

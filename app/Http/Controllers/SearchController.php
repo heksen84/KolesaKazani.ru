@@ -12,13 +12,17 @@ use DB;
 // Класс поиска по строке
 class SearchController extends Controller {
 
+  private $start_record   = 0;
+  private $records_limit  = 5; // максимальное число записей при выборке // FIXME: вынести в отдельный модуль    
+
   // Общий метод поиска  
   private function search(Request $request) {
       
       // Получаю входящие данные и удаляю не нужные символы.
       // FIXME: Пофиксить. Вылетает с ошибкой
       //$requestString = preg_replace("/[a-zA-Z]/", "", $request->input("str"));
-	$requestString = $request->input("str");
+      
+      $requestString = $request->input("str");
 
       $arr = explode(" ", $requestString);
       
@@ -44,12 +48,8 @@ class SearchController extends Controller {
         price, 
         category_id,					
         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image
-        FROM `adverts` AS adv WHERE ".$querySearchStr." ORDER BY vip DESC, price, created_at DESC LIMIT 0,100"
+        FROM `adverts` AS adv WHERE ".$querySearchStr." ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit
       );
-
-      // Получаю имя категории на русском по url
-    	$category = Categories::select("id", "name")->where("url", "nedvizhimost" )->first();
-      $items = Adverts::where("category_id",  $category->id )->get();       
       
       \Debugbar::info($results);
 
@@ -58,14 +58,11 @@ class SearchController extends Controller {
       $title = "Поиск по запросу: ".$requestString;
 
       // Формирую массив
-      return array
-      (
+      return array (
         "keywords"=>$keywords,
         "description"=>$description,
         "title"=>$title,
-        "items"=>$items, 
-        "results"=>json_encode($results),
-        "category"=>$category->id,  
+        "results"=>json_encode($results),        
         "category_name"=>json_encode($request->path()), 
         "start_record"=>0,
         "total_records"=>$total[0]->count
@@ -80,21 +77,20 @@ class SearchController extends Controller {
     return view("results")
     ->with("keywords", $result["keywords"])
     ->with("description", $result["description"])
-    ->with("title", $result["title"])
-    ->with("items", $result["items"])
-    ->with("results", $result["results"])
-    ->with("category", $result["category"])
-    ->with("category_name", $result["category_name"])
-    ->with("subcat", "null")
+    ->with("title", $result["title"])    
+    ->with("results", $result["results"])    
     ->with("start_record", $result["start_record"])
     ->with("total_records", $result["total_records"])
+    ->with("category", "null")
+    ->with("category_name", "null")
+    ->with("subcat", "null")
     ->with("region", "null")
-    ->with("place",  "null");      
+    ->with("place", "null");      
   }
 
   // Поиск для морды
   public function searchForFront(Request $request) {
     return $this->search($request);       
   }
-
+  
 }

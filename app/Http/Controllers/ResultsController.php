@@ -346,8 +346,7 @@ class ResultsController extends Controller {
         (
             "keywords"=>$keywords,
             "description"=>$description,
-            "title"=>$title,
-            "items"=>$items, 
+            "title"=>$title,            
             "results"=>json_encode($results),
             "category"=>$category->id,  
             "category_name"=>json_encode($request->path()), 
@@ -367,8 +366,7 @@ class ResultsController extends Controller {
         return view("results")
         ->with("keywords", $result["keywords"])
         ->with("description", $result["description"])
-        ->with("title", $result["title"])
-        ->with("items", $result["items"])
+        ->with("title", $result["title"])        
 		->with("results", $result["results"])
         ->with("category", $result["category"])
         ->with("category_name", $result["category_name"])
@@ -398,8 +396,7 @@ class ResultsController extends Controller {
         return view("results")
         ->with("keywords", $result["keywords"])
         ->with("description", $result["description"])
-        ->with("title", $result["title"])
-        ->with("items", $result["items"])
+        ->with("title", $result["title"])        
 		->with("results", $result["results"])
         ->with("category", $result["category"])
         ->with("category_name", json_encode($category))
@@ -434,8 +431,7 @@ class ResultsController extends Controller {
         return view("results")
         ->with("keywords", $result["keywords"])
         ->with("description", $result["description"])
-        ->with("title", $result["title"])
-        ->with("items", $result["items"])
+        ->with("title", $result["title"])        
 		->with("results", $result["results"])
         ->with("category", $result["category"])
         ->with("category_name", json_encode($category))
@@ -1111,8 +1107,7 @@ class ResultsController extends Controller {
         "subcat"=>json_encode($subcat),
         "keywords"=>$keywords,
         "description"=>$description,
-        "title"=>$title, 
-        "items"=>$items,
+        "title"=>$title,        
         "results"=>json_encode($results), 
         "category"=>$categories,
         "start_record"=>$this->start_record,
@@ -1135,8 +1130,7 @@ class ResultsController extends Controller {
     ->with("subcat", $result["subcat"])
     ->with("keywords", $result["keywords"])
     ->with("description", $result["description"])
-    ->with("title", $result["title"])
-    ->with("items", $result["items"])
+    ->with("title", $result["title"])    
     ->with("results", $result["results"])
     ->with("category", $result["category"])
     ->with("total_records", $result["total_records"])
@@ -1165,8 +1159,7 @@ class ResultsController extends Controller {
         return view("results")
         ->with("keywords", $result["keywords"])
         ->with("description", $result["description"])
-        ->with("title", $result["title"])
-        ->with("items", $result["items"])
+        ->with("title", $result["title"])        
 	    ->with("results", $result["results"])
         ->with("category", $result["category"])
 	    ->with("category_name", json_encode($category))
@@ -1188,8 +1181,7 @@ class ResultsController extends Controller {
         return view("results")
         ->with("keywords", $result["keywords"])
         ->with("description", $result["description"])
-        ->with("title", $result["title"])
-        ->with("items", $result["items"])
+        ->with("title", $result["title"])        
 	    ->with("results", $result["results"])
         ->with("category", $result["category"])
         ->with("category_name", $result["category_name"])
@@ -1212,8 +1204,7 @@ class ResultsController extends Controller {
         return view("results")
         ->with("keywords", $result["keywords"])
         ->with("description", $result["description"])
-        ->with("title", $result["title"])
-        ->with("items", $result["items"])
+        ->with("title", $result["title"])        
 	    ->with("results", $result["results"])
         ->with("category", $result["category"])
 	    ->with("category_name", json_encode($category))
