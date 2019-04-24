@@ -2666,6 +2666,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	data: function data() {
 		return {
 			_items: []
+
 		};
 	},
 
@@ -38174,7 +38175,12 @@ var render = function() {
                     "b-table",
                     {
                       staticStyle: { background: "white", color: "black" },
-                      attrs: { hover: "", items: _vm._items }
+                      attrs: {
+                        responsive: "",
+                        hover: "",
+                        small: "",
+                        items: _vm._items
+                      }
                     },
                     [
                       _vm._v(

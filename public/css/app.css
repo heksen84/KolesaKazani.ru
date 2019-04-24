@@ -403,6 +403,10 @@ h3 {
 }
 
 @media screen and (max-width: 9000px) {
+  /*body {
+  font-size:26px;
+}*/
+
   .create_advert_col {
     border-radius: 5px;
   }

@@ -19,7 +19,7 @@
 	<b-row>
 		<b-col>
 			<h5 class="shadow_text" style="text-align:left">мои объявления</h5>
-			<b-table hover :items="_items" style="background:white;color:black">			
+			<b-table responsive hover small :items="_items" style="background:white;color:black">			
 			Статус: отклонено (нецензурная лексика)
 			<template slot="Действие">
         <b-button size="sm" variant="outline-success" @click="advertGoUp">поднять в вверх</b-button>
@@ -44,7 +44,9 @@ components: {},
 // данные компонента
 data () {
     return 	{
-    	_items: []
+			_items: []
+			
+			
 	}
 },
 
