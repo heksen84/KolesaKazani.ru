@@ -137,7 +137,7 @@ import { get } from "./../helpers/api"
 export default {
 
 	// Входящие данные
-	props: ["category", "category_name", "subcat", "region", "place", "results", "title", "total_records", "searchString"],
+	props: ["category", "category_name", "subcat", "region", "place", "results", "title", "total_records", "search_string"],
 
 	components: { item },
 
@@ -198,6 +198,7 @@ export default {
 		console.log("Подкатегория: "+this.subcat)
 		console.log("Регион: "+this.region)
 		console.log("Место: "+this.place)
+		console.log("Строка поиска: "+this.search_string)
 		console.log("-----------------------------------------")
 		console.log(this.results)
 
@@ -347,8 +348,10 @@ export default {
 					console.log("Поиск по запросу")
 					url="/getSearchResults?searchString="+this.category_name+					
 					"&deal="+this.filters.deal+
+					"&start_page="+this.start_page+
 					"&price_min="+this.filters.price_min+
-					"&price_max="+this.filters.price_max;					
+					"&price_max="+this.filters.price_max+					
+					"&searchString="+this.search_string;					
 					ready=true;
 				}
 						

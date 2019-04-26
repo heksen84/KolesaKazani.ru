@@ -86,8 +86,8 @@ Route::get("getCarsMarks", "AdvertController@getCarsMarks" );
 Route::get("getCarsModels", "AdvertController@getCarsModels" );
 
 // Поиск
-Route::get("search", "SearchController@searchForView" );
-Route::get("getSearchResults", "SearchController@searchForFront" );
+Route::get("search", "ResultsController@searchForView" );
+Route::get("getSearchResults", "ResultsController@searchForFront" );
 
 // --------------------------------------------------------------------
 // Перенести в контроллер Categories

@@ -22,7 +22,7 @@
   :total_records="{{ $total_records }}"
   :region="{{ $region }}"
   :place="{{ $place }}"
-  :searchString="{{ $searchString }}">
+  :search_string="{{ $searchString }}">
   </results>
 </div>
 </body>

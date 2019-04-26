@@ -30,6 +30,7 @@ class ResultsController extends Controller {
     private $deal           = "null";
     private $region         = "null";
     private $place          = "null";
+    private $searchString   = "null";
 
     // ---------------------------------------------------
     // Получить строку фильтра по url региона
@@ -77,17 +78,19 @@ class ResultsController extends Controller {
         if (isset($data["price_min"]))      $this->price_min      = $data["price_min"];
         if (isset($data["price_max"]))      $this->price_max      = $data["price_max"];
 	    if (isset($data["region"]))         $this->region         = $data["region"];
-	    if (isset($data["place"]))          $this->place          = $data["place"];
+        if (isset($data["place"]))          $this->place          = $data["place"];
+        if (isset($data["searchString"]))   $this->searchString   = $data["searchString"];
                     
-        \Debugbar::info("категория id:".$this->category_id);
-        \Debugbar::info("категория:".$this->category_name);
-        \Debugbar::info("Подкатегория:".$this->subcat);
-        \Debugbar::info("start_page :".$this->start_page);
-        \Debugbar::info("Вид сделки :".$this->deal);
-        \Debugbar::info("Цена от :".$this->price_min);
-        \Debugbar::info("Цена до :".$this->price_max);
-        \Debugbar::info("Регион :".$this->region);
-        \Debugbar::info("Место :".$this->place);
+        \Debugbar::info("Фильтр - категория id:".$this->category_id);
+        \Debugbar::info("Фильтр - категория:".$this->category_name);
+        \Debugbar::info("Фильтр - Подкатегория:".$this->subcat);
+        \Debugbar::info("Фильтр - start_page :".$this->start_page);
+        \Debugbar::info("Фильтр - ид сделки :".$this->deal);
+        \Debugbar::info("Фильтр - Цена от :".$this->price_min);
+        \Debugbar::info("Фильтр - Цена до :".$this->price_max);
+        \Debugbar::info("Фильтр - Регион :".$this->region);
+        \Debugbar::info("Фильтр - Место :".$this->place);
+        \Debugbar::info("Фильтр - Строка поиска :".$this->searchString);
 
         // определяю начиная с какой записи считывать данные
         if ($this->start_page >0)
@@ -120,8 +123,105 @@ class ResultsController extends Controller {
 	return true;
 
     }
+
+    // -------------------------------------------------------
+    //
+    // Общий метод поиска по заспросу
+    //
+    // -------------------------------------------------------
+    private function search(Request $request) {
+
+        // Проверяю наличие фильтров
+        $filterData = $this->getFilterData($request);
+    
+        // Получаю входящие данные и удаляю не нужные символы.
+        // FIXME: Пофиксить. Вылетает с ошибкой
+        // $requestString = preg_replace("/[a-zA-Z]/", "", $request->input("str"));
+    
+        $requestString = $request->input("str");
+
+        //$arr = explode(" ", $requestString);
+    
+        \Debugbar::info("Строка поиска :".$requestString);	
+
+        if ($this->searchString=="null")
+            $this->searchString = $requestString;
+
+        // Строка запроса для полнотекстового поиска
+        $querySearchStr = "MATCH (text) AGAINST ('".$this->searchString."*' IN BOOLEAN MODE)";
+      
+        // Получаю общее кол-во
+        $total = DB::select("SELECT COUNT(*) as count FROM `adverts` AS adv WHERE ".$querySearchStr);
+   
+        \Debugbar::info("TOTAL :".$total[0]->count);
+          
+        // Получаю выборку
+        $results = DB::select(
+            "SELECT
+            id as advert_id,
+            DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
+            adv.deal,
+            adv.full,
+            text as title, 
+            price, 
+            category_id,					
+            (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image
+            FROM `adverts` AS adv WHERE ".$querySearchStr." ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit
+        );
+    
+        \Debugbar::info($results);
+
+        $keywords = $requestString;
+        $description = $requestString;
+        $title = "Поиск по запросу: ".$requestString;
+
+        // Формирую массив
+        return array (
+            "keywords"=>$keywords,
+            "description"=>$description,
+            "title"=>$title,
+            "results"=>json_encode($results),        
+            "category_name"=>json_encode($request->path()), 
+            "start_record"=>0,
+            "total_records"=>$total[0]->count,
+            "searchString"=>$requestString
+        );     
+    }
+
+    // Поиск для вьюхи
+    public function searchForView(Request $request) {
+
+        $result = $this->search($request);
+
+        return view("results")
+        ->with("keywords", $result["keywords"])
+        ->with("description", $result["description"])
+        ->with("title", $result["title"])    
+        ->with("results", $result["results"])    
+        ->with("start_record", $result["start_record"])
+        ->with("total_records", $result["total_records"])
+        ->with("category", "null")
+        ->with("category_name", "null")
+        ->with("subcat", "null")
+        ->with("region", "null")
+        ->with("place", "null")
+        ->with("searchString", $result["searchString"]);      
+    }
+
+    // Поиск для морды
+    public function searchForFront(Request $request) {
+
+        \Debugbar::info("Поиск с фильтрами");
+
+        return $this->search($request);       
+    }
+
     // ----------------------------------------------------------------------------------
+    //
+    //
     // Результаты по категории (общая функция)
+    //
+    //
     // ----------------------------------------------------------------------------------
     public function getResultsByCategory(Request $request, $region, $place, $category) {
         
