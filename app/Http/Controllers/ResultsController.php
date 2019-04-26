@@ -184,7 +184,7 @@ class ResultsController extends Controller {
             "category_name"=>json_encode($request->path()), 
             "start_record"=>0,
             "total_records"=>$total[0]->count,
-            "searchString"=>$requestString
+            "searchString"=>json_encode($requestString)
         );     
     }
 
