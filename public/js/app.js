@@ -4568,12 +4568,11 @@ function num2str(n, text_forms) {
 			// Поиск по запросу
 			if (!this.category_name && !this.subcat && !this.region && !this.place) {
 				console.log("Поиск по запросу");
-				url = "/getSearchResults?searchString=" + this.category_name + "&deal=" + this.filters.deal + "&start_page=" + this.start_page + "&price_min=" + this.filters.price_min + "&price_max=" + this.filters.price_max + "&searchString=" + this.search_string;
+				url = "/getSearchResults?searchString=" + this.search_string + "&deal=" + this.filters.deal + "&start_page=" + this.start_page + "&price_min=" + this.filters.price_min + "&price_max=" + this.filters.price_max;
 				ready = true;
 			}
 
 			if (ready) {
-
 				// запрос
 				Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])(url).then(function (res) {
 

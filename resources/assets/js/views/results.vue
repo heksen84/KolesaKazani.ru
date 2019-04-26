@@ -346,17 +346,15 @@ export default {
 				// Поиск по запросу
 				if (!this.category_name && !this.subcat && !this.region && !this.place) {
 					console.log("Поиск по запросу")
-					url="/getSearchResults?searchString="+this.category_name+					
+					url="/getSearchResults?searchString="+this.search_string+										
 					"&deal="+this.filters.deal+
 					"&start_page="+this.start_page+
 					"&price_min="+this.filters.price_min+
-					"&price_max="+this.filters.price_max+					
-					"&searchString="+this.search_string;					
+					"&price_max="+this.filters.price_max;					
 					ready=true;
 				}
 						
 			if (ready) {
-
 			  // запрос
   			get(url).then((res) => {
 				

@@ -42,7 +42,8 @@ class ResultsController extends Controller {
             $region_string = " AND region_id = ".$region->region_id; // формируем строку региона
             \Debugbar::info($region_string);
             return $region_string;
-        }        
+        }
+
         return false;
     }
 
@@ -56,7 +57,8 @@ class ResultsController extends Controller {
             $place_string = " AND city_id = ".$place->city_id; // формируем строку места
             \Debugbar::info($place_string);
             return $place_string;
-        }        
+        }
+
         return false;
     }
 
@@ -85,7 +87,7 @@ class ResultsController extends Controller {
         \Debugbar::info("Фильтр - категория:".$this->category_name);
         \Debugbar::info("Фильтр - Подкатегория:".$this->subcat);
         \Debugbar::info("Фильтр - start_page :".$this->start_page);
-        \Debugbar::info("Фильтр - ид сделки :".$this->deal);
+        \Debugbar::info("Фильтр - id сделки :".$this->deal);
         \Debugbar::info("Фильтр - Цена от :".$this->price_min);
         \Debugbar::info("Фильтр - Цена до :".$this->price_max);
         \Debugbar::info("Фильтр - Регион :".$this->region);
@@ -118,7 +120,8 @@ class ResultsController extends Controller {
             $this->price_filter = " AND price = ".$this->price_min;
                                                                             
         $this->filter_string = $this->price_filter.$this->deal_filter;
-        \Debugbar::info("str :".$this->filter_string);
+        
+        \Debugbar::info("FILTERS :".$this->filter_string);
 
 	return true;
 
@@ -132,7 +135,7 @@ class ResultsController extends Controller {
     private function search(Request $request) {
 
         // Проверяю наличие фильтров
-        $filterData = $this->getFilterData($request);
+        $filterData = $this->getFilterData($request);        
     
         // Получаю входящие данные и удаляю не нужные символы.
         // FIXME: Пофиксить. Вылетает с ошибкой
@@ -151,9 +154,9 @@ class ResultsController extends Controller {
         $querySearchStr = "MATCH (text) AGAINST ('".$this->searchString."*' IN BOOLEAN MODE)";
       
         // Получаю общее кол-во
-        $total = DB::select("SELECT COUNT(*) as count FROM `adverts` AS adv WHERE ".$querySearchStr);
+        $total = DB::select("SELECT COUNT(*) as count FROM `adverts` AS adv WHERE ".$querySearchStr.$this->filter_string);
    
-        \Debugbar::info("TOTAL :".$total[0]->count);
+        \Debugbar::info("TOTAL :".$total[0]->count);        
           
         // Получаю выборку
         $results = DB::select(
@@ -166,7 +169,7 @@ class ResultsController extends Controller {
             price, 
             category_id,					
             (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image
-            FROM `adverts` AS adv WHERE ".$querySearchStr." ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit
+            FROM `adverts` AS adv WHERE ".$querySearchStr.$this->filter_string." ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit
         );
     
         \Debugbar::info($results);
@@ -210,9 +213,7 @@ class ResultsController extends Controller {
 
     // Поиск для морды
     public function searchForFront(Request $request) {
-
         \Debugbar::info("Поиск с фильтрами");
-
         return $this->search($request);       
     }
 
