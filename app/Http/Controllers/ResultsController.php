@@ -19,7 +19,7 @@ class ResultsController extends Controller {
     // частные переменные
     private $total          = [];
     private $start_record   = 0;
-    private $records_limit  = 5; // максимальное число записей при выборке    
+    private $records_limit  = 20; // максимальное число записей при выборке    
     private $filter_string  = "";   
     private $start_page     = "null";
     private $category_name  = "null";

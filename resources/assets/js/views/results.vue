@@ -145,7 +145,7 @@ export default {
 	return 	{
 		totalRecords: this.total_records,
 		resultsClone: this.results,		
-		perPage: 5, // макимальное кол-во объявлений на странице
+		perPage: 20, // макимальное кол-во объявлений на странице
 		start_page: 0,
     currentPage: 1,
 		loadMoreCountShow: 3,			    

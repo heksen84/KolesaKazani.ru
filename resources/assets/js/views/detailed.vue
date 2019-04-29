@@ -205,14 +205,13 @@
 		<div v-if="images.length <=0 " style="text-align:center"><h5>Без фото</h5></div>				
 
 		<div style="text-align:center" v-if="images.length > 0">			
-			<b-img :src="'../storage/app/images/'+images[image_index].image" fluid style="margin-bottom:5px"/>
+			<b-img :src="'../storage/app/images/'+images[image_index].image" fluid style="margin-bottom:5px" loading="auto"/>
 			<br>
-			<b-img v-for="(i,index) in images" :key="index" :src="'../storage/app/images/'+i.image" style="margin:1px;margin-bottom:8px" width="80" height="80" @click="selectImage(index)"/>
+			<b-img v-for="(i,index) in images" :key="index" :src="'../storage/app/images/'+i.image" style="margin:1px;margin-bottom:8px" width="80" height="80" @click="selectImage(index)" loading="auto"/>
 		</div>
 		
 		<div style="text-align:center;margin-bottom:20px">
-		<hr>			
-
+		<hr>
 			<div v-if="item[0].coord_lat!=0 && item[0].coord_lon!=0">
 				Местоположение на карте
 				<div id="map" style="margin-top:10px; width: 100%; height: 400px"></div>
@@ -220,7 +219,6 @@
 					<b-button variant="primary" @click="closeAndReturn">закрыть</b-button>
 				</div>
 			</div>
-
 		</b-col>
 	</b-row>
 </b-container>

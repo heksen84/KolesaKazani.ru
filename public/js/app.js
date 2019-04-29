@@ -3800,8 +3800,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 var mapCoords = [];
@@ -4424,7 +4422,7 @@ function num2str(n, text_forms) {
 		return {
 			totalRecords: this.total_records,
 			resultsClone: this.results,
-			perPage: 5, // макимальное кол-во объявлений на странице
+			perPage: 20, // макимальное кол-во объявлений на странице
 			start_page: 0,
 			currentPage: 1,
 			loadMoreCountShow: 3,
@@ -37625,7 +37623,8 @@ var render = function() {
             attrs: {
               src: "/storage/app/images/" + _vm.image,
               width: "118",
-              height: "118"
+              height: "118",
+              loading: "auto"
             }
           })
         : _vm._e(),
@@ -37636,7 +37635,8 @@ var render = function() {
             attrs: {
               src: "/public/images/_nofoto.jpg",
               width: "118",
-              height: "118"
+              height: "118",
+              loading: "auto"
             }
           })
         : _vm._e(),
@@ -39182,7 +39182,8 @@ var render = function() {
                               src:
                                 "../storage/app/images/" +
                                 _vm.images[_vm.image_index].image,
-                              fluid: ""
+                              fluid: "",
+                              loading: "auto"
                             }
                           }),
                           _vm._v(" "),
@@ -39198,7 +39199,8 @@ var render = function() {
                               attrs: {
                                 src: "../storage/app/images/" + i.image,
                                 width: "80",
-                                height: "80"
+                                height: "80",
+                                loading: "auto"
                               },
                               on: {
                                 click: function($event) {
