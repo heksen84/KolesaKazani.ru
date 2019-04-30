@@ -38245,7 +38245,8 @@ var render = function() {
                                 staticStyle: {
                                   overflow: "hidden",
                                   "text-overflow": "ellipsis",
-                                  "font-weight": "505"
+                                  "font-weight": "600",
+                                  color: "rgb(70,70,70)"
                                 }
                               },
                               [_vm._v(_vm._s(data.value))]
