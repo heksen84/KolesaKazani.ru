@@ -25,13 +25,15 @@
 				<div style="overflow:hidden;text-overflow:ellipsis;font-weight:600;color:rgb(70,70,70)">{{ data.value }}</div>        
 			</template>-->
 
-			<template slot="text" slot-scope="row">				
+			<template slot="text" slot-scope="row">
+				<div style="margin-left:10px">				
 				<span style="font-size:75%;text-decoration:underline">Объявление № {{ row.item.id }}</span>
 				<div style="overflow:hidden;text-overflow:ellipsis;font-weight:600;color:rgb(70,70,70)">{{ row.value }}</div>        
 				<div style="font-size:91%;margin-top:5px">
 					<span class="link" style="color:green" @click="advertGoTop(row.item.id)">в топ</span> |
 					<span class="link" style="color:blue" @click="advertGoUp(row.item.id)">поднять в вверх</span> |
 					<span class="link" style="color:red" @click="advertDelete(row.item.id)">удалить</span>
+				</div>
 				</div>
       </template>			
 
