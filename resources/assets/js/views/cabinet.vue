@@ -19,6 +19,7 @@
 	<b-row>
 		<b-col>
 			<h5 class="shadow_text" style="text-align:left">мои объявления</h5>
+			
 			<b-table responsive hover small :items="cloneItems" :fields="fields" style="background:white;color:black">
 
 			<template slot="text" slot-scope="row">
