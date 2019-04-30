@@ -38256,7 +38256,7 @@ var render = function() {
                               "div",
                               {
                                 staticStyle: {
-                                  "font-size": "91%",
+                                  "font-size": "93%",
                                   "margin-top": "5px"
                                 }
                               },

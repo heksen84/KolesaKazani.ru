@@ -22,7 +22,7 @@
 			<b-table responsive hover small :fields="fields" :items="cloneItems" style="background:white;color:black">			    
 			<template slot="text" slot-scope="data">				
 				<div style="overflow:hidden;text-overflow:ellipsis;font-weight:600;color:rgb(70,70,70)">{{ data.value }}</div>        
-				<div style="font-size:91%;margin-top:5px">
+				<div style="font-size:93%;margin-top:5px">
 					[ <span class="link" style="color:green">в топ</span> ]
 					[ <span class="link" style="color:blue">поднять в вверх</span> ]
 					[ <span class="link" style="color:red">удалить</span> ]
