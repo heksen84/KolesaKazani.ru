@@ -38261,32 +38261,34 @@ var render = function() {
                                 }
                               },
                               [
+                                _vm._v("\r\n\t\t\t\t\t["),
                                 _c(
                                   "span",
                                   {
                                     staticClass: "link",
                                     staticStyle: { color: "green" }
                                   },
-                                  [_vm._v("(в топ)")]
+                                  [_vm._v("в топ")]
                                 ),
-                                _vm._v(" "),
+                                _vm._v("]\r\n\t\t\t\t\t["),
                                 _c(
                                   "span",
                                   {
                                     staticClass: "link",
                                     staticStyle: { color: "blue" }
                                   },
-                                  [_vm._v("(поднять в вверх)")]
+                                  [_vm._v("поднять в вверх")]
                                 ),
-                                _vm._v(" "),
+                                _vm._v("]\r\n\t\t\t\t\t["),
                                 _c(
                                   "span",
                                   {
                                     staticClass: "link",
                                     staticStyle: { color: "red" }
                                   },
-                                  [_vm._v("(удалить)")]
-                                )
+                                  [_vm._v("удалить")]
+                                ),
+                                _vm._v("]\r\n\t\t\t\t")
                               ]
                             )
                           ]
