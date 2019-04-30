@@ -38261,7 +38261,7 @@ var render = function() {
                                 }
                               },
                               [
-                                _vm._v("\r\n\t\t\t\t\t["),
+                                _vm._v("\r\n\t\t\t\t\t[ "),
                                 _c(
                                   "span",
                                   {
@@ -38270,7 +38270,7 @@ var render = function() {
                                   },
                                   [_vm._v("в топ")]
                                 ),
-                                _vm._v("]\r\n\t\t\t\t\t["),
+                                _vm._v(" ]\r\n\t\t\t\t\t[ "),
                                 _c(
                                   "span",
                                   {
@@ -38279,7 +38279,7 @@ var render = function() {
                                   },
                                   [_vm._v("поднять в вверх")]
                                 ),
-                                _vm._v("]\r\n\t\t\t\t\t["),
+                                _vm._v(" ]\r\n\t\t\t\t\t[ "),
                                 _c(
                                   "span",
                                   {
@@ -38288,7 +38288,7 @@ var render = function() {
                                   },
                                   [_vm._v("удалить")]
                                 ),
-                                _vm._v("]\r\n\t\t\t\t")
+                                _vm._v(" ]\r\n\t\t\t\t")
                               ]
                             )
                           ]
