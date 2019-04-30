@@ -2655,71 +2655,98 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ["items"], // Входящие данные
+		props: ["items"], // Входящие данные
 
-	// данные компонента
-	data: function data() {
-		return {
-			cloneItems: [],
-			sortBy: "text",
-			fields: [{ key: "text", sortable: true }]
-		};
-	},
-
-
-	// компонент создан
-	created: function created() {
-		this.cloneItems = this.items;
-		console.log(this.cloneItems);
-	},
-
-
-	// методы
-	methods: {
-		// ---------------------------------
-		// поднять объявление в верх
-		// ---------------------------------
-		advertGoUp: function advertGoUp() {
-
-			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/advertGoUp").then(function (res) {}).catch(function (err) {
-				console.log(err);
-			});
+		// данные компонента
+		data: function data() {
+				return {
+						cloneItems: [],
+						fields: ["text"]
+				};
 		},
 
 
-		// ---------------------------------
-		// удалить объявление
-		// ---------------------------------
-		advertDelete: function advertDelete() {
-
-			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/advertDelete").then(function (res) {}).catch(function (err) {
-				console.log(err);
-			});
+		// компонент создан
+		created: function created() {
+				this.cloneItems = this.items;
+				console.log(this.cloneItems);
 		},
 
 
-		// ---------------------------------
-		// Выйти из кабинета
-		// ---------------------------------
-		logout: function logout() {
+		// методы
+		methods: {
 
-			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/logout').then(function (res) {
-				window.location = '/';
-			}).catch(function (err) {
-				console.log(err);
-			});
-		},
-		goHome: function goHome() {
-			window.location = '/';
-		},
-		createAdvert: function createAdvert() {
-			window.location = '/podat-obyavlenie';
+				// ---------------------------------
+				// поднять объявление в топ
+				// ---------------------------------
+				advertGoTop: function advertGoTop(advert_id) {
+
+						console.log(advert_id);
+
+						Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/advertGoTop").then(function (res) {}).catch(function (err) {
+								console.log(err);
+						});
+				},
+
+
+				// ---------------------------------
+				// поднять объявление в вверх
+				// ---------------------------------
+				advertGoUp: function advertGoUp(advert_id) {
+
+						console.log(advert_id);
+
+						Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/advertGoUp").then(function (res) {}).catch(function (err) {
+								console.log(err);
+						});
+				},
+
+
+				// ---------------------------------
+				// удалить объявление
+				// ---------------------------------
+				advertDelete: function advertDelete(advert_id) {
+
+						console.log(advert_id);
+
+						Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/deleteAdvert").then(function (res) {
+
+								alert(res);
+						}).catch(function (err) {
+								console.log(err);
+						});
+				},
+
+
+				// ---------------------------------
+				// Выйти из кабинета
+				// ---------------------------------
+				logout: function logout() {
+
+						Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/logout').then(function (res) {
+								window.location = '/';
+						}).catch(function (err) {
+								console.log(err);
+						});
+				},
+				goHome: function goHome() {
+						window.location = '/';
+				},
+				createAdvert: function createAdvert() {
+						window.location = '/podat-obyavlenie';
+				}
 		}
-	}
 });
 
 /***/ }),
@@ -38231,14 +38258,25 @@ var render = function() {
                       responsive: "",
                       hover: "",
                       small: "",
-                      fields: _vm.fields,
-                      items: _vm.cloneItems
+                      items: _vm.cloneItems,
+                      fields: _vm.fields
                     },
                     scopedSlots: _vm._u([
                       {
                         key: "text",
-                        fn: function(data) {
+                        fn: function(row) {
                           return [
+                            _c(
+                              "span",
+                              {
+                                staticStyle: {
+                                  "font-size": "75%",
+                                  "text-decoration": "underline"
+                                }
+                              },
+                              [_vm._v("Объявление № " + _vm._s(row.item.id))]
+                            ),
+                            _vm._v(" "),
                             _c(
                               "div",
                               {
@@ -38249,46 +38287,59 @@ var render = function() {
                                   color: "rgb(70,70,70)"
                                 }
                               },
-                              [_vm._v(_vm._s(data.value))]
+                              [_vm._v(_vm._s(row.value))]
                             ),
                             _vm._v(" "),
                             _c(
                               "div",
                               {
                                 staticStyle: {
-                                  "font-size": "93%",
+                                  "font-size": "91%",
                                   "margin-top": "5px"
                                 }
                               },
                               [
-                                _vm._v("\r\n\t\t\t\t\t[ "),
                                 _c(
                                   "span",
                                   {
                                     staticClass: "link",
-                                    staticStyle: { color: "green" }
+                                    staticStyle: { color: "green" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.advertGoTop(row.item.id)
+                                      }
+                                    }
                                   },
                                   [_vm._v("в топ")]
                                 ),
-                                _vm._v(" ]\r\n\t\t\t\t\t[ "),
+                                _vm._v(" |\r\n\t\t\t\t\t"),
                                 _c(
                                   "span",
                                   {
                                     staticClass: "link",
-                                    staticStyle: { color: "blue" }
+                                    staticStyle: { color: "blue" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.advertGoUp(row.item.id)
+                                      }
+                                    }
                                   },
                                   [_vm._v("поднять в вверх")]
                                 ),
-                                _vm._v(" ]\r\n\t\t\t\t\t[ "),
+                                _vm._v(" |\r\n\t\t\t\t\t"),
                                 _c(
                                   "span",
                                   {
                                     staticClass: "link",
-                                    staticStyle: { color: "red" }
+                                    staticStyle: { color: "red" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.advertDelete(row.item.id)
+                                      }
+                                    }
                                   },
                                   [_vm._v("удалить")]
-                                ),
-                                _vm._v(" ]\r\n\t\t\t\t")
+                                )
                               ]
                             )
                           ]

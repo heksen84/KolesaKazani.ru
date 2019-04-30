@@ -70,6 +70,7 @@ Route::get("/getResultsByPlaceForFront", "ResultsController@getResultsByPlaceFor
 // ---------------------------------------------------------------
 Route::get("/", 				"IndexController@init");
 Route::post("create", 			"AdvertController@createAdvert");
+Route::get("deleteAdvert", 	    "AdvertController@deleteAdvert");
 Route::get("home",	 		 	"CabinetController@index");
 Route::get("home/{advert_id}",	"CabinetController@index");
 Route::get("podat-obyavlenie", 	"AdvertController@newAdvert");

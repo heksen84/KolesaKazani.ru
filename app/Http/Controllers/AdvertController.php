@@ -25,6 +25,10 @@ class AdvertController extends Controller {
         return Adverts::all()->toJson();
     }
 
+    public function deleteAdvert() {
+        return "ok";
+ 	}
+
     /*
     -----------------------------------
     Новое объявление
