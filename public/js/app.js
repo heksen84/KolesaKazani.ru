@@ -2664,6 +2664,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -38276,7 +38277,7 @@ var render = function() {
                                   "span",
                                   {
                                     staticStyle: {
-                                      "font-size": "75%",
+                                      "font-size": "90%",
                                       "text-decoration": "underline"
                                     }
                                   },
@@ -38304,7 +38305,7 @@ var render = function() {
                                   "div",
                                   {
                                     staticStyle: {
-                                      "font-size": "91%",
+                                      "font-size": "95%",
                                       "margin-top": "5px"
                                     }
                                   },
@@ -38335,6 +38336,20 @@ var render = function() {
                                         }
                                       },
                                       [_vm._v("поднять в вверх")]
+                                    ),
+                                    _vm._v(" |\r\n\t\t\t\t\t"),
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass: "link",
+                                        staticStyle: { color: "blue" },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.advertGoUp(row.item.id)
+                                          }
+                                        }
+                                      },
+                                      [_vm._v("продлить")]
                                     ),
                                     _vm._v(" |\r\n\t\t\t\t\t"),
                                     _c(
