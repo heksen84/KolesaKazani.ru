@@ -2661,10 +2661,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -38292,10 +38288,11 @@ var render = function() {
                                   "div",
                                   {
                                     staticStyle: {
-                                      overflow: "hidden",
-                                      "text-overflow": "ellipsis",
                                       "font-weight": "600",
-                                      color: "rgb(70,70,70)"
+                                      color: "rgb(70,70,70)",
+                                      "white-space": "nowrap",
+                                      overflow: "hidden",
+                                      "text-overflow": "ellipsis"
                                     }
                                   },
                                   [_vm._v(_vm._s(row.value))]
