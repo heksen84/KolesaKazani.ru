@@ -38289,11 +38289,13 @@ var render = function() {
                                   "div",
                                   {
                                     staticStyle: {
+                                      "margin-top": "2px",
                                       "font-weight": "600",
                                       color: "rgb(70,70,70)",
                                       "white-space": "nowrap",
                                       overflow: "hidden",
-                                      "text-overflow": "ellipsis"
+                                      "text-overflow": "ellipsis",
+                                      "word-wrap": "break-all"
                                     }
                                   },
                                   [_vm._v(_vm._s(row.value))]
