@@ -19,15 +19,14 @@
 	<b-row>
 		<b-col>
 			<h5 class="shadow_text" style="text-align:left">мои объявления</h5>
-			<b-table responsive hover small :fields="fields" :items="cloneItems" style="background:white;color:black">			
-				
-				<!--Статус: отклонено (нецензурная лексика)
-			
-        <b-button size="sm" variant="outline-success" @click="advertGoUp">поднять в вверх</b-button>
-				<b-button size="sm" variant="link" @click="advertDelete">удалить</b-button>      -->
-
-			<template slot="Действие" slot-scope="row">
-        <b-button variant="success" @click="row.toggleDetails">Дополнительно</b-button>
+			<b-table responsive hover small :fields="fields" :items="cloneItems" style="background:white;color:black">			    
+			<template slot="text" slot-scope="data">				
+				<div style="overflow:hidden;text-overflow:ellipsis;font-weight:505">{{ data.value }}</div>        
+				<div style="font-size:91%;margin-top:5px">
+					<span class="link" style="color:green">(в топ)</span>
+					<span class="link" style="color:blue">(поднять в вверх)</span>
+					<span class="link" style="color:red">(удалить)</span>					
+				</div>
       </template>
 			</b-table>
 		</b-col>
@@ -38,9 +37,7 @@
 <script>
 
 import { get } from './../helpers/api'
-
 export default {
-	
 props: ["items"], // Входящие данные
 
 // данные компонента
@@ -49,8 +46,7 @@ data () {
 			cloneItems: [],
 			sortBy: "text",
 			fields: [				
-				{ key: "text", sortable: true },
-        { key: "Действие", sortable: false }
+				{ key: "text", sortable: true }
 			]								
 	}
 },

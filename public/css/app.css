@@ -333,6 +333,11 @@ h3 {
   height: 80px;
 }
 
+.link:hover {
+  text-decoration: underline;
+  cursor: default;
+}
+
 .shadow_text {
   color: #fff;
   letter-spacing: 2px;

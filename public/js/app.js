@@ -2655,13 +2655,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-
 	props: ["items"], // Входящие данные
 
 	// данные компонента
@@ -2669,7 +2666,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		return {
 			cloneItems: [],
 			sortBy: "text",
-			fields: [{ key: "text", sortable: true }, { key: "Действие", sortable: false }]
+			fields: [{ key: "text", sortable: true }]
 		};
 	},
 
@@ -38239,16 +38236,57 @@ var render = function() {
                     },
                     scopedSlots: _vm._u([
                       {
-                        key: "Действие",
-                        fn: function(row) {
+                        key: "text",
+                        fn: function(data) {
                           return [
                             _c(
-                              "b-button",
+                              "div",
                               {
-                                attrs: { variant: "success" },
-                                on: { click: row.toggleDetails }
+                                staticStyle: {
+                                  overflow: "hidden",
+                                  "text-overflow": "ellipsis",
+                                  "font-weight": "505"
+                                }
                               },
-                              [_vm._v("Дополнительно")]
+                              [_vm._v(_vm._s(data.value))]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticStyle: {
+                                  "font-size": "91%",
+                                  "margin-top": "5px"
+                                }
+                              },
+                              [
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "link",
+                                    staticStyle: { color: "green" }
+                                  },
+                                  [_vm._v("(в топ)")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "link",
+                                    staticStyle: { color: "blue" }
+                                  },
+                                  [_vm._v("(поднять в вверх)")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "link",
+                                    staticStyle: { color: "red" }
+                                  },
+                                  [_vm._v("(удалить)")]
+                                )
+                              ]
                             )
                           ]
                         }

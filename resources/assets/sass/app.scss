@@ -335,6 +335,11 @@ h3 {
   height:80px;
 }
 
+.link:hover {
+  text-decoration:underline;
+  cursor:default;
+}
+
 .shadow_text {
 
 //text-decoration: underline;
