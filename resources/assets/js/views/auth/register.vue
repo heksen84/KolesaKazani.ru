@@ -20,7 +20,7 @@
                       type="text"
                       v-model="form.name"
                       required
-                      placeholder="Введите имя"
+                      placeholder="Ваше имя"
                       :state="name_state"
                       >
         </b-form-input>

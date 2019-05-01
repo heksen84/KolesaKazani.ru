@@ -4032,8 +4032,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -36656,22 +36654,15 @@ var render = function() {
                         : _vm._e(),
                       _vm._v(" "),
                       !_vm.auth
-                        ? _c(
-                            "div",
-                            { staticClass: "form-inline" },
-                            [
-                              _c("b-nav-item", { attrs: { href: "/login" } }, [
-                                _vm._v("Вход")
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "b-nav-item",
-                                { attrs: { href: "/register" } },
-                                [_vm._v("Регистрация")]
-                              )
-                            ],
-                            1
-                          )
+                        ? _c("b-nav-item", { attrs: { href: "/login" } }, [
+                            _vm._v("Вход")
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.auth
+                        ? _c("b-nav-item", { attrs: { href: "/register" } }, [
+                            _vm._v("Регистрация")
+                          ])
                         : _vm._e()
                     ],
                     1
@@ -39706,7 +39697,7 @@ var render = function() {
                           id: "name",
                           type: "text",
                           required: "",
-                          placeholder: "Введите имя",
+                          placeholder: "Ваше имя",
                           state: _vm.name_state
                         },
                         model: {
