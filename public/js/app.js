@@ -2665,6 +2665,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ["items"], // Входящие данные
 
@@ -2688,7 +2689,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	methods: {
 
 		// ---------------------------------
-		// поднять объявление в топ
+		// Поднять объявление в топ
 		// ---------------------------------
 		advertGoTop: function advertGoTop(advert_id) {
 
@@ -2701,7 +2702,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 		// ---------------------------------
-		// поднять объявление в вверх
+		// Поднять объявление в вверх
 		// ---------------------------------
 		advertGoUp: function advertGoUp(advert_id) {
 
@@ -2714,7 +2715,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 		// ---------------------------------
-		// удалить объявление
+		// Удалить объявление
 		// ---------------------------------
 		advertDelete: function advertDelete(advert_id) {
 			var _this = this;
@@ -2736,18 +2737,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		// Выйти из кабинета
 		// ---------------------------------
 		logout: function logout() {
-
-			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/logout').then(function (res) {
-				window.location = '/';
+			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/logout").then(function (res) {
+				window.location = "/";
 			}).catch(function (err) {
 				console.log(err);
 			});
 		},
+
+
+		// ---------------------------------
+		// На домашнюю страницу
+		// ---------------------------------
 		goHome: function goHome() {
-			window.location = '/';
+			window.location = "/";
 		},
+
+
+		// ---------------------------------
+		// Новое объявление
+		// ---------------------------------
 		createAdvert: function createAdvert() {
-			window.location = '/podat-obyavlenie';
+			window.location = "/podat-obyavlenie";
 		}
 	}
 });
