@@ -71,7 +71,7 @@ methods: {
 
 		console.log(advert_id)
 
-		get("/advertGoTop").then((res) => {
+		get("/advertGoTop?id="+advert_id).then((res) => {
 			}).catch((err) => {
 				console.log(err)
 		});
@@ -84,7 +84,7 @@ methods: {
 
 		console.log(advert_id)
 
-		get("/advertGoUp").then((res) => {
+		get("/advertGoUp?id="+advert_id).then((res) => {
 			}).catch((err) => {
 				console.log(err)
 		});
@@ -97,9 +97,9 @@ methods: {
 
 		console.log(advert_id)
 
-		get("/deleteAdvert").then((res) => {
+		get("/deleteAdvert?id="+advert_id).then((res) => {
 
-			alert(res)
+			this.cloneItems = res.data;
 
 		}).catch((err) => {
 				console.log(err)

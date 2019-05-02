@@ -10,12 +10,11 @@ use App\Adverts;
 class CabinetController extends Controller
 {
     public function __construct() {
-        $this->middleware('auth');
+        $this->middleware("auth");
     }
 
     public function index() {
-
-        $items = DB::table('adverts')->where('user_id', Auth::id())->select('id','text')->get();
-        return view('cabinet')->with("items", json_encode($items ));
+        $items = DB::table("adverts")->where("user_id", Auth::id())->select("id", "text")->get();
+        return view("cabinet")->with("items", json_encode($items ));
     }
 }

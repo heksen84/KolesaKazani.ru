@@ -25,8 +25,56 @@ class AdvertController extends Controller {
         return Adverts::all()->toJson();
     }
 
-    public function deleteAdvert() {
-        return "ok";
+    /*
+    -----------------------------------
+    Удаление объявления
+    -----------------------------------*/
+    public function deleteAdvert(Request $request) {
+
+        // 1. Подкатегория
+        // 2. Основное объявление
+        // 3. Картинки
+
+        $data = $request->all();
+
+	    if (!$data)
+            return false;                    
+
+        $advert = DB::select("SELECT category_id as categoryId, adv_category_id as subcatId FROM `adverts` WHERE id = ".$data["id"]);
+        $images = DB::select("SELECT image  FROM `images` WHERE advert_id = ".$data["id"]);
+
+        $table = null;
+
+        switch($advert[0]->categoryId) {
+            case 1: \Debugbar::info("Транспорт"); $table = "adv_transport"; break;
+            case 2: \Debugbar::info("Недвижимость"); $table = "adv_realestate"; break;
+            case 3: \Debugbar::info("Электроника");  break;
+            case 4: \Debugbar::info("Работа и бизнес");  break;
+            case 5: \Debugbar::info("Для дома и дачи");  break;
+            case 6: \Debugbar::info("Личные вещи"); break;
+            case 7: \Debugbar::info("Животные"); break;
+            case 8: \Debugbar::info("Хобби и отдых"); break;
+            case 9: \Debugbar::info("Услуги"); break;            
+            case 10: \Debugbar::info("Другое"); break;            
+        }
+
+        if ($table!=null)
+            $result = DB::select("DELETE FROM `".$table."` WHERE id = ".$advert[0]->subcatId);
+            
+            $result = DB::select("DELETE FROM `adverts` WHERE id = ".$data["id"]);
+
+
+        \Debugbar::info($table);
+        \Debugbar::info($advert[0]->categoryId);
+
+        foreach($images as $image) {
+            \Debugbar::info($image);
+            \Storage::delete($image);
+        }        
+
+        $items = DB::table("adverts")->where("user_id", Auth::id())->select("id", "text")->get();
+        return json_encode($items);
+        
  	}
 
     /*
@@ -88,6 +136,7 @@ class AdvertController extends Controller {
         // проверка
         $validator = Validator::make( $data, $rules, $messages );
 
+        // если проверка не прошла
         if ( $validator->fails() )  
             return response()->json( ["result"=>"usr.error", "msg" => $validator->errors()->first()] );                    
 
