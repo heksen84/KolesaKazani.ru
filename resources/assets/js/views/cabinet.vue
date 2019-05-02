@@ -51,15 +51,15 @@ props: ["items"], // Входящие данные
 // данные компонента
 data () {
     return 	{
-			cloneItems: [],
-			fields: ["text"]
+		cloneItems: [],
+		fields: ["text"]
 	}
 },
 
 // компонент создан
 created() {		
-		this.cloneItems = this.items;
-		console.log(this.cloneItems)
+	this.cloneItems = this.items;
+	console.log(this.cloneItems)
 },
 
 // методы
