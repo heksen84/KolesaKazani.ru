@@ -93,7 +93,10 @@ methods: {
 	// ---------------------------------
 	// удалить объявление
 	// ---------------------------------
-	advertDelete(advert_id) {			
+	advertDelete(advert_id) {
+		
+		if (!confirm("Удалить объявление?"))
+			return;		
 
 		console.log(advert_id)
 

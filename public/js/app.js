@@ -2666,88 +2666,90 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-		props: ["items"], // Входящие данные
+	props: ["items"], // Входящие данные
 
-		// данные компонента
-		data: function data() {
-				return {
-						cloneItems: [],
-						fields: ["text"]
-				};
+	// данные компонента
+	data: function data() {
+		return {
+			cloneItems: [],
+			fields: ["text"]
+		};
+	},
+
+
+	// компонент создан
+	created: function created() {
+		this.cloneItems = this.items;
+		console.log(this.cloneItems);
+	},
+
+
+	// методы
+	methods: {
+
+		// ---------------------------------
+		// поднять объявление в топ
+		// ---------------------------------
+		advertGoTop: function advertGoTop(advert_id) {
+
+			console.log(advert_id);
+
+			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/advertGoTop?id=" + advert_id).then(function (res) {}).catch(function (err) {
+				console.log(err);
+			});
 		},
 
 
-		// компонент создан
-		created: function created() {
-				this.cloneItems = this.items;
-				console.log(this.cloneItems);
+		// ---------------------------------
+		// поднять объявление в вверх
+		// ---------------------------------
+		advertGoUp: function advertGoUp(advert_id) {
+
+			console.log(advert_id);
+
+			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/advertGoUp?id=" + advert_id).then(function (res) {}).catch(function (err) {
+				console.log(err);
+			});
 		},
 
 
-		// методы
-		methods: {
+		// ---------------------------------
+		// удалить объявление
+		// ---------------------------------
+		advertDelete: function advertDelete(advert_id) {
+			var _this = this;
 
-				// ---------------------------------
-				// поднять объявление в топ
-				// ---------------------------------
-				advertGoTop: function advertGoTop(advert_id) {
+			if (!confirm("Удалить объявление?")) return;
 
-						console.log(advert_id);
+			console.log(advert_id);
 
-						Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/advertGoTop?id=" + advert_id).then(function (res) {}).catch(function (err) {
-								console.log(err);
-						});
-				},
+			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/deleteAdvert?id=" + advert_id).then(function (res) {
 
-
-				// ---------------------------------
-				// поднять объявление в вверх
-				// ---------------------------------
-				advertGoUp: function advertGoUp(advert_id) {
-
-						console.log(advert_id);
-
-						Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/advertGoUp?id=" + advert_id).then(function (res) {}).catch(function (err) {
-								console.log(err);
-						});
-				},
+				_this.cloneItems = res.data;
+			}).catch(function (err) {
+				console.log(err);
+			});
+		},
 
 
-				// ---------------------------------
-				// удалить объявление
-				// ---------------------------------
-				advertDelete: function advertDelete(advert_id) {
-						var _this = this;
+		// ---------------------------------
+		// Выйти из кабинета
+		// ---------------------------------
+		logout: function logout() {
 
-						console.log(advert_id);
-
-						Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/deleteAdvert?id=" + advert_id).then(function (res) {
-
-								_this.cloneItems = res.data;
-						}).catch(function (err) {
-								console.log(err);
-						});
-				},
-
-
-				// ---------------------------------
-				// Выйти из кабинета
-				// ---------------------------------
-				logout: function logout() {
-
-						Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/logout').then(function (res) {
-								window.location = '/';
-						}).catch(function (err) {
-								console.log(err);
-						});
-				},
-				goHome: function goHome() {
-						window.location = '/';
-				},
-				createAdvert: function createAdvert() {
-						window.location = '/podat-obyavlenie';
-				}
+			Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])('/logout').then(function (res) {
+				window.location = '/';
+			}).catch(function (err) {
+				console.log(err);
+			});
+		},
+		goHome: function goHome() {
+			window.location = '/';
+		},
+		createAdvert: function createAdvert() {
+			window.location = '/podat-obyavlenie';
 		}
+	}
 });
 
 /***/ }),

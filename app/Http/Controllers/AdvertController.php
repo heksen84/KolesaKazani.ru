@@ -41,7 +41,7 @@ class AdvertController extends Controller {
             return false;                    
 
         $advert = DB::select("SELECT category_id as categoryId, adv_category_id as subcatId FROM `adverts` WHERE id = ".$data["id"]);
-        $images = DB::select("SELECT image  FROM `images` WHERE advert_id = ".$data["id"]);
+        $images = DB::select("SELECT image FROM `images` WHERE advert_id = ".$data["id"]);
 
         $table = null;
 
@@ -60,7 +60,7 @@ class AdvertController extends Controller {
 
         if ($table!=null)
             $result = DB::select("DELETE FROM `".$table."` WHERE id = ".$advert[0]->subcatId);
-            
+
             $result = DB::select("DELETE FROM `adverts` WHERE id = ".$data["id"]);
 
 
@@ -82,10 +82,7 @@ class AdvertController extends Controller {
     Новое объявление
     -----------------------------------*/
  	public function newAdvert() {
-        return Auth::user()? view("create")
-        ->with( "items", Categories::all() )
-        ->with( "regions", Regions::all() )
-        ->with( "dealtypes", DealType::all()->toJson() ) : view("auth\login");
+        return Auth::user()? view("create")->with( "items", Categories::all() )->with( "regions", Regions::all() )->with( "dealtypes", DealType::all()->toJson() ) : view("auth\login");
  	}
 
     /*
