@@ -463,6 +463,9 @@ class ResultsController extends Controller {
 		
 	    $category = request()->segment(1); // вырезаю категорию из url
         $result = $this->getResultsByCategory($request, null, null, $category);
+
+        if ($result==null)
+            return view("404");
     
         return view("results")
         ->with("keywords", $result["keywords"])
@@ -494,6 +497,9 @@ class ResultsController extends Controller {
 
 	    $category = request()->segment(2); // вырезаю категорию из url
         $result = $this->getResultsByCategory($request, $region, null, $category);
+
+        if ($result==null)
+            return view("404");
     
         return view("results")
         ->with("keywords", $result["keywords"])
@@ -530,6 +536,9 @@ class ResultsController extends Controller {
         \Debugbar::info("Категория:".$category);
 
         $result = $this->getResultsByCategory($request, $region, $place, $category);
+
+        if ($result==null)
+            return view("404");
     
         return view("results")
         ->with("keywords", $result["keywords"])
@@ -604,6 +613,10 @@ class ResultsController extends Controller {
         
         // получаю имя на русском
 	    $categories = SubCats::select("id", "name")->where("url",  $filterData?$this->subcat:$subcat )->first();
+        
+        if ($categories==null)
+            return false;
+
         $items = Adverts::where("category_id",  $categories->id )->get();
         
         // беру имя категории либо с фильтров либо с переменной в контроллере
@@ -1228,6 +1241,9 @@ class ResultsController extends Controller {
 
     $result = $this->getResultsForSubCategory($request, null, null, $category, $subcat);
 
+    if ($result==null)
+        return view("404");
+
     return view("results")
     ->with("category_name", $result["category_name"])
     ->with("subcat", $result["subcat"])
@@ -1257,6 +1273,9 @@ class ResultsController extends Controller {
 
 	    $category = request()->segment(2);	 // вырезаю категори из url
         $result = $this->getResultsForSubCategory($request, $region, null, $category, $subcat);
+
+        if ($result==null)
+            return view("404");
 
 	    \Debugbar::info("REGION :".$region);
     
@@ -1304,6 +1323,9 @@ class ResultsController extends Controller {
 
 	    $category = request()->segment(3);	 // вырезаю категори из url
         $result = $this->getResultsForSubCategory($request, $region, $place, $category, $subcat);
+
+        if ($result==null)
+            return view("404");
 
 	    \Debugbar::info("REGION :".$region);
     
