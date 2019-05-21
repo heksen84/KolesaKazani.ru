@@ -413,7 +413,7 @@ class AdvertController extends Controller {
         if ($urls!=null)
             return $this->getFullInfo($urls->advert_id);
         else
-            return view("404");
+            return view("errors/404");
         
     }
     

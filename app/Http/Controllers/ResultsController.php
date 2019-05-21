@@ -465,7 +465,7 @@ class ResultsController extends Controller {
         $result = $this->getResultsByCategory($request, null, null, $category);
 
         if ($result==null)
-            return view("404");
+            return view("errors/404");
     
         return view("results")
         ->with("keywords", $result["keywords"])
@@ -499,7 +499,7 @@ class ResultsController extends Controller {
         $result = $this->getResultsByCategory($request, $region, null, $category);
 
         if ($result==null)
-            return view("404");
+            return view("errors/404");
     
         return view("results")
         ->with("keywords", $result["keywords"])
@@ -538,7 +538,7 @@ class ResultsController extends Controller {
         $result = $this->getResultsByCategory($request, $region, $place, $category);
 
         if ($result==null)
-            return view("404");
+            return view("errors/404");
     
         return view("results")
         ->with("keywords", $result["keywords"])
@@ -1242,7 +1242,7 @@ class ResultsController extends Controller {
     $result = $this->getResultsForSubCategory($request, null, null, $category, $subcat);
 
     if ($result==null)
-        return view("404");
+        return view("errors/404");
 
     return view("results")
     ->with("category_name", $result["category_name"])
@@ -1275,7 +1275,7 @@ class ResultsController extends Controller {
         $result = $this->getResultsForSubCategory($request, $region, null, $category, $subcat);
 
         if ($result==null)
-            return view("404");
+            return view("errors/404");
 
 	    \Debugbar::info("REGION :".$region);
     
@@ -1325,7 +1325,7 @@ class ResultsController extends Controller {
         $result = $this->getResultsForSubCategory($request, $region, $place, $category, $subcat);
 
         if ($result==null)
-            return view("404");
+            return view("errors/404");
 
 	    \Debugbar::info("REGION :".$region);
     
