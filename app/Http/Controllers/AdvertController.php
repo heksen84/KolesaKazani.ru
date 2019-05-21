@@ -222,10 +222,10 @@ class AdvertController extends Controller {
 
                     // мото
                     if ($data["transport_type"]==2) {
-                        $transport->year                = $data["release_date"];       // год выпуска
-                        $transport->mileage             = $data["mileage"];            // пробег
-                        $transport->engine_type         = $data["fuel_type"];          // тип движка
-                        $transport->customs             = $data["customs"];            // растаможка
+                        $transport->year            = $data["release_date"];       // год выпуска
+                        $transport->mileage         = $data["mileage"];            // пробег
+                        $transport->engine_type     = $data["fuel_type"];          // тип движка
+                        $transport->customs         = $data["customs"];            // растаможка
 
                         // значение записи url в sitemap.xml
                         $url_text = "Транспорт мото";
@@ -389,9 +389,10 @@ class AdvertController extends Controller {
 	    // Тойота, 134
 	    // Камри,  134
             
-            Sitemap::addUrl($urls->url);
+        Sitemap::addUrl($urls->url);
 
-            return $advert->id;
+        return $advert->id;
+        
 		}		
         catch(\Exception $e) {
                return response()->json( ["result"=>"db.error", "msg"=>$e->getMessage()] );  
@@ -405,13 +406,15 @@ class AdvertController extends Controller {
     Получить полную информацию об объявлении
     по url
     -------------------------------------------*/
-    public function getFullInfoByUrl($url) {    
+    public function getFullInfoByUrl($url) {   
         
         $urls = Urls::select("advert_id")->where("url",  $url )->first();
-        return $this->getFullInfo($urls->advert_id);
-
-        //$results = DB::select("SELECT advert_id FROM urls WHERE MATCH(url) AGAINST('".$url."')"); // fulltext search
-        //return $this->getFullInfo($results[0]->advert_id);
+        
+        if ($urls!=null)
+            return $this->getFullInfo($urls->advert_id);
+        else
+            return view("404");
+        
     }
     
 
