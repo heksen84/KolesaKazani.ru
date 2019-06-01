@@ -438,4 +438,10 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/80-12312312312312312312312312312312sdfsf-sdfsdfsdf</loc>
+    <lastmod>2019-06-01T19:50:08+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

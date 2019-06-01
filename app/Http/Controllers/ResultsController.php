@@ -43,7 +43,6 @@ class ResultsController extends Controller {
             \Debugbar::info($region_string);
             return $region_string;
         }
-
         return false;
     }
 
@@ -58,7 +57,6 @@ class ResultsController extends Controller {
             \Debugbar::info($place_string);
             return $place_string;
         }
-
         return false;
     }
 
