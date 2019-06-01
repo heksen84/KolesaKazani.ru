@@ -10,7 +10,7 @@ class Sitemap {
 
 	private static $sitemaps = "sitemaps/";
 	private static $public_path = "http://damelya:90/obyavlenie/";
-	private static $sitemap_index_file = "sitemaps/index.xml";
+	private static $sitemap_index_file = "sitemaps/_index.xml";
 
 	// ------------------------------------------------
 	// создать sitemap
