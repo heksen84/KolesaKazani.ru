@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
-    <loc>damelya:90/sitemaps/country.xml</loc>
+    <loc>http://damelya:90/sitemaps/country.xml</loc>
   </sitemap>
   <sitemap>
-    <loc>damelya:90/sitemaps/region.xml</loc>
+    <loc>http://damelya:90/sitemaps/region.xml</loc>
   </sitemap>
   <sitemap>
-    <loc>damelya:90/sitemaps/place.xml</loc>
+    <loc>http://damelya:90/sitemaps/place.xml</loc>
   </sitemap>
   <sitemap>
-    <loc>damelya:90/sitemaps/subcats.xml</loc>
+    <loc>http://damelya:90/sitemaps/subcats.xml</loc>
   </sitemap>
   <sitemap>
-    <loc>damelya:90/sitemaps/sitemap_1.xml</loc>
+    <loc>http://damelya:90/sitemaps/sitemap_1.xml</loc>
     <lastmod>2019-04-23T13:16:31+0600</lastmod>
   </sitemap>
 </sitemapindex>

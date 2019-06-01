@@ -9,7 +9,7 @@ namespace App\Helpers;
 class Sitemap {
 
 	private static $sitemaps = "sitemaps/";
-	private static $public_path = "damelya:90/obyavlenie/";
+	private static $public_path = "http://damelya:90/obyavlenie/";
 	private static $sitemap_index_file = "sitemaps/index.xml";
 
 	// ------------------------------------------------
