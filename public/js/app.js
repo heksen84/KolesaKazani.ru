@@ -37649,6 +37649,7 @@ var render = function() {
         ? _c("b-img", {
             staticStyle: { display: "inline-block" },
             attrs: {
+              alt: _vm.title,
               src: "/storage/app/images/" + _vm.image,
               width: "118",
               height: "118",
