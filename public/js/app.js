@@ -37662,6 +37662,7 @@ var render = function() {
         ? _c("b-img", {
             staticStyle: { display: "inline-block" },
             attrs: {
+              alt: "без фото",
               src: "/public/images/_nofoto.jpg",
               width: "118",
               height: "118",

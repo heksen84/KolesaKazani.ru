@@ -2,7 +2,7 @@
   <div class="item" @click="details">
     
     <b-img :alt="title" :src="'/storage/app/images/'+image" width="118" height="118" style="display:inline-block" v-if="image!=null" loading="auto"/>
-    <b-img :src="'/public/images/_nofoto.jpg'" width="118" height="118" style="display:inline-block" v-if="image==null" loading="auto"/>
+    <b-img alt="без фото" :src="'/public/images/_nofoto.jpg'" width="118" height="118" style="display:inline-block" v-if="image==null" loading="auto"/>
     
     <div class="item-content">      
         <b v-if="deal==0 && full">Куплю</b>
