@@ -36652,7 +36652,7 @@ var render = function() {
               _c("b-navbar-brand", { attrs: { href: "#" } }, [
                 _vm._v(_vm._s(this.$store.state.str_title) + " "),
                 _c("br"),
-                _c("span", { staticStyle: { "font-size": "12px" } }, [
+                _c("span", { staticStyle: { "font-size": "14px" } }, [
                   _vm._v("все объявления Казахстана")
                 ])
               ]),
