@@ -380,7 +380,8 @@ class AdvertController extends Controller {
             $urls->save();
                          
             // Сохраняю картинки        
-            \App\Jobs\loadImages::dispatch($request, $advert->id);
+            //\App\Jobs\loadImages::dispatch($request, $advert->id);
+            
 
 	    // --------------------------------------
 	    // Определяю теги категории:

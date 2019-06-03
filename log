@@ -1,0 +1,253 @@
+
+> @ dev C:\Users\s840524350793\OSPanel\domains\damelya
+> npm run development
+
+
+> @ development C:\Users\s840524350793\OSPanel\domains\damelya
+> cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js
+
+ ERROR  Failed to compile with 2 errors9:11:14 AM
+
+ error  in ./resources/assets/sass/app.scss
+
+Module build failed: Error: Missing binding C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\node-sass\vendor\win32-x64-64\binding.node
+Node Sass could not find a binding for your current environment: Windows 64-bit with Node.js 10.x
+
+Found bindings for the following environments:
+  - Windows 64-bit with Node.js 8.x
+
+This usually happens because your environment has changed since running `npm install`.
+Run `npm rebuild node-sass` to download the binding for your current environment.
+    at module.exports (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\node-sass\lib\binding.js:15:13)
+    at Object.<anonymous> (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\node-sass\lib\index.js:14:35)
+    at Module._compile (internal/modules/cjs/loader.js:776:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:787:10)
+    at Module.load (internal/modules/cjs/loader.js:653:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+    at Module.require (internal/modules/cjs/loader.js:690:17)
+    at require (internal/modules/cjs/helpers.js:25:18)
+    at Object.<anonymous> (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\sass-loader\lib\loader.js:3:14)
+    at Module._compile (internal/modules/cjs/loader.js:776:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:787:10)
+    at Module.load (internal/modules/cjs/loader.js:653:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+    at Module.require (internal/modules/cjs/loader.js:690:17)
+    at require (internal/modules/cjs/helpers.js:25:18)
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:13:17)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:169:2)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:165:10)
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:173:18
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:36:3)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:169:2)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:165:10)
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:173:18
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:36:3)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:169:2)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:165:10)
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:173:18
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:36:3)
+
+ @ ./resources/assets/sass/app.scss 4:14-266
+ @ multi ./resources/assets/js/app.js ./resources/assets/sass/app.scss
+
+ error  in ./resources/assets/sass/app.scss
+
+Module build failed: ModuleBuildError: Module build failed: Error: Missing binding C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\node-sass\vendor\win32-x64-64\binding.node
+Node Sass could not find a binding for your current environment: Windows 64-bit with Node.js 10.x
+
+Found bindings for the following environments:
+  - Windows 64-bit with Node.js 8.x
+
+This usually happens because your environment has changed since running `npm install`.
+Run `npm rebuild node-sass` to download the binding for your current environment.
+    at module.exports (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\node-sass\lib\binding.js:15:13)
+    at Object.<anonymous> (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\node-sass\lib\index.js:14:35)
+    at Module._compile (internal/modules/cjs/loader.js:776:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:787:10)
+    at Module.load (internal/modules/cjs/loader.js:653:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+    at Module.require (internal/modules/cjs/loader.js:690:17)
+    at require (internal/modules/cjs/helpers.js:25:18)
+    at Object.<anonymous> (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\sass-loader\lib\loader.js:3:14)
+    at Module._compile (internal/modules/cjs/loader.js:776:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:787:10)
+    at Module.load (internal/modules/cjs/loader.js:653:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+    at Module.require (internal/modules/cjs/loader.js:690:17)
+    at require (internal/modules/cjs/helpers.js:25:18)
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:13:17)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:169:2)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:165:10)
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:173:18
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:36:3)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:169:2)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:165:10)
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:173:18
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:36:3)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:169:2)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:165:10)
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:173:18
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:36:3)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:169:2)
+    at runLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:362:2)
+    at NormalModule.doBuild (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\NormalModule.js:182:3)
+    at NormalModule.build (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\NormalModule.js:275:15)
+    at Compilation.buildModule (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\Compilation.js:151:10)
+    at moduleFactory.create (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\Compilation.js:454:10)
+    at runLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\NormalModule.js:195:19)
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:364:11
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:170:18
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:27:11)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:169:2)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:165:10)
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:173:18
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:36:3)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:169:2)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:165:10)
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:173:18
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:36:3)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:169:2)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:165:10)
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:173:18
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:36:3)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:169:2)
+    at runLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:362:2)
+    at NormalModule.doBuild (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\NormalModule.js:182:3)
+    at NormalModule.build (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\NormalModule.js:275:15)
+    at Compilation.buildModule (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\Compilation.js:151:10)
+    at moduleFactory.create (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\Compilation.js:454:10)
+    at factory (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\NormalModuleFactory.js:243:5)
+    at applyPluginsAsyncWaterfall (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\NormalModuleFactory.js:94:13)
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\tapable\lib\Tapable.js:268:11
+    at NormalModuleFactory.params.normalModuleFactory.plugin (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\CompatibilityPlugin.js:52:5)
+    at NormalModuleFactory.applyPluginsAsyncWaterfall (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\tapable\lib\Tapable.js:272:13)
+    at resolver (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\NormalModuleFactory.js:69:10)
+    at process.nextTick (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\NormalModuleFactory.js:196:7)
+    at process._tickCallback (internal/process/next_tick.js:61:11)
+
+     Asset     Size  Chunks                    Chunk Names
+\js\app.js  1.89 MB       0  [emitted]  [big]  \js\app
+
+ERROR in ./node_modules/css-loader??ref--8-2!./node_modules/postcss-loader/lib??postcss!./node_modules/resolve-url-loader??ref--8-4!./node_modules/sass-loader/lib/loader.js??ref--8-5!./resources/assets/sass/app.scss
+Module build failed: Error: Missing binding C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\node-sass\vendor\win32-x64-64\binding.node
+Node Sass could not find a binding for your current environment: Windows 64-bit with Node.js 10.x
+
+Found bindings for the following environments:
+  - Windows 64-bit with Node.js 8.x
+
+This usually happens because your environment has changed since running `npm install`.
+Run `npm rebuild node-sass` to download the binding for your current environment.
+    at module.exports (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\node-sass\lib\binding.js:15:13)
+    at Object.<anonymous> (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\node-sass\lib\index.js:14:35)
+    at Module._compile (internal/modules/cjs/loader.js:776:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:787:10)
+    at Module.load (internal/modules/cjs/loader.js:653:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+    at Module.require (internal/modules/cjs/loader.js:690:17)
+    at require (internal/modules/cjs/helpers.js:25:18)
+    at Object.<anonymous> (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\sass-loader\lib\loader.js:3:14)
+    at Module._compile (internal/modules/cjs/loader.js:776:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:787:10)
+    at Module.load (internal/modules/cjs/loader.js:653:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+    at Module.require (internal/modules/cjs/loader.js:690:17)
+    at require (internal/modules/cjs/helpers.js:25:18)
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:13:17)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:169:2)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:165:10)
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:173:18
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:36:3)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:169:2)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:165:10)
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:173:18
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:36:3)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:169:2)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:165:10)
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:173:18
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:36:3)
+ @ ./resources/assets/sass/app.scss 4:14-266
+ @ multi ./resources/assets/js/app.js ./resources/assets/sass/app.scss
+
+ERROR in ./resources/assets/sass/app.scss
+Module build failed: ModuleBuildError: Module build failed: Error: Missing binding C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\node-sass\vendor\win32-x64-64\binding.node
+Node Sass could not find a binding for your current environment: Windows 64-bit with Node.js 10.x
+
+Found bindings for the following environments:
+  - Windows 64-bit with Node.js 8.x
+
+This usually happens because your environment has changed since running `npm install`.
+Run `npm rebuild node-sass` to download the binding for your current environment.
+    at module.exports (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\node-sass\lib\binding.js:15:13)
+    at Object.<anonymous> (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\node-sass\lib\index.js:14:35)
+    at Module._compile (internal/modules/cjs/loader.js:776:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:787:10)
+    at Module.load (internal/modules/cjs/loader.js:653:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+    at Module.require (internal/modules/cjs/loader.js:690:17)
+    at require (internal/modules/cjs/helpers.js:25:18)
+    at Object.<anonymous> (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\sass-loader\lib\loader.js:3:14)
+    at Module._compile (internal/modules/cjs/loader.js:776:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:787:10)
+    at Module.load (internal/modules/cjs/loader.js:653:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+    at Module.require (internal/modules/cjs/loader.js:690:17)
+    at require (internal/modules/cjs/helpers.js:25:18)
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:13:17)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:169:2)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:165:10)
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:173:18
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:36:3)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:169:2)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:165:10)
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:173:18
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:36:3)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:169:2)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:165:10)
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:173:18
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:36:3)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:169:2)
+    at runLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:362:2)
+    at NormalModule.doBuild (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\NormalModule.js:182:3)
+    at NormalModule.build (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\NormalModule.js:275:15)
+    at Compilation.buildModule (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\Compilation.js:151:10)
+    at moduleFactory.create (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\Compilation.js:454:10)
+    at runLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\NormalModule.js:195:19)
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:364:11
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:170:18
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:27:11)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:169:2)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:165:10)
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:173:18
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:36:3)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:169:2)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:165:10)
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:173:18
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:36:3)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:169:2)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:165:10)
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:173:18
+    at loadLoader (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\loadLoader.js:36:3)
+    at iteratePitchingLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:169:2)
+    at runLoaders (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\loader-runner\lib\LoaderRunner.js:362:2)
+    at NormalModule.doBuild (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\NormalModule.js:182:3)
+    at NormalModule.build (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\NormalModule.js:275:15)
+    at Compilation.buildModule (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\Compilation.js:151:10)
+    at moduleFactory.create (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\Compilation.js:454:10)
+    at factory (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\NormalModuleFactory.js:243:5)
+    at applyPluginsAsyncWaterfall (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\NormalModuleFactory.js:94:13)
+    at C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\tapable\lib\Tapable.js:268:11
+    at NormalModuleFactory.params.normalModuleFactory.plugin (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\CompatibilityPlugin.js:52:5)
+    at NormalModuleFactory.applyPluginsAsyncWaterfall (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\tapable\lib\Tapable.js:272:13)
+    at resolver (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\NormalModuleFactory.js:69:10)
+    at process.nextTick (C:\Users\s840524350793\OSPanel\domains\damelya\node_modules\webpack\lib\NormalModuleFactory.js:196:7)
+    at process._tickCallback (internal/process/next_tick.js:61:11)
+ @ ./resources/assets/sass/app.scss
+ @ multi ./resources/assets/js/app.js ./resources/assets/sass/app.scss

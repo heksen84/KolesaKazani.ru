@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Urls extends Model
-{
+class Urls extends Model {
     public $timestamps = false;
 }
