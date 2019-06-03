@@ -36650,7 +36650,11 @@ var render = function() {
             { attrs: { toggleable: "lg", type: "dark", variant: "primary" } },
             [
               _c("b-navbar-brand", { attrs: { href: "#" } }, [
-                _vm._v(_vm._s(this.$store.state.str_title))
+                _vm._v(_vm._s(this.$store.state.str_title) + " "),
+                _c("br"),
+                _c("span", { staticStyle: { "font-size": "12px" } }, [
+                  _vm._v("все объявления Казахстана")
+                ])
               ]),
               _vm._v(" "),
               _c("b-navbar-toggle", { attrs: { target: "nav-collapse" } }),
