@@ -1,14 +1,15 @@
-require('./bootstrap');
+//require('./bootstrap');
 
 import data from './data';
 import Vue from 'vue';
 
 // Вьюшки ВьюДжеЭс
 import index from './views/index.vue';
+//import index from './components/App.vue';
 
 // bootstrap
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-vue/dist/bootstrap-vue.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap-vue/dist/bootstrap-vue.min.css';
 import layout from 'bootstrap-vue/src/components/layout';
 import modal from 'bootstrap-vue/src/components/modal';
 import form from 'bootstrap-vue/src/components/form';
@@ -75,20 +76,22 @@ const store = new Vuex.Store({
     }
 })
 
-
-//export default new Vue({
-//  render: h => h(App)
-//});
-
 // экземляр приложения vue
 //const app = new Vue({
-export default new Vue({
+/*export default new Vue({
     el: '#app',
     store,
     data: data,
     components: {
       index
-  },
+  }
+});*/
 
-  //render: h => h(index)
+export default new Vue({
+   store,
+    data: data,
+    components: {
+      index
+  },
+  render: h => h(index)
 });

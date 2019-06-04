@@ -1,4 +1,5 @@
 <!-- Ilya Bobkov Aksu 2018(R) -->
+
 <html lang="{{ app()->getLocale() }}">
 <head>
   <meta charset="utf-8">
@@ -13,9 +14,9 @@
 </head>
 <body>
 <div id="app">
-  {{$ssr}}
+  {!! $ssr !!}
   <index :items="{{ $items }}" :subcats = "{{ $subcats}}" :auth="{{ $auth }}" :count="{{ $count }}"></index>
-</div>
+  </div>
 </body>
 </html>
 <script type="text/javascript" src="{{ mix('js/index-client.js') }}"></script>

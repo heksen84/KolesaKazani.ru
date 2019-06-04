@@ -162,7 +162,7 @@ export default {
 
   // Компонент создан
   created() {
-    
+    /*
     var lang = localStorage.getItem("lang")
     console.log(lang)
 
@@ -179,7 +179,7 @@ export default {
     var urlRegAndPlace = localStorage.getItem("urlRegAndPlace");
 
     placeName==null?this.selectedPlaceName = "Весь казахстан": this.selectedPlaceName = placeName;
-    urlRegAndPlace==null?this.urlRegAndPlace = "":this.urlRegAndPlace = urlRegAndPlace;
+    urlRegAndPlace==null?this.urlRegAndPlace = "":this.urlRegAndPlace = urlRegAndPlace;*/
 
   },
 
@@ -190,7 +190,7 @@ export default {
     search(evt) {
       evt.preventDefault()
       var str = this.searchString.split(" ").join("+");
-      window.location="/search?str="+str;
+      //window.location="/search?str="+str;
     },
 
     // Установить язык
@@ -237,12 +237,12 @@ export default {
 
     // Авторизация
     login() {
-      window.location='/login';
+      //window.location='/login';
     },
 
     // Регистрация
     register() {
-      window.location="/register";
+      //window.location="/register";
     },    
     
     // Показать окно расположения

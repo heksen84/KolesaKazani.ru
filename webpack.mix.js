@@ -12,5 +12,13 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/index-client.js', 'public/js').
-mix.js('resources/assets/js/index-server.js', 'public/js').
-mix.js('resources/assets/js/app.js', 'public/js').sass('resources/assets/sass/app.scss', 'public/css').version();
+mix.js('resources/assets/js/index-server.js', 'public/js').sass('resources/assets/sass/app.scss', 'public/css').version();
+//mix.js('resources/assets/js/app.js', 'public/js').sass('resources/assets/sass/app.scss', 'public/css').version();
+
+mix.webpackConfig({
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.runtime.common.js'
+    }
+  }
+});

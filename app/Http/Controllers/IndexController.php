@@ -18,6 +18,23 @@ class IndexController extends Controller {
 
 		private $lang=null;
 
+		private function render() {
+
+			$renderer_source = File::get(base_path('node_modules/vue-server-renderer/basic.js'));
+			$app_source = File::get(public_path('js/index-server.js'));
+			$v8 = new \V8Js();
+			ob_start();
+	 
+			$js= 'var process = { env: { VUE_ENV: "server", NODE_ENV: "production" } }; 
+							 this.global = { process: process };';
+	
+			$v8->executeString($js);
+			$v8->executeString($renderer_source);
+			$v8->executeString($app_source);
+	
+			return ob_get_clean();
+		}
+
 		/*
 		-------------------------------------
 		 Получить категории
@@ -51,9 +68,11 @@ class IndexController extends Controller {
             ->select(DB::raw("subcats.id, subcats.name, subcats.category_id, concat(categories.url,'/',subcats.url) as url"))
 			->get();
 			
-			$jsOutput = "";
+			$ssr = $this->render();
 
-			return view("index")->with("ssr", $jsOutput)->with("items", $categories)->with("subcats", $subcats )->with("count", Categories::count())->with("auth", Auth::user()?1:0);
+			\Debugbar::info($ssr);
+
+			return view("index")->with("ssr", $ssr)->with("items", $categories)->with("subcats", $subcats )->with("count", Categories::count())->with("auth", Auth::user()?1:0);
 		}
 		
 		// ------------------------------------
