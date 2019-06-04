@@ -11,5 +11,6 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/index.js', 'public/js').
+mix.js('resources/assets/js/index-client.js', 'public/js').
+mix.js('resources/assets/js/index-server.js', 'public/js').
 mix.js('resources/assets/js/app.js', 'public/js').sass('resources/assets/sass/app.scss', 'public/css').version();

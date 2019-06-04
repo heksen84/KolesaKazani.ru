@@ -1,5 +1,6 @@
 {
-    "/js/app.js": "/js/app.js?id=520855872aef41ab4fb0",
-    "/js/index.js": "/js/index.js?id=f59d579699e249b844a5",
-    "/css/app.css": "/css/app.css?id=9be0c073c883fbfb83eb"
+    "/js/app.js": "/js/app.js?id=3820f2a9d03f9c491bc3",
+    "/js/index-client.js": "/js/index-client.js?id=f0a06462c264ff698b8e",
+    "/css/app.css": "/css/app.css?id=9be0c073c883fbfb83eb",
+    "/js/index-server.js": "/js/index-server.js?id=c55784850dff05481fe0"
 }

@@ -75,6 +75,11 @@ const store = new Vuex.Store({
     }
 })
 
+
+//export default new Vue({
+//  render: h => h(App)
+//});
+
 // экземляр приложения vue
 //const app = new Vue({
 export default new Vue({
@@ -83,5 +88,7 @@ export default new Vue({
     data: data,
     components: {
       index
-  }
+  },
+
+  //render: h => h(index)
 });

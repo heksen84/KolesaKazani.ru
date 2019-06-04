@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -3917,10 +3917,6 @@ function initMap() {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
-//
-//
-//
-//
 //
 //
 //
@@ -36653,24 +36649,13 @@ var render = function() {
             "b-navbar",
             { attrs: { toggleable: "lg", type: "dark", variant: "primary" } },
             [
-              _vm._v("\r\n<<<<<<< HEAD\r\n    "),
               _c("b-navbar-brand", { attrs: { href: "#" } }, [
                 _c("b", [_vm._v(_vm._s(this.$store.state.str_title))]),
                 _c("div", { staticStyle: { "font-size": "14px" } }, [
                   _vm._v("все объявления Казахстана")
                 ])
               ]),
-              _vm._v("\r\n=======\r\n    "),
-              _c("b-navbar-brand", { attrs: { href: "#" } }, [
-                _vm._v(_vm._s(this.$store.state.str_title) + " "),
-                _c("br"),
-                _c("span", { staticStyle: { "font-size": "14px" } }, [
-                  _vm._v("все объявления Казахстана")
-                ])
-              ]),
-              _vm._v(
-                "\r\n>>>>>>> 11b261303973f8ac92ea154f2a6eb7fe8e619ffc\r\n    "
-              ),
+              _vm._v(" "),
               _c("b-navbar-toggle", { attrs: { target: "nav-collapse" } }),
               _vm._v(" "),
               _c(
@@ -56258,7 +56243,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("./resources/assets/js/app.js");

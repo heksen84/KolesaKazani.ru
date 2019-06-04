@@ -1,3 +1,3 @@
-import index from './views/index_ssr'
+import index from './index'
 
 index.$mount('#app');

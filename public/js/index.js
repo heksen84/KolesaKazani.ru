@@ -1757,10 +1757,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -27661,24 +27657,13 @@ var render = function() {
             "b-navbar",
             { attrs: { toggleable: "lg", type: "dark", variant: "primary" } },
             [
-              _vm._v("\r\n<<<<<<< HEAD\r\n    "),
               _c("b-navbar-brand", { attrs: { href: "#" } }, [
                 _c("b", [_vm._v(_vm._s(this.$store.state.str_title))]),
                 _c("div", { staticStyle: { "font-size": "14px" } }, [
                   _vm._v("все объявления Казахстана")
                 ])
               ]),
-              _vm._v("\r\n=======\r\n    "),
-              _c("b-navbar-brand", { attrs: { href: "#" } }, [
-                _vm._v(_vm._s(this.$store.state.str_title) + " "),
-                _c("br"),
-                _c("span", { staticStyle: { "font-size": "14px" } }, [
-                  _vm._v("все объявления Казахстана")
-                ])
-              ]),
-              _vm._v(
-                "\r\n>>>>>>> 11b261303973f8ac92ea154f2a6eb7fe8e619ffc\r\n    "
-              ),
+              _vm._v(" "),
               _c("b-navbar-toggle", { attrs: { target: "nav-collapse" } }),
               _vm._v(" "),
               _c(
@@ -41440,6 +41425,10 @@ var store = new __WEBPACK_IMPORTED_MODULE_10_vuex__["a" /* default */].Store({
   }
 });
 
+//export default new Vue({
+//  render: h => h(App)
+//});
+
 // экземляр приложения vue
 //const app = new Vue({
 /* harmony default export */ __webpack_exports__["default"] = (new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
@@ -41449,6 +41438,8 @@ var store = new __WEBPACK_IMPORTED_MODULE_10_vuex__["a" /* default */].Store({
   components: {
     index: __WEBPACK_IMPORTED_MODULE_2__views_index_vue___default.a
   }
+
+  //render: h => h(index)
 }));
 
 /***/ }),

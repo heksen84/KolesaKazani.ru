@@ -18,5 +18,5 @@
 </div>
 </body>
 </html>
-<script type="text/javascript" src="{{ mix('js/index.js') }}"></script>
+<script type="text/javascript" src="{{ mix('js/index-client.js') }}"></script>
 <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
