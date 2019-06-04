@@ -22,7 +22,10 @@ class IndexController extends Controller {
 		-------------------------------------
 		 Получить категории
 		-------------------------------------*/
-        public function getCategories(Request $request) {	
+        public function getCategories(Request $request) {
+			
+			
+			\Debugbar::info(public_path());
 												
 			$redis = Redis::connection();
 

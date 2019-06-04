@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -36642,7 +36642,10 @@ var render = function() {
             { attrs: { toggleable: "lg", type: "dark", variant: "primary" } },
             [
               _c("b-navbar-brand", { attrs: { href: "#" } }, [
-                _vm._v(_vm._s(this.$store.state.str_title))
+                _c("b", [_vm._v(_vm._s(this.$store.state.str_title))]),
+                _c("div", { staticStyle: { "font-size": "14px" } }, [
+                  _vm._v("все объявления Казахстана")
+                ])
               ]),
               _vm._v(" "),
               _c("b-navbar-toggle", { attrs: { target: "nav-collapse" } }),
@@ -56232,18 +56235,10 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ "./resources/assets/sass/app.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 0:
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__("./resources/assets/js/app.js");
-module.exports = __webpack_require__("./resources/assets/sass/app.scss");
+module.exports = __webpack_require__("./resources/assets/js/app.js");
 
 
 /***/ })

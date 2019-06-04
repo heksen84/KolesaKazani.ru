@@ -5,7 +5,7 @@
 <!-- Верхнее меню -->
 <div id="navbar_menu">
   <b-navbar toggleable="lg" type="dark" variant="primary">
-    <b-navbar-brand href="#">{{ this.$store.state.str_title }}</b-navbar-brand>
+    <b-navbar-brand href="#"><b>{{ this.$store.state.str_title }}</b><div style="font-size:14px">все объявления Казахстана</div></b-navbar-brand>
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>

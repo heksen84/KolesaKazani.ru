@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
+
 Auth::routes(); // Стандартные роуты
 
 // -------------------------------------------------------------------------------
