@@ -235,7 +235,15 @@ var map;
 Инициализация карты
 ----------------------------*/
 function initMap() {
-  map = new ymaps.Map ("map", { center: mapCoords, zoom: 13 });			
+	
+	map = new ymaps.Map ("map", { center: mapCoords, zoom: 13 });
+	
+	map.behaviors
+    // Отключаем часть включенных по умолчанию поведений:
+    //  - drag - перемещение карты при нажатой левой кнопки мыши;
+    //  - magnifier.rightButton - увеличение области, выделенной правой кнопкой мыши.
+	.disable(['drag', 'rightMouseButtonMagnifier']);
+	
 	placemark = new ymaps.Placemark(mapCoords);
 	map.geoObjects.add(placemark);
 }
