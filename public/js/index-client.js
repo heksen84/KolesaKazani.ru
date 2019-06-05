@@ -1709,6 +1709,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1800,7 +1818,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     // Показать подкатегории    
     showSubcats: function showSubcats(e, cat_id) {
-
       var total = 0;
 
       for (var i = 0; i < Object.keys(this.subcats).length; i++) {
@@ -31190,7 +31207,23 @@ var render = function() {
               )
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _c("div", { attrs: { id: "categories_line" } }, [
+            _vm.show_categories
+              ? _c("div", { staticStyle: { "text-align": "center" } }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "shadow_text",
+                      staticStyle: { "margin-bottom": "18px" },
+                      attrs: { id: "categories_title" }
+                    },
+                    [_vm._v("категории")]
+                  )
+                ])
+              : _vm._e()
+          ])
         ],
         1
       )

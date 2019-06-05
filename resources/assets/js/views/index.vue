@@ -78,6 +78,24 @@
 
     </b-row>
 
+
+    <div id="categories_line">
+
+    <!-- КАТЕГОРИИ -->
+    <div v-if="show_categories" style="text-align:center">    
+      <div id="categories_title" class="shadow_text" style="margin-bottom:18px">категории</div>        
+        <!--<b-row v-for="i in Object.keys(items).length" v-bind:key=i>
+          <b-col cols="12" sm="12" md="12" lg="12" xl="3" v-for="item in items.slice((i - 1) * 4, i * 4)" v-bind:key=item.id>
+            <a :href="urlRegAndPlace+'/'+item.url" @click="showSubcats($event, item.id)">
+              <div class="category_item">{{ item.name }}
+              </div>
+            </a>
+          </b-col>
+        </b-row>-->
+    </div>
+
+    </div>
+
     
 
   </b-container>
@@ -176,7 +194,6 @@ export default {
         
     // Показать подкатегории    
     showSubcats(e, cat_id) {
-
       var total=0;
 
       for (var i=0; i<Object.keys(this.subcats).length; i++) {
@@ -193,7 +210,8 @@ export default {
     
     // Скрыть подкатегории
     closeSubCats() {
-      if (!this.show_categories) this.show_categories=true;
+      if (!this.show_categories) 
+        this.show_categories=true;
     },
 
     // Авторизация
@@ -208,7 +226,6 @@ export default {
     
     // Показать окно расположения
     openLocationWindow() {
-
       this.buttonAllCountry=true;
       this.buttonAllRegion=false;
       this.locationDialog=true;
@@ -221,9 +238,7 @@ export default {
           console.log(res.data);          
           this.regions=res.data;
       }).catch((err) => {
-        
     });
-      
     },
 
     // ----------------------------------------------------------
