@@ -78,55 +78,7 @@
 
     </b-row>
 
-    <div id="categories_line">
-
-    <!-- КАТЕГОРИИ -->
-    <div v-if="show_categories" style="text-align:center">    
-      <div id="categories_title" class="shadow_text" style="margin-bottom:18px">категории</div>        
-        <b-row v-for="i in Object.keys(items).length" v-bind:key=i>
-          <b-col cols="12" sm="12" md="12" lg="12" xl="3" v-for="item in items.slice((i - 1) * 4, i * 4)" v-bind:key=item.id>
-            <a :href="urlRegAndPlace+'/'+item.url" @click="showSubcats($event, item.id)">
-              <div class="category_item">{{ item.name }}
-              <!--<span style="font-size:13px;color:rgb(170,255,170);float:right;margin-top:4px" :id="item.id">{{ getCategoryCountById(item.id) }}</span>-->
-              </div>
-            </a>
-          </b-col>
-        </b-row>
-    </div>
-
-    <!-- ПОДКАТЕГОРИИ -->  
-    <div v-if="!show_categories" style="text-align:center">
-      <div id="categories_title" class="shadow_text" style="margin-bottom:18px">подкатегории</div>  
-      <b-button @click="closeSubCats" variant="primary" style="border:1px solid white;font-size:14px" size="sm" id="close_subcats_btn">&#8634; Вернуться к категориям</b-button>      
-        <b-row v-for="i in Object.keys(subcats).length" v-bind:key=i>
-          <b-col cols="12" sm="12" md="12" lg="12" xl="3" v-for="item in subcats.slice((i - 1) * 4, i * 4)" v-bind:key=item.id>            
-              <a :href="urlRegAndPlace+'/'+item.url">
-                <div class="category_item" style="width:280px;font-size:17px" v-show="displaySubItem(item.category_id)">{{ item.name }}</div>            
-              </a>
-          </b-col>
-        </b-row>
-    </div>
-    </div>
-
-    <!-- РЕКЛАМА -->
-    <b-row style="margin-top:20px">
-      <h5 style="margin:auto">Google Advert</h5>
-    </b-row>
-
-    <!-- VIP -->
-    <b-row style="margin-top:75px" class="shadow_text"><h5>VIP объявления</h5></b-row>
-      <b-row>    
-        <b-col v-for="i in 10" style="border:1px solid rgb(255,255,255);margin:3px;padding:50px;opacity:0.5" v-bind:key="i"></b-col>
-      </b-row>
-
-    <!-- ПОДВАЛ -->
-    <b-row>
-      <div id="footer"><a href="advertisers" class="underline_link">Реклама</a> | 
-        <a href="rules" class="underline_link">Правила сайта</a> |  
-        <span @click="setLang">Язык: <span style="color:rgb(180,255,180);cursor:pointer">{{ lang }}</span></span> |
-        <a href="about" class="underline_link">О сайте</a>
-      </div>
-    </b-row>
+    
 
   </b-container>
 
@@ -147,6 +99,7 @@ export default {
       lang: "русский",
       show_categories: true,
       selected_category_id: null,
+      selectedPlaceName: "",
       regions: [],
       places: [],
       location: null,
@@ -156,14 +109,21 @@ export default {
       buttonAllCountry: true,
       buttonAllRegion: false,
       regionName: "",
-      searchString: ""
+      searchString: "",
     }
   },
 
   // Компонент создан
   created() {
-    /*
-    var lang = localStorage.getItem("lang")
+    
+    console.log("hello")
+
+    this.lang="ru";
+    this.setLang();
+
+    this.selectedPlaceName = "Весь казахстан";
+
+ /*   var lang = localStorage.getItem("lang")
     console.log(lang)
 
     if (lang!=null) {
@@ -180,6 +140,7 @@ export default {
 
     placeName==null?this.selectedPlaceName = "Весь казахстан": this.selectedPlaceName = placeName;
     urlRegAndPlace==null?this.urlRegAndPlace = "":this.urlRegAndPlace = urlRegAndPlace;*/
+    
 
   },
 
@@ -190,7 +151,7 @@ export default {
     search(evt) {
       evt.preventDefault()
       var str = this.searchString.split(" ").join("+");
-      //window.location="/search?str="+str;
+      window.location="/search?str="+str;
     },
 
     // Установить язык
@@ -199,12 +160,12 @@ export default {
       if (this.lang==ru) {
         this.$store.commit("SetLang", "kz")
         this.lang="казакша";
-        localStorage.setItem("lang", "kz")
+        //localStorage.setItem("lang", "kz")
       }
       else {
         this.$store.commit("SetLang", "ru")
         this.lang=ru;
-        localStorage.setItem("lang", "ru")
+        //localStorage.setItem("lang", "ru")
       }
     },
 
@@ -237,12 +198,12 @@ export default {
 
     // Авторизация
     login() {
-      //window.location='/login';
+      window.location='/login';
     },
 
     // Регистрация
     register() {
-      //window.location="/register";
+      window.location="/register";
     },    
     
     // Показать окно расположения

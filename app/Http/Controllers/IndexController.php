@@ -72,7 +72,9 @@ class IndexController extends Controller {
 
 			\Debugbar::info($ssr);
 
-			return view("index")->with("ssr", $ssr)->with("items", $categories)->with("subcats", $subcats )->with("count", Categories::count())->with("auth", Auth::user()?1:0);
+			return view('index', ['ssr' => $ssr]);
+
+			//return view("index")->with("ssr", $ssr)->with("items", $categories)->with("subcats", $subcats )->with("count", Categories::count())->with("auth", Auth::user()?1:0);
 		}
 		
 		// ------------------------------------
