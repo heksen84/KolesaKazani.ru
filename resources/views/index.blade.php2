@@ -15,8 +15,11 @@
 <body>
 <div id="app">
   {!! $ssr !!}
+  <!--<index :items="{{ $items }}" :subcats = "{{ $subcats}}" :auth="{{ $auth }}" :count="{{ $count }}"></index>-->
   </div>
 </body>
 </html>
 <script type="text/javascript" src="{{ mix('js/index-client.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ mix('css/bootstrap.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ mix('css/bootstrap-vue.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">

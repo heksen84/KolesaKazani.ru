@@ -1,6 +1,5 @@
 <template>
     <div>
-   <center><a href="https://demelya.kz">Доска объявлений Дамеля</a></center>
  <b-navbar toggleable="lg" type="dark" variant="info">
     <b-navbar-brand href="#"><b>WorkTracker</b> - работа в Казахстане</b-navbar-brand>
 
@@ -38,7 +37,7 @@
 
 	<!--<b-alert show><b>WorkTracker</b> - работа в Казахстане</b-alert>-->
 	<center>
-		<b-table striped hover  :items="items" />
+<!--		<b-table striped hover  :items="items" />-->
 		<b-button @click="hello">привет!</b-button>
 	</center>
     </div>

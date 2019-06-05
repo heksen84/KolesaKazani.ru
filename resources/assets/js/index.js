@@ -1,22 +1,18 @@
-//require('./bootstrap');
-
 import data from './data';
 import Vue from 'vue';
 
 // Вьюшки ВьюДжеЭс
-import index from './views/index.vue';
-//import index from './components/App.vue';
+//import index from './views/index.vue';
+import index from './components/App.vue';
 
 // bootstrap
-//import 'bootstrap/dist/css/bootstrap.min.css';
-//import 'bootstrap-vue/dist/bootstrap-vue.min.css';
-import layout from 'bootstrap-vue/src/components/layout';
-import modal from 'bootstrap-vue/src/components/modal';
-import form from 'bootstrap-vue/src/components/form';
-import navbar from 'bootstrap-vue/src/components/navbar';
-import button from 'bootstrap-vue/src/components/button';
+/*import layout from 'bootstrap-vue/src/components/layout';*/
+//import modal from 'bootstrap-vue/src/components/modal';
+//import form from 'bootstrap-vue/src/components/form';
+//import navbar from 'bootstrap-vue/src/components/navbar';
+//import button from 'bootstrap-vue/src/components/button';
 
-Vue.use(layout);
+/*Vue.use(layout);
 Vue.use(form);
 Vue.use(modal);
 Vue.use(navbar);
@@ -78,20 +74,20 @@ const store = new Vuex.Store({
 
 // экземляр приложения vue
 //const app = new Vue({
+*/
 /*export default new Vue({
-    el: '#app',
-    store,
-    data: data,
-    components: {
-      index
-  }
+    el: '#app'
 });*/
 
-export default new Vue({
+/*export default new Vue({
    store,
     data: data,
     components: {
       index
   },
+  render: h => h(index)
+})*/;
+
+export default new Vue({
   render: h => h(index)
 });
