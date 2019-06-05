@@ -10,7 +10,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Доска объявлений Дамеля - бесплатные объявления о покупке и продаже в Казахстане.</title>
-  <link rel="icon" href="{{ asset('public/shop.ico') }}">
+  <link rel="icon" href="{{ asset('public/shop.ico') }}">  
 </head>
 <body>
 <div id="app">

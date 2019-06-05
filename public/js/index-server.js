@@ -110,11 +110,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -126,7 +122,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         hello: function hello() {
-            alert("hello");
+            alert("hello bro!");
         }
     }
 });
@@ -793,11 +789,20 @@ var render = function() {
         1
       ),
       _vm._v(" "),
+      _c("b-alert", { attrs: { show: "" } }, [
+        _c("b", [_vm._v("WorkTracker")]),
+        _vm._v(" - работа в Казахстане")
+      ]),
+      _vm._v(" "),
       _c(
         "center",
         [_c("b-button", { on: { click: _vm.hello } }, [_vm._v("привет!")])],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("b-table", { attrs: { striped: "", hover: "", items: _vm.items } })
     ],
     1
   )
@@ -9371,6 +9376,9 @@ renderVueComponentToString(__WEBPACK_IMPORTED_MODULE_0__index__["a" /* default *
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_App_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_App_vue__);
 
 
+
+//import table from 'bootstrap-vue/src/components/table';
+//Vue.use(table);
 
 // Вьюшки ВьюДжеЭс
 //import index from './views/index.vue';

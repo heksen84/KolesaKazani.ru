@@ -3,14 +3,8 @@
  <b-navbar toggleable="lg" type="dark" variant="info">
     <b-navbar-brand href="#"><b>WorkTracker</b> - работа в Казахстане</b-navbar-brand>
 
-    <b-navbar-toggle target="nav_collapse" />
+    <b-navbar-toggle target="nav_collapse" />   
 
-    <!--<b-collapse is-nav id="nav_collapse">
-      <b-navbar-nav>
-        <b-nav-item href="#">Link</b-nav-item>
-        <b-nav-item href="#" disabled>Disabled</b-nav-item>
-      </b-navbar-nav>
-                      -->
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
         <b-nav-form>
@@ -35,15 +29,17 @@
     </b-collapse>
   </b-navbar>
 
-	<!--<b-alert show><b>WorkTracker</b> - работа в Казахстане</b-alert>-->
-	<center>
-<!--		<b-table striped hover  :items="items" />-->
+	<b-alert show><b>WorkTracker</b> - работа в Казахстане</b-alert>	
+  <center>
 		<b-button @click="hello">привет!</b-button>
 	</center>
-    </div>
+  <br>
+  <b-table striped hover  :items="items"></b-table>
+  </div>
 </template>
 
 <script>
+
       export default {
         data() {
             return {
@@ -58,7 +54,7 @@
 	},
 	methods: {
 	hello() {
-		alert("hello")
+		alert("hello bro!")
 	 }
     }
 }

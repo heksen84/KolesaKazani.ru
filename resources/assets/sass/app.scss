@@ -1,3 +1,4 @@
+/*
 // ----------------------------------------------
 // константы
 // ----------------------------------------------
@@ -50,11 +51,11 @@ input[type="number"] {
  text-align: center;
 }
 
-:-moz-placeholder { /* Firefox 18- */
+:-moz-placeholder {
  text-align: center;
 }
 
-::-moz-placeholder {  /* Firefox 19+ */
+::-moz-placeholder {
  text-align: center;
 }
 
@@ -93,18 +94,17 @@ body {
   color: white;
 }
 
-/* visited link */
+// visited link 
 a:visited {
     color: white;
 }
 
-/* mouse over link */
+// mouse over link
 a:hover {
     color: white;
     text-decoration: none;
 }
 
-/* selected link */
 a:active {
     color: white;
 }
@@ -312,7 +312,6 @@ h3 {
   width:100%;
   text-align:left;
   display:inline-block;
-  /* word-wrap: break-word;*/
   word-break: break-all;
   margin-top: -2px;
   cursor:pointer;
@@ -420,9 +419,6 @@ h3 {
 // --------------------------------------------
 @media screen and (max-width:9000px) {
 
-/*body {
-  font-size:26px;
-}*/
 
 .create_advert_col {
  border-radius: 5px;
@@ -629,3 +625,4 @@ body {
 }
 
 }
+*/

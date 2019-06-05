@@ -1,9 +1,13 @@
 import data from './data';
 import Vue from 'vue';
 
+//import table from 'bootstrap-vue/src/components/table';
+//Vue.use(table);
+
 // Вьюшки ВьюДжеЭс
 //import index from './views/index.vue';
 import index from './components/App.vue';
+
 
 // bootstrap
 /*import layout from 'bootstrap-vue/src/components/layout';*/
