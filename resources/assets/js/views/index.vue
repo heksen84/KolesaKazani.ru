@@ -189,6 +189,8 @@ export default {
 
   // Компонент создан
   created() {
+
+    //document.getElementById( 'body' ).style.display = 'block';
     
     console.log("hello")
 

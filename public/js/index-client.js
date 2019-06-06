@@ -1814,6 +1814,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   // Компонент создан
   created: function created() {
 
+    //document.getElementById( 'body' ).style.display = 'block';
+
     console.log("hello");
 
     this.lang = "ru";
