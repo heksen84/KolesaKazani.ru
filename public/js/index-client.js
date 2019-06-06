@@ -1814,13 +1814,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   // Компонент создан
   created: function created() {
 
+    //console.log(document.getElementById("body").style.display); 
     //document.getElementById( 'body' ).style.display = 'block';
-
-    console.log("hello");
 
     this.lang = "ru";
     this.setLang();
-
     this.selectedPlaceName = "Весь казахстан";
 
     /*   var lang = localStorage.getItem("lang")
@@ -1875,7 +1873,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     // Показать подкатегории    
-    showSubcategory: function showSubcategory(category_index) {},
+    showSubcategory: function showSubcategory(e, category_index) {
+
+      // отрубаю редирект
+      e.preventDefault();
+      console.log(category_index);
+
+      this.show_categories = false;
+    },
 
 
     // Показать подкатегории    
@@ -28172,7 +28177,7 @@ var render = function() {
                               },
                               on: {
                                 click: function($event) {
-                                  return _vm.showSubcategory(0)
+                                  return _vm.showSubcategory($event, 0)
                                 }
                               }
                             },
@@ -28205,7 +28210,7 @@ var render = function() {
                               },
                               on: {
                                 click: function($event) {
-                                  return _vm.showSubcategory(1)
+                                  return _vm.showSubcategory($event, 1)
                                 }
                               }
                             },
@@ -28238,7 +28243,7 @@ var render = function() {
                               },
                               on: {
                                 click: function($event) {
-                                  return _vm.showSubcategory(2)
+                                  return _vm.showSubcategory($event, 2)
                                 }
                               }
                             },
@@ -28263,11 +28268,24 @@ var render = function() {
                           }
                         },
                         [
-                          _c("a", { attrs: { href: "/rabota-i-biznes" } }, [
-                            _c("div", { staticClass: "category_item" }, [
-                              _vm._v("Работа и бизнес")
-                            ])
-                          ])
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: _vm.urlRegAndPlace + "/rabota-i-biznes"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.showSubcategory($event, 3)
+                                }
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "category_item" }, [
+                                _vm._v("Работа и бизнес")
+                              ])
+                            ]
+                          )
                         ]
                       ),
                       _vm._v(" "),
@@ -28283,11 +28301,24 @@ var render = function() {
                           }
                         },
                         [
-                          _c("a", { attrs: { href: "/dlya-doma-i-dachi" } }, [
-                            _c("div", { staticClass: "category_item" }, [
-                              _vm._v("Для дома и дачи")
-                            ])
-                          ])
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: _vm.urlRegAndPlace + "/dlya-doma-i-dachi"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.showSubcategory($event, 4)
+                                }
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "category_item" }, [
+                                _vm._v("Для дома и дачи")
+                              ])
+                            ]
+                          )
                         ]
                       ),
                       _vm._v(" "),
@@ -28303,11 +28334,24 @@ var render = function() {
                           }
                         },
                         [
-                          _c("a", { attrs: { href: "/lichnye-veschi" } }, [
-                            _c("div", { staticClass: "category_item" }, [
-                              _vm._v("Личные вещи")
-                            ])
-                          ])
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: _vm.urlRegAndPlace + "/lichnye-veschi"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.showSubcategory($event, 5)
+                                }
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "category_item" }, [
+                                _vm._v("Личные вещи")
+                              ])
+                            ]
+                          )
                         ]
                       ),
                       _vm._v(" "),
@@ -28323,11 +28367,24 @@ var render = function() {
                           }
                         },
                         [
-                          _c("a", { attrs: { href: "/zhivotnye" } }, [
-                            _c("div", { staticClass: "category_item" }, [
-                              _vm._v("Животные")
-                            ])
-                          ])
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: _vm.urlRegAndPlace + "/zhivotnye"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.showSubcategory($event, 6)
+                                }
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "category_item" }, [
+                                _vm._v("Животные")
+                              ])
+                            ]
+                          )
                         ]
                       ),
                       _vm._v(" "),
@@ -28343,11 +28400,24 @@ var render = function() {
                           }
                         },
                         [
-                          _c("a", { attrs: { href: "/hobbi-i-otdyh" } }, [
-                            _c("div", { staticClass: "category_item" }, [
-                              _vm._v("Хобби и отдых")
-                            ])
-                          ])
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: _vm.urlRegAndPlace + "/hobbi-i-otdyh"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.showSubcategory($event, 7)
+                                }
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "category_item" }, [
+                                _vm._v("Хобби и отдых")
+                              ])
+                            ]
+                          )
                         ]
                       ),
                       _vm._v(" "),
@@ -28363,11 +28433,22 @@ var render = function() {
                           }
                         },
                         [
-                          _c("a", { attrs: { href: "/uslugi" } }, [
-                            _c("div", { staticClass: "category_item" }, [
-                              _vm._v("Услуги")
-                            ])
-                          ])
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: _vm.urlRegAndPlace + "/uslugi" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.showSubcategory($event, 8)
+                                }
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "category_item" }, [
+                                _vm._v("Услуги")
+                              ])
+                            ]
+                          )
                         ]
                       ),
                       _vm._v(" "),
@@ -28383,11 +28464,22 @@ var render = function() {
                           }
                         },
                         [
-                          _c("a", { attrs: { href: "/drugoe" } }, [
-                            _c("div", { staticClass: "category_item" }, [
-                              _vm._v("Другое")
-                            ])
-                          ])
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: _vm.urlRegAndPlace + "/uslugi" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.showSubcategory($event, 9)
+                                }
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "category_item" }, [
+                                _vm._v("Другое")
+                              ])
+                            ]
+                          )
                         ]
                       )
                     ],

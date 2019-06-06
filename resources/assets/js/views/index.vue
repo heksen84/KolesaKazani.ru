@@ -88,61 +88,61 @@
 
       <div class="form-inline">
       <b-col cols="12" sm="12" md="12" lg="12" xl="3">
-        <a :href="urlRegAndPlace+'/transport'" @click="showSubcategory(0)">
+        <a :href="urlRegAndPlace+'/transport'" @click="showSubcategory($event, 0)">
           <div class="category_item">Транспорт</div>
         </a>        
       </b-col>
 
       <b-col cols="12" sm="12" md="12" lg="12" xl="3">
-        <a :href="urlRegAndPlace+'/nedvizhimost'" @click="showSubcategory(1)">        
+        <a :href="urlRegAndPlace+'/nedvizhimost'" @click="showSubcategory($event, 1)">        
           <div class="category_item">Недвижимость</div>
         </a>
       </b-col>
 
       <b-col cols="12" sm="12" md="12" lg="12" xl="3">        
-        <a :href="urlRegAndPlace+'/elektronika'" @click="showSubcategory(2)">        
+        <a :href="urlRegAndPlace+'/elektronika'" @click="showSubcategory($event, 2)">        
           <div class="category_item">Электроника</div>
         </a>        
       </b-col>
       
       <b-col cols="12" sm="12" md="12" lg="12" xl="3">
-        <a href="/rabota-i-biznes" >
+        <a :href="urlRegAndPlace+'/rabota-i-biznes'" @click="showSubcategory($event, 3)">      
           <div class="category_item">Работа и бизнес</div>
         </a>
       </b-col>
 
       <b-col cols="12" sm="12" md="12" lg="12" xl="3">
-        <a href="/dlya-doma-i-dachi">
+        <a :href="urlRegAndPlace+'/dlya-doma-i-dachi'" @click="showSubcategory($event, 4)">
           <div class="category_item">Для дома и дачи</div>
         </a>           
       </b-col>
 
       <b-col cols="12" sm="12" md="12" lg="12" xl="3">
-        <a href="/lichnye-veschi">
+        <a :href="urlRegAndPlace+'/lichnye-veschi'" @click="showSubcategory($event, 5)">
           <div class="category_item">Личные вещи</div>
         </a>          
       </b-col>
 
-      <b-col cols="12" sm="12" md="12" lg="12" xl="3">
-        <a href="/zhivotnye">
+      <b-col cols="12" sm="12" md="12" lg="12" xl="3">        
+        <a :href="urlRegAndPlace+'/zhivotnye'" @click="showSubcategory($event, 6)">
           <div class="category_item">Животные</div>
         </a>          
       </b-col>
 
       <b-col cols="12" sm="12" md="12" lg="12" xl="3">
-        <a href="/hobbi-i-otdyh">
+        <a :href="urlRegAndPlace+'/hobbi-i-otdyh'" @click="showSubcategory($event, 7)">        
           <div class="category_item">Хобби и отдых</div>
         </a>          
       </b-col>
 
       <b-col cols="12" sm="12" md="12" lg="12" xl="3">
-        <a href="/uslugi">
+        <a :href="urlRegAndPlace+'/uslugi'" @click="showSubcategory($event, 8)">        
           <div class="category_item">Услуги</div>
         </a>          
       </b-col>
 
       <b-col cols="12" sm="12" md="12" lg="12" xl="3">
-        <a href="/drugoe">
+        <a :href="urlRegAndPlace+'/uslugi'" @click="showSubcategory($event, 9)">        
           <div class="category_item">Другое</div>
         </a>          
       </b-col>
@@ -190,13 +190,11 @@ export default {
   // Компонент создан
   created() {
 
+    //console.log(document.getElementById("body").style.display); 
     //document.getElementById( 'body' ).style.display = 'block';
     
-    console.log("hello")
-
     this.lang="ru";
     this.setLang();
-
     this.selectedPlaceName = "Весь казахстан";
 
  /*   var lang = localStorage.getItem("lang")
@@ -250,9 +248,14 @@ export default {
       return false;
     },
 
-
     // Показать подкатегории    
-    showSubcategory(category_index) {
+    showSubcategory(e, category_index) {
+      
+      // отрубаю редирект
+      e.preventDefault();
+      console.log(category_index)
+
+      this.show_categories=false;
     },
         
     // Показать подкатегории    
