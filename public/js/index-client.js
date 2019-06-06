@@ -1727,6 +1727,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1818,6 +1871,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (item == this.selected_category_id) return true;
       return false;
     },
+
+    // Показать подкатегории    
+    showSubcategory: function showSubcategory(category_index) {},
+
 
     // Показать подкатегории    
     showSubcats: function showSubcats(e, cat_id) {
@@ -27688,7 +27745,7 @@ var render = function() {
             { attrs: { toggleable: "lg", type: "dark", variant: "primary" } },
             [
               _c("b-navbar-brand", { attrs: { href: "#" } }, [
-                _c("b", [_vm._v(_vm._s(this.$store.state.str_title))]),
+                _c("b", [_vm._v("Дамеля")]),
                 _c("div", { staticStyle: { "font-size": "14px" } }, [
                   _vm._v("все объявления Казахстана")
                 ])
@@ -28087,6 +28144,252 @@ var render = function() {
                       attrs: { id: "categories_title" }
                     },
                     [_vm._v("категории")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-inline" },
+                    [
+                      _c(
+                        "b-col",
+                        {
+                          attrs: {
+                            cols: "12",
+                            sm: "12",
+                            md: "12",
+                            lg: "12",
+                            xl: "3"
+                          }
+                        },
+                        [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: _vm.urlRegAndPlace + "/transport"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.showSubcategory(0)
+                                }
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "category_item" }, [
+                                _vm._v("Транспорт")
+                              ])
+                            ]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-col",
+                        {
+                          attrs: {
+                            cols: "12",
+                            sm: "12",
+                            md: "12",
+                            lg: "12",
+                            xl: "3"
+                          }
+                        },
+                        [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: _vm.urlRegAndPlace + "/nedvizhimost"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.showSubcategory(1)
+                                }
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "category_item" }, [
+                                _vm._v("Недвижимость")
+                              ])
+                            ]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-col",
+                        {
+                          attrs: {
+                            cols: "12",
+                            sm: "12",
+                            md: "12",
+                            lg: "12",
+                            xl: "3"
+                          }
+                        },
+                        [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: _vm.urlRegAndPlace + "/elektronika"
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.showSubcategory(2)
+                                }
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "category_item" }, [
+                                _vm._v("Электроника")
+                              ])
+                            ]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-col",
+                        {
+                          attrs: {
+                            cols: "12",
+                            sm: "12",
+                            md: "12",
+                            lg: "12",
+                            xl: "3"
+                          }
+                        },
+                        [
+                          _c("a", { attrs: { href: "/rabota-i-biznes" } }, [
+                            _c("div", { staticClass: "category_item" }, [
+                              _vm._v("Работа и бизнес")
+                            ])
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-col",
+                        {
+                          attrs: {
+                            cols: "12",
+                            sm: "12",
+                            md: "12",
+                            lg: "12",
+                            xl: "3"
+                          }
+                        },
+                        [
+                          _c("a", { attrs: { href: "/dlya-doma-i-dachi" } }, [
+                            _c("div", { staticClass: "category_item" }, [
+                              _vm._v("Для дома и дачи")
+                            ])
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-col",
+                        {
+                          attrs: {
+                            cols: "12",
+                            sm: "12",
+                            md: "12",
+                            lg: "12",
+                            xl: "3"
+                          }
+                        },
+                        [
+                          _c("a", { attrs: { href: "/lichnye-veschi" } }, [
+                            _c("div", { staticClass: "category_item" }, [
+                              _vm._v("Личные вещи")
+                            ])
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-col",
+                        {
+                          attrs: {
+                            cols: "12",
+                            sm: "12",
+                            md: "12",
+                            lg: "12",
+                            xl: "3"
+                          }
+                        },
+                        [
+                          _c("a", { attrs: { href: "/zhivotnye" } }, [
+                            _c("div", { staticClass: "category_item" }, [
+                              _vm._v("Животные")
+                            ])
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-col",
+                        {
+                          attrs: {
+                            cols: "12",
+                            sm: "12",
+                            md: "12",
+                            lg: "12",
+                            xl: "3"
+                          }
+                        },
+                        [
+                          _c("a", { attrs: { href: "/hobbi-i-otdyh" } }, [
+                            _c("div", { staticClass: "category_item" }, [
+                              _vm._v("Хобби и отдых")
+                            ])
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-col",
+                        {
+                          attrs: {
+                            cols: "12",
+                            sm: "12",
+                            md: "12",
+                            lg: "12",
+                            xl: "3"
+                          }
+                        },
+                        [
+                          _c("a", { attrs: { href: "/uslugi" } }, [
+                            _c("div", { staticClass: "category_item" }, [
+                              _vm._v("Услуги")
+                            ])
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-col",
+                        {
+                          attrs: {
+                            cols: "12",
+                            sm: "12",
+                            md: "12",
+                            lg: "12",
+                            xl: "3"
+                          }
+                        },
+                        [
+                          _c("a", { attrs: { href: "/drugoe" } }, [
+                            _c("div", { staticClass: "category_item" }, [
+                              _vm._v("Другое")
+                            ])
+                          ])
+                        ]
+                      )
+                    ],
+                    1
                   )
                 ])
               : _vm._e()

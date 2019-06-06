@@ -5,7 +5,8 @@
 <!-- Верхнее меню -->
 <div id="navbar_menu">
   <b-navbar toggleable="lg" type="dark" variant="primary">
-    <b-navbar-brand href="#"><b>{{ this.$store.state.str_title }}</b><div style="font-size:14px">все объявления Казахстана</div></b-navbar-brand>
+    <!--<b-navbar-brand href="#"><b>{{ this.$store.state.str_title }}</b><div style="font-size:14px">все объявления Казахстана</div></b-navbar-brand>-->
+    <b-navbar-brand href="#"><b>Дамеля</b><div style="font-size:14px">все объявления Казахстана</div></b-navbar-brand>
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
@@ -84,19 +85,71 @@
     <!-- КАТЕГОРИИ -->
     <div v-if="show_categories" style="text-align:center">    
       <div id="categories_title" class="shadow_text" style="margin-bottom:18px">категории</div>        
-        <!--<b-row v-for="i in Object.keys(items).length" v-bind:key=i>
-          <b-col cols="12" sm="12" md="12" lg="12" xl="3" v-for="item in items.slice((i - 1) * 4, i * 4)" v-bind:key=item.id>
-            <a :href="urlRegAndPlace+'/'+item.url" @click="showSubcats($event, item.id)">
-              <div class="category_item">{{ item.name }}
-              </div>
-            </a>
-          </b-col>
-        </b-row>-->
-    </div>
+
+      <div class="form-inline">
+      <b-col cols="12" sm="12" md="12" lg="12" xl="3">
+        <a :href="urlRegAndPlace+'/transport'" @click="showSubcategory(0)">
+          <div class="category_item">Транспорт</div>
+        </a>        
+      </b-col>
+
+      <b-col cols="12" sm="12" md="12" lg="12" xl="3">
+        <a :href="urlRegAndPlace+'/nedvizhimost'" @click="showSubcategory(1)">        
+          <div class="category_item">Недвижимость</div>
+        </a>
+      </b-col>
+
+      <b-col cols="12" sm="12" md="12" lg="12" xl="3">        
+        <a :href="urlRegAndPlace+'/elektronika'" @click="showSubcategory(2)">        
+          <div class="category_item">Электроника</div>
+        </a>        
+      </b-col>
+      
+      <b-col cols="12" sm="12" md="12" lg="12" xl="3">
+        <a href="/rabota-i-biznes" >
+          <div class="category_item">Работа и бизнес</div>
+        </a>
+      </b-col>
+
+      <b-col cols="12" sm="12" md="12" lg="12" xl="3">
+        <a href="/dlya-doma-i-dachi">
+          <div class="category_item">Для дома и дачи</div>
+        </a>           
+      </b-col>
+
+      <b-col cols="12" sm="12" md="12" lg="12" xl="3">
+        <a href="/lichnye-veschi">
+          <div class="category_item">Личные вещи</div>
+        </a>          
+      </b-col>
+
+      <b-col cols="12" sm="12" md="12" lg="12" xl="3">
+        <a href="/zhivotnye">
+          <div class="category_item">Животные</div>
+        </a>          
+      </b-col>
+
+      <b-col cols="12" sm="12" md="12" lg="12" xl="3">
+        <a href="/hobbi-i-otdyh">
+          <div class="category_item">Хобби и отдых</div>
+        </a>          
+      </b-col>
+
+      <b-col cols="12" sm="12" md="12" lg="12" xl="3">
+        <a href="/uslugi">
+          <div class="category_item">Услуги</div>
+        </a>          
+      </b-col>
+
+      <b-col cols="12" sm="12" md="12" lg="12" xl="3">
+        <a href="/drugoe">
+          <div class="category_item">Другое</div>
+        </a>          
+      </b-col>
 
     </div>
-
-    
+    </div>
+    </div>    
 
   </b-container>
 
@@ -193,6 +246,11 @@ export default {
     displaySubItem: function (item) {         
       if (item==this.selected_category_id) return true;          
       return false;
+    },
+
+
+    // Показать подкатегории    
+    showSubcategory(category_index) {
     },
         
     // Показать подкатегории    

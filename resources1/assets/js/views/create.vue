@@ -1,0 +1,809 @@
+<template>
+	<b-container fluid class="mycontainer_adv">
+    <notifications group="foo" position="top center"/>
+	<b-row>
+
+	  <!-- карта -->
+      <b-modal size="lg" v-model="setCoordsDialog" style="text-align:center;color:rgb(50,50,50)" hide-footer title="Уточнить на карте">
+			<div id="bigmap" style="width: 100%; height: 300px"></div>
+			<br/>
+			<b-button variant="primary" @click="setCoords">Сохранить</b-button>
+      </b-modal> 	
+
+		  <b-col cols="12" sm="12" md="12" lg="10" xl="10" class="create_advert_col">
+		  <div class="close_button" title="Закрыть страницу" style="font-weight:bold" @click="closeAndReturn">X</div>
+		  <h1 class="title_text" style="margin-top:12px">подать объявление</h1>
+
+		  <hr>
+
+			<b-form-group label="Категория товара или услуги:" label-for="categories" style="width:260px">
+				<b-form-select class="mb-3" @change="changeCategory" v-model="category">
+					<option :value=null>-- Выберите категорию --</option>
+					<option v-for="item in items" :value="item.id" :key="item.name">{{item.name}}</option>
+				</b-form-select>
+			</b-form-group>
+
+			<!-- отображаю виды сделок -->
+			<b-form-group label="Вид сделки:" label-for="default_group" style="width:270px" v-if="category!=null && category!=4 && category!=9">
+				 <b-form-radio-group id="deal_group" stacked name="radioOpenions" @change="setDeal" v-model="sdelka">
+					<div v-for="(i,index) in dealtypes" :key="index">
+						<!-- скрываю где не нужно отдам даром -->
+						<!-- отображать если .. -->
+				 		<b-form-radio v-if="category==1 && i.id!=3 || category==2 && i.id!=3 || [3,4,5,6,7,8,9,10].indexOf(category)>=0" :value="i.id" >{{ i.deal_name_1 }}</b-form-radio>
+				 	</div>
+				 </b-form-radio-group>
+			</b-form-group>
+
+			<br>
+
+			<b-form id="advertform" @submit="onSubmit">			
+			
+			<!-- Категории -->
+			<div v-if="root"></div>
+
+			<!-- транспорт -->			
+			<transport v-else-if="transport"/>
+
+			<!-- недвижимость -->
+			<realestate v-else-if="real_estate"/>
+
+			<!-- бытовая техника -->
+			<h1 v-else-if="appliances"></h1>
+
+			<!-- работа и бизнес -->
+			<h1 v-else-if="work_and_buisness"></h1>
+
+			<!-- для дома и дачи -->
+			<h1 v-else-if="for_home"></h1>
+
+			<!-- для дома и дачи -->
+			<h1 v-else-if="personal_effects"></h1>
+
+			<!-- животные -->
+			<h1 v-else-if="animals"></h1>
+
+			<!-- хобби и отдых -->
+			<h1 v-else-if="hobbies_and_leisure"></h1>
+
+			<!-- услуги -->
+			<h1 v-else-if="services"></h1>
+
+			<!-- услуги -->
+			<h1 v-else-if="other"></h1>
+
+			<!-- Дополнительные поля -->
+			<div v-show="this.$store.state.show_final_fields && $store.state.deal_selected">
+
+				<b-form-group :label="$store.state.info_label_description" label-for="addit_info">
+			 		<b-form-textarea v-if="!$store.state.required_info" id="addit_info" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></b-form-textarea>
+					<b-form-textarea v-if="$store.state.required_info" required id="addit_info" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></b-form-textarea>
+				</b-form-group>			
+				
+				<!-- Цена -->
+				<b-form-group label-for="price" style="text-align:center" v-if="category!=4">
+			 		<b-form-input type="number" id="price" placeholder="Цена" style="text-align:center;margin-left:40px;width:130px;display:inline;font-weight:bold" :formatter="setPrice" required></b-form-input>
+					&nbsp;{{ this.$root.money_full_name }}
+					<div style="margin-top:10px;color:grey;font-weight:700">{{ summ_str }}</div>
+				</b-form-group>
+
+				<!-- Контакты -->
+				<b-form-group label="<ins>Контакты:</ins>" style="text-align:center;font-weight:bold">			 	
+				 	
+					<!--
+					<b-form-input maxlength="12" :state="checkPhone1State" v-model.trim="phone1" type="text" placeholder="Контактный номер 1" style="width:250px;display:inline;text-align:center" :formatter="setPhoneNumber(1)" required></b-form-input>
+
+					<div v-if="phone1.length > const_phone1_max_length">
+						<b-form-input maxlength="12" :state="checkPhone2State" v-model.trim="phone2" type="text" placeholder="Контактный номер 2" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber(2)"></b-form-input>
+						<b-form-input maxlength="12" :state="checkPhone3State" v-model.trim="phone3" type="text" placeholder="Контактный номер 3" style="width:250px;text-align:center;margin: 5px auto" :formatter="setPhoneNumber(3)"></b-form-input>
+					</div>-->
+
+					<b-form-input maxlength="12" v-model.trim="phone1" type="text" placeholder="Контактный номер 1" class="phone_input" :formatter="setPhoneNumber(1)" required></b-form-input>
+
+					<div v-if="phone1.length > const_phone1_max_length">
+						<div><b-form-input maxlength="12" v-model.trim="phone2" type="text" placeholder="Контактный номер 2" class="phone_input" :formatter="setPhoneNumber(2)"></b-form-input></div>
+						<div><b-form-input maxlength="12" v-model.trim="phone3" type="text" placeholder="Контактный номер 3" class="phone_input" :formatter="setPhoneNumber(3)"></b-form-input></div>						
+					</div>
+
+				</b-form-group>
+
+				<!-- Фотографии -->
+				<b-form-group label="Фотографии:" v-if="phone1.length>const_phone1_max_length">
+				<div style="text-align:center">
+					<b-img v-for="(i, index) in preview_images" :src="i.src" :key="i.name" @click="deletePhoto(index)" class="image" :title="i.name"/>
+					<b-form-file multiple accept=".png, .jpg, .jpeg" class="mt-2" @change="loadImage"></b-form-file>
+				</div>
+				</b-form-group>				
+
+				<div v-show="phone1.length > const_phone1_max_length">
+
+				<!-- Город, Село и т.д. -->
+				<div style="text-align:center;margin-top:50px;margin-bottom:0px;font-weight:bold">Расположение</div>
+				
+				<!-- выпадающий список регионов -->
+				<b-form-group label="Регион:" style="width:280px;margin:auto">
+				<b-form-select class="mb-3" @change="changeRegion" v-model="regions_model">
+					 <option :value=null>-- Выберите регион --</option>
+					 <option v-for="item in regions" :value="item.region_id" :key="item.name">{{item.name}}</option>
+				</b-form-select>
+				</b-form-group>
+
+				<b-form-group label="Местность:" style="width:280px;margin:auto" v-show="regions_model!=null">
+				<b-form-select class="mb-3" @change="changePlace" v-model="places_model">
+					 <option :value=null>-- Выберите местность --</option>
+					 <option v-for="item in places" :value="item.city_id+'@'+item.coords" :key="item.name">{{item.name}}</option>
+				</b-form-select>
+				</b-form-group>
+
+				<!-- Расположение на карте -->
+				<b-form-group style="text-align:center" v-show="placeChanged && places_model!=null">
+					<div id="smallmap" style="border:1px solid rgb(180,180,180);margin-bottom:10px;width: 100%; height: 200px" v-show="coordinates_set"></div>
+					<b-button variant="primary" @click="showSetCoordsDialog">уточнить местоположение</b-button>
+				</b-form-group>
+
+				<hr>
+
+				<!-- Публикация -->
+				<b-form-group style="text-align:center;margin:25px" v-show="places_model!=null">
+					<b-button type="onSubmit" variant="outline-primary" title="Опубликовать объявление">ОПУБЛИКОВАТЬ</b-button>
+				</b-form-group>
+			
+			</div>
+		</div>
+
+		</b-form>
+	</b-col>
+	</b-row>
+</b-container>
+</template>
+<script>
+
+// ----------------------------------------------------
+// ИМПОРТ
+// ----------------------------------------------------
+import { post, get } from './../helpers/api'
+import transport from '../components/chars/transport';
+import realestate from '../components/chars/realestate';
+
+var preview_images_array=[];
+
+// карты
+var mapCoords=[];
+var myPlacemark1=null;
+var myPlacemark2=null;
+var bigmap=null;
+var smallmap=null;
+
+/*
+------------------------------
+ Преобразует строку в массив
+------------------------------*/
+function str_split(string, length) {
+
+    var chunks, len, pos;
+    
+    string = (string == null) ? "" : string;
+    length =  (length == null) ? 1 : length;
+    
+    var chunks = [];
+    var pos = 0;
+	var len = string.length;
+	
+    while (pos < len) {
+        chunks.push(string.slice(pos, pos += length));
+    }
+    
+    return chunks;
+};
+	
+/*
+------------------------------
+ Склоняем словоформу
+------------------------------*/
+function morph(number, titles) {
+ var cases = [2, 0, 1, 1, 1, 2];
+   return titles[ (number>4 && number<20)? 2 : cases[Math.min(number, 5)] ];
+};
+	
+/*
+------------------------------
+ Возвращает сумму прописью
+------------------------------*/
+function number_to_string (num) {
+    var def_translite = {
+        null: 'ноль',
+        a1: ['один','два','три','четыре','пять','шесть','семь','восемь','девять'],
+        a2: ['одна','две','три','четыре','пять','шесть','семь','восемь','девять'],
+        a10: ['десять','одиннадцать','двенадцать','тринадцать','четырнадцать','пятнадцать','шестнадцать','семнадцать','восемнадцать','девятнадцать'],
+        a20: ['двадцать','тридцать','сорок','пятьдесят','шестьдесят','семьдесят','восемьдесят','девяносто'],
+        a100: ['сто','двести','триста','четыреста','пятьсот','шестьсот','семьсот','восемьсот','девятьсот'],
+						uc: ['тиын', 'тиын', 'тиын'],
+						//uc: ['копейка', 'копейки', 'копеек'],
+						//ur: ['рубль', 'рубля', 'рублей'],
+						ur: ['тенге', 'тенге', 'тенге'],
+        u3: ['тысяча', 'тысячи', 'тысяч'],
+        u2: ['миллион', 'миллиона', 'миллионов'],
+        u1: ['миллиард', 'миллиарда', 'миллиардов'],
+    }
+		
+	var i1, i2, i3, kop, out, rub, v, zeros, _ref, _ref1, _ref2, ax;
+    
+    _ref = parseFloat(num).toFixed(2).split('.'), rub = _ref[0], kop = _ref[1];
+    var leading_zeros = 12 - rub.length;
+    if (leading_zeros < 0) {
+        return false;
+    }
+    
+    var zeros = [];
+    while (leading_zeros--) {
+        zeros.push('0');
+    }
+    rub = zeros.join('') + rub;
+    var out = [];
+    if (rub > 0) {
+        // Разбиваем число по три символа
+        _ref1 = str_split(rub, 3);
+        for (var i = -1; i < _ref1.length;i++) {
+            v = _ref1[i];
+            if (!(v > 0)) continue;
+            _ref2 = str_split(v, 1), i1 = parseInt(_ref2[0]), i2 = parseInt(_ref2[1]), i3 = parseInt(_ref2[2]);
+            out.push(def_translite.a100[i1-1]); // 1xx-9xx
+            ax = (i+1 == 3) ? 'a2' : 'a1';
+            if (i2 > 1) {
+                out.push(def_translite.a20[i2-2] + (i3 > 0 ?  ' ' + def_translite[ax][i3-1] : '')); // 20-99
+            } else {
+                out.push(i2 > 0 ? def_translite.a10[i3] : def_translite[ax][i3-1]); // 10-19 | 1-9
+            }
+            
+            if (_ref1.length > i+1){
+                var name = def_translite['u'+(i+1)];
+                out.push(morph(v,name));
+            }
+        }
+    } else {
+        out.push(def_translite.null);
+    }
+    // Дописываем название "рубли"
+    out.push(morph(rub, def_translite.ur));
+    // Дописываем название "копейка"
+    //out.push(kop + ' ' + morph(kop, def_translite.uc));
+    
+    // Объединяем маcсив в строку, удаляем лишние пробелы и возвращаем результат
+    return out.join(' ').replace(RegExp(' {2,}', 'g'), ' ').trimLeft();
+};
+
+/*
+---------------------------------------------------------
+ Инициализация большой карты (карта назначения координат)
+---------------------------------------------------------*/
+function initMaps() {
+
+	// координаты по умолчанию для всех карт
+	mapCoords = [51.08, 71.26];
+
+	bigmap = new ymaps.Map ("bigmap", { center: mapCoords, zoom: 10 });
+	smallmap = new ymaps.Map ("smallmap", { center: mapCoords, zoom: 9 });
+
+	// запрещаю перемение по мини карте
+	smallmap.behaviors.disable("drag");
+
+	// включаю скролл на большой карте
+	bigmap.behaviors.enable("scrollZoom");
+			
+	// формирую метки
+	myPlacemark1 = new ymaps.Placemark(mapCoords);
+	myPlacemark2 = new ymaps.Placemark(mapCoords);
+
+	// добавляю метки на карты
+	bigmap.geoObjects.add(myPlacemark1);
+	smallmap.geoObjects.add(myPlacemark2);
+
+    bigmap.events.add("click", function (e) {
+    	mapCoords = e.get("coordPosition");
+		myPlacemark1.geometry.setCoordinates(mapCoords);
+		myPlacemark2.geometry.setCoordinates(mapCoords);
+		smallmap.setCenter(mapCoords, 14, "smallmap");
+	});			
+}				
+
+// Для заполнения изображений
+function forEach(data, callback) { 
+	for(var key in data) { 
+		if(data.hasOwnProperty(key)) { 
+			callback(key, data[key]); 
+		} 
+	}
+}
+
+// Логика
+export default {
+
+	// Входящие данные
+	props: ["items", "dealtypes", "regions"],
+
+	components: { transport, realestate }, // Используемые компоненты
+	
+	data () {
+
+    return 	{
+			
+			// сумма прописью
+			summ_str: "",
+			
+			// константы
+			const_phone1_max_length: 9,
+
+			// данные карты
+			setCoordsDialog: false,
+			coordinates_set: false,
+			placeChanged: false,
+
+			/*
+			-----------------------------
+			базовые поля объявления
+			-----------------------------*/			
+			category: null,
+			sdelka: null,
+			deal_id: null,
+			info: "",
+			price: "",
+			number: 0,
+			preview_images: [],
+			real_images: [],
+			root: false,
+			regions_model: null,
+			places: [],
+			places_model: null,
+
+			phone1: "",
+			phone2: "",
+			phone3: "",
+			
+			/*
+			-------------------------
+			категории 
+			-------------------------*/
+			transport:false,			// транспорт
+			real_estate:false,			// недвижимость
+			appliances:false,			// бытовая техника
+			work_and_buisness:false,	// работа и бизнес
+			for_home:false,				// для дома и дачи
+			personal_effects:false,		// личные вещи
+			animals:false,				// животные
+			hobbies_and_leisure:false,	// хобби и отдых
+			services:false,				// услуги
+			other:false					// другое
+		}
+	},
+
+	// -------------------------------
+	// Событие: компонент создан
+	// -------------------------------
+	created() {
+		ymaps.ready(initMaps);
+		this.advReset();
+	},	
+
+	computed: {
+		checkPhone1State() {
+			if (this.phone1.length>=10)
+			return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){7,14}(\s*)?$/.test(this.phone1)? true:false;
+			return null;
+		},
+		checkPhone2State() {
+			if (this.phone2.length>=10)
+			return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){7,14}(\s*)?$/.test(this.phone2)? true:false;
+			return null;
+		},
+		checkPhone3State() {
+			if (this.phone3.length>=10)
+			return /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){7,14}(\s*)?$/.test(this.phone3)? true:false;
+			return null;
+		}
+	},
+  	methods: {
+
+		// обработка выбора региона
+		changeRegion(region_id) {
+
+			this.$root.advert_data.region_id = region_id;
+
+			// -------------------------------
+			// Получить города / сёлы
+			// -------------------------------
+      		get("getPlaces?region_id="+region_id).then((res) => {
+				this.places=res.data;
+				this.places_model=null;
+          		console.log(res.data);
+			  }).catch((err) => {});
+			  
+		},
+
+		// -----------------------------------
+		// обработка выбора местоположения
+		// -----------------------------------
+		changePlace(items) {
+
+			if (items==null) return; // не обрабатыать если null
+
+			var arr = items.replace(" ", "").split("@");
+			var city_id = arr[0];
+			var coords = arr[1];
+			var lanlng = coords.split(",")
+
+			mapCoords=[];
+			mapCoords.push(lanlng[0])
+			mapCoords.push(lanlng[1])
+
+			bigmap.setCenter(mapCoords, 15, "bigmap");
+			smallmap.setCenter(mapCoords, 11, "smallmap");
+
+			myPlacemark1.geometry.setCoordinates(mapCoords);
+			myPlacemark2.geometry.setCoordinates(mapCoords);
+
+			this.placeChanged = true;
+			this.coordinates_set = true;
+
+			// записываю id городи или деревни
+			this.$root.advert_data.city_id = city_id;
+
+			// записываю координаты
+			this.$root.advert_data.adv_coords=[];
+			this.$root.advert_data.adv_coords=mapCoords;
+		},
+
+		// ------------------------------------------------
+		//
+		// Загрузка изображений
+		//
+		// ------------------------------------------------
+  		loadImage(evt) {
+			  
+		var root  = this.$root;  
+		var files = evt.target.files;			
+		var input_images = document.querySelector("input[type=file]");	
+		var preview_images = this.preview_images;		
+		var real_images = this.real_images;
+
+		if (input_images.files.length + preview_images.length > this.$root.max_loaded_images) 
+			return;
+		
+		for (var i=0; i<files.length; i++) {
+			if (i===this.$root.max_loaded_images) break;
+
+			// если уже существует, не обрабатывать изображение
+			for (var j=0; j<preview_images.length; j++)
+				if (files[i].name==preview_images[j].name)
+					return false;
+
+        	var image  = files[i]
+			var reader = new FileReader();
+
+  			reader.onload = (function(theFile) {
+
+          	return function(e) {
+			if (theFile.type=="image/jpeg" || theFile.type=="image/pjpeg" || theFile.type=="image/png") {					
+				preview_images.push({ "name": theFile.name, "src": e.target.result });
+				real_images.push(theFile);
+			}
+			else
+			root.$notify({group: 'foo', text: "<h6>Только изображения!</h6>", type: 'error'});				
+        };
+
+		})(image);		  
+			reader.readAsDataURL(image);			
+		}
+			input_images.value = "";
+		},
+
+		// Удаление фото по щелчку
+  		deletePhoto(index) {
+			document.querySelector("input[type=file]").value = "";
+			this.preview_images.splice(index, 1);
+			this.real_images.splice(index, 1);
+  		},
+
+		// Вернуться на предыдущую страницу
+  		closeAndReturn() {
+ 			window.history.back();
+  		},
+
+		// описание
+  		setInfo(info) {
+			this.$root.advert_data.adv_info=info;
+  		},
+
+			// установить цену
+  		setPrice(price) {
+			
+			if (price < 0 || price > 10000000000) 
+				return this.price;
+
+			this.price = price;
+			this.$root.advert_data.adv_price = price;			
+			this.summ_str = number_to_string(price);
+
+        	return price;
+		},
+
+		// телефоны
+		setPhoneNumber(number) {			
+
+		switch(number) {
+			case 1: {
+				this.$root.advert_data.adv_phone1=this.phone1;
+				break;
+			}
+			case 2: {
+				this.$root.advert_data.adv_phone2=this.phone2;
+				break;
+			}
+			case 3: {
+				this.$root.advert_data.adv_phone3=this.phone3;
+				break;
+			}
+
+//				return number;
+				
+			}
+		},
+		  		  
+		// вид сделки
+  		setDeal(deal_id) {
+			console.log(deal_id)
+  			this.$root.advert_data.adv_deal=deal_id;
+			this.deal_id=deal_id;
+			this.$store.commit("SetDealSelected", true);
+		},
+
+		// сброс данных объявления
+		advReset(category_data) {
+
+			console.log("--------------------")
+			console.log(category_data)
+			console.log("--------------------")
+
+			var form = document.getElementById("advertform");				
+		
+			if (form) form.reset();
+
+			this.summ_str = "";
+
+			this.$store.commit("SetRequiredInfo", false);
+			this.$store.commit("SetPlaceholderInfoText", "default");
+			this.$store.commit("SetDealSelected", false);
+
+			// сброс массива объявления и переинициализация его
+			this.$root.advert_data = [];
+
+			// ----------------------------------------------------------------------------------------------------------------
+			// Не использовать операции сделки во всех категориях, т.к. пользователь может ввести описание объявления сам. 
+			// Типа: Продам то-то-то-то или Куплю то-то-то-то
+			// ----------------------------------------------------------------------------------------------------------------
+			switch(category_data) {
+				case 3: this.$root.advert_data.adv_deal = ""; break; 
+				case 4: this.$root.advert_data.adv_deal = ""; break; 
+				case 5: this.$root.advert_data.adv_deal = ""; break; 
+				case 6: this.$root.advert_data.adv_deal = ""; break; 
+				case 7: this.$root.advert_data.adv_deal = ""; break; 
+				case 8: this.$root.advert_data.adv_deal = ""; break; 
+				case 9: this.$root.advert_data.adv_deal = ""; break; 
+				case 10: this.$root.advert_data.adv_deal = ""; break; 
+				default: this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
+			}
+				
+			//this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
+
+			this.$root.advert_data.adv_info   = null; // добавляю формально поле доп. информация
+			this.$root.advert_data.adv_price  = "";
+			this.$root.advert_data.adv_phone1 = "";
+
+			// сброс моделей
+			this.sdelka = null;
+			this.price = "";
+			this.info = "";
+			this.phone1 = "";
+			this.phone2 = "";
+			this.phone3 = "";
+			this.regions_model = null;
+			this.places_model = null;
+			this.preview_images = [];
+			this.coordinates_set = false;
+
+			// сброс категорий
+			if (category_data!=null) {
+				this.root=false;				    // по умолчанию
+  				this.transport=false;			    // транспорт
+  				this.real_estate=false;			    // недвижимость
+  				this.appliances=false;			    // электроника
+  				this.work_and_buisness=false; 	    // работа и бизнес
+  				this.for_home=false;			    // для дома и дачи
+  				this.personal_effects=false;	    // личные вещи
+				this.animals=false;				    // животные
+				this.hobbies_and_leisure=false;	  	// хобби и отдых
+				this.services=false;			    // услуги
+				this.other=false;				    // другое
+			}
+
+			// сбрасываю фотки
+			var photos = document.querySelector("input[type=file]");
+			if (photos!=null) 
+				photos.value = "";
+		},
+
+  		/*
+  		--------------------------
+  		 Изменения в категориях
+  		--------------------------*/
+  		changeCategory(category) {
+			
+
+			// сброс объявления при выборе категории
+			this.advReset(category);
+
+			// -----------------------------------------------------------------
+			// отрубить вид сделки в категориях: "работа и бизнес" и "услуги"
+			// -----------------------------------------------------------------
+			if (category==4 || category==9) {
+				this.$store.commit("SetDealSelected", true);
+				this.$store.commit("ShowFinalFields", true);
+			}
+
+			// добавляю категории
+			this.$root.advert_data.adv_category=category;
+			
+			// скрываю дополнительные поля
+			this.$store.commit("ShowFinalFields", false);
+
+  			switch(category) {
+  				case null: {
+					  this.root=true; 
+					  this.$store.commit("ShowFinalFields", false);
+  					break;
+  				}
+  				case 1: {
+					  this.transport=true; 
+					  this.$store.commit("ShowFinalFields", false);
+  					break; 
+  				} 
+  				case 2: {  
+					  this.real_estate=true; 
+					  this.$store.commit("ShowFinalFields", false);
+					  break;
+				} 
+  				case 3: {
+					  this.appliances=true; 
+					  this.$store.commit("ShowFinalFields", true);
+					  this.$store.commit("SetRequiredInfo", true);
+					  this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам телевизор Samsung б/у в отличном состоянии");
+  					  break; 
+  				}
+  				case 4: {
+					  this.work_and_buisness=true;
+					  this.$store.commit("ShowFinalFields", true);
+					  this.$store.commit("SetRequiredInfo", true);
+					  this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Требуются разнорабочие"); 
+  					break; 
+  				}
+  				case 5: {
+					  this.for_home=true; 
+					  this.$store.commit("ShowFinalFields", true);
+					  this.$store.commit("SetRequiredInfo", true);
+					  this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Куплю картофель"); 
+  					break; 
+  				}
+  				case 6: {
+					  this.personal_effects=true; 
+					  this.$store.commit("ShowFinalFields", true);
+					  this.$store.commit("SetRequiredInfo", true);
+					  this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам пуховик"); 
+  					break; 
+  				}
+  				case 7: {
+					this.animals=true;
+					this.$store.commit("ShowFinalFields", true);
+					this.$store.commit("SetRequiredInfo", true);					
+					this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам щенков хаски"); 
+  					break; 
+  				}
+  				case 8: {
+					this.hobbies_and_leisure=true; 
+					this.$store.commit("ShowFinalFields", true);
+					this.$store.commit("SetRequiredInfo", true);					
+  					break; 
+  				}
+  				case 9: { 
+					this.services=true;
+					this.$store.commit("ShowFinalFields", true);
+					this.$store.commit("SetRequiredInfo", true);
+					this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Распечатка текста"); 
+  					break; 
+  				}
+  				case 10: {
+					this.other=true;
+					this.$store.commit("ShowFinalFields", true);
+					this.$store.commit("SetRequiredInfo", true);
+  					break; 
+  				}
+  			}
+		},
+  		
+  	/*
+	----------------------------
+	  Сохранить объявление
+	----------------------------*/
+    onSubmit(evt) {
+
+		evt.preventDefault();
+
+		var formData = new FormData();
+
+		// устанавливаю цену если она пустая, т.к. бэкенду нужна цена
+		if (this.$root.advert_data.adv_price==null || 
+			this.$root.advert_data.adv_price=="") 
+			this.$root.advert_data.adv_price=0;
+
+		// ----------------------------------------------------
+		// записываю значения полей
+		// ----------------------------------------------------
+		forEach(this.$root.advert_data, function(key, value) {
+			formData.append(key, value);
+		})
+
+		// Записываю изображения
+		for( var i=0; i < this.real_images.length; i++ )
+          	formData.append('images['+i+']', this.real_images[i]);		
+				
+		// ---------------------------------------------------
+		//
+		// РАЗМЕЩЕНИЕ ОБЪЯВЛЕНИЯ
+		//
+		// ---------------------------------------------------
+		axios.post("/create", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {
+			
+			console.log(response);
+			
+			if (response.data.result=="db.error")
+				this.$root.$notify({group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error'});
+			else
+				if (response.data.result=="usr.error")
+				this.$root.$notify({group: 'foo', text: "<h6>"+response.data.msg+"</h6>", type: 'error'});
+				else
+				alert("Объявление размещено");
+				//	else 
+				//	window.location="home"; // переходим в личный кабинет
+        	}).catch(error => {
+			  console.log(error.response)
+			  this.$root.$notify({group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error'});
+			})
+    },
+	
+	// -------------------------------------
+	// Показать диалог выбора расположения
+	// -------------------------------------
+	showSetCoordsDialog() {
+
+		this.setCoordsDialog=true;
+
+		if (!navigator.geolocation) console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается		
+		else {
+				navigator.geolocation.getCurrentPosition(function(position) {				
+					var lat = position.coords.latitude;
+					var lon = position.coords.longitude;
+					var geoCoords=[lat,lon];
+					myPlacemark.geometry.setCoordinates(getCoords);				
+				});
+			}
+	},
+
+	// ---------------------------------
+	// Установить координаты
+	// ---------------------------------
+	setCoords() {
+		this.setCoordsDialog=false;
+		this.$root.advert_data.adv_coords=[];
+		this.$root.advert_data.adv_coords=mapCoords;
+		this.coordinates_set=true;
+	}
+}
+}
+</script>
