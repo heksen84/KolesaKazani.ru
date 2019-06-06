@@ -6,7 +6,7 @@
 <div id="navbar_menu">
   <b-navbar toggleable="lg" type="dark" variant="primary">
     <!--<b-navbar-brand href="#"><b>{{ this.$store.state.str_title }}</b><div style="font-size:14px">все объявления Казахстана</div></b-navbar-brand>-->
-    <b-navbar-brand href="#"><b>Дамеля</b><div style="font-size:14px">все объявления Казахстана</div></b-navbar-brand>
+    <b-navbar-brand href="#"><h1>Дамеля</h1><h2 style="font-size:16px;margin-top:-5px;font-weight:500">все объявления Казахстана</h2></b-navbar-brand>
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>

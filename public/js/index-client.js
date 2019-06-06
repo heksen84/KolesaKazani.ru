@@ -28303,10 +28303,18 @@ var render = function() {
             { attrs: { toggleable: "lg", type: "dark", variant: "primary" } },
             [
               _c("b-navbar-brand", { attrs: { href: "#" } }, [
-                _c("b", [_vm._v("Дамеля")]),
-                _c("div", { staticStyle: { "font-size": "14px" } }, [
-                  _vm._v("все объявления Казахстана")
-                ])
+                _c("h1", [_vm._v("Дамеля")]),
+                _c(
+                  "h2",
+                  {
+                    staticStyle: {
+                      "font-size": "16px",
+                      "margin-top": "-5px",
+                      "font-weight": "500"
+                    }
+                  },
+                  [_vm._v("все объявления Казахстана")]
+                )
               ]),
               _vm._v(" "),
               _c("b-navbar-toggle", { attrs: { target: "nav-collapse" } }),
