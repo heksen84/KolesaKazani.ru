@@ -12,6 +12,9 @@
   <title>Доска объявлений Дамеля - бесплатные объявления о покупке и продаже в Казахстане.</title>
   <link rel="icon" href="{{ asset('public/shop.ico') }}">  
 </head>
+<style>
+  body { display:none; }
+</style>
 <body>
 <div id="app">
   {!! $ssr !!}

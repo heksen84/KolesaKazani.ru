@@ -75,6 +75,7 @@ body {
   -moz-background-size: cover;
   -webkit-background-size: cover;
   -o-background-size: cover;
+  display: block;
 }
 
 #select_location_mobile {
