@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <title>Laravel Multiple File Upload Example</title>

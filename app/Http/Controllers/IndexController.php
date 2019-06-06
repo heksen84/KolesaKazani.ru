@@ -18,6 +18,7 @@ class IndexController extends Controller {
 
 		private $lang=null;
 
+		// SSR
 		private function render() {
 
 			$renderer_source = File::get(base_path('node_modules/vue-server-renderer/basic.js'));
@@ -40,8 +41,7 @@ class IndexController extends Controller {
 		 Получить категории
 		-------------------------------------*/
         public function getCategories(Request $request) {
-			
-			
+						
 			\Debugbar::info(public_path());
 												
 			$redis = Redis::connection();

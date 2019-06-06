@@ -5,6 +5,9 @@ use Illuminate\Http\Request;
 
 Auth::routes(); // Стандартные роуты
 
+Route::get("isUserAuth", "UserController@isUserAuth");
+Route::get("getCategories", "CategoriesController@getCategories");
+
 // -------------------------------------------------------------------------------
 // Результаты по категориям по всему Казахстану
 // -------------------------------------------------------------------------------

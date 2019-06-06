@@ -109,11 +109,14 @@ import { get } from './../helpers/api'
 export default {
   
   // Входящие данные
-  props: ["items", "auth", "count", "subcats"],
+  //props: ["items", "auth", "count", "subcats"],
 
   // переменные
   data () {      
     return {
+
+      auth:false,
+
       lang: "русский",
       show_categories: true,
       selected_category_id: null,

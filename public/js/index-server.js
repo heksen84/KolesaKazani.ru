@@ -880,7 +880,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/node-libs-browser/node_modules/process/browser.js")))
 
 /***/ }),
 
@@ -1732,11 +1732,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
 
   // Входящие данные
-  props: ["items", "auth", "count", "subcats"],
+  //props: ["items", "auth", "count", "subcats"],
 
   // переменные
   data: function data() {
     return {
+
+      auth: false,
+
       lang: "русский",
       show_categories: true,
       selected_category_id: null,
@@ -1953,12 +1956,10 @@ const props = {
   }
 }
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BButtonClose',
   functional: true,
   props,
-  render(h, { props, data, listeners, slots }) {
+  render (h, { props, data, listeners, slots }) {
     const componentData = {
       staticClass: 'close',
       class: {
@@ -1970,7 +1971,7 @@ const props = {
         'aria-label': props.ariaLabel ? String(props.ariaLabel) : null
       },
       on: {
-        click(e) {
+        click (e) {
           // Ensure click on button HTML content is also disabled
           if (props.disabled && e instanceof Event) {
             e.stopPropagation()
@@ -1979,7 +1980,7 @@ const props = {
         }
       }
     }
-    // Careful not to override the default slot with innerHTML
+    // Careful not to override the slot with innerHTML
     if (!slots().default) {
       componentData.domProps = { innerHTML: '&times;' }
     }
@@ -2028,10 +2029,6 @@ const btnProps = {
     type: String,
     default: 'button'
   },
-  tag: {
-    type: String,
-    default: 'button'
-  },
   pressed: {
     // tri-state prop: true, false or null
     // => on, off, not a toggle
@@ -2049,110 +2046,26 @@ const props = Object(__WEBPACK_IMPORTED_MODULE_3__utils_object__["a" /* assign *
 /* unused harmony export props */
 
 
-// Focus handler for toggle buttons.  Needs class of 'focus' when focused.
-function handleFocus(evt) {
+function handleFocus (evt) {
   if (evt.type === 'focusin') {
     Object(__WEBPACK_IMPORTED_MODULE_4__utils_dom__["a" /* addClass */])(evt.target, 'focus')
   } else if (evt.type === 'focusout') {
-    Object(__WEBPACK_IMPORTED_MODULE_4__utils_dom__["p" /* removeClass */])(evt.target, 'focus')
+    Object(__WEBPACK_IMPORTED_MODULE_4__utils_dom__["m" /* removeClass */])(evt.target, 'focus')
   }
 }
 
-// Helper functons to minimize runtime memory footprint when lots of buttons on page
-
-// Is the requested button a link?
-function isLink(props) {
-  // If tag prop is set to `a`, we use a b-link to get proper disabled handling
-  return Boolean(props.href || props.to || (props.tag && String(props.tag).toLowerCase() === 'a'))
-}
-
-// Is the button to be a toggle button?
-function isToggle(props) {
-  return typeof props.pressed === 'boolean'
-}
-
-// Is the button "really" a button?
-function isButton(props) {
-  if (isLink(props)) {
-    return false
-  } else if (props.tag && String(props.tag).toLowerCase() !== 'button') {
-    return false
-  }
-  return true
-}
-
-// Is the requested tag not a button or link?
-function isNonStandardTag(props) {
-  return !isLink(props) && !isButton(props)
-}
-
-// Compute required classes (non static classes)
-function computeClass(props) {
-  return [
-    props.variant ? `btn-${props.variant}` : `btn-secondary`,
-    {
-      [`btn-${props.size}`]: Boolean(props.size),
-      'btn-block': props.block,
-      disabled: props.disabled,
-      active: props.pressed
-    }
-  ]
-}
-
-// Compute the link props to pass to b-link (if required)
-function computeLinkProps(props) {
-  return isLink(props) ? Object(__WEBPACK_IMPORTED_MODULE_1__utils_pluck_props__["a" /* default */])(linkPropKeys, props) : null
-}
-
-// Compute the attributes for a button
-function computeAttrs(props, data) {
-  const button = isButton(props)
-  const link = isLink(props)
-  const toggle = isToggle(props)
-  const nonStdTag = isNonStandardTag(props)
-  const role = data.attrs && data.attrs['role'] ? data.attrs['role'] : null
-  let tabindex = data.attrs ? data.attrs['tabindex'] : null
-  if (nonStdTag) {
-    tabindex = '0'
-  }
-  return {
-    // Type only used for "real" buttons
-    type: button && !link ? props.type : null,
-    // Disabled only set on "real" buttons
-    disabled: button ? props.disabled : null,
-    // We add a role of button when the tag is not a link or button for ARIA.
-    // Don't bork any role provided in data.attrs when isLink or isButton
-    role: nonStdTag ? 'button' : role,
-    // We set the aria-disabled state for non-standard tags
-    'aria-disabled': nonStdTag ? String(props.disabled) : null,
-    // For toggles, we need to set the pressed state for ARIA
-    'aria-pressed': toggle ? String(props.pressed) : null,
-    // autocomplete off is needed in toggle mode to prevent some browsers from
-    // remembering the previous setting when using the back button.
-    autocomplete: toggle ? 'off' : null,
-    // Tab index is used when the component is not a button.
-    // Links are tabable, but don't allow disabled, while non buttons or links
-    // are not tabable, so we mimic that functionality by disabling tabbing
-    // when disabled, and adding a tabindex of '0' to non buttons or non links.
-    tabindex: props.disabled && !button ? '-1' : tabindex
-  }
-}
-
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BButton',
   functional: true,
   props,
-  render(h, { props, data, listeners, children }) {
-    const toggle = isToggle(props)
-    const link = isLink(props)
+  render (h, { props, data, listeners, children }) {
+    const isLink = Boolean(props.href || props.to)
+    const isToggle = typeof props.pressed === 'boolean'
     const on = {
-      click(e) {
+      click (e) {
         if (props.disabled && e instanceof Event) {
           e.stopPropagation()
           e.preventDefault()
-        } else if (toggle && listeners && listeners['update:pressed']) {
-          // Send .sync updates to any "pressed" prop (if .sync listeners)
+        } else if (isToggle) {
           // Concat will normalize the value to an array
           // without double wrapping an array value in an array.
           Object(__WEBPACK_IMPORTED_MODULE_2__utils_array__["b" /* concat */])(listeners['update:pressed']).forEach(fn => {
@@ -2164,20 +2077,42 @@ function computeAttrs(props, data) {
       }
     }
 
-    if (toggle) {
+    if (isToggle) {
       on.focusin = handleFocus
       on.focusout = handleFocus
     }
 
     const componentData = {
       staticClass: 'btn',
-      class: computeClass(props),
-      props: computeLinkProps(props),
-      attrs: computeAttrs(props, data),
+      class: [
+        props.variant ? `btn-${props.variant}` : `btn-secondary`,
+        {
+          [`btn-${props.size}`]: Boolean(props.size),
+          'btn-block': props.block,
+          disabled: props.disabled,
+          active: props.pressed
+        }
+      ],
+      props: isLink ? Object(__WEBPACK_IMPORTED_MODULE_1__utils_pluck_props__["a" /* default */])(linkPropKeys, props) : null,
+      attrs: {
+        type: isLink ? null : props.type,
+        disabled: isLink ? null : props.disabled,
+        // Data attribute not used for js logic,
+        // but only for BS4 style selectors.
+        'data-toggle': isToggle ? 'button' : null,
+        'aria-pressed': isToggle ? String(props.pressed) : null,
+        // Tab index is used when the component becomes a link.
+        // Links are tabable, but don't allow disabled,
+        // so we mimic that functionality by disabling tabbing.
+        tabindex:
+          props.disabled && isLink
+            ? '-1'
+            : data.attrs ? data.attrs['tabindex'] : null
+      },
       on
     }
 
-    return h(link ? __WEBPACK_IMPORTED_MODULE_5__link_link__["a" /* default */] : props.tag, Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, componentData), children)
+    return h(isLink ? __WEBPACK_IMPORTED_MODULE_5__link_link__["a" /* default */] : 'button', Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, componentData), children)
   }
 });
 
@@ -2196,740 +2131,21 @@ function computeAttrs(props, data) {
 
 
 const components = {
-  BButton: __WEBPACK_IMPORTED_MODULE_0__button__["a" /* default */],
-  BBtn: __WEBPACK_IMPORTED_MODULE_0__button__["a" /* default */],
-  BButtonClose: __WEBPACK_IMPORTED_MODULE_1__button_close__["a" /* default */],
-  BBtnClose: __WEBPACK_IMPORTED_MODULE_1__button_close__["a" /* default */]
+  bButton: __WEBPACK_IMPORTED_MODULE_0__button__["a" /* default */],
+  bBtn: __WEBPACK_IMPORTED_MODULE_0__button__["a" /* default */],
+  bButtonClose: __WEBPACK_IMPORTED_MODULE_1__button_close__["a" /* default */],
+  bBtnClose: __WEBPACK_IMPORTED_MODULE_1__button_close__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install(Vue) {
+const VuePlugin = {
+  install (Vue) {
     Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["a" /* registerComponents */])(Vue, components)
   }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/collapse/collapse.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_listen_on_root__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/listen-on-root.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
-
-
-
-// Events we emit on $root
-const EVENT_STATE = 'bv::collapse::state'
-const EVENT_ACCORDION = 'bv::collapse::accordion'
-// Events we listen to on $root
-const EVENT_TOGGLE = 'bv::toggle::collapse'
-
-// Event Listener options
-const EventOptions = { passive: true, capture: false }
-
-// @vue/component
-/* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BCollapse',
-  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_listen_on_root__["a" /* default */]],
-  model: {
-    prop: 'visible',
-    event: 'input'
-  },
-  props: {
-    id: {
-      type: String,
-      required: true
-    },
-    isNav: {
-      type: Boolean,
-      default: false
-    },
-    accordion: {
-      type: String,
-      default: null
-    },
-    visible: {
-      type: Boolean,
-      default: false
-    },
-    tag: {
-      type: String,
-      default: 'div'
-    }
-  },
-  data() {
-    return {
-      show: this.visible,
-      transitioning: false
-    }
-  },
-  computed: {
-    classObject() {
-      return {
-        'navbar-collapse': this.isNav,
-        collapse: !this.transitioning,
-        show: this.show && !this.transitioning
-      }
-    }
-  },
-  watch: {
-    visible(newVal) {
-      if (newVal !== this.show) {
-        this.show = newVal
-      }
-    },
-    show(newVal, oldVal) {
-      if (newVal !== oldVal) {
-        this.emitState()
-      }
-    }
-  },
-  created() {
-    // Listen for toggle events to open/close us
-    this.listenOnRoot(EVENT_TOGGLE, this.handleToggleEvt)
-    // Listen to otehr collapses for accordion events
-    this.listenOnRoot(EVENT_ACCORDION, this.handleAccordionEvt)
-  },
-  mounted() {
-    if (this.isNav && typeof document !== 'undefined') {
-      // Set up handlers
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["e" /* eventOn */])(window, 'resize', this.handleResize, EventOptions)
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["e" /* eventOn */])(window, 'orientationchange', this.handleResize, EventOptions)
-      this.handleResize()
-    }
-    this.emitState()
-  },
-  updated() {
-    this.$root.$emit(EVENT_STATE, this.id, this.show)
-  },
-  beforeDestroy() /* istanbul ignore next */ {
-    if (this.isNav && typeof document !== 'undefined') {
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["d" /* eventOff */])(window, 'resize', this.handleResize, EventOptions)
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["d" /* eventOff */])(window, 'orientationchange', this.handleResize, EventOptions)
-    }
-  },
-  methods: {
-    toggle() {
-      this.show = !this.show
-    },
-    onEnter(el) {
-      el.style.height = 0
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["n" /* reflow */])(el)
-      el.style.height = el.scrollHeight + 'px'
-      this.transitioning = true
-      // This should be moved out so we can add cancellable events
-      this.$emit('show')
-    },
-    onAfterEnter(el) {
-      el.style.height = null
-      this.transitioning = false
-      this.$emit('shown')
-    },
-    onLeave(el) {
-      el.style.height = 'auto'
-      el.style.display = 'block'
-      el.style.height = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["g" /* getBCR */])(el).height + 'px'
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["n" /* reflow */])(el)
-      this.transitioning = true
-      el.style.height = 0
-      // This should be moved out so we can add cancellable events
-      this.$emit('hide')
-    },
-    onAfterLeave(el) {
-      el.style.height = null
-      this.transitioning = false
-      this.$emit('hidden')
-    },
-    emitState() {
-      this.$emit('input', this.show)
-      // Let v-b-toggle know the state of this collapse
-      this.$root.$emit(EVENT_STATE, this.id, this.show)
-      if (this.accordion && this.show) {
-        // Tell the other collapses in this accordion to close
-        this.$root.$emit(EVENT_ACCORDION, this.id, this.accordion)
-      }
-    },
-    clickHandler(evt) {
-      // If we are in a nav/navbar, close the collapse when non-disabled link clicked
-      const el = evt.target
-      if (!this.isNav || !el || Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["h" /* getCS */])(this.$el).display !== 'block') {
-        return
-      }
-      if (Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["m" /* matches */])(el, '.nav-link,.dropdown-item') || Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["b" /* closest */])('.nav-link,.dropdown-item', el)) {
-        this.show = false
-      }
-    },
-    handleToggleEvt(target) {
-      if (target !== this.id) {
-        return
-      }
-      this.toggle()
-    },
-    handleAccordionEvt(openedId, accordion) {
-      if (!this.accordion || accordion !== this.accordion) {
-        return
-      }
-      if (openedId === this.id) {
-        // Open this collapse if not shown
-        if (!this.show) {
-          this.toggle()
-        }
-      } else {
-        // Close this collapse if shown
-        if (this.show) {
-          this.toggle()
-        }
-      }
-    },
-    handleResize() {
-      // Handler for orientation/resize to set collapsed state in nav/navbar
-      this.show = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["h" /* getCS */])(this.$el).display === 'block'
-    }
-  },
-  render(h) {
-    const content = h(
-      this.tag,
-      {
-        class: this.classObject,
-        directives: [{ name: 'show', value: this.show }],
-        attrs: { id: this.id || null },
-        on: { click: this.clickHandler }
-      },
-      [this.$slots.default]
-    )
-    return h(
-      'transition',
-      {
-        props: {
-          enterClass: '',
-          enterActiveClass: 'collapsing',
-          enterToClass: '',
-          leaveClass: '',
-          leaveActiveClass: 'collapsing',
-          leaveToClass: ''
-        },
-        on: {
-          enter: this.onEnter,
-          afterEnter: this.onAfterEnter,
-          leave: this.onLeave,
-          afterLeave: this.onAfterLeave
-        }
-      },
-      [content]
-    )
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/collapse/index.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__collapse__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/collapse/collapse.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_toggle__ = __webpack_require__("./node_modules/bootstrap-vue/src/directives/toggle/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
-
-
-
-
-const components = {
-  BCollapse: __WEBPACK_IMPORTED_MODULE_0__collapse__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install(Vue) {
-    Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["a" /* registerComponents */])(Vue, components)
-    Vue.use(__WEBPACK_IMPORTED_MODULE_1__directives_toggle__["a" /* default */])
-  }
-});
+Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["c" /* vueUse */])(VuePlugin)
 
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/dropdown/dropdown-divider.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
-
-
-const props = {
-  tag: {
-    type: String,
-    default: 'div'
-  }
-}
-/* unused harmony export props */
-
-
-// @vue/component
-/* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BDropdownDivider',
-  functional: true,
-  props,
-  render(h, { props, data }) {
-    return h(
-      props.tag,
-      Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
-        staticClass: 'dropdown-divider',
-        attrs: { role: 'separator' }
-      })
-    )
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/dropdown/dropdown-form.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form/form.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
-
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BDropdownForm',
-  functional: true,
-//  props: { ...formProps },
-  render(h, { props, data, children }) {
-    return h(__WEBPACK_IMPORTED_MODULE_0__form_form__["a" /* default */], Object(__WEBPACK_IMPORTED_MODULE_1_vue_functional_data_merge__["a" /* mergeData */])(data, { props, staticClass: 'b-dropdown-form' }), children)
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/dropdown/dropdown-header.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
-
-
-const props = {
-  id: {
-    type: String,
-    default: null
-  },
-  tag: {
-    type: String,
-    default: 'h6'
-  }
-}
-/* unused harmony export props */
-
-
-// @vue/component
-/* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BDropdownHeader',
-  functional: true,
-  props,
-  render(h, { props, data, children }) {
-    return h(
-      props.tag,
-      Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
-        staticClass: 'dropdown-header',
-        attrs: { id: props.id || null }
-      }),
-      children
-    )
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/dropdown/dropdown-item-button.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-const props = {
-  active: {
-    type: Boolean,
-    default: false
-  },
-  activeClass: {
-    type: String,
-    default: 'active'
-  },
-  disabled: {
-    type: Boolean,
-    default: false
-  }
-}
-/* unused harmony export props */
-
-
-// @vue/component
-/* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BDropdownItemButton',
-  inject: {
-    dropdown: {
-      from: 'dropdown',
-      default: null
-    }
-  },
-  props,
-  methods: {
-    closeDropdown() {
-      if (this.dropdown) {
-        this.dropdown.hide(true)
-      }
-    },
-    onClick(evt) {
-      this.$emit('click', evt)
-      this.closeDropdown()
-    }
-  },
-  render(h) {
-    return h(
-      'button',
-      {
-        staticClass: 'dropdown-item',
-        class: { [this.activeClass]: this.active },
-        attrs: { role: 'menuitem', type: 'button', disabled: this.disabled },
-        on: { click: this.onClick }
-      },
-      this.$slots.default
-    )
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/dropdown/dropdown-item.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__link_link__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/link/link.js");
-
-
-const props = Object(__WEBPACK_IMPORTED_MODULE_0__link_link__["b" /* propsFactory */])()
-/* unused harmony export props */
-
-
-// @vue/component
-/* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BDropdownItem',
-  inject: {
-    dropdown: {
-      from: 'dropdown',
-      default: null
-    }
-  },
-  props,
-  methods: {
-    closeDropdown() {
-      if (this.dropdown) {
-        this.dropdown.hide(true)
-      }
-    },
-    onClick(evt) {
-      this.$emit('click', evt)
-      this.closeDropdown()
-    }
-  },
-  render(h) {
-    return h(
-      __WEBPACK_IMPORTED_MODULE_0__link_link__["a" /* default */],
-      {
-        props: this.$props,
-        staticClass: 'dropdown-item',
-        attrs: { role: 'menuitem' },
-        on: { click: this.onClick }
-      },
-      this.$slots.default
-    )
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/dropdown/dropdown-text.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BDropdownText',
-  functional: true,
-  props: {
-    tag: {
-      type: String,
-      default: 'p'
-    }
-  },
-  render(h, { props, data, children }) {
-    return h(props.tag, Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, { props, staticClass: 'b-dropdown-text' }), children)
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/dropdown/dropdown.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_html__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/html.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_dropdown__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/dropdown.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__button_button__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/button.js");
-
-
-
-
-
-// @vue/component
-/* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BDropdown',
-  components: { BButton: __WEBPACK_IMPORTED_MODULE_3__button_button__["a" /* default */] },
-  mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_id__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2__mixins_dropdown__["a" /* default */]],
-  props: {
-    toggleText: {
-      type: String,
-      default: 'Toggle Dropdown'
-    },
-    size: {
-      type: String,
-      default: null
-    },
-    variant: {
-      type: String,
-      default: null
-    },
-    menuClass: {
-      type: [String, Array],
-      default: null
-    },
-    toggleTag: {
-      type: String,
-      default: 'button'
-    },
-    toggleClass: {
-      type: [String, Array],
-      default: null
-    },
-    noCaret: {
-      type: Boolean,
-      default: false
-    },
-    split: {
-      type: Boolean,
-      default: false
-    },
-    splitHref: {
-      type: String
-      // default: undefined
-    },
-    splitTo: {
-      type: [String, Object]
-      // default: undefined
-    },
-    splitVariant: {
-      type: String,
-      default: null
-    },
-    role: {
-      type: String,
-      default: 'menu'
-    },
-    boundary: {
-      // String: `scrollParent`, `window` or `viewport`
-      // Object: HTML Element reference
-      type: [String, Object],
-      default: 'scrollParent'
-    }
-  },
-  computed: {
-    dropdownClasses() {
-      // Position `static` is needed to allow menu to "breakout" of the scrollParent boundaries
-      // when boundary is anything other than `scrollParent`
-      // See https://github.com/twbs/bootstrap/issues/24251#issuecomment-341413786
-      const positionStatic = this.boundary !== 'scrollParent' || !this.boundary
-
-      let direction = ''
-      if (this.dropup) {
-        direction = 'dropup'
-      } else if (this.dropright) {
-        direction = 'dropright'
-      } else if (this.dropleft) {
-        direction = 'dropleft'
-      }
-
-      return [
-        'btn-group',
-        'b-dropdown',
-        'dropdown',
-        direction,
-        {
-          show: this.visible,
-          'position-static': positionStatic
-        }
-      ]
-    },
-    menuClasses() {
-      return [
-        'dropdown-menu',
-        {
-          'dropdown-menu-right': this.right,
-          show: this.visible
-        },
-        this.menuClass
-      ]
-    },
-    toggleClasses() {
-      return [
-        'dropdown-toggle',
-        {
-          'dropdown-toggle-split': this.split,
-          'dropdown-toggle-no-caret': this.noCaret && !this.split
-        },
-        this.toggleClass
-      ]
-    }
-  },
-  render(h) {
-    let split = h(false)
-    if (this.split) {
-      const btnProps = {
-        disabled: this.disabled,
-        variant: this.splitVariant || this.variant,
-        size: this.size
-      }
-      // We add these as needed due to router-link issues with defined property with undefined/null values
-      if (this.splitTo) {
-        btnProps.to = this.splitTo
-      }
-      if (this.splitHref) {
-        btnProps.href = this.splitHref
-      }
-      split = h(
-        'b-button',
-        {
-          ref: 'button',
-          props: btnProps,
-          attrs: {
-            id: this.safeId('_BV_button_')
-          },
-          on: {
-            click: this.click
-          }
-        },
-        [this.$slots['button-content'] || this.$slots.text || this.html || Object(__WEBPACK_IMPORTED_MODULE_0__utils_html__["b" /* stripTags */])(this.text)]
-      )
-    }
-    const toggle = h(
-      'b-button',
-      {
-        ref: 'toggle',
-        class: this.toggleClasses,
-        props: {
-          variant: this.variant,
-          size: this.size,
-          disabled: this.disabled,
-          tag: this.toggleTag
-        },
-        attrs: {
-          id: this.safeId('_BV_toggle_'),
-          'aria-haspopup': 'true',
-          'aria-expanded': this.visible ? 'true' : 'false'
-        },
-        on: {
-          click: this.toggle, // click
-          keydown: this.toggle // enter, space, down
-        }
-      },
-      [
-        this.split
-          ? h('span', { class: ['sr-only'] }, [this.toggleText])
-          : this.$slots['button-content'] || this.$slots.text || this.html || Object(__WEBPACK_IMPORTED_MODULE_0__utils_html__["b" /* stripTags */])(this.text)
-      ]
-    )
-    const menu = h(
-      'div',
-      {
-        ref: 'menu',
-        class: this.menuClasses,
-        attrs: {
-          role: this.role,
-          tabindex: '-1',
-          'aria-labelledby': this.safeId(this.split ? '_BV_button_' : '_BV_toggle_')
-        },
-        on: {
-          mouseover: this.onMouseOver,
-          keydown: this.onKeydown // tab, up, down, esc
-        }
-      },
-      [this.$slots.default]
-    )
-    return h('div', { attrs: { id: this.safeId() }, class: this.dropdownClasses }, [
-      split,
-      toggle,
-      menu
-    ])
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/dropdown/index.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dropdown__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/dropdown/dropdown.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dropdown_item__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/dropdown/dropdown-item.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dropdown_item_button__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/dropdown/dropdown-item-button.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dropdown_header__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/dropdown/dropdown-header.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dropdown_divider__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/dropdown/dropdown-divider.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dropdown_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/dropdown/dropdown-form.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dropdown_text__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/dropdown/dropdown-text.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
-
-
-
-
-
-
-
-
-
-const components = {
-  BDropdown: __WEBPACK_IMPORTED_MODULE_0__dropdown__["a" /* default */],
-  BDd: __WEBPACK_IMPORTED_MODULE_0__dropdown__["a" /* default */],
-  BDropdownItem: __WEBPACK_IMPORTED_MODULE_1__dropdown_item__["a" /* default */],
-  BDdItem: __WEBPACK_IMPORTED_MODULE_1__dropdown_item__["a" /* default */],
-  BDropdownItemButton: __WEBPACK_IMPORTED_MODULE_2__dropdown_item_button__["a" /* default */],
-  BDropdownItemBtn: __WEBPACK_IMPORTED_MODULE_2__dropdown_item_button__["a" /* default */],
-  BDdItemButton: __WEBPACK_IMPORTED_MODULE_2__dropdown_item_button__["a" /* default */],
-  BDdItemBtn: __WEBPACK_IMPORTED_MODULE_2__dropdown_item_button__["a" /* default */],
-  BDropdownHeader: __WEBPACK_IMPORTED_MODULE_3__dropdown_header__["a" /* default */],
-  BDdHeader: __WEBPACK_IMPORTED_MODULE_3__dropdown_header__["a" /* default */],
-  BDropdownDivider: __WEBPACK_IMPORTED_MODULE_4__dropdown_divider__["a" /* default */],
-  BDdDivider: __WEBPACK_IMPORTED_MODULE_4__dropdown_divider__["a" /* default */],
-  BDropdownForm: __WEBPACK_IMPORTED_MODULE_5__dropdown_form__["a" /* default */],
-  BDdForm: __WEBPACK_IMPORTED_MODULE_5__dropdown_form__["a" /* default */],
-  BDropdownText: __WEBPACK_IMPORTED_MODULE_6__dropdown_text__["a" /* default */],
-  BDdText: __WEBPACK_IMPORTED_MODULE_6__dropdown_text__["a" /* default */]
-}
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install(Vue) {
-    Object(__WEBPACK_IMPORTED_MODULE_7__utils_plugins__["a" /* registerComponents */])(Vue, components)
-  }
-});
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
@@ -2950,10 +2166,6 @@ const props = {
     type: String,
     default: 'div'
   },
-  tooltip: {
-    type: Boolean,
-    default: false
-  },
   forceShow: {
     type: Boolean,
     default: false
@@ -2962,20 +2174,15 @@ const props = {
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BFormInvalidFeedback',
   functional: true,
   props,
-  render(h, { props, data, children }) {
+  render (h, { props, data, children }) {
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
-        class: {
-          'invalid-feedback': !props.tooltip,
-          'invalid-tooltip': props.tooltip,
-          'd-block': props.forceShow
-        },
+        staticClass: 'invalid-feedback',
+        class: { 'd-block': props.forceShow },
         attrs: { id: props.id }
       }),
       children
@@ -3026,12 +2233,10 @@ const props = {
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BFormText',
   functional: true,
   props,
-  render(h, { props, data, children }) {
+  render (h, { props, data, children }) {
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
@@ -3067,10 +2272,6 @@ const props = {
     type: String,
     default: 'div'
   },
-  tooltip: {
-    type: Boolean,
-    default: false
-  },
   forceShow: {
     type: Boolean,
     default: false
@@ -3079,20 +2280,15 @@ const props = {
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BFormValidFeedback',
   functional: true,
   props,
-  render(h, { props, data, children }) {
+  render (h, { props, data, children }) {
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
-        class: {
-          'valid-feedback': !props.tooltip,
-          'valid-tooltip': props.tooltip,
-          'd-block': props.forceShow
-        },
+        staticClass: 'valid-feedback',
+        class: { 'd-block': props.forceShow },
         attrs: { id: props.id }
       }),
       children
@@ -3131,12 +2327,10 @@ const props = {
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BForm',
   functional: true,
   props,
-  render(h, { props, data, children }) {
+  render (h, { props, data, children }) {
     return h(
       'form',
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
@@ -3175,19 +2369,23 @@ const props = {
 
 
 const components = {
-  BForm: __WEBPACK_IMPORTED_MODULE_0__form__["a" /* default */],
-  BFormRow: __WEBPACK_IMPORTED_MODULE_1__form_row__["a" /* default */],
-  BFormText: __WEBPACK_IMPORTED_MODULE_2__form_text__["a" /* default */],
-  BFormInvalidFeedback: __WEBPACK_IMPORTED_MODULE_3__form_invalid_feedback__["a" /* default */],
-  BFormFeedback: __WEBPACK_IMPORTED_MODULE_3__form_invalid_feedback__["a" /* default */],
-  BFormValidFeedback: __WEBPACK_IMPORTED_MODULE_4__form_valid_feedback__["a" /* default */]
+  bForm: __WEBPACK_IMPORTED_MODULE_0__form__["a" /* default */],
+  bFormRow: __WEBPACK_IMPORTED_MODULE_1__form_row__["a" /* default */],
+  bFormText: __WEBPACK_IMPORTED_MODULE_2__form_text__["a" /* default */],
+  bFormInvalidFeedback: __WEBPACK_IMPORTED_MODULE_3__form_invalid_feedback__["a" /* default */],
+  bFormFeedback: __WEBPACK_IMPORTED_MODULE_3__form_invalid_feedback__["a" /* default */],
+  bFormValidFeedback: __WEBPACK_IMPORTED_MODULE_4__form_valid_feedback__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install(Vue) {
+const VuePlugin = {
+  install (Vue) {
     Object(__WEBPACK_IMPORTED_MODULE_5__utils_plugins__["a" /* registerComponents */])(Vue, components)
   }
-});
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_5__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
@@ -3211,7 +2409,7 @@ const components = {
  * Generates a prop object with a type of
  * [Boolean, String, Number]
  */
-function boolStrNum() {
+function boolStrNum () {
   return {
     type: [Boolean, String, Number],
     default: false
@@ -3222,14 +2420,14 @@ function boolStrNum() {
  * Generates a prop object with a type of
  * [String, Number]
  */
-function strNum() {
+function strNum () {
   return {
     type: [String, Number],
     default: null
   }
 }
 
-const computeBkPtClass = Object(__WEBPACK_IMPORTED_MODULE_1__utils_memoize__["a" /* default */])(function computeBkPt(type, breakpoint, val) {
+const computeBkPtClass = Object(__WEBPACK_IMPORTED_MODULE_1__utils_memoize__["a" /* default */])(function computeBkPt (type, breakpoint, val) {
   let className = type
   if (val === false || val === null || val === undefined) {
     return undefined
@@ -3308,12 +2506,10 @@ const props = Object(__WEBPACK_IMPORTED_MODULE_3__utils_object__["a" /* assign *
  * We need ".col" to default in when no other props are passed,
  * but always render when col=true.
  */
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BCol',
   functional: true,
   props,
-  render(h, { props, data, children }) {
+  render (h, { props, data, children }) {
     const classList = []
     // Loop through `col`, `offset`, `order` breakpoint props
     for (const type in breakpointPropMap) {
@@ -3365,17 +2561,15 @@ const props = {
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BContainer',
   functional: true,
   props,
-  render(h, { props, data, children }) {
+  render (h, { props, data, children }) {
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
         class: {
-          container: !props.fluid,
+          'container': !props.fluid,
           'container-fluid': props.fluid
         }
       }),
@@ -3403,12 +2597,10 @@ const props = {
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BFormRow',
   functional: true,
   props,
-  render(h, { props, data, children }) {
+  render (h, { props, data, children }) {
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
@@ -3438,17 +2630,21 @@ const props = {
 
 
 const components = {
-  BContainer: __WEBPACK_IMPORTED_MODULE_0__container__["a" /* default */],
-  BRow: __WEBPACK_IMPORTED_MODULE_1__row__["a" /* default */],
-  BCol: __WEBPACK_IMPORTED_MODULE_2__col__["a" /* default */],
-  BFormRow: __WEBPACK_IMPORTED_MODULE_3__form_row__["a" /* default */]
+  bContainer: __WEBPACK_IMPORTED_MODULE_0__container__["a" /* default */],
+  bRow: __WEBPACK_IMPORTED_MODULE_1__row__["a" /* default */],
+  bCol: __WEBPACK_IMPORTED_MODULE_2__col__["a" /* default */],
+  bFormRow: __WEBPACK_IMPORTED_MODULE_3__form_row__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install(Vue) {
+const VuePlugin = {
+  install (Vue) {
     Object(__WEBPACK_IMPORTED_MODULE_4__utils_plugins__["a" /* registerComponents */])(Vue, components)
   }
-});
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_4__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
@@ -3492,12 +2688,10 @@ const props = {
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BRow',
   functional: true,
   props,
-  render(h, { props, data, children }) {
+  render (h, { props, data, children }) {
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
@@ -3541,7 +2735,7 @@ const props = {
  * https://github.com/vuejs/vue-router/blob/dev/src/components/link.js
  * @return {{}}
  */
-function propsFactory() {
+function propsFactory () {
   return {
     href: {
       type: String,
@@ -3559,20 +2753,15 @@ function propsFactory() {
       type: Boolean,
       default: false
     },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    // router-link specific props
-    to: {
-      type: [String, Object],
-      default: null
+    activeClass: {
+      type: String,
+      default: 'active'
     },
     append: {
       type: Boolean,
       default: false
     },
-    replace: {
+    disabled: {
       type: Boolean,
       default: false
     },
@@ -3580,26 +2769,25 @@ function propsFactory() {
       type: [String, Array],
       default: 'click'
     },
-    activeClass: {
-      type: String
-      // default: undefined
-    },
     exact: {
       type: Boolean,
       default: false
     },
     exactActiveClass: {
-      type: String
-      // default: undefined
+      type: String,
+      default: 'active'
+    },
+    replace: {
+      type: Boolean,
+      default: false
     },
     routerTag: {
       type: String,
       default: 'a'
     },
-    // nuxt-link specific prop(s)
-    noPrefetch: {
-      type: Boolean,
-      default: false
+    to: {
+      type: [String, Object],
+      default: null
     }
   }
 }
@@ -3608,7 +2796,7 @@ const props = propsFactory()
 /* unused harmony export props */
 
 
-function pickLinkProps(propsToPick) {
+function pickLinkProps (propsToPick) {
   const freshLinkProps = propsFactory()
   // Normalize everything to array.
   propsToPick = Object(__WEBPACK_IMPORTED_MODULE_1__utils_array__["b" /* concat */])(propsToPick)
@@ -3622,7 +2810,7 @@ function pickLinkProps(propsToPick) {
   }, {})
 }
 
-function omitLinkProps(propsToOmit) {
+function omitLinkProps (propsToOmit) {
   const freshLinkProps = propsFactory()
   // Normalize everything to array.
   propsToOmit = Object(__WEBPACK_IMPORTED_MODULE_1__utils_array__["b" /* concat */])(propsToOmit)
@@ -3637,7 +2825,7 @@ function omitLinkProps(propsToOmit) {
 }
 
 const computed = {
-  linkProps() {
+  linkProps () {
     let linkProps = {}
     let propKeys = Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["e" /* keys */])(props)
 
@@ -3653,113 +2841,97 @@ const computed = {
 /* unused harmony export computed */
 
 
-function computeTag(props, parent) {
-  return parent.$router && props.to && !props.disabled
-    ? parent.$nuxt
-      ? 'nuxt-link'
-      : 'router-link'
-    : 'a'
+function computeTag (props, parent) {
+  return Boolean(parent.$router) && props.to && !props.disabled ? 'router-link' : 'a'
 }
 
-function isRouterLink(tag) {
-  return tag !== 'a'
-}
-
-function computeHref({ disabled, href, to }, tag) {
+function computeHref ({ disabled, href, to }, tag) {
   // We've already checked the parent.$router in computeTag,
-  // so isRouterLink(tag) indicates a live router.
-  // When deferring to Vue Router's router-link, don't use the href attr at all.
-  // We return null, and then remove href from the attributes passed to router-link
-  if (isRouterLink(tag)) {
-    return null
-  }
-
+  // so router-link means live router.
+  // When deferring to Vue Router's router-link,
+  // don't use the href attr at all.
+  // Must return undefined for router-link to populate href.
+  if (tag === 'router-link') return void 0
   // If href explicitly provided
-  if (href) {
-    return href
-  }
-
-  // Reconstruct `href` when `to` used, but no router
+  if (href) return href
+  // Reconstruct href when `to` used, but no router
   if (to) {
     // Fallback to `to` prop (if `to` is a string)
-    if (typeof to === 'string') {
-      return to
-    }
+    if (typeof to === 'string') return to
     // Fallback to `to.path` prop (if `to` is an object)
-    if (typeof to === 'object' && typeof to.path === 'string') {
-      return to.path
-    }
+    if (typeof to === 'object' && typeof to.path === 'string') return to.path
   }
-
-  // If nothing is provided use '#' as a fallback
+  // If nothing is provided use '#'
   return '#'
 }
 
-function computeRel({ target, rel }) {
+function computeRel ({ target, rel }) {
   if (target === '_blank' && rel === null) {
     return 'noopener'
   }
   return rel || null
 }
 
-function clickHandlerFactory({ disabled, tag, href, suppliedHandler, parent }) {
-  return function onClick(e) {
+function clickHandlerFactory ({ disabled, tag, href, suppliedHandler, parent }) {
+  const isRouterLink = tag === 'router-link'
+
+  return function onClick (e) {
     if (disabled && e instanceof Event) {
       // Stop event from bubbling up.
       e.stopPropagation()
       // Kill the event loop attached to this specific EventTarget.
       e.stopImmediatePropagation()
     } else {
-      if (isRouterLink(tag) && e.target.__vue__) {
+      parent.$root.$emit('clicked::link', e)
+
+      if (isRouterLink && e.target.__vue__) {
         e.target.__vue__.$emit('click', e)
       }
       if (typeof suppliedHandler === 'function') {
         suppliedHandler(...arguments)
       }
-      parent.$root.$emit('clicked::link', e)
     }
 
-    if ((!isRouterLink(tag) && href === '#') || disabled) {
+    if ((!isRouterLink && href === '#') || disabled) {
       // Stop scroll-to-top behavior or navigation.
       e.preventDefault()
     }
   }
 }
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BLink',
   functional: true,
   props: propsFactory(),
-  render(h, { props, data, parent, children }) {
+  render (h, { props, data, parent, children }) {
     const tag = computeTag(props, parent)
     const rel = computeRel(props)
     const href = computeHref(props, tag)
-    const eventType = isRouterLink(tag) ? 'nativeOn' : 'on'
+    const eventType = tag === 'router-link' ? 'nativeOn' : 'on'
     const suppliedHandler = (data[eventType] || {}).click
-    const handlers = {
-      click: clickHandlerFactory({ tag, href, disabled: props.disabled, suppliedHandler, parent })
-    }
+    const handlers = { click: clickHandlerFactory({ tag, href, disabled: props.disabled, suppliedHandler, parent }) }
 
     const componentData = Object(__WEBPACK_IMPORTED_MODULE_2_vue_functional_data_merge__["a" /* mergeData */])(data, {
-      class: { active: props.active, disabled: props.disabled },
+      class: [
+        props.active ? (props.exact ? props.exactActiveClass : props.activeClass) : null,
+        { disabled: props.disabled }
+      ],
       attrs: {
         rel,
+        href,
         target: props.target,
-        tabindex: props.disabled ? '-1' : data.attrs ? data.attrs.tabindex : null,
-        'aria-disabled': props.disabled ? 'true' : null
+        tabindex: props.disabled ? '-1' : (data.attrs ? data.attrs.tabindex : null),
+        'aria-disabled': (tag === 'a' && props.disabled) ? 'true' : null
       },
       props: Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["a" /* assign */])(props, { tag: props.routerTag })
     })
 
-    // If href attribute exists on router-link (even undefined or null) it fails working on SSR
-    // So we explicitly add it here if needed (i.e. if computeHref() is truthy)
-    if (href) {
-      componentData.attrs.href = href
+    // If href prop exists on router-link (even undefined or null) it fails working on SSR
+    if (!componentData.attrs.href) {
+      delete componentData.attrs.href
     }
 
     // We want to overwrite any click handler since our callback
-    // will invoke the user supplied handler if !props.disabled
+    // will invoke the supplied handler if !props.disabled
     componentData[eventType] = Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["a" /* assign */])(componentData[eventType] || {}, handlers)
 
     return h(tag, componentData, children)
@@ -3781,15 +2953,19 @@ function clickHandlerFactory({ disabled, tag, href, suppliedHandler, parent }) {
 
 
 const components = {
-  BModal: __WEBPACK_IMPORTED_MODULE_0__modal__["a" /* default */]
+  bModal: __WEBPACK_IMPORTED_MODULE_0__modal__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install(Vue) {
+const VuePlugin = {
+  install (Vue) {
     Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["a" /* registerComponents */])(Vue, components)
     Vue.use(__WEBPACK_IMPORTED_MODULE_1__directives_modal__["a" /* default */])
   }
-});
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
@@ -3806,9 +2982,7 @@ const components = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warn__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/warn.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_key_codes__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/key-codes.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_bv_event_class__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/bv-event.class.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_html__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/html.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
 
 
 
@@ -3836,49 +3010,221 @@ const OBSERVER_CONFIG = {
   attributeFilter: ['style', 'class']
 }
 
-// modal wrapper ZINDEX offset incrememnt
-const ZINDEX_OFFSET = 2000
-
-// Modal open count helpers
-function getModalOpenCount() {
-  return parseInt(Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["f" /* getAttr */])(document.body, 'data-modal-open-count') || 0, 10)
-}
-
-function setModalOpenCount(count) {
-  Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["s" /* setAttr */])(document.body, 'data-modal-open-count', String(count))
-  return count
-}
-
-function incrementModalOpenCount() {
-  return setModalOpenCount(getModalOpenCount() + 1)
-}
-
-function decrementModalOpenCount() {
-  return setModalOpenCount(Math.max(getModalOpenCount() - 1, 0))
-}
-
-// Returns the current visible modal highest z-index
-function getModalMaxZIndex() {
-  return Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["r" /* selectAll */])('div.modal') /* find all modals that are in document */
-    .filter(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["l" /* isVisible */]) /* filter only visible ones */
-    .map(m => m.parentElement) /* select the outer div */
-    .reduce((max, el) => {
-      /* compute the highest z-index */
-      return Math.max(max, parseInt(el.style.zIndex || 0, 10))
-    }, 0)
-}
-
-// Returns the next z-index to be used by a modal to ensure proper stacking
-// regardless of document order. Increments by 2000
-function getModalNextZIndex() {
-  return getModalMaxZIndex() + ZINDEX_OFFSET
-}
-
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BModal',
-  components: { BButton: __WEBPACK_IMPORTED_MODULE_0__button_button__["a" /* default */], BButtonClose: __WEBPACK_IMPORTED_MODULE_1__button_button_close__["a" /* default */] },
   mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_id__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3__mixins_listen_on_root__["a" /* default */]],
+  components: { bBtn: __WEBPACK_IMPORTED_MODULE_0__button_button__["a" /* default */], bBtnClose: __WEBPACK_IMPORTED_MODULE_1__button_button_close__["a" /* default */] },
+  render (h) {
+    const $slots = this.$slots
+    // Modal Header
+    let header = h(false)
+    if (!this.hideHeader) {
+      let modalHeader = $slots['modal-header']
+      if (!modalHeader) {
+        let closeButton = h(false)
+        if (!this.hideHeaderClose) {
+          closeButton = h(
+            'b-btn-close',
+            {
+              props: {
+                disabled: this.is_transitioning,
+                ariaLabel: this.headerCloseLabel,
+                textVariant: this.headerTextVariant
+              },
+              on: {
+                click: evt => {
+                  this.hide('header-close')
+                }
+              }
+            },
+            [$slots['modal-header-close']]
+          )
+        }
+        modalHeader = [
+          h(this.titleTag, { class: ['modal-title'] }, [
+            $slots['modal-title'] || this.title
+          ]),
+          closeButton
+        ]
+      }
+      header = h(
+        'header',
+        {
+          ref: 'header',
+          class: this.headerClasses,
+          attrs: { id: this.safeId('__BV_modal_header_') }
+        },
+        [modalHeader]
+      )
+    }
+    // Modal Body
+    const body = h(
+      'div',
+      {
+        ref: 'body',
+        class: this.bodyClasses,
+        attrs: { id: this.safeId('__BV_modal_body_') }
+      },
+      [$slots.default]
+    )
+    // Modal Footer
+    let footer = h(false)
+    if (!this.hideFooter) {
+      let modalFooter = $slots['modal-footer']
+      if (!modalFooter) {
+        let cancelButton = h(false)
+        if (!this.okOnly) {
+          cancelButton = h(
+            'b-btn',
+            {
+              props: {
+                variant: this.cancelVariant,
+                size: this.buttonSize,
+                disabled: this.cancelDisabled || this.busy || this.is_transitioning
+              },
+              on: {
+                click: evt => {
+                  this.hide('cancel')
+                }
+              }
+            },
+            [$slots['modal-cancel'] || this.cancelTitle]
+          )
+        }
+        const okButton = h(
+          'b-btn',
+          {
+            props: {
+              variant: this.okVariant,
+              size: this.buttonSize,
+              disabled: this.okDisabled || this.busy || this.is_transitioning
+            },
+            on: {
+              click: evt => {
+                this.hide('ok')
+              }
+            }
+          },
+          [$slots['modal-ok'] || this.okTitle]
+        )
+        modalFooter = [cancelButton, okButton]
+      }
+      footer = h(
+        'footer',
+        {
+          ref: 'footer',
+          class: this.footerClasses,
+          attrs: { id: this.safeId('__BV_modal_footer_') }
+        },
+        [modalFooter]
+      )
+    }
+    // Assemble Modal Content
+    const modalContent = h(
+      'div',
+      {
+        ref: 'content',
+        class: ['modal-content'],
+        attrs: {
+          tabindex: '-1',
+          role: 'document',
+          'aria-labelledby': this.hideHeader
+            ? null
+            : this.safeId('__BV_modal_header_'),
+          'aria-describedby': this.safeId('__BV_modal_body_')
+        },
+        on: {
+          focusout: this.onFocusout,
+          click: evt => {
+            evt.stopPropagation()
+            // https://github.com/bootstrap-vue/bootstrap-vue/issues/1528
+            this.$root.$emit('bv::dropdown::shown')
+          }
+        }
+      },
+      [header, body, footer]
+    )
+    // Modal Dialog wrapper
+    const modalDialog = h('div', { class: this.dialogClasses }, [modalContent])
+    // Modal
+    let modal = h(
+      'div',
+      {
+        ref: 'modal',
+        class: this.modalClasses,
+        directives: [
+          {
+            name: 'show',
+            rawName: 'v-show',
+            value: this.is_visible,
+            expression: 'is_visible'
+          }
+        ],
+        attrs: {
+          id: this.safeId(),
+          role: 'dialog',
+          'aria-hidden': this.is_visible ? null : 'true'
+        },
+        on: {
+          click: this.onClickOut,
+          keydown: this.onEsc
+        }
+      },
+      [modalDialog]
+    )
+    // Wrap modal in transition
+    modal = h(
+      'transition',
+      {
+        props: {
+          enterClass: '',
+          enterToClass: '',
+          enterActiveClass: '',
+          leaveClass: '',
+          leaveActiveClass: '',
+          leaveToClass: ''
+        },
+        on: {
+          'before-enter': this.onBeforeEnter,
+          enter: this.onEnter,
+          'after-enter': this.onAfterEnter,
+          'before-leave': this.onBeforeLeave,
+          leave: this.onLeave,
+          'after-leave': this.onAfterLeave
+        }
+      },
+      [modal]
+    )
+    // Modal Backdrop
+    let backdrop = h(false)
+    if (!this.hideBackdrop && (this.is_visible || this.is_transitioning)) {
+      backdrop = h('div', {
+        class: this.backdropClasses,
+        attrs: { id: this.safeId('__BV_modal_backdrop_') }
+      })
+    }
+    // Assemble modal and backdrop
+    let outer = h(false)
+    if (!this.is_hidden) {
+      outer = h('div', { attrs: { id: this.safeId('__BV_modal_outer_') } }, [
+        modal,
+        backdrop
+      ])
+    }
+    // Wrap in DIV to maintain thi.$el reference for hide/show method aceess
+    return h('div', {}, [outer])
+  },
+  data () {
+    return {
+      is_hidden: this.lazy || false,
+      is_visible: false,
+      is_transitioning: false,
+      is_show: false,
+      is_block: false,
+      scrollbarWidth: 0,
+      isBodyOverflowing: false,
+      return_focus: this.returnFocus || null
+    }
+  },
   model: {
     prop: 'visible',
     event: 'change'
@@ -3887,9 +3233,6 @@ function getModalNextZIndex() {
     title: {
       type: String,
       default: ''
-    },
-    titleHTML: {
-      type: String
     },
     titleTag: {
       type: String,
@@ -3903,17 +3246,9 @@ function getModalNextZIndex() {
       type: Boolean,
       default: false
     },
-    scrollable: {
-      type: Boolean,
-      default: false
-    },
     buttonSize: {
       type: String,
       default: ''
-    },
-    noStacking: {
-      type: Boolean,
-      default: false
     },
     noFade: {
       type: Boolean,
@@ -3956,14 +3291,6 @@ function getModalNextZIndex() {
       default: null
     },
     modalClass: {
-      type: [String, Array],
-      default: null
-    },
-    dialogClass: {
-      type: [String, Array],
-      default: null
-    },
-    contentClass: {
       type: [String, Array],
       default: null
     },
@@ -4020,7 +3347,6 @@ function getModalNextZIndex() {
       default: false
     },
     returnFocus: {
-      // type: Object,
       default: null
     },
     headerCloseLabel: {
@@ -4031,15 +3357,9 @@ function getModalNextZIndex() {
       type: String,
       default: 'Cancel'
     },
-    cancelTitleHTML: {
-      type: String
-    },
     okTitle: {
       type: String,
       default: 'OK'
-    },
-    okTitleHTML: {
-      type: String
     },
     cancelVariant: {
       type: String,
@@ -4058,28 +3378,10 @@ function getModalNextZIndex() {
       default: false
     }
   },
-  data() {
-    return {
-      is_hidden: this.lazy || false, // for lazy modals
-      is_visible: false, // controls modal visible state
-      is_transitioning: false, // Used for style control
-      is_show: false, // Used for style control
-      is_block: false, // Used for style control
-      is_opening: false, // Semaphore for previnting incorrect modal open counts
-      is_closing: false, // Semapbore for preventing incorrect modal open counts
-      scrollbarWidth: 0,
-      zIndex: ZINDEX_OFFSET, // z-index for modal stacking
-      isTop: true, // If the modal is the topmost opened modal
-      isBodyOverflowing: false,
-      return_focus: this.returnFocus || null
-    }
-  },
   computed: {
-    contentClasses() {
-      return ['modal-content', this.contentClass]
-    },
-    modalClasses() {
+    modalClasses () {
       return [
+        'modal',
         {
           fade: !this.noFade,
           show: this.is_show,
@@ -4088,34 +3390,40 @@ function getModalNextZIndex() {
         this.modalClass
       ]
     },
-    dialogClasses() {
+    dialogClasses () {
       return [
+        'modal-dialog',
         {
           [`modal-${this.size}`]: Boolean(this.size),
-          'modal-dialog-centered': this.centered,
-          'modal-dialog-scrollable': this.scrollable
-        },
-        this.dialogClass
+          'modal-dialog-centered': this.centered
+        }
       ]
     },
-    backdropClasses() {
-      return {
-        fade: !this.noFade,
-        show: this.is_show || this.noFade
-      }
-    },
-    headerClasses() {
+    backdropClasses () {
       return [
+        'modal-backdrop',
+        {
+          fade: !this.noFade,
+          show: this.is_show || this.noFade
+        }
+      ]
+    },
+    headerClasses () {
+      return [
+        'modal-header',
         {
           [`bg-${this.headerBgVariant}`]: Boolean(this.headerBgVariant),
           [`text-${this.headerTextVariant}`]: Boolean(this.headerTextVariant),
-          [`border-${this.headerBorderVariant}`]: Boolean(this.headerBorderVariant)
+          [`border-${this.headerBorderVariant}`]: Boolean(
+            this.headerBorderVariant
+          )
         },
         this.headerClass
       ]
     },
-    bodyClasses() {
+    bodyClasses () {
       return [
+        'modal-body',
         {
           [`bg-${this.bodyBgVariant}`]: Boolean(this.bodyBgVariant),
           [`text-${this.bodyTextVariant}`]: Boolean(this.bodyTextVariant)
@@ -4123,131 +3431,70 @@ function getModalNextZIndex() {
         this.bodyClass
       ]
     },
-    footerClasses() {
+    footerClasses () {
       return [
+        'modal-footer',
         {
           [`bg-${this.footerBgVariant}`]: Boolean(this.footerBgVariant),
           [`text-${this.footerTextVariant}`]: Boolean(this.footerTextVariant),
-          [`border-${this.footerBorderVariant}`]: Boolean(this.footerBorderVariant)
+          [`border-${this.footerBorderVariant}`]: Boolean(
+            this.footerBorderVariant
+          )
         },
         this.footerClass
       ]
-    },
-    modalOuterStyle() {
-      return {
-        // We only set these styles on the stacked modals (ones with next z-index > 0).
-        position: 'relative',
-        zIndex: this.zIndex
-      }
     }
   },
   watch: {
-    visible(newVal, oldVal) {
+    visible (newVal, oldVal) {
       if (newVal === oldVal) {
         return
       }
       this[newVal ? 'show' : 'hide']()
     }
   },
-  created() {
-    // create non-reactive property
-    this._observer = null
-  },
-  mounted() {
-    // Listen for events from others to either open or close ourselves
-    // And listen to all modals to enable/disable enforce focus
-    this.listenOnRoot('bv::show::modal', this.showHandler)
-    this.listenOnRoot('bv::modal::shown', this.shownHandler)
-    this.listenOnRoot('bv::hide::modal', this.hideHandler)
-    this.listenOnRoot('bv::modal::hidden', this.hiddenHandler)
-    // Listen for bv:modal::show events, and close ourselves if the opening modal not us
-    this.listenOnRoot('bv::modal::show', this.modalListener)
-    // Initially show modal?
-    if (this.visible === true) {
-      this.show()
-    }
-  },
-  beforeDestroy() /* instanbul ignore next */ {
-    // Ensure everything is back to normal
-    if (this._observer) {
-      this._observer.disconnect()
-      this._observer = null
-    }
-    // Ensure our root "once" listener is gone
-    this.$root.$off('bv::modal::hidden', this.doShow)
-    this.setEnforceFocus(false)
-    this.setResizeEvent(false)
-    if (this.is_visible) {
-      this.is_visible = false
-      this.is_show = false
-      this.is_transitioning = false
-      const count = decrementModalOpenCount()
-      if (count === 0) {
-        // Re-adjust body/navbar/fixed padding/margins (as we were the last modal open)
-        this.setModalOpenClass(false)
-        this.resetScrollbar()
-        this.resetDialogAdjustments()
-      }
-    }
-  },
   methods: {
     // Public Methods
-    show() {
-      if (this.is_visible || this.is_opening) {
-        // if already open, on in the process of opening, do nothing
+    show () {
+      if (this.is_visible) {
         return
       }
-      if (this.is_closing) {
-        // if we are in the process of closing, wait until hidden before re-opening
-        this.$once('hidden', this.show)
-        return
-      }
-      this.is_opening = true
       const showEvt = new __WEBPACK_IMPORTED_MODULE_7__utils_bv_event_class__["a" /* default */]('show', {
         cancelable: true,
         vueTarget: this,
         target: this.$refs.modal,
-        modalId: this.safeId(),
         relatedTarget: null
       })
       this.emitEvent(showEvt)
-      // Don't show if canceled
       if (showEvt.defaultPrevented || this.is_visible) {
-        this.is_opening = false
+        // Don't show if canceled
         return
       }
-      if (!this.noStacking) {
-        // Find the z-index to use
-        this.zIndex = getModalNextZIndex()
-        // Show the modal
-        this.doShow()
-        return
-      }
-      if (Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["j" /* hasClass */])(document.body, 'modal-open')) {
+      if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["h" /* hasClass */])(document.body, 'modal-open')) {
         // If another modal is already open, wait for it to close
         this.$root.$once('bv::modal::hidden', this.doShow)
-        return
+      } else {
+        // Show the modal
+        this.doShow()
       }
-      // Show the modal
-      this.doShow()
     },
-    hide(trigger) {
-      if (!this.is_visible || this.is_closing) {
+    hide (trigger) {
+      if (!this.is_visible) {
         return
       }
-      this.is_closing = true
       const hideEvt = new __WEBPACK_IMPORTED_MODULE_7__utils_bv_event_class__["a" /* default */]('hide', {
         cancelable: true,
         vueTarget: this,
         target: this.$refs.modal,
-        modalId: this.safeId(),
         // this could be the trigger element/component reference
         relatedTarget: null,
         isOK: trigger || null,
         trigger: trigger || null,
-        cancel() {
+        cancel () {
           // Backwards compatibility
-          Object(__WEBPACK_IMPORTED_MODULE_5__utils_warn__["a" /* default */])('b-modal: evt.cancel() is deprecated. Please use evt.preventDefault().')
+          Object(__WEBPACK_IMPORTED_MODULE_5__utils_warn__["a" /* default */])(
+            'b-modal: evt.cancel() is deprecated. Please use evt.preventDefault().'
+          )
           this.preventDefault()
         }
       })
@@ -4259,7 +3506,6 @@ function getModalNextZIndex() {
       this.emitEvent(hideEvt)
       // Hide if not canceled
       if (hideEvt.defaultPrevented || !this.is_visible) {
-        this.is_closing = false
         return
       }
       // stop observing for content changes
@@ -4271,13 +3517,12 @@ function getModalNextZIndex() {
       this.$emit('change', false)
     },
     // Private method to finish showing modal
-    doShow() {
-      // Place modal in DOM if lazy
+    doShow () {
+      // Plce modal in DOM if lazy
       this.is_hidden = false
       this.$nextTick(() => {
         // We do this in nextTick to ensure the modal is in DOM first before we show it
         this.is_visible = true
-        this.is_opening = false
         this.$emit('change', true)
         // Observe changes in modal content and adjust if necessary
         this._observer = Object(__WEBPACK_IMPORTED_MODULE_4__utils_observe_dom__["a" /* default */])(
@@ -4288,2739 +3533,281 @@ function getModalNextZIndex() {
       })
     },
     // Transition Handlers
-    onBeforeEnter() {
-      this.getScrollbarWidth()
+    onBeforeEnter () {
       this.is_transitioning = true
       this.checkScrollbar()
-      const count = incrementModalOpenCount()
-      if (count === 1) {
-        this.setScrollbar()
-      }
+      this.setScrollbar()
       this.adjustDialog()
-      this.setModalOpenClass(true)
+      Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["a" /* addClass */])(document.body, 'modal-open')
       this.setResizeEvent(true)
     },
-    onEnter() {
+    onEnter () {
       this.is_block = true
+      this.$refs.modal.scrollTop = 0
     },
-    onAfterEnter() {
+    onAfterEnter () {
       this.is_show = true
       this.is_transitioning = false
       this.$nextTick(() => {
+        this.focusFirst()
         const shownEvt = new __WEBPACK_IMPORTED_MODULE_7__utils_bv_event_class__["a" /* default */]('shown', {
           cancelable: false,
           vueTarget: this,
           target: this.$refs.modal,
-          modalId: this.safeId(),
           relatedTarget: null
         })
         this.emitEvent(shownEvt)
-        this.focusFirst()
-        this.setEnforceFocus(true)
       })
     },
-    onBeforeLeave() {
+    onBeforeLeave () {
       this.is_transitioning = true
       this.setResizeEvent(false)
     },
-    onLeave() {
+    onLeave () {
       // Remove the 'show' class
       this.is_show = false
     },
-    onAfterLeave() {
+    onAfterLeave () {
       this.is_block = false
-      this.resetDialogAdjustments()
+      this.resetAdjustments()
+      this.resetScrollbar()
       this.is_transitioning = false
-      const count = decrementModalOpenCount()
-      if (count === 0) {
-        this.resetScrollbar()
-        this.setModalOpenClass(false)
-      }
-      this.setEnforceFocus(false)
+      Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["m" /* removeClass */])(document.body, 'modal-open')
       this.$nextTick(() => {
         this.is_hidden = this.lazy || false
-        this.zIndex = ZINDEX_OFFSET
         this.returnFocusTo()
-        this.is_closing = false
         const hiddenEvt = new __WEBPACK_IMPORTED_MODULE_7__utils_bv_event_class__["a" /* default */]('hidden', {
           cancelable: false,
           vueTarget: this,
           target: this.lazy ? null : this.$refs.modal,
-          modalId: this.safeId(),
           relatedTarget: null
         })
         this.emitEvent(hiddenEvt)
       })
     },
     // Event emitter
-    emitEvent(bvEvt) {
+    emitEvent (bvEvt) {
       const type = bvEvt.type
       this.$emit(type, bvEvt)
-      this.$root.$emit(`bv::modal::${type}`, bvEvt, this.safeId())
+      this.$root.$emit(`bv::modal::${type}`, bvEvt)
     },
     // UI Event Handlers
-    onClickOut(evt) {
+    onClickOut (evt) {
       // If backdrop clicked, hide modal
-      if (this.is_visible && !this.noCloseOnBackdrop && !Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["c" /* contains */])(this.$refs.content, evt.target)) {
+      if (this.is_visible && !this.noCloseOnBackdrop) {
         this.hide('backdrop')
       }
     },
-    onEsc(evt) {
+    onEsc (evt) {
       // If ESC pressed, hide modal
-      if (evt.keyCode === __WEBPACK_IMPORTED_MODULE_6__utils_key_codes__["a" /* default */].ESC && this.is_visible && !this.noCloseOnEsc) {
+      if (
+        evt.keyCode === __WEBPACK_IMPORTED_MODULE_6__utils_key_codes__["a" /* default */].ESC &&
+        this.is_visible &&
+        !this.noCloseOnEsc
+      ) {
         this.hide('esc')
       }
     },
-    // Document focusin listener
-    focusHandler(evt) {
+    onFocusout (evt) {
       // If focus leaves modal, bring it back
-      const modal = this.$refs.modal
+      // 'focusout' Event Listener bound on content
+      const content = this.$refs.content
       if (
         !this.noEnforceFocus &&
-        this.isTop &&
         this.is_visible &&
-        modal &&
-        document !== evt.target &&
-        !Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["c" /* contains */])(modal, evt.target)
+        content &&
+        !content.contains(evt.relatedTarget)
       ) {
-        modal.focus({ preventScroll: true })
-      }
-    },
-    // Turn on/off focusin listener
-    setEnforceFocus(on) {
-      const options = { passive: true, capture: false }
-      if (on) {
-        Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["e" /* eventOn */])(document, 'focusin', this.focusHandler, options)
-      } else {
-        Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["d" /* eventOff */])(document, 'focusin', this.focusHandler, options)
+        content.focus()
       }
     },
     // Resize Listener
-    setResizeEvent(on) /* istanbul ignore next: can't easily test in JSDOM */ {
+    setResizeEvent (on) {
       ;['resize', 'orientationchange'].forEach(evtName => {
-        const options = { passive: true, capture: false }
         if (on) {
-          Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["e" /* eventOn */])(window, evtName, this.adjustDialog, options)
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["d" /* eventOn */])(window, evtName, this.adjustDialog)
         } else {
-          Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["d" /* eventOff */])(window, evtName, this.adjustDialog, options)
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["c" /* eventOff */])(window, evtName, this.adjustDialog)
         }
       })
     },
     // Root Listener handlers
-    showHandler(id, triggerEl) {
+    showHandler (id, triggerEl) {
       if (id === this.id) {
         this.return_focus = triggerEl || null
         this.show()
       }
     },
-    hideHandler(id) {
+    hideHandler (id) {
       if (id === this.id) {
         this.hide()
       }
     },
-    shownHandler() {
-      this.setTop()
-    },
-    hiddenHandler() {
-      this.setTop()
-    },
-    setTop() {
-      // Determine if we are the topmost visible modal
-      this.isTop = this.zIndex >= getModalMaxZIndex()
-    },
-    modalListener(bvEvt) {
+    modalListener (bvEvt) {
       // If another modal opens, close this one
-      if (this.noStacking && bvEvt.vueTarget !== this) {
+      if (bvEvt.vueTarget !== this) {
         this.hide()
       }
     },
     // Focus control handlers
-    focusFirst() {
+    focusFirst () {
       // Don't try and focus if we are SSR
       if (typeof document === 'undefined') {
         return
       }
+      const content = this.$refs.content
       const modal = this.$refs.modal
       const activeElement = document.activeElement
-      if (activeElement && Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["c" /* contains */])(modal, activeElement)) {
-        // If activeElement is child of modal or is modal, no need to change focus
-        return
-      }
-      if (modal) {
-        // make sure top of modal is showing (if longer than the viewport) and
-        // focus the modal content wrapper
-        this.$nextTick(() => {
+      if (activeElement && content && content.contains(activeElement)) {
+        // If activeElement is child of content, no need to change focus
+      } else if (content) {
+        if (modal) {
           modal.scrollTop = 0
-          modal.focus()
-        })
+        }
+        // Focus the modal content wrapper
+        content.focus()
       }
     },
-    returnFocusTo() {
+    returnFocusTo () {
       // Prefer returnFocus prop over event specified return_focus value
       let el = this.returnFocus || this.return_focus || null
       if (typeof el === 'string') {
         // CSS Selector
-        el = Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["q" /* select */])(el)
+        el = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["n" /* select */])(el)
       }
       if (el) {
         el = el.$el || el
-        if (Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["l" /* isVisible */])(el)) {
+        if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["j" /* isVisible */])(el)) {
           el.focus()
         }
       }
     },
     // Utility methods
-    getScrollbarWidth() {
+    getScrollbarWidth () {
       const scrollDiv = document.createElement('div')
       scrollDiv.className = 'modal-scrollbar-measure'
       document.body.appendChild(scrollDiv)
-      this.scrollbarWidth = Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["g" /* getBCR */])(scrollDiv).width - scrollDiv.clientWidth
+      this.scrollbarWidth =
+        scrollDiv.getBoundingClientRect().width - scrollDiv.clientWidth
       document.body.removeChild(scrollDiv)
     },
-    setModalOpenClass(open) {
-      if (open) {
-        Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["a" /* addClass */])(document.body, 'modal-open')
-      } else {
-        Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["p" /* removeClass */])(document.body, 'modal-open')
-      }
-    },
-    adjustDialog() {
+    adjustDialog () {
       if (!this.is_visible) {
         return
       }
       const modal = this.$refs.modal
-      const isModalOverflowing = modal.scrollHeight > document.documentElement.clientHeight
+      const isModalOverflowing =
+        modal.scrollHeight > document.documentElement.clientHeight
       if (!this.isBodyOverflowing && isModalOverflowing) {
         modal.style.paddingLeft = `${this.scrollbarWidth}px`
-      } else {
-        modal.style.paddingLeft = ''
       }
       if (this.isBodyOverflowing && !isModalOverflowing) {
         modal.style.paddingRight = `${this.scrollbarWidth}px`
-      } else {
-        modal.style.paddingRight = ''
       }
     },
-    resetDialogAdjustments() {
+    resetAdjustments () {
       const modal = this.$refs.modal
       if (modal) {
         modal.style.paddingLeft = ''
         modal.style.paddingRight = ''
       }
     },
-    checkScrollbar() /* istanbul ignore next: getBCR can't be tested in JSDOM */ {
-      const { left, right, height } = Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["g" /* getBCR */])(document.body)
-      // Extra check for body.height needed for stacked modals
-      this.isBodyOverflowing = left + right < window.innerWidth || height > window.innerHeight
+    checkScrollbar () {
+      const rect = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["f" /* getBCR */])(document.body)
+      this.isBodyOverflowing = rect.left + rect.right < window.innerWidth
     },
-    setScrollbar() {
-      /* istanbul ignore if: get Computed Style can't be tested in JSDOM */
+    setScrollbar () {
       if (this.isBodyOverflowing) {
         // Note: DOMNode.style.paddingRight returns the actual value or '' if not set
         //   while $(DOMNode).css('padding-right') returns the calculated value or 0 if not set
+        const computedStyle = window.getComputedStyle
         const body = document.body
         const scrollbarWidth = this.scrollbarWidth
-        body._paddingChangedForModal = []
-        body._marginChangedForModal = []
         // Adjust fixed content padding
-        Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["r" /* selectAll */])(Selector.FIXED_CONTENT).forEach(el => {
+        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["o" /* selectAll */])(Selector.FIXED_CONTENT).forEach(el => {
           const actualPadding = el.style.paddingRight
-          const calculatedPadding = Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["h" /* getCS */])(el).paddingRight || 0
-          Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["s" /* setAttr */])(el, 'data-padding-right', actualPadding)
-          el.style.paddingRight = `${parseFloat(calculatedPadding) + scrollbarWidth}px`
-          body._paddingChangedForModal.push(el)
+          const calculatedPadding = computedStyle(el).paddingRight || 0
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* setAttr */])(el, 'data-padding-right', actualPadding)
+          el.style.paddingRight = `${parseFloat(calculatedPadding) +
+            scrollbarWidth}px`
         })
         // Adjust sticky content margin
-        Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["r" /* selectAll */])(Selector.STICKY_CONTENT).forEach(el => {
+        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["o" /* selectAll */])(Selector.STICKY_CONTENT).forEach(el => {
           const actualMargin = el.style.marginRight
-          const calculatedMargin = Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["h" /* getCS */])(el).marginRight || 0
-          Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["s" /* setAttr */])(el, 'data-margin-right', actualMargin)
-          el.style.marginRight = `${parseFloat(calculatedMargin) - scrollbarWidth}px`
-          body._marginChangedForModal.push(el)
+          const calculatedMargin = computedStyle(el).marginRight || 0
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* setAttr */])(el, 'data-margin-right', actualMargin)
+          el.style.marginRight = `${parseFloat(calculatedMargin) -
+            scrollbarWidth}px`
         })
         // Adjust navbar-toggler margin
-        Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["r" /* selectAll */])(Selector.NAVBAR_TOGGLER).forEach(el => {
+        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["o" /* selectAll */])(Selector.NAVBAR_TOGGLER).forEach(el => {
           const actualMargin = el.style.marginRight
-          const calculatedMargin = Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["h" /* getCS */])(el).marginRight || 0
-          Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["s" /* setAttr */])(el, 'data-margin-right', actualMargin)
-          el.style.marginRight = `${parseFloat(calculatedMargin) + scrollbarWidth}px`
-          body._marginChangedForModal.push(el)
+          const calculatedMargin = computedStyle(el).marginRight || 0
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* setAttr */])(el, 'data-margin-right', actualMargin)
+          el.style.marginRight = `${parseFloat(calculatedMargin) +
+            scrollbarWidth}px`
         })
         // Adjust body padding
         const actualPadding = body.style.paddingRight
-        const calculatedPadding = Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["h" /* getCS */])(body).paddingRight
-        Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["s" /* setAttr */])(body, 'data-padding-right', actualPadding)
-        body.style.paddingRight = `${parseFloat(calculatedPadding) + scrollbarWidth}px`
+        const calculatedPadding = computedStyle(body).paddingRight
+        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* setAttr */])(body, 'data-padding-right', actualPadding)
+        body.style.paddingRight = `${parseFloat(calculatedPadding) +
+          scrollbarWidth}px`
       }
     },
-    resetScrollbar() {
-      const body = document.body
-      if (body._paddingChangedForModal) {
-        // Restore fixed content padding
-        body._paddingChangedForModal.forEach(el => {
-          if (Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["i" /* hasAttr */])(el, 'data-padding-right')) {
-            el.style.paddingRight = Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["f" /* getAttr */])(el, 'data-padding-right') || ''
-            Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["o" /* removeAttr */])(el, 'data-padding-right')
-          }
-        })
-      }
-      if (body._marginChangedForModal) {
-        // Restore sticky content and navbar-toggler margin
-        body._marginChangedForModal.forEach(el => {
-          if (Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["i" /* hasAttr */])(el, 'data-margin-right')) {
-            el.style.marginRight = Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["f" /* getAttr */])(el, 'data-margin-right') || ''
-            Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["o" /* removeAttr */])(el, 'data-margin-right')
-          }
-        })
-      }
-      body._paddingChangedForModal = null
-      body._marginChangedForModal = null
+    resetScrollbar () {
+      // Restore fixed content padding
+      Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["o" /* selectAll */])(Selector.FIXED_CONTENT).forEach(el => {
+        if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["g" /* hasAttr */])(el, 'data-padding-right')) {
+          el.style.paddingRight = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["e" /* getAttr */])(el, 'data-padding-right') || ''
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["l" /* removeAttr */])(el, 'data-padding-right')
+        }
+      })
+      // Restore sticky content and navbar-toggler margin
+      Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["o" /* selectAll */])(
+        `${Selector.STICKY_CONTENT}, ${Selector.NAVBAR_TOGGLER}`
+      ).forEach(el => {
+        if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["g" /* hasAttr */])(el, 'data-margin-right')) {
+          el.style.marginRight = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["e" /* getAttr */])(el, 'data-margin-right') || ''
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["l" /* removeAttr */])(el, 'data-margin-right')
+        }
+      })
       // Restore body padding
-      if (Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["i" /* hasAttr */])(body, 'data-padding-right')) {
-        body.style.paddingRight = Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["f" /* getAttr */])(body, 'data-padding-right') || ''
-        Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["o" /* removeAttr */])(body, 'data-padding-right')
+      const body = document.body
+      if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["g" /* hasAttr */])(body, 'data-padding-right')) {
+        body.style.paddingRight = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["e" /* getAttr */])(body, 'data-padding-right') || ''
+        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["l" /* removeAttr */])(body, 'data-padding-right')
       }
     }
   },
-  render(h) {
-    const $slots = this.$slots
-    // Modal Header
-    let header = h(false)
-    if (!this.hideHeader) {
-      let modalHeader = $slots['modal-header']
-      if (!modalHeader) {
-        let closeButton = h(false)
-        if (!this.hideHeaderClose) {
-          closeButton = h(
-            'b-button-close',
-            {
-              props: {
-                disabled: this.is_transitioning,
-                ariaLabel: this.headerCloseLabel,
-                textVariant: this.headerTextVariant
-              },
-              on: {
-                click: evt => {
-                  this.hide('headerclose')
-                }
-              }
-            },
-            [$slots['modal-header-close']]
-          )
-        }
-        modalHeader = [
-          h(this.titleTag, { class: ['modal-title'] }, [
-            $slots['modal-title'] || this.titleHTML || Object(__WEBPACK_IMPORTED_MODULE_8__utils_html__["b" /* stripTags */])(this.title)
-          ]),
-          closeButton
-        ]
-      }
-      header = h(
-        'header',
-        {
-          ref: 'header',
-          staticClass: 'modal-header',
-          class: this.headerClasses,
-          attrs: { id: this.safeId('__BV_modal_header_') }
-        },
-        [modalHeader]
-      )
-    }
-    // Modal Body
-    const body = h(
-      'div',
-      {
-        ref: 'body',
-        staticClass: 'modal-body',
-        class: this.bodyClasses,
-        attrs: { id: this.safeId('__BV_modal_body_') }
-      },
-      [$slots.default]
-    )
-    // Modal Footer
-    let footer = h(false)
-    if (!this.hideFooter) {
-      let modalFooter = $slots['modal-footer']
-      if (!modalFooter) {
-        let cancelButton = h(false)
-        if (!this.okOnly) {
-          cancelButton = h(
-            'b-button',
-            {
-              props: {
-                variant: this.cancelVariant,
-                size: this.buttonSize,
-                disabled: this.cancelDisabled || this.busy || this.is_transitioning
-              },
-              on: {
-                click: evt => {
-                  this.hide('cancel')
-                }
-              }
-            },
-            [$slots['modal-cancel'] || this.cancelTitleHTML || Object(__WEBPACK_IMPORTED_MODULE_8__utils_html__["b" /* stripTags */])(this.cancelTitle)]
-          )
-        }
-        const okButton = h(
-          'b-button',
-          {
-            props: {
-              variant: this.okVariant,
-              size: this.buttonSize,
-              disabled: this.okDisabled || this.busy || this.is_transitioning
-            },
-            on: {
-              click: evt => {
-                this.hide('ok')
-              }
-            }
-          },
-          [$slots['modal-ok'] || this.okTitleHTML || Object(__WEBPACK_IMPORTED_MODULE_8__utils_html__["b" /* stripTags */])(this.okTitle)]
-        )
-        modalFooter = [cancelButton, okButton]
-      }
-      footer = h(
-        'footer',
-        {
-          ref: 'footer',
-          staticClass: 'modal-footer',
-          class: this.footerClasses,
-          attrs: { id: this.safeId('__BV_modal_footer_') }
-        },
-        [modalFooter]
-      )
-    }
-    // Assemble Modal Content
-    const modalContent = h(
-      'div',
-      {
-        ref: 'content',
-        class: this.contentClasses,
-        attrs: {
-          role: 'document',
-          id: this.safeId('__BV_modal_content_'),
-          'aria-labelledby': this.hideHeader ? null : this.safeId('__BV_modal_header_'),
-          'aria-describedby': this.safeId('__BV_modal_body_')
-        }
-      },
-      [header, body, footer]
-    )
-    // Modal Dialog wrapper
-    const modalDialog = h(
-      'div',
-      {
-        staticClass: 'modal-dialog',
-        class: this.dialogClasses
-      },
-      [modalContent]
-    )
-    // Modal
-    let modal = h(
-      'div',
-      {
-        ref: 'modal',
-        staticClass: 'modal',
-        class: this.modalClasses,
-        directives: [
-          { name: 'show', rawName: 'v-show', value: this.is_visible, expression: 'is_visible' }
-        ],
-        attrs: {
-          id: this.safeId(),
-          role: 'dialog',
-          tabindex: '-1',
-          'aria-hidden': this.is_visible ? null : 'true',
-          'aria-modal': this.is_visible ? 'true' : null
-        },
-        on: {
-          click: this.onClickOut,
-          keydown: this.onEsc
-        }
-      },
-      [modalDialog]
-    )
-    // Wrap modal in transition
-    modal = h(
-      'transition',
-      {
-        props: {
-          enterClass: '',
-          enterToClass: '',
-          enterActiveClass: '',
-          leaveClass: '',
-          leaveActiveClass: '',
-          leaveToClass: ''
-        },
-        on: {
-          'before-enter': this.onBeforeEnter,
-          enter: this.onEnter,
-          'after-enter': this.onAfterEnter,
-          'before-leave': this.onBeforeLeave,
-          leave: this.onLeave,
-          'after-leave': this.onAfterLeave
-        }
-      },
-      [modal]
-    )
-    // Modal Backdrop
-    let backdrop = h(false)
-    if (!this.hideBackdrop && (this.is_visible || this.is_transitioning)) {
-      backdrop = h('div', {
-        staticClass: 'modal-backdrop',
-        class: this.backdropClasses,
-        attrs: { id: this.safeId('__BV_modal_backdrop_') }
-      })
-    }
-    // Tab trap to prevent page from scrolling to next element in tab index during enforce focus tab cycle
-    let tabTrap = h(false)
-    if (this.is_visible && this.isTop && !this.noEnforceFocus) {
-      tabTrap = h('div', { attrs: { tabindex: '0' } })
-    }
-    // Assemble modal and backdrop in an outer div needed for lazy modals
-    let outer = h(false)
-    if (!this.is_hidden) {
-      outer = h(
-        'div',
-        {
-          key: 'modal-outer',
-          style: this.modalOuterStyle,
-          attrs: { id: this.safeId('__BV_modal_outer_') }
-        },
-        [modal, tabTrap, backdrop]
-      )
-    }
-    // Wrap in DIV to maintain thi.$el reference for hide/show method aceess
-    return h('div', {}, [outer])
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/nav/index.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nav__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/nav/nav.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nav_item__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/nav/nav-item.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nav_text__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/nav/nav-text.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__nav_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/nav/nav-form.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__nav_item_dropdown__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/nav/nav-item-dropdown.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dropdown__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/dropdown/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
-
-
-
-
-
-
-
-
-const components = {
-  BNav: __WEBPACK_IMPORTED_MODULE_0__nav__["a" /* default */],
-  BNavItem: __WEBPACK_IMPORTED_MODULE_1__nav_item__["a" /* default */],
-  BNavText: __WEBPACK_IMPORTED_MODULE_2__nav_text__["a" /* default */],
-  BNavForm: __WEBPACK_IMPORTED_MODULE_3__nav_form__["a" /* default */],
-  BNavItemDropdown: __WEBPACK_IMPORTED_MODULE_4__nav_item_dropdown__["a" /* default */],
-  BNavItemDd: __WEBPACK_IMPORTED_MODULE_4__nav_item_dropdown__["a" /* default */],
-  BNavDropdown: __WEBPACK_IMPORTED_MODULE_4__nav_item_dropdown__["a" /* default */],
-  BNavDd: __WEBPACK_IMPORTED_MODULE_4__nav_item_dropdown__["a" /* default */]
-}
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install(Vue) {
-    Object(__WEBPACK_IMPORTED_MODULE_6__utils_plugins__["a" /* registerComponents */])(Vue, components)
-    Vue.use(__WEBPACK_IMPORTED_MODULE_5__dropdown__["a" /* default */])
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/nav/nav-form.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form/form.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
-
-
-
-// @vue/component
-/* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BNavForm',
-  functional: true,
-  props: {
-    id: {
-      type: String,
-      default: null
+  created () {
+    // create non-reactive property
+    this._observer = null
+  },
+  mounted () {
+    // Measure scrollbar
+    this.getScrollbarWidth()
+    // Listen for events from others to either open or close ourselves
+    this.listenOnRoot('bv::show::modal', this.showHandler)
+    this.listenOnRoot('bv::hide::modal', this.hideHandler)
+    // Listen for bv:modal::show events, and close ourselves if the opening modal not us
+    this.listenOnRoot('bv::modal::show', this.modalListener)
+    // Initially show modal?
+    if (this.visible === true) {
+      this.show()
     }
   },
-  render(h, { props, data, children }) {
-    return h(__WEBPACK_IMPORTED_MODULE_0__form_form__["a" /* default */], Object(__WEBPACK_IMPORTED_MODULE_1_vue_functional_data_merge__["a" /* mergeData */])(data, { attrs: { id: props.id }, props: { inline: true } }), children)
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/nav/nav-item-dropdown.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_dropdown__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/dropdown.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_html__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/html.js");
-
-
-
-
-// @vue/component
-/* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BNavItemDropdown',
-  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_id__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__mixins_dropdown__["a" /* default */]],
-  props: {
-    noCaret: {
-      type: Boolean,
-      default: false
-    },
-    extraToggleClasses: {
-      // Extra Toggle classes
-      type: String,
-      default: ''
-    },
-    extraMenuClasses: {
-      // Extra Menu classes
-      type: String,
-      default: ''
-    },
-    role: {
-      type: String,
-      default: 'menu'
+  beforeDestroy () {
+    // Ensure everything is back to normal
+    if (this._observer) {
+      this._observer.disconnect()
+      this._observer = null
     }
-  },
-  computed: {
-    isNav() {
-      // Signal to dropdown mixin that we are in a navbar
-      return true
-    },
-    dropdownClasses() {
-      return [
-        'nav-item',
-        'b-nav-dropdown',
-        'dropdown',
-        this.dropup ? 'dropup' : '',
-        this.visible ? 'show' : ''
-      ]
-    },
-    toggleClasses() {
-      return [
-        'nav-link',
-        this.noCaret ? '' : 'dropdown-toggle',
-        this.disabled ? 'disabled' : '',
-        this.extraToggleClasses ? this.extraToggleClasses : ''
-      ]
-    },
-    menuClasses() {
-      return [
-        'dropdown-menu',
-        this.right ? 'dropdown-menu-right' : 'dropdown-menu-left',
-        this.visible ? 'show' : '',
-        this.extraMenuClasses ? this.extraMenuClasses : ''
-      ]
-    }
-  },
-  render(h) {
-    const button = h(
-      'a',
-      {
-        class: this.toggleClasses,
-        ref: 'toggle',
-        attrs: {
-          href: '#',
-          id: this.safeId('_BV_button_'),
-          disabled: this.disabled,
-          'aria-haspopup': 'true',
-          'aria-expanded': this.visible ? 'true' : 'false'
-        },
-        on: {
-          click: this.toggle,
-          keydown: this.toggle // space, enter, down
-        }
-      },
-      [
-        this.$slots['button-content'] ||
-          this.$slots.text ||
-          h('span', { domProps: Object(__WEBPACK_IMPORTED_MODULE_2__utils_html__["a" /* htmlOrText */])(this.html, this.text) })
-      ]
-    )
-    const menu = h(
-      'div',
-      {
-        class: this.menuClasses,
-        ref: 'menu',
-        attrs: {
-          tabindex: '-1',
-          'aria-labelledby': this.safeId('_BV_button_')
-        },
-        on: {
-          mouseover: this.onMouseOver,
-          keydown: this.onKeydown // tab, up, down, esc
-        }
-      },
-      [this.$slots.default]
-    )
-    return h('li', { attrs: { id: this.safeId() }, class: this.dropdownClasses }, [button, menu])
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/nav/nav-item.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__link_link__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/link/link.js");
-
-
-
-const props = Object(__WEBPACK_IMPORTED_MODULE_1__link_link__["b" /* propsFactory */])()
-/* unused harmony export props */
-
-
-// @vue/component
-/* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BNavItem',
-  functional: true,
-  props,
-  render(h, { props, data, children }) {
-    return h(
-      'li',
-      Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
-        staticClass: 'nav-item'
-      }),
-      [h(__WEBPACK_IMPORTED_MODULE_1__link_link__["a" /* default */], { staticClass: 'nav-link', props }, children)]
-    )
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/nav/nav-text.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
-
-
-const props = {
-  tag: {
-    type: String,
-    default: 'span'
-  }
-}
-/* unused harmony export props */
-
-
-// @vue/component
-/* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BNavText',
-  functional: true,
-  props,
-  render(h, { props, data, children }) {
-    return h(props.tag, Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, { staticClass: 'navbar-text' }), children)
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/nav/nav.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_warn__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/warn.js");
-
-
-
-const props = {
-  tag: {
-    type: String,
-    default: 'ul'
-  },
-  fill: {
-    type: Boolean,
-    default: false
-  },
-  justified: {
-    type: Boolean,
-    default: false
-  },
-  tabs: {
-    type: Boolean,
-    default: false
-  },
-  pills: {
-    type: Boolean,
-    default: false
-  },
-  vertical: {
-    type: Boolean,
-    default: false
-  },
-  isNavBar: {
-    type: Boolean,
-    default: false
-  }
-}
-/* unused harmony export props */
-
-
-// @vue/component
-/* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BNav',
-  functional: true,
-  props,
-  render(h, { props, data, children }) {
-    if (props.isNavBar) {
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_warn__["a" /* default */])("b-nav: Prop 'is-nav-bar' is deprecated. Please use component '<b-navbar-nav>' instead.")
-    }
-    return h(
-      props.tag,
-      Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
-        class: {
-          nav: !props.isNavBar,
-          'navbar-nav': props.isNavBar,
-          'nav-tabs': props.tabs && !props.isNavBar,
-          'nav-pills': props.pills && !props.isNavBar,
-          'flex-column': props.vertical && !props.isNavBar,
-          'nav-fill': props.fill,
-          'nav-justified': props.justified
-        }
-      }),
-      children
-    )
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/navbar/index.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navbar__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/navbar/navbar.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__navbar_nav__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/navbar/navbar-nav.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__navbar_brand__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/navbar/navbar-brand.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__navbar_toggle__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/navbar/navbar-toggle.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__nav__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/nav/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__collapse__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/collapse/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dropdown__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/dropdown/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
-
-
-
-
-
-
-
-
-
-const components = {
-  BNavbar: __WEBPACK_IMPORTED_MODULE_0__navbar__["a" /* default */],
-  BNavbarNav: __WEBPACK_IMPORTED_MODULE_1__navbar_nav__["a" /* default */],
-  BNavbarBrand: __WEBPACK_IMPORTED_MODULE_2__navbar_brand__["a" /* default */],
-  BNavbarToggle: __WEBPACK_IMPORTED_MODULE_3__navbar_toggle__["a" /* default */],
-  BNavToggle: __WEBPACK_IMPORTED_MODULE_3__navbar_toggle__["a" /* default */]
-}
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install(Vue) {
-    Object(__WEBPACK_IMPORTED_MODULE_7__utils_plugins__["a" /* registerComponents */])(Vue, components)
-    Vue.use(__WEBPACK_IMPORTED_MODULE_4__nav__["a" /* default */])
-    Vue.use(__WEBPACK_IMPORTED_MODULE_5__collapse__["a" /* default */])
-    Vue.use(__WEBPACK_IMPORTED_MODULE_6__dropdown__["a" /* default */])
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/navbar/navbar-brand.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__link_link__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/link/link.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_pluck_props__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/pluck-props.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
-
-
-
-
-
-const linkProps = Object(__WEBPACK_IMPORTED_MODULE_0__link_link__["b" /* propsFactory */])()
-linkProps.href.default = undefined
-linkProps.to.default = undefined
-
-const props = Object(__WEBPACK_IMPORTED_MODULE_3__utils_object__["a" /* assign */])(linkProps, {
-  tag: {
-    type: String,
-    default: 'div'
-  }
-})
-/* unused harmony export props */
-
-
-// @vue/component
-/* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BNavbarBrand',
-  functional: true,
-  props,
-  render(h, { props, data, children }) {
-    const isLink = Boolean(props.to || props.href)
-    const tag = isLink ? __WEBPACK_IMPORTED_MODULE_0__link_link__["a" /* default */] : props.tag
-
-    return h(
-      tag,
-      Object(__WEBPACK_IMPORTED_MODULE_1_vue_functional_data_merge__["a" /* mergeData */])(data, {
-        staticClass: 'navbar-brand',
-        props: isLink ? Object(__WEBPACK_IMPORTED_MODULE_2__utils_pluck_props__["a" /* default */])(linkProps, props) : {}
-      }),
-      children
-    )
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/navbar/navbar-nav.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
-
-
-const props = {
-  tag: {
-    type: String,
-    default: 'ul'
-  },
-  fill: {
-    type: Boolean,
-    default: false
-  },
-  justified: {
-    type: Boolean,
-    default: false
-  }
-}
-/* unused harmony export props */
-
-
-// @vue/component
-/* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BNavbarNav',
-  functional: true,
-  props,
-  render(h, { props, data, children }) {
-    return h(
-      props.tag,
-      Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
-        staticClass: 'navbar-nav',
-        class: {
-          'nav-fill': props.fill,
-          'nav-justified': props.justified
-        }
-      }),
-      children
-    )
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/navbar/navbar-toggle.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_listen_on_root__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/listen-on-root.js");
-
-
-// @vue/component
-/* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BNavbarToggle',
-  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_listen_on_root__["a" /* default */]],
-  props: {
-    label: {
-      type: String,
-      default: 'Toggle navigation'
-    },
-    target: {
-      type: String,
-      required: true
-    }
-  },
-  data() {
-    return {
-      toggleState: false
-    }
-  },
-  created() {
-    this.listenOnRoot('bv::collapse::state', this.handleStateEvt)
-  },
-  methods: {
-    onClick(evt) {
-      this.$emit('click', evt)
-      /* istanbul ignore next */
-      if (!evt.defaultPrevented) {
-        this.$root.$emit('bv::toggle::collapse', this.target)
-      }
-    },
-    handleStateEvt(id, state) {
-      if (id === this.target) {
-        this.toggleState = state
-      }
-    }
-  },
-  render(h) {
-    return h(
-      'button',
-      {
-        class: ['navbar-toggler'],
-        attrs: {
-          type: 'button',
-          'aria-label': this.label,
-          'aria-controls': this.target,
-          'aria-expanded': this.toggleState ? 'true' : 'false'
-        },
-        on: { click: this.onClick }
-      },
-      [this.$slots.default || h('span', { class: ['navbar-toggler-icon'] })]
-    )
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/navbar/navbar.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
-
-
-const props = {
-  tag: {
-    type: String,
-    default: 'nav'
-  },
-  type: {
-    type: String,
-    default: 'light'
-  },
-  variant: {
-    type: String
-  },
-  toggleable: {
-    type: [Boolean, String],
-    default: false
-  },
-  fixed: {
-    type: String
-  },
-  sticky: {
-    type: Boolean,
-    default: false
-  },
-  print: {
-    type: Boolean,
-    default: false
-  }
-}
-/* unused harmony export props */
-
-
-// @vue/component
-/* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BNavbar',
-  functional: true,
-  props,
-  render(h, { props, data, children }) {
-    let breakpoint = ''
-    if (props.toggleable && typeof props.toggleable === 'string' && props.toggleable !== 'xs') {
-      breakpoint = `navbar-expand-${props.toggleable}`
-    } else if (props.toggleable === false) {
-      breakpoint = 'navbar-expand'
-    }
-    return h(
-      props.tag,
-      Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
-        staticClass: 'navbar',
-        class: {
-          'd-print': props.print,
-          'sticky-top': props.sticky,
-          [`navbar-${props.type}`]: Boolean(props.type),
-          [`bg-${props.variant}`]: Boolean(props.variant),
-          [`fixed-${props.fixed}`]: Boolean(props.fixed),
-          [`${breakpoint}`]: Boolean(breakpoint)
-        },
-        attrs: {
-          role: props.tag === 'nav' ? null : 'navigation'
-        }
-      }),
-      children
-    )
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/table/index.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__table__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/table/table.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
-
-
-
-const components = {
-  BTable: __WEBPACK_IMPORTED_MODULE_0__table__["a" /* default */]
-}
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install(Vue) {
-    Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* registerComponents */])(Vue, components)
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/table/table.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_startcase__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/startcase.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_get__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/get.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_loose_equal__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/loose-equal.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_stable_sort__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/stable-sort.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_key_codes__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/key-codes.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warn__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/warn.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_html__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/html.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__mixins_listen_on_root__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/listen-on-root.js");
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Object of item keys that should be ignored for headers and stringification and filter events
-const IGNORED_FIELD_KEYS = {
-  _rowVariant: true,
-  _cellVariants: true,
-  _showDetails: true
-}
-
-// Return a copy of a row after all reserved fields have been filtered out
-// TODO: add option to specify which fields to include
-function sanitizeRow(row) {
-  return Object(__WEBPACK_IMPORTED_MODULE_6__utils_object__["e" /* keys */])(row).reduce((obj, key) => {
-    // Ignore special fields that start with _
-    if (!IGNORED_FIELD_KEYS[key]) {
-      obj[key] = row[key]
-    }
-    return obj
-  }, {})
-}
-
-// Stringifies the values of an object
-//   { b: 3, c: { z: 'zzz', d: null, e: 2 }, d: [10, 12, 11], a: 'one' }
-// becomes
-//   'one 3 2 zzz 10 12 11'
-function toString(v) {
-  if (typeof v === 'undefined' || v === null) {
-    return ''
-  }
-  if (v instanceof Object && !(v instanceof Date)) {
-    // Arrays are also object, and keys just returns the array indexes
-    // Date objects we convert to strings
-    return Object(__WEBPACK_IMPORTED_MODULE_6__utils_object__["e" /* keys */])(v)
-      .sort() /* sort to prevent SSR issues on pre-rendered sorted tables */
-      .map(k => toString(v[k]))
-      .join(' ')
-  }
-  return String(v)
-}
-
-// Stringifies the values of a record, ignoring any special top level field keys
-// TODO: add option to strigify formatted/scopedSlot items, and only specific fields
-function recToString(row) {
-  if (!(row instanceof Object)) {
-    return ''
-  }
-  return toString(sanitizeRow(row))
-}
-
-// Default sort compare routine
-// TODO: add option to sort by multiple columns (tri-state per column, plus order of columns in sort)
-//  where sprtBy could be an array of objects [ {key: 'foo', sortDir: 'asc'}, {key:'bar', sortDir: 'desc'} ...]
-//  or an array of arrays [ ['foo','asc'], ['bar','desc'] ]
-function defaultSortCompare(a, b, sortBy) {
-  a = Object(__WEBPACK_IMPORTED_MODULE_1__utils_get__["a" /* default */])(a, sortBy, '')
-  b = Object(__WEBPACK_IMPORTED_MODULE_1__utils_get__["a" /* default */])(b, sortBy, '')
-  if (
-    (a instanceof Date && b instanceof Date) ||
-    (typeof a === 'number' && typeof b === 'number')
-  ) {
-    // Special case for comparing Dates and Numbers
-    return (a < b && -1) || (a > b && 1) || 0
-  }
-  return toString(a).localeCompare(toString(b), undefined, {
-    numeric: true
-  })
-}
-
-// Helper function to massage field entry into common object format
-function processField(key, value) {
-  let field = null
-  if (typeof value === 'string') {
-    // Label shortcut
-    field = { key, label: value }
-  } else if (typeof value === 'function') {
-    // Formatter shortcut
-    field = { key, formatter: value }
-  } else if (typeof value === 'object') {
-    field = Object(__WEBPACK_IMPORTED_MODULE_6__utils_object__["a" /* assign */])({}, value)
-    field.key = field.key || key
-  } else if (value !== false) {
-    // Fallback to just key
-    field = { key }
-  }
-  return field
-}
-
-// Filter CSS Selector for click/dblclick/etc events
-// If any of these selectors match the clicked element, we ignore the event
-const EVENT_FILTER = [
-  'a',
-  'a *', // include content inside links
-  'button',
-  'button *', // include content inside buttons
-  'input:not(.disabled):not([disabled])',
-  'select:not(.disabled):not([disabled])',
-  'textarea:not(.disabled):not([disabled])',
-  '[role="link"]',
-  '[role="link"] *',
-  '[role="button"]',
-  '[role="button"] *',
-  '[tabindex]:not(.disabled):not([disabled])'
-].join(',')
-
-// Returns true of we should ignore the click/dbclick/keypress event
-// Avoids having the user need to use @click.stop on the form control
-function filterEvent(evt) {
-  if (!evt || !evt.target) {
-    return
-  }
-  const el = evt.target
-  if (el.tagName === 'TD' || el.tagName === 'TH' || el.tagName === 'TR' || el.disabled) {
-    // Shortut all the following tests for efficiency
-    return false
-  }
-  if (Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["b" /* closest */])('.dropdown-menu', el)) {
-    // Click was in a dropdown menu, so ignore
-    return true
-  }
-  const label = el.tagName === 'LABEL' ? el : Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["b" /* closest */])('label', el)
-  if (label && label.control && !label.control.disabled) {
-    // If the label's form control is not disabled then we don't propagate evt
-    return true
-  }
-  return Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["m" /* matches */])(el, EVENT_FILTER)
-}
-
-// b-table component definition
-// @vue/component
-/* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BTable',
-  mixins: [__WEBPACK_IMPORTED_MODULE_10__mixins_id__["a" /* default */], __WEBPACK_IMPORTED_MODULE_11__mixins_listen_on_root__["a" /* default */]],
-  // Don't place ATTRS on root element automatically, as table could be wrapped in responsive div
-  inheritAttrs: false,
-  props: {
-    items: {
-      type: [Array, Function],
-      default() {
-        return []
-      }
-    },
-    fields: {
-      type: [Object, Array],
-      default: null
-    },
-    primaryKey: {
-      // Primary key for record.
-      // If provided the value in each row must be unique!!!
-      type: String,
-      default: null
-    },
-    sortBy: {
-      type: String,
-      default: null
-    },
-    sortDesc: {
-      type: Boolean,
-      default: false
-    },
-    sortDirection: {
-      type: String,
-      default: 'asc',
-      validator: direction => Object(__WEBPACK_IMPORTED_MODULE_7__utils_array__["a" /* arrayIncludes */])(['asc', 'desc', 'last'], direction)
-    },
-    caption: {
-      type: String,
-      default: null
-    },
-    captionHTML: {
-      type: String
-    },
-    captionTop: {
-      type: Boolean,
-      default: false
-    },
-    striped: {
-      type: Boolean,
-      default: false
-    },
-    bordered: {
-      type: Boolean,
-      default: false
-    },
-    borderless: {
-      type: Boolean,
-      default: false
-    },
-    outlined: {
-      type: Boolean,
-      default: false
-    },
-    dark: {
-      type: Boolean,
-      default() {
-        /* istanbul ignore if */
-        if (this && typeof this.inverse === 'boolean') {
-          // Deprecate inverse
-          Object(__WEBPACK_IMPORTED_MODULE_5__utils_warn__["a" /* default */])("b-table: prop 'inverse' has been deprecated. Use 'dark' instead")
-          return this.dark
-        }
-        return false
-      }
-    },
-    inverse: {
-      // Deprecated in v1.0.0 in favor of `dark`
-      type: Boolean,
-      default: null
-    },
-    hover: {
-      type: Boolean,
-      default: false
-    },
-    small: {
-      type: Boolean,
-      default: false
-    },
-    fixed: {
-      type: Boolean,
-      default: false
-    },
-    footClone: {
-      type: Boolean,
-      default: false
-    },
-    responsive: {
-      type: [Boolean, String],
-      default: false
-    },
-    stacked: {
-      type: [Boolean, String],
-      default: false
-    },
-    selectable: {
-      type: Boolean,
-      default: false
-    },
-    selectMode: {
-      type: String,
-      default: 'multi'
-    },
-    selectedVariant: {
-      type: String,
-      default: 'primary'
-    },
-    headVariant: {
-      type: String,
-      default: ''
-    },
-    footVariant: {
-      type: String,
-      default: ''
-    },
-    theadClass: {
-      type: [String, Array],
-      default: null
-    },
-    theadTrClass: {
-      type: [String, Array],
-      default: null
-    },
-    tbodyClass: {
-      type: [String, Array],
-      default: null
-    },
-    tbodyTrClass: {
-      type: [String, Array, Function],
-      default: null
-    },
-    tfootClass: {
-      type: [String, Array],
-      default: null
-    },
-    tfootTrClass: {
-      type: [String, Array],
-      default: null
-    },
-    perPage: {
-      type: Number,
-      default: 0
-    },
-    currentPage: {
-      type: Number,
-      default: 1
-    },
-    filter: {
-      type: [String, RegExp, Object, Array, Function],
-      default: null
-    },
-    filterFunction: {
-      type: Function,
-      default: null
-    },
-    sortCompare: {
-      type: Function,
-      default: null
-    },
-    noLocalSorting: {
-      type: Boolean,
-      default: false
-    },
-    noProviderPaging: {
-      type: Boolean,
-      default: false
-    },
-    noProviderSorting: {
-      type: Boolean,
-      default: false
-    },
-    noProviderFiltering: {
-      type: Boolean,
-      default: false
-    },
-    noSortReset: {
-      type: Boolean,
-      default: false
-    },
-    busy: {
-      type: Boolean,
-      default: false
-    },
-    value: {
-      // v-model for retreiving the current displayed rows
-      type: Array,
-      default() {
-        return []
-      }
-    },
-    labelSortAsc: {
-      type: String,
-      default: 'Click to sort Ascending'
-    },
-    labelSortDesc: {
-      type: String,
-      default: 'Click to sort Descending'
-    },
-    showEmpty: {
-      type: Boolean,
-      default: false
-    },
-    emptyText: {
-      type: String,
-      default: 'There are no records to show'
-    },
-    emptyHTML: {
-      type: String
-    },
-    emptyFilteredText: {
-      type: String,
-      default: 'There are no records matching your request'
-    },
-    emptyFilteredHTML: {
-      type: String
-    },
-    apiUrl: {
-      // Passthrough prop. Passed to the context object. Not used by b-table directly
-      type: String,
-      default: ''
-    },
-    tbodyTransitionProps: {
-      type: Object
-      // default: undefined
-    },
-    tbodyTransitionHandlers: {
-      type: Object
-      // default: undefined
-    }
-  },
-  data() {
-    return {
-      localSortBy: this.sortBy || '',
-      localSortDesc: this.sortDesc || false,
-      localBusy: false,
-      // Our local copy of the items. Must be an array
-      localItems: Object(__WEBPACK_IMPORTED_MODULE_7__utils_array__["d" /* isArray */])(this.items) ? this.items.slice() : [],
-      // Flag for displaying which empty slot to show, and for some event triggering.
-      isFiltered: false,
-      selectedRows: [],
-      lastRowClicked: -1
-    }
-  },
-  computed: {
-    // Layout related computed props
-    isStacked() {
-      return this.stacked === '' ? true : this.stacked
-    },
-    isResponsive() {
-      const responsive = this.responsive === '' ? true : this.responsive
-      return this.isStacked ? false : responsive
-    },
-    responsiveClass() {
-      return this.isResponsive === true
-        ? 'table-responsive'
-        : this.isResponsive
-          ? `table-responsive-${this.responsive}`
-          : ''
-    },
-    tableClasses() {
-      return {
-        'table-striped': this.striped,
-        'table-hover': this.hover,
-        'table-dark': this.dark,
-        'table-bordered': this.bordered,
-        'table-borderless': this.borderless,
-        'table-sm': this.small,
-        border: this.outlined,
-        // The following are b-table custom styles
-        'b-table-fixed': this.fixed,
-        'b-table-stacked': this.stacked === true || this.stacked === '',
-        [`b-table-stacked-${this.stacked}`]: this.stacked !== true && this.stacked,
-        'b-table-selectable': this.selectable
-      }
-    },
-    headClasses() {
-      return [this.headVariant ? 'thead-' + this.headVariant : '', this.theadClass]
-    },
-    bodyClasses() {
-      return [this.tbodyClass]
-    },
-    footClasses() {
-      const variant = this.footVariant || this.headVariant || null
-      return [variant ? 'thead-' + variant : '', this.tfootClass]
-    },
-    captionClasses() {
-      return {
-        'b-table-caption-top': this.captionTop
-      }
-    },
-    // Items related computed props
-    hasProvider() {
-      return this.items instanceof Function
-    },
-    localFiltering() {
-      return this.hasProvider ? !!this.noProviderFiltering : true
-    },
-    localSorting() {
-      return this.hasProvider ? !!this.noProviderSorting : !this.noLocalSorting
-    },
-    localPaging() {
-      return this.hasProvider ? !!this.noProviderPaging : true
-    },
-    context() {
-      // Current state of sorting, filtering and pagination props/values
-      return {
-        filter: this.localFilter,
-        sortBy: this.localSortBy,
-        sortDesc: this.localSortDesc,
-        perPage: this.perPage,
-        currentPage: this.currentPage,
-        apiUrl: this.apiUrl
-      }
-    },
-    providerTriggerContext() {
-      // Used to trigger the provider function via a watcher. Only the fields that
-      // are needed for triggering a provider update are included. Note that the
-      // regular this.context is sent to the provider during fetches though, as they
-      // may neeed all the prop info.
-      const ctx = {
-        apiUrl: this.apiUrl
-      }
-      if (!this.noProviderFiltering) {
-        // Either a string, or could be an object or array.
-        ctx.filter = this.localFilter
-      }
-      if (!this.noProviderSorting) {
-        ctx.sortBy = this.localSortBy
-        ctx.sortDesc = this.localSortDesc
-      }
-      if (!this.noProviderPaging) {
-        ctx.perPage = this.perPage
-        ctx.currentPage = this.currentPage
-      }
-      return ctx
-    },
-    computedBusy() {
-      return this.busy || this.localBusy
-    },
-    computedFields() {
-      // We normalize fields into an array of objects
-      // [ { key:..., label:..., ...}, {...}, ..., {..}]
-      let fields = []
-      if (Object(__WEBPACK_IMPORTED_MODULE_7__utils_array__["d" /* isArray */])(this.fields)) {
-        // Normalize array Form
-        this.fields.filter(f => f).forEach(f => {
-          if (typeof f === 'string') {
-            fields.push({ key: f, label: Object(__WEBPACK_IMPORTED_MODULE_0__utils_startcase__["a" /* default */])(f) })
-          } else if (typeof f === 'object' && f.key && typeof f.key === 'string') {
-            // Full object definition. We use assign so that we don't mutate the original
-            fields.push(Object(__WEBPACK_IMPORTED_MODULE_6__utils_object__["a" /* assign */])({}, f))
-          } else if (typeof f === 'object' && Object(__WEBPACK_IMPORTED_MODULE_6__utils_object__["e" /* keys */])(f).length === 1) {
-            // Shortcut object (i.e. { 'foo_bar': 'This is Foo Bar' }
-            const key = Object(__WEBPACK_IMPORTED_MODULE_6__utils_object__["e" /* keys */])(f)[0]
-            const field = processField(key, f[key])
-            if (field) {
-              fields.push(field)
-            }
-          }
-        })
-      } else if (this.fields && typeof this.fields === 'object' && Object(__WEBPACK_IMPORTED_MODULE_6__utils_object__["e" /* keys */])(this.fields).length > 0) {
-        // Normalize object Form
-        Object(__WEBPACK_IMPORTED_MODULE_6__utils_object__["e" /* keys */])(this.fields).forEach(key => {
-          let field = processField(key, this.fields[key])
-          if (field) {
-            fields.push(field)
-          }
-        })
-      }
-      // If no field provided, take a sample from first record (if exits)
-      if (fields.length === 0 && this.localItems.length > 0) {
-        const sample = this.localItems[0]
-        Object(__WEBPACK_IMPORTED_MODULE_6__utils_object__["e" /* keys */])(sample).forEach(k => {
-          if (!IGNORED_FIELD_KEYS[k]) {
-            fields.push({ key: k, label: Object(__WEBPACK_IMPORTED_MODULE_0__utils_startcase__["a" /* default */])(k) })
-          }
-        })
-      }
-      // Ensure we have a unique array of fields and that they have String labels
-      const memo = {}
-      return fields.filter(f => {
-        if (!memo[f.key]) {
-          memo[f.key] = true
-          f.label = typeof f.label === 'string' ? f.label : Object(__WEBPACK_IMPORTED_MODULE_0__utils_startcase__["a" /* default */])(f.key)
-          return true
-        }
-        return false
-      })
-    },
-    filteredCheck() {
-      // For watching changes to filteredItems vs localItems
-      return {
-        filteredItems: this.filteredItems,
-        localItems: this.localItems,
-        localFilter: this.localFilter
-      }
-    },
-    localFilter() {
-      // Returns a sanitized/normalized version of filter prop
-      if (typeof this.filter === 'function') {
-        // this.localFilterFn will contain the correct function ref.
-        // Deprecate setting prop filter to a function
-        return ''
-      } else if (
-        typeof this.filterFunction !== 'function' &&
-        !(typeof this.filter === 'string' || this.filter instanceof RegExp)
-      ) {
-        // Using internal filter function, which only acccepts string or regexp at the moment
-        return ''
-      } else {
-        // Could be astring, object or array, as needed by external filter function
-        return this.filter
-      }
-    },
-    localFilterFn() {
-      let filter = this.filter
-      let filterFn = this.filterFunction
-      // Sanitized/normalize filter-function prop
-      if (typeof filterFn === 'function') {
-        return filterFn
-      } else if (typeof filter === 'function') {
-        // Deprecate setting prop filter to a function
-        return filter
-      } else {
-        // no filterFunction, so signal to use internal filter function
-        return null
-      }
-    },
-    filteredItems() {
-      // Returns the records in localItems that match the filter criteria.
-      // Returns the original localItems array if not sorting
-      let items = this.localItems || []
-      const criteria = this.localFilter
-      const filterFn =
-        this.filterFnFactory(this.localFilterFn, criteria) || this.defaultFilterFnFactory(criteria)
-
-      // We only do local filtering if requested, and if the are records to filter and
-      // if a filter criteria was specified
-      if (this.localFiltering && filterFn && items.length > 0) {
-        items = items.filter(filterFn)
-      }
-      return items
-    },
-    sortedItems() {
-      // Sorts the filtered items and returns a new array of the sorted items
-      // or the original items array if not sorted.
-      let items = this.filteredItems || []
-      const sortBy = this.localSortBy
-      const sortDesc = this.localSortDesc
-      const sortCompare = this.sortCompare
-      const localSorting = this.localSorting
-      if (sortBy && localSorting) {
-        // stableSort returns a new arary, and leaves the original array intact
-        return Object(__WEBPACK_IMPORTED_MODULE_3__utils_stable_sort__["a" /* default */])(items, (a, b) => {
-          let result = null
-          if (typeof sortCompare === 'function') {
-            // Call user provided sortCompare routine
-            result = sortCompare(a, b, sortBy, sortDesc)
-          }
-          if (result === null || result === undefined || result === false) {
-            // Fallback to built-in defaultSortCompare if sortCompare not defined or returns null/false
-            result = defaultSortCompare(a, b, sortBy)
-          }
-          // Negate result if sorting in descending order
-          return (result || 0) * (sortDesc ? -1 : 1)
-        })
-      }
-      return items
-    },
-    paginatedItems() {
-      let items = this.sortedItems || []
-      const currentPage = Math.max(parseInt(this.currentPage, 10) || 1, 1)
-      const perPage = Math.max(parseInt(this.perPage, 10) || 0, 0)
-      // Apply local pagination
-      if (this.localPaging && !!perPage) {
-        // Grab the current page of data (which may be past filtered items limit)
-        items = items.slice((currentPage - 1) * perPage, currentPage * perPage)
-      }
-      // Return the items to display in the table
-      return items
-    },
-    computedItems() {
-      return this.paginatedItems || []
-    }
-  },
-  watch: {
-    // Watch props for changes and update local values
-    items(newItems) {
-      if (this.hasProvider || newItems instanceof Function) {
-        this.$nextTick(this._providerUpdate)
-      } else if (Object(__WEBPACK_IMPORTED_MODULE_7__utils_array__["d" /* isArray */])(newItems)) {
-        // Set localItems/filteredItems to a copy of the provided array
-        this.localItems = newItems.slice()
-      } else {
-        this.localItems = []
-      }
-    },
-    sortDesc(newVal, oldVal) {
-      if (newVal === this.localSortDesc) {
-        return
-      }
-      this.localSortDesc = newVal || false
-    },
-    sortBy(newVal, oldVal) {
-      if (newVal === this.localSortBy) {
-        return
-      }
-      this.localSortBy = newVal || null
-    },
-    selectMode(newVal, oldVal) {
-      if (oldVal !== newVal) {
-        this.clearSelected()
-      }
-    },
-    // Update .sync props
-    localSortDesc(newVal, oldVal) {
-      // Emit update to sort-desc.sync
-      if (newVal !== oldVal) {
-        this.clearSelected()
-        this.$emit('update:sortDesc', newVal)
-      }
-    },
-    localSortBy(newVal, oldVal) {
-      if (newVal !== oldVal) {
-        this.clearSelected()
-        this.$emit('update:sortBy', newVal)
-      }
-    },
-    localBusy(newVal, oldVal) {
-      if (newVal !== oldVal) {
-        this.$emit('update:busy', newVal)
-      }
-    },
-    // Watch for changes on computedItems and update the v-model
-    computedItems(newVal, oldVal) {
-      // Reset for selectable
-      this.lastRowClicked = -1
-      this.$emit('input', newVal)
-      let equal = false
-      if (this.selectable && this.selectedRows.length > 0) {
-        // Quick check against array length
-        equal = Object(__WEBPACK_IMPORTED_MODULE_7__utils_array__["d" /* isArray */])(newVal) && Object(__WEBPACK_IMPORTED_MODULE_7__utils_array__["d" /* isArray */])(oldVal) && newVal.length === oldVal.length
-        for (let i = 0; equal && i < newVal.length; i++) {
-          // Look for the first non-loosely equal row, after ignoring reserved fields
-          equal = Object(__WEBPACK_IMPORTED_MODULE_2__utils_loose_equal__["a" /* default */])(sanitizeRow(newVal[i]), sanitizeRow(oldVal[i]))
-        }
-      }
-      if (!equal) {
-        this.clearSelected()
-      }
-    },
-    selectable(newVal, oldVal) {
-      // Clear selection if prop selectable changes
-      this.clearSelected()
-    },
-    // Watch for changes to the filter criteria and filtered items vs localItems).
-    // And set visual state and emit events as required
-    filteredCheck({ filteredItems, localItems, localFilter }) {
-      // Determine if the dataset is filtered or not
-      let isFiltered
-      if (!localFilter) {
-        // If filter criteria is falsey
-        isFiltered = false
-      } else if (Object(__WEBPACK_IMPORTED_MODULE_2__utils_loose_equal__["a" /* default */])(localFilter, []) || Object(__WEBPACK_IMPORTED_MODULE_2__utils_loose_equal__["a" /* default */])(localFilter, {})) {
-        // If filter criteria is an empty array or object
-        isFiltered = false
-      } else if (localFilter) {
-        // if Filter criteria is truthy
-        isFiltered = true
-      } else {
-        isFiltered = false
-      }
-      if (isFiltered) {
-        this.clearSelected()
-        this.$emit('filtered', filteredItems, filteredItems.length)
-      }
-      this.isFiltered = isFiltered
-    },
-    isFiltered(newVal, oldVal) {
-      if (newVal !== oldVal) {
-        this.clearSelected()
-      }
-      if (newVal === false && oldVal === true) {
-        // We need to emit a filtered event if isFiltered transitions from true to
-        // false so that users can update their pagination controls.
-        this.$emit('filtered', this.localItems, this.localItems.length)
-      }
-    },
-    context(newVal, oldVal) {
-      // Emit context info for enternal paging/filtering/sorting handling
-      if (!Object(__WEBPACK_IMPORTED_MODULE_2__utils_loose_equal__["a" /* default */])(newVal, oldVal)) {
-        this.$emit('context-changed', newVal)
-      }
-    },
-    // Provider update triggering
-    providerTriggerContext(newVal, oldVal) {
-      // Trigger the provider to update as the relevant context values have changed.
-      if (!Object(__WEBPACK_IMPORTED_MODULE_2__utils_loose_equal__["a" /* default */])(newVal, oldVal)) {
-        this.$nextTick(this._providerUpdate)
-      }
-    }
-  },
-  mounted() {
-    // Call the items provider if necessary
-    if (this.hasProvider && (!this.localItems || this.localItems.length === 0)) {
-      // Fetch on mount if localItems is empty
-      this._providerUpdate()
-    }
-
-    // Initially update the v-model of displayed items
-    this.$emit('input', this.computedItems)
-
-    // Listen for global messages to tell us to force refresh the table
-    this.listenOnRoot('bv::refresh::table', id => {
-      if (id === this.id || id === this) {
-        this.refresh()
-      }
-    })
-  },
-  methods: {
-    // Methods for computing classes, attributes and styles for table cells
-    fieldClasses(field) {
-      // header field (th) classes
-      return [
-        field.variant ? 'table-' + field.variant : '',
-        field.class ? field.class : '',
-        field.thClass ? field.thClass : ''
-      ]
-    },
-    tdClasses(field, item) {
-      let cellVariant = ''
-      if (item._cellVariants && item._cellVariants[field.key]) {
-        cellVariant = `${this.dark ? 'bg' : 'table'}-${item._cellVariants[field.key]}`
-      }
-      return [
-        field.variant && !cellVariant ? `${this.dark ? 'bg' : 'table'}-${field.variant}` : '',
-        cellVariant,
-        field.class ? field.class : '',
-        this.getTdValues(item, field.key, field.tdClass, '')
-      ]
-    },
-    tdAttrs(field, item, colIndex) {
-      let attrs = {}
-      attrs['aria-colindex'] = String(colIndex + 1)
-      if (field.isRowHeader) {
-        attrs['scope'] = 'row'
-      }
-      if (this.isStacked) {
-        // Generate the "header cell" label content in stacked mode
-        attrs['data-label'] = field.label
-        if (field.isRowHeader) {
-          attrs['role'] = 'rowheader'
-        } else {
-          attrs['role'] = 'cell'
-        }
-      }
-      return Object(__WEBPACK_IMPORTED_MODULE_6__utils_object__["a" /* assign */])({}, attrs, this.getTdValues(item, field.key, field.tdAttr, {}))
-    },
-    rowClasses(item) {
-      return [
-        item._rowVariant ? `${this.dark ? 'bg' : 'table'}-${item._rowVariant}` : '',
-        typeof this.tbodyTrClass === 'function' ? this.tbodyTrClass(item, 'row') : this.tbodyTrClass
-      ]
-    },
-    getTdValues(item, key, tdValue, defValue) {
-      const parent = this.$parent
-      if (tdValue) {
-        const value = Object(__WEBPACK_IMPORTED_MODULE_1__utils_get__["a" /* default */])(item, key, '')
-        if (typeof tdValue === 'function') {
-          return tdValue(value, key, item)
-        } else if (typeof tdValue === 'string' && typeof parent[tdValue] === 'function') {
-          return parent[tdValue](value, key, item)
-        }
-        return tdValue
-      }
-      return defValue
-    },
-    // Method to get the value for a field
-    getFormattedValue(item, field) {
-      const key = field.key
-      const formatter = field.formatter
-      const parent = this.$parent
-      let value = Object(__WEBPACK_IMPORTED_MODULE_1__utils_get__["a" /* default */])(item, key, null)
-      if (formatter) {
-        if (typeof formatter === 'function') {
-          value = formatter(value, key, item)
-        } else if (typeof formatter === 'string' && typeof parent[formatter] === 'function') {
-          value = parent[formatter](value, key, item)
-        }
-      }
-      return value === null || typeof value === 'undefined' ? '' : value
-    },
-    // Filter Function factories
-    filterFnFactory(filterFn, criteria) {
-      // Wrapper factory for external filter functions.
-      // Wrap the provided filter-function and return a new function.
-      // returns null if no filter-function defined or if criteria is falsey.
-      // Rather than directly grabbing this.computedLocalFilterFn or this.filterFunction
-      // We have it passed, so that the caller computed prop will be reactive to changes
-      // in the original filter-function (as this routine is a method)
-      if (!filterFn || !criteria || typeof filterFn !== 'function') {
-        return null
-      }
-
-      // Build the wrapped filter test function, passing the criteria to the provided function
-      const fn = item => {
-        // Generated function returns true if the crieria matches part of the serialzed data, otherwise false
-        return filterFn(item, criteria)
-      }
-
-      // return the wrapped function
-      return fn
-    },
-    defaultFilterFnFactory(criteria) {
-      // Generates the default filter function, using the given flter criteria
-      if (!criteria || !(typeof criteria === 'string' || criteria instanceof RegExp)) {
-        // Bult in filter can only support strings or RegExp criteria (at the moment)
-        return null
-      }
-
-      // Build the regexp needed for filtering
-      let regexp = criteria
-      if (typeof regexp === 'string') {
-        // Escape special RegExp characters in the string and convert contiguous
-        // whitespace to \s+ matches
-        const pattern = criteria
-          .replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')
-          .replace(/[\s\uFEFF\xA0]+/g, '\\s+')
-        // Build the RegExp (no need for global flag, as we only need to find the value once in the string)
-        regexp = new RegExp(`.*${pattern}.*`, 'i')
-      }
-
-      // Generate the wrapped filter test function to use
-      const fn = item => {
-        // This searches all row values (and sub property values) in the entire (excluding
-        // special _ prefixed keys), because we convert the record to a space-separated
-        // string containing all the value properties (recursively), even ones that are
-        // not visible (not specified in this.fields).
-        //
-        // TODO: enable searching on formatted fields and scoped slots
-        // TODO: should we filter only on visible fields (i.e. ones in this.fields) by default?
-        // TODO: allow for searching on specific fields/key, this could be combined with the previous TODO
-        // TODO: give recToString extra options for filtering (i.e. passing the fields definition
-        //      and a reference to $scopedSlots)
-        //
-        // Generated function returns true if the crieria matches part of the serialzed data, otherwise false
-        // We set lastIndex = 0 on regex in case someone uses the /g global flag
-        regexp.lastIndex = 0
-        return regexp.test(recToString(item))
-      }
-
-      // Return the generated function
-      return fn
-    },
-    clearSelected() {
-      let hasSelection = this.selectedRows.reduce((prev, v) => {
-        return prev || v
-      }, false)
-      if (hasSelection) {
-        this.lastRowClicked = -1
-        this.selectedRows = []
-        this.$emit('row-selected', [])
-      }
-    },
-    // Event handlers
-    rowClicked(e, item, index) {
-      if (this.stopIfBusy(e)) {
-        // If table is busy (via provider) then don't propagate
-        return
-      } else if (filterEvent(e)) {
-        // clicked on a non-disabled control so ignore
-        return
-      }
-      if (e.type === 'keydown') {
-        // If the click was generated by space or enter, stop page scroll
-        e.stopPropagation()
-        e.preventDefault()
-      }
-      if (this.selectable) {
-        let selected = !this.selectedRows[index]
-        switch (this.selectMode) {
-          case 'single':
-            this.selectedRows = []
-            break
-          case 'range':
-            if (this.lastRowClicked >= 0 && e.shiftKey) {
-              // range
-              for (
-                let idx = Math.min(this.lastRowClicked, index);
-                idx <= Math.max(this.lastRowClicked, index);
-                idx++
-              ) {
-                this.selectedRows[idx] = true
-              }
-              selected = true
-            } else {
-              if (!(e.ctrlKey || e.metaKey)) {
-                // clear range selection if any
-                this.selectedRows = []
-                selected = true
-              }
-              this.lastRowClicked = selected ? index : -1
-            }
-            break
-        }
-        this.$set(this.selectedRows, index, selected)
-        let items = []
-        this.selectedRows.forEach((v, idx) => {
-          if (v) {
-            items.push(this.computedItems[idx])
-          }
-        })
-        this.$emit('row-selected', items)
-      }
-      this.$emit('row-clicked', item, index, e)
-    },
-    middleMouseRowClicked(e, item, index) {
-      if (this.stopIfBusy(e)) {
-        // If table is busy (via provider) then don't propagate
-        return
-      }
-      this.$emit('row-middle-clicked', item, index, e)
-    },
-    rowDblClicked(e, item, index) {
-      if (this.stopIfBusy(e)) {
-        // If table is busy (via provider) then don't propagate
-        return
-      } else if (filterEvent(e)) {
-        // clicked on a non-disabled control so ignore
-        return
-      }
-      this.$emit('row-dblclicked', item, index, e)
-    },
-    rowHovered(e, item, index) {
-      if (this.stopIfBusy(e)) {
-        // If table is busy (via provider) then don't propagate
-        return
-      }
-      this.$emit('row-hovered', item, index, e)
-    },
-    rowUnhovered(e, item, index) {
-      if (this.stopIfBusy(e)) {
-        // If table is busy (via provider) then don't propagate
-        return
-      }
-      this.$emit('row-unhovered', item, index, e)
-    },
-    rowContextmenu(e, item, index) {
-      if (this.stopIfBusy(e)) {
-        // If table is busy (via provider) then don't propagate
-        return
-      }
-      this.$emit('row-contextmenu', item, index, e)
-    },
-    headClicked(e, field) {
-      if (this.stopIfBusy(e)) {
-        // If table is busy (via provider) then don't propagate
-        return
-      } else if (filterEvent(e)) {
-        // clicked on a non-disabled control so ignore
-        return
-      }
-      e.stopPropagation()
-      e.preventDefault()
-      let sortChanged = false
-      const toggleLocalSortDesc = () => {
-        const sortDirection = field.sortDirection || this.sortDirection
-        if (sortDirection === 'asc') {
-          this.localSortDesc = false
-        } else if (sortDirection === 'desc') {
-          this.localSortDesc = true
-        }
-      }
-      if (field.sortable) {
-        if (field.key === this.localSortBy) {
-          // Change sorting direction on current column
-          this.localSortDesc = !this.localSortDesc
-        } else {
-          // Start sorting this column ascending
-          this.localSortBy = field.key
-          toggleLocalSortDesc()
-        }
-        sortChanged = true
-      } else if (this.localSortBy && !this.noSortReset) {
-        this.localSortBy = null
-        toggleLocalSortDesc()
-        sortChanged = true
-      }
-      this.$emit('head-clicked', field.key, field, e)
-      if (sortChanged) {
-        // Sorting parameters changed
-        this.$emit('sort-changed', this.context)
-      }
-    },
-    stopIfBusy(evt) {
-      if (this.computedBusy) {
-        // If table is busy (via provider) then don't propagate
-        evt.preventDefault()
-        evt.stopPropagation()
-        return true
-      }
-      return false
-    },
-    // Exposed method(s)
-    refresh() {
-      this.$off('refreshed', this.refresh)
-      if (this.computedBusy) {
-        // Can't force an update when forced busy by user (busy prop === true)
-        if (this.localBusy && this.hasProvider) {
-          // But if provider running (localBusy), re-schedule refresh once `refreshed` emitted
-          this.$on('refreshed', this.refresh)
-        }
-      } else {
-        this.clearSelected()
-        if (this.hasProvider) {
-          this.$nextTick(this._providerUpdate)
-        } else {
-          this.localItems = Object(__WEBPACK_IMPORTED_MODULE_7__utils_array__["d" /* isArray */])(this.items) ? this.items.slice() : []
-        }
-      }
-    },
-    // Provider related methods
-    _providerSetLocal(items) {
-      this.localItems = Object(__WEBPACK_IMPORTED_MODULE_7__utils_array__["d" /* isArray */])(items) ? items.slice() : []
-      this.localBusy = false
-      this.$emit('refreshed')
-      // New root emit
-      if (this.id) {
-        this.emitOnRoot('bv::table::refreshed', this.id)
-      }
-    },
-    _providerUpdate() {
-      // Refresh the provider function items.
-      if (!this.hasProvider) {
-        // Do nothing if no provider
-        return
-      }
-      // If table is busy, wait until refereshed before calling again
-      if (this.computedBusy) {
-        // Schedule a new refresh once `refreshed` is emitted
-        this.$nextTick(this.refresh)
-        return
-      }
-
-      // Set internal busy state
-      this.localBusy = true
-
-      // Call provider function with context and optional callback after DOM is fully updated
-      this.$nextTick(function() {
-        try {
-          // Call provider function passing it the context and optional callback
-          const data = this.items(this.context, this._providerSetLocal)
-          if (data && data.then && typeof data.then === 'function') {
-            // Provider returned Promise
-            data.then(items => {
-              // Provider resolved with items
-              this._providerSetLocal(items)
-            })
-          } else if (Object(__WEBPACK_IMPORTED_MODULE_7__utils_array__["d" /* isArray */])(data)) {
-            // Provider returned Array data
-            this._providerSetLocal(data)
-          } else if (this.items.length !== 2) {
-            // Check number of arguments provider function requested
-            // Provider not using callback (didn't request second argument), so we clear
-            // busy state as most likely there was an error in the provider function
-            Object(__WEBPACK_IMPORTED_MODULE_5__utils_warn__["a" /* default */])(
-              "b-table provider function didn't request calback and did not return a promise or data"
-            )
-            this.localBusy = false
-          }
-        } catch (e) /* istanbul ignore next */ {
-          // Provider function borked on us, so we spew out a warning
-          // and clear the busy state
-          Object(__WEBPACK_IMPORTED_MODULE_5__utils_warn__["a" /* default */])(`b-table provider function error [${e.name}] ${e.message}`)
-          this.localBusy = false
-          this.$off('refreshed', this.refresh)
-        }
-      })
-    }
-  },
-  render(h) {
-    const $slots = this.$slots
-    const $scoped = this.$scopedSlots
-    const fields = this.computedFields
-    const items = this.computedItems
-    const tableStriped = this.striped
-    const hasRowClickHandler = this.$listeners['row-clicked'] || this.selectable
-    // Build the caption
-    let caption = h(false)
-    let captionId = null
-    if (this.caption || this.captionHTML || $slots['table-caption']) {
-      captionId = this.isStacked ? this.safeId('_caption_') : null
-      const data = {
-        key: 'caption',
-        id: captionId,
-        class: this.captionClasses
-      }
-      if (!$slots['table-caption']) {
-        data.domProps = Object(__WEBPACK_IMPORTED_MODULE_8__utils_html__["a" /* htmlOrText */])(this.captionHTML, this.caption)
-      }
-      caption = h('caption', data, $slots['table-caption'])
-    }
-
-    // Build the colgroup
-    const colgroup = $slots['table-colgroup']
-      ? h('colgroup', { key: 'colgroup' }, $slots['table-colgroup'])
-      : h(false)
-
-    // factory function for thead and tfoot cells (th's)
-    const makeHeadCells = (isFoot = false) => {
-      return fields.map((field, colIndex) => {
-        let ariaLabel = ''
-        if (!field.label.trim() && !field.headerTitle) {
-          // In case field's label and title are empty/blank
-          // We need to add a hint about what the column is about for non-dighted users
-          ariaLabel = Object(__WEBPACK_IMPORTED_MODULE_0__utils_startcase__["a" /* default */])(field.key)
-        }
-        const ariaLabelSorting = field.sortable
-          ? this.localSortDesc && this.localSortBy === field.key
-            ? this.labelSortAsc
-            : this.labelSortDesc
-          : null
-        // Assemble the aria-label
-        ariaLabel = [ariaLabel, ariaLabelSorting].filter(a => a).join(': ') || null
-        const ariaSort =
-          field.sortable && this.localSortBy === field.key
-            ? this.localSortDesc
-              ? 'descending'
-              : 'ascending'
-            : field.sortable
-              ? 'none'
-              : null
-        const data = {
-          key: field.key,
-          class: this.fieldClasses(field),
-          style: field.thStyle || {},
-          attrs: {
-            tabindex: field.sortable ? '0' : null,
-            abbr: field.headerAbbr || null,
-            title: field.headerTitle || null,
-            scope: isFoot ? null : 'col',
-            'aria-colindex': String(colIndex + 1),
-            'aria-label': ariaLabel,
-            'aria-sort': ariaSort
-          },
-          on: {
-            click: evt => {
-              this.headClicked(evt, field)
-            },
-            keydown: evt => {
-              const keyCode = evt.keyCode
-              if (keyCode === __WEBPACK_IMPORTED_MODULE_4__utils_key_codes__["a" /* default */].ENTER || keyCode === __WEBPACK_IMPORTED_MODULE_4__utils_key_codes__["a" /* default */].SPACE) {
-                this.headClicked(evt, field)
-              }
-            }
-          }
-        }
-        let slot =
-          isFoot && $scoped[`FOOT_${field.key}`]
-            ? $scoped[`FOOT_${field.key}`]
-            : $scoped[`HEAD_${field.key}`]
-        if (slot) {
-          slot = [slot({ label: field.label, column: field.key, field: field })]
-        } else {
-          data.domProps = Object(__WEBPACK_IMPORTED_MODULE_8__utils_html__["a" /* htmlOrText */])(field.labelHTML, field.label)
-        }
-        return h('th', data, slot)
-      })
-    }
-
-    // Build the thead
-    let thead = h(false)
-    if (this.isStacked !== true) {
-      // If in always stacked mode (this.isStacked === true), then we don't bother rendering the thead
-      thead = h('thead', { key: 'thead', class: this.headClasses }, [
-        h('tr', { class: this.theadTrClass }, makeHeadCells(false))
-      ])
-    }
-
-    // Build the tfoot
-    let tfoot = h(false)
-    if (this.footClone && this.isStacked !== true) {
-      // If in always stacked mode (this.isStacked === true), then we don't bother rendering the tfoot
-      tfoot = h('tfoot', { key: 'tfoot', class: this.footClasses }, [
-        h('tr', { class: this.tfootTrClass }, makeHeadCells(true))
-      ])
-    }
-
-    // Prepare the tbody rows
-    const rows = []
-
-    // Add static Top Row slot (hidden in visibly stacked mode as we can't control the data-label)
-    // If in always stacked mode, we don't bother rendering the row
-    if ($scoped['top-row'] && this.isStacked !== true) {
-      rows.push(
-        h(
-          'tr',
-          {
-            key: 'top-row',
-            staticClass: 'b-table-top-row',
-            class: [
-              typeof this.tbodyTrClass === 'function'
-                ? this.tbodyTrClass(null, 'row-top')
-                : this.tbodyTrClass
-            ]
-          },
-          [$scoped['top-row']({ columns: fields.length, fields: fields })]
-        )
-      )
-    } else {
-      rows.push(h(false))
-    }
-
-    // Add the item data rows or the busy slot
-    if ($slots['table-busy'] && this.computedBusy) {
-      // Show the busy slot
-      const trAttrs = {
-        role: this.isStacked ? 'row' : null
-      }
-      const tdAttrs = {
-        colspan: String(fields.length),
-        role: this.isStacked ? 'cell' : null
-      }
-      rows.push(
-        h(
-          'tr',
-          {
-            key: 'table-busy-slot',
-            staticClass: 'b-table-busy-slot',
-            class: [
-              typeof this.tbodyTrClass === 'function'
-                ? this.tbodyTrClass(null, 'table-busy')
-                : this.tbodyTrClass
-            ],
-            attrs: trAttrs
-          },
-          [h('td', { attrs: tdAttrs }, [$slots['table-busy']])]
-        )
-      )
-    } else {
-      // Show the rows
-      items.forEach((item, rowIndex) => {
-        const detailsSlot = $scoped['row-details']
-        const rowShowDetails = Boolean(item._showDetails && detailsSlot)
-        const rowSelected = this.selectedRows[rowIndex]
-        // Details ID needed for aria-describedby when details showing
-        const detailsId = rowShowDetails ? this.safeId(`_details_${rowIndex}_`) : null
-        const toggleDetailsFn = () => {
-          if (detailsSlot) {
-            this.$set(item, '_showDetails', !item._showDetails)
-          }
-        }
-        // For each item data field in row
-        const tds = fields.map((field, colIndex) => {
-          const formatted = this.getFormattedValue(item, field)
-          const data = {
-            // For the Vue key, we concatinate the column index and field key (as field keys can be duplicated)
-            key: `row-${rowIndex}-cell-${colIndex}-${field.key}`,
-            class: this.tdClasses(field, item),
-            attrs: this.tdAttrs(field, item, colIndex),
-            domProps: {}
-          }
-          let childNodes
-          if ($scoped[field.key]) {
-            childNodes = [
-              $scoped[field.key]({
-                item: item,
-                index: rowIndex,
-                field: field,
-                unformatted: Object(__WEBPACK_IMPORTED_MODULE_1__utils_get__["a" /* default */])(item, field.key, ''),
-                value: formatted,
-                toggleDetails: toggleDetailsFn,
-                detailsShowing: Boolean(item._showDetails),
-                rowSelected: Boolean(rowSelected)
-              })
-            ]
-            if (this.isStacked) {
-              // We wrap in a DIV to ensure rendered as a single cell when visually stacked!
-              childNodes = [h('div', {}, [childNodes])]
-            }
-          } else {
-            if (this.isStacked) {
-              // We wrap in a DIV to ensure rendered as a single cell when visually stacked!
-              childNodes = [h('div', formatted)]
-            } else {
-              // Non stacked
-              childNodes = formatted
-            }
-          }
-          // Render either a td or th cell
-          return h(field.isRowHeader ? 'th' : 'td', data, childNodes)
-        })
-        // Calculate the row number in the dataset (indexed from 1)
-        let ariaRowIndex = null
-        if (this.currentPage && this.perPage && this.perPage > 0) {
-          ariaRowIndex = String((this.currentPage - 1) * this.perPage + rowIndex + 1)
-        }
-        // Create a unique key based on the record content, to ensure that sub components are
-        // re-rendered rather than re-used, which can cause issues. If a primary key is not provided
-        // we concatinate the row number and stringified record (in case there are duplicate records).
-        // See: https://github.com/bootstrap-vue/bootstrap-vue/issues/2410
-        const rowKey =
-          this.primaryKey && typeof item[this.primaryKey] !== 'undefined'
-            ? toString(item[this.primaryKey])
-            : `${rowIndex}__${recToString(item)}`
-        // Assemble and add the row
-        rows.push(
-          h(
-            'tr',
-            {
-              key: `__b-table-row-${rowKey}__`,
-              class: [
-                this.rowClasses(item),
-                {
-                  'b-table-has-details': rowShowDetails,
-                  'b-row-selected': rowSelected,
-                  [`${this.dark ? 'bg' : 'table'}-${this.selectedVariant}`]:
-                    rowSelected && this.selectedVariant
-                }
-              ],
-              attrs: {
-                tabindex: hasRowClickHandler ? '0' : null,
-                'aria-describedby': detailsId,
-                'aria-owns': detailsId,
-                'aria-rowindex': ariaRowIndex,
-                'aria-selected': this.selectable ? (rowSelected ? 'true' : 'false') : null,
-                role: this.isStacked ? 'row' : null
-              },
-              on: {
-                // TODO: only instatiate handlers if we have registered listeners
-                auxclick: evt => {
-                  if (evt.which === 2) {
-                    this.middleMouseRowClicked(evt, item, rowIndex)
-                  }
-                },
-                click: evt => {
-                  this.rowClicked(evt, item, rowIndex)
-                },
-                keydown: evt => {
-                  const keyCode = evt.keyCode
-                  if (keyCode === __WEBPACK_IMPORTED_MODULE_4__utils_key_codes__["a" /* default */].ENTER || keyCode === __WEBPACK_IMPORTED_MODULE_4__utils_key_codes__["a" /* default */].SPACE) {
-                    if (
-                      evt.target &&
-                      evt.target.tagName === 'TR' &&
-                      evt.target === document.activeElement
-                    ) {
-                      this.rowClicked(evt, item, rowIndex)
-                    }
-                  }
-                },
-                contextmenu: evt => {
-                  this.rowContextmenu(evt, item, rowIndex)
-                },
-                // Note: these events are not accessibility friendly
-                dblclick: evt => {
-                  this.rowDblClicked(evt, item, rowIndex)
-                },
-                mouseenter: evt => {
-                  this.rowHovered(evt, item, rowIndex)
-                },
-                mouseleave: evt => {
-                  this.rowUnhovered(evt, item, rowIndex)
-                }
-              }
-            },
-            tds
-          )
-        )
-        // Row Details slot
-        if (rowShowDetails) {
-          const tdAttrs = { colspan: String(fields.length) }
-          const trAttrs = { id: detailsId }
-          if (this.isStacked) {
-            tdAttrs['role'] = 'cell'
-            trAttrs['role'] = 'row'
-          }
-          const details = h('td', { attrs: tdAttrs }, [
-            detailsSlot({
-              item: item,
-              index: rowIndex,
-              fields: fields,
-              toggleDetails: toggleDetailsFn
-            })
-          ])
-          if (tableStriped) {
-            // Add a hidden row to keep table row striping consistent when details showing
-            rows.push(
-              h('tr', {
-                key: `__b-table-details-${rowIndex}-stripe__`,
-                staticClass: 'd-none',
-                attrs: { 'aria-hidden': 'true' }
-              })
-            )
-          }
-          rows.push(
-            h(
-              'tr',
-              {
-                key: `__b-table-details-${rowIndex}__`,
-                staticClass: 'b-table-details',
-                class: [
-                  typeof this.tbodyTrClass === 'function'
-                    ? this.tbodyTrClass(item, 'row-details')
-                    : this.tbodyTrClass
-                ],
-                attrs: trAttrs
-              },
-              [details]
-            )
-          )
-        } else if (detailsSlot) {
-          // Only add the placeholder if a the table has a row-details slot defined (but not shown)
-          rows.push(h(false))
-          if (tableStriped) {
-            // add extra placeholder if table is striped
-            rows.push(h(false))
-          }
-        }
-      })
-    }
-
-    // Empty Items / Empty Filtered Row slot
-    if (this.showEmpty && (!items || items.length === 0)) {
-      let empty = this.isFiltered ? $slots['emptyfiltered'] : $slots['empty']
-      if (!empty) {
-        empty = h('div', {
-          class: ['text-center', 'my-2'],
-          domProps: this.isFiltered
-            ? Object(__WEBPACK_IMPORTED_MODULE_8__utils_html__["a" /* htmlOrText */])(this.emptyFilteredHTML, this.emptyFilteredText)
-            : Object(__WEBPACK_IMPORTED_MODULE_8__utils_html__["a" /* htmlOrText */])(this.emptyHTML, this.emptyText)
-        })
-      }
-      empty = h(
-        'td',
-        {
-          attrs: {
-            colspan: String(fields.length),
-            role: this.isStacked ? 'cell' : null
-          }
-        },
-        [h('div', { attrs: { role: 'alert', 'aria-live': 'polite' } }, [empty])]
-      )
-      rows.push(
-        h(
-          'tr',
-          {
-            key: '__b-table-empty-row__',
-            staticClass: 'b-table-empty-row',
-            class: [
-              typeof this.tbodyTrClass === 'function'
-                ? this.tbodyTrClass(null, 'row-empty')
-                : this.tbodyTrClass
-            ],
-            attrs: this.isStacked ? { role: 'row' } : {}
-          },
-          [empty]
-        )
-      )
-    } else {
-      rows.push(h(false))
-    }
-
-    // Static bottom row slot (hidden in visibly stacked mode as we can't control the data-label)
-    // If in always stacked mode, we don't bother rendering the row
-    if ($scoped['bottom-row'] && this.isStacked !== true) {
-      rows.push(
-        h(
-          'tr',
-          {
-            key: '__b-table-bottom-row__',
-            staticClass: 'b-table-bottom-row',
-            class: [
-              typeof this.tbodyTrClass === 'function'
-                ? this.tbodyTrClass(null, 'row-bottom')
-                : this.tbodyTrClass
-            ]
-          },
-          [$scoped['bottom-row']({ columns: fields.length, fields: fields })]
-        )
-      )
-    } else {
-      rows.push(h(false))
-    }
-
-    // Is tbody transition enabled
-    const isTransGroup = this.tbodyTransitionProps || this.tbodyTransitionHandlers
-    let tbodyProps = {}
-    let tbodyOn = {}
-    if (isTransGroup) {
-      tbodyOn = this.tbodyTransitionHandlers || {}
-      tbodyProps = Object(__WEBPACK_IMPORTED_MODULE_6__utils_object__["a" /* assign */])(
-        {},
-        this.tbodyTransitionProps || {},
-        // Always use tbody element as tag. Users can't override this.
-        { tag: 'tbody' }
-      )
-    }
-
-    // Assemble the rows into the tbody
-    const tbody = h(
-      isTransGroup ? 'transition-group' : 'tbody',
-      {
-        props: tbodyProps,
-        on: tbodyOn,
-        class: this.bodyClasses,
-        attrs: this.isStacked ? { role: 'rowgroup' } : {}
-      },
-      rows
-    )
-
-    // Assemble table
-    const table = h(
-      'table',
-      {
-        key: 'b-table',
-        staticClass: 'table b-table',
-        class: this.tableClasses,
-        attrs: {
-          // We set aria-rowcount before merging in $attrs, in case user has supplied their own
-          'aria-rowcount':
-            this.filteredItems.length > items.length ? String(this.filteredItems.length) : null,
-          // Merge in user supplied $attrs if any
-          //...this.$attrs,
-	  //this.$attrs,
-          // Now we can override any $attrs here
-          id: this.safeId(),
-          role: this.isStacked ? 'table' : null,
-          'aria-multiselectable': this.selectable
-            ? this.selectMode === 'single'
-              ? 'false'
-              : 'true'
-            : null,
-          'aria-busy': this.computedBusy ? 'true' : 'false',
-          'aria-colcount': String(fields.length),
-          'aria-describedby':
-            [
-              // Preserve user supplied aria-describedby, if provided in $attrs
-              (this.$attrs || {})['aria-describedby'],
-              captionId
-            ]
-              .filter(a => a)
-              .join(' ') || null
-        }
-      },
-      [caption, colgroup, thead, tfoot, tbody]
-    )
-
-    // Add responsive wrapper if needed and return table
-    return this.isResponsive
-      ? h('div', { key: 'b-table-responsive', class: this.responsiveClass }, [table])
-      : table
+    this.setResizeEvent(false)
+    // Re-adjust body/navbar/fixed padding/margins (if needed)
+    Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["m" /* removeClass */])(document.body, 'modal-open')
+    this.resetAdjustments()
+    this.resetScrollbar()
   }
 });
 
@@ -7040,11 +3827,15 @@ const directives = {
   bModal: __WEBPACK_IMPORTED_MODULE_0__modal__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install(Vue) {
+const VuePlugin = {
+  install (Vue) {
     Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["b" /* registerDirectives */])(Vue, directives)
   }
-});
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
@@ -7058,662 +3849,26 @@ const directives = {
 
 
 
-const listenTypes = { click: true }
+const listenTypes = {click: true}
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   // eslint-disable-next-line no-shadow-restricted-names
-  bind(el, binding, vnode) {
-    Object(__WEBPACK_IMPORTED_MODULE_0__utils_target__["a" /* bindTargets */])(vnode, binding, listenTypes, ({ targets, vnode }) => {
+  bind (el, binding, vnode) {
+    Object(__WEBPACK_IMPORTED_MODULE_0__utils_target__["a" /* bindTargets */])(vnode, binding, listenTypes, ({targets, vnode}) => {
       targets.forEach(target => {
         vnode.context.$root.$emit('bv::show::modal', target, vnode.elm)
       })
     })
     if (el.tagName !== 'BUTTON') {
       // If element is not a button, we add `role="button"` for accessibility
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["s" /* setAttr */])(el, 'role', 'button')
+      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["p" /* setAttr */])(el, 'role', 'button')
     }
   },
-  unbind(el, binding, vnode) {
+  unbind (el, binding, vnode) {
     Object(__WEBPACK_IMPORTED_MODULE_0__utils_target__["c" /* unbindTargets */])(vnode, binding, listenTypes)
     if (el.tagName !== 'BUTTON') {
       // If element is not a button, we add `role="button"` for accessibility
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["o" /* removeAttr */])(el, 'role', 'button')
-    }
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/directives/toggle/index.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toggle__ = __webpack_require__("./node_modules/bootstrap-vue/src/directives/toggle/toggle.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
-
-
-
-const directives = {
-  bToggle: __WEBPACK_IMPORTED_MODULE_0__toggle__["a" /* default */]
-}
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install(Vue) {
-    Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["b" /* registerDirectives */])(Vue, directives)
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/directives/toggle/toggle.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_target__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/target.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
-
-
-
-// Are we client side?
-const inBrowser = typeof window !== 'undefined'
-
-// target listen types
-const listenTypes = { click: true }
-
-// Property key for handler storage
-const BVT = '__BV_toggle__'
-
-// Emitted Control Event for collapse (emitted to collapse)
-const EVENT_TOGGLE = 'bv::toggle::collapse'
-
-// Listen to Event for toggle state update (Emited by collapse)
-const EVENT_STATE = 'bv::collapse::state'
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  bind(el, binding, vnode) {
-    const targets = Object(__WEBPACK_IMPORTED_MODULE_0__utils_target__["b" /* default */])(vnode, binding, listenTypes, ({ targets, vnode }) => {
-      targets.forEach(target => {
-        vnode.context.$root.$emit(EVENT_TOGGLE, target)
-      })
-    })
-
-    if (inBrowser && vnode.context && targets.length > 0) {
-      // Add aria attributes to element
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["s" /* setAttr */])(el, 'aria-controls', targets.join(' '))
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["s" /* setAttr */])(el, 'aria-expanded', 'false')
-      if (el.tagName !== 'BUTTON') {
-        // If element is not a button, we add `role="button"` for accessibility
-        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["s" /* setAttr */])(el, 'role', 'button')
-      }
-
-      // Toggle state hadnler, stored on element
-      el[BVT] = function toggleDirectiveHandler(id, state) {
-        if (targets.indexOf(id) !== -1) {
-          // Set aria-expanded state
-          Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["s" /* setAttr */])(el, 'aria-expanded', state ? 'true' : 'false')
-          // Set/Clear 'collapsed' class state
-          if (state) {
-            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["p" /* removeClass */])(el, 'collapsed')
-          } else {
-            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["a" /* addClass */])(el, 'collapsed')
-          }
-        }
-      }
-
-      // Listen for toggle state changes
-      vnode.context.$root.$on(EVENT_STATE, el[BVT])
-    }
-  },
-  unbind(el, binding, vnode) {
-    if (el[BVT]) {
-      // Remove our $root listener
-      vnode.context.$root.$off(EVENT_STATE, el[BVT])
-      el[BVT] = null
-    }
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/mixins/click-out.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
-
-
-// @vue/component
-/* harmony default export */ __webpack_exports__["a"] = ({
-  data() {
-    return {
-      listenForClickOut: false
-    }
-  },
-  watch: {
-    listenForClickOut(newValue, oldValue) {
-      if (newValue !== oldValue) {
-        Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["d" /* eventOff */])(this.clickOutElement, this.clickOutEventName, this._clickOutHandler, false)
-        if (newValue) {
-          Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["e" /* eventOn */])(this.clickOutElement, this.clickOutEventName, this._clickOutHandler, false)
-        }
-      }
-    }
-  },
-  beforeCreate() {
-    // Declare non-reactive properties
-    this.clickOutElement = null
-    this.clickOutEventName = null
-  },
-  mounted() {
-    if (!this.clickOutElement) {
-      this.clickOutElement = document
-    }
-    if (!this.clickOutEventName) {
-      this.clickOutEventName = 'ontouchstart' in document.documentElement ? 'touchstart' : 'click'
-    }
-    if (this.listenForClickOut) {
-      Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["e" /* eventOn */])(this.clickOutElement, this.clickOutEventName, this._clickOutHandler, false)
-    }
-  },
-  beforeDestroy() {
-    Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["d" /* eventOff */])(this.clickOutElement, this.clickOutEventName, this._clickOutHandler, false)
-  },
-  methods: {
-    isClickOut(evt) {
-      return !Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["c" /* contains */])(this.$el, evt.target)
-    },
-    _clickOutHandler(evt) {
-      if (this.clickOutHandler && this.isClickOut(evt)) {
-        this.clickOutHandler(evt)
-      }
-    }
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/mixins/dropdown.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_popper_js__ = __webpack_require__("./node_modules/popper.js/dist/esm/popper.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__click_out__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/click-out.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__focus_in__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/focus-in.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_key_codes__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/key-codes.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_bv_event_class__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/bv-event.class.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_warn__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/warn.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
-
-
-
-
-
-
-
-
-
-// Return an Array of visible items
-function filterVisible(els) {
-  return (els || []).filter(__WEBPACK_IMPORTED_MODULE_7__utils_dom__["l" /* isVisible */])
-}
-
-// Dropdown item CSS selectors
-// TODO: .dropdown-form handling
-const Selector = {
-  FORM_CHILD: '.dropdown form',
-  NAVBAR_NAV: '.navbar-nav',
-  ITEM_SELECTOR: '.dropdown-item:not(.disabled):not([disabled])'
-}
-
-// Popper attachment positions
-const AttachmentMap = {
-  // Dropup left align
-  TOP: 'top-start',
-  // Dropup right align
-  TOPEND: 'top-end',
-  // Dropdown left align
-  BOTTOM: 'bottom-start',
-  // Dropdown right align
-  BOTTOMEND: 'bottom-end',
-  // Dropright left align
-  RIGHT: 'right-start',
-  // Dropright right align
-  RIGHTEND: 'right-end',
-  // Dropleft left align
-  LEFT: 'left-start',
-  // Dropleft right align
-  LEFTEND: 'left-end'
-}
-
-// @vue/component
-/* harmony default export */ __webpack_exports__["a"] = ({
-  mixins: [__WEBPACK_IMPORTED_MODULE_1__click_out__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2__focus_in__["a" /* default */]],
-  provide() {
-    return { dropdown: this }
-  },
-  props: {
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    text: {
-      // Button label
-      type: String,
-      default: ''
-    },
-    html: {
-      // Button label
-      type: String
-    },
-    dropup: {
-      // place on top if possible
-      type: Boolean,
-      default: false
-    },
-    dropright: {
-      // place right if possible
-      type: Boolean,
-      default: false
-    },
-    dropleft: {
-      // place left if possible
-      type: Boolean,
-      default: false
-    },
-    right: {
-      // Right align menu (default is left align)
-      type: Boolean,
-      default: false
-    },
-    offset: {
-      // Number of pixels to offset menu, or a CSS unit value (i.e. 1px, 1rem, etc)
-      type: [Number, String],
-      default: 0
-    },
-    noFlip: {
-      // Disable auto-flipping of menu from bottom<=>top
-      type: Boolean,
-      default: false
-    },
-    popperOpts: {
-      // type: Object,
-      default: () => {}
-    }
-  },
-  data() {
-    return {
-      visible: false,
-      inNavbar: null,
-      visibleChangePrevented: false
-    }
-  },
-  computed: {
-    toggler() {
-      const toggle = this.$refs.toggle
-      return toggle ? toggle.$el || toggle : null
-    }
-  },
-  watch: {
-    visible(newValue, oldValue) {
-      if (this.visibleChangePrevented) {
-        this.visibleChangePrevented = false
-        return
-      }
-
-      if (newValue !== oldValue) {
-        const evtName = newValue ? 'show' : 'hide'
-        let bvEvt = new __WEBPACK_IMPORTED_MODULE_5__utils_bv_event_class__["a" /* default */](evtName, {
-          cancelable: true,
-          vueTarget: this,
-          target: this.$refs.menu,
-          relatedTarget: null
-        })
-        this.emitEvent(bvEvt)
-        if (bvEvt.defaultPrevented) {
-          // Reset value and exit if canceled
-          this.visibleChangePrevented = true
-          this.visible = oldValue
-          // Just in case a child element triggerded this.hide(true)
-          this.$off('hidden', this.focusToggler)
-          return
-        }
-        if (evtName === 'show') {
-          this.showMenu()
-        } else {
-          this.hideMenu()
-        }
-      }
-    },
-    disabled(newValue, oldValue) {
-      if (newValue !== oldValue && newValue && this.visible) {
-        // Hide dropdown if disabled changes to true
-        this.visible = false
-      }
-    }
-  },
-  created() {
-    // Create non-reactive property
-    this._popper = null
-  },
-  deactivated() /* istanbul ignore next: not easy to test */ {
-    // In case we are inside a `<keep-alive>`
-    this.visible = false
-    this.whileOpenListen(false)
-    this.removePopper()
-  },
-  beforeDestroy() /* istanbul ignore next: not easy to test */ {
-    this.visible = false
-    this.whileOpenListen(false)
-    this.removePopper()
-  },
-  methods: {
-    // Event emitter
-    emitEvent(bvEvt) {
-      const type = bvEvt.type
-      this.$emit(type, bvEvt)
-      this.$root.$emit(`bv::dropdown::${type}`, bvEvt)
-    },
-    showMenu() {
-      if (this.disabled) {
-        return
-      }
-      // Ensure other menus are closed
-      this.$root.$emit('bv::dropdown::shown', this)
-
-      // Are we in a navbar ?
-      if (this.inNavbar === null && this.isNav) {
-        this.inNavbar = Boolean(Object(__WEBPACK_IMPORTED_MODULE_7__utils_dom__["b" /* closest */])('.navbar', this.$el))
-      }
-
-      // Disable totally Popper.js for Dropdown in Navbar
-      /* istanbul ignore next: cant test popper in JSDOM */
-      if (!this.inNavbar) {
-        if (typeof __WEBPACK_IMPORTED_MODULE_0_popper_js__["a" /* default */] === 'undefined') {
-          Object(__WEBPACK_IMPORTED_MODULE_6__utils_warn__["a" /* default */])('b-dropdown: Popper.js not found. Falling back to CSS positioning.')
-        } else {
-          // for dropup with alignment we use the parent element as popper container
-          let element = (this.dropup && this.right) || this.split ? this.$el : this.$refs.toggle
-          // Make sure we have a reference to an element, not a component!
-          element = element.$el || element
-          // Instantiate popper.js
-          this.createPopper(element)
-        }
-      }
-
-      this.whileOpenListen(true)
-
-      // Wrap in nextTick to ensure menu is fully rendered/shown
-      this.$nextTick(() => {
-        // Focus on the menu container on show
-        this.focusMenu()
-        // Emit the shown event
-        this.$emit('shown')
-      })
-    },
-    hideMenu() {
-      this.whileOpenListen(false)
-      this.$root.$emit('bv::dropdown::hidden', this)
-      this.$emit('hidden')
-      this.removePopper()
-    },
-    createPopper(element) /* istanbul ignore next: cant test popper in JSDOM */ {
-      this.removePopper()
-      this._popper = new __WEBPACK_IMPORTED_MODULE_0_popper_js__["a" /* default */](element, this.$refs.menu, this.getPopperConfig())
-    },
-    removePopper() /* istanbul ignore next: cant test popper in JSDOM */ {
-      if (this._popper) {
-        // Ensure popper event listeners are removed cleanly
-        this._popper.destroy()
-      }
-      this._popper = null
-    },
-    getPopperConfig() /* istanbul ignore next: can't test popper in JSDOM */ {
-      let placement = AttachmentMap.BOTTOM
-      if (this.dropup) {
-        placement = this.right ? AttachmentMap.TOPEND : AttachmentMap.TOP
-      } else if (this.dropright) {
-        placement = AttachmentMap.RIGHT
-      } else if (this.dropleft) {
-        placement = AttachmentMap.LEFT
-      } else if (this.right) {
-        placement = AttachmentMap.BOTTOMEND
-      }
-      let popperConfig = {
-        placement,
-        modifiers: {
-          offset: { offset: this.offset || 0 },
-          flip: { enabled: !this.noFlip }
-        }
-      }
-      if (this.boundary) {
-        popperConfig.modifiers.preventOverflow = { boundariesElement: this.boundary }
-      }
-      return Object(__WEBPACK_IMPORTED_MODULE_3__utils_object__["a" /* assign */])(popperConfig, this.popperOpts || {})
-    },
-    whileOpenListen(open) {
-      // turn listeners on/off while open
-      if (open) {
-        // If another dropdown is opened
-        this.$root.$on('bv::dropdown::shown', this.rootCloseListener)
-        // Hide the dropdown when clicked outside
-        this.listenForClickOut = true
-        // Hide the dropdown when it loses focus
-        this.listenForFocusIn = true
-      } else {
-        this.$root.$off('bv::dropdown::shown', this.rootCloseListener)
-        this.listenForClickOut = false
-        this.listenForFocusIn = false
-      }
-    },
-    rootCloseListener(vm) {
-      if (vm !== this) {
-        this.visible = false
-      }
-    },
-    show() {
-      // Public method to show dropdown
-      if (this.disabled) {
-        return
-      }
-      this.visible = true
-    },
-    hide(refocus = false) {
-      // Public method to hide dropdown
-      if (this.disabled) {
-        return
-      }
-      this.visible = false
-      if (refocus) {
-        // Child element is closing the dropdown on click
-        this.$once('hidden', this.focusToggler)
-      }
-    },
-    toggle(evt) {
-      // Called only by a button that toggles the menu
-      evt = evt || {}
-      const type = evt.type
-      const key = evt.keyCode
-      if (
-        type !== 'click' &&
-        !(
-          type === 'keydown' &&
-          (key === __WEBPACK_IMPORTED_MODULE_4__utils_key_codes__["a" /* default */].ENTER || key === __WEBPACK_IMPORTED_MODULE_4__utils_key_codes__["a" /* default */].SPACE || key === __WEBPACK_IMPORTED_MODULE_4__utils_key_codes__["a" /* default */].DOWN)
-        )
-      ) {
-        // We only toggle on Click, Enter, Space, and Arrow Down
-        return
-      }
-      if (this.disabled) {
-        this.visible = false
-        return
-      }
-      this.$emit('toggle', evt)
-      if (evt.defaultPrevented) {
-        // Exit if canceled
-        return
-      }
-      evt.preventDefault()
-      evt.stopPropagation()
-      // Toggle visibility
-      this.visible = !this.visible
-    },
-    click(evt) {
-      // Called only in split button mode, for the split button
-      if (this.disabled) {
-        this.visible = false
-        return
-      }
-      this.$emit('click', evt)
-    },
-    onKeydown(evt) /* istanbul ignore next: not easy to test */ {
-      // Called from dropdown menu context
-      const key = evt.keyCode
-      if (key === __WEBPACK_IMPORTED_MODULE_4__utils_key_codes__["a" /* default */].ESC) {
-        // Close on ESC
-        this.onEsc(evt)
-      } else if (key === __WEBPACK_IMPORTED_MODULE_4__utils_key_codes__["a" /* default */].TAB) {
-        // Close on tab out
-        this.onTab(evt)
-      } else if (key === __WEBPACK_IMPORTED_MODULE_4__utils_key_codes__["a" /* default */].DOWN) {
-        // Down Arrow
-        this.focusNext(evt, false)
-      } else if (key === __WEBPACK_IMPORTED_MODULE_4__utils_key_codes__["a" /* default */].UP) {
-        // Up Arrow
-        this.focusNext(evt, true)
-      }
-    },
-    onEsc(evt) /* istanbul ignore next: not easy to test */ {
-      if (this.visible) {
-        this.visible = false
-        evt.preventDefault()
-        evt.stopPropagation()
-        // Return focus to original trigger button
-        this.$once('hidden', this.focusToggler)
-      }
-    },
-    onTab(evt) /* istanbul ignore next: not easy to test */ {
-      // TODO: Need special handler for dealing with form inputs
-      // Tab, if in a text-like input, we should just focus next item in the dropdown
-      // Note: Inputs are in a special .dropdown-form container
-    },
-    onMouseOver(evt) /* istanbul ignore next: not easy to test */ {
-      // Removed mouseover focus handler
-    },
-    // Document click out listener
-    clickOutHandler() {
-      if (this.visible) {
-        this.visible = false
-      }
-    },
-    // Document focusin listener
-    focusInHandler(evt) {
-      // If focus leaves dropdown, hide it
-      if (
-        this.visible &&
-        !Object(__WEBPACK_IMPORTED_MODULE_7__utils_dom__["c" /* contains */])(this.$refs.menu, evt.target) &&
-        !Object(__WEBPACK_IMPORTED_MODULE_7__utils_dom__["c" /* contains */])(this.$refs.toggle, evt.target)
-      ) {
-        this.visible = false
-      }
-    },
-    // Keyboard nav
-    focusNext(evt, up) {
-      if (!this.visible) {
-        return
-      }
-      evt.preventDefault()
-      evt.stopPropagation()
-      this.$nextTick(() => {
-        const items = this.getItems()
-        if (items.length < 1) {
-          return
-        }
-        let index = items.indexOf(evt.target)
-        if (up && index > 0) {
-          index--
-        } else if (!up && index < items.length - 1) {
-          index++
-        }
-        if (index < 0) {
-          index = 0
-        }
-        this.focusItem(index, items)
-      })
-    },
-    focusItem(idx, items) {
-      let el = items.find((el, i) => i === idx)
-      if (el && Object(__WEBPACK_IMPORTED_MODULE_7__utils_dom__["f" /* getAttr */])(el, 'tabindex') !== '-1') {
-        el.focus()
-      }
-    },
-    getItems() {
-      // Get all items
-      return filterVisible(Object(__WEBPACK_IMPORTED_MODULE_7__utils_dom__["r" /* selectAll */])(Selector.ITEM_SELECTOR, this.$refs.menu))
-    },
-    focusMenu() {
-      this.$refs.menu.focus && this.$refs.menu.focus()
-    },
-    focusToggler() {
-      let toggler = this.toggler
-      if (toggler && toggler.focus) {
-        toggler.focus()
-      }
-    }
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/mixins/focus-in.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
-
-
-// @vue/component
-/* harmony default export */ __webpack_exports__["a"] = ({
-  data() {
-    return {
-      listenForFocusIn: false
-    }
-  },
-  watch: {
-    listenForFocusIn(newValue, oldValue) {
-      if (newValue !== oldValue) {
-        Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["d" /* eventOff */])(this.focusInElement, 'focusin', this._focusInHandler, false)
-        if (newValue) {
-          Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["e" /* eventOn */])(this.focusInElement, 'focusin', this._focusInHandler, false)
-        }
-      }
-    }
-  },
-  beforeCreate() {
-    // Declare non-reactive properties
-    this.focusInElement = null
-  },
-  mounted() {
-    if (!this.focusInElement) {
-      this.focusInElement = document
-    }
-    if (this.listenForFocusIn) {
-      Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["e" /* eventOn */])(this.focusInElement, 'focusin', this._focusInHandler, false)
-    }
-  },
-  beforeDestroy() {
-    Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["d" /* eventOff */])(this.focusInElement, 'focusin', this._focusInHandler, false)
-  },
-  methods: {
-    _focusInHandler(evt) {
-      if (this.focusInHandler) {
-        this.focusInHandler(evt)
-      }
+      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["l" /* removeAttr */])(el, 'role', 'button')
     }
   }
 });
@@ -7727,11 +3882,9 @@ const AttachmentMap = {
 "use strict";
 /*
  * SSR Safe Client Side ID attribute generation
- * id's can only be generated client side, after mount.
- * this._uid is not synched between server and client.
+ *
  */
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
   props: {
     id: {
@@ -7739,36 +3892,22 @@ const AttachmentMap = {
       default: null
     }
   },
-  data() {
-    return {
-      localId_: null
+  methods: {
+    safeId (suffix = '') {
+      const id = this.id || this.localId_ || null
+      if (!id) {
+        return null
+      }
+      suffix = String(suffix).replace(/\s+/g, '_')
+      return suffix ? id + '_' + suffix : id
     }
   },
   computed: {
-    safeId() {
-      // Computed property that returns a dynamic function for creating the ID.
-      // Reacts to changes in both .id and .localId_ And regens a new function
-      const id = this.id || this.localId_
-
-      // We return a function that accepts an optional suffix string
-      // So this computed prop looks and works like a method!!!
-      const fn = suffix => {
-        if (!id) {
-          return null
-        }
-        suffix = String(suffix || '').replace(/\s+/g, '_')
-        return suffix ? id + '_' + suffix : id
+    localId_ () {
+      if (!this.$isServer && !this.id && typeof this._uid !== 'undefined') {
+        return '__BVID__' + this._uid
       }
-      return fn
     }
-  },
-  mounted() {
-    // mounted only occurs client side
-    this.$nextTick(() => {
-      // Update dom with auto ID after dom loaded to prevent
-      // SSR hydration errors.
-      this.localId_ = `__BVID__${this._uid}`
-    })
   }
 });
 
@@ -7788,34 +3927,24 @@ const AttachmentMap = {
 
 const BVRL = '__BV_root_listeners__'
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  beforeDestroy() {
-    if (this[BVRL] && Object(__WEBPACK_IMPORTED_MODULE_0__utils_array__["d" /* isArray */])(this[BVRL])) {
-      while (this[BVRL].length > 0) {
-        // shift to process in order
-        const { event, callback } = this[BVRL].shift()
-        this.$root.$off(event, callback)
-      }
-    }
-  },
   methods: {
     /**
-     * Safely register event listeners on the root Vue node.
-     * While Vue automatically removes listeners for individual components,
-     * when a component registers a listener on root and is destroyed,
-     * this orphans a callback because the node is gone,
-     * but the root does not clear the callback.
-     *
-     * This adds a non-reactive prop to a vm on the fly
-     * in order to avoid object observation and its performance costs
-     * to something that needs no reactivity.
-     * It should be highly unlikely there are any naming collisions.
-     * @param {string} event
-     * @param {function} callback
-     * @chainable
-     */
-    listenOnRoot(event, callback) {
+         * Safely register event listeners on the root Vue node.
+         * While Vue automatically removes listeners for individual components,
+         * when a component registers a listener on root and is destroyed,
+         * this orphans a callback because the node is gone,
+         * but the root does not clear the callback.
+         *
+         * This adds a non-reactive prop to a vm on the fly
+         * in order to avoid object observation and its performance costs
+         * to something that needs no reactivity.
+         * It should be highly unlikely there are any naming collisions.
+         * @param {string} event
+         * @param {function} callback
+         * @chainable
+         */
+    listenOnRoot (event, callback) {
       if (!this[BVRL] || !Object(__WEBPACK_IMPORTED_MODULE_0__utils_array__["d" /* isArray */])(this[BVRL])) {
         this[BVRL] = []
       }
@@ -7825,14 +3954,24 @@ const BVRL = '__BV_root_listeners__'
     },
 
     /**
-     * Convenience method for calling vm.$emit on vm.$root.
-     * @param {string} event
-     * @param {*} args
-     * @chainable
-     */
-    emitOnRoot(event, ...args) {
+         * Convenience method for calling vm.$emit on vm.$root.
+         * @param {string} event
+         * @param {*} args
+         * @chainable
+         */
+    emitOnRoot (event, ...args) {
       this.$root.$emit(event, ...args)
       return this
+    }
+  },
+
+  beforeDestroy () {
+    if (this[BVRL] && Object(__WEBPACK_IMPORTED_MODULE_0__utils_array__["d" /* isArray */])(this[BVRL])) {
+      while (this[BVRL].length > 0) {
+        // shift to process in order
+        const { event, callback } = this[BVRL].shift()
+        this.$root.$off(event, callback)
+      }
     }
   }
 });
@@ -7847,9 +3986,8 @@ const BVRL = '__BV_root_listeners__'
 /* harmony export (immutable) */ __webpack_exports__["b"] = concat;
 // Production steps of ECMA-262, Edition 6, 22.1.2.1
 // es6-ified by @alexsasharegan
-/* istanbul ignore if */
 if (!Array.from) {
-  Array.from = (function() {
+  Array.from = (function () {
     const toStr = Object.prototype.toString
     const isCallable = fn => typeof fn === 'function' || toStr.call(fn) === '[object Function]'
     const toInteger = value => {
@@ -7866,7 +4004,7 @@ if (!Array.from) {
     const toLength = value => Math.min(Math.max(toInteger(value), 0), maxSafeInteger)
 
     // The length property of the from method is 1.
-    return function from(arrayLike /*, mapFn, thisArg */) {
+    return function from (arrayLike /*, mapFn, thisArg */) {
       // 1. Let C be the this value.
       const C = this
 
@@ -7928,11 +4066,10 @@ if (!Array.from) {
 
 // https://tc39.github.io/ecma262/#sec-array.prototype.find
 // Needed for IE support
-/* istanbul ignore if */
 if (!Array.prototype.find) {
   // eslint-disable-next-line no-extend-native
   Object.defineProperty(Array.prototype, 'find', {
-    value: function(predicate) {
+    value: function (predicate) {
       // 1. Let O be ? ToObject(this value).
       if (this == null) {
         throw new TypeError('"this" is null or not defined')
@@ -7974,7 +4111,6 @@ if (!Array.prototype.find) {
   })
 }
 
-/* istanbul ignore if */
 if (!Array.isArray) {
   Array.isArray = arg => Object.prototype.toString.call(arg) === '[object Array]'
 }
@@ -7991,7 +4127,10 @@ const isArray = Array.isArray
 const arrayIncludes = (array, value) => array.indexOf(value) !== -1
 /* harmony export (immutable) */ __webpack_exports__["a"] = arrayIncludes;
 
-function concat() {
+const arrayFind = (array, fn, thisArg) => array.find(fn, thisArg)
+/* unused harmony export arrayFind */
+
+function concat () {
   return Array.prototype.concat.apply([], arguments)
 }
 
@@ -8006,13 +4145,11 @@ function concat() {
 
 
 class BvEvent {
-  constructor(type, eventInit = {}) {
+  constructor (type, eventInit = {}) {
     // Start by emulating native Event constructor.
     if (!type) {
       throw new TypeError(
-        `Failed to construct '${this.constructor.name}'. 1 argument required, ${
-          arguments.length
-        } given.`
+        `Failed to construct '${this.constructor.name}'. 1 argument required, ${arguments.length} given.`
       )
     }
     // Assign defaults first, the eventInit,
@@ -8030,7 +4167,7 @@ class BvEvent {
     // Create a private variable using closure scoping.
     let defaultPrevented = false
     // Recreate preventDefault method. One way setter.
-    this.preventDefault = function preventDefault() {
+    this.preventDefault = function preventDefault () {
       if (this.cancelable) {
         defaultPrevented = true
       }
@@ -8039,13 +4176,13 @@ class BvEvent {
     // that can only be altered by the preventDefault method.
     Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["d" /* defineProperty */])(this, 'defaultPrevented', {
       enumerable: true,
-      get() {
+      get () {
         return defaultPrevented
       }
     })
   }
 
-  static defaults() {
+  static defaults () {
     return {
       type: '',
       cancelable: true,
@@ -8067,89 +4204,31 @@ class BvEvent {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__env__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/env.js");
-
-
-
-// Determine if the browser supports the option passive for events
-let passiveEventSupported = false
-/* istanbul ignore if */
-if (__WEBPACK_IMPORTED_MODULE_1__env__["a" /* inBrowser */]) {
-  try {
-    var options = {
-      get passive() {
-        // This function will be called when the browser
-        // attempts to access the passive property.
-        passiveEventSupported = true
-      }
-    }
-    window.addEventListener('test', options, options)
-    window.removeEventListener('test', options, options)
-  } catch (err) {
-    passiveEventSupported = false
-  }
-}
-
-// Normalize event options based on support of passive option
-function parseEventOptions(options) {
-  let useCapture = false
-  if (options) {
-    if (typeof options === 'object') {
-      // eslint-disable-next-line no-unneeded-ternary
-      useCapture = options.useCapture ? true : false
-    } else {
-      useCapture = options
-    }
-  }
-  return passiveEventSupported ? options : useCapture
-}
-
-// Attach an event listener to an element
-const eventOn = (el, evtName, handler, options) => {
-  if (el && el.addEventListener) {
-    el.addEventListener(evtName, handler, parseEventOptions(options))
-  }
-}
-/* harmony export (immutable) */ __webpack_exports__["e"] = eventOn;
-
-
-// Remove an event listener from an element
-const eventOff = (el, evtName, handler, options) => {
-  if (el && el.removeEventListener) {
-    el.removeEventListener(evtName, handler, parseEventOptions(options))
-  }
-}
-/* harmony export (immutable) */ __webpack_exports__["d"] = eventOff;
 
 
 // Determine if an element is an HTML Element
 const isElement = el => {
   return el && el.nodeType === Node.ELEMENT_NODE
 }
-/* harmony export (immutable) */ __webpack_exports__["k"] = isElement;
+/* harmony export (immutable) */ __webpack_exports__["i"] = isElement;
 
 
 // Determine if an HTML element is visible - Faster than CSS check
 const isVisible = el => {
-  /* istanbul ignore next: getBoundingClientRect not avaiable in JSDOM */
-  return (
-    isElement(el) &&
-    document.body.contains(el) &&
-    el.getBoundingClientRect().height > 0 &&
-    el.getBoundingClientRect().width > 0
-  )
+  return isElement(el) &&
+           document.body.contains(el) &&
+           el.getBoundingClientRect().height > 0 &&
+           el.getBoundingClientRect().width > 0
 }
-/* harmony export (immutable) */ __webpack_exports__["l"] = isVisible;
+/* harmony export (immutable) */ __webpack_exports__["j"] = isVisible;
 
 
 // Determine if an element is disabled
 const isDisabled = el => {
-  return (
-    !isElement(el) ||
-    el.disabled ||
-    el.classList.contains('disabled') ||
-    Boolean(el.getAttribute('disabled'))
-  )
+  return !isElement(el) ||
+           el.disabled ||
+           el.classList.contains('disabled') ||
+           Boolean(el.getAttribute('disabled'))
 }
 /* unused harmony export isDisabled */
 
@@ -8157,10 +4236,9 @@ const isDisabled = el => {
 // Cause/wait-for an element to reflow it's content (adjusting it's height/width)
 const reflow = el => {
   // requsting an elements offsetHight will trigger a reflow of the element content
-  /* istanbul ignore next: reflow doesnt happen in JSDOM */
   return isElement(el) && el.offsetHeight
 }
-/* harmony export (immutable) */ __webpack_exports__["n"] = reflow;
+/* harmony export (immutable) */ __webpack_exports__["k"] = reflow;
 
 
 // Select all elements matching selector. Returns [] if none found
@@ -8170,7 +4248,7 @@ const selectAll = (selector, root) => {
   }
   return Object(__WEBPACK_IMPORTED_MODULE_0__array__["c" /* from */])(root.querySelectorAll(selector))
 }
-/* harmony export (immutable) */ __webpack_exports__["r"] = selectAll;
+/* harmony export (immutable) */ __webpack_exports__["o"] = selectAll;
 
 
 // Select a single element, returns null if not found
@@ -8180,7 +4258,7 @@ const select = (selector, root) => {
   }
   return root.querySelector(selector) || null
 }
-/* harmony export (immutable) */ __webpack_exports__["q"] = select;
+/* harmony export (immutable) */ __webpack_exports__["n"] = select;
 
 
 // Determine if an element matches a selector
@@ -8192,26 +4270,25 @@ const matches = (el, selector) => {
   // https://developer.mozilla.org/en-US/docs/Web/API/Element/matches#Polyfill
   // Prefer native implementations over polyfill function
   const proto = Element.prototype
-  /* istanbul ignore next */
-  const Matches =
-    proto.matches ||
-    proto.matchesSelector ||
-    proto.mozMatchesSelector ||
-    proto.msMatchesSelector ||
-    proto.oMatchesSelector ||
-    proto.webkitMatchesSelector ||
-    function(sel) /* istanbul ignore next */ {
-      const element = this
-      const m = selectAll(sel, element.document || element.ownerDocument)
-      let i = m.length
-      // eslint-disable-next-line no-empty
-      while (--i >= 0 && m.item(i) !== element) {}
-      return i > -1
-    }
+  const Matches = proto.matches ||
+        proto.matchesSelector ||
+        proto.mozMatchesSelector ||
+        proto.msMatchesSelector ||
+        proto.oMatchesSelector ||
+        proto.webkitMatchesSelector ||
+        /* istanbul ignore next */
+        function (sel) {
+          const element = this
+          const m = selectAll(sel, element.document || element.ownerDocument)
+          let i = m.length
+          // eslint-disable-next-line no-empty
+          while (--i >= 0 && m.item(i) !== element) {}
+          return i > -1
+        }
 
   return Matches.call(el, selector)
 }
-/* harmony export (immutable) */ __webpack_exports__["m"] = matches;
+/* unused harmony export matches */
 
 
 // Finds closest element matching selector. Returns null if not found
@@ -8223,39 +4300,28 @@ const closest = (selector, root) => {
   // https://developer.mozilla.org/en-US/docs/Web/API/Element/closest
   // Since we dont support IE < 10, we can use the "Matches" version of the polyfill for speed
   // Prefer native implementation over polyfill function
-  /* istanbul ignore next */
-  const Closest =
-    Element.prototype.closest ||
-    function(sel) {
-      let element = this
-      if (!document.documentElement.contains(element)) {
-        return null
-      }
-      do {
-        // Use our "patched" matches function
-        if (matches(element, sel)) {
-          return element
-        }
-        element = element.parentElement
-      } while (element !== null)
-      return null
-    }
+  const Closest = Element.prototype.closest ||
+                  /* istanbul ignore next */
+                  function (sel) {
+                    let element = this
+                    if (!document.documentElement.contains(element)) {
+                      return null
+                    }
+                    do {
+                      // Use our "patched" matches function
+                      if (matches(element, sel)) {
+                        return element
+                      }
+                      element = element.parentElement
+                    } while (element !== null)
+                    return null
+                  }
 
   const el = Closest.call(root, selector)
   // Emulate jQuery closest and return null if match is the passed in element (root)
   return el === root ? null : el
 }
 /* harmony export (immutable) */ __webpack_exports__["b"] = closest;
-
-
-// Returns true if the parent element contains the child element
-const contains = (parent, child) => {
-  if (!parent || typeof parent.contains !== 'function') {
-    return false
-  }
-  return parent.contains(child)
-}
-/* harmony export (immutable) */ __webpack_exports__["c"] = contains;
 
 
 // Get an element given an ID
@@ -8280,7 +4346,7 @@ const removeClass = (el, className) => {
     el.classList.remove(className)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["p"] = removeClass;
+/* harmony export (immutable) */ __webpack_exports__["m"] = removeClass;
 
 
 // Test if an element has a class
@@ -8290,7 +4356,7 @@ const hasClass = (el, className) => {
   }
   return false
 }
-/* harmony export (immutable) */ __webpack_exports__["j"] = hasClass;
+/* harmony export (immutable) */ __webpack_exports__["h"] = hasClass;
 
 
 // Set an attribute on an element
@@ -8299,7 +4365,7 @@ const setAttr = (el, attr, value) => {
     el.setAttribute(attr, value)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["s"] = setAttr;
+/* harmony export (immutable) */ __webpack_exports__["p"] = setAttr;
 
 
 // Remove an attribute from an element
@@ -8308,7 +4374,7 @@ const removeAttr = (el, attr) => {
     el.removeAttribute(attr)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["o"] = removeAttr;
+/* harmony export (immutable) */ __webpack_exports__["l"] = removeAttr;
 
 
 // Get an attribute value from an element (returns null if not found)
@@ -8318,7 +4384,7 @@ const getAttr = (el, attr) => {
   }
   return null
 }
-/* harmony export (immutable) */ __webpack_exports__["f"] = getAttr;
+/* harmony export (immutable) */ __webpack_exports__["e"] = getAttr;
 
 
 // Determine if an attribute exists on an element (returns true or false, or null if element not found)
@@ -8328,28 +4394,25 @@ const hasAttr = (el, attr) => {
   }
   return null
 }
-/* harmony export (immutable) */ __webpack_exports__["i"] = hasAttr;
+/* harmony export (immutable) */ __webpack_exports__["g"] = hasAttr;
 
 
 // Return the Bounding Client Rec of an element. Retruns null if not an element
-/* istanbul ignore next: getBoundingClientRect() doesnt work in JSDOM */
 const getBCR = el => {
   return isElement(el) ? el.getBoundingClientRect() : null
 }
-/* harmony export (immutable) */ __webpack_exports__["g"] = getBCR;
+/* harmony export (immutable) */ __webpack_exports__["f"] = getBCR;
 
 
 // Get computed style object for an element
-/* istanbul ignore next: getComputedStyle() doesnt work in JSDOM */
 const getCS = el => {
   return isElement(el) ? window.getComputedStyle(el) : {}
 }
-/* harmony export (immutable) */ __webpack_exports__["h"] = getCS;
+/* unused harmony export getCS */
 
 
 // Return an element's offset wrt document element
 // https://j11y.io/jquery/#v=git&fn=jQuery.fn.offset
-/* istanbul ignore next: getBoundingClientRect(), getClientRects() doesnt work in JSDOM */
 const offset = el => {
   if (isElement(el)) {
     if (!el.getClientRects().length) {
@@ -8368,7 +4431,6 @@ const offset = el => {
 
 // Return an element's offset wrt to it's offsetParent
 // https://j11y.io/jquery/#v=git&fn=jQuery.fn.position
-/* istanbul ignore next: getBoundingClientRect(), getClientRects() doesnt work in JSDOM */
 const position = el => {
   if (!isElement(el)) {
     return
@@ -8382,11 +4444,9 @@ const position = el => {
     offsetSelf = offset(el)
     const doc = el.ownerDocument
     offsetParent = el.offsetParent || doc.documentElement
-    while (
-      offsetParent &&
-      (offsetParent === doc.body || offsetParent === doc.documentElement) &&
-      getCS(offsetParent).position === 'static'
-    ) {
+    while (offsetParent &&
+                (offsetParent === doc.body || offsetParent === doc.documentElement) &&
+                getCS(offsetParent).position === 'static') {
       offsetParent = offsetParent.parentNode
     }
     if (offsetParent && offsetParent !== el && offsetParent.nodeType === Node.ELEMENT_NODE) {
@@ -8403,85 +4463,23 @@ const position = el => {
 /* unused harmony export position */
 
 
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/utils/env.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-// Info about the current environment
-
-const inBrowser = typeof document !== 'undefined' && typeof window !== 'undefined'
-/* harmony export (immutable) */ __webpack_exports__["a"] = inBrowser;
-
-
-const isServer = !inBrowser
-/* unused harmony export isServer */
-
-
-const hasTouchSupport =
-  inBrowser && ('ontouchstart' in document.documentElement || navigator.maxTouchPoints > 0)
-/* unused harmony export hasTouchSupport */
-
-
-const hasPointerEvent = inBrowser && Boolean(window.PointerEvent || window.MSPointerEvent)
-/* unused harmony export hasPointerEvent */
-
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/utils/get.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = get;
-/**
- * Get property defined by dot notation in string.
- *
- * Copyright (C) 2014 (UNLICENSE)
- * @author Dmitry Yv <https://github.com/dy>
- *
- * @param  {Object} holder   Target object where to look property up
- * @param  {string} propName Dot notation, like 'this.a.b.c'
- * @return {*}          A property value
- */
-function get(holder, propName) {
-  if (propName === undefined) {
-    return holder
+// Attach an event listener to an element
+const eventOn = (el, evtName, handler) => {
+  if (el && el.addEventListener) {
+    el.addEventListener(evtName, handler)
   }
+}
+/* harmony export (immutable) */ __webpack_exports__["d"] = eventOn;
 
-  const propParts = (propName + '').split('.')
-  let result = holder
-  let lastPropName
 
-  while ((lastPropName = propParts.shift()) !== undefined) {
-    if (result[lastPropName] === undefined) return undefined
-    result = result[lastPropName]
+// Remove an event listener from an element
+const eventOff = (el, evtName, handler) => {
+  if (el && el.removeEventListener) {
+    el.removeEventListener(evtName, handler)
   }
-
-  return result
 }
+/* harmony export (immutable) */ __webpack_exports__["c"] = eventOff;
 
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/utils/html.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["b"] = stripTags;
-/* harmony export (immutable) */ __webpack_exports__["a"] = htmlOrText;
-const stripTagsRegex = /(<([^>]+)>)/gi
-
-function stripTags(text = '') {
-  return text.replace(stripTagsRegex, '')
-}
-
-function htmlOrText(innerHTML, textContent) {
-  return innerHTML ? { innerHTML } : { textContent }
-}
 
 
 /***/ }),
@@ -8491,7 +4489,7 @@ function htmlOrText(innerHTML, textContent) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = identity;
-function identity(x) {
+function identity (x) {
   return x
 }
 
@@ -8517,87 +4515,8 @@ function identity(x) {
   PAGEUP: 33,
   PAGEDOWN: 34,
   HOME: 36,
-  END: 35,
-  TAB: 9,
-  SHIFT: 16,
-  CTRL: 17,
-  BACKSPACE: 8,
-  ALT: 18,
-  PAUSE: 19,
-  BREAK: 19,
-  INSERT: 45,
-  INS: 45,
-  DELETE: 46
+  END: 35
 });
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/utils/loose-equal.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
-
-
-
-/**
- * Quick object check - this is primarily used to tell
- * Objects from primitive values when we know the value
- * is a JSON-compliant type.
- */
-function isObject(obj) {
-  return obj !== null && typeof obj === 'object'
-}
-
-/**
- * Check if two values are loosely equal - that is,
- * if they are plain objects, do they have the same shape?
- * Returns boolean true or false
- */
-function looseEqual(a, b) {
-  if (a === b) return true
-  const isObjectA = isObject(a)
-  const isObjectB = isObject(b)
-  if (isObjectA && isObjectB) {
-    try {
-      const isArrayA = Object(__WEBPACK_IMPORTED_MODULE_0__array__["d" /* isArray */])(a)
-      const isArrayB = Object(__WEBPACK_IMPORTED_MODULE_0__array__["d" /* isArray */])(b)
-      if (isArrayA && isArrayB) {
-        return (
-          a.length === b.length &&
-          a.every((e, i) => {
-            return looseEqual(e, b[i])
-          })
-        )
-      } else if (a instanceof Date && b instanceof Date) {
-        return a.getTime() === b.getTime()
-      } else if (!isArrayA && !isArrayB) {
-        const keysA = Object(__WEBPACK_IMPORTED_MODULE_1__object__["e" /* keys */])(a)
-        const keysB = Object(__WEBPACK_IMPORTED_MODULE_1__object__["e" /* keys */])(b)
-        return (
-          keysA.length === keysB.length &&
-          keysA.every(key => {
-            return looseEqual(a[key], b[key])
-          })
-        )
-      } else {
-        /* istanbul ignore next */
-        return false
-      }
-    } catch (e) {
-      /* istanbul ignore next */
-      return false
-    }
-  } else if (!isObjectA && !isObjectB) {
-    return String(a) === String(b)
-  } else {
-    return false
-  }
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (looseEqual);
 
 
 /***/ }),
@@ -8610,10 +4529,10 @@ function looseEqual(a, b) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
 
 
-function memoize(fn) {
+function memoize (fn) {
   const cache = Object(__WEBPACK_IMPORTED_MODULE_0__object__["b" /* create */])(null)
 
-  return function memoizedFn() {
+  return function memoizedFn () {
     const args = JSON.stringify(arguments)
     return (cache[args] = cache[args] || fn.apply(null, arguments))
   }
@@ -8636,9 +4555,8 @@ function memoize(fn) {
  */
 
 // @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
-/* istanbul ignore if */
 if (typeof Object.assign !== 'function') {
-  Object.assign = function(target, varArgs) {
+  Object.assign = function (target, varArgs) {
     // .length of function is 2
 
     if (target == null) {
@@ -8666,12 +4584,10 @@ if (typeof Object.assign !== 'function') {
 }
 
 // @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Polyfill
-/* istanbul ignore if */
 if (!Object.is) {
-  Object.is = function(x, y) {
+  Object.is = function (x, y) {
     // SameValue algorithm
-    if (x === y) {
-      // Steps 1-5, 7-10
+    if (x === y) { // Steps 1-5, 7-10
       // Steps 6.b-6.e: +0 != -0
       return x !== 0 || 1 / x === 1 / y
     } else {
@@ -8719,7 +4635,7 @@ const is = Object.is
 /* unused harmony export is */
 
 
-function readonlyDescriptor() {
+function readonlyDescriptor () {
   return { enumerable: true, configurable: false, writable: false }
 }
 
@@ -8732,23 +4648,9 @@ function readonlyDescriptor() {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = observeDOM;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
 
 
-
-// Falback observation for legacy broswers
-// Emulate observer disconnect() method so that we can detach the events later
-
-function fakeObserverFactory(el, callback) /* istanbul ignore next: hard to test in JSDOM */ {
-  Object(__WEBPACK_IMPORTED_MODULE_1__dom__["e" /* eventOn */])(el, 'DOMNodeInserted', callback, false)
-  Object(__WEBPACK_IMPORTED_MODULE_1__dom__["e" /* eventOn */])(el, 'DOMNodeRemoved', callback, false)
-  return {
-    disconnect: function() {
-      Object(__WEBPACK_IMPORTED_MODULE_1__dom__["d" /* eventOff */])(el, 'DOMNodeInserted', callback, false)
-      Object(__WEBPACK_IMPORTED_MODULE_1__dom__["d" /* eventOff */])(el, 'DOMNodeRemoved', callback, false)
-    }
-  }
-}
 
 /**
  * Observe a DOM element changes, falls back to eventListener mode
@@ -8757,25 +4659,21 @@ function fakeObserverFactory(el, callback) /* istanbul ignore next: hard to test
  * @param {object} [opts={childList: true, subtree: true}] observe options
  * @see http://stackoverflow.com/questions/3219758
  */
-function observeDOM(
-  el,
-  callback,
-  opts
-) /* istanbul ignore next: difficult to test in JSDOM */ {
-  const MutationObserver =
-    window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver
+function observeDOM (el, callback, opts) {
+  const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver
   const eventListenerSupported = window.addEventListener
 
   // Handle case where we might be passed a vue instance
-  el = el ? el.$el || el : null
+  el = el ? (el.$el || el) : null
   /* istanbul ignore next: dificult to test in JSDOM */
-  if (!Object(__WEBPACK_IMPORTED_MODULE_1__dom__["k" /* isElement */])(el)) {
+  if (!Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["i" /* isElement */])(el)) {
     // We can't observe somthing that isn't an element
     return null
   }
 
   let obs = null
 
+  /* istanbul ignore next: dificult to test in JSDOM */
   if (MutationObserver) {
     // Define a new observer
     obs = new MutationObserver(mutations => {
@@ -8790,14 +4688,11 @@ function observeDOM(
         // DOM Node (could be any DOM Node type - HTMLElement, Text, comment, etc)
         const target = mutation.target
         if (type === 'characterData' && target.nodeType === Node.TEXT_NODE) {
-          // We ignore nodes that are not TEXT (i.e. comments, etc) as they don't change layout
+          // We ignore nodes that are not TEXt (i.e. comments, etc) as they don't change layout
           changed = true
         } else if (type === 'attributes') {
           changed = true
-        } else if (
-          type === 'childList' &&
-          (mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0)
-        ) {
+        } else if (type === 'childList' && (mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0)) {
           // This includes HTMLElement and Text Nodes being added/removed/re-arranged
           changed = true
         }
@@ -8809,10 +4704,11 @@ function observeDOM(
     })
 
     // Have the observer observe foo for changes in children, etc
-    obs.observe(el, Object(__WEBPACK_IMPORTED_MODULE_0__object__["a" /* assign */])({ childList: true, subtree: true }, opts))
+    obs.observe(el, Object(__WEBPACK_IMPORTED_MODULE_0__object__["a" /* assign */])({childList: true, subtree: true}, opts))
   } else if (eventListenerSupported) {
     // Legacy interface. most likely not used in modern browsers
-    obs = fakeObserverFactory(el, callback)
+    el.addEventListener('DOMNodeInserted', callback, false)
+    el.addEventListener('DOMNodeRemoved', callback, false)
   }
 
   // We return a reference to the observer so that obs.disconnect() can be called if necessary
@@ -8843,7 +4739,7 @@ function observeDOM(
  * @param {Function} transformFn
  * @return {{}}
  */
-function pluckProps(keysToPluck, objToPluck, transformFn = __WEBPACK_IMPORTED_MODULE_2__identity__["a" /* default */]) {
+function pluckProps (keysToPluck, objToPluck, transformFn = __WEBPACK_IMPORTED_MODULE_2__identity__["a" /* default */]) {
   return (Object(__WEBPACK_IMPORTED_MODULE_1__array__["d" /* isArray */])(keysToPluck) ? keysToPluck.slice() : Object(__WEBPACK_IMPORTED_MODULE_0__object__["e" /* keys */])(keysToPluck)).reduce((memo, prop) => {
     // eslint-disable-next-line no-sequences
     return (memo[transformFn(prop)] = objToPluck[prop]), memo
@@ -8861,14 +4757,14 @@ function pluckProps(keysToPluck, objToPluck, transformFn = __WEBPACK_IMPORTED_MO
 /* harmony export (immutable) */ __webpack_exports__["a"] = registerComponents;
 /* unused harmony export registerDirective */
 /* harmony export (immutable) */ __webpack_exports__["b"] = registerDirectives;
-/* unused harmony export vueUse */
+/* harmony export (immutable) */ __webpack_exports__["c"] = vueUse;
 /**
- * Register a component plugin as being loaded. returns true if component plugin already registered
+ * Register a component plugin as being loaded. returns true if compoent plugin already registered
  * @param {object} Vue
  * @param {string} Component name
  * @param {object} Component definition
  */
-function registerComponent(Vue, name, def) {
+function registerComponent (Vue, name, def) {
   Vue._bootstrap_vue_components_ = Vue._bootstrap_vue_components_ || {}
   const loaded = Vue._bootstrap_vue_components_[name]
   if (!loaded && def && name) {
@@ -8883,7 +4779,7 @@ function registerComponent(Vue, name, def) {
  * @param {object} Vue
  * @param {object} Object of component definitions
  */
-function registerComponents(Vue, components) {
+function registerComponents (Vue, components) {
   for (let component in components) {
     registerComponent(Vue, component, components[component])
   }
@@ -8895,7 +4791,7 @@ function registerComponents(Vue, components) {
  * @param {string} Directive name
  * @param {object} Directive definition
  */
-function registerDirective(Vue, name, def) {
+function registerDirective (Vue, name, def) {
   Vue._bootstrap_vue_directives_ = Vue._bootstrap_vue_directives_ || {}
   const loaded = Vue._bootstrap_vue_directives_[name]
   if (!loaded && def && name) {
@@ -8910,7 +4806,7 @@ function registerDirective(Vue, name, def) {
  * @param {object} Vue
  * @param {object} Object of directive definitions
  */
-function registerDirectives(Vue, directives) {
+function registerDirectives (Vue, directives) {
   for (let directive in directives) {
     registerDirective(Vue, directive, directives[directive])
   }
@@ -8920,85 +4816,10 @@ function registerDirectives(Vue, directives) {
  * Install plugin if window.Vue available
  * @param {object} Plugin definition
  */
-function vueUse(VuePlugin) {
+function vueUse (VuePlugin) {
   if (typeof window !== 'undefined' && window.Vue) {
     window.Vue.use(VuePlugin)
   }
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/utils/stable-sort.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = stableSort;
-/*
- * Consitant and stable sort function across JavsaScript platforms
- *
- * Inconsistant sorts can cause SSR problems between client and server
- * such as in <b-table> if sortBy is applied to the data on server side render.
- * Chrome and V8 native sorts are inconsistant/unstable
- *
- * This function uses native sort with fallback to index compare when the a and b
- * compare returns 0
- *
- * Algorithm bsaed on:
- * https://stackoverflow.com/questions/1427608/fast-stable-sorting-algorithm-implementation-in-javascript/45422645#45422645
- *
- * @param {array} array to sort
- * @param {function} sortcompare function
- * @return {array}
- */
-
-function stableSort(array, compareFn) {
-  // Using `.bind(compareFn)` on the wrapped anonymous function improves
-  // performance by avoiding the function call setup. We don't use an arrow
-  // function here as it binds `this` to the `stableSort` context rather than
-  // the `compareFn` context, which wouldn't give us the performance increase.
-  return array
-    .map((a, index) => [index, a])
-    .sort(
-      function(a, b) {
-        return this(a[1], b[1]) || a[0] - b[0]
-      }.bind(compareFn)
-    )
-    .map(e => e[1])
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/utils/startcase.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = toStartCaseStr;
-/**
- * Converts a string, including strings in camelCase or snake_case, into Start Case (a variant
- * of Title Case where all words start with a capital letter), it keeps original single quote
- * and hyphen in the word.
- *
- * Copyright (c) 2017 Compass (MIT)
- * https://github.com/UrbanCompass/to-start-case
- * @author Zhuoyuan Zhang <https://github.com/drawyan>
- * @author Wei Wang <https://github.com/onlywei>
- *
- *
- *   'management_companies' to 'Management Companies'
- *   'managementCompanies' to 'Management Companies'
- *   `hell's kitchen` to `Hell's Kitchen`
- *   `co-op` to `Co-op`
- *
- * @param {String} str
- * @returns {String}
- */
-function toStartCaseStr(str) {
-  return str
-    .replace(/_/g, ' ')
-    .replace(/([a-z])([A-Z])/g, (str, $1, $2) => $1 + ' ' + $2)
-    .replace(/(\s|^)(\w)/g, (str, $1, $2) => $1 + $2.toUpperCase())
 }
 
 
@@ -9019,7 +4840,7 @@ function toStartCaseStr(str) {
  * @param {string} suffix
  * @param {string} str
  */
-function suffixPropName(suffix, str) {
+function suffixPropName (suffix, str) {
   return str + (suffix ? Object(__WEBPACK_IMPORTED_MODULE_0__upper_first__["a" /* default */])(suffix) : '')
 }
 
@@ -9032,29 +4853,28 @@ function suffixPropName(suffix, str) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return bindTargets; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return unbindTargets; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
 
 
-
-const allListenTypes = { hover: true, click: true, focus: true }
+const allListenTypes = {hover: true, click: true, focus: true}
 
 const BVBoundListeners = '__BV_boundEventListeners__'
 
 const bindTargets = (vnode, binding, listenTypes, fn) => {
-  const targets = Object(__WEBPACK_IMPORTED_MODULE_0__object__["e" /* keys */])(binding.modifiers || {}).filter(t => !allListenTypes[t])
+  const targets = Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["e" /* keys */])(binding.modifiers || {})
+    .filter(t => !allListenTypes[t])
 
   if (binding.value) {
     targets.push(binding.value)
   }
 
   const listener = () => {
-    fn({ targets, vnode })
+    fn({targets, vnode})
   }
 
-  Object(__WEBPACK_IMPORTED_MODULE_0__object__["e" /* keys */])(allListenTypes).forEach(type => {
+  Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["e" /* keys */])(allListenTypes).forEach(type => {
     if (listenTypes[type] || binding.modifiers[type]) {
-      Object(__WEBPACK_IMPORTED_MODULE_1__dom__["e" /* eventOn */])(vnode.elm, type, listener)
+      vnode.elm.addEventListener(type, listener)
       const boundListeners = vnode.elm[BVBoundListeners] || {}
       boundListeners[type] = boundListeners[type] || []
       boundListeners[type].push(listener)
@@ -9067,11 +4887,11 @@ const bindTargets = (vnode, binding, listenTypes, fn) => {
 }
 
 const unbindTargets = (vnode, binding, listenTypes) => {
-  Object(__WEBPACK_IMPORTED_MODULE_0__object__["e" /* keys */])(allListenTypes).forEach(type => {
+  Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["e" /* keys */])(allListenTypes).forEach(type => {
     if (listenTypes[type] || binding.modifiers[type]) {
       const boundListeners = vnode.elm[BVBoundListeners] && vnode.elm[BVBoundListeners][type]
       if (boundListeners) {
-        boundListeners.forEach(listener => Object(__WEBPACK_IMPORTED_MODULE_1__dom__["d" /* eventOff */])(vnode.elm, type, listener))
+        boundListeners.forEach(listener => vnode.elm.removeEventListener(type, listener))
         delete vnode.elm[BVBoundListeners][type]
       }
     }
@@ -9093,7 +4913,7 @@ const unbindTargets = (vnode, binding, listenTypes) => {
 /**
  * @param {string} str
  */
-function upperFirst(str) {
+function upperFirst (str) {
   if (typeof str !== 'string') {
     str = String(str)
   }
@@ -9112,8 +4932,8 @@ function upperFirst(str) {
  * @param {string} message
  */
 /* istanbul ignore next */
-function warn(message) {
-  console.warn(`[BootstrapVue warn]: ${message}`)
+function warn (message) {
+  console.warn(`[Bootstrap-Vue warn]: ${message}`)
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (warn);
@@ -9149,2597 +4969,7 @@ function isSlowBuffer (obj) {
 
 /***/ }),
 
-/***/ "./node_modules/popper.js/dist/esm/popper.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/**!
- * @fileOverview Kickass library to create and place poppers near their reference elements.
- * @version 1.14.7
- * @license
- * Copyright (c) 2016 Federico Zivolo and contributors
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-var isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
-
-var longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox'];
-var timeoutDuration = 0;
-for (var i = 0; i < longerTimeoutBrowsers.length; i += 1) {
-  if (isBrowser && navigator.userAgent.indexOf(longerTimeoutBrowsers[i]) >= 0) {
-    timeoutDuration = 1;
-    break;
-  }
-}
-
-function microtaskDebounce(fn) {
-  var called = false;
-  return function () {
-    if (called) {
-      return;
-    }
-    called = true;
-    window.Promise.resolve().then(function () {
-      called = false;
-      fn();
-    });
-  };
-}
-
-function taskDebounce(fn) {
-  var scheduled = false;
-  return function () {
-    if (!scheduled) {
-      scheduled = true;
-      setTimeout(function () {
-        scheduled = false;
-        fn();
-      }, timeoutDuration);
-    }
-  };
-}
-
-var supportsMicroTasks = isBrowser && window.Promise;
-
-/**
-* Create a debounced version of a method, that's asynchronously deferred
-* but called in the minimum time possible.
-*
-* @method
-* @memberof Popper.Utils
-* @argument {Function} fn
-* @returns {Function}
-*/
-var debounce = supportsMicroTasks ? microtaskDebounce : taskDebounce;
-
-/**
- * Check if the given variable is a function
- * @method
- * @memberof Popper.Utils
- * @argument {Any} functionToCheck - variable to check
- * @returns {Boolean} answer to: is a function?
- */
-function isFunction(functionToCheck) {
-  var getType = {};
-  return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
-}
-
-/**
- * Get CSS computed property of the given element
- * @method
- * @memberof Popper.Utils
- * @argument {Eement} element
- * @argument {String} property
- */
-function getStyleComputedProperty(element, property) {
-  if (element.nodeType !== 1) {
-    return [];
-  }
-  // NOTE: 1 DOM access here
-  var window = element.ownerDocument.defaultView;
-  var css = window.getComputedStyle(element, null);
-  return property ? css[property] : css;
-}
-
-/**
- * Returns the parentNode or the host of the element
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element
- * @returns {Element} parent
- */
-function getParentNode(element) {
-  if (element.nodeName === 'HTML') {
-    return element;
-  }
-  return element.parentNode || element.host;
-}
-
-/**
- * Returns the scrolling parent of the given element
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element
- * @returns {Element} scroll parent
- */
-function getScrollParent(element) {
-  // Return body, `getScroll` will take care to get the correct `scrollTop` from it
-  if (!element) {
-    return document.body;
-  }
-
-  switch (element.nodeName) {
-    case 'HTML':
-    case 'BODY':
-      return element.ownerDocument.body;
-    case '#document':
-      return element.body;
-  }
-
-  // Firefox want us to check `-x` and `-y` variations as well
-
-  var _getStyleComputedProp = getStyleComputedProperty(element),
-      overflow = _getStyleComputedProp.overflow,
-      overflowX = _getStyleComputedProp.overflowX,
-      overflowY = _getStyleComputedProp.overflowY;
-
-  if (/(auto|scroll|overlay)/.test(overflow + overflowY + overflowX)) {
-    return element;
-  }
-
-  return getScrollParent(getParentNode(element));
-}
-
-var isIE11 = isBrowser && !!(window.MSInputMethodContext && document.documentMode);
-var isIE10 = isBrowser && /MSIE 10/.test(navigator.userAgent);
-
-/**
- * Determines if the browser is Internet Explorer
- * @method
- * @memberof Popper.Utils
- * @param {Number} version to check
- * @returns {Boolean} isIE
- */
-function isIE(version) {
-  if (version === 11) {
-    return isIE11;
-  }
-  if (version === 10) {
-    return isIE10;
-  }
-  return isIE11 || isIE10;
-}
-
-/**
- * Returns the offset parent of the given element
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element
- * @returns {Element} offset parent
- */
-function getOffsetParent(element) {
-  if (!element) {
-    return document.documentElement;
-  }
-
-  var noOffsetParent = isIE(10) ? document.body : null;
-
-  // NOTE: 1 DOM access here
-  var offsetParent = element.offsetParent || null;
-  // Skip hidden elements which don't have an offsetParent
-  while (offsetParent === noOffsetParent && element.nextElementSibling) {
-    offsetParent = (element = element.nextElementSibling).offsetParent;
-  }
-
-  var nodeName = offsetParent && offsetParent.nodeName;
-
-  if (!nodeName || nodeName === 'BODY' || nodeName === 'HTML') {
-    return element ? element.ownerDocument.documentElement : document.documentElement;
-  }
-
-  // .offsetParent will return the closest TH, TD or TABLE in case
-  // no offsetParent is present, I hate this job...
-  if (['TH', 'TD', 'TABLE'].indexOf(offsetParent.nodeName) !== -1 && getStyleComputedProperty(offsetParent, 'position') === 'static') {
-    return getOffsetParent(offsetParent);
-  }
-
-  return offsetParent;
-}
-
-function isOffsetContainer(element) {
-  var nodeName = element.nodeName;
-
-  if (nodeName === 'BODY') {
-    return false;
-  }
-  return nodeName === 'HTML' || getOffsetParent(element.firstElementChild) === element;
-}
-
-/**
- * Finds the root node (document, shadowDOM root) of the given element
- * @method
- * @memberof Popper.Utils
- * @argument {Element} node
- * @returns {Element} root node
- */
-function getRoot(node) {
-  if (node.parentNode !== null) {
-    return getRoot(node.parentNode);
-  }
-
-  return node;
-}
-
-/**
- * Finds the offset parent common to the two provided nodes
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element1
- * @argument {Element} element2
- * @returns {Element} common offset parent
- */
-function findCommonOffsetParent(element1, element2) {
-  // This check is needed to avoid errors in case one of the elements isn't defined for any reason
-  if (!element1 || !element1.nodeType || !element2 || !element2.nodeType) {
-    return document.documentElement;
-  }
-
-  // Here we make sure to give as "start" the element that comes first in the DOM
-  var order = element1.compareDocumentPosition(element2) & Node.DOCUMENT_POSITION_FOLLOWING;
-  var start = order ? element1 : element2;
-  var end = order ? element2 : element1;
-
-  // Get common ancestor container
-  var range = document.createRange();
-  range.setStart(start, 0);
-  range.setEnd(end, 0);
-  var commonAncestorContainer = range.commonAncestorContainer;
-
-  // Both nodes are inside #document
-
-  if (element1 !== commonAncestorContainer && element2 !== commonAncestorContainer || start.contains(end)) {
-    if (isOffsetContainer(commonAncestorContainer)) {
-      return commonAncestorContainer;
-    }
-
-    return getOffsetParent(commonAncestorContainer);
-  }
-
-  // one of the nodes is inside shadowDOM, find which one
-  var element1root = getRoot(element1);
-  if (element1root.host) {
-    return findCommonOffsetParent(element1root.host, element2);
-  } else {
-    return findCommonOffsetParent(element1, getRoot(element2).host);
-  }
-}
-
-/**
- * Gets the scroll value of the given element in the given side (top and left)
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element
- * @argument {String} side `top` or `left`
- * @returns {number} amount of scrolled pixels
- */
-function getScroll(element) {
-  var side = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'top';
-
-  var upperSide = side === 'top' ? 'scrollTop' : 'scrollLeft';
-  var nodeName = element.nodeName;
-
-  if (nodeName === 'BODY' || nodeName === 'HTML') {
-    var html = element.ownerDocument.documentElement;
-    var scrollingElement = element.ownerDocument.scrollingElement || html;
-    return scrollingElement[upperSide];
-  }
-
-  return element[upperSide];
-}
-
-/*
- * Sum or subtract the element scroll values (left and top) from a given rect object
- * @method
- * @memberof Popper.Utils
- * @param {Object} rect - Rect object you want to change
- * @param {HTMLElement} element - The element from the function reads the scroll values
- * @param {Boolean} subtract - set to true if you want to subtract the scroll values
- * @return {Object} rect - The modifier rect object
- */
-function includeScroll(rect, element) {
-  var subtract = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
-  var scrollTop = getScroll(element, 'top');
-  var scrollLeft = getScroll(element, 'left');
-  var modifier = subtract ? -1 : 1;
-  rect.top += scrollTop * modifier;
-  rect.bottom += scrollTop * modifier;
-  rect.left += scrollLeft * modifier;
-  rect.right += scrollLeft * modifier;
-  return rect;
-}
-
-/*
- * Helper to detect borders of a given element
- * @method
- * @memberof Popper.Utils
- * @param {CSSStyleDeclaration} styles
- * Result of `getStyleComputedProperty` on the given element
- * @param {String} axis - `x` or `y`
- * @return {number} borders - The borders size of the given axis
- */
-
-function getBordersSize(styles, axis) {
-  var sideA = axis === 'x' ? 'Left' : 'Top';
-  var sideB = sideA === 'Left' ? 'Right' : 'Bottom';
-
-  return parseFloat(styles['border' + sideA + 'Width'], 10) + parseFloat(styles['border' + sideB + 'Width'], 10);
-}
-
-function getSize(axis, body, html, computedStyle) {
-  return Math.max(body['offset' + axis], body['scroll' + axis], html['client' + axis], html['offset' + axis], html['scroll' + axis], isIE(10) ? parseInt(html['offset' + axis]) + parseInt(computedStyle['margin' + (axis === 'Height' ? 'Top' : 'Left')]) + parseInt(computedStyle['margin' + (axis === 'Height' ? 'Bottom' : 'Right')]) : 0);
-}
-
-function getWindowSizes(document) {
-  var body = document.body;
-  var html = document.documentElement;
-  var computedStyle = isIE(10) && getComputedStyle(html);
-
-  return {
-    height: getSize('Height', body, html, computedStyle),
-    width: getSize('Width', body, html, computedStyle)
-  };
-}
-
-var classCallCheck = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-};
-
-var createClass = function () {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-
-  return function (Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-}();
-
-
-
-
-
-var defineProperty = function (obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-};
-
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
-
-    for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-
-  return target;
-};
-
-/**
- * Given element offsets, generate an output similar to getBoundingClientRect
- * @method
- * @memberof Popper.Utils
- * @argument {Object} offsets
- * @returns {Object} ClientRect like output
- */
-function getClientRect(offsets) {
-  return _extends({}, offsets, {
-    right: offsets.left + offsets.width,
-    bottom: offsets.top + offsets.height
-  });
-}
-
-/**
- * Get bounding client rect of given element
- * @method
- * @memberof Popper.Utils
- * @param {HTMLElement} element
- * @return {Object} client rect
- */
-function getBoundingClientRect(element) {
-  var rect = {};
-
-  // IE10 10 FIX: Please, don't ask, the element isn't
-  // considered in DOM in some circumstances...
-  // This isn't reproducible in IE10 compatibility mode of IE11
-  try {
-    if (isIE(10)) {
-      rect = element.getBoundingClientRect();
-      var scrollTop = getScroll(element, 'top');
-      var scrollLeft = getScroll(element, 'left');
-      rect.top += scrollTop;
-      rect.left += scrollLeft;
-      rect.bottom += scrollTop;
-      rect.right += scrollLeft;
-    } else {
-      rect = element.getBoundingClientRect();
-    }
-  } catch (e) {}
-
-  var result = {
-    left: rect.left,
-    top: rect.top,
-    width: rect.right - rect.left,
-    height: rect.bottom - rect.top
-  };
-
-  // subtract scrollbar size from sizes
-  var sizes = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : {};
-  var width = sizes.width || element.clientWidth || result.right - result.left;
-  var height = sizes.height || element.clientHeight || result.bottom - result.top;
-
-  var horizScrollbar = element.offsetWidth - width;
-  var vertScrollbar = element.offsetHeight - height;
-
-  // if an hypothetical scrollbar is detected, we must be sure it's not a `border`
-  // we make this check conditional for performance reasons
-  if (horizScrollbar || vertScrollbar) {
-    var styles = getStyleComputedProperty(element);
-    horizScrollbar -= getBordersSize(styles, 'x');
-    vertScrollbar -= getBordersSize(styles, 'y');
-
-    result.width -= horizScrollbar;
-    result.height -= vertScrollbar;
-  }
-
-  return getClientRect(result);
-}
-
-function getOffsetRectRelativeToArbitraryNode(children, parent) {
-  var fixedPosition = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
-  var isIE10 = isIE(10);
-  var isHTML = parent.nodeName === 'HTML';
-  var childrenRect = getBoundingClientRect(children);
-  var parentRect = getBoundingClientRect(parent);
-  var scrollParent = getScrollParent(children);
-
-  var styles = getStyleComputedProperty(parent);
-  var borderTopWidth = parseFloat(styles.borderTopWidth, 10);
-  var borderLeftWidth = parseFloat(styles.borderLeftWidth, 10);
-
-  // In cases where the parent is fixed, we must ignore negative scroll in offset calc
-  if (fixedPosition && isHTML) {
-    parentRect.top = Math.max(parentRect.top, 0);
-    parentRect.left = Math.max(parentRect.left, 0);
-  }
-  var offsets = getClientRect({
-    top: childrenRect.top - parentRect.top - borderTopWidth,
-    left: childrenRect.left - parentRect.left - borderLeftWidth,
-    width: childrenRect.width,
-    height: childrenRect.height
-  });
-  offsets.marginTop = 0;
-  offsets.marginLeft = 0;
-
-  // Subtract margins of documentElement in case it's being used as parent
-  // we do this only on HTML because it's the only element that behaves
-  // differently when margins are applied to it. The margins are included in
-  // the box of the documentElement, in the other cases not.
-  if (!isIE10 && isHTML) {
-    var marginTop = parseFloat(styles.marginTop, 10);
-    var marginLeft = parseFloat(styles.marginLeft, 10);
-
-    offsets.top -= borderTopWidth - marginTop;
-    offsets.bottom -= borderTopWidth - marginTop;
-    offsets.left -= borderLeftWidth - marginLeft;
-    offsets.right -= borderLeftWidth - marginLeft;
-
-    // Attach marginTop and marginLeft because in some circumstances we may need them
-    offsets.marginTop = marginTop;
-    offsets.marginLeft = marginLeft;
-  }
-
-  if (isIE10 && !fixedPosition ? parent.contains(scrollParent) : parent === scrollParent && scrollParent.nodeName !== 'BODY') {
-    offsets = includeScroll(offsets, parent);
-  }
-
-  return offsets;
-}
-
-function getViewportOffsetRectRelativeToArtbitraryNode(element) {
-  var excludeScroll = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
-  var html = element.ownerDocument.documentElement;
-  var relativeOffset = getOffsetRectRelativeToArbitraryNode(element, html);
-  var width = Math.max(html.clientWidth, window.innerWidth || 0);
-  var height = Math.max(html.clientHeight, window.innerHeight || 0);
-
-  var scrollTop = !excludeScroll ? getScroll(html) : 0;
-  var scrollLeft = !excludeScroll ? getScroll(html, 'left') : 0;
-
-  var offset = {
-    top: scrollTop - relativeOffset.top + relativeOffset.marginTop,
-    left: scrollLeft - relativeOffset.left + relativeOffset.marginLeft,
-    width: width,
-    height: height
-  };
-
-  return getClientRect(offset);
-}
-
-/**
- * Check if the given element is fixed or is inside a fixed parent
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element
- * @argument {Element} customContainer
- * @returns {Boolean} answer to "isFixed?"
- */
-function isFixed(element) {
-  var nodeName = element.nodeName;
-  if (nodeName === 'BODY' || nodeName === 'HTML') {
-    return false;
-  }
-  if (getStyleComputedProperty(element, 'position') === 'fixed') {
-    return true;
-  }
-  var parentNode = getParentNode(element);
-  if (!parentNode) {
-    return false;
-  }
-  return isFixed(parentNode);
-}
-
-/**
- * Finds the first parent of an element that has a transformed property defined
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element
- * @returns {Element} first transformed parent or documentElement
- */
-
-function getFixedPositionOffsetParent(element) {
-  // This check is needed to avoid errors in case one of the elements isn't defined for any reason
-  if (!element || !element.parentElement || isIE()) {
-    return document.documentElement;
-  }
-  var el = element.parentElement;
-  while (el && getStyleComputedProperty(el, 'transform') === 'none') {
-    el = el.parentElement;
-  }
-  return el || document.documentElement;
-}
-
-/**
- * Computed the boundaries limits and return them
- * @method
- * @memberof Popper.Utils
- * @param {HTMLElement} popper
- * @param {HTMLElement} reference
- * @param {number} padding
- * @param {HTMLElement} boundariesElement - Element used to define the boundaries
- * @param {Boolean} fixedPosition - Is in fixed position mode
- * @returns {Object} Coordinates of the boundaries
- */
-function getBoundaries(popper, reference, padding, boundariesElement) {
-  var fixedPosition = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
-
-  // NOTE: 1 DOM access here
-
-  var boundaries = { top: 0, left: 0 };
-  var offsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
-
-  // Handle viewport case
-  if (boundariesElement === 'viewport') {
-    boundaries = getViewportOffsetRectRelativeToArtbitraryNode(offsetParent, fixedPosition);
-  } else {
-    // Handle other cases based on DOM element used as boundaries
-    var boundariesNode = void 0;
-    if (boundariesElement === 'scrollParent') {
-      boundariesNode = getScrollParent(getParentNode(reference));
-      if (boundariesNode.nodeName === 'BODY') {
-        boundariesNode = popper.ownerDocument.documentElement;
-      }
-    } else if (boundariesElement === 'window') {
-      boundariesNode = popper.ownerDocument.documentElement;
-    } else {
-      boundariesNode = boundariesElement;
-    }
-
-    var offsets = getOffsetRectRelativeToArbitraryNode(boundariesNode, offsetParent, fixedPosition);
-
-    // In case of HTML, we need a different computation
-    if (boundariesNode.nodeName === 'HTML' && !isFixed(offsetParent)) {
-      var _getWindowSizes = getWindowSizes(popper.ownerDocument),
-          height = _getWindowSizes.height,
-          width = _getWindowSizes.width;
-
-      boundaries.top += offsets.top - offsets.marginTop;
-      boundaries.bottom = height + offsets.top;
-      boundaries.left += offsets.left - offsets.marginLeft;
-      boundaries.right = width + offsets.left;
-    } else {
-      // for all the other DOM elements, this one is good
-      boundaries = offsets;
-    }
-  }
-
-  // Add paddings
-  padding = padding || 0;
-  var isPaddingNumber = typeof padding === 'number';
-  boundaries.left += isPaddingNumber ? padding : padding.left || 0;
-  boundaries.top += isPaddingNumber ? padding : padding.top || 0;
-  boundaries.right -= isPaddingNumber ? padding : padding.right || 0;
-  boundaries.bottom -= isPaddingNumber ? padding : padding.bottom || 0;
-
-  return boundaries;
-}
-
-function getArea(_ref) {
-  var width = _ref.width,
-      height = _ref.height;
-
-  return width * height;
-}
-
-/**
- * Utility used to transform the `auto` placement to the placement with more
- * available space.
- * @method
- * @memberof Popper.Utils
- * @argument {Object} data - The data object generated by update method
- * @argument {Object} options - Modifiers configuration and options
- * @returns {Object} The data object, properly modified
- */
-function computeAutoPlacement(placement, refRect, popper, reference, boundariesElement) {
-  var padding = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
-
-  if (placement.indexOf('auto') === -1) {
-    return placement;
-  }
-
-  var boundaries = getBoundaries(popper, reference, padding, boundariesElement);
-
-  var rects = {
-    top: {
-      width: boundaries.width,
-      height: refRect.top - boundaries.top
-    },
-    right: {
-      width: boundaries.right - refRect.right,
-      height: boundaries.height
-    },
-    bottom: {
-      width: boundaries.width,
-      height: boundaries.bottom - refRect.bottom
-    },
-    left: {
-      width: refRect.left - boundaries.left,
-      height: boundaries.height
-    }
-  };
-
-  var sortedAreas = Object.keys(rects).map(function (key) {
-    return _extends({
-      key: key
-    }, rects[key], {
-      area: getArea(rects[key])
-    });
-  }).sort(function (a, b) {
-    return b.area - a.area;
-  });
-
-  var filteredAreas = sortedAreas.filter(function (_ref2) {
-    var width = _ref2.width,
-        height = _ref2.height;
-    return width >= popper.clientWidth && height >= popper.clientHeight;
-  });
-
-  var computedPlacement = filteredAreas.length > 0 ? filteredAreas[0].key : sortedAreas[0].key;
-
-  var variation = placement.split('-')[1];
-
-  return computedPlacement + (variation ? '-' + variation : '');
-}
-
-/**
- * Get offsets to the reference element
- * @method
- * @memberof Popper.Utils
- * @param {Object} state
- * @param {Element} popper - the popper element
- * @param {Element} reference - the reference element (the popper will be relative to this)
- * @param {Element} fixedPosition - is in fixed position mode
- * @returns {Object} An object containing the offsets which will be applied to the popper
- */
-function getReferenceOffsets(state, popper, reference) {
-  var fixedPosition = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
-
-  var commonOffsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
-  return getOffsetRectRelativeToArbitraryNode(reference, commonOffsetParent, fixedPosition);
-}
-
-/**
- * Get the outer sizes of the given element (offset size + margins)
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element
- * @returns {Object} object containing width and height properties
- */
-function getOuterSizes(element) {
-  var window = element.ownerDocument.defaultView;
-  var styles = window.getComputedStyle(element);
-  var x = parseFloat(styles.marginTop || 0) + parseFloat(styles.marginBottom || 0);
-  var y = parseFloat(styles.marginLeft || 0) + parseFloat(styles.marginRight || 0);
-  var result = {
-    width: element.offsetWidth + y,
-    height: element.offsetHeight + x
-  };
-  return result;
-}
-
-/**
- * Get the opposite placement of the given one
- * @method
- * @memberof Popper.Utils
- * @argument {String} placement
- * @returns {String} flipped placement
- */
-function getOppositePlacement(placement) {
-  var hash = { left: 'right', right: 'left', bottom: 'top', top: 'bottom' };
-  return placement.replace(/left|right|bottom|top/g, function (matched) {
-    return hash[matched];
-  });
-}
-
-/**
- * Get offsets to the popper
- * @method
- * @memberof Popper.Utils
- * @param {Object} position - CSS position the Popper will get applied
- * @param {HTMLElement} popper - the popper element
- * @param {Object} referenceOffsets - the reference offsets (the popper will be relative to this)
- * @param {String} placement - one of the valid placement options
- * @returns {Object} popperOffsets - An object containing the offsets which will be applied to the popper
- */
-function getPopperOffsets(popper, referenceOffsets, placement) {
-  placement = placement.split('-')[0];
-
-  // Get popper node sizes
-  var popperRect = getOuterSizes(popper);
-
-  // Add position, width and height to our offsets object
-  var popperOffsets = {
-    width: popperRect.width,
-    height: popperRect.height
-  };
-
-  // depending by the popper placement we have to compute its offsets slightly differently
-  var isHoriz = ['right', 'left'].indexOf(placement) !== -1;
-  var mainSide = isHoriz ? 'top' : 'left';
-  var secondarySide = isHoriz ? 'left' : 'top';
-  var measurement = isHoriz ? 'height' : 'width';
-  var secondaryMeasurement = !isHoriz ? 'height' : 'width';
-
-  popperOffsets[mainSide] = referenceOffsets[mainSide] + referenceOffsets[measurement] / 2 - popperRect[measurement] / 2;
-  if (placement === secondarySide) {
-    popperOffsets[secondarySide] = referenceOffsets[secondarySide] - popperRect[secondaryMeasurement];
-  } else {
-    popperOffsets[secondarySide] = referenceOffsets[getOppositePlacement(secondarySide)];
-  }
-
-  return popperOffsets;
-}
-
-/**
- * Mimics the `find` method of Array
- * @method
- * @memberof Popper.Utils
- * @argument {Array} arr
- * @argument prop
- * @argument value
- * @returns index or -1
- */
-function find(arr, check) {
-  // use native find if supported
-  if (Array.prototype.find) {
-    return arr.find(check);
-  }
-
-  // use `filter` to obtain the same behavior of `find`
-  return arr.filter(check)[0];
-}
-
-/**
- * Return the index of the matching object
- * @method
- * @memberof Popper.Utils
- * @argument {Array} arr
- * @argument prop
- * @argument value
- * @returns index or -1
- */
-function findIndex(arr, prop, value) {
-  // use native findIndex if supported
-  if (Array.prototype.findIndex) {
-    return arr.findIndex(function (cur) {
-      return cur[prop] === value;
-    });
-  }
-
-  // use `find` + `indexOf` if `findIndex` isn't supported
-  var match = find(arr, function (obj) {
-    return obj[prop] === value;
-  });
-  return arr.indexOf(match);
-}
-
-/**
- * Loop trough the list of modifiers and run them in order,
- * each of them will then edit the data object.
- * @method
- * @memberof Popper.Utils
- * @param {dataObject} data
- * @param {Array} modifiers
- * @param {String} ends - Optional modifier name used as stopper
- * @returns {dataObject}
- */
-function runModifiers(modifiers, data, ends) {
-  var modifiersToRun = ends === undefined ? modifiers : modifiers.slice(0, findIndex(modifiers, 'name', ends));
-
-  modifiersToRun.forEach(function (modifier) {
-    if (modifier['function']) {
-      // eslint-disable-line dot-notation
-      console.warn('`modifier.function` is deprecated, use `modifier.fn`!');
-    }
-    var fn = modifier['function'] || modifier.fn; // eslint-disable-line dot-notation
-    if (modifier.enabled && isFunction(fn)) {
-      // Add properties to offsets to make them a complete clientRect object
-      // we do this before each modifier to make sure the previous one doesn't
-      // mess with these values
-      data.offsets.popper = getClientRect(data.offsets.popper);
-      data.offsets.reference = getClientRect(data.offsets.reference);
-
-      data = fn(data, modifier);
-    }
-  });
-
-  return data;
-}
-
-/**
- * Updates the position of the popper, computing the new offsets and applying
- * the new style.<br />
- * Prefer `scheduleUpdate` over `update` because of performance reasons.
- * @method
- * @memberof Popper
- */
-function update() {
-  // if popper is destroyed, don't perform any further update
-  if (this.state.isDestroyed) {
-    return;
-  }
-
-  var data = {
-    instance: this,
-    styles: {},
-    arrowStyles: {},
-    attributes: {},
-    flipped: false,
-    offsets: {}
-  };
-
-  // compute reference element offsets
-  data.offsets.reference = getReferenceOffsets(this.state, this.popper, this.reference, this.options.positionFixed);
-
-  // compute auto placement, store placement inside the data object,
-  // modifiers will be able to edit `placement` if needed
-  // and refer to originalPlacement to know the original value
-  data.placement = computeAutoPlacement(this.options.placement, data.offsets.reference, this.popper, this.reference, this.options.modifiers.flip.boundariesElement, this.options.modifiers.flip.padding);
-
-  // store the computed placement inside `originalPlacement`
-  data.originalPlacement = data.placement;
-
-  data.positionFixed = this.options.positionFixed;
-
-  // compute the popper offsets
-  data.offsets.popper = getPopperOffsets(this.popper, data.offsets.reference, data.placement);
-
-  data.offsets.popper.position = this.options.positionFixed ? 'fixed' : 'absolute';
-
-  // run the modifiers
-  data = runModifiers(this.modifiers, data);
-
-  // the first `update` will call `onCreate` callback
-  // the other ones will call `onUpdate` callback
-  if (!this.state.isCreated) {
-    this.state.isCreated = true;
-    this.options.onCreate(data);
-  } else {
-    this.options.onUpdate(data);
-  }
-}
-
-/**
- * Helper used to know if the given modifier is enabled.
- * @method
- * @memberof Popper.Utils
- * @returns {Boolean}
- */
-function isModifierEnabled(modifiers, modifierName) {
-  return modifiers.some(function (_ref) {
-    var name = _ref.name,
-        enabled = _ref.enabled;
-    return enabled && name === modifierName;
-  });
-}
-
-/**
- * Get the prefixed supported property name
- * @method
- * @memberof Popper.Utils
- * @argument {String} property (camelCase)
- * @returns {String} prefixed property (camelCase or PascalCase, depending on the vendor prefix)
- */
-function getSupportedPropertyName(property) {
-  var prefixes = [false, 'ms', 'Webkit', 'Moz', 'O'];
-  var upperProp = property.charAt(0).toUpperCase() + property.slice(1);
-
-  for (var i = 0; i < prefixes.length; i++) {
-    var prefix = prefixes[i];
-    var toCheck = prefix ? '' + prefix + upperProp : property;
-    if (typeof document.body.style[toCheck] !== 'undefined') {
-      return toCheck;
-    }
-  }
-  return null;
-}
-
-/**
- * Destroys the popper.
- * @method
- * @memberof Popper
- */
-function destroy() {
-  this.state.isDestroyed = true;
-
-  // touch DOM only if `applyStyle` modifier is enabled
-  if (isModifierEnabled(this.modifiers, 'applyStyle')) {
-    this.popper.removeAttribute('x-placement');
-    this.popper.style.position = '';
-    this.popper.style.top = '';
-    this.popper.style.left = '';
-    this.popper.style.right = '';
-    this.popper.style.bottom = '';
-    this.popper.style.willChange = '';
-    this.popper.style[getSupportedPropertyName('transform')] = '';
-  }
-
-  this.disableEventListeners();
-
-  // remove the popper if user explicity asked for the deletion on destroy
-  // do not use `remove` because IE11 doesn't support it
-  if (this.options.removeOnDestroy) {
-    this.popper.parentNode.removeChild(this.popper);
-  }
-  return this;
-}
-
-/**
- * Get the window associated with the element
- * @argument {Element} element
- * @returns {Window}
- */
-function getWindow(element) {
-  var ownerDocument = element.ownerDocument;
-  return ownerDocument ? ownerDocument.defaultView : window;
-}
-
-function attachToScrollParents(scrollParent, event, callback, scrollParents) {
-  var isBody = scrollParent.nodeName === 'BODY';
-  var target = isBody ? scrollParent.ownerDocument.defaultView : scrollParent;
-  target.addEventListener(event, callback, { passive: true });
-
-  if (!isBody) {
-    attachToScrollParents(getScrollParent(target.parentNode), event, callback, scrollParents);
-  }
-  scrollParents.push(target);
-}
-
-/**
- * Setup needed event listeners used to update the popper position
- * @method
- * @memberof Popper.Utils
- * @private
- */
-function setupEventListeners(reference, options, state, updateBound) {
-  // Resize event listener on window
-  state.updateBound = updateBound;
-  getWindow(reference).addEventListener('resize', state.updateBound, { passive: true });
-
-  // Scroll event listener on scroll parents
-  var scrollElement = getScrollParent(reference);
-  attachToScrollParents(scrollElement, 'scroll', state.updateBound, state.scrollParents);
-  state.scrollElement = scrollElement;
-  state.eventsEnabled = true;
-
-  return state;
-}
-
-/**
- * It will add resize/scroll events and start recalculating
- * position of the popper element when they are triggered.
- * @method
- * @memberof Popper
- */
-function enableEventListeners() {
-  if (!this.state.eventsEnabled) {
-    this.state = setupEventListeners(this.reference, this.options, this.state, this.scheduleUpdate);
-  }
-}
-
-/**
- * Remove event listeners used to update the popper position
- * @method
- * @memberof Popper.Utils
- * @private
- */
-function removeEventListeners(reference, state) {
-  // Remove resize event listener on window
-  getWindow(reference).removeEventListener('resize', state.updateBound);
-
-  // Remove scroll event listener on scroll parents
-  state.scrollParents.forEach(function (target) {
-    target.removeEventListener('scroll', state.updateBound);
-  });
-
-  // Reset state
-  state.updateBound = null;
-  state.scrollParents = [];
-  state.scrollElement = null;
-  state.eventsEnabled = false;
-  return state;
-}
-
-/**
- * It will remove resize/scroll events and won't recalculate popper position
- * when they are triggered. It also won't trigger `onUpdate` callback anymore,
- * unless you call `update` method manually.
- * @method
- * @memberof Popper
- */
-function disableEventListeners() {
-  if (this.state.eventsEnabled) {
-    cancelAnimationFrame(this.scheduleUpdate);
-    this.state = removeEventListeners(this.reference, this.state);
-  }
-}
-
-/**
- * Tells if a given input is a number
- * @method
- * @memberof Popper.Utils
- * @param {*} input to check
- * @return {Boolean}
- */
-function isNumeric(n) {
-  return n !== '' && !isNaN(parseFloat(n)) && isFinite(n);
-}
-
-/**
- * Set the style to the given popper
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element - Element to apply the style to
- * @argument {Object} styles
- * Object with a list of properties and values which will be applied to the element
- */
-function setStyles(element, styles) {
-  Object.keys(styles).forEach(function (prop) {
-    var unit = '';
-    // add unit if the value is numeric and is one of the following
-    if (['width', 'height', 'top', 'right', 'bottom', 'left'].indexOf(prop) !== -1 && isNumeric(styles[prop])) {
-      unit = 'px';
-    }
-    element.style[prop] = styles[prop] + unit;
-  });
-}
-
-/**
- * Set the attributes to the given popper
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element - Element to apply the attributes to
- * @argument {Object} styles
- * Object with a list of properties and values which will be applied to the element
- */
-function setAttributes(element, attributes) {
-  Object.keys(attributes).forEach(function (prop) {
-    var value = attributes[prop];
-    if (value !== false) {
-      element.setAttribute(prop, attributes[prop]);
-    } else {
-      element.removeAttribute(prop);
-    }
-  });
-}
-
-/**
- * @function
- * @memberof Modifiers
- * @argument {Object} data - The data object generated by `update` method
- * @argument {Object} data.styles - List of style properties - values to apply to popper element
- * @argument {Object} data.attributes - List of attribute properties - values to apply to popper element
- * @argument {Object} options - Modifiers configuration and options
- * @returns {Object} The same data object
- */
-function applyStyle(data) {
-  // any property present in `data.styles` will be applied to the popper,
-  // in this way we can make the 3rd party modifiers add custom styles to it
-  // Be aware, modifiers could override the properties defined in the previous
-  // lines of this modifier!
-  setStyles(data.instance.popper, data.styles);
-
-  // any property present in `data.attributes` will be applied to the popper,
-  // they will be set as HTML attributes of the element
-  setAttributes(data.instance.popper, data.attributes);
-
-  // if arrowElement is defined and arrowStyles has some properties
-  if (data.arrowElement && Object.keys(data.arrowStyles).length) {
-    setStyles(data.arrowElement, data.arrowStyles);
-  }
-
-  return data;
-}
-
-/**
- * Set the x-placement attribute before everything else because it could be used
- * to add margins to the popper margins needs to be calculated to get the
- * correct popper offsets.
- * @method
- * @memberof Popper.modifiers
- * @param {HTMLElement} reference - The reference element used to position the popper
- * @param {HTMLElement} popper - The HTML element used as popper
- * @param {Object} options - Popper.js options
- */
-function applyStyleOnLoad(reference, popper, options, modifierOptions, state) {
-  // compute reference element offsets
-  var referenceOffsets = getReferenceOffsets(state, popper, reference, options.positionFixed);
-
-  // compute auto placement, store placement inside the data object,
-  // modifiers will be able to edit `placement` if needed
-  // and refer to originalPlacement to know the original value
-  var placement = computeAutoPlacement(options.placement, referenceOffsets, popper, reference, options.modifiers.flip.boundariesElement, options.modifiers.flip.padding);
-
-  popper.setAttribute('x-placement', placement);
-
-  // Apply `position` to popper before anything else because
-  // without the position applied we can't guarantee correct computations
-  setStyles(popper, { position: options.positionFixed ? 'fixed' : 'absolute' });
-
-  return options;
-}
-
-/**
- * @function
- * @memberof Popper.Utils
- * @argument {Object} data - The data object generated by `update` method
- * @argument {Boolean} shouldRound - If the offsets should be rounded at all
- * @returns {Object} The popper's position offsets rounded
- *
- * The tale of pixel-perfect positioning. It's still not 100% perfect, but as
- * good as it can be within reason.
- * Discussion here: https://github.com/FezVrasta/popper.js/pull/715
- *
- * Low DPI screens cause a popper to be blurry if not using full pixels (Safari
- * as well on High DPI screens).
- *
- * Firefox prefers no rounding for positioning and does not have blurriness on
- * high DPI screens.
- *
- * Only horizontal placement and left/right values need to be considered.
- */
-function getRoundedOffsets(data, shouldRound) {
-  var _data$offsets = data.offsets,
-      popper = _data$offsets.popper,
-      reference = _data$offsets.reference;
-  var round = Math.round,
-      floor = Math.floor;
-
-  var noRound = function noRound(v) {
-    return v;
-  };
-
-  var referenceWidth = round(reference.width);
-  var popperWidth = round(popper.width);
-
-  var isVertical = ['left', 'right'].indexOf(data.placement) !== -1;
-  var isVariation = data.placement.indexOf('-') !== -1;
-  var sameWidthParity = referenceWidth % 2 === popperWidth % 2;
-  var bothOddWidth = referenceWidth % 2 === 1 && popperWidth % 2 === 1;
-
-  var horizontalToInteger = !shouldRound ? noRound : isVertical || isVariation || sameWidthParity ? round : floor;
-  var verticalToInteger = !shouldRound ? noRound : round;
-
-  return {
-    left: horizontalToInteger(bothOddWidth && !isVariation && shouldRound ? popper.left - 1 : popper.left),
-    top: verticalToInteger(popper.top),
-    bottom: verticalToInteger(popper.bottom),
-    right: horizontalToInteger(popper.right)
-  };
-}
-
-var isFirefox = isBrowser && /Firefox/i.test(navigator.userAgent);
-
-/**
- * @function
- * @memberof Modifiers
- * @argument {Object} data - The data object generated by `update` method
- * @argument {Object} options - Modifiers configuration and options
- * @returns {Object} The data object, properly modified
- */
-function computeStyle(data, options) {
-  var x = options.x,
-      y = options.y;
-  var popper = data.offsets.popper;
-
-  // Remove this legacy support in Popper.js v2
-
-  var legacyGpuAccelerationOption = find(data.instance.modifiers, function (modifier) {
-    return modifier.name === 'applyStyle';
-  }).gpuAcceleration;
-  if (legacyGpuAccelerationOption !== undefined) {
-    console.warn('WARNING: `gpuAcceleration` option moved to `computeStyle` modifier and will not be supported in future versions of Popper.js!');
-  }
-  var gpuAcceleration = legacyGpuAccelerationOption !== undefined ? legacyGpuAccelerationOption : options.gpuAcceleration;
-
-  var offsetParent = getOffsetParent(data.instance.popper);
-  var offsetParentRect = getBoundingClientRect(offsetParent);
-
-  // Styles
-  var styles = {
-    position: popper.position
-  };
-
-  var offsets = getRoundedOffsets(data, window.devicePixelRatio < 2 || !isFirefox);
-
-  var sideA = x === 'bottom' ? 'top' : 'bottom';
-  var sideB = y === 'right' ? 'left' : 'right';
-
-  // if gpuAcceleration is set to `true` and transform is supported,
-  //  we use `translate3d` to apply the position to the popper we
-  // automatically use the supported prefixed version if needed
-  var prefixedProperty = getSupportedPropertyName('transform');
-
-  // now, let's make a step back and look at this code closely (wtf?)
-  // If the content of the popper grows once it's been positioned, it
-  // may happen that the popper gets misplaced because of the new content
-  // overflowing its reference element
-  // To avoid this problem, we provide two options (x and y), which allow
-  // the consumer to define the offset origin.
-  // If we position a popper on top of a reference element, we can set
-  // `x` to `top` to make the popper grow towards its top instead of
-  // its bottom.
-  var left = void 0,
-      top = void 0;
-  if (sideA === 'bottom') {
-    // when offsetParent is <html> the positioning is relative to the bottom of the screen (excluding the scrollbar)
-    // and not the bottom of the html element
-    if (offsetParent.nodeName === 'HTML') {
-      top = -offsetParent.clientHeight + offsets.bottom;
-    } else {
-      top = -offsetParentRect.height + offsets.bottom;
-    }
-  } else {
-    top = offsets.top;
-  }
-  if (sideB === 'right') {
-    if (offsetParent.nodeName === 'HTML') {
-      left = -offsetParent.clientWidth + offsets.right;
-    } else {
-      left = -offsetParentRect.width + offsets.right;
-    }
-  } else {
-    left = offsets.left;
-  }
-  if (gpuAcceleration && prefixedProperty) {
-    styles[prefixedProperty] = 'translate3d(' + left + 'px, ' + top + 'px, 0)';
-    styles[sideA] = 0;
-    styles[sideB] = 0;
-    styles.willChange = 'transform';
-  } else {
-    // othwerise, we use the standard `top`, `left`, `bottom` and `right` properties
-    var invertTop = sideA === 'bottom' ? -1 : 1;
-    var invertLeft = sideB === 'right' ? -1 : 1;
-    styles[sideA] = top * invertTop;
-    styles[sideB] = left * invertLeft;
-    styles.willChange = sideA + ', ' + sideB;
-  }
-
-  // Attributes
-  var attributes = {
-    'x-placement': data.placement
-  };
-
-  // Update `data` attributes, styles and arrowStyles
-  data.attributes = _extends({}, attributes, data.attributes);
-  data.styles = _extends({}, styles, data.styles);
-  data.arrowStyles = _extends({}, data.offsets.arrow, data.arrowStyles);
-
-  return data;
-}
-
-/**
- * Helper used to know if the given modifier depends from another one.<br />
- * It checks if the needed modifier is listed and enabled.
- * @method
- * @memberof Popper.Utils
- * @param {Array} modifiers - list of modifiers
- * @param {String} requestingName - name of requesting modifier
- * @param {String} requestedName - name of requested modifier
- * @returns {Boolean}
- */
-function isModifierRequired(modifiers, requestingName, requestedName) {
-  var requesting = find(modifiers, function (_ref) {
-    var name = _ref.name;
-    return name === requestingName;
-  });
-
-  var isRequired = !!requesting && modifiers.some(function (modifier) {
-    return modifier.name === requestedName && modifier.enabled && modifier.order < requesting.order;
-  });
-
-  if (!isRequired) {
-    var _requesting = '`' + requestingName + '`';
-    var requested = '`' + requestedName + '`';
-    console.warn(requested + ' modifier is required by ' + _requesting + ' modifier in order to work, be sure to include it before ' + _requesting + '!');
-  }
-  return isRequired;
-}
-
-/**
- * @function
- * @memberof Modifiers
- * @argument {Object} data - The data object generated by update method
- * @argument {Object} options - Modifiers configuration and options
- * @returns {Object} The data object, properly modified
- */
-function arrow(data, options) {
-  var _data$offsets$arrow;
-
-  // arrow depends on keepTogether in order to work
-  if (!isModifierRequired(data.instance.modifiers, 'arrow', 'keepTogether')) {
-    return data;
-  }
-
-  var arrowElement = options.element;
-
-  // if arrowElement is a string, suppose it's a CSS selector
-  if (typeof arrowElement === 'string') {
-    arrowElement = data.instance.popper.querySelector(arrowElement);
-
-    // if arrowElement is not found, don't run the modifier
-    if (!arrowElement) {
-      return data;
-    }
-  } else {
-    // if the arrowElement isn't a query selector we must check that the
-    // provided DOM node is child of its popper node
-    if (!data.instance.popper.contains(arrowElement)) {
-      console.warn('WARNING: `arrow.element` must be child of its popper element!');
-      return data;
-    }
-  }
-
-  var placement = data.placement.split('-')[0];
-  var _data$offsets = data.offsets,
-      popper = _data$offsets.popper,
-      reference = _data$offsets.reference;
-
-  var isVertical = ['left', 'right'].indexOf(placement) !== -1;
-
-  var len = isVertical ? 'height' : 'width';
-  var sideCapitalized = isVertical ? 'Top' : 'Left';
-  var side = sideCapitalized.toLowerCase();
-  var altSide = isVertical ? 'left' : 'top';
-  var opSide = isVertical ? 'bottom' : 'right';
-  var arrowElementSize = getOuterSizes(arrowElement)[len];
-
-  //
-  // extends keepTogether behavior making sure the popper and its
-  // reference have enough pixels in conjunction
-  //
-
-  // top/left side
-  if (reference[opSide] - arrowElementSize < popper[side]) {
-    data.offsets.popper[side] -= popper[side] - (reference[opSide] - arrowElementSize);
-  }
-  // bottom/right side
-  if (reference[side] + arrowElementSize > popper[opSide]) {
-    data.offsets.popper[side] += reference[side] + arrowElementSize - popper[opSide];
-  }
-  data.offsets.popper = getClientRect(data.offsets.popper);
-
-  // compute center of the popper
-  var center = reference[side] + reference[len] / 2 - arrowElementSize / 2;
-
-  // Compute the sideValue using the updated popper offsets
-  // take popper margin in account because we don't have this info available
-  var css = getStyleComputedProperty(data.instance.popper);
-  var popperMarginSide = parseFloat(css['margin' + sideCapitalized], 10);
-  var popperBorderSide = parseFloat(css['border' + sideCapitalized + 'Width'], 10);
-  var sideValue = center - data.offsets.popper[side] - popperMarginSide - popperBorderSide;
-
-  // prevent arrowElement from being placed not contiguously to its popper
-  sideValue = Math.max(Math.min(popper[len] - arrowElementSize, sideValue), 0);
-
-  data.arrowElement = arrowElement;
-  data.offsets.arrow = (_data$offsets$arrow = {}, defineProperty(_data$offsets$arrow, side, Math.round(sideValue)), defineProperty(_data$offsets$arrow, altSide, ''), _data$offsets$arrow);
-
-  return data;
-}
-
-/**
- * Get the opposite placement variation of the given one
- * @method
- * @memberof Popper.Utils
- * @argument {String} placement variation
- * @returns {String} flipped placement variation
- */
-function getOppositeVariation(variation) {
-  if (variation === 'end') {
-    return 'start';
-  } else if (variation === 'start') {
-    return 'end';
-  }
-  return variation;
-}
-
-/**
- * List of accepted placements to use as values of the `placement` option.<br />
- * Valid placements are:
- * - `auto`
- * - `top`
- * - `right`
- * - `bottom`
- * - `left`
- *
- * Each placement can have a variation from this list:
- * - `-start`
- * - `-end`
- *
- * Variations are interpreted easily if you think of them as the left to right
- * written languages. Horizontally (`top` and `bottom`), `start` is left and `end`
- * is right.<br />
- * Vertically (`left` and `right`), `start` is top and `end` is bottom.
- *
- * Some valid examples are:
- * - `top-end` (on top of reference, right aligned)
- * - `right-start` (on right of reference, top aligned)
- * - `bottom` (on bottom, centered)
- * - `auto-end` (on the side with more space available, alignment depends by placement)
- *
- * @static
- * @type {Array}
- * @enum {String}
- * @readonly
- * @method placements
- * @memberof Popper
- */
-var placements = ['auto-start', 'auto', 'auto-end', 'top-start', 'top', 'top-end', 'right-start', 'right', 'right-end', 'bottom-end', 'bottom', 'bottom-start', 'left-end', 'left', 'left-start'];
-
-// Get rid of `auto` `auto-start` and `auto-end`
-var validPlacements = placements.slice(3);
-
-/**
- * Given an initial placement, returns all the subsequent placements
- * clockwise (or counter-clockwise).
- *
- * @method
- * @memberof Popper.Utils
- * @argument {String} placement - A valid placement (it accepts variations)
- * @argument {Boolean} counter - Set to true to walk the placements counterclockwise
- * @returns {Array} placements including their variations
- */
-function clockwise(placement) {
-  var counter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
-  var index = validPlacements.indexOf(placement);
-  var arr = validPlacements.slice(index + 1).concat(validPlacements.slice(0, index));
-  return counter ? arr.reverse() : arr;
-}
-
-var BEHAVIORS = {
-  FLIP: 'flip',
-  CLOCKWISE: 'clockwise',
-  COUNTERCLOCKWISE: 'counterclockwise'
-};
-
-/**
- * @function
- * @memberof Modifiers
- * @argument {Object} data - The data object generated by update method
- * @argument {Object} options - Modifiers configuration and options
- * @returns {Object} The data object, properly modified
- */
-function flip(data, options) {
-  // if `inner` modifier is enabled, we can't use the `flip` modifier
-  if (isModifierEnabled(data.instance.modifiers, 'inner')) {
-    return data;
-  }
-
-  if (data.flipped && data.placement === data.originalPlacement) {
-    // seems like flip is trying to loop, probably there's not enough space on any of the flippable sides
-    return data;
-  }
-
-  var boundaries = getBoundaries(data.instance.popper, data.instance.reference, options.padding, options.boundariesElement, data.positionFixed);
-
-  var placement = data.placement.split('-')[0];
-  var placementOpposite = getOppositePlacement(placement);
-  var variation = data.placement.split('-')[1] || '';
-
-  var flipOrder = [];
-
-  switch (options.behavior) {
-    case BEHAVIORS.FLIP:
-      flipOrder = [placement, placementOpposite];
-      break;
-    case BEHAVIORS.CLOCKWISE:
-      flipOrder = clockwise(placement);
-      break;
-    case BEHAVIORS.COUNTERCLOCKWISE:
-      flipOrder = clockwise(placement, true);
-      break;
-    default:
-      flipOrder = options.behavior;
-  }
-
-  flipOrder.forEach(function (step, index) {
-    if (placement !== step || flipOrder.length === index + 1) {
-      return data;
-    }
-
-    placement = data.placement.split('-')[0];
-    placementOpposite = getOppositePlacement(placement);
-
-    var popperOffsets = data.offsets.popper;
-    var refOffsets = data.offsets.reference;
-
-    // using floor because the reference offsets may contain decimals we are not going to consider here
-    var floor = Math.floor;
-    var overlapsRef = placement === 'left' && floor(popperOffsets.right) > floor(refOffsets.left) || placement === 'right' && floor(popperOffsets.left) < floor(refOffsets.right) || placement === 'top' && floor(popperOffsets.bottom) > floor(refOffsets.top) || placement === 'bottom' && floor(popperOffsets.top) < floor(refOffsets.bottom);
-
-    var overflowsLeft = floor(popperOffsets.left) < floor(boundaries.left);
-    var overflowsRight = floor(popperOffsets.right) > floor(boundaries.right);
-    var overflowsTop = floor(popperOffsets.top) < floor(boundaries.top);
-    var overflowsBottom = floor(popperOffsets.bottom) > floor(boundaries.bottom);
-
-    var overflowsBoundaries = placement === 'left' && overflowsLeft || placement === 'right' && overflowsRight || placement === 'top' && overflowsTop || placement === 'bottom' && overflowsBottom;
-
-    // flip the variation if required
-    var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
-    var flippedVariation = !!options.flipVariations && (isVertical && variation === 'start' && overflowsLeft || isVertical && variation === 'end' && overflowsRight || !isVertical && variation === 'start' && overflowsTop || !isVertical && variation === 'end' && overflowsBottom);
-
-    if (overlapsRef || overflowsBoundaries || flippedVariation) {
-      // this boolean to detect any flip loop
-      data.flipped = true;
-
-      if (overlapsRef || overflowsBoundaries) {
-        placement = flipOrder[index + 1];
-      }
-
-      if (flippedVariation) {
-        variation = getOppositeVariation(variation);
-      }
-
-      data.placement = placement + (variation ? '-' + variation : '');
-
-      // this object contains `position`, we want to preserve it along with
-      // any additional property we may add in the future
-      data.offsets.popper = _extends({}, data.offsets.popper, getPopperOffsets(data.instance.popper, data.offsets.reference, data.placement));
-
-      data = runModifiers(data.instance.modifiers, data, 'flip');
-    }
-  });
-  return data;
-}
-
-/**
- * @function
- * @memberof Modifiers
- * @argument {Object} data - The data object generated by update method
- * @argument {Object} options - Modifiers configuration and options
- * @returns {Object} The data object, properly modified
- */
-function keepTogether(data) {
-  var _data$offsets = data.offsets,
-      popper = _data$offsets.popper,
-      reference = _data$offsets.reference;
-
-  var placement = data.placement.split('-')[0];
-  var floor = Math.floor;
-  var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
-  var side = isVertical ? 'right' : 'bottom';
-  var opSide = isVertical ? 'left' : 'top';
-  var measurement = isVertical ? 'width' : 'height';
-
-  if (popper[side] < floor(reference[opSide])) {
-    data.offsets.popper[opSide] = floor(reference[opSide]) - popper[measurement];
-  }
-  if (popper[opSide] > floor(reference[side])) {
-    data.offsets.popper[opSide] = floor(reference[side]);
-  }
-
-  return data;
-}
-
-/**
- * Converts a string containing value + unit into a px value number
- * @function
- * @memberof {modifiers~offset}
- * @private
- * @argument {String} str - Value + unit string
- * @argument {String} measurement - `height` or `width`
- * @argument {Object} popperOffsets
- * @argument {Object} referenceOffsets
- * @returns {Number|String}
- * Value in pixels, or original string if no values were extracted
- */
-function toValue(str, measurement, popperOffsets, referenceOffsets) {
-  // separate value from unit
-  var split = str.match(/((?:\-|\+)?\d*\.?\d*)(.*)/);
-  var value = +split[1];
-  var unit = split[2];
-
-  // If it's not a number it's an operator, I guess
-  if (!value) {
-    return str;
-  }
-
-  if (unit.indexOf('%') === 0) {
-    var element = void 0;
-    switch (unit) {
-      case '%p':
-        element = popperOffsets;
-        break;
-      case '%':
-      case '%r':
-      default:
-        element = referenceOffsets;
-    }
-
-    var rect = getClientRect(element);
-    return rect[measurement] / 100 * value;
-  } else if (unit === 'vh' || unit === 'vw') {
-    // if is a vh or vw, we calculate the size based on the viewport
-    var size = void 0;
-    if (unit === 'vh') {
-      size = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-    } else {
-      size = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    }
-    return size / 100 * value;
-  } else {
-    // if is an explicit pixel unit, we get rid of the unit and keep the value
-    // if is an implicit unit, it's px, and we return just the value
-    return value;
-  }
-}
-
-/**
- * Parse an `offset` string to extrapolate `x` and `y` numeric offsets.
- * @function
- * @memberof {modifiers~offset}
- * @private
- * @argument {String} offset
- * @argument {Object} popperOffsets
- * @argument {Object} referenceOffsets
- * @argument {String} basePlacement
- * @returns {Array} a two cells array with x and y offsets in numbers
- */
-function parseOffset(offset, popperOffsets, referenceOffsets, basePlacement) {
-  var offsets = [0, 0];
-
-  // Use height if placement is left or right and index is 0 otherwise use width
-  // in this way the first offset will use an axis and the second one
-  // will use the other one
-  var useHeight = ['right', 'left'].indexOf(basePlacement) !== -1;
-
-  // Split the offset string to obtain a list of values and operands
-  // The regex addresses values with the plus or minus sign in front (+10, -20, etc)
-  var fragments = offset.split(/(\+|\-)/).map(function (frag) {
-    return frag.trim();
-  });
-
-  // Detect if the offset string contains a pair of values or a single one
-  // they could be separated by comma or space
-  var divider = fragments.indexOf(find(fragments, function (frag) {
-    return frag.search(/,|\s/) !== -1;
-  }));
-
-  if (fragments[divider] && fragments[divider].indexOf(',') === -1) {
-    console.warn('Offsets separated by white space(s) are deprecated, use a comma (,) instead.');
-  }
-
-  // If divider is found, we divide the list of values and operands to divide
-  // them by ofset X and Y.
-  var splitRegex = /\s*,\s*|\s+/;
-  var ops = divider !== -1 ? [fragments.slice(0, divider).concat([fragments[divider].split(splitRegex)[0]]), [fragments[divider].split(splitRegex)[1]].concat(fragments.slice(divider + 1))] : [fragments];
-
-  // Convert the values with units to absolute pixels to allow our computations
-  ops = ops.map(function (op, index) {
-    // Most of the units rely on the orientation of the popper
-    var measurement = (index === 1 ? !useHeight : useHeight) ? 'height' : 'width';
-    var mergeWithPrevious = false;
-    return op
-    // This aggregates any `+` or `-` sign that aren't considered operators
-    // e.g.: 10 + +5 => [10, +, +5]
-    .reduce(function (a, b) {
-      if (a[a.length - 1] === '' && ['+', '-'].indexOf(b) !== -1) {
-        a[a.length - 1] = b;
-        mergeWithPrevious = true;
-        return a;
-      } else if (mergeWithPrevious) {
-        a[a.length - 1] += b;
-        mergeWithPrevious = false;
-        return a;
-      } else {
-        return a.concat(b);
-      }
-    }, [])
-    // Here we convert the string values into number values (in px)
-    .map(function (str) {
-      return toValue(str, measurement, popperOffsets, referenceOffsets);
-    });
-  });
-
-  // Loop trough the offsets arrays and execute the operations
-  ops.forEach(function (op, index) {
-    op.forEach(function (frag, index2) {
-      if (isNumeric(frag)) {
-        offsets[index] += frag * (op[index2 - 1] === '-' ? -1 : 1);
-      }
-    });
-  });
-  return offsets;
-}
-
-/**
- * @function
- * @memberof Modifiers
- * @argument {Object} data - The data object generated by update method
- * @argument {Object} options - Modifiers configuration and options
- * @argument {Number|String} options.offset=0
- * The offset value as described in the modifier description
- * @returns {Object} The data object, properly modified
- */
-function offset(data, _ref) {
-  var offset = _ref.offset;
-  var placement = data.placement,
-      _data$offsets = data.offsets,
-      popper = _data$offsets.popper,
-      reference = _data$offsets.reference;
-
-  var basePlacement = placement.split('-')[0];
-
-  var offsets = void 0;
-  if (isNumeric(+offset)) {
-    offsets = [+offset, 0];
-  } else {
-    offsets = parseOffset(offset, popper, reference, basePlacement);
-  }
-
-  if (basePlacement === 'left') {
-    popper.top += offsets[0];
-    popper.left -= offsets[1];
-  } else if (basePlacement === 'right') {
-    popper.top += offsets[0];
-    popper.left += offsets[1];
-  } else if (basePlacement === 'top') {
-    popper.left += offsets[0];
-    popper.top -= offsets[1];
-  } else if (basePlacement === 'bottom') {
-    popper.left += offsets[0];
-    popper.top += offsets[1];
-  }
-
-  data.popper = popper;
-  return data;
-}
-
-/**
- * @function
- * @memberof Modifiers
- * @argument {Object} data - The data object generated by `update` method
- * @argument {Object} options - Modifiers configuration and options
- * @returns {Object} The data object, properly modified
- */
-function preventOverflow(data, options) {
-  var boundariesElement = options.boundariesElement || getOffsetParent(data.instance.popper);
-
-  // If offsetParent is the reference element, we really want to
-  // go one step up and use the next offsetParent as reference to
-  // avoid to make this modifier completely useless and look like broken
-  if (data.instance.reference === boundariesElement) {
-    boundariesElement = getOffsetParent(boundariesElement);
-  }
-
-  // NOTE: DOM access here
-  // resets the popper's position so that the document size can be calculated excluding
-  // the size of the popper element itself
-  var transformProp = getSupportedPropertyName('transform');
-  var popperStyles = data.instance.popper.style; // assignment to help minification
-  var top = popperStyles.top,
-      left = popperStyles.left,
-      transform = popperStyles[transformProp];
-
-  popperStyles.top = '';
-  popperStyles.left = '';
-  popperStyles[transformProp] = '';
-
-  var boundaries = getBoundaries(data.instance.popper, data.instance.reference, options.padding, boundariesElement, data.positionFixed);
-
-  // NOTE: DOM access here
-  // restores the original style properties after the offsets have been computed
-  popperStyles.top = top;
-  popperStyles.left = left;
-  popperStyles[transformProp] = transform;
-
-  options.boundaries = boundaries;
-
-  var order = options.priority;
-  var popper = data.offsets.popper;
-
-  var check = {
-    primary: function primary(placement) {
-      var value = popper[placement];
-      if (popper[placement] < boundaries[placement] && !options.escapeWithReference) {
-        value = Math.max(popper[placement], boundaries[placement]);
-      }
-      return defineProperty({}, placement, value);
-    },
-    secondary: function secondary(placement) {
-      var mainSide = placement === 'right' ? 'left' : 'top';
-      var value = popper[mainSide];
-      if (popper[placement] > boundaries[placement] && !options.escapeWithReference) {
-        value = Math.min(popper[mainSide], boundaries[placement] - (placement === 'right' ? popper.width : popper.height));
-      }
-      return defineProperty({}, mainSide, value);
-    }
-  };
-
-  order.forEach(function (placement) {
-    var side = ['left', 'top'].indexOf(placement) !== -1 ? 'primary' : 'secondary';
-    popper = _extends({}, popper, check[side](placement));
-  });
-
-  data.offsets.popper = popper;
-
-  return data;
-}
-
-/**
- * @function
- * @memberof Modifiers
- * @argument {Object} data - The data object generated by `update` method
- * @argument {Object} options - Modifiers configuration and options
- * @returns {Object} The data object, properly modified
- */
-function shift(data) {
-  var placement = data.placement;
-  var basePlacement = placement.split('-')[0];
-  var shiftvariation = placement.split('-')[1];
-
-  // if shift shiftvariation is specified, run the modifier
-  if (shiftvariation) {
-    var _data$offsets = data.offsets,
-        reference = _data$offsets.reference,
-        popper = _data$offsets.popper;
-
-    var isVertical = ['bottom', 'top'].indexOf(basePlacement) !== -1;
-    var side = isVertical ? 'left' : 'top';
-    var measurement = isVertical ? 'width' : 'height';
-
-    var shiftOffsets = {
-      start: defineProperty({}, side, reference[side]),
-      end: defineProperty({}, side, reference[side] + reference[measurement] - popper[measurement])
-    };
-
-    data.offsets.popper = _extends({}, popper, shiftOffsets[shiftvariation]);
-  }
-
-  return data;
-}
-
-/**
- * @function
- * @memberof Modifiers
- * @argument {Object} data - The data object generated by update method
- * @argument {Object} options - Modifiers configuration and options
- * @returns {Object} The data object, properly modified
- */
-function hide(data) {
-  if (!isModifierRequired(data.instance.modifiers, 'hide', 'preventOverflow')) {
-    return data;
-  }
-
-  var refRect = data.offsets.reference;
-  var bound = find(data.instance.modifiers, function (modifier) {
-    return modifier.name === 'preventOverflow';
-  }).boundaries;
-
-  if (refRect.bottom < bound.top || refRect.left > bound.right || refRect.top > bound.bottom || refRect.right < bound.left) {
-    // Avoid unnecessary DOM access if visibility hasn't changed
-    if (data.hide === true) {
-      return data;
-    }
-
-    data.hide = true;
-    data.attributes['x-out-of-boundaries'] = '';
-  } else {
-    // Avoid unnecessary DOM access if visibility hasn't changed
-    if (data.hide === false) {
-      return data;
-    }
-
-    data.hide = false;
-    data.attributes['x-out-of-boundaries'] = false;
-  }
-
-  return data;
-}
-
-/**
- * @function
- * @memberof Modifiers
- * @argument {Object} data - The data object generated by `update` method
- * @argument {Object} options - Modifiers configuration and options
- * @returns {Object} The data object, properly modified
- */
-function inner(data) {
-  var placement = data.placement;
-  var basePlacement = placement.split('-')[0];
-  var _data$offsets = data.offsets,
-      popper = _data$offsets.popper,
-      reference = _data$offsets.reference;
-
-  var isHoriz = ['left', 'right'].indexOf(basePlacement) !== -1;
-
-  var subtractLength = ['top', 'left'].indexOf(basePlacement) === -1;
-
-  popper[isHoriz ? 'left' : 'top'] = reference[basePlacement] - (subtractLength ? popper[isHoriz ? 'width' : 'height'] : 0);
-
-  data.placement = getOppositePlacement(placement);
-  data.offsets.popper = getClientRect(popper);
-
-  return data;
-}
-
-/**
- * Modifier function, each modifier can have a function of this type assigned
- * to its `fn` property.<br />
- * These functions will be called on each update, this means that you must
- * make sure they are performant enough to avoid performance bottlenecks.
- *
- * @function ModifierFn
- * @argument {dataObject} data - The data object generated by `update` method
- * @argument {Object} options - Modifiers configuration and options
- * @returns {dataObject} The data object, properly modified
- */
-
-/**
- * Modifiers are plugins used to alter the behavior of your poppers.<br />
- * Popper.js uses a set of 9 modifiers to provide all the basic functionalities
- * needed by the library.
- *
- * Usually you don't want to override the `order`, `fn` and `onLoad` props.
- * All the other properties are configurations that could be tweaked.
- * @namespace modifiers
- */
-var modifiers = {
-  /**
-   * Modifier used to shift the popper on the start or end of its reference
-   * element.<br />
-   * It will read the variation of the `placement` property.<br />
-   * It can be one either `-end` or `-start`.
-   * @memberof modifiers
-   * @inner
-   */
-  shift: {
-    /** @prop {number} order=100 - Index used to define the order of execution */
-    order: 100,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
-    enabled: true,
-    /** @prop {ModifierFn} */
-    fn: shift
-  },
-
-  /**
-   * The `offset` modifier can shift your popper on both its axis.
-   *
-   * It accepts the following units:
-   * - `px` or unit-less, interpreted as pixels
-   * - `%` or `%r`, percentage relative to the length of the reference element
-   * - `%p`, percentage relative to the length of the popper element
-   * - `vw`, CSS viewport width unit
-   * - `vh`, CSS viewport height unit
-   *
-   * For length is intended the main axis relative to the placement of the popper.<br />
-   * This means that if the placement is `top` or `bottom`, the length will be the
-   * `width`. In case of `left` or `right`, it will be the `height`.
-   *
-   * You can provide a single value (as `Number` or `String`), or a pair of values
-   * as `String` divided by a comma or one (or more) white spaces.<br />
-   * The latter is a deprecated method because it leads to confusion and will be
-   * removed in v2.<br />
-   * Additionally, it accepts additions and subtractions between different units.
-   * Note that multiplications and divisions aren't supported.
-   *
-   * Valid examples are:
-   * ```
-   * 10
-   * '10%'
-   * '10, 10'
-   * '10%, 10'
-   * '10 + 10%'
-   * '10 - 5vh + 3%'
-   * '-10px + 5vh, 5px - 6%'
-   * ```
-   * > **NB**: If you desire to apply offsets to your poppers in a way that may make them overlap
-   * > with their reference element, unfortunately, you will have to disable the `flip` modifier.
-   * > You can read more on this at this [issue](https://github.com/FezVrasta/popper.js/issues/373).
-   *
-   * @memberof modifiers
-   * @inner
-   */
-  offset: {
-    /** @prop {number} order=200 - Index used to define the order of execution */
-    order: 200,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
-    enabled: true,
-    /** @prop {ModifierFn} */
-    fn: offset,
-    /** @prop {Number|String} offset=0
-     * The offset value as described in the modifier description
-     */
-    offset: 0
-  },
-
-  /**
-   * Modifier used to prevent the popper from being positioned outside the boundary.
-   *
-   * A scenario exists where the reference itself is not within the boundaries.<br />
-   * We can say it has "escaped the boundaries" — or just "escaped".<br />
-   * In this case we need to decide whether the popper should either:
-   *
-   * - detach from the reference and remain "trapped" in the boundaries, or
-   * - if it should ignore the boundary and "escape with its reference"
-   *
-   * When `escapeWithReference` is set to`true` and reference is completely
-   * outside its boundaries, the popper will overflow (or completely leave)
-   * the boundaries in order to remain attached to the edge of the reference.
-   *
-   * @memberof modifiers
-   * @inner
-   */
-  preventOverflow: {
-    /** @prop {number} order=300 - Index used to define the order of execution */
-    order: 300,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
-    enabled: true,
-    /** @prop {ModifierFn} */
-    fn: preventOverflow,
-    /**
-     * @prop {Array} [priority=['left','right','top','bottom']]
-     * Popper will try to prevent overflow following these priorities by default,
-     * then, it could overflow on the left and on top of the `boundariesElement`
-     */
-    priority: ['left', 'right', 'top', 'bottom'],
-    /**
-     * @prop {number} padding=5
-     * Amount of pixel used to define a minimum distance between the boundaries
-     * and the popper. This makes sure the popper always has a little padding
-     * between the edges of its container
-     */
-    padding: 5,
-    /**
-     * @prop {String|HTMLElement} boundariesElement='scrollParent'
-     * Boundaries used by the modifier. Can be `scrollParent`, `window`,
-     * `viewport` or any DOM element.
-     */
-    boundariesElement: 'scrollParent'
-  },
-
-  /**
-   * Modifier used to make sure the reference and its popper stay near each other
-   * without leaving any gap between the two. Especially useful when the arrow is
-   * enabled and you want to ensure that it points to its reference element.
-   * It cares only about the first axis. You can still have poppers with margin
-   * between the popper and its reference element.
-   * @memberof modifiers
-   * @inner
-   */
-  keepTogether: {
-    /** @prop {number} order=400 - Index used to define the order of execution */
-    order: 400,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
-    enabled: true,
-    /** @prop {ModifierFn} */
-    fn: keepTogether
-  },
-
-  /**
-   * This modifier is used to move the `arrowElement` of the popper to make
-   * sure it is positioned between the reference element and its popper element.
-   * It will read the outer size of the `arrowElement` node to detect how many
-   * pixels of conjunction are needed.
-   *
-   * It has no effect if no `arrowElement` is provided.
-   * @memberof modifiers
-   * @inner
-   */
-  arrow: {
-    /** @prop {number} order=500 - Index used to define the order of execution */
-    order: 500,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
-    enabled: true,
-    /** @prop {ModifierFn} */
-    fn: arrow,
-    /** @prop {String|HTMLElement} element='[x-arrow]' - Selector or node used as arrow */
-    element: '[x-arrow]'
-  },
-
-  /**
-   * Modifier used to flip the popper's placement when it starts to overlap its
-   * reference element.
-   *
-   * Requires the `preventOverflow` modifier before it in order to work.
-   *
-   * **NOTE:** this modifier will interrupt the current update cycle and will
-   * restart it if it detects the need to flip the placement.
-   * @memberof modifiers
-   * @inner
-   */
-  flip: {
-    /** @prop {number} order=600 - Index used to define the order of execution */
-    order: 600,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
-    enabled: true,
-    /** @prop {ModifierFn} */
-    fn: flip,
-    /**
-     * @prop {String|Array} behavior='flip'
-     * The behavior used to change the popper's placement. It can be one of
-     * `flip`, `clockwise`, `counterclockwise` or an array with a list of valid
-     * placements (with optional variations)
-     */
-    behavior: 'flip',
-    /**
-     * @prop {number} padding=5
-     * The popper will flip if it hits the edges of the `boundariesElement`
-     */
-    padding: 5,
-    /**
-     * @prop {String|HTMLElement} boundariesElement='viewport'
-     * The element which will define the boundaries of the popper position.
-     * The popper will never be placed outside of the defined boundaries
-     * (except if `keepTogether` is enabled)
-     */
-    boundariesElement: 'viewport'
-  },
-
-  /**
-   * Modifier used to make the popper flow toward the inner of the reference element.
-   * By default, when this modifier is disabled, the popper will be placed outside
-   * the reference element.
-   * @memberof modifiers
-   * @inner
-   */
-  inner: {
-    /** @prop {number} order=700 - Index used to define the order of execution */
-    order: 700,
-    /** @prop {Boolean} enabled=false - Whether the modifier is enabled or not */
-    enabled: false,
-    /** @prop {ModifierFn} */
-    fn: inner
-  },
-
-  /**
-   * Modifier used to hide the popper when its reference element is outside of the
-   * popper boundaries. It will set a `x-out-of-boundaries` attribute which can
-   * be used to hide with a CSS selector the popper when its reference is
-   * out of boundaries.
-   *
-   * Requires the `preventOverflow` modifier before it in order to work.
-   * @memberof modifiers
-   * @inner
-   */
-  hide: {
-    /** @prop {number} order=800 - Index used to define the order of execution */
-    order: 800,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
-    enabled: true,
-    /** @prop {ModifierFn} */
-    fn: hide
-  },
-
-  /**
-   * Computes the style that will be applied to the popper element to gets
-   * properly positioned.
-   *
-   * Note that this modifier will not touch the DOM, it just prepares the styles
-   * so that `applyStyle` modifier can apply it. This separation is useful
-   * in case you need to replace `applyStyle` with a custom implementation.
-   *
-   * This modifier has `850` as `order` value to maintain backward compatibility
-   * with previous versions of Popper.js. Expect the modifiers ordering method
-   * to change in future major versions of the library.
-   *
-   * @memberof modifiers
-   * @inner
-   */
-  computeStyle: {
-    /** @prop {number} order=850 - Index used to define the order of execution */
-    order: 850,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
-    enabled: true,
-    /** @prop {ModifierFn} */
-    fn: computeStyle,
-    /**
-     * @prop {Boolean} gpuAcceleration=true
-     * If true, it uses the CSS 3D transformation to position the popper.
-     * Otherwise, it will use the `top` and `left` properties
-     */
-    gpuAcceleration: true,
-    /**
-     * @prop {string} [x='bottom']
-     * Where to anchor the X axis (`bottom` or `top`). AKA X offset origin.
-     * Change this if your popper should grow in a direction different from `bottom`
-     */
-    x: 'bottom',
-    /**
-     * @prop {string} [x='left']
-     * Where to anchor the Y axis (`left` or `right`). AKA Y offset origin.
-     * Change this if your popper should grow in a direction different from `right`
-     */
-    y: 'right'
-  },
-
-  /**
-   * Applies the computed styles to the popper element.
-   *
-   * All the DOM manipulations are limited to this modifier. This is useful in case
-   * you want to integrate Popper.js inside a framework or view library and you
-   * want to delegate all the DOM manipulations to it.
-   *
-   * Note that if you disable this modifier, you must make sure the popper element
-   * has its position set to `absolute` before Popper.js can do its work!
-   *
-   * Just disable this modifier and define your own to achieve the desired effect.
-   *
-   * @memberof modifiers
-   * @inner
-   */
-  applyStyle: {
-    /** @prop {number} order=900 - Index used to define the order of execution */
-    order: 900,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
-    enabled: true,
-    /** @prop {ModifierFn} */
-    fn: applyStyle,
-    /** @prop {Function} */
-    onLoad: applyStyleOnLoad,
-    /**
-     * @deprecated since version 1.10.0, the property moved to `computeStyle` modifier
-     * @prop {Boolean} gpuAcceleration=true
-     * If true, it uses the CSS 3D transformation to position the popper.
-     * Otherwise, it will use the `top` and `left` properties
-     */
-    gpuAcceleration: undefined
-  }
-};
-
-/**
- * The `dataObject` is an object containing all the information used by Popper.js.
- * This object is passed to modifiers and to the `onCreate` and `onUpdate` callbacks.
- * @name dataObject
- * @property {Object} data.instance The Popper.js instance
- * @property {String} data.placement Placement applied to popper
- * @property {String} data.originalPlacement Placement originally defined on init
- * @property {Boolean} data.flipped True if popper has been flipped by flip modifier
- * @property {Boolean} data.hide True if the reference element is out of boundaries, useful to know when to hide the popper
- * @property {HTMLElement} data.arrowElement Node used as arrow by arrow modifier
- * @property {Object} data.styles Any CSS property defined here will be applied to the popper. It expects the JavaScript nomenclature (eg. `marginBottom`)
- * @property {Object} data.arrowStyles Any CSS property defined here will be applied to the popper arrow. It expects the JavaScript nomenclature (eg. `marginBottom`)
- * @property {Object} data.boundaries Offsets of the popper boundaries
- * @property {Object} data.offsets The measurements of popper, reference and arrow elements
- * @property {Object} data.offsets.popper `top`, `left`, `width`, `height` values
- * @property {Object} data.offsets.reference `top`, `left`, `width`, `height` values
- * @property {Object} data.offsets.arrow] `top` and `left` offsets, only one of them will be different from 0
- */
-
-/**
- * Default options provided to Popper.js constructor.<br />
- * These can be overridden using the `options` argument of Popper.js.<br />
- * To override an option, simply pass an object with the same
- * structure of the `options` object, as the 3rd argument. For example:
- * ```
- * new Popper(ref, pop, {
- *   modifiers: {
- *     preventOverflow: { enabled: false }
- *   }
- * })
- * ```
- * @type {Object}
- * @static
- * @memberof Popper
- */
-var Defaults = {
-  /**
-   * Popper's placement.
-   * @prop {Popper.placements} placement='bottom'
-   */
-  placement: 'bottom',
-
-  /**
-   * Set this to true if you want popper to position it self in 'fixed' mode
-   * @prop {Boolean} positionFixed=false
-   */
-  positionFixed: false,
-
-  /**
-   * Whether events (resize, scroll) are initially enabled.
-   * @prop {Boolean} eventsEnabled=true
-   */
-  eventsEnabled: true,
-
-  /**
-   * Set to true if you want to automatically remove the popper when
-   * you call the `destroy` method.
-   * @prop {Boolean} removeOnDestroy=false
-   */
-  removeOnDestroy: false,
-
-  /**
-   * Callback called when the popper is created.<br />
-   * By default, it is set to no-op.<br />
-   * Access Popper.js instance with `data.instance`.
-   * @prop {onCreate}
-   */
-  onCreate: function onCreate() {},
-
-  /**
-   * Callback called when the popper is updated. This callback is not called
-   * on the initialization/creation of the popper, but only on subsequent
-   * updates.<br />
-   * By default, it is set to no-op.<br />
-   * Access Popper.js instance with `data.instance`.
-   * @prop {onUpdate}
-   */
-  onUpdate: function onUpdate() {},
-
-  /**
-   * List of modifiers used to modify the offsets before they are applied to the popper.
-   * They provide most of the functionalities of Popper.js.
-   * @prop {modifiers}
-   */
-  modifiers: modifiers
-};
-
-/**
- * @callback onCreate
- * @param {dataObject} data
- */
-
-/**
- * @callback onUpdate
- * @param {dataObject} data
- */
-
-// Utils
-// Methods
-var Popper = function () {
-  /**
-   * Creates a new Popper.js instance.
-   * @class Popper
-   * @param {HTMLElement|referenceObject} reference - The reference element used to position the popper
-   * @param {HTMLElement} popper - The HTML element used as the popper
-   * @param {Object} options - Your custom options to override the ones defined in [Defaults](#defaults)
-   * @return {Object} instance - The generated Popper.js instance
-   */
-  function Popper(reference, popper) {
-    var _this = this;
-
-    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    classCallCheck(this, Popper);
-
-    this.scheduleUpdate = function () {
-      return requestAnimationFrame(_this.update);
-    };
-
-    // make update() debounced, so that it only runs at most once-per-tick
-    this.update = debounce(this.update.bind(this));
-
-    // with {} we create a new object with the options inside it
-    this.options = _extends({}, Popper.Defaults, options);
-
-    // init state
-    this.state = {
-      isDestroyed: false,
-      isCreated: false,
-      scrollParents: []
-    };
-
-    // get reference and popper elements (allow jQuery wrappers)
-    this.reference = reference && reference.jquery ? reference[0] : reference;
-    this.popper = popper && popper.jquery ? popper[0] : popper;
-
-    // Deep merge modifiers options
-    this.options.modifiers = {};
-    Object.keys(_extends({}, Popper.Defaults.modifiers, options.modifiers)).forEach(function (name) {
-      _this.options.modifiers[name] = _extends({}, Popper.Defaults.modifiers[name] || {}, options.modifiers ? options.modifiers[name] : {});
-    });
-
-    // Refactoring modifiers' list (Object => Array)
-    this.modifiers = Object.keys(this.options.modifiers).map(function (name) {
-      return _extends({
-        name: name
-      }, _this.options.modifiers[name]);
-    })
-    // sort the modifiers by order
-    .sort(function (a, b) {
-      return a.order - b.order;
-    });
-
-    // modifiers have the ability to execute arbitrary code when Popper.js get inited
-    // such code is executed in the same order of its modifier
-    // they could add new properties to their options configuration
-    // BE AWARE: don't add options to `options.modifiers.name` but to `modifierOptions`!
-    this.modifiers.forEach(function (modifierOptions) {
-      if (modifierOptions.enabled && isFunction(modifierOptions.onLoad)) {
-        modifierOptions.onLoad(_this.reference, _this.popper, _this.options, modifierOptions, _this.state);
-      }
-    });
-
-    // fire the first update to position the popper in the right place
-    this.update();
-
-    var eventsEnabled = this.options.eventsEnabled;
-    if (eventsEnabled) {
-      // setup event listeners, they will take care of update the position in specific situations
-      this.enableEventListeners();
-    }
-
-    this.state.eventsEnabled = eventsEnabled;
-  }
-
-  // We can't use class properties because they don't get listed in the
-  // class prototype and break stuff like Sinon stubs
-
-
-  createClass(Popper, [{
-    key: 'update',
-    value: function update$$1() {
-      return update.call(this);
-    }
-  }, {
-    key: 'destroy',
-    value: function destroy$$1() {
-      return destroy.call(this);
-    }
-  }, {
-    key: 'enableEventListeners',
-    value: function enableEventListeners$$1() {
-      return enableEventListeners.call(this);
-    }
-  }, {
-    key: 'disableEventListeners',
-    value: function disableEventListeners$$1() {
-      return disableEventListeners.call(this);
-    }
-
-    /**
-     * Schedules an update. It will run on the next UI update available.
-     * @method scheduleUpdate
-     * @memberof Popper
-     */
-
-
-    /**
-     * Collection of utilities useful when writing custom modifiers.
-     * Starting from version 1.7, this method is available only if you
-     * include `popper-utils.js` before `popper.js`.
-     *
-     * **DEPRECATION**: This way to access PopperUtils is deprecated
-     * and will be removed in v2! Use the PopperUtils module directly instead.
-     * Due to the high instability of the methods contained in Utils, we can't
-     * guarantee them to follow semver. Use them at your own risk!
-     * @static
-     * @private
-     * @type {Object}
-     * @deprecated since version 1.8
-     * @member Utils
-     * @memberof Popper
-     */
-
-  }]);
-  return Popper;
-}();
-
-/**
- * The `referenceObject` is an object that provides an interface compatible with Popper.js
- * and lets you use it as replacement of a real DOM node.<br />
- * You can use this method to position a popper relatively to a set of coordinates
- * in case you don't have a DOM node to use as reference.
- *
- * ```
- * new Popper(referenceObject, popperNode);
- * ```
- *
- * NB: This feature isn't supported in Internet Explorer 10.
- * @name referenceObject
- * @property {Function} data.getBoundingClientRect
- * A function that returns a set of coordinates compatible with the native `getBoundingClientRect` method.
- * @property {number} data.clientWidth
- * An ES6 getter that will return the width of the virtual reference element.
- * @property {number} data.clientHeight
- * An ES6 getter that will return the height of the virtual reference element.
- */
-
-
-Popper.Utils = (typeof window !== 'undefined' ? window : global).PopperUtils;
-Popper.placements = placements;
-Popper.Defaults = Defaults;
-
-/* harmony default export */ __webpack_exports__["a"] = (Popper);
-//# sourceMappingURL=popper.js.map
-
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/webpack/buildin/global.js")))
-
-/***/ }),
-
-/***/ "./node_modules/process/browser.js":
+/***/ "./node_modules/node-libs-browser/node_modules/process/browser.js":
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -12120,22 +5350,25 @@ process.umask = function() { return 0; };
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js"), __webpack_require__("./node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js"), __webpack_require__("./node_modules/node-libs-browser/node_modules/process/browser.js")))
 
 /***/ }),
 
 /***/ "./node_modules/timers-browserify/main.js":
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
+/* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
+            (typeof self !== "undefined" && self) ||
+            window;
+var apply = Function.prototype.apply;
 
 // DOM APIs, for completeness
 
 exports.setTimeout = function() {
-  return new Timeout(apply.call(setTimeout, window, arguments), clearTimeout);
+  return new Timeout(apply.call(setTimeout, scope, arguments), clearTimeout);
 };
 exports.setInterval = function() {
-  return new Timeout(apply.call(setInterval, window, arguments), clearInterval);
+  return new Timeout(apply.call(setInterval, scope, arguments), clearInterval);
 };
 exports.clearTimeout =
 exports.clearInterval = function(timeout) {
@@ -12150,7 +5383,7 @@ function Timeout(id, clearFn) {
 }
 Timeout.prototype.unref = Timeout.prototype.ref = function() {};
 Timeout.prototype.close = function() {
-  this._clearFn.call(window, this._id);
+  this._clearFn.call(scope, this._id);
 };
 
 // Does not start the time, just sets up the members needed.
@@ -12178,7 +5411,7 @@ exports._unrefActive = exports.active = function(item) {
 
 // setimmediate attaches itself to the global object
 __webpack_require__("./node_modules/setimmediate/setImmediate.js");
-// On some exotic environments, it's not clear which object `setimmeidate` was
+// On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
 exports.setImmediate = (typeof self !== "undefined" && self.setImmediate) ||
@@ -12313,7 +5546,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-03bb1435\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/views/index.vue":
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-1bf133a2\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/views/index.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -12748,7 +5981,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-03bb1435", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-1bf133a2", module.exports)
   }
 }
 
@@ -12758,7 +5991,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
- * Vue.js v2.6.7
+ * Vue.js v2.6.10
  * (c) 2014-2019 Evan You
  * Released under the MIT License.
  */
@@ -13240,7 +6473,7 @@ if (false) {
    * using https://www.w3.org/TR/html53/semantics-scripting.html#potentialcustomelementname
    * skipping \u10000-\uEFFFF due to it freezing up PhantomJS
    */
-  var unicodeLetters = 'a-zA-Z\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F-\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD';
+  var unicodeRegExp = /a-zA-Z\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F-\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD/;
 
   /**
    * Check if a string starts with $ or _
@@ -13265,7 +6498,7 @@ if (false) {
   /**
    * Parse simple path.
    */
-  var bailRE = new RegExp(("[^" + unicodeLetters + ".$_\\d]"));
+  var bailRE = new RegExp(("[^" + (unicodeRegExp.source) + ".$_\\d]"));
   function parsePath (path) {
     if (bailRE.test(path)) {
       return
@@ -14169,7 +7402,7 @@ if (false) {
   }
 
   function validateComponentName (name) {
-    if (!new RegExp(("^[a-zA-Z][\\-\\.0-9_" + unicodeLetters + "]*$")).test(name)) {
+    if (!new RegExp(("^[a-zA-Z][\\-\\.0-9_" + (unicodeRegExp.source) + "]*$")).test(name)) {
       warn(
         'Invalid component name: "' + name + '". Component names ' +
         'should conform to valid custom element name in html5 specification.'
@@ -14620,10 +7853,11 @@ if (false) {
     var res;
     try {
       res = args ? handler.apply(context, args) : handler.call(context);
-      if (res && !res._isVue && isPromise(res)) {
+      if (res && !res._isVue && isPromise(res) && !res._handled) {
+        res.catch(function (e) { return handleError(e, vm, info + " (Promise/async)"); });
         // issue #9511
-        // reassign to res to avoid catch triggering multiple times when nested calls
-        res = res.catch(function (e) { return handleError(e, vm, info + " (Promise/async)"); });
+        // avoid catch triggering multiple times when nested calls
+        res._handled = true;
       }
     } catch (e) {
       handleError(e, vm, info);
@@ -15306,7 +8540,8 @@ if (false) {
     prevSlots
   ) {
     var res;
-    var isStable = slots ? !!slots.$stable : true;
+    var hasNormalSlots = Object.keys(normalSlots).length > 0;
+    var isStable = slots ? !!slots.$stable : !hasNormalSlots;
     var key = slots && slots.$key;
     if (!slots) {
       res = {};
@@ -15318,7 +8553,8 @@ if (false) {
       prevSlots &&
       prevSlots !== emptyObject &&
       key === prevSlots.$key &&
-      Object.keys(normalSlots).length === 0
+      !hasNormalSlots &&
+      !prevSlots.$hasNormal
     ) {
       // fast path 2: stable scoped slots w/ no normal slots to proxy,
       // only need to normalize once
@@ -15344,6 +8580,7 @@ if (false) {
     }
     def(res, '$stable', isStable);
     def(res, '$key', key);
+    def(res, '$hasNormal', hasNormalSlots);
     return res
   }
 
@@ -15353,8 +8590,10 @@ if (false) {
       res = res && typeof res === 'object' && !Array.isArray(res)
         ? [res] // single vnode
         : normalizeChildren(res);
-      return res && res.length === 0
-        ? undefined
+      return res && (
+        res.length === 0 ||
+        (res.length === 1 && res[0].isComment) // #9658
+      ) ? undefined
         : res
     };
     // this is a slot using the new v-slot syntax without scope. although it is
@@ -15534,12 +8773,13 @@ if (false) {
               : data.attrs || (data.attrs = {});
           }
           var camelizedKey = camelize(key);
-          if (!(key in hash) && !(camelizedKey in hash)) {
+          var hyphenatedKey = hyphenate(key);
+          if (!(camelizedKey in hash) && !(hyphenatedKey in hash)) {
             hash[key] = value[key];
 
             if (isSync) {
               var on = data.on || (data.on = {});
-              on[("update:" + camelizedKey)] = function ($event) {
+              on[("update:" + key)] = function ($event) {
                 value[key] = $event;
               };
             }
@@ -16373,17 +9613,23 @@ if (false) {
       return factory.resolved
     }
 
+    var owner = currentRenderingInstance;
+    if (owner && isDef(factory.owners) && factory.owners.indexOf(owner) === -1) {
+      // already pending
+      factory.owners.push(owner);
+    }
+
     if (isTrue(factory.loading) && isDef(factory.loadingComp)) {
       return factory.loadingComp
     }
 
-    var owner = currentRenderingInstance;
-    if (isDef(factory.owners)) {
-      // already pending
-      factory.owners.push(owner);
-    } else {
+    if (owner && !isDef(factory.owners)) {
       var owners = factory.owners = [owner];
       var sync = true;
+      var timerLoading = null;
+      var timerTimeout = null
+
+      ;(owner).$on('hook:destroyed', function () { return remove(owners, owner); });
 
       var forceRender = function (renderCompleted) {
         for (var i = 0, l = owners.length; i < l; i++) {
@@ -16392,6 +9638,14 @@ if (false) {
 
         if (renderCompleted) {
           owners.length = 0;
+          if (timerLoading !== null) {
+            clearTimeout(timerLoading);
+            timerLoading = null;
+          }
+          if (timerTimeout !== null) {
+            clearTimeout(timerTimeout);
+            timerTimeout = null;
+          }
         }
       };
 
@@ -16438,7 +9692,8 @@ if (false) {
             if (res.delay === 0) {
               factory.loading = true;
             } else {
-              setTimeout(function () {
+              timerLoading = setTimeout(function () {
+                timerLoading = null;
                 if (isUndef(factory.resolved) && isUndef(factory.error)) {
                   factory.loading = true;
                   forceRender(false);
@@ -16448,7 +9703,8 @@ if (false) {
           }
 
           if (isDef(res.timeout)) {
-            setTimeout(function () {
+            timerTimeout = setTimeout(function () {
+              timerTimeout = null;
               if (isUndef(factory.resolved)) {
                 reject(
                   "timeout (" + (res.timeout) + "ms)"
@@ -16994,11 +10250,21 @@ if (false) {
   // timestamp can either be hi-res (relative to page load) or low-res
   // (relative to UNIX epoch), so in order to compare time we have to use the
   // same timestamp type when saving the flush timestamp.
-  if (inBrowser && getNow() > document.createEvent('Event').timeStamp) {
-    // if the low-res timestamp which is bigger than the event timestamp
-    // (which is evaluated AFTER) it means the event is using a hi-res timestamp,
-    // and we need to use the hi-res version for event listeners as well.
-    getNow = function () { return performance.now(); };
+  // All IE versions use low-res event timestamps, and have problematic clock
+  // implementations (#9632)
+  if (inBrowser && !isIE) {
+    var performance = window.performance;
+    if (
+      performance &&
+      typeof performance.now === 'function' &&
+      getNow() > document.createEvent('Event').timeStamp
+    ) {
+      // if the event timestamp, although evaluated AFTER the Date.now(), is
+      // smaller than it, it means the event is using a hi-res timestamp,
+      // and we need to use the hi-res version for event listener timestamps as
+      // well.
+      getNow = function () { return performance.now(); };
+    }
   }
 
   /**
@@ -18163,7 +11429,7 @@ if (false) {
     value: FunctionalRenderContext
   });
 
-  Vue.version = '2.6.7';
+  Vue.version = '2.6.10';
 
   /*  */
 
@@ -20255,8 +13521,10 @@ if (false) {
           e.target === e.currentTarget ||
           // event is fired after handler attachment
           e.timeStamp >= attachedTimestamp ||
-          // #9462 bail for iOS 9 bug: event.timeStamp is 0 after history.pushState
-          e.timeStamp === 0 ||
+          // bail for environments that have buggy event.timeStamp implementations
+          // #9462 iOS 9 bug: event.timeStamp is 0 after history.pushState
+          // #9681 QtWebEngine event.timeStamp is negative value
+          e.timeStamp <= 0 ||
           // #9448 bail if event is fired in another document in a multi-page
           // electron/nw.js app, since event.timeStamp will be using a different
           // starting reference
@@ -20323,10 +13591,11 @@ if (false) {
     }
 
     for (key in oldProps) {
-      if (isUndef(props[key])) {
+      if (!(key in props)) {
         elm[key] = '';
       }
     }
+
     for (key in props) {
       cur = props[key];
       // ignore children if the node has textContent or innerHTML,
@@ -20874,8 +14143,8 @@ if (false) {
     var context = activeInstance;
     var transitionNode = activeInstance.$vnode;
     while (transitionNode && transitionNode.parent) {
-      transitionNode = transitionNode.parent;
       context = transitionNode.context;
+      transitionNode = transitionNode.parent;
     }
 
     var isAppear = !context._isMounted || !vnode.isRootInsert;
@@ -21965,7 +15234,7 @@ if (false) {
   // Regular Expressions for parsing tags and attributes
   var attribute = /^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
   var dynamicArgAttribute = /^\s*((?:v-[\w-]+:|@|:|#)\[[^=]+\][^\s"'<>\/=]*)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
-  var ncname = "[a-zA-Z_][\\-\\.0-9_a-zA-Z" + unicodeLetters + "]*";
+  var ncname = "[a-zA-Z_][\\-\\.0-9_a-zA-Z" + (unicodeRegExp.source) + "]*";
   var qnameCapture = "((?:" + ncname + "\\:)?" + ncname + ")";
   var startTagOpen = new RegExp(("^<" + qnameCapture));
   var startTagClose = /^\s*(\/?)>/;
@@ -22227,7 +15496,7 @@ if (false) {
           ) {
             options.warn(
               ("tag <" + (stack[i].tag) + "> has no matching end tag."),
-              { start: stack[i].start }
+              { start: stack[i].start, end: stack[i].end }
             );
           }
           if (options.end) {
@@ -22264,7 +15533,7 @@ if (false) {
 
   var argRE = /:(.*)$/;
   var bindRE = /^:|^\.|^v-bind:/;
-  var modifierRE = /\.[^.]+/g;
+  var modifierRE = /\.[^.\]]+(?=[^\]]*$)/g;
 
   var slotRE = /^v-slot(:|$)|^#/;
 
@@ -22441,7 +15710,7 @@ if (false) {
       shouldDecodeNewlinesForHref: options.shouldDecodeNewlinesForHref,
       shouldKeepComment: options.comments,
       outputSourceRange: options.outputSourceRange,
-      start: function start (tag, attrs, unary, start$1) {
+      start: function start (tag, attrs, unary, start$1, end) {
         // check namespace.
         // inherit parent ns if there is one
         var ns = (currentParent && currentParent.ns) || platformGetTagNamespace(tag);
@@ -22460,6 +15729,7 @@ if (false) {
         {
           if (options.outputSourceRange) {
             element.start = start$1;
+            element.end = end;
             element.rawAttrsMap = element.attrsList.reduce(function (cumulated, attr) {
               cumulated[attr.name] = attr;
               return cumulated
@@ -22581,7 +15851,7 @@ if (false) {
           text = preserveWhitespace ? ' ' : '';
         }
         if (text) {
-          if (whitespaceOption === 'condense') {
+          if (!inPre && whitespaceOption === 'condense') {
             // condense consecutive whitespaces into single space
             text = text.replace(whitespaceRE$1, ' ');
           }
@@ -23442,7 +16712,7 @@ if (false) {
 
   /*  */
 
-  var fnExpRE = /^([\w$_]+|\([^)]*?\))\s*=>|^function\s*\(/;
+  var fnExpRE = /^([\w$_]+|\([^)]*?\))\s*=>|^function\s*(?:[\w$]+)?\s*\(/;
   var fnInvokeRE = /\([^)]*?\);*$/;
   var simplePathRE = /^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*|\['[^']*?']|\["[^"]*?"]|\[\d+]|\[[A-Za-z_$][\w$]*])*$/;
 
@@ -23944,7 +17214,7 @@ if (false) {
     // components with only scoped slots to skip forced updates from parent.
     // but in some cases we have to bail-out of this optimization
     // for example if the slot contains dynamic names, has v-if or v-for on them...
-    var needsForceUpdate = Object.keys(slots).some(function (key) {
+    var needsForceUpdate = el.for || Object.keys(slots).some(function (key) {
       var slot = slots[key];
       return (
         slot.slotTargetDynamic ||
@@ -24674,7 +17944,7 @@ if (false) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
- * Vue.js v2.6.7
+ * Vue.js v2.6.10
  * (c) 2014-2019 Evan You
  * Released under the MIT License.
  */
@@ -25143,7 +18413,7 @@ var config = ({
  * using https://www.w3.org/TR/html53/semantics-scripting.html#potentialcustomelementname
  * skipping \u10000-\uEFFFF due to it freezing up PhantomJS
  */
-var unicodeLetters = 'a-zA-Z\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F-\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD';
+var unicodeRegExp = /a-zA-Z\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F-\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD/;
 
 /**
  * Check if a string starts with $ or _
@@ -25168,7 +18438,7 @@ function def (obj, key, val, enumerable) {
 /**
  * Parse simple path.
  */
-var bailRE = new RegExp(("[^" + unicodeLetters + ".$_\\d]"));
+var bailRE = new RegExp(("[^" + (unicodeRegExp.source) + ".$_\\d]"));
 function parsePath (path) {
   if (bailRE.test(path)) {
     return
@@ -26072,7 +19342,7 @@ function checkComponents (options) {
 }
 
 function validateComponentName (name) {
-  if (!new RegExp(("^[a-zA-Z][\\-\\.0-9_" + unicodeLetters + "]*$")).test(name)) {
+  if (!new RegExp(("^[a-zA-Z][\\-\\.0-9_" + (unicodeRegExp.source) + "]*$")).test(name)) {
     warn(
       'Invalid component name: "' + name + '". Component names ' +
       'should conform to valid custom element name in html5 specification.'
@@ -26523,10 +19793,11 @@ function invokeWithErrorHandling (
   var res;
   try {
     res = args ? handler.apply(context, args) : handler.call(context);
-    if (res && !res._isVue && isPromise(res)) {
+    if (res && !res._isVue && isPromise(res) && !res._handled) {
+      res.catch(function (e) { return handleError(e, vm, info + " (Promise/async)"); });
       // issue #9511
-      // reassign to res to avoid catch triggering multiple times when nested calls
-      res = res.catch(function (e) { return handleError(e, vm, info + " (Promise/async)"); });
+      // avoid catch triggering multiple times when nested calls
+      res._handled = true;
     }
   } catch (e) {
     handleError(e, vm, info);
@@ -27209,7 +20480,8 @@ function normalizeScopedSlots (
   prevSlots
 ) {
   var res;
-  var isStable = slots ? !!slots.$stable : true;
+  var hasNormalSlots = Object.keys(normalSlots).length > 0;
+  var isStable = slots ? !!slots.$stable : !hasNormalSlots;
   var key = slots && slots.$key;
   if (!slots) {
     res = {};
@@ -27221,7 +20493,8 @@ function normalizeScopedSlots (
     prevSlots &&
     prevSlots !== emptyObject &&
     key === prevSlots.$key &&
-    Object.keys(normalSlots).length === 0
+    !hasNormalSlots &&
+    !prevSlots.$hasNormal
   ) {
     // fast path 2: stable scoped slots w/ no normal slots to proxy,
     // only need to normalize once
@@ -27247,6 +20520,7 @@ function normalizeScopedSlots (
   }
   def(res, '$stable', isStable);
   def(res, '$key', key);
+  def(res, '$hasNormal', hasNormalSlots);
   return res
 }
 
@@ -27256,8 +20530,10 @@ function normalizeScopedSlot(normalSlots, key, fn) {
     res = res && typeof res === 'object' && !Array.isArray(res)
       ? [res] // single vnode
       : normalizeChildren(res);
-    return res && res.length === 0
-      ? undefined
+    return res && (
+      res.length === 0 ||
+      (res.length === 1 && res[0].isComment) // #9658
+    ) ? undefined
       : res
   };
   // this is a slot using the new v-slot syntax without scope. although it is
@@ -27437,12 +20713,13 @@ function bindObjectProps (
             : data.attrs || (data.attrs = {});
         }
         var camelizedKey = camelize(key);
-        if (!(key in hash) && !(camelizedKey in hash)) {
+        var hyphenatedKey = hyphenate(key);
+        if (!(camelizedKey in hash) && !(hyphenatedKey in hash)) {
           hash[key] = value[key];
 
           if (isSync) {
             var on = data.on || (data.on = {});
-            on[("update:" + camelizedKey)] = function ($event) {
+            on[("update:" + key)] = function ($event) {
               value[key] = $event;
             };
           }
@@ -28276,17 +21553,23 @@ function resolveAsyncComponent (
     return factory.resolved
   }
 
+  var owner = currentRenderingInstance;
+  if (owner && isDef(factory.owners) && factory.owners.indexOf(owner) === -1) {
+    // already pending
+    factory.owners.push(owner);
+  }
+
   if (isTrue(factory.loading) && isDef(factory.loadingComp)) {
     return factory.loadingComp
   }
 
-  var owner = currentRenderingInstance;
-  if (isDef(factory.owners)) {
-    // already pending
-    factory.owners.push(owner);
-  } else {
+  if (owner && !isDef(factory.owners)) {
     var owners = factory.owners = [owner];
     var sync = true;
+    var timerLoading = null;
+    var timerTimeout = null
+
+    ;(owner).$on('hook:destroyed', function () { return remove(owners, owner); });
 
     var forceRender = function (renderCompleted) {
       for (var i = 0, l = owners.length; i < l; i++) {
@@ -28295,6 +21578,14 @@ function resolveAsyncComponent (
 
       if (renderCompleted) {
         owners.length = 0;
+        if (timerLoading !== null) {
+          clearTimeout(timerLoading);
+          timerLoading = null;
+        }
+        if (timerTimeout !== null) {
+          clearTimeout(timerTimeout);
+          timerTimeout = null;
+        }
       }
     };
 
@@ -28341,7 +21632,8 @@ function resolveAsyncComponent (
           if (res.delay === 0) {
             factory.loading = true;
           } else {
-            setTimeout(function () {
+            timerLoading = setTimeout(function () {
+              timerLoading = null;
               if (isUndef(factory.resolved) && isUndef(factory.error)) {
                 factory.loading = true;
                 forceRender(false);
@@ -28351,7 +21643,8 @@ function resolveAsyncComponent (
         }
 
         if (isDef(res.timeout)) {
-          setTimeout(function () {
+          timerTimeout = setTimeout(function () {
+            timerTimeout = null;
             if (isUndef(factory.resolved)) {
               reject(
                 "timeout (" + (res.timeout) + "ms)"
@@ -28897,11 +22190,21 @@ var getNow = Date.now;
 // timestamp can either be hi-res (relative to page load) or low-res
 // (relative to UNIX epoch), so in order to compare time we have to use the
 // same timestamp type when saving the flush timestamp.
-if (inBrowser && getNow() > document.createEvent('Event').timeStamp) {
-  // if the low-res timestamp which is bigger than the event timestamp
-  // (which is evaluated AFTER) it means the event is using a hi-res timestamp,
-  // and we need to use the hi-res version for event listeners as well.
-  getNow = function () { return performance.now(); };
+// All IE versions use low-res event timestamps, and have problematic clock
+// implementations (#9632)
+if (inBrowser && !isIE) {
+  var performance = window.performance;
+  if (
+    performance &&
+    typeof performance.now === 'function' &&
+    getNow() > document.createEvent('Event').timeStamp
+  ) {
+    // if the event timestamp, although evaluated AFTER the Date.now(), is
+    // smaller than it, it means the event is using a hi-res timestamp,
+    // and we need to use the hi-res version for event listener timestamps as
+    // well.
+    getNow = function () { return performance.now(); };
+  }
 }
 
 /**
@@ -30066,7 +23369,7 @@ Object.defineProperty(Vue, 'FunctionalRenderContext', {
   value: FunctionalRenderContext
 });
 
-Vue.version = '2.6.7';
+Vue.version = '2.6.10';
 
 /*  */
 
@@ -31519,8 +24822,10 @@ function add$1 (
         e.target === e.currentTarget ||
         // event is fired after handler attachment
         e.timeStamp >= attachedTimestamp ||
-        // #9462 bail for iOS 9 bug: event.timeStamp is 0 after history.pushState
-        e.timeStamp === 0 ||
+        // bail for environments that have buggy event.timeStamp implementations
+        // #9462 iOS 9 bug: event.timeStamp is 0 after history.pushState
+        // #9681 QtWebEngine event.timeStamp is negative value
+        e.timeStamp <= 0 ||
         // #9448 bail if event is fired in another document in a multi-page
         // electron/nw.js app, since event.timeStamp will be using a different
         // starting reference
@@ -31587,10 +24892,11 @@ function updateDOMProps (oldVnode, vnode) {
   }
 
   for (key in oldProps) {
-    if (isUndef(props[key])) {
+    if (!(key in props)) {
       elm[key] = '';
     }
   }
+
   for (key in props) {
     cur = props[key];
     // ignore children if the node has textContent or innerHTML,
@@ -32138,8 +25444,8 @@ function enter (vnode, toggleDisplay) {
   var context = activeInstance;
   var transitionNode = activeInstance.$vnode;
   while (transitionNode && transitionNode.parent) {
-    transitionNode = transitionNode.parent;
     context = transitionNode.context;
+    transitionNode = transitionNode.parent;
   }
 
   var isAppear = !context._isMounted || !vnode.isRootInsert;
@@ -33075,7 +26381,7 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export Store */
+/* WEBPACK VAR INJECTION */(function(global) {/* unused harmony export Store */
 /* unused harmony export install */
 /* unused harmony export mapState */
 /* unused harmony export mapMutations */
@@ -33083,11 +26389,11 @@ if (false) {
 /* unused harmony export mapActions */
 /* unused harmony export createNamespacedHelpers */
 /**
- * vuex v3.0.1
- * (c) 2017 Evan You
+ * vuex v3.1.1
+ * (c) 2019 Evan You
  * @license MIT
  */
-var applyMixin = function (Vue) {
+function applyMixin (Vue) {
   var version = Number(Vue.version.split('.')[0]);
 
   if (version >= 2) {
@@ -33121,11 +26427,14 @@ var applyMixin = function (Vue) {
       this.$store = options.parent.$store;
     }
   }
-};
+}
 
-var devtoolHook =
-  typeof window !== 'undefined' &&
-  window.__VUE_DEVTOOLS_GLOBAL_HOOK__;
+var target = typeof window !== 'undefined'
+  ? window
+  : typeof global !== 'undefined'
+    ? global
+    : {};
+var devtoolHook = target.__VUE_DEVTOOLS_GLOBAL_HOOK__;
 
 function devtoolPlugin (store) {
   if (!devtoolHook) { return }
@@ -33151,16 +26460,6 @@ function devtoolPlugin (store) {
  * @param {Function} f
  * @return {*}
  */
-/**
- * Deep copy the given object considering circular structure.
- * This function caches all nested objects and its copies.
- * If it detects circular structure, use cached copy to avoid infinite loop.
- *
- * @param {*} obj
- * @param {Array<Object>} cache
- * @return {*}
- */
-
 
 /**
  * forEach for object
@@ -33181,17 +26480,28 @@ function assert (condition, msg) {
   if (!condition) { throw new Error(("[vuex] " + msg)) }
 }
 
+function partial (fn, arg) {
+  return function () {
+    return fn(arg)
+  }
+}
+
+// Base data struct for store's module, package with some attribute and method
 var Module = function Module (rawModule, runtime) {
   this.runtime = runtime;
+  // Store some children item
   this._children = Object.create(null);
+  // Store the origin module object which passed by programmer
   this._rawModule = rawModule;
   var rawState = rawModule.state;
+
+  // Store the origin module's state
   this.state = (typeof rawState === 'function' ? rawState() : rawState) || {};
 };
 
-var prototypeAccessors$1 = { namespaced: { configurable: true } };
+var prototypeAccessors = { namespaced: { configurable: true } };
 
-prototypeAccessors$1.namespaced.get = function () {
+prototypeAccessors.namespaced.get = function () {
   return !!this._rawModule.namespaced
 };
 
@@ -33242,7 +26552,7 @@ Module.prototype.forEachMutation = function forEachMutation (fn) {
   }
 };
 
-Object.defineProperties( Module.prototype, prototypeAccessors$1 );
+Object.defineProperties( Module.prototype, prototypeAccessors );
 
 var ModuleCollection = function ModuleCollection (rawRootModule) {
   // register root module (Vuex.Store options)
@@ -33385,16 +26695,11 @@ var Store = function Store (options) {
   if (true) {
     assert(Vue, "must call Vue.use(Vuex) before creating a store instance.");
     assert(typeof Promise !== 'undefined', "vuex requires a Promise polyfill in this browser.");
-    assert(this instanceof Store, "Store must be called with the new operator.");
+    assert(this instanceof Store, "store must be called with the new operator.");
   }
 
   var plugins = options.plugins; if ( plugins === void 0 ) plugins = [];
   var strict = options.strict; if ( strict === void 0 ) strict = false;
-
-  var state = options.state; if ( state === void 0 ) state = {};
-  if (typeof state === 'function') {
-    state = state() || {};
-  }
 
   // store internal state
   this._committing = false;
@@ -33422,6 +26727,8 @@ var Store = function Store (options) {
   // strict mode
   this.strict = strict;
 
+  var state = this._modules.root.state;
+
   // init root module.
   // this also recursively registers all sub-modules
   // and collects all module getters inside this._wrappedGetters
@@ -33434,20 +26741,21 @@ var Store = function Store (options) {
   // apply plugins
   plugins.forEach(function (plugin) { return plugin(this$1); });
 
-  if (Vue.config.devtools) {
+  var useDevtools = options.devtools !== undefined ? options.devtools : Vue.config.devtools;
+  if (useDevtools) {
     devtoolPlugin(this);
   }
 };
 
-var prototypeAccessors = { state: { configurable: true } };
+var prototypeAccessors$1 = { state: { configurable: true } };
 
-prototypeAccessors.state.get = function () {
+prototypeAccessors$1.state.get = function () {
   return this._vm._data.$$state
 };
 
-prototypeAccessors.state.set = function (v) {
+prototypeAccessors$1.state.set = function (v) {
   if (true) {
-    assert(false, "Use store.replaceState() to explicit replace store state.");
+    assert(false, "use store.replaceState() to explicit replace store state.");
   }
 };
 
@@ -33503,11 +26811,34 @@ Store.prototype.dispatch = function dispatch (_type, _payload) {
     return
   }
 
-  this._actionSubscribers.forEach(function (sub) { return sub(action, this$1.state); });
+  try {
+    this._actionSubscribers
+      .filter(function (sub) { return sub.before; })
+      .forEach(function (sub) { return sub.before(action, this$1.state); });
+  } catch (e) {
+    if (true) {
+      console.warn("[vuex] error in before action subscribers: ");
+      console.error(e);
+    }
+  }
 
-  return entry.length > 1
+  var result = entry.length > 1
     ? Promise.all(entry.map(function (handler) { return handler(payload); }))
-    : entry[0](payload)
+    : entry[0](payload);
+
+  return result.then(function (res) {
+    try {
+      this$1._actionSubscribers
+        .filter(function (sub) { return sub.after; })
+        .forEach(function (sub) { return sub.after(action, this$1.state); });
+    } catch (e) {
+      if (true) {
+        console.warn("[vuex] error in after action subscribers: ");
+        console.error(e);
+      }
+    }
+    return res
+  })
 };
 
 Store.prototype.subscribe = function subscribe (fn) {
@@ -33515,7 +26846,8 @@ Store.prototype.subscribe = function subscribe (fn) {
 };
 
 Store.prototype.subscribeAction = function subscribeAction (fn) {
-  return genericSubscribe(fn, this._actionSubscribers)
+  var subs = typeof fn === 'function' ? { before: fn } : fn;
+  return genericSubscribe(subs, this._actionSubscribers)
 };
 
 Store.prototype.watch = function watch (getter, cb, options) {
@@ -33580,7 +26912,7 @@ Store.prototype._withCommit = function _withCommit (fn) {
   this._committing = committing;
 };
 
-Object.defineProperties( Store.prototype, prototypeAccessors );
+Object.defineProperties( Store.prototype, prototypeAccessors$1 );
 
 function genericSubscribe (fn, subs) {
   if (subs.indexOf(fn) < 0) {
@@ -33615,7 +26947,9 @@ function resetStoreVM (store, state, hot) {
   var computed = {};
   forEachValue(wrappedGetters, function (fn, key) {
     // use computed to leverage its lazy-caching mechanism
-    computed[key] = function () { return fn(store); };
+    // direct inline function use will lead to closure preserving oldVm.
+    // using partial to return function with only arguments preserved in closure enviroment.
+    computed[key] = partial(fn, store);
     Object.defineProperty(store.getters, key, {
       get: function () { return store._vm[key]; },
       enumerable: true // for local getters
@@ -33827,7 +27161,7 @@ function registerGetter (store, type, rawGetter, local) {
 function enableStrictMode (store) {
   store._vm.$watch(function () { return this._data.$$state }, function () {
     if (true) {
-      assert(store._committing, "Do not mutate vuex store state outside mutation handlers.");
+      assert(store._committing, "do not mutate vuex store state outside mutation handlers.");
     }
   }, { deep: true, sync: true });
 }
@@ -33846,7 +27180,7 @@ function unifyObjectStyle (type, payload, options) {
   }
 
   if (true) {
-    assert(typeof type === 'string', ("Expects string as the type, but found " + (typeof type) + "."));
+    assert(typeof type === 'string', ("expects string as the type, but found " + (typeof type) + "."));
   }
 
   return { type: type, payload: payload, options: options }
@@ -33865,6 +27199,12 @@ function install (_Vue) {
   applyMixin(Vue);
 }
 
+/**
+ * Reduce the code which written in Vue.js for getting the state.
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} states # Object's item can be a function which accept state and getters for param, you can do something for state and getters in it.
+ * @param {Object}
+ */
 var mapState = normalizeNamespace(function (namespace, states) {
   var res = {};
   normalizeMap(states).forEach(function (ref) {
@@ -33892,6 +27232,12 @@ var mapState = normalizeNamespace(function (namespace, states) {
   return res
 });
 
+/**
+ * Reduce the code which written in Vue.js for committing the mutation
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} mutations # Object's item can be a function which accept `commit` function as the first param, it can accept anthor params. You can commit mutation and do any other things in this function. specially, You need to pass anthor params from the mapped function.
+ * @return {Object}
+ */
 var mapMutations = normalizeNamespace(function (namespace, mutations) {
   var res = {};
   normalizeMap(mutations).forEach(function (ref) {
@@ -33902,6 +27248,7 @@ var mapMutations = normalizeNamespace(function (namespace, mutations) {
       var args = [], len = arguments.length;
       while ( len-- ) args[ len ] = arguments[ len ];
 
+      // Get the commit method from store
       var commit = this.$store.commit;
       if (namespace) {
         var module = getModuleByNamespace(this.$store, 'mapMutations', namespace);
@@ -33918,12 +27265,19 @@ var mapMutations = normalizeNamespace(function (namespace, mutations) {
   return res
 });
 
+/**
+ * Reduce the code which written in Vue.js for getting the getters
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} getters
+ * @return {Object}
+ */
 var mapGetters = normalizeNamespace(function (namespace, getters) {
   var res = {};
   normalizeMap(getters).forEach(function (ref) {
     var key = ref.key;
     var val = ref.val;
 
+    // The namespace has been mutated by normalizeNamespace
     val = namespace + val;
     res[key] = function mappedGetter () {
       if (namespace && !getModuleByNamespace(this.$store, 'mapGetters', namespace)) {
@@ -33941,6 +27295,12 @@ var mapGetters = normalizeNamespace(function (namespace, getters) {
   return res
 });
 
+/**
+ * Reduce the code which written in Vue.js for dispatch the action
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} actions # Object's item can be a function which accept `dispatch` function as the first param, it can accept anthor params. You can dispatch action and do any other things in this function. specially, You need to pass anthor params from the mapped function.
+ * @return {Object}
+ */
 var mapActions = normalizeNamespace(function (namespace, actions) {
   var res = {};
   normalizeMap(actions).forEach(function (ref) {
@@ -33951,6 +27311,7 @@ var mapActions = normalizeNamespace(function (namespace, actions) {
       var args = [], len = arguments.length;
       while ( len-- ) args[ len ] = arguments[ len ];
 
+      // get dispatch function from store
       var dispatch = this.$store.dispatch;
       if (namespace) {
         var module = getModuleByNamespace(this.$store, 'mapActions', namespace);
@@ -33967,6 +27328,11 @@ var mapActions = normalizeNamespace(function (namespace, actions) {
   return res
 });
 
+/**
+ * Rebinding namespace param for mapXXX function in special scoped, and return them by simple object
+ * @param {String} namespace
+ * @return {Object}
+ */
 var createNamespacedHelpers = function (namespace) { return ({
   mapState: mapState.bind(null, namespace),
   mapGetters: mapGetters.bind(null, namespace),
@@ -33974,12 +27340,24 @@ var createNamespacedHelpers = function (namespace) { return ({
   mapActions: mapActions.bind(null, namespace)
 }); };
 
+/**
+ * Normalize the map
+ * normalizeMap([1, 2, 3]) => [ { key: 1, val: 1 }, { key: 2, val: 2 }, { key: 3, val: 3 } ]
+ * normalizeMap({a: 1, b: 2, c: 3}) => [ { key: 'a', val: 1 }, { key: 'b', val: 2 }, { key: 'c', val: 3 } ]
+ * @param {Array|Object} map
+ * @return {Object}
+ */
 function normalizeMap (map) {
   return Array.isArray(map)
     ? map.map(function (key) { return ({ key: key, val: key }); })
     : Object.keys(map).map(function (key) { return ({ key: key, val: map[key] }); })
 }
 
+/**
+ * Return a function expect two param contains namespace and map. it will normalize the namespace and then the param's function will handle the new namespace and the map.
+ * @param {Function} fn
+ * @return {Function}
+ */
 function normalizeNamespace (fn) {
   return function (namespace, map) {
     if (typeof namespace !== 'string') {
@@ -33992,6 +27370,13 @@ function normalizeNamespace (fn) {
   }
 }
 
+/**
+ * Search a special module from store by namespace. if module not exist, print error message.
+ * @param {Object} store
+ * @param {String} helper
+ * @param {String} namespace
+ * @return {Object}
+ */
 function getModuleByNamespace (store, helper, namespace) {
   var module = store._modulesNamespaceMap[namespace];
   if ("development" !== 'production' && !module) {
@@ -34003,7 +27388,7 @@ function getModuleByNamespace (store, helper, namespace) {
 var index_esm = {
   Store: Store,
   install: install,
-  version: '3.0.1',
+  version: '3.1.1',
   mapState: mapState,
   mapMutations: mapMutations,
   mapGetters: mapGetters,
@@ -34011,9 +27396,10 @@ var index_esm = {
   createNamespacedHelpers: createNamespacedHelpers
 };
 
-
 /* harmony default export */ __webpack_exports__["a"] = (index_esm);
 
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
@@ -34126,7 +27512,6 @@ function interceptors(cb) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index__ = __webpack_require__("./resources/assets/js/index.js");
 
-
 renderVueComponentToString(__WEBPACK_IMPORTED_MODULE_0__index__["a" /* default */], function (err, res) {
   print(res);
 });
@@ -34143,48 +27528,41 @@ renderVueComponentToString(__WEBPACK_IMPORTED_MODULE_0__index__["a" /* default *
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_src_components_layout__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/layout/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bootstrap_vue_src_components_modal__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/modal/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_bootstrap_vue_src_components_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_bootstrap_vue_src_components_navbar__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/navbar/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_bootstrap_vue_src_components_button__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_bootstrap_vue_src_components_table__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/table/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__views_index_vue__ = __webpack_require__("./resources/assets/js/views/index.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__views_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__views_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_bootstrap_vue_src_components_button__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_index_vue__ = __webpack_require__("./resources/assets/js/views/index.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__views_index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 
 
-
-// Вьюшки ВьюДжеЭс
-//import index from './views/index.vue';
 
 // bootstrap
 
 
-
-
+//import navbar from 'bootstrap-vue/src/components/navbar';
 
 
 
 __WEBPACK_IMPORTED_MODULE_1_vue_dist_vue_js___default.a.use(__WEBPACK_IMPORTED_MODULE_2_bootstrap_vue_src_components_layout__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_1_vue_dist_vue_js___default.a.use(__WEBPACK_IMPORTED_MODULE_4_bootstrap_vue_src_components_form__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_1_vue_dist_vue_js___default.a.use(__WEBPACK_IMPORTED_MODULE_3_bootstrap_vue_src_components_modal__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_1_vue_dist_vue_js___default.a.use(__WEBPACK_IMPORTED_MODULE_5_bootstrap_vue_src_components_navbar__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_1_vue_dist_vue_js___default.a.use(__WEBPACK_IMPORTED_MODULE_6_bootstrap_vue_src_components_button__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_1_vue_dist_vue_js___default.a.use(__WEBPACK_IMPORTED_MODULE_7_bootstrap_vue_src_components_table__["a" /* default */]);
+//Vue.use(navbar);
+__WEBPACK_IMPORTED_MODULE_1_vue_dist_vue_js___default.a.use(__WEBPACK_IMPORTED_MODULE_4_bootstrap_vue_src_components_form__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_1_vue_dist_vue_js___default.a.use(__WEBPACK_IMPORTED_MODULE_5_bootstrap_vue_src_components_button__["a" /* default */]);
 
 //import index from './components/App.vue';
 
 
 
-__WEBPACK_IMPORTED_MODULE_1_vue_dist_vue_js___default.a.use(__WEBPACK_IMPORTED_MODULE_9_vuex__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_1_vue_dist_vue_js___default.a.use(__WEBPACK_IMPORTED_MODULE_7_vuex__["a" /* default */]);
 
 // -----------------------------------
 // Реактивное хранилище
 // -----------------------------------
-var store = new __WEBPACK_IMPORTED_MODULE_9_vuex__["a" /* default */].Store({});
+var store = new __WEBPACK_IMPORTED_MODULE_7_vuex__["a" /* default */].Store({});
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vue_dist_vue_js___default.a({
   store: store,
   render: function render(h) {
-    return h(__WEBPACK_IMPORTED_MODULE_8__views_index_vue___default.a);
+    return h(__WEBPACK_IMPORTED_MODULE_6__views_index_vue___default.a);
   }
 }));
 
@@ -34238,7 +27616,7 @@ var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/comp
 /* script */
 var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/views/index.vue")
 /* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-03bb1435\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/views/index.vue")
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-1bf133a2\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/views/index.vue")
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -34255,7 +27633,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\views\\index.vue"
+Component.options.__file = "resources/assets/js/views/index.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -34264,9 +27642,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-03bb1435", Component.options)
+    hotAPI.createRecord("data-v-1bf133a2", Component.options)
   } else {
-    hotAPI.reload("data-v-03bb1435", Component.options)
+    hotAPI.reload("data-v-1bf133a2", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true

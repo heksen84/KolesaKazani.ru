@@ -1,4 +1,5 @@
 <!-- Ilya Bobkov Aksu 2018(R) -->
+<!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
   <meta charset="utf-8">
