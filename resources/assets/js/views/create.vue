@@ -414,7 +414,7 @@ export default {
 				this.places=res.data;
 				this.places_model=null;
           		console.log(res.data);
-			  }).catch((err) => {});
+			}).catch((err) => {});
 			  
 		},
 

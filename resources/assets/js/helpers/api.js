@@ -11,6 +11,16 @@ export function get(url) {
     })
 }
 
+export async function asyncget(url) {
+    return await axios({
+    	method: 'GET',
+    	url: url,
+    	headers: {
+    		'Authorization': `Bearer ${store.state.user.api_token}`
+    	}
+    })
+}
+
 export function post(url, payload) {
     return axios({
     	method: 'POST',

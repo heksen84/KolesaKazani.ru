@@ -79,8 +79,13 @@
 
     </b-row>
 
-
     <div id="categories_line">
+
+  <!--    
+      <div v-for="i in test_items" :key="i">
+       {{ i.name }}
+      </div>
+   -->
 
     <!-- КАТЕГОРИИ -->
     <div v-if="show_categories" style="text-align:center">    
@@ -149,16 +154,94 @@
 
     </div>
     </div>
+
+      <!-- ПОДКАТЕГОРИИ -->  
+    <div v-if="!show_categories" style="text-align:center">
+      <div id="categories_title" class="shadow_text" style="margin-bottom:18px">подкатегории</div>  
+      <b-button @click="closeSubCats" variant="primary" style="border:1px solid white;font-size:14px" size="sm" id="close_subcats_btn">&#8634; Вернуться к категориям</b-button>        
+
+      <div class="form-inline">
+      <b-col cols="12" sm="12" md="12" lg="12" xl="3">
+        <a :href="urlRegAndPlace+'/uslugi'" @click="showSubcategory($event, 9)">        
+          <div class="category_item" style="width:280px;font-size:17px">Легковой автомобиль</div>
+        </a>          
+      </b-col>
+
+      <b-col cols="12" sm="12" md="12" lg="12" xl="3">
+        <a :href="urlRegAndPlace+'/uslugi'" @click="showSubcategory($event, 9)">        
+          <div class="category_item" style="width:280px;font-size:17px">Грузовой автомобиль</div>
+        </a>          
+      </b-col>
+
+      <b-col cols="12" sm="12" md="12" lg="12" xl="3">
+        <a :href="urlRegAndPlace+'/uslugi'" @click="showSubcategory($event, 9)">        
+          <div class="category_item" style="width:280px;font-size:17px">Мототехника</div>
+        </a>          
+      </b-col>
+
+      <b-col cols="12" sm="12" md="12" lg="12" xl="3">
+        <a :href="urlRegAndPlace+'/uslugi'" @click="showSubcategory($event, 9)">        
+          <div class="category_item" style="width:280px;font-size:17px">Спецтехника</div>
+        </a>          
+      </b-col>
+
+      <b-col cols="12" sm="12" md="12" lg="12" xl="3">
+        <a :href="urlRegAndPlace+'/uslugi'" @click="showSubcategory($event, 9)">        
+          <div class="category_item" style="width:280px;font-size:17px">Ретро-автомобиль</div>
+        </a>          
+      </b-col>
+
+      <b-col cols="12" sm="12" md="12" lg="12" xl="3">
+        <a :href="urlRegAndPlace+'/uslugi'" @click="showSubcategory($event, 9)">        
+          <div class="category_item" style="width:280px;font-size:17px">Водный транспорт</div>
+        </a>          
+      </b-col>
+
+      <b-col cols="12" sm="12" md="12" lg="12" xl="3">
+        <a :href="urlRegAndPlace+'/uslugi'" @click="showSubcategory($event, 9)">        
+          <div class="category_item" style="width:280px;font-size:17px">Велосипед</div>
+        </a>          
+      </b-col>
+
+      <b-col cols="12" sm="12" md="12" lg="12" xl="3">
+        <a :href="urlRegAndPlace+'/uslugi'" @click="showSubcategory($event, 9)">        
+          <div class="category_item" style="width:280px;font-size:17px">Воздушный транспорт</div>
+        </a>          
+      </b-col>
+
+      </div>
+    </div>
     </div>    
 
-  </b-container>
+    <!-- РЕКЛАМА -->
+    <b-row style="margin-top:20px">
+      <h5 style="margin:auto">Google Advert</h5>
+    </b-row>
 
+    <!-- VIP -->
+    <b-row style="margin-top:75px" class="shadow_text"><h5>VIP объявления</h5></b-row>
+      <b-row>    
+        <b-col v-for="i in 10" style="border:1px solid rgb(255,255,255);margin:3px;padding:50px;opacity:0.5" v-bind:key="i"></b-col>
+      </b-row>
+
+    <!-- ПОДВАЛ -->
+    <b-row>
+      <div id="footer"><a href="advertisers" class="underline_link">Реклама</a> | 
+        <a href="rules" class="underline_link">Правила сайта</a> |  
+        <span @click="setLang">Язык: <span style="color:rgb(180,255,180);cursor:pointer">{{ lang }}</span></span> |
+        <a href="about" class="underline_link">О сайте</a>
+      </div>
+    </b-row>
+
+  </b-container>
+  
 </div>
 </template>
 
 <!-- ЛОГИКА -->
 <script>
 import { get } from './../helpers/api'
+import axios from 'axios'
 export default {
   
   // Входящие данные
@@ -184,11 +267,24 @@ export default {
       buttonAllRegion: false,
       regionName: "",
       searchString: "",
+
+      test_items: []
+
     }
   },
 
   // Компонент создан
-  created() {
+  async created() {
+
+    /*let self = this;
+
+    await axios.get("/getCategories").then(function(response){  
+      console.log(response.data)
+      self.test_items = response.data;
+    }).catch(function (error) {  
+      console.log(error);
+  });*/
+  
 
     //console.log(document.getElementById("body").style.display); 
     //document.getElementById( 'body' ).style.display = 'block';
