@@ -1,0 +1,95 @@
+
+C:\OSPanel\domains\damelya>npm run dev 
+
+> @ dev C:\OSPanel\domains\damelya
+> npm run development
+
+
+> @ development C:\OSPanel\domains\damelya
+> cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js
+
+ ERROR  Failed to compile with 3 errors21:00:09
+
+ error  in ./node_modules/bootstrap-vue/src/components/form-group/form-group.js
+
+Module parse failed: Unexpected token (150:47)
+You may need an appropriate loader to handle this file type.
+|       {
+|         on: isLegend ? { click: ctx.legendClick } : {},
+|         props: isHorizontal ? { tag: labelTag, ...ctx.labelColProps } : {},
+|         attrs: {
+|           id: ctx.labelId,
+
+ @ ./node_modules/bootstrap-vue/src/components/form-group/index.js 1:0-37
+ @ ./resources/assets/js/app.js
+ @ multi ./resources/assets/js/app.js
+
+ error  in ./node_modules/bootstrap-vue/src/components/form-textarea/form-textarea.js
+
+Module parse failed: Unexpected token (165:8)
+You may need an appropriate loader to handle this file type.
+|       },
+|       on: {
+|         ...self.$listeners,
+|         input: self.onInput,
+|         change: self.onChange,
+
+ @ ./node_modules/bootstrap-vue/src/components/form-textarea/index.js 1:0-43
+ @ ./resources/assets/js/app.js
+ @ multi ./resources/assets/js/app.js
+
+ error  in ./node_modules/bootstrap-vue/src/components/form-select/form-select.js
+
+Module parse failed: Unexpected token (82:20)
+You may need an appropriate loader to handle this file type.
+|         key: `option_${index}_opt`,
+|         attrs: { disabled: Boolean(option.disabled) },
+|         domProps: { ...htmlOrText(option.html, option.text), value: option.value }
+|       })
+|     })
+
+ @ ./node_modules/bootstrap-vue/src/components/form-select/index.js 1:0-39
+ @ ./resources/assets/js/app.js
+ @ multi ./resources/assets/js/app.js
+
+                                              Asset     Size  Chunks                    Chunk Names
+fonts/carefree.ttf?f3db7a9cf88f94961dd173624793c336  64.8 kB          [emitted]         
+                                         \js\app.js  1.84 MB       0  [emitted]  [big]  \js\app
+                                \js\index-server.js   877 kB       1  [emitted]  [big]  \js\index-server
+                                       \css\app.css   8.2 kB       1  [emitted]         \js\index-server
+
+ERROR in ./node_modules/bootstrap-vue/src/components/form-group/form-group.js
+Module parse failed: Unexpected token (150:47)
+You may need an appropriate loader to handle this file type.
+|       {
+|         on: isLegend ? { click: ctx.legendClick } : {},
+|         props: isHorizontal ? { tag: labelTag, ...ctx.labelColProps } : {},
+|         attrs: {
+|           id: ctx.labelId,
+ @ ./node_modules/bootstrap-vue/src/components/form-group/index.js 1:0-37
+ @ ./resources/assets/js/app.js
+ @ multi ./resources/assets/js/app.js
+
+ERROR in ./node_modules/bootstrap-vue/src/components/form-textarea/form-textarea.js
+Module parse failed: Unexpected token (165:8)
+You may need an appropriate loader to handle this file type.
+|       },
+|       on: {
+|         ...self.$listeners,
+|         input: self.onInput,
+|         change: self.onChange,
+ @ ./node_modules/bootstrap-vue/src/components/form-textarea/index.js 1:0-43
+ @ ./resources/assets/js/app.js
+ @ multi ./resources/assets/js/app.js
+
+ERROR in ./node_modules/bootstrap-vue/src/components/form-select/form-select.js
+Module parse failed: Unexpected token (82:20)
+You may need an appropriate loader to handle this file type.
+|         key: `option_${index}_opt`,
+|         attrs: { disabled: Boolean(option.disabled) },
+|         domProps: { ...htmlOrText(option.html, option.text), value: option.value }
+|       })
+|     })
+ @ ./node_modules/bootstrap-vue/src/components/form-select/index.js 1:0-39
+ @ ./resources/assets/js/app.js
+ @ multi ./resources/assets/js/app.js

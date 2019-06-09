@@ -135,5 +135,6 @@ Route::get("moderation/{advert_id}",  function () { return view("moderation_adve
 // Сервисы
 // -----------------------------------------------------------
 Route::get("test",  function () { return view("test"); });
+Route::get("testSSR",  "TestController@testSSR");
 Route::post("checkPhotos", "TestController@checkPhotos");
 Route::get("/util/str2url", "UtilsController@str2url");

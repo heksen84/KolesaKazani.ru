@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Categories;
 
 class TestController extends Controller {
     public function checkPhotos(Request $request) {
@@ -14,5 +15,10 @@ class TestController extends Controller {
 
         \Debugbar::info($request->all());
         return $request;
+    }
+
+    public function testSSR(Request $request) {
+	
+	return view("testSSR")->with("categories", Categories::all());
     }
 }
