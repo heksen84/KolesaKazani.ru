@@ -20,7 +20,6 @@ import index from './views/index.vue';
 //index.data.$supertest = 1111;
 
 import Vuex from 'vuex';
-
 Vue.use(Vuex);
 
 // -----------------------------------

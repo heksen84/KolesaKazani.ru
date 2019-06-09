@@ -41,21 +41,33 @@ class IndexController extends Controller {
 			//$v8->executeString($app_source);
 
 	$v8->executeString($renderer_source);
+
 	$renderer_source = File::get(base_path('node_modules/vue/dist/vue.min.js'));
 	$v8->executeString($renderer_source);
 
-	$js = "const app = new Vue({ data: { msg: 'hello world' }, template: `<div>{{ msg }}</div>` })
+	$vuex = File::get(base_path('node_modules/vuex/dist/vuex.min.js'));
+	$v8->executeString($vuex);
+
+
+	//var data = { superdata: 'superdata'}	
+        //this.$root.superdata;
+
+	$js = "
+
+        
+	const app = new Vue({ data: { msg: 'hello world' }, template: `<div>{{ msg }}</div>` })
 
 	// заменяю значения динамически
 	app.msg=".Categories::all()."
+
 
 	renderVueComponentToString(app, (err, html) => {
     		print(html)
 	})";
 
 
-	                $v8->executeString($js);
-			return ob_get_clean();
+	$v8->executeString($js);
+	return ob_get_clean();
 }
 
 		/*
