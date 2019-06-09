@@ -39,20 +39,3 @@ export default new Vue({
 // localStorage 
 // VueX хранилище (хранилище оперирует с DOM, SSR не знает что такое DOM)
 // Axis (get, post запросы)
-
-/*
--------------------------------------------
-В results или в detailed можно так:
--------------------------------------------
-<div id="app">
-  {{ message }}
-</div>
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    message: 'Привет, Vue!'
-  }
-})
-
-*/
