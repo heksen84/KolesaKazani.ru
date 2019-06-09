@@ -26,21 +26,32 @@ class IndexController extends Controller {
 			$v8 = new \V8Js();
 			ob_start();
 	 
-			$js= 'var process = { env: { VUE_ENV: "server", NODE_ENV: "production" } }; 
-							 this.global = { process: process };';
+			//$js= 'var process = { env: { VUE_ENV: "server", NODE_ENV: "production" } }; 
+			//				 this.global = { process: process };';
 	
 
-			$v8->executeString($js);
-			$v8->executeString($renderer_source);
+			//$v8->executeString($js);
+			//$v8->executeString($renderer_source);
 
 			// рендерим компонент с данными
 
-/*$react[] = sprintf(
-  "React.renderComponentToString(Table({data: %s}), print)",
-  json_encode($data));*/
-			$v8->executeString($app_source);	
+			/*$react[] = sprintf(
+  			"React.renderComponentToString(Table({data: %s}), print)",
+  			json_encode($data));*/
+			//$v8->executeString($app_source);
+
+	$v8->executeString($renderer_source);
+	$renderer_source = File::get(base_path('node_modules/vue/dist/vue.min.js'));
+	$v8->executeString($renderer_source);
+
+	$js = "const app = new Vue({ template: `<div>".Categories::all()."</div>` })
+
+	renderVueComponentToString(app, (err, html) => {
+    		print(html)
+	})";
+	                $v8->executeString($js);
 			return ob_get_clean();
-		}
+}
 
 		/*
 		-------------------------------------
