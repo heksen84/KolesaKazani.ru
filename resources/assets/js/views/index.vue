@@ -251,6 +251,8 @@ export default {
   data () {      
     return {
 
+      supertest: [1,2,3,4],
+
       auth:false,
 
       lang: "русский",

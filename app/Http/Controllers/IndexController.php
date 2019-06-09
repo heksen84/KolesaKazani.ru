@@ -29,10 +29,16 @@ class IndexController extends Controller {
 			$js= 'var process = { env: { VUE_ENV: "server", NODE_ENV: "production" } }; 
 							 this.global = { process: process };';
 	
+
 			$v8->executeString($js);
 			$v8->executeString($renderer_source);
-			$v8->executeString($app_source);
-	
+
+			// рендерим компонент с данными
+
+/*$react[] = sprintf(
+  "React.renderComponentToString(Table({data: %s}), print)",
+  json_encode($data));*/
+			$v8->executeString($app_source);	
 			return ob_get_clean();
 		}
 

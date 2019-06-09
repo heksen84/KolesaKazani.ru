@@ -880,7 +880,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/node-libs-browser/node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/process/browser.js")))
 
 /***/ }),
 
@@ -1882,6 +1882,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
   data: function data() {
     return {
 
+      supertest: [1, 2, 3, 4],
+
       auth: false,
 
       lang: "русский",
@@ -2149,10 +2151,12 @@ const props = {
   }
 }
 
+// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
+  name: 'BButtonClose',
   functional: true,
   props,
-  render (h, { props, data, listeners, slots }) {
+  render(h, { props, data, listeners, slots }) {
     const componentData = {
       staticClass: 'close',
       class: {
@@ -2164,7 +2168,7 @@ const props = {
         'aria-label': props.ariaLabel ? String(props.ariaLabel) : null
       },
       on: {
-        click (e) {
+        click(e) {
           // Ensure click on button HTML content is also disabled
           if (props.disabled && e instanceof Event) {
             e.stopPropagation()
@@ -2173,7 +2177,7 @@ const props = {
         }
       }
     }
-    // Careful not to override the slot with innerHTML
+    // Careful not to override the default slot with innerHTML
     if (!slots().default) {
       componentData.domProps = { innerHTML: '&times;' }
     }
@@ -2222,6 +2226,10 @@ const btnProps = {
     type: String,
     default: 'button'
   },
+  tag: {
+    type: String,
+    default: 'button'
+  },
   pressed: {
     // tri-state prop: true, false or null
     // => on, off, not a toggle
@@ -2239,26 +2247,110 @@ const props = Object(__WEBPACK_IMPORTED_MODULE_3__utils_object__["a" /* assign *
 /* unused harmony export props */
 
 
-function handleFocus (evt) {
+// Focus handler for toggle buttons.  Needs class of 'focus' when focused.
+function handleFocus(evt) {
   if (evt.type === 'focusin') {
     Object(__WEBPACK_IMPORTED_MODULE_4__utils_dom__["a" /* addClass */])(evt.target, 'focus')
   } else if (evt.type === 'focusout') {
-    Object(__WEBPACK_IMPORTED_MODULE_4__utils_dom__["n" /* removeClass */])(evt.target, 'focus')
+    Object(__WEBPACK_IMPORTED_MODULE_4__utils_dom__["p" /* removeClass */])(evt.target, 'focus')
   }
 }
 
+// Helper functons to minimize runtime memory footprint when lots of buttons on page
+
+// Is the requested button a link?
+function isLink(props) {
+  // If tag prop is set to `a`, we use a b-link to get proper disabled handling
+  return Boolean(props.href || props.to || (props.tag && String(props.tag).toLowerCase() === 'a'))
+}
+
+// Is the button to be a toggle button?
+function isToggle(props) {
+  return typeof props.pressed === 'boolean'
+}
+
+// Is the button "really" a button?
+function isButton(props) {
+  if (isLink(props)) {
+    return false
+  } else if (props.tag && String(props.tag).toLowerCase() !== 'button') {
+    return false
+  }
+  return true
+}
+
+// Is the requested tag not a button or link?
+function isNonStandardTag(props) {
+  return !isLink(props) && !isButton(props)
+}
+
+// Compute required classes (non static classes)
+function computeClass(props) {
+  return [
+    props.variant ? `btn-${props.variant}` : `btn-secondary`,
+    {
+      [`btn-${props.size}`]: Boolean(props.size),
+      'btn-block': props.block,
+      disabled: props.disabled,
+      active: props.pressed
+    }
+  ]
+}
+
+// Compute the link props to pass to b-link (if required)
+function computeLinkProps(props) {
+  return isLink(props) ? Object(__WEBPACK_IMPORTED_MODULE_1__utils_pluck_props__["a" /* default */])(linkPropKeys, props) : null
+}
+
+// Compute the attributes for a button
+function computeAttrs(props, data) {
+  const button = isButton(props)
+  const link = isLink(props)
+  const toggle = isToggle(props)
+  const nonStdTag = isNonStandardTag(props)
+  const role = data.attrs && data.attrs['role'] ? data.attrs['role'] : null
+  let tabindex = data.attrs ? data.attrs['tabindex'] : null
+  if (nonStdTag) {
+    tabindex = '0'
+  }
+  return {
+    // Type only used for "real" buttons
+    type: button && !link ? props.type : null,
+    // Disabled only set on "real" buttons
+    disabled: button ? props.disabled : null,
+    // We add a role of button when the tag is not a link or button for ARIA.
+    // Don't bork any role provided in data.attrs when isLink or isButton
+    role: nonStdTag ? 'button' : role,
+    // We set the aria-disabled state for non-standard tags
+    'aria-disabled': nonStdTag ? String(props.disabled) : null,
+    // For toggles, we need to set the pressed state for ARIA
+    'aria-pressed': toggle ? String(props.pressed) : null,
+    // autocomplete off is needed in toggle mode to prevent some browsers from
+    // remembering the previous setting when using the back button.
+    autocomplete: toggle ? 'off' : null,
+    // Tab index is used when the component is not a button.
+    // Links are tabable, but don't allow disabled, while non buttons or links
+    // are not tabable, so we mimic that functionality by disabling tabbing
+    // when disabled, and adding a tabindex of '0' to non buttons or non links.
+    tabindex: props.disabled && !button ? '-1' : tabindex
+  }
+}
+
+// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
+  name: 'BButton',
   functional: true,
   props,
-  render (h, { props, data, listeners, children }) {
-    const isLink = Boolean(props.href || props.to)
-    const isToggle = typeof props.pressed === 'boolean'
+  render(h, { props, data, listeners, children }) {
+    const toggle = isToggle(props)
+    const link = isLink(props)
     const on = {
-      click (e) {
+      click(e) {
         if (props.disabled && e instanceof Event) {
           e.stopPropagation()
           e.preventDefault()
-        } else if (isToggle) {
+        } else if (toggle && listeners && listeners['update:pressed']) {
+          // Send .sync updates to any "pressed" prop (if .sync listeners)
           // Concat will normalize the value to an array
           // without double wrapping an array value in an array.
           Object(__WEBPACK_IMPORTED_MODULE_2__utils_array__["b" /* concat */])(listeners['update:pressed']).forEach(fn => {
@@ -2270,42 +2362,20 @@ function handleFocus (evt) {
       }
     }
 
-    if (isToggle) {
+    if (toggle) {
       on.focusin = handleFocus
       on.focusout = handleFocus
     }
 
     const componentData = {
       staticClass: 'btn',
-      class: [
-        props.variant ? `btn-${props.variant}` : `btn-secondary`,
-        {
-          [`btn-${props.size}`]: Boolean(props.size),
-          'btn-block': props.block,
-          disabled: props.disabled,
-          active: props.pressed
-        }
-      ],
-      props: isLink ? Object(__WEBPACK_IMPORTED_MODULE_1__utils_pluck_props__["a" /* default */])(linkPropKeys, props) : null,
-      attrs: {
-        type: isLink ? null : props.type,
-        disabled: isLink ? null : props.disabled,
-        // Data attribute not used for js logic,
-        // but only for BS4 style selectors.
-        'data-toggle': isToggle ? 'button' : null,
-        'aria-pressed': isToggle ? String(props.pressed) : null,
-        // Tab index is used when the component becomes a link.
-        // Links are tabable, but don't allow disabled,
-        // so we mimic that functionality by disabling tabbing.
-        tabindex:
-          props.disabled && isLink
-            ? '-1'
-            : data.attrs ? data.attrs['tabindex'] : null
-      },
+      class: computeClass(props),
+      props: computeLinkProps(props),
+      attrs: computeAttrs(props, data),
       on
     }
 
-    return h(isLink ? __WEBPACK_IMPORTED_MODULE_5__link_link__["a" /* default */] : 'button', Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, componentData), children)
+    return h(link ? __WEBPACK_IMPORTED_MODULE_5__link_link__["a" /* default */] : props.tag, Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, componentData), children)
   }
 });
 
@@ -2324,21 +2394,17 @@ function handleFocus (evt) {
 
 
 const components = {
-  bButton: __WEBPACK_IMPORTED_MODULE_0__button__["a" /* default */],
-  bBtn: __WEBPACK_IMPORTED_MODULE_0__button__["a" /* default */],
-  bButtonClose: __WEBPACK_IMPORTED_MODULE_1__button_close__["a" /* default */],
-  bBtnClose: __WEBPACK_IMPORTED_MODULE_1__button_close__["a" /* default */]
+  BButton: __WEBPACK_IMPORTED_MODULE_0__button__["a" /* default */],
+  BBtn: __WEBPACK_IMPORTED_MODULE_0__button__["a" /* default */],
+  BButtonClose: __WEBPACK_IMPORTED_MODULE_1__button_close__["a" /* default */],
+  BBtnClose: __WEBPACK_IMPORTED_MODULE_1__button_close__["a" /* default */]
 }
 
-const VuePlugin = {
-  install (Vue) {
+/* harmony default export */ __webpack_exports__["a"] = ({
+  install(Vue) {
     Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["a" /* registerComponents */])(Vue, components)
   }
-}
-
-Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["c" /* vueUse */])(VuePlugin)
-
-/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
+});
 
 
 /***/ }),
@@ -2359,6 +2425,10 @@ const props = {
     type: String,
     default: 'div'
   },
+  tooltip: {
+    type: Boolean,
+    default: false
+  },
   forceShow: {
     type: Boolean,
     default: false
@@ -2367,15 +2437,20 @@ const props = {
 /* unused harmony export props */
 
 
+// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
+  name: 'BFormInvalidFeedback',
   functional: true,
   props,
-  render (h, { props, data, children }) {
+  render(h, { props, data, children }) {
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
-        staticClass: 'invalid-feedback',
-        class: { 'd-block': props.forceShow },
+        class: {
+          'invalid-feedback': !props.tooltip,
+          'invalid-tooltip': props.tooltip,
+          'd-block': props.forceShow
+        },
         attrs: { id: props.id }
       }),
       children
@@ -2426,10 +2501,12 @@ const props = {
 /* unused harmony export props */
 
 
+// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
+  name: 'BFormText',
   functional: true,
   props,
-  render (h, { props, data, children }) {
+  render(h, { props, data, children }) {
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
@@ -2465,6 +2542,10 @@ const props = {
     type: String,
     default: 'div'
   },
+  tooltip: {
+    type: Boolean,
+    default: false
+  },
   forceShow: {
     type: Boolean,
     default: false
@@ -2473,15 +2554,20 @@ const props = {
 /* unused harmony export props */
 
 
+// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
+  name: 'BFormValidFeedback',
   functional: true,
   props,
-  render (h, { props, data, children }) {
+  render(h, { props, data, children }) {
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
-        staticClass: 'valid-feedback',
-        class: { 'd-block': props.forceShow },
+        class: {
+          'valid-feedback': !props.tooltip,
+          'valid-tooltip': props.tooltip,
+          'd-block': props.forceShow
+        },
         attrs: { id: props.id }
       }),
       children
@@ -2520,10 +2606,12 @@ const props = {
 /* unused harmony export props */
 
 
+// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
+  name: 'BForm',
   functional: true,
   props,
-  render (h, { props, data, children }) {
+  render(h, { props, data, children }) {
     return h(
       'form',
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
@@ -2562,23 +2650,19 @@ const props = {
 
 
 const components = {
-  bForm: __WEBPACK_IMPORTED_MODULE_0__form__["a" /* default */],
-  bFormRow: __WEBPACK_IMPORTED_MODULE_1__form_row__["a" /* default */],
-  bFormText: __WEBPACK_IMPORTED_MODULE_2__form_text__["a" /* default */],
-  bFormInvalidFeedback: __WEBPACK_IMPORTED_MODULE_3__form_invalid_feedback__["a" /* default */],
-  bFormFeedback: __WEBPACK_IMPORTED_MODULE_3__form_invalid_feedback__["a" /* default */],
-  bFormValidFeedback: __WEBPACK_IMPORTED_MODULE_4__form_valid_feedback__["a" /* default */]
+  BForm: __WEBPACK_IMPORTED_MODULE_0__form__["a" /* default */],
+  BFormRow: __WEBPACK_IMPORTED_MODULE_1__form_row__["a" /* default */],
+  BFormText: __WEBPACK_IMPORTED_MODULE_2__form_text__["a" /* default */],
+  BFormInvalidFeedback: __WEBPACK_IMPORTED_MODULE_3__form_invalid_feedback__["a" /* default */],
+  BFormFeedback: __WEBPACK_IMPORTED_MODULE_3__form_invalid_feedback__["a" /* default */],
+  BFormValidFeedback: __WEBPACK_IMPORTED_MODULE_4__form_valid_feedback__["a" /* default */]
 }
 
-const VuePlugin = {
-  install (Vue) {
+/* harmony default export */ __webpack_exports__["a"] = ({
+  install(Vue) {
     Object(__WEBPACK_IMPORTED_MODULE_5__utils_plugins__["a" /* registerComponents */])(Vue, components)
   }
-}
-
-Object(__WEBPACK_IMPORTED_MODULE_5__utils_plugins__["c" /* vueUse */])(VuePlugin)
-
-/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
+});
 
 
 /***/ }),
@@ -2602,7 +2686,7 @@ Object(__WEBPACK_IMPORTED_MODULE_5__utils_plugins__["c" /* vueUse */])(VuePlugin
  * Generates a prop object with a type of
  * [Boolean, String, Number]
  */
-function boolStrNum () {
+function boolStrNum() {
   return {
     type: [Boolean, String, Number],
     default: false
@@ -2613,14 +2697,14 @@ function boolStrNum () {
  * Generates a prop object with a type of
  * [String, Number]
  */
-function strNum () {
+function strNum() {
   return {
     type: [String, Number],
     default: null
   }
 }
 
-const computeBkPtClass = Object(__WEBPACK_IMPORTED_MODULE_1__utils_memoize__["a" /* default */])(function computeBkPt (type, breakpoint, val) {
+const computeBkPtClass = Object(__WEBPACK_IMPORTED_MODULE_1__utils_memoize__["a" /* default */])(function computeBkPt(type, breakpoint, val) {
   let className = type
   if (val === false || val === null || val === undefined) {
     return undefined
@@ -2699,10 +2783,12 @@ const props = Object(__WEBPACK_IMPORTED_MODULE_3__utils_object__["a" /* assign *
  * We need ".col" to default in when no other props are passed,
  * but always render when col=true.
  */
+// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
+  name: 'BCol',
   functional: true,
   props,
-  render (h, { props, data, children }) {
+  render(h, { props, data, children }) {
     const classList = []
     // Loop through `col`, `offset`, `order` breakpoint props
     for (const type in breakpointPropMap) {
@@ -2754,15 +2840,17 @@ const props = {
 /* unused harmony export props */
 
 
+// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
+  name: 'BContainer',
   functional: true,
   props,
-  render (h, { props, data, children }) {
+  render(h, { props, data, children }) {
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
         class: {
-          'container': !props.fluid,
+          container: !props.fluid,
           'container-fluid': props.fluid
         }
       }),
@@ -2790,10 +2878,12 @@ const props = {
 /* unused harmony export props */
 
 
+// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
+  name: 'BFormRow',
   functional: true,
   props,
-  render (h, { props, data, children }) {
+  render(h, { props, data, children }) {
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
@@ -2823,21 +2913,17 @@ const props = {
 
 
 const components = {
-  bContainer: __WEBPACK_IMPORTED_MODULE_0__container__["a" /* default */],
-  bRow: __WEBPACK_IMPORTED_MODULE_1__row__["a" /* default */],
-  bCol: __WEBPACK_IMPORTED_MODULE_2__col__["a" /* default */],
-  bFormRow: __WEBPACK_IMPORTED_MODULE_3__form_row__["a" /* default */]
+  BContainer: __WEBPACK_IMPORTED_MODULE_0__container__["a" /* default */],
+  BRow: __WEBPACK_IMPORTED_MODULE_1__row__["a" /* default */],
+  BCol: __WEBPACK_IMPORTED_MODULE_2__col__["a" /* default */],
+  BFormRow: __WEBPACK_IMPORTED_MODULE_3__form_row__["a" /* default */]
 }
 
-const VuePlugin = {
-  install (Vue) {
+/* harmony default export */ __webpack_exports__["a"] = ({
+  install(Vue) {
     Object(__WEBPACK_IMPORTED_MODULE_4__utils_plugins__["a" /* registerComponents */])(Vue, components)
   }
-}
-
-Object(__WEBPACK_IMPORTED_MODULE_4__utils_plugins__["c" /* vueUse */])(VuePlugin)
-
-/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
+});
 
 
 /***/ }),
@@ -2881,10 +2967,12 @@ const props = {
 /* unused harmony export props */
 
 
+// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
+  name: 'BRow',
   functional: true,
   props,
-  render (h, { props, data, children }) {
+  render(h, { props, data, children }) {
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
@@ -2928,7 +3016,7 @@ const props = {
  * https://github.com/vuejs/vue-router/blob/dev/src/components/link.js
  * @return {{}}
  */
-function propsFactory () {
+function propsFactory() {
   return {
     href: {
       type: String,
@@ -2946,15 +3034,20 @@ function propsFactory () {
       type: Boolean,
       default: false
     },
-    activeClass: {
-      type: String,
-      default: 'active'
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    // router-link specific props
+    to: {
+      type: [String, Object],
+      default: null
     },
     append: {
       type: Boolean,
       default: false
     },
-    disabled: {
+    replace: {
       type: Boolean,
       default: false
     },
@@ -2962,25 +3055,26 @@ function propsFactory () {
       type: [String, Array],
       default: 'click'
     },
+    activeClass: {
+      type: String
+      // default: undefined
+    },
     exact: {
       type: Boolean,
       default: false
     },
     exactActiveClass: {
-      type: String,
-      default: 'active'
-    },
-    replace: {
-      type: Boolean,
-      default: false
+      type: String
+      // default: undefined
     },
     routerTag: {
       type: String,
       default: 'a'
     },
-    to: {
-      type: [String, Object],
-      default: null
+    // nuxt-link specific prop(s)
+    noPrefetch: {
+      type: Boolean,
+      default: false
     }
   }
 }
@@ -2989,7 +3083,7 @@ const props = propsFactory()
 /* unused harmony export props */
 
 
-function pickLinkProps (propsToPick) {
+function pickLinkProps(propsToPick) {
   const freshLinkProps = propsFactory()
   // Normalize everything to array.
   propsToPick = Object(__WEBPACK_IMPORTED_MODULE_1__utils_array__["b" /* concat */])(propsToPick)
@@ -3003,7 +3097,7 @@ function pickLinkProps (propsToPick) {
   }, {})
 }
 
-function omitLinkProps (propsToOmit) {
+function omitLinkProps(propsToOmit) {
   const freshLinkProps = propsFactory()
   // Normalize everything to array.
   propsToOmit = Object(__WEBPACK_IMPORTED_MODULE_1__utils_array__["b" /* concat */])(propsToOmit)
@@ -3018,7 +3112,7 @@ function omitLinkProps (propsToOmit) {
 }
 
 const computed = {
-  linkProps () {
+  linkProps() {
     let linkProps = {}
     let propKeys = Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["e" /* keys */])(props)
 
@@ -3034,97 +3128,113 @@ const computed = {
 /* unused harmony export computed */
 
 
-function computeTag (props, parent) {
-  return Boolean(parent.$router) && props.to && !props.disabled ? 'router-link' : 'a'
+function computeTag(props, parent) {
+  return parent.$router && props.to && !props.disabled
+    ? parent.$nuxt
+      ? 'nuxt-link'
+      : 'router-link'
+    : 'a'
 }
 
-function computeHref ({ disabled, href, to }, tag) {
+function isRouterLink(tag) {
+  return tag !== 'a'
+}
+
+function computeHref({ disabled, href, to }, tag) {
   // We've already checked the parent.$router in computeTag,
-  // so router-link means live router.
-  // When deferring to Vue Router's router-link,
-  // don't use the href attr at all.
-  // Must return undefined for router-link to populate href.
-  if (tag === 'router-link') return void 0
+  // so isRouterLink(tag) indicates a live router.
+  // When deferring to Vue Router's router-link, don't use the href attr at all.
+  // We return null, and then remove href from the attributes passed to router-link
+  if (isRouterLink(tag)) {
+    return null
+  }
+
   // If href explicitly provided
-  if (href) return href
-  // Reconstruct href when `to` used, but no router
+  if (href) {
+    return href
+  }
+
+  // Reconstruct `href` when `to` used, but no router
   if (to) {
     // Fallback to `to` prop (if `to` is a string)
-    if (typeof to === 'string') return to
+    if (typeof to === 'string') {
+      return to
+    }
     // Fallback to `to.path` prop (if `to` is an object)
-    if (typeof to === 'object' && typeof to.path === 'string') return to.path
+    if (typeof to === 'object' && typeof to.path === 'string') {
+      return to.path
+    }
   }
-  // If nothing is provided use '#'
+
+  // If nothing is provided use '#' as a fallback
   return '#'
 }
 
-function computeRel ({ target, rel }) {
+function computeRel({ target, rel }) {
   if (target === '_blank' && rel === null) {
     return 'noopener'
   }
   return rel || null
 }
 
-function clickHandlerFactory ({ disabled, tag, href, suppliedHandler, parent }) {
-  const isRouterLink = tag === 'router-link'
-
-  return function onClick (e) {
+function clickHandlerFactory({ disabled, tag, href, suppliedHandler, parent }) {
+  return function onClick(e) {
     if (disabled && e instanceof Event) {
       // Stop event from bubbling up.
       e.stopPropagation()
       // Kill the event loop attached to this specific EventTarget.
       e.stopImmediatePropagation()
     } else {
-      parent.$root.$emit('clicked::link', e)
-
-      if (isRouterLink && e.target.__vue__) {
+      if (isRouterLink(tag) && e.target.__vue__) {
         e.target.__vue__.$emit('click', e)
       }
       if (typeof suppliedHandler === 'function') {
         suppliedHandler(...arguments)
       }
+      parent.$root.$emit('clicked::link', e)
     }
 
-    if ((!isRouterLink && href === '#') || disabled) {
+    if ((!isRouterLink(tag) && href === '#') || disabled) {
       // Stop scroll-to-top behavior or navigation.
       e.preventDefault()
     }
   }
 }
 
+// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
+  name: 'BLink',
   functional: true,
   props: propsFactory(),
-  render (h, { props, data, parent, children }) {
+  render(h, { props, data, parent, children }) {
     const tag = computeTag(props, parent)
     const rel = computeRel(props)
     const href = computeHref(props, tag)
-    const eventType = tag === 'router-link' ? 'nativeOn' : 'on'
+    const eventType = isRouterLink(tag) ? 'nativeOn' : 'on'
     const suppliedHandler = (data[eventType] || {}).click
-    const handlers = { click: clickHandlerFactory({ tag, href, disabled: props.disabled, suppliedHandler, parent }) }
+    const handlers = {
+      click: clickHandlerFactory({ tag, href, disabled: props.disabled, suppliedHandler, parent })
+    }
 
     const componentData = Object(__WEBPACK_IMPORTED_MODULE_2_vue_functional_data_merge__["a" /* mergeData */])(data, {
-      class: [
-        props.active ? (props.exact ? props.exactActiveClass : props.activeClass) : null,
-        { disabled: props.disabled }
-      ],
+      class: { active: props.active, disabled: props.disabled },
       attrs: {
         rel,
-        href,
         target: props.target,
-        tabindex: props.disabled ? '-1' : (data.attrs ? data.attrs.tabindex : null),
-        'aria-disabled': (tag === 'a' && props.disabled) ? 'true' : null
+        tabindex: props.disabled ? '-1' : data.attrs ? data.attrs.tabindex : null,
+        'aria-disabled': props.disabled ? 'true' : null
       },
       props: Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["a" /* assign */])(props, { tag: props.routerTag })
     })
 
-    // If href prop exists on router-link (even undefined or null) it fails working on SSR
-    if (!componentData.attrs.href) {
-      delete componentData.attrs.href
+    // If href attribute exists on router-link (even undefined or null) it fails working on SSR
+    // So we explicitly add it here if needed (i.e. if computeHref() is truthy)
+    if (href) {
+      componentData.attrs.href = href
     }
 
     // We want to overwrite any click handler since our callback
-    // will invoke the supplied handler if !props.disabled
+    // will invoke the user supplied handler if !props.disabled
     componentData[eventType] = Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["a" /* assign */])(componentData[eventType] || {}, handlers)
 
     return h(tag, componentData, children)
@@ -3146,19 +3256,15 @@ function clickHandlerFactory ({ disabled, tag, href, suppliedHandler, parent }) 
 
 
 const components = {
-  bModal: __WEBPACK_IMPORTED_MODULE_0__modal__["a" /* default */]
+  BModal: __WEBPACK_IMPORTED_MODULE_0__modal__["a" /* default */]
 }
 
-const VuePlugin = {
-  install (Vue) {
+/* harmony default export */ __webpack_exports__["a"] = ({
+  install(Vue) {
     Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["a" /* registerComponents */])(Vue, components)
     Vue.use(__WEBPACK_IMPORTED_MODULE_1__directives_modal__["a" /* default */])
   }
-}
-
-Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["c" /* vueUse */])(VuePlugin)
-
-/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
+});
 
 
 /***/ }),
@@ -3175,7 +3281,9 @@ Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["c" /* vueUse */])(VuePlugin
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warn__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/warn.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_key_codes__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/key-codes.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_bv_event_class__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/bv-event.class.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_html__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/html.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
+
 
 
 
@@ -3203,221 +3311,49 @@ const OBSERVER_CONFIG = {
   attributeFilter: ['style', 'class']
 }
 
+// modal wrapper ZINDEX offset incrememnt
+const ZINDEX_OFFSET = 2000
+
+// Modal open count helpers
+function getModalOpenCount() {
+  return parseInt(Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["f" /* getAttr */])(document.body, 'data-modal-open-count') || 0, 10)
+}
+
+function setModalOpenCount(count) {
+  Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["s" /* setAttr */])(document.body, 'data-modal-open-count', String(count))
+  return count
+}
+
+function incrementModalOpenCount() {
+  return setModalOpenCount(getModalOpenCount() + 1)
+}
+
+function decrementModalOpenCount() {
+  return setModalOpenCount(Math.max(getModalOpenCount() - 1, 0))
+}
+
+// Returns the current visible modal highest z-index
+function getModalMaxZIndex() {
+  return Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["r" /* selectAll */])('div.modal') /* find all modals that are in document */
+    .filter(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["l" /* isVisible */]) /* filter only visible ones */
+    .map(m => m.parentElement) /* select the outer div */
+    .reduce((max, el) => {
+      /* compute the highest z-index */
+      return Math.max(max, parseInt(el.style.zIndex || 0, 10))
+    }, 0)
+}
+
+// Returns the next z-index to be used by a modal to ensure proper stacking
+// regardless of document order. Increments by 2000
+function getModalNextZIndex() {
+  return getModalMaxZIndex() + ZINDEX_OFFSET
+}
+
+// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
+  name: 'BModal',
+  components: { BButton: __WEBPACK_IMPORTED_MODULE_0__button_button__["a" /* default */], BButtonClose: __WEBPACK_IMPORTED_MODULE_1__button_button_close__["a" /* default */] },
   mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_id__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3__mixins_listen_on_root__["a" /* default */]],
-  components: { bBtn: __WEBPACK_IMPORTED_MODULE_0__button_button__["a" /* default */], bBtnClose: __WEBPACK_IMPORTED_MODULE_1__button_button_close__["a" /* default */] },
-  render (h) {
-    const $slots = this.$slots
-    // Modal Header
-    let header = h(false)
-    if (!this.hideHeader) {
-      let modalHeader = $slots['modal-header']
-      if (!modalHeader) {
-        let closeButton = h(false)
-        if (!this.hideHeaderClose) {
-          closeButton = h(
-            'b-btn-close',
-            {
-              props: {
-                disabled: this.is_transitioning,
-                ariaLabel: this.headerCloseLabel,
-                textVariant: this.headerTextVariant
-              },
-              on: {
-                click: evt => {
-                  this.hide('header-close')
-                }
-              }
-            },
-            [$slots['modal-header-close']]
-          )
-        }
-        modalHeader = [
-          h(this.titleTag, { class: ['modal-title'] }, [
-            $slots['modal-title'] || this.title
-          ]),
-          closeButton
-        ]
-      }
-      header = h(
-        'header',
-        {
-          ref: 'header',
-          class: this.headerClasses,
-          attrs: { id: this.safeId('__BV_modal_header_') }
-        },
-        [modalHeader]
-      )
-    }
-    // Modal Body
-    const body = h(
-      'div',
-      {
-        ref: 'body',
-        class: this.bodyClasses,
-        attrs: { id: this.safeId('__BV_modal_body_') }
-      },
-      [$slots.default]
-    )
-    // Modal Footer
-    let footer = h(false)
-    if (!this.hideFooter) {
-      let modalFooter = $slots['modal-footer']
-      if (!modalFooter) {
-        let cancelButton = h(false)
-        if (!this.okOnly) {
-          cancelButton = h(
-            'b-btn',
-            {
-              props: {
-                variant: this.cancelVariant,
-                size: this.buttonSize,
-                disabled: this.cancelDisabled || this.busy || this.is_transitioning
-              },
-              on: {
-                click: evt => {
-                  this.hide('cancel')
-                }
-              }
-            },
-            [$slots['modal-cancel'] || this.cancelTitle]
-          )
-        }
-        const okButton = h(
-          'b-btn',
-          {
-            props: {
-              variant: this.okVariant,
-              size: this.buttonSize,
-              disabled: this.okDisabled || this.busy || this.is_transitioning
-            },
-            on: {
-              click: evt => {
-                this.hide('ok')
-              }
-            }
-          },
-          [$slots['modal-ok'] || this.okTitle]
-        )
-        modalFooter = [cancelButton, okButton]
-      }
-      footer = h(
-        'footer',
-        {
-          ref: 'footer',
-          class: this.footerClasses,
-          attrs: { id: this.safeId('__BV_modal_footer_') }
-        },
-        [modalFooter]
-      )
-    }
-    // Assemble Modal Content
-    const modalContent = h(
-      'div',
-      {
-        ref: 'content',
-        class: ['modal-content'],
-        attrs: {
-          tabindex: '-1',
-          role: 'document',
-          'aria-labelledby': this.hideHeader
-            ? null
-            : this.safeId('__BV_modal_header_'),
-          'aria-describedby': this.safeId('__BV_modal_body_')
-        },
-        on: {
-          focusout: this.onFocusout,
-          click: evt => {
-            evt.stopPropagation()
-            // https://github.com/bootstrap-vue/bootstrap-vue/issues/1528
-            this.$root.$emit('bv::dropdown::shown')
-          }
-        }
-      },
-      [header, body, footer]
-    )
-    // Modal Dialog wrapper
-    const modalDialog = h('div', { class: this.dialogClasses }, [modalContent])
-    // Modal
-    let modal = h(
-      'div',
-      {
-        ref: 'modal',
-        class: this.modalClasses,
-        directives: [
-          {
-            name: 'show',
-            rawName: 'v-show',
-            value: this.is_visible,
-            expression: 'is_visible'
-          }
-        ],
-        attrs: {
-          id: this.safeId(),
-          role: 'dialog',
-          'aria-hidden': this.is_visible ? null : 'true'
-        },
-        on: {
-          click: this.onClickOut,
-          keydown: this.onEsc
-        }
-      },
-      [modalDialog]
-    )
-    // Wrap modal in transition
-    modal = h(
-      'transition',
-      {
-        props: {
-          enterClass: '',
-          enterToClass: '',
-          enterActiveClass: '',
-          leaveClass: '',
-          leaveActiveClass: '',
-          leaveToClass: ''
-        },
-        on: {
-          'before-enter': this.onBeforeEnter,
-          enter: this.onEnter,
-          'after-enter': this.onAfterEnter,
-          'before-leave': this.onBeforeLeave,
-          leave: this.onLeave,
-          'after-leave': this.onAfterLeave
-        }
-      },
-      [modal]
-    )
-    // Modal Backdrop
-    let backdrop = h(false)
-    if (!this.hideBackdrop && (this.is_visible || this.is_transitioning)) {
-      backdrop = h('div', {
-        class: this.backdropClasses,
-        attrs: { id: this.safeId('__BV_modal_backdrop_') }
-      })
-    }
-    // Assemble modal and backdrop
-    let outer = h(false)
-    if (!this.is_hidden) {
-      outer = h('div', { attrs: { id: this.safeId('__BV_modal_outer_') } }, [
-        modal,
-        backdrop
-      ])
-    }
-    // Wrap in DIV to maintain thi.$el reference for hide/show method aceess
-    return h('div', {}, [outer])
-  },
-  data () {
-    return {
-      is_hidden: this.lazy || false,
-      is_visible: false,
-      is_transitioning: false,
-      is_show: false,
-      is_block: false,
-      scrollbarWidth: 0,
-      isBodyOverflowing: false,
-      return_focus: this.returnFocus || null
-    }
-  },
   model: {
     prop: 'visible',
     event: 'change'
@@ -3426,6 +3362,9 @@ const OBSERVER_CONFIG = {
     title: {
       type: String,
       default: ''
+    },
+    titleHTML: {
+      type: String
     },
     titleTag: {
       type: String,
@@ -3439,9 +3378,17 @@ const OBSERVER_CONFIG = {
       type: Boolean,
       default: false
     },
+    scrollable: {
+      type: Boolean,
+      default: false
+    },
     buttonSize: {
       type: String,
       default: ''
+    },
+    noStacking: {
+      type: Boolean,
+      default: false
     },
     noFade: {
       type: Boolean,
@@ -3484,6 +3431,14 @@ const OBSERVER_CONFIG = {
       default: null
     },
     modalClass: {
+      type: [String, Array],
+      default: null
+    },
+    dialogClass: {
+      type: [String, Array],
+      default: null
+    },
+    contentClass: {
       type: [String, Array],
       default: null
     },
@@ -3540,6 +3495,7 @@ const OBSERVER_CONFIG = {
       default: false
     },
     returnFocus: {
+      // type: Object,
       default: null
     },
     headerCloseLabel: {
@@ -3550,9 +3506,15 @@ const OBSERVER_CONFIG = {
       type: String,
       default: 'Cancel'
     },
+    cancelTitleHTML: {
+      type: String
+    },
     okTitle: {
       type: String,
       default: 'OK'
+    },
+    okTitleHTML: {
+      type: String
     },
     cancelVariant: {
       type: String,
@@ -3571,10 +3533,28 @@ const OBSERVER_CONFIG = {
       default: false
     }
   },
+  data() {
+    return {
+      is_hidden: this.lazy || false, // for lazy modals
+      is_visible: false, // controls modal visible state
+      is_transitioning: false, // Used for style control
+      is_show: false, // Used for style control
+      is_block: false, // Used for style control
+      is_opening: false, // Semaphore for previnting incorrect modal open counts
+      is_closing: false, // Semapbore for preventing incorrect modal open counts
+      scrollbarWidth: 0,
+      zIndex: ZINDEX_OFFSET, // z-index for modal stacking
+      isTop: true, // If the modal is the topmost opened modal
+      isBodyOverflowing: false,
+      return_focus: this.returnFocus || null
+    }
+  },
   computed: {
-    modalClasses () {
+    contentClasses() {
+      return ['modal-content', this.contentClass]
+    },
+    modalClasses() {
       return [
-        'modal',
         {
           fade: !this.noFade,
           show: this.is_show,
@@ -3583,40 +3563,34 @@ const OBSERVER_CONFIG = {
         this.modalClass
       ]
     },
-    dialogClasses () {
+    dialogClasses() {
       return [
-        'modal-dialog',
         {
           [`modal-${this.size}`]: Boolean(this.size),
-          'modal-dialog-centered': this.centered
-        }
+          'modal-dialog-centered': this.centered,
+          'modal-dialog-scrollable': this.scrollable
+        },
+        this.dialogClass
       ]
     },
-    backdropClasses () {
-      return [
-        'modal-backdrop',
-        {
-          fade: !this.noFade,
-          show: this.is_show || this.noFade
-        }
-      ]
+    backdropClasses() {
+      return {
+        fade: !this.noFade,
+        show: this.is_show || this.noFade
+      }
     },
-    headerClasses () {
+    headerClasses() {
       return [
-        'modal-header',
         {
           [`bg-${this.headerBgVariant}`]: Boolean(this.headerBgVariant),
           [`text-${this.headerTextVariant}`]: Boolean(this.headerTextVariant),
-          [`border-${this.headerBorderVariant}`]: Boolean(
-            this.headerBorderVariant
-          )
+          [`border-${this.headerBorderVariant}`]: Boolean(this.headerBorderVariant)
         },
         this.headerClass
       ]
     },
-    bodyClasses () {
+    bodyClasses() {
       return [
-        'modal-body',
         {
           [`bg-${this.bodyBgVariant}`]: Boolean(this.bodyBgVariant),
           [`text-${this.bodyTextVariant}`]: Boolean(this.bodyTextVariant)
@@ -3624,70 +3598,131 @@ const OBSERVER_CONFIG = {
         this.bodyClass
       ]
     },
-    footerClasses () {
+    footerClasses() {
       return [
-        'modal-footer',
         {
           [`bg-${this.footerBgVariant}`]: Boolean(this.footerBgVariant),
           [`text-${this.footerTextVariant}`]: Boolean(this.footerTextVariant),
-          [`border-${this.footerBorderVariant}`]: Boolean(
-            this.footerBorderVariant
-          )
+          [`border-${this.footerBorderVariant}`]: Boolean(this.footerBorderVariant)
         },
         this.footerClass
       ]
+    },
+    modalOuterStyle() {
+      return {
+        // We only set these styles on the stacked modals (ones with next z-index > 0).
+        position: 'relative',
+        zIndex: this.zIndex
+      }
     }
   },
   watch: {
-    visible (newVal, oldVal) {
+    visible(newVal, oldVal) {
       if (newVal === oldVal) {
         return
       }
       this[newVal ? 'show' : 'hide']()
     }
   },
+  created() {
+    // create non-reactive property
+    this._observer = null
+  },
+  mounted() {
+    // Listen for events from others to either open or close ourselves
+    // And listen to all modals to enable/disable enforce focus
+    this.listenOnRoot('bv::show::modal', this.showHandler)
+    this.listenOnRoot('bv::modal::shown', this.shownHandler)
+    this.listenOnRoot('bv::hide::modal', this.hideHandler)
+    this.listenOnRoot('bv::modal::hidden', this.hiddenHandler)
+    // Listen for bv:modal::show events, and close ourselves if the opening modal not us
+    this.listenOnRoot('bv::modal::show', this.modalListener)
+    // Initially show modal?
+    if (this.visible === true) {
+      this.show()
+    }
+  },
+  beforeDestroy() /* instanbul ignore next */ {
+    // Ensure everything is back to normal
+    if (this._observer) {
+      this._observer.disconnect()
+      this._observer = null
+    }
+    // Ensure our root "once" listener is gone
+    this.$root.$off('bv::modal::hidden', this.doShow)
+    this.setEnforceFocus(false)
+    this.setResizeEvent(false)
+    if (this.is_visible) {
+      this.is_visible = false
+      this.is_show = false
+      this.is_transitioning = false
+      const count = decrementModalOpenCount()
+      if (count === 0) {
+        // Re-adjust body/navbar/fixed padding/margins (as we were the last modal open)
+        this.setModalOpenClass(false)
+        this.resetScrollbar()
+        this.resetDialogAdjustments()
+      }
+    }
+  },
   methods: {
     // Public Methods
-    show () {
-      if (this.is_visible) {
+    show() {
+      if (this.is_visible || this.is_opening) {
+        // if already open, on in the process of opening, do nothing
         return
       }
+      if (this.is_closing) {
+        // if we are in the process of closing, wait until hidden before re-opening
+        this.$once('hidden', this.show)
+        return
+      }
+      this.is_opening = true
       const showEvt = new __WEBPACK_IMPORTED_MODULE_7__utils_bv_event_class__["a" /* default */]('show', {
         cancelable: true,
         vueTarget: this,
         target: this.$refs.modal,
+        modalId: this.safeId(),
         relatedTarget: null
       })
       this.emitEvent(showEvt)
+      // Don't show if canceled
       if (showEvt.defaultPrevented || this.is_visible) {
-        // Don't show if canceled
+        this.is_opening = false
         return
       }
-      if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["h" /* hasClass */])(document.body, 'modal-open')) {
-        // If another modal is already open, wait for it to close
-        this.$root.$once('bv::modal::hidden', this.doShow)
-      } else {
+      if (!this.noStacking) {
+        // Find the z-index to use
+        this.zIndex = getModalNextZIndex()
         // Show the modal
         this.doShow()
-      }
-    },
-    hide (trigger) {
-      if (!this.is_visible) {
         return
       }
+      if (Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["j" /* hasClass */])(document.body, 'modal-open')) {
+        // If another modal is already open, wait for it to close
+        this.$root.$once('bv::modal::hidden', this.doShow)
+        return
+      }
+      // Show the modal
+      this.doShow()
+    },
+    hide(trigger) {
+      if (!this.is_visible || this.is_closing) {
+        return
+      }
+      this.is_closing = true
       const hideEvt = new __WEBPACK_IMPORTED_MODULE_7__utils_bv_event_class__["a" /* default */]('hide', {
         cancelable: true,
         vueTarget: this,
         target: this.$refs.modal,
+        modalId: this.safeId(),
         // this could be the trigger element/component reference
         relatedTarget: null,
         isOK: trigger || null,
         trigger: trigger || null,
-        cancel () {
+        cancel() {
           // Backwards compatibility
-          Object(__WEBPACK_IMPORTED_MODULE_5__utils_warn__["a" /* default */])(
-            'b-modal: evt.cancel() is deprecated. Please use evt.preventDefault().'
-          )
+          Object(__WEBPACK_IMPORTED_MODULE_5__utils_warn__["a" /* default */])('b-modal: evt.cancel() is deprecated. Please use evt.preventDefault().')
           this.preventDefault()
         }
       })
@@ -3699,6 +3734,7 @@ const OBSERVER_CONFIG = {
       this.emitEvent(hideEvt)
       // Hide if not canceled
       if (hideEvt.defaultPrevented || !this.is_visible) {
+        this.is_closing = false
         return
       }
       // stop observing for content changes
@@ -3710,12 +3746,13 @@ const OBSERVER_CONFIG = {
       this.$emit('change', false)
     },
     // Private method to finish showing modal
-    doShow () {
-      // Plce modal in DOM if lazy
+    doShow() {
+      // Place modal in DOM if lazy
       this.is_hidden = false
       this.$nextTick(() => {
         // We do this in nextTick to ensure the modal is in DOM first before we show it
         this.is_visible = true
+        this.is_opening = false
         this.$emit('change', true)
         // Observe changes in modal content and adjust if necessary
         this._observer = Object(__WEBPACK_IMPORTED_MODULE_4__utils_observe_dom__["a" /* default */])(
@@ -3726,281 +3763,508 @@ const OBSERVER_CONFIG = {
       })
     },
     // Transition Handlers
-    onBeforeEnter () {
+    onBeforeEnter() {
+      this.getScrollbarWidth()
       this.is_transitioning = true
       this.checkScrollbar()
-      this.setScrollbar()
+      const count = incrementModalOpenCount()
+      if (count === 1) {
+        this.setScrollbar()
+      }
       this.adjustDialog()
-      Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["a" /* addClass */])(document.body, 'modal-open')
+      this.setModalOpenClass(true)
       this.setResizeEvent(true)
     },
-    onEnter () {
+    onEnter() {
       this.is_block = true
-      this.$refs.modal.scrollTop = 0
     },
-    onAfterEnter () {
+    onAfterEnter() {
       this.is_show = true
       this.is_transitioning = false
       this.$nextTick(() => {
-        this.focusFirst()
         const shownEvt = new __WEBPACK_IMPORTED_MODULE_7__utils_bv_event_class__["a" /* default */]('shown', {
           cancelable: false,
           vueTarget: this,
           target: this.$refs.modal,
+          modalId: this.safeId(),
           relatedTarget: null
         })
         this.emitEvent(shownEvt)
+        this.focusFirst()
+        this.setEnforceFocus(true)
       })
     },
-    onBeforeLeave () {
+    onBeforeLeave() {
       this.is_transitioning = true
       this.setResizeEvent(false)
     },
-    onLeave () {
+    onLeave() {
       // Remove the 'show' class
       this.is_show = false
     },
-    onAfterLeave () {
+    onAfterLeave() {
       this.is_block = false
-      this.resetAdjustments()
-      this.resetScrollbar()
+      this.resetDialogAdjustments()
       this.is_transitioning = false
-      Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["n" /* removeClass */])(document.body, 'modal-open')
+      const count = decrementModalOpenCount()
+      if (count === 0) {
+        this.resetScrollbar()
+        this.setModalOpenClass(false)
+      }
+      this.setEnforceFocus(false)
       this.$nextTick(() => {
         this.is_hidden = this.lazy || false
+        this.zIndex = ZINDEX_OFFSET
         this.returnFocusTo()
+        this.is_closing = false
         const hiddenEvt = new __WEBPACK_IMPORTED_MODULE_7__utils_bv_event_class__["a" /* default */]('hidden', {
           cancelable: false,
           vueTarget: this,
           target: this.lazy ? null : this.$refs.modal,
+          modalId: this.safeId(),
           relatedTarget: null
         })
         this.emitEvent(hiddenEvt)
       })
     },
     // Event emitter
-    emitEvent (bvEvt) {
+    emitEvent(bvEvt) {
       const type = bvEvt.type
       this.$emit(type, bvEvt)
-      this.$root.$emit(`bv::modal::${type}`, bvEvt)
+      this.$root.$emit(`bv::modal::${type}`, bvEvt, this.safeId())
     },
     // UI Event Handlers
-    onClickOut (evt) {
+    onClickOut(evt) {
       // If backdrop clicked, hide modal
-      if (this.is_visible && !this.noCloseOnBackdrop) {
+      if (this.is_visible && !this.noCloseOnBackdrop && !Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["c" /* contains */])(this.$refs.content, evt.target)) {
         this.hide('backdrop')
       }
     },
-    onEsc (evt) {
+    onEsc(evt) {
       // If ESC pressed, hide modal
-      if (
-        evt.keyCode === __WEBPACK_IMPORTED_MODULE_6__utils_key_codes__["a" /* default */].ESC &&
-        this.is_visible &&
-        !this.noCloseOnEsc
-      ) {
+      if (evt.keyCode === __WEBPACK_IMPORTED_MODULE_6__utils_key_codes__["a" /* default */].ESC && this.is_visible && !this.noCloseOnEsc) {
         this.hide('esc')
       }
     },
-    onFocusout (evt) {
+    // Document focusin listener
+    focusHandler(evt) {
       // If focus leaves modal, bring it back
-      // 'focusout' Event Listener bound on content
-      const content = this.$refs.content
+      const modal = this.$refs.modal
       if (
         !this.noEnforceFocus &&
+        this.isTop &&
         this.is_visible &&
-        content &&
-        !content.contains(evt.relatedTarget)
+        modal &&
+        document !== evt.target &&
+        !Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["c" /* contains */])(modal, evt.target)
       ) {
-        content.focus()
+        modal.focus({ preventScroll: true })
+      }
+    },
+    // Turn on/off focusin listener
+    setEnforceFocus(on) {
+      const options = { passive: true, capture: false }
+      if (on) {
+        Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["e" /* eventOn */])(document, 'focusin', this.focusHandler, options)
+      } else {
+        Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["d" /* eventOff */])(document, 'focusin', this.focusHandler, options)
       }
     },
     // Resize Listener
-    setResizeEvent (on) {
+    setResizeEvent(on) /* istanbul ignore next: can't easily test in JSDOM */ {
       ;['resize', 'orientationchange'].forEach(evtName => {
+        const options = { passive: true, capture: false }
         if (on) {
-          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["d" /* eventOn */])(window, evtName, this.adjustDialog)
+          Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["e" /* eventOn */])(window, evtName, this.adjustDialog, options)
         } else {
-          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["c" /* eventOff */])(window, evtName, this.adjustDialog)
+          Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["d" /* eventOff */])(window, evtName, this.adjustDialog, options)
         }
       })
     },
     // Root Listener handlers
-    showHandler (id, triggerEl) {
+    showHandler(id, triggerEl) {
       if (id === this.id) {
         this.return_focus = triggerEl || null
         this.show()
       }
     },
-    hideHandler (id) {
+    hideHandler(id) {
       if (id === this.id) {
         this.hide()
       }
     },
-    modalListener (bvEvt) {
+    shownHandler() {
+      this.setTop()
+    },
+    hiddenHandler() {
+      this.setTop()
+    },
+    setTop() {
+      // Determine if we are the topmost visible modal
+      this.isTop = this.zIndex >= getModalMaxZIndex()
+    },
+    modalListener(bvEvt) {
       // If another modal opens, close this one
-      if (bvEvt.vueTarget !== this) {
+      if (this.noStacking && bvEvt.vueTarget !== this) {
         this.hide()
       }
     },
     // Focus control handlers
-    focusFirst () {
+    focusFirst() {
       // Don't try and focus if we are SSR
       if (typeof document === 'undefined') {
         return
       }
-      const content = this.$refs.content
       const modal = this.$refs.modal
       const activeElement = document.activeElement
-      if (activeElement && content && content.contains(activeElement)) {
-        // If activeElement is child of content, no need to change focus
-      } else if (content) {
-        if (modal) {
+      if (activeElement && Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["c" /* contains */])(modal, activeElement)) {
+        // If activeElement is child of modal or is modal, no need to change focus
+        return
+      }
+      if (modal) {
+        // make sure top of modal is showing (if longer than the viewport) and
+        // focus the modal content wrapper
+        this.$nextTick(() => {
           modal.scrollTop = 0
-        }
-        // Focus the modal content wrapper
-        content.focus()
+          modal.focus()
+        })
       }
     },
-    returnFocusTo () {
+    returnFocusTo() {
       // Prefer returnFocus prop over event specified return_focus value
       let el = this.returnFocus || this.return_focus || null
       if (typeof el === 'string') {
         // CSS Selector
-        el = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["o" /* select */])(el)
+        el = Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["q" /* select */])(el)
       }
       if (el) {
         el = el.$el || el
-        if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["k" /* isVisible */])(el)) {
+        if (Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["l" /* isVisible */])(el)) {
           el.focus()
         }
       }
     },
     // Utility methods
-    getScrollbarWidth () {
+    getScrollbarWidth() {
       const scrollDiv = document.createElement('div')
       scrollDiv.className = 'modal-scrollbar-measure'
       document.body.appendChild(scrollDiv)
-      this.scrollbarWidth =
-        scrollDiv.getBoundingClientRect().width - scrollDiv.clientWidth
+      this.scrollbarWidth = Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["g" /* getBCR */])(scrollDiv).width - scrollDiv.clientWidth
       document.body.removeChild(scrollDiv)
     },
-    adjustDialog () {
+    setModalOpenClass(open) {
+      if (open) {
+        Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["a" /* addClass */])(document.body, 'modal-open')
+      } else {
+        Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["p" /* removeClass */])(document.body, 'modal-open')
+      }
+    },
+    adjustDialog() {
       if (!this.is_visible) {
         return
       }
       const modal = this.$refs.modal
-      const isModalOverflowing =
-        modal.scrollHeight > document.documentElement.clientHeight
+      const isModalOverflowing = modal.scrollHeight > document.documentElement.clientHeight
       if (!this.isBodyOverflowing && isModalOverflowing) {
         modal.style.paddingLeft = `${this.scrollbarWidth}px`
+      } else {
+        modal.style.paddingLeft = ''
       }
       if (this.isBodyOverflowing && !isModalOverflowing) {
         modal.style.paddingRight = `${this.scrollbarWidth}px`
+      } else {
+        modal.style.paddingRight = ''
       }
     },
-    resetAdjustments () {
+    resetDialogAdjustments() {
       const modal = this.$refs.modal
       if (modal) {
         modal.style.paddingLeft = ''
         modal.style.paddingRight = ''
       }
     },
-    checkScrollbar () {
-      const rect = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["f" /* getBCR */])(document.body)
-      this.isBodyOverflowing = rect.left + rect.right < window.innerWidth
+    checkScrollbar() /* istanbul ignore next: getBCR can't be tested in JSDOM */ {
+      const { left, right, height } = Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["g" /* getBCR */])(document.body)
+      // Extra check for body.height needed for stacked modals
+      this.isBodyOverflowing = left + right < window.innerWidth || height > window.innerHeight
     },
-    setScrollbar () {
+    setScrollbar() {
+      /* istanbul ignore if: get Computed Style can't be tested in JSDOM */
       if (this.isBodyOverflowing) {
         // Note: DOMNode.style.paddingRight returns the actual value or '' if not set
         //   while $(DOMNode).css('padding-right') returns the calculated value or 0 if not set
-        const computedStyle = window.getComputedStyle
         const body = document.body
         const scrollbarWidth = this.scrollbarWidth
+        body._paddingChangedForModal = []
+        body._marginChangedForModal = []
         // Adjust fixed content padding
-        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* selectAll */])(Selector.FIXED_CONTENT).forEach(el => {
+        Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["r" /* selectAll */])(Selector.FIXED_CONTENT).forEach(el => {
           const actualPadding = el.style.paddingRight
-          const calculatedPadding = computedStyle(el).paddingRight || 0
-          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["q" /* setAttr */])(el, 'data-padding-right', actualPadding)
-          el.style.paddingRight = `${parseFloat(calculatedPadding) +
-            scrollbarWidth}px`
+          const calculatedPadding = Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["h" /* getCS */])(el).paddingRight || 0
+          Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["s" /* setAttr */])(el, 'data-padding-right', actualPadding)
+          el.style.paddingRight = `${parseFloat(calculatedPadding) + scrollbarWidth}px`
+          body._paddingChangedForModal.push(el)
         })
         // Adjust sticky content margin
-        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* selectAll */])(Selector.STICKY_CONTENT).forEach(el => {
+        Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["r" /* selectAll */])(Selector.STICKY_CONTENT).forEach(el => {
           const actualMargin = el.style.marginRight
-          const calculatedMargin = computedStyle(el).marginRight || 0
-          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["q" /* setAttr */])(el, 'data-margin-right', actualMargin)
-          el.style.marginRight = `${parseFloat(calculatedMargin) -
-            scrollbarWidth}px`
+          const calculatedMargin = Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["h" /* getCS */])(el).marginRight || 0
+          Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["s" /* setAttr */])(el, 'data-margin-right', actualMargin)
+          el.style.marginRight = `${parseFloat(calculatedMargin) - scrollbarWidth}px`
+          body._marginChangedForModal.push(el)
         })
         // Adjust navbar-toggler margin
-        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* selectAll */])(Selector.NAVBAR_TOGGLER).forEach(el => {
+        Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["r" /* selectAll */])(Selector.NAVBAR_TOGGLER).forEach(el => {
           const actualMargin = el.style.marginRight
-          const calculatedMargin = computedStyle(el).marginRight || 0
-          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["q" /* setAttr */])(el, 'data-margin-right', actualMargin)
-          el.style.marginRight = `${parseFloat(calculatedMargin) +
-            scrollbarWidth}px`
+          const calculatedMargin = Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["h" /* getCS */])(el).marginRight || 0
+          Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["s" /* setAttr */])(el, 'data-margin-right', actualMargin)
+          el.style.marginRight = `${parseFloat(calculatedMargin) + scrollbarWidth}px`
+          body._marginChangedForModal.push(el)
         })
         // Adjust body padding
         const actualPadding = body.style.paddingRight
-        const calculatedPadding = computedStyle(body).paddingRight
-        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["q" /* setAttr */])(body, 'data-padding-right', actualPadding)
-        body.style.paddingRight = `${parseFloat(calculatedPadding) +
-          scrollbarWidth}px`
+        const calculatedPadding = Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["h" /* getCS */])(body).paddingRight
+        Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["s" /* setAttr */])(body, 'data-padding-right', actualPadding)
+        body.style.paddingRight = `${parseFloat(calculatedPadding) + scrollbarWidth}px`
       }
     },
-    resetScrollbar () {
-      // Restore fixed content padding
-      Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* selectAll */])(Selector.FIXED_CONTENT).forEach(el => {
-        if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["g" /* hasAttr */])(el, 'data-padding-right')) {
-          el.style.paddingRight = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["e" /* getAttr */])(el, 'data-padding-right') || ''
-          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["m" /* removeAttr */])(el, 'data-padding-right')
-        }
-      })
-      // Restore sticky content and navbar-toggler margin
-      Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* selectAll */])(
-        `${Selector.STICKY_CONTENT}, ${Selector.NAVBAR_TOGGLER}`
-      ).forEach(el => {
-        if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["g" /* hasAttr */])(el, 'data-margin-right')) {
-          el.style.marginRight = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["e" /* getAttr */])(el, 'data-margin-right') || ''
-          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["m" /* removeAttr */])(el, 'data-margin-right')
-        }
-      })
-      // Restore body padding
+    resetScrollbar() {
       const body = document.body
-      if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["g" /* hasAttr */])(body, 'data-padding-right')) {
-        body.style.paddingRight = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["e" /* getAttr */])(body, 'data-padding-right') || ''
-        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["m" /* removeAttr */])(body, 'data-padding-right')
+      if (body._paddingChangedForModal) {
+        // Restore fixed content padding
+        body._paddingChangedForModal.forEach(el => {
+          if (Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["i" /* hasAttr */])(el, 'data-padding-right')) {
+            el.style.paddingRight = Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["f" /* getAttr */])(el, 'data-padding-right') || ''
+            Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["o" /* removeAttr */])(el, 'data-padding-right')
+          }
+        })
+      }
+      if (body._marginChangedForModal) {
+        // Restore sticky content and navbar-toggler margin
+        body._marginChangedForModal.forEach(el => {
+          if (Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["i" /* hasAttr */])(el, 'data-margin-right')) {
+            el.style.marginRight = Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["f" /* getAttr */])(el, 'data-margin-right') || ''
+            Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["o" /* removeAttr */])(el, 'data-margin-right')
+          }
+        })
+      }
+      body._paddingChangedForModal = null
+      body._marginChangedForModal = null
+      // Restore body padding
+      if (Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["i" /* hasAttr */])(body, 'data-padding-right')) {
+        body.style.paddingRight = Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["f" /* getAttr */])(body, 'data-padding-right') || ''
+        Object(__WEBPACK_IMPORTED_MODULE_9__utils_dom__["o" /* removeAttr */])(body, 'data-padding-right')
       }
     }
   },
-  created () {
-    // create non-reactive property
-    this._observer = null
-  },
-  mounted () {
-    // Measure scrollbar
-    this.getScrollbarWidth()
-    // Listen for events from others to either open or close ourselves
-    this.listenOnRoot('bv::show::modal', this.showHandler)
-    this.listenOnRoot('bv::hide::modal', this.hideHandler)
-    // Listen for bv:modal::show events, and close ourselves if the opening modal not us
-    this.listenOnRoot('bv::modal::show', this.modalListener)
-    // Initially show modal?
-    if (this.visible === true) {
-      this.show()
+  render(h) {
+    const $slots = this.$slots
+    // Modal Header
+    let header = h(false)
+    if (!this.hideHeader) {
+      let modalHeader = $slots['modal-header']
+      if (!modalHeader) {
+        let closeButton = h(false)
+        if (!this.hideHeaderClose) {
+          closeButton = h(
+            'b-button-close',
+            {
+              props: {
+                disabled: this.is_transitioning,
+                ariaLabel: this.headerCloseLabel,
+                textVariant: this.headerTextVariant
+              },
+              on: {
+                click: evt => {
+                  this.hide('headerclose')
+                }
+              }
+            },
+            [$slots['modal-header-close']]
+          )
+        }
+        modalHeader = [
+          h(this.titleTag, { class: ['modal-title'] }, [
+            $slots['modal-title'] || this.titleHTML || Object(__WEBPACK_IMPORTED_MODULE_8__utils_html__["b" /* stripTags */])(this.title)
+          ]),
+          closeButton
+        ]
+      }
+      header = h(
+        'header',
+        {
+          ref: 'header',
+          staticClass: 'modal-header',
+          class: this.headerClasses,
+          attrs: { id: this.safeId('__BV_modal_header_') }
+        },
+        [modalHeader]
+      )
     }
-  },
-  beforeDestroy () {
-    // Ensure everything is back to normal
-    if (this._observer) {
-      this._observer.disconnect()
-      this._observer = null
+    // Modal Body
+    const body = h(
+      'div',
+      {
+        ref: 'body',
+        staticClass: 'modal-body',
+        class: this.bodyClasses,
+        attrs: { id: this.safeId('__BV_modal_body_') }
+      },
+      [$slots.default]
+    )
+    // Modal Footer
+    let footer = h(false)
+    if (!this.hideFooter) {
+      let modalFooter = $slots['modal-footer']
+      if (!modalFooter) {
+        let cancelButton = h(false)
+        if (!this.okOnly) {
+          cancelButton = h(
+            'b-button',
+            {
+              props: {
+                variant: this.cancelVariant,
+                size: this.buttonSize,
+                disabled: this.cancelDisabled || this.busy || this.is_transitioning
+              },
+              on: {
+                click: evt => {
+                  this.hide('cancel')
+                }
+              }
+            },
+            [$slots['modal-cancel'] || this.cancelTitleHTML || Object(__WEBPACK_IMPORTED_MODULE_8__utils_html__["b" /* stripTags */])(this.cancelTitle)]
+          )
+        }
+        const okButton = h(
+          'b-button',
+          {
+            props: {
+              variant: this.okVariant,
+              size: this.buttonSize,
+              disabled: this.okDisabled || this.busy || this.is_transitioning
+            },
+            on: {
+              click: evt => {
+                this.hide('ok')
+              }
+            }
+          },
+          [$slots['modal-ok'] || this.okTitleHTML || Object(__WEBPACK_IMPORTED_MODULE_8__utils_html__["b" /* stripTags */])(this.okTitle)]
+        )
+        modalFooter = [cancelButton, okButton]
+      }
+      footer = h(
+        'footer',
+        {
+          ref: 'footer',
+          staticClass: 'modal-footer',
+          class: this.footerClasses,
+          attrs: { id: this.safeId('__BV_modal_footer_') }
+        },
+        [modalFooter]
+      )
     }
-    this.setResizeEvent(false)
-    // Re-adjust body/navbar/fixed padding/margins (if needed)
-    Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["n" /* removeClass */])(document.body, 'modal-open')
-    this.resetAdjustments()
-    this.resetScrollbar()
+    // Assemble Modal Content
+    const modalContent = h(
+      'div',
+      {
+        ref: 'content',
+        class: this.contentClasses,
+        attrs: {
+          role: 'document',
+          id: this.safeId('__BV_modal_content_'),
+          'aria-labelledby': this.hideHeader ? null : this.safeId('__BV_modal_header_'),
+          'aria-describedby': this.safeId('__BV_modal_body_')
+        }
+      },
+      [header, body, footer]
+    )
+    // Modal Dialog wrapper
+    const modalDialog = h(
+      'div',
+      {
+        staticClass: 'modal-dialog',
+        class: this.dialogClasses
+      },
+      [modalContent]
+    )
+    // Modal
+    let modal = h(
+      'div',
+      {
+        ref: 'modal',
+        staticClass: 'modal',
+        class: this.modalClasses,
+        directives: [
+          { name: 'show', rawName: 'v-show', value: this.is_visible, expression: 'is_visible' }
+        ],
+        attrs: {
+          id: this.safeId(),
+          role: 'dialog',
+          tabindex: '-1',
+          'aria-hidden': this.is_visible ? null : 'true',
+          'aria-modal': this.is_visible ? 'true' : null
+        },
+        on: {
+          click: this.onClickOut,
+          keydown: this.onEsc
+        }
+      },
+      [modalDialog]
+    )
+    // Wrap modal in transition
+    modal = h(
+      'transition',
+      {
+        props: {
+          enterClass: '',
+          enterToClass: '',
+          enterActiveClass: '',
+          leaveClass: '',
+          leaveActiveClass: '',
+          leaveToClass: ''
+        },
+        on: {
+          'before-enter': this.onBeforeEnter,
+          enter: this.onEnter,
+          'after-enter': this.onAfterEnter,
+          'before-leave': this.onBeforeLeave,
+          leave: this.onLeave,
+          'after-leave': this.onAfterLeave
+        }
+      },
+      [modal]
+    )
+    // Modal Backdrop
+    let backdrop = h(false)
+    if (!this.hideBackdrop && (this.is_visible || this.is_transitioning)) {
+      backdrop = h('div', {
+        staticClass: 'modal-backdrop',
+        class: this.backdropClasses,
+        attrs: { id: this.safeId('__BV_modal_backdrop_') }
+      })
+    }
+    // Tab trap to prevent page from scrolling to next element in tab index during enforce focus tab cycle
+    let tabTrap = h(false)
+    if (this.is_visible && this.isTop && !this.noEnforceFocus) {
+      tabTrap = h('div', { attrs: { tabindex: '0' } })
+    }
+    // Assemble modal and backdrop in an outer div needed for lazy modals
+    let outer = h(false)
+    if (!this.is_hidden) {
+      outer = h(
+        'div',
+        {
+          key: 'modal-outer',
+          style: this.modalOuterStyle,
+          attrs: { id: this.safeId('__BV_modal_outer_') }
+        },
+        [modal, tabTrap, backdrop]
+      )
+    }
+    // Wrap in DIV to maintain thi.$el reference for hide/show method aceess
+    return h('div', {}, [outer])
   }
 });
 
@@ -4020,15 +4284,11 @@ const directives = {
   bModal: __WEBPACK_IMPORTED_MODULE_0__modal__["a" /* default */]
 }
 
-const VuePlugin = {
-  install (Vue) {
+/* harmony default export */ __webpack_exports__["a"] = ({
+  install(Vue) {
     Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["b" /* registerDirectives */])(Vue, directives)
   }
-}
-
-Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin)
-
-/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
+});
 
 
 /***/ }),
@@ -4042,26 +4302,26 @@ Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin
 
 
 
-const listenTypes = {click: true}
+const listenTypes = { click: true }
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   // eslint-disable-next-line no-shadow-restricted-names
-  bind (el, binding, vnode) {
-    Object(__WEBPACK_IMPORTED_MODULE_0__utils_target__["a" /* bindTargets */])(vnode, binding, listenTypes, ({targets, vnode}) => {
+  bind(el, binding, vnode) {
+    Object(__WEBPACK_IMPORTED_MODULE_0__utils_target__["a" /* bindTargets */])(vnode, binding, listenTypes, ({ targets, vnode }) => {
       targets.forEach(target => {
         vnode.context.$root.$emit('bv::show::modal', target, vnode.elm)
       })
     })
     if (el.tagName !== 'BUTTON') {
       // If element is not a button, we add `role="button"` for accessibility
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["q" /* setAttr */])(el, 'role', 'button')
+      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["s" /* setAttr */])(el, 'role', 'button')
     }
   },
-  unbind (el, binding, vnode) {
+  unbind(el, binding, vnode) {
     Object(__WEBPACK_IMPORTED_MODULE_0__utils_target__["c" /* unbindTargets */])(vnode, binding, listenTypes)
     if (el.tagName !== 'BUTTON') {
       // If element is not a button, we add `role="button"` for accessibility
-      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["m" /* removeAttr */])(el, 'role', 'button')
+      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["o" /* removeAttr */])(el, 'role', 'button')
     }
   }
 });
@@ -4075,9 +4335,11 @@ const listenTypes = {click: true}
 "use strict";
 /*
  * SSR Safe Client Side ID attribute generation
- *
+ * id's can only be generated client side, after mount.
+ * this._uid is not synched between server and client.
  */
 
+// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
   props: {
     id: {
@@ -4085,22 +4347,36 @@ const listenTypes = {click: true}
       default: null
     }
   },
-  methods: {
-    safeId (suffix = '') {
-      const id = this.id || this.localId_ || null
-      if (!id) {
-        return null
-      }
-      suffix = String(suffix).replace(/\s+/g, '_')
-      return suffix ? id + '_' + suffix : id
+  data() {
+    return {
+      localId_: null
     }
   },
   computed: {
-    localId_ () {
-      if (!this.$isServer && !this.id && typeof this._uid !== 'undefined') {
-        return '__BVID__' + this._uid
+    safeId() {
+      // Computed property that returns a dynamic function for creating the ID.
+      // Reacts to changes in both .id and .localId_ And regens a new function
+      const id = this.id || this.localId_
+
+      // We return a function that accepts an optional suffix string
+      // So this computed prop looks and works like a method!!!
+      const fn = suffix => {
+        if (!id) {
+          return null
+        }
+        suffix = String(suffix || '').replace(/\s+/g, '_')
+        return suffix ? id + '_' + suffix : id
       }
+      return fn
     }
+  },
+  mounted() {
+    // mounted only occurs client side
+    this.$nextTick(() => {
+      // Update dom with auto ID after dom loaded to prevent
+      // SSR hydration errors.
+      this.localId_ = `__BVID__${this._uid}`
+    })
   }
 });
 
@@ -4120,24 +4396,34 @@ const listenTypes = {click: true}
 
 const BVRL = '__BV_root_listeners__'
 
+// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
+  beforeDestroy() {
+    if (this[BVRL] && Object(__WEBPACK_IMPORTED_MODULE_0__utils_array__["d" /* isArray */])(this[BVRL])) {
+      while (this[BVRL].length > 0) {
+        // shift to process in order
+        const { event, callback } = this[BVRL].shift()
+        this.$root.$off(event, callback)
+      }
+    }
+  },
   methods: {
     /**
-         * Safely register event listeners on the root Vue node.
-         * While Vue automatically removes listeners for individual components,
-         * when a component registers a listener on root and is destroyed,
-         * this orphans a callback because the node is gone,
-         * but the root does not clear the callback.
-         *
-         * This adds a non-reactive prop to a vm on the fly
-         * in order to avoid object observation and its performance costs
-         * to something that needs no reactivity.
-         * It should be highly unlikely there are any naming collisions.
-         * @param {string} event
-         * @param {function} callback
-         * @chainable
-         */
-    listenOnRoot (event, callback) {
+     * Safely register event listeners on the root Vue node.
+     * While Vue automatically removes listeners for individual components,
+     * when a component registers a listener on root and is destroyed,
+     * this orphans a callback because the node is gone,
+     * but the root does not clear the callback.
+     *
+     * This adds a non-reactive prop to a vm on the fly
+     * in order to avoid object observation and its performance costs
+     * to something that needs no reactivity.
+     * It should be highly unlikely there are any naming collisions.
+     * @param {string} event
+     * @param {function} callback
+     * @chainable
+     */
+    listenOnRoot(event, callback) {
       if (!this[BVRL] || !Object(__WEBPACK_IMPORTED_MODULE_0__utils_array__["d" /* isArray */])(this[BVRL])) {
         this[BVRL] = []
       }
@@ -4147,24 +4433,14 @@ const BVRL = '__BV_root_listeners__'
     },
 
     /**
-         * Convenience method for calling vm.$emit on vm.$root.
-         * @param {string} event
-         * @param {*} args
-         * @chainable
-         */
-    emitOnRoot (event, ...args) {
+     * Convenience method for calling vm.$emit on vm.$root.
+     * @param {string} event
+     * @param {*} args
+     * @chainable
+     */
+    emitOnRoot(event, ...args) {
       this.$root.$emit(event, ...args)
       return this
-    }
-  },
-
-  beforeDestroy () {
-    if (this[BVRL] && Object(__WEBPACK_IMPORTED_MODULE_0__utils_array__["d" /* isArray */])(this[BVRL])) {
-      while (this[BVRL].length > 0) {
-        // shift to process in order
-        const { event, callback } = this[BVRL].shift()
-        this.$root.$off(event, callback)
-      }
     }
   }
 });
@@ -4179,8 +4455,9 @@ const BVRL = '__BV_root_listeners__'
 /* harmony export (immutable) */ __webpack_exports__["b"] = concat;
 // Production steps of ECMA-262, Edition 6, 22.1.2.1
 // es6-ified by @alexsasharegan
+/* istanbul ignore if */
 if (!Array.from) {
-  Array.from = (function () {
+  Array.from = (function() {
     const toStr = Object.prototype.toString
     const isCallable = fn => typeof fn === 'function' || toStr.call(fn) === '[object Function]'
     const toInteger = value => {
@@ -4197,7 +4474,7 @@ if (!Array.from) {
     const toLength = value => Math.min(Math.max(toInteger(value), 0), maxSafeInteger)
 
     // The length property of the from method is 1.
-    return function from (arrayLike /*, mapFn, thisArg */) {
+    return function from(arrayLike /*, mapFn, thisArg */) {
       // 1. Let C be the this value.
       const C = this
 
@@ -4259,10 +4536,11 @@ if (!Array.from) {
 
 // https://tc39.github.io/ecma262/#sec-array.prototype.find
 // Needed for IE support
+/* istanbul ignore if */
 if (!Array.prototype.find) {
   // eslint-disable-next-line no-extend-native
   Object.defineProperty(Array.prototype, 'find', {
-    value: function (predicate) {
+    value: function(predicate) {
       // 1. Let O be ? ToObject(this value).
       if (this == null) {
         throw new TypeError('"this" is null or not defined')
@@ -4304,6 +4582,7 @@ if (!Array.prototype.find) {
   })
 }
 
+/* istanbul ignore if */
 if (!Array.isArray) {
   Array.isArray = arg => Object.prototype.toString.call(arg) === '[object Array]'
 }
@@ -4320,10 +4599,7 @@ const isArray = Array.isArray
 const arrayIncludes = (array, value) => array.indexOf(value) !== -1
 /* harmony export (immutable) */ __webpack_exports__["a"] = arrayIncludes;
 
-const arrayFind = (array, fn, thisArg) => array.find(fn, thisArg)
-/* unused harmony export arrayFind */
-
-function concat () {
+function concat() {
   return Array.prototype.concat.apply([], arguments)
 }
 
@@ -4338,11 +4614,13 @@ function concat () {
 
 
 class BvEvent {
-  constructor (type, eventInit = {}) {
+  constructor(type, eventInit = {}) {
     // Start by emulating native Event constructor.
     if (!type) {
       throw new TypeError(
-        `Failed to construct '${this.constructor.name}'. 1 argument required, ${arguments.length} given.`
+        `Failed to construct '${this.constructor.name}'. 1 argument required, ${
+          arguments.length
+        } given.`
       )
     }
     // Assign defaults first, the eventInit,
@@ -4360,7 +4638,7 @@ class BvEvent {
     // Create a private variable using closure scoping.
     let defaultPrevented = false
     // Recreate preventDefault method. One way setter.
-    this.preventDefault = function preventDefault () {
+    this.preventDefault = function preventDefault() {
       if (this.cancelable) {
         defaultPrevented = true
       }
@@ -4369,13 +4647,13 @@ class BvEvent {
     // that can only be altered by the preventDefault method.
     Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["d" /* defineProperty */])(this, 'defaultPrevented', {
       enumerable: true,
-      get () {
+      get() {
         return defaultPrevented
       }
     })
   }
 
-  static defaults () {
+  static defaults() {
     return {
       type: '',
       cancelable: true,
@@ -4397,41 +4675,100 @@ class BvEvent {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__env__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/env.js");
+
+
+
+// Determine if the browser supports the option passive for events
+let passiveEventSupported = false
+/* istanbul ignore if */
+if (__WEBPACK_IMPORTED_MODULE_1__env__["a" /* inBrowser */]) {
+  try {
+    var options = {
+      get passive() {
+        // This function will be called when the browser
+        // attempts to access the passive property.
+        passiveEventSupported = true
+      }
+    }
+    window.addEventListener('test', options, options)
+    window.removeEventListener('test', options, options)
+  } catch (err) {
+    passiveEventSupported = false
+  }
+}
+
+// Normalize event options based on support of passive option
+function parseEventOptions(options) {
+  let useCapture = false
+  if (options) {
+    if (typeof options === 'object') {
+      // eslint-disable-next-line no-unneeded-ternary
+      useCapture = options.useCapture ? true : false
+    } else {
+      useCapture = options
+    }
+  }
+  return passiveEventSupported ? options : useCapture
+}
+
+// Attach an event listener to an element
+const eventOn = (el, evtName, handler, options) => {
+  if (el && el.addEventListener) {
+    el.addEventListener(evtName, handler, parseEventOptions(options))
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["e"] = eventOn;
+
+
+// Remove an event listener from an element
+const eventOff = (el, evtName, handler, options) => {
+  if (el && el.removeEventListener) {
+    el.removeEventListener(evtName, handler, parseEventOptions(options))
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["d"] = eventOff;
 
 
 // Determine if an element is an HTML Element
 const isElement = el => {
   return el && el.nodeType === Node.ELEMENT_NODE
 }
-/* harmony export (immutable) */ __webpack_exports__["j"] = isElement;
+/* harmony export (immutable) */ __webpack_exports__["k"] = isElement;
 
 
 // Determine if an HTML element is visible - Faster than CSS check
 const isVisible = el => {
-  return isElement(el) &&
-           document.body.contains(el) &&
-           el.getBoundingClientRect().height > 0 &&
-           el.getBoundingClientRect().width > 0
+  /* istanbul ignore next: getBoundingClientRect not avaiable in JSDOM */
+  return (
+    isElement(el) &&
+    document.body.contains(el) &&
+    el.getBoundingClientRect().height > 0 &&
+    el.getBoundingClientRect().width > 0
+  )
 }
-/* harmony export (immutable) */ __webpack_exports__["k"] = isVisible;
+/* harmony export (immutable) */ __webpack_exports__["l"] = isVisible;
 
 
 // Determine if an element is disabled
 const isDisabled = el => {
-  return !isElement(el) ||
-           el.disabled ||
-           el.classList.contains('disabled') ||
-           Boolean(el.getAttribute('disabled'))
+  return (
+    !isElement(el) ||
+    el.disabled ||
+    el.classList.contains('disabled') ||
+    Boolean(el.getAttribute('disabled'))
+  )
 }
-/* harmony export (immutable) */ __webpack_exports__["i"] = isDisabled;
+/* unused harmony export isDisabled */
 
 
 // Cause/wait-for an element to reflow it's content (adjusting it's height/width)
 const reflow = el => {
   // requsting an elements offsetHight will trigger a reflow of the element content
+  /* istanbul ignore next: reflow doesnt happen in JSDOM */
   return isElement(el) && el.offsetHeight
 }
-/* harmony export (immutable) */ __webpack_exports__["l"] = reflow;
+/* harmony export (immutable) */ __webpack_exports__["n"] = reflow;
 
 
 // Select all elements matching selector. Returns [] if none found
@@ -4441,7 +4778,7 @@ const selectAll = (selector, root) => {
   }
   return Object(__WEBPACK_IMPORTED_MODULE_0__array__["c" /* from */])(root.querySelectorAll(selector))
 }
-/* harmony export (immutable) */ __webpack_exports__["p"] = selectAll;
+/* harmony export (immutable) */ __webpack_exports__["r"] = selectAll;
 
 
 // Select a single element, returns null if not found
@@ -4451,7 +4788,7 @@ const select = (selector, root) => {
   }
   return root.querySelector(selector) || null
 }
-/* harmony export (immutable) */ __webpack_exports__["o"] = select;
+/* harmony export (immutable) */ __webpack_exports__["q"] = select;
 
 
 // Determine if an element matches a selector
@@ -4463,25 +4800,26 @@ const matches = (el, selector) => {
   // https://developer.mozilla.org/en-US/docs/Web/API/Element/matches#Polyfill
   // Prefer native implementations over polyfill function
   const proto = Element.prototype
-  const Matches = proto.matches ||
-        proto.matchesSelector ||
-        proto.mozMatchesSelector ||
-        proto.msMatchesSelector ||
-        proto.oMatchesSelector ||
-        proto.webkitMatchesSelector ||
-        /* istanbul ignore next */
-        function (sel) {
-          const element = this
-          const m = selectAll(sel, element.document || element.ownerDocument)
-          let i = m.length
-          // eslint-disable-next-line no-empty
-          while (--i >= 0 && m.item(i) !== element) {}
-          return i > -1
-        }
+  /* istanbul ignore next */
+  const Matches =
+    proto.matches ||
+    proto.matchesSelector ||
+    proto.mozMatchesSelector ||
+    proto.msMatchesSelector ||
+    proto.oMatchesSelector ||
+    proto.webkitMatchesSelector ||
+    function(sel) /* istanbul ignore next */ {
+      const element = this
+      const m = selectAll(sel, element.document || element.ownerDocument)
+      let i = m.length
+      // eslint-disable-next-line no-empty
+      while (--i >= 0 && m.item(i) !== element) {}
+      return i > -1
+    }
 
   return Matches.call(el, selector)
 }
-/* unused harmony export matches */
+/* harmony export (immutable) */ __webpack_exports__["m"] = matches;
 
 
 // Finds closest element matching selector. Returns null if not found
@@ -4493,28 +4831,39 @@ const closest = (selector, root) => {
   // https://developer.mozilla.org/en-US/docs/Web/API/Element/closest
   // Since we dont support IE < 10, we can use the "Matches" version of the polyfill for speed
   // Prefer native implementation over polyfill function
-  const Closest = Element.prototype.closest ||
-                  /* istanbul ignore next */
-                  function (sel) {
-                    let element = this
-                    if (!document.documentElement.contains(element)) {
-                      return null
-                    }
-                    do {
-                      // Use our "patched" matches function
-                      if (matches(element, sel)) {
-                        return element
-                      }
-                      element = element.parentElement
-                    } while (element !== null)
-                    return null
-                  }
+  /* istanbul ignore next */
+  const Closest =
+    Element.prototype.closest ||
+    function(sel) {
+      let element = this
+      if (!document.documentElement.contains(element)) {
+        return null
+      }
+      do {
+        // Use our "patched" matches function
+        if (matches(element, sel)) {
+          return element
+        }
+        element = element.parentElement
+      } while (element !== null)
+      return null
+    }
 
   const el = Closest.call(root, selector)
   // Emulate jQuery closest and return null if match is the passed in element (root)
   return el === root ? null : el
 }
 /* harmony export (immutable) */ __webpack_exports__["b"] = closest;
+
+
+// Returns true if the parent element contains the child element
+const contains = (parent, child) => {
+  if (!parent || typeof parent.contains !== 'function') {
+    return false
+  }
+  return parent.contains(child)
+}
+/* harmony export (immutable) */ __webpack_exports__["c"] = contains;
 
 
 // Get an element given an ID
@@ -4539,7 +4888,7 @@ const removeClass = (el, className) => {
     el.classList.remove(className)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["n"] = removeClass;
+/* harmony export (immutable) */ __webpack_exports__["p"] = removeClass;
 
 
 // Test if an element has a class
@@ -4549,7 +4898,7 @@ const hasClass = (el, className) => {
   }
   return false
 }
-/* harmony export (immutable) */ __webpack_exports__["h"] = hasClass;
+/* harmony export (immutable) */ __webpack_exports__["j"] = hasClass;
 
 
 // Set an attribute on an element
@@ -4558,7 +4907,7 @@ const setAttr = (el, attr, value) => {
     el.setAttribute(attr, value)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["q"] = setAttr;
+/* harmony export (immutable) */ __webpack_exports__["s"] = setAttr;
 
 
 // Remove an attribute from an element
@@ -4567,7 +4916,7 @@ const removeAttr = (el, attr) => {
     el.removeAttribute(attr)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["m"] = removeAttr;
+/* harmony export (immutable) */ __webpack_exports__["o"] = removeAttr;
 
 
 // Get an attribute value from an element (returns null if not found)
@@ -4577,7 +4926,7 @@ const getAttr = (el, attr) => {
   }
   return null
 }
-/* harmony export (immutable) */ __webpack_exports__["e"] = getAttr;
+/* harmony export (immutable) */ __webpack_exports__["f"] = getAttr;
 
 
 // Determine if an attribute exists on an element (returns true or false, or null if element not found)
@@ -4587,25 +4936,28 @@ const hasAttr = (el, attr) => {
   }
   return null
 }
-/* harmony export (immutable) */ __webpack_exports__["g"] = hasAttr;
+/* harmony export (immutable) */ __webpack_exports__["i"] = hasAttr;
 
 
 // Return the Bounding Client Rec of an element. Retruns null if not an element
+/* istanbul ignore next: getBoundingClientRect() doesnt work in JSDOM */
 const getBCR = el => {
   return isElement(el) ? el.getBoundingClientRect() : null
 }
-/* harmony export (immutable) */ __webpack_exports__["f"] = getBCR;
+/* harmony export (immutable) */ __webpack_exports__["g"] = getBCR;
 
 
 // Get computed style object for an element
+/* istanbul ignore next: getComputedStyle() doesnt work in JSDOM */
 const getCS = el => {
   return isElement(el) ? window.getComputedStyle(el) : {}
 }
-/* unused harmony export getCS */
+/* harmony export (immutable) */ __webpack_exports__["h"] = getCS;
 
 
 // Return an element's offset wrt document element
 // https://j11y.io/jquery/#v=git&fn=jQuery.fn.offset
+/* istanbul ignore next: getBoundingClientRect(), getClientRects() doesnt work in JSDOM */
 const offset = el => {
   if (isElement(el)) {
     if (!el.getClientRects().length) {
@@ -4624,6 +4976,7 @@ const offset = el => {
 
 // Return an element's offset wrt to it's offsetParent
 // https://j11y.io/jquery/#v=git&fn=jQuery.fn.position
+/* istanbul ignore next: getBoundingClientRect(), getClientRects() doesnt work in JSDOM */
 const position = el => {
   if (!isElement(el)) {
     return
@@ -4637,9 +4990,11 @@ const position = el => {
     offsetSelf = offset(el)
     const doc = el.ownerDocument
     offsetParent = el.offsetParent || doc.documentElement
-    while (offsetParent &&
-                (offsetParent === doc.body || offsetParent === doc.documentElement) &&
-                getCS(offsetParent).position === 'static') {
+    while (
+      offsetParent &&
+      (offsetParent === doc.body || offsetParent === doc.documentElement) &&
+      getCS(offsetParent).position === 'static'
+    ) {
       offsetParent = offsetParent.parentNode
     }
     if (offsetParent && offsetParent !== el && offsetParent.nodeType === Node.ELEMENT_NODE) {
@@ -4656,23 +5011,50 @@ const position = el => {
 /* unused harmony export position */
 
 
-// Attach an event listener to an element
-const eventOn = (el, evtName, handler) => {
-  if (el && el.addEventListener) {
-    el.addEventListener(evtName, handler)
-  }
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/utils/env.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// Info about the current environment
+
+const inBrowser = typeof document !== 'undefined' && typeof window !== 'undefined'
+/* harmony export (immutable) */ __webpack_exports__["a"] = inBrowser;
+
+
+const isServer = !inBrowser
+/* unused harmony export isServer */
+
+
+const hasTouchSupport =
+  inBrowser && ('ontouchstart' in document.documentElement || navigator.maxTouchPoints > 0)
+/* unused harmony export hasTouchSupport */
+
+
+const hasPointerEvent = inBrowser && Boolean(window.PointerEvent || window.MSPointerEvent)
+/* unused harmony export hasPointerEvent */
+
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/utils/html.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = stripTags;
+/* harmony export (immutable) */ __webpack_exports__["a"] = htmlOrText;
+const stripTagsRegex = /(<([^>]+)>)/gi
+
+function stripTags(text = '') {
+  return text.replace(stripTagsRegex, '')
 }
-/* harmony export (immutable) */ __webpack_exports__["d"] = eventOn;
 
-
-// Remove an event listener from an element
-const eventOff = (el, evtName, handler) => {
-  if (el && el.removeEventListener) {
-    el.removeEventListener(evtName, handler)
-  }
+function htmlOrText(innerHTML, textContent) {
+  return innerHTML ? { innerHTML } : { textContent }
 }
-/* harmony export (immutable) */ __webpack_exports__["c"] = eventOff;
-
 
 
 /***/ }),
@@ -4682,7 +5064,7 @@ const eventOff = (el, evtName, handler) => {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = identity;
-function identity (x) {
+function identity(x) {
   return x
 }
 
@@ -4708,7 +5090,17 @@ function identity (x) {
   PAGEUP: 33,
   PAGEDOWN: 34,
   HOME: 36,
-  END: 35
+  END: 35,
+  TAB: 9,
+  SHIFT: 16,
+  CTRL: 17,
+  BACKSPACE: 8,
+  ALT: 18,
+  PAUSE: 19,
+  BREAK: 19,
+  INSERT: 45,
+  INS: 45,
+  DELETE: 46
 });
 
 
@@ -4722,10 +5114,10 @@ function identity (x) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
 
 
-function memoize (fn) {
+function memoize(fn) {
   const cache = Object(__WEBPACK_IMPORTED_MODULE_0__object__["b" /* create */])(null)
 
-  return function memoizedFn () {
+  return function memoizedFn() {
     const args = JSON.stringify(arguments)
     return (cache[args] = cache[args] || fn.apply(null, arguments))
   }
@@ -4748,8 +5140,9 @@ function memoize (fn) {
  */
 
 // @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+/* istanbul ignore if */
 if (typeof Object.assign !== 'function') {
-  Object.assign = function (target, varArgs) {
+  Object.assign = function(target, varArgs) {
     // .length of function is 2
 
     if (target == null) {
@@ -4777,10 +5170,12 @@ if (typeof Object.assign !== 'function') {
 }
 
 // @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Polyfill
+/* istanbul ignore if */
 if (!Object.is) {
-  Object.is = function (x, y) {
+  Object.is = function(x, y) {
     // SameValue algorithm
-    if (x === y) { // Steps 1-5, 7-10
+    if (x === y) {
+      // Steps 1-5, 7-10
       // Steps 6.b-6.e: +0 != -0
       return x !== 0 || 1 / x === 1 / y
     } else {
@@ -4828,7 +5223,7 @@ const is = Object.is
 /* unused harmony export is */
 
 
-function readonlyDescriptor () {
+function readonlyDescriptor() {
   return { enumerable: true, configurable: false, writable: false }
 }
 
@@ -4841,9 +5236,23 @@ function readonlyDescriptor () {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = observeDOM;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
 
 
+
+// Falback observation for legacy broswers
+// Emulate observer disconnect() method so that we can detach the events later
+
+function fakeObserverFactory(el, callback) /* istanbul ignore next: hard to test in JSDOM */ {
+  Object(__WEBPACK_IMPORTED_MODULE_1__dom__["e" /* eventOn */])(el, 'DOMNodeInserted', callback, false)
+  Object(__WEBPACK_IMPORTED_MODULE_1__dom__["e" /* eventOn */])(el, 'DOMNodeRemoved', callback, false)
+  return {
+    disconnect: function() {
+      Object(__WEBPACK_IMPORTED_MODULE_1__dom__["d" /* eventOff */])(el, 'DOMNodeInserted', callback, false)
+      Object(__WEBPACK_IMPORTED_MODULE_1__dom__["d" /* eventOff */])(el, 'DOMNodeRemoved', callback, false)
+    }
+  }
+}
 
 /**
  * Observe a DOM element changes, falls back to eventListener mode
@@ -4852,21 +5261,25 @@ function readonlyDescriptor () {
  * @param {object} [opts={childList: true, subtree: true}] observe options
  * @see http://stackoverflow.com/questions/3219758
  */
-function observeDOM (el, callback, opts) {
-  const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver
+function observeDOM(
+  el,
+  callback,
+  opts
+) /* istanbul ignore next: difficult to test in JSDOM */ {
+  const MutationObserver =
+    window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver
   const eventListenerSupported = window.addEventListener
 
   // Handle case where we might be passed a vue instance
-  el = el ? (el.$el || el) : null
+  el = el ? el.$el || el : null
   /* istanbul ignore next: dificult to test in JSDOM */
-  if (!Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["j" /* isElement */])(el)) {
+  if (!Object(__WEBPACK_IMPORTED_MODULE_1__dom__["k" /* isElement */])(el)) {
     // We can't observe somthing that isn't an element
     return null
   }
 
   let obs = null
 
-  /* istanbul ignore next: dificult to test in JSDOM */
   if (MutationObserver) {
     // Define a new observer
     obs = new MutationObserver(mutations => {
@@ -4881,11 +5294,14 @@ function observeDOM (el, callback, opts) {
         // DOM Node (could be any DOM Node type - HTMLElement, Text, comment, etc)
         const target = mutation.target
         if (type === 'characterData' && target.nodeType === Node.TEXT_NODE) {
-          // We ignore nodes that are not TEXt (i.e. comments, etc) as they don't change layout
+          // We ignore nodes that are not TEXT (i.e. comments, etc) as they don't change layout
           changed = true
         } else if (type === 'attributes') {
           changed = true
-        } else if (type === 'childList' && (mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0)) {
+        } else if (
+          type === 'childList' &&
+          (mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0)
+        ) {
           // This includes HTMLElement and Text Nodes being added/removed/re-arranged
           changed = true
         }
@@ -4897,11 +5313,10 @@ function observeDOM (el, callback, opts) {
     })
 
     // Have the observer observe foo for changes in children, etc
-    obs.observe(el, Object(__WEBPACK_IMPORTED_MODULE_0__object__["a" /* assign */])({childList: true, subtree: true}, opts))
+    obs.observe(el, Object(__WEBPACK_IMPORTED_MODULE_0__object__["a" /* assign */])({ childList: true, subtree: true }, opts))
   } else if (eventListenerSupported) {
     // Legacy interface. most likely not used in modern browsers
-    el.addEventListener('DOMNodeInserted', callback, false)
-    el.addEventListener('DOMNodeRemoved', callback, false)
+    obs = fakeObserverFactory(el, callback)
   }
 
   // We return a reference to the observer so that obs.disconnect() can be called if necessary
@@ -4932,7 +5347,7 @@ function observeDOM (el, callback, opts) {
  * @param {Function} transformFn
  * @return {{}}
  */
-function pluckProps (keysToPluck, objToPluck, transformFn = __WEBPACK_IMPORTED_MODULE_2__identity__["a" /* default */]) {
+function pluckProps(keysToPluck, objToPluck, transformFn = __WEBPACK_IMPORTED_MODULE_2__identity__["a" /* default */]) {
   return (Object(__WEBPACK_IMPORTED_MODULE_1__array__["d" /* isArray */])(keysToPluck) ? keysToPluck.slice() : Object(__WEBPACK_IMPORTED_MODULE_0__object__["e" /* keys */])(keysToPluck)).reduce((memo, prop) => {
     // eslint-disable-next-line no-sequences
     return (memo[transformFn(prop)] = objToPluck[prop]), memo
@@ -4950,14 +5365,14 @@ function pluckProps (keysToPluck, objToPluck, transformFn = __WEBPACK_IMPORTED_M
 /* harmony export (immutable) */ __webpack_exports__["a"] = registerComponents;
 /* unused harmony export registerDirective */
 /* harmony export (immutable) */ __webpack_exports__["b"] = registerDirectives;
-/* harmony export (immutable) */ __webpack_exports__["c"] = vueUse;
+/* unused harmony export vueUse */
 /**
- * Register a component plugin as being loaded. returns true if compoent plugin already registered
+ * Register a component plugin as being loaded. returns true if component plugin already registered
  * @param {object} Vue
  * @param {string} Component name
  * @param {object} Component definition
  */
-function registerComponent (Vue, name, def) {
+function registerComponent(Vue, name, def) {
   Vue._bootstrap_vue_components_ = Vue._bootstrap_vue_components_ || {}
   const loaded = Vue._bootstrap_vue_components_[name]
   if (!loaded && def && name) {
@@ -4972,7 +5387,7 @@ function registerComponent (Vue, name, def) {
  * @param {object} Vue
  * @param {object} Object of component definitions
  */
-function registerComponents (Vue, components) {
+function registerComponents(Vue, components) {
   for (let component in components) {
     registerComponent(Vue, component, components[component])
   }
@@ -4984,7 +5399,7 @@ function registerComponents (Vue, components) {
  * @param {string} Directive name
  * @param {object} Directive definition
  */
-function registerDirective (Vue, name, def) {
+function registerDirective(Vue, name, def) {
   Vue._bootstrap_vue_directives_ = Vue._bootstrap_vue_directives_ || {}
   const loaded = Vue._bootstrap_vue_directives_[name]
   if (!loaded && def && name) {
@@ -4999,7 +5414,7 @@ function registerDirective (Vue, name, def) {
  * @param {object} Vue
  * @param {object} Object of directive definitions
  */
-function registerDirectives (Vue, directives) {
+function registerDirectives(Vue, directives) {
   for (let directive in directives) {
     registerDirective(Vue, directive, directives[directive])
   }
@@ -5009,7 +5424,7 @@ function registerDirectives (Vue, directives) {
  * Install plugin if window.Vue available
  * @param {object} Plugin definition
  */
-function vueUse (VuePlugin) {
+function vueUse(VuePlugin) {
   if (typeof window !== 'undefined' && window.Vue) {
     window.Vue.use(VuePlugin)
   }
@@ -5033,7 +5448,7 @@ function vueUse (VuePlugin) {
  * @param {string} suffix
  * @param {string} str
  */
-function suffixPropName (suffix, str) {
+function suffixPropName(suffix, str) {
   return str + (suffix ? Object(__WEBPACK_IMPORTED_MODULE_0__upper_first__["a" /* default */])(suffix) : '')
 }
 
@@ -5046,28 +5461,29 @@ function suffixPropName (suffix, str) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return bindTargets; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return unbindTargets; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
 
 
-const allListenTypes = {hover: true, click: true, focus: true}
+
+const allListenTypes = { hover: true, click: true, focus: true }
 
 const BVBoundListeners = '__BV_boundEventListeners__'
 
 const bindTargets = (vnode, binding, listenTypes, fn) => {
-  const targets = Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["e" /* keys */])(binding.modifiers || {})
-    .filter(t => !allListenTypes[t])
+  const targets = Object(__WEBPACK_IMPORTED_MODULE_0__object__["e" /* keys */])(binding.modifiers || {}).filter(t => !allListenTypes[t])
 
   if (binding.value) {
     targets.push(binding.value)
   }
 
   const listener = () => {
-    fn({targets, vnode})
+    fn({ targets, vnode })
   }
 
-  Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["e" /* keys */])(allListenTypes).forEach(type => {
+  Object(__WEBPACK_IMPORTED_MODULE_0__object__["e" /* keys */])(allListenTypes).forEach(type => {
     if (listenTypes[type] || binding.modifiers[type]) {
-      vnode.elm.addEventListener(type, listener)
+      Object(__WEBPACK_IMPORTED_MODULE_1__dom__["e" /* eventOn */])(vnode.elm, type, listener)
       const boundListeners = vnode.elm[BVBoundListeners] || {}
       boundListeners[type] = boundListeners[type] || []
       boundListeners[type].push(listener)
@@ -5080,11 +5496,11 @@ const bindTargets = (vnode, binding, listenTypes, fn) => {
 }
 
 const unbindTargets = (vnode, binding, listenTypes) => {
-  Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["e" /* keys */])(allListenTypes).forEach(type => {
+  Object(__WEBPACK_IMPORTED_MODULE_0__object__["e" /* keys */])(allListenTypes).forEach(type => {
     if (listenTypes[type] || binding.modifiers[type]) {
       const boundListeners = vnode.elm[BVBoundListeners] && vnode.elm[BVBoundListeners][type]
       if (boundListeners) {
-        boundListeners.forEach(listener => vnode.elm.removeEventListener(type, listener))
+        boundListeners.forEach(listener => Object(__WEBPACK_IMPORTED_MODULE_1__dom__["d" /* eventOff */])(vnode.elm, type, listener))
         delete vnode.elm[BVBoundListeners][type]
       }
     }
@@ -5106,7 +5522,7 @@ const unbindTargets = (vnode, binding, listenTypes) => {
 /**
  * @param {string} str
  */
-function upperFirst (str) {
+function upperFirst(str) {
   if (typeof str !== 'string') {
     str = String(str)
   }
@@ -5125,8 +5541,8 @@ function upperFirst (str) {
  * @param {string} message
  */
 /* istanbul ignore next */
-function warn (message) {
-  console.warn(`[Bootstrap-Vue warn]: ${message}`)
+function warn(message) {
+  console.warn(`[BootstrapVue warn]: ${message}`)
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (warn);
@@ -5162,7 +5578,7 @@ function isSlowBuffer (obj) {
 
 /***/ }),
 
-/***/ "./node_modules/node-libs-browser/node_modules/process/browser.js":
+/***/ "./node_modules/process/browser.js":
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -6319,25 +6735,22 @@ if (hadRuntime) {
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js"), __webpack_require__("./node_modules/node-libs-browser/node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js"), __webpack_require__("./node_modules/process/browser.js")))
 
 /***/ }),
 
 /***/ "./node_modules/timers-browserify/main.js":
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
-            (typeof self !== "undefined" && self) ||
-            window;
-var apply = Function.prototype.apply;
+/* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
 
 // DOM APIs, for completeness
 
 exports.setTimeout = function() {
-  return new Timeout(apply.call(setTimeout, scope, arguments), clearTimeout);
+  return new Timeout(apply.call(setTimeout, window, arguments), clearTimeout);
 };
 exports.setInterval = function() {
-  return new Timeout(apply.call(setInterval, scope, arguments), clearInterval);
+  return new Timeout(apply.call(setInterval, window, arguments), clearInterval);
 };
 exports.clearTimeout =
 exports.clearInterval = function(timeout) {
@@ -6352,7 +6765,7 @@ function Timeout(id, clearFn) {
 }
 Timeout.prototype.unref = Timeout.prototype.ref = function() {};
 Timeout.prototype.close = function() {
-  this._clearFn.call(scope, this._id);
+  this._clearFn.call(window, this._id);
 };
 
 // Does not start the time, just sets up the members needed.
@@ -6380,7 +6793,7 @@ exports._unrefActive = exports.active = function(item) {
 
 // setimmediate attaches itself to the global object
 __webpack_require__("./node_modules/setimmediate/setImmediate.js");
-// On some exotic environments, it's not clear which object `setimmediate` was
+// On some exotic environments, it's not clear which object `setimmeidate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
 exports.setImmediate = (typeof self !== "undefined" && self.setImmediate) ||
@@ -6515,7 +6928,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-1bf133a2\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/views/index.vue":
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-03bb1435\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/views/index.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -7716,7 +8129,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1bf133a2", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-03bb1435", module.exports)
   }
 }
 
@@ -7726,7 +8139,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
- * Vue.js v2.6.10
+ * Vue.js v2.6.7
  * (c) 2014-2019 Evan You
  * Released under the MIT License.
  */
@@ -8208,7 +8621,7 @@ if (false) {
    * using https://www.w3.org/TR/html53/semantics-scripting.html#potentialcustomelementname
    * skipping \u10000-\uEFFFF due to it freezing up PhantomJS
    */
-  var unicodeRegExp = /a-zA-Z\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F-\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD/;
+  var unicodeLetters = 'a-zA-Z\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F-\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD';
 
   /**
    * Check if a string starts with $ or _
@@ -8233,7 +8646,7 @@ if (false) {
   /**
    * Parse simple path.
    */
-  var bailRE = new RegExp(("[^" + (unicodeRegExp.source) + ".$_\\d]"));
+  var bailRE = new RegExp(("[^" + unicodeLetters + ".$_\\d]"));
   function parsePath (path) {
     if (bailRE.test(path)) {
       return
@@ -9137,7 +9550,7 @@ if (false) {
   }
 
   function validateComponentName (name) {
-    if (!new RegExp(("^[a-zA-Z][\\-\\.0-9_" + (unicodeRegExp.source) + "]*$")).test(name)) {
+    if (!new RegExp(("^[a-zA-Z][\\-\\.0-9_" + unicodeLetters + "]*$")).test(name)) {
       warn(
         'Invalid component name: "' + name + '". Component names ' +
         'should conform to valid custom element name in html5 specification.'
@@ -9588,11 +10001,10 @@ if (false) {
     var res;
     try {
       res = args ? handler.apply(context, args) : handler.call(context);
-      if (res && !res._isVue && isPromise(res) && !res._handled) {
-        res.catch(function (e) { return handleError(e, vm, info + " (Promise/async)"); });
+      if (res && !res._isVue && isPromise(res)) {
         // issue #9511
-        // avoid catch triggering multiple times when nested calls
-        res._handled = true;
+        // reassign to res to avoid catch triggering multiple times when nested calls
+        res = res.catch(function (e) { return handleError(e, vm, info + " (Promise/async)"); });
       }
     } catch (e) {
       handleError(e, vm, info);
@@ -10275,8 +10687,7 @@ if (false) {
     prevSlots
   ) {
     var res;
-    var hasNormalSlots = Object.keys(normalSlots).length > 0;
-    var isStable = slots ? !!slots.$stable : !hasNormalSlots;
+    var isStable = slots ? !!slots.$stable : true;
     var key = slots && slots.$key;
     if (!slots) {
       res = {};
@@ -10288,8 +10699,7 @@ if (false) {
       prevSlots &&
       prevSlots !== emptyObject &&
       key === prevSlots.$key &&
-      !hasNormalSlots &&
-      !prevSlots.$hasNormal
+      Object.keys(normalSlots).length === 0
     ) {
       // fast path 2: stable scoped slots w/ no normal slots to proxy,
       // only need to normalize once
@@ -10315,7 +10725,6 @@ if (false) {
     }
     def(res, '$stable', isStable);
     def(res, '$key', key);
-    def(res, '$hasNormal', hasNormalSlots);
     return res
   }
 
@@ -10325,10 +10734,8 @@ if (false) {
       res = res && typeof res === 'object' && !Array.isArray(res)
         ? [res] // single vnode
         : normalizeChildren(res);
-      return res && (
-        res.length === 0 ||
-        (res.length === 1 && res[0].isComment) // #9658
-      ) ? undefined
+      return res && res.length === 0
+        ? undefined
         : res
     };
     // this is a slot using the new v-slot syntax without scope. although it is
@@ -10508,13 +10915,12 @@ if (false) {
               : data.attrs || (data.attrs = {});
           }
           var camelizedKey = camelize(key);
-          var hyphenatedKey = hyphenate(key);
-          if (!(camelizedKey in hash) && !(hyphenatedKey in hash)) {
+          if (!(key in hash) && !(camelizedKey in hash)) {
             hash[key] = value[key];
 
             if (isSync) {
               var on = data.on || (data.on = {});
-              on[("update:" + key)] = function ($event) {
+              on[("update:" + camelizedKey)] = function ($event) {
                 value[key] = $event;
               };
             }
@@ -11348,23 +11754,17 @@ if (false) {
       return factory.resolved
     }
 
-    var owner = currentRenderingInstance;
-    if (owner && isDef(factory.owners) && factory.owners.indexOf(owner) === -1) {
-      // already pending
-      factory.owners.push(owner);
-    }
-
     if (isTrue(factory.loading) && isDef(factory.loadingComp)) {
       return factory.loadingComp
     }
 
-    if (owner && !isDef(factory.owners)) {
+    var owner = currentRenderingInstance;
+    if (isDef(factory.owners)) {
+      // already pending
+      factory.owners.push(owner);
+    } else {
       var owners = factory.owners = [owner];
       var sync = true;
-      var timerLoading = null;
-      var timerTimeout = null
-
-      ;(owner).$on('hook:destroyed', function () { return remove(owners, owner); });
 
       var forceRender = function (renderCompleted) {
         for (var i = 0, l = owners.length; i < l; i++) {
@@ -11373,14 +11773,6 @@ if (false) {
 
         if (renderCompleted) {
           owners.length = 0;
-          if (timerLoading !== null) {
-            clearTimeout(timerLoading);
-            timerLoading = null;
-          }
-          if (timerTimeout !== null) {
-            clearTimeout(timerTimeout);
-            timerTimeout = null;
-          }
         }
       };
 
@@ -11427,8 +11819,7 @@ if (false) {
             if (res.delay === 0) {
               factory.loading = true;
             } else {
-              timerLoading = setTimeout(function () {
-                timerLoading = null;
+              setTimeout(function () {
                 if (isUndef(factory.resolved) && isUndef(factory.error)) {
                   factory.loading = true;
                   forceRender(false);
@@ -11438,8 +11829,7 @@ if (false) {
           }
 
           if (isDef(res.timeout)) {
-            timerTimeout = setTimeout(function () {
-              timerTimeout = null;
+            setTimeout(function () {
               if (isUndef(factory.resolved)) {
                 reject(
                   "timeout (" + (res.timeout) + "ms)"
@@ -11985,21 +12375,11 @@ if (false) {
   // timestamp can either be hi-res (relative to page load) or low-res
   // (relative to UNIX epoch), so in order to compare time we have to use the
   // same timestamp type when saving the flush timestamp.
-  // All IE versions use low-res event timestamps, and have problematic clock
-  // implementations (#9632)
-  if (inBrowser && !isIE) {
-    var performance = window.performance;
-    if (
-      performance &&
-      typeof performance.now === 'function' &&
-      getNow() > document.createEvent('Event').timeStamp
-    ) {
-      // if the event timestamp, although evaluated AFTER the Date.now(), is
-      // smaller than it, it means the event is using a hi-res timestamp,
-      // and we need to use the hi-res version for event listener timestamps as
-      // well.
-      getNow = function () { return performance.now(); };
-    }
+  if (inBrowser && getNow() > document.createEvent('Event').timeStamp) {
+    // if the low-res timestamp which is bigger than the event timestamp
+    // (which is evaluated AFTER) it means the event is using a hi-res timestamp,
+    // and we need to use the hi-res version for event listeners as well.
+    getNow = function () { return performance.now(); };
   }
 
   /**
@@ -13164,7 +13544,7 @@ if (false) {
     value: FunctionalRenderContext
   });
 
-  Vue.version = '2.6.10';
+  Vue.version = '2.6.7';
 
   /*  */
 
@@ -15256,10 +15636,8 @@ if (false) {
           e.target === e.currentTarget ||
           // event is fired after handler attachment
           e.timeStamp >= attachedTimestamp ||
-          // bail for environments that have buggy event.timeStamp implementations
-          // #9462 iOS 9 bug: event.timeStamp is 0 after history.pushState
-          // #9681 QtWebEngine event.timeStamp is negative value
-          e.timeStamp <= 0 ||
+          // #9462 bail for iOS 9 bug: event.timeStamp is 0 after history.pushState
+          e.timeStamp === 0 ||
           // #9448 bail if event is fired in another document in a multi-page
           // electron/nw.js app, since event.timeStamp will be using a different
           // starting reference
@@ -15326,11 +15704,10 @@ if (false) {
     }
 
     for (key in oldProps) {
-      if (!(key in props)) {
+      if (isUndef(props[key])) {
         elm[key] = '';
       }
     }
-
     for (key in props) {
       cur = props[key];
       // ignore children if the node has textContent or innerHTML,
@@ -15878,8 +16255,8 @@ if (false) {
     var context = activeInstance;
     var transitionNode = activeInstance.$vnode;
     while (transitionNode && transitionNode.parent) {
-      context = transitionNode.context;
       transitionNode = transitionNode.parent;
+      context = transitionNode.context;
     }
 
     var isAppear = !context._isMounted || !vnode.isRootInsert;
@@ -16969,7 +17346,7 @@ if (false) {
   // Regular Expressions for parsing tags and attributes
   var attribute = /^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
   var dynamicArgAttribute = /^\s*((?:v-[\w-]+:|@|:|#)\[[^=]+\][^\s"'<>\/=]*)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
-  var ncname = "[a-zA-Z_][\\-\\.0-9_a-zA-Z" + (unicodeRegExp.source) + "]*";
+  var ncname = "[a-zA-Z_][\\-\\.0-9_a-zA-Z" + unicodeLetters + "]*";
   var qnameCapture = "((?:" + ncname + "\\:)?" + ncname + ")";
   var startTagOpen = new RegExp(("^<" + qnameCapture));
   var startTagClose = /^\s*(\/?)>/;
@@ -17231,7 +17608,7 @@ if (false) {
           ) {
             options.warn(
               ("tag <" + (stack[i].tag) + "> has no matching end tag."),
-              { start: stack[i].start, end: stack[i].end }
+              { start: stack[i].start }
             );
           }
           if (options.end) {
@@ -17268,7 +17645,7 @@ if (false) {
 
   var argRE = /:(.*)$/;
   var bindRE = /^:|^\.|^v-bind:/;
-  var modifierRE = /\.[^.\]]+(?=[^\]]*$)/g;
+  var modifierRE = /\.[^.]+/g;
 
   var slotRE = /^v-slot(:|$)|^#/;
 
@@ -17445,7 +17822,7 @@ if (false) {
       shouldDecodeNewlinesForHref: options.shouldDecodeNewlinesForHref,
       shouldKeepComment: options.comments,
       outputSourceRange: options.outputSourceRange,
-      start: function start (tag, attrs, unary, start$1, end) {
+      start: function start (tag, attrs, unary, start$1) {
         // check namespace.
         // inherit parent ns if there is one
         var ns = (currentParent && currentParent.ns) || platformGetTagNamespace(tag);
@@ -17464,7 +17841,6 @@ if (false) {
         {
           if (options.outputSourceRange) {
             element.start = start$1;
-            element.end = end;
             element.rawAttrsMap = element.attrsList.reduce(function (cumulated, attr) {
               cumulated[attr.name] = attr;
               return cumulated
@@ -17586,7 +17962,7 @@ if (false) {
           text = preserveWhitespace ? ' ' : '';
         }
         if (text) {
-          if (!inPre && whitespaceOption === 'condense') {
+          if (whitespaceOption === 'condense') {
             // condense consecutive whitespaces into single space
             text = text.replace(whitespaceRE$1, ' ');
           }
@@ -18447,7 +18823,7 @@ if (false) {
 
   /*  */
 
-  var fnExpRE = /^([\w$_]+|\([^)]*?\))\s*=>|^function\s*(?:[\w$]+)?\s*\(/;
+  var fnExpRE = /^([\w$_]+|\([^)]*?\))\s*=>|^function\s*\(/;
   var fnInvokeRE = /\([^)]*?\);*$/;
   var simplePathRE = /^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*|\['[^']*?']|\["[^"]*?"]|\[\d+]|\[[A-Za-z_$][\w$]*])*$/;
 
@@ -18949,7 +19325,7 @@ if (false) {
     // components with only scoped slots to skip forced updates from parent.
     // but in some cases we have to bail-out of this optimization
     // for example if the slot contains dynamic names, has v-if or v-for on them...
-    var needsForceUpdate = el.for || Object.keys(slots).some(function (key) {
+    var needsForceUpdate = Object.keys(slots).some(function (key) {
       var slot = slots[key];
       return (
         slot.slotTargetDynamic ||
@@ -19679,7 +20055,7 @@ if (false) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
- * Vue.js v2.6.10
+ * Vue.js v2.6.7
  * (c) 2014-2019 Evan You
  * Released under the MIT License.
  */
@@ -20148,7 +20524,7 @@ var config = ({
  * using https://www.w3.org/TR/html53/semantics-scripting.html#potentialcustomelementname
  * skipping \u10000-\uEFFFF due to it freezing up PhantomJS
  */
-var unicodeRegExp = /a-zA-Z\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F-\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD/;
+var unicodeLetters = 'a-zA-Z\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F-\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD';
 
 /**
  * Check if a string starts with $ or _
@@ -20173,7 +20549,7 @@ function def (obj, key, val, enumerable) {
 /**
  * Parse simple path.
  */
-var bailRE = new RegExp(("[^" + (unicodeRegExp.source) + ".$_\\d]"));
+var bailRE = new RegExp(("[^" + unicodeLetters + ".$_\\d]"));
 function parsePath (path) {
   if (bailRE.test(path)) {
     return
@@ -21077,7 +21453,7 @@ function checkComponents (options) {
 }
 
 function validateComponentName (name) {
-  if (!new RegExp(("^[a-zA-Z][\\-\\.0-9_" + (unicodeRegExp.source) + "]*$")).test(name)) {
+  if (!new RegExp(("^[a-zA-Z][\\-\\.0-9_" + unicodeLetters + "]*$")).test(name)) {
     warn(
       'Invalid component name: "' + name + '". Component names ' +
       'should conform to valid custom element name in html5 specification.'
@@ -21528,11 +21904,10 @@ function invokeWithErrorHandling (
   var res;
   try {
     res = args ? handler.apply(context, args) : handler.call(context);
-    if (res && !res._isVue && isPromise(res) && !res._handled) {
-      res.catch(function (e) { return handleError(e, vm, info + " (Promise/async)"); });
+    if (res && !res._isVue && isPromise(res)) {
       // issue #9511
-      // avoid catch triggering multiple times when nested calls
-      res._handled = true;
+      // reassign to res to avoid catch triggering multiple times when nested calls
+      res = res.catch(function (e) { return handleError(e, vm, info + " (Promise/async)"); });
     }
   } catch (e) {
     handleError(e, vm, info);
@@ -22215,8 +22590,7 @@ function normalizeScopedSlots (
   prevSlots
 ) {
   var res;
-  var hasNormalSlots = Object.keys(normalSlots).length > 0;
-  var isStable = slots ? !!slots.$stable : !hasNormalSlots;
+  var isStable = slots ? !!slots.$stable : true;
   var key = slots && slots.$key;
   if (!slots) {
     res = {};
@@ -22228,8 +22602,7 @@ function normalizeScopedSlots (
     prevSlots &&
     prevSlots !== emptyObject &&
     key === prevSlots.$key &&
-    !hasNormalSlots &&
-    !prevSlots.$hasNormal
+    Object.keys(normalSlots).length === 0
   ) {
     // fast path 2: stable scoped slots w/ no normal slots to proxy,
     // only need to normalize once
@@ -22255,7 +22628,6 @@ function normalizeScopedSlots (
   }
   def(res, '$stable', isStable);
   def(res, '$key', key);
-  def(res, '$hasNormal', hasNormalSlots);
   return res
 }
 
@@ -22265,10 +22637,8 @@ function normalizeScopedSlot(normalSlots, key, fn) {
     res = res && typeof res === 'object' && !Array.isArray(res)
       ? [res] // single vnode
       : normalizeChildren(res);
-    return res && (
-      res.length === 0 ||
-      (res.length === 1 && res[0].isComment) // #9658
-    ) ? undefined
+    return res && res.length === 0
+      ? undefined
       : res
   };
   // this is a slot using the new v-slot syntax without scope. although it is
@@ -22448,13 +22818,12 @@ function bindObjectProps (
             : data.attrs || (data.attrs = {});
         }
         var camelizedKey = camelize(key);
-        var hyphenatedKey = hyphenate(key);
-        if (!(camelizedKey in hash) && !(hyphenatedKey in hash)) {
+        if (!(key in hash) && !(camelizedKey in hash)) {
           hash[key] = value[key];
 
           if (isSync) {
             var on = data.on || (data.on = {});
-            on[("update:" + key)] = function ($event) {
+            on[("update:" + camelizedKey)] = function ($event) {
               value[key] = $event;
             };
           }
@@ -23288,23 +23657,17 @@ function resolveAsyncComponent (
     return factory.resolved
   }
 
-  var owner = currentRenderingInstance;
-  if (owner && isDef(factory.owners) && factory.owners.indexOf(owner) === -1) {
-    // already pending
-    factory.owners.push(owner);
-  }
-
   if (isTrue(factory.loading) && isDef(factory.loadingComp)) {
     return factory.loadingComp
   }
 
-  if (owner && !isDef(factory.owners)) {
+  var owner = currentRenderingInstance;
+  if (isDef(factory.owners)) {
+    // already pending
+    factory.owners.push(owner);
+  } else {
     var owners = factory.owners = [owner];
     var sync = true;
-    var timerLoading = null;
-    var timerTimeout = null
-
-    ;(owner).$on('hook:destroyed', function () { return remove(owners, owner); });
 
     var forceRender = function (renderCompleted) {
       for (var i = 0, l = owners.length; i < l; i++) {
@@ -23313,14 +23676,6 @@ function resolveAsyncComponent (
 
       if (renderCompleted) {
         owners.length = 0;
-        if (timerLoading !== null) {
-          clearTimeout(timerLoading);
-          timerLoading = null;
-        }
-        if (timerTimeout !== null) {
-          clearTimeout(timerTimeout);
-          timerTimeout = null;
-        }
       }
     };
 
@@ -23367,8 +23722,7 @@ function resolveAsyncComponent (
           if (res.delay === 0) {
             factory.loading = true;
           } else {
-            timerLoading = setTimeout(function () {
-              timerLoading = null;
+            setTimeout(function () {
               if (isUndef(factory.resolved) && isUndef(factory.error)) {
                 factory.loading = true;
                 forceRender(false);
@@ -23378,8 +23732,7 @@ function resolveAsyncComponent (
         }
 
         if (isDef(res.timeout)) {
-          timerTimeout = setTimeout(function () {
-            timerTimeout = null;
+          setTimeout(function () {
             if (isUndef(factory.resolved)) {
               reject(
                 "timeout (" + (res.timeout) + "ms)"
@@ -23925,21 +24278,11 @@ var getNow = Date.now;
 // timestamp can either be hi-res (relative to page load) or low-res
 // (relative to UNIX epoch), so in order to compare time we have to use the
 // same timestamp type when saving the flush timestamp.
-// All IE versions use low-res event timestamps, and have problematic clock
-// implementations (#9632)
-if (inBrowser && !isIE) {
-  var performance = window.performance;
-  if (
-    performance &&
-    typeof performance.now === 'function' &&
-    getNow() > document.createEvent('Event').timeStamp
-  ) {
-    // if the event timestamp, although evaluated AFTER the Date.now(), is
-    // smaller than it, it means the event is using a hi-res timestamp,
-    // and we need to use the hi-res version for event listener timestamps as
-    // well.
-    getNow = function () { return performance.now(); };
-  }
+if (inBrowser && getNow() > document.createEvent('Event').timeStamp) {
+  // if the low-res timestamp which is bigger than the event timestamp
+  // (which is evaluated AFTER) it means the event is using a hi-res timestamp,
+  // and we need to use the hi-res version for event listeners as well.
+  getNow = function () { return performance.now(); };
 }
 
 /**
@@ -25104,7 +25447,7 @@ Object.defineProperty(Vue, 'FunctionalRenderContext', {
   value: FunctionalRenderContext
 });
 
-Vue.version = '2.6.10';
+Vue.version = '2.6.7';
 
 /*  */
 
@@ -26557,10 +26900,8 @@ function add$1 (
         e.target === e.currentTarget ||
         // event is fired after handler attachment
         e.timeStamp >= attachedTimestamp ||
-        // bail for environments that have buggy event.timeStamp implementations
-        // #9462 iOS 9 bug: event.timeStamp is 0 after history.pushState
-        // #9681 QtWebEngine event.timeStamp is negative value
-        e.timeStamp <= 0 ||
+        // #9462 bail for iOS 9 bug: event.timeStamp is 0 after history.pushState
+        e.timeStamp === 0 ||
         // #9448 bail if event is fired in another document in a multi-page
         // electron/nw.js app, since event.timeStamp will be using a different
         // starting reference
@@ -26627,11 +26968,10 @@ function updateDOMProps (oldVnode, vnode) {
   }
 
   for (key in oldProps) {
-    if (!(key in props)) {
+    if (isUndef(props[key])) {
       elm[key] = '';
     }
   }
-
   for (key in props) {
     cur = props[key];
     // ignore children if the node has textContent or innerHTML,
@@ -27179,8 +27519,8 @@ function enter (vnode, toggleDisplay) {
   var context = activeInstance;
   var transitionNode = activeInstance.$vnode;
   while (transitionNode && transitionNode.parent) {
-    context = transitionNode.context;
     transitionNode = transitionNode.parent;
+    context = transitionNode.context;
   }
 
   var isAppear = !context._isMounted || !vnode.isRootInsert;
@@ -28116,7 +28456,7 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/* unused harmony export Store */
+/* unused harmony export Store */
 /* unused harmony export install */
 /* unused harmony export mapState */
 /* unused harmony export mapMutations */
@@ -28124,11 +28464,11 @@ if (false) {
 /* unused harmony export mapActions */
 /* unused harmony export createNamespacedHelpers */
 /**
- * vuex v3.1.1
- * (c) 2019 Evan You
+ * vuex v3.0.1
+ * (c) 2017 Evan You
  * @license MIT
  */
-function applyMixin (Vue) {
+var applyMixin = function (Vue) {
   var version = Number(Vue.version.split('.')[0]);
 
   if (version >= 2) {
@@ -28162,14 +28502,11 @@ function applyMixin (Vue) {
       this.$store = options.parent.$store;
     }
   }
-}
+};
 
-var target = typeof window !== 'undefined'
-  ? window
-  : typeof global !== 'undefined'
-    ? global
-    : {};
-var devtoolHook = target.__VUE_DEVTOOLS_GLOBAL_HOOK__;
+var devtoolHook =
+  typeof window !== 'undefined' &&
+  window.__VUE_DEVTOOLS_GLOBAL_HOOK__;
 
 function devtoolPlugin (store) {
   if (!devtoolHook) { return }
@@ -28195,6 +28532,16 @@ function devtoolPlugin (store) {
  * @param {Function} f
  * @return {*}
  */
+/**
+ * Deep copy the given object considering circular structure.
+ * This function caches all nested objects and its copies.
+ * If it detects circular structure, use cached copy to avoid infinite loop.
+ *
+ * @param {*} obj
+ * @param {Array<Object>} cache
+ * @return {*}
+ */
+
 
 /**
  * forEach for object
@@ -28215,28 +28562,17 @@ function assert (condition, msg) {
   if (!condition) { throw new Error(("[vuex] " + msg)) }
 }
 
-function partial (fn, arg) {
-  return function () {
-    return fn(arg)
-  }
-}
-
-// Base data struct for store's module, package with some attribute and method
 var Module = function Module (rawModule, runtime) {
   this.runtime = runtime;
-  // Store some children item
   this._children = Object.create(null);
-  // Store the origin module object which passed by programmer
   this._rawModule = rawModule;
   var rawState = rawModule.state;
-
-  // Store the origin module's state
   this.state = (typeof rawState === 'function' ? rawState() : rawState) || {};
 };
 
-var prototypeAccessors = { namespaced: { configurable: true } };
+var prototypeAccessors$1 = { namespaced: { configurable: true } };
 
-prototypeAccessors.namespaced.get = function () {
+prototypeAccessors$1.namespaced.get = function () {
   return !!this._rawModule.namespaced
 };
 
@@ -28287,7 +28623,7 @@ Module.prototype.forEachMutation = function forEachMutation (fn) {
   }
 };
 
-Object.defineProperties( Module.prototype, prototypeAccessors );
+Object.defineProperties( Module.prototype, prototypeAccessors$1 );
 
 var ModuleCollection = function ModuleCollection (rawRootModule) {
   // register root module (Vuex.Store options)
@@ -28430,11 +28766,16 @@ var Store = function Store (options) {
   if (true) {
     assert(Vue, "must call Vue.use(Vuex) before creating a store instance.");
     assert(typeof Promise !== 'undefined', "vuex requires a Promise polyfill in this browser.");
-    assert(this instanceof Store, "store must be called with the new operator.");
+    assert(this instanceof Store, "Store must be called with the new operator.");
   }
 
   var plugins = options.plugins; if ( plugins === void 0 ) plugins = [];
   var strict = options.strict; if ( strict === void 0 ) strict = false;
+
+  var state = options.state; if ( state === void 0 ) state = {};
+  if (typeof state === 'function') {
+    state = state() || {};
+  }
 
   // store internal state
   this._committing = false;
@@ -28462,8 +28803,6 @@ var Store = function Store (options) {
   // strict mode
   this.strict = strict;
 
-  var state = this._modules.root.state;
-
   // init root module.
   // this also recursively registers all sub-modules
   // and collects all module getters inside this._wrappedGetters
@@ -28476,21 +28815,20 @@ var Store = function Store (options) {
   // apply plugins
   plugins.forEach(function (plugin) { return plugin(this$1); });
 
-  var useDevtools = options.devtools !== undefined ? options.devtools : Vue.config.devtools;
-  if (useDevtools) {
+  if (Vue.config.devtools) {
     devtoolPlugin(this);
   }
 };
 
-var prototypeAccessors$1 = { state: { configurable: true } };
+var prototypeAccessors = { state: { configurable: true } };
 
-prototypeAccessors$1.state.get = function () {
+prototypeAccessors.state.get = function () {
   return this._vm._data.$$state
 };
 
-prototypeAccessors$1.state.set = function (v) {
+prototypeAccessors.state.set = function (v) {
   if (true) {
-    assert(false, "use store.replaceState() to explicit replace store state.");
+    assert(false, "Use store.replaceState() to explicit replace store state.");
   }
 };
 
@@ -28546,34 +28884,11 @@ Store.prototype.dispatch = function dispatch (_type, _payload) {
     return
   }
 
-  try {
-    this._actionSubscribers
-      .filter(function (sub) { return sub.before; })
-      .forEach(function (sub) { return sub.before(action, this$1.state); });
-  } catch (e) {
-    if (true) {
-      console.warn("[vuex] error in before action subscribers: ");
-      console.error(e);
-    }
-  }
+  this._actionSubscribers.forEach(function (sub) { return sub(action, this$1.state); });
 
-  var result = entry.length > 1
+  return entry.length > 1
     ? Promise.all(entry.map(function (handler) { return handler(payload); }))
-    : entry[0](payload);
-
-  return result.then(function (res) {
-    try {
-      this$1._actionSubscribers
-        .filter(function (sub) { return sub.after; })
-        .forEach(function (sub) { return sub.after(action, this$1.state); });
-    } catch (e) {
-      if (true) {
-        console.warn("[vuex] error in after action subscribers: ");
-        console.error(e);
-      }
-    }
-    return res
-  })
+    : entry[0](payload)
 };
 
 Store.prototype.subscribe = function subscribe (fn) {
@@ -28581,8 +28896,7 @@ Store.prototype.subscribe = function subscribe (fn) {
 };
 
 Store.prototype.subscribeAction = function subscribeAction (fn) {
-  var subs = typeof fn === 'function' ? { before: fn } : fn;
-  return genericSubscribe(subs, this._actionSubscribers)
+  return genericSubscribe(fn, this._actionSubscribers)
 };
 
 Store.prototype.watch = function watch (getter, cb, options) {
@@ -28647,7 +28961,7 @@ Store.prototype._withCommit = function _withCommit (fn) {
   this._committing = committing;
 };
 
-Object.defineProperties( Store.prototype, prototypeAccessors$1 );
+Object.defineProperties( Store.prototype, prototypeAccessors );
 
 function genericSubscribe (fn, subs) {
   if (subs.indexOf(fn) < 0) {
@@ -28682,9 +28996,7 @@ function resetStoreVM (store, state, hot) {
   var computed = {};
   forEachValue(wrappedGetters, function (fn, key) {
     // use computed to leverage its lazy-caching mechanism
-    // direct inline function use will lead to closure preserving oldVm.
-    // using partial to return function with only arguments preserved in closure enviroment.
-    computed[key] = partial(fn, store);
+    computed[key] = function () { return fn(store); };
     Object.defineProperty(store.getters, key, {
       get: function () { return store._vm[key]; },
       enumerable: true // for local getters
@@ -28896,7 +29208,7 @@ function registerGetter (store, type, rawGetter, local) {
 function enableStrictMode (store) {
   store._vm.$watch(function () { return this._data.$$state }, function () {
     if (true) {
-      assert(store._committing, "do not mutate vuex store state outside mutation handlers.");
+      assert(store._committing, "Do not mutate vuex store state outside mutation handlers.");
     }
   }, { deep: true, sync: true });
 }
@@ -28915,7 +29227,7 @@ function unifyObjectStyle (type, payload, options) {
   }
 
   if (true) {
-    assert(typeof type === 'string', ("expects string as the type, but found " + (typeof type) + "."));
+    assert(typeof type === 'string', ("Expects string as the type, but found " + (typeof type) + "."));
   }
 
   return { type: type, payload: payload, options: options }
@@ -28934,12 +29246,6 @@ function install (_Vue) {
   applyMixin(Vue);
 }
 
-/**
- * Reduce the code which written in Vue.js for getting the state.
- * @param {String} [namespace] - Module's namespace
- * @param {Object|Array} states # Object's item can be a function which accept state and getters for param, you can do something for state and getters in it.
- * @param {Object}
- */
 var mapState = normalizeNamespace(function (namespace, states) {
   var res = {};
   normalizeMap(states).forEach(function (ref) {
@@ -28967,12 +29273,6 @@ var mapState = normalizeNamespace(function (namespace, states) {
   return res
 });
 
-/**
- * Reduce the code which written in Vue.js for committing the mutation
- * @param {String} [namespace] - Module's namespace
- * @param {Object|Array} mutations # Object's item can be a function which accept `commit` function as the first param, it can accept anthor params. You can commit mutation and do any other things in this function. specially, You need to pass anthor params from the mapped function.
- * @return {Object}
- */
 var mapMutations = normalizeNamespace(function (namespace, mutations) {
   var res = {};
   normalizeMap(mutations).forEach(function (ref) {
@@ -28983,7 +29283,6 @@ var mapMutations = normalizeNamespace(function (namespace, mutations) {
       var args = [], len = arguments.length;
       while ( len-- ) args[ len ] = arguments[ len ];
 
-      // Get the commit method from store
       var commit = this.$store.commit;
       if (namespace) {
         var module = getModuleByNamespace(this.$store, 'mapMutations', namespace);
@@ -29000,19 +29299,12 @@ var mapMutations = normalizeNamespace(function (namespace, mutations) {
   return res
 });
 
-/**
- * Reduce the code which written in Vue.js for getting the getters
- * @param {String} [namespace] - Module's namespace
- * @param {Object|Array} getters
- * @return {Object}
- */
 var mapGetters = normalizeNamespace(function (namespace, getters) {
   var res = {};
   normalizeMap(getters).forEach(function (ref) {
     var key = ref.key;
     var val = ref.val;
 
-    // The namespace has been mutated by normalizeNamespace
     val = namespace + val;
     res[key] = function mappedGetter () {
       if (namespace && !getModuleByNamespace(this.$store, 'mapGetters', namespace)) {
@@ -29030,12 +29322,6 @@ var mapGetters = normalizeNamespace(function (namespace, getters) {
   return res
 });
 
-/**
- * Reduce the code which written in Vue.js for dispatch the action
- * @param {String} [namespace] - Module's namespace
- * @param {Object|Array} actions # Object's item can be a function which accept `dispatch` function as the first param, it can accept anthor params. You can dispatch action and do any other things in this function. specially, You need to pass anthor params from the mapped function.
- * @return {Object}
- */
 var mapActions = normalizeNamespace(function (namespace, actions) {
   var res = {};
   normalizeMap(actions).forEach(function (ref) {
@@ -29046,7 +29332,6 @@ var mapActions = normalizeNamespace(function (namespace, actions) {
       var args = [], len = arguments.length;
       while ( len-- ) args[ len ] = arguments[ len ];
 
-      // get dispatch function from store
       var dispatch = this.$store.dispatch;
       if (namespace) {
         var module = getModuleByNamespace(this.$store, 'mapActions', namespace);
@@ -29063,11 +29348,6 @@ var mapActions = normalizeNamespace(function (namespace, actions) {
   return res
 });
 
-/**
- * Rebinding namespace param for mapXXX function in special scoped, and return them by simple object
- * @param {String} namespace
- * @return {Object}
- */
 var createNamespacedHelpers = function (namespace) { return ({
   mapState: mapState.bind(null, namespace),
   mapGetters: mapGetters.bind(null, namespace),
@@ -29075,24 +29355,12 @@ var createNamespacedHelpers = function (namespace) { return ({
   mapActions: mapActions.bind(null, namespace)
 }); };
 
-/**
- * Normalize the map
- * normalizeMap([1, 2, 3]) => [ { key: 1, val: 1 }, { key: 2, val: 2 }, { key: 3, val: 3 } ]
- * normalizeMap({a: 1, b: 2, c: 3}) => [ { key: 'a', val: 1 }, { key: 'b', val: 2 }, { key: 'c', val: 3 } ]
- * @param {Array|Object} map
- * @return {Object}
- */
 function normalizeMap (map) {
   return Array.isArray(map)
     ? map.map(function (key) { return ({ key: key, val: key }); })
     : Object.keys(map).map(function (key) { return ({ key: key, val: map[key] }); })
 }
 
-/**
- * Return a function expect two param contains namespace and map. it will normalize the namespace and then the param's function will handle the new namespace and the map.
- * @param {Function} fn
- * @return {Function}
- */
 function normalizeNamespace (fn) {
   return function (namespace, map) {
     if (typeof namespace !== 'string') {
@@ -29105,13 +29373,6 @@ function normalizeNamespace (fn) {
   }
 }
 
-/**
- * Search a special module from store by namespace. if module not exist, print error message.
- * @param {Object} store
- * @param {String} helper
- * @param {String} namespace
- * @return {Object}
- */
 function getModuleByNamespace (store, helper, namespace) {
   var module = store._modulesNamespaceMap[namespace];
   if ("development" !== 'production' && !module) {
@@ -29123,7 +29384,7 @@ function getModuleByNamespace (store, helper, namespace) {
 var index_esm = {
   Store: Store,
   install: install,
-  version: '3.1.1',
+  version: '3.0.1',
   mapState: mapState,
   mapMutations: mapMutations,
   mapGetters: mapGetters,
@@ -29131,10 +29392,9 @@ var index_esm = {
   createNamespacedHelpers: createNamespacedHelpers
 };
 
+
 /* harmony default export */ __webpack_exports__["a"] = (index_esm);
 
-
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
@@ -29170,7 +29430,7 @@ module.exports = g;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
+/* unused harmony default export */ var _unused_webpack_default_export = ({
 
     money_full_name: "тенге",
     money_small_name: "тнг.",
@@ -29190,7 +29450,7 @@ module.exports = g;
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = get;
 /* unused harmony export asyncget */
-/* harmony export (immutable) */ __webpack_exports__["b"] = post;
+/* unused harmony export post */
 /* unused harmony export del */
 /* unused harmony export interceptors */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__("./node_modules/babel-runtime/regenerator/index.js");
@@ -29285,6 +29545,8 @@ function interceptors(cb) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index__ = __webpack_require__("./resources/assets/js/index.js");
 
+
+//index.data = "123123";
 renderVueComponentToString(__WEBPACK_IMPORTED_MODULE_0__index__["a" /* default */], function (err, res) {
   print(res);
 });
@@ -29322,6 +29584,9 @@ __WEBPACK_IMPORTED_MODULE_1_vue_dist_vue_js___default.a.use(__WEBPACK_IMPORTED_M
 __WEBPACK_IMPORTED_MODULE_1_vue_dist_vue_js___default.a.use(__WEBPACK_IMPORTED_MODULE_5_bootstrap_vue_src_components_button__["a" /* default */]);
 
 //import index from './components/App.vue';
+
+
+__WEBPACK_IMPORTED_MODULE_6__views_index_vue___default.a.data.$supertest = 1111;
 
 
 
@@ -29413,7 +29678,7 @@ var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/comp
 /* script */
 var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/views/index.vue")
 /* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-1bf133a2\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/views/index.vue")
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-03bb1435\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/views/index.vue")
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -29430,7 +29695,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/views/index.vue"
+Component.options.__file = "resources\\assets\\js\\views\\index.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -29439,9 +29704,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1bf133a2", Component.options)
+    hotAPI.createRecord("data-v-03bb1435", Component.options)
   } else {
-    hotAPI.reload("data-v-1bf133a2", Component.options)
+    hotAPI.reload("data-v-03bb1435", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
