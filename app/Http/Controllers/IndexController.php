@@ -49,18 +49,41 @@ class IndexController extends Controller {
 	$v8->executeString($vuex);
 
 
+	// https://www.phpied.com/server-side-react-with-php-part-2/
+
+
 	//var data = { superdata: 'superdata'}	
         //this.$root.superdata;
 
 	$js = "
 
-        
-	const app = new Vue({ data: { msg: 'hello world' }, template: `<div>{{ msg }}</div>` })
+
+ //import vue from 'vue'
+
+// Определяем новый компонент, названный button-counter
+var test = Vue.component('test', { 
+data: function () {
+    return {
+      count: 'uau'
+    }
+  },
+  template: '<button>{{ count }}</button>'
+})
+
+
+  const app = new Vue({
+  components: { 
+    'test': test
+  }, 
+		data: { msg: 'hello world' }, 
+		template: `<div>{{ msg }} <test></test></div>` 
+	})
 
 	// заменяю значения динамически
-	app.msg=".Categories::all()."
+	//app.msg=".Categories::all()."
 
 
+	// рендерит компонент
 	renderVueComponentToString(app, (err, html) => {
     		print(html)
 	})";
