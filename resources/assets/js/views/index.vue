@@ -242,6 +242,7 @@
 <script>
 import { get } from './../helpers/api'
 import axios from 'axios'
+
 export default {
   
   // Входящие данные

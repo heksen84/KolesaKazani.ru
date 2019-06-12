@@ -16,7 +16,7 @@
   body { display:none; }
 </style>
 <body>
-<div id="app2">
+<div id="app">
   {!! $ssr !!}
   </div>
 </body>

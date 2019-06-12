@@ -57,9 +57,6 @@ class IndexController extends Controller {
 
 	$js = "
 
-
- //import vue from 'vue'
-
 // Определяем новый компонент, названный button-counter
 var test = Vue.component('test', { 
 data: function () {

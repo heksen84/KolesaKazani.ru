@@ -1873,6 +1873,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
 
   // Входящие данные
@@ -29586,8 +29587,7 @@ __WEBPACK_IMPORTED_MODULE_1_vue_dist_vue_js___default.a.use(__WEBPACK_IMPORTED_M
 //import index from './components/App.vue';
 
 
-__WEBPACK_IMPORTED_MODULE_6__views_index_vue___default.a.data.$supertest = 1111;
-
+//index.data.$supertest = 1111;
 
 
 __WEBPACK_IMPORTED_MODULE_1_vue_dist_vue_js___default.a.use(__WEBPACK_IMPORTED_MODULE_7_vuex__["a" /* default */]);
@@ -29610,23 +29610,6 @@ var store = new __WEBPACK_IMPORTED_MODULE_7_vuex__["a" /* default */].Store({});
 // localStorage 
 // VueX хранилище (хранилище оперирует с DOM, SSR не знает что такое DOM)
 // Axis (get, post запросы)
-
-/*
--------------------------------------------
-В results или в detailed можно так:
--------------------------------------------
-<div id="app">
-  {{ message }}
-</div>
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    message: 'Привет, Vue!'
-  }
-})
-
-*/
 
 /***/ }),
 
