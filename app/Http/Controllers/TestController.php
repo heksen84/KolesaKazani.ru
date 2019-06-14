@@ -19,6 +19,6 @@ class TestController extends Controller {
 
     public function testSSR(Request $request) {
 	
-	return view("testSSR")->with("categories", Categories::all());
+	return view("testSSR")->with("data", Categories::all());
     }
 }

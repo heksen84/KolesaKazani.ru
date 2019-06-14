@@ -1,43 +1,27 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <title>TestSSR</title>
+  <title>TestNoSSR</title>
 </head>
+<style>
+  body { display: none; }
+</style>
 <body>
-<br>
-<br>
-<!-- Верхнее меню -->
-<div id="navbar_menu">
-12312
-</div>
-
-
-<div class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+  <!-- Верхнее меню -->
+  <div id="navbar_menu">12312</div>
+  <br>
+  <div class="container-fluid mycontainer" id="index_page">
+    <div class="row">
+      <div class="col-md-12">
+      <h1>Дамеля</h1>
+      <div id="categories_line">
+        @foreach($data as $item)
+          <a href="/{{ $item['url'] }}"><div class="category_item" @click="showSubcats($event, $item['id'])">{{ $item["name"] }}</div></a>
+        @endforeach
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-
-<h1>Дамеля</h1>
-@foreach($categories as $item)
- <div class="category_item" @click="test">{{ $item["name"] }}</div>
-@endforeach
-	    
 </body>
 </html>
 
