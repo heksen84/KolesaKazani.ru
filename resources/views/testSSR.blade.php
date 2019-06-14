@@ -16,7 +16,7 @@
       <h1>Дамеля</h1>
         <div id="categories_line">
           @foreach($data as $item)
-            <a href="/{{ $item['url'] }}"><div class="category_item" @click="showSubcats($event, $item['id'])">{{ $item["name"] }}</div></a>
+            <a href="{{ $item['url'] }}"><div class="category_item" @click="showSubcats($event, $item['id'])">{{ $item["name"] }}</div></a>
           @endforeach
         </div>
       </div>
