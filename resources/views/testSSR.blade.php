@@ -8,16 +8,16 @@
 </style>
 <body>
   <!-- Верхнее меню -->
-  <div id="navbar_menu">12312</div>
+  <div id="navbar_menu">менюшка</div>
   <br>
   <div class="container-fluid mycontainer" id="index_page">
     <div class="row">
       <div class="col-md-12">
       <h1>Дамеля</h1>
-      <div id="categories_line">
-        @foreach($data as $item)
-          <a href="/{{ $item['url'] }}"><div class="category_item" @click="showSubcats($event, $item['id'])">{{ $item["name"] }}</div></a>
-        @endforeach
+        <div id="categories_line">
+          @foreach($data as $item)
+            <a href="/{{ $item['url'] }}"><div class="category_item" @click="showSubcats($event, $item['id'])">{{ $item["name"] }}</div></a>
+          @endforeach
         </div>
       </div>
     </div>
