@@ -22,7 +22,8 @@ class IndexController extends Controller {
 		private function render() {
 
 			$renderer_source = File::get(base_path('node_modules/vue-server-renderer/basic.js'));
-			$app_source = File::get(public_path('js/index-server.js'));
+			//$app_source = File::get(public_path('js/index-server.js'));
+
 			$v8 = new \V8Js();
 			ob_start();
 	 
@@ -45,11 +46,11 @@ class IndexController extends Controller {
 	$renderer_source = File::get(base_path('node_modules/vue/dist/vue.min.js'));
 	$v8->executeString($renderer_source);
 
-	$vuex = File::get(base_path('node_modules/vuex/dist/vuex.min.js'));
-	$v8->executeString($vuex);
+	$app_source = File::get(public_path('js/test.js'));
+	$v8->executeString($app_source);
 
-
-	// https://www.phpied.com/server-side-react-with-php-part-2/
+//	$vuex = File::get(base_path('node_modules/vuex/dist/vuex.min.js'));
+//  $v8->executeString($vuex);	
 
 
 	//var data = { superdata: 'superdata'}	
@@ -57,30 +58,15 @@ class IndexController extends Controller {
 
 	$js = "
 
-// Определяем новый компонент, названный button-counter
-var test = Vue.component('test', { 
-data: function () {
-    return {
-      count: 'uau'
-    }
-  },
-  template: '<button>{{ count }}</button>'
-})
 
+	// Я Могу получить доступ к данным только через экземпляр Vue
 
-  const app = new Vue({
-  components: { 
-    'test': test
-  }, 
-		data: { msg: 'hello world' }, 
-		template: `<div>{{ msg }} <test></test></div>` 
-	})
-
+        
+	//const app = new Vue({ data: { msg: 'hello world' }, template: `<div>{{ msg }}</div>` })
 	// заменяю значения динамически
-	//app.msg=".Categories::all()."
+	// app.msg=".Categories::all()."
 
 
-	// рендерит компонент
 	renderVueComponentToString(app, (err, html) => {
     		print(html)
 	})";
