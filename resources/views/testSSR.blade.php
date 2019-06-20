@@ -51,16 +51,16 @@
   </div>
 
  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6" style="text-align:center">
+  
   <form>
     <input type="text" id="search_string" placeholder="поиск по объявлениям" required/>
-    <button id="button_search" type="submit" title="Найти что требуется">Найти</button>
-   </form>
+    <button id="button_search" type="submit" title="Найти что требуется">найти</button>
+  </form>
 
-
-    <!-- кнопки выбора региона и т.п.-->
-    <div class="index_select_region_and_other_button_block" id="select_location_desktop">
-      <button class="search_options_button btn btn-light btn-sm">Расположение</button>          
-    </div>
+  <!-- кнопки выбора региона и т.п.-->
+  <div class="index_select_region_and_other_button_block" id="select_location_desktop">
+    <button class="search_options_button btn btn-light btn-sm">Расположение</button>          
+  </div>
 
   </div>
 

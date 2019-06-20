@@ -526,6 +526,11 @@ h3 {
 // --------------------------------------------
 @media screen and (max-width:960px) {
 
+#button_search {
+  padding:8px;
+  font-size:18px;
+}
+
 .mycontainer_adv {
   width: 100%;
 }
@@ -565,7 +570,7 @@ body {
 }
 
 #search_string {
-  width:100%;
+  width:90%;
 }
 
 .vip_block {
