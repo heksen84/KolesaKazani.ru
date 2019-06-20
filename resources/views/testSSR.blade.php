@@ -6,13 +6,14 @@
   <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
 </head>
 <body>
-<!-- Верхнее меню -->
+
 <div id="navbar_menu">
   <nav class="navbar navbar-dark bg-primary">
   <a class="navbar-brand" href="#"><h1 style="font-size:30px;font-weight:600">Дамеля</h1><h2 style="font-size:16px;margin-top:-5px;font-weight:500">все объявления Казахстана</h2></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+  
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
@@ -31,7 +32,9 @@
   </div>
 </nav>
 </div>
+
 <div class="container-fluid mycontainer" id="index_page" style="margin-top:10px">
+
 <div class="row">
   <div style="margin:auto" id="login_register_col">
     <a href="/login"><div class="button" id="button_login" style="margin-left:17px">Вход</div></a>
@@ -51,20 +54,32 @@
   <form>
     <input type="text" id="search_string" placeholder="поиск по объявлениям" required/>
     <button id="button_search" type="submit" title="Найти что требуется">Найти</button>
-   </form>    
+   </form>
+
+
+    <!-- кнопки выбора региона и т.п.-->
+    <div class="index_select_region_and_other_button_block" id="select_location_desktop">
+      <button class="search_options_button btn btn-light btn-sm">Расположение</button>          
+    </div>
+
   </div>
 
     <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3" style="text-align:center" title="Подать новое объявление" id="new_advert_col">
       <a href="/podat-obyavlenie"><div id="new_advert_block">Подать объявление</div></a>    
-    </div>
+    </div>    
+
   </div>  
 
   <div id="categories_line">
     <div style="text-align:center">    
       <div id="categories_title" class="shadow_text" style="margin-bottom:18px">категории</div>        
+        <div class="form-inline">
         @foreach($data as $item)
-          <a href="{{ $item['url'] }}"><div class="category_item" @click="showSubcats($event, $item['id'])">{{ $item["name"] }}</div></a>
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3">
+          <a href="{{ $item['url'] }}"><div class="category_item">{{ $item["name"] }}</div></a>
+        </div>
         @endforeach
+        </div>
       </div>
     </div>  
   </div>
