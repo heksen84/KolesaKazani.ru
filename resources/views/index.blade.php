@@ -17,7 +17,6 @@
 </style>
 <body>
 <div id="app">
-  {!! $ssr !!}
   </div>
 </body>
 </html>

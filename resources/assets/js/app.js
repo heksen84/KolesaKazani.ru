@@ -21,7 +21,13 @@ import adminpanel from './views/panels/admin.vue';
 // bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-vue/dist/bootstrap-vue.min.css';
-import layout from 'bootstrap-vue/src/components/layout';
+
+import BootstrapVue from 'bootstrap-vue'
+
+Vue.use(BootstrapVue)
+
+
+/*import layout from 'bootstrap-vue/src/components/layout';
 import form from 'bootstrap-vue/src/components/form';
 import form_input from 'bootstrap-vue/src/components/form-input';
 import form_group from 'bootstrap-vue/src/components/form-group';
@@ -56,7 +62,7 @@ Vue.use(radio);
 Vue.use(navbar);
 Vue.use(modal);
 Vue.use(alert);
-Vue.use(pagination);
+Vue.use(pagination);*/
 
 import Vuex from 'vuex';
 Vue.use(Vuex);
