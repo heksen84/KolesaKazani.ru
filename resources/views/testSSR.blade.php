@@ -30,7 +30,7 @@
       </li>      
     </ul>
   </div>
-</nav>
+ </nav>
 </div>
 
 <div class="container-fluid mycontainer" id="index_page" style="margin-top:10px">
@@ -43,50 +43,59 @@
 </div>
 
 <div class="row" style="margin-top:2px">
-  <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3" style="text-align:center">      
-    <div id="logo_block">
-      <div id="logo_block_text">Дамеля</div>
-      <div style="font-size:16px;color:yellow;margin-top:-13px;letter-spacing:1px;">все объявления Казахстана</div>
-    </div>
-  </div>
+ <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3" style="text-align:center">      
+   <div id="logo_block">
+     <div id="logo_block_text">Дамеля</div>
+     <div style="font-size:16px;color:yellow;margin-top:-13px;letter-spacing:1px;">все объявления Казахстана</div>
+   </div>
+</div>
 
- <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6" style="text-align:center">
+<div class="col-sm-12 col-md-12 col-lg-12 col-xl-6" style="text-align:center">
   
-  <form>
-    <input type="text" id="search_string" placeholder="поиск по объявлениям" required/>
-    <button id="button_search" type="submit" title="Найти что требуется">найти</button>
-  </form>
+<form>
+  <input type="text" id="search_string" placeholder="поиск по объявлениям" required/>
+  <button id="button_search" type="submit" title="Найти что требуется">найти</button>
+</form>
 
-  <!-- кнопки выбора региона и т.п.-->
-  <div class="index_select_region_and_other_button_block" id="select_location_desktop">
-    <button class="search_options_button btn btn-light btn-sm">Расположение</button>          
-  </div>
+<!-- кнопки выбора региона и т.п.-->
+<div class="index_select_region_and_other_button_block" id="select_location_desktop">
+   <button class="search_options_button btn btn-light btn-sm">Расположение</button>          
+</div>
 
-  </div>
+</div>
 
-    <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3" style="text-align:center" title="Подать новое объявление" id="new_advert_col">
-      <a href="/podat-obyavlenie"><div id="new_advert_block">Подать объявление</div></a>    
-    </div>    
+<div class="col-sm-12 col-md-12 col-lg-3 col-xl-3" style="text-align:center" title="Подать новое объявление" id="new_advert_col">
+  <a href="/podat-obyavlenie"><div id="new_advert_block">Подать объявление</div></a>    
+</div>    
 
-  </div>  
+</div>  
 
-  <div id="categories_line">
-    <div style="text-align:center">    
-      <div id="categories_title" class="shadow_text" style="margin-bottom:18px">категории</div>        
-        <div class="form-inline">
-        @foreach($data as $item)
-        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3">
-          <a href="{{ $item['url'] }}"><div class="category_item">{{ $item["name"] }}</div></a>
-        </div>
+<div id="categories_line">
+  <div style="text-align:center">    
+    <div id="categories_title" class="shadow_text" style="margin-bottom:18px">категории</div>        
+	    <div id="categories" class="form-inline">
+       		 @foreach($categories as $category)
+        	 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 col_item">          	   
+		          <a href="/{{ $category['url'] }}"><div class="category_item">{{ $category["name"] }}</div></a>
+        	 </div>
+        	@endforeach
+	    </div>
+
+	    <div id="subcategories" class="form-inline">
+        @foreach($subcategories as $subcategory)
+          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 hide" data-id="{{ $subcategory['category_id'] }}">
+            <a href="/{{ $subcategory['url'] }}"><div class="category_item" style="width:280px;font-size:17px">{{ $subcategory["name"] }}</div></a>
+          </div>
         @endforeach
-        </div>
       </div>
-    </div>  
-  </div>
+    </div>
+  </div>  
+</div>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{{ mix('js/index.js') }}"></script>
 
 </body>
 </html>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Categories;
+use App\SubCats;
 
 class TestController extends Controller {
     public function checkPhotos(Request $request) {
@@ -19,6 +20,6 @@ class TestController extends Controller {
 
     public function testSSR(Request $request) {
 	
-	return view("testSSR")->with("data", Categories::all());
+	return view("testSSR")->with("categories", Categories::all())->with("subcategories", SubCats::all());
     }
 }
