@@ -72,7 +72,8 @@
 
 <div id="categories_line">
   <div style="text-align:center">    
-    <div id="categories_title" class="shadow_text" style="margin-bottom:18px">категории</div>        
+    <div id="categories_title" class="shadow_text" style="margin-bottom:18px">категории</div>
+    <button style="border:1px solid white;font-size:14px" id="close_subcats_btn" class="btn-sm btn-primary hide">&#8634; Вернуться к категориям</button>
 	    <div id="categories" class="form-inline">
        		 @foreach($categories as $category)
         	 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 col_item">          	   
@@ -81,7 +82,8 @@
         	@endforeach
 	    </div>
 
-	    <div id="subcategories" class="form-inline">
+	    <div id="subcategories" class="form-inline" style="text-align:center">      
+      <br>
         @foreach($subcategories as $subcategory)
           <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 hide" data-id="{{ $subcategory['category_id'] }}">
             <a href="/{{ $subcategory['url'] }}"><div class="category_item" style="width:280px;font-size:17px">{{ $subcategory["name"] }}</div></a>
@@ -97,7 +99,7 @@
 </div>
 
 <div class="row" style="margin-top:40px">
-  <div id="footer"><a href="advertisers" class="underline_link">Реклама</a> | <a href="rules" class="underline_link">Правила сайта</a> | <a href="about" class="underline_link">О сайте</a></div>
+  <div id="footer"><a href="/advertisers" class="underline_link">Реклама</a> | <a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a></div>
 </div>
 
 </div>
