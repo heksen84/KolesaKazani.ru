@@ -7,28 +7,6 @@
 </head>
 <body>
 
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div id="navbar_menu">
   <nav class="navbar navbar-dark bg-primary">
   <a class="navbar-brand" href="#"><h1 style="font-size:30px;font-weight:600">Дамеля</h1><h2 style="font-size:16px;margin-top:-5px;font-weight:500">все объявления Казахстана</h2></a>
@@ -56,6 +34,28 @@
 </div>
 
 <div class="container-fluid mycontainer" id="index_page" style="margin-top:10px">
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Расположение</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">        
+        @foreach($regions as $region)        
+          <a href="/{{ $region["url"]}}" class="black link">{{ $region["name"]}}</a><br>                  
+        @endforeach        
+      </div>
+      <div class="modal-footer">      
+        <button type="button" class="btn btn-primary" style="margin:auto" data-dismiss="modal">Закрыть</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="row">
   <div style="margin:auto" id="login_register_col">
@@ -95,7 +95,7 @@
 <div id="categories_line">
   <div style="text-align:center">    
     <div id="categories_title" class="shadow_text" style="margin-bottom:18px">категории</div>
-    <button style="border:1px solid white;font-size:14px" id="close_subcats_btn" class="btn-sm btn-primary hide">&#8634; Вернуться к категориям</button>
+    <button style="border:1px solid white;font-size:14px" id="close_subcats_btn" class="btn-sm btn-primary hide">&#8634; Назад</button>
 	    <div id="categories" class="form-inline">
        		 @foreach($categories as $category)
         	 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 col_item">          	   
@@ -125,7 +125,6 @@
 </div>
 
 </div>
-
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

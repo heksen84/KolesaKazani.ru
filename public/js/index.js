@@ -1,5 +1,5 @@
 // Показать / скрыть категории
-function showHideSubcategory() {
+function showHideSubCategories() {
 
  $(".col_item").click(function(e) {
   
@@ -10,7 +10,8 @@ function showHideSubcategory() {
     $("#close_subcats_btn").show();
     $("#categories").hide();
     $("#subcategories").show();
-    $("*[data-id='"+(index+1)+"']").show();    
+    $("*[data-id='"+(index+1)+"']").show();
+    $("#categories_title").text("подкатегории");
   }
 
 });
@@ -21,6 +22,7 @@ $("#close_subcats_btn").click(function(e) {
   $("#subcategories").hide();
   $("#close_subcats_btn").hide();
   $("*[data-id]").hide();
+  $("#categories_title").text("категории");
 });
 
 //$("#select_location_btn").click(function(e) {
@@ -32,7 +34,7 @@ $("#close_subcats_btn").click(function(e) {
 
 // Назначить методы
 function setMethods() {
- showHideSubcategory();
+ showHideSubCategories();
 }
 
 // Документ готов
