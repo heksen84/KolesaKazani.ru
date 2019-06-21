@@ -43,16 +43,17 @@ function showHideSubCategories() {
      }
    }).done(function( json_places ) {      
      $("#regions").hide();
+
      // Заполняем модалку данными
      $.each(json_places, function (index, place) {
        console.log(place.name)       
        $("#places").append('<a href="'+place.url+'" class="black link">'+place.name+'</a><br>');
      })
-   });
-    
+
+   });    
   });
 
-  // Закрыть модальный диалог
+  // Закрыть модальный диалог для крестика и кнопки "Закрыть"
   $(".closeLocationModalBtn").click(function(e) {
      $("#places").empty();
      $("#regions").show();
