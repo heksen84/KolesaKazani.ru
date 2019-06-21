@@ -14,8 +14,8 @@ function showHideSubCategories() {
       $("#close_subcats_btn").show();
       $("#categories").hide();
       $("#subcategories").show();
-      $("*[data-id='"+(index+1)+"']").show();
       $("#categories_title").text("подкатегории");
+      $("*[data-id='"+(index+1)+"']").show();
     }
   });
 
@@ -24,9 +24,8 @@ function showHideSubCategories() {
     $(this).hide();
     $("#categories").show();
     $("#subcategories").hide();
-    $("#close_subcats_btn").hide();
-    $("*[data-id]").hide();
     $("#categories_title").text("категории");
+    $("*[data-id]").hide();
   });
 
   // Выбираю регион
