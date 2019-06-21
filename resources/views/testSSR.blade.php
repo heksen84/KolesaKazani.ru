@@ -52,10 +52,11 @@
           @foreach($regions as $region)          
             <a href="/{{ $region["url"]}}" class="black link region_link" data-region_id="{{ $region['region_id'] }}">{{ $region["name"]}}</a><br>
           @endforeach
-        </div>        
+        </div>
+        <div id="places"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" style="margin:auto" data-dismiss="modal">Закрыть</button>
+        <button type="button" class="btn btn-primary" style="margin:auto" id="closeLocationModalBtn">Закрыть</button>
       </div>
     </div>
   </div>

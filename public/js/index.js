@@ -1,5 +1,6 @@
-
+// ------------------------------------
 // Показать / скрыть категории
+// ------------------------------------
 function showHideSubCategories() {
 
   // Выбор категории
@@ -30,38 +31,39 @@ function showHideSubCategories() {
 
   // Выбираю регион
   $(".region_link").click(function(e) {
-
     e.preventDefault();
 
-    // Получить список городов и сёл
-    $.ajax({
-      method: "GET",
-      url: "getPlaces",
-      data: { region_id: $(this).data("region_id") },
-      statusCode: {
-        404: function() { console.error( "Controller not found" ); }
-      }
-    }).done(function( json_places ) {      
-      $("#regions").hide();
-      // Заполняем модалку данными
-      $.each(json_places, function (index, place) {
-        console.log(place.name)       
-        $(".modal-body").append('<a href="'+place.url+'" class="black link region_link">'+place.name+'</a><br>');
-      })
-    });
+   // Получить список городов и сёл
+   $.ajax({
+     method: "GET",
+     url: "getPlaces",
+     data: { region_id: $(this).data("region_id") },
+     statusCode: {
+       404: function() { console.error( "Controller not found" ); }
+     }
+   }).done(function( json_places ) {      
+     $("#regions").hide();
+     // Заполняем модалку данными
+     $.each(json_places, function (index, place) {
+       console.log(place.name)       
+       $("#places").append('<a href="'+place.url+'" class="black link">'+place.name+'</a><br>');
+     })
+   });
     
   });
 
-  //$('#locationModal').modal('hide')
+  // Закрыть модальный диалог
+  $("#closeLocationModalBtn").click(function(e) {
+     $("#places").empty();
+     $("#regions").show();
+     $("#locationModal").modal("hide");
+  });
 
 }
 
-// Назначить методы
-function setMethods() {
+// ---------------------------------
+// html загружен
+// ---------------------------------
+$( document ).ready(function() { 
  showHideSubCategories();
-}
-
-// Документ готов
-$( document ).ready(function() {
-   setMethods();
 });
