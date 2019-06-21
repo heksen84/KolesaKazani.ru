@@ -43,7 +43,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Расположение</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close closeLocationModalBtn" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -56,7 +56,7 @@
         <div id="places"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" style="margin:auto" id="closeLocationModalBtn">Закрыть</button>
+        <button type="button" class="btn btn-primary closeLocationModalBtn" style="margin:auto">Закрыть</button>
       </div>
     </div>
   </div>

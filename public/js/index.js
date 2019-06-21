@@ -53,7 +53,7 @@ function showHideSubCategories() {
   });
 
   // Закрыть модальный диалог
-  $("#closeLocationModalBtn").click(function(e) {
+  $(".closeLocationModalBtn").click(function(e) {
      $("#places").empty();
      $("#regions").show();
      $("#locationModal").modal("hide");
