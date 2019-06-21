@@ -23,6 +23,11 @@ $("#close_subcats_btn").click(function(e) {
   $("*[data-id]").hide();
 });
 
+//$("#select_location_btn").click(function(e) {
+  //alert("ok")
+//});
+
+
 }
 
 // Назначить методы

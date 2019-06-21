@@ -23,7 +23,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-vue/dist/bootstrap-vue.min.css';
 
 import BootstrapVue from 'bootstrap-vue'
-
 Vue.use(BootstrapVue)
 
 
@@ -62,7 +61,7 @@ Vue.use(radio);
 Vue.use(navbar);
 Vue.use(modal);
 Vue.use(alert);
-Vue.use(pagination);*/
+Vue.use(pagination); */
 
 import Vuex from 'vuex';
 Vue.use(Vuex);

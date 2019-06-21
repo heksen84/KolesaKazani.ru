@@ -7,6 +7,28 @@
 </head>
 <body>
 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="navbar_menu">
   <nav class="navbar navbar-dark bg-primary">
   <a class="navbar-brand" href="#"><h1 style="font-size:30px;font-weight:600">Дамеля</h1><h2 style="font-size:16px;margin-top:-5px;font-weight:500">все объявления Казахстана</h2></a>
@@ -58,8 +80,8 @@
 </form>
 
 <!-- кнопки выбора региона и т.п.-->
-<div class="index_select_region_and_other_button_block" id="select_location_desktop">
-   <button class="search_options_button btn btn-light btn-sm">Расположение</button>          
+<div class="index_select_region_and_other_button_block">
+   <button class="search_options_button btn btn-light btn-sm" data-toggle="modal" data-target="#exampleModal">Расположение</button>          
 </div>
 
 </div>
