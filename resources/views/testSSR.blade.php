@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <title>Доска объявлений Дамеля - все объявления Казахстана.</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
 </head>
+
 <body>
 
 <div id="navbar_menu">
@@ -36,7 +38,7 @@
 <div class="container-fluid mycontainer" id="index_page" style="margin-top:10px">
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -45,12 +47,14 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body text-center">        
-        @foreach($regions as $region)        
-          <a href="/{{ $region["url"]}}" class="black link">{{ $region["name"]}}</a><br>                  
-        @endforeach        
+      <div class="modal-body text-center">                
+        <div id="regions">
+          @foreach($regions as $region)          
+            <a href="/{{ $region["url"]}}" class="black link" data-region_id="{{ $region['region_id'] }}">{{ $region["name"]}}</a><br>
+          @endforeach
+        </div>        
       </div>
-      <div class="modal-footer">      
+      <div class="modal-footer">
         <button type="button" class="btn btn-primary" style="margin:auto" data-dismiss="modal">Закрыть</button>
       </div>
     </div>
@@ -81,7 +85,7 @@
 
 <!-- кнопки выбора региона и т.п.-->
 <div class="index_select_region_and_other_button_block">
-   <button class="search_options_button btn btn-light btn-sm" data-toggle="modal" data-target="#exampleModal">Расположение</button>          
+   <button class="search_options_button btn btn-light btn-sm" data-toggle="modal" data-target="#locationModal">Расположение</button>
 </div>
 
 </div>
