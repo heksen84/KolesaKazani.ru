@@ -61,7 +61,7 @@ Vue.use(radio);
 Vue.use(navbar);
 Vue.use(modal);
 Vue.use(alert);
-Vue.use(pagination); */
+Vue.use(pagination);*/
 
 import Vuex from 'vuex';
 Vue.use(Vuex);

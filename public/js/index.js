@@ -1,9 +1,13 @@
+
 // Показать / скрыть категории
 function showHideSubCategories() {
 
+  // Выбор категории
   $(".col_item").click(function(e) {    
+
     var index = $(this).index();  
     
+    // Показывать подкатегории только для транспорта и надвижимости
     if ( index < 2 ) {
       e.preventDefault();
       $("#close_subcats_btn").show();
@@ -14,6 +18,7 @@ function showHideSubCategories() {
     }
   });
 
+  // Назад к категориям
   $("#close_subcats_btn").click(function(e) {
     $(this).hide();
     $("#categories").show();
@@ -23,14 +28,31 @@ function showHideSubCategories() {
     $("#categories_title").text("категории");
   });
 
-  $(".link").click(function(e) {
+  // Выбираю регион
+  $(".region_link").click(function(e) {
+
     e.preventDefault();
-    $("#regions").hide();
-    alert($(this).data("region_id"));
+
+    // Получить список городов и сёл
+    $.ajax({
+      method: "GET",
+      url: "getPlaces",
+      data: { region_id: $(this).data("region_id") },
+      statusCode: {
+        404: function() { console.error( "Controller not found" ); }
+      }
+    }).done(function( json_places ) {      
+      $("#regions").hide();
+      // Заполняем модалку данными
+      $.each(json_places, function (index, place) {
+        console.log(place.name)       
+        $(".modal-body").append('<a href="'+place.url+'" class="black link region_link">'+place.name+'</a><br>');
+      })
+    });
+    
   });
 
   //$('#locationModal').modal('hide')
-
 
 }
 

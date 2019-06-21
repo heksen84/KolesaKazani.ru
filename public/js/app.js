@@ -71825,7 +71825,7 @@ Vue.use(radio);
 Vue.use(navbar);
 Vue.use(modal);
 Vue.use(alert);
-Vue.use(pagination); */
+Vue.use(pagination);*/
 
 
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_17_vuex__["a" /* default */]);
