@@ -305,16 +305,14 @@ h3 {
 }
 
 .item {
+  cursor: pointer;
   background: white;
   color: black;
   height: 120px;
   border: 1px solid grey;
   width: 100%;
   text-align: left;
-  display: inline-block;
   word-break: break-all;
-  margin-top: -2px;
-  cursor: pointer;
 }
 
 .item:hover {
