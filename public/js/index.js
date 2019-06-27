@@ -28,6 +28,13 @@ function showHideSubCategories() {
     $("*[data-id]").hide();
   });
 
+  // Закрыть модальный диалог для крестика и кнопки "Закрыть"
+  $(".closeLocationModalBtn").click(function(e) {
+    $("#places").empty();
+    $("#regions").show();
+    $("#locationModal").modal("hide");
+ });
+
   // Выбираю регион
   $(".region_link").click(function(e) {
     e.preventDefault();
@@ -37,26 +44,25 @@ function showHideSubCategories() {
      method: "GET",
      url: "getPlaces",
      data: { region_id: $(this).data("region_id") },
-     statusCode: {
-       404: function() { console.error( "Controller not found" ); }
-     }
+     statusCode: { 404: function() { console.error( "Controller not found" ); } }
    }).done(function( json_places ) {      
-     $("#regions").hide();
+     
+    $("#regions").hide();
 
-     // Заполняем модалку данными
-     $.each(json_places, function (index, place) {
-       console.log(place.name)       
-       $("#places").append('<a href="'+place.url+'" class="black link">'+place.name+'</a><br>');
-     })
+    // Заполняем модалку данными
+    $.each(json_places, function (index, place) {      
+      $("#places").append('<a href="'+place.url+'" class="black link place">'+place.name+'</a><br>');
+    })
+
+    // Выбрать город / село / деревню
+    $(".place").click(function(e) {
+      e.preventDefault();
+      //alert($(this).text());
+      $("a").attr("href", $(this).text());
+      $(".closeLocationModalBtn").trigger("click");
+    });    
 
    });    
-  });
-
-  // Закрыть модальный диалог для крестика и кнопки "Закрыть"
-  $(".closeLocationModalBtn").click(function(e) {
-     $("#places").empty();
-     $("#regions").show();
-     $("#locationModal").modal("hide");
   });
 
 }
