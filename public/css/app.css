@@ -125,13 +125,13 @@ h3 {
 }
 
 #results_close_button {
+  width: 26px;
   color: white;
   border: 1px solid white;
   border-radius: 5px;
-  padding: 6px;
+  padding: 5px;
   background: #6464c8;
   font-size: 17px;
-  width: 25px;
 }
 
 #results_close_button:hover {
@@ -208,48 +208,6 @@ h3 {
 
 .index_select_region_and_other_button_block {
   margin-top: 0px;
-}
-
-#button_search {
-  margin: 4px;
-  padding: 10px;
-  background: #6464c8;
-  color: white;
-  letter-spacing: 2px;
-  font-weight: bold;
-  font-size: 18px;
-  border: 1px solid white;
-  border-radius: 5px;
-}
-
-#button_search:hover {
-  background: #7878dc;
-}
-
-#new_advert_block {
-  padding: 12px;
-  background: #c86464;
-  border: 2px solid white;
-  border-radius: 10px;
-  cursor: default;
-  font-size: 24px;
-  margin-right: 8px;
-  margin-top: 7px;
-}
-
-#new_advert_block:hover {
-  background: #dc7878;
-}
-
-#search_string {
-  text-align: center;
-  margin-top: 21px;
-  font-size: 18px;
-  padding: 4px;
-  width: 82%;
-  border: 1px solid #6e6e8c;
-  border-radius: 3px;
-  color: #323232;
 }
 
 .phone_input {
@@ -372,6 +330,63 @@ h3 {
   content: "\434\43E\431\430\432\438\442\44C   \444\43E\442\43E";
 }
 
+.create_advert_col {
+  text-align: left;
+  margin: auto;
+  color: black;
+  background: white;
+}
+
+.mycontainer_adv {
+  width: 1000px;
+}
+
+.underline_link:hover {
+  text-decoration: underline;
+}
+
+#button_search {
+  margin: 4px;
+  padding: 10px;
+  background: #6464c8;
+  color: white;
+  letter-spacing: 2px;
+  font-weight: bold;
+  font-size: 18px;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+#button_search:hover {
+  background: #7878dc;
+}
+
+#new_advert_block {
+  padding: 12px;
+  background: #c86464;
+  border: 2px solid white;
+  border-radius: 10px;
+  cursor: default;
+  font-size: 24px;
+  margin-right: 8px;
+  margin-top: 7px;
+}
+
+#new_advert_block:hover {
+  background: #dc7878;
+}
+
+#search_string {
+  text-align: center;
+  margin-top: 21px;
+  font-size: 18px;
+  padding: 4px;
+  width: 82%;
+  border: 1px solid #6e6e8c;
+  border-radius: 3px;
+  color: #323232;
+}
+
 #footer {
   margin: auto;
   margin-top: 5px;
@@ -385,25 +400,10 @@ h3 {
   text-align: center;
 }
 
-.underline_link:hover {
-  text-decoration: underline;
-}
-
 #categories_title {
   font-size: 110%;
   margin-top: 35px;
   margin-left: 30px;
-}
-
-.create_advert_col {
-  text-align: left;
-  margin: auto;
-  color: black;
-  background: white;
-}
-
-.mycontainer_adv {
-  width: 1000px;
 }
 
 @media screen and (max-width: 9000px) {

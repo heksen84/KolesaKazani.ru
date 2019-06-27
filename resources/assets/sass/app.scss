@@ -82,8 +82,7 @@ body {
 -moz-background-size: cover;
 -webkit-background-size: cover;
 -o-background-size: cover;
-
- display:block;
+display:block;
  
 }
 
@@ -136,13 +135,13 @@ h3 {
 }
 
 #results_close_button {
+  width:26px;  
   color:white;
   border:1px solid white;
   border-radius:5px;
-  padding:6px;
+  padding:5px;
   background:rgb(100,100,200);
-  font-size:17px;
-  width:25px;  
+  font-size:17px;  
 }
 
 #results_close_button:hover {
@@ -220,48 +219,6 @@ h3 {
 
 .index_select_region_and_other_button_block {
   margin-top:0px;
-}
-
-#button_search {
-  margin:4px;
-  padding:10px;
-  background:rgb(100,100,200);
-  color:white;
-  letter-spacing:2px;
-  font-weight:bold;
-  font-size:18px;
-  border:1px solid white;
-  border-radius:5px
-}
-
-#button_search:hover {
-  background:rgb(120,120,220);
-}
-
-#new_advert_block {
-  padding:12px;
-  background: rgb(200,100,100);
-  border: 2px solid white;
-  border-radius:10px;
-  cursor:default;
-  font-size: 24px;
-  margin-right: 8px;
-  margin-top: 7px;
-}
-
-#new_advert_block:hover {
-  background: rgb(220,120,120);
-}
-
-#search_string {
-  text-align:center;
-  margin-top:21px;
-  font-size:18px;
-  padding:4px;
-  width:82%;
-  border:1px solid rgb(110, 110, 140);
-  border-radius:3px;
-  color:rgb(50,50,50);
 }
 
 .phone_input {
@@ -349,8 +306,6 @@ h3 {
 }
 
 .shadow_text {
-
-//text-decoration: underline;
  color: #fff;
  letter-spacing: 2px;
  text-shadow:   
@@ -384,9 +339,66 @@ h3 {
 }
 
 .custom-file-input:lang(ru)~.custom-file-label::after {
-    background: rgb(100,200,100);
-    color:white;
-    content: "добавить фото";
+  background: rgb(100,200,100);
+  color:white;
+  content: "добавить фото";
+}
+
+.create_advert_col {
+  text-align:left;
+  margin: auto;
+  color:black;
+  background:white;
+ }
+ 
+.mycontainer_adv {
+  width: 1000px;
+}
+
+.underline_link:hover {
+  text-decoration: underline;
+}
+
+#button_search {
+  margin:4px;
+  padding:10px;
+  background:rgb(100,100,200);
+  color:white;
+  letter-spacing:2px;
+  font-weight:bold;
+  font-size:18px;
+  border:1px solid white;
+  border-radius:5px
+}
+
+#button_search:hover {
+  background:rgb(120,120,220);
+}
+
+#new_advert_block {
+  padding:12px;
+  background: rgb(200,100,100);
+  border: 2px solid white;
+  border-radius:10px;
+  cursor:default;
+  font-size: 24px;
+  margin-right: 8px;
+  margin-top: 7px;
+}
+
+#new_advert_block:hover {
+  background: rgb(220,120,120);
+}
+
+#search_string {
+  text-align:center;
+  margin-top:21px;
+  font-size:18px;
+  padding:4px;
+  width:82%;
+  border:1px solid rgb(110, 110, 140);
+  border-radius:3px;
+  color:rgb(50,50,50);
 }
 
 #footer {
@@ -402,32 +414,16 @@ h3 {
   text-align:center;
 }
 
-.underline_link:hover {
-  text-decoration: underline;
-}
-
 #categories_title {
   font-size: 110%;
   margin-top:35px;
   margin-left: 30px;
 }
 
-.create_advert_col {
- text-align:left;
- margin: auto;
- color:black;
- background:white;
-}
-
-.mycontainer_adv {
-  width: 1000px;
- }
-
 // --------------------------------------------
 // Большие мониторы
 // --------------------------------------------
 @media screen and (max-width:9000px) {
-
 
 .create_advert_col {
  border-radius: 5px;
