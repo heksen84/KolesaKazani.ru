@@ -92,8 +92,7 @@
 
 <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3" style="text-align:center" title="Подать новое объявление" id="new_advert_col">
   <a href="/podat-obyavlenie"><div id="new_advert_block">Подать объявление</div></a>    
-</div>    
-
+</div>
 </div>  
 
 <div id="categories_line">
@@ -107,7 +106,6 @@
         	 </div>
         	@endforeach
 	    </div>
-
 	    <div id="subcategories" class="form-inline" style="text-align:center">      
       <br>
       @foreach($subcategories as $subcategory)
@@ -117,20 +115,15 @@
       @endforeach
     </div>
   </div>
-</div> 
-
-<!-- РЕКЛАМА -->
+</div>
 <div class="row" style="margin-top:20px">
   <h5 style="margin:auto">Google Advert</h5>
 </div>
-
 <div class="row" style="margin-top:40px">
   <div id="footer"><a href="/advertisers" class="underline_link">Реклама</a> | <a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a></div>
 </div>
-
 </div>
 </div>
-  <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>
+<script type="text/javascript" src="{{ mix('js/index.js') }}"></script>
 </body>
-
 </html>
