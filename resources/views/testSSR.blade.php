@@ -79,23 +79,22 @@
   </div>
 
   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6" style="text-align:center">
-  
-  <form>
-    <input type="text" id="search_string" placeholder="поиск по объявлениям" required/>
-    <button id="button_search" type="submit" title="Найти что требуется">найти</button>
-  </form>
 
-  <!-- кнопки выбора региона и т.п.-->
-  <div class="index_select_region_and_other_button_block">
-    <button class="search_options_button btn btn-light btn-sm hide" data-toggle="modal" id="locationButton" @click="showLocationWindow">Расположение ${locationName}</button>
+    <form>
+      <input type="text" id="search_string" placeholder="поиск по объявлениям" required/>
+      <button id="button_search" type="submit" title="Найти что требуется">найти</button>
+    </form>
+
+    <!-- кнопки выбора региона и т.п.-->
+    <div class="index_select_region_and_other_button_block">
+      <button class="search_options_button btn btn-light btn-sm hide" data-toggle="modal" id="locationButton" @click="showLocationWindow">Расположение ${locationName}</button>
+    </div>
   </div>
-  
-</div>
 
-<div class="col-sm-12 col-md-12 col-lg-3 col-xl-3" style="text-align:center" title="Подать новое объявление" id="new_advert_col">
-  <a href="/podat-obyavlenie"><div id="new_advert_block">Подать объявление</div></a>    
-</div>
-</div>  
+    <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3" style="text-align:center" title="Подать новое объявление" id="new_advert_col">
+      <a href="/podat-obyavlenie"><div id="new_advert_block">Подать объявление</div></a>    
+    </div>
+  </div>  
 
   <div id="categories_line">
     <div style="text-align:center">    
@@ -129,7 +128,7 @@
 
   </div>
 </div>
-  <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>
-</body>
 
+<script type="text/javascript" src="{{ mix('js/index.js') }}"></script>
+</body>
 </html>
