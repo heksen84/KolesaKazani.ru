@@ -57,7 +57,7 @@
           @endforeach
         </div>
         <div v-if="places">
-          <a v-for="(item, index) in placesList" :key="index" :href="item.url" class="black link block" >${item.name}</a>
+          <a v-for="(item, index) in placesList" :key="index" :href="item.url" class="black link block" @click="selectPlace($event, item.name)">${item.name}</a>
         </div>
       </div>
       <div class="modal-footer">
@@ -91,7 +91,7 @@
 
 <!-- кнопки выбора региона и т.п.-->
 <div class="index_select_region_and_other_button_block">
-   <button class="search_options_button btn btn-light btn-sm" data-toggle="modal" data-target="#locationModal" @click="showLocationWindow">Расположение</button>
+   <button class="search_options_button btn btn-light btn-sm" data-toggle="modal" data-target="#locationModal" @click="showLocationWindow">Расположение ${locationName}</button>
 </div>
 
 </div>

@@ -72158,10 +72158,10 @@ module.exports = Component.exports
     alert: { show: false, msg: "" },
 
     // массив городов / сёл / деревень    
-    placesList: "12312312",
-
+    placesList: [],
     regions: true,
-    places: false
+    places: false,
+    locationName: ""
 });
 
 /***/ }),

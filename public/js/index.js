@@ -50757,10 +50757,10 @@ if (token) {
     alert: { show: false, msg: "" },
 
     // массив городов / сёл / деревень    
-    placesList: "12312312",
-
+    placesList: [],
     regions: true,
-    places: false
+    places: false,
+    locationName: ""
 });
 
 /***/ }),
@@ -50881,7 +50881,6 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
 
-
  // axios
 
 // экземляр приложения vue
@@ -50906,6 +50905,9 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
       this.places = false;
       __WEBPACK_IMPORTED_MODULE_2_jquery___default()("#locationModal").modal("hide");
     },
+
+
+    // Выбор региона
     showPlacesByRegion: function showPlacesByRegion(e, regionId) {
       var _this = this;
 
@@ -50920,6 +50922,14 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
       }).catch(function (err) {
         console.log(err);
       });
+    },
+
+
+    // Выбор расположения
+    selectPlace: function selectPlace(e, placeName) {
+      e.preventDefault();
+      this.locationName = placeName;
+      this.closeLocationWindow();
     }
   }
 

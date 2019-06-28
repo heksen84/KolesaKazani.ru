@@ -6,7 +6,6 @@ import $ from "jquery";
 
 import popperjs from "popper.js";
 import bootstrap from "bootstrap";
-
 import { get } from './helpers/api' // axios
 
 // экземляр приложения vue
@@ -19,8 +18,7 @@ export default new Vue({
     bootstrap
   },
 
-  created() {
-  },
+  created() {},
 
   methods: {
 
@@ -34,9 +32,10 @@ export default new Vue({
     $("#locationModal").modal("hide");    
   },
   
-  showPlacesByRegion(e, regionId) {
+  // Выбор региона
+  showPlacesByRegion(e, regionId) {        
     e.preventDefault();
-    
+
     // Получить города / сёлы
     get("getPlaces?region_id="+regionId).then((res) => {
       
@@ -44,9 +43,14 @@ export default new Vue({
       this.regions=false;
       this.places=true;
 
-    }).catch((err) => {
-      console.log(err)
-    });    
+    }).catch((err) => { console.log(err) });    
+  },
+
+  // Выбор расположения
+  selectPlace(e, placeName) {      
+    e.preventDefault();
+    this.locationName=placeName;
+    this.closeLocationWindow();
   }
 
 
