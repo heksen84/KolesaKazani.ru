@@ -50754,13 +50754,8 @@ if (token) {
     advert_data: {},
 
     // глобальный объект для алертов
-    alert: { show: false, msg: "" },
+    alert: { show: false, msg: "" }
 
-    // массив городов / сёл / деревень    
-    placesList: [],
-    regions: true,
-    places: false,
-    locationName: ""
 });
 
 /***/ }),
@@ -50884,7 +50879,17 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 // --------------------------------------
 /* harmony default export */ __webpack_exports__["default"] = (new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
   el: '#app',
-  data: __WEBPACK_IMPORTED_MODULE_0__data__["a" /* default */],
+  //data: data,
+  // переменные
+  data: function data() {
+    return {
+      placesList: [], // массив городов / сёл / деревень
+      regions: true,
+      places: false,
+      locationName: ""
+    };
+  },
+
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
   components: {
     bootstrap: __WEBPACK_IMPORTED_MODULE_3_bootstrap___default.a

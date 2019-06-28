@@ -14,11 +14,6 @@ export default {
     
     // глобальный объект для алертов
     alert: { show: false, msg: "" },
-    
-    // массив городов / сёл / деревень    
-    placesList: [],
-    regions: true,    
-    places: false,
-    locationName: ""
+        
 }
 

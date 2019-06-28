@@ -10,7 +10,16 @@ import { get } from './helpers/api' // axios
 // --------------------------------------
 export default new Vue ({
   el: '#app',
-  data: data,
+  //data: data,
+  // переменные
+  data () {      
+    return {      
+      placesList: [], // массив городов / сёл / деревень
+      regions: true,    
+      places: false,
+      locationName: ""      
+    }
+  },
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
   components: {    
     bootstrap
