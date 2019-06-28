@@ -50930,10 +50930,19 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
     // Выбор расположения
     selectPlace: function selectPlace(e, placeName, placeUrl) {
+
       e.preventDefault();
+
       this.locationName = placeName;
       this.closeLocationWindow();
+
+      // Сбрасываю на значения по умолчанию
+      __WEBPACK_IMPORTED_MODULE_2_jquery___default()(".url").each(function (index) {
+        __WEBPACK_IMPORTED_MODULE_2_jquery___default()(this).attr("href", __WEBPACK_IMPORTED_MODULE_2_jquery___default()(this).data("default-url"));
+      });
+
       var allUrlsCategories = __WEBPACK_IMPORTED_MODULE_2_jquery___default()(".url").attr("href");
+
       __WEBPACK_IMPORTED_MODULE_2_jquery___default()(".url").attr("href", this.regionUrl + "/" + placeUrl + allUrlsCategories); // склеиваю расположение 
     }
   }

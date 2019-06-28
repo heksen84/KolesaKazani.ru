@@ -110,7 +110,7 @@
 	    <div id="categories" class="form-inline">
        		 @foreach($categories as $category)
         	 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 col_item">          	   
-		          <a href="/{{ $category['url'] }}" class="url"><div class="category_item">{{ $category["name"] }}</div></a>
+		          <a href="/{{ $category['url'] }}" class="url" data-default-url="/{{ $category['url'] }}"><div class="category_item">{{ $category["name"] }}</div></a>
         	 </div>
         	@endforeach
 	    </div>
@@ -118,8 +118,8 @@
 	    <div id="subcategories" class="form-inline" style="text-align:center">      
       <br>
         @foreach($subcategories as $subcategory)
-          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 hide" data-id="{{ $subcategory['category_id'] }}">
-            <a href="/{{ $subcategory['url'] }}"><div class="category_item" style="width:280px;font-size:17px">{{ $subcategory["name"] }}</div></a>
+          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 hide">
+            <a href="/{{ $subcategory['url'] }}" class="url" data-default-url="/{{ $category['url'] }}"><div class="category_item" style="width:280px;font-size:17px">{{ $subcategory["name"] }}</div></a>
           </div>
         @endforeach
       </div>
