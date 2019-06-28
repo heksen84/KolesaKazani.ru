@@ -39,6 +39,7 @@ export default new Vue({
     this.places=true;
   }
 
+
 }
   
 });

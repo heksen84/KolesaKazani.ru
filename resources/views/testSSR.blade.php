@@ -53,7 +53,7 @@
       <div class="modal-body text-center">                
         <div v-if="regions">
           @foreach($regions as $region)          
-            <a href="/{{ $region["url"]}}" class="black link" data-region-id="{{ $region['region_id'] }}" @click="showPlaces($event,{{ $region['region_id'] }})">{{$region["name"]}}</a><br>
+            <a href="/{{ $region["url"]}}" class="black link" @click="showPlacesByRegion($event,{{ $region['region_id'] }})">{{$region["name"]}}</a><br>
           @endforeach
         </div>
         <div v-if="places">${placesList}</div>
