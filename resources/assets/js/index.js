@@ -7,11 +7,13 @@ import $ from "jquery";
 import popperjs from "popper.js";
 import bootstrap from "bootstrap";
 
+import { get } from './helpers/api' // axios
+
 // экземляр приложения vue
 export default new Vue({
   el: '#app',
   data: data,
-  delimiters: ['${', '}'], // что-бы не было конфликта переменных с php
+  delimiters: ['${', '}'], // что-бы не было конфликта c переменными php
   components: {
     popperjs,
     bootstrap
@@ -32,11 +34,19 @@ export default new Vue({
     $("#locationModal").modal("hide");    
   },
   
-  showPlacesByRegion(event, regionId) {
-    event.preventDefault();    
-    alert(regionId)    
-    this.regions=false;
-    this.places=true;
+  showPlacesByRegion(e, regionId) {
+    e.preventDefault();
+    
+    // Получить города / сёлы
+    get("getPlaces?region_id="+regionId).then((res) => {
+      
+      this.placesList=res.data;
+      this.regions=false;
+      this.places=true;
+
+    }).catch((err) => {
+      console.log(err)
+    });    
   }
 
 

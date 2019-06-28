@@ -40,7 +40,7 @@
 
 <div class="container-fluid mycontainer" id="index_page" style="margin-top:10px">
 
-<!-- Modal -->
+<!-- Локация -->
 <div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -52,14 +52,16 @@
       </div>
       <div class="modal-body text-center">                
         <div v-if="regions">
-          @foreach($regions as $region)          
+          @foreach($regions as $region)
             <a href="/{{ $region["url"]}}" class="black link" @click="showPlacesByRegion($event,{{ $region['region_id'] }})">{{$region["name"]}}</a><br>
           @endforeach
         </div>
-        <div v-if="places">${placesList}</div>
+        <div v-if="places">
+          <a v-for="(item, index) in placesList" :key="index" :href="item.url" class="black link block" >${item.name}</a>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" @click="closeLocationWindow" style="margin:auto">Закрыть</button>
+        <button type="button" class="btn btn-primary margin-auto" @click="closeLocationWindow">Закрыть</button>
       </div>
     </div>
   </div>
