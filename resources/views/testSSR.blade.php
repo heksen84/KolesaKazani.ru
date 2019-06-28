@@ -8,6 +8,7 @@
 </head>
 <body>
 <div id="app">
+
 <div id="navbar_menu">
   <nav class="navbar navbar-dark bg-primary">
   <a class="navbar-brand" href="#"><h1 style="font-size:30px;font-weight:600">Дамеля</h1><h2 style="font-size:16px;margin-top:-5px;font-weight:500">все объявления Казахстана</h2></a>
@@ -32,7 +33,9 @@
   </div>
  </nav>
 </div>
+
 <div class="container-fluid mycontainer" id="index_page" style="margin-top:10px">
+
 <!-- Локация -->
 <div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -116,12 +119,15 @@
     </div>
   </div>
 </div>
+
 <div class="row" style="margin-top:20px">
   <h5 style="margin:auto">Google Advert</h5>
 </div>
+
 <div class="row" style="margin-top:40px">
   <div id="footer"><a href="/advertisers" class="underline_link">Реклама</a> | <a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a></div>
 </div>
+
 </div>
 </div>
 <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>
