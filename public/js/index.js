@@ -50893,7 +50893,9 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
     bootstrap: __WEBPACK_IMPORTED_MODULE_4_bootstrap___default.a
   },
 
-  created: function created() {},
+  created: function created() {
+    __WEBPACK_IMPORTED_MODULE_2_jquery___default()("#locationButton").show();
+  },
 
 
   methods: {

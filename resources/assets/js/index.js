@@ -18,7 +18,9 @@ export default new Vue({
     bootstrap
   },
 
-  created() {},
+  created() {
+    $("#locationButton").show();
+  },
 
   methods: {
 
