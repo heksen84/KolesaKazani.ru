@@ -1,32 +1,32 @@
 require('./bootstrap');
-
 import data from './data';
 import Vue from 'vue';
 import $ from "jquery";
-
-//import popperjs from "popper.js";
 import bootstrap from "bootstrap";
 import { get } from './helpers/api' // axios
 
+// --------------------------------------
 // экземляр приложения vue
-export default new Vue
-({
+// --------------------------------------
+export default new Vue ({
   el: '#app',
   data: data,
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
-  components: {
-    //popperjs,
+  components: {    
     bootstrap
   },
 
+  // -------------------
   // Компонент создан
+  // -------------------
   created() { 
     $("#locationButton").show();    
   },
 
+  // --------------------------------------
   // Методы
+  // --------------------------------------
   methods: {
-
 	showLocationWindow() {
     $("#locationModal").modal("show");
   },
@@ -37,9 +37,10 @@ export default new Vue
     $("#locationModal").modal("hide");    
   },
   
+  // --------------------------------------
   // Выбор региона
-  showPlacesByRegion(e, regionId) {            
-    
+  // --------------------------------------
+  showPlacesByRegion(e, regionId) {
     e.preventDefault();
 
     // Получить города / сёлы
@@ -51,22 +52,21 @@ export default new Vue
     }).catch((err) => { console.log(err) });    
   },
 
+  // --------------------------------------
   // Выбор расположения
+  // --------------------------------------
   selectPlace(e, placeName, placeUrl) {      
-
     e.preventDefault();
     
     this.locationName=placeName;
     this.closeLocationWindow();    
 
-    // Сбрасываю на значения по умолчанию
+    // Сбрасываю на значения href на значения по умолчанию
     $( ".url" ).each(function( index ) {      
       $(this).attr("href", $(this).data("default-url"))
     });
-
-    var allUrlsCategories = $(".url").attr("href");
     
-    $(".url").attr("href", this.regionUrl+"/"+placeUrl+allUrlsCategories); // склеиваю расположение 
+    $(".url").attr("href", this.regionUrl+"/"+placeUrl+$(".url").attr("href")); // склеиваю расположение 
   }
 }
   

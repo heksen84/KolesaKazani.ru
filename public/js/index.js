@@ -50877,28 +50877,30 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
 
-
-//import popperjs from "popper.js";
-
  // axios
 
+// --------------------------------------
 // экземляр приложения vue
+// --------------------------------------
 /* harmony default export */ __webpack_exports__["default"] = (new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
   el: '#app',
   data: __WEBPACK_IMPORTED_MODULE_0__data__["a" /* default */],
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
   components: {
-    //popperjs,
     bootstrap: __WEBPACK_IMPORTED_MODULE_3_bootstrap___default.a
   },
 
+  // -------------------
   // Компонент создан
+  // -------------------
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_2_jquery___default()("#locationButton").show();
   },
 
 
+  // --------------------------------------
   // Методы
+  // --------------------------------------
   methods: {
     showLocationWindow: function showLocationWindow() {
       __WEBPACK_IMPORTED_MODULE_2_jquery___default()("#locationModal").modal("show");
@@ -50910,7 +50912,9 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
     },
 
 
+    // --------------------------------------
     // Выбор региона
+    // --------------------------------------
     showPlacesByRegion: function showPlacesByRegion(e, regionId) {
       var _this = this;
 
@@ -50928,22 +50932,21 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
     },
 
 
+    // --------------------------------------
     // Выбор расположения
+    // --------------------------------------
     selectPlace: function selectPlace(e, placeName, placeUrl) {
-
       e.preventDefault();
 
       this.locationName = placeName;
       this.closeLocationWindow();
 
-      // Сбрасываю на значения по умолчанию
+      // Сбрасываю на значения href на значения по умолчанию
       __WEBPACK_IMPORTED_MODULE_2_jquery___default()(".url").each(function (index) {
         __WEBPACK_IMPORTED_MODULE_2_jquery___default()(this).attr("href", __WEBPACK_IMPORTED_MODULE_2_jquery___default()(this).data("default-url"));
       });
 
-      var allUrlsCategories = __WEBPACK_IMPORTED_MODULE_2_jquery___default()(".url").attr("href");
-
-      __WEBPACK_IMPORTED_MODULE_2_jquery___default()(".url").attr("href", this.regionUrl + "/" + placeUrl + allUrlsCategories); // склеиваю расположение 
+      __WEBPACK_IMPORTED_MODULE_2_jquery___default()(".url").attr("href", this.regionUrl + "/" + placeUrl + __WEBPACK_IMPORTED_MODULE_2_jquery___default()(".url").attr("href")); // склеиваю расположение 
     }
   }
 
