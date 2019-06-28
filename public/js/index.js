@@ -50869,17 +50869,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery__ = __webpack_require__("./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_popper_js__ = __webpack_require__("./node_modules/popper.js/dist/esm/popper.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_bootstrap__ = __webpack_require__("./node_modules/bootstrap/dist/js/bootstrap.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_bootstrap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bootstrap__ = __webpack_require__("./node_modules/bootstrap/dist/js/bootstrap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_bootstrap__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
 __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
 
 
 
-
+//import popperjs from "popper.js";
 
  // axios
 
@@ -50887,17 +50886,19 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 /* harmony default export */ __webpack_exports__["default"] = (new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
   el: '#app',
   data: __WEBPACK_IMPORTED_MODULE_0__data__["a" /* default */],
-  delimiters: ['${', '}'], // что-бы не было конфликта c переменными php
+  delimiters: ['${', '}'], // для разрешения конфликта c переменными php
   components: {
-    popperjs: __WEBPACK_IMPORTED_MODULE_3_popper_js__["default"],
-    bootstrap: __WEBPACK_IMPORTED_MODULE_4_bootstrap___default.a
+    //popperjs,
+    bootstrap: __WEBPACK_IMPORTED_MODULE_3_bootstrap___default.a
   },
 
+  // Компонент создан
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_2_jquery___default()("#locationButton").show();
   },
 
 
+  // Методы
   methods: {
     showLocationWindow: function showLocationWindow() {
       __WEBPACK_IMPORTED_MODULE_2_jquery___default()("#locationModal").modal("show");
@@ -50916,9 +50917,9 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
       e.preventDefault();
 
       // Получить города / сёлы
-      Object(__WEBPACK_IMPORTED_MODULE_5__helpers_api__["a" /* get */])("getPlaces?region_id=" + regionId).then(function (res) {
-
+      Object(__WEBPACK_IMPORTED_MODULE_4__helpers_api__["a" /* get */])("getPlaces?region_id=" + regionId).then(function (res) {
         _this.placesList = res.data;
+        _this.regionUrl = e.target.pathname;
         _this.regions = false;
         _this.places = true;
       }).catch(function (err) {
@@ -50928,10 +50929,12 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
     // Выбор расположения
-    selectPlace: function selectPlace(e, placeName) {
+    selectPlace: function selectPlace(e, placeName, placeUrl) {
       e.preventDefault();
       this.locationName = placeName;
       this.closeLocationWindow();
+      var allUrlsCategories = __WEBPACK_IMPORTED_MODULE_2_jquery___default()(".url").attr("href");
+      __WEBPACK_IMPORTED_MODULE_2_jquery___default()(".url").attr("href", this.regionUrl + "/" + placeUrl + allUrlsCategories); // склеиваю расположение 
     }
   }
 

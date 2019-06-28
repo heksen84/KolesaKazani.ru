@@ -57,7 +57,8 @@
           @endforeach
         </div>
         <div v-if="places">
-          <a v-for="(item, index) in placesList" :key="index" :href="item.url" class="black link block" @click="selectPlace($event, item.name)">${item.name}</a>
+          <b class="link">Искать в регионе</b><br><hr>
+          <a v-for="(item, index) in placesList" :key="index" :href="item.url" class="black link block" @click="selectPlace($event, item.name, item.url)">${item.name}</a>
         </div>
       </div>
       <div class="modal-footer">
@@ -109,7 +110,7 @@
 	    <div id="categories" class="form-inline">
        		 @foreach($categories as $category)
         	 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 col_item">          	   
-		          <a href="/{{ $category['url'] }}"><div class="category_item">{{ $category["name"] }}</div></a>
+		          <a href="/{{ $category['url'] }}" class="url"><div class="category_item">{{ $category["name"] }}</div></a>
         	 </div>
         	@endforeach
 	    </div>
@@ -135,10 +136,7 @@
 </div>
 
 </div>
-
 </div>
-
 <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>
-
 </body>
 </html>

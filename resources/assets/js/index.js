@@ -4,7 +4,7 @@ import data from './data';
 import Vue from 'vue';
 import $ from "jquery";
 
-import popperjs from "popper.js";
+//import popperjs from "popper.js";
 import bootstrap from "bootstrap";
 import { get } from './helpers/api' // axios
 
@@ -12,16 +12,18 @@ import { get } from './helpers/api' // axios
 export default new Vue({
   el: '#app',
   data: data,
-  delimiters: ['${', '}'], // что-бы не было конфликта c переменными php
+  delimiters: ['${', '}'], // для разрешения конфликта c переменными php
   components: {
-    popperjs,
+    //popperjs,
     bootstrap
   },
 
-  created() {
-    $("#locationButton").show();
+  // Компонент создан
+  created() { 
+    $("#locationButton").show();    
   },
 
+  // Методы
   methods: {
 
 	showLocationWindow() {
@@ -35,26 +37,26 @@ export default new Vue({
   },
   
   // Выбор региона
-  showPlacesByRegion(e, regionId) {        
+  showPlacesByRegion(e, regionId) {            
     e.preventDefault();
 
     // Получить города / сёлы
-    get("getPlaces?region_id="+regionId).then((res) => {
-      
+    get("getPlaces?region_id="+regionId).then((res) => {    
       this.placesList=res.data;
+      this.regionUrl=e.target.pathname;
       this.regions=false;
       this.places=true;
-
     }).catch((err) => { console.log(err) });    
   },
 
   // Выбор расположения
-  selectPlace(e, placeName) {      
+  selectPlace(e, placeName, placeUrl) {      
     e.preventDefault();
     this.locationName=placeName;
     this.closeLocationWindow();
+    let allUrlsCategories = $(".url").attr("href");
+    $(".url").attr("href", this.regionUrl+"/"+placeUrl+allUrlsCategories); // склеиваю расположение 
   }
-
 
 }
   
