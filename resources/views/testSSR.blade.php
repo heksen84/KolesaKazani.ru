@@ -9,9 +9,7 @@
 </head>
 
 <body>
-
 <div id="app">
-
 <div id="navbar_menu">
   <nav class="navbar navbar-dark bg-primary">
   <a class="navbar-brand" href="#"><h1 style="font-size:30px;font-weight:600">Дамеля</h1><h2 style="font-size:16px;margin-top:-5px;font-weight:500">все объявления Казахстана</h2></a>
@@ -117,14 +115,14 @@
 
 	    <div id="subcategories" class="form-inline" style="text-align:center">      
       <br>
-        @foreach($subcategories as $subcategory)
-          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 hide">
-            <a href="/{{ $subcategory['url'] }}" class="url" data-default-url="/{{ $category['url'] }}"><div class="category_item" style="width:280px;font-size:17px">{{ $subcategory["name"] }}</div></a>
-          </div>
-        @endforeach
-      </div>
+      @foreach($subcategories as $subcategory)
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 hide">
+          <a href="/{{ $subcategory['url'] }}" class="url" data-default-url="/{{ $subcategory['url'] }}"><div class="category_item" style="width:280px;font-size:17px">{{ $subcategory["name"] }}</div></a>
+        </div>
+      @endforeach
     </div>
-  </div> 
+  </div>
+</div> 
 
 <!-- РЕКЛАМА -->
 <div class="row" style="margin-top:20px">
@@ -137,6 +135,6 @@
 
 </div>
 </div>
-<script type="text/javascript" src="{{ mix('js/index.js') }}"></script>
+  <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>
 </body>
 </html>
