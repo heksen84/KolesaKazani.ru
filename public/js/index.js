@@ -50847,12 +50847,11 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
  // axios
 
-// --------------------------------------
+// ------------------------
 // экземляр приложения vue
-// --------------------------------------
+// ------------------------
 /* harmony default export */ __webpack_exports__["default"] = (new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#app',
-  // переменные
   data: function data() {
     return {
       placesList: [], // массив городов / сёл / деревень

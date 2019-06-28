@@ -4,12 +4,11 @@ import $ from "jquery";
 import bootstrap from "bootstrap";
 import { get } from './helpers/api' // axios
 
-// --------------------------------------
+// ------------------------
 // экземляр приложения vue
-// --------------------------------------
+// ------------------------
 export default new Vue ({
   el: '#app',
-  // переменные
   data () {      
     return {      
       placesList: [], // массив городов / сёл / деревень
@@ -34,7 +33,8 @@ export default new Vue ({
   // Методы
   // --------------------------------------
   methods: {
-	showLocationWindow() {
+
+  showLocationWindow() {
     $("#locationModal").modal("show");
   },
   
