@@ -1,5 +1,4 @@
 require('./bootstrap');
-import data from './data';
 import Vue from 'vue';
 import $ from "jquery";
 import bootstrap from "bootstrap";
@@ -10,7 +9,6 @@ import { get } from './helpers/api' // axios
 // --------------------------------------
 export default new Vue ({
   el: '#app',
-  //data: data,
   // переменные
   data () {      
     return {      

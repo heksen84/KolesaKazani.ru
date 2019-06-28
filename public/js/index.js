@@ -50735,31 +50735,6 @@ if (token) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/data.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
-
-    //
-    money_full_name: "тенге",
-
-    //
-    money_small_name: "тнг.",
-
-    // максимальное кол-во загружаемых картинок    
-    max_loaded_images: 10,
-
-    // наш объект объявления, куда размещается объявление
-    advert_data: {},
-
-    // глобальный объект для алертов
-    alert: { show: false, msg: "" }
-
-});
-
-/***/ }),
-
 /***/ "./resources/assets/js/helpers/api.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -50859,16 +50834,14 @@ function interceptors(cb) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__data__ = __webpack_require__("./resources/assets/js/data.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__("./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery__ = __webpack_require__("./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bootstrap__ = __webpack_require__("./node_modules/bootstrap/dist/js/bootstrap.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_bootstrap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__("./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery__ = __webpack_require__("./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap__ = __webpack_require__("./node_modules/bootstrap/dist/js/bootstrap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_bootstrap__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
 __webpack_require__("./resources/assets/js/bootstrap.js");
-
 
 
 
@@ -50877,9 +50850,8 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 // --------------------------------------
 // экземляр приложения vue
 // --------------------------------------
-/* harmony default export */ __webpack_exports__["default"] = (new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
+/* harmony default export */ __webpack_exports__["default"] = (new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#app',
-  //data: data,
   // переменные
   data: function data() {
     return {
@@ -50892,14 +50864,14 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
   components: {
-    bootstrap: __WEBPACK_IMPORTED_MODULE_3_bootstrap___default.a
+    bootstrap: __WEBPACK_IMPORTED_MODULE_2_bootstrap___default.a
   },
 
   // -------------------
   // Компонент создан
   // -------------------
   created: function created() {
-    __WEBPACK_IMPORTED_MODULE_2_jquery___default()("#locationButton").show();
+    __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#locationButton").show();
   },
 
 
@@ -50908,12 +50880,12 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
   // --------------------------------------
   methods: {
     showLocationWindow: function showLocationWindow() {
-      __WEBPACK_IMPORTED_MODULE_2_jquery___default()("#locationModal").modal("show");
+      __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#locationModal").modal("show");
     },
     closeLocationWindow: function closeLocationWindow() {
       this.regions = true;
       this.places = false;
-      __WEBPACK_IMPORTED_MODULE_2_jquery___default()("#locationModal").modal("hide");
+      __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#locationModal").modal("hide");
     },
 
 
@@ -50926,7 +50898,7 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
       e.preventDefault();
 
       // Получить города / сёлы
-      Object(__WEBPACK_IMPORTED_MODULE_4__helpers_api__["a" /* get */])("getPlaces?region_id=" + regionId).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_3__helpers_api__["a" /* get */])("getPlaces?region_id=" + regionId).then(function (res) {
         _this.placesList = res.data;
         _this.regionUrl = e.target.pathname;
         _this.regions = false;
@@ -50947,11 +50919,11 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
       this.closeLocationWindow();
 
       // Сбрасываю на значения href на значения по умолчанию
-      __WEBPACK_IMPORTED_MODULE_2_jquery___default()(".url").each(function (index) {
-        __WEBPACK_IMPORTED_MODULE_2_jquery___default()(this).attr("href", __WEBPACK_IMPORTED_MODULE_2_jquery___default()(this).data("default-url"));
+      __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").each(function (index) {
+        __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).attr("href", __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).data("default-url"));
       });
 
-      __WEBPACK_IMPORTED_MODULE_2_jquery___default()(".url").attr("href", this.regionUrl + "/" + placeUrl + __WEBPACK_IMPORTED_MODULE_2_jquery___default()(".url").attr("href")); // склеиваю расположение 
+      __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").attr("href", this.regionUrl + "/" + placeUrl + __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").attr("href")); // склеиваю расположение 
     }
   }
 

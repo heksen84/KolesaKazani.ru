@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
   <title>Доска объявлений Дамеля - все объявления Казахстана.</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
 </head>
-
 <body>
 <div id="app">
 <div id="navbar_menu">
@@ -35,9 +33,7 @@
   </div>
  </nav>
 </div>
-
 <div class="container-fluid mycontainer" id="index_page" style="margin-top:10px">
-
 <!-- Локация -->
 <div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -137,4 +133,5 @@
 </div>
   <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>
 </body>
+
 </html>
