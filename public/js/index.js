@@ -50909,7 +50909,7 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
     // Сброс значения href на значения по умолчанию
-    resetLink: function resetLink() {
+    resetLinksToDefault: function resetLinksToDefault() {
       __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").each(function (index) {
         __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).attr("href", __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).data("default-url"));
       });
@@ -50924,12 +50924,12 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
       this.locationName = placeName;
       this.closeLocationWindow();
-      this.resetLink();
+      this.resetLinksToDefault();
 
       __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").attr("href", this.regionUrl + "/" + placeUrl + __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").attr("href")); // склеиваю расположение 
     },
     searchInRegion: function searchInRegion() {
-      this.resetLink();
+      this.resetLinksToDefault();
       __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").attr("href", this.regionUrl + __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").attr("href"));
       this.closeLocationWindow();
     }

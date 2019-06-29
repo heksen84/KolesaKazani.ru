@@ -60,7 +60,7 @@ export default new Vue ({
   },
 
   // Сброс значения href на значения по умолчанию
-  resetLink() {
+  resetLinksToDefault() {
     $( ".url" ).each(function( index ) {      
       $(this).attr("href", $(this).data("default-url"))
     });
@@ -74,13 +74,13 @@ export default new Vue ({
     
     this.locationName=placeName;
     this.closeLocationWindow();    
-    this.resetLink();
+    this.resetLinksToDefault();
     
     $(".url").attr("href", this.regionUrl+"/"+placeUrl+$(".url").attr("href")); // склеиваю расположение 
   },
 
   searchInRegion() {
-    this.resetLink();
+    this.resetLinksToDefault();
     $(".url").attr("href", this.regionUrl+$(".url").attr("href"));
     this.closeLocationWindow();
   }
