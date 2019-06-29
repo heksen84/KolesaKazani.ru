@@ -59,6 +59,13 @@ export default new Vue ({
     }).catch((err) => { console.log(err) });    
   },
 
+  // Сброс значения href на значения по умолчанию
+  resetLink() {
+    $( ".url" ).each(function( index ) {      
+      $(this).attr("href", $(this).data("default-url"))
+    });
+  },
+
   // --------------------------------------
   // Выбор расположения
   // --------------------------------------
@@ -67,13 +74,15 @@ export default new Vue ({
     
     this.locationName=placeName;
     this.closeLocationWindow();    
-
-    // Сбрасываю на значения href на значения по умолчанию
-    $( ".url" ).each(function( index ) {      
-      $(this).attr("href", $(this).data("default-url"))
-    });
+    this.resetLink();
     
     $(".url").attr("href", this.regionUrl+"/"+placeUrl+$(".url").attr("href")); // склеиваю расположение 
+  },
+
+  searchInRegion() {
+    this.resetLink();
+    $(".url").attr("href", this.regionUrl+$(".url").attr("href"));
+    this.closeLocationWindow();
   }
 }
   
