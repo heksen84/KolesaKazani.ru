@@ -31,7 +31,14 @@ export default new Vue ({
   // -------------------------------
   // Компонент создан
   // -------------------------------
-  created() { 
+  created() {
+
+    var locationUrl = localStorage.getItem("locationUrl");
+    var locationName = localStorage.getItem("locationName");
+    
+    console.log(locationUrl);
+    console.log(locationName);
+
     $("#locationButton").show();
     $("#close_subcats_btn").show();    
   },
@@ -41,10 +48,12 @@ export default new Vue ({
   // --------------------------------------
   methods: {
 
+  // Отобразить окно расположения
   showLocationWindow() {
     $("#locationModal").modal("show");
   },
   
+  // Закрыть окно расположения
   closeLocationWindow() {
     this.regions=true;
     this.places=false;
@@ -79,6 +88,9 @@ export default new Vue ({
     $( ".url" ).each(function( index ) {      
       $(this).attr("href", self.regionUrl+$(this).data("default-url"))      
     });
+
+    localStorage.setItem("locationUrl", self.regionUrl);
+    localStorage.setItem("locationName", this.locationName);
   
     this.closeLocationWindow();
   },
@@ -90,12 +102,17 @@ export default new Vue ({
     
     let self=this;    
     e.preventDefault();
+    
     this.locationName=placeName;
     this.closeLocationWindow();
 
     $( ".url" ).each(function( index ) {      
       $(this).attr("href", self.regionUrl+"/"+placeUrl+$(this).data("default-url"))      
-    });        
+    });
+
+    localStorage.setItem("locationUrl", self.regionUrl+"/"+placeUrl);
+    localStorage.setItem("locationName", this.locationName);
+
   },
 
   // --------------------------------------

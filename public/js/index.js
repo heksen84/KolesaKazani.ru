@@ -50875,6 +50875,13 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
   // Компонент создан
   // -------------------------------
   created: function created() {
+
+    var locationUrl = localStorage.getItem("locationUrl");
+    var locationName = localStorage.getItem("locationName");
+
+    console.log(locationUrl);
+    console.log(locationName);
+
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#locationButton").show();
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#close_subcats_btn").show();
   },
@@ -50884,9 +50891,14 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
   // Методы
   // --------------------------------------
   methods: {
+
+    // Отобразить окно расположения
     showLocationWindow: function showLocationWindow() {
       __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#locationModal").modal("show");
     },
+
+
+    // Закрыть окно расположения
     closeLocationWindow: function closeLocationWindow() {
       this.regions = true;
       this.places = false;
@@ -50927,6 +50939,9 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
         __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).attr("href", self.regionUrl + __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).data("default-url"));
       });
 
+      localStorage.setItem("locationUrl", self.regionUrl);
+      localStorage.setItem("locationName", this.locationName);
+
       this.closeLocationWindow();
     },
 
@@ -50938,12 +50953,16 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
       var self = this;
       e.preventDefault();
+
       this.locationName = placeName;
       this.closeLocationWindow();
 
       __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").each(function (index) {
         __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).attr("href", self.regionUrl + "/" + placeUrl + __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).data("default-url"));
       });
+
+      localStorage.setItem("locationUrl", self.regionUrl + "/" + placeUrl);
+      localStorage.setItem("locationName", this.locationName);
     },
 
 
