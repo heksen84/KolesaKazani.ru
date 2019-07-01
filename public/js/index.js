@@ -50852,7 +50852,9 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 // ------------------------
 /* harmony default export */ __webpack_exports__["default"] = (new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#app',
+
   data: function data() {
+
     return {
       placesList: [], // массив городов / сёл / деревень
       regions: true,
@@ -50916,7 +50918,6 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
     // Выбор расположения
     // --------------------------------------
     searchInRegion: function searchInRegion(e) {
-
       var self = this;
 
       __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").each(function (index) {

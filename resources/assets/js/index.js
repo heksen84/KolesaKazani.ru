@@ -9,7 +9,9 @@ import { get } from './helpers/api' // axios
 // ------------------------
 export default new Vue ({
   el: '#app',
+  
   data () {      
+  
     return {      
       placesList: [], // массив городов / сёл / деревень
       regions: true,    
@@ -18,6 +20,7 @@ export default new Vue ({
       categories: true,
       subCategories: false
     }
+  
   },
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
   components: {    
@@ -66,14 +69,13 @@ export default new Vue ({
   // --------------------------------------
   // Выбор расположения
   // --------------------------------------
-  searchInRegion(e) {
-
+  searchInRegion(e) {    
     let self=this;
-
+  
     $( ".url" ).each(function( index ) {      
       $(this).attr("href", self.regionUrl+$(this).data("default-url"))      
     });
-
+  
     this.closeLocationWindow();
   },
   
