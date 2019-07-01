@@ -33,12 +33,18 @@ export default new Vue ({
   // -------------------------------
   created() {
 
+    // Вытаскивыю местоположение из локалстораджа
     var locationUrl = localStorage.getItem("locationUrl");
     var locationName = localStorage.getItem("locationName");
     
-    console.log(locationUrl);
-    console.log(locationName);
+    if (locationUrl!=null) {
+      this.locationName = locationName;
+      $( ".url" ).each(function( index ) {      
+        $(this).attr("href", locationUrl+$(this).data("default-url"));
+      });
+    }
 
+    // Показываю то, что скрыто
     $("#locationButton").show();
     $("#close_subcats_btn").show();    
   },

@@ -50876,12 +50876,18 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
   // -------------------------------
   created: function created() {
 
+    // Вытаскивыю местоположение из локалстораджа
     var locationUrl = localStorage.getItem("locationUrl");
     var locationName = localStorage.getItem("locationName");
 
-    console.log(locationUrl);
-    console.log(locationName);
+    if (locationUrl != null) {
+      this.locationName = locationName;
+      __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").each(function (index) {
+        __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).attr("href", locationUrl + __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).data("default-url"));
+      });
+    }
 
+    // Показываю то, что скрыто
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#locationButton").show();
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#close_subcats_btn").show();
   },
