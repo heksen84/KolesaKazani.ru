@@ -61,41 +61,41 @@ export default new Vue ({
     }).catch((err) => { console.log(err) });    
   },
 
-  // Сброс значения href на значения по умолчанию
-  resetLinksToDefault() {
-    $( ".url" ).each(function( index ) {      
-      $(this).attr("href", $(this).data("default-url"))
-    });
-  },
-
   // --------------------------------------
   // Выбор расположения
   // --------------------------------------
-  selectPlace(e, placeName, placeUrl) {      
-    e.preventDefault();
+
+  searchInRegion() {    
+    let self=this;
+
+    $( ".url" ).each(function( index ) {      
+      $(this).attr("href", self.regionUrl+$(this).data("default-url"))      
+    });
     
+    this.closeLocationWindow();
+  },
+  
+  selectPlace(e, placeName, placeUrl) {      
+    let self=this;    
+    e.preventDefault();
+
     this.locationName=placeName;
     this.closeLocationWindow();    
-    this.resetLinksToDefault();
-    
-    $(".url").attr("href", this.regionUrl+"/"+placeUrl+$(".url").attr("href")); // склеиваю расположение 
-  },
 
-  searchInRegion() {
-    this.resetLinksToDefault();
-    $(".url").attr("href", this.regionUrl+$(".url").attr("href"));
-    this.closeLocationWindow();
+    $( ".url" ).each(function( index ) {      
+      $(this).attr("href", self.regionUrl+"/"+placeUrl+$(this).data("default-url"))      
+    });        
   },
 
   showSubcategories(e, categoryId) {
     e.preventDefault();        
-    $("*[data-id='"+(categoryId)+"']").show();
+    $("*[data-category-id='"+(categoryId)+"']").show();
     this.categories=false;
     this.subCategories=true;
   },
 
   returnToCategories() {    
-    $("*[data-id]").hide();
+    $("*[data-category-id]").hide();
     this.categories=true;
     this.subCategories=false;    
   }

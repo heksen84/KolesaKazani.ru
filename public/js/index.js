@@ -50910,39 +50910,38 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
     },
 
 
-    // Сброс значения href на значения по умолчанию
-    resetLinksToDefault: function resetLinksToDefault() {
-      __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").each(function (index) {
-        __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).attr("href", __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).data("default-url"));
-      });
-    },
-
-
     // --------------------------------------
     // Выбор расположения
     // --------------------------------------
+
+    searchInRegion: function searchInRegion() {
+      var self = this;
+
+      __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").each(function (index) {
+        __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).attr("href", self.regionUrl + __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).data("default-url"));
+      });
+
+      this.closeLocationWindow();
+    },
     selectPlace: function selectPlace(e, placeName, placeUrl) {
+      var self = this;
       e.preventDefault();
 
       this.locationName = placeName;
       this.closeLocationWindow();
-      this.resetLinksToDefault();
 
-      __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").attr("href", this.regionUrl + "/" + placeUrl + __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").attr("href")); // склеиваю расположение 
-    },
-    searchInRegion: function searchInRegion() {
-      this.resetLinksToDefault();
-      __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").attr("href", this.regionUrl + __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").attr("href"));
-      this.closeLocationWindow();
+      __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").each(function (index) {
+        __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).attr("href", self.regionUrl + "/" + placeUrl + __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).data("default-url"));
+      });
     },
     showSubcategories: function showSubcategories(e, categoryId) {
       e.preventDefault();
-      __WEBPACK_IMPORTED_MODULE_1_jquery___default()("*[data-id='" + categoryId + "']").show();
+      __WEBPACK_IMPORTED_MODULE_1_jquery___default()("*[data-category-id='" + categoryId + "']").show();
       this.categories = false;
       this.subCategories = true;
     },
     returnToCategories: function returnToCategories() {
-      __WEBPACK_IMPORTED_MODULE_1_jquery___default()("*[data-id]").hide();
+      __WEBPACK_IMPORTED_MODULE_1_jquery___default()("*[data-category-id]").hide();
       this.categories = true;
       this.subCategories = false;
     }

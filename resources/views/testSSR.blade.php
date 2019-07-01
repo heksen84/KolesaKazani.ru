@@ -112,7 +112,7 @@
           <div id="subcategories" class="form-inline" style="text-align:center">                                
             @foreach($subcategories as $subcategory)
              <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3">
-              <a href="/{{ $subcategory['url'] }}" class="url hide" data-id="{{ $subcategory['category_id'] }}" data-default-url="/{{ $subcategory['url'] }}"><div class="category_item" style="width:280px;font-size:17px">{{ $subcategory["name"] }}</div></a>
+              <a href="/{{ $subcategory['url'] }}" class="url hide" data-category-id="{{ $subcategory['category_id'] }}" data-default-url="/{{ $subcategory['url'] }}"><div class="category_item" style="width:280px;font-size:17px">{{ $subcategory["name"] }}</div></a>
             </div>
             @endforeach
           </div>
