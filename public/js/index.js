@@ -50936,6 +50936,19 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
     // --------------------------------------
     // Выбор расположения
     // --------------------------------------
+
+    searchInCountry: function searchInCountry(e) {
+
+      /*let self=this;
+      this.locationName=this.tmpLocationName;
+          $( ".url" ).each(function( index ) {      
+        $(this).attr("href", self.regionUrl+$(this).data("default-url"))      
+      });
+        localStorage.setItem("locationUrl", self.regionUrl);
+      localStorage.setItem("locationName", this.locationName);*/
+
+      this.closeLocationWindow();
+    },
     searchInRegion: function searchInRegion(e) {
 
       var self = this;

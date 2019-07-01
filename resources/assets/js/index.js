@@ -86,6 +86,22 @@ export default new Vue ({
   // --------------------------------------
   // Выбор расположения
   // --------------------------------------
+
+  searchInCountry(e) {    
+    
+    /*let self=this;
+    this.locationName=this.tmpLocationName;
+  
+    $( ".url" ).each(function( index ) {      
+      $(this).attr("href", self.regionUrl+$(this).data("default-url"))      
+    });
+
+    localStorage.setItem("locationUrl", self.regionUrl);
+    localStorage.setItem("locationName", this.locationName);*/
+  
+    this.closeLocationWindow();
+  },
+
   searchInRegion(e) {    
     
     let self=this;
