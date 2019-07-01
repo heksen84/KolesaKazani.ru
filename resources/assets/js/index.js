@@ -17,8 +17,9 @@ export default new Vue ({
       regions: true,    
       places: false,
       locationName: "",
+      tmpLocationName: "",
       categories: true,
-      subCategories: false
+      subCategories: false,      
     }
   
   },
@@ -54,9 +55,9 @@ export default new Vue ({
   // Выбор региона
   // --------------------------------------
   showPlacesByRegion(e, regionId) {
+    
     e.preventDefault();
-
-    this.locationName=e.target.innerText;
+    this.tmpLocationName=e.target.innerText;
 
     // Получить города / сёлы
     get("getPlaces?region_id="+regionId).then((res) => {    
@@ -73,6 +74,7 @@ export default new Vue ({
   searchInRegion(e) {    
     
     let self=this;
+    this.locationName=this.tmpLocationName;
   
     $( ".url" ).each(function( index ) {      
       $(this).attr("href", self.regionUrl+$(this).data("default-url"))      

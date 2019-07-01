@@ -50860,6 +50860,7 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
       regions: true,
       places: false,
       locationName: "",
+      tmpLocationName: "",
       categories: true,
       subCategories: false
     };
@@ -50900,8 +50901,7 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
       var _this = this;
 
       e.preventDefault();
-
-      this.locationName = e.target.innerText;
+      this.tmpLocationName = e.target.innerText;
 
       // Получить города / сёлы
       Object(__WEBPACK_IMPORTED_MODULE_3__helpers_api__["a" /* get */])("getPlaces?region_id=" + regionId).then(function (res) {
@@ -50921,6 +50921,7 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
     searchInRegion: function searchInRegion(e) {
 
       var self = this;
+      this.locationName = this.tmpLocationName;
 
       __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").each(function (index) {
         __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).attr("href", self.regionUrl + __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).data("default-url"));
