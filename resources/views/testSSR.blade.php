@@ -75,14 +75,14 @@
   </div>
 
   <div class="row" style="margin-top:2px">
-    <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3" style="text-align:center">      
+    <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center">      
       <div id="logo_block">
         <div id="logo_block_text">Дамеля</div>
         <div style="font-size:16px;color:yellow;margin-top:-13px;letter-spacing:1px;">все объявления Казахстана</div>
       </div>
   </div>
 
-  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6" style="text-align:center">
+  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 center">
 
     <form>
       <input type="text" id="search_string" placeholder="поиск по объявлениям" required/>
@@ -95,13 +95,13 @@
     </div>
   </div>
 
-    <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3" style="text-align:center" title="Подать новое объявление" id="new_advert_col">
+    <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center" title="Подать новое объявление" id="new_advert_col">
       <a href="/podat-obyavlenie"><div id="new_advert_block">Подать объявление</div></a>    
     </div>
   </div>  
 
   <div id="categories_line">
-    <div style="text-align:center">    
+    <div class="center">    
       <div id="categories_title" class="shadow_text" style="margin-bottom:18px">категории</div>    
 	      <div class="form-inline" v-show="categories">
        	  @foreach($categories as $category)
@@ -113,7 +113,7 @@
         
         <div v-show="subCategories">
          <button style="border:1px solid white;font-size:14px" id="close_subcats_btn" class="btn-sm btn-primary hide" @click="returnToCategories">&#8634; Назад</button>
-          <div id="subcategories" class="form-inline" style="text-align:center">                                
+          <div id="subcategories" class="form-inline center">                                
             @foreach($subcategories as $subcategory)
              <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3">
               <a href="/{{ $subcategory['url'] }}" class="url hide" data-category-id="{{ $subcategory['category_id'] }}" data-default-url="/{{ $subcategory['url'] }}"><div class="category_item subcategory">{{ $subcategory["name"] }}</div></a>
