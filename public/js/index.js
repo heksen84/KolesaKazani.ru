@@ -50920,10 +50920,10 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
       __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").each(function (index) {
         __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).attr("href", self.regionUrl + __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).data("default-url"));
       });
-
       this.closeLocationWindow();
     },
     selectPlace: function selectPlace(e, placeName, placeUrl) {
+
       var self = this;
       e.preventDefault();
 

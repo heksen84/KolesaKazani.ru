@@ -70,12 +70,12 @@ export default new Vue ({
 
     $( ".url" ).each(function( index ) {      
       $(this).attr("href", self.regionUrl+$(this).data("default-url"))      
-    });
-    
+    });    
     this.closeLocationWindow();
   },
   
   selectPlace(e, placeName, placeUrl) {      
+    
     let self=this;    
     e.preventDefault();
 
