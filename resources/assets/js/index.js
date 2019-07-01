@@ -31,7 +31,8 @@ export default new Vue ({
   // Компонент создан
   // -------------------------------
   created() { 
-    $("#locationButton").show();    
+    $("#locationButton").show();
+    $("#close_subcats_btn").show();    
   },
 
   // --------------------------------------
@@ -70,6 +71,7 @@ export default new Vue ({
   // Выбор расположения
   // --------------------------------------
   searchInRegion(e) {    
+    
     let self=this;
   
     $( ".url" ).each(function( index ) {      
@@ -82,13 +84,12 @@ export default new Vue ({
   // --------------------------------------
   // Выбрать город / село и т.п.
   // --------------------------------------
-  selectPlace(e, placeName, placeUrl) {      
+  selectPlace(e, placeName, placeUrl) {    
     
     let self=this;    
     e.preventDefault();
-
     this.locationName=placeName;
-    this.closeLocationWindow();    
+    this.closeLocationWindow();
 
     $( ".url" ).each(function( index ) {      
       $(this).attr("href", self.regionUrl+"/"+placeUrl+$(this).data("default-url"))      
@@ -99,10 +100,13 @@ export default new Vue ({
   // Показать подкатегории
   // --------------------------------------
   showSubcategories(e, categoryId) {
-    e.preventDefault();        
-    $("*[data-category-id='"+(categoryId)+"']").show();
-    this.categories=false;
-    this.subCategories=true;
+
+    if (categoryId<3) {
+      e.preventDefault();        
+      $("*[data-category-id='"+(categoryId)+"']").show();
+      this.categories=false;
+      this.subCategories=true;
+    }
   },
 
   returnToCategories() {    

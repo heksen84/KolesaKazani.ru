@@ -50875,6 +50875,7 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
   // -------------------------------
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#locationButton").show();
+    __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#close_subcats_btn").show();
   },
 
 
@@ -50918,6 +50919,7 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
     // Выбор расположения
     // --------------------------------------
     searchInRegion: function searchInRegion(e) {
+
       var self = this;
 
       __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").each(function (index) {
@@ -50935,7 +50937,6 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
       var self = this;
       e.preventDefault();
-
       this.locationName = placeName;
       this.closeLocationWindow();
 
@@ -50949,10 +50950,13 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
     // Показать подкатегории
     // --------------------------------------
     showSubcategories: function showSubcategories(e, categoryId) {
-      e.preventDefault();
-      __WEBPACK_IMPORTED_MODULE_1_jquery___default()("*[data-category-id='" + categoryId + "']").show();
-      this.categories = false;
-      this.subCategories = true;
+
+      if (categoryId < 3) {
+        e.preventDefault();
+        __WEBPACK_IMPORTED_MODULE_1_jquery___default()("*[data-category-id='" + categoryId + "']").show();
+        this.categories = false;
+        this.subCategories = true;
+      }
     },
     returnToCategories: function returnToCategories() {
       __WEBPACK_IMPORTED_MODULE_1_jquery___default()("*[data-category-id]").hide();
