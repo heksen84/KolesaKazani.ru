@@ -50898,6 +50898,8 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
       e.preventDefault();
 
+      this.locationName = e.target.innerText;
+
       // Получить города / сёлы
       Object(__WEBPACK_IMPORTED_MODULE_3__helpers_api__["a" /* get */])("getPlaces?region_id=" + regionId).then(function (res) {
         _this.placesList = res.data;
@@ -50914,7 +50916,8 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
     // Выбор расположения
     // --------------------------------------
 
-    searchInRegion: function searchInRegion() {
+    searchInRegion: function searchInRegion(e) {
+
       var self = this;
 
       __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").each(function (index) {
