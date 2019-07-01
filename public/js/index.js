@@ -50868,9 +50868,9 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
     bootstrap: __WEBPACK_IMPORTED_MODULE_2_bootstrap___default.a
   },
 
-  // -------------------
+  // -------------------------------
   // Компонент создан
-  // -------------------
+  // -------------------------------
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#locationButton").show();
   },
@@ -50915,7 +50915,6 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
     // --------------------------------------
     // Выбор расположения
     // --------------------------------------
-
     searchInRegion: function searchInRegion(e) {
 
       var self = this;
@@ -50923,8 +50922,14 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
       __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").each(function (index) {
         __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).attr("href", self.regionUrl + __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).data("default-url"));
       });
+
       this.closeLocationWindow();
     },
+
+
+    // --------------------------------------
+    // Выбрать город / село и т.п.
+    // --------------------------------------
     selectPlace: function selectPlace(e, placeName, placeUrl) {
 
       var self = this;
@@ -50937,6 +50942,11 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
         __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).attr("href", self.regionUrl + "/" + placeUrl + __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).data("default-url"));
       });
     },
+
+
+    // --------------------------------------
+    // Показать подкатегории
+    // --------------------------------------
     showSubcategories: function showSubcategories(e, categoryId) {
       e.preventDefault();
       __WEBPACK_IMPORTED_MODULE_1_jquery___default()("*[data-category-id='" + categoryId + "']").show();

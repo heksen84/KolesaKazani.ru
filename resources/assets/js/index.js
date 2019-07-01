@@ -24,9 +24,9 @@ export default new Vue ({
     bootstrap
   },
 
-  // -------------------
+  // -------------------------------
   // Компонент создан
-  // -------------------
+  // -------------------------------
   created() { 
     $("#locationButton").show();    
   },
@@ -51,7 +51,7 @@ export default new Vue ({
   // --------------------------------------
   showPlacesByRegion(e, regionId) {
     e.preventDefault();
-        
+
     this.locationName=e.target.innerText;
 
     // Получить города / сёлы
@@ -66,17 +66,20 @@ export default new Vue ({
   // --------------------------------------
   // Выбор расположения
   // --------------------------------------
-
-  searchInRegion(e) {    
+  searchInRegion(e) {
 
     let self=this;
 
     $( ".url" ).each(function( index ) {      
       $(this).attr("href", self.regionUrl+$(this).data("default-url"))      
-    });    
+    });
+
     this.closeLocationWindow();
   },
   
+  // --------------------------------------
+  // Выбрать город / село и т.п.
+  // --------------------------------------
   selectPlace(e, placeName, placeUrl) {      
     
     let self=this;    
@@ -90,6 +93,9 @@ export default new Vue ({
     });        
   },
 
+  // --------------------------------------
+  // Показать подкатегории
+  // --------------------------------------
   showSubcategories(e, categoryId) {
     e.preventDefault();        
     $("*[data-category-id='"+(categoryId)+"']").show();
