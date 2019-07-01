@@ -14,7 +14,9 @@ export default new Vue ({
       placesList: [], // массив городов / сёл / деревень
       regions: true,    
       places: false,
-      locationName: ""      
+      locationName: "",
+      categories: true,
+      subCategories: false
     }
   },
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
@@ -83,6 +85,19 @@ export default new Vue ({
     this.resetLinksToDefault();
     $(".url").attr("href", this.regionUrl+$(".url").attr("href"));
     this.closeLocationWindow();
+  },
+
+  showSubcategories(e, categoryId) {
+    e.preventDefault();        
+    $("*[data-id='"+(categoryId)+"']").show();
+    this.categories=false;
+    this.subCategories=true;
+  },
+
+  returnToCategories() {    
+    $("*[data-id]").hide();
+    this.categories=true;
+    this.subCategories=false;    
   }
 }
   
