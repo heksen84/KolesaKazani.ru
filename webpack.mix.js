@@ -16,4 +16,5 @@ mix.js('resources/assets/js/login.js', 'public/js').
 mix.js('resources/assets/js/register.js', 'public/js').
 mix.js('resources/assets/js/passwordreset.js', 'public/js').
 mix.js('resources/assets/js/sendemail.js', 'public/js').
-mix.js('resources/assets/js/app.js', 'public/js').sass('resources/assets/sass/app.scss', 'public/css').version();
+mix.js('resources/assets/js/app.js', 'public/js').
+sass('resources/assets/sass/app.scss', 'public/css').version();
