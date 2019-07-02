@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="keywords" content="get numbers, free numbers" />
-        <meta name="description" content="get free numbers">
+        <meta name="keywords" content="Регистрация объявления сайт доска" />
+        <meta name="description" content="Регистрация на сайте объявлений">
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Регистрация</title>
@@ -17,5 +17,5 @@
   <register></register>
 </div>
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-<script src="{{ asset('js/app.js') }}"></script>
+<script type="text/javascript" src="{{ mix('js/register.js') }}"></script>
 <!--<style>body { background: none;}</style>-->
