@@ -17,5 +17,4 @@
   <login></login>
 </div>
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-<script src="{{ asset('js/app.js') }}"></script>
-<!--<style>body { background: none;}</style>-->
+<script src="{{ asset('js/login.js') }}"></script>
