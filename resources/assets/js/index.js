@@ -88,16 +88,15 @@ export default new Vue ({
   // --------------------------------------
 
   searchInCountry(e) {    
-    
-    /*let self=this;
-    this.locationName=this.tmpLocationName;
+      
+    this.locationName=e.target.innerText;
   
     $( ".url" ).each(function( index ) {      
-      $(this).attr("href", self.regionUrl+$(this).data("default-url"))      
+      $(this).attr("href", $(this).data("default-url"))      
     });
 
-    localStorage.setItem("locationUrl", self.regionUrl);
-    localStorage.setItem("locationName", this.locationName);*/
+    localStorage.setItem("locationUrl", "");
+    localStorage.setItem("locationName", this.locationName);
   
     this.closeLocationWindow();
   },
@@ -105,6 +104,7 @@ export default new Vue ({
   searchInRegion(e) {    
     
     let self=this;
+    
     this.locationName=this.tmpLocationName;
   
     $( ".url" ).each(function( index ) {      
