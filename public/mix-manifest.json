@@ -1,9 +1,10 @@
 {
-    "/js/app.js": "/js/app.js?id=f847b4e282c616e39db3",
-    "/js/login.js": "/js/login.js?id=64216f775f986ad9f26b",
-    "/js/sendemail.js": "/js/sendemail.js?id=ffd3796f9aae59dffa52",
-    "/js/register.js": "/js/register.js?id=b1ee8174abfd1634a6ba",
-    "/js/passwordreset.js": "/js/passwordreset.js?id=203be07fda0d7d3ffb38",
-    "/js/index.js": "/js/index.js?id=03ba9c73b8947a5f1cae",
-    "/css/app.css": "/css/app.css?id=5aac9e3b27d6eb00e89d"
+    "/js/app.js": "/js/app.js?id=d907e9bf51e463f6ae0e",
+    "/js/create.js": "/js/create.js?id=025ccd7837a94974e18a",
+    "/js/login.js": "/js/login.js?id=36114c0707d1e73ccc72",
+    "/js/sendemail.js": "/js/sendemail.js?id=e3bbf6b0055dce544fc1",
+    "/js/register.js": "/js/register.js?id=60b99bccd28c49b11fe5",
+    "/js/passwordreset.js": "/js/passwordreset.js?id=5cce11c5d44aa2eec064",
+    "/js/index.js": "/js/index.js?id=dec0fa1ea99c9e840408",
+    "/css/app.css": "/css/app.css?id=952238f75edb116c9bfb"
 }
