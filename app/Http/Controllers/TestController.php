@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Categories;
 use App\SubCats;
 use App\Regions;
@@ -19,8 +20,11 @@ class TestController extends Controller {
         return $request;
     }
 
-    public function testSSR(Request $request) {
-	
-	return view("testSSR")->with("categories", Categories::all())->with("subcategories", SubCats::all())->with("regions", Regions::all());
+    public function testSSR(Request $request) {	
+
+        // Выбрать категории + поле parentUrl
+        
+		$subcats = DB::select("SELECT * FROM `SubCats`");                
+	    return view("testSSR")->with("categories", Categories::all())->with("subcategories", SubCats::All())->with("regions", Regions::all());
     }
 }
