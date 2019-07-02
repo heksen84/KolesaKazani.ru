@@ -2936,7 +2936,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 // ----------------------------------------------------
-// ИМПОРТ
+// Логика
 // ----------------------------------------------------
 
 
@@ -2944,7 +2944,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var preview_images_array = [];
 
+// ----------------------
 // карты
+// ----------------------
 var mapCoords = [];
 var myPlacemark1 = null;
 var myPlacemark2 = null;
@@ -2956,20 +2958,15 @@ var smallmap = null;
  Преобразует строку в массив
 ------------------------------*/
 function str_split(string, length) {
-
 	var chunks, len, pos;
-
 	string = string == null ? "" : string;
 	length = length == null ? 1 : length;
-
 	var chunks = [];
 	var pos = 0;
 	var len = string.length;
-
 	while (pos < len) {
 		chunks.push(string.slice(pos, pos += length));
 	}
-
 	return chunks;
 };
 
