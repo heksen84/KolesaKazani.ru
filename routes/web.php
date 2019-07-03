@@ -72,8 +72,7 @@ Route::get("/getResultsByPlaceForFront", "ResultsController@getResultsByPlaceFor
 // ---------------------------------------------------------------
 // Базовые контроллеры
 // ---------------------------------------------------------------
-Route::get("/", 				"IndexController@init");
-//Route::get('/', 'AppController@get');
+Route::get("/", 				"IndexController@showIndexPage");
 Route::post("create", 			"AdvertController@createAdvert");
 Route::get("deleteAdvert", 	    "AdvertController@deleteAdvert");
 Route::get("home",	 		 	"CabinetController@index");
