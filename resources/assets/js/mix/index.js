@@ -2,17 +2,16 @@ require('./bootstrap');
 import Vue from 'vue';
 import $ from "jquery";
 import bootstrap from "bootstrap";
-import { get } from '../helpers/api' // axios
+import { get } from './helpers/api' // axios
 
-// ------------------------
+// --------------------------
 // экземляр приложения vue
-// ------------------------
+// --------------------------
 export default new Vue ({
 
   el: '#app',
-  
-  data () {      
-  
+
+  data () {   
     return {      
       placesList: [], // массив городов / сёл / деревень
       regions: true,    
@@ -22,8 +21,8 @@ export default new Vue ({
       categories: true,
       subCategories: false,      
     }
-  
   },
+
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
   components: {    
     bootstrap
@@ -33,7 +32,7 @@ export default new Vue ({
   // Компонент создан
   // -------------------------------
   created() {
-
+    
     // Вытаскивыю местоположение из локалстораджа
     var locationUrl = localStorage.getItem("locationUrl");
     var locationName = localStorage.getItem("locationName");
@@ -70,7 +69,7 @@ export default new Vue ({
   // --------------------------------------
   // Выбор региона
   // --------------------------------------
-  showPlacesByRegion(e, regionId) {
+  showPlacesByRegion(e, regionId) {    
     
     e.preventDefault();
     this.tmpLocationName=e.target.innerText;
@@ -85,10 +84,10 @@ export default new Vue ({
   },
 
   // --------------------------------------
-  // Выбор расположения
+  // Поиск в стране
   // --------------------------------------
-  searchInCountry(e) {    
-      
+  searchInCountry(e) {
+
     this.locationName=e.target.innerText;
   
     $( ".url" ).each(function( index ) {      
@@ -101,10 +100,12 @@ export default new Vue ({
     this.closeLocationWindow();
   },
 
+  // --------------------------------------
+  // Поиск в регионе
+  // --------------------------------------
   searchInRegion(e) {    
     
-    let self=this;
-    
+    let self=this;    
     this.locationName=this.tmpLocationName;
   
     $( ".url" ).each(function( index ) {      
@@ -120,10 +121,10 @@ export default new Vue ({
   // --------------------------------------
   // Выбрать город / село и т.п.
   // --------------------------------------
-  selectPlace(e, placeName, placeUrl) {    
-    
-    let self=this;    
-    e.preventDefault();
+  selectPlace(e, placeName, placeUrl) {
+
+    e.preventDefault();    
+    let self=this;        
     
     this.locationName=placeName;
     this.closeLocationWindow();
@@ -141,7 +142,6 @@ export default new Vue ({
   // Показать подкатегории
   // --------------------------------------
   showSubcategories(e, categoryId) {
-
     if (categoryId<3) {
       e.preventDefault();        
       $("*[data-category-id='"+(categoryId)+"']").show();
