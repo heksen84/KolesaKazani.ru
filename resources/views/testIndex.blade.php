@@ -53,9 +53,9 @@
         <div class="modal-body text-center">                
           <div v-if="regions">
           <b class="link" @click="searchInCountry">Весь Казахстан</b><br><hr>
-@foreach($regions as $region)
-            <a href="/{{ $region["url"]}}" class="black link" @click="showPlacesByRegion($event,{{ $region['region_id'] }})">{{$region["name"]}}</a><br>
-@endforeach
+            @foreach($regions as $region)
+              <a href="/{{ $region["url"]}}" class="black link" @click="showPlacesByRegion($event,{{ $region['region_id'] }})">{{$region["name"]}}</a><br>
+            @endforeach
           </div>
           <div v-if="places">
             <b class="link" @click="searchInRegion">Искать в регионе</b><br><hr>
@@ -70,7 +70,7 @@
   </div>
 
   <div class="row">
-    <div style="margin:auto" id="login_register_col">
+    <div class="margin-auto" id="login_register_col">
 @if ($auth===0)
       <a href="/login"><div class="button" id="button_login" style="margin-left:17px">Вход</div></a>
       <a href="/register"><div class="button" id="button_reg">Регистрация</div></a>          
@@ -140,14 +140,14 @@
     </div>
   
   <div class="row" style="margin-top:20px">
-    <h5 style="margin:auto">Google Advert</h5>
+    <h5 class="margin-auto">Google Advert</h5>
   </div>
   
   <div class="row" style="margin-top:40px">
     <div id="footer"><a href="/advertisers" class="underline_link">Реклама</a> | <a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a></div>
   </div>
 
-  </div>
+ </div>
 </div>
   <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>
 </body>
