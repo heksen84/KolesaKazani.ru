@@ -29,7 +29,7 @@
             <div class="card-body">              
               <h5 class="card-title">{{ $item["title"] }}</h5>
                 <p class="card-text">Описание</p>
-              <a href="#" class="btn btn-success">Подробнее</a>
+              <a href="#" class="btn btn-success btn-sm">Подробнее</a>
             </div>
         </div>
       </div>
