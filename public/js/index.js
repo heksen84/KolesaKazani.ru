@@ -50936,7 +50936,6 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
     // --------------------------------------
     // Выбор расположения
     // --------------------------------------
-
     searchInCountry: function searchInCountry(e) {
 
       this.locationName = e.target.innerText;

@@ -86,7 +86,6 @@ export default new Vue ({
   // --------------------------------------
   // Выбор расположения
   // --------------------------------------
-
   searchInCountry(e) {    
       
     this.locationName=e.target.innerText;

@@ -19,18 +19,21 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="/podat-obyavlenie">Подать объявления <span class="sr-only">(current)</span></a>
-        </li>
+ @if ($auth===1)
+        <li class="nav-item active">	    
+          <a class="nav-link" href="/podat-obyavlenie">Подать объявлениe <span class="sr-only">(current)</span></a>
+        </li>	
         <li class="nav-item">
           <a class="nav-link" href="/home">Мои объявления</a>
         </li>
+	@else
         <li class="nav-item">
           <a class="nav-link" href="/login">Вход</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/register">Регистрация</a>
         </li>      
+	@endif
       </ul>
     </div>
   </nav>
@@ -68,9 +71,13 @@
 
   <div class="row">
     <div style="margin:auto" id="login_register_col">
+@if ($auth===0)
       <a href="/login"><div class="button" id="button_login" style="margin-left:17px">Вход</div></a>
       <a href="/register"><div class="button" id="button_reg">Регистрация</div></a>          
-    </div>     
+@else
+     	<a href="/home"><div class="button">мои объявления</div></a>
+@endif
+    </div>
   </div>
 
   <div class="row" style="margin-top:2px">
@@ -92,6 +99,7 @@
     <div class="index_select_region_and_other_button_block">
       <button class="search_options_button btn btn-light btn-sm hide" data-toggle="modal" id="locationButton" @click="showLocationWindow">Расположение ${locationName}</button>
     </div>
+
   </div>
 
     <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center" title="Подать новое объявление" id="new_advert_col">
