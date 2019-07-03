@@ -43521,38 +43521,6 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/bootstrap.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-
-window._ = __webpack_require__("./node_modules/lodash/lodash.js");
-
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
-
-//window.Vue = require('vue');
-window.axios = __webpack_require__("./node_modules/axios/index.js");
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-/**
- * Next we will register the CSRF Token as a common header with Axios so that
- * all outgoing HTTP requests automatically have it attached. This is just
- * a simple convenience so we don't have to attach every token manually.
- */
-
-var token = document.head.querySelector('meta[name="csrf-token"]');
-
-if (token) {
-  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-} else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-}
-
-/***/ }),
-
 /***/ "./resources/assets/js/components/chars/realestate.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -43649,12 +43617,138 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ "./resources/assets/js/create.js":
+/***/ "./resources/assets/js/helpers/api.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = get;
+/* unused harmony export asyncget */
+/* harmony export (immutable) */ __webpack_exports__["b"] = post;
+/* unused harmony export del */
+/* unused harmony export interceptors */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__("./node_modules/babel-runtime/regenerator/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__("./node_modules/axios/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store__ = __webpack_require__("./resources/assets/js/store/index.js");
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+
+
+
+function get(url) {
+    return __WEBPACK_IMPORTED_MODULE_1_axios___default()({
+        method: 'GET',
+        url: url,
+        headers: {
+            'Authorization': 'Bearer ' + __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].state.user.api_token
+        }
+    });
+}
+
+var asyncget = function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(url) {
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+            while (1) {
+                switch (_context.prev = _context.next) {
+                    case 0:
+                        _context.next = 2;
+                        return __WEBPACK_IMPORTED_MODULE_1_axios___default()({
+                            method: 'GET',
+                            url: url,
+                            headers: {
+                                'Authorization': 'Bearer ' + __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].state.user.api_token
+                            }
+                        });
+
+                    case 2:
+                        return _context.abrupt('return', _context.sent);
+
+                    case 3:
+                    case 'end':
+                        return _context.stop();
+                }
+            }
+        }, _callee, this);
+    }));
+
+    return function asyncget(_x) {
+        return _ref.apply(this, arguments);
+    };
+}();
+
+function post(url, payload) {
+    return __WEBPACK_IMPORTED_MODULE_1_axios___default()({
+        method: 'POST',
+        url: url,
+        data: payload,
+        headers: {
+            'Authorization': 'Bearer ' + __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].state.user.api_token
+        }
+    });
+}
+// delete is reserved keyword
+function del(url) {
+    return __WEBPACK_IMPORTED_MODULE_1_axios___default()({
+        method: 'DELETE',
+        url: url,
+        headers: {
+            'Authorization': 'Bearer ' + __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].state.user.api_token
+        }
+    });
+}
+
+function interceptors(cb) {
+    __WEBPACK_IMPORTED_MODULE_1_axios___default.a.interceptors.response.use(function (res) {
+        return res;
+    }, function (err) {
+        cb(err);
+        return Promise.reject(err);
+    });
+}
+
+/***/ }),
+
+/***/ "./resources/assets/js/mix/bootstrap.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+
+window._ = __webpack_require__("./node_modules/lodash/lodash.js");
+
+/**
+ * We'll load the axios HTTP library which allows us to easily issue requests
+ * to our Laravel back-end. This library automatically handles sending the
+ * CSRF token as a header based on the value of the "XSRF" token cookie.
+ */
+
+//window.Vue = require('vue');
+window.axios = __webpack_require__("./node_modules/axios/index.js");
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+/**
+ * Next we will register the CSRF Token as a common header with Axios so that
+ * all outgoing HTTP requests automatically have it attached. This is just
+ * a simple convenience so we don't have to attach every token manually.
+ */
+
+var token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+
+/***/ }),
+
+/***/ "./resources/assets/js/mix/create.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__data__ = __webpack_require__("./resources/assets/js/data.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__data__ = __webpack_require__("./resources/assets/js/mix/data.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_create_vue__ = __webpack_require__("./resources/assets/js/views/create.vue");
@@ -43684,7 +43778,7 @@ var _state;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-__webpack_require__("./resources/assets/js/bootstrap.js");
+__webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
 
 
@@ -43835,7 +43929,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_19_vuex__["a" /* default */].Store({
 
 /***/ }),
 
-/***/ "./resources/assets/js/data.js":
+/***/ "./resources/assets/js/mix/data.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43857,100 +43951,6 @@ var store = new __WEBPACK_IMPORTED_MODULE_19_vuex__["a" /* default */].Store({
     alert: { show: false, msg: "" }
 
 });
-
-/***/ }),
-
-/***/ "./resources/assets/js/helpers/api.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = get;
-/* unused harmony export asyncget */
-/* harmony export (immutable) */ __webpack_exports__["b"] = post;
-/* unused harmony export del */
-/* unused harmony export interceptors */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__("./node_modules/babel-runtime/regenerator/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__("./node_modules/axios/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store__ = __webpack_require__("./resources/assets/js/store/index.js");
-
-
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
-
-
-
-function get(url) {
-    return __WEBPACK_IMPORTED_MODULE_1_axios___default()({
-        method: 'GET',
-        url: url,
-        headers: {
-            'Authorization': 'Bearer ' + __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].state.user.api_token
-        }
-    });
-}
-
-var asyncget = function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(url) {
-        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-            while (1) {
-                switch (_context.prev = _context.next) {
-                    case 0:
-                        _context.next = 2;
-                        return __WEBPACK_IMPORTED_MODULE_1_axios___default()({
-                            method: 'GET',
-                            url: url,
-                            headers: {
-                                'Authorization': 'Bearer ' + __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].state.user.api_token
-                            }
-                        });
-
-                    case 2:
-                        return _context.abrupt('return', _context.sent);
-
-                    case 3:
-                    case 'end':
-                        return _context.stop();
-                }
-            }
-        }, _callee, this);
-    }));
-
-    return function asyncget(_x) {
-        return _ref.apply(this, arguments);
-    };
-}();
-
-function post(url, payload) {
-    return __WEBPACK_IMPORTED_MODULE_1_axios___default()({
-        method: 'POST',
-        url: url,
-        data: payload,
-        headers: {
-            'Authorization': 'Bearer ' + __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].state.user.api_token
-        }
-    });
-}
-// delete is reserved keyword
-function del(url) {
-    return __WEBPACK_IMPORTED_MODULE_1_axios___default()({
-        method: 'DELETE',
-        url: url,
-        headers: {
-            'Authorization': 'Bearer ' + __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].state.user.api_token
-        }
-    });
-}
-
-function interceptors(cb) {
-    __WEBPACK_IMPORTED_MODULE_1_axios___default.a.interceptors.response.use(function (res) {
-        return res;
-    }, function (err) {
-        cb(err);
-        return Promise.reject(err);
-    });
-}
 
 /***/ }),
 
@@ -44045,7 +44045,7 @@ module.exports = Component.exports
 /***/ 5:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./resources/assets/js/create.js");
+module.exports = __webpack_require__("./resources/assets/js/mix/create.js");
 
 
 /***/ })

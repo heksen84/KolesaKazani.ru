@@ -2,7 +2,7 @@ require('./bootstrap');
 
 import data from './data';
 import Vue from 'vue';
-import create from './views/create.vue';
+import create from '../views/create.vue';
 
 // bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';

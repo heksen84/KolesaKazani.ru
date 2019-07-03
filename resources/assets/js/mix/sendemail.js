@@ -2,7 +2,7 @@ require('./bootstrap');
 
 import data from './data';
 import Vue from 'vue';
-import passwordreset from './views/auth/passwordreset.vue';
+import sendemail from '../views/auth/sendemail.vue';
 
 // bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -24,6 +24,6 @@ export default new Vue({
     el: '#app',
     data: data,
     components: {
-	    passwordreset
+	sendemail
   }
 });

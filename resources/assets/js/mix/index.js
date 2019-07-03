@@ -2,12 +2,13 @@ require('./bootstrap');
 import Vue from 'vue';
 import $ from "jquery";
 import bootstrap from "bootstrap";
-import { get } from './helpers/api' // axios
+import { get } from '../helpers/api' // axios
 
 // ------------------------
 // экземляр приложения vue
 // ------------------------
 export default new Vue ({
+
   el: '#app',
   
   data () {      
@@ -149,6 +150,9 @@ export default new Vue ({
     }
   },
 
+  // --------------------------------------
+  // Вернуться к категориям
+  // --------------------------------------
   returnToCategories() {    
     $("*[data-category-id]").hide();
     this.categories=true;

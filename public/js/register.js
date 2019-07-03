@@ -36679,63 +36679,6 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/bootstrap.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-
-window._ = __webpack_require__("./node_modules/lodash/lodash.js");
-
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
-
-//window.Vue = require('vue');
-window.axios = __webpack_require__("./node_modules/axios/index.js");
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-/**
- * Next we will register the CSRF Token as a common header with Axios so that
- * all outgoing HTTP requests automatically have it attached. This is just
- * a simple convenience so we don't have to attach every token manually.
- */
-
-var token = document.head.querySelector('meta[name="csrf-token"]');
-
-if (token) {
-  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-} else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-}
-
-/***/ }),
-
-/***/ "./resources/assets/js/data.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
-
-    //
-    money_full_name: "тенге",
-
-    //
-    money_small_name: "тнг.",
-
-    // максимальное кол-во загружаемых картинок    
-    max_loaded_images: 10,
-
-    // наш объект объявления, куда размещается объявление
-    advert_data: {},
-
-    // глобальный объект для алертов
-    alert: { show: false, msg: "" }
-
-});
-
-/***/ }),
-
 /***/ "./resources/assets/js/helpers/api.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -36830,12 +36773,69 @@ function interceptors(cb) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/register.js":
+/***/ "./resources/assets/js/mix/bootstrap.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+
+window._ = __webpack_require__("./node_modules/lodash/lodash.js");
+
+/**
+ * We'll load the axios HTTP library which allows us to easily issue requests
+ * to our Laravel back-end. This library automatically handles sending the
+ * CSRF token as a header based on the value of the "XSRF" token cookie.
+ */
+
+//window.Vue = require('vue');
+window.axios = __webpack_require__("./node_modules/axios/index.js");
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+/**
+ * Next we will register the CSRF Token as a common header with Axios so that
+ * all outgoing HTTP requests automatically have it attached. This is just
+ * a simple convenience so we don't have to attach every token manually.
+ */
+
+var token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+
+/***/ }),
+
+/***/ "./resources/assets/js/mix/data.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+
+    //
+    money_full_name: "тенге",
+
+    //
+    money_small_name: "тнг.",
+
+    // максимальное кол-во загружаемых картинок    
+    max_loaded_images: 10,
+
+    // наш объект объявления, куда размещается объявление
+    advert_data: {},
+
+    // глобальный объект для алертов
+    alert: { show: false, msg: "" }
+
+});
+
+/***/ }),
+
+/***/ "./resources/assets/js/mix/register.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__data__ = __webpack_require__("./resources/assets/js/data.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__data__ = __webpack_require__("./resources/assets/js/mix/data.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_auth_register_vue__ = __webpack_require__("./resources/assets/js/views/auth/register.vue");
@@ -36849,7 +36849,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_bootstrap_vue_src_components_form_input__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-input/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_bootstrap_vue_src_components_form_group__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-group/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_bootstrap_vue_src_components_button__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/index.js");
-__webpack_require__("./resources/assets/js/bootstrap.js");
+__webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
 
 
@@ -36972,7 +36972,7 @@ module.exports = Component.exports
 /***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./resources/assets/js/register.js");
+module.exports = __webpack_require__("./resources/assets/js/mix/register.js");
 
 
 /***/ })

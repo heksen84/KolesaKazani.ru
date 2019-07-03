@@ -4,18 +4,18 @@ import data from './data';
 import Vue from 'vue';
 
 // Вьюшки ВьюДжеЭс
-import index from './views/index.vue';
-import cabinet from './views/cabinet.vue';
-import profile from './views/profile.vue';
-import search from './views/search.vue';
-import results from './views/results.vue';
-import create from './views/create.vue';
-import detailed from './views/detailed.vue';
-import sendemail from './views/auth/sendemail.vue';
-import passwordreset from './views/auth/passwordreset.vue';
-import login from './views/auth/login.vue';
-import register from './views/auth/register.vue';
-import adminpanel from './views/panels/admin.vue';
+import index from '../views/index.vue';
+import cabinet from '../views/cabinet.vue';
+import profile from '../views/profile.vue';
+import search from '../views/search.vue';
+import results from '../views/results.vue';
+import create from '../views/create.vue';
+import detailed from '../views/detailed.vue';
+import sendemail from '../views/auth/sendemail.vue';
+import passwordreset from '../views/auth/passwordreset.vue';
+import login from '../views/auth/login.vue';
+import register from '../views/auth/register.vue';
+import adminpanel from '../views/panels/admin.vue';
 
 
 // bootstrap
