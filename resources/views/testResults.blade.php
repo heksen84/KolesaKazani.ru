@@ -10,15 +10,27 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>{{ $title }}</title>
   <link rel="icon" href="{{ asset('public/shop.ico') }}">
-  <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 </head>
 <body>
 <div id="app">
-	
+  <div class="container-fluid mycontainer" style="margin-top:10px">	
+  <h1>{{ $title }}</h1>
   @foreach ( json_decode($results, true) as $item)
-    <h2>{{ $item["title"] }}</h2>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">      
+        <div class="card">
+            <div class="card-body">              
+              <h5 class="card-title">{{ $item["title"] }}</h5>
+                <p class="card-text">Описание</p>
+              <a href="#" class="btn btn-primary">Подробнее</a>
+            </div>
+        </div>
+      </div>
+    </div>
   @endforeach
-  
+  </div>  
 </div>
 </body>
 </html>
