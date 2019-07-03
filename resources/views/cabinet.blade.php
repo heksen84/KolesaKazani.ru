@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="keywords" content="Дать объявление"/>
         <meta name="description" content="Доска объявлений Дамеля">
-        <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Мои объявления. Личный кабинет.</title>
 	    <link rel="icon" href="{{ asset('public/shop.ico') }}">

@@ -71,12 +71,12 @@
 
   <div class="row">
     <div class="margin-auto" id="login_register_col">
-@if ($auth===0)
+    @if ($auth===0)
       <a href="/login"><div class="button" id="button_login" style="margin-left:17px">Вход</div></a>
       <a href="/register"><div class="button" id="button_reg">Регистрация</div></a>          
-@else
+    @else
      	<a href="/home"><div class="button">мои объявления</div></a>
-@endif
+    @endif
     </div>
   </div>
 

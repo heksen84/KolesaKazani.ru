@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ app()->getLocale() }}">
 <head>
   <title>Доска объявлений Дамеля - все объявления Казахстана.</title>
   <meta charset="utf-8">

@@ -1215,8 +1215,7 @@ class ResultsController extends Controller {
     // если указаны фильтры, то вернуть данные на морду (return results)
     // иначе передать данные во вьюху
 	// ---------------------------------------------------------------------
-    return array
-	(
+    return array (
         "category_name"=>json_encode($category),
         "subcat"=>json_encode($subcat),
         "keywords"=>$keywords,
@@ -1228,9 +1227,8 @@ class ResultsController extends Controller {
         "total_records"=>$this->total[0]->count,
         "region"=>json_encode($this->region),
         "place"=>json_encode($this->place)
-    );
-         
-    }
+    );         
+}
 
    // --------------------------------------------------------------------------------------
    // Результаты подкатегорий для бэка
@@ -1242,7 +1240,7 @@ class ResultsController extends Controller {
     if ($result==null)
         return view("errors/404");
 
-    return view("results")
+    return view("testResults")
     ->with("category_name", $result["category_name"])
     ->with("subcat", $result["subcat"])
     ->with("keywords", $result["keywords"])

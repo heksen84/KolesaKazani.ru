@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="keywords" content="{{ $keywords }}" />
   <meta name="description" content="{{ $description }}">
-  <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>{{ $title }}</title>
   <link rel="icon" href="{{ asset('public/shop.ico') }}">
@@ -15,9 +14,11 @@
 </head>
 <body>
 <div id="app">
-	@foreach($results as $item)  
-		{{ $item["title"] }}
-	@endfor
+	
+  @foreach ( json_decode($results, true) as $item)
+    <h2>{{ $item["title"] }}</h2>
+  @endforeach
+  
 </div>
 </body>
 </html>
