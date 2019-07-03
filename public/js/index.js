@@ -50847,15 +50847,14 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
  // axios
 
-// ------------------------
+// --------------------------
 // экземляр приложения vue
-// ------------------------
+// --------------------------
 /* harmony default export */ __webpack_exports__["default"] = (new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 
   el: '#app',
 
   data: function data() {
-
     return {
       placesList: [], // массив городов / сёл / деревень
       regions: true,
@@ -50866,6 +50865,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
       subCategories: false
     };
   },
+
 
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
   components: {
@@ -50935,7 +50935,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
 
     // --------------------------------------
-    // Выбор расположения
+    // Поиск в стране
     // --------------------------------------
     searchInCountry: function searchInCountry(e) {
 
@@ -50950,10 +50950,14 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
       this.closeLocationWindow();
     },
+
+
+    // --------------------------------------
+    // Поиск в регионе
+    // --------------------------------------
     searchInRegion: function searchInRegion(e) {
 
       var self = this;
-
       this.locationName = this.tmpLocationName;
 
       __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").each(function (index) {
@@ -50972,8 +50976,8 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
     // --------------------------------------
     selectPlace: function selectPlace(e, placeName, placeUrl) {
 
-      var self = this;
       e.preventDefault();
+      var self = this;
 
       this.locationName = placeName;
       this.closeLocationWindow();
@@ -50991,7 +50995,6 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
     // Показать подкатегории
     // --------------------------------------
     showSubcategories: function showSubcategories(e, categoryId) {
-
       if (categoryId < 3) {
         e.preventDefault();
         __WEBPACK_IMPORTED_MODULE_1_jquery___default()("*[data-category-id='" + categoryId + "']").show();

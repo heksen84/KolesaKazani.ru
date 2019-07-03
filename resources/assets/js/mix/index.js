@@ -2,7 +2,7 @@ require('./bootstrap');
 import Vue from 'vue';
 import $ from "jquery";
 import bootstrap from "bootstrap";
-import { get } from './helpers/api' // axios
+import { get } from '../helpers/api' // axios
 
 // --------------------------
 // экземляр приложения vue
