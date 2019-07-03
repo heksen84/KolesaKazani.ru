@@ -53,9 +53,9 @@
         <div class="modal-body text-center">                
           <div v-if="regions">
           <b class="link" @click="searchInCountry">Весь Казахстан</b><br><hr>
-            @foreach($regions as $region)
-              <a href="/{{ $region["url"]}}" class="black link" @click="showPlacesByRegion($event,{{ $region['region_id'] }})">{{$region["name"]}}</a><br>
-            @endforeach
+@foreach($regions as $region)
+            <a href="/{{ $region["url"]}}" class="black link" @click="showPlacesByRegion($event,{{ $region['region_id'] }})">{{$region["name"]}}</a><br>
+@endforeach
           </div>
           <div v-if="places">
             <b class="link" @click="searchInRegion">Искать в регионе</b><br><hr>
@@ -110,13 +110,14 @@
 
   <div id="categories_line">
     <div class="center">    
+    
       <div id="categories_title" class="shadow_text" style="margin-bottom:18px">категории</div>    
 	      <div class="form-inline" v-show="categories">
-       	  @foreach($categories as $category)
+          @foreach($categories as $category)
         	  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 col_item" @click="showSubcategories($event,{{ $category['id'] }})">          	   
 		          <a href="/{{ $category['url'] }}" class="url" data-default-url="/{{ $category['url'] }}"><div class="category_item">{{ $category["name"] }}</div></a>
         	  </div>
-        	  @endforeach
+          @endforeach
 	      </div>
         
         <div v-show="subCategories">
