@@ -16,7 +16,11 @@
 <body>
 <div id="app">
   <div class="container-fluid mycontainer" style="margin-top:10px">	
-  <h1>{{ $title }}</h1>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 margin-auto">      
+        <h1>{{ $title }}</h1>
+      </div>
+    </div>
   @foreach ( json_decode($results, true) as $item)
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 margin-auto">      
@@ -24,7 +28,7 @@
             <div class="card-body">              
               <h5 class="card-title">{{ $item["title"] }}</h5>
                 <p class="card-text">Описание</p>
-              <a href="#" class="btn btn-primary">Подробнее</a>
+              <a href="#" class="btn btn-success">Подробнее</a>
             </div>
         </div>
       </div>
