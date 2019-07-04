@@ -315,7 +315,7 @@ class ResultsController extends Controller {
 			case 2: {
             
                 $this->total = DB::select("SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-					WHERE adv.category_id=2".$this->filter_string);
+				WHERE adv.category_id=2".$this->filter_string);
 
                 \Debugbar::info("TOTAL :".$this->total[0]->count);
 
@@ -616,13 +616,12 @@ class ResultsController extends Controller {
                 if ($subcat=="legkovoy-avtomobil") {
 
                     $this->total = DB::select(
-                        "SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_transport, car_mark, car_model) ON (
-                        adv_transport.mark=car_mark.id_car_mark AND 
-                        adv.adv_category_id=adv_transport.id AND 
-                        adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_transport.type=0 AND adv.category_id=1".$region_string.$place_string.$this->filter_string); 
-                                         
-                                    
+                    "SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_transport, car_mark, car_model) ON (
+                    adv_transport.mark=car_mark.id_car_mark AND 
+                    adv.adv_category_id=adv_transport.id AND 
+                    adv_transport.model = car_model.id_car_model
+                    ) WHERE adv_transport.type=0 AND adv.category_id=1".$region_string.$place_string.$this->filter_string); 
+
                     $results = DB::select(
                         "SELECT
 			            adv.region_id,
@@ -718,9 +717,8 @@ class ResultsController extends Controller {
                 if ($subcat=="spectehnika") {
 
                     $this->total = DB::select(
-                        "SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_transport) ON (
-                            adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=3 AND adv.category_id=1".$region_string.$place_string.$this->filter_string);
+                    "SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_transport) ON (
+                    adv.adv_category_id=adv_transport.id) WHERE adv_transport.type=3 AND adv.category_id=1".$region_string.$place_string.$this->filter_string);
 
                     $results = DB::select(
                         "SELECT
@@ -751,10 +749,8 @@ class ResultsController extends Controller {
                 if ($subcat=="retro-avtomobil") {
                     
                     $this->total = DB::select(
-                        "SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_transport) ON (
-                            adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=4 AND adv.category_id=1".$region_string.$place_string.$this->filter_string
-                    );
+                    "SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_transport) ON (adv.adv_category_id=adv_transport.id) 
+                    WHERE adv_transport.type=4 AND adv.category_id=1".$region_string.$place_string.$this->filter_string);
                     
                     $results = DB::select(
                         "SELECT
@@ -811,9 +807,8 @@ class ResultsController extends Controller {
                 // Велосипед
                 if ($subcat=="velosiped") {
 
-                    $this->total = DB::select(
-                        "SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_transport) ON (adv.adv_category_id=adv_transport.id) 
-                        WHERE adv_transport.type=6  AND adv.category_id=1".$region_string.$place_string.$this->filter_string);
+                    $this->total = DB::select("SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_transport) ON (adv.adv_category_id=adv_transport.id) 
+                    WHERE adv_transport.type=6  AND adv.category_id=1".$region_string.$place_string.$this->filter_string);
                                         
                     $results = DB::select(
                         "SELECT
@@ -841,9 +836,8 @@ class ResultsController extends Controller {
                 // Воздушный транспорт
                 if ($subcat=="vozdushnyy-transport") {
                     
-                    $this->total = DB::select(
-                        "SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_transport) ON (adv.adv_category_id=adv_transport.id) 
-                        WHERE adv_transport.type=7 AND adv.category_id=1".$region_string.$place_string.$this->filter_string);
+                    $this->total = DB::select("SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_transport) ON (adv.adv_category_id=adv_transport.id) 
+                    WHERE adv_transport.type=7 AND adv.category_id=1".$region_string.$place_string.$this->filter_string);
 
                     $results = DB::select(
                         "SELECT
@@ -911,9 +905,8 @@ class ResultsController extends Controller {
                 // комната
                 if ($subcat=="komnata") {
 
-                    $this->total = DB::select(
-                        "SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=1 AND adv.category_id=2".$region_string.$place_string.$this->filter_string);
+                    $this->total = DB::select("SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
+                    WHERE adv_realestate.property_type=1 AND adv.category_id=2".$region_string.$place_string.$this->filter_string);
 
                     $results = DB::select(
                         "SELECT
@@ -944,14 +937,14 @@ class ResultsController extends Controller {
                 if ($subcat=="dom-dacha-kottedzh") {
 
                     $this->total = DB::select("SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=2 AND adv.category_id=2".$region_string.$place_string.$this->filter_string);
+                    WHERE adv_realestate.property_type=2 AND adv.category_id=2".$region_string.$place_string.$this->filter_string);
 
                     $results = DB::select(
                         "SELECT
                         CASE adv_realestate.type_of_building 
-                            WHEN 0 THEN concat($this->dealRuString, 'дом ', adv_realestate.rooms, ' комн. ', adv_realestate.floors_house, ' этажей, ', adv_realestate.area, ' кв. м.' )
-                            WHEN 1 THEN concat($this->dealRuString, 'дачу ', adv_realestate.rooms, ' комн. ', adv_realestate.floors_house, ' этажей, ', adv_realestate.area, ' кв. м.' )
-                            WHEN 2 THEN concat($this->dealRuString, 'коттедж ', adv_realestate.rooms, ' комн. ', adv_realestate.floors_house, ' этажей, ', adv_realestate.area, ' кв. м.' )
+                        WHEN 0 THEN concat($this->dealRuString, 'дом ', adv_realestate.rooms, ' комн. ', adv_realestate.floors_house, ' этажей, ', adv_realestate.area, ' кв. м.' )
+                        WHEN 1 THEN concat($this->dealRuString, 'дачу ', adv_realestate.rooms, ' комн. ', adv_realestate.floors_house, ' этажей, ', adv_realestate.area, ' кв. м.' )
+                        WHEN 2 THEN concat($this->dealRuString, 'коттедж ', adv_realestate.rooms, ' комн. ', adv_realestate.floors_house, ' этажей, ', adv_realestate.area, ' кв. м.' )
                         ELSE '' 
                         END AS title,
                         adv.id as advert_id,
@@ -979,9 +972,8 @@ class ResultsController extends Controller {
                 // земельный участок
                 if ($subcat=="zemel-nyy-uchastok") {
 
-                    $this->total = DB::select(
-                        "SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=3 AND adv.category_id=2".$region_string.$place_string.$this->filter_string);
+                    $this->total = DB::select("SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
+                    WHERE adv_realestate.property_type=3 AND adv.category_id=2".$region_string.$place_string.$this->filter_string);
 
                     $results = DB::select(
                         "SELECT
@@ -1071,9 +1063,8 @@ class ResultsController extends Controller {
                 // недвижимость за рубежом
                 if ($subcat=="nedvizhimost-za-rubezhom") {
 
-                    $this->total = DB::select(
-                        "SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=6 AND adv.category_id=2".$region_string.$place_string.$this->filter_string);
+                    $this->total = DB::select("SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
+                    WHERE adv_realestate.property_type=6 AND adv.category_id=2".$region_string.$place_string.$this->filter_string);
 
                     $results = DB::select(
                         "SELECT
