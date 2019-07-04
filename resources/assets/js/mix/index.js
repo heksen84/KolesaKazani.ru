@@ -45,7 +45,7 @@ export default new Vue ({
     }
 
     // Показываю то, что скрыто
-    $("#locationButton").show();
+//    $("#locationButton").show();
     $("#close_subcats_btn").show();    
   },
 
