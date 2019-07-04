@@ -11,13 +11,16 @@ use App\Categories;
 use App\Regions;
 use App\Places;
 
+
 // ------------------------------------------
 // Класс возвращает результаты категорий
 // ------------------------------------------
 class ResultsController extends Controller {
+
+    private $dealRuString="CASE adv.deal WHEN 0 THEN 'Куплю' WHEN 1 THEN 'Продам' WHEN 2 THEN 'Обменяю' WHEN 3 THEN 'Сдам в аренду' ELSE '' END, ' '";
 	
     // частные переменные
-    private $total          = [];
+    private $total = [];
     private $start_record   = 0;
     private $records_limit  = 20; // максимальное число записей при выборке    
     private $filter_string  = "";   
@@ -134,14 +137,7 @@ class ResultsController extends Controller {
 
         // Проверяю наличие фильтров
         $filterData = $this->getFilterData($request);        
-    
-        // Получаю входящие данные и удаляю не нужные символы.
-        // FIXME: Пофиксить. Вылетает с ошибкой
-        // $requestString = preg_replace("/[a-zA-Z]/", "", $request->input("str"));
-    
         $requestString = $request->input("str");
-
-        //$arr = explode(" ", $requestString);
     
         \Debugbar::info("Строка поиска :".$requestString);	
 
@@ -167,8 +163,7 @@ class ResultsController extends Controller {
             price, 
             category_id,					
             (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image
-            FROM `adverts` AS adv WHERE ".$querySearchStr.$this->filter_string." ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit
-        );
+            FROM `adverts` AS adv WHERE ".$querySearchStr.$this->filter_string." ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit);
     
         \Debugbar::info($results);
 
@@ -217,9 +212,7 @@ class ResultsController extends Controller {
 
     // ----------------------------------------------------------------------------------
     //
-    //
     // Результаты по категории (общая функция)
-    //
     //
     // ----------------------------------------------------------------------------------
     public function getResultsByCategory(Request $request, $region, $place, $category) {
@@ -267,17 +260,12 @@ class ResultsController extends Controller {
 
 		case 1: {
 
-                $this->total = DB::select(
-                    "SELECT	
-                    COUNT(*) as count FROM `adverts` as adv
-					LEFT OUTER JOIN (adv_transport, car_mark, car_model) ON 
-                    (
+                $this->total = DB::select("SELECT COUNT(*) as count FROM `adverts` as adv LEFT OUTER JOIN (adv_transport, car_mark, car_model) ON (
 					adv.adv_category_id = adv_transport.id AND 
 					adv_transport.mark = car_mark.id_car_mark AND 						
 					adv_transport.model = car_model.id_car_model
-					) WHERE adv.category_id=1".$this->filter_string
-                );
-                
+                ) WHERE adv.category_id=1".$this->filter_string);
+                                    
                 \Debugbar::info("TOTAL :".$this->total[0]->count);
 
 				$results = DB::select(
@@ -304,8 +292,7 @@ class ResultsController extends Controller {
 					adv_transport.mark = car_mark.id_car_mark AND 						
 					adv_transport.model = car_model.id_car_model
 					) WHERE adv.category_id=1".$this->filter_string."
-					ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit
-				);
+					ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit);
 
 				\Debugbar::info($results);
 
@@ -321,18 +308,15 @@ class ResultsController extends Controller {
             // --------------------------------------------------------
 			case 2: {
             
-                $this->total = DB::select(
-                    "SELECT 
-                    COUNT(*) as count FROM `adverts` as adv
-                    INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-					WHERE adv.category_id=2".$this->filter_string
-                );
+                $this->total = DB::select("SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
+					WHERE adv.category_id=2".$this->filter_string);
 
                 \Debugbar::info("TOTAL :".$this->total[0]->count);
 
 				$results = DB::select(					
 					"SELECT
-					concat(adv_realestate.rooms, ' комнатную квартиру, ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаже, ', adv_realestate.area, ' кв. м.' ) AS title,					
+					concat($this->dealRuString,
+                    adv_realestate.rooms, ' комнатную квартиру, ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаже, ', adv_realestate.area, ' кв. м.' ) AS title,					
 					adv.id as advert_id,
 					DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
 					adv.deal,
@@ -345,8 +329,7 @@ class ResultsController extends Controller {
                     FROM `adverts` as adv
                     INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
 					WHERE adv.category_id=2".$this->filter_string."
-					ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit
-                );
+					ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit);
 
                 \Debugbar::info($results);
 
@@ -431,18 +414,16 @@ class ResultsController extends Controller {
 					category_id,					
 					(SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image
                     FROM `adverts` AS adv WHERE category_id=".$category->id.$this->filter_string.$region_string.$place_string.
-                    " ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit
-				);
+                    " ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit);
 
-				\Debugbar::info($results);
+				    \Debugbar::info($results);
 			}
         }
 
         // передать id категории
         \Debugbar::info("Категория: ".$request->path() );
         
-        return array
-        (
+        return array (
             "keywords"=>$keywords,
             "description"=>$description,
             "title"=>$title,            
@@ -551,7 +532,6 @@ class ResultsController extends Controller {
         ->with("region", json_encode($region))
         ->with("place",  json_encode($place))
         ->with("searchString", "null");
-
      }
 
      // ----------------------------------------------------------
@@ -630,21 +610,18 @@ class ResultsController extends Controller {
                 if ($subcat=="legkovoy-avtomobil") {
 
                     $this->total = DB::select(
-                        "SELECT 
-                        COUNT(*) as count 
-                        FROM `adverts` as adv
-                        INNER JOIN (adv_transport, car_mark, car_model) ON (
-                            adv_transport.mark=car_mark.id_car_mark AND 
-                            adv.adv_category_id=adv_transport.id AND 
-                            adv_transport.model = car_model.id_car_model
+                        "SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_transport, car_mark, car_model) ON (
+                        adv_transport.mark=car_mark.id_car_mark AND 
+                        adv.adv_category_id=adv_transport.id AND 
+                        adv_transport.model = car_model.id_car_model
                         ) WHERE adv_transport.type=0 AND adv.category_id=1".$region_string.$place_string.$this->filter_string); 
-                    
+                                         
                                     
                     $results = DB::select(
                         "SELECT
 			            adv.region_id,
 			            adv.city_id,
-                        concat(car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
+                        concat($this->dealRuString, car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
                         adv.id as advert_id,
                         DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                         adv.deal,
@@ -655,12 +632,11 @@ class ResultsController extends Controller {
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport, car_mark, car_model) ON (
-                            adv_transport.mark=car_mark.id_car_mark AND 
-                            adv.adv_category_id=adv_transport.id AND 
-                            adv_transport.model = car_model.id_car_model
+                        adv_transport.mark=car_mark.id_car_mark AND 
+                        adv.adv_category_id=adv_transport.id AND 
+                        adv_transport.model = car_model.id_car_model
                         ) WHERE adv_transport.type=0 AND adv.category_id=1".$this->filter_string.$region_string.$place_string."
-                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
-                    );                    
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit);                    
 
                     \Debugbar::info($results);
 
@@ -673,14 +649,8 @@ class ResultsController extends Controller {
                 // Грузовой транспорт
                 if ($subcat=="gruzovoy-avtomobil") {
 
-                    $this->total = DB::select(
-                        "SELECT 
-                        COUNT(*) as count 
-                        FROM `adverts` as adv
-                        INNER JOIN (adv_transport) ON (
-                            adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=1 AND adv.category_id=1".$region_string.$place_string.$this->filter_string
-                    );
+                    $this->total = DB::select("SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_transport) ON (adv.adv_category_id=adv_transport.id) 
+                    WHERE adv_transport.type=1 AND adv.category_id=1".$region_string.$place_string.$this->filter_string);
                     
                     $results = DB::select(
                         "SELECT
@@ -695,31 +665,23 @@ class ResultsController extends Controller {
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
-                            adv.adv_category_id=adv_transport.id
+                        adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=1 AND adv.category_id=1".$this->filter_string.$region_string.$place_string." 
-                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
-                    );
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit);
 
                     \Debugbar::info($results);
 
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду грузового транспорта";
-
                     break;
                 }
 
                 // Мототехника
                 if ($subcat=="mototehnika") {                                        
                    
-                    $this->total = DB::select(
-                        "SELECT
-                        COUNT(*) as count 
-                        FROM `adverts` as adv
-                        INNER JOIN (adv_transport) ON (
-                            adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=2 AND adv.category_id=1".$region_string.$place_string.$this->filter_string
-                    );
+                    $this->total = DB::select("SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_transport) ON (adv.adv_category_id=adv_transport.id) 
+                    WHERE adv_transport.type=2 AND adv.category_id=1".$region_string.$place_string.$this->filter_string);
                     
                     $results = DB::select(
                         "SELECT
@@ -734,17 +696,15 @@ class ResultsController extends Controller {
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
-                            adv.adv_category_id=adv_transport.id
+                        adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=2 AND adv.category_id=1".$this->filter_string.$region_string.$place_string."
-                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
-                    );
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit);
 
                     \Debugbar::info($results);
                     
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду мототехники";
-
                     break;
                 }                
 
@@ -752,13 +712,9 @@ class ResultsController extends Controller {
                 if ($subcat=="spectehnika") {
 
                     $this->total = DB::select(
-                        "SELECT
-                        COUNT(*) as count 
-                        FROM `adverts` as adv
-                        INNER JOIN (adv_transport) ON (
+                        "SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=3 AND adv.category_id=1".$region_string.$place_string.$this->filter_string
-                    );
+                        ) WHERE adv_transport.type=3 AND adv.category_id=1".$region_string.$place_string.$this->filter_string);
 
                     $results = DB::select(
                         "SELECT
@@ -773,17 +729,15 @@ class ResultsController extends Controller {
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
-                            adv.adv_category_id=adv_transport.id
+                        adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=3 AND adv.category_id=1".$this->filter_string.$region_string.$place_string." 
-                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
-                    );
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit);
 
                     \Debugbar::info($results);
 
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду спецтехники";
-
                     break;
                 }   
 
@@ -791,10 +745,7 @@ class ResultsController extends Controller {
                 if ($subcat=="retro-avtomobil") {
                     
                     $this->total = DB::select(
-                        "SELECT 
-                        COUNT(*) as count
-                        FROM `adverts` as adv
-                        INNER JOIN (adv_transport) ON (
+                        "SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_transport) ON (
                             adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=4 AND adv.category_id=1".$region_string.$place_string.$this->filter_string
                     );
@@ -812,29 +763,21 @@ class ResultsController extends Controller {
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
-                            adv.adv_category_id=adv_transport.id
+                        adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=4 AND adv.category_id=1".$this->filter_string.$region_string.$place_string." 
-                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
-                    );
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit);
 
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду ретро автомобилей";
-
                     break;
                 }                               
 
                 // Водный транспорт
                 if ($subcat=="vodnyy-transport") {
                     
-                    $this->total = DB::select(
-                        "SELECT 
-                        COUNT(*) as count 
-                        FROM `adverts` as adv
-                        INNER JOIN (adv_transport) ON (
-                            adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=5  AND adv.category_id=1".$region_string.$place_string.$this->filter_string
-                    );
+                    $this->total = DB::select("SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_transport) ON (adv.adv_category_id=adv_transport.id) 
+                    WHERE adv_transport.type=5  AND adv.category_id=1".$region_string.$place_string.$this->filter_string);
 
                     $results = DB::select(
                         "SELECT
@@ -849,15 +792,13 @@ class ResultsController extends Controller {
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
-                            adv.adv_category_id=adv_transport.id
+                        adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=5  AND adv.category_id=1".$this->filter_string.$region_string.$place_string." 
-                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
-                    );
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit);
 
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду водного транспорта";
-
                     break;
                 }                               
 
@@ -865,13 +806,8 @@ class ResultsController extends Controller {
                 if ($subcat=="velosiped") {
 
                     $this->total = DB::select(
-                        "SELECT 
-                        COUNT(*) as count 
-                        FROM `adverts` as adv
-                        INNER JOIN (adv_transport) ON (
-                            adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=6  AND adv.category_id=1".$region_string.$place_string.$this->filter_string
-                    );
+                        "SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_transport) ON (adv.adv_category_id=adv_transport.id) 
+                        WHERE adv_transport.type=6  AND adv.category_id=1".$region_string.$place_string.$this->filter_string);
                                         
                     $results = DB::select(
                         "SELECT
@@ -886,15 +822,13 @@ class ResultsController extends Controller {
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
-                            adv.adv_category_id=adv_transport.id
+                        adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=6  AND adv.category_id=1".$this->filter_string.$region_string.$place_string." 
-                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
-                    );
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit);
 
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду велосипеда";
-
                     break;
                 }                               
 
@@ -902,13 +836,8 @@ class ResultsController extends Controller {
                 if ($subcat=="vozdushnyy-transport") {
                     
                     $this->total = DB::select(
-                        "SELECT 
-                        COUNT(*) as count 
-                        FROM `adverts` as adv
-                        INNER JOIN (adv_transport) ON (
-                            adv.adv_category_id=adv_transport.id
-                        ) WHERE adv_transport.type=7 AND adv.category_id=1".$region_string.$place_string.$this->filter_string
-                    );
+                        "SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_transport) ON (adv.adv_category_id=adv_transport.id) 
+                        WHERE adv_transport.type=7 AND adv.category_id=1".$region_string.$place_string.$this->filter_string);
 
                     $results = DB::select(
                         "SELECT
@@ -923,15 +852,13 @@ class ResultsController extends Controller {
                         (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
                         FROM `adverts` as adv
                         INNER JOIN (adv_transport) ON (
-                            adv.adv_category_id=adv_transport.id
+                        adv.adv_category_id=adv_transport.id
                         ) WHERE adv_transport.type=7 AND adv.category_id=1".$this->filter_string.$region_string.$place_string."
-                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
-                    );
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit);
 
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду воздушного транспорта";
-
                     break;
                 }
             }
@@ -947,17 +874,13 @@ class ResultsController extends Controller {
                 // квартира
                 if ($subcat=="kvartira") {
 
-                    $this->total = DB::select(
-                        "SELECT
-                        COUNT(*) as count                        
-                        FROM `adverts` as adv
-                        INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=0 AND adv.category_id=2".$region_string.$place_string.$this->filter_string
-                    );
+                    $this->total = DB::select("SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
+                    WHERE adv_realestate.property_type=0 AND adv.category_id=2".$region_string.$place_string.$this->filter_string);
 
                     $results = DB::select(
                         "SELECT
-                        concat(adv_realestate.rooms, ' комнатную квартиру, ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаж, ', adv_realestate.area, ' кв. м.' ) AS title,
+                        concat($this->dealRuString,                            
+                        adv_realestate.rooms, ' комнатную квартиру, ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаж, ', adv_realestate.area, ' кв. м.' ) AS title,
                         adv.id as advert_id,
                         DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                         adv.deal,
@@ -969,15 +892,13 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
                         WHERE adv_realestate.property_type=0 AND adv.category_id=2".$this->filter_string.$region_string.$place_string."
-                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
-                    );
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit);
 
                     \Debugbar::info($results);
 
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду квартиры";
-
                     break;
                 }
 
@@ -985,16 +906,12 @@ class ResultsController extends Controller {
                 if ($subcat=="komnata") {
 
                     $this->total = DB::select(
-                        "SELECT
-                        COUNT(*) as count                        
-                        FROM `adverts` as adv
-                        INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=1 AND adv.category_id=2".$region_string.$place_string.$this->filter_string
-                    );
+                        "SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
+                        WHERE adv_realestate.property_type=1 AND adv.category_id=2".$region_string.$place_string.$this->filter_string);
 
                     $results = DB::select(
                         "SELECT
-                        concat('комнату ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаж, ', adv_realestate.area, ' кв. м.' ) AS title,
+                        concat($this->dealRuString, 'комнату ', adv_realestate.floor, '/', adv_realestate.floors_house, ' этаж, ', adv_realestate.area, ' кв. м.' ) AS title,
                         adv.id as advert_id,
                         DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                         adv.deal,
@@ -1006,8 +923,7 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
                         WHERE adv_realestate.property_type=1 AND adv.category_id=2".$this->filter_string.$region_string.$place_string."
-                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
-                    );
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit);
 
                     \Debugbar::info($results);
 
@@ -1021,20 +937,15 @@ class ResultsController extends Controller {
                 // дом, дача, коттедж
                 if ($subcat=="dom-dacha-kottedzh") {
 
-                    $this->total = DB::select(
-                        "SELECT
-                        COUNT(*) as count
-                        FROM `adverts` as adv
-                        INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=2 AND adv.category_id=2".$region_string.$place_string.$this->filter_string
-                    );
+                    $this->total = DB::select("SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
+                        WHERE adv_realestate.property_type=2 AND adv.category_id=2".$region_string.$place_string.$this->filter_string);
 
                     $results = DB::select(
                         "SELECT
                         CASE adv_realestate.type_of_building 
-                            WHEN 0 THEN concat('дом ', adv_realestate.rooms, ' комн. ', adv_realestate.floors_house, ' этажей, ', adv_realestate.area, ' кв. м.' )
-                            WHEN 1 THEN concat('дачу ', adv_realestate.rooms, ' комн. ', adv_realestate.floors_house, ' этажей, ', adv_realestate.area, ' кв. м.' )
-                            WHEN 2 THEN concat('коттедж ', adv_realestate.rooms, ' комн. ', adv_realestate.floors_house, ' этажей, ', adv_realestate.area, ' кв. м.' )
+                            WHEN 0 THEN concat($this->dealRuString, 'дом ', adv_realestate.rooms, ' комн. ', adv_realestate.floors_house, ' этажей, ', adv_realestate.area, ' кв. м.' )
+                            WHEN 1 THEN concat($this->dealRuString, 'дачу ', adv_realestate.rooms, ' комн. ', adv_realestate.floors_house, ' этажей, ', adv_realestate.area, ' кв. м.' )
+                            WHEN 2 THEN concat($this->dealRuString, 'коттедж ', adv_realestate.rooms, ' комн. ', adv_realestate.floors_house, ' этажей, ', adv_realestate.area, ' кв. м.' )
                         ELSE '' 
                         END AS title,
                         adv.id as advert_id,
@@ -1049,15 +960,13 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
                         WHERE adv_realestate.property_type=2 AND adv.category_id=2".$this->filter_string.$region_string.$place_string."
-                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
-                    );
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit);
 
                     \Debugbar::info($results);
                   
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду дома, дачи, коттеджа";
-
                     break;
                 }
 
@@ -1065,16 +974,12 @@ class ResultsController extends Controller {
                 if ($subcat=="zemel-nyy-uchastok") {
 
                     $this->total = DB::select(
-                        "SELECT
-                        COUNT(*) as count                      
-                        FROM `adverts` as adv
-                        INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=3 AND adv.category_id=2".$region_string.$place_string.$this->filter_string
-                    );
+                        "SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
+                        WHERE adv_realestate.property_type=3 AND adv.category_id=2".$region_string.$place_string.$this->filter_string);
 
                     $results = DB::select(
                         "SELECT
-                        concat('земельный участок ', adv_realestate.area, ' соток' ) AS title,
+                        concat($this->dealRuString, 'земельный участок ', adv_realestate.area, ' соток' ) AS title,
                         adv.id as advert_id,
                         DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                         adv.deal,
@@ -1086,32 +991,25 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
                         WHERE adv_realestate.property_type=3 AND adv.category_id=2".$this->filter_string.$region_string.$place_string."
-                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
-                    );
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit);
 
                     \Debugbar::info($results);
 
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду земельного участка";
-
                     break;
                 }
                 
                 // гараж или машиноместо
                 if ($subcat=="garazh-ili-mashinomesto") {
 
-                    $this->total = DB::select(
-                        "SELECT
-                        COUNT(*) as count                        
-                        FROM `adverts` as adv
-                        INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=4 AND adv.category_id=2".$region_string.$place_string.$this->filter_string
-                    );
+                    $this->total = DB::select("SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
+                    WHERE adv_realestate.property_type=4 AND adv.category_id=2".$region_string.$place_string.$this->filter_string);
 
                     $results = DB::select(
                         "SELECT
-                        concat('гараж или машиноместо' ) AS title,
+                        concat($this->dealRuString, 'гараж или машиноместо' ) AS title,
                         adv.id as advert_id,
                         DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                         adv.deal,
@@ -1123,32 +1021,25 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
                         WHERE adv_realestate.property_type=4 AND adv.category_id=2".$this->filter_string.$region_string.$place_string."
-                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
-                    );
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit);
 
                     \Debugbar::info($results);
 
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду гаража или машиноместа";
-
                     break;
                 }
 
                 // коммерческая недвижимость
                 if ($subcat=="kommercheskaya-nedvizhimost") {
 
-                    $this->total = DB::select(
-                        "SELECT
-                        COUNT(*) as count                        
-                        FROM `adverts` as adv
-                        INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=5 AND adv.category_id=2".$region_string.$place_string.$this->filter_string
-                    );
+                    $this->total = DB::select("SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
+                    WHERE adv_realestate.property_type=5 AND adv.category_id=2".$region_string.$place_string.$this->filter_string);
 
                     $results = DB::select(
                         "SELECT
-                        concat('недвижимость ', adv_realestate.area, ' кв. м.' ) AS title,
+                        concat($this->dealRuString, 'недвижимость ', adv_realestate.area, ' кв. м.' ) AS title,
                         adv.id as advert_id,
                         DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                         adv.deal,
@@ -1168,7 +1059,6 @@ class ResultsController extends Controller {
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду коммерческой недвижимости";
-
                     break;
                 }
                 
@@ -1176,16 +1066,12 @@ class ResultsController extends Controller {
                 if ($subcat=="nedvizhimost-za-rubezhom") {
 
                     $this->total = DB::select(
-                        "SELECT
-                        COUNT(*) as count                        
-                        FROM `adverts` as adv
-                        INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
-                        WHERE adv_realestate.property_type=6 AND adv.category_id=2".$region_string.$place_string.$this->filter_string
-                    );
+                        "SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
+                        WHERE adv_realestate.property_type=6 AND adv.category_id=2".$region_string.$place_string.$this->filter_string);
 
                     $results = DB::select(
                         "SELECT
-                        concat('недвижимость ', adv_realestate.area, ' кв. м.' ) AS title,
+                        concat($this->dealRuString, 'недвижимость ', adv_realestate.area, ' кв. м.' ) AS title,
                         adv.id as advert_id,
                         DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
                         adv.deal,
@@ -1197,15 +1083,13 @@ class ResultsController extends Controller {
                         FROM `adverts` as adv
                         INNER JOIN (adv_realestate) ON ( adv.adv_category_id=adv_realestate.id ) 
                         WHERE adv_realestate.property_type=6 AND adv.category_id=2".$this->filter_string.$region_string.$place_string."
-                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit                    
-                    );
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit);
 
                     \Debugbar::info($results);
 
                     $keywords = "";
                     $description = "";
                     $title="Покупка, продажа, обмен, сдача в аренду недвижимости за рубежом";
-
                     break;
                 }                                
             }
