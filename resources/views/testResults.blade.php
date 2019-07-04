@@ -15,14 +15,13 @@
 </head>
 <body>
 <div id="app">
-  <div class="container-fluid mycontainer" style="margin-top:10px">	
+  <div class="container" style="margin-top:10px">	
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 margin-auto">      
         <h1>{{ $title }}</h1>
       </div>
     </div>
-  @foreach ( json_decode($results, true) as $item)
-    
+  @foreach ( json_decode($results, true) as $item)    
     <div class="row">    
       <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 margin-auto">
         <div class="card mb-1">
@@ -34,8 +33,26 @@
         </div>
       </div>
     </div>
-
   @endforeach
+
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 margin-auto">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link blue" href="#">1</a></li>
+            <li class="page-item"><a class="page-link blue" href="#">2</a></li>
+            <li class="page-item"><a class="page-link blue" href="#">3</a></li>
+            <li class="page-item">
+            <a class="page-link black" href="#">Next</a>
+          </li>
+          </ul>
+        </nav>        
+      </div>
+    </div>
+    
   </div>
 </div>
 </body>
