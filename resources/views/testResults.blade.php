@@ -28,7 +28,7 @@
         <div class="card mb-1">
             <div class="card-body">              
               <h5 class="card-title">{{ $item["title"] }}</h5>
-                <p class="card-text">Описание</p>
+                <p class="card-text">Цена: {{ $item["price"] }} тнг.</p>
               <a href="#" class="btn btn-success btn-sm">Подробнее</a>
             </div>
         </div>

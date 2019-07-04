@@ -17,7 +17,13 @@ use App\Places;
 // ------------------------------------------
 class ResultsController extends Controller {
 
-    private $dealRuString="CASE adv.deal WHEN 0 THEN 'Куплю' WHEN 1 THEN 'Продам' WHEN 2 THEN 'Обменяю' WHEN 3 THEN 'Сдам в аренду' ELSE '' END, ' '";
+    private $dealRuString="
+    CASE adv.deal 
+    WHEN 0 THEN 'Куплю' 
+    WHEN 1 THEN 'Продам' 
+    WHEN 2 THEN 'Обменяю' 
+    WHEN 3 THEN 'Отдам даром' 
+    WHEN 4 THEN 'Сдам в аренду' ELSE '' END, ' '";
 	
     // частные переменные
     private $total = [];
