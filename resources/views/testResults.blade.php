@@ -40,13 +40,13 @@
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item disabled">
-              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+              <a class="page-link blue" href="#" tabindex="-1" aria-disabled="true">Назад</a>
             </li>
-            <li class="page-item"><a class="page-link blue" href="#">1</a></li>
-            <li class="page-item"><a class="page-link blue" href="#">2</a></li>
-            <li class="page-item"><a class="page-link blue" href="#">3</a></li>
+            <li class="page-item"><a class="page-link black" href="#">1</a></li>
+            <li class="page-item"><a class="page-link black" href="#">2</a></li>
+            <li class="page-item"><a class="page-link black" href="#">3</a></li>
             <li class="page-item">
-            <a class="page-link black" href="#">Next</a>
+            <a class="page-link blue" href="#">Вперёд</a>
           </li>
           </ul>
         </nav>        
