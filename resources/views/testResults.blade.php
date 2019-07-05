@@ -45,6 +45,7 @@
   </div>  
 
   @if ($total_records>3)
+  <br>
   <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 margin-auto">
       <nav aria-label="Page navigation example">
