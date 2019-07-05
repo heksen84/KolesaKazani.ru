@@ -15,12 +15,16 @@
 </head>
 <body>
 <div id="app">
-  <div class="container" style="margin-top:10px">	
+  
+  <div class="close_button shadow_text" id="results_close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
+
+  <div class="container" style="margin-top:40px">	  
     <div class="row">
-      <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 margin-auto">      
-        <h1>{{ $title }}</h1>
+      <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 margin-auto text-center">      
+        <h1 class="shadow_text" style="font-size:24px">{{ $title }}</h1>
+        <h2 class="shadow_text">Найдено: {{ $total_records }}</h2>
       </div>      
-    </div>
+  </div>
 
   <items :items="data" v-show="showItems"></items>
 

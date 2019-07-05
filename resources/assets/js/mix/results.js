@@ -15,7 +15,8 @@ export default new Vue ({
   data () {   
     return {
       showItems: false,
-      data: "123123"
+      data: "123123",
+      countString: ""
     }
   },
 
@@ -30,12 +31,33 @@ export default new Vue ({
   // -------------------------------
 //  created() { alert("i'm ready!"); },
 
+  watch: {
+    strNum: function(totalRecords) {
+      this.countString = num2str(totalRecords, ["объявление", "объявления", "объявлений"]);
+    }
+  },
   // --------------------------------------
   // Методы
   // --------------------------------------
   methods: {
-  changePage(e, totalRecords) {
+  // -----------------------------------------------
+  // функция склонений слов / Перенести на бэкенд
+  // -----------------------------------------------
+  num2str(n, text_forms) {
+    n = Math.abs(n) % 100;
+    var n1 = n % 10;
+    if (n > 10 && n < 20) return text_forms[2];   
+    if (n1 > 1 && n1 < 5) return text_forms[1];
+    if (n1 == 1) return text_forms[0];
+    return text_forms[2];
+  },
 
+  // закрыть экран
+  closeAndReturn() {
+    window.history.back()
+  },
+
+  changePage(e, totalRecords) {
     e.preventDefault();    
   
     var firstVal = parseInt($( ".pageNum" ).first().text());

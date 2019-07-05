@@ -51112,7 +51112,8 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
   data: function data() {
     return {
       showItems: false,
-      data: "123123"
+      data: "123123",
+      countString: ""
     };
   },
 
@@ -51128,12 +51129,33 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
   // -------------------------------
   //  created() { alert("i'm ready!"); },
 
+  watch: {
+    strNum: function strNum(totalRecords) {
+      this.countString = num2str(totalRecords, ["объявление", "объявления", "объявлений"]);
+    }
+  },
   // --------------------------------------
   // Методы
   // --------------------------------------
   methods: {
-    changePage: function changePage(e, totalRecords) {
+    // -----------------------------------------------
+    // функция склонений слов / Перенести на бэкенд
+    // -----------------------------------------------
+    num2str: function num2str(n, text_forms) {
+      n = Math.abs(n) % 100;
+      var n1 = n % 10;
+      if (n > 10 && n < 20) return text_forms[2];
+      if (n1 > 1 && n1 < 5) return text_forms[1];
+      if (n1 == 1) return text_forms[0];
+      return text_forms[2];
+    },
 
+
+    // закрыть экран
+    closeAndReturn: function closeAndReturn() {
+      window.history.back();
+    },
+    changePage: function changePage(e, totalRecords) {
       e.preventDefault();
 
       var firstVal = parseInt(__WEBPACK_IMPORTED_MODULE_1_jquery___default()(".pageNum").first().text());
