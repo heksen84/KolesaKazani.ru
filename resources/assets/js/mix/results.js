@@ -16,6 +16,7 @@ export default new Vue ({
     return {
       showItems: false,
       data: "123123",
+      totalRecords: 0,
       countString: ""
     }
   },
@@ -79,8 +80,8 @@ export default new Vue ({
     }
     
     if (btnData!="next" && btnData!="prev") {          
-      $("#defaultItems").empty();        
-      this.showItems=true;        
+      $("#defaultItems").empty();      
+      this.showItems=true;      
     }
   }
 }

@@ -51113,6 +51113,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
     return {
       showItems: false,
       data: "123123",
+      totalRecords: 0,
       countString: ""
     };
   },
