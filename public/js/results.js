@@ -50873,9 +50873,26 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
   // Методы
   // --------------------------------------
   methods: {
-    changePage: function changePage(e) {
+    changePage: function changePage(e, totalRecords) {
       e.preventDefault();
-      console.log(e.target.attributes[1].nodeValue);
+
+      var firstVal = parseInt(__WEBPACK_IMPORTED_MODULE_1_jquery___default()(".pageNum").first().text());
+      var lastVal = parseInt(__WEBPACK_IMPORTED_MODULE_1_jquery___default()(".pageNum").last().text());
+      var opNav = e.target.attributes[1].nodeValue;
+
+      if (opNav === "prev" && firstVal > 1) {
+        __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".pageNum").each(function (index) {
+          var item = __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).text();
+          __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).text(parseInt(item) - 1);
+        });
+      }
+
+      if (opNav === "next" && lastVal != totalRecords) {
+        __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".pageNum").each(function (index) {
+          var item = __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).text();
+          __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).text(parseInt(item) + 1);
+        });
+      }
     }
   }
 

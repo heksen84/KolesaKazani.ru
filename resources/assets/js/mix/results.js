@@ -29,9 +29,27 @@ export default new Vue ({
   // Методы
   // --------------------------------------
   methods: {
-  changePage(e) {
+  changePage(e, totalRecords) {
     e.preventDefault();    
-    console.log(e.target.attributes[1].nodeValue)    
+  
+    var firstVal = parseInt($( ".pageNum" ).first().text());
+    var lastVal = parseInt($( ".pageNum" ).last().text());
+    var opNav = e.target.attributes[1].nodeValue;
+    
+    if (opNav==="prev" && firstVal > 1) {
+      $( ".pageNum" ).each(function( index ) {
+        var item = $(this).text();
+        $(this).text(parseInt(item)-1)
+      });   
+    }
+    
+    if (opNav==="next" && lastVal!=totalRecords) {
+      $( ".pageNum" ).each(function( index ) {
+        var item = $(this).text();
+        $(this).text(parseInt(item)+1)
+      });   
+    }
+
   }
 
   }
