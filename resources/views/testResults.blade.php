@@ -37,12 +37,11 @@
     <div class="row">    
       <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 margin-auto">
         <div class="card mb-1">
-            
             <div class="card-body" style="margin-top:-5px">              
-            <img v-for="i in 3" :key=i style="margin:1px" src="/storage/app/images/{{ $item['image']}}" width="80" height="80"/>  
-            <h5 class="card-title">{{ $item["title"] }}</h5>
+              <img v-for="i in 3" :key=i style="margin:1px" src="/storage/app/images/{{ $item['image']}}" width="80" height="80"/>  
+                <h5 class="card-title">{{ $item["title"] }}</h5>
                 <p class="card-text">Цена: {{ $item["price"] }} тнг.</p>
-              <a href="#" class="btn btn-success btn-sm">Подробнее</a>
+                <a href="#" class="btn btn-success btn-sm">Подробнее</a>
             </div>
         </div>
       </div>
