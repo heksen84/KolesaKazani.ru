@@ -19,8 +19,9 @@
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 margin-auto">      
         <h1>{{ $title }}</h1>
-      </div>
+      </div>      
     </div>
+    
   @foreach ( json_decode($results, true) as $item)    
     <div class="row">    
       <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 margin-auto">
@@ -35,23 +36,25 @@
     </div>
   @endforeach
 
-    <div class="row">
-      <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 margin-auto">
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-              <a class="page-link blue" href="#" tabindex="-1" aria-disabled="true">Назад</a>
-            </li>
-            <li class="page-item"><a class="page-link blue" href="#">1</a></li>
-            <li class="page-item"><a class="page-link blue" href="#">2</a></li>
-            <li class="page-item"><a class="page-link blue" href="#">3</a></li>
-            <li class="page-item">
-            <a class="page-link blue" href="#">Вперёд</a>
+  @if ($total_records>5)
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 margin-auto">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link blue" href="#" tabindex="-1" aria-disabled="true" data-page="first" @click="changePage">Назад</a>
+          </li>            
+            <li v-for="(i,index) in {{ $total_records/5 }}" :key="index" class="page-item">
+              <a class="page-link blue" href="#" :data-page="i" @click="changePage">${i}</a>
+            </li>          
+          <li class="page-item">
+            <a class="page-link blue" href="#" data-page="last" @click="changePage">Вперёд</a>
           </li>
-          </ul>
-        </nav>        
-      </div>
+        </ul>
+      </nav>        
     </div>
+  </div>
+  @endif
     
   </div>
 </div>

@@ -880,7 +880,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/node-libs-browser/node_modules/process/browser.js")))
 
 /***/ }),
 
@@ -4896,31 +4896,102 @@ if(false) {
 
 /***/ }),
 
+/***/ "./node_modules/bootstrap-vue/src/components/alert/alert.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/bootstrap-vue/src/components/alert/alert.css");
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/style-loader/lib/addStyles.js")(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../css-loader/index.js!./alert.css", function() {
+			var newContent = require("!!../../../../css-loader/index.js!./alert.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
 /***/ "./node_modules/bootstrap-vue/src/components/alert/alert.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__button_button_close__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/button-close.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_config__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/config.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__alert_css__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/alert/alert.css");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__alert_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__alert_css__);
 
 
 
 
-const NAME = 'BAlert'
-
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: NAME,
-  components: { BButtonClose: __WEBPACK_IMPORTED_MODULE_0__button_button_close__["a" /* default */] },
+  components: {bButtonClose: __WEBPACK_IMPORTED_MODULE_0__button_button_close__["a" /* default */]},
+  render (h) {
+    if (!this.localShow) {
+      // If not showing, render placeholder
+      return h(false)
+    }
+    let dismissBtn = h(false)
+    if (this.dismissible) {
+      // Add dismiss button
+      dismissBtn = h(
+        'b-button-close',
+        { attrs: { 'aria-label': this.dismissLabel }, on: { click: this.dismiss } },
+        [ this.$slots.dismiss ]
+      )
+    }
+    const alert = h(
+      'div',
+      {class: this.classObject, attrs: {role: 'alert', 'aria-live': 'polite', 'aria-atomic': true}},
+      [dismissBtn, this.$slots.default]
+    )
+    return !this.fade ? alert : h(
+      'transition',
+      { props: { name: 'fade', appear: true } },
+      [ alert ]
+    )
+  },
   model: {
     prop: 'show',
     event: 'input'
   },
+  data () {
+    return {
+      countDownTimerId: null,
+      dismissed: false
+    }
+  },
+  computed: {
+    classObject () {
+      return ['alert', this.alertVariant, this.dismissible ? 'alert-dismissible' : '']
+    },
+    alertVariant () {
+      const variant = this.variant
+      return `alert-${variant}`
+    },
+    localShow () {
+      return !this.dismissed && (this.countDownTimerId || this.show)
+    }
+  },
   props: {
     variant: {
       type: String,
-      default: () => Object(__WEBPACK_IMPORTED_MODULE_1__utils_config__["b" /* getComponentConfig */])(NAME, 'variant')
+      default: 'info'
     },
     dismissible: {
       type: Boolean,
@@ -4928,7 +4999,7 @@ const NAME = 'BAlert'
     },
     dismissLabel: {
       type: String,
-      default: () => Object(__WEBPACK_IMPORTED_MODULE_1__utils_config__["b" /* getComponentConfig */])(NAME, 'dismissLabel')
+      default: 'Close'
     },
     show: {
       type: [Boolean, Number],
@@ -4939,61 +5010,47 @@ const NAME = 'BAlert'
       default: false
     }
   },
-  data() {
-    return {
-      countDownTimerId: null,
-      dismissed: false,
-      localShow: this.show,
-      showClass: this.fade && this.show
-    }
-  },
   watch: {
-    show(newVal) {
-      this.showChanged(newVal)
-    },
-    dismissed(newVal) {
-      if (newVal) {
-        this.localShow = false
-        this.$emit('dismissed')
-      }
+    show () {
+      this.showChanged()
     }
   },
-  mounted() {
-    this.showChanged(this.show)
+  mounted () {
+    this.showChanged()
   },
-  destroyed /* istanbul ignore next */() {
+  destroyed /* istanbul ignore next */ () {
     this.clearCounter()
   },
   methods: {
-    dismiss() {
+    dismiss () {
       this.clearCounter()
+      this.dismissed = true
+      this.$emit('dismissed')
+      this.$emit('input', false)
       if (typeof this.show === 'number') {
         this.$emit('dismiss-count-down', 0)
         this.$emit('input', 0)
       } else {
         this.$emit('input', false)
       }
-      this.dismissed = true
     },
-    clearCounter() {
+    clearCounter () {
       if (this.countDownTimerId) {
         clearInterval(this.countDownTimerId)
         this.countDownTimerId = null
       }
     },
-    showChanged(show) {
+    showChanged () {
       // Reset counter status
       this.clearCounter()
       // Reset dismiss status
       this.dismissed = false
-      // Set localShow state
-      this.localShow = Boolean(show)
       // No timer for boolean values
-      if (show === true || show === false || show === null || show === 0) {
+      if (this.show === true || this.show === false || this.show === null || this.show === 0) {
         return
       }
-      // Start counter (ensure we have an integer value)
-      let dismissCountDown = parseInt(show, 10) || 1
+      // Start counter
+      let dismissCountDown = this.show
       this.countDownTimerId = setInterval(() => {
         if (dismissCountDown < 1) {
           this.dismiss()
@@ -5003,67 +5060,7 @@ const NAME = 'BAlert'
         this.$emit('dismiss-count-down', dismissCountDown)
         this.$emit('input', dismissCountDown)
       }, 1000)
-    },
-    onBeforeEnter() {
-      if (this.fade) {
-        // Add show class one frame after inserted, to make transitions work
-        Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["q" /* requestAF */])(() => {
-          this.showClass = true
-        })
-      }
-    },
-    onBeforeLeave() /* istanbul ignore next: does not appear to be called in vue-test-utils */ {
-      this.showClass = false
     }
-  },
-  render(h) {
-    const $slots = this.$slots
-    let $alert = h(false)
-    if (this.localShow) {
-      let $dismissBtn = h(false)
-      if (this.dismissible) {
-        $dismissBtn = h(
-          'b-button-close',
-          { attrs: { 'aria-label': this.dismissLabel }, on: { click: this.dismiss } },
-          [$slots.dismiss]
-        )
-      }
-      $alert = h(
-        'div',
-        {
-          staticClass: 'alert',
-          class: {
-            fade: this.fade,
-            show: this.showClass,
-            'alert-dismissible': this.dismissible,
-            [`alert-${this.variant}`]: this.variant
-          },
-          attrs: { role: 'alert', 'aria-live': 'polite', 'aria-atomic': true }
-        },
-        [$dismissBtn, $slots.default]
-      )
-      $alert = [$alert]
-    }
-    return h(
-      'transition',
-      {
-        props: {
-          mode: 'out-in',
-          // Disable use of built-in transition classes
-          'enter-class': '',
-          'enter-active-class': '',
-          'enter-to-class': '',
-          'leave-class': 'show',
-          'leave-active-class': '',
-          'leave-to-class': ''
-        },
-        on: {
-          beforeEnter: this.onBeforeEnter,
-          beforeLeave: this.onBeforeLeave
-        }
-      },
-      $alert
-    )
   }
 });
 
@@ -5080,12 +5077,18 @@ const NAME = 'BAlert'
 
 
 const components = {
-  BAlert: __WEBPACK_IMPORTED_MODULE_0__alert__["a" /* default */]
+  bAlert: __WEBPACK_IMPORTED_MODULE_0__alert__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install: Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* installFactory */])({ components })
-});
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
@@ -5095,11 +5098,7 @@ const components = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_config__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/config.js");
 
-
-
-const NAME = 'BButtonClose'
 
 const props = {
   disabled: {
@@ -5108,20 +5107,18 @@ const props = {
   },
   ariaLabel: {
     type: String,
-    default: () => Object(__WEBPACK_IMPORTED_MODULE_1__utils_config__["b" /* getComponentConfig */])(NAME, 'ariaLabel')
+    default: 'Close'
   },
   textVariant: {
     type: String,
-    default: () => Object(__WEBPACK_IMPORTED_MODULE_1__utils_config__["b" /* getComponentConfig */])(NAME, 'textVariant')
+    default: null
   }
 }
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: NAME,
   functional: true,
   props,
-  render(h, { props, data, listeners, slots }) {
+  render (h, { props, data, listeners, slots }) {
     const componentData = {
       staticClass: 'close',
       class: {
@@ -5133,9 +5130,8 @@ const props = {
         'aria-label': props.ariaLabel ? String(props.ariaLabel) : null
       },
       on: {
-        click(e) {
+        click (e) {
           // Ensure click on button HTML content is also disabled
-          /* istanbul ignore if: bug in JSDOM still emits click on inner element */
           if (props.disabled && e instanceof Event) {
             e.stopPropagation()
             e.preventDefault()
@@ -5143,7 +5139,7 @@ const props = {
         }
       }
     }
-    // Careful not to override the default slot with innerHTML
+    // Careful not to override the slot with innerHTML
     if (!slots().default) {
       componentData.domProps = { innerHTML: '&times;' }
     }
@@ -5155,9 +5151,130 @@ const props = {
 /***/ }),
 
 /***/ "./node_modules/bootstrap-vue/src/components/button/button.js":
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module parse failed: Unexpected token (49:23)\nYou may need an appropriate loader to handle this file type.\n| const linkPropKeys = keys(linkProps)\n| \n| export const props = { ...linkProps, ...btnProps }\n| \n| // Focus handler for toggle buttons.  Needs class of 'focus' when focused.");
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_pluck_props__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/pluck-props.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__link_link__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/link/link.js");
+
+
+
+
+
+
+
+const btnProps = {
+  block: {
+    type: Boolean,
+    default: false
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  },
+  size: {
+    type: String,
+    default: null
+  },
+  variant: {
+    type: String,
+    default: null
+  },
+  type: {
+    type: String,
+    default: 'button'
+  },
+  pressed: {
+    // tri-state prop: true, false or null
+    // => on, off, not a toggle
+    type: Boolean,
+    default: null
+  }
+}
+
+let linkProps = Object(__WEBPACK_IMPORTED_MODULE_5__link_link__["b" /* propsFactory */])()
+delete linkProps.href.default
+delete linkProps.to.default
+const linkPropKeys = Object(__WEBPACK_IMPORTED_MODULE_3__utils_object__["e" /* keys */])(linkProps)
+
+const props = Object(__WEBPACK_IMPORTED_MODULE_3__utils_object__["a" /* assign */])(linkProps, btnProps)
+/* unused harmony export props */
+
+
+function handleFocus (evt) {
+  if (evt.type === 'focusin') {
+    Object(__WEBPACK_IMPORTED_MODULE_4__utils_dom__["a" /* addClass */])(evt.target, 'focus')
+  } else if (evt.type === 'focusout') {
+    Object(__WEBPACK_IMPORTED_MODULE_4__utils_dom__["n" /* removeClass */])(evt.target, 'focus')
+  }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  functional: true,
+  props,
+  render (h, { props, data, listeners, children }) {
+    const isLink = Boolean(props.href || props.to)
+    const isToggle = typeof props.pressed === 'boolean'
+    const on = {
+      click (e) {
+        if (props.disabled && e instanceof Event) {
+          e.stopPropagation()
+          e.preventDefault()
+        } else if (isToggle) {
+          // Concat will normalize the value to an array
+          // without double wrapping an array value in an array.
+          Object(__WEBPACK_IMPORTED_MODULE_2__utils_array__["b" /* concat */])(listeners['update:pressed']).forEach(fn => {
+            if (typeof fn === 'function') {
+              fn(!props.pressed)
+            }
+          })
+        }
+      }
+    }
+
+    if (isToggle) {
+      on.focusin = handleFocus
+      on.focusout = handleFocus
+    }
+
+    const componentData = {
+      staticClass: 'btn',
+      class: [
+        props.variant ? `btn-${props.variant}` : `btn-secondary`,
+        {
+          [`btn-${props.size}`]: Boolean(props.size),
+          'btn-block': props.block,
+          disabled: props.disabled,
+          active: props.pressed
+        }
+      ],
+      props: isLink ? Object(__WEBPACK_IMPORTED_MODULE_1__utils_pluck_props__["a" /* default */])(linkPropKeys, props) : null,
+      attrs: {
+        type: isLink ? null : props.type,
+        disabled: isLink ? null : props.disabled,
+        // Data attribute not used for js logic,
+        // but only for BS4 style selectors.
+        'data-toggle': isToggle ? 'button' : null,
+        'aria-pressed': isToggle ? String(props.pressed) : null,
+        // Tab index is used when the component becomes a link.
+        // Links are tabable, but don't allow disabled,
+        // so we mimic that functionality by disabling tabbing.
+        tabindex:
+          props.disabled && isLink
+            ? '-1'
+            : data.attrs ? data.attrs['tabindex'] : null
+      },
+      on
+    }
+
+    return h(isLink ? __WEBPACK_IMPORTED_MODULE_5__link_link__["a" /* default */] : 'button', Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, componentData), children)
+  }
+});
+
 
 /***/ }),
 
@@ -5166,7 +5283,6 @@ throw new Error("Module parse failed: Unexpected token (49:23)\nYou may need an 
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__button__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/button.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__button___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__button__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__button_close__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/button-close.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
 
@@ -5174,15 +5290,21 @@ throw new Error("Module parse failed: Unexpected token (49:23)\nYou may need an 
 
 
 const components = {
-  BButton: __WEBPACK_IMPORTED_MODULE_0__button__["default"],
-  BBtn: __WEBPACK_IMPORTED_MODULE_0__button__["default"],
-  BButtonClose: __WEBPACK_IMPORTED_MODULE_1__button_close__["a" /* default */],
-  BBtnClose: __WEBPACK_IMPORTED_MODULE_1__button_close__["a" /* default */]
+  bButton: __WEBPACK_IMPORTED_MODULE_0__button__["a" /* default */],
+  bBtn: __WEBPACK_IMPORTED_MODULE_0__button__["a" /* default */],
+  bButtonClose: __WEBPACK_IMPORTED_MODULE_1__button_close__["a" /* default */],
+  bBtnClose: __WEBPACK_IMPORTED_MODULE_1__button_close__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install: Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["a" /* installFactory */])({ components })
-});
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
@@ -5192,9 +5314,7 @@ const components = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_listen_on_root__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/listen-on-root.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_env__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/env.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
 
 
 
@@ -5204,13 +5324,46 @@ const EVENT_ACCORDION = 'bv::collapse::accordion'
 // Events we listen to on $root
 const EVENT_TOGGLE = 'bv::toggle::collapse'
 
-// Event Listener options
-const EventOptions = { passive: true, capture: false }
-
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BCollapse',
   mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_listen_on_root__["a" /* default */]],
+  render (h) {
+    const content = h(
+      this.tag,
+      {
+        class: this.classObject,
+        directives: [ { name: 'show', value: this.show } ],
+        attrs: { id: this.id || null },
+        on: { click: this.clickHandler }
+      },
+      [ this.$slots.default ]
+    )
+    return h(
+      'transition',
+      {
+        props: {
+          enterClass: '',
+          enterActiveClass: 'collapsing',
+          enterToClass: '',
+          leaveClass: '',
+          leaveActiveClass: 'collapsing',
+          leaveToClass: ''
+        },
+        on: {
+          enter: this.onEnter,
+          afterEnter: this.onAfterEnter,
+          leave: this.onLeave,
+          afterLeave: this.onAfterLeave
+        }
+      },
+      [ content ]
+    )
+  },
+  data () {
+    return {
+      show: this.visible,
+      transitioning: false
+    }
+  },
   model: {
     prop: 'visible',
     event: 'input'
@@ -5237,102 +5390,60 @@ const EventOptions = { passive: true, capture: false }
       default: 'div'
     }
   },
-  data() {
-    return {
-      show: this.visible,
-      transitioning: false
-    }
-  },
-  computed: {
-    classObject() {
-      return {
-        'navbar-collapse': this.isNav,
-        collapse: !this.transitioning,
-        show: this.show && !this.transitioning
-      }
-    }
-  },
   watch: {
-    visible(newVal) {
+    visible (newVal) {
       if (newVal !== this.show) {
         this.show = newVal
       }
     },
-    show(newVal, oldVal) {
+    show (newVal, oldVal) {
       if (newVal !== oldVal) {
         this.emitState()
       }
     }
   },
-  created() {
-    // Listen for toggle events to open/close us
-    this.listenOnRoot(EVENT_TOGGLE, this.handleToggleEvt)
-    // Listen to other collapses for accordion events
-    this.listenOnRoot(EVENT_ACCORDION, this.handleAccordionEvt)
-  },
-  mounted() {
-    if (this.isNav && __WEBPACK_IMPORTED_MODULE_1__utils_env__["b" /* inBrowser */]) {
-      // Set up handlers
-      this.setWindowEvents(true)
-      this.handleResize()
-    }
-    this.emitState()
-  },
-  deactivated() /* istanbul ignore next */ {
-    if (this.isNav && __WEBPACK_IMPORTED_MODULE_1__utils_env__["b" /* inBrowser */]) {
-      this.setWindowEvents(false)
-    }
-  },
-  activated() /* istanbul ignore next */ {
-    if (this.isNav && __WEBPACK_IMPORTED_MODULE_1__utils_env__["b" /* inBrowser */]) {
-      this.setWindowEvents(true)
-    }
-  },
-  beforeDestroy() /* istanbul ignore next */ {
-    // Trigger state emit if needed
-    this.show = false
-    if (this.isNav && __WEBPACK_IMPORTED_MODULE_1__utils_env__["b" /* inBrowser */]) {
-      this.setWindowEvents(false)
+  computed: {
+    classObject () {
+      return {
+        'navbar-collapse': this.isNav,
+        'collapse': !this.transitioning,
+        'show': this.show && !this.transitioning
+      }
     }
   },
   methods: {
-    setWindowEvents(on) {
-      const method = on ? __WEBPACK_IMPORTED_MODULE_2__utils_dom__["e" /* eventOn */] : __WEBPACK_IMPORTED_MODULE_2__utils_dom__["d" /* eventOff */]
-      method(window, 'resize', this.handleResize, EventOptions)
-      method(window, 'orientationchange', this.handleResize, EventOptions)
-    },
-    toggle() {
+    toggle () {
       this.show = !this.show
     },
-    onEnter(el) {
+    onEnter (el) {
       el.style.height = 0
-      Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["n" /* reflow */])(el)
+      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["l" /* reflow */])(el)
       el.style.height = el.scrollHeight + 'px'
       this.transitioning = true
       // This should be moved out so we can add cancellable events
       this.$emit('show')
     },
-    onAfterEnter(el) {
+    onAfterEnter (el) {
       el.style.height = null
       this.transitioning = false
       this.$emit('shown')
     },
-    onLeave(el) {
+    onLeave (el) {
       el.style.height = 'auto'
       el.style.display = 'block'
-      el.style.height = Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["g" /* getBCR */])(el).height + 'px'
-      Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["n" /* reflow */])(el)
+      el.style.height = el.getBoundingClientRect().height + 'px'
+      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["l" /* reflow */])(el)
       this.transitioning = true
       el.style.height = 0
       // This should be moved out so we can add cancellable events
       this.$emit('hide')
     },
-    onAfterLeave(el) {
+    onAfterLeave (el) {
       el.style.height = null
       this.transitioning = false
       this.$emit('hidden')
     },
-    emitState() {
+    emitState () {
       this.$emit('input', this.show)
       // Let v-b-toggle know the state of this collapse
       this.$root.$emit(EVENT_STATE, this.id, this.show)
@@ -5341,24 +5452,23 @@ const EventOptions = { passive: true, capture: false }
         this.$root.$emit(EVENT_ACCORDION, this.id, this.accordion)
       }
     },
-    clickHandler(evt) {
+    clickHandler (evt) {
       // If we are in a nav/navbar, close the collapse when non-disabled link clicked
       const el = evt.target
-      if (!this.isNav || !el || Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["h" /* getCS */])(this.$el).display !== 'block') {
-        /* istanbul ignore next: can't test getComputedStyle in JSDOM */
+      if (!this.isNav || !el || getComputedStyle(this.$el).display !== 'block') {
         return
       }
-      if (Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["m" /* matches */])(el, '.nav-link,.dropdown-item') || Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["b" /* closest */])('.nav-link,.dropdown-item', el)) {
+      if (Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["h" /* hasClass */])(el, 'nav-link') || Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["h" /* hasClass */])(el, 'dropdown-item')) {
         this.show = false
       }
     },
-    handleToggleEvt(target) {
+    handleToggleEvt (target) {
       if (target !== this.id) {
         return
       }
       this.toggle()
     },
-    handleAccordionEvt(openedId, accordion) {
+    handleAccordionEvt (openedId, accordion) {
       if (!this.accordion || accordion !== this.accordion) {
         return
       }
@@ -5374,42 +5484,31 @@ const EventOptions = { passive: true, capture: false }
         }
       }
     },
-    handleResize() {
+    handleResize () {
       // Handler for orientation/resize to set collapsed state in nav/navbar
-      this.show = Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["h" /* getCS */])(this.$el).display === 'block'
+      this.show = (getComputedStyle(this.$el).display === 'block')
     }
   },
-  render(h) {
-    const content = h(
-      this.tag,
-      {
-        class: this.classObject,
-        directives: [{ name: 'show', value: this.show }],
-        attrs: { id: this.id || null },
-        on: { click: this.clickHandler }
-      },
-      [this.$slots.default]
-    )
-    return h(
-      'transition',
-      {
-        props: {
-          enterClass: '',
-          enterActiveClass: 'collapsing',
-          enterToClass: '',
-          leaveClass: '',
-          leaveActiveClass: 'collapsing',
-          leaveToClass: ''
-        },
-        on: {
-          enter: this.onEnter,
-          afterEnter: this.onAfterEnter,
-          leave: this.onLeave,
-          afterLeave: this.onAfterLeave
-        }
-      },
-      [content]
-    )
+  created () {
+    // Listen for toggle events to open/close us
+    this.listenOnRoot(EVENT_TOGGLE, this.handleToggleEvt)
+    // Listen to otehr collapses for accordion events
+    this.listenOnRoot(EVENT_ACCORDION, this.handleAccordionEvt)
+  },
+  mounted () {
+    if (this.isNav && typeof document !== 'undefined') {
+      // Set up handlers
+      window.addEventListener('resize', this.handleResize, false)
+      window.addEventListener('orientationchange', this.handleResize, false)
+      this.handleResize()
+    }
+    this.emitState()
+  },
+  beforeDestroy () {
+    if (this.isNav && typeof document !== 'undefined') {
+      window.removeEventListener('resize', this.handleResize, false)
+      window.removeEventListener('orientationchange', this.handleResize, false)
+    }
   }
 });
 
@@ -5428,16 +5527,19 @@ const EventOptions = { passive: true, capture: false }
 
 
 const components = {
-  BCollapse: __WEBPACK_IMPORTED_MODULE_0__collapse__["a" /* default */]
+  bCollapse: __WEBPACK_IMPORTED_MODULE_0__collapse__["a" /* default */]
 }
 
-const plugins = {
-  BToggleDirectivePlugin: __WEBPACK_IMPORTED_MODULE_1__directives_toggle__["a" /* default */]
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["a" /* registerComponents */])(Vue, components)
+    Vue.use(__WEBPACK_IMPORTED_MODULE_1__directives_toggle__["a" /* default */])
+  }
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install: Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["a" /* installFactory */])({ components, plugins })
-});
+Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
@@ -5458,12 +5560,10 @@ const props = {
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BDropdownDivider',
   functional: true,
   props,
-  render(h, { props, data }) {
+  render (h, { props, data }) {
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
@@ -5474,13 +5574,6 @@ const props = {
   }
 });
 
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/components/dropdown/dropdown-form.js":
-/***/ (function(module, exports) {
-
-throw new Error("Module parse failed: Unexpected token (7:11)\nYou may need an appropriate loader to handle this file type.\n|   name: 'BDropdownForm',\n|   functional: true,\n|   props: { ...formProps },\n|   render(h, { props, data, children }) {\n|     return h(BForm, mergeData(data, { props, staticClass: 'b-dropdown-form' }), children)");
 
 /***/ }),
 
@@ -5504,12 +5597,10 @@ const props = {
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BDropdownHeader',
   functional: true,
   props,
-  render(h, { props, data, children }) {
+  render (h, { props, data, children }) {
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
@@ -5528,15 +5619,10 @@ const props = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
+
+
 const props = {
-  active: {
-    type: Boolean,
-    default: false
-  },
-  activeClass: {
-    type: String,
-    default: 'active'
-  },
   disabled: {
     type: Boolean,
     default: false
@@ -5545,36 +5631,23 @@ const props = {
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BDropdownItemButton',
-  inject: {
-    bvDropdown: {
-      default: null
-    }
-  },
+  functional: true,
   props,
-  methods: {
-    closeDropdown() {
-      if (this.bvDropdown) {
-        this.bvDropdown.hide(true)
-      }
-    },
-    onClick(evt) {
-      this.$emit('click', evt)
-      this.closeDropdown()
-    }
-  },
-  render(h) {
+  render (h, { props, data, parent, children }) {
     return h(
       'button',
-      {
+      Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
+        props,
         staticClass: 'dropdown-item',
-        class: { [this.activeClass]: this.active },
-        attrs: { role: 'menuitem', type: 'button', disabled: this.disabled },
-        on: { click: this.onClick }
-      },
-      this.$slots.default
+        attrs: { role: 'menuitem', type: 'button', disabled: props.disabled },
+        on: {
+          click (e) {
+            parent.$root.$emit('clicked::link', e)
+          }
+        }
+      }),
+      children
     )
   }
 });
@@ -5586,44 +5659,27 @@ const props = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__link_link__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/link/link.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__link_link___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__link_link__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__link_link__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/link/link.js");
 
 
-const props = Object(__WEBPACK_IMPORTED_MODULE_0__link_link__["propsFactory"])()
+
+const props = Object(__WEBPACK_IMPORTED_MODULE_1__link_link__["b" /* propsFactory */])()
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BDropdownItem',
-  inject: {
-    bvDropdown: {
-      default: null
-    }
-  },
+  functional: true,
   props,
-  methods: {
-    closeDropdown() {
-      if (this.bvDropdown) {
-        this.bvDropdown.hide(true)
-      }
-    },
-    onClick(evt) {
-      this.$emit('click', evt)
-      this.closeDropdown()
-    }
-  },
-  render(h) {
+  render (h, { props, data, children }) {
     return h(
-      __WEBPACK_IMPORTED_MODULE_0__link_link__["default"],
-      {
-        props: this.$props,
+      __WEBPACK_IMPORTED_MODULE_1__link_link__["a" /* default */],
+      Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
+        props,
         staticClass: 'dropdown-item',
-        attrs: { role: 'menuitem' },
-        on: { click: this.onClick }
-      },
-      this.$slots.default
+        attrs: { role: 'menuitem' }
+      }),
+      children
     )
   }
 });
@@ -5631,27 +5687,35 @@ const props = Object(__WEBPACK_IMPORTED_MODULE_0__link_link__["propsFactory"])()
 
 /***/ }),
 
-/***/ "./node_modules/bootstrap-vue/src/components/dropdown/dropdown-text.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./node_modules/bootstrap-vue/src/components/dropdown/dropdown.css":
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
+// style-loader: Adds some css to the DOM by adding a <style> tag
 
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/bootstrap-vue/src/components/dropdown/dropdown.css");
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BDropdownText',
-  functional: true,
-  props: {
-    tag: {
-      type: String,
-      default: 'p'
-    }
-  },
-  render(h, { props, data, children }) {
-    return h(props.tag, Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, { props, staticClass: 'b-dropdown-text' }), children)
-  }
-});
-
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/style-loader/lib/addStyles.js")(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../css-loader/index.js!./dropdown.css", function() {
+			var newContent = require("!!../../../../css-loader/index.js!./dropdown.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 
@@ -5659,151 +5723,32 @@ const props = Object(__WEBPACK_IMPORTED_MODULE_0__link_link__["propsFactory"])()
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_html__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/html.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_config__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/config.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_dropdown__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/dropdown.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_dropdown___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__mixins_dropdown__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__button_button__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/button.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__button_button___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__button_button__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_dropdown__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/dropdown.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__button_button__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/button.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dropdown_css__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/dropdown/dropdown.css");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dropdown_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__dropdown_css__);
 
 
 
 
 
 
-const NAME = 'BDropdown'
-
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: NAME,
-  components: { BButton: __WEBPACK_IMPORTED_MODULE_4__button_button__["default"] },
-  mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_id__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3__mixins_dropdown__["default"]],
-  props: {
-    toggleText: {
-      // This really should be toggleLabel
-      type: String,
-      default: () => Object(__WEBPACK_IMPORTED_MODULE_1__utils_config__["b" /* getComponentConfig */])(NAME, 'toggleText')
-    },
-    size: {
-      type: String,
-      default: null
-    },
-    variant: {
-      type: String,
-      default: () => Object(__WEBPACK_IMPORTED_MODULE_1__utils_config__["b" /* getComponentConfig */])(NAME, 'variant')
-    },
-    menuClass: {
-      type: [String, Array],
-      default: null
-    },
-    toggleTag: {
-      type: String,
-      default: 'button'
-    },
-    toggleClass: {
-      type: [String, Array],
-      default: null
-    },
-    noCaret: {
-      type: Boolean,
-      default: false
-    },
-    split: {
-      type: Boolean,
-      default: false
-    },
-    splitHref: {
-      type: String
-      // default: undefined
-    },
-    splitTo: {
-      type: [String, Object]
-      // default: undefined
-    },
-    splitVariant: {
-      type: String,
-      default: null
-    },
-    role: {
-      type: String,
-      default: 'menu'
-    },
-    boundary: {
-      // String: `scrollParent`, `window` or `viewport`
-      // Object: HTML Element reference
-      type: [String, Object],
-      default: 'scrollParent'
-    }
-  },
-  computed: {
-    dropdownClasses() {
-      // Position `static` is needed to allow menu to "breakout" of the scrollParent boundaries
-      // when boundary is anything other than `scrollParent`
-      // See https://github.com/twbs/bootstrap/issues/24251#issuecomment-341413786
-      const positionStatic = this.boundary !== 'scrollParent' || !this.boundary
-
-      let direction = ''
-      if (this.dropup) {
-        direction = 'dropup'
-      } else if (this.dropright) {
-        direction = 'dropright'
-      } else if (this.dropleft) {
-        direction = 'dropleft'
-      }
-
-      return [
-        'btn-group',
-        'b-dropdown',
-        'dropdown',
-        direction,
-        {
-          show: this.visible,
-          'position-static': positionStatic
-        }
-      ]
-    },
-    menuClasses() {
-      return [
-        'dropdown-menu',
-        {
-          'dropdown-menu-right': this.right,
-          show: this.visible
-        },
-        this.menuClass
-      ]
-    },
-    toggleClasses() {
-      return [
-        'dropdown-toggle',
-        {
-          'dropdown-toggle-split': this.split,
-          'dropdown-toggle-no-caret': this.noCaret && !this.split
-        },
-        this.toggleClass
-      ]
-    }
-  },
-  render(h) {
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_id__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__mixins_dropdown__["a" /* default */]],
+  components: { bButton: __WEBPACK_IMPORTED_MODULE_2__button_button__["a" /* default */] },
+  render (h) {
     let split = h(false)
     if (this.split) {
-      const btnProps = {
-        disabled: this.disabled,
-        variant: this.splitVariant || this.variant,
-        size: this.size
-      }
-      // We add these as needed due to router-link issues with defined property with undefined/null values
-      if (this.splitTo) {
-        btnProps.to = this.splitTo
-      }
-      if (this.splitHref) {
-        btnProps.href = this.splitHref
-      }
       split = h(
         'b-button',
         {
           ref: 'button',
-          props: btnProps,
+          props: {
+            disabled: this.disabled,
+            variant: this.variant,
+            size: this.size
+          },
           attrs: {
             id: this.safeId('_BV_button_')
           },
@@ -5811,7 +5756,7 @@ const NAME = 'BDropdown'
             click: this.click
           }
         },
-        [this.$slots['button-content'] || this.$slots.text || this.html || Object(__WEBPACK_IMPORTED_MODULE_0__utils_html__["b" /* stripTags */])(this.text)]
+        [this.$slots['button-content'] || this.$slots.text || this.text]
       )
     }
     const toggle = h(
@@ -5822,8 +5767,7 @@ const NAME = 'BDropdown'
         props: {
           variant: this.variant,
           size: this.size,
-          disabled: this.disabled,
-          tag: this.toggleTag
+          disabled: this.disabled
         },
         attrs: {
           id: this.safeId('_BV_toggle_'),
@@ -5838,7 +5782,7 @@ const NAME = 'BDropdown'
       [
         this.split
           ? h('span', { class: ['sr-only'] }, [this.toggleText])
-          : this.$slots['button-content'] || this.$slots.text || this.html || Object(__WEBPACK_IMPORTED_MODULE_0__utils_html__["b" /* stripTags */])(this.text)
+          : this.$slots['button-content'] || this.$slots.text || this.text
       ]
     )
     const menu = h(
@@ -5848,7 +5792,6 @@ const NAME = 'BDropdown'
         class: this.menuClasses,
         attrs: {
           role: this.role,
-          tabindex: '-1',
           'aria-labelledby': this.safeId(this.split ? '_BV_button_' : '_BV_toggle_')
         },
         on: {
@@ -5863,6 +5806,84 @@ const NAME = 'BDropdown'
       toggle,
       menu
     ])
+  },
+  props: {
+    split: {
+      type: Boolean,
+      default: false
+    },
+    toggleText: {
+      type: String,
+      default: 'Toggle Dropdown'
+    },
+    size: {
+      type: String,
+      default: null
+    },
+    variant: {
+      type: String,
+      default: null
+    },
+    menuClass: {
+      type: [String, Array],
+      default: null
+    },
+    toggleClass: {
+      type: [String, Array],
+      default: null
+    },
+    noCaret: {
+      type: Boolean,
+      default: false
+    },
+    role: {
+      type: String,
+      default: 'menu'
+    },
+    boundary: {
+      // String: `scrollParent`, `window` or `viewport`
+      // Object: HTML Element reference
+      type: [String, Object],
+      default: 'scrollParent'
+    }
+  },
+  computed: {
+    dropdownClasses () {
+      let position = ''
+      // Position `static` is needed to allow menu to "breakout" of the scrollParent boundaries
+      // when boundary is anything other than `scrollParent`
+      // See https://github.com/twbs/bootstrap/issues/24251#issuecomment-341413786
+      if (this.boundary !== 'scrollParent' || !this.boundary) {
+        position = 'position-static'
+      }
+      return [
+        'btn-group',
+        'b-dropdown',
+        'dropdown',
+        this.dropup ? 'dropup' : '',
+        this.visible ? 'show' : '',
+        position
+      ]
+    },
+    menuClasses () {
+      return [
+        'dropdown-menu',
+        {
+          'dropdown-menu-right': this.right,
+          'show': this.visible
+        },
+        this.menuClass
+      ]
+    },
+    toggleClasses () {
+      return [
+        {
+          'dropdown-toggle': !this.noCaret || this.split,
+          'dropdown-toggle-split': this.split
+        },
+        this.toggleClass
+      ]
+    }
   }
 });
 
@@ -5878,12 +5899,7 @@ const NAME = 'BDropdown'
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dropdown_item_button__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/dropdown/dropdown-item-button.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__dropdown_header__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/dropdown/dropdown-header.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dropdown_divider__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/dropdown/dropdown-divider.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dropdown_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/dropdown/dropdown-form.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dropdown_form___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__dropdown_form__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__dropdown_text__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/dropdown/dropdown-text.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
-
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
 
 
 
@@ -5892,27 +5908,29 @@ const NAME = 'BDropdown'
 
 
 const components = {
-  BDropdown: __WEBPACK_IMPORTED_MODULE_0__dropdown__["a" /* default */],
-  BDd: __WEBPACK_IMPORTED_MODULE_0__dropdown__["a" /* default */],
-  BDropdownItem: __WEBPACK_IMPORTED_MODULE_1__dropdown_item__["a" /* default */],
-  BDdItem: __WEBPACK_IMPORTED_MODULE_1__dropdown_item__["a" /* default */],
-  BDropdownItemButton: __WEBPACK_IMPORTED_MODULE_2__dropdown_item_button__["a" /* default */],
-  BDropdownItemBtn: __WEBPACK_IMPORTED_MODULE_2__dropdown_item_button__["a" /* default */],
-  BDdItemButton: __WEBPACK_IMPORTED_MODULE_2__dropdown_item_button__["a" /* default */],
-  BDdItemBtn: __WEBPACK_IMPORTED_MODULE_2__dropdown_item_button__["a" /* default */],
-  BDropdownHeader: __WEBPACK_IMPORTED_MODULE_3__dropdown_header__["a" /* default */],
-  BDdHeader: __WEBPACK_IMPORTED_MODULE_3__dropdown_header__["a" /* default */],
-  BDropdownDivider: __WEBPACK_IMPORTED_MODULE_4__dropdown_divider__["a" /* default */],
-  BDdDivider: __WEBPACK_IMPORTED_MODULE_4__dropdown_divider__["a" /* default */],
-  BDropdownForm: __WEBPACK_IMPORTED_MODULE_5__dropdown_form__["default"],
-  BDdForm: __WEBPACK_IMPORTED_MODULE_5__dropdown_form__["default"],
-  BDropdownText: __WEBPACK_IMPORTED_MODULE_6__dropdown_text__["a" /* default */],
-  BDdText: __WEBPACK_IMPORTED_MODULE_6__dropdown_text__["a" /* default */]
+  bDropdown: __WEBPACK_IMPORTED_MODULE_0__dropdown__["a" /* default */],
+  bDd: __WEBPACK_IMPORTED_MODULE_0__dropdown__["a" /* default */],
+  bDropdownItem: __WEBPACK_IMPORTED_MODULE_1__dropdown_item__["a" /* default */],
+  bDdItem: __WEBPACK_IMPORTED_MODULE_1__dropdown_item__["a" /* default */],
+  bDropdownItemButton: __WEBPACK_IMPORTED_MODULE_2__dropdown_item_button__["a" /* default */],
+  bDropdownItemBtn: __WEBPACK_IMPORTED_MODULE_2__dropdown_item_button__["a" /* default */],
+  bDdItemButton: __WEBPACK_IMPORTED_MODULE_2__dropdown_item_button__["a" /* default */],
+  bDdItemBtn: __WEBPACK_IMPORTED_MODULE_2__dropdown_item_button__["a" /* default */],
+  bDropdownHeader: __WEBPACK_IMPORTED_MODULE_3__dropdown_header__["a" /* default */],
+  bDdHeader: __WEBPACK_IMPORTED_MODULE_3__dropdown_header__["a" /* default */],
+  bDropdownDivider: __WEBPACK_IMPORTED_MODULE_4__dropdown_divider__["a" /* default */],
+  bDdDivider: __WEBPACK_IMPORTED_MODULE_4__dropdown_divider__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install: Object(__WEBPACK_IMPORTED_MODULE_7__utils_plugins__["a" /* installFactory */])({ components })
-});
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_5__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_5__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
@@ -5924,9 +5942,9 @@ const components = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_options__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-options.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_radio_check_group__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-radio-check-group.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_size__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-size.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mixins_form_state__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-state.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-size.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-state.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-custom.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__form_checkbox__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-checkbox/form-checkbox.js");
 
 
@@ -5937,42 +5955,126 @@ const components = {
 
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BFormCheckboxGroup',
-  components: { BFormCheckbox: __WEBPACK_IMPORTED_MODULE_6__form_checkbox__["a" /* default */] },
   mixins: [
     __WEBPACK_IMPORTED_MODULE_0__mixins_id__["a" /* default */],
     __WEBPACK_IMPORTED_MODULE_1__mixins_form__["a" /* default */],
-    __WEBPACK_IMPORTED_MODULE_3__mixins_form_radio_check_group__["a" /* default */], // Includes render function
-    __WEBPACK_IMPORTED_MODULE_2__mixins_form_options__["a" /* default */],
-    __WEBPACK_IMPORTED_MODULE_4__mixins_form_size__["a" /* default */],
-    __WEBPACK_IMPORTED_MODULE_5__mixins_form_state__["a" /* default */]
+    __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_2__mixins_form_options__["a" /* default */]
   ],
-  provide() {
+  components: { bFormCheckbox: __WEBPACK_IMPORTED_MODULE_6__form_checkbox__["a" /* default */] },
+  render (h) {
+    const $slots = this.$slots
+
+    const checks = this.formOptions.map((option, idx) => {
+      return h(
+        'b-form-checkbox',
+        {
+          key: `check_${idx}_opt`,
+          props: {
+            id: this.safeId(`_BV_check_${idx}_opt_`),
+            name: this.name,
+            value: option.value,
+            required: this.name && this.required,
+            disabled: option.disabled
+          }
+        },
+        [h('span', { domProps: { innerHTML: option.text } })]
+      )
+    })
+    return h(
+      'div',
+      {
+        class: this.groupClasses,
+        attrs: {
+          id: this.safeId(),
+          role: 'group',
+          tabindex: '-1',
+          'aria-required': this.required ? 'true' : null,
+          'aria-invalid': this.computedAriaInvalid
+        }
+      },
+      [$slots.first, checks, $slots.default]
+    )
+  },
+  data () {
     return {
-      bvCheckGroup: this
+      localChecked: this.checked || [],
+      // Flag for children
+      is_RadioCheckGroup: true
     }
   },
+  model: {
+    prop: 'checked',
+    event: 'input'
+  },
   props: {
-    switches: {
-      // Custom switch styling
-      type: Boolean,
-      default: false
-    },
     checked: {
       type: [String, Number, Object, Array, Boolean],
       default: null
+    },
+    validated: {
+      type: Boolean,
+      default: false
+    },
+    ariaInvalid: {
+      type: [Boolean, String],
+      default: false
+    },
+    stacked: {
+      type: Boolean,
+      default: false
+    },
+    buttons: {
+      // Render as button style
+      type: Boolean,
+      default: false
+    },
+    buttonVariant: {
+      // Only applicable when rendered with button style
+      type: String,
+      default: 'secondary'
     }
   },
-  data() {
-    return {
-      localChecked: this.checked || []
+  watch: {
+    checked (newVal, oldVal) {
+      this.localChecked = this.checked
+    },
+    localChecked (newVal, oldVal) {
+      this.$emit('input', newVal)
     }
   },
   computed: {
-    is_RadioGroup() {
-      return false
+    groupClasses () {
+      if (this.buttons) {
+        return [
+          'btn-group-toggle',
+          this.stacked ? 'btn-group-vertical' : 'btn-group',
+          this.size ? `btn-group-${this.size}` : '',
+          this.validated ? `was-validated` : ''
+        ]
+      }
+      return [
+        this.sizeFormClass,
+        this.stacked && this.custom ? 'custom-controls-stacked' : '',
+        this.validated ? `was-validated` : ''
+      ]
+    },
+    computedAriaInvalid () {
+      if (
+        this.ariaInvalid === true ||
+        this.ariaInvalid === 'true' ||
+        this.ariaInvalid === ''
+      ) {
+        return 'true'
+      }
+      return this.get_State === false ? 'true' : null
+    },
+    get_State () {
+      // Child radios sniff this value
+      return this.computedState
     }
   }
 });
@@ -5989,9 +6091,9 @@ const components = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-size.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-state.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_loose_equal__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/loose-equal.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_loose_index_of__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/loose-index-of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-custom.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_loose_equal__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/loose-equal.js");
 
 
 
@@ -6001,29 +6103,105 @@ const components = {
 
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BFormCheckbox',
   mixins: [
-    __WEBPACK_IMPORTED_MODULE_1__mixins_form_radio_check__["a" /* default */], // Includes shared render function
     __WEBPACK_IMPORTED_MODULE_0__mixins_id__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_1__mixins_form_radio_check__["a" /* default */],
     __WEBPACK_IMPORTED_MODULE_2__mixins_form__["a" /* default */],
     __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__["a" /* default */],
-    __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__["a" /* default */]
+    __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__["a" /* default */]
   ],
-  inject: {
-    bvGroup: {
-      from: 'bvCheckGroup',
-      default: false
+  render (h) {
+    const input = h('input', {
+      ref: 'check',
+      class: [
+        this.is_ButtonMode
+          ? ''
+          : this.is_Plain ? 'form-check-input' : 'custom-control-input',
+        this.get_StateClass
+      ],
+      directives: [
+        {
+          name: 'model',
+          rawName: 'v-model',
+          value: this.computedLocalChecked,
+          expression: 'computedLocalChecked'
+        }
+      ],
+      attrs: {
+        id: this.safeId(),
+        type: 'checkbox',
+        name: this.get_Name,
+        disabled: this.is_Disabled,
+        required: this.is_Required,
+        autocomplete: 'off',
+        'true-value': this.value,
+        'false-value': this.uncheckedValue,
+        'aria-required': this.is_Required ? 'true' : null
+      },
+      domProps: { value: this.value, checked: this.is_Checked },
+      on: {
+        focus: this.handleFocus,
+        blur: this.handleFocus,
+        change: this.emitChange,
+        __c: evt => {
+          const $$a = this.computedLocalChecked
+          const $$el = evt.target
+          if (Object(__WEBPACK_IMPORTED_MODULE_6__utils_array__["d" /* isArray */])($$a)) {
+            // Multiple checkbox
+            const $$v = this.value
+            let $$i = this._i($$a, $$v) // Vue's 'loose' Array.indexOf
+            if ($$el.checked) {
+              // Append value to array
+              $$i < 0 && (this.computedLocalChecked = $$a.concat([$$v]))
+            } else {
+              // Remove value from array
+              $$i > -1 &&
+                (this.computedLocalChecked = $$a
+                  .slice(0, $$i)
+                  .concat($$a.slice($$i + 1)))
+            }
+          } else {
+            // Single checkbox
+            this.computedLocalChecked = $$el.checked ? this.value : this.uncheckedValue
+          }
+        }
+      }
+    })
+
+    const description = h(
+      this.is_ButtonMode ? 'span' : 'label',
+      {
+        class: this.is_ButtonMode
+          ? null
+          : this.is_Plain ? 'form-check-label' : 'custom-control-label',
+        attrs: { for: this.is_ButtonMode ? null : this.safeId() }
+      },
+      [this.$slots.default]
+    )
+
+    if (!this.is_ButtonMode) {
+      return h(
+        'div',
+        {
+          class: [
+            this.is_Plain ? 'form-check' : this.labelClasses,
+            { 'form-check-inline': this.is_Plain && !this.is_Stacked },
+            { 'custom-control-inline': !this.is_Plain && !this.is_Stacked }
+          ]
+        },
+        [input, description]
+      )
+    } else {
+      return h('label', { class: [this.buttonClasses] }, [input, description])
     }
   },
   props: {
     value: {
-      // type: [Object, Boolean],
       default: true
     },
     uncheckedValue: {
-      // type: [Object, Boolean],
       // Not applicable in multi-check mode
       default: false
     },
@@ -6031,89 +6209,78 @@ const components = {
       // Not applicable in multi-check mode
       type: Boolean,
       default: false
-    },
-    switch: {
-      // Custom switch styling
-      type: Boolean,
-      default: false
-    },
-    checked: {
-      // v-model
-      type: [String, Number, Object, Array, Boolean],
-      default: null
     }
   },
   computed: {
-    is_Checked() {
+    labelClasses () {
+      return [
+        'custom-control',
+        'custom-checkbox',
+        this.get_Size ? `form-control-${this.get_Size}` : '',
+        this.get_StateClass
+      ]
+    },
+    is_Checked () {
       const checked = this.computedLocalChecked
-      const value = this.value
-      if (Object(__WEBPACK_IMPORTED_MODULE_5__utils_array__["d" /* isArray */])(checked)) {
-        return Object(__WEBPACK_IMPORTED_MODULE_7__utils_loose_index_of__["a" /* default */])(checked, value) > -1
+      if (Object(__WEBPACK_IMPORTED_MODULE_6__utils_array__["d" /* isArray */])(checked)) {
+        for (let i = 0; i < checked.length; i++) {
+          if (Object(__WEBPACK_IMPORTED_MODULE_7__utils_loose_equal__["a" /* default */])(checked[i], this.value)) {
+            return true
+          }
+        }
+        return false
       } else {
-        return Object(__WEBPACK_IMPORTED_MODULE_6__utils_loose_equal__["a" /* default */])(checked, value)
+        return Object(__WEBPACK_IMPORTED_MODULE_7__utils_loose_equal__["a" /* default */])(checked, this.value)
       }
-    },
-    is_Radio() {
-      return false
-    },
-    is_Check() {
-      return true
     }
   },
   watch: {
-    computedLocalChecked(newVal, oldVal) {
-      this.$emit('input', newVal)
-      if (this.$refs && this.$refs.input) {
-        this.$emit('update:indeterminate', this.$refs.input.indeterminate)
+    computedLocalChecked (newVal, oldVal) {
+      if (Object(__WEBPACK_IMPORTED_MODULE_7__utils_loose_equal__["a" /* default */])(newVal, oldVal)) {
+        return
       }
+      this.$emit('input', newVal)
+      this.$emit('update:indeterminate', this.$refs.check.indeterminate)
     },
-    indeterminate(newVal, oldVal) {
+    checked (newVal, oldVal) {
+      if (this.is_Child || Object(__WEBPACK_IMPORTED_MODULE_7__utils_loose_equal__["a" /* default */])(newVal, oldVal)) {
+        return
+      }
+      this.computedLocalChecked = newVal
+    },
+    indeterminate (newVal, oldVal) {
       this.setIndeterminate(newVal)
     }
   },
-  mounted() {
-    // Set initial indeterminate state
-    this.setIndeterminate(this.indeterminate)
-  },
   methods: {
-    handleChange({ target: { checked, indeterminate } }) {
-      let localChecked = this.computedLocalChecked
-      const value = this.value
-      const isArr = Object(__WEBPACK_IMPORTED_MODULE_5__utils_array__["d" /* isArray */])(localChecked)
-      const uncheckedValue = isArr ? null : this.uncheckedValue
-      // Update computedLocalChecked
-      if (isArr) {
-        const idx = Object(__WEBPACK_IMPORTED_MODULE_7__utils_loose_index_of__["a" /* default */])(localChecked, value)
-        if (checked && idx < 0) {
-          // Add value to array
-          localChecked = localChecked.concat(value)
-        } else if (!checked && idx > -1) {
-          // Remove value from array
-          localChecked = localChecked.slice(0, idx).concat(localChecked.slice(idx + 1))
+    emitChange ({ target: { checked } }) {
+      // Change event is only fired via user interaction
+      // And we only emit the value of this checkbox
+      if (this.is_Child || Object(__WEBPACK_IMPORTED_MODULE_6__utils_array__["d" /* isArray */])(this.computedLocalChecked)) {
+        this.$emit('change', checked ? this.value : null)
+        if (this.is_Child) {
+          // If we are a child of form-checkbbox-group, emit change on parent
+          this.$parent.$emit('change', this.computedLocalChecked)
         }
       } else {
-        localChecked = checked ? value : uncheckedValue
+        // Single radio mode supports unchecked value
+        this.$emit('change', checked ? this.value : this.uncheckedValue)
       }
-      this.computedLocalChecked = localChecked
-      // Change is only emitted on user interaction
-      this.$emit('change', checked ? value : uncheckedValue)
-      // If this is a child of form-checkbox-group, we emit a change event on it as well
-      if (this.is_Group) {
-        this.bvGroup.$emit('change', localChecked)
-      }
-      this.$emit('update:indeterminate', indeterminate)
+      this.$emit('update:indeterminate', this.$refs.check.indeterminate)
     },
-    setIndeterminate(state) {
+    setIndeterminate (state) {
       // Indeterminate only supported in single checkbox mode
-      if (Object(__WEBPACK_IMPORTED_MODULE_5__utils_array__["d" /* isArray */])(this.computedLocalChecked)) {
-        state = false
+      if (this.is_Child || Object(__WEBPACK_IMPORTED_MODULE_6__utils_array__["d" /* isArray */])(this.computedLocalChecked)) {
+        return
       }
-      if (this.$refs && this.$refs.input) {
-        this.$refs.input.indeterminate = state
-        // Emit update event to prop
-        this.$emit('update:indeterminate', state)
-      }
+      this.$refs.check.indeterminate = state
+      // Emit update event to prop
+      this.$emit('update:indeterminate', this.$refs.check.indeterminate)
     }
+  },
+  mounted () {
+    // Set initial indeterminate state
+    this.setIndeterminate(this.indeterminate)
   }
 });
 
@@ -6132,17 +6299,23 @@ const components = {
 
 
 const components = {
-  BFormCheckbox: __WEBPACK_IMPORTED_MODULE_0__form_checkbox__["a" /* default */],
-  BCheckbox: __WEBPACK_IMPORTED_MODULE_0__form_checkbox__["a" /* default */],
-  BCheck: __WEBPACK_IMPORTED_MODULE_0__form_checkbox__["a" /* default */],
-  BFormCheckboxGroup: __WEBPACK_IMPORTED_MODULE_1__form_checkbox_group__["a" /* default */],
-  BCheckboxGroup: __WEBPACK_IMPORTED_MODULE_1__form_checkbox_group__["a" /* default */],
-  BCheckGroup: __WEBPACK_IMPORTED_MODULE_1__form_checkbox_group__["a" /* default */]
+  bFormCheckbox: __WEBPACK_IMPORTED_MODULE_0__form_checkbox__["a" /* default */],
+  bCheckbox: __WEBPACK_IMPORTED_MODULE_0__form_checkbox__["a" /* default */],
+  bCheck: __WEBPACK_IMPORTED_MODULE_0__form_checkbox__["a" /* default */],
+  bFormCheckboxGroup: __WEBPACK_IMPORTED_MODULE_1__form_checkbox_group__["a" /* default */],
+  bCheckboxGroup: __WEBPACK_IMPORTED_MODULE_1__form_checkbox_group__["a" /* default */],
+  bCheckGroup: __WEBPACK_IMPORTED_MODULE_1__form_checkbox_group__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install: Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["a" /* installFactory */])({ components })
-});
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
@@ -6155,258 +6328,16 @@ const components = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_state__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-state.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_custom__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-custom.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_normalize_slot__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/normalize-slot.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_config__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/config.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
 
 
 
 
 
 
-
-
-const NAME = 'BFormFile'
-
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: NAME,
-  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_id__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__mixins_form__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2__mixins_form_state__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3__mixins_form_custom__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__mixins_normalize_slot__["a" /* default */]],
-  model: {
-    prop: 'value',
-    event: 'input'
-  },
-  props: {
-    value: {
-      // type: Object,
-      default: null
-    },
-    accept: {
-      type: String,
-      default: ''
-    },
-    // Instruct input to capture from camera
-    capture: {
-      type: Boolean,
-      default: false
-    },
-    placeholder: {
-      type: String,
-      default: () => Object(__WEBPACK_IMPORTED_MODULE_6__utils_config__["b" /* getComponentConfig */])(NAME, 'placeholder')
-    },
-    browseText: {
-      type: String,
-      default: () => Object(__WEBPACK_IMPORTED_MODULE_6__utils_config__["b" /* getComponentConfig */])(NAME, 'browseText')
-    },
-    dropPlaceholder: {
-      type: String,
-      default: () => Object(__WEBPACK_IMPORTED_MODULE_6__utils_config__["b" /* getComponentConfig */])(NAME, 'dropPlaceholder')
-    },
-    multiple: {
-      type: Boolean,
-      default: false
-    },
-    directory: {
-      type: Boolean,
-      default: false
-    },
-    noTraverse: {
-      type: Boolean,
-      default: false
-    },
-    noDrop: {
-      type: Boolean,
-      default: false
-    },
-    fileNameFormatter: {
-      type: Function,
-      default: null
-    }
-  },
-  data() {
-    return {
-      selectedFile: null,
-      dragging: false,
-      hasFocus: false
-    }
-  },
-  computed: {
-    selectLabel() {
-      // Draging active
-      if (this.dragging && this.dropPlaceholder) {
-        return this.dropPlaceholder
-      }
-
-      // No file chosen
-      if (!this.selectedFile || this.selectedFile.length === 0) {
-        return this.placeholder
-      }
-
-      // Convert selectedFile to an array (if not already one)
-      const files = Object(__WEBPACK_IMPORTED_MODULE_5__utils_array__["b" /* concat */])(this.selectedFile).filter(Boolean)
-
-      if (this.hasNormalizedSlot('file-name')) {
-        // There is a slot for formatting the files/names
-        return [
-          this.normalizeSlot('file-name', {
-            files: files,
-            names: files.map(f => f.name)
-          })
-        ]
-      } else {
-        // Use the user supplied formatter, or the built in one.
-        return typeof this.fileNameFormatter === 'function'
-          ? String(this.fileNameFormatter(files))
-          : files.map(file => file.name).join(', ')
-      }
-    }
-  },
-  watch: {
-    selectedFile(newVal, oldVal) {
-      // The following test is needed when the file input is "reset" or the
-      // exact same file(s) are selected to prevent an infinite loop.
-      // When in `multiple` mode we need to check for two empty arrays or
-      // two arrays with identical files
-      if (
-        newVal === oldVal ||
-        (Object(__WEBPACK_IMPORTED_MODULE_5__utils_array__["d" /* isArray */])(newVal) &&
-          Object(__WEBPACK_IMPORTED_MODULE_5__utils_array__["d" /* isArray */])(oldVal) &&
-          newVal.length === oldVal.length &&
-          newVal.every((v, i) => v === oldVal[i]))
-      ) {
-        return
-      }
-      if (!newVal && this.multiple) {
-        this.$emit('input', [])
-      } else {
-        this.$emit('input', newVal)
-      }
-    },
-    value(newVal) {
-      if (!newVal || (Object(__WEBPACK_IMPORTED_MODULE_5__utils_array__["d" /* isArray */])(newVal) && newVal.length === 0)) {
-        this.reset()
-      }
-    }
-  },
-  methods: {
-    focusHandler(evt) {
-      // Bootstrap v4 doesn't have focus styling for custom file input
-      // Firefox has a '[type=file]:focus ~ sibling' selector issue,
-      // so we add a 'focus' class to get around these bugs
-      if (this.plain || evt.type === 'focusout') {
-        this.hasFocus = false
-      } else {
-        // Add focus styling for custom file input
-        this.hasFocus = true
-      }
-    },
-    reset() {
-      try {
-        // Wrapped in try in case IE 11 craps out
-        this.$refs.input.value = ''
-      } catch (e) {}
-      // IE 11 doesn't support setting `input.value` to '' or null
-      // So we use this little extra hack to reset the value, just in case.
-      // This also appears to work on modern browsers as well.
-      this.$refs.input.type = ''
-      this.$refs.input.type = 'file'
-      this.selectedFile = this.multiple ? [] : null
-    },
-    onFileChange(evt) {
-      // Always emit original event
-      this.$emit('change', evt)
-      // Check if special `items` prop is available on event (drop mode)
-      // Can be disabled by setting no-traverse
-      const items = evt.dataTransfer && evt.dataTransfer.items
-      /* istanbul ignore next: not supported in JSDOM */
-      if (items && !this.noTraverse) {
-        const queue = []
-        for (let i = 0; i < items.length; i++) {
-          const item = items[i].webkitGetAsEntry()
-          if (item) {
-            queue.push(this.traverseFileTree(item))
-          }
-        }
-        Promise.all(queue).then(filesArr => {
-          this.setFiles(Object(__WEBPACK_IMPORTED_MODULE_5__utils_array__["c" /* from */])(filesArr))
-        })
-        return
-      }
-      // Normal handling
-      this.setFiles(evt.target.files || evt.dataTransfer.files)
-    },
-    setFiles(files = []) {
-      if (!files) {
-        /* istanbul ignore next: this will probably not happen */
-        this.selectedFile = null
-      } else if (this.multiple) {
-        // Convert files to array
-        const filesArray = []
-        for (let i = 0; i < files.length; i++) {
-          filesArray.push(files[i])
-        }
-        // Return file(s) as array
-        this.selectedFile = filesArray
-      } else {
-        // Return single file object
-        this.selectedFile = files[0] || null
-      }
-    },
-    onReset() {
-      // Triggered when the parent form (if any) is reset
-      this.selectedFile = this.multiple ? [] : null
-    },
-    onDragover(evt) /* istanbul ignore next: difficult to test in JSDOM */ {
-      evt.preventDefault()
-      evt.stopPropagation()
-      if (this.noDrop || !this.custom) {
-        return
-      }
-      this.dragging = true
-      evt.dataTransfer.dropEffect = 'copy'
-    },
-    onDragleave(evt) /* istanbul ignore next: difficult to test in JSDOM */ {
-      evt.preventDefault()
-      evt.stopPropagation()
-      this.dragging = false
-    },
-    onDrop(evt) /* istanbul ignore next: difficult to test in JSDOM */ {
-      evt.preventDefault()
-      evt.stopPropagation()
-      if (this.noDrop) {
-        return
-      }
-      this.dragging = false
-      if (evt.dataTransfer.files && evt.dataTransfer.files.length > 0) {
-        this.onFileChange(evt)
-      }
-    },
-    traverseFileTree(item, path) /* istanbul ignore next: not supported in JSDOM */ {
-      // Based on http://stackoverflow.com/questions/3590058
-      return new Promise(resolve => {
-        path = path || ''
-        if (item.isFile) {
-          // Get file
-          item.file(file => {
-            file.$path = path // Inject $path to file obj
-            resolve(file)
-          })
-        } else if (item.isDirectory) {
-          // Get folder contents
-          item.createReader().readEntries(entries => {
-            const queue = []
-            for (let i = 0; i < entries.length; i++) {
-              queue.push(this.traverseFileTree(entries[i], path + item.name + '/'))
-            }
-            Promise.all(queue).then(filesArr => {
-              resolve(Object(__WEBPACK_IMPORTED_MODULE_5__utils_array__["c" /* from */])(filesArr))
-            })
-          })
-        }
-      })
-    }
-  },
-  render(h) {
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_id__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__mixins_form__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2__mixins_form_state__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3__mixins_form_custom__["a" /* default */]],
+  render (h) {
     // Form Input
     const input = h('input', {
       ref: 'input',
@@ -6424,18 +6355,17 @@ const NAME = 'BFormFile'
         name: this.name,
         disabled: this.disabled,
         required: this.required,
-        form: this.form || null,
         capture: this.capture || null,
         accept: this.accept || null,
         multiple: this.multiple,
         webkitdirectory: this.directory,
-        'aria-required': this.required ? 'true' : null
+        'aria-required': this.required ? 'true' : null,
+        'aria-describedby': this.plain ? null : this.safeId('_BV_file_control_')
       },
       on: {
         change: this.onFileChange,
         focusin: this.focusHandler,
-        focusout: this.focusHandler,
-        reset: this.onReset
+        focusout: this.focusHandler
       }
     })
 
@@ -6447,11 +6377,9 @@ const NAME = 'BFormFile'
     const label = h(
       'label',
       {
-        staticClass: 'custom-file-label',
-        class: [this.dragging ? 'dragging' : null],
+        class: ['custom-file-label', this.dragging ? 'dragging' : null],
         attrs: {
-          for: this.safeId(),
-          'data-browse': this.browseText || null
+          id: this.safeId('_BV_file_control_')
         }
       },
       this.selectLabel
@@ -6461,17 +6389,197 @@ const NAME = 'BFormFile'
     return h(
       'div',
       {
-        staticClass: 'custom-file b-form-file',
-        class: this.stateClass,
+        class: ['custom-file', 'b-form-file', this.stateClass],
         attrs: { id: this.safeId('_BV_file_outer_') },
-        on: {
-          dragover: this.onDragover,
-          dragleave: this.onDragleave,
-          drop: this.onDrop
-        }
+        on: { dragover: this.dragover }
       },
       [input, label]
     )
+  },
+  data () {
+    return {
+      selectedFile: null,
+      dragging: false,
+      hasFocus: false
+    }
+  },
+  props: {
+    accept: {
+      type: String,
+      default: ''
+    },
+    // Instruct input to capture from camera
+    capture: {
+      type: Boolean,
+      default: false
+    },
+    placeholder: {
+      type: String,
+      default: undefined
+    },
+    multiple: {
+      type: Boolean,
+      default: false
+    },
+    directory: {
+      type: Boolean,
+      default: false
+    },
+    noTraverse: {
+      type: Boolean,
+      default: false
+    },
+    noDrop: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    selectLabel () {
+      // No file choosen
+      if (!this.selectedFile || this.selectedFile.length === 0) {
+        return this.placeholder
+      }
+
+      // Multiple files
+      if (this.multiple) {
+        if (this.selectedFile.length === 1) {
+          return this.selectedFile[0].name
+        }
+        return this.selectedFile.map(file => file.name).join(', ')
+      }
+
+      // Single file
+      return this.selectedFile.name
+    }
+  },
+  watch: {
+    selectedFile (newVal, oldVal) {
+      if (newVal === oldVal) {
+        return
+      }
+      if (!newVal && this.multiple) {
+        this.$emit('input', [])
+      } else {
+        this.$emit('input', newVal)
+      }
+    }
+  },
+  methods: {
+    focusHandler (evt) {
+      // Boostrap v4.beta doesn't have focus styling for custom file input
+      // Firefox has a borked '[type=file]:focus ~ sibling' selector issue,
+      // So we add a 'focus' class to get around these "bugs"
+      if (this.plain || evt.type === 'focusout') {
+        this.hasFocus = false
+      } else {
+        // Add focus styling for custom file input
+        this.hasFocus = true
+      }
+    },
+    reset () {
+      try {
+        // Wrapped in try in case IE < 11 craps out
+        this.$refs.input.value = ''
+      } catch (e) {}
+      // IE < 11 doesn't support setting input.value to '' or null
+      // So we use this little extra hack to reset the value, just in case
+      // This also appears to work on modern browsers as well.
+      this.$refs.input.type = ''
+      this.$refs.input.type = 'file'
+      this.selectedFile = this.multiple ? [] : null
+    },
+    onFileChange (evt) {
+      // Always emit original event
+      this.$emit('change', evt)
+      // Check if special `items` prop is available on event (drop mode)
+      // Can be disabled by setting no-traverse
+      const items = evt.dataTransfer && evt.dataTransfer.items
+      if (items && !this.noTraverse) {
+        const queue = []
+        for (let i = 0; i < items.length; i++) {
+          const item = items[i].webkitGetAsEntry()
+          if (item) {
+            queue.push(this.traverseFileTree(item))
+          }
+        }
+        Promise.all(queue).then(filesArr => {
+          this.setFiles(Object(__WEBPACK_IMPORTED_MODULE_4__utils_array__["c" /* from */])(filesArr))
+        })
+        return
+      }
+      // Normal handling
+      this.setFiles(evt.target.files || evt.dataTransfer.files)
+    },
+    setFiles (files) {
+      if (!files) {
+        this.selectedFile = null
+        return
+      }
+      if (!this.multiple) {
+        this.selectedFile = files[0]
+        return
+      }
+      // Convert files to array
+      const filesArray = []
+      for (let i = 0; i < files.length; i++) {
+        if (files[i].type.match(this.accept)) {
+          filesArray.push(files[i])
+        }
+      }
+      this.selectedFile = filesArray
+    },
+    dragover (evt) {
+      evt.preventDefault()
+      evt.stopPropagation()
+      if (this.noDrop || !this.custom) {
+        return
+      }
+      this.dragging = true
+      evt.dataTransfer.dropEffect = 'copy'
+    },
+    dragleave (evt) {
+      evt.preventDefault()
+      evt.stopPropagation()
+      this.dragging = false
+    },
+    drop (evt) {
+      evt.preventDefault()
+      evt.stopPropagation()
+      if (this.noDrop) {
+        return
+      }
+      this.dragging = false
+      if (evt.dataTransfer.files && evt.dataTransfer.files.length > 0) {
+        this.onFileChange(evt)
+      }
+    },
+    traverseFileTree (item, path) {
+      // Based on http://stackoverflow.com/questions/3590058
+      return new Promise(resolve => {
+        path = path || ''
+        if (item.isFile) {
+          // Get file
+          item.file(file => {
+            file.$path = path // Inject $path to file obj
+            resolve(file)
+          })
+        } else if (item.isDirectory) {
+          // Get folder contents
+          item.createReader().readEntries(entries => {
+            const queue = []
+            for (let i = 0; i < entries.length; i++) {
+              queue.push(
+                this.traverseFileTree(entries[i], path + item.name + '/')
+              )
+            }
+            Promise.all(queue).then(filesArr => {
+              resolve(Object(__WEBPACK_IMPORTED_MODULE_4__utils_array__["c" /* from */])(filesArr))
+            })
+          })
+        }
+      })
+    }
   }
 });
 
@@ -6488,21 +6596,370 @@ const NAME = 'BFormFile'
 
 
 const components = {
-  BFormFile: __WEBPACK_IMPORTED_MODULE_0__form_file__["a" /* default */],
-  BFile: __WEBPACK_IMPORTED_MODULE_0__form_file__["a" /* default */]
+  bFormFile: __WEBPACK_IMPORTED_MODULE_0__form_file__["a" /* default */],
+  bFile: __WEBPACK_IMPORTED_MODULE_0__form_file__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install: Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* installFactory */])({ components })
-});
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
 
 /***/ "./node_modules/bootstrap-vue/src/components/form-group/form-group.js":
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module parse failed: Unexpected token (131:47)\nYou may need an appropriate loader to handle this file type.\n|       {\n|         on: isLegend ? { click: ctx.legendClick } : {},\n|         props: isHorizontal ? { tag: labelTag, ...ctx.labelColProps } : {},\n|         attrs: {\n|           id: ctx.labelId,");
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_warn__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/warn.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_state__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-state.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__layout_form_row__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/layout/form-row.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__form_form_text__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form/form-text.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__form_form_invalid_feedback__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form/form-invalid-feedback.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__form_form_valid_feedback__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form/form-valid-feedback.js");
+
+
+
+
+
+
+
+
+
+// Selector for finding firt input in the form-group
+const SELECTOR = 'input:not(:disabled),textarea:not(:disabled),select:not(:disabled)'
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  mixins: [ __WEBPACK_IMPORTED_MODULE_2__mixins_id__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3__mixins_form_state__["a" /* default */] ],
+  components: { bFormRow: __WEBPACK_IMPORTED_MODULE_4__layout_form_row__["a" /* default */], bFormText: __WEBPACK_IMPORTED_MODULE_5__form_form_text__["a" /* default */], bFormInvalidFeedback: __WEBPACK_IMPORTED_MODULE_6__form_form_invalid_feedback__["a" /* default */], bFormValidFeedback: __WEBPACK_IMPORTED_MODULE_7__form_form_valid_feedback__["a" /* default */] },
+  render (h) {
+    const $slots = this.$slots
+
+    // Label / Legend
+    let legend = h(false)
+    if (this.hasLabel) {
+      let children = $slots['label']
+      const legendTag = this.labelFor ? 'label' : 'legend'
+      const legendDomProps = children ? {} : { innerHTML: this.label }
+      const legendAttrs = { id: this.labelId, for: this.labelFor || null }
+      const legendClick = (this.labelFor || this.labelSrOnly) ? {} : { click: this.legendClick }
+      if (this.horizontal) {
+        // Horizontal layout with label
+        if (this.labelSrOnly) {
+          // SR Only we wrap label/legend in a div to preserve layout
+          children = h(
+            legendTag,
+            { class: [ 'sr-only' ], attrs: legendAttrs, domProps: legendDomProps },
+            children
+          )
+          legend = h('div', { class: this.labelLayoutClasses }, [ children ])
+        } else {
+          legend = h(
+            legendTag,
+            {
+              class: [ this.labelLayoutClasses, this.labelClasses ],
+              attrs: legendAttrs,
+              domProps: legendDomProps,
+              on: legendClick
+            },
+            children
+          )
+        }
+      } else {
+        // Vertical layout with label
+        legend = h(
+          legendTag,
+          {
+            class: this.labelSrOnly ? [ 'sr-only' ] : this.labelClasses,
+            attrs: legendAttrs,
+            domProps: legendDomProps,
+            on: legendClick
+          },
+          children
+        )
+      }
+    } else if (this.horizontal) {
+      // No label but has horizontal layout, so we need a spacer element for layout
+      legend = h('div', { class: this.labelLayoutClasses })
+    }
+
+    // Invalid feeback text (explicitly hidden if state is valid)
+    let invalidFeedback = h(false)
+    if (this.hasInvalidFeedback) {
+      let domProps = {}
+      if (!$slots['invalid-feedback'] && !$slots['feedback']) {
+        domProps = { innerHTML: this.invalidFeedback || this.feedback || '' }
+      }
+      invalidFeedback = h(
+        'b-form-invalid-feedback',
+        {
+          props: {
+            id: this.invalidFeedbackId,
+            forceShow: this.computedState === false
+          },
+          attrs: {
+            role: 'alert',
+            'aria-live': 'assertive',
+            'aria-atomic': 'true'
+          },
+          domProps: domProps
+        },
+        $slots['invalid-feedback'] || $slots['feedback']
+      )
+    }
+
+    // Valid feeback text (explicitly hidden if state is invalid)
+    let validFeedback = h(false)
+    if (this.hasValidFeedback) {
+      const domProps = $slots['valid-feedback'] ? {} : { innerHTML: this.validFeedback || '' }
+      validFeedback = h(
+        'b-form-valid-feedback',
+        {
+          props: {
+            id: this.validFeedbackId,
+            forceShow: this.computedState === true
+          },
+          attrs: {
+            role: 'alert',
+            'aria-live': 'assertive',
+            'aria-atomic': 'true'
+          },
+          domProps: domProps
+        },
+        $slots['valid-feedback']
+      )
+    }
+
+    // Form help text (description)
+    let description = h(false)
+    if (this.hasDescription) {
+      const domProps = $slots['description'] ? {} : { innerHTML: this.description || '' }
+      description = h(
+        'b-form-text',
+        { attrs: { id: this.descriptionId }, domProps: domProps },
+        $slots['description']
+      )
+    }
+
+    // Build content layout
+    const content = h(
+      'div',
+      {
+        ref: 'content',
+        class: this.inputLayoutClasses,
+        attrs: this.labelFor ? {} : { role: 'group', 'aria-labelledby': this.labelId }
+      },
+      [ $slots['default'], invalidFeedback, validFeedback, description ]
+    )
+
+    // Generate main form-group wrapper
+    return h(
+      this.labelFor ? 'div' : 'fieldset',
+      {
+        class: this.groupClasses,
+        attrs: {
+          id: this.safeId(),
+          disabled: this.disabled,
+          role: 'group',
+          'aria-invalid': this.computedState === false ? 'true' : null,
+          'aria-labelledby': this.labelId,
+          'aria-describedby': this.labelFor ? null : this.describedByIds
+        }
+      },
+      this.horizontal ? [ h('b-form-row', {}, [ legend, content ]) ] : [ legend, content ]
+    )
+  },
+  props: {
+    horizontal: {
+      type: Boolean,
+      default: false
+    },
+    labelCols: {
+      type: [Number, String],
+      default: 3,
+      validator (value) {
+        if (Number(value) >= 1 && Number(value) <= 11) {
+          return true
+        }
+        Object(__WEBPACK_IMPORTED_MODULE_0__utils_warn__["a" /* default */])('b-form-group: label-cols must be a value between 1 and 11')
+        return false
+      }
+    },
+    breakpoint: {
+      type: String,
+      default: 'sm'
+    },
+    labelTextAlign: {
+      type: String,
+      default: null
+    },
+    label: {
+      type: String,
+      default: null
+    },
+    labelFor: {
+      type: String,
+      default: null
+    },
+    labelSize: {
+      type: String,
+      default: null
+    },
+    labelSrOnly: {
+      type: Boolean,
+      default: false
+    },
+    labelClass: {
+      type: [String, Array],
+      default: null
+    },
+    description: {
+      type: String,
+      default: null
+    },
+    invalidFeedback: {
+      type: String,
+      default: null
+    },
+    feedback: {
+      // Deprecated in favor of invalid-feedback
+      type: String,
+      default: null
+    },
+    validFeedback: {
+      type: String,
+      default: null
+    },
+    validated: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    groupClasses () {
+      return [
+        'b-form-group',
+        'form-group',
+        this.validated ? 'was-validated' : null,
+        this.stateClass
+      ]
+    },
+    labelClasses () {
+      return [
+        'col-form-label',
+        this.labelSize ? `col-form-label-${this.labelSize}` : null,
+        this.labelTextAlign ? `text-${this.labelTextAlign}` : null,
+        this.horizontal ? null : 'pt-0',
+        this.labelClass
+      ]
+    },
+    labelLayoutClasses () {
+      return [
+        this.horizontal ? `col-${this.breakpoint}-${this.labelCols}` : null
+      ]
+    },
+    inputLayoutClasses () {
+      return [
+        this.horizontal ? `col-${this.breakpoint}-${12 - Number(this.labelCols)}` : null
+      ]
+    },
+    hasLabel () {
+      return this.label || this.$slots['label']
+    },
+    hasDescription () {
+      return this.description || this.$slots['description']
+    },
+    hasInvalidFeedback () {
+      if (this.computedState === true) {
+        // If the form-group state is explicityly valid, we return false
+        return false
+      }
+      return this.invalidFeedback || this.feedback || this.$slots['invalid-feedback'] || this.$slots['feedback']
+    },
+    hasValidFeedback () {
+      if (this.computedState === false) {
+        // If the form-group state is explicityly invalid, we return false
+        return false
+      }
+      return this.validFeedback || this.$slots['valid-feedback']
+    },
+    labelId () {
+      return this.hasLabel ? this.safeId('_BV_label_') : null
+    },
+    descriptionId () {
+      return this.hasDescription ? this.safeId('_BV_description_') : null
+    },
+    invalidFeedbackId () {
+      return this.hasInvalidFeedback ? this.safeId('_BV_feedback_invalid_') : null
+    },
+    validFeedbackId () {
+      return this.hasValidFeedback ? this.safeId('_BV_feedback_valid_') : null
+    },
+    describedByIds () {
+      return [
+        this.descriptionId,
+        this.invalidFeedbackId,
+        this.validFeedbackId
+      ].filter(i => i).join(' ') || null
+    }
+  },
+  watch: {
+    describedByIds (add, remove) {
+      if (add !== remove) {
+        this.setInputDescribedBy(add, remove)
+      }
+    }
+  },
+  methods: {
+    legendClick (evt) {
+      const tagName = evt.target ? evt.target.tagName : ''
+      if (/^(input|select|textarea|label)$/i.test(tagName)) {
+        // If clicked an input inside legend, we just let the default happen
+        return
+      }
+      // Focus the first non-disabled visible input when the legend element is clicked
+      const inputs = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["p" /* selectAll */])(SELECTOR, this.$refs.content).filter(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["k" /* isVisible */])
+      if (inputs[0] && inputs[0].focus) {
+        inputs[0].focus()
+      }
+    },
+    setInputDescribedBy (add, remove) {
+      // Sets the `aria-describedby` attribute on the input if label-for is set.
+      // Optionally accepts a string of IDs to remove as the second parameter
+      if (this.labelFor && typeof document !== 'undefined') {
+        const input = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["o" /* select */])(`#${this.labelFor}`, this.$refs.content)
+        if (input) {
+          const adb = 'aria-describedby'
+          let ids = (Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["e" /* getAttr */])(input, adb) || '').split(/\s+/)
+          remove = (remove || '').split(/\s+/)
+          // Update ID list, preserving any original IDs
+          ids = ids.filter(id => remove.indexOf(id) === -1).concat(add || '').join(' ').trim()
+          if (ids) {
+            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["q" /* setAttr */])(input, adb, ids)
+          } else {
+            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["m" /* removeAttr */])(input, adb)
+          }
+        }
+      }
+    }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      // Set the adia-describedby IDs on the input specified by label-for
+      // We do this in a nextTick to ensure the children have finished rendering
+      this.setInputDescribedBy(this.describedByIds)
+    })
+  }
+});
+
 
 /***/ }),
 
@@ -6511,27 +6968,237 @@ throw new Error("Module parse failed: Unexpected token (131:47)\nYou may need an
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_group__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-group/form-group.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_group___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__form_group__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
 
 
 
 const components = {
-  BFormGroup: __WEBPACK_IMPORTED_MODULE_0__form_group__["default"],
-  BFormFieldset: __WEBPACK_IMPORTED_MODULE_0__form_group__["default"]
+  bFormGroup: __WEBPACK_IMPORTED_MODULE_0__form_group__["a" /* default */],
+  bFormFieldset: __WEBPACK_IMPORTED_MODULE_0__form_group__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install: Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* installFactory */])({ components })
-});
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
 
-/***/ "./node_modules/bootstrap-vue/src/components/form-input/form-input.js":
-/***/ (function(module, exports) {
+/***/ "./node_modules/bootstrap-vue/src/components/form-input/form-input.css":
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module parse failed: Unexpected token (158:8)\nYou may need an appropriate loader to handle this file type.\n|       },\n|       on: {\n|         ...self.$listeners,\n|         input: self.onInput,\n|         change: self.onChange,");
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/bootstrap-vue/src/components/form-input/form-input.css");
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/style-loader/lib/addStyles.js")(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../css-loader/index.js!./form-input.css", function() {
+			var newContent = require("!!../../../../css-loader/index.js!./form-input.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/form-input/form-input.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_size__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-size.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_state__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-state.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__form_input_css__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-input/form-input.css");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__form_input_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__form_input_css__);
+
+
+
+
+
+
+// Import styles
+
+
+// Valid supported input types
+const TYPES = [
+  'text',
+  'password',
+  'email',
+  'number',
+  'url',
+  'tel',
+  'search',
+  'range',
+  'color',
+  `date`,
+  `time`,
+  `datetime`,
+  `datetime-local`,
+  `month`,
+  `week`
+]
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_id__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__mixins_form__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2__mixins_form_size__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3__mixins_form_state__["a" /* default */]],
+  render (h) {
+    return h('input', {
+      ref: 'input',
+      class: this.inputClass,
+      attrs: {
+        id: this.safeId(),
+        name: this.name,
+        type: this.localType,
+        disabled: this.disabled,
+        required: this.required,
+        readonly: this.readonly || this.plaintext,
+        placeholder: this.placeholder,
+        autocomplete: this.autocomplete || null,
+        'aria-required': this.required ? 'true' : null,
+        'aria-invalid': this.computedAriaInvalid,
+        value: this.value
+      },
+      on: {
+        input: this.onInput,
+        change: this.onChange
+      }
+    })
+  },
+  props: {
+    value: {
+      default: null
+    },
+    type: {
+      type: String,
+      default: 'text',
+      validator: type => Object(__WEBPACK_IMPORTED_MODULE_4__utils_array__["a" /* arrayIncludes */])(TYPES, type)
+    },
+    ariaInvalid: {
+      type: [Boolean, String],
+      default: false
+    },
+    readonly: {
+      type: Boolean,
+      default: false
+    },
+    plaintext: {
+      type: Boolean,
+      default: false
+    },
+    autocomplete: {
+      type: String,
+      default: null
+    },
+    placeholder: {
+      type: String,
+      default: null
+    },
+    formatter: {
+      type: Function
+    },
+    lazyFormatter: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    localType () {
+      // We only allow certain types
+      return Object(__WEBPACK_IMPORTED_MODULE_4__utils_array__["a" /* arrayIncludes */])(TYPES, this.type) ? this.type : 'text'
+    },
+    inputClass () {
+      return [
+        this.plaintext ? 'form-control-plaintext' : 'form-control',
+        this.sizeFormClass,
+        this.stateClass
+      ]
+    },
+    computedAriaInvalid () {
+      if (!this.ariaInvalid || this.ariaInvalid === 'false') {
+        // this.ariaInvalid is null or false or 'false'
+        return this.computedState === false ? 'true' : null
+      }
+      if (this.ariaInvalid === true) {
+        // User wants explicit aria-invalid=true
+        return 'true'
+      }
+      // Most likely a string value (which could be 'true')
+      return this.ariaInvalid
+    }
+  },
+  mounted () {
+    if (this.value) {
+      const fValue = this.format(this.value, null)
+      this.setValue(fValue)
+    }
+  },
+  watch: {
+    value (newVal) {
+      if (this.lazyFormatter) {
+        this.setValue(newVal)
+      } else {
+        const fValue = this.format(newVal, null)
+        this.setValue(fValue)
+      }
+    }
+  },
+  methods: {
+    format (value, e) {
+      if (this.formatter) {
+        return this.formatter(value, e)
+      }
+      return value
+    },
+    setValue (value) {
+      this.$emit('input', value)
+      // When formatter removes last typed character, value of text input should update to formatted value
+      this.$refs.input.value = value
+    },
+    onInput (evt) {
+      const value = evt.target.value
+
+      if (this.lazyFormatter) {
+        this.setValue(value)
+      } else {
+        const fValue = this.format(value, evt)
+        this.setValue(fValue)
+      }
+    },
+    onChange (evt) {
+      const fValue = this.format(evt.target.value, evt)
+      this.setValue(fValue)
+      this.$emit('change', fValue)
+    },
+    focus () {
+      if (!this.disabled) {
+        this.$el.focus()
+      }
+    }
+  }
+});
+
 
 /***/ }),
 
@@ -6540,19 +7207,24 @@ throw new Error("Module parse failed: Unexpected token (158:8)\nYou may need an 
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_input__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-input/form-input.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_input___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__form_input__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
 
 
 
 const components = {
-  BFormInput: __WEBPACK_IMPORTED_MODULE_0__form_input__["default"],
-  BInput: __WEBPACK_IMPORTED_MODULE_0__form_input__["default"]
+  bFormInput: __WEBPACK_IMPORTED_MODULE_0__form_input__["a" /* default */],
+  bInput: __WEBPACK_IMPORTED_MODULE_0__form_input__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install: Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* installFactory */])({ components })
-});
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
@@ -6562,11 +7234,11 @@ const components = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_options__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-options.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_radio_check_group__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-radio-check-group.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_size__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-size.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mixins_form_state__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-state.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form_options__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-options.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-size.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-state.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-custom.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__form_radio__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-radio/form-radio.js");
 
 
@@ -6576,38 +7248,127 @@ const components = {
 
 
 
-
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BFormRadioGroup',
-  components: { BFormRadio: __WEBPACK_IMPORTED_MODULE_6__form_radio__["a" /* default */] },
   mixins: [
     __WEBPACK_IMPORTED_MODULE_0__mixins_id__["a" /* default */],
-    __WEBPACK_IMPORTED_MODULE_1__mixins_form__["a" /* default */],
-    __WEBPACK_IMPORTED_MODULE_3__mixins_form_radio_check_group__["a" /* default */], // Includes render function
-    __WEBPACK_IMPORTED_MODULE_2__mixins_form_options__["a" /* default */],
-    __WEBPACK_IMPORTED_MODULE_4__mixins_form_size__["a" /* default */],
-    __WEBPACK_IMPORTED_MODULE_5__mixins_form_state__["a" /* default */]
+    __WEBPACK_IMPORTED_MODULE_2__mixins_form__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_1__mixins_form_options__["a" /* default */]
   ],
-  provide() {
+  components: { bFormRadio: __WEBPACK_IMPORTED_MODULE_6__form_radio__["a" /* default */] },
+  render (h) {
+    const $slots = this.$slots
+
+    const radios = this.formOptions.map((option, idx) => {
+      return h(
+        'b-form-radio',
+        {
+          key: `radio_${idx}_opt`,
+          props: {
+            id: this.safeId(`_BV_radio_${idx}_opt_`),
+            name: this.name,
+            value: option.value,
+            required: Boolean(this.name && this.required),
+            disabled: option.disabled
+          }
+        },
+        [h('span', { domProps: { innerHTML: option.text } })]
+      )
+    })
+    return h(
+      'div',
+      {
+        class: this.groupClasses,
+        attrs: {
+          id: this.safeId(),
+          role: 'radiogroup',
+          tabindex: '-1',
+          'aria-required': this.required ? 'true' : null,
+          'aria-invalid': this.computedAriaInvalid
+        }
+      },
+      [$slots.first, radios, $slots.default]
+    )
+  },
+  data () {
     return {
-      bvRadioGroup: this
+      localChecked: this.checked,
+      // Flag for children
+      is_RadioCheckGroup: true
     }
+  },
+  model: {
+    prop: 'checked',
+    event: 'input'
   },
   props: {
     checked: {
       type: [String, Object, Number, Boolean],
       default: null
+    },
+    validated: {
+      // Used for applying hte `was-validated` class to the group
+      type: Boolean,
+      default: false
+    },
+    ariaInvalid: {
+      type: [Boolean, String],
+      default: false
+    },
+    stacked: {
+      type: Boolean,
+      default: false
+    },
+    buttons: {
+      // Render as button style
+      type: Boolean,
+      default: false
+    },
+    buttonVariant: {
+      // Only applicable when rendered with button style
+      type: String,
+      default: 'secondary'
     }
   },
-  data() {
-    return {
-      localChecked: this.checked
+  watch: {
+    checked (newVal, oldVal) {
+      this.localChecked = this.checked
+    },
+    localChecked (newVal, oldVal) {
+      this.$emit('input', newVal)
     }
   },
   computed: {
-    is_RadioGroup() {
-      return true
+    groupClasses () {
+      if (this.buttons) {
+        return [
+          'btn-group-toggle',
+          this.stacked ? 'btn-group-vertical' : 'btn-group',
+          this.size ? `btn-group-${this.size}` : '',
+          this.validated ? `was-validated` : ''
+        ]
+      }
+      return [
+        this.sizeFormClass,
+        this.stacked && this.custom ? 'custom-controls-stacked' : '',
+        this.validated ? `was-validated` : ''
+      ]
+    },
+    computedAriaInvalid () {
+      if (
+        this.ariaInvalid === true ||
+        this.ariaInvalid === 'true' ||
+        this.ariaInvalid === ''
+      ) {
+        return 'true'
+      }
+      return this.get_State === false ? 'true' : null
+    },
+    get_State () {
+      // Required by child radios
+      return this.computedState
     }
   }
 });
@@ -6622,67 +7383,112 @@ const components = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_state__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-state.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-size.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_radio_check__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-radio-check.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_loose_equal__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/loose-equal.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_radio_check__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-radio-check.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_loose_equal__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/loose-equal.js");
 
 
 
 
 
 
-
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BFormRadio',
-  mixins: [
-    __WEBPACK_IMPORTED_MODULE_0__mixins_id__["a" /* default */],
-    __WEBPACK_IMPORTED_MODULE_4__mixins_form_radio_check__["a" /* default */], // Includes shared render function
-    __WEBPACK_IMPORTED_MODULE_1__mixins_form__["a" /* default */],
-    __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__["a" /* default */],
-    __WEBPACK_IMPORTED_MODULE_2__mixins_form_state__["a" /* default */]
-  ],
-  inject: {
-    bvGroup: {
-      from: 'bvRadioGroup',
-      default: false
-    }
-  },
-  props: {
-    checked: {
-      // v-model
-      type: [String, Object, Number, Boolean],
-      default: null
-    }
-  },
-  computed: {
-    // Radio Groups can only have a single value, so determining if checked is simple
-    is_Checked() {
-      return Object(__WEBPACK_IMPORTED_MODULE_5__utils_loose_equal__["a" /* default */])(this.value, this.computedLocalChecked)
-    },
-    // Flags for form-radio-check mixin
-    is_Radio() {
-      return true
-    },
-    is_Check() {
-      return false
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_id__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3__mixins_form_radio_check__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__mixins_form__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2__mixins_form_state__["a" /* default */]],
+  render (h) {
+    const input = h('input', {
+      ref: 'radio',
+      class: [
+        this.is_ButtonMode
+          ? ''
+          : this.is_Plain ? 'form-check-input' : 'custom-control-input',
+        this.get_StateClass
+      ],
+      directives: [
+        {
+          name: 'model',
+          rawName: 'v-model',
+          value: this.computedLocalChecked,
+          expression: 'computedLocalChecked'
+        }
+      ],
+      attrs: {
+        id: this.safeId(),
+        type: 'radio',
+        name: this.get_Name,
+        required: this.get_Name && this.is_Required,
+        disabled: this.is_Disabled,
+        autocomplete: 'off'
+      },
+      domProps: {
+        value: this.value,
+        checked: Object(__WEBPACK_IMPORTED_MODULE_4__utils_loose_equal__["a" /* default */])(this.computedLocalChecked, this.value)
+      },
+      on: {
+        focus: this.handleFocus,
+        blur: this.handleFocus,
+        change: this.emitChange,
+        __c: evt => {
+          this.computedLocalChecked = this.value
+        }
+      }
+    })
+
+    const description = h(
+      this.is_ButtonMode ? 'span' : 'label',
+      {
+        class: this.is_ButtonMode
+          ? null
+          : this.is_Plain ? 'form-check-label' : 'custom-control-label',
+        attrs: { for: this.is_ButtonMode ? null : this.safeId() }
+      },
+      [this.$slots.default]
+    )
+
+    if (!this.is_ButtonMode) {
+      return h(
+        'div',
+        {
+          class: [
+            this.is_Plain ? 'form-check' : this.labelClasses,
+            { 'form-check-inline': this.is_Plain && !this.is_Stacked },
+            { 'custom-control-inline': !this.is_Plain && !this.is_Stacked }
+          ]
+        },
+        [input, description]
+      )
+    } else {
+      return h('label', { class: [this.buttonClasses] }, [input, description])
     }
   },
   watch: {
     // Radio Groups can only have a single value, so our watchers are simple
-    computedLocalChecked(newVal, oldVal) {
-      this.$emit('input', this.computedLocalChecked)
+    checked (newVal, oldVal) {
+      this.computedLocalChecked = newVal
+    },
+    computedLocalChceked (newVal, oldVal) {
+      this.$emit('input', this.computedLocalChceked)
+    }
+  },
+  computed: {
+    is_Checked () {
+      return Object(__WEBPACK_IMPORTED_MODULE_4__utils_loose_equal__["a" /* default */])(this.value, this.computedLocalChecked)
+    },
+    labelClasses () {
+      // Specific to radio
+      return [
+        this.get_Size ? `form-control-${this.get_Size}` : '',
+        'custom-control',
+        'custom-radio',
+        this.get_StateClass
+      ]
     }
   },
   methods: {
-    handleChange({ target: { checked } }) {
-      const value = this.value
-      this.computedLocalChecked = value
+    emitChange ({ target: { checked } }) {
       // Change is only emitted on user interaction
-      this.$emit('change', checked ? value : null)
+      this.$emit('change', checked ? this.value : null)
       // If this is a child of form-radio-group, we emit a change event on it as well
-      if (this.is_Group) {
-        this.bvGroup.$emit('change', checked ? value : null)
+      if (this.is_Child) {
+        this.$parent.$emit('change', this.computedLocalChecked)
       }
     }
   }
@@ -6703,23 +7509,154 @@ const components = {
 
 
 const components = {
-  BFormRadio: __WEBPACK_IMPORTED_MODULE_0__form_radio__["a" /* default */],
-  BRadio: __WEBPACK_IMPORTED_MODULE_0__form_radio__["a" /* default */],
-  BFormRadioGroup: __WEBPACK_IMPORTED_MODULE_1__form_radio_group__["a" /* default */],
-  BRadioGroup: __WEBPACK_IMPORTED_MODULE_1__form_radio_group__["a" /* default */]
+  bFormRadio: __WEBPACK_IMPORTED_MODULE_0__form_radio__["a" /* default */],
+  bRadio: __WEBPACK_IMPORTED_MODULE_0__form_radio__["a" /* default */],
+  bFormRadioGroup: __WEBPACK_IMPORTED_MODULE_1__form_radio_group__["a" /* default */],
+  bRadioGroup: __WEBPACK_IMPORTED_MODULE_1__form_radio_group__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install: Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["a" /* installFactory */])({ components })
-});
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
 
 /***/ "./node_modules/bootstrap-vue/src/components/form-select/form-select.js":
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module parse failed: Unexpected token (86:20)\nYou may need an appropriate loader to handle this file type.\n|         key: `option_${index}_opt`,\n|         attrs: { disabled: Boolean(option.disabled) },\n|         domProps: { ...htmlOrText(option.html, option.text), value: option.value }\n|       })\n|     })");
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form_options__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-options.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-size.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-state.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-custom.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  mixins: [
+    __WEBPACK_IMPORTED_MODULE_0__mixins_id__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_2__mixins_form__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_3__mixins_form_size__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_4__mixins_form_state__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_5__mixins_form_custom__["a" /* default */],
+    __WEBPACK_IMPORTED_MODULE_1__mixins_form_options__["a" /* default */]
+  ],
+  render (h) {
+    const $slots = this.$slots
+    const options = this.formOptions.map((option, index) => {
+      return h('option', {
+        key: `option_${index}_opt`,
+        attrs: { disabled: Boolean(option.disabled) },
+        domProps: { innerHTML: option.text, value: option.value }
+      })
+    })
+    return h(
+      'select',
+      {
+        ref: 'input',
+        class: this.inputClass,
+        directives: [
+          {
+            name: 'model',
+            rawName: 'v-model',
+            value: this.localValue,
+            expression: 'localValue'
+          }
+        ],
+        attrs: {
+          id: this.safeId(),
+          name: this.name,
+          multiple: this.multiple || null,
+          size: this.computedSelectSize,
+          disabled: this.disabled,
+          required: this.required,
+          'aria-required': this.required ? 'true' : null,
+          'aria-invalid': this.computedAriaInvalid
+        },
+        on: {
+          change: evt => {
+            const target = evt.target
+            const selectedVal = Object(__WEBPACK_IMPORTED_MODULE_6__utils_array__["c" /* from */])(target.options)
+              .filter(o => o.selected)
+              .map(o => ('_value' in o ? o._value : o.value))
+            this.localValue = target.multiple ? selectedVal : selectedVal[0]
+            this.$emit('change', this.localValue)
+          }
+        }
+      },
+      [$slots.first, options, $slots.default]
+    )
+  },
+  data () {
+    return {
+      localValue: this.value
+    }
+  },
+  watch: {
+    value (newVal, oldVal) {
+      this.localValue = newVal
+    },
+    localValue (newVal, oldVal) {
+      this.$emit('input', this.localValue)
+    }
+  },
+  props: {
+    value: {},
+    multiple: {
+      type: Boolean,
+      default: false
+    },
+    selectSize: {
+      // Browsers default size to 0, which shows 4 rows in most browsers in multiple mode
+      // Size of 1 can bork out firefox
+      type: Number,
+      default: 0
+    },
+    ariaInvalid: {
+      type: [Boolean, String],
+      default: false
+    }
+  },
+  computed: {
+    computedSelectSize () {
+      // Custom selects with a size of zero causes the arrows to be hidden,
+      // so dont render the size attribute in this case
+      return !this.plain && this.selectSize === 0 ? null : this.selectSize
+    },
+    inputClass () {
+      return [
+        'form-control',
+        this.stateClass,
+        this.sizeFormClass,
+        // Awaiting for https://github.com/twbs/bootstrap/issues/23058
+        this.plain ? null : 'custom-select',
+        this.plain || !this.size ? null : 'custom-select-' + this.size
+      ]
+    },
+    computedAriaInvalid () {
+      if (this.ariaInvalid === true || this.ariaInvalid === 'true') {
+        return 'true'
+      }
+      return this.stateClass === 'is-invalid' ? 'true' : null
+    }
+  }
+});
+
 
 /***/ }),
 
@@ -6728,27 +7665,188 @@ throw new Error("Module parse failed: Unexpected token (86:20)\nYou may need an 
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_select__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-select/form-select.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__form_select__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
 
 
 
 const components = {
-  BFormSelect: __WEBPACK_IMPORTED_MODULE_0__form_select__["default"],
-  BSelect: __WEBPACK_IMPORTED_MODULE_0__form_select__["default"]
+  bFormSelect: __WEBPACK_IMPORTED_MODULE_0__form_select__["a" /* default */],
+  bSelect: __WEBPACK_IMPORTED_MODULE_0__form_select__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install: Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* installFactory */])({ components })
-});
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
 
 /***/ "./node_modules/bootstrap-vue/src/components/form-textarea/form-textarea.js":
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module parse failed: Unexpected token (192:8)\nYou may need an appropriate loader to handle this file type.\n|       },\n|       on: {\n|         ...self.$listeners,\n|         input: self.onInput,\n|         change: self.onChange,");
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form_size__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-size.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_form_state__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/form-state.js");
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_id__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__mixins_form__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2__mixins_form_size__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3__mixins_form_state__["a" /* default */]],
+  render (h) {
+    return h('textarea', {
+      ref: 'input',
+      class: this.inputClass,
+      style: this.inputStyle,
+      directives: [
+        {
+          name: 'model',
+          rawName: 'v-model',
+          value: this.localValue,
+          expression: 'localValue'
+        }
+      ],
+      domProps: { value: this.value },
+      attrs: {
+        id: this.safeId(),
+        name: this.name,
+        disabled: this.disabled,
+        placeholder: this.placeholder,
+        required: this.required,
+        autocomplete: this.autocomplete || null,
+        readonly: this.readonly || this.plaintext,
+        rows: this.rowsCount,
+        wrap: this.wrap || null,
+        'aria-required': this.required ? 'true' : null,
+        'aria-invalid': this.computedAriaInvalid
+      },
+      on: {
+        input: (evt) => {
+          this.localValue = evt.target.value
+        }
+      }
+    })
+  },
+  data () {
+    return {
+      localValue: this.value
+    }
+  },
+  props: {
+    value: {
+      type: String,
+      default: ''
+    },
+    ariaInvalid: {
+      type: [Boolean, String],
+      default: false
+    },
+    readonly: {
+      type: Boolean,
+      default: false
+    },
+    plaintext: {
+      type: Boolean,
+      default: false
+    },
+    autocomplete: {
+      type: String,
+      default: null
+    },
+    placeholder: {
+      type: String,
+      default: null
+    },
+    rows: {
+      type: [Number, String],
+      default: null
+    },
+    maxRows: {
+      type: [Number, String],
+      default: null
+    },
+    wrap: {
+      // 'soft', 'hard' or 'off'. Browser default is 'soft'
+      type: String,
+      default: 'soft'
+    },
+    noResize: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    rowsCount () {
+      // A better option could be based on https://codepen.io/vsync/pen/frudD
+      // As linebreaks aren't added until the input is submitted
+      const rows = parseInt(this.rows, 10) || 1
+      const maxRows = parseInt(this.maxRows, 10) || 0
+      const lines = (this.localValue || '').toString().split('\n').length
+      return maxRows
+        ? Math.min(maxRows, Math.max(rows, lines))
+        : Math.max(rows, lines)
+    },
+    inputClass () {
+      return [
+        this.plaintext ? 'form-control-plaintext' : 'form-control',
+        this.sizeFormClass,
+        this.stateClass
+      ]
+    },
+    inputStyle () {
+      // We set width 100% in plaintext mode to get around a shortcoming in bootstrap CSS
+      // setting noResize to true will disable the ability for the user to resize the textarea
+      return {
+        width: this.plaintext ? '100%' : null,
+        resize: this.noResize ? 'none' : null
+      }
+    },
+    computedAriaInvalid () {
+      if (!this.ariaInvalid || this.ariaInvalid === 'false') {
+        // this.ariaInvalid is null or false or 'false'
+        return this.computedState === false ? 'true' : null
+      }
+      if (this.ariaInvalid === true) {
+        // User wants explicit aria-invalid=true
+        return 'true'
+      }
+      // Most likely a string value (which could be the string 'true')
+      return this.ariaInvalid
+    }
+  },
+  watch: {
+    value (newVal, oldVal) {
+      // Update our localValue
+      if (newVal !== oldVal) {
+        this.localValue = newVal
+      }
+    },
+    localValue (newVal, oldVal) {
+      // update Parent value
+      if (newVal !== oldVal) {
+        this.$emit('input', newVal)
+      }
+    }
+  },
+  methods: {
+    focus () {
+      // For external handler that may want a focus method
+      if (!this.disabled) {
+        this.$el.focus()
+      }
+    }
+  }
+});
+
 
 /***/ }),
 
@@ -6757,27 +7855,25 @@ throw new Error("Module parse failed: Unexpected token (192:8)\nYou may need an 
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_textarea__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form-textarea/form-textarea.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form_textarea___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__form_textarea__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
 
 
 
 const components = {
-  BFormTextarea: __WEBPACK_IMPORTED_MODULE_0__form_textarea__["default"],
-  BTextarea: __WEBPACK_IMPORTED_MODULE_0__form_textarea__["default"]
+  bFormTextarea: __WEBPACK_IMPORTED_MODULE_0__form_textarea__["a" /* default */],
+  bTextarea: __WEBPACK_IMPORTED_MODULE_0__form_textarea__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install: Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* installFactory */])({ components })
-});
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
 
+Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin)
 
-/***/ }),
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
-/***/ "./node_modules/bootstrap-vue/src/components/form/form-datalist.js":
-/***/ (function(module, exports) {
-
-throw new Error("Module parse failed: Unexpected token (20:20)\nYou may need an appropriate loader to handle this file type.\n|         key: `option_${index}_opt`,\n|         attrs: { disabled: option.disabled },\n|         domProps: { ...htmlOrText(option.html, option.text), value: option.value }\n|       })\n|     })");
 
 /***/ }),
 
@@ -6797,37 +7893,23 @@ const props = {
     type: String,
     default: 'div'
   },
-  tooltip: {
-    type: Boolean,
-    default: false
-  },
   forceShow: {
     type: Boolean,
     default: false
-  },
-  state: {
-    type: [Boolean, String],
-    default: null
   }
 }
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BFormInvalidFeedback',
   functional: true,
   props,
-  render(h, { props, data, children }) {
-    const show = props.forceShow === true || props.state === false || props.state === 'invalid'
+  render (h, { props, data, children }) {
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
-        class: {
-          'invalid-feedback': !props.tooltip,
-          'invalid-tooltip': props.tooltip,
-          'd-block': show
-        },
+        staticClass: 'invalid-feedback',
+        class: { 'd-block': props.forceShow },
         attrs: { id: props.id }
       }),
       children
@@ -6855,11 +7937,7 @@ const props = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_config__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/config.js");
 
-
-
-const NAME = 'BFormText'
 
 const props = {
   id: {
@@ -6872,7 +7950,7 @@ const props = {
   },
   textVariant: {
     type: String,
-    default: () => Object(__WEBPACK_IMPORTED_MODULE_1__utils_config__["b" /* getComponentConfig */])(NAME, 'textVariant')
+    default: 'muted'
   },
   inline: {
     type: Boolean,
@@ -6882,12 +7960,10 @@ const props = {
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: NAME,
   functional: true,
   props,
-  render(h, { props, data, children }) {
+  render (h, { props, data, children }) {
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
@@ -6923,37 +7999,23 @@ const props = {
     type: String,
     default: 'div'
   },
-  tooltip: {
-    type: Boolean,
-    default: false
-  },
   forceShow: {
     type: Boolean,
     default: false
-  },
-  state: {
-    type: [Boolean, String],
-    default: null
   }
 }
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BFormValidFeedback',
   functional: true,
   props,
-  render(h, { props, data, children }) {
-    const show = props.forceShow === true || props.state === true || props.state === 'valid'
+  render (h, { props, data, children }) {
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
-        class: {
-          'valid-feedback': !props.tooltip,
-          'valid-tooltip': props.tooltip,
-          'd-block': show
-        },
+        staticClass: 'valid-feedback',
+        class: { 'd-block': props.forceShow },
         attrs: { id: props.id }
       }),
       children
@@ -6992,12 +8054,10 @@ const props = {
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BForm',
   functional: true,
   props,
-  render(h, { props, data, children }) {
+  render (h, { props, data, children }) {
     return h(
       'form',
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
@@ -7023,14 +8083,11 @@ const props = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__form__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form/form.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__form_datalist__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form/form-datalist.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__form_datalist___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__form_datalist__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__form_row__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form/form-row.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__form_text__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form/form-text.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__form_invalid_feedback__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form/form-invalid-feedback.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__form_valid_feedback__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form/form-valid-feedback.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__form_row__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form/form-row.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__form_text__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form/form-text.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__form_invalid_feedback__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form/form-invalid-feedback.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__form_valid_feedback__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/form/form-valid-feedback.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
 
 
 
@@ -7039,19 +8096,23 @@ const props = {
 
 
 const components = {
-  BForm: __WEBPACK_IMPORTED_MODULE_0__form__["a" /* default */],
-  BFormDatalist: __WEBPACK_IMPORTED_MODULE_1__form_datalist__["default"],
-  BDatalist: __WEBPACK_IMPORTED_MODULE_1__form_datalist__["default"],
-  BFormRow: __WEBPACK_IMPORTED_MODULE_2__form_row__["a" /* default */],
-  BFormText: __WEBPACK_IMPORTED_MODULE_3__form_text__["a" /* default */],
-  BFormInvalidFeedback: __WEBPACK_IMPORTED_MODULE_4__form_invalid_feedback__["a" /* default */],
-  BFormFeedback: __WEBPACK_IMPORTED_MODULE_4__form_invalid_feedback__["a" /* default */],
-  BFormValidFeedback: __WEBPACK_IMPORTED_MODULE_5__form_valid_feedback__["a" /* default */]
+  bForm: __WEBPACK_IMPORTED_MODULE_0__form__["a" /* default */],
+  bFormRow: __WEBPACK_IMPORTED_MODULE_1__form_row__["a" /* default */],
+  bFormText: __WEBPACK_IMPORTED_MODULE_2__form_text__["a" /* default */],
+  bFormInvalidFeedback: __WEBPACK_IMPORTED_MODULE_3__form_invalid_feedback__["a" /* default */],
+  bFormFeedback: __WEBPACK_IMPORTED_MODULE_3__form_invalid_feedback__["a" /* default */],
+  bFormValidFeedback: __WEBPACK_IMPORTED_MODULE_4__form_valid_feedback__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install: Object(__WEBPACK_IMPORTED_MODULE_6__utils_plugins__["a" /* installFactory */])({ components })
-});
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_5__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_5__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
@@ -7062,20 +8123,41 @@ const components = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__img__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/image/img.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_config__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/config.js");
 
-
-
-
-const NAME = 'BImgLazy'
 
 const THROTTLE = 100
-const EventOptions = { passive: true, capture: false }
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: NAME,
-  components: { BImg: __WEBPACK_IMPORTED_MODULE_0__img__["a" /* default */] },
+  components: { bImg: __WEBPACK_IMPORTED_MODULE_0__img__["a" /* default */] },
+  render (h) {
+    return h(
+      'b-img',
+      {
+        props: {
+          src: this.computedSrc,
+          alt: this.alt,
+          blank: this.computedBlank,
+          blankColor: this.blankColor,
+          width: this.computedWidth,
+          height: this.computedHeight,
+          fluid: this.fluid,
+          fluidGrow: this.fluidGrow,
+          block: this.block,
+          thumbnail: this.thumbnail,
+          rounded: this.rounded,
+          left: this.left,
+          right: this.right,
+          center: this.center
+        }
+      }
+    )
+  },
+  data () {
+    return {
+      isShown: false,
+      scrollTimeout: null
+    }
+  },
   props: {
     src: {
       type: String,
@@ -7101,7 +8183,7 @@ const EventOptions = { passive: true, capture: false }
     },
     blankColor: {
       type: String,
-      default: () => Object(__WEBPACK_IMPORTED_MODULE_2__utils_config__["b" /* getComponentConfig */])(NAME, 'blankColor')
+      default: 'transparent'
     },
     blankWidth: {
       type: [Number, String],
@@ -7110,10 +8192,6 @@ const EventOptions = { passive: true, capture: false }
     blankHeight: {
       type: [Number, String],
       default: null
-    },
-    show: {
-      type: Boolean,
-      default: false
     },
     fluid: {
       type: Boolean,
@@ -7156,91 +8234,53 @@ const EventOptions = { passive: true, capture: false }
       default: THROTTLE
     }
   },
-  data() {
-    return {
-      isShown: false,
-      scrollTimeout: null
-    }
-  },
   computed: {
-    computedSrc() {
-      return !this.blankSrc || this.isShown ? this.src : this.blankSrc
+    computedSrc () {
+      return (!this.blankSrc || this.isShown) ? this.src : this.blankSrc
     },
-    computedBlank() {
-      return !(this.isShown || this.blankSrc)
+    computedBlank () {
+      return !((this.isShown || this.blankSrc))
     },
-    computedWidth() {
-      return this.isShown ? this.width : this.blankWidth || this.width
+    computedWidth () {
+      return this.isShown ? this.width : (this.blankWidth || this.width)
     },
-    computedHeight() {
-      return this.isShown ? this.height : this.blankHeight || this.height
+    computedHeight () {
+      return this.isShown ? this.height : (this.blankHeight || this.height)
     }
   },
-  watch: {
-    show(newVal, oldVal) {
-      if (newVal !== oldVal) {
-        this.isShown = newVal
-        if (!newVal) {
-          // Make sure listeners are re-enabled if img is force set to blank
-          this.setListeners(true)
-        }
-      }
-    },
-    isShown(newVal, oldVal) {
-      if (newVal !== oldVal) {
-        // Update synched show prop
-        this.$emit('update:show', newVal)
-      }
-    }
+  mounted () {
+    this.setListeners(true)
+    this.checkView()
   },
-  created() {
-    this.isShown = this.show
+  activated () {
+    this.setListeners(true)
+    this.checkView()
   },
-  mounted() {
-    if (this.isShown) {
-      this.setListeners(false)
-    } else {
-      this.setListeners(true)
-      this.$nextTick(this.checkView)
-    }
-  },
-  activated() /* istanbul ignore next */ {
-    if (!this.isShown) {
-      this.setListeners(true)
-      this.$nextTick(this.checkView)
-    }
-  },
-  deactivated() /* istanbul ignore next */ {
+  deactivated () {
     this.setListeners(false)
   },
-  beforeDestroy() {
+  beforeDdestroy () {
     this.setListeners(false)
   },
   methods: {
-    setListeners(on) {
-      if (this.scrollTimeout) {
-        clearTimeout(this.scrollTimeout)
-        this.scrollTimeout = null
-      }
+    setListeners (on) {
+      clearTimeout(this.scrollTimer)
+      this.scrollTimeout = null
       const root = window
       if (on) {
-        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["e" /* eventOn */])(this.$el, 'load', this.checkView)
-        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["e" /* eventOn */])(root, 'scroll', this.onScroll, EventOptions)
-        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["e" /* eventOn */])(root, 'resize', this.onScroll, EventOptions)
-        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["e" /* eventOn */])(root, 'orientationchange', this.onScroll, EventOptions)
-        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["e" /* eventOn */])(document, 'transitionend', this.onScroll, EventOptions)
+        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["d" /* eventOn */])(root, 'scroll', this.onScroll)
+        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["d" /* eventOn */])(root, 'resize', this.onScroll)
+        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["d" /* eventOn */])(root, 'orientationchange', this.onScroll)
       } else {
-        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["d" /* eventOff */])(this.$el, 'load', this.checkView)
-        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["d" /* eventOff */])(root, 'scroll', this.onScroll, EventOptions)
-        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["d" /* eventOff */])(root, 'resize', this.onScroll, EventOptions)
-        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["d" /* eventOff */])(root, 'orientationchange', this.onScroll, EventOptions)
-        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["d" /* eventOff */])(document, 'transitionend', this.onScroll, EventOptions)
+        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["c" /* eventOff */])(root, 'scroll', this.onScroll)
+        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["c" /* eventOff */])(root, 'resize', this.onScroll)
+        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["c" /* eventOff */])(root, 'orientationchange', this.onScroll)
       }
     },
-    checkView() {
+    checkView () {
       // check bounding box + offset to see if we should show
-      if (this.isShown) {
-        this.setListeners(false)
+      if (!Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["k" /* isVisible */])(this.$el)) {
+        // Element is hidden, so skip for now
         return
       }
       const offset = parseInt(this.offset, 10) || 0
@@ -7251,16 +8291,14 @@ const EventOptions = { passive: true, capture: false }
         b: docElement.clientHeight + offset,
         r: docElement.clientWidth + offset
       }
-      /* istanbul ignore next */
-      const box = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["g" /* getBCR */])(this.$el)
-      /* istanbul ignore next: can't test getBoundingClientRect in JSDOM */
+      const box = Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["f" /* getBCR */])(this.$el)
       if (box.right >= view.l && box.bottom >= view.t && box.left <= view.r && box.top <= view.b) {
         // image is in view (or about to be in view)
         this.isShown = true
         this.setListeners(false)
       }
     },
-    onScroll() {
+    onScroll () {
       if (this.isShown) {
         this.setListeners(false)
       } else {
@@ -7268,26 +8306,6 @@ const EventOptions = { passive: true, capture: false }
         this.scrollTimeout = setTimeout(this.checkView, parseInt(this.throttle, 10) || THROTTLE)
       }
     }
-  },
-  render(h) {
-    return h('b-img', {
-      props: {
-        src: this.computedSrc,
-        alt: this.alt,
-        blank: this.computedBlank,
-        blankColor: this.blankColor,
-        width: this.computedWidth,
-        height: this.computedHeight,
-        fluid: this.fluid,
-        fluidGrow: this.fluidGrow,
-        block: this.block,
-        thumbnail: this.thumbnail,
-        rounded: this.rounded,
-        left: this.left,
-        right: this.right,
-        center: this.center
-      }
-    })
   }
 });
 
@@ -7299,23 +8317,19 @@ const EventOptions = { passive: true, capture: false }
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_config__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/config.js");
 
-
-
-const NAME = 'BImg'
 
 // Blank image with fill template
-const BLANK_TEMPLATE =
-  '<svg width="%{w}" height="%{h}" ' +
-  'xmlns="http://www.w3.org/2000/svg" ' +
-  'viewBox="0 0 %{w} %{h}" preserveAspectRatio="none">' +
-  '<rect width="100%" height="100%" style="fill:%{f};"></rect>' +
-  '</svg>'
+const BLANK_TEMPLATE = '<svg width="%{w}" height="%{h}" ' +
+                     'xmlns="http://www.w3.org/2000/svg" ' +
+                     'viewBox="0 0 %{w} %{h}" preserveAspectRatio="none">' +
+                     '<rect width="100%" height="100%" style="fill:%{f};"></rect>' +
+                     '</svg>'
 
-function makeBlankImgSrc(width, height, color) {
+function makeBlankImgSrc (width, height, color) {
   const src = encodeURIComponent(
-    BLANK_TEMPLATE.replace('%{w}', String(width))
+    BLANK_TEMPLATE
+      .replace('%{w}', String(width))
       .replace('%{h}', String(height))
       .replace('%{f}', color)
   )
@@ -7387,18 +8401,16 @@ const props = {
   },
   blankColor: {
     type: String,
-    default: () => Object(__WEBPACK_IMPORTED_MODULE_1__utils_config__["b" /* getComponentConfig */])(NAME, 'blankColor')
+    default: 'transparent'
   }
 }
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BImg',
   functional: true,
   props,
-  render(h, { props, data }) {
+  render (h, { props, data }) {
     let src = props.src
     let width = parseInt(props.width, 10) ? parseInt(props.width, 10) : null
     let height = parseInt(props.height, 10) ? parseInt(props.height, 10) : null
@@ -7429,16 +8441,16 @@ const props = {
       'img',
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
         attrs: {
-          src: src,
-          alt: props.alt,
-          width: width ? String(width) : null,
-          height: height ? String(height) : null
+          'src': src,
+          'alt': props.alt,
+          'width': width ? String(width) : null,
+          'height': height ? String(height) : null
         },
         class: {
           'img-thumbnail': props.thumbnail,
           'img-fluid': props.fluid || props.fluidGrow,
           'w-100': props.fluidGrow,
-          rounded: props.rounded === '' || props.rounded === true,
+          'rounded': props.rounded === '' || props.rounded === true,
           [`rounded-${props.rounded}`]: typeof props.rounded === 'string' && props.rounded !== '',
           [align]: Boolean(align),
           'd-block': block
@@ -7463,21 +8475,171 @@ const props = {
 
 
 const components = {
-  BImg: __WEBPACK_IMPORTED_MODULE_0__img__["a" /* default */],
-  BImgLazy: __WEBPACK_IMPORTED_MODULE_1__img_lazy__["a" /* default */]
+  bImg: __WEBPACK_IMPORTED_MODULE_0__img__["a" /* default */],
+  bImgLazy: __WEBPACK_IMPORTED_MODULE_1__img_lazy__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install: Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["a" /* installFactory */])({ components })
-});
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
 
 /***/ "./node_modules/bootstrap-vue/src/components/layout/col.js":
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module parse failed: Unexpected token (106:6)\nYou may need an appropriate loader to handle this file type.\n|       cols: strNum(),\n|       // Breakpoint Specific props\n|       ...breakpointCol,\n|       offset: strNum(),\n|       ...breakpointOffset,");
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_memoize__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/memoize.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_suffix_prop_name__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/suffix-prop-name.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
+
+
+
+
+
+
+/**
+ * Generates a prop object with a type of
+ * [Boolean, String, Number]
+ */
+function boolStrNum () {
+  return {
+    type: [Boolean, String, Number],
+    default: false
+  }
+}
+
+/**
+ * Generates a prop object with a type of
+ * [String, Number]
+ */
+function strNum () {
+  return {
+    type: [String, Number],
+    default: null
+  }
+}
+
+const computeBkPtClass = Object(__WEBPACK_IMPORTED_MODULE_1__utils_memoize__["a" /* default */])(function computeBkPt (type, breakpoint, val) {
+  let className = type
+  if (val === false || val === null || val === undefined) {
+    return undefined
+  }
+  if (breakpoint) {
+    className += `-${breakpoint}`
+  }
+  // Handling the boolean style prop when accepting [Boolean, String, Number]
+  // means Vue will not convert <b-col sm /> to sm: true for us.
+  // Since the default is false, an empty string indicates the prop's presence.
+  if (type === 'col' && (val === '' || val === true)) {
+    // .col-md
+    return className.toLowerCase()
+  }
+  // .order-md-6
+  className += `-${val}`
+  return className.toLowerCase()
+})
+/* unused harmony export computeBkPtClass */
+
+
+const BREAKPOINTS = ['sm', 'md', 'lg', 'xl']
+// Supports classes like: .col-sm, .col-md-6, .col-lg-auto
+const breakpointCol = BREAKPOINTS.reduce(
+  // eslint-disable-next-line no-sequences
+  (propMap, breakpoint) => ((propMap[breakpoint] = boolStrNum()), propMap),
+  Object(__WEBPACK_IMPORTED_MODULE_3__utils_object__["b" /* create */])(null)
+)
+// Supports classes like: .offset-md-1, .offset-lg-12
+const breakpointOffset = BREAKPOINTS.reduce(
+  // eslint-disable-next-line no-sequences
+  (propMap, breakpoint) => ((propMap[Object(__WEBPACK_IMPORTED_MODULE_2__utils_suffix_prop_name__["a" /* default */])(breakpoint, 'offset')] = strNum()), propMap),
+  Object(__WEBPACK_IMPORTED_MODULE_3__utils_object__["b" /* create */])(null)
+)
+// Supports classes like: .order-md-1, .order-lg-12
+const breakpointOrder = BREAKPOINTS.reduce(
+  // eslint-disable-next-line no-sequences
+  (propMap, breakpoint) => ((propMap[Object(__WEBPACK_IMPORTED_MODULE_2__utils_suffix_prop_name__["a" /* default */])(breakpoint, 'order')] = strNum()), propMap),
+  Object(__WEBPACK_IMPORTED_MODULE_3__utils_object__["b" /* create */])(null)
+)
+
+// For loop doesn't need to check hasOwnProperty
+// when using an object created from null
+const breakpointPropMap = Object(__WEBPACK_IMPORTED_MODULE_3__utils_object__["a" /* assign */])(Object(__WEBPACK_IMPORTED_MODULE_3__utils_object__["b" /* create */])(null), {
+  col: Object(__WEBPACK_IMPORTED_MODULE_3__utils_object__["e" /* keys */])(breakpointCol),
+  offset: Object(__WEBPACK_IMPORTED_MODULE_3__utils_object__["e" /* keys */])(breakpointOffset),
+  order: Object(__WEBPACK_IMPORTED_MODULE_3__utils_object__["e" /* keys */])(breakpointOrder)
+})
+
+const props = Object(__WEBPACK_IMPORTED_MODULE_3__utils_object__["a" /* assign */])({}, breakpointCol, breakpointOffset, breakpointOrder, {
+  tag: {
+    type: String,
+    default: 'div'
+  },
+  // Generic flexbox .col
+  col: {
+    type: Boolean,
+    default: false
+  },
+  // .col-[1-12]|auto
+  cols: strNum(),
+  // .offset-[1-12]
+  offset: strNum(),
+  // Flex ordering utility .order-[1-12]
+  order: strNum(),
+  alignSelf: {
+    type: String,
+    default: null,
+    validator: str => Object(__WEBPACK_IMPORTED_MODULE_4__utils_array__["a" /* arrayIncludes */])(['auto', 'start', 'end', 'center', 'baseline', 'stretch'], str)
+  }
+})
+/* unused harmony export props */
+
+
+/**
+ * We need ".col" to default in when no other props are passed,
+ * but always render when col=true.
+ */
+/* harmony default export */ __webpack_exports__["a"] = ({
+  functional: true,
+  props,
+  render (h, { props, data, children }) {
+    const classList = []
+    // Loop through `col`, `offset`, `order` breakpoint props
+    for (const type in breakpointPropMap) {
+      // Returns colSm, offset, offsetSm, orderMd, etc.
+      const keys = breakpointPropMap[type]
+      for (let i = 0; i < keys.length; i++) {
+        // computeBkPt(col, colSm => Sm, value=[String, Number, Boolean])
+        const c = computeBkPtClass(type, keys[i].replace(type, ''), props[keys[i]])
+        // If a class is returned, push it onto the array.
+        if (c) {
+          classList.push(c)
+        }
+      }
+    }
+
+    classList.push({
+      // Default to .col if no other classes generated nor `cols` specified.
+      col: props.col || (classList.length === 0 && !props.cols),
+      [`col-${props.cols}`]: props.cols,
+      [`offset-${props.offset}`]: props.offset,
+      [`order-${props.order}`]: props.order,
+      [`align-self-${props.alignSelf}`]: props.alignSelf
+    })
+
+    return h(props.tag, Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, { class: classList }), children)
+  }
+});
+
 
 /***/ }),
 
@@ -7501,17 +8663,15 @@ const props = {
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BContainer',
   functional: true,
   props,
-  render(h, { props, data, children }) {
+  render (h, { props, data, children }) {
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
         class: {
-          container: !props.fluid,
+          'container': !props.fluid,
           'container-fluid': props.fluid
         }
       }),
@@ -7539,12 +8699,10 @@ const props = {
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BFormRow',
   functional: true,
   props,
-  render(h, { props, data, children }) {
+  render (h, { props, data, children }) {
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
@@ -7565,7 +8723,6 @@ const props = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__container__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/layout/container.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__row__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/layout/row.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__col__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/layout/col.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__col___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__col__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__form_row__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/layout/form-row.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
 
@@ -7575,15 +8732,21 @@ const props = {
 
 
 const components = {
-  BContainer: __WEBPACK_IMPORTED_MODULE_0__container__["a" /* default */],
-  BRow: __WEBPACK_IMPORTED_MODULE_1__row__["a" /* default */],
-  BCol: __WEBPACK_IMPORTED_MODULE_2__col__["default"],
-  BFormRow: __WEBPACK_IMPORTED_MODULE_3__form_row__["a" /* default */]
+  bContainer: __WEBPACK_IMPORTED_MODULE_0__container__["a" /* default */],
+  bRow: __WEBPACK_IMPORTED_MODULE_1__row__["a" /* default */],
+  bCol: __WEBPACK_IMPORTED_MODULE_2__col__["a" /* default */],
+  bFormRow: __WEBPACK_IMPORTED_MODULE_3__form_row__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install: Object(__WEBPACK_IMPORTED_MODULE_4__utils_plugins__["a" /* installFactory */])({ components })
-});
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_4__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_4__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
@@ -7627,12 +8790,10 @@ const props = {
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BRow',
   functional: true,
   props,
-  render(h, { props, data, children }) {
+  render (h, { props, data, children }) {
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
@@ -7657,26 +8818,254 @@ const props = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__link__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/link/link.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__link___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__link__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
 
 
 
 const components = {
-  BLink: __WEBPACK_IMPORTED_MODULE_0__link__["default"]
+  bLink: __WEBPACK_IMPORTED_MODULE_0__link__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install: Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* installFactory */])({ components })
-});
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
 
 /***/ "./node_modules/bootstrap-vue/src/components/link/link.js":
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module parse failed: Unexpected token (161:15)\nYou may need an appropriate loader to handle this file type.\n|         'aria-disabled': props.disabled ? 'true' : null\n|       },\n|       props: { ...props, tag: props.routerTag }\n|     })\n| ");
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = propsFactory;
+/* unused harmony export pickLinkProps */
+/* unused harmony export omitLinkProps */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
+
+
+
+
+/**
+ * The Link component is used in many other BV components.
+ * As such, sharing its props makes supporting all its features easier.
+ * However, some components need to modify the defaults for their own purpose.
+ * Prefer sharing a fresh copy of the props to ensure mutations
+ * do not affect other component references to the props.
+ *
+ * https://github.com/vuejs/vue-router/blob/dev/src/components/link.js
+ * @return {{}}
+ */
+function propsFactory () {
+  return {
+    href: {
+      type: String,
+      default: null
+    },
+    rel: {
+      type: String,
+      default: null
+    },
+    target: {
+      type: String,
+      default: '_self'
+    },
+    active: {
+      type: Boolean,
+      default: false
+    },
+    activeClass: {
+      type: String,
+      default: 'active'
+    },
+    append: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    event: {
+      type: [String, Array],
+      default: 'click'
+    },
+    exact: {
+      type: Boolean,
+      default: false
+    },
+    exactActiveClass: {
+      type: String,
+      default: 'active'
+    },
+    replace: {
+      type: Boolean,
+      default: false
+    },
+    routerTag: {
+      type: String,
+      default: 'a'
+    },
+    to: {
+      type: [String, Object],
+      default: null
+    }
+  }
+}
+
+const props = propsFactory()
+/* unused harmony export props */
+
+
+function pickLinkProps (propsToPick) {
+  const freshLinkProps = propsFactory()
+  // Normalize everything to array.
+  propsToPick = Object(__WEBPACK_IMPORTED_MODULE_1__utils_array__["b" /* concat */])(propsToPick)
+
+  return Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["e" /* keys */])(freshLinkProps).reduce((memo, prop) => {
+    if (Object(__WEBPACK_IMPORTED_MODULE_1__utils_array__["a" /* arrayIncludes */])(propsToPick, prop)) {
+      memo[prop] = freshLinkProps[prop]
+    }
+
+    return memo
+  }, {})
+}
+
+function omitLinkProps (propsToOmit) {
+  const freshLinkProps = propsFactory()
+  // Normalize everything to array.
+  propsToOmit = Object(__WEBPACK_IMPORTED_MODULE_1__utils_array__["b" /* concat */])(propsToOmit)
+
+  return Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["e" /* keys */])(props).reduce((memo, prop) => {
+    if (!Object(__WEBPACK_IMPORTED_MODULE_1__utils_array__["a" /* arrayIncludes */])(propsToOmit, prop)) {
+      memo[prop] = freshLinkProps[prop]
+    }
+
+    return memo
+  }, {})
+}
+
+const computed = {
+  linkProps () {
+    let linkProps = {}
+    let propKeys = Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["e" /* keys */])(props)
+
+    for (let i = 0; i < propKeys.length; i++) {
+      const prop = propKeys[i]
+      // Computed Vue getters are bound to the instance.
+      linkProps[prop] = this[prop]
+    }
+
+    return linkProps
+  }
+}
+/* unused harmony export computed */
+
+
+function computeTag (props, parent) {
+  return Boolean(parent.$router) && props.to && !props.disabled ? 'router-link' : 'a'
+}
+
+function computeHref ({ disabled, href, to }, tag) {
+  // We've already checked the parent.$router in computeTag,
+  // so router-link means live router.
+  // When deferring to Vue Router's router-link,
+  // don't use the href attr at all.
+  // Must return undefined for router-link to populate href.
+  if (tag === 'router-link') return void 0
+  // If href explicitly provided
+  if (href) return href
+  // Reconstruct href when `to` used, but no router
+  if (to) {
+    // Fallback to `to` prop (if `to` is a string)
+    if (typeof to === 'string') return to
+    // Fallback to `to.path` prop (if `to` is an object)
+    if (typeof to === 'object' && typeof to.path === 'string') return to.path
+  }
+  // If nothing is provided use '#'
+  return '#'
+}
+
+function computeRel ({ target, rel }) {
+  if (target === '_blank' && rel === null) {
+    return 'noopener'
+  }
+  return rel || null
+}
+
+function clickHandlerFactory ({ disabled, tag, href, suppliedHandler, parent }) {
+  const isRouterLink = tag === 'router-link'
+
+  return function onClick (e) {
+    if (disabled && e instanceof Event) {
+      // Stop event from bubbling up.
+      e.stopPropagation()
+      // Kill the event loop attached to this specific EventTarget.
+      e.stopImmediatePropagation()
+    } else {
+      parent.$root.$emit('clicked::link', e)
+
+      if (isRouterLink && e.target.__vue__) {
+        e.target.__vue__.$emit('click', e)
+      }
+      if (typeof suppliedHandler === 'function') {
+        suppliedHandler(...arguments)
+      }
+    }
+
+    if ((!isRouterLink && href === '#') || disabled) {
+      // Stop scroll-to-top behavior or navigation.
+      e.preventDefault()
+    }
+  }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  functional: true,
+  props: propsFactory(),
+  render (h, { props, data, parent, children }) {
+    const tag = computeTag(props, parent)
+    const rel = computeRel(props)
+    const href = computeHref(props, tag)
+    const eventType = tag === 'router-link' ? 'nativeOn' : 'on'
+    const suppliedHandler = (data[eventType] || {}).click
+    const handlers = { click: clickHandlerFactory({ tag, href, disabled: props.disabled, suppliedHandler, parent }) }
+
+    const componentData = Object(__WEBPACK_IMPORTED_MODULE_2_vue_functional_data_merge__["a" /* mergeData */])(data, {
+      class: [
+        props.active ? (props.exact ? props.exactActiveClass : props.activeClass) : null,
+        { disabled: props.disabled }
+      ],
+      attrs: {
+        rel,
+        href,
+        target: props.target,
+        tabindex: props.disabled ? '-1' : (data.attrs ? data.attrs.tabindex : null),
+        'aria-disabled': (tag === 'a' && props.disabled) ? 'true' : null
+      },
+      props: Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["a" /* assign */])(props, { tag: props.routerTag })
+    })
+
+    // If href prop exists on router-link (even undefined or null) it fails working on SSR
+    if (!componentData.attrs.href) {
+      delete componentData.attrs.href
+    }
+
+    // We want to overwrite any click handler since our callback
+    // will invoke the supplied handler if !props.disabled
+    componentData[eventType] = Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["a" /* assign */])(componentData[eventType] || {}, handlers)
+
+    return h(tag, componentData, children)
+  }
+});
+
 
 /***/ }),
 
@@ -7692,16 +9081,19 @@ throw new Error("Module parse failed: Unexpected token (161:15)\nYou may need an
 
 
 const components = {
-  BModal: __WEBPACK_IMPORTED_MODULE_0__modal__["a" /* default */]
+  bModal: __WEBPACK_IMPORTED_MODULE_0__modal__["a" /* default */]
 }
 
-const plugins = {
-  BModalDirectivePlugin: __WEBPACK_IMPORTED_MODULE_1__directives_modal__["a" /* default */]
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["a" /* registerComponents */])(Vue, components)
+    Vue.use(__WEBPACK_IMPORTED_MODULE_1__directives_modal__["a" /* default */])
+  }
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install: Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["a" /* installFactory */])({ components, plugins })
-});
+Object(__WEBPACK_IMPORTED_MODULE_2__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
@@ -7711,18 +9103,14 @@ const plugins = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__button_button__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/button.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__button_button___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__button_button__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__button_button_close__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/button/button-close.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_listen_on_root__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/listen-on-root.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_observe_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/observe-dom.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_observe_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__utils_observe_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warn__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/warn.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_key_codes__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/key-codes.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_bv_event_class__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/bv-event.class.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_config__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/config.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_html__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/html.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
 
 
 
@@ -7733,9 +9121,6 @@ const plugins = {
 
 
 
-
-
-const NAME = 'BModal'
 
 // Selectors for padding/margin adjustments
 const Selector = {
@@ -7753,49 +9138,221 @@ const OBSERVER_CONFIG = {
   attributeFilter: ['style', 'class']
 }
 
-// modal wrapper ZINDEX offset incrememnt
-const ZINDEX_OFFSET = 2000
-
-// Modal open count helpers
-function getModalOpenCount() {
-  return parseInt(Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["f" /* getAttr */])(document.body, 'data-modal-open-count') || 0, 10)
-}
-
-function setModalOpenCount(count) {
-  Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["t" /* setAttr */])(document.body, 'data-modal-open-count', String(count))
-  return count
-}
-
-function incrementModalOpenCount() {
-  return setModalOpenCount(getModalOpenCount() + 1)
-}
-
-function decrementModalOpenCount() {
-  return setModalOpenCount(Math.max(getModalOpenCount() - 1, 0))
-}
-
-// Returns the current visible modal highest z-index
-function getModalMaxZIndex() {
-  return Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["s" /* selectAll */])('div.modal') /* find all modals that are in document */
-    .filter(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["l" /* isVisible */]) /* filter only visible ones */
-    .map(m => m.parentElement) /* select the outer div */
-    .reduce((max, el) => {
-      /* compute the highest z-index */
-      return Math.max(max, parseInt(el.style.zIndex || 0, 10))
-    }, 0)
-}
-
-// Returns the next z-index to be used by a modal to ensure proper stacking
-// regardless of document order. Increments by 2000
-function getModalNextZIndex() {
-  return getModalMaxZIndex() + ZINDEX_OFFSET
-}
-
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: NAME,
-  components: { BButton: __WEBPACK_IMPORTED_MODULE_0__button_button__["default"], BButtonClose: __WEBPACK_IMPORTED_MODULE_1__button_button_close__["a" /* default */] },
   mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_id__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3__mixins_listen_on_root__["a" /* default */]],
+  components: { bBtn: __WEBPACK_IMPORTED_MODULE_0__button_button__["a" /* default */], bBtnClose: __WEBPACK_IMPORTED_MODULE_1__button_button_close__["a" /* default */] },
+  render (h) {
+    const $slots = this.$slots
+    // Modal Header
+    let header = h(false)
+    if (!this.hideHeader) {
+      let modalHeader = $slots['modal-header']
+      if (!modalHeader) {
+        let closeButton = h(false)
+        if (!this.hideHeaderClose) {
+          closeButton = h(
+            'b-btn-close',
+            {
+              props: {
+                disabled: this.is_transitioning,
+                ariaLabel: this.headerCloseLabel,
+                textVariant: this.headerTextVariant
+              },
+              on: {
+                click: evt => {
+                  this.hide('header-close')
+                }
+              }
+            },
+            [$slots['modal-header-close']]
+          )
+        }
+        modalHeader = [
+          h(this.titleTag, { class: ['modal-title'] }, [
+            $slots['modal-title'] || this.title
+          ]),
+          closeButton
+        ]
+      }
+      header = h(
+        'header',
+        {
+          ref: 'header',
+          class: this.headerClasses,
+          attrs: { id: this.safeId('__BV_modal_header_') }
+        },
+        [modalHeader]
+      )
+    }
+    // Modal Body
+    const body = h(
+      'div',
+      {
+        ref: 'body',
+        class: this.bodyClasses,
+        attrs: { id: this.safeId('__BV_modal_body_') }
+      },
+      [$slots.default]
+    )
+    // Modal Footer
+    let footer = h(false)
+    if (!this.hideFooter) {
+      let modalFooter = $slots['modal-footer']
+      if (!modalFooter) {
+        let cancelButton = h(false)
+        if (!this.okOnly) {
+          cancelButton = h(
+            'b-btn',
+            {
+              props: {
+                variant: this.cancelVariant,
+                size: this.buttonSize,
+                disabled: this.cancelDisabled || this.busy || this.is_transitioning
+              },
+              on: {
+                click: evt => {
+                  this.hide('cancel')
+                }
+              }
+            },
+            [$slots['modal-cancel'] || this.cancelTitle]
+          )
+        }
+        const okButton = h(
+          'b-btn',
+          {
+            props: {
+              variant: this.okVariant,
+              size: this.buttonSize,
+              disabled: this.okDisabled || this.busy || this.is_transitioning
+            },
+            on: {
+              click: evt => {
+                this.hide('ok')
+              }
+            }
+          },
+          [$slots['modal-ok'] || this.okTitle]
+        )
+        modalFooter = [cancelButton, okButton]
+      }
+      footer = h(
+        'footer',
+        {
+          ref: 'footer',
+          class: this.footerClasses,
+          attrs: { id: this.safeId('__BV_modal_footer_') }
+        },
+        [modalFooter]
+      )
+    }
+    // Assemble Modal Content
+    const modalContent = h(
+      'div',
+      {
+        ref: 'content',
+        class: ['modal-content'],
+        attrs: {
+          tabindex: '-1',
+          role: 'document',
+          'aria-labelledby': this.hideHeader
+            ? null
+            : this.safeId('__BV_modal_header_'),
+          'aria-describedby': this.safeId('__BV_modal_body_')
+        },
+        on: {
+          focusout: this.onFocusout,
+          click: evt => {
+            evt.stopPropagation()
+            // https://github.com/bootstrap-vue/bootstrap-vue/issues/1528
+            this.$root.$emit('bv::dropdown::shown')
+          }
+        }
+      },
+      [header, body, footer]
+    )
+    // Modal Dialog wrapper
+    const modalDialog = h('div', { class: this.dialogClasses }, [modalContent])
+    // Modal
+    let modal = h(
+      'div',
+      {
+        ref: 'modal',
+        class: this.modalClasses,
+        directives: [
+          {
+            name: 'show',
+            rawName: 'v-show',
+            value: this.is_visible,
+            expression: 'is_visible'
+          }
+        ],
+        attrs: {
+          id: this.safeId(),
+          role: 'dialog',
+          'aria-hidden': this.is_visible ? null : 'true'
+        },
+        on: {
+          click: this.onClickOut,
+          keydown: this.onEsc
+        }
+      },
+      [modalDialog]
+    )
+    // Wrap modal in transition
+    modal = h(
+      'transition',
+      {
+        props: {
+          enterClass: '',
+          enterToClass: '',
+          enterActiveClass: '',
+          leaveClass: '',
+          leaveActiveClass: '',
+          leaveToClass: ''
+        },
+        on: {
+          'before-enter': this.onBeforeEnter,
+          enter: this.onEnter,
+          'after-enter': this.onAfterEnter,
+          'before-leave': this.onBeforeLeave,
+          leave: this.onLeave,
+          'after-leave': this.onAfterLeave
+        }
+      },
+      [modal]
+    )
+    // Modal Backdrop
+    let backdrop = h(false)
+    if (!this.hideBackdrop && (this.is_visible || this.is_transitioning)) {
+      backdrop = h('div', {
+        class: this.backdropClasses,
+        attrs: { id: this.safeId('__BV_modal_backdrop_') }
+      })
+    }
+    // Assemble modal and backdrop
+    let outer = h(false)
+    if (!this.is_hidden) {
+      outer = h('div', { attrs: { id: this.safeId('__BV_modal_outer_') } }, [
+        modal,
+        backdrop
+      ])
+    }
+    // Wrap in DIV to maintain thi.$el reference for hide/show method aceess
+    return h('div', {}, [outer])
+  },
+  data () {
+    return {
+      is_hidden: this.lazy || false,
+      is_visible: false,
+      is_transitioning: false,
+      is_show: false,
+      is_block: false,
+      scrollbarWidth: 0,
+      isBodyOverflowing: false,
+      return_focus: this.returnFocus || null
+    }
+  },
   model: {
     prop: 'visible',
     event: 'change'
@@ -7804,9 +9361,6 @@ function getModalNextZIndex() {
     title: {
       type: String,
       default: ''
-    },
-    titleHtml: {
-      type: String
     },
     titleTag: {
       type: String,
@@ -7820,17 +9374,9 @@ function getModalNextZIndex() {
       type: Boolean,
       default: false
     },
-    scrollable: {
-      type: Boolean,
-      default: false
-    },
     buttonSize: {
       type: String,
       default: ''
-    },
-    noStacking: {
-      type: Boolean,
-      default: false
     },
     noFade: {
       type: Boolean,
@@ -7860,10 +9406,6 @@ function getModalNextZIndex() {
       type: String,
       default: null
     },
-    headerCloseVariant: {
-      type: String,
-      default: null
-    },
     headerClass: {
       type: [String, Array],
       default: null
@@ -7877,14 +9419,6 @@ function getModalNextZIndex() {
       default: null
     },
     modalClass: {
-      type: [String, Array],
-      default: null
-    },
-    dialogClass: {
-      type: [String, Array],
-      default: null
-    },
-    contentClass: {
       type: [String, Array],
       default: null
     },
@@ -7941,34 +9475,27 @@ function getModalNextZIndex() {
       default: false
     },
     returnFocus: {
-      // type: Object,
       default: null
     },
     headerCloseLabel: {
       type: String,
-      default: () => Object(__WEBPACK_IMPORTED_MODULE_8__utils_config__["b" /* getComponentConfig */])(NAME, 'headerCloseLabel')
+      default: 'Close'
     },
     cancelTitle: {
       type: String,
-      default: () => Object(__WEBPACK_IMPORTED_MODULE_8__utils_config__["b" /* getComponentConfig */])(NAME, 'cancelTitle')
-    },
-    cancelTitleHtml: {
-      type: String
+      default: 'Cancel'
     },
     okTitle: {
       type: String,
-      default: () => Object(__WEBPACK_IMPORTED_MODULE_8__utils_config__["b" /* getComponentConfig */])(NAME, 'okTitle')
-    },
-    okTitleHtml: {
-      type: String
+      default: 'OK'
     },
     cancelVariant: {
       type: String,
-      default: () => Object(__WEBPACK_IMPORTED_MODULE_8__utils_config__["b" /* getComponentConfig */])(NAME, 'cancelVariant')
+      default: 'secondary'
     },
     okVariant: {
       type: String,
-      default: () => Object(__WEBPACK_IMPORTED_MODULE_8__utils_config__["b" /* getComponentConfig */])(NAME, 'okVariant')
+      default: 'primary'
     },
     lazy: {
       type: Boolean,
@@ -7979,28 +9506,10 @@ function getModalNextZIndex() {
       default: false
     }
   },
-  data() {
-    return {
-      is_hidden: this.lazy || false, // for lazy modals
-      is_visible: false, // controls modal visible state
-      is_transitioning: false, // Used for style control
-      is_show: false, // Used for style control
-      is_block: false, // Used for style control
-      is_opening: false, // Semaphore for previnting incorrect modal open counts
-      is_closing: false, // Semapbore for preventing incorrect modal open counts
-      scrollbarWidth: 0,
-      zIndex: ZINDEX_OFFSET, // z-index for modal stacking
-      isTop: true, // If the modal is the topmost opened modal
-      isBodyOverflowing: false,
-      return_focus: this.returnFocus || null
-    }
-  },
   computed: {
-    contentClasses() {
-      return ['modal-content', this.contentClass]
-    },
-    modalClasses() {
+    modalClasses () {
       return [
+        'modal',
         {
           fade: !this.noFade,
           show: this.is_show,
@@ -8009,34 +9518,40 @@ function getModalNextZIndex() {
         this.modalClass
       ]
     },
-    dialogClasses() {
+    dialogClasses () {
       return [
+        'modal-dialog',
         {
           [`modal-${this.size}`]: Boolean(this.size),
-          'modal-dialog-centered': this.centered,
-          'modal-dialog-scrollable': this.scrollable
-        },
-        this.dialogClass
+          'modal-dialog-centered': this.centered
+        }
       ]
     },
-    backdropClasses() {
-      return {
-        fade: !this.noFade,
-        show: this.is_show || this.noFade
-      }
-    },
-    headerClasses() {
+    backdropClasses () {
       return [
+        'modal-backdrop',
+        {
+          fade: !this.noFade,
+          show: this.is_show || this.noFade
+        }
+      ]
+    },
+    headerClasses () {
+      return [
+        'modal-header',
         {
           [`bg-${this.headerBgVariant}`]: Boolean(this.headerBgVariant),
           [`text-${this.headerTextVariant}`]: Boolean(this.headerTextVariant),
-          [`border-${this.headerBorderVariant}`]: Boolean(this.headerBorderVariant)
+          [`border-${this.headerBorderVariant}`]: Boolean(
+            this.headerBorderVariant
+          )
         },
         this.headerClass
       ]
     },
-    bodyClasses() {
+    bodyClasses () {
       return [
+        'modal-body',
         {
           [`bg-${this.bodyBgVariant}`]: Boolean(this.bodyBgVariant),
           [`text-${this.bodyTextVariant}`]: Boolean(this.bodyTextVariant)
@@ -8044,133 +9559,70 @@ function getModalNextZIndex() {
         this.bodyClass
       ]
     },
-    footerClasses() {
+    footerClasses () {
       return [
+        'modal-footer',
         {
           [`bg-${this.footerBgVariant}`]: Boolean(this.footerBgVariant),
           [`text-${this.footerTextVariant}`]: Boolean(this.footerTextVariant),
-          [`border-${this.footerBorderVariant}`]: Boolean(this.footerBorderVariant)
+          [`border-${this.footerBorderVariant}`]: Boolean(
+            this.footerBorderVariant
+          )
         },
         this.footerClass
       ]
-    },
-    modalOuterStyle() {
-      return {
-        // We only set these styles on the stacked modals (ones with next z-index > 0).
-        position: 'absolute',
-        zIndex: this.zIndex
-      }
     }
   },
   watch: {
-    visible(newVal, oldVal) {
+    visible (newVal, oldVal) {
       if (newVal === oldVal) {
-        /* istanbul ignore next */
         return
       }
       this[newVal ? 'show' : 'hide']()
     }
   },
-  created() {
-    // create non-reactive property
-    this._observer = null
-  },
-  mounted() {
-    // Listen for events from others to either open or close ourselves
-    // And listen to all modals to enable/disable enforce focus
-    this.listenOnRoot('bv::show::modal', this.showHandler)
-    this.listenOnRoot('bv::modal::shown', this.shownHandler)
-    this.listenOnRoot('bv::hide::modal', this.hideHandler)
-    this.listenOnRoot('bv::modal::hidden', this.hiddenHandler)
-    this.listenOnRoot('bv::toggle::modal', this.toggleHandler)
-    // Listen for bv:modal::show events, and close ourselves if the opening modal not us
-    this.listenOnRoot('bv::modal::show', this.modalListener)
-    // Initially show modal?
-    if (this.visible === true) {
-      this.show()
-    }
-  },
-  beforeDestroy() /* istanbul ignore next */ {
-    // Ensure everything is back to normal
-    if (this._observer) {
-      this._observer.disconnect()
-      this._observer = null
-    }
-    // Ensure our root "once" listener is gone
-    this.$root.$off('bv::modal::hidden', this.doShow)
-    this.setEnforceFocus(false)
-    this.setResizeEvent(false)
-    if (this.is_visible) {
-      this.is_visible = false
-      this.is_show = false
-      this.is_transitioning = false
-      const count = decrementModalOpenCount()
-      if (count === 0) {
-        // Re-adjust body/navbar/fixed padding/margins (as we were the last modal open)
-        this.setModalOpenClass(false)
-        this.resetScrollbar()
-        this.resetDialogAdjustments()
-      }
-    }
-  },
   methods: {
     // Public Methods
-    show() {
-      if (this.is_visible || this.is_opening) {
-        // if already open, on in the process of opening, do nothing
+    show () {
+      if (this.is_visible) {
         return
       }
-      if (this.is_closing) {
-        // if we are in the process of closing, wait until hidden before re-opening
-        this.$once('hidden', this.show)
-        return
-      }
-      this.is_opening = true
       const showEvt = new __WEBPACK_IMPORTED_MODULE_7__utils_bv_event_class__["a" /* default */]('show', {
         cancelable: true,
         vueTarget: this,
         target: this.$refs.modal,
-        modalId: this.safeId(),
         relatedTarget: null
       })
       this.emitEvent(showEvt)
-      // Don't show if canceled
       if (showEvt.defaultPrevented || this.is_visible) {
-        this.is_opening = false
+        // Don't show if canceled
         return
       }
-      if (!this.noStacking) {
-        // Find the z-index to use
-        this.zIndex = getModalNextZIndex()
-        // Show the modal
-        this.doShow()
-        return
-      }
-      if (Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["j" /* hasClass */])(document.body, 'modal-open')) {
+      if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["h" /* hasClass */])(document.body, 'modal-open')) {
         // If another modal is already open, wait for it to close
         this.$root.$once('bv::modal::hidden', this.doShow)
-        return
+      } else {
+        // Show the modal
+        this.doShow()
       }
-      // Show the modal
-      this.doShow()
     },
-    hide(trigger) {
-      if (!this.is_visible || this.is_closing) {
+    hide (trigger) {
+      if (!this.is_visible) {
         return
       }
-      this.is_closing = true
       const hideEvt = new __WEBPACK_IMPORTED_MODULE_7__utils_bv_event_class__["a" /* default */]('hide', {
         cancelable: true,
         vueTarget: this,
         target: this.$refs.modal,
-        modalId: this.safeId(),
         // this could be the trigger element/component reference
         relatedTarget: null,
         isOK: trigger || null,
         trigger: trigger || null,
-        cancel() /* istanbul ignore next */ {
+        cancel () {
           // Backwards compatibility
-          Object(__WEBPACK_IMPORTED_MODULE_5__utils_warn__["a" /* default */])('b-modal: evt.cancel() is deprecated. Please use evt.preventDefault().')
+          Object(__WEBPACK_IMPORTED_MODULE_5__utils_warn__["a" /* default */])(
+            'b-modal: evt.cancel() is deprecated. Please use evt.preventDefault().'
+          )
           this.preventDefault()
         }
       })
@@ -8182,7 +9634,6 @@ function getModalNextZIndex() {
       this.emitEvent(hideEvt)
       // Hide if not canceled
       if (hideEvt.defaultPrevented || !this.is_visible) {
-        this.is_closing = false
         return
       }
       // stop observing for content changes
@@ -8193,28 +9644,16 @@ function getModalNextZIndex() {
       this.is_visible = false
       this.$emit('change', false)
     },
-    // Public method to toggle modal visibility
-    toggle(triggerEl) {
-      if (triggerEl) {
-        this.return_focus = triggerEl
-      }
-      if (this.is_visible) {
-        this.hide('toggle')
-      } else {
-        this.show()
-      }
-    },
     // Private method to finish showing modal
-    doShow() {
-      // Place modal in DOM if lazy
+    doShow () {
+      // Plce modal in DOM if lazy
       this.is_hidden = false
       this.$nextTick(() => {
         // We do this in nextTick to ensure the modal is in DOM first before we show it
         this.is_visible = true
-        this.is_opening = false
         this.$emit('change', true)
         // Observe changes in modal content and adjust if necessary
-        this._observer = Object(__WEBPACK_IMPORTED_MODULE_4__utils_observe_dom__["default"])(
+        this._observer = Object(__WEBPACK_IMPORTED_MODULE_4__utils_observe_dom__["a" /* default */])(
           this.$refs.content,
           this.adjustDialog.bind(this),
           OBSERVER_CONFIG
@@ -8222,524 +9661,281 @@ function getModalNextZIndex() {
       })
     },
     // Transition Handlers
-    onBeforeEnter() {
-      this.getScrollbarWidth()
+    onBeforeEnter () {
       this.is_transitioning = true
       this.checkScrollbar()
-      const count = incrementModalOpenCount()
-      if (count === 1) {
-        this.setScrollbar()
-      }
+      this.setScrollbar()
       this.adjustDialog()
-      this.setModalOpenClass(true)
+      Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["a" /* addClass */])(document.body, 'modal-open')
       this.setResizeEvent(true)
     },
-    onEnter() {
+    onEnter () {
       this.is_block = true
+      this.$refs.modal.scrollTop = 0
     },
-    onAfterEnter() {
+    onAfterEnter () {
       this.is_show = true
       this.is_transitioning = false
       this.$nextTick(() => {
+        this.focusFirst()
         const shownEvt = new __WEBPACK_IMPORTED_MODULE_7__utils_bv_event_class__["a" /* default */]('shown', {
           cancelable: false,
           vueTarget: this,
           target: this.$refs.modal,
-          modalId: this.safeId(),
           relatedTarget: null
         })
         this.emitEvent(shownEvt)
-        this.focusFirst()
-        this.setEnforceFocus(true)
       })
     },
-    onBeforeLeave() {
+    onBeforeLeave () {
       this.is_transitioning = true
       this.setResizeEvent(false)
     },
-    onLeave() {
+    onLeave () {
       // Remove the 'show' class
       this.is_show = false
     },
-    onAfterLeave() {
+    onAfterLeave () {
       this.is_block = false
-      this.resetDialogAdjustments()
+      this.resetAdjustments()
+      this.resetScrollbar()
       this.is_transitioning = false
-      const count = decrementModalOpenCount()
-      if (count === 0) {
-        this.resetScrollbar()
-        this.setModalOpenClass(false)
-      }
-      this.setEnforceFocus(false)
+      Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["n" /* removeClass */])(document.body, 'modal-open')
       this.$nextTick(() => {
         this.is_hidden = this.lazy || false
-        this.zIndex = ZINDEX_OFFSET
         this.returnFocusTo()
-        this.is_closing = false
         const hiddenEvt = new __WEBPACK_IMPORTED_MODULE_7__utils_bv_event_class__["a" /* default */]('hidden', {
           cancelable: false,
           vueTarget: this,
           target: this.lazy ? null : this.$refs.modal,
-          modalId: this.safeId(),
           relatedTarget: null
         })
         this.emitEvent(hiddenEvt)
       })
     },
     // Event emitter
-    emitEvent(bvEvt) {
+    emitEvent (bvEvt) {
       const type = bvEvt.type
       this.$emit(type, bvEvt)
-      this.$root.$emit(`bv::modal::${type}`, bvEvt, this.safeId())
+      this.$root.$emit(`bv::modal::${type}`, bvEvt)
     },
     // UI Event Handlers
-    onClickOut(evt) {
-      // Do nothing if not visible, backdrop click disabled, or element that generated
-      // click event is no longer in document
-      if (!this.is_visible || this.noCloseOnBackdrop || !Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["c" /* contains */])(document, evt.target)) {
-        return
-      }
+    onClickOut (evt) {
       // If backdrop clicked, hide modal
-      if (!Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["c" /* contains */])(this.$refs.content, evt.target)) {
+      if (this.is_visible && !this.noCloseOnBackdrop) {
         this.hide('backdrop')
       }
     },
-    onEsc(evt) {
+    onEsc (evt) {
       // If ESC pressed, hide modal
-      if (evt.keyCode === __WEBPACK_IMPORTED_MODULE_6__utils_key_codes__["a" /* default */].ESC && this.is_visible && !this.noCloseOnEsc) {
+      if (
+        evt.keyCode === __WEBPACK_IMPORTED_MODULE_6__utils_key_codes__["a" /* default */].ESC &&
+        this.is_visible &&
+        !this.noCloseOnEsc
+      ) {
         this.hide('esc')
       }
     },
-    // Document focusin listener
-    focusHandler(evt) {
+    onFocusout (evt) {
       // If focus leaves modal, bring it back
-      const modal = this.$refs.modal
+      // 'focusout' Event Listener bound on content
+      const content = this.$refs.content
       if (
         !this.noEnforceFocus &&
-        this.isTop &&
         this.is_visible &&
-        modal &&
-        document !== evt.target &&
-        !Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["c" /* contains */])(modal, evt.target)
+        content &&
+        !content.contains(evt.relatedTarget)
       ) {
-        modal.focus({ preventScroll: true })
-      }
-    },
-    // Turn on/off focusin listener
-    setEnforceFocus(on) {
-      const options = { passive: true, capture: false }
-      if (on) {
-        Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["e" /* eventOn */])(document, 'focusin', this.focusHandler, options)
-      } else {
-        Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["d" /* eventOff */])(document, 'focusin', this.focusHandler, options)
+        content.focus()
       }
     },
     // Resize Listener
-    setResizeEvent(on) /* istanbul ignore next: can't easily test in JSDOM */ {
+    setResizeEvent (on) {
       ;['resize', 'orientationchange'].forEach(evtName => {
-        const options = { passive: true, capture: false }
         if (on) {
-          Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["e" /* eventOn */])(window, evtName, this.adjustDialog, options)
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["d" /* eventOn */])(window, evtName, this.adjustDialog)
         } else {
-          Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["d" /* eventOff */])(window, evtName, this.adjustDialog, options)
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["c" /* eventOff */])(window, evtName, this.adjustDialog)
         }
       })
     },
     // Root Listener handlers
-    showHandler(id, triggerEl) {
+    showHandler (id, triggerEl) {
       if (id === this.id) {
         this.return_focus = triggerEl || null
         this.show()
       }
     },
-    hideHandler(id) {
+    hideHandler (id) {
       if (id === this.id) {
-        this.hide('event')
+        this.hide()
       }
     },
-    toggleHandler(id, triggerEl) {
-      if (id === this.id) {
-        this.toggle(triggerEl)
-      }
-    },
-    shownHandler() {
-      this.setTop()
-    },
-    hiddenHandler() {
-      this.setTop()
-    },
-    setTop() {
-      // Determine if we are the topmost visible modal
-      this.isTop = this.zIndex >= getModalMaxZIndex()
-    },
-    modalListener(bvEvt) {
+    modalListener (bvEvt) {
       // If another modal opens, close this one
-      if (this.noStacking && bvEvt.vueTarget !== this) {
+      if (bvEvt.vueTarget !== this) {
         this.hide()
       }
     },
     // Focus control handlers
-    focusFirst() {
+    focusFirst () {
       // Don't try and focus if we are SSR
       if (typeof document === 'undefined') {
         return
       }
+      const content = this.$refs.content
       const modal = this.$refs.modal
       const activeElement = document.activeElement
-      if (activeElement && Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["c" /* contains */])(modal, activeElement)) {
-        // If activeElement is child of modal or is modal, no need to change focus
-        return
-      }
-      if (modal) {
-        // make sure top of modal is showing (if longer than the viewport) and
-        // focus the modal content wrapper
-        this.$nextTick(() => {
+      if (activeElement && content && content.contains(activeElement)) {
+        // If activeElement is child of content, no need to change focus
+      } else if (content) {
+        if (modal) {
           modal.scrollTop = 0
-          modal.focus()
-        })
+        }
+        // Focus the modal content wrapper
+        content.focus()
       }
     },
-    returnFocusTo() {
+    returnFocusTo () {
       // Prefer returnFocus prop over event specified return_focus value
       let el = this.returnFocus || this.return_focus || null
       if (typeof el === 'string') {
         // CSS Selector
-        el = Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["r" /* select */])(el)
+        el = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["o" /* select */])(el)
       }
       if (el) {
         el = el.$el || el
-        if (Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["l" /* isVisible */])(el)) {
+        if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["k" /* isVisible */])(el)) {
           el.focus()
         }
       }
     },
     // Utility methods
-    getScrollbarWidth() {
+    getScrollbarWidth () {
       const scrollDiv = document.createElement('div')
       scrollDiv.className = 'modal-scrollbar-measure'
       document.body.appendChild(scrollDiv)
-      this.scrollbarWidth = Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["g" /* getBCR */])(scrollDiv).width - scrollDiv.clientWidth
+      this.scrollbarWidth =
+        scrollDiv.getBoundingClientRect().width - scrollDiv.clientWidth
       document.body.removeChild(scrollDiv)
     },
-    setModalOpenClass(open) {
-      if (open) {
-        Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["a" /* addClass */])(document.body, 'modal-open')
-      } else {
-        Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["p" /* removeClass */])(document.body, 'modal-open')
-      }
-    },
-    adjustDialog() {
+    adjustDialog () {
       if (!this.is_visible) {
         return
       }
       const modal = this.$refs.modal
-      const isModalOverflowing = modal.scrollHeight > document.documentElement.clientHeight
+      const isModalOverflowing =
+        modal.scrollHeight > document.documentElement.clientHeight
       if (!this.isBodyOverflowing && isModalOverflowing) {
         modal.style.paddingLeft = `${this.scrollbarWidth}px`
-      } else {
-        modal.style.paddingLeft = ''
       }
       if (this.isBodyOverflowing && !isModalOverflowing) {
         modal.style.paddingRight = `${this.scrollbarWidth}px`
-      } else {
-        modal.style.paddingRight = ''
       }
     },
-    resetDialogAdjustments() {
+    resetAdjustments () {
       const modal = this.$refs.modal
       if (modal) {
         modal.style.paddingLeft = ''
         modal.style.paddingRight = ''
       }
     },
-    checkScrollbar() /* istanbul ignore next: getBCR can't be tested in JSDOM */ {
-      const { left, right, height } = Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["g" /* getBCR */])(document.body)
-      // Extra check for body.height needed for stacked modals
-      this.isBodyOverflowing = left + right < window.innerWidth || height > window.innerHeight
+    checkScrollbar () {
+      const rect = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["f" /* getBCR */])(document.body)
+      this.isBodyOverflowing = rect.left + rect.right < window.innerWidth
     },
-    setScrollbar() {
-      /* istanbul ignore if: get Computed Style can't be tested in JSDOM */
+    setScrollbar () {
       if (this.isBodyOverflowing) {
         // Note: DOMNode.style.paddingRight returns the actual value or '' if not set
         //   while $(DOMNode).css('padding-right') returns the calculated value or 0 if not set
+        const computedStyle = window.getComputedStyle
         const body = document.body
         const scrollbarWidth = this.scrollbarWidth
-        body._paddingChangedForModal = []
-        body._marginChangedForModal = []
         // Adjust fixed content padding
-        Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["s" /* selectAll */])(Selector.FIXED_CONTENT).forEach(el => {
+        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* selectAll */])(Selector.FIXED_CONTENT).forEach(el => {
           const actualPadding = el.style.paddingRight
-          const calculatedPadding = Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["h" /* getCS */])(el).paddingRight || 0
-          Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["t" /* setAttr */])(el, 'data-padding-right', actualPadding)
-          el.style.paddingRight = `${parseFloat(calculatedPadding) + scrollbarWidth}px`
-          body._paddingChangedForModal.push(el)
+          const calculatedPadding = computedStyle(el).paddingRight || 0
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["q" /* setAttr */])(el, 'data-padding-right', actualPadding)
+          el.style.paddingRight = `${parseFloat(calculatedPadding) +
+            scrollbarWidth}px`
         })
         // Adjust sticky content margin
-        Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["s" /* selectAll */])(Selector.STICKY_CONTENT).forEach(el => {
+        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* selectAll */])(Selector.STICKY_CONTENT).forEach(el => {
           const actualMargin = el.style.marginRight
-          const calculatedMargin = Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["h" /* getCS */])(el).marginRight || 0
-          Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["t" /* setAttr */])(el, 'data-margin-right', actualMargin)
-          el.style.marginRight = `${parseFloat(calculatedMargin) - scrollbarWidth}px`
-          body._marginChangedForModal.push(el)
+          const calculatedMargin = computedStyle(el).marginRight || 0
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["q" /* setAttr */])(el, 'data-margin-right', actualMargin)
+          el.style.marginRight = `${parseFloat(calculatedMargin) -
+            scrollbarWidth}px`
         })
         // Adjust navbar-toggler margin
-        Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["s" /* selectAll */])(Selector.NAVBAR_TOGGLER).forEach(el => {
+        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* selectAll */])(Selector.NAVBAR_TOGGLER).forEach(el => {
           const actualMargin = el.style.marginRight
-          const calculatedMargin = Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["h" /* getCS */])(el).marginRight || 0
-          Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["t" /* setAttr */])(el, 'data-margin-right', actualMargin)
-          el.style.marginRight = `${parseFloat(calculatedMargin) + scrollbarWidth}px`
-          body._marginChangedForModal.push(el)
+          const calculatedMargin = computedStyle(el).marginRight || 0
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["q" /* setAttr */])(el, 'data-margin-right', actualMargin)
+          el.style.marginRight = `${parseFloat(calculatedMargin) +
+            scrollbarWidth}px`
         })
         // Adjust body padding
         const actualPadding = body.style.paddingRight
-        const calculatedPadding = Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["h" /* getCS */])(body).paddingRight
-        Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["t" /* setAttr */])(body, 'data-padding-right', actualPadding)
-        body.style.paddingRight = `${parseFloat(calculatedPadding) + scrollbarWidth}px`
+        const calculatedPadding = computedStyle(body).paddingRight
+        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["q" /* setAttr */])(body, 'data-padding-right', actualPadding)
+        body.style.paddingRight = `${parseFloat(calculatedPadding) +
+          scrollbarWidth}px`
       }
     },
-    resetScrollbar() {
-      const body = document.body
-      if (body._paddingChangedForModal) {
-        // Restore fixed content padding
-        body._paddingChangedForModal.forEach(el => {
-          if (Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["i" /* hasAttr */])(el, 'data-padding-right')) {
-            el.style.paddingRight = Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["f" /* getAttr */])(el, 'data-padding-right') || ''
-            Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["o" /* removeAttr */])(el, 'data-padding-right')
-          }
-        })
-      }
-      if (body._marginChangedForModal) {
-        // Restore sticky content and navbar-toggler margin
-        body._marginChangedForModal.forEach(el => {
-          if (Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["i" /* hasAttr */])(el, 'data-margin-right')) {
-            el.style.marginRight = Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["f" /* getAttr */])(el, 'data-margin-right') || ''
-            Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["o" /* removeAttr */])(el, 'data-margin-right')
-          }
-        })
-      }
-      body._paddingChangedForModal = null
-      body._marginChangedForModal = null
+    resetScrollbar () {
+      // Restore fixed content padding
+      Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* selectAll */])(Selector.FIXED_CONTENT).forEach(el => {
+        if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["g" /* hasAttr */])(el, 'data-padding-right')) {
+          el.style.paddingRight = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["e" /* getAttr */])(el, 'data-padding-right') || ''
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["m" /* removeAttr */])(el, 'data-padding-right')
+        }
+      })
+      // Restore sticky content and navbar-toggler margin
+      Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* selectAll */])(
+        `${Selector.STICKY_CONTENT}, ${Selector.NAVBAR_TOGGLER}`
+      ).forEach(el => {
+        if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["g" /* hasAttr */])(el, 'data-margin-right')) {
+          el.style.marginRight = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["e" /* getAttr */])(el, 'data-margin-right') || ''
+          Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["m" /* removeAttr */])(el, 'data-margin-right')
+        }
+      })
       // Restore body padding
-      if (Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["i" /* hasAttr */])(body, 'data-padding-right')) {
-        body.style.paddingRight = Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["f" /* getAttr */])(body, 'data-padding-right') || ''
-        Object(__WEBPACK_IMPORTED_MODULE_10__utils_dom__["o" /* removeAttr */])(body, 'data-padding-right')
+      const body = document.body
+      if (Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["g" /* hasAttr */])(body, 'data-padding-right')) {
+        body.style.paddingRight = Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["e" /* getAttr */])(body, 'data-padding-right') || ''
+        Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["m" /* removeAttr */])(body, 'data-padding-right')
       }
     }
   },
-  render(h) {
-    const $slots = this.$slots
-    // Modal Header
-    let header = h(false)
-    if (!this.hideHeader) {
-      let modalHeader = $slots['modal-header']
-      if (!modalHeader) {
-        let closeButton = h(false)
-        if (!this.hideHeaderClose) {
-          closeButton = h(
-            'b-button-close',
-            {
-              props: {
-                disabled: this.is_transitioning,
-                ariaLabel: this.headerCloseLabel,
-                textVariant: this.headerCloseVariant || this.headerTextVariant
-              },
-              on: {
-                click: evt => {
-                  this.hide('headerclose')
-                }
-              }
-            },
-            [$slots['modal-header-close']]
-          )
-        }
-        modalHeader = [
-          h(this.titleTag, { class: ['modal-title'] }, [
-            $slots['modal-title'] || this.titleHtml || Object(__WEBPACK_IMPORTED_MODULE_9__utils_html__["b" /* stripTags */])(this.title)
-          ]),
-          closeButton
-        ]
-      }
-      header = h(
-        'header',
-        {
-          ref: 'header',
-          staticClass: 'modal-header',
-          class: this.headerClasses,
-          attrs: { id: this.safeId('__BV_modal_header_') }
-        },
-        [modalHeader]
-      )
+  created () {
+    // create non-reactive property
+    this._observer = null
+  },
+  mounted () {
+    // Measure scrollbar
+    this.getScrollbarWidth()
+    // Listen for events from others to either open or close ourselves
+    this.listenOnRoot('bv::show::modal', this.showHandler)
+    this.listenOnRoot('bv::hide::modal', this.hideHandler)
+    // Listen for bv:modal::show events, and close ourselves if the opening modal not us
+    this.listenOnRoot('bv::modal::show', this.modalListener)
+    // Initially show modal?
+    if (this.visible === true) {
+      this.show()
     }
-    // Modal Body
-    const body = h(
-      'div',
-      {
-        ref: 'body',
-        staticClass: 'modal-body',
-        class: this.bodyClasses,
-        attrs: { id: this.safeId('__BV_modal_body_') }
-      },
-      [$slots.default]
-    )
-    // Modal Footer
-    let footer = h(false)
-    if (!this.hideFooter) {
-      let modalFooter = $slots['modal-footer']
-      if (!modalFooter) {
-        let cancelButton = h(false)
-        if (!this.okOnly) {
-          cancelButton = h(
-            'b-button',
-            {
-              props: {
-                variant: this.cancelVariant,
-                size: this.buttonSize,
-                disabled: this.cancelDisabled || this.busy || this.is_transitioning
-              },
-              on: {
-                click: evt => {
-                  this.hide('cancel')
-                }
-              }
-            },
-            [$slots['modal-cancel'] || this.cancelTitleHtml || Object(__WEBPACK_IMPORTED_MODULE_9__utils_html__["b" /* stripTags */])(this.cancelTitle)]
-          )
-        }
-        const okButton = h(
-          'b-button',
-          {
-            props: {
-              variant: this.okVariant,
-              size: this.buttonSize,
-              disabled: this.okDisabled || this.busy || this.is_transitioning
-            },
-            on: {
-              click: evt => {
-                this.hide('ok')
-              }
-            }
-          },
-          [$slots['modal-ok'] || this.okTitleHtml || Object(__WEBPACK_IMPORTED_MODULE_9__utils_html__["b" /* stripTags */])(this.okTitle)]
-        )
-        modalFooter = [cancelButton, okButton]
-      }
-      footer = h(
-        'footer',
-        {
-          ref: 'footer',
-          staticClass: 'modal-footer',
-          class: this.footerClasses,
-          attrs: { id: this.safeId('__BV_modal_footer_') }
-        },
-        [modalFooter]
-      )
+  },
+  beforeDestroy () {
+    // Ensure everything is back to normal
+    if (this._observer) {
+      this._observer.disconnect()
+      this._observer = null
     }
-    // Assemble Modal Content
-    const modalContent = h(
-      'div',
-      {
-        ref: 'content',
-        class: this.contentClasses,
-        attrs: {
-          role: 'document',
-          id: this.safeId('__BV_modal_content_'),
-          'aria-labelledby': this.hideHeader ? null : this.safeId('__BV_modal_header_'),
-          'aria-describedby': this.safeId('__BV_modal_body_')
-        }
-      },
-      [header, body, footer]
-    )
-    // Modal Dialog wrapper
-    const modalDialog = h(
-      'div',
-      {
-        staticClass: 'modal-dialog',
-        class: this.dialogClasses
-      },
-      [modalContent]
-    )
-    // Modal
-    let modal = h(
-      'div',
-      {
-        ref: 'modal',
-        staticClass: 'modal',
-        class: this.modalClasses,
-        directives: [
-          { name: 'show', rawName: 'v-show', value: this.is_visible, expression: 'is_visible' }
-        ],
-        attrs: {
-          id: this.safeId(),
-          role: 'dialog',
-          tabindex: '-1',
-          'aria-hidden': this.is_visible ? null : 'true',
-          'aria-modal': this.is_visible ? 'true' : null
-        },
-        on: {
-          keydown: this.onEsc,
-          click: this.onClickOut
-        }
-      },
-      [modalDialog]
-    )
-    // Wrap modal in transition
-    modal = h(
-      'transition',
-      {
-        props: {
-          enterClass: '',
-          enterToClass: '',
-          enterActiveClass: '',
-          leaveClass: '',
-          leaveActiveClass: '',
-          leaveToClass: ''
-        },
-        on: {
-          'before-enter': this.onBeforeEnter,
-          enter: this.onEnter,
-          'after-enter': this.onAfterEnter,
-          'before-leave': this.onBeforeLeave,
-          leave: this.onLeave,
-          'after-leave': this.onAfterLeave
-        }
-      },
-      [modal]
-    )
-    // Modal Backdrop
-    let backdrop = h(false)
-    if (!this.hideBackdrop && (this.is_visible || this.is_transitioning)) {
-      backdrop = h(
-        'div',
-        {
-          staticClass: 'modal-backdrop',
-          class: this.backdropClasses,
-          attrs: {
-            id: this.safeId('__BV_modal_backdrop_')
-          }
-        },
-        [$slots['modal-backdrop']]
-      )
-    }
-    // Tab trap to prevent page from scrolling to next element in tab index during enforce focus tab cycle
-    let tabTrap = h(false)
-    if (this.is_visible && this.isTop && !this.noEnforceFocus) {
-      tabTrap = h('div', { attrs: { tabindex: '0' } })
-    }
-    // Assemble modal and backdrop in an outer div needed for lazy modals
-    let outer = h(false)
-    if (!this.is_hidden) {
-      outer = h(
-        'div',
-        {
-          key: 'modal-outer',
-          style: this.modalOuterStyle,
-          attrs: { id: this.safeId('__BV_modal_outer_') }
-        },
-        [modal, tabTrap, backdrop]
-      )
-    }
-    // Wrap in DIV to maintain thi.$el reference for hide/show method aceess
-    return h('div', {}, [outer])
+    this.setResizeEvent(false)
+    // Re-adjust body/navbar/fixed padding/margins (if needed)
+    Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["n" /* removeClass */])(document.body, 'modal-open')
+    this.resetAdjustments()
+    this.resetScrollbar()
   }
 });
 
@@ -8752,7 +9948,6 @@ function getModalNextZIndex() {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nav__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/nav/nav.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nav_item__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/nav/nav-item.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nav_item___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__nav_item__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nav_text__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/nav/nav-text.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__nav_form__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/nav/nav-form.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__nav_item_dropdown__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/nav/nav-item-dropdown.js");
@@ -8767,23 +9962,26 @@ function getModalNextZIndex() {
 
 
 const components = {
-  BNav: __WEBPACK_IMPORTED_MODULE_0__nav__["a" /* default */],
-  BNavItem: __WEBPACK_IMPORTED_MODULE_1__nav_item__["default"],
-  BNavText: __WEBPACK_IMPORTED_MODULE_2__nav_text__["a" /* default */],
-  BNavForm: __WEBPACK_IMPORTED_MODULE_3__nav_form__["a" /* default */],
-  BNavItemDropdown: __WEBPACK_IMPORTED_MODULE_4__nav_item_dropdown__["a" /* default */],
-  BNavItemDd: __WEBPACK_IMPORTED_MODULE_4__nav_item_dropdown__["a" /* default */],
-  BNavDropdown: __WEBPACK_IMPORTED_MODULE_4__nav_item_dropdown__["a" /* default */],
-  BNavDd: __WEBPACK_IMPORTED_MODULE_4__nav_item_dropdown__["a" /* default */]
+  bNav: __WEBPACK_IMPORTED_MODULE_0__nav__["a" /* default */],
+  bNavItem: __WEBPACK_IMPORTED_MODULE_1__nav_item__["a" /* default */],
+  bNavText: __WEBPACK_IMPORTED_MODULE_2__nav_text__["a" /* default */],
+  bNavForm: __WEBPACK_IMPORTED_MODULE_3__nav_form__["a" /* default */],
+  bNavItemDropdown: __WEBPACK_IMPORTED_MODULE_4__nav_item_dropdown__["a" /* default */],
+  bNavItemDd: __WEBPACK_IMPORTED_MODULE_4__nav_item_dropdown__["a" /* default */],
+  bNavDropdown: __WEBPACK_IMPORTED_MODULE_4__nav_item_dropdown__["a" /* default */],
+  bNavDd: __WEBPACK_IMPORTED_MODULE_4__nav_item_dropdown__["a" /* default */]
 }
 
-const plugins = {
-  DropdownPlugin: __WEBPACK_IMPORTED_MODULE_5__dropdown__["a" /* default */]
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_6__utils_plugins__["a" /* registerComponents */])(Vue, components)
+    Vue.use(__WEBPACK_IMPORTED_MODULE_5__dropdown__["a" /* default */])
+  }
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install: Object(__WEBPACK_IMPORTED_MODULE_6__utils_plugins__["a" /* installFactory */])({ components, plugins })
-});
+Object(__WEBPACK_IMPORTED_MODULE_6__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
@@ -8797,9 +9995,7 @@ const plugins = {
 
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BNavForm',
   functional: true,
   props: {
     id: {
@@ -8807,7 +10003,7 @@ const plugins = {
       default: null
     }
   },
-  render(h, { props, data, children }) {
+  render (h, { props, data, children }) {
     return h(__WEBPACK_IMPORTED_MODULE_0__form_form__["a" /* default */], Object(__WEBPACK_IMPORTED_MODULE_1_vue_functional_data_merge__["a" /* mergeData */])(data, { attrs: { id: props.id }, props: { inline: true } }), children)
   }
 });
@@ -8821,68 +10017,12 @@ const plugins = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_dropdown__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/dropdown.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_dropdown___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__mixins_dropdown__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_html__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/html.js");
 
 
 
-
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BNavItemDropdown',
-  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_id__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__mixins_dropdown__["default"]],
-  props: {
-    noCaret: {
-      type: Boolean,
-      default: false
-    },
-    extraToggleClasses: {
-      // Extra Toggle classes
-      type: String,
-      default: ''
-    },
-    extraMenuClasses: {
-      // Extra Menu classes
-      type: String,
-      default: ''
-    },
-    role: {
-      type: String,
-      default: 'menu'
-    }
-  },
-  computed: {
-    isNav() {
-      // Signal to dropdown mixin that we are in a navbar
-      return true
-    },
-    dropdownClasses() {
-      return [
-        'nav-item',
-        'b-nav-dropdown',
-        'dropdown',
-        this.dropup ? 'dropup' : '',
-        this.visible ? 'show' : ''
-      ]
-    },
-    toggleClasses() {
-      return [
-        'nav-link',
-        this.noCaret ? '' : 'dropdown-toggle',
-        this.disabled ? 'disabled' : '',
-        this.extraToggleClasses ? this.extraToggleClasses : ''
-      ]
-    },
-    menuClasses() {
-      return [
-        'dropdown-menu',
-        this.right ? 'dropdown-menu-right' : 'dropdown-menu-left',
-        this.visible ? 'show' : '',
-        this.extraMenuClasses ? this.extraMenuClasses : ''
-      ]
-    }
-  },
-  render(h) {
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_id__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__mixins_dropdown__["a" /* default */]],
+  render (h) {
     const button = h(
       'a',
       {
@@ -8903,7 +10043,7 @@ const plugins = {
       [
         this.$slots['button-content'] ||
           this.$slots.text ||
-          h('span', { domProps: Object(__WEBPACK_IMPORTED_MODULE_2__utils_html__["a" /* htmlOrText */])(this.html, this.text) })
+          h('span', { domProps: { innerHTML: this.text } })
       ]
     )
     const menu = h(
@@ -8911,10 +10051,7 @@ const plugins = {
       {
         class: this.menuClasses,
         ref: 'menu',
-        attrs: {
-          tabindex: '-1',
-          'aria-labelledby': this.safeId('_BV_button_')
-        },
+        attrs: { 'aria-labelledby': this.safeId('_BV_button_') },
         on: {
           mouseover: this.onMouseOver,
           keydown: this.onKeydown // tab, up, down, esc
@@ -8922,7 +10059,61 @@ const plugins = {
       },
       [this.$slots.default]
     )
-    return h('li', { attrs: { id: this.safeId() }, class: this.dropdownClasses }, [button, menu])
+    return h('li', { attrs: { id: this.safeId() }, class: this.dropdownClasses }, [
+      button,
+      menu
+    ])
+  },
+  computed: {
+    isNav () {
+      // Signal to dropdown mixin that we are in a navbar
+      return true
+    },
+    dropdownClasses () {
+      return [
+        'nav-item',
+        'b-nav-dropdown',
+        'dropdown',
+        this.dropup ? 'dropup' : '',
+        this.visible ? 'show' : ''
+      ]
+    },
+    toggleClasses () {
+      return [
+        'nav-link',
+        this.noCaret ? '' : 'dropdown-toggle',
+        this.disabled ? 'disabled' : '',
+        this.extraToggleClasses ? this.extraToggleClasses : ''
+      ]
+    },
+    menuClasses () {
+      return [
+        'dropdown-menu',
+        this.right ? 'dropdown-menu-right' : 'dropdown-menu-left',
+        this.visible ? 'show' : '',
+        this.extraMenuClasses ? this.extraMenuClasses : ''
+      ]
+    }
+  },
+  props: {
+    noCaret: {
+      type: Boolean,
+      default: false
+    },
+    extraToggleClasses: {
+      // Extra Toggle classes
+      type: String,
+      default: ''
+    },
+    extraMenuClasses: {
+      // Extra Menu classes
+      type: String,
+      default: ''
+    },
+    role: {
+      type: String,
+      default: 'menu'
+    }
   }
 });
 
@@ -8930,9 +10121,32 @@ const plugins = {
 /***/ }),
 
 /***/ "./node_modules/bootstrap-vue/src/components/nav/nav-item.js":
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module parse failed: Unexpected token (11:4)\nYou may need an appropriate loader to handle this file type.\n|   functional: true,\n|   props: {\n|     ...props,\n|     linkAttrs: {\n|       type: Object,");
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__link_link__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/link/link.js");
+
+
+
+const props = Object(__WEBPACK_IMPORTED_MODULE_1__link_link__["b" /* propsFactory */])()
+/* unused harmony export props */
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  functional: true,
+  props,
+  render (h, { props, data, children }) {
+    return h(
+      'li',
+      Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
+        staticClass: 'nav-item'
+      }),
+      [h(__WEBPACK_IMPORTED_MODULE_1__link_link__["a" /* default */], { staticClass: 'nav-link', props }, children)]
+    )
+  }
+});
+
 
 /***/ }),
 
@@ -8952,12 +10166,10 @@ const props = {
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BNavText',
   functional: true,
   props,
-  render(h, { props, data, children }) {
+  render (h, { props, data, children }) {
     return h(props.tag, Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, { staticClass: 'navbar-text' }), children)
   }
 });
@@ -9007,21 +10219,18 @@ const props = {
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BNav',
   functional: true,
   props,
-  render(h, { props, data, children }) {
+  render (h, { props, data, children }) {
     if (props.isNavBar) {
-      /* istanbul ignore next */
       Object(__WEBPACK_IMPORTED_MODULE_1__utils_warn__["a" /* default */])("b-nav: Prop 'is-nav-bar' is deprecated. Please use component '<b-navbar-nav>' instead.")
     }
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
         class: {
-          nav: !props.isNavBar,
+          'nav': !props.isNavBar,
           'navbar-nav': props.isNavBar,
           'nav-tabs': props.tabs && !props.isNavBar,
           'nav-pills': props.pills && !props.isNavBar,
@@ -9045,7 +10254,6 @@ const props = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navbar__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/navbar/navbar.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__navbar_nav__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/navbar/navbar-nav.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__navbar_brand__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/navbar/navbar-brand.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__navbar_brand___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__navbar_brand__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__navbar_toggle__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/navbar/navbar-toggle.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__nav__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/nav/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__collapse__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/collapse/index.js");
@@ -9061,30 +10269,73 @@ const props = {
 
 
 const components = {
-  BNavbar: __WEBPACK_IMPORTED_MODULE_0__navbar__["a" /* default */],
-  BNavbarNav: __WEBPACK_IMPORTED_MODULE_1__navbar_nav__["a" /* default */],
-  BNavbarBrand: __WEBPACK_IMPORTED_MODULE_2__navbar_brand__["default"],
-  BNavbarToggle: __WEBPACK_IMPORTED_MODULE_3__navbar_toggle__["a" /* default */],
-  BNavToggle: __WEBPACK_IMPORTED_MODULE_3__navbar_toggle__["a" /* default */]
+  bNavbar: __WEBPACK_IMPORTED_MODULE_0__navbar__["a" /* default */],
+  bNavbarNav: __WEBPACK_IMPORTED_MODULE_1__navbar_nav__["a" /* default */],
+  bNavbarBrand: __WEBPACK_IMPORTED_MODULE_2__navbar_brand__["a" /* default */],
+  bNavbarToggle: __WEBPACK_IMPORTED_MODULE_3__navbar_toggle__["a" /* default */],
+  bNavToggle: __WEBPACK_IMPORTED_MODULE_3__navbar_toggle__["a" /* default */]
 }
 
-const plugins = {
-  NavPlugin: __WEBPACK_IMPORTED_MODULE_4__nav__["a" /* default */],
-  CollapsePlugin: __WEBPACK_IMPORTED_MODULE_5__collapse__["a" /* default */],
-  DropdownPlugin: __WEBPACK_IMPORTED_MODULE_6__dropdown__["a" /* default */]
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_7__utils_plugins__["a" /* registerComponents */])(Vue, components)
+    Vue.use(__WEBPACK_IMPORTED_MODULE_4__nav__["a" /* default */])
+    Vue.use(__WEBPACK_IMPORTED_MODULE_5__collapse__["a" /* default */])
+    Vue.use(__WEBPACK_IMPORTED_MODULE_6__dropdown__["a" /* default */])
+  }
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install: Object(__WEBPACK_IMPORTED_MODULE_7__utils_plugins__["a" /* installFactory */])({ components, plugins })
-});
+Object(__WEBPACK_IMPORTED_MODULE_7__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
 
 /***/ "./node_modules/bootstrap-vue/src/components/navbar/navbar-brand.js":
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module parse failed: Unexpected token (10:2)\nYou may need an appropriate loader to handle this file type.\n| \n| export const props = {\n|   ...linkProps,\n|   tag: {\n|     type: String,");
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__link_link__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/link/link.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_pluck_props__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/pluck-props.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
+
+
+
+
+
+const linkProps = Object(__WEBPACK_IMPORTED_MODULE_0__link_link__["b" /* propsFactory */])()
+linkProps.href.default = undefined
+linkProps.to.default = undefined
+
+const props = Object(__WEBPACK_IMPORTED_MODULE_3__utils_object__["a" /* assign */])(linkProps, {
+  tag: {
+    type: String,
+    default: 'div'
+  }
+})
+/* unused harmony export props */
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  functional: true,
+  props,
+  render (h, { props, data, children }) {
+    const isLink = Boolean(props.to || props.href)
+    const tag = isLink ? __WEBPACK_IMPORTED_MODULE_0__link_link__["a" /* default */] : props.tag
+
+    return h(
+      tag,
+      Object(__WEBPACK_IMPORTED_MODULE_1_vue_functional_data_merge__["a" /* mergeData */])(data, {
+        staticClass: 'navbar-brand',
+        props: isLink ? Object(__WEBPACK_IMPORTED_MODULE_2__utils_pluck_props__["a" /* default */])(linkProps, props) : {}
+      }),
+      children
+    )
+  }
+});
+
 
 /***/ }),
 
@@ -9112,12 +10363,10 @@ const props = {
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BNavbarNav',
   functional: true,
   props,
-  render(h, { props, data, children }) {
+  render (h, { props, data, children }) {
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
@@ -9142,43 +10391,9 @@ const props = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_listen_on_root__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/listen-on-root.js");
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BNavbarToggle',
   mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_listen_on_root__["a" /* default */]],
-  props: {
-    label: {
-      type: String,
-      default: 'Toggle navigation'
-    },
-    target: {
-      type: String,
-      required: true
-    }
-  },
-  data() {
-    return {
-      toggleState: false
-    }
-  },
-  created() {
-    this.listenOnRoot('bv::collapse::state', this.handleStateEvt)
-  },
-  methods: {
-    onClick(evt) {
-      this.$emit('click', evt)
-      /* istanbul ignore next */
-      if (!evt.defaultPrevented) {
-        this.$root.$emit('bv::toggle::collapse', this.target)
-      }
-    },
-    handleStateEvt(id, state) {
-      if (id === this.target) {
-        this.toggleState = state
-      }
-    }
-  },
-  render(h) {
+  render (h) {
     return h(
       'button',
       {
@@ -9193,6 +10408,34 @@ const props = {
       },
       [this.$slots.default || h('span', { class: ['navbar-toggler-icon'] })]
     )
+  },
+  data () {
+    return {
+      toggleState: false
+    }
+  },
+  props: {
+    label: {
+      type: String,
+      default: 'Toggle navigation'
+    },
+    target: {
+      type: String,
+      required: true
+    }
+  },
+  methods: {
+    onClick () {
+      this.$root.$emit('bv::toggle::collapse', this.target)
+    },
+    handleStateEvt (id, state) {
+      if (id === this.target) {
+        this.toggleState = state
+      }
+    }
+  },
+  created () {
+    this.listenOnRoot('bv::collapse::state', this.handleStateEvt)
   }
 });
 
@@ -9204,8 +10447,6 @@ const props = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__ = __webpack_require__("./node_modules/vue-functional-data-merge/dist/lib.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_config__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/config.js");
-
 
 
 const props = {
@@ -9224,14 +10465,15 @@ const props = {
     type: [Boolean, String],
     default: false
   },
+  toggleBreakpoint: {
+    // Deprecated.  Set toggleable to a string breakpoint
+    type: String,
+    default: null
+  },
   fixed: {
     type: String
   },
   sticky: {
-    type: Boolean,
-    default: false
-  },
-  print: {
     type: Boolean,
     default: false
   }
@@ -9239,33 +10481,21 @@ const props = {
 /* unused harmony export props */
 
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BNavbar',
   functional: true,
   props,
-  render(h, { props, data, children }) {
-    let breakpoint = ''
-    let xs = Object(__WEBPACK_IMPORTED_MODULE_1__utils_config__["a" /* getBreakpoints */])()[0]
-    if (props.toggleable && typeof props.toggleable === 'string' && props.toggleable !== xs) {
-      breakpoint = `navbar-expand-${props.toggleable}`
-    } else if (props.toggleable === false) {
-      breakpoint = 'navbar-expand'
-    }
+  render (h, { props, data, children }) {
+    let breakpoint = props.toggleBreakpoint || (props.toggleable === true ? 'sm' : props.toggleable) || 'sm'
     return h(
       props.tag,
       Object(__WEBPACK_IMPORTED_MODULE_0_vue_functional_data_merge__["a" /* mergeData */])(data, {
         staticClass: 'navbar',
         class: {
-          'd-print': props.print,
-          'sticky-top': props.sticky,
           [`navbar-${props.type}`]: Boolean(props.type),
           [`bg-${props.variant}`]: Boolean(props.variant),
           [`fixed-${props.fixed}`]: Boolean(props.fixed),
-          [`${breakpoint}`]: Boolean(breakpoint)
-        },
-        attrs: {
-          role: props.tag === 'nav' ? null : 'navigation'
+          'sticky-top': props.sticky,
+          [`navbar-expand-${breakpoint}`]: props.toggleable !== false
         }
       }),
       children
@@ -9286,12 +10516,18 @@ const props = {
 
 
 const components = {
-  BPagination: __WEBPACK_IMPORTED_MODULE_0__pagination__["a" /* default */]
+  bPagination: __WEBPACK_IMPORTED_MODULE_0__pagination__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install: Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* installFactory */])({ components })
-});
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
@@ -9305,27 +10541,14 @@ const components = {
 
 
 
-const DEFAULT_PER_PAGE = 20
-const DEFAULT_TOTAL_ROWS = 0
-
-function sanitizePerPage(value) {
-  const perPage = parseInt(value, 10) || DEFAULT_PER_PAGE
-  return perPage < 1 ? 1 : perPage
-}
-
-function sanitizeTotalRows(value) {
-  const totalRows = parseInt(value, 10) || DEFAULT_TOTAL_ROWS
-  return totalRows < 0 ? 0 : totalRows
-}
-
 const props = {
   perPage: {
-    type: [Number, String],
-    default: DEFAULT_PER_PAGE
+    type: Number,
+    default: 20
   },
   totalRows: {
-    type: [Number, String],
-    default: DEFAULT_TOTAL_ROWS
+    type: Number,
+    default: 20
   },
   ariaControls: {
     type: String,
@@ -9334,72 +10557,40 @@ const props = {
 }
 
 // Our render function is brought in from the pagination mixin
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'BPagination',
-  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_pagination__["a" /* default */]],
+  mixins: [ __WEBPACK_IMPORTED_MODULE_0__mixins_pagination__["a" /* default */] ],
   props,
   computed: {
-    numberOfPages() {
-      const result = Math.ceil(sanitizeTotalRows(this.totalRows) / sanitizePerPage(this.perPage))
-      return result < 1 ? 1 : result
+    numberOfPages () {
+      const result = Math.ceil(this.totalRows / this.perPage)
+      return (result < 1) ? 1 : result
     }
-  },
-  watch: {
-    numberOfPages(newVal, OldVal) {
-      this.localNumPages = newVal
-    }
-  },
-  created() {
-    // Set the initial page count
-    this.localNumPages = this.numberOfPages
-    // Set the initial page value
-    const curr = parseInt(this.value, 10) || 0
-    if (curr > 0) {
-      this.currentPage = curr
-    } else {
-      this.$nextTick(() => {
-        // If this value parses to NaN or a value less than 1
-        // Trigger an initial emit of 'null' if no page specified
-        this.currentPage = 0
-      })
-    }
-  },
-  mounted() {
-    // Set the initial page count
-    this.localNumPages = this.numberOfPages
   },
   methods: {
     // These methods are used by the render function
-    onClick(num, evt) {
+    onClick (num, evt) {
       // Handle edge cases where number of pages has changed (i.e. if perPage changes)
-      // This should normally not happen, but just in case.
       if (num > this.numberOfPages) {
-        /* istanbul ignore next */
         num = this.numberOfPages
       } else if (num < 1) {
-        /* istanbul ignore next */
         num = 1
       }
-      // Update the v-model
       this.currentPage = num
-      // Emit event triggered by user interaction
-      this.$emit('change', this.currentPage)
       this.$nextTick(() => {
         // Keep the current button focused if possible
         const target = evt.target
-        if (Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["l" /* isVisible */])(target) && this.$el.contains(target) && target.focus) {
+        if (Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["k" /* isVisible */])(target) && this.$el.contains(target) && target.focus) {
           target.focus()
         } else {
           this.focusCurrent()
         }
       })
+      this.$emit('change', this.currentPage)
     },
-    makePage(pageNum) {
-      return pageNum
+    makePage (pagenum) {
+      return pagenum
     },
-    linkProps(pageNum) {
-      // Always '#' for pagination component
+    linkProps (pagenum) {
       return { href: '#' }
     }
   }
@@ -9413,26 +10604,1113 @@ const props = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__table__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/table/table.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__table___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__table__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_plugins__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/plugins.js");
 
 
 
 const components = {
-  BTable: __WEBPACK_IMPORTED_MODULE_0__table__["default"]
+  bTable: __WEBPACK_IMPORTED_MODULE_0__table__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install: Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* installFactory */])({ components })
-});
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* registerComponents */])(Vue, components)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
 
-/***/ "./node_modules/bootstrap-vue/src/components/table/table.js":
-/***/ (function(module, exports) {
+/***/ "./node_modules/bootstrap-vue/src/components/table/table.css":
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module parse failed: Unexpected token (145:8)\nYou may need an appropriate loader to handle this file type.\n|           this.filteredItems.length > items.length ? String(this.filteredItems.length) : null,\n|         // Merge in user supplied $attrs if any\n|         ...this.$attrs,\n|         // Now we can override any $attrs here\n|         id: this.safeId(),");
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/bootstrap-vue/src/components/table/table.css");
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/style-loader/lib/addStyles.js")(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../css-loader/index.js!./table.css", function() {
+			var newContent = require("!!../../../../css-loader/index.js!./table.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/components/table/table.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_startcase__ = __webpack_require__("./node_modules/lodash.startcase/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_startcase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash_startcase__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_get__ = __webpack_require__("./node_modules/lodash.get/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_get___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash_get__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_loose_equal__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/loose-equal.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_stable_sort__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/stable-sort.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_key_codes__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/key-codes.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warn__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/warn.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__mixins_id__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/id.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__mixins_listen_on_root__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/listen-on-root.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__table_css__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/table/table.css");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__table_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__table_css__);
+
+
+
+
+
+
+
+
+
+
+
+// Import styles
+
+
+function toString (v) {
+  if (!v) {
+    return ''
+  }
+  if (v instanceof Object) {
+    return Object(__WEBPACK_IMPORTED_MODULE_6__utils_object__["e" /* keys */])(v)
+      .map(k => toString(v[k]))
+      .join(' ')
+  }
+  return String(v)
+}
+
+function recToString (obj) {
+  if (!(obj instanceof Object)) {
+    return ''
+  }
+  return toString(
+    Object(__WEBPACK_IMPORTED_MODULE_6__utils_object__["e" /* keys */])(obj).reduce((o, k) => {
+      // Ignore fields that start with _
+      if (!/^_/.test(k)) {
+        o[k] = obj[k]
+      }
+      return o
+    }, {})
+  )
+}
+
+function defaultSortCompare (a, b, sortBy) {
+  if (typeof a[sortBy] === 'number' && typeof b[sortBy] === 'number') {
+    return (a[sortBy] < b[sortBy] && -1) || (a[sortBy] > b[sortBy] && 1) || 0
+  }
+  return toString(a[sortBy]).localeCompare(toString(b[sortBy]), undefined, {
+    numeric: true
+  })
+}
+
+function processField (key, value) {
+  let field = null
+  if (typeof value === 'string') {
+    // Label shortcut
+    field = { key, label: value }
+  } else if (typeof value === 'function') {
+    // Formatter shortcut
+    field = { key, formatter: value }
+  } else if (typeof value === 'object') {
+    field = Object(__WEBPACK_IMPORTED_MODULE_6__utils_object__["a" /* assign */])({}, value)
+    field.key = field.key || key
+  } else if (value !== false) {
+    // Fallback to just key
+    field = { key }
+  }
+  return field
+}
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  mixins: [__WEBPACK_IMPORTED_MODULE_8__mixins_id__["a" /* default */], __WEBPACK_IMPORTED_MODULE_9__mixins_listen_on_root__["a" /* default */]],
+  render (h) {
+    const $slots = this.$slots
+    const $scoped = this.$scopedSlots
+    const fields = this.computedFields
+    const items = this.computedItems
+
+    // Build the caption
+    let caption = h(false)
+    if (this.caption || $slots['table-caption']) {
+      const data = { style: this.captionStyles }
+      if (!$slots['table-caption']) {
+        data.domProps = { innerHTML: this.caption }
+      }
+      caption = h('caption', data, $slots['table-caption'])
+    }
+
+    // Build the colgroup
+    const colgroup = $slots['table-colgroup']
+      ? h('colgroup', {}, $slots['table-colgroup'])
+      : h(false)
+
+    // factory function for thead and tfoot cells (th's)
+    const makeHeadCells = (isFoot = false) => {
+      return fields.map((field, colIndex) => {
+        const data = {
+          key: field.key,
+          class: this.fieldClasses(field),
+          style: field.thStyle || {},
+          attrs: {
+            tabindex: field.sortable ? '0' : null,
+            abbr: field.headerAbbr || null,
+            title: field.headerTitle || null,
+            'aria-colindex': String(colIndex + 1),
+            'aria-label': field.sortable
+              ? this.localSortDesc && this.localSortBy === field.key
+                ? this.labelSortAsc
+                : this.labelSortDesc
+              : null,
+            'aria-sort':
+              field.sortable && this.localSortBy === field.key
+                ? this.localSortDesc ? 'descending' : 'ascending'
+                : null
+          },
+          on: {
+            click: evt => {
+              evt.stopPropagation()
+              evt.preventDefault()
+              this.headClicked(evt, field)
+            },
+            keydown: evt => {
+              const keyCode = evt.keyCode
+              if (keyCode === __WEBPACK_IMPORTED_MODULE_4__utils_key_codes__["a" /* default */].ENTER || keyCode === __WEBPACK_IMPORTED_MODULE_4__utils_key_codes__["a" /* default */].SPACE) {
+                evt.stopPropagation()
+                evt.preventDefault()
+                this.headClicked(evt, field)
+              }
+            }
+          }
+        }
+        let slot =
+          isFoot && $scoped[`FOOT_${field.key}`]
+            ? $scoped[`FOOT_${field.key}`]
+            : $scoped[`HEAD_${field.key}`]
+        if (slot) {
+          slot = [slot({ label: field.label, column: field.key, field: field })]
+        } else {
+          data.domProps = { innerHTML: field.label }
+        }
+        return h('th', data, slot)
+      })
+    }
+
+    // Build the thead
+    let thead = h(false)
+    if (this.isStacked !== true) {
+      // If in always stacked mode (this.isStacked === true), then we don't bother rendering the thead
+      thead = h('thead', { class: this.headClasses }, [
+        h('tr', { class: this.theadTrClass }, makeHeadCells(false))
+      ])
+    }
+
+    // Build the tfoot
+    let tfoot = h(false)
+    if (this.footClone && this.isStacked !== true) {
+      // If in always stacked mode (this.isStacked === true), then we don't bother rendering the tfoot
+      tfoot = h('tfoot', { class: this.footClasses }, [
+        h('tr', { class: this.tfootTrClass }, makeHeadCells(true))
+      ])
+    }
+
+    // Prepare the tbody rows
+    const rows = []
+
+    // Add static Top Row slot (hidden in visibly stacked mode as we can't control the data-label)
+    // If in always stacked mode, we don't bother rendering the row
+    if ($scoped['top-row'] && this.isStacked !== true) {
+      rows.push(
+        h(
+          'tr',
+          { key: 'top-row', class: ['b-table-top-row', this.tbodyTrClass] },
+          [$scoped['top-row']({ columns: fields.length, fields: fields })]
+        )
+      )
+    } else {
+      rows.push(h(false))
+    }
+
+    // Add the item data rows
+    items.forEach((item, rowIndex) => {
+      const detailsSlot = $scoped['row-details']
+      const rowShowDetails = Boolean(item._showDetails && detailsSlot)
+      const detailsId = rowShowDetails
+        ? this.safeId(`_details_${rowIndex}_`)
+        : null
+      const toggleDetailsFn = () => {
+        if (detailsSlot) {
+          this.$set(item, '_showDetails', !item._showDetails)
+        }
+      }
+      // For each item data field in row
+      const tds = fields.map((field, colIndex) => {
+        const data = {
+          key: `row-${rowIndex}-cell-${colIndex}`,
+          class: this.tdClasses(field, item),
+          attrs: this.tdAttrs(field, item, colIndex),
+          domProps: {}
+        }
+        let childNodes
+        if ($scoped[field.key]) {
+          childNodes = [
+            $scoped[field.key]({
+              item: item,
+              index: rowIndex,
+              field: field,
+              unformatted: __WEBPACK_IMPORTED_MODULE_1_lodash_get___default()(item, field.key),
+              value: this.getFormattedValue(item, field),
+              toggleDetails: toggleDetailsFn,
+              detailsShowing: Boolean(item._showDetails)
+            })
+          ]
+          if (this.isStacked) {
+            // We wrap in a DIV to ensure rendered as a single cell when visually stacked!
+            childNodes = [h('div', {}, [childNodes])]
+          }
+        } else {
+          const formatted = this.getFormattedValue(item, field)
+          if (this.isStacked) {
+            // We innerHTML a DIV to ensure rendered as a single cell when visually stacked!
+            childNodes = [h('div', formatted)]
+          } else {
+            // Non stacked
+            childNodes = formatted
+          }
+        }
+        // Render either a td or th cell
+        return h(field.isRowHeader ? 'th' : 'td', data, childNodes)
+      })
+      // Calculate the row number in the dataset (indexed from 1)
+      let ariaRowIndex = null
+      if (this.currentPage && this.perPage && this.perPage > 0) {
+        ariaRowIndex = (this.currentPage - 1) * this.perPage + rowIndex + 1
+      }
+      // Assemble and add the row
+      rows.push(
+        h(
+          'tr',
+          {
+            key: `row-${rowIndex}`,
+            class: [
+              this.rowClasses(item),
+              { 'b-table-has-details': rowShowDetails }
+            ],
+            attrs: {
+              'aria-describedby': detailsId,
+              'aria-rowindex': ariaRowIndex,
+              role: this.isStacked ? 'row' : null
+            },
+            on: {
+              click: evt => {
+                this.rowClicked(evt, item, rowIndex)
+              },
+              dblclick: evt => {
+                this.rowDblClicked(evt, item, rowIndex)
+              },
+              mouseenter: evt => {
+                this.rowHovered(evt, item, rowIndex)
+              }
+            }
+          },
+          tds
+        )
+      )
+      // Row Details slot
+      if (rowShowDetails) {
+        const tdAttrs = { colspan: String(fields.length) }
+        const trAttrs = { id: detailsId }
+        if (this.isStacked) {
+          tdAttrs['role'] = 'cell'
+          trAttrs['role'] = 'row'
+        }
+        const details = h('td', { attrs: tdAttrs }, [
+          detailsSlot({
+            item: item,
+            index: rowIndex,
+            fields: fields,
+            toggleDetails: toggleDetailsFn
+          })
+        ])
+        rows.push(
+          h(
+            'tr',
+            {
+              key: `details-${rowIndex}`,
+              class: ['b-table-details', this.tbodyTrClass],
+              attrs: trAttrs
+            },
+            [details]
+          )
+        )
+      } else if (detailsSlot) {
+        // Only add the placeholder if a the table has a row-details slot defined (but not shown)
+        rows.push(h(false))
+      }
+    })
+
+    // Empty Items / Empty Filtered Row slot
+    if (this.showEmpty && (!items || items.length === 0)) {
+      let empty = this.filter ? $slots['emptyfiltered'] : $slots['empty']
+      if (!empty) {
+        empty = h('div', {
+          class: ['text-center', 'my-2'],
+          domProps: { innerHTML: this.filter ? this.emptyFilteredText : this.emptyText }
+        })
+      }
+      empty = h(
+        'td',
+        {
+          attrs: {
+            colspan: String(fields.length),
+            role: this.isStacked ? 'cell' : null
+          }
+        },
+        [h('div', { attrs: { role: 'alert', 'aria-live': 'polite' } }, [empty])]
+      )
+      rows.push(
+        h(
+          'tr',
+          {
+            key: 'empty-row',
+            class: ['b-table-empty-row', this.tbodyTrClass],
+            attrs: this.isStacked ? { role: 'row' } : {}
+          },
+          [empty]
+        )
+      )
+    } else {
+      rows.push(h(false))
+    }
+
+    // Static bottom row slot (hidden in visibly stacked mode as we can't control the data-label)
+    // If in always stacked mode, we don't bother rendering the row
+    if ($scoped['bottom-row'] && this.isStacked !== true) {
+      rows.push(
+        h(
+          'tr',
+          { key: 'bottom-row', class: ['b-table-bottom-row', this.tbodyTrClass] },
+          [$scoped['bottom-row']({ columns: fields.length, fields: fields })]
+        )
+      )
+    } else {
+      rows.push(h(false))
+    }
+
+    // Assemble the rows into the tbody
+    const tbody = h(
+      'tbody',
+      { class: this.bodyClasses, attrs: this.isStacked ? { role: 'rowgroup' } : {} },
+      rows
+    )
+
+    // Assemble table
+    const table = h(
+      'table',
+      {
+        class: this.tableClasses,
+        attrs: {
+          id: this.safeId(),
+          role: this.isStacked ? 'table' : null,
+          'aria-busy': this.computedBusy ? 'true' : 'false',
+          'aria-colcount': String(fields.length),
+          'aria-rowcount': this.$attrs['aria-rowcount'] ||
+            this.items.length > this.perPage ? this.items.length : null
+        }
+      },
+      [caption, colgroup, thead, tfoot, tbody]
+    )
+
+    // Add responsive wrapper if needed and return table
+    return this.isResponsive
+      ? h('div', { class: this.responsiveClass }, [table])
+      : table
+  },
+  data () {
+    return {
+      localSortBy: this.sortBy || '',
+      localSortDesc: this.sortDesc || false,
+      localItems: [],
+      // Note: filteredItems only used to determine if # of items changed
+      filteredItems: [],
+      localBusy: false
+    }
+  },
+  props: {
+    items: {
+      type: [Array, Function],
+      default () {
+        return []
+      }
+    },
+    fields: {
+      type: [Object, Array],
+      default: null
+    },
+    sortBy: {
+      type: String,
+      default: null
+    },
+    sortDesc: {
+      type: Boolean,
+      default: false
+    },
+    sortDirection: {
+      type: String,
+      default: 'asc',
+      validator: direction => Object(__WEBPACK_IMPORTED_MODULE_7__utils_array__["a" /* arrayIncludes */])(['asc', 'desc', 'last'], direction)
+    },
+    caption: {
+      type: String,
+      default: null
+    },
+    captionTop: {
+      type: Boolean,
+      default: false
+    },
+    striped: {
+      type: Boolean,
+      default: false
+    },
+    bordered: {
+      type: Boolean,
+      default: false
+    },
+    outlined: {
+      type: Boolean,
+      default: false
+    },
+    dark: {
+      type: Boolean,
+      default () {
+        if (this && typeof this.inverse === 'boolean') {
+          // Deprecate inverse
+          Object(__WEBPACK_IMPORTED_MODULE_5__utils_warn__["a" /* default */])(
+            "b-table: prop 'inverse' has been deprecated. Use 'dark' instead"
+          )
+          return this.dark
+        }
+        return false
+      }
+    },
+    inverse: {
+      // Deprecated in v1.0.0 in favor of `dark`
+      type: Boolean,
+      default: null
+    },
+    hover: {
+      type: Boolean,
+      default: false
+    },
+    small: {
+      type: Boolean,
+      default: false
+    },
+    fixed: {
+      type: Boolean,
+      default: false
+    },
+    footClone: {
+      type: Boolean,
+      default: false
+    },
+    responsive: {
+      type: [Boolean, String],
+      default: false
+    },
+    stacked: {
+      type: [Boolean, String],
+      default: false
+    },
+    headVariant: {
+      type: String,
+      default: ''
+    },
+    footVariant: {
+      type: String,
+      default: ''
+    },
+    theadClass: {
+      type: [String, Array],
+      default: null
+    },
+    theadTrClass: {
+      type: [String, Array],
+      default: null
+    },
+    tbodyClass: {
+      type: [String, Array],
+      default: null
+    },
+    tbodyTrClass: {
+      type: [String, Array],
+      default: null
+    },
+    tfootClass: {
+      type: [String, Array],
+      default: null
+    },
+    tfootTrClass: {
+      type: [String, Array],
+      default: null
+    },
+    perPage: {
+      type: Number,
+      default: 0
+    },
+    currentPage: {
+      type: Number,
+      default: 1
+    },
+    filter: {
+      type: [String, RegExp, Function],
+      default: null
+    },
+    sortCompare: {
+      type: Function,
+      default: null
+    },
+    noLocalSorting: {
+      type: Boolean,
+      default: false
+    },
+    noProviderPaging: {
+      type: Boolean,
+      default: false
+    },
+    noProviderSorting: {
+      type: Boolean,
+      default: false
+    },
+    noProviderFiltering: {
+      type: Boolean,
+      default: false
+    },
+    noSortReset: {
+      type: Boolean,
+      default: false
+    },
+    busy: {
+      type: Boolean,
+      default: false
+    },
+    value: {
+      type: Array,
+      default: () => []
+    },
+    labelSortAsc: {
+      type: String,
+      default: 'Click to sort Ascending'
+    },
+    labelSortDesc: {
+      type: String,
+      default: 'Click to sort Descending'
+    },
+    showEmpty: {
+      type: Boolean,
+      default: false
+    },
+    emptyText: {
+      type: String,
+      default: 'There are no records to show'
+    },
+    emptyFilteredText: {
+      type: String,
+      default: 'There are no records matching your request'
+    },
+    apiUrl: {
+      // Passthrough prop. Passed to the context object. Not used by b-table directly
+      type: String,
+      default: ''
+    }
+  },
+  watch: {
+    items (newVal, oldVal) {
+      if (oldVal !== newVal) {
+        this._providerUpdate()
+      }
+    },
+    context (newVal, oldVal) {
+      if (!Object(__WEBPACK_IMPORTED_MODULE_2__utils_loose_equal__["a" /* default */])(newVal, oldVal)) {
+        this.$emit('context-changed', newVal)
+      }
+    },
+    filteredItems (newVal, oldVal) {
+      if (this.localFiltering && newVal.length !== oldVal.length) {
+        // Emit a filtered notification event, as number of filtered items has changed
+        this.$emit('filtered', newVal)
+      }
+    },
+    sortDesc (newVal, oldVal) {
+      if (newVal === this.localSortDesc) {
+        return
+      }
+      this.localSortDesc = newVal || false
+    },
+    localSortDesc (newVal, oldVal) {
+      // Emit update to sort-desc.sync
+      if (newVal !== oldVal) {
+        this.$emit('update:sortDesc', newVal)
+        if (!this.noProviderSorting) {
+          this._providerUpdate()
+        }
+      }
+    },
+    sortBy (newVal, oldVal) {
+      if (newVal === this.localSortBy) {
+        return
+      }
+      this.localSortBy = newVal || null
+    },
+    localSortBy (newVal, oldVal) {
+      if (newVal !== oldVal) {
+        this.$emit('update:sortBy', newVal)
+        if (!this.noProviderSorting) {
+          this._providerUpdate()
+        }
+      }
+    },
+    perPage (newVal, oldVal) {
+      if (oldVal !== newVal && !this.noProviderPaging) {
+        this._providerUpdate()
+      }
+    },
+    currentPage (newVal, oldVal) {
+      if (oldVal !== newVal && !this.noProviderPaging) {
+        this._providerUpdate()
+      }
+    },
+    filter (newVal, oldVal) {
+      if (oldVal !== newVal && !this.noProviderFiltering) {
+        this._providerUpdate()
+      }
+    },
+    localBusy (newVal, oldVal) {
+      if (newVal !== oldVal) {
+        this.$emit('update:busy', newVal)
+      }
+    }
+  },
+  mounted () {
+    this.localSortBy = this.sortBy
+    this.localSortDesc = this.sortDesc
+    if (this.hasProvider) {
+      this._providerUpdate()
+    }
+    this.listenOnRoot('bv::refresh::table', id => {
+      if (id === this.id || id === this) {
+        this._providerUpdate()
+      }
+    })
+  },
+  computed: {
+    isStacked () {
+      return this.stacked === '' ? true : this.stacked
+    },
+    isResponsive () {
+      const responsive = this.responsive === '' ? true : this.responsive
+      return this.isStacked ? false : responsive
+    },
+    responsiveClass () {
+      return this.isResponsive === true
+        ? 'table-responsive'
+        : this.isResponsive ? `table-responsive-${this.responsive}` : ''
+    },
+    tableClasses () {
+      return [
+        'table',
+        'b-table',
+        this.striped ? 'table-striped' : '',
+        this.hover ? 'table-hover' : '',
+        this.dark ? 'table-dark' : '',
+        this.bordered ? 'table-bordered' : '',
+        this.small ? 'table-sm' : '',
+        this.outlined ? 'border' : '',
+        this.fixed ? 'b-table-fixed' : '',
+        this.isStacked === true
+          ? 'b-table-stacked'
+          : this.isStacked ? `b-table-stacked-${this.stacked}` : ''
+      ]
+    },
+    headClasses () {
+      return [
+        this.headVariant ? 'thead-' + this.headVariant : '',
+        this.theadClass
+      ]
+    },
+    bodyClasses () {
+      return [this.tbodyClass]
+    },
+    footClasses () {
+      const variant = this.footVariant || this.headVariant || null
+      return [variant ? 'thead-' + variant : '', this.tfootClass]
+    },
+    captionStyles () {
+      // Move caption to top
+      return this.captionTop ? { captionSide: 'top' } : {}
+    },
+    hasProvider () {
+      return this.items instanceof Function
+    },
+    localFiltering () {
+      return this.hasProvider ? this.noProviderFiltering : true
+    },
+    localSorting () {
+      return this.hasProvider ? this.noProviderSorting : !this.noLocalSorting
+    },
+    localPaging () {
+      return this.hasProvider ? this.noProviderPaging : true
+    },
+    context () {
+      return {
+        perPage: this.perPage,
+        currentPage: this.currentPage,
+        filter: this.filter,
+        sortBy: this.localSortBy,
+        sortDesc: this.localSortDesc,
+        apiUrl: this.apiUrl
+      }
+    },
+    computedFields () {
+      // We normalize fields into an array of objects
+      // [ { key:..., label:..., ...}, {...}, ..., {..}]
+      let fields = []
+      if (Object(__WEBPACK_IMPORTED_MODULE_7__utils_array__["d" /* isArray */])(this.fields)) {
+        // Normalize array Form
+        this.fields.filter(f => f).forEach(f => {
+          if (typeof f === 'string') {
+            fields.push({ key: f, label: __WEBPACK_IMPORTED_MODULE_0_lodash_startcase___default()(f) })
+          } else if (
+            typeof f === 'object' &&
+            f.key &&
+            typeof f.key === 'string'
+          ) {
+            // Full object definition. We use assign so that we don't mutate the original
+            fields.push(Object(__WEBPACK_IMPORTED_MODULE_6__utils_object__["a" /* assign */])({}, f))
+          } else if (typeof f === 'object' && Object(__WEBPACK_IMPORTED_MODULE_6__utils_object__["e" /* keys */])(f).length === 1) {
+            // Shortcut object (i.e. { 'foo_bar': 'This is Foo Bar' }
+            const key = Object(__WEBPACK_IMPORTED_MODULE_6__utils_object__["e" /* keys */])(f)[0]
+            const field = processField(key, f[key])
+            if (field) {
+              fields.push(field)
+            }
+          }
+        })
+      } else if (
+        this.fields &&
+        typeof this.fields === 'object' &&
+        Object(__WEBPACK_IMPORTED_MODULE_6__utils_object__["e" /* keys */])(this.fields).length > 0
+      ) {
+        // Normalize object Form
+        Object(__WEBPACK_IMPORTED_MODULE_6__utils_object__["e" /* keys */])(this.fields).forEach(key => {
+          let field = processField(key, this.fields[key])
+          if (field) {
+            fields.push(field)
+          }
+        })
+      }
+      // If no field provided, take a sample from first record (if exits)
+      if (fields.length === 0 && this.computedItems.length > 0) {
+        const sample = this.computedItems[0]
+        const ignoredKeys = [
+          '_rowVariant',
+          '_cellVariants',
+          '_showDetails'
+        ]
+        Object(__WEBPACK_IMPORTED_MODULE_6__utils_object__["e" /* keys */])(sample).forEach(k => {
+          if (!ignoredKeys.includes(k)) {
+            fields.push({ key: k, label: __WEBPACK_IMPORTED_MODULE_0_lodash_startcase___default()(k) })
+          }
+        })
+      }
+      // Ensure we have a unique array of fields and that they have String labels
+      const memo = {}
+      return fields.filter(f => {
+        if (!memo[f.key]) {
+          memo[f.key] = true
+          f.label = typeof f.label === 'string' ? f.label : __WEBPACK_IMPORTED_MODULE_0_lodash_startcase___default()(f.key)
+          return true
+        }
+        return false
+      })
+    },
+    computedItems () {
+      // Grab some props/data to ensure reactivity
+      const perPage = this.perPage
+      const currentPage = this.currentPage
+      const filter = this.filter
+      const sortBy = this.localSortBy
+      const sortDesc = this.localSortDesc
+      const sortCompare = this.sortCompare
+      const localFiltering = this.localFiltering
+      const localSorting = this.localSorting
+      const localPaging = this.localPaging
+      let items = this.hasProvider ? this.localItems : this.items
+      if (!items) {
+        this.$nextTick(this._providerUpdate)
+        return []
+      }
+      // Array copy for sorting, filtering, etc.
+      items = items.slice()
+      // Apply local filter
+      if (filter && localFiltering) {
+        if (filter instanceof Function) {
+          items = items.filter(filter)
+        } else {
+          let regex
+          if (filter instanceof RegExp) {
+            regex = filter
+          } else {
+            regex = new RegExp('.*' + filter + '.*', 'ig')
+          }
+          items = items.filter(item => {
+            const test = regex.test(recToString(item))
+            regex.lastIndex = 0
+            return test
+          })
+        }
+      }
+      if (localFiltering) {
+        // Make a local copy of filtered items to trigger filtered event
+        this.filteredItems = items.slice()
+      }
+      // Apply local Sort
+      if (sortBy && localSorting) {
+        items = Object(__WEBPACK_IMPORTED_MODULE_3__utils_stable_sort__["a" /* default */])(items, (a, b) => {
+          let ret = null
+          if (typeof sortCompare === 'function') {
+            // Call user provided sortCompare routine
+            ret = sortCompare(a, b, sortBy)
+          }
+          if (ret === null || ret === undefined) {
+            // Fallback to defaultSortCompare if sortCompare not defined or returns null
+            ret = defaultSortCompare(a, b, sortBy)
+          }
+          // Handle sorting direction
+          return (ret || 0) * (sortDesc ? -1 : 1)
+        })
+      }
+      // Apply local pagination
+      if (Boolean(perPage) && localPaging) {
+        // Grab the current page of data (which may be past filtered items)
+        items = items.slice((currentPage - 1) * perPage, currentPage * perPage)
+      }
+      // Update the value model with the filtered/sorted/paginated data set
+      this.$emit('input', items)
+      return items
+    },
+    computedBusy () {
+      return this.busy || this.localBusy
+    }
+  },
+  methods: {
+    keys: __WEBPACK_IMPORTED_MODULE_6__utils_object__["e" /* keys */],
+    fieldClasses (field) {
+      return [
+        field.sortable ? 'sorting' : '',
+        field.sortable && this.localSortBy === field.key
+          ? 'sorting_' + (this.localSortDesc ? 'desc' : 'asc')
+          : '',
+        field.variant ? 'table-' + field.variant : '',
+        field.class ? field.class : '',
+        field.thClass ? field.thClass : ''
+      ]
+    },
+    tdClasses (field, item) {
+      let cellVariant = ''
+      if (item._cellVariants && item._cellVariants[field.key]) {
+        cellVariant = `${this.dark ? 'bg' : 'table'}-${
+          item._cellVariants[field.key]
+        }`
+      }
+      return [
+        field.variant && !cellVariant
+          ? `${this.dark ? 'bg' : 'table'}-${field.variant}`
+          : '',
+        cellVariant,
+        field.class ? field.class : '',
+        this.getTdValues(item, field.key, field.tdClass, '')
+      ]
+    },
+    tdAttrs (field, item, colIndex) {
+      let attrs = {}
+      attrs['aria-colindex'] = String(colIndex + 1)
+      if (this.isStacked) {
+        // Generate the "header cell" label content in stacked mode
+        attrs['data-label'] = field.label
+        if (field.isRowHeader) {
+          attrs['role'] = 'rowheader'
+        } else {
+          attrs['role'] = 'cell'
+        }
+      }
+      return Object(__WEBPACK_IMPORTED_MODULE_6__utils_object__["a" /* assign */])({}, attrs, this.getTdValues(item, field.key, field.tdAttr, {}))
+    },
+    rowClasses (item) {
+      return [
+        item._rowVariant
+          ? `${this.dark ? 'bg' : 'table'}-${item._rowVariant}`
+          : '',
+        this.tbodyTrClass
+      ]
+    },
+    rowClicked (e, item, index) {
+      if (this.stopIfBusy(e)) {
+        // If table is busy (via provider) then don't propagate
+        return
+      }
+      this.$emit('row-clicked', item, index, e)
+    },
+    rowDblClicked (e, item, index) {
+      if (this.stopIfBusy(e)) {
+        // If table is busy (via provider) then don't propagate
+        return
+      }
+      this.$emit('row-dblclicked', item, index, e)
+    },
+    rowHovered (e, item, index) {
+      if (this.stopIfBusy(e)) {
+        // If table is busy (via provider) then don't propagate
+        return
+      }
+      this.$emit('row-hovered', item, index, e)
+    },
+    headClicked (e, field) {
+      if (this.stopIfBusy(e)) {
+        // If table is busy (via provider) then don't propagate
+        return
+      }
+      let sortChanged = false
+      const toggleLocalSortDesc = () => {
+        const sortDirection = field.sortDirection || this.sortDirection
+        if (sortDirection === 'asc') {
+          this.localSortDesc = false
+        } else if (sortDirection === 'desc') {
+          this.localSortDesc = true
+        }
+      }
+      if (field.sortable) {
+        if (field.key === this.localSortBy) {
+          // Change sorting direction on current column
+          this.localSortDesc = !this.localSortDesc
+        } else {
+          // Start sorting this column ascending
+          this.localSortBy = field.key
+          toggleLocalSortDesc()
+        }
+        sortChanged = true
+      } else if (this.localSortBy && !this.noSortReset) {
+        this.localSortBy = null
+        toggleLocalSortDesc()
+        sortChanged = true
+      }
+      this.$emit('head-clicked', field.key, field, e)
+      if (sortChanged) {
+        // Sorting parameters changed
+        this.$emit('sort-changed', this.context)
+      }
+    },
+    stopIfBusy (evt) {
+      if (this.computedBusy) {
+        // If table is busy (via provider) then don't propagate
+        evt.preventDefault()
+        evt.stopPropagation()
+        return true
+      }
+      return false
+    },
+    refresh () {
+      // Expose refresh method
+      if (this.hasProvider) {
+        this._providerUpdate()
+      }
+    },
+    _providerSetLocal (items) {
+      this.localItems = items && items.length > 0 ? items.slice() : []
+      this.localBusy = false
+      this.$emit('refreshed')
+      // Deprecated root emit
+      this.emitOnRoot('table::refreshed', this.id)
+      // New root emit
+      if (this.id) {
+        this.emitOnRoot('bv::table::refreshed', this.id)
+      }
+    },
+    _providerUpdate () {
+      // Refresh the provider items
+      if (this.computedBusy || !this.hasProvider) {
+        // Don't refresh remote data if we are 'busy' or if no provider
+        return
+      }
+      // Set internal busy state
+      this.localBusy = true
+      // Call provider function with context and optional callback
+      const data = this.items(this.context, this._providerSetLocal)
+      if (data && data.then && typeof data.then === 'function') {
+        // Provider returned Promise
+        data.then(items => {
+          this._providerSetLocal(items)
+        })
+      } else {
+        // Provider returned Array data
+        this._providerSetLocal(data)
+      }
+    },
+    getTdValues (item, key, tdValue, defValue) {
+      const parent = this.$parent
+      if (tdValue) {
+        if (typeof tdValue === 'function') {
+          let value = __WEBPACK_IMPORTED_MODULE_1_lodash_get___default()(item, key)
+          return tdValue(value, key, item)
+        } else if (typeof tdValue === 'string' && typeof parent[tdValue] === 'function') {
+          let value = __WEBPACK_IMPORTED_MODULE_1_lodash_get___default()(item, key)
+          return parent[tdValue](value, key, item)
+        }
+        return tdValue
+      }
+      return defValue
+    },
+    getFormattedValue (item, field) {
+      const key = field.key
+      const formatter = field.formatter
+      const parent = this.$parent
+      let value = __WEBPACK_IMPORTED_MODULE_1_lodash_get___default()(item, key)
+      if (formatter) {
+        if (typeof formatter === 'function') {
+          value = formatter(value, key, item)
+        } else if (
+          typeof formatter === 'string' &&
+          typeof parent[formatter] === 'function'
+        ) {
+          value = parent[formatter](value, key, item)
+        }
+      }
+      return value
+    }
+  }
+});
+
 
 /***/ }),
 
@@ -9446,12 +11724,18 @@ throw new Error("Module parse failed: Unexpected token (145:8)\nYou may need an 
 
 
 const directives = {
-  BModal: __WEBPACK_IMPORTED_MODULE_0__modal__["a" /* default */]
+  bModal: __WEBPACK_IMPORTED_MODULE_0__modal__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install: Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* installFactory */])({ directives })
-});
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["b" /* registerDirectives */])(Vue, directives)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
@@ -9460,44 +11744,31 @@ const directives = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_target__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/target.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_target__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/target.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
 
 
 
-// Target listen types
-const listenTypes = { click: true }
+const listenTypes = {click: true}
 
-// Emitted show event for modal
-const EVENT_SHOW = 'bv::show::modal'
-
-const setRole = (el, binding, vnode) => {
-  if (el.tagName !== 'BUTTON') {
-    Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["t" /* setAttr */])(el, 'role', 'button')
-  }
-}
-
-/*
- * Export our directive
- */
 /* harmony default export */ __webpack_exports__["a"] = ({
   // eslint-disable-next-line no-shadow-restricted-names
-  bind(el, binding, vnode) {
-    Object(__WEBPACK_IMPORTED_MODULE_1__utils_target__["a" /* bindTargets */])(vnode, binding, listenTypes, ({ targets, vnode }) => {
+  bind (el, binding, vnode) {
+    Object(__WEBPACK_IMPORTED_MODULE_0__utils_target__["a" /* bindTargets */])(vnode, binding, listenTypes, ({targets, vnode}) => {
       targets.forEach(target => {
-        vnode.context.$root.$emit(EVENT_SHOW, target, vnode.elm)
+        vnode.context.$root.$emit('bv::show::modal', target, vnode.elm)
       })
     })
-    // If element is not a button, we add `role="button"` for accessibility
-    setRole(el, binding, vnode)
-  },
-  updated: setRole,
-  componentUpdated: setRole,
-  unbind(el, binding, vnode) {
-    Object(__WEBPACK_IMPORTED_MODULE_1__utils_target__["b" /* unbindTargets */])(vnode, binding, listenTypes)
-    // If element is not a button, we add `role="button"` for accessibility
     if (el.tagName !== 'BUTTON') {
-      Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["o" /* removeAttr */])(el, 'role', 'button')
+      // If element is not a button, we add `role="button"` for accessibility
+      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["q" /* setAttr */])(el, 'role', 'button')
+    }
+  },
+  unbind (el, binding, vnode) {
+    Object(__WEBPACK_IMPORTED_MODULE_0__utils_target__["c" /* unbindTargets */])(vnode, binding, listenTypes)
+    if (el.tagName !== 'BUTTON') {
+      // If element is not a button, we add `role="button"` for accessibility
+      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["m" /* removeAttr */])(el, 'role', 'button')
     }
   }
 });
@@ -9515,12 +11786,18 @@ const setRole = (el, binding, vnode) => {
 
 
 const directives = {
-  BToggle: __WEBPACK_IMPORTED_MODULE_0__toggle__["a" /* default */]
+  bToggle: __WEBPACK_IMPORTED_MODULE_0__toggle__["a" /* default */]
 }
 
-/* harmony default export */ __webpack_exports__["a"] = ({
-  install: Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["a" /* installFactory */])({ directives })
-});
+const VuePlugin = {
+  install (Vue) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["b" /* registerDirectives */])(Vue, directives)
+  }
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_1__utils_plugins__["c" /* vueUse */])(VuePlugin)
+
+/* harmony default export */ __webpack_exports__["a"] = (VuePlugin);
 
 
 /***/ }),
@@ -9529,111 +11806,97 @@ const directives = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_env__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/env.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_target__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/target.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_target__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/target.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
 
 
 
+// Are we client side?
+const inBrowser = typeof window !== 'undefined'
 
-// Target listen types
-const listenTypes = { click: true }
+// target listen types
+const listenTypes = {click: true}
 
 // Property key for handler storage
-const BV_TOGGLE = '__BV_toggle__'
-const BV_TOGGLE_STATE = '__BV_toggle_STATE__'
-const BV_TOGGLE_CONTROLS = '__BV_toggle_CONTROLS__'
+const BVT = '__BV_toggle__'
 
-// Emitted control event for collapse (emitted to collapse)
+// Emitted Control Event for collapse (emitted to collapse)
 const EVENT_TOGGLE = 'bv::toggle::collapse'
 
-// Listen to event for toggle state update (emitted by collapse)
+// Listen to Event for toggle state update (Emited by collapse)
 const EVENT_STATE = 'bv::collapse::state'
 
-// Reset and remove a property from the provided element
-const resetProp = (el, prop) => {
-  el[prop] = null
-  delete el[prop]
-}
-
-// Handle directive updates
-/* istanbul ignore next: not easy to test */
-const handleUpdate = (el, binding, vnode) => {
-  if (!__WEBPACK_IMPORTED_MODULE_1__utils_env__["b" /* inBrowser */]) {
-    return
-  }
-  // Ensure the collapse class and aria-* attributes persist
-  // after element is updated (either by parent re-rendering
-  // or changes to this element or it's contents
-  if (el[BV_TOGGLE_STATE] === true) {
-    Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["a" /* addClass */])(el, 'collapsed')
-    Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["t" /* setAttr */])(el, 'aria-expanded', 'true')
-  } else if (el[BV_TOGGLE_STATE] === false) {
-    Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["p" /* removeClass */])(el, 'collapsed')
-    Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["t" /* setAttr */])(el, 'aria-expanded', 'false')
-  }
-  Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["t" /* setAttr */])(el, 'aria-controls', el[BV_TOGGLE_CONTROLS])
-}
-
-/*
- * Export our directive
- */
 /* harmony default export */ __webpack_exports__["a"] = ({
-  bind(el, binding, vnode) {
-    const targets = Object(__WEBPACK_IMPORTED_MODULE_2__utils_target__["a" /* bindTargets */])(vnode, binding, listenTypes, ({ targets, vnode }) => {
+
+  bind (el, binding, vnode) {
+    const targets = Object(__WEBPACK_IMPORTED_MODULE_0__utils_target__["b" /* default */])(vnode, binding, listenTypes, ({targets, vnode}) => {
       targets.forEach(target => {
         vnode.context.$root.$emit(EVENT_TOGGLE, target)
       })
     })
 
-    if (__WEBPACK_IMPORTED_MODULE_1__utils_env__["b" /* inBrowser */] && vnode.context && targets.length > 0) {
+    if (inBrowser && vnode.context && targets.length > 0) {
       // Add aria attributes to element
-      el[BV_TOGGLE_CONTROLS] = targets.join(' ')
-      // State is initially collapsed until we receive a state event
-      el[BV_TOGGLE_STATE] = false
-      Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["t" /* setAttr */])(el, 'aria-controls', el[BV_TOGGLE_CONTROLS])
-      Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["t" /* setAttr */])(el, 'aria-expanded', 'false')
-      // If element is not a button, we add `role="button"` for accessibility
+      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["q" /* setAttr */])(el, 'aria-controls', targets.join(' '))
+      Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["q" /* setAttr */])(el, 'aria-expanded', 'false')
       if (el.tagName !== 'BUTTON') {
-        Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["t" /* setAttr */])(el, 'role', 'button')
+        // If element is not a button, we add `role="button"` for accessibility
+        Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["q" /* setAttr */])(el, 'role', 'button')
       }
 
-      // Toggle state handler, stored on element
-      el[BV_TOGGLE] = function toggleDirectiveHandler(id, state) {
+      // Toggle state hadnler, stored on element
+      el[BVT] = function toggleDirectiveHandler (id, state) {
         if (targets.indexOf(id) !== -1) {
           // Set aria-expanded state
-          Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["t" /* setAttr */])(el, 'aria-expanded', state ? 'true' : 'false')
+          Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["q" /* setAttr */])(el, 'aria-expanded', state ? 'true' : 'false')
           // Set/Clear 'collapsed' class state
-          el[BV_TOGGLE_STATE] = state
           if (state) {
-            Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["p" /* removeClass */])(el, 'collapsed')
+            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["n" /* removeClass */])(el, 'collapsed')
           } else {
-            Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["a" /* addClass */])(el, 'collapsed')
+            Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["a" /* addClass */])(el, 'collapsed')
           }
         }
       }
 
       // Listen for toggle state changes
-      vnode.context.$root.$on(EVENT_STATE, el[BV_TOGGLE])
+      vnode.context.$root.$on(EVENT_STATE, el[BVT])
     }
   },
-  componentUpdated: handleUpdate,
-  updated: handleUpdate,
-  unbind(el, binding, vnode) /* istanbul ignore next */ {
-    Object(__WEBPACK_IMPORTED_MODULE_2__utils_target__["b" /* unbindTargets */])(vnode, binding, listenTypes)
-    // Remove our $root listener
-    if (el[BV_TOGGLE]) {
-      vnode.context.$root.$off(EVENT_STATE, el[BV_TOGGLE])
+  unbind (el, binding, vnode) {
+    if (el[BVT]) {
+      // Remove our $root listener
+      vnode.context.$root.$off(EVENT_STATE, el[BVT])
+      el[BVT] = null
     }
-    // Reset custom  props
-    resetProp(el, BV_TOGGLE)
-    resetProp(el, BV_TOGGLE_STATE)
-    resetProp(el, BV_TOGGLE_CONTROLS)
-    // Reset classes/attrs
-    Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["p" /* removeClass */])(el, 'collapsed')
-    Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["o" /* removeAttr */])(el, 'aria-expanded')
-    Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["o" /* removeAttr */])(el, 'aria-controls')
-    Object(__WEBPACK_IMPORTED_MODULE_0__utils_dom__["o" /* removeAttr */])(el, 'role')
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/mixins/clickout.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+  mounted () {
+    if (typeof document !== 'undefined') {
+      document.documentElement.addEventListener('click', this._clickOutListener)
+    }
+  },
+  beforeDestroy () {
+    if (typeof document !== 'undefined') {
+      document.documentElement.removeEventListener('click', this._clickOutListener)
+    }
+  },
+  methods: {
+    _clickOutListener (e) {
+      if (!this.$el.contains(e.target)) {
+        if (this.clickOutListener) {
+          this.clickOutListener()
+        }
+      }
+    }
   }
 });
 
@@ -9641,9 +11904,431 @@ const handleUpdate = (el, binding, vnode) => {
 /***/ }),
 
 /***/ "./node_modules/bootstrap-vue/src/mixins/dropdown.js":
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module parse failed: Unexpected token (247:15)\nYou may need an appropriate loader to handle this file type.\n|         popperConfig.modifiers.preventOverflow = { boundariesElement: this.boundary }\n|       }\n|       return { ...popperConfig, ...(this.popperOpts || {}) }\n|     },\n|     whileOpenListen(open) {");
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_popper_js__ = __webpack_require__("./node_modules/popper.js/dist/esm/popper.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__clickout__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/clickout.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__listen_on_root__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/listen-on-root.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_key_codes__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/key-codes.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_bv_event_class__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/bv-event.class.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_warn__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/warn.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
+
+
+
+
+
+
+
+
+
+
+// Return an Array of visible items
+function filterVisible (els) {
+  return (els || []).filter(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["k" /* isVisible */])
+}
+
+// Dropdown item CSS selectors
+// TODO: .dropdown-form handling
+const ITEM_SELECTOR = '.dropdown-item:not(.disabled):not([disabled])'
+
+// Popper attachment positions
+const AttachmentMap = {
+  // DropUp Left Align
+  TOP: 'top-start',
+  // DropUp Right Align
+  TOPEND: 'top-end',
+  // Dropdown left Align
+  BOTTOM: 'bottom-start',
+  // Dropdown Right Align
+  BOTTOMEND: 'bottom-end'
+}
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  mixins: [__WEBPACK_IMPORTED_MODULE_1__clickout__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2__listen_on_root__["a" /* default */]],
+  props: {
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    text: {
+      // Button label
+      type: String,
+      default: ''
+    },
+    dropup: {
+      // place on top if possible
+      type: Boolean,
+      default: false
+    },
+    right: {
+      // Right align menu (default is left align)
+      type: Boolean,
+      default: false
+    },
+    offset: {
+      // Number of pixels to offset menu, or a CSS unit value (i.e. 1px, 1rem, etc)
+      type: [Number, String],
+      default: 0
+    },
+    noFlip: {
+      // Disable auto-flipping of menu from bottom<=>top
+      type: Boolean,
+      default: false
+    },
+    popperOpts: {
+      type: Object,
+      default: () => {}
+    }
+  },
+  data () {
+    return {
+      visible: false,
+      inNavbar: null,
+      visibleChangePrevented: false
+    }
+  },
+  created () {
+    // Create non-reactive property
+    this._popper = null
+  },
+  mounted () {
+    // To keep one dropdown opened on page
+    this.listenOnRoot('bv::dropdown::shown', this.rootCloseListener)
+    // Hide when clicked on links
+    this.listenOnRoot('clicked::link', this.rootCloseListener)
+    // Use new namespaced events
+    this.listenOnRoot('bv::link::clicked', this.rootCloseListener)
+  },
+  /* istanbul ignore next: not easy to test */
+  deactivated () {
+    // In case we are inside a `<keep-alive>`
+    this.visible = false
+    this.setTouchStart(false)
+    this.removePopper()
+  },
+  /* istanbul ignore next: not easy to test */
+  beforeDestroy () {
+    this.visible = false
+    this.setTouchStart(false)
+    this.removePopper()
+  },
+  watch: {
+    visible (newValue, oldValue) {
+      if (this.visibleChangePrevented) {
+        this.visibleChangePrevented = false
+        return
+      }
+
+      if (newValue !== oldValue) {
+        const evtName = newValue ? 'show' : 'hide'
+        let bvEvt = new __WEBPACK_IMPORTED_MODULE_6__utils_bv_event_class__["a" /* default */](evtName, {
+          cancelable: true,
+          vueTarget: this,
+          target: this.$refs.menu,
+          relatedTarget: null
+        })
+        this.emitEvent(bvEvt)
+        if (bvEvt.defaultPrevented) {
+          // Reset value and exit if canceled
+          this.visibleChangePrevented = true
+          this.visible = oldValue
+          return
+        }
+        if (evtName === 'show') {
+          this.showMenu()
+        } else {
+          this.hideMenu()
+        }
+      }
+    },
+    disabled (newValue, oldValue) {
+      if (newValue !== oldValue && newValue && this.visible) {
+        // Hide dropdown if disabled changes to true
+        this.visible = false
+      }
+    }
+  },
+  computed: {
+    toggler () {
+      return this.$refs.toggle.$el || this.$refs.toggle
+    }
+  },
+  methods: {
+    // Event emitter
+    emitEvent (bvEvt) {
+      const type = bvEvt.type
+      this.$emit(type, bvEvt)
+      this.emitOnRoot(`bv::dropdown::${type}`, bvEvt)
+    },
+    showMenu () {
+      if (this.disabled) {
+        return
+      }
+      // Ensure other menus are closed
+      this.emitOnRoot('bv::dropdown::shown', this)
+
+      // Are we in a navbar ?
+      if (this.inNavbar === null && this.isNav) {
+        this.inNavbar = Boolean(Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["b" /* closest */])('.navbar', this.$el))
+      }
+
+      // Disable totally Popper.js for Dropdown in Navbar
+      /* istnbul ignore next: can't test popper in JSDOM */
+      if (!this.inNavbar) {
+        if (typeof __WEBPACK_IMPORTED_MODULE_0_popper_js__["default"] === 'undefined') {
+          Object(__WEBPACK_IMPORTED_MODULE_7__utils_warn__["a" /* default */])('b-dropdown: Popper.js not found. Falling back to CSS positioning.')
+        } else {
+          // for dropup with alignment we use the parent element as popper container
+          let element = ((this.dropup && this.right) || this.split) ? this.$el : this.$refs.toggle
+          // Make sure we have a reference to an element, not a component!
+          element = element.$el || element
+          // Instantiate popper.js
+          this.createPopper(element)
+        }
+      }
+
+      this.setTouchStart(true)
+      this.$emit('shown')
+
+      // Focus on the first item on show
+      this.$nextTick(this.focusFirstItem)
+    },
+    hideMenu () {
+      this.setTouchStart(false)
+      this.emitOnRoot('bv::dropdown::hidden', this)
+      this.$emit('hidden')
+      this.removePopper()
+    },
+    createPopper (element) {
+      this.removePopper()
+      this._popper = new __WEBPACK_IMPORTED_MODULE_0_popper_js__["default"](element, this.$refs.menu, this.getPopperConfig())
+    },
+    removePopper () {
+      if (this._popper) {
+        // Ensure popper event listeners are removed cleanly
+        this._popper.destroy()
+      }
+      this._popper = null
+    },
+    getPopperConfig /* istanbul ignore next: can't test popper in JSDOM */ () {
+      let placement = AttachmentMap.BOTTOM
+      if (this.dropup && this.right) {
+        // dropup + right
+        placement = AttachmentMap.TOPEND
+      } else if (this.dropup) {
+        // dropup + left
+        placement = AttachmentMap.TOP
+      } else if (this.right) {
+        // dropdown + right
+        placement = AttachmentMap.BOTTOMEND
+      }
+      const popperConfig = {
+        placement,
+        modifiers: {
+          offset: {
+            offset: this.offset || 0
+          },
+          flip: {
+            enabled: !this.noFlip
+          }
+        }
+      }
+      if (this.boundary) {
+        popperConfig.modifiers.preventOverflow = {
+          boundariesElement: this.boundary
+        }
+      }
+      return Object(__WEBPACK_IMPORTED_MODULE_4__utils_object__["a" /* assign */])(popperConfig, this.popperOpts || {})
+    },
+    setTouchStart (on) {
+      /*
+       * If this is a touch-enabled device we add extra
+       * empty mouseover listeners to the body's immediate children;
+       * only needed because of broken event delegation on iOS
+       * https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
+       */
+      if ('ontouchstart' in document.documentElement) {
+        const children = Object(__WEBPACK_IMPORTED_MODULE_3__utils_array__["c" /* from */])(document.body.children)
+        children.forEach(el => {
+          if (on) {
+            Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["d" /* eventOn */])('mouseover', this._noop)
+          } else {
+            Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["c" /* eventOff */])('mouseover', this._noop)
+          }
+        })
+      }
+    },
+    /* istanbul ignore next: not easy to test */
+    _noop () {
+      // Do nothing event handler (used in touchstart event handler)
+    },
+    rootCloseListener (vm) {
+      if (vm !== this) {
+        this.visible = false
+      }
+    },
+    clickOutListener () {
+      this.visible = false
+    },
+    show () {
+      // Public method to show dropdown
+      if (this.disabled) {
+        return
+      }
+      this.visible = true
+    },
+    hide () {
+      // Public method to hide dropdown
+      if (this.disabled) {
+        return
+      }
+      this.visible = false
+    },
+    toggle (evt) {
+      // Called only by a button that toggles the menu
+      evt = evt || {}
+      const type = evt.type
+      const key = evt.keyCode
+      if (type !== 'click' && !(type === 'keydown' && (key === __WEBPACK_IMPORTED_MODULE_5__utils_key_codes__["a" /* default */].ENTER || key === __WEBPACK_IMPORTED_MODULE_5__utils_key_codes__["a" /* default */].SPACE || key === __WEBPACK_IMPORTED_MODULE_5__utils_key_codes__["a" /* default */].DOWN))) {
+        // We only toggle on Click, Enter, Space, and Arrow Down
+        return
+      }
+      if (this.disabled) {
+        this.visible = false
+        return
+      }
+      this.$emit('toggle', evt)
+      if (evt.defaultPrevented) {
+        // Exit if canceled
+        return
+      }
+      evt.preventDefault()
+      evt.stopPropagation()
+      // Toggle visibility
+      this.visible = !this.visible
+    },
+    click (evt) {
+      // Calle only in split button mode, for the split button
+      if (this.disabled) {
+        this.visible = false
+        return
+      }
+      this.$emit('click', evt)
+    },
+    /* istanbul ignore next: not easy to test */
+    onKeydown (evt) {
+      // Called from dropdown menu context
+      const key = evt.keyCode
+      if (key === __WEBPACK_IMPORTED_MODULE_5__utils_key_codes__["a" /* default */].ESC) {
+        // Close on ESC
+        this.onEsc(evt)
+      } else if (key === __WEBPACK_IMPORTED_MODULE_5__utils_key_codes__["a" /* default */].TAB) {
+        // Close on tab out
+        this.onTab(evt)
+      } else if (key === __WEBPACK_IMPORTED_MODULE_5__utils_key_codes__["a" /* default */].DOWN) {
+        // Down Arrow
+        this.focusNext(evt, false)
+      } else if (key === __WEBPACK_IMPORTED_MODULE_5__utils_key_codes__["a" /* default */].UP) {
+        // Up Arrow
+        this.focusNext(evt, true)
+      }
+    },
+    /* istanbul ignore next: not easy to test */
+    onEsc (evt) {
+      if (this.visible) {
+        this.visible = false
+        evt.preventDefault()
+        evt.stopPropagation()
+        // Return focus to original trigger button
+        this.$nextTick(this.focusToggler)
+      }
+    },
+    /* istanbul ignore next: not easy to test */
+    onTab (evt) {
+      if (this.visible) {
+        // TODO: Need special handler for dealing with form inputs
+        // Tab, if in a text-like input, we should just focus next item in the dropdown
+        // Note: Inputs are in a special .dropdown-form container
+        this.visible = false
+      }
+    },
+    onFocusOut (evt) {
+      if (this.$refs.menu.contains(evt.relatedTarget)) {
+        return
+      }
+      this.visible = false
+    },
+    /* istanbul ignore next: not easy to test */
+    onMouseOver (evt) {
+      // Focus the item on hover
+      // TODO: Special handling for inputs? Inputs are in a special .dropdown-form container
+      const item = evt.target
+      if (
+        item.classList.contains('dropdown-item') &&
+                !item.disabled &&
+                !item.classList.contains('disabled') &&
+                item.focus
+      ) {
+        item.focus()
+      }
+    },
+    focusNext (evt, up) {
+      if (!this.visible) {
+        return
+      }
+      evt.preventDefault()
+      evt.stopPropagation()
+      this.$nextTick(() => {
+        const items = this.getItems()
+        if (items.length < 1) {
+          return
+        }
+        let index = items.indexOf(evt.target)
+        if (up && index > 0) {
+          index--
+        } else if (!up && index < items.length - 1) {
+          index++
+        }
+        if (index < 0) {
+          index = 0
+        }
+        this.focusItem(index, items)
+      })
+    },
+    focusItem (idx, items) {
+      let el = items.find((el, i) => i === idx)
+      if (el && Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["e" /* getAttr */])(el, 'tabindex') !== '-1') {
+        el.focus()
+      }
+    },
+    getItems () {
+      // Get all items
+      return filterVisible(Object(__WEBPACK_IMPORTED_MODULE_8__utils_dom__["p" /* selectAll */])(ITEM_SELECTOR, this.$refs.menu))
+    },
+    getFirstItem () {
+      // Get the first non-disabled item
+      let item = this.getItems()[0]
+      return item || null
+    },
+    focusFirstItem () {
+      const item = this.getFirstItem()
+      if (item) {
+        this.focusItem(0, [item])
+      }
+    },
+    focusToggler () {
+      let toggler = this.toggler
+      if (toggler && toggler.focus) {
+        toggler.focus()
+      }
+    }
+  }
+});
+
 
 /***/ }),
 
@@ -9651,17 +12336,16 @@ throw new Error("Module parse failed: Unexpected token (247:15)\nYou may need an
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
+  computed: {
+    custom () {
+      return !this.plain
+    }
+  },
   props: {
     plain: {
       type: Boolean,
       default: false
-    }
-  },
-  computed: {
-    custom() {
-      return !this.plain
     }
   }
 });
@@ -9675,22 +12359,19 @@ throw new Error("Module parse failed: Unexpected token (247:15)\nYou may need an
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_object___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__utils_object__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_html__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/html.js");
 
 
 
-
-function isObject(obj) {
-  return obj && {}.toString.call(obj) === '[object Object]'
+function isObject (obj) {
+  return obj && ({}).toString.call(obj) === '[object Object]'
 }
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
+
   props: {
     options: {
       type: [Array, Object],
-      default() {
+      default () {
         return []
       }
     },
@@ -9702,187 +12383,57 @@ function isObject(obj) {
       type: String,
       default: 'text'
     },
-    htmlField: {
-      type: String,
-      default: 'html'
-    },
     disabledField: {
       type: String,
       default: 'disabled'
     }
   },
   computed: {
-    formOptions() {
+    formOptions () {
       let options = this.options
 
       const valueField = this.valueField
       const textField = this.textField
-      const htmlField = this.htmlField
       const disabledField = this.disabledField
 
       if (Object(__WEBPACK_IMPORTED_MODULE_0__utils_array__["d" /* isArray */])(options)) {
         // Normalize flat-ish arrays to Array of Objects
         return options.map(option => {
           if (isObject(option)) {
-            const value = option[valueField]
-            const text = String(option[textField])
             return {
-              value: typeof value === 'undefined' ? text : value,
-              text: Object(__WEBPACK_IMPORTED_MODULE_2__utils_html__["b" /* stripTags */])(text),
-              html: option[htmlField],
-              disabled: Boolean(option[disabledField])
+              value: option[valueField],
+              text: String(option[textField]),
+              disabled: option[disabledField] || false
             }
           }
           return {
             value: option,
-            text: Object(__WEBPACK_IMPORTED_MODULE_2__utils_html__["b" /* stripTags */])(String(option)),
+            text: String(option),
             disabled: false
           }
         })
       } else {
         // options is Object
         // Normalize Objects to Array of Objects
-        return Object(__WEBPACK_IMPORTED_MODULE_1__utils_object__["keys"])(options).map(key => {
+        return Object(__WEBPACK_IMPORTED_MODULE_1__utils_object__["e" /* keys */])(options).map(key => {
           let option = options[key] || {}
           if (isObject(option)) {
             const value = option[valueField]
             const text = option[textField]
             return {
               value: typeof value === 'undefined' ? key : value,
-              text: typeof text === 'undefined' ? Object(__WEBPACK_IMPORTED_MODULE_2__utils_html__["b" /* stripTags */])(String(key)) : Object(__WEBPACK_IMPORTED_MODULE_2__utils_html__["b" /* stripTags */])(String(text)),
-              html: option[htmlField],
-              disabled: Boolean(option[disabledField])
+              text: typeof text === 'undefined' ? key : String(text),
+              disabled: option[disabledField] || false
             }
           }
           return {
             value: key,
-            text: Object(__WEBPACK_IMPORTED_MODULE_2__utils_html__["b" /* stripTags */])(String(option)),
+            text: String(option),
             disabled: false
           }
         })
       }
     }
-  }
-});
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/mixins/form-radio-check-group.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_html__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/html.js");
-
-
-// @vue/component
-/* harmony default export */ __webpack_exports__["a"] = ({
-  model: {
-    prop: 'checked',
-    event: 'input'
-  },
-  props: {
-    validated: {
-      type: Boolean,
-      default: false
-    },
-    ariaInvalid: {
-      type: [Boolean, String],
-      default: false
-    },
-    stacked: {
-      type: Boolean,
-      default: false
-    },
-    plain: {
-      type: Boolean,
-      default: false
-    },
-    buttons: {
-      // Render as button style
-      type: Boolean,
-      default: false
-    },
-    buttonVariant: {
-      // Only applicable when rendered with button style
-      type: String,
-      default: 'secondary'
-    }
-  },
-  computed: {
-    inline() {
-      return !this.stacked
-    },
-    groupName() {
-      // Checks/Radios tied to the same model must have the same name,
-      // especially for ARIA accessibility.
-      return this.name || this.safeId()
-    },
-    groupClasses() {
-      if (this.buttons) {
-        return [
-          'btn-group-toggle',
-          this.inline ? 'btn-group' : 'btn-group-vertical',
-          this.size ? `btn-group-${this.size}` : '',
-          this.validated ? `was-validated` : ''
-        ]
-      }
-      return [this.validated ? `was-validated` : '']
-    },
-    computedAriaInvalid() {
-      const ariaInvalid = this.ariaInvalid
-      if (ariaInvalid === true || ariaInvalid === 'true' || ariaInvalid === '') {
-        return 'true'
-      }
-      return this.computedState === false ? 'true' : null
-    }
-  },
-  watch: {
-    checked(newVal, oldVal) {
-      this.localChecked = newVal
-    },
-    localChecked(newVal, oldVal) {
-      this.$emit('input', newVal)
-    }
-  },
-  render(h) {
-    const $slots = this.$slots
-
-    const inputs = this.formOptions.map((option, idx) => {
-      const uid = `_BV_option_${idx}_`
-      return h(
-        this.is_RadioGroup ? 'b-form-radio' : 'b-form-checkbox',
-        {
-          key: uid,
-          props: {
-            id: this.safeId(uid),
-            value: option.value,
-            // Individual radios or checks can be disabled in a group
-            disabled: option.disabled || false
-            // We don't need to include these, since the input's will know they are inside here
-            // name: this.groupName,
-            // form: this.form || null,
-            // required: Boolean(this.name && this.required)
-          }
-        },
-        [h('span', { domProps: Object(__WEBPACK_IMPORTED_MODULE_0__utils_html__["a" /* htmlOrText */])(option.html, option.text) })]
-      )
-    })
-    return h(
-      'div',
-      {
-        class: this.groupClasses,
-        attrs: {
-          id: this.safeId(),
-          role: this.is_RadioGroup ? 'radiogroup' : 'group',
-          // Tabindex to allow group to be focused if needed
-          tabindex: '-1',
-          'aria-required': this.required ? 'true' : null,
-          'aria-invalid': this.computedAriaInvalid
-        }
-      },
-      [$slots.first, inputs, $slots.default]
-    )
   }
 });
 
@@ -9893,125 +12444,98 @@ function isObject(obj) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-// @vue/component
+/*
+ * form-radio & form-check mixin
+ *
+ */
+
 /* harmony default export */ __webpack_exports__["a"] = ({
+  data () {
+    return {
+      localChecked: this.checked,
+      hasFocus: false
+    }
+  },
   model: {
     prop: 'checked',
     event: 'input'
   },
   props: {
     value: {
-      // Value when checked
-      // type: Object,
-      // default: undefined
     },
     checked: {
-      // This is the v-model
-      // type: Object,
-      // default: undefined
-    },
-    inline: {
-      type: Boolean,
-      default: false
-    },
-    plain: {
-      type: Boolean,
-      default: false
-    },
-    button: {
-      // Only applicable in standalone mode (non group)
-      type: Boolean,
-      default: false
+      // This is the model, except when in group mode
     },
     buttonVariant: {
       // Only applicable when rendered with button style
       type: String,
       default: null
-    },
-    ariaLabel: {
-      // Placed on the input if present.
-      type: String,
-      default: null
-    }
-  },
-  data() {
-    return {
-      localChecked: this.is_Group ? this.bvGroup.checked : this.checked,
-      hasFocus: false
     }
   },
   computed: {
     computedLocalChecked: {
-      get() {
-        return this.is_Group ? this.bvGroup.localChecked : this.localChecked
+      get () {
+        if (this.is_Child) {
+          return this.$parent.localChecked
+        } else {
+          return this.localChecked
+        }
       },
-      set(val) {
-        if (this.is_Group) {
-          this.bvGroup.localChecked = val
+      set (val) {
+        if (this.is_Child) {
+          this.$parent.localChecked = val
         } else {
           this.localChecked = val
         }
       }
     },
-    is_Group() {
-      // Is this check/radio a child of check-group or radio-group?
-      return Boolean(this.bvGroup)
+    is_Child () {
+      return Boolean(this.$parent && this.$parent.is_RadioCheckGroup)
     },
-    is_BtnMode() {
-      // Support button style in single input mode
-      return this.is_Group ? this.bvGroup.buttons : this.button
+    is_Disabled () {
+      // Child can be disabled while parent isn't
+      return Boolean(this.is_Child ? (this.$parent.disabled || this.disabled) : this.disabled)
     },
-    is_Plain() {
-      return this.is_BtnMode ? false : this.is_Group ? this.bvGroup.plain : this.plain
+    is_Required () {
+      return Boolean(this.is_Child ? this.$parent.required : this.required)
     },
-    is_Custom() {
-      return this.is_BtnMode ? false : !this.is_Plain
+    is_Plain () {
+      return Boolean(this.is_Child ? this.$parent.plain : this.plain)
     },
-    is_Switch() {
-      // Custom switch styling (checkboxes only)
-      return this.is_BtnMode || this.is_Radio || this.is_Plain
-        ? false
-        : this.is_Group
-          ? this.bvGroup.switches
-          : this.switch
+    is_Custom () {
+      return !this.is_Plain
     },
-    is_Inline() {
-      return this.is_Group ? this.bvGroup.inline : this.inline
+    get_Size () {
+      return this.is_Child ? this.$parent.size : this.size
     },
-    is_Disabled() {
-      // Child can be disabled while parent isn't, but is always disabled if group is
-      return this.is_Group ? this.bvGroup.disabled || this.disabled : this.disabled
-    },
-    is_Required() {
-      // Required only works when a name is provided for the input(s)
-      // Child can only be required when parent is
-      // Groups will always have a name (either user supplied or auto generated)
-      return Boolean(this.get_Name && (this.is_Group ? this.bvGroup.required : this.required))
-    },
-    get_Name() {
-      // Group name preferred over local name
-      return (this.is_Group ? this.bvGroup.groupName : this.name) || null
-    },
-    get_Form() {
-      return (this.is_Group ? this.bvGroup.form : this.form) || null
-    },
-    get_Size() {
-      return (this.is_Group ? this.bvGroup.size : this.size) || ''
-    },
-    get_State() {
-      return this.is_Group ? this.bvGroup.computedState : this.computedState
-    },
-    get_ButtonVariant() {
-      // Local variant preferred over group variant
-      if (this.buttonVariant) {
-        return this.buttonVariant
-      } else if (this.is_Group && this.bvGroup.buttonVariant) {
-        return this.bvGroup.buttonVariant
+    get_State () {
+      // This is a tri-state prop (true, false, null)
+      if (this.is_Child && typeof this.$parent.get_State === 'boolean') {
+        return this.$parent.get_State
       }
-      // default variant
-      return 'secondary'
+      return this.computedState
     },
-    buttonClasses() {
+    get_StateClass () {
+      // This is a tri-state prop (true, false, null)
+      return typeof this.get_State === 'boolean' ? (this.get_State ? 'is-valid' : 'is-invalid') : ''
+    },
+    is_Stacked () {
+      return Boolean(this.is_Child && this.$parent.stacked)
+    },
+    is_Inline () {
+      return !this.is_Stacked
+    },
+    is_ButtonMode () {
+      return Boolean(this.is_Child && this.$parent.buttons)
+    },
+    get_ButtonVariant () {
+      // Local variant trumps parent variant
+      return this.buttonVariant || (this.is_Child ? this.$parent.buttonVariant : null) || 'secondary'
+    },
+    get_Name () {
+      return (this.is_Child ? (this.$parent.name || this.$parent.safeId()) : this.name) || null
+    },
+    buttonClasses () {
       // Same for radio & check
       return [
         'btn',
@@ -10026,126 +12550,16 @@ function isObject(obj) {
       ]
     }
   },
-  watch: {
-    checked(newVal, oldVal) {
-      this.computedLocalChecked = newVal
-    }
-  },
   methods: {
-    handleFocus(evt) {
-      // When in buttons mode, we need to add 'focus' class to label when input focused
-      // As it is the hidden input which has actual focus
-      if (evt.target) {
+    handleFocus (evt) {
+      // When in buttons mode, we need to add 'focus' class to label when radio focused
+      if (this.is_ButtonMode && evt.target) {
         if (evt.type === 'focus') {
           this.hasFocus = true
         } else if (evt.type === 'blur') {
           this.hasFocus = false
         }
       }
-    },
-    // Convenience methods for focusing the input
-    focus() {
-      if (!this.is_Disabled && this.$refs.input && this.$refs.input.focus) {
-        this.$refs.input.focus()
-      }
-    },
-    blur() {
-      if (!this.is_Disabled && this.$refs.input && this.$refs.input.blur) {
-        this.$refs.input.blur()
-      }
-    }
-  },
-  render(h) {
-    const defaultSlot = this.$slots.default
-
-    // Generate the input element
-    const on = { change: this.handleChange }
-    if (this.is_BtnMode) {
-      // Handlers for focus styling when in button mode
-      on.focus = on.blur = this.handleFocus
-    }
-    const input = h('input', {
-      ref: 'input',
-      key: 'input',
-      on,
-      class: {
-        'form-check-input': this.is_Plain,
-        'custom-control-input': this.is_Custom,
-        'is-valid': this.get_State === true && !this.is_BtnMode,
-        'is-invalid': this.get_State === false && !this.is_BtnMode,
-        // https://github.com/bootstrap-vue/bootstrap-vue/issues/2911
-        'position-static': this.is_Plain && !defaultSlot
-      },
-      directives: [
-        {
-          name: 'model',
-          rawName: 'v-model',
-          value: this.computedLocalChecked,
-          expression: 'computedLocalChecked'
-        }
-      ],
-      attrs: {
-        id: this.safeId(),
-        type: this.is_Radio ? 'radio' : 'checkbox',
-        name: this.get_Name,
-        form: this.get_Form,
-        disabled: this.is_Disabled,
-        required: this.is_Required,
-        autocomplete: 'off',
-        'aria-required': this.is_Required || null,
-        'aria-label': this.ariaLabel || null
-      },
-      domProps: {
-        value: this.value,
-        checked: this.is_Checked
-      }
-    })
-
-    if (this.is_BtnMode) {
-      // Button mode
-      let button = h('label', { class: this.buttonClasses }, [input, defaultSlot])
-      if (!this.is_Group) {
-        // Standalone button mode, so wrap in 'btn-group-toggle'
-        // and flag it as inline-block to mimic regular buttons
-        button = h('div', { class: ['btn-group-toggle', 'd-inline-block'] }, [button])
-      }
-      return button
-    } else {
-      // Not button mode
-      let label = h(false)
-      // If no label content in plain mode we dont render the label
-      // https://github.com/bootstrap-vue/bootstrap-vue/issues/2911
-      if (!(this.is_Plain && !defaultSlot)) {
-        label = h(
-          'label',
-          {
-            class: {
-              'form-check-label': this.is_Plain,
-              'custom-control-label': this.is_Custom
-            },
-            attrs: { for: this.safeId() }
-          },
-          defaultSlot
-        )
-      }
-      // Wrap it in a div
-      return h(
-        'div',
-        {
-          class: {
-            'form-check': this.is_Plain,
-            'form-check-inline': this.is_Plain && this.is_Inline,
-            'custom-control': this.is_Custom,
-            'custom-control-inline': this.is_Custom && this.is_Inline,
-            'custom-checkbox': this.is_Custom && this.is_Check && !this.is_Switch,
-            'custom-switch': this.is_Switch,
-            'custom-radio': this.is_Custom && this.is_Radio,
-            // Temporary until BS V4 supports sizing (most likely in V5)
-            [`form-control-${this.get_Size}`]: Boolean(this.get_Size && !this.is_BtnMode)
-          }
-        },
-        [input, label]
-      )
     }
   }
 });
@@ -10157,7 +12571,6 @@ function isObject(obj) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
   props: {
     size: {
@@ -10166,11 +12579,15 @@ function isObject(obj) {
     }
   },
   computed: {
-    sizeFormClass() {
-      return [this.size ? `form-control-${this.size}` : null]
+    sizeFormClass () {
+      return [
+        this.size ? `form-control-${this.size}` : null
+      ]
     },
-    sizeBtnClass() /* istanbul ignore next: don't think this is used */ {
-      return [this.size ? `btn-${this.size}` : null]
+    sizeBtnClass () {
+      return [
+        this.size ? `btn-${this.size}` : null
+      ]
     }
   }
 });
@@ -10191,29 +12608,25 @@ function isObject(obj) {
  *  - null (or empty string) for no contextual state
  */
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
   props: {
     state: {
       // true/'valid', false/'invalid', '',null
-      // The order must be String first, then Boolean!
-      type: [String, Boolean],
+      type: [Boolean, String],
       default: null
     }
   },
   computed: {
-    computedState() {
+    computedState () {
       const state = this.state
-      if (state === '') {
-        return null
-      } else if (state === true || state === 'valid') {
+      if (state === true || state === 'valid') {
         return true
       } else if (state === false || state === 'invalid') {
         return false
       }
       return null
     },
-    stateClass() {
+    stateClass () {
       const state = this.computedState
       if (state === true) {
         return 'is-valid'
@@ -10232,16 +12645,13 @@ function isObject(obj) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
   props: {
     name: {
       type: String
-      // default: undefined
     },
     id: {
       type: String
-      // default: undefined
     },
     disabled: {
       type: Boolean
@@ -10249,10 +12659,6 @@ function isObject(obj) {
     required: {
       type: Boolean,
       default: false
-    },
-    form: {
-      type: String,
-      default: null
     }
   }
 });
@@ -10266,11 +12672,9 @@ function isObject(obj) {
 "use strict";
 /*
  * SSR Safe Client Side ID attribute generation
- * id's can only be generated client side, after mount.
- * this._uid is not synched between server and client.
+ *
  */
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
   props: {
     id: {
@@ -10278,37 +12682,22 @@ function isObject(obj) {
       default: null
     }
   },
-  data() {
-    return {
-      localId_: null
+  methods: {
+    safeId (suffix = '') {
+      const id = this.id || this.localId_ || null
+      if (!id) {
+        return null
+      }
+      suffix = String(suffix).replace(/\s+/g, '_')
+      return suffix ? id + '_' + suffix : id
     }
   },
   computed: {
-    safeId() {
-      // Computed property that returns a dynamic function for creating the ID.
-      // Reacts to changes in both .id and .localId_ And regens a new function
-      const id = this.id || this.localId_
-
-      // We return a function that accepts an optional suffix string
-      // So this computed prop looks and works like a method!!!
-      // But benefits from Vue's Computed prop caching
-      const fn = suffix => {
-        if (!id) {
-          return null
-        }
-        suffix = String(suffix || '').replace(/\s+/g, '_')
-        return suffix ? id + '_' + suffix : id
+    localId_ () {
+      if (!this.$isServer && !this.id && typeof this._uid !== 'undefined') {
+        return '__BVID__' + this._uid
       }
-      return fn
     }
-  },
-  mounted() {
-    // mounted only occurs client side
-    this.$nextTick(() => {
-      // Update dom with auto ID after dom loaded to prevent
-      // SSR hydration errors.
-      this.localId_ = `__BVID__${this._uid}`
-    })
   }
 });
 
@@ -10319,75 +12708,60 @@ function isObject(obj) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
+
 /**
  * Issue #569: collapse::toggle::state triggered too many times
  * @link https://github.com/bootstrap-vue/bootstrap-vue/issues/569
  */
 
-// @vue/component
+const BVRL = '__BV_root_listeners__'
+
 /* harmony default export */ __webpack_exports__["a"] = ({
   methods: {
     /**
-     * Safely register event listeners on the root Vue node.
-     * While Vue automatically removes listeners for individual components,
-     * when a component registers a listener on root and is destroyed,
-     * this orphans a callback because the node is gone,
-     * but the root does not clear the callback.
-     *
-     * When registering a $root listener, it also registers a listener on
-     * the component's `beforeDestroy` hook to automatically remove the
-     * event listener from the $root instance.
-     *
-     * @param {string} event
-     * @param {function} callback
-     * @chainable
-     */
-    listenOnRoot(event, callback) {
+         * Safely register event listeners on the root Vue node.
+         * While Vue automatically removes listeners for individual components,
+         * when a component registers a listener on root and is destroyed,
+         * this orphans a callback because the node is gone,
+         * but the root does not clear the callback.
+         *
+         * This adds a non-reactive prop to a vm on the fly
+         * in order to avoid object observation and its performance costs
+         * to something that needs no reactivity.
+         * It should be highly unlikely there are any naming collisions.
+         * @param {string} event
+         * @param {function} callback
+         * @chainable
+         */
+    listenOnRoot (event, callback) {
+      if (!this[BVRL] || !Object(__WEBPACK_IMPORTED_MODULE_0__utils_array__["d" /* isArray */])(this[BVRL])) {
+        this[BVRL] = []
+      }
+      this[BVRL].push({ event, callback })
       this.$root.$on(event, callback)
-      this.$on('hook:beforeDestroy', () => {
-        this.$root.$off(event, callback)
-      })
-      // Return this for easy chaining
       return this
     },
 
     /**
-     * Convenience method for calling vm.$emit on vm.$root.
-     * @param {string} event
-     * @param {*} args
-     * @chainable
-     */
-    emitOnRoot(event, ...args) {
+         * Convenience method for calling vm.$emit on vm.$root.
+         * @param {string} event
+         * @param {*} args
+         * @chainable
+         */
+    emitOnRoot (event, ...args) {
       this.$root.$emit(event, ...args)
-      // Return this for easy chaining
       return this
     }
-  }
-});
+  },
 
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/mixins/normalize-slot.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_normalize_slot__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/normalize-slot.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
-
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  methods: {
-    hasNormalizedSlot(name) {
-      // Returns true if the either a $scopedSlot or $slot exists with the specified name
-      return Boolean(this.$scopedSlots[name] || this.$slots[name])
-    },
-    normalizeSlot(name, scope = {}) {
-      // Returns an array of rendered vNodes if slot found.
-      // Returns undefined if not found.
-      const vNodes = Object(__WEBPACK_IMPORTED_MODULE_0__utils_normalize_slot__["a" /* default */])(name, scope, this.$scopedSlots, this.$slots)
-      return vNodes ? Object(__WEBPACK_IMPORTED_MODULE_1__utils_array__["b" /* concat */])(vNodes) : vNodes
+  beforeDestroy () {
+    if (this[BVRL] && Object(__WEBPACK_IMPORTED_MODULE_0__utils_array__["d" /* isArray */])(this[BVRL])) {
+      while (this[BVRL].length > 0) {
+        // shift to process in order
+        const { event, callback } = this[BVRL].shift()
+        this.$root.$off(event, callback)
+      }
     }
   }
 });
@@ -10399,14 +12773,10 @@ function isObject(obj) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_warn__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/warn.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_range__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/range.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_key_codes__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/key-codes.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_to_string__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/to-string.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mixins_normalize_slot__ = __webpack_require__("./node_modules/bootstrap-vue/src/mixins/normalize-slot.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_link_link__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/link/link.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_link_link___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_link_link__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_range__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/range.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_key_codes__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/key-codes.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_link_link__ = __webpack_require__("./node_modules/bootstrap-vue/src/components/link/link.js");
 /*
  * Comon props, computed, data, render function, and methods for b-pagination and b-pagination-nav
  */
@@ -10416,45 +12786,15 @@ function isObject(obj) {
 
 
 
-
-
-
-// Threshold of limit size when we start/stop showing ellipsis
-const ELLIPSIS_THRESHOLD = 3
-
-// Default # of buttons limit
-const DEFAULT_LIMIT = 5
-
 // Make an array of N to N+X
-function makePageArray(startNum, numPages) {
-  return Object(__WEBPACK_IMPORTED_MODULE_1__utils_range__["a" /* default */])(numPages).map(function(value, index) {
-    return { number: index + startNum, classes: null }
+function makePageArray (startNum, numPages) {
+  return Object(__WEBPACK_IMPORTED_MODULE_0__utils_range__["a" /* default */])(numPages).map(function (value, index) {
+    return { number: index + startNum, className: null }
   })
 }
 
-// Sanitize the provided Limit value (converting to a number)
-function sanitizeLimit(value) {
-  const limit = parseInt(value, 10) || 1
-  return limit < 1 ? DEFAULT_LIMIT : limit
-}
-
-// Sanitize the provided current page number (converting to a number)
-function sanitizeCurPage(value, numPages) {
-  const page = parseInt(value, 10) || 1
-  return page > numPages ? numPages : page < 1 ? 1 : page
-}
-
-// Links don't normally respond to SPACE, so we add that functionality via this handler
-function onSpaceKey(evt) {
-  if (evt.keyCode === __WEBPACK_IMPORTED_MODULE_2__utils_key_codes__["a" /* default */].SPACE) {
-    evt.preventDefault() // Stop page from scrolling
-    evt.stopImmediatePropagation()
-    evt.stopPropagation()
-    // Trigger the click event on the link
-    evt.currentTarget.click()
-    return false
-  }
-}
+// Threshold of limit size when we start/stop showing ellipsis
+const ELLIPSIS_THRESHOLD = 3
 
 // Props object
 const props = {
@@ -10463,30 +12803,12 @@ const props = {
     default: false
   },
   value: {
-    type: [Number, String],
-    default: null,
-    validator(value) {
-      const num = parseInt(value, 10)
-      /* istanbul ignore if */
-      if (value !== null && (isNaN(num) || num < 1)) {
-        Object(__WEBPACK_IMPORTED_MODULE_0__utils_warn__["a" /* default */])('pagination: v-model value must be a number greater than 0')
-        return false
-      }
-      return true
-    }
+    type: Number,
+    default: 1
   },
   limit: {
-    type: [Number, String],
-    default: DEFAULT_LIMIT,
-    validator(value) {
-      const num = parseInt(value, 10)
-      /* istanbul ignore if */
-      if (isNaN(num) || num < 1) {
-        Object(__WEBPACK_IMPORTED_MODULE_0__utils_warn__["a" /* default */])('pagination: prop "limit" must be a number greater than 0')
-        return false
-      }
-      return true
-    }
+    type: Number,
+    default: 5
   },
   size: {
     type: String,
@@ -10506,39 +12828,39 @@ const props = {
   },
   labelFirstPage: {
     type: String,
-    default: 'Go to first page'
+    default: 'Goto first page'
   },
   firstText: {
     type: String,
-    default: '«'
+    default: '&laquo;'
   },
   labelPrevPage: {
     type: String,
-    default: 'Go to previous page'
+    default: 'Goto previous page'
   },
   prevText: {
     type: String,
-    default: '‹'
+    default: '&lsaquo;'
   },
   labelNextPage: {
     type: String,
-    default: 'Go to next page'
+    default: 'Goto next page'
   },
   nextText: {
     type: String,
-    default: '›'
+    default: '&rsaquo;'
   },
   labelLastPage: {
     type: String,
-    default: 'Go to last page'
+    default: 'Goto last page'
   },
   lastText: {
     type: String,
-    default: '»'
+    default: '&raquo;'
   },
   labelPage: {
-    type: [String, Function],
-    default: 'Go to page'
+    type: String,
+    default: 'Goto page'
   },
   hideEllipsis: {
     type: Boolean,
@@ -10546,370 +12868,159 @@ const props = {
   },
   ellipsisText: {
     type: String,
-    default: '…'
+    default: '&hellip;'
   }
 }
 
-// @vue/component
 /* harmony default export */ __webpack_exports__["a"] = ({
-  components: { BLink: __WEBPACK_IMPORTED_MODULE_6__components_link_link__["default"] },
-  mixins: [__WEBPACK_IMPORTED_MODULE_5__mixins_normalize_slot__["a" /* default */]],
-  model: {
-    prop: 'value',
-    event: 'input'
+  components: { bLink: __WEBPACK_IMPORTED_MODULE_3__components_link_link__["a" /* default */] },
+  data () {
+    return {
+      showFirstDots: false,
+      showLastDots: false,
+      currentPage: this.value
+    }
   },
   props,
-  data() {
-    const curr = parseInt(this.value, 10)
-    return {
-      // -1 signifies no page initially selected
-      currentPage: curr > 0 ? curr : -1,
-      localNumPages: 1,
-      localLimit: DEFAULT_LIMIT
-    }
-  },
-  computed: {
-    btnSize() {
-      return this.size ? `pagination-${this.size}` : ''
-    },
-    alignment() {
-      const align = this.align
-      if (align === 'center') {
-        return 'justify-content-center'
-      } else if (align === 'end' || align === 'right') {
-        return 'justify-content-end'
-      } else if (align === 'fill') {
-        // The page-items will also have 'flex-fill' added.
-        // We ad text centering to make the button appearance better in fill mode.
-        return 'text-center'
-      }
-      return ''
-    },
-    computedCurrentPage() {
-      return sanitizeCurPage(this.currentPage, this.localNumPages)
-    },
-    paginationParams() {
-      // Determine if we should show the the ellipsis
-      const limit = this.limit
-      const numPages = this.localNumPages
-      const curPage = this.computedCurrentPage
-      const hideEllipsis = this.hideEllipsis
-      let showFirstDots = false
-      let showLastDots = false
-      let numLinks = limit
-      let startNum = 1
-
-      if (numPages <= limit) {
-        // Special Case: Less pages available than the limit of displayed pages
-        numLinks = numPages
-      } else if (curPage < limit - 1 && limit > ELLIPSIS_THRESHOLD) {
-        // We are near the beginning of the page list
-        if (!hideEllipsis) {
-          showLastDots = true
-          numLinks = limit - 1
-        }
-      } else if (numPages - curPage + 2 < limit && limit > ELLIPSIS_THRESHOLD) {
-        // We are near the end of the list
-        if (!hideEllipsis) {
-          numLinks = limit - 1
-          showFirstDots = true
-        }
-        startNum = numPages - numLinks + 1
-      } else {
-        // We are somewhere in the middle of the page list
-        if (limit > ELLIPSIS_THRESHOLD && !hideEllipsis) {
-          numLinks = limit - 2
-          showFirstDots = showLastDots = true
-        }
-        startNum = curPage - Math.floor(numLinks / 2)
-      }
-      // Sanity checks
-      if (startNum < 1) {
-        /* istanbul ignore next */
-        startNum = 1
-      } else if (startNum > numPages - numLinks) {
-        startNum = numPages - numLinks + 1
-      }
-      return { showFirstDots, showLastDots, numLinks, startNum }
-    },
-    pageList() {
-      // Generates the pageList array
-      const { numLinks, startNum } = this.paginationParams
-      const currPage = this.computedCurrentPage
-      // Generate list of page numbers
-      const pages = makePageArray(startNum, numLinks)
-      // We limit to a total of 3 page buttons on XS screens
-      // So add classes to page links to hide them for XS breakpoint
-      // Note: Ellipsis will also be hidden on XS screens
-      // TODO: Make this visual limit configurable based on breakpoint(s)
-      if (pages.length > 3) {
-        const idx = currPage - startNum
-        // THe following is a bootstrap-vue custom utility class
-        const classes = 'bv-d-xs-down-none'
-        if (idx === 0) {
-          // Keep leftmost 3 buttons visible when current page is first page
-          for (let i = 3; i < pages.length; i++) {
-            pages[i].classes = classes
-          }
-        } else if (idx === pages.length - 1) {
-          // Keep rightmost 3 buttons visible when current page is last page
-          for (let i = 0; i < pages.length - 3; i++) {
-            pages[i].classes = classes
-          }
-        } else {
-          // Hide all except current page, current page - 1 and current page + 1
-          for (let i = 0; i < idx - 1; i++) {
-            // hide some left button(s)
-            pages[i].classes = classes
-          }
-          for (let i = pages.length - 1; i > idx + 1; i--) {
-            // hide some right button(s)
-            pages[i].classes = classes
-          }
-        }
-      }
-      return pages
-    }
-  },
-  watch: {
-    value(newValue, oldValue) {
-      if (newValue !== oldValue) {
-        this.currentPage = sanitizeCurPage(newValue, this.localNumPages)
-      }
-    },
-    currentPage(newValue, oldValue) {
-      if (newValue !== oldValue) {
-        // Emit null if no page selected
-        this.$emit('input', newValue > 0 ? newValue : null)
-      }
-    },
-    limit(newValue, oldValue) {
-      if (newValue !== oldValue) {
-        this.localLimit = sanitizeLimit(newValue)
-      }
-    }
-  },
-  created() {
-    // Set our default values in data
-    this.localLimit = sanitizeLimit(this.limit)
-    this.$nextTick(() => {
-      // Sanity check
-      this.currentPage =
-        this.currentPage > this.localNumPages ? this.localNumPages : this.currentPage
-    })
-  },
-  methods: {
-    getButtons() {
-      // Return only buttons that are visible
-      return Object(__WEBPACK_IMPORTED_MODULE_3__utils_dom__["s" /* selectAll */])('a.page-link', this.$el).filter(btn => Object(__WEBPACK_IMPORTED_MODULE_3__utils_dom__["l" /* isVisible */])(btn))
-    },
-    setBtnFocus(btn) {
-      btn.focus()
-    },
-    focusCurrent() {
-      // We do this in next tick to ensure buttons have finished rendering
-      this.$nextTick(() => {
-        const btn = this.getButtons().find(
-          el => parseInt(Object(__WEBPACK_IMPORTED_MODULE_3__utils_dom__["f" /* getAttr */])(el, 'aria-posinset'), 10) === this.computedCurrentPage
-        )
-        if (btn && btn.focus) {
-          this.setBtnFocus(btn)
-        } else {
-          // Fallback if current page is not in button list
-          this.focusFirst()
-        }
-      })
-    },
-    focusFirst() {
-      // We do this in next tick to ensure buttons have finished rendering
-      this.$nextTick(() => {
-        const btn = this.getButtons().find(el => !Object(__WEBPACK_IMPORTED_MODULE_3__utils_dom__["k" /* isDisabled */])(el))
-        if (btn && btn.focus && btn !== document.activeElement) {
-          this.setBtnFocus(btn)
-        }
-      })
-    },
-    focusLast() {
-      // We do this in next tick to ensure buttons have finished rendering
-      this.$nextTick(() => {
-        const btn = this.getButtons()
-          .reverse()
-          .find(el => !Object(__WEBPACK_IMPORTED_MODULE_3__utils_dom__["k" /* isDisabled */])(el))
-        if (btn && btn.focus && btn !== document.activeElement) {
-          this.setBtnFocus(btn)
-        }
-      })
-    },
-    focusPrev() {
-      // We do this in next tick to ensure buttons have finished rendering
-      this.$nextTick(() => {
-        const buttons = this.getButtons()
-        const idx = buttons.indexOf(document.activeElement)
-        if (idx > 0 && !Object(__WEBPACK_IMPORTED_MODULE_3__utils_dom__["k" /* isDisabled */])(buttons[idx - 1]) && buttons[idx - 1].focus) {
-          this.setBtnFocus(buttons[idx - 1])
-        }
-      })
-    },
-    focusNext() {
-      // We do this in next tick to ensure buttons have finished rendering
-      this.$nextTick(() => {
-        const buttons = this.getButtons()
-        const idx = buttons.indexOf(document.activeElement)
-        const cnt = buttons.length - 1
-        if (idx < cnt && !Object(__WEBPACK_IMPORTED_MODULE_3__utils_dom__["k" /* isDisabled */])(buttons[idx + 1]) && buttons[idx + 1].focus) {
-          this.setBtnFocus(buttons[idx + 1])
-        }
-      })
-    }
-  },
-  render(h) {
+  render (h) {
     const buttons = []
-    const numberOfPages = this.localNumPages
-    const disabled = this.disabled
-    const { showFirstDots, showLastDots } = this.paginationParams
-    const currPage = this.computedCurrentPage
-    const fill = this.align === 'fill'
-
-    // Helper function and flag
-    const isActivePage = pageNum => pageNum === currPage
-    const noCurrPage = this.currentPage < 1
 
     // Factory function for prev/next/first/last buttons
-    const makeEndBtn = (linkTo, ariaLabel, btnSlot, btnText, pageTest, key) => {
-      const isDisabled =
-        disabled || isActivePage(pageTest) || noCurrPage || linkTo < 1 || linkTo > numberOfPages
-      const pageNum = linkTo < 1 ? 1 : linkTo > numberOfPages ? numberOfPages : linkTo
-      const scope = { disabled: isDisabled, page: pageNum, index: pageNum - 1 }
-      const btnContent = this.normalizeSlot(btnSlot, scope) || Object(__WEBPACK_IMPORTED_MODULE_4__utils_to_string__["a" /* default */])(btnText) || h(false)
-      const inner = h(
-        isDisabled ? 'span' : 'b-link',
-        {
-          staticClass: 'page-link',
-          props: isDisabled ? {} : this.linkProps(linkTo),
-          attrs: {
-            role: 'menuitem',
-            tabindex: isDisabled ? null : '-1',
-            'aria-label': ariaLabel,
-            'aria-controls': this.ariaControls || null,
-            'aria-disabled': isDisabled ? 'true' : null
+    const makeEndBtns = (linkTo, ariaLabel, btnText, pageTest) => {
+      let button
+      pageTest = pageTest || linkTo // Page # to test against to disable
+      if (this.disabled || this.isActive(pageTest)) {
+        button = h(
+          'li',
+          {
+            class: ['page-item', 'disabled'],
+            attrs: { role: 'none presentation', 'aria-hidden': 'true' }
           },
-          on: isDisabled
-            ? {}
-            : {
-                click: evt => {
-                  this.onClick(linkTo, evt)
+          [
+            h('span', {
+              class: ['page-link'],
+              domProps: { innerHTML: btnText }
+            })
+          ]
+        )
+      } else {
+        button = h(
+          'li',
+          {
+            class: ['page-item'],
+            attrs: { role: 'none presentation' }
+          },
+          [
+            h(
+              'b-link',
+              {
+                class: ['page-link'],
+                props: this.linkProps(linkTo),
+                attrs: {
+                  role: 'menuitem',
+                  tabindex: '-1',
+                  'aria-label': ariaLabel,
+                  'aria-controls': this.ariaControls || null
                 },
-                keydown: onSpaceKey
-              }
-        },
-        [btnContent]
-      )
-      return h(
-        'li',
-        {
-          key,
-          staticClass: 'page-item',
-          class: { disabled: isDisabled, 'flex-fill': fill },
-          attrs: {
-            role: 'none presentation',
-            'aria-hidden': isDisabled ? 'true' : null
-          }
-        },
-        [inner]
-      )
+                on: {
+                  click: evt => {
+                    this.onClick(linkTo, evt)
+                  },
+                  keydown: evt => {
+                    // Links don't normally respond to SPACE, so we add that functionality
+                    if (evt.keyCode === __WEBPACK_IMPORTED_MODULE_1__utils_key_codes__["a" /* default */].SPACE) {
+                      evt.preventDefault()
+                      this.onClick(linkTo, evt)
+                    }
+                  }
+                }
+              },
+              [
+                h('span', {
+                  attrs: { 'aria-hidden': 'true' },
+                  domProps: { innerHTML: btnText }
+                })
+              ]
+            )
+          ]
+        )
+      }
+      return button
     }
 
     // Ellipsis factory
-    const makeEllipsis = isLast => {
+    const makeEllipsis = () => {
       return h(
         'li',
         {
-          key: `elipsis-${isLast ? 'last' : 'first'}`,
-          staticClass: 'page-item',
-          class: ['disabled', 'bv-d-xs-down-none', fill ? 'flex-fill' : ''],
+          class: ['page-item', 'disabled', 'd-none', 'd-sm-flex'],
           attrs: { role: 'separator' }
         },
         [
-          h('span', { staticClass: 'page-link' }, [
-            this.normalizeSlot('ellipsis-text', {}) || Object(__WEBPACK_IMPORTED_MODULE_4__utils_to_string__["a" /* default */])(this.ellipsisText) || h(false)
-          ])
+          h('span', {
+            class: ['page-link'],
+            domProps: { innerHTML: this.ellipsisText }
+          })
         ]
       )
     }
 
-    // Goto First Page button bookend
+    // Goto First Page button
     buttons.push(
       this.hideGotoEndButtons
         ? h(false)
-        : makeEndBtn(1, this.labelFirstPage, 'first-text', this.firstText, 1, 'bookend-goto-first')
+        : makeEndBtns(1, this.labelFirstPage, this.firstText)
     )
 
-    // Goto Previous page button bookend
-    buttons.push(
-      makeEndBtn(
-        currPage - 1,
-        this.labelPrevPage,
-        'prev-text',
-        this.prevText,
-        1,
-        'bookend-goto-prev'
-      )
-    )
+    // Goto Previous page button
+    buttons.push(makeEndBtns(this.currentPage - 1, this.labelPrevPage, this.prevText, 1))
 
     // First Ellipsis Bookend
-    buttons.push(showFirstDots ? makeEllipsis(false) : h(false))
+    buttons.push(this.showFirstDots ? makeEllipsis() : h(false))
 
     // Individual Page links
-    this.pageList.forEach((page, idx) => {
-      const active = isActivePage(page.number) && !noCurrPage
-      // Active page will have tabindex of 0, or if no current page and first page button
-      let tabIndex = disabled ? null : active || (noCurrPage && idx === 0) ? '0' : '-1'
-      const attrs = {
-        role: 'menuitemradio',
-        'aria-disabled': disabled ? 'true' : null,
-        'aria-controls': this.ariaControls || null,
-        'aria-label':
-          typeof this.labelPage === 'function'
-            ? this.labelPage(page.number)
-            : `${this.labelPage} ${page.number}`,
-        'aria-checked': active ? 'true' : 'false',
-        'aria-posinset': page.number,
-        'aria-setsize': numberOfPages,
-        // ARIA "roving tabindex" method
-        tabindex: tabIndex
-      }
-      const btnContent = Object(__WEBPACK_IMPORTED_MODULE_4__utils_to_string__["a" /* default */])(this.makePage(page.number))
-      const scope = {
-        page: page.number,
-        index: page.number - 1,
-        content: btnContent,
-        active,
-        disabled
-      }
-      const inner = h(
-        disabled ? 'span' : 'b-link',
-        {
-          props: disabled ? {} : this.linkProps(page.number),
-          staticClass: 'page-link',
-          attrs,
-          on: disabled
-            ? {}
-            : {
-                click: evt => {
-                  this.onClick(page.number, evt)
-                },
-                keydown: onSpaceKey
+    this.pageList.forEach(page => {
+      let inner
+      let pageNum = this.makePage(page.number)
+      if (this.disabled) {
+        inner = h('span', {
+          class: ['page-link'],
+          domProps: { innerHTML: pageNum }
+        })
+      } else {
+        const active = this.isActive(page.number)
+        inner = h('b-link', {
+          class: this.pageLinkClasses(page),
+          props: this.linkProps(page.number),
+          attrs: {
+            role: 'menuitemradio',
+            tabindex: active ? '0' : '-1',
+            'aria-controls': this.ariaControls || null,
+            'aria-label': `${this.labelPage} ${page.number}`,
+            'aria-checked': active ? 'true' : 'false',
+            'aria-posinset': page.number,
+            'aria-setsize': this.numberOfPages
+          },
+          domProps: { innerHTML: pageNum },
+          on: {
+            click: evt => {
+              this.onClick(page.number, evt)
+            },
+            keydown: evt => {
+              if (evt.keyCode === __WEBPACK_IMPORTED_MODULE_1__utils_key_codes__["a" /* default */].SPACE) {
+                evt.preventDefault()
+                this.onClick(page.number, evt)
               }
-        },
-        [this.normalizeSlot('page', scope) || btnContent]
-      )
+            }
+          }
+        })
+      }
       buttons.push(
         h(
           'li',
           {
-            key: `page-${page.number}`,
-            staticClass: 'page-item',
-            class: [{ disabled, active, 'flex-fill': fill }, page.classes],
+            key: page.number,
+            class: this.pageItemClasses(page),
             attrs: { role: 'none presentation' }
           },
           [inner]
@@ -10918,32 +13029,23 @@ const props = {
     })
 
     // Last Ellipsis Bookend
-    buttons.push(showLastDots ? makeEllipsis(true) : h(false))
+    buttons.push(this.showLastDots ? makeEllipsis() : h(false))
 
-    // Goto Next page button bookend
+    // Goto Next page button
     buttons.push(
-      makeEndBtn(
-        currPage + 1,
+      makeEndBtns(
+        this.currentPage + 1,
         this.labelNextPage,
-        'next-text',
         this.nextText,
-        numberOfPages,
-        'bookend-goto-next'
+        this.numberOfPages
       )
     )
 
-    // Goto Last Page button bookend
+    // Goto Last Page button
     buttons.push(
       this.hideGotoEndButtons
         ? h(false)
-        : makeEndBtn(
-            numberOfPages,
-            this.labelLastPage,
-            'last-text',
-            this.lastText,
-            numberOfPages,
-            'bookend-goto-last'
-          )
+        : makeEndBtns(this.numberOfPages, this.labelLastPage, this.lastText)
     )
 
     // Assemble the paginatiom buttons
@@ -10951,21 +13053,20 @@ const props = {
       'ul',
       {
         ref: 'ul',
-        staticClass: 'pagination',
-        class: ['b-pagination', this.btnSize, this.alignment],
+        class: ['pagination', 'b-pagination', this.btnSize, this.alignment],
         attrs: {
           role: 'menubar',
-          'aria-disabled': disabled ? 'true' : 'false',
+          'aria-disabled': this.disabled ? 'true' : 'false',
           'aria-label': this.ariaLabel || null
         },
         on: {
           keydown: evt => {
             const keyCode = evt.keyCode
             const shift = evt.shiftKey
-            if (keyCode === __WEBPACK_IMPORTED_MODULE_2__utils_key_codes__["a" /* default */].LEFT) {
+            if (keyCode === __WEBPACK_IMPORTED_MODULE_1__utils_key_codes__["a" /* default */].LEFT) {
               evt.preventDefault()
               shift ? this.focusFirst() : this.focusPrev()
-            } else if (keyCode === __WEBPACK_IMPORTED_MODULE_2__utils_key_codes__["a" /* default */].RIGHT) {
+            } else if (keyCode === __WEBPACK_IMPORTED_MODULE_1__utils_key_codes__["a" /* default */].RIGHT) {
               evt.preventDefault()
               shift ? this.focusLast() : this.focusNext()
             }
@@ -10976,19 +13077,185 @@ const props = {
     )
 
     // if we are pagination-nav, wrap in '<nav>' wrapper
-    if (this.isNav) {
-      return h(
-        'nav',
-        {
-          attrs: {
-            'aria-disabled': disabled ? 'true' : null,
-            'aria-hidden': disabled ? 'true' : 'false'
+    return this.isNav ? h('nav', {}, [pagination]) : pagination
+  },
+  watch: {
+    currentPage (newPage, oldPage) {
+      if (newPage !== oldPage) {
+        this.$emit('input', newPage)
+      }
+    },
+    value (newValue, oldValue) {
+      if (newValue !== oldValue) {
+        this.currentPage = newValue
+      }
+    }
+  },
+  computed: {
+    btnSize () {
+      return this.size ? `pagination-${this.size}` : ''
+    },
+    alignment () {
+      if (this.align === 'center') {
+        return 'justify-content-center'
+      } else if (this.align === 'end' || this.align === 'right') {
+        return 'justify-content-end'
+      }
+      return ''
+    },
+    pageList () {
+      // Sanity checks
+      if (this.currentPage > this.numberOfPages) {
+        this.currentPage = this.numberOfPages
+      } else if (this.currentPage < 1) {
+        this.currentPage = 1
+      }
+      // - Hide first ellipsis marker
+      this.showFirstDots = false
+      // - Hide last ellipsis marker
+      this.showLastDots = false
+      let numLinks = this.limit
+      let startNum = 1
+      if (this.numberOfPages <= this.limit) {
+        // Special Case: Less pages available than the limit of displayed pages
+        numLinks = this.numberOfPages
+      } else if (
+        this.currentPage < this.limit - 1 &&
+        this.limit > ELLIPSIS_THRESHOLD
+      ) {
+        // We are near the beginning of the page list
+        if (!this.hideEllipsis) {
+          numLinks = this.limit - 1
+          this.showLastDots = true
+        }
+      } else if (
+        this.numberOfPages - this.currentPage + 2 < this.limit &&
+        this.limit > ELLIPSIS_THRESHOLD
+      ) {
+        // We are near the end of the list
+        if (!this.hideEllipsis) {
+          this.showFirstDots = true
+          numLinks = this.limit - 1
+        }
+        startNum = this.numberOfPages - numLinks + 1
+      } else {
+        // We are somewhere in the middle of the page list
+        if (this.limit > ELLIPSIS_THRESHOLD && !this.hideEllipsis) {
+          this.showFirstDots = true
+          this.showLastDots = true
+          numLinks = this.limit - 2
+        }
+        startNum = this.currentPage - Math.floor(numLinks / 2)
+      }
+      // Sanity checks
+      if (startNum < 1) {
+        startNum = 1
+      } else if (startNum > this.numberOfPages - numLinks) {
+        startNum = this.numberOfPages - numLinks + 1
+      }
+      // Generate list of page numbers
+      const pages = makePageArray(startNum, numLinks)
+      // We limit to a total of 3 page buttons on small screens
+      // Ellipsis will also be hidden on small screens
+      if (pages.length > 3) {
+        const idx = this.currentPage - startNum
+        if (idx === 0) {
+          // Keep leftmost 3 buttons visible
+          for (let i = 3; i < pages.length; i++) {
+            pages[i].className = 'd-none d-sm-flex'
           }
-        },
-        [pagination]
+        } else if (idx === pages.length - 1) {
+          // Keep rightmost 3 buttons visible
+          for (let i = 0; i < pages.length - 3; i++) {
+            pages[i].className = 'd-none d-sm-flex'
+          }
+        } else {
+          // hide left button(s)
+          for (let i = 0; i < idx - 1; i++) {
+            pages[i].className = 'd-none d-sm-flex'
+          }
+          // hide right button(s)
+          for (let i = pages.length - 1; i > idx + 1; i--) {
+            pages[i].className = 'd-none d-sm-flex'
+          }
+        }
+      }
+      return pages
+    }
+  },
+  methods: {
+    isActive (pagenum) {
+      return pagenum === this.currentPage
+    },
+    pageItemClasses (page) {
+      return [
+        'page-item',
+        this.disabled ? 'disabled' : '',
+        this.isActive(page.number) ? 'active' : '',
+        page.className
+      ]
+    },
+    pageLinkClasses (page) {
+      return [
+        'page-link',
+        this.disabled ? 'disabled' : '',
+        // Interim workaround to get better focus styling of active button
+        // See https://github.com/twbs/bootstrap/issues/24838
+        this.isActive(page.number) ? 'btn-primary' : ''
+      ]
+    },
+    getButtons () {
+      // Return only buttons that are visible
+      return Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["p" /* selectAll */])('a.page-link', this.$el).filter(btn => Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["k" /* isVisible */])(btn))
+    },
+    setBtnFocus (btn) {
+      this.$nextTick(() => {
+        btn.focus()
+      })
+    },
+    focusCurrent () {
+      const btn = this.getButtons().find(
+        el => parseInt(Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["e" /* getAttr */])(el, 'aria-posinset'), 10) === this.currentPage
       )
-    } else {
-      return pagination
+      if (btn && btn.focus) {
+        this.setBtnFocus(btn)
+      } else {
+        // Fallback if current page is not in button list
+        this.focusFirst()
+      }
+    },
+    focusFirst () {
+      const btn = this.getButtons().find(el => !Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["i" /* isDisabled */])(el))
+      if (btn && btn.focus && btn !== document.activeElement) {
+        this.setBtnFocus(btn)
+      }
+    },
+    focusLast () {
+      const btn = this.getButtons()
+        .reverse()
+        .find(el => !Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["i" /* isDisabled */])(el))
+      if (btn && btn.focus && btn !== document.activeElement) {
+        this.setBtnFocus(btn)
+      }
+    },
+    focusPrev () {
+      const buttons = this.getButtons()
+      const idx = buttons.indexOf(document.activeElement)
+      if (idx > 0 && !Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["i" /* isDisabled */])(buttons[idx - 1]) && buttons[idx - 1].focus) {
+        this.setBtnFocus(buttons[idx - 1])
+      }
+    },
+    focusNext () {
+      const buttons = this.getButtons()
+      const idx = buttons.indexOf(document.activeElement)
+      const cnt = buttons.length - 1
+      if (
+        idx < cnt &&
+        !Object(__WEBPACK_IMPORTED_MODULE_2__utils_dom__["i" /* isDisabled */])(buttons[idx + 1]) &&
+        buttons[idx + 1].focus
+      ) {
+        this.setBtnFocus(buttons[idx + 1])
+      }
     }
   }
 });
@@ -11000,11 +13267,11 @@ const props = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = concat;
 // Production steps of ECMA-262, Edition 6, 22.1.2.1
 // es6-ified by @alexsasharegan
-/* istanbul ignore if */
 if (!Array.from) {
-  Array.from = (function() {
+  Array.from = (function () {
     const toStr = Object.prototype.toString
     const isCallable = fn => typeof fn === 'function' || toStr.call(fn) === '[object Function]'
     const toInteger = value => {
@@ -11021,7 +13288,7 @@ if (!Array.from) {
     const toLength = value => Math.min(Math.max(toInteger(value), 0), maxSafeInteger)
 
     // The length property of the from method is 1.
-    return function from(arrayLike /*, mapFn, thisArg */) {
+    return function from (arrayLike /*, mapFn, thisArg */) {
       // 1. Let C be the this value.
       const C = this
 
@@ -11083,11 +13350,10 @@ if (!Array.from) {
 
 // https://tc39.github.io/ecma262/#sec-array.prototype.find
 // Needed for IE support
-/* istanbul ignore if */
 if (!Array.prototype.find) {
   // eslint-disable-next-line no-extend-native
   Object.defineProperty(Array.prototype, 'find', {
-    value: function(predicate) {
+    value: function (predicate) {
       // 1. Let O be ? ToObject(this value).
       if (this == null) {
         throw new TypeError('"this" is null or not defined')
@@ -11129,7 +13395,6 @@ if (!Array.prototype.find) {
   })
 }
 
-/* istanbul ignore if */
 if (!Array.isArray) {
   Array.isArray = arg => Object.prototype.toString.call(arg) === '[object Array]'
 }
@@ -11146,9 +13411,12 @@ const isArray = Array.isArray
 const arrayIncludes = (array, value) => array.indexOf(value) !== -1
 /* harmony export (immutable) */ __webpack_exports__["a"] = arrayIncludes;
 
-const concat = (...args) => Array.prototype.concat.apply([], args)
-/* harmony export (immutable) */ __webpack_exports__["b"] = concat;
+const arrayFind = (array, fn, thisArg) => array.find(fn, thisArg)
+/* unused harmony export arrayFind */
 
+function concat () {
+  return Array.prototype.concat.apply([], arguments)
+}
 
 
 /***/ }),
@@ -11158,51 +13426,47 @@ const concat = (...args) => Array.prototype.concat.apply([], args)
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_object___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__utils_object__);
 
 
 class BvEvent {
-  constructor(type, eventInit = {}) {
+  constructor (type, eventInit = {}) {
     // Start by emulating native Event constructor.
     if (!type) {
-      /* istanbul ignore next */
       throw new TypeError(
-        `Failed to construct '${this.constructor.name}'. 1 argument required, ${
-          arguments.length
-        } given.`
+        `Failed to construct '${this.constructor.name}'. 1 argument required, ${arguments.length} given.`
       )
     }
     // Assign defaults first, the eventInit,
     // and the type last so it can't be overwritten.
-    Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["assign"])(this, BvEvent.defaults(), eventInit, { type })
+    Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["a" /* assign */])(this, BvEvent.defaults(), eventInit, { type })
     // Freeze some props as readonly, but leave them enumerable.
-    Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["defineProperties"])(this, {
-      type: Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["readonlyDescriptor"])(),
-      cancelable: Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["readonlyDescriptor"])(),
-      nativeEvent: Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["readonlyDescriptor"])(),
-      target: Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["readonlyDescriptor"])(),
-      relatedTarget: Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["readonlyDescriptor"])(),
-      vueTarget: Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["readonlyDescriptor"])()
+    Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["c" /* defineProperties */])(this, {
+      type: Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["f" /* readonlyDescriptor */])(),
+      cancelable: Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["f" /* readonlyDescriptor */])(),
+      nativeEvent: Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["f" /* readonlyDescriptor */])(),
+      target: Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["f" /* readonlyDescriptor */])(),
+      relatedTarget: Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["f" /* readonlyDescriptor */])(),
+      vueTarget: Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["f" /* readonlyDescriptor */])()
     })
     // Create a private variable using closure scoping.
     let defaultPrevented = false
     // Recreate preventDefault method. One way setter.
-    this.preventDefault = function preventDefault() {
+    this.preventDefault = function preventDefault () {
       if (this.cancelable) {
         defaultPrevented = true
       }
     }
     // Create 'defaultPrevented' publicly accessible prop
     // that can only be altered by the preventDefault method.
-    Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["defineProperty"])(this, 'defaultPrevented', {
+    Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["d" /* defineProperty */])(this, 'defaultPrevented', {
       enumerable: true,
-      get() {
+      get () {
         return defaultPrevented
       }
     })
   }
 
-  static defaults() {
+  static defaults () {
     return {
       type: '',
       cancelable: true,
@@ -11213,234 +13477,7 @@ class BvEvent {
     }
   }
 }
-
-/* harmony default export */ __webpack_exports__["a"] = (BvEvent);
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/utils/clone-deep.js":
-/***/ (function(module, exports) {
-
-throw new Error("Module parse failed: Unexpected token (10:26)\nYou may need an appropriate loader to handle this file type.\n|   if (isPlainObject(obj)) {\n|     return keys(obj).reduce(\n|       (result, key) => ({ ...result, [key]: cloneDeep(obj[key], obj[key]) }),\n|       {}\n|     )");
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/utils/config.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return setConfig; });
-/* unused harmony export resetConfig */
-/* unused harmony export getConfig */
-/* unused harmony export getDefaults */
-/* unused harmony export getConfigValue */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getComponentConfig; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getBreakpoints; });
-/* unused harmony export getBreakpointsUp */
-/* unused harmony export getBreakpointsDown */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__clone_deep__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/clone-deep.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__clone_deep___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__clone_deep__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__get__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/get.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__warn__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/warn.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__object___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__object__);
-
-
-
-
-
-
-// General Bootstrap Vue configuration
-//
-// BREAKPOINT DEFINITIONS
-//
-// Some components (BCol and BFormGroup) generate props based on breakpoints, and this
-// occurs when the component is first loaded (evaluated), which may happen before the
-// config is created/modified
-//
-// To get around this we make these components async (lazy evaluation)
-// The component definition is only called/executed when the first access to the
-// component is used (and cached on subsequent uses)
-//
-// See: https://vuejs.org/v2/guide/components-dynamic-async.html#Async-Components
-//
-// PROP DEFAULTS
-//
-// For default values on props, we use the default value factory function approach so
-// so that the default values are pulled in at each component instantiation
-//
-//  props: {
-//    variant: {
-//      type: String,
-//      default: () => getConfigComponent('BAlert', 'variant')
-//    }
-//  }
-
-// prettier-ignore
-const DEFAULTS = {
-  // Breakpoints
-  breakpoints: ['xs', 'sm', 'md', 'lg', 'xl'],
-
-  // Component Specific defaults are keyed by the component
-  // name (PascalCase) and prop name (camelCase)
-  BAlert: {
-    dismissLabel: 'Close',
-    variant: 'info'
-  },
-  BBadge: {
-    variant: 'secondary'
-  },
-  BButton: {
-    variant: 'secondary'
-  },
-  BButtonClose: {
-    // `textVariant` is `null` to inherit the current text color
-    textVariant: null,
-    ariaLabel: 'Close'
-  },
-  BCardSubTitle: {
-    // BCard and BCardBody also inherit this prop
-    subTitleTextVariant: 'muted'
-  },
-  BDropdown: {
-    toggleText: 'Toggle Dropdown',
-    variant: 'secondary'
-  },
-  BFormFile: {
-    browseText: 'Browse',
-    // Chrome default file prompt
-    placeholder: 'No file chosen',
-    dropPlaceholder: 'Drop files here'
-  },
-  BFormText: {
-    textVariant: 'muted'
-  },
-  BImg: {
-    blankColor: 'transparent'
-  },
-  BImgLazy: {
-    blankColor: 'transparent'
-  },
-  BModal: {
-    cancelTitle: 'Cancel',
-    cancelVariant: 'secondary',
-    okTitle: 'OK',
-    okVariant: 'primary',
-    headerCloseLabel: 'Close'
-  }
-}
-
-// This contains user defined configuration
-let CONFIG = {}
-
-// Method to get a deep clone (immutable) copy of the defaults
-const getDefaults = () => Object(__WEBPACK_IMPORTED_MODULE_0__clone_deep__["default"])(DEFAULTS)
-
-// Method to set the config
-// Merges in only known top-level and sub-level keys
-//   Vue.use(BootstrapVue, config)
-// or
-//   BootstrapVue.setConfig(config)
-//   Vue.use(BootstrapVue)
-
-const setConfig = (config = {}) => {
-  if (!Object(__WEBPACK_IMPORTED_MODULE_4__object__["isObject"])(config)) {
-    /* istanbul ignore next */
-    return
-  }
-
-  Object(__WEBPACK_IMPORTED_MODULE_4__object__["keys"])(config)
-    .filter(cmpName => config.hasOwnProperty(cmpName))
-    .forEach(cmpName => {
-      if (!DEFAULTS.hasOwnProperty(cmpName)) {
-        /* istanbul ignore next */
-        Object(__WEBPACK_IMPORTED_MODULE_2__warn__["a" /* default */])(`config: unknown config property "${cmpName}"`)
-        /* istanbul ignore next */
-        return
-      }
-      const cmpConfig = config[cmpName]
-      if (cmpName === 'breakpoints') {
-        // Special case for breakpoints
-        const breakpoints = config.breakpoints
-        if (
-          !Object(__WEBPACK_IMPORTED_MODULE_3__array__["d" /* isArray */])(breakpoints) ||
-          breakpoints.length < 2 ||
-          breakpoints.some(b => typeof b !== 'string' || b.length === 0)
-        ) {
-          /* istanbul ignore next */
-          Object(__WEBPACK_IMPORTED_MODULE_2__warn__["a" /* default */])('config: "breakpoints" must be an array of at least 2 breakpoint names')
-        } else {
-          CONFIG.breakpoints = Object(__WEBPACK_IMPORTED_MODULE_0__clone_deep__["default"])(breakpoints)
-        }
-      } else if (Object(__WEBPACK_IMPORTED_MODULE_4__object__["isObject"])(cmpConfig)) {
-        Object(__WEBPACK_IMPORTED_MODULE_4__object__["keys"])(cmpConfig)
-          .filter(key => cmpConfig.hasOwnProperty(key))
-          .forEach(key => {
-            if (!DEFAULTS[cmpName].hasOwnProperty(key)) {
-              /* istanbul ignore next */
-              Object(__WEBPACK_IMPORTED_MODULE_2__warn__["a" /* default */])(`config: unknown config property "${cmpName}.{$key}"`)
-            } else {
-              // If we pre-populate the config with defaults, we can skip this line
-              CONFIG[cmpName] = CONFIG[cmpName] || {}
-              if (cmpConfig[key] !== undefined) {
-                CONFIG[cmpName][key] = Object(__WEBPACK_IMPORTED_MODULE_0__clone_deep__["default"])(cmpConfig[key])
-              }
-            }
-          })
-      }
-    })
-}
-
-// Reset the user config to default
-// For testing purposes only
-const resetConfig = () => {
-  CONFIG = {}
-}
-
-// Get the current user config
-// For testing purposes only
-const getConfig = () => Object(__WEBPACK_IMPORTED_MODULE_0__clone_deep__["default"])(CONFIG)
-
-// Method to grab a config value based on a dotted/array notation key
-// Returns a deep clone (immutable) copy
-const getConfigValue = key => {
-  // First we try the user config, and if key not found we fall back to default value
-  // NOTE: If we deep clone DEFAULTS into config, then we can skip the fallback for get
-  return Object(__WEBPACK_IMPORTED_MODULE_0__clone_deep__["default"])(Object(__WEBPACK_IMPORTED_MODULE_1__get__["a" /* default */])(CONFIG, key, Object(__WEBPACK_IMPORTED_MODULE_1__get__["a" /* default */])(getDefaults(), key)))
-}
-
-// Method to grab a config value for a particular component.
-// Returns a deep clone (immutable) copy
-const getComponentConfig = (cmpName, key = null) => {
-  // Return the particular config value for key for if specified,
-  // otherwise we return the full config
-  return key ? getConfigValue(`${cmpName}.${key}`) : getConfigValue(cmpName) || {}
-}
-
-// Convenience method for getting all breakpoint names
-const getBreakpoints = () => getConfigValue('breakpoints')
-
-// Convenience method for getting breakpoints with
-// the smallest breakpoint set as ''
-// Useful for components that create breakpoint specific props
-const getBreakpointsUp = () => {
-  const breakpoints = getBreakpoints()
-  breakpoints[0] = ''
-  return breakpoints
-}
-
-// Convenience method for getting breakpoints with
-// the largest breakpoint set as ''
-// Useful for components that create breakpoint specific props
-const getBreakpointsDown = () => {
-  const breakpoints = getBreakpoints()
-  breakpoints[breakpoints.length - 1] = ''
-  return breakpoints
-}
-
-// Named Exports
+/* harmony export (immutable) */ __webpack_exports__["a"] = BvEvent;
 
 
 
@@ -11451,125 +13488,61 @@ const getBreakpointsDown = () => {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__object___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__object__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__env__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/env.js");
-
-
-
-
-// Determine if the browser supports the option passive for events
-let passiveEventSupported = false
-/* istanbul ignore if */
-if (__WEBPACK_IMPORTED_MODULE_2__env__["b" /* inBrowser */]) {
-  try {
-    const options = {
-      get passive() {
-        // This function will be called when the browser
-        // attempts to access the passive property.
-        passiveEventSupported = true
-      }
-    }
-    window.addEventListener('test', options, options)
-    window.removeEventListener('test', options, options)
-  } catch (err) {
-    passiveEventSupported = false
-  }
-}
-
-// Exported only for testing purposes
-const isPassiveSupported = () => passiveEventSupported
-/* unused harmony export isPassiveSupported */
-
-
-// Normalize event options based on support of passive option
-// Exported only for testing purposes
-const parseEventOptions = options => {
-  if (!passiveEventSupported) {
-    // Need to translate to actual Boolean value
-    return Boolean(Object(__WEBPACK_IMPORTED_MODULE_1__object__["isObject"])(options) ? options.useCapture : options)
-  }
-  /* istanbul ignore next: JSDOM doesn't support above detection of passive */
-  return options || { useCapture: false }
-  // So we can't reach this anymore for unit testing due to the above if statement
-}
-/* unused harmony export parseEventOptions */
-
-
-// Attach an event listener to an element
-const eventOn = (el, evtName, handler, options) => {
-  if (el && el.addEventListener) {
-    el.addEventListener(evtName, handler, parseEventOptions(options))
-  }
-}
-/* harmony export (immutable) */ __webpack_exports__["e"] = eventOn;
-
-
-// Remove an event listener from an element
-const eventOff = (el, evtName, handler, options) => {
-  if (el && el.removeEventListener) {
-    el.removeEventListener(evtName, handler, parseEventOptions(options))
-  }
-}
-/* harmony export (immutable) */ __webpack_exports__["d"] = eventOff;
 
 
 // Determine if an element is an HTML Element
 const isElement = el => {
-  return Boolean(el && el.nodeType === Node.ELEMENT_NODE)
+  return el && el.nodeType === Node.ELEMENT_NODE
 }
-/* unused harmony export isElement */
+/* harmony export (immutable) */ __webpack_exports__["j"] = isElement;
 
 
 // Determine if an HTML element is visible - Faster than CSS check
-const isVisible = el => /* istanbul ignore next: getBoundingClientRect() doesn't work in JSDOM */ {
-  if (!isElement(el) || !contains(document.body, el)) {
-    return false
-  }
-  // All browsers support getBoundingClientRect(), except JSDOM as it returns all 0's for values :(
-  // So any tests that need isVisible will fail in JSDOM
-  const bcr = getBCR(el)
-  return Boolean(bcr && bcr.height > 0 && bcr.width > 0)
+const isVisible = el => {
+  return isElement(el) &&
+           document.body.contains(el) &&
+           el.getBoundingClientRect().height > 0 &&
+           el.getBoundingClientRect().width > 0
 }
-/* harmony export (immutable) */ __webpack_exports__["l"] = isVisible;
+/* harmony export (immutable) */ __webpack_exports__["k"] = isVisible;
 
 
 // Determine if an element is disabled
 const isDisabled = el => {
-  return (
-    !isElement(el) || el.disabled || hasClass(el, 'disabled') || Boolean(getAttr(el, 'disabled'))
-  )
+  return !isElement(el) ||
+           el.disabled ||
+           el.classList.contains('disabled') ||
+           Boolean(el.getAttribute('disabled'))
 }
-/* harmony export (immutable) */ __webpack_exports__["k"] = isDisabled;
+/* harmony export (immutable) */ __webpack_exports__["i"] = isDisabled;
 
 
 // Cause/wait-for an element to reflow it's content (adjusting it's height/width)
 const reflow = el => {
-  // Requesting an elements offsetHight will trigger a reflow of the element content
-  /* istanbul ignore next: reflow doesn't happen in JSDOM */
+  // requsting an elements offsetHight will trigger a reflow of the element content
   return isElement(el) && el.offsetHeight
 }
-/* harmony export (immutable) */ __webpack_exports__["n"] = reflow;
+/* harmony export (immutable) */ __webpack_exports__["l"] = reflow;
 
 
-// Select all elements matching selector. Returns `[]` if none found
+// Select all elements matching selector. Returns [] if none found
 const selectAll = (selector, root) => {
   if (!isElement(root)) {
     root = document
   }
   return Object(__WEBPACK_IMPORTED_MODULE_0__array__["c" /* from */])(root.querySelectorAll(selector))
 }
-/* harmony export (immutable) */ __webpack_exports__["s"] = selectAll;
+/* harmony export (immutable) */ __webpack_exports__["p"] = selectAll;
 
 
-// Select a single element, returns `null` if not found
+// Select a single element, returns null if not found
 const select = (selector, root) => {
   if (!isElement(root)) {
     root = document
   }
   return root.querySelector(selector) || null
 }
-/* harmony export (immutable) */ __webpack_exports__["r"] = select;
+/* harmony export (immutable) */ __webpack_exports__["o"] = select;
 
 
 // Determine if an element matches a selector
@@ -11581,29 +13554,28 @@ const matches = (el, selector) => {
   // https://developer.mozilla.org/en-US/docs/Web/API/Element/matches#Polyfill
   // Prefer native implementations over polyfill function
   const proto = Element.prototype
-  /* istanbul ignore next */
-  const Matches =
-    proto.matches ||
-    proto.matchesSelector ||
-    proto.mozMatchesSelector ||
-    proto.msMatchesSelector ||
-    proto.oMatchesSelector ||
-    proto.webkitMatchesSelector ||
-    function(sel) /* istanbul ignore next */ {
-      const element = this
-      const m = selectAll(sel, element.document || element.ownerDocument)
-      let i = m.length
-      // eslint-disable-next-line no-empty
-      while (--i >= 0 && m.item(i) !== element) {}
-      return i > -1
-    }
+  const Matches = proto.matches ||
+        proto.matchesSelector ||
+        proto.mozMatchesSelector ||
+        proto.msMatchesSelector ||
+        proto.oMatchesSelector ||
+        proto.webkitMatchesSelector ||
+        /* istanbul ignore next */
+        function (sel) {
+          const element = this
+          const m = selectAll(sel, element.document || element.ownerDocument)
+          let i = m.length
+          // eslint-disable-next-line no-empty
+          while (--i >= 0 && m.item(i) !== element) {}
+          return i > -1
+        }
 
   return Matches.call(el, selector)
 }
-/* harmony export (immutable) */ __webpack_exports__["m"] = matches;
+/* unused harmony export matches */
 
 
-// Finds closest element matching selector. Returns `null` if not found
+// Finds closest element matching selector. Returns null if not found
 const closest = (selector, root) => {
   if (!isElement(root)) {
     return null
@@ -11612,38 +13584,28 @@ const closest = (selector, root) => {
   // https://developer.mozilla.org/en-US/docs/Web/API/Element/closest
   // Since we dont support IE < 10, we can use the "Matches" version of the polyfill for speed
   // Prefer native implementation over polyfill function
-  const Closest =
-    Element.prototype.closest ||
-    function(sel) /* istanbul ignore next */ {
-      let element = this
-      if (!contains(document.documentElement, element)) {
-        return null
-      }
-      do {
-        // Use our "patched" matches function
-        if (matches(element, sel)) {
-          return element
-        }
-        element = element.parentElement || element.parentNode
-      } while (element !== null && element.nodeType === Node.ELEMENT_NODE)
-      return null
-    }
+  const Closest = Element.prototype.closest ||
+                  /* istanbul ignore next */
+                  function (sel) {
+                    let element = this
+                    if (!document.documentElement.contains(element)) {
+                      return null
+                    }
+                    do {
+                      // Use our "patched" matches function
+                      if (matches(element, sel)) {
+                        return element
+                      }
+                      element = element.parentElement
+                    } while (element !== null)
+                    return null
+                  }
 
   const el = Closest.call(root, selector)
-  // Emulate jQuery closest and return `null` if match is the passed in element (root)
+  // Emulate jQuery closest and return null if match is the passed in element (root)
   return el === root ? null : el
 }
 /* harmony export (immutable) */ __webpack_exports__["b"] = closest;
-
-
-// Returns true if the parent element contains the child element
-const contains = (parent, child) => {
-  if (!parent || typeof parent.contains !== 'function') {
-    return false
-  }
-  return parent.contains(child)
-}
-/* harmony export (immutable) */ __webpack_exports__["c"] = contains;
 
 
 // Get an element given an ID
@@ -11655,10 +13617,7 @@ const getById = id => {
 
 // Add a class to an element
 const addClass = (el, className) => {
-  // We are checking for `el.classList` existence here since IE 11
-  // returns `undefined` for some elements (e.g. SVG elements)
-  // See https://github.com/bootstrap-vue/bootstrap-vue/issues/2713
-  if (className && isElement(el) && el.classList) {
+  if (className && isElement(el)) {
     el.classList.add(className)
   }
 }
@@ -11667,27 +13626,21 @@ const addClass = (el, className) => {
 
 // Remove a class from an element
 const removeClass = (el, className) => {
-  // We are checking for `el.classList` existence here since IE 11
-  // returns `undefined` for some elements (e.g. SVG elements)
-  // See https://github.com/bootstrap-vue/bootstrap-vue/issues/2713
-  if (className && isElement(el) && el.classList) {
+  if (className && isElement(el)) {
     el.classList.remove(className)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["p"] = removeClass;
+/* harmony export (immutable) */ __webpack_exports__["n"] = removeClass;
 
 
 // Test if an element has a class
 const hasClass = (el, className) => {
-  // We are checking for `el.classList` existence here since IE 11
-  // returns `undefined` for some elements (e.g. SVG elements)
-  // See https://github.com/bootstrap-vue/bootstrap-vue/issues/2713
-  if (className && isElement(el) && el.classList) {
+  if (className && isElement(el)) {
     return el.classList.contains(className)
   }
   return false
 }
-/* harmony export (immutable) */ __webpack_exports__["j"] = hasClass;
+/* harmony export (immutable) */ __webpack_exports__["h"] = hasClass;
 
 
 // Set an attribute on an element
@@ -11696,7 +13649,7 @@ const setAttr = (el, attr, value) => {
     el.setAttribute(attr, value)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["t"] = setAttr;
+/* harmony export (immutable) */ __webpack_exports__["q"] = setAttr;
 
 
 // Remove an attribute from an element
@@ -11705,234 +13658,124 @@ const removeAttr = (el, attr) => {
     el.removeAttribute(attr)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["o"] = removeAttr;
+/* harmony export (immutable) */ __webpack_exports__["m"] = removeAttr;
 
 
-// Get an attribute value from an element (returns `null` if not found)
+// Get an attribute value from an element (returns null if not found)
 const getAttr = (el, attr) => {
   if (attr && isElement(el)) {
     return el.getAttribute(attr)
   }
   return null
 }
-/* harmony export (immutable) */ __webpack_exports__["f"] = getAttr;
+/* harmony export (immutable) */ __webpack_exports__["e"] = getAttr;
 
 
-// Determine if an attribute exists on an element (returns `true`
-// or `false`, or `null` if element not found)
+// Determine if an attribute exists on an element (returns true or false, or null if element not found)
 const hasAttr = (el, attr) => {
   if (attr && isElement(el)) {
     return el.hasAttribute(attr)
   }
   return null
 }
-/* harmony export (immutable) */ __webpack_exports__["i"] = hasAttr;
+/* harmony export (immutable) */ __webpack_exports__["g"] = hasAttr;
 
 
-// Return the Bounding Client Rect of an element. Returns `null` if not an element
+// Return the Bounding Client Rec of an element. Retruns null if not an element
 const getBCR = el => {
-  /* istanbul ignore next: getBoundingClientRect() doesn't work in JSDOM */
   return isElement(el) ? el.getBoundingClientRect() : null
 }
-/* harmony export (immutable) */ __webpack_exports__["g"] = getBCR;
+/* harmony export (immutable) */ __webpack_exports__["f"] = getBCR;
 
 
 // Get computed style object for an element
 const getCS = el => {
-  /* istanbul ignore next: getComputedStyle() doesn't work in JSDOM */
   return isElement(el) ? window.getComputedStyle(el) : {}
 }
-/* harmony export (immutable) */ __webpack_exports__["h"] = getCS;
+/* unused harmony export getCS */
 
 
-// Return an element's offset with respect to document element
+// Return an element's offset wrt document element
 // https://j11y.io/jquery/#v=git&fn=jQuery.fn.offset
-const offset = el => /* istanbul ignore next: getBoundingClientRect(), getClientRects() doesn't work in JSDOM */ {
-  let _offset = { top: 0, left: 0 }
-  if (!isElement(el) || el.getClientRects().length === 0) {
-    return _offset
-  }
-  const bcr = getBCR(el)
-  if (bcr) {
+const offset = el => {
+  if (isElement(el)) {
+    if (!el.getClientRects().length) {
+      return { top: 0, left: 0 }
+    }
+    const bcr = getBCR(el)
     const win = el.ownerDocument.defaultView
-    _offset.top = bcr.top + win.pageYOffset
-    _offset.left = bcr.left + win.pageXOffset
+    return {
+      top: bcr.top + win.pageYOffset,
+      left: bcr.left + win.pageXOffset
+    }
   }
-  return _offset
 }
 /* unused harmony export offset */
 
 
-// Return an element's offset with respect to to it's offsetParent
+// Return an element's offset wrt to it's offsetParent
 // https://j11y.io/jquery/#v=git&fn=jQuery.fn.position
-const position = el => /* istanbul ignore next: getBoundingClientRect() doesn't work in JSDOM */ {
-  let _offset = { top: 0, left: 0 }
+const position = el => {
   if (!isElement(el)) {
-    return _offset
+    return
   }
   let parentOffset = { top: 0, left: 0 }
-  const elStyles = getCS(el)
-  if (elStyles.position === 'fixed') {
-    _offset = getBCR(el) || _offset
+  let offsetSelf
+  let offsetParent
+  if (getCS(el).position === 'fixed') {
+    offsetSelf = getBCR(el)
   } else {
-    _offset = offset(el)
+    offsetSelf = offset(el)
     const doc = el.ownerDocument
-    let offsetParent = el.offsetParent || doc.documentElement
-    while (
-      offsetParent &&
-      (offsetParent === doc.body || offsetParent === doc.documentElement) &&
-      getCS(offsetParent).position === 'static'
-    ) {
+    offsetParent = el.offsetParent || doc.documentElement
+    while (offsetParent &&
+                (offsetParent === doc.body || offsetParent === doc.documentElement) &&
+                getCS(offsetParent).position === 'static') {
       offsetParent = offsetParent.parentNode
     }
     if (offsetParent && offsetParent !== el && offsetParent.nodeType === Node.ELEMENT_NODE) {
       parentOffset = offset(offsetParent)
-      const offsetParentStyles = getCS(offsetParent)
-      parentOffset.top += parseFloat(offsetParentStyles.borderTopWidth)
-      parentOffset.left += parseFloat(offsetParentStyles.borderLeftWidth)
+      parentOffset.top += parseFloat(getCS(offsetParent).borderTopWidth)
+      parentOffset.left += parseFloat(getCS(offsetParent).borderLeftWidth)
     }
   }
   return {
-    top: _offset.top - parentOffset.top - parseFloat(elStyles.marginTop),
-    left: _offset.left - parentOffset.left - parseFloat(elStyles.marginLeft)
+    top: offsetSelf.top - parentOffset.top - parseFloat(getCS(el).marginTop),
+    left: offsetSelf.left - parentOffset.left - parseFloat(getCS(el).marginLeft)
   }
 }
 /* unused harmony export position */
 
 
-// requestAnimationFrame convenience method
-// We don't have a version for cancelAnimationFrame, but we don't call it anywhere
-const requestAF = cb => {
-  const w = __WEBPACK_IMPORTED_MODULE_2__env__["b" /* inBrowser */] ? window : {}
-  const rAF =
-    w.requestAnimationFrame ||
-    w.webkitRequestAnimationFrame ||
-    w.mozRequestAnimationFrame ||
-    w.msRequestAnimationFrame ||
-    w.oRequestAnimationFrame ||
-    (cb => {
-      // Fallback, but not a true polyfill.
-      // But all browsers we support (other than Opera Mini) support rAF
-      // without a polyfill.
-      /* istanbul ignore next */
-      return setTimeout(cb, 16)
-    })
-  return rAF(cb)
+// Attach an event listener to an element
+const eventOn = (el, evtName, handler) => {
+  if (el && el.addEventListener) {
+    el.addEventListener(evtName, handler)
+  }
 }
-/* harmony export (immutable) */ __webpack_exports__["q"] = requestAF;
+/* harmony export (immutable) */ __webpack_exports__["d"] = eventOn;
+
+
+// Remove an event listener from an element
+const eventOff = (el, evtName, handler) => {
+  if (el && el.removeEventListener) {
+    el.removeEventListener(evtName, handler)
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["c"] = eventOff;
 
 
 
 /***/ }),
 
-/***/ "./node_modules/bootstrap-vue/src/utils/env.js":
+/***/ "./node_modules/bootstrap-vue/src/utils/identity.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {// Info about the current environment
-
-// Constants
-
-const inBrowser = typeof document !== 'undefined' && typeof window !== 'undefined'
-/* harmony export (immutable) */ __webpack_exports__["b"] = inBrowser;
-
-
-const isServer = !inBrowser
-/* unused harmony export isServer */
-
-
-const hasTouchSupport =
-  inBrowser && ('ontouchstart' in document.documentElement || navigator.maxTouchPoints > 0)
-/* unused harmony export hasTouchSupport */
-
-
-const hasPointerEvent = inBrowser && Boolean(window.PointerEvent || window.MSPointerEvent)
-/* unused harmony export hasPointerEvent */
-
-
-// Getters
-
-const getNoWarn = () => process && Object({"NODE_ENV":"development"}) && Object({"NODE_ENV":"development"}).BOOTSTRAP_VUE_NO_WARN
-/* harmony export (immutable) */ __webpack_exports__["a"] = getNoWarn;
-
-
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/process/browser.js")))
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/utils/get.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__object___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__object__);
-
-
-
-/**
- * Get property defined by dot/array notation in string.
- *
- * @link https://gist.github.com/jeneg/9767afdcca45601ea44930ea03e0febf#gistcomment-1935901
- *
- * @param {Object} obj
- * @param {string|Array} path
- * @param {*} defaultValue (optional)
- * @return {*}
- */
-const get = (obj, path, defaultValue = null) => {
-  // Handle array of path values
-  path = Object(__WEBPACK_IMPORTED_MODULE_0__array__["d" /* isArray */])(path) ? path.join('.') : path
-
-  // If no path or no object passed
-  if (!path || !Object(__WEBPACK_IMPORTED_MODULE_1__object__["isObject"])(obj)) {
-    return defaultValue
-  }
-
-  // Handle edge case where user has dot(s) in top-level item field key
-  // See https://github.com/bootstrap-vue/bootstrap-vue/issues/2762
-  if (obj.hasOwnProperty(path)) {
-    return obj[path]
-  }
-
-  // Handle string array notation (numeric indices only)
-  path = String(path).replace(/\[(\d+)]/g, '.$1')
-
-  const steps = path.split('.').filter(Boolean)
-
-  // Handle case where someone passes a string of only dots
-  if (steps.length === 0) {
-    return defaultValue
-  }
-
-  // Traverse path in object to find result
-  return steps.every(step => Object(__WEBPACK_IMPORTED_MODULE_1__object__["isObject"])(obj) && obj.hasOwnProperty(step) && (obj = obj[step]))
-    ? obj
-    : defaultValue
+/* harmony export (immutable) */ __webpack_exports__["a"] = identity;
+function identity (x) {
+  return x
 }
-
-/* harmony default export */ __webpack_exports__["a"] = (get);
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/utils/html.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-const stripTagsRegex = /(<([^>]+)>)/gi
-
-// Removes any thing that looks like an HTML tag from the supplied string
-const stripTags = (text = '') => String(text).replace(stripTagsRegex, '')
-/* harmony export (immutable) */ __webpack_exports__["b"] = stripTags;
-
-
-// Generate a domProps object for either innerHTML, textContent or nothing
-const htmlOrText = (innerHTML, textContent) => {
-  return innerHTML ? { innerHTML } : textContent ? { textContent } : {}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = htmlOrText;
-
 
 
 /***/ }),
@@ -11945,7 +13788,7 @@ const htmlOrText = (innerHTML, textContent) => {
  * Key Codes (events)
  */
 
-const KEY_CODES = {
+/* harmony default export */ __webpack_exports__["a"] = ({
   SPACE: 32,
   ENTER: 13,
   ESC: 27,
@@ -11956,20 +13799,8 @@ const KEY_CODES = {
   PAGEUP: 33,
   PAGEDOWN: 34,
   HOME: 36,
-  END: 35,
-  TAB: 9,
-  SHIFT: 16,
-  CTRL: 17,
-  BACKSPACE: 8,
-  ALT: 18,
-  PAUSE: 19,
-  BREAK: 19,
-  INSERT: 45,
-  INS: 45,
-  DELETE: 46
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (KEY_CODES);
+  END: 35
+});
 
 
 /***/ }),
@@ -11980,23 +13811,16 @@ const KEY_CODES = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__object___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__object__);
 
 
 
-const isDate = obj => obj instanceof Date
-
-// Assumes both a and b are arrays!
-// Handles when arrays are "sparse" (array.every(...) doesn't handle sparse)
-const compareArrays = (a, b) => {
-  if (a.length !== b.length) {
-    return false
-  }
-  let equal = true
-  for (let i = 0; equal && i < a.length; i++) {
-    equal = looseEqual(a[i], b[i])
-  }
-  return equal
+/**
+ * Quick object check - this is primarily used to tell
+ * Objects from primitive values when we know the value
+ * is a JSON-compliant type.
+ */
+function isObject (obj) {
+  return obj !== null && typeof obj === 'object'
 }
 
 /**
@@ -12004,41 +13828,35 @@ const compareArrays = (a, b) => {
  * if they are plain objects, do they have the same shape?
  * Returns boolean true or false
  */
-const looseEqual = (a, b) => {
-  if (a === b) {
-    return true
-  }
-  let aValidType = isDate(a)
-  let bValidType = isDate(b)
-  if (aValidType || bValidType) {
-    return aValidType && bValidType ? a.getTime() === b.getTime() : false
-  }
-  aValidType = Object(__WEBPACK_IMPORTED_MODULE_0__array__["d" /* isArray */])(a)
-  bValidType = Object(__WEBPACK_IMPORTED_MODULE_0__array__["d" /* isArray */])(b)
-  if (aValidType || bValidType) {
-    return aValidType && bValidType ? compareArrays(a, b) : false
-  }
-  aValidType = Object(__WEBPACK_IMPORTED_MODULE_1__object__["isObject"])(a)
-  bValidType = Object(__WEBPACK_IMPORTED_MODULE_1__object__["isObject"])(b)
-  if (aValidType || bValidType) {
-    /* istanbul ignore if: this if will probably never be called */
-    if (!aValidType || !bValidType) {
-      return false
-    }
-    const aKeysCount = Object(__WEBPACK_IMPORTED_MODULE_1__object__["keys"])(a).length
-    const bKeysCount = Object(__WEBPACK_IMPORTED_MODULE_1__object__["keys"])(b).length
-    if (aKeysCount !== bKeysCount) {
-      return false
-    }
-    for (const key in a) {
-      const aHasKey = a.hasOwnProperty(key)
-      const bHasKey = b.hasOwnProperty(key)
-      if ((aHasKey && !bHasKey) || (!aHasKey && bHasKey) || !looseEqual(a[key], b[key])) {
+function looseEqual (a, b) {
+  if (a === b) return true
+  const isObjectA = isObject(a)
+  const isObjectB = isObject(b)
+  if (isObjectA && isObjectB) {
+    try {
+      const isArrayA = Object(__WEBPACK_IMPORTED_MODULE_0__array__["d" /* isArray */])(a)
+      const isArrayB = Object(__WEBPACK_IMPORTED_MODULE_0__array__["d" /* isArray */])(b)
+      if (isArrayA && isArrayB) {
+        return a.length === b.length && a.every((e, i) => {
+          return looseEqual(e, b[i])
+        })
+      } else if (!isArrayA && !isArrayB) {
+        const keysA = Object(__WEBPACK_IMPORTED_MODULE_1__object__["e" /* keys */])(a)
+        const keysB = Object(__WEBPACK_IMPORTED_MODULE_1__object__["e" /* keys */])(b)
+        return keysA.length === keysB.length && keysA.every(key => {
+          return looseEqual(a[key], b[key])
+        })
+      } else {
         return false
       }
+    } catch (e) {
+      return false
     }
+  } else if (!isObjectA && !isObjectB) {
+    return String(a) === String(b)
+  } else {
+    return false
   }
-  return String(a) === String(b)
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (looseEqual);
@@ -12046,63 +13864,231 @@ const looseEqual = (a, b) => {
 
 /***/ }),
 
-/***/ "./node_modules/bootstrap-vue/src/utils/loose-index-of.js":
+/***/ "./node_modules/bootstrap-vue/src/utils/memoize.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__loose_equal__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/loose-equal.js");
+/* harmony export (immutable) */ __webpack_exports__["a"] = memoize;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
 
 
-const looseIndexOf = (arr, val) => {
-  // Assumes that the first argument is an array
-  for (let i = 0; i < arr.length; i++) {
-    if (Object(__WEBPACK_IMPORTED_MODULE_0__loose_equal__["a" /* default */])(arr[i], val)) {
-      return i
-    }
+function memoize (fn) {
+  const cache = Object(__WEBPACK_IMPORTED_MODULE_0__object__["b" /* create */])(null)
+
+  return function memoizedFn () {
+    const args = JSON.stringify(arguments)
+    return (cache[args] = cache[args] || fn.apply(null, arguments))
   }
-  return -1
 }
-
-/* harmony default export */ __webpack_exports__["a"] = (looseIndexOf);
-
-
-/***/ }),
-
-/***/ "./node_modules/bootstrap-vue/src/utils/normalize-slot.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * Returns vNodes for named slot either scoped or unscoped
- *
- * @param {String} name
- * @param {String} scope
- * @param {Object} scopedSlots
- * @param {Object} slots
- * @returns {Array|undefined} vNodes
- */
-const normalizeSlot = (name, scope = {}, $scopedSlots = {}, $slots = {}) => {
-  // Note: in Vue 2.6.x, all names slots are also scoped slots
-  const slot = $scopedSlots[name] || $slots[name]
-  return typeof slot === 'function' ? slot(scope) : slot
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (normalizeSlot);
 
 
 /***/ }),
 
 /***/ "./node_modules/bootstrap-vue/src/utils/object.js":
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module parse failed: Unexpected token (87:32)\nYou may need an appropriate loader to handle this file type.\n|   Object.keys(obj)\n|     .filter(key => props.indexOf(key) === -1)\n|     .reduce((result, key) => ({ ...result, [key]: obj[key] }), {})\n| \n| export const readonlyDescriptor = () => ({ enumerable: true, configurable: false, writable: false })");
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["f"] = readonlyDescriptor;
+/**
+ * Aliasing Object[method] allows the minifier to shorten methods to a single character variable,
+ * as well as giving BV a chance to inject polyfills.
+ * As long as we avoid
+ * - import * as Object from "utils/object"
+ * all unused exports should be removed by tree-shaking.
+ */
+
+// @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+if (typeof Object.assign !== 'function') {
+  Object.assign = function (target, varArgs) {
+    // .length of function is 2
+
+    if (target == null) {
+      // TypeError if undefined or null
+      throw new TypeError('Cannot convert undefined or null to object')
+    }
+
+    let to = Object(target)
+
+    for (let index = 1; index < arguments.length; index++) {
+      const nextSource = arguments[index]
+
+      if (nextSource != null) {
+        // Skip over if undefined or null
+        for (const nextKey in nextSource) {
+          // Avoid bugs when hasOwnProperty is shadowed
+          if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+            to[nextKey] = nextSource[nextKey]
+          }
+        }
+      }
+    }
+    return to
+  }
+}
+
+// @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Polyfill
+if (!Object.is) {
+  Object.is = function (x, y) {
+    // SameValue algorithm
+    if (x === y) { // Steps 1-5, 7-10
+      // Steps 6.b-6.e: +0 != -0
+      return x !== 0 || 1 / x === 1 / y
+    } else {
+      // Step 6.a: NaN == NaN
+      // eslint-disable-next-line no-self-compare
+      return x !== x && y !== y
+    }
+  }
+}
+
+const assign = Object.assign
+/* harmony export (immutable) */ __webpack_exports__["a"] = assign;
+
+const getOwnPropertyNames = Object.getOwnPropertyNames
+/* unused harmony export getOwnPropertyNames */
+
+const keys = Object.keys
+/* harmony export (immutable) */ __webpack_exports__["e"] = keys;
+
+const defineProperties = Object.defineProperties
+/* harmony export (immutable) */ __webpack_exports__["c"] = defineProperties;
+
+const defineProperty = Object.defineProperty
+/* harmony export (immutable) */ __webpack_exports__["d"] = defineProperty;
+
+const freeze = Object.freeze
+/* unused harmony export freeze */
+
+const getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor
+/* unused harmony export getOwnPropertyDescriptor */
+
+const getOwnPropertySymbols = Object.getOwnPropertySymbols
+/* unused harmony export getOwnPropertySymbols */
+
+const getPrototypeOf = Object.getPrototypeOf
+/* unused harmony export getPrototypeOf */
+
+const create = Object.create
+/* harmony export (immutable) */ __webpack_exports__["b"] = create;
+
+const isFrozen = Object.isFrozen
+/* unused harmony export isFrozen */
+
+const is = Object.is
+/* unused harmony export is */
+
+
+function readonlyDescriptor () {
+  return { enumerable: true, configurable: false, writable: false }
+}
+
 
 /***/ }),
 
 /***/ "./node_modules/bootstrap-vue/src/utils/observe-dom.js":
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module parse failed: Unexpected token (73:54)\nYou may need an appropriate loader to handle this file type.\n| \n|     // Have the observer observe foo for changes in children, etc\n|     obs.observe(el, { childList: true, subtree: true, ...opts })\n|   } else if (eventListenerSupported) {\n|     // Legacy interface. most likely not used in modern browsers");
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = observeDOM;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
+
+
+
+/**
+ * Observe a DOM element changes, falls back to eventListener mode
+ * @param {Element} el The DOM element to observe
+ * @param {Function} callback callback to be called on change
+ * @param {object} [opts={childList: true, subtree: true}] observe options
+ * @see http://stackoverflow.com/questions/3219758
+ */
+function observeDOM (el, callback, opts) {
+  const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver
+  const eventListenerSupported = window.addEventListener
+
+  // Handle case where we might be passed a vue instance
+  el = el ? (el.$el || el) : null
+  /* istanbul ignore next: dificult to test in JSDOM */
+  if (!Object(__WEBPACK_IMPORTED_MODULE_1__utils_dom__["j" /* isElement */])(el)) {
+    // We can't observe somthing that isn't an element
+    return null
+  }
+
+  let obs = null
+
+  /* istanbul ignore next: dificult to test in JSDOM */
+  if (MutationObserver) {
+    // Define a new observer
+    obs = new MutationObserver(mutations => {
+      let changed = false
+      // A Mutation can contain several change records, so we loop through them to see what has changed.
+      // We break out of the loop early if any "significant" change has been detected
+      for (let i = 0; i < mutations.length && !changed; i++) {
+        // The muttion record
+        const mutation = mutations[i]
+        // Mutation Type
+        const type = mutation.type
+        // DOM Node (could be any DOM Node type - HTMLElement, Text, comment, etc)
+        const target = mutation.target
+        if (type === 'characterData' && target.nodeType === Node.TEXT_NODE) {
+          // We ignore nodes that are not TEXt (i.e. comments, etc) as they don't change layout
+          changed = true
+        } else if (type === 'attributes') {
+          changed = true
+        } else if (type === 'childList' && (mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0)) {
+          // This includes HTMLElement and Text Nodes being added/removed/re-arranged
+          changed = true
+        }
+      }
+      if (changed) {
+        // We only call the callback if a change that could affect layout/size truely happened.
+        callback()
+      }
+    })
+
+    // Have the observer observe foo for changes in children, etc
+    obs.observe(el, Object(__WEBPACK_IMPORTED_MODULE_0__object__["a" /* assign */])({childList: true, subtree: true}, opts))
+  } else if (eventListenerSupported) {
+    // Legacy interface. most likely not used in modern browsers
+    el.addEventListener('DOMNodeInserted', callback, false)
+    el.addEventListener('DOMNodeRemoved', callback, false)
+  }
+
+  // We return a reference to the observer so that obs.disconnect() can be called if necessary
+  // To reduce overhead when the root element is hiiden
+  return obs
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/utils/pluck-props.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = pluckProps;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__identity__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/identity.js");
+
+
+
+
+/**
+ * Given an array of properties or an object of property keys,
+ * plucks all the values off the target object.
+ * @param {{}|string[]} keysToPluck
+ * @param {{}} objToPluck
+ * @param {Function} transformFn
+ * @return {{}}
+ */
+function pluckProps (keysToPluck, objToPluck, transformFn = __WEBPACK_IMPORTED_MODULE_2__identity__["a" /* default */]) {
+  return (Object(__WEBPACK_IMPORTED_MODULE_1__array__["d" /* isArray */])(keysToPluck) ? keysToPluck.slice() : Object(__WEBPACK_IMPORTED_MODULE_0__object__["e" /* keys */])(keysToPluck)).reduce((memo, prop) => {
+    // eslint-disable-next-line no-sequences
+    return (memo[transformFn(prop)] = objToPluck[prop]), memo
+  }, {})
+}
+
 
 /***/ }),
 
@@ -12110,106 +14096,74 @@ throw new Error("Module parse failed: Unexpected token (73:54)\nYou may need an 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/config.js");
-
-
+/* unused harmony export registerComponent */
+/* harmony export (immutable) */ __webpack_exports__["a"] = registerComponents;
+/* unused harmony export registerDirective */
+/* harmony export (immutable) */ __webpack_exports__["b"] = registerDirectives;
+/* harmony export (immutable) */ __webpack_exports__["c"] = vueUse;
 /**
- * Plugin install factory function.
- * @param {object} { components, directives }
- * @returns {function} plugin install function
- */
-const installFactory = ({ components, directives, plugins }) => {
-  return (Vue, config = {}) => {
-    Object(__WEBPACK_IMPORTED_MODULE_0__config__["c" /* setConfig */])(config)
-    registerComponents(Vue, components)
-    registerDirectives(Vue, directives)
-    registerPlugins(Vue, plugins)
-  }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = installFactory;
-
-
-/**
- * Load a group of plugins.
- * @param {object} Vue
- * @param {object} Plugin definitions
- */
-const registerPlugins = (Vue, plugins = {}) => {
-  for (let plugin in plugins) {
-    if (plugin && plugins[plugin]) {
-      Vue.use(plugins[plugin])
-    }
-  }
-}
-/* unused harmony export registerPlugins */
-
-
-/**
- * Load a component.
+ * Register a component plugin as being loaded. returns true if compoent plugin already registered
  * @param {object} Vue
  * @param {string} Component name
  * @param {object} Component definition
  */
-const registerComponent = (Vue, name, def) => {
-  if (Vue && name && def) {
+function registerComponent (Vue, name, def) {
+  Vue._bootstrap_vue_components_ = Vue._bootstrap_vue_components_ || {}
+  const loaded = Vue._bootstrap_vue_components_[name]
+  if (!loaded && def && name) {
+    Vue._bootstrap_vue_components_[name] = true
     Vue.component(name, def)
   }
+  return loaded
 }
-/* unused harmony export registerComponent */
-
 
 /**
- * Load a group of components.
+ * Register a group of components as being loaded.
  * @param {object} Vue
  * @param {object} Object of component definitions
  */
-const registerComponents = (Vue, components = {}) => {
+function registerComponents (Vue, components) {
   for (let component in components) {
     registerComponent(Vue, component, components[component])
   }
 }
-/* unused harmony export registerComponents */
-
 
 /**
- * Load a directive.
+ * Register a directive as being loaded. returns true if directive plugin already registered
  * @param {object} Vue
  * @param {string} Directive name
  * @param {object} Directive definition
  */
-const registerDirective = (Vue, name, def) => {
-  if (Vue && name && def) {
+function registerDirective (Vue, name, def) {
+  Vue._bootstrap_vue_directives_ = Vue._bootstrap_vue_directives_ || {}
+  const loaded = Vue._bootstrap_vue_directives_[name]
+  if (!loaded && def && name) {
+    Vue._bootstrap_vue_directives_[name] = true
     Vue.directive(name, def)
   }
+  return loaded
 }
-/* unused harmony export registerDirective */
-
 
 /**
- * Load a group of directives.
+ * Register a group of directives as being loaded.
  * @param {object} Vue
  * @param {object} Object of directive definitions
  */
-const registerDirectives = (Vue, directives = {}) => {
+function registerDirectives (Vue, directives) {
   for (let directive in directives) {
     registerDirective(Vue, directive, directives[directive])
   }
 }
-/* unused harmony export registerDirectives */
-
 
 /**
  * Install plugin if window.Vue available
  * @param {object} Plugin definition
  */
-const vueUse = VuePlugin => {
-  /* istanbul ignore next */
+function vueUse (VuePlugin) {
   if (typeof window !== 'undefined' && window.Vue) {
     window.Vue.use(VuePlugin)
   }
 }
-/* unused harmony export vueUse */
-
 
 
 /***/ }),
@@ -12222,9 +14176,66 @@ const vueUse = VuePlugin => {
  * @param {number} length
  * @return {Array}
  */
-const range = length => Array.apply(null, { length })
+/* harmony default export */ __webpack_exports__["a"] = (length => Array.apply(null, { length }));
 
-/* harmony default export */ __webpack_exports__["a"] = (range);
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/utils/stable-sort.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = stableSort;
+/*
+ * Consitant and stable sort function across JavsaScript platforms
+ *
+ * Inconsistant sorts can cause SSR problems between client and server
+ * such as in <b-table> if sortBy is applied to the data on server side render.
+ * Chrome and V8 native sorts are inconsistant/unstable
+ *
+ * This function uses native sort with fallback to index compare when the a and b
+ * compare returns 0
+ *
+ * Algorithm bsaed on:
+ * https://stackoverflow.com/questions/1427608/fast-stable-sorting-algorithm-implementation-in-javascript/45422645#45422645
+ *
+ * @param {array} array to sort
+ * @param {function} sortcompare function
+ * @return {array}
+ */
+
+function stableSort (array, compareFn) {
+  // Using `.bind(compareFn)` on the wrapped anonymous function improves
+  // performance by avoiding the function call setup. We don't use an arrow
+  // function here as it binds `this` to the `stableSort` context rather than
+  // the `compareFn` context, which wouldn't give us the performance increase.
+  return array
+    .map((a, index) => [ index, a ])
+    .sort(function (a, b) { return this(a[1], b[1]) || a[0] - b[0] }.bind(compareFn))
+    .map(e => e[1])
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/bootstrap-vue/src/utils/suffix-prop-name.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = suffixPropName;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__upper_first__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/upper-first.js");
+
+
+/**
+ * Suffix can be a falsey value so nothing is appended to string.
+ * (helps when looping over props & some shouldn't change)
+ * Use data last parameters to allow for currying.
+ * @param {string} suffix
+ * @param {string} str
+ */
+function suffixPropName (suffix, str) {
+  return str + (suffix ? Object(__WEBPACK_IMPORTED_MODULE_0__upper_first__["a" /* default */])(suffix) : '')
+}
 
 
 /***/ }),
@@ -12234,31 +14245,29 @@ const range = length => Array.apply(null, { length })
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return bindTargets; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return unbindTargets; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__object___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__object__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dom__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/dom.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return unbindTargets; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
 
 
-
-const allListenTypes = { hover: true, click: true, focus: true }
+const allListenTypes = {hover: true, click: true, focus: true}
 
 const BVBoundListeners = '__BV_boundEventListeners__'
 
 const bindTargets = (vnode, binding, listenTypes, fn) => {
-  const targets = Object(__WEBPACK_IMPORTED_MODULE_0__object__["keys"])(binding.modifiers || {}).filter(t => !allListenTypes[t])
+  const targets = Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["e" /* keys */])(binding.modifiers || {})
+    .filter(t => !allListenTypes[t])
 
   if (binding.value) {
     targets.push(binding.value)
   }
 
   const listener = () => {
-    fn({ targets, vnode })
+    fn({targets, vnode})
   }
 
-  Object(__WEBPACK_IMPORTED_MODULE_0__object__["keys"])(allListenTypes).forEach(type => {
+  Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["e" /* keys */])(allListenTypes).forEach(type => {
     if (listenTypes[type] || binding.modifiers[type]) {
-      Object(__WEBPACK_IMPORTED_MODULE_1__dom__["e" /* eventOn */])(vnode.elm, type, listener)
+      vnode.elm.addEventListener(type, listener)
       const boundListeners = vnode.elm[BVBoundListeners] || {}
       boundListeners[type] = boundListeners[type] || []
       boundListeners[type].push(listener)
@@ -12271,11 +14280,11 @@ const bindTargets = (vnode, binding, listenTypes, fn) => {
 }
 
 const unbindTargets = (vnode, binding, listenTypes) => {
-  Object(__WEBPACK_IMPORTED_MODULE_0__object__["keys"])(allListenTypes).forEach(type => {
+  Object(__WEBPACK_IMPORTED_MODULE_0__utils_object__["e" /* keys */])(allListenTypes).forEach(type => {
     if (listenTypes[type] || binding.modifiers[type]) {
       const boundListeners = vnode.elm[BVBoundListeners] && vnode.elm[BVBoundListeners][type]
       if (boundListeners) {
-        boundListeners.forEach(listener => Object(__WEBPACK_IMPORTED_MODULE_1__dom__["d" /* eventOff */])(vnode.elm, type, listener))
+        boundListeners.forEach(listener => vnode.elm.removeEventListener(type, listener))
         delete vnode.elm[BVBoundListeners][type]
       }
     }
@@ -12284,33 +14293,25 @@ const unbindTargets = (vnode, binding, listenTypes) => {
 
 
 
-/* unused harmony default export */ var _unused_webpack_default_export = (bindTargets);
+/* harmony default export */ __webpack_exports__["b"] = (bindTargets);
 
 
 /***/ }),
 
-/***/ "./node_modules/bootstrap-vue/src/utils/to-string.js":
+/***/ "./node_modules/bootstrap-vue/src/utils/upper-first.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__array__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/array.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__object__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/object.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__object___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__object__);
-
-
-
+/* harmony export (immutable) */ __webpack_exports__["a"] = upperFirst;
 /**
- * Convert a value to a string that can be rendered.
+ * @param {string} str
  */
-const toString = (val, spaces = 2) => {
-  return val === null || val === undefined
-    ? ''
-    : Object(__WEBPACK_IMPORTED_MODULE_0__array__["d" /* isArray */])(val) || (Object(__WEBPACK_IMPORTED_MODULE_1__object__["isPlainObject"])(val) && val.toString === Object.prototype.toString)
-      ? JSON.stringify(val, null, spaces)
-      : String(val)
+function upperFirst (str) {
+  if (typeof str !== 'string') {
+    str = String(str)
+  }
+  return str.charAt(0).toUpperCase() + str.slice(1)
 }
-
-/* harmony default export */ __webpack_exports__["a"] = (toString);
 
 
 /***/ }),
@@ -12319,18 +14320,13 @@ const toString = (val, spaces = 2) => {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__env__ = __webpack_require__("./node_modules/bootstrap-vue/src/utils/env.js");
-
-
 /**
  * Log a warning message to the console with bootstrap-vue formatting sugar.
  * @param {string} message
  */
 /* istanbul ignore next */
-const warn = message => {
-  if (!Object(__WEBPACK_IMPORTED_MODULE_0__env__["a" /* getNoWarn */])()) {
-    console.warn(`[BootstrapVue warn]: ${message}`)
-  }
+function warn (message) {
+  console.warn(`[Bootstrap-Vue warn]: ${message}`)
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (warn);
@@ -12378,7 +14374,67 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/*!\n * BootstrapVue Custom CSS (https://bootstrap-vue.js.org)\n */@media (max-width:575.98px){.bv-d-xs-down-none{display:none!important}}@media (max-width:767.98px){.bv-d-sm-down-none{display:none!important}}@media (max-width:991.98px){.bv-d-md-down-none{display:none!important}}@media (max-width:1199.98px){.bv-d-lg-down-none{display:none!important}}.bv-d-xl-down-none{display:none!important}.card-img-left{border-top-left-radius:calc(.25rem - 1px);border-bottom-left-radius:calc(.25rem - 1px)}.card-img-right{border-top-right-radius:calc(.25rem - 1px);border-bottom-right-radius:calc(.25rem - 1px)}.dropdown:not(.dropleft) .dropdown-toggle.dropdown-toggle-no-caret:after{display:none!important}.dropdown.dropleft .dropdown-toggle.dropdown-toggle-no-caret:before{display:none!important}.b-dropdown-form{display:inline-block;padding:.25rem 1.5rem;width:100%;clear:both;font-weight:400}.b-dropdown-form:first-child{border-top-left-radius:calc(.25rem - 1px);border-top-right-radius:calc(.25rem - 1px)}.b-dropdown-form:last-child{border-bottom-right-radius:calc(.25rem - 1px);border-bottom-left-radius:calc(.25rem - 1px)}.b-dropdown-text{display:inline-block;padding:.25rem 1.5rem;margin-bottom:0;width:100%;clear:both;font-weight:lighter}.b-dropdown-text:first-child{border-top-left-radius:calc(.25rem - 1px);border-top-right-radius:calc(.25rem - 1px)}.b-dropdown-text:last-child{border-bottom-right-radius:calc(.25rem - 1px);border-bottom-left-radius:calc(.25rem - 1px)}.input-group>.input-group-append:last-child>.btn-group:not(:last-child):not(.dropdown-toggle)>.btn,.input-group>.input-group-append:not(:last-child)>.btn-group>.btn,.input-group>.input-group-prepend>.btn-group>.btn{border-top-right-radius:0;border-bottom-right-radius:0}.input-group>.input-group-append>.btn-group>.btn,.input-group>.input-group-prepend:first-child>.btn-group:not(:first-child)>.btn,.input-group>.input-group-prepend:not(:first-child)>.btn-group>.btn{border-top-left-radius:0;border-bottom-left-radius:0}.form-control.is-invalid,.form-control.is-valid,.was-validated .form-control:invalid,.was-validated .form-control:valid{background-position:right calc(.375em + .1875rem) center}input[type=color].form-control{height:calc(1.5em + .75rem + 2px);padding:.125rem .25rem}.input-group-sm input[type=color].form-control,input[type=color].form-control.form-control-sm{height:calc(1.5em + .5rem + 2px);padding:.125rem .25rem}.input-group-lg input[type=color].form-control,input[type=color].form-control.form-control-lg{height:calc(1.5em + 1rem + 2px);padding:.125rem .25rem}input[type=color].form-control:disabled{background-color:#adb5bd;opacity:.65}.input-group>.custom-range{position:relative;flex:1 1 auto;width:1%;margin-bottom:0}.input-group>.custom-range+.custom-file,.input-group>.custom-range+.custom-range,.input-group>.custom-range+.custom-select,.input-group>.custom-range+.form-control,.input-group>.custom-range+.form-control-plaintext{margin-left:-1px}.input-group>.custom-file+.custom-range,.input-group>.custom-range+.custom-range,.input-group>.custom-select+.custom-range,.input-group>.form-control+.custom-range,.input-group>.form-control-plaintext+.custom-range{margin-left:-1px}.input-group>.custom-range:focus{z-index:3}.input-group>.custom-range:not(:last-child){border-top-right-radius:0;border-bottom-right-radius:0}.input-group>.custom-range:not(:first-child){border-top-left-radius:0;border-bottom-left-radius:0}.input-group>.custom-range{height:calc(1.5em + .75rem + 2px);padding:0 .75rem;background-color:#fff;background-clip:padding-box;border:1px solid #ced4da;height:calc(1.5em + .75rem + 2px);border-radius:.25rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out}@media (prefers-reduced-motion:reduce){.input-group>.custom-range{transition:none}}.input-group>.custom-range:focus{color:#495057;background-color:#fff;border-color:#80bdff;outline:0;box-shadow:0 0 0 .2rem rgba(0,123,255,.25)}.input-group>.custom-range:disabled,.input-group>.custom-range[readonly]{background-color:#e9ecef}.input-group-lg>.custom-range{height:calc(1.5em + 1rem + 2px);padding:0 1rem;border-radius:.3rem}.input-group-sm>.custom-range{height:calc(1.5em + .5rem + 2px);padding:0 .5rem;border-radius:.2rem}.input-group .custom-range.is-valid,.was-validated .input-group .custom-range:valid{border-color:#28a745}.input-group .custom-range.is-valid:focus,.was-validated .input-group .custom-range:valid:focus{border-color:#28a745;box-shadow:0 0 0 .2rem rgba(40,167,69,.25)}.custom-range.is-valid:focus::-webkit-slider-thumb,.was-validated .custom-range:valid:focus::-webkit-slider-thumb{box-shadow:0 0 0 1px #fff,0 0 0 .2rem #9be7ac}.custom-range.is-valid:focus::-moz-range-thumb,.was-validated .custom-range:valid:focus::-moz-range-thumb{box-shadow:0 0 0 1px #fff,0 0 0 .2rem #9be7ac}.custom-range.is-valid:focus::-ms-thumb,.was-validated .custom-range:valid:focus::-ms-thumb{box-shadow:0 0 0 1px #fff,0 0 0 .2rem #9be7ac}.custom-range.is-valid::-webkit-slider-thumb,.was-validated .custom-range:valid::-webkit-slider-thumb{background-color:#28a745;background-image:none}.custom-range.is-valid::-webkit-slider-thumb:active,.was-validated .custom-range:valid::-webkit-slider-thumb:active{background-color:#9be7ac;background-image:none}.custom-range.is-valid::-webkit-slider-runnable-track,.was-validated .custom-range:valid::-webkit-slider-runnable-track{background-color:rgba(40,167,69,.35)}.custom-range.is-valid::-moz-range-thumb,.was-validated .custom-range:valid::-moz-range-thumb{background-color:#28a745;background-image:none}.custom-range.is-valid::-moz-range-thumb:active,.was-validated .custom-range:valid::-moz-range-thumb:active{background-color:#9be7ac;background-image:none}.custom-range.is-valid::-moz-range-track,.was-validated .custom-range:valid::-moz-range-track{background:rgba(40,167,69,.35)}.custom-range.is-valid~.valid-feedback,.custom-range.is-valid~.valid-tooltip,.was-validated .custom-range:valid~.valid-feedback,.was-validated .custom-range:valid~.valid-tooltip{display:block}.custom-range.is-valid::-ms-thumb,.was-validated .custom-range:valid::-ms-thumb{background-color:#28a745;background-image:none}.custom-range.is-valid::-ms-thumb:active,.was-validated .custom-range:valid::-ms-thumb:active{background-color:#9be7ac;background-image:none}.custom-range.is-valid::-ms-track-lower,.was-validated .custom-range:valid::-ms-track-lower{background:rgba(40,167,69,.35)}.custom-range.is-valid::-ms-track-upper,.was-validated .custom-range:valid::-ms-track-upper{background:rgba(40,167,69,.35)}.input-group .custom-range.is-invalid,.was-validated .input-group .custom-range:invalid{border-color:#dc3545}.input-group .custom-range.is-invalid:focus,.was-validated .input-group .custom-range:invalid:focus{border-color:#dc3545;box-shadow:0 0 0 .2rem rgba(220,53,69,.25)}.custom-range.is-invalid:focus::-webkit-slider-thumb,.was-validated .custom-range:invalid:focus::-webkit-slider-thumb{box-shadow:0 0 0 1px #fff,0 0 0 .2rem #f6cdd1}.custom-range.is-invalid:focus::-moz-range-thumb,.was-validated .custom-range:invalid:focus::-moz-range-thumb{box-shadow:0 0 0 1px #fff,0 0 0 .2rem #f6cdd1}.custom-range.is-invalid:focus::-ms-thumb,.was-validated .custom-range:invalid:focus::-ms-thumb{box-shadow:0 0 0 1px #fff,0 0 0 .2rem #f6cdd1}.custom-range.is-invalid::-webkit-slider-thumb,.was-validated .custom-range:invalid::-webkit-slider-thumb{background-color:#dc3545;background-image:none}.custom-range.is-invalid::-webkit-slider-thumb:active,.was-validated .custom-range:invalid::-webkit-slider-thumb:active{background-color:#f6cdd1;background-image:none}.custom-range.is-invalid::-webkit-slider-runnable-track,.was-validated .custom-range:invalid::-webkit-slider-runnable-track{background-color:rgba(220,53,69,.35)}.custom-range.is-invalid::-moz-range-thumb,.was-validated .custom-range:invalid::-moz-range-thumb{background-color:#dc3545;background-image:none}.custom-range.is-invalid::-moz-range-thumb:active,.was-validated .custom-range:invalid::-moz-range-thumb:active{background-color:#f6cdd1;background-image:none}.custom-range.is-invalid::-moz-range-track,.was-validated .custom-range:invalid::-moz-range-track{background:rgba(220,53,69,.35)}.custom-range.is-invalid~.invalid-feedback,.custom-range.is-invalid~.invalid-tooltip,.was-validated .custom-range:invalid~.invalid-feedback,.was-validated .custom-range:invalid~.invalid-tooltip{display:block}.custom-range.is-invalid::-ms-thumb,.was-validated .custom-range:invalid::-ms-thumb{background-color:#dc3545;background-image:none}.custom-range.is-invalid::-ms-thumb:active,.was-validated .custom-range:invalid::-ms-thumb:active{background-color:#f6cdd1;background-image:none}.custom-range.is-invalid::-ms-track-lower,.was-validated .custom-range:invalid::-ms-track-lower{background:rgba(220,53,69,.35)}.custom-range.is-invalid::-ms-track-upper,.was-validated .custom-range:invalid::-ms-track-upper{background:rgba(220,53,69,.35)}@media (max-width:575.98px){.bv-d-xs-down-none{display:none!important}}@media (max-width:767.98px){.bv-d-sm-down-none{display:none!important}}@media (max-width:991.98px){.bv-d-md-down-none{display:none!important}}@media (max-width:1199.98px){.bv-d-lg-down-none{display:none!important}}.bv-d-xl-down-none{display:none!important}@media (max-width:575.98px){.bv-d-xs-down-none{display:none!important}}@media (max-width:767.98px){.bv-d-sm-down-none{display:none!important}}@media (max-width:991.98px){.bv-d-md-down-none{display:none!important}}@media (max-width:1199.98px){.bv-d-lg-down-none{display:none!important}}.bv-d-xl-down-none{display:none!important}.b-table.table.b-table-fixed{table-layout:fixed}.b-table.table[aria-busy=true]{opacity:.55}.b-table.table>tbody>tr.b-table-details>td{border-top:none!important}.b-table.table>caption{caption-side:bottom}.b-table.table>caption.b-table-caption-top{caption-side:top!important}.b-table.table>tfoot>tr>td,.b-table.table>tfoot>tr>th,.b-table.table>thead>tr>td,.b-table.table>thead>tr>th{position:relative}.b-table.table>tfoot>tr>th[aria-sort],.b-table.table>thead>tr>th[aria-sort]{position:relative;padding-right:1.125em;cursor:pointer}.b-table.table>tfoot>tr>th[aria-sort]::after,.b-table.table>thead>tr>th[aria-sort]::after{position:absolute;display:block;bottom:0;right:.35em;padding-bottom:inherit;font-size:inherit;line-height:inherit;opacity:.4;content:\"\\2195\";speak:none}.b-table.table>tfoot>tr>th[aria-sort][aria-sort=ascending]::after,.b-table.table>thead>tr>th[aria-sort][aria-sort=ascending]::after{opacity:1;content:\"\\2193\"}.b-table.table>tfoot>tr>th[aria-sort][aria-sort=descending]::after,.b-table.table>thead>tr>th[aria-sort][aria-sort=descending]::after{opacity:1;content:\"\\2191\"}@media (max-width:575.98px){.b-table.table.b-table-stacked-sm{display:block;width:100%}.b-table.table.b-table-stacked-sm>caption,.b-table.table.b-table-stacked-sm>tbody,.b-table.table.b-table-stacked-sm>tbody>tr,.b-table.table.b-table-stacked-sm>tbody>tr>td{display:block}.b-table.table.b-table-stacked-sm>tfoot,.b-table.table.b-table-stacked-sm>thead{display:none}.b-table.table.b-table-stacked-sm>tfoot>tr.b-table-bottom-row,.b-table.table.b-table-stacked-sm>tfoot>tr.b-table-top-row,.b-table.table.b-table-stacked-sm>thead>tr.b-table-bottom-row,.b-table.table.b-table-stacked-sm>thead>tr.b-table-top-row{display:none}.b-table.table.b-table-stacked-sm>caption{caption-side:top!important}.b-table.table.b-table-stacked-sm>tbody>tr>[data-label]{display:grid;grid-template-columns:40% auto;grid-gap:.25rem 1rem}.b-table.table.b-table-stacked-sm>tbody>tr>[data-label]::before{content:attr(data-label);display:inline;text-align:right;overflow-wrap:break-word;font-weight:700;font-style:normal}.b-table.table.b-table-stacked-sm>tbody>tr.bottom-row,.b-table.table.b-table-stacked-sm>tbody>tr.top-row{display:none}.b-table.table.b-table-stacked-sm>tbody>tr>:first-child{border-top-width:3px}}@media (max-width:767.98px){.b-table.table.b-table-stacked-md{display:block;width:100%}.b-table.table.b-table-stacked-md>caption,.b-table.table.b-table-stacked-md>tbody,.b-table.table.b-table-stacked-md>tbody>tr,.b-table.table.b-table-stacked-md>tbody>tr>td{display:block}.b-table.table.b-table-stacked-md>tfoot,.b-table.table.b-table-stacked-md>thead{display:none}.b-table.table.b-table-stacked-md>tfoot>tr.b-table-bottom-row,.b-table.table.b-table-stacked-md>tfoot>tr.b-table-top-row,.b-table.table.b-table-stacked-md>thead>tr.b-table-bottom-row,.b-table.table.b-table-stacked-md>thead>tr.b-table-top-row{display:none}.b-table.table.b-table-stacked-md>caption{caption-side:top!important}.b-table.table.b-table-stacked-md>tbody>tr>[data-label]{display:grid;grid-template-columns:40% auto;grid-gap:.25rem 1rem}.b-table.table.b-table-stacked-md>tbody>tr>[data-label]::before{content:attr(data-label);display:inline;text-align:right;overflow-wrap:break-word;font-weight:700;font-style:normal}.b-table.table.b-table-stacked-md>tbody>tr.bottom-row,.b-table.table.b-table-stacked-md>tbody>tr.top-row{display:none}.b-table.table.b-table-stacked-md>tbody>tr>:first-child{border-top-width:3px}}@media (max-width:991.98px){.b-table.table.b-table-stacked-lg{display:block;width:100%}.b-table.table.b-table-stacked-lg>caption,.b-table.table.b-table-stacked-lg>tbody,.b-table.table.b-table-stacked-lg>tbody>tr,.b-table.table.b-table-stacked-lg>tbody>tr>td{display:block}.b-table.table.b-table-stacked-lg>tfoot,.b-table.table.b-table-stacked-lg>thead{display:none}.b-table.table.b-table-stacked-lg>tfoot>tr.b-table-bottom-row,.b-table.table.b-table-stacked-lg>tfoot>tr.b-table-top-row,.b-table.table.b-table-stacked-lg>thead>tr.b-table-bottom-row,.b-table.table.b-table-stacked-lg>thead>tr.b-table-top-row{display:none}.b-table.table.b-table-stacked-lg>caption{caption-side:top!important}.b-table.table.b-table-stacked-lg>tbody>tr>[data-label]{display:grid;grid-template-columns:40% auto;grid-gap:.25rem 1rem}.b-table.table.b-table-stacked-lg>tbody>tr>[data-label]::before{content:attr(data-label);display:inline;text-align:right;overflow-wrap:break-word;font-weight:700;font-style:normal}.b-table.table.b-table-stacked-lg>tbody>tr.bottom-row,.b-table.table.b-table-stacked-lg>tbody>tr.top-row{display:none}.b-table.table.b-table-stacked-lg>tbody>tr>:first-child{border-top-width:3px}}@media (max-width:1199.98px){.b-table.table.b-table-stacked-xl{display:block;width:100%}.b-table.table.b-table-stacked-xl>caption,.b-table.table.b-table-stacked-xl>tbody,.b-table.table.b-table-stacked-xl>tbody>tr,.b-table.table.b-table-stacked-xl>tbody>tr>td{display:block}.b-table.table.b-table-stacked-xl>tfoot,.b-table.table.b-table-stacked-xl>thead{display:none}.b-table.table.b-table-stacked-xl>tfoot>tr.b-table-bottom-row,.b-table.table.b-table-stacked-xl>tfoot>tr.b-table-top-row,.b-table.table.b-table-stacked-xl>thead>tr.b-table-bottom-row,.b-table.table.b-table-stacked-xl>thead>tr.b-table-top-row{display:none}.b-table.table.b-table-stacked-xl>caption{caption-side:top!important}.b-table.table.b-table-stacked-xl>tbody>tr>[data-label]{display:grid;grid-template-columns:40% auto;grid-gap:.25rem 1rem}.b-table.table.b-table-stacked-xl>tbody>tr>[data-label]::before{content:attr(data-label);display:inline;text-align:right;overflow-wrap:break-word;font-weight:700;font-style:normal}.b-table.table.b-table-stacked-xl>tbody>tr.bottom-row,.b-table.table.b-table-stacked-xl>tbody>tr.top-row{display:none}.b-table.table.b-table-stacked-xl>tbody>tr>:first-child{border-top-width:3px}}.b-table.table.b-table-stacked{display:block;width:100%}.b-table.table.b-table-stacked>caption,.b-table.table.b-table-stacked>tbody,.b-table.table.b-table-stacked>tbody>tr,.b-table.table.b-table-stacked>tbody>tr>td{display:block}.b-table.table.b-table-stacked>tfoot,.b-table.table.b-table-stacked>thead{display:none}.b-table.table.b-table-stacked>tfoot>tr.b-table-bottom-row,.b-table.table.b-table-stacked>tfoot>tr.b-table-top-row,.b-table.table.b-table-stacked>thead>tr.b-table-bottom-row,.b-table.table.b-table-stacked>thead>tr.b-table-top-row{display:none}.b-table.table.b-table-stacked>caption{caption-side:top!important}.b-table.table.b-table-stacked>tbody>tr>[data-label]{display:grid;grid-template-columns:40% auto;grid-gap:.25rem 1rem}.b-table.table.b-table-stacked>tbody>tr>[data-label]::before{content:attr(data-label);display:inline;text-align:right;overflow-wrap:break-word;font-weight:700;font-style:normal}.b-table.table.b-table-stacked>tbody>tr.bottom-row,.b-table.table.b-table-stacked>tbody>tr.top-row{display:none}.b-table.table.b-table-stacked>tbody>tr>:first-child{border-top-width:3px}.b-table.table.b-table-selectable>tbody>tr{cursor:pointer}.b-table.table.b-table-selectable.b-table-selecting.b-table-select-range>tbody>tr{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";/*!\n * BootstrapVue Custom CSS (https://bootstrap-vue.js.org)\n */@media (max-width:575.98px){.bv-d-xs-down-none{display:none!important}}@media (max-width:767.98px){.bv-d-sm-down-none{display:none!important}}@media (max-width:991.98px){.bv-d-md-down-none{display:none!important}}@media (max-width:1199.98px){.bv-d-lg-down-none{display:none!important}}.bv-d-xl-down-none{display:none!important}.card-img-left{border-top-left-radius:calc(.25rem - 1px);border-bottom-left-radius:calc(.25rem - 1px)}.card-img-right{border-top-right-radius:calc(.25rem - 1px);border-bottom-right-radius:calc(.25rem - 1px)}.dropdown:not(.dropleft) .dropdown-toggle.dropdown-toggle-no-caret::after{display:none!important}.dropdown.dropleft .dropdown-toggle.dropdown-toggle-no-caret::before{display:none!important}.dropdown.b-dropdown .b-dropdown-form{display:inline-block;padding:.25rem 1.5rem;width:100%;clear:both;font-weight:400}.dropdown.b-dropdown .b-dropdown-form:focus{outline:1px dotted!important;outline:5px auto -webkit-focus-ring-color!important}.dropdown.b-dropdown .b-dropdown-form.disabled,.dropdown.b-dropdown .b-dropdown-form:disabled{outline:0!important;color:#6c757d;pointer-events:none}.b-dropdown-text{display:inline-block;padding:.25rem 1.5rem;margin-bottom:0;width:100%;clear:both;font-weight:lighter}.input-group>.input-group-append:last-child>.btn-group:not(:last-child):not(.dropdown-toggle)>.btn,.input-group>.input-group-append:not(:last-child)>.btn-group>.btn,.input-group>.input-group-prepend>.btn-group>.btn{border-top-right-radius:0;border-bottom-right-radius:0}.input-group>.input-group-append>.btn-group>.btn,.input-group>.input-group-prepend:first-child>.btn-group:not(:first-child)>.btn,.input-group>.input-group-prepend:not(:first-child)>.btn-group>.btn{border-top-left-radius:0;border-bottom-left-radius:0}.form-control.is-invalid,.form-control.is-valid,.was-validated .form-control:invalid,.was-validated .form-control:valid{background-position:right calc(.375em + .1875rem) center}input[type=color].form-control{height:calc(1.5em + .75rem + 2px);padding:.125rem .25rem}.input-group-sm input[type=color].form-control,input[type=color].form-control.form-control-sm{height:calc(1.5em + .5rem + 2px);padding:.125rem .25rem}.input-group-lg input[type=color].form-control,input[type=color].form-control.form-control-lg{height:calc(1.5em + 1rem + 2px);padding:.125rem .25rem}input[type=color].form-control:disabled{background-color:#adb5bd;opacity:.65}.input-group>.custom-range{position:relative;flex:1 1 auto;width:1%;margin-bottom:0}.input-group>.custom-range+.custom-file,.input-group>.custom-range+.custom-range,.input-group>.custom-range+.custom-select,.input-group>.custom-range+.form-control,.input-group>.custom-range+.form-control-plaintext{margin-left:-1px}.input-group>.custom-file+.custom-range,.input-group>.custom-range+.custom-range,.input-group>.custom-select+.custom-range,.input-group>.form-control+.custom-range,.input-group>.form-control-plaintext+.custom-range{margin-left:-1px}.input-group>.custom-range:focus{z-index:3}.input-group>.custom-range:not(:last-child){border-top-right-radius:0;border-bottom-right-radius:0}.input-group>.custom-range:not(:first-child){border-top-left-radius:0;border-bottom-left-radius:0}.input-group>.custom-range{height:calc(1.5em + .75rem + 2px);padding:0 .75rem;background-color:#fff;background-clip:padding-box;border:1px solid #ced4da;height:calc(1.5em + .75rem + 2px);border-radius:.25rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out}@media (prefers-reduced-motion:reduce){.input-group>.custom-range{transition:none}}.input-group>.custom-range:focus{color:#495057;background-color:#fff;border-color:#80bdff;outline:0;box-shadow:0 0 0 .2rem rgba(0,123,255,.25)}.input-group>.custom-range:disabled,.input-group>.custom-range[readonly]{background-color:#e9ecef}.input-group-lg>.custom-range{height:calc(1.5em + 1rem + 2px);padding:0 1rem;border-radius:.3rem}.input-group-sm>.custom-range{height:calc(1.5em + .5rem + 2px);padding:0 .5rem;border-radius:.2rem}.input-group .custom-range.is-valid,.was-validated .input-group .custom-range:valid{border-color:#28a745}.input-group .custom-range.is-valid:focus,.was-validated .input-group .custom-range:valid:focus{border-color:#28a745;box-shadow:0 0 0 .2rem rgba(40,167,69,.25)}.custom-range.is-valid:focus::-webkit-slider-thumb,.was-validated .custom-range:valid:focus::-webkit-slider-thumb{box-shadow:0 0 0 1px #fff,0 0 0 .2rem #9be7ac}.custom-range.is-valid:focus::-moz-range-thumb,.was-validated .custom-range:valid:focus::-moz-range-thumb{box-shadow:0 0 0 1px #fff,0 0 0 .2rem #9be7ac}.custom-range.is-valid:focus::-ms-thumb,.was-validated .custom-range:valid:focus::-ms-thumb{box-shadow:0 0 0 1px #fff,0 0 0 .2rem #9be7ac}.custom-range.is-valid::-webkit-slider-thumb,.was-validated .custom-range:valid::-webkit-slider-thumb{background-color:#28a745;background-image:none}.custom-range.is-valid::-webkit-slider-thumb:active,.was-validated .custom-range:valid::-webkit-slider-thumb:active{background-color:#9be7ac;background-image:none}.custom-range.is-valid::-webkit-slider-runnable-track,.was-validated .custom-range:valid::-webkit-slider-runnable-track{background-color:rgba(40,167,69,.35)}.custom-range.is-valid::-moz-range-thumb,.was-validated .custom-range:valid::-moz-range-thumb{background-color:#28a745;background-image:none}.custom-range.is-valid::-moz-range-thumb:active,.was-validated .custom-range:valid::-moz-range-thumb:active{background-color:#9be7ac;background-image:none}.custom-range.is-valid::-moz-range-track,.was-validated .custom-range:valid::-moz-range-track{background:rgba(40,167,69,.35)}.custom-range.is-valid~.valid-feedback,.custom-range.is-valid~.valid-tooltip,.was-validated .custom-range:valid~.valid-feedback,.was-validated .custom-range:valid~.valid-tooltip{display:block}.custom-range.is-valid::-ms-thumb,.was-validated .custom-range:valid::-ms-thumb{background-color:#28a745;background-image:none}.custom-range.is-valid::-ms-thumb:active,.was-validated .custom-range:valid::-ms-thumb:active{background-color:#9be7ac;background-image:none}.custom-range.is-valid::-ms-track-lower,.was-validated .custom-range:valid::-ms-track-lower{background:rgba(40,167,69,.35)}.custom-range.is-valid::-ms-track-upper,.was-validated .custom-range:valid::-ms-track-upper{background:rgba(40,167,69,.35)}.input-group .custom-range.is-invalid,.was-validated .input-group .custom-range:invalid{border-color:#dc3545}.input-group .custom-range.is-invalid:focus,.was-validated .input-group .custom-range:invalid:focus{border-color:#dc3545;box-shadow:0 0 0 .2rem rgba(220,53,69,.25)}.custom-range.is-invalid:focus::-webkit-slider-thumb,.was-validated .custom-range:invalid:focus::-webkit-slider-thumb{box-shadow:0 0 0 1px #fff,0 0 0 .2rem #f6cdd1}.custom-range.is-invalid:focus::-moz-range-thumb,.was-validated .custom-range:invalid:focus::-moz-range-thumb{box-shadow:0 0 0 1px #fff,0 0 0 .2rem #f6cdd1}.custom-range.is-invalid:focus::-ms-thumb,.was-validated .custom-range:invalid:focus::-ms-thumb{box-shadow:0 0 0 1px #fff,0 0 0 .2rem #f6cdd1}.custom-range.is-invalid::-webkit-slider-thumb,.was-validated .custom-range:invalid::-webkit-slider-thumb{background-color:#dc3545;background-image:none}.custom-range.is-invalid::-webkit-slider-thumb:active,.was-validated .custom-range:invalid::-webkit-slider-thumb:active{background-color:#f6cdd1;background-image:none}.custom-range.is-invalid::-webkit-slider-runnable-track,.was-validated .custom-range:invalid::-webkit-slider-runnable-track{background-color:rgba(220,53,69,.35)}.custom-range.is-invalid::-moz-range-thumb,.was-validated .custom-range:invalid::-moz-range-thumb{background-color:#dc3545;background-image:none}.custom-range.is-invalid::-moz-range-thumb:active,.was-validated .custom-range:invalid::-moz-range-thumb:active{background-color:#f6cdd1;background-image:none}.custom-range.is-invalid::-moz-range-track,.was-validated .custom-range:invalid::-moz-range-track{background:rgba(220,53,69,.35)}.custom-range.is-invalid~.invalid-feedback,.custom-range.is-invalid~.invalid-tooltip,.was-validated .custom-range:invalid~.invalid-feedback,.was-validated .custom-range:invalid~.invalid-tooltip{display:block}.custom-range.is-invalid::-ms-thumb,.was-validated .custom-range:invalid::-ms-thumb{background-color:#dc3545;background-image:none}.custom-range.is-invalid::-ms-thumb:active,.was-validated .custom-range:invalid::-ms-thumb:active{background-color:#f6cdd1;background-image:none}.custom-range.is-invalid::-ms-track-lower,.was-validated .custom-range:invalid::-ms-track-lower{background:rgba(220,53,69,.35)}.custom-range.is-invalid::-ms-track-upper,.was-validated .custom-range:invalid::-ms-track-upper{background:rgba(220,53,69,.35)}.modal-backdrop:not(.show):not(.fade){opacity:.5}.table.b-table.b-table-fixed{table-layout:fixed}.table.b-table[aria-busy=true]{opacity:.55}.table.b-table>tbody>tr.b-table-details>td{border-top:none!important}.table.b-table>caption{caption-side:bottom}.table.b-table>caption.b-table-caption-top{caption-side:top!important}.table.b-table>tfoot>tr>td,.table.b-table>tfoot>tr>th,.table.b-table>thead>tr>td,.table.b-table>thead>tr>th{position:relative}.table.b-table>tfoot>tr>th[aria-sort],.table.b-table>thead>tr>th[aria-sort]{position:relative;padding-right:1.125em;cursor:pointer}.table.b-table>tfoot>tr>th[aria-sort]::after,.table.b-table>thead>tr>th[aria-sort]::after{position:absolute;display:block;bottom:0;right:.35em;padding-bottom:inherit;font-size:inherit;line-height:inherit;opacity:.4;content:\"\\2195\";speak:none}.table.b-table>tfoot>tr>th[aria-sort][aria-sort=ascending]::after,.table.b-table>thead>tr>th[aria-sort][aria-sort=ascending]::after{opacity:1;content:\"\\2193\"}.table.b-table>tfoot>tr>th[aria-sort][aria-sort=descending]::after,.table.b-table>thead>tr>th[aria-sort][aria-sort=descending]::after{opacity:1;content:\"\\2191\"}@media (max-width:575.98px){.table.b-table.b-table-stacked-sm{display:block;width:100%}.table.b-table.b-table-stacked-sm>caption,.table.b-table.b-table-stacked-sm>tbody,.table.b-table.b-table-stacked-sm>tbody>tr,.table.b-table.b-table-stacked-sm>tbody>tr>td{display:block}.table.b-table.b-table-stacked-sm>tfoot,.table.b-table.b-table-stacked-sm>thead{display:none}.table.b-table.b-table-stacked-sm>tfoot>tr.b-table-bottom-row,.table.b-table.b-table-stacked-sm>tfoot>tr.b-table-top-row,.table.b-table.b-table-stacked-sm>thead>tr.b-table-bottom-row,.table.b-table.b-table-stacked-sm>thead>tr.b-table-top-row{display:none}.table.b-table.b-table-stacked-sm>caption{caption-side:top!important}.table.b-table.b-table-stacked-sm>tbody>tr>[data-label]::before{content:attr(data-label);display:inline-block;width:40%;float:left;text-align:right;overflow-wrap:break-word;font-weight:700;font-style:normal;padding:0;margin:0}.table.b-table.b-table-stacked-sm>tbody>tr>[data-label]>div{display:inline-block;width:calc(100% - 40%);padding:0 0 0 1rem;margin:0}.table.b-table.b-table-stacked-sm>tbody>tr.bottom-row,.table.b-table.b-table-stacked-sm>tbody>tr.top-row{display:none}.table.b-table.b-table-stacked-sm>tbody>tr>:first-child{border-top-width:3px}}@media (max-width:767.98px){.table.b-table.b-table-stacked-md{display:block;width:100%}.table.b-table.b-table-stacked-md>caption,.table.b-table.b-table-stacked-md>tbody,.table.b-table.b-table-stacked-md>tbody>tr,.table.b-table.b-table-stacked-md>tbody>tr>td{display:block}.table.b-table.b-table-stacked-md>tfoot,.table.b-table.b-table-stacked-md>thead{display:none}.table.b-table.b-table-stacked-md>tfoot>tr.b-table-bottom-row,.table.b-table.b-table-stacked-md>tfoot>tr.b-table-top-row,.table.b-table.b-table-stacked-md>thead>tr.b-table-bottom-row,.table.b-table.b-table-stacked-md>thead>tr.b-table-top-row{display:none}.table.b-table.b-table-stacked-md>caption{caption-side:top!important}.table.b-table.b-table-stacked-md>tbody>tr>[data-label]::before{content:attr(data-label);display:inline-block;width:40%;float:left;text-align:right;overflow-wrap:break-word;font-weight:700;font-style:normal;padding:0;margin:0}.table.b-table.b-table-stacked-md>tbody>tr>[data-label]>div{display:inline-block;width:calc(100% - 40%);padding:0 0 0 1rem;margin:0}.table.b-table.b-table-stacked-md>tbody>tr.bottom-row,.table.b-table.b-table-stacked-md>tbody>tr.top-row{display:none}.table.b-table.b-table-stacked-md>tbody>tr>:first-child{border-top-width:3px}}@media (max-width:991.98px){.table.b-table.b-table-stacked-lg{display:block;width:100%}.table.b-table.b-table-stacked-lg>caption,.table.b-table.b-table-stacked-lg>tbody,.table.b-table.b-table-stacked-lg>tbody>tr,.table.b-table.b-table-stacked-lg>tbody>tr>td{display:block}.table.b-table.b-table-stacked-lg>tfoot,.table.b-table.b-table-stacked-lg>thead{display:none}.table.b-table.b-table-stacked-lg>tfoot>tr.b-table-bottom-row,.table.b-table.b-table-stacked-lg>tfoot>tr.b-table-top-row,.table.b-table.b-table-stacked-lg>thead>tr.b-table-bottom-row,.table.b-table.b-table-stacked-lg>thead>tr.b-table-top-row{display:none}.table.b-table.b-table-stacked-lg>caption{caption-side:top!important}.table.b-table.b-table-stacked-lg>tbody>tr>[data-label]::before{content:attr(data-label);display:inline-block;width:40%;float:left;text-align:right;overflow-wrap:break-word;font-weight:700;font-style:normal;padding:0;margin:0}.table.b-table.b-table-stacked-lg>tbody>tr>[data-label]>div{display:inline-block;width:calc(100% - 40%);padding:0 0 0 1rem;margin:0}.table.b-table.b-table-stacked-lg>tbody>tr.bottom-row,.table.b-table.b-table-stacked-lg>tbody>tr.top-row{display:none}.table.b-table.b-table-stacked-lg>tbody>tr>:first-child{border-top-width:3px}}@media (max-width:1199.98px){.table.b-table.b-table-stacked-xl{display:block;width:100%}.table.b-table.b-table-stacked-xl>caption,.table.b-table.b-table-stacked-xl>tbody,.table.b-table.b-table-stacked-xl>tbody>tr,.table.b-table.b-table-stacked-xl>tbody>tr>td{display:block}.table.b-table.b-table-stacked-xl>tfoot,.table.b-table.b-table-stacked-xl>thead{display:none}.table.b-table.b-table-stacked-xl>tfoot>tr.b-table-bottom-row,.table.b-table.b-table-stacked-xl>tfoot>tr.b-table-top-row,.table.b-table.b-table-stacked-xl>thead>tr.b-table-bottom-row,.table.b-table.b-table-stacked-xl>thead>tr.b-table-top-row{display:none}.table.b-table.b-table-stacked-xl>caption{caption-side:top!important}.table.b-table.b-table-stacked-xl>tbody>tr>[data-label]::before{content:attr(data-label);display:inline-block;width:40%;float:left;text-align:right;overflow-wrap:break-word;font-weight:700;font-style:normal;padding:0;margin:0}.table.b-table.b-table-stacked-xl>tbody>tr>[data-label]>div{display:inline-block;width:calc(100% - 40%);padding:0 0 0 1rem;margin:0}.table.b-table.b-table-stacked-xl>tbody>tr.bottom-row,.table.b-table.b-table-stacked-xl>tbody>tr.top-row{display:none}.table.b-table.b-table-stacked-xl>tbody>tr>:first-child{border-top-width:3px}}.table.b-table.b-table-stacked{display:block;width:100%}.table.b-table.b-table-stacked>caption,.table.b-table.b-table-stacked>tbody,.table.b-table.b-table-stacked>tbody>tr,.table.b-table.b-table-stacked>tbody>tr>td{display:block}.table.b-table.b-table-stacked>tfoot,.table.b-table.b-table-stacked>thead{display:none}.table.b-table.b-table-stacked>tfoot>tr.b-table-bottom-row,.table.b-table.b-table-stacked>tfoot>tr.b-table-top-row,.table.b-table.b-table-stacked>thead>tr.b-table-bottom-row,.table.b-table.b-table-stacked>thead>tr.b-table-top-row{display:none}.table.b-table.b-table-stacked>caption{caption-side:top!important}.table.b-table.b-table-stacked>tbody>tr>[data-label]::before{content:attr(data-label);display:inline-block;width:40%;float:left;text-align:right;overflow-wrap:break-word;font-weight:700;font-style:normal;padding:0;margin:0}.table.b-table.b-table-stacked>tbody>tr>[data-label]>div{display:inline-block;width:calc(100% - 40%);padding:0 0 0 1rem;margin:0}.table.b-table.b-table-stacked>tbody>tr.bottom-row,.table.b-table.b-table-stacked>tbody>tr.top-row{display:none}.table.b-table.b-table-stacked>tbody>tr>:first-child{border-top-width:3px}.table.b-table.b-table-selectable>tbody>tr{cursor:pointer}.table.b-table.b-table-selectable.b-table-selecting.b-table-select-range>tbody>tr{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.b-toast{display:block;position:relative;max-width:350px;-webkit-backface-visibility:hidden;backface-visibility:hidden;background-clip:padding-box;z-index:1;border-radius:.25rem}.b-toast:not(:last-child){margin-bottom:.75rem}.b-toast.b-toast-solid .toast{background-color:#fff}.b-toast .toast{opacity:1}.b-toast .toast.fade:not(.show){opacity:0}.b-toast .toast .toast-body{display:block}.b-toast-primary .toast{background-color:rgba(230,242,255,.85);border-color:rgba(184,218,255,.85);color:#004085}.b-toast-primary .toast .toast-header{color:#004085;background-color:rgba(204,229,255,.85);border-bottom-color:rgba(184,218,255,.85)}.b-toast-primary.b-toast-solid .toast{background-color:#e6f2ff}.b-toast-secondary .toast{background-color:rgba(239,240,241,.85);border-color:rgba(214,216,219,.85);color:#383d41}.b-toast-secondary .toast .toast-header{color:#383d41;background-color:rgba(226,227,229,.85);border-bottom-color:rgba(214,216,219,.85)}.b-toast-secondary.b-toast-solid .toast{background-color:#eff0f1}.b-toast-success .toast{background-color:rgba(230,245,233,.85);border-color:rgba(195,230,203,.85);color:#155724}.b-toast-success .toast .toast-header{color:#155724;background-color:rgba(212,237,218,.85);border-bottom-color:rgba(195,230,203,.85)}.b-toast-success.b-toast-solid .toast{background-color:#e6f5e9}.b-toast-info .toast{background-color:rgba(229,244,247,.85);border-color:rgba(190,229,235,.85);color:#0c5460}.b-toast-info .toast .toast-header{color:#0c5460;background-color:rgba(209,236,241,.85);border-bottom-color:rgba(190,229,235,.85)}.b-toast-info.b-toast-solid .toast{background-color:#e5f4f7}.b-toast-warning .toast{background-color:rgba(255,249,231,.85);border-color:rgba(255,238,186,.85);color:#856404}.b-toast-warning .toast .toast-header{color:#856404;background-color:rgba(255,243,205,.85);border-bottom-color:rgba(255,238,186,.85)}.b-toast-warning.b-toast-solid .toast{background-color:#fff9e7}.b-toast-danger .toast{background-color:rgba(252,237,238,.85);border-color:rgba(245,198,203,.85);color:#721c24}.b-toast-danger .toast .toast-header{color:#721c24;background-color:rgba(248,215,218,.85);border-bottom-color:rgba(245,198,203,.85)}.b-toast-danger.b-toast-solid .toast{background-color:#fcedee}.b-toast-light .toast{background-color:rgba(255,255,255,.85);border-color:rgba(253,253,254,.85);color:#818182}.b-toast-light .toast .toast-header{color:#818182;background-color:rgba(254,254,254,.85);border-bottom-color:rgba(253,253,254,.85)}.b-toast-light.b-toast-solid .toast{background-color:#fff}.b-toast-dark .toast{background-color:rgba(227,229,229,.85);border-color:rgba(198,200,202,.85);color:#1b1e21}.b-toast-dark .toast .toast-header{color:#1b1e21;background-color:rgba(214,216,217,.85);border-bottom-color:rgba(198,200,202,.85)}.b-toast-dark.b-toast-solid .toast{background-color:#e3e5e5}.b-toaster{z-index:1100}.b-toaster .b-toaster-slot{position:relative;display:block}.b-toaster .b-toaster-slot:empty{display:none!important}.b-toaster.b-toaster-bottom-center,.b-toaster.b-toaster-bottom-full,.b-toaster.b-toaster-bottom-left,.b-toaster.b-toaster-bottom-right,.b-toaster.b-toaster-top-center,.b-toaster.b-toaster-top-full,.b-toaster.b-toaster-top-left,.b-toaster.b-toaster-top-right{position:fixed;left:.5rem;right:.5rem;margin:0;padding:0;height:0;overflow:visible}.b-toaster.b-toaster-bottom-center .b-toaster-slot,.b-toaster.b-toaster-bottom-full .b-toaster-slot,.b-toaster.b-toaster-bottom-left .b-toaster-slot,.b-toaster.b-toaster-bottom-right .b-toaster-slot,.b-toaster.b-toaster-top-center .b-toaster-slot,.b-toaster.b-toaster-top-full .b-toaster-slot,.b-toaster.b-toaster-top-left .b-toaster-slot,.b-toaster.b-toaster-top-right .b-toaster-slot{position:absolute;max-width:350px;width:100%;left:0;right:0;padding:0;margin:0}.b-toaster.b-toaster-bottom-full .b-toaster-slot,.b-toaster.b-toaster-top-full .b-toaster-slot{width:100%;max-width:100%}.b-toaster.b-toaster-bottom-full .b-toaster-slot .b-toast,.b-toaster.b-toaster-bottom-full .b-toaster-slot .toast,.b-toaster.b-toaster-top-full .b-toaster-slot .b-toast,.b-toaster.b-toaster-top-full .b-toaster-slot .toast{width:100%;max-width:100%}.b-toaster.b-toaster-top-center,.b-toaster.b-toaster-top-full,.b-toaster.b-toaster-top-left,.b-toaster.b-toaster-top-right{top:0}.b-toaster.b-toaster-top-center .b-toaster-slot,.b-toaster.b-toaster-top-full .b-toaster-slot,.b-toaster.b-toaster-top-left .b-toaster-slot,.b-toaster.b-toaster-top-right .b-toaster-slot{top:.5rem}.b-toaster.b-toaster-bottom-center,.b-toaster.b-toaster-bottom-full,.b-toaster.b-toaster-bottom-left,.b-toaster.b-toaster-bottom-right{bottom:0}.b-toaster.b-toaster-bottom-center .b-toaster-slot,.b-toaster.b-toaster-bottom-full .b-toaster-slot,.b-toaster.b-toaster-bottom-left .b-toaster-slot,.b-toaster.b-toaster-bottom-right .b-toaster-slot{bottom:.5rem}.b-toaster.b-toaster-bottom-center .b-toaster-slot,.b-toaster.b-toaster-bottom-right .b-toaster-slot,.b-toaster.b-toaster-top-center .b-toaster-slot,.b-toaster.b-toaster-top-right .b-toaster-slot{margin-left:auto}.b-toaster.b-toaster-bottom-center .b-toaster-slot,.b-toaster.b-toaster-bottom-left .b-toaster-slot,.b-toaster.b-toaster-top-center .b-toaster-slot,.b-toaster.b-toaster-top-left .b-toaster-slot{margin-right:auto}.b-toaster.b-toaster-bottom-left .b-toast.b-toaster-enter-active,.b-toaster.b-toaster-bottom-left .b-toast.b-toaster-leave-active,.b-toaster.b-toaster-bottom-left .b-toast.b-toaster-move,.b-toaster.b-toaster-bottom-right .b-toast.b-toaster-enter-active,.b-toaster.b-toaster-bottom-right .b-toast.b-toaster-leave-active,.b-toaster.b-toaster-bottom-right .b-toast.b-toaster-move,.b-toaster.b-toaster-top-left .b-toast.b-toaster-enter-active,.b-toaster.b-toaster-top-left .b-toast.b-toaster-leave-active,.b-toaster.b-toaster-top-left .b-toast.b-toaster-move,.b-toaster.b-toaster-top-right .b-toast.b-toaster-enter-active,.b-toaster.b-toaster-top-right .b-toast.b-toaster-leave-active,.b-toaster.b-toaster-top-right .b-toast.b-toaster-move{transition:-webkit-transform 175ms;transition:transform 175ms;transition:transform 175ms,-webkit-transform 175ms}.b-toaster.b-toaster-bottom-left .b-toast.b-toaster-enter-active .toast.fade,.b-toaster.b-toaster-bottom-left .b-toast.b-toaster-enter-to .toast.fade,.b-toaster.b-toaster-bottom-right .b-toast.b-toaster-enter-active .toast.fade,.b-toaster.b-toaster-bottom-right .b-toast.b-toaster-enter-to .toast.fade,.b-toaster.b-toaster-top-left .b-toast.b-toaster-enter-active .toast.fade,.b-toaster.b-toaster-top-left .b-toast.b-toaster-enter-to .toast.fade,.b-toaster.b-toaster-top-right .b-toast.b-toaster-enter-active .toast.fade,.b-toaster.b-toaster-top-right .b-toast.b-toaster-enter-to .toast.fade{transition-delay:175ms}.b-toaster.b-toaster-bottom-left .b-toast.b-toaster-leave-active,.b-toaster.b-toaster-bottom-right .b-toast.b-toaster-leave-active,.b-toaster.b-toaster-top-left .b-toast.b-toaster-leave-active,.b-toaster.b-toaster-top-right .b-toast.b-toaster-leave-active{position:absolute;transition-delay:175ms}.b-toaster.b-toaster-bottom-left .b-toast.b-toaster-leave-active .toast.fade,.b-toaster.b-toaster-bottom-right .b-toast.b-toaster-leave-active .toast.fade,.b-toaster.b-toaster-top-left .b-toast.b-toaster-leave-active .toast.fade,.b-toaster.b-toaster-top-right .b-toast.b-toaster-leave-active .toast.fade{transition-delay:0s}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/bootstrap-vue/src/components/alert/alert.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".fade-enter-active, .fade-leave-active {\n    transition: opacity .15s linear;\n}\n.fade-enter, .fade-leave-to {\n    opacity: 0;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/bootstrap-vue/src/components/dropdown/dropdown.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "/* workaround for https://github.com/bootstrap-vue/bootstrap-vue/issues/1560 */\n/* source: _input-group.scss */\n\n.input-group > .input-group-prepend > .b-dropdown > .btn,\n.input-group > .input-group-append:not(:last-child) > .b-dropdown > .btn,\n.input-group > .input-group-append:last-child > .b-dropdown:not(:last-child):not(.dropdown-toggle) > .btn {\n    border-top-right-radius: 0;\n    border-bottom-right-radius: 0;\n}\n\n.input-group > .input-group-append > .b-dropdown > .btn,\n.input-group > .input-group-prepend:not(:first-child) > .b-dropdown > .btn,\n.input-group > .input-group-prepend:first-child > .b-dropdown:not(:first-child) > .btn {\n    border-top-left-radius: 0;\n    border-bottom-left-radius: 0;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/bootstrap-vue/src/components/form-input/form-input.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "/* Special styling for type=range and type=color input */\ninput.form-control[type=\"range\"],\ninput.form-control[type=\"color\"] {\n    height: 2.25rem;\n}\ninput.form-control.form-control-sm[type=\"range\"],\ninput.form-control.form-control-sm[type=\"color\"] {\n    height: 1.9375rem;\n}\ninput.form-control.form-control-lg[type=\"range\"],\ninput.form-control.form-control-lg[type=\"color\"] {\n    height: 3rem;\n}\n\n/* Less padding on type=color */\ninput.form-control[type=\"color\"] {\n    padding: 0.25rem 0.25rem;\n}\ninput.form-control.form-control-sm[type=\"color\"] {\n    padding: 0.125rem 0.125rem;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/bootstrap-vue/src/components/table/table.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "/* Add support for fixed layout table */\ntable.b-table.b-table-fixed {\n    table-layout: fixed;\n}\n\n/* Busy table styling */\ntable.b-table[aria-busy='false'] {\n    opacity: 1;\n}\ntable.b-table[aria-busy='true'] {\n    opacity: 0.6;\n}\n\n/* Sort styling */\ntable.b-table > thead > tr > th,\ntable.b-table > tfoot > tr > th {\n    position: relative;\n}\ntable.b-table > thead > tr > th.sorting,\ntable.b-table > tfoot > tr > th.sorting {\n    padding-right: 1.5em;\n    cursor: pointer;\n}\ntable.b-table > thead > tr > th.sorting::before,\ntable.b-table > thead > tr > th.sorting::after,\ntable.b-table > tfoot > tr > th.sorting::before,\ntable.b-table > tfoot > tr > th.sorting::after {\n    position: absolute;\n    bottom: 0;\n    display: block;\n    opacity: 0.4;\n    padding-bottom: inherit;\n    font-size: inherit;\n    line-height: 180%;\n}\ntable.b-table > thead > tr > th.sorting::before,\ntable.b-table > tfoot > tr > th.sorting::before {\n    right: 0.75em;\n    content: '\\2191';\n}\ntable.b-table > thead > tr > th.sorting::after,\ntable.b-table > tfoot > tr > th.sorting::after {\n    right: 0.25em;\n    content: '\\2193';\n}\ntable.b-table > thead > tr > th.sorting_asc::after,\ntable.b-table > thead > tr > th.sorting_desc::before,\ntable.b-table > tfoot > tr > th.sorting_asc::after,\ntable.b-table > tfoot > tr > th.sorting_desc::before {\n    opacity: 1;\n}\n\n/* Stacked table layout */\n/* Derived from http://blog.adrianroselli.com/2017/11/a-responsive-accessible-table.html */\n/* Always stacked */\ntable.b-table.b-table-stacked {\n    width: 100%;\n}\ntable.b-table.b-table-stacked,\ntable.b-table.b-table-stacked > tbody,\ntable.b-table.b-table-stacked > tbody > tr,\ntable.b-table.b-table-stacked > tbody > tr > td,\ntable.b-table.b-table-stacked > tbody > tr > th,\ntable.b-table.b-table-stacked > caption {\n    display: block;\n}\n\n/* Hide stuff we can't deal with, or shouldn't show */\ntable.b-table.b-table-stacked > thead,\ntable.b-table.b-table-stacked > tfoot,\ntable.b-table.b-table-stacked > tbody > tr.b-table-top-row,\ntable.b-table.b-table-stacked > tbody > tr.b-table-bottom-row {\n    display: none;\n}\n\n/* inter-row top border */\ntable.b-table.b-table-stacked > tbody > tr > :first-child {\n    border-top-width: 0.4rem;\n}\n\n/* convert TD/TH contents to \"cells\". Caveat: child elements become cells! */\ntable.b-table.b-table-stacked > tbody > tr > [data-label] {\n    display: grid;\n    grid-template-columns: 40% auto;\n    grid-gap: 0.25rem 1rem;\n}\n\n/* generate row cell \"heading\" */\ntable.b-table.b-table-stacked > tbody > tr > [data-label]::before {\n    content: attr(data-label);\n    display: inline;\n    text-align: right;\n    overflow-wrap: break-word;\n    font-weight: bold;\n    font-style: normal;\n}\n\n@media all and (max-width: 575.99px) {\n    /* Under SM */\n    table.b-table.b-table-stacked-sm {\n        width: 100%;\n    }\n    table.b-table.b-table-stacked-sm,\n    table.b-table.b-table-stacked-sm > tbody,\n    table.b-table.b-table-stacked-sm > tbody > tr,\n    table.b-table.b-table-stacked-sm > tbody > tr > td,\n    table.b-table.b-table-stacked-sm > tbody > tr > th,\n    table.b-table.b-table-stacked-sm > caption {\n        display: block;\n    }\n    /* hide stuff we can't deal with, or shouldn't show */\n    table.b-table.b-table-stacked-sm > thead,\n    table.b-table.b-table-stacked-sm > tfoot,\n    table.b-table.b-table-stacked-sm > tbody > tr.b-table-top-row,\n    table.b-table.b-table-stacked-sm > tbody > tr.b-table-bottom-row {\n        display: none;\n    }\n    /* inter-row top border */\n    table.b-table.b-table-stacked-sm > tbody > tr > :first-child {\n        border-top-width: 0.4rem;\n    }\n    /* convert TD/TH contents to \"cells\". Caveat: child elements become cells! */\n    table.b-table.b-table-stacked-sm > tbody > tr > [data-label] {\n        display: grid;\n        grid-template-columns: 40% auto;\n        grid-gap: 0.25rem 1rem;\n    }\n    /* generate row cell \"heading\" */\n    table.b-table.b-table-stacked-sm > tbody > tr > [data-label]::before {\n        content: attr(data-label);\n        display: inline;\n        text-align: right;\n        overflow-wrap: break-word;\n        font-weight: bold;\n        font-style: normal;\n    }\n}\n\n@media all and (max-width: 767.99px) {\n    /* under MD  */\n    table.b-table.b-table-stacked-md {\n        width: 100%;\n    }\n    table.b-table.b-table-stacked-md,\n    table.b-table.b-table-stacked-md > tbody,\n    table.b-table.b-table-stacked-md > tbody > tr,\n    table.b-table.b-table-stacked-md > tbody > tr > td,\n    table.b-table.b-table-stacked-md > tbody > tr > th,\n    table.b-table.b-table-stacked-md > caption {\n        display: block;\n    }\n    /* hide stuff we can't deal with, or shouldn't show */\n    table.b-table.b-table-stacked-md > thead,\n    table.b-table.b-table-stacked-md > tfoot,\n    table.b-table.b-table-stacked-md > tbody > tr.b-table-top-row,\n    table.b-table.b-table-stacked-md > tbody > tr.b-table-bottom-row {\n        display: none;\n    }\n    /* inter-row top border */\n    table.b-table.b-table-stacked-md > tbody > tr > :first-child {\n        border-top-width: 0.4rem;\n    }\n    /* convert TD/TH contents to \"cells\". Caveat: child elements become cells! */\n    table.b-table.b-table-stacked-md > tbody > tr > [data-label] {\n        display: grid;\n        grid-template-columns: 40% auto;\n        grid-gap: 0.25rem 1rem;\n    }\n    /* generate row cell \"heading\" */\n    table.b-table.b-table-stacked-md > tbody > tr > [data-label]::before {\n        content: attr(data-label);\n        display: inline;\n        text-align: right;\n        overflow-wrap: break-word;\n        font-weight: bold;\n        font-style: normal;\n    }\n}\n\n@media all and (max-width: 991.99px) {\n    /* under LG  */\n    table.b-table.b-table-stacked-lg {\n        width: 100%;\n    }\n    table.b-table.b-table-stacked-lg,\n    table.b-table.b-table-stacked-lg > tbody,\n    table.b-table.b-table-stacked-lg > tbody > tr,\n    table.b-table.b-table-stacked-lg > tbody > tr > td,\n    table.b-table.b-table-stacked-lg > tbody > tr > th,\n    table.b-table.b-table-stacked-lg > caption {\n        display: block;\n    }\n    /* hide stuff we can't deal with, or shouldn't show */\n    table.b-table.b-table-stacked-lg > thead,\n    table.b-table.b-table-stacked-lg > tfoot,\n    table.b-table.b-table-stacked-lg > tbody > tr.b-table-top-row,\n    table.b-table.b-table-stacked-lg > tbody > tr.b-table-bottom-row {\n        display: none;\n    }\n    /* inter-row top border */\n    table.b-table.b-table-stacked-lg > tbody > tr > :first-child {\n        border-top-width: 0.4rem;\n    }\n    /* convert TD/TH contents to \"cells\". Caveat: child elements become cells! */\n    table.b-table.b-table-stacked-lg > tbody > tr > [data-label] {\n        display: grid;\n        grid-template-columns: 40% auto;\n        grid-gap: 0.25rem 1rem;\n    }\n    /* generate row cell \"heading\" */\n    table.b-table.b-table-stacked-lg > tbody > tr > [data-label]::before {\n        content: attr(data-label);\n        display: inline;\n        text-align: right;\n        overflow-wrap: break-word;\n        font-weight: bold;\n        font-style: normal;\n    }\n}\n\n@media all and (max-width: 1199.99px) {\n    /* under XL  */\n    table.b-table.b-table-stacked-xl {\n        width: 100%;\n    }\n    table.b-table.b-table-stacked-xl,\n    table.b-table.b-table-stacked-xl > tbody,\n    table.b-table.b-table-stacked-xl > tbody > tr,\n    table.b-table.b-table-stacked-xl > tbody > tr > td,\n    table.b-table.b-table-stacked-xl > tbody > tr > th,\n    table.b-table.b-table-stacked-xl > caption {\n        display: block;\n    }\n    /* hide stuff we can't deal with, or shouldn't show */\n    table.b-table.b-table-stacked-xl > thead,\n    table.b-table.b-table-stacked-xl > tfoot,\n    table.b-table.b-table-stacked-xl > tbody > tr.b-table-top-row,\n    table.b-table.b-table-stacked-xl > tbody > tr.b-table-bottom-row {\n        display: none;\n    }\n    /* inter-row top border */\n    table.b-table.b-table-stacked-xl > tbody > tr > :first-child {\n        border-top-width: 0.4rem;\n    }\n    /* convert TD/TH contents to \"cells\". Caveat: child elements become cells! */\n    table.b-table.b-table-stacked-xl > tbody > tr > [data-label] {\n        display: grid;\n        grid-template-columns: 40% auto;\n        grid-gap: 0.25rem 1rem;\n    }\n    /* generate row cell \"heading\" */\n    table.b-table.b-table-stacked-xl > tbody > tr > [data-label]::before {\n        content: attr(data-label);\n        display: inline;\n        text-align: right;\n        overflow-wrap: break-word;\n        font-weight: bold;\n        font-style: normal;\n    }\n}\n\n/* Details row styling */\ntable.b-table > tbody > tr.b-table-details > td {\n    border-top: none;\n}\n", ""]);
 
 // exports
 
@@ -12508,6 +14564,1533 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
+
+/***/ }),
+
+/***/ "./node_modules/lodash.get/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {/**
+ * lodash (Custom Build) <https://lodash.com/>
+ * Build: `lodash modularize exports="npm" -o ./`
+ * Copyright jQuery Foundation and other contributors <https://jquery.org/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */
+
+/** Used as the `TypeError` message for "Functions" methods. */
+var FUNC_ERROR_TEXT = 'Expected a function';
+
+/** Used to stand-in for `undefined` hash values. */
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
+
+/** Used as references for various `Number` constants. */
+var INFINITY = 1 / 0;
+
+/** `Object#toString` result references. */
+var funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]',
+    symbolTag = '[object Symbol]';
+
+/** Used to match property names within property paths. */
+var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
+    reIsPlainProp = /^\w*$/,
+    reLeadingDot = /^\./,
+    rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
+
+/**
+ * Used to match `RegExp`
+ * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
+ */
+var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+
+/** Used to match backslashes in property paths. */
+var reEscapeChar = /\\(\\)?/g;
+
+/** Used to detect host constructors (Safari). */
+var reIsHostCtor = /^\[object .+?Constructor\]$/;
+
+/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
+
+/**
+ * Gets the value at `key` of `object`.
+ *
+ * @private
+ * @param {Object} [object] The object to query.
+ * @param {string} key The key of the property to get.
+ * @returns {*} Returns the property value.
+ */
+function getValue(object, key) {
+  return object == null ? undefined : object[key];
+}
+
+/**
+ * Checks if `value` is a host object in IE < 9.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a host object, else `false`.
+ */
+function isHostObject(value) {
+  // Many host objects are `Object` objects that can coerce to strings
+  // despite having improperly defined `toString` methods.
+  var result = false;
+  if (value != null && typeof value.toString != 'function') {
+    try {
+      result = !!(value + '');
+    } catch (e) {}
+  }
+  return result;
+}
+
+/** Used for built-in method references. */
+var arrayProto = Array.prototype,
+    funcProto = Function.prototype,
+    objectProto = Object.prototype;
+
+/** Used to detect overreaching core-js shims. */
+var coreJsData = root['__core-js_shared__'];
+
+/** Used to detect methods masquerading as native. */
+var maskSrcKey = (function() {
+  var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
+  return uid ? ('Symbol(src)_1.' + uid) : '';
+}());
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var objectToString = objectProto.toString;
+
+/** Used to detect if a method is native. */
+var reIsNative = RegExp('^' +
+  funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\$&')
+  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
+);
+
+/** Built-in value references. */
+var Symbol = root.Symbol,
+    splice = arrayProto.splice;
+
+/* Built-in method references that are verified to be native. */
+var Map = getNative(root, 'Map'),
+    nativeCreate = getNative(Object, 'create');
+
+/** Used to convert symbols to primitives and strings. */
+var symbolProto = Symbol ? Symbol.prototype : undefined,
+    symbolToString = symbolProto ? symbolProto.toString : undefined;
+
+/**
+ * Creates a hash object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function Hash(entries) {
+  var index = -1,
+      length = entries ? entries.length : 0;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+/**
+ * Removes all key-value entries from the hash.
+ *
+ * @private
+ * @name clear
+ * @memberOf Hash
+ */
+function hashClear() {
+  this.__data__ = nativeCreate ? nativeCreate(null) : {};
+}
+
+/**
+ * Removes `key` and its value from the hash.
+ *
+ * @private
+ * @name delete
+ * @memberOf Hash
+ * @param {Object} hash The hash to modify.
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function hashDelete(key) {
+  return this.has(key) && delete this.__data__[key];
+}
+
+/**
+ * Gets the hash value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf Hash
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function hashGet(key) {
+  var data = this.__data__;
+  if (nativeCreate) {
+    var result = data[key];
+    return result === HASH_UNDEFINED ? undefined : result;
+  }
+  return hasOwnProperty.call(data, key) ? data[key] : undefined;
+}
+
+/**
+ * Checks if a hash value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf Hash
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function hashHas(key) {
+  var data = this.__data__;
+  return nativeCreate ? data[key] !== undefined : hasOwnProperty.call(data, key);
+}
+
+/**
+ * Sets the hash `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf Hash
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the hash instance.
+ */
+function hashSet(key, value) {
+  var data = this.__data__;
+  data[key] = (nativeCreate && value === undefined) ? HASH_UNDEFINED : value;
+  return this;
+}
+
+// Add methods to `Hash`.
+Hash.prototype.clear = hashClear;
+Hash.prototype['delete'] = hashDelete;
+Hash.prototype.get = hashGet;
+Hash.prototype.has = hashHas;
+Hash.prototype.set = hashSet;
+
+/**
+ * Creates an list cache object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function ListCache(entries) {
+  var index = -1,
+      length = entries ? entries.length : 0;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+/**
+ * Removes all key-value entries from the list cache.
+ *
+ * @private
+ * @name clear
+ * @memberOf ListCache
+ */
+function listCacheClear() {
+  this.__data__ = [];
+}
+
+/**
+ * Removes `key` and its value from the list cache.
+ *
+ * @private
+ * @name delete
+ * @memberOf ListCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function listCacheDelete(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    return false;
+  }
+  var lastIndex = data.length - 1;
+  if (index == lastIndex) {
+    data.pop();
+  } else {
+    splice.call(data, index, 1);
+  }
+  return true;
+}
+
+/**
+ * Gets the list cache value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf ListCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function listCacheGet(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  return index < 0 ? undefined : data[index][1];
+}
+
+/**
+ * Checks if a list cache value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf ListCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function listCacheHas(key) {
+  return assocIndexOf(this.__data__, key) > -1;
+}
+
+/**
+ * Sets the list cache `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf ListCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the list cache instance.
+ */
+function listCacheSet(key, value) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    data.push([key, value]);
+  } else {
+    data[index][1] = value;
+  }
+  return this;
+}
+
+// Add methods to `ListCache`.
+ListCache.prototype.clear = listCacheClear;
+ListCache.prototype['delete'] = listCacheDelete;
+ListCache.prototype.get = listCacheGet;
+ListCache.prototype.has = listCacheHas;
+ListCache.prototype.set = listCacheSet;
+
+/**
+ * Creates a map cache object to store key-value pairs.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function MapCache(entries) {
+  var index = -1,
+      length = entries ? entries.length : 0;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+/**
+ * Removes all key-value entries from the map.
+ *
+ * @private
+ * @name clear
+ * @memberOf MapCache
+ */
+function mapCacheClear() {
+  this.__data__ = {
+    'hash': new Hash,
+    'map': new (Map || ListCache),
+    'string': new Hash
+  };
+}
+
+/**
+ * Removes `key` and its value from the map.
+ *
+ * @private
+ * @name delete
+ * @memberOf MapCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function mapCacheDelete(key) {
+  return getMapData(this, key)['delete'](key);
+}
+
+/**
+ * Gets the map value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf MapCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function mapCacheGet(key) {
+  return getMapData(this, key).get(key);
+}
+
+/**
+ * Checks if a map value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf MapCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function mapCacheHas(key) {
+  return getMapData(this, key).has(key);
+}
+
+/**
+ * Sets the map `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf MapCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the map cache instance.
+ */
+function mapCacheSet(key, value) {
+  getMapData(this, key).set(key, value);
+  return this;
+}
+
+// Add methods to `MapCache`.
+MapCache.prototype.clear = mapCacheClear;
+MapCache.prototype['delete'] = mapCacheDelete;
+MapCache.prototype.get = mapCacheGet;
+MapCache.prototype.has = mapCacheHas;
+MapCache.prototype.set = mapCacheSet;
+
+/**
+ * Gets the index at which the `key` is found in `array` of key-value pairs.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {*} key The key to search for.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ */
+function assocIndexOf(array, key) {
+  var length = array.length;
+  while (length--) {
+    if (eq(array[length][0], key)) {
+      return length;
+    }
+  }
+  return -1;
+}
+
+/**
+ * The base implementation of `_.get` without support for default values.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {Array|string} path The path of the property to get.
+ * @returns {*} Returns the resolved value.
+ */
+function baseGet(object, path) {
+  path = isKey(path, object) ? [path] : castPath(path);
+
+  var index = 0,
+      length = path.length;
+
+  while (object != null && index < length) {
+    object = object[toKey(path[index++])];
+  }
+  return (index && index == length) ? object : undefined;
+}
+
+/**
+ * The base implementation of `_.isNative` without bad shim checks.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a native function,
+ *  else `false`.
+ */
+function baseIsNative(value) {
+  if (!isObject(value) || isMasked(value)) {
+    return false;
+  }
+  var pattern = (isFunction(value) || isHostObject(value)) ? reIsNative : reIsHostCtor;
+  return pattern.test(toSource(value));
+}
+
+/**
+ * The base implementation of `_.toString` which doesn't convert nullish
+ * values to empty strings.
+ *
+ * @private
+ * @param {*} value The value to process.
+ * @returns {string} Returns the string.
+ */
+function baseToString(value) {
+  // Exit early for strings to avoid a performance hit in some environments.
+  if (typeof value == 'string') {
+    return value;
+  }
+  if (isSymbol(value)) {
+    return symbolToString ? symbolToString.call(value) : '';
+  }
+  var result = (value + '');
+  return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;
+}
+
+/**
+ * Casts `value` to a path array if it's not one.
+ *
+ * @private
+ * @param {*} value The value to inspect.
+ * @returns {Array} Returns the cast property path array.
+ */
+function castPath(value) {
+  return isArray(value) ? value : stringToPath(value);
+}
+
+/**
+ * Gets the data for `map`.
+ *
+ * @private
+ * @param {Object} map The map to query.
+ * @param {string} key The reference key.
+ * @returns {*} Returns the map data.
+ */
+function getMapData(map, key) {
+  var data = map.__data__;
+  return isKeyable(key)
+    ? data[typeof key == 'string' ? 'string' : 'hash']
+    : data.map;
+}
+
+/**
+ * Gets the native function at `key` of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {string} key The key of the method to get.
+ * @returns {*} Returns the function if it's native, else `undefined`.
+ */
+function getNative(object, key) {
+  var value = getValue(object, key);
+  return baseIsNative(value) ? value : undefined;
+}
+
+/**
+ * Checks if `value` is a property name and not a property path.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @param {Object} [object] The object to query keys on.
+ * @returns {boolean} Returns `true` if `value` is a property name, else `false`.
+ */
+function isKey(value, object) {
+  if (isArray(value)) {
+    return false;
+  }
+  var type = typeof value;
+  if (type == 'number' || type == 'symbol' || type == 'boolean' ||
+      value == null || isSymbol(value)) {
+    return true;
+  }
+  return reIsPlainProp.test(value) || !reIsDeepProp.test(value) ||
+    (object != null && value in Object(object));
+}
+
+/**
+ * Checks if `value` is suitable for use as unique object key.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is suitable, else `false`.
+ */
+function isKeyable(value) {
+  var type = typeof value;
+  return (type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean')
+    ? (value !== '__proto__')
+    : (value === null);
+}
+
+/**
+ * Checks if `func` has its source masked.
+ *
+ * @private
+ * @param {Function} func The function to check.
+ * @returns {boolean} Returns `true` if `func` is masked, else `false`.
+ */
+function isMasked(func) {
+  return !!maskSrcKey && (maskSrcKey in func);
+}
+
+/**
+ * Converts `string` to a property path array.
+ *
+ * @private
+ * @param {string} string The string to convert.
+ * @returns {Array} Returns the property path array.
+ */
+var stringToPath = memoize(function(string) {
+  string = toString(string);
+
+  var result = [];
+  if (reLeadingDot.test(string)) {
+    result.push('');
+  }
+  string.replace(rePropName, function(match, number, quote, string) {
+    result.push(quote ? string.replace(reEscapeChar, '$1') : (number || match));
+  });
+  return result;
+});
+
+/**
+ * Converts `value` to a string key if it's not a string or symbol.
+ *
+ * @private
+ * @param {*} value The value to inspect.
+ * @returns {string|symbol} Returns the key.
+ */
+function toKey(value) {
+  if (typeof value == 'string' || isSymbol(value)) {
+    return value;
+  }
+  var result = (value + '');
+  return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;
+}
+
+/**
+ * Converts `func` to its source code.
+ *
+ * @private
+ * @param {Function} func The function to process.
+ * @returns {string} Returns the source code.
+ */
+function toSource(func) {
+  if (func != null) {
+    try {
+      return funcToString.call(func);
+    } catch (e) {}
+    try {
+      return (func + '');
+    } catch (e) {}
+  }
+  return '';
+}
+
+/**
+ * Creates a function that memoizes the result of `func`. If `resolver` is
+ * provided, it determines the cache key for storing the result based on the
+ * arguments provided to the memoized function. By default, the first argument
+ * provided to the memoized function is used as the map cache key. The `func`
+ * is invoked with the `this` binding of the memoized function.
+ *
+ * **Note:** The cache is exposed as the `cache` property on the memoized
+ * function. Its creation may be customized by replacing the `_.memoize.Cache`
+ * constructor with one whose instances implement the
+ * [`Map`](http://ecma-international.org/ecma-262/7.0/#sec-properties-of-the-map-prototype-object)
+ * method interface of `delete`, `get`, `has`, and `set`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to have its output memoized.
+ * @param {Function} [resolver] The function to resolve the cache key.
+ * @returns {Function} Returns the new memoized function.
+ * @example
+ *
+ * var object = { 'a': 1, 'b': 2 };
+ * var other = { 'c': 3, 'd': 4 };
+ *
+ * var values = _.memoize(_.values);
+ * values(object);
+ * // => [1, 2]
+ *
+ * values(other);
+ * // => [3, 4]
+ *
+ * object.a = 2;
+ * values(object);
+ * // => [1, 2]
+ *
+ * // Modify the result cache.
+ * values.cache.set(object, ['a', 'b']);
+ * values(object);
+ * // => ['a', 'b']
+ *
+ * // Replace `_.memoize.Cache`.
+ * _.memoize.Cache = WeakMap;
+ */
+function memoize(func, resolver) {
+  if (typeof func != 'function' || (resolver && typeof resolver != 'function')) {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  var memoized = function() {
+    var args = arguments,
+        key = resolver ? resolver.apply(this, args) : args[0],
+        cache = memoized.cache;
+
+    if (cache.has(key)) {
+      return cache.get(key);
+    }
+    var result = func.apply(this, args);
+    memoized.cache = cache.set(key, result);
+    return result;
+  };
+  memoized.cache = new (memoize.Cache || MapCache);
+  return memoized;
+}
+
+// Assign cache to `_.memoize`.
+memoize.Cache = MapCache;
+
+/**
+ * Performs a
+ * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+ * comparison between two values to determine if they are equivalent.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ * var other = { 'a': 1 };
+ *
+ * _.eq(object, object);
+ * // => true
+ *
+ * _.eq(object, other);
+ * // => false
+ *
+ * _.eq('a', 'a');
+ * // => true
+ *
+ * _.eq('a', Object('a'));
+ * // => false
+ *
+ * _.eq(NaN, NaN);
+ * // => true
+ */
+function eq(value, other) {
+  return value === other || (value !== value && other !== other);
+}
+
+/**
+ * Checks if `value` is classified as an `Array` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array, else `false`.
+ * @example
+ *
+ * _.isArray([1, 2, 3]);
+ * // => true
+ *
+ * _.isArray(document.body.children);
+ * // => false
+ *
+ * _.isArray('abc');
+ * // => false
+ *
+ * _.isArray(_.noop);
+ * // => false
+ */
+var isArray = Array.isArray;
+
+/**
+ * Checks if `value` is classified as a `Function` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a function, else `false`.
+ * @example
+ *
+ * _.isFunction(_);
+ * // => true
+ *
+ * _.isFunction(/abc/);
+ * // => false
+ */
+function isFunction(value) {
+  // The use of `Object#toString` avoids issues with the `typeof` operator
+  // in Safari 8-9 which returns 'object' for typed array and other constructors.
+  var tag = isObject(value) ? objectToString.call(value) : '';
+  return tag == funcTag || tag == genTag;
+}
+
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+function isObject(value) {
+  var type = typeof value;
+  return !!value && (type == 'object' || type == 'function');
+}
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return !!value && typeof value == 'object';
+}
+
+/**
+ * Checks if `value` is classified as a `Symbol` primitive or object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+ * @example
+ *
+ * _.isSymbol(Symbol.iterator);
+ * // => true
+ *
+ * _.isSymbol('abc');
+ * // => false
+ */
+function isSymbol(value) {
+  return typeof value == 'symbol' ||
+    (isObjectLike(value) && objectToString.call(value) == symbolTag);
+}
+
+/**
+ * Converts `value` to a string. An empty string is returned for `null`
+ * and `undefined` values. The sign of `-0` is preserved.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to process.
+ * @returns {string} Returns the string.
+ * @example
+ *
+ * _.toString(null);
+ * // => ''
+ *
+ * _.toString(-0);
+ * // => '-0'
+ *
+ * _.toString([1, 2, 3]);
+ * // => '1,2,3'
+ */
+function toString(value) {
+  return value == null ? '' : baseToString(value);
+}
+
+/**
+ * Gets the value at `path` of `object`. If the resolved value is
+ * `undefined`, the `defaultValue` is returned in its place.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.7.0
+ * @category Object
+ * @param {Object} object The object to query.
+ * @param {Array|string} path The path of the property to get.
+ * @param {*} [defaultValue] The value returned for `undefined` resolved values.
+ * @returns {*} Returns the resolved value.
+ * @example
+ *
+ * var object = { 'a': [{ 'b': { 'c': 3 } }] };
+ *
+ * _.get(object, 'a[0].b.c');
+ * // => 3
+ *
+ * _.get(object, ['a', '0', 'b', 'c']);
+ * // => 3
+ *
+ * _.get(object, 'a.b.c', 'default');
+ * // => 'default'
+ */
+function get(object, path, defaultValue) {
+  var result = object == null ? undefined : baseGet(object, path);
+  return result === undefined ? defaultValue : result;
+}
+
+module.exports = get;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/lodash.startcase/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {/**
+ * lodash (Custom Build) <https://lodash.com/>
+ * Build: `lodash modularize exports="npm" -o ./`
+ * Copyright jQuery Foundation and other contributors <https://jquery.org/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */
+
+/** Used as references for various `Number` constants. */
+var INFINITY = 1 / 0;
+
+/** `Object#toString` result references. */
+var symbolTag = '[object Symbol]';
+
+/** Used to match words composed of alphanumeric characters. */
+var reAsciiWord = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
+
+/** Used to match Latin Unicode letters (excluding mathematical operators). */
+var reLatin = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g;
+
+/** Used to compose unicode character classes. */
+var rsAstralRange = '\\ud800-\\udfff',
+    rsComboMarksRange = '\\u0300-\\u036f\\ufe20-\\ufe23',
+    rsComboSymbolsRange = '\\u20d0-\\u20f0',
+    rsDingbatRange = '\\u2700-\\u27bf',
+    rsLowerRange = 'a-z\\xdf-\\xf6\\xf8-\\xff',
+    rsMathOpRange = '\\xac\\xb1\\xd7\\xf7',
+    rsNonCharRange = '\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf',
+    rsPunctuationRange = '\\u2000-\\u206f',
+    rsSpaceRange = ' \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000',
+    rsUpperRange = 'A-Z\\xc0-\\xd6\\xd8-\\xde',
+    rsVarRange = '\\ufe0e\\ufe0f',
+    rsBreakRange = rsMathOpRange + rsNonCharRange + rsPunctuationRange + rsSpaceRange;
+
+/** Used to compose unicode capture groups. */
+var rsApos = "['\u2019]",
+    rsAstral = '[' + rsAstralRange + ']',
+    rsBreak = '[' + rsBreakRange + ']',
+    rsCombo = '[' + rsComboMarksRange + rsComboSymbolsRange + ']',
+    rsDigits = '\\d+',
+    rsDingbat = '[' + rsDingbatRange + ']',
+    rsLower = '[' + rsLowerRange + ']',
+    rsMisc = '[^' + rsAstralRange + rsBreakRange + rsDigits + rsDingbatRange + rsLowerRange + rsUpperRange + ']',
+    rsFitz = '\\ud83c[\\udffb-\\udfff]',
+    rsModifier = '(?:' + rsCombo + '|' + rsFitz + ')',
+    rsNonAstral = '[^' + rsAstralRange + ']',
+    rsRegional = '(?:\\ud83c[\\udde6-\\uddff]){2}',
+    rsSurrPair = '[\\ud800-\\udbff][\\udc00-\\udfff]',
+    rsUpper = '[' + rsUpperRange + ']',
+    rsZWJ = '\\u200d';
+
+/** Used to compose unicode regexes. */
+var rsLowerMisc = '(?:' + rsLower + '|' + rsMisc + ')',
+    rsUpperMisc = '(?:' + rsUpper + '|' + rsMisc + ')',
+    rsOptLowerContr = '(?:' + rsApos + '(?:d|ll|m|re|s|t|ve))?',
+    rsOptUpperContr = '(?:' + rsApos + '(?:D|LL|M|RE|S|T|VE))?',
+    reOptMod = rsModifier + '?',
+    rsOptVar = '[' + rsVarRange + ']?',
+    rsOptJoin = '(?:' + rsZWJ + '(?:' + [rsNonAstral, rsRegional, rsSurrPair].join('|') + ')' + rsOptVar + reOptMod + ')*',
+    rsSeq = rsOptVar + reOptMod + rsOptJoin,
+    rsEmoji = '(?:' + [rsDingbat, rsRegional, rsSurrPair].join('|') + ')' + rsSeq,
+    rsSymbol = '(?:' + [rsNonAstral + rsCombo + '?', rsCombo, rsRegional, rsSurrPair, rsAstral].join('|') + ')';
+
+/** Used to match apostrophes. */
+var reApos = RegExp(rsApos, 'g');
+
+/**
+ * Used to match [combining diacritical marks](https://en.wikipedia.org/wiki/Combining_Diacritical_Marks) and
+ * [combining diacritical marks for symbols](https://en.wikipedia.org/wiki/Combining_Diacritical_Marks_for_Symbols).
+ */
+var reComboMark = RegExp(rsCombo, 'g');
+
+/** Used to match [string symbols](https://mathiasbynens.be/notes/javascript-unicode). */
+var reUnicode = RegExp(rsFitz + '(?=' + rsFitz + ')|' + rsSymbol + rsSeq, 'g');
+
+/** Used to match complex or compound words. */
+var reUnicodeWord = RegExp([
+  rsUpper + '?' + rsLower + '+' + rsOptLowerContr + '(?=' + [rsBreak, rsUpper, '$'].join('|') + ')',
+  rsUpperMisc + '+' + rsOptUpperContr + '(?=' + [rsBreak, rsUpper + rsLowerMisc, '$'].join('|') + ')',
+  rsUpper + '?' + rsLowerMisc + '+' + rsOptLowerContr,
+  rsUpper + '+' + rsOptUpperContr,
+  rsDigits,
+  rsEmoji
+].join('|'), 'g');
+
+/** Used to detect strings with [zero-width joiners or code points from the astral planes](http://eev.ee/blog/2015/09/12/dark-corners-of-unicode/). */
+var reHasUnicode = RegExp('[' + rsZWJ + rsAstralRange  + rsComboMarksRange + rsComboSymbolsRange + rsVarRange + ']');
+
+/** Used to detect strings that need a more robust regexp to match words. */
+var reHasUnicodeWord = /[a-z][A-Z]|[A-Z]{2,}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
+
+/** Used to map Latin Unicode letters to basic Latin letters. */
+var deburredLetters = {
+  // Latin-1 Supplement block.
+  '\xc0': 'A',  '\xc1': 'A', '\xc2': 'A', '\xc3': 'A', '\xc4': 'A', '\xc5': 'A',
+  '\xe0': 'a',  '\xe1': 'a', '\xe2': 'a', '\xe3': 'a', '\xe4': 'a', '\xe5': 'a',
+  '\xc7': 'C',  '\xe7': 'c',
+  '\xd0': 'D',  '\xf0': 'd',
+  '\xc8': 'E',  '\xc9': 'E', '\xca': 'E', '\xcb': 'E',
+  '\xe8': 'e',  '\xe9': 'e', '\xea': 'e', '\xeb': 'e',
+  '\xcc': 'I',  '\xcd': 'I', '\xce': 'I', '\xcf': 'I',
+  '\xec': 'i',  '\xed': 'i', '\xee': 'i', '\xef': 'i',
+  '\xd1': 'N',  '\xf1': 'n',
+  '\xd2': 'O',  '\xd3': 'O', '\xd4': 'O', '\xd5': 'O', '\xd6': 'O', '\xd8': 'O',
+  '\xf2': 'o',  '\xf3': 'o', '\xf4': 'o', '\xf5': 'o', '\xf6': 'o', '\xf8': 'o',
+  '\xd9': 'U',  '\xda': 'U', '\xdb': 'U', '\xdc': 'U',
+  '\xf9': 'u',  '\xfa': 'u', '\xfb': 'u', '\xfc': 'u',
+  '\xdd': 'Y',  '\xfd': 'y', '\xff': 'y',
+  '\xc6': 'Ae', '\xe6': 'ae',
+  '\xde': 'Th', '\xfe': 'th',
+  '\xdf': 'ss',
+  // Latin Extended-A block.
+  '\u0100': 'A',  '\u0102': 'A', '\u0104': 'A',
+  '\u0101': 'a',  '\u0103': 'a', '\u0105': 'a',
+  '\u0106': 'C',  '\u0108': 'C', '\u010a': 'C', '\u010c': 'C',
+  '\u0107': 'c',  '\u0109': 'c', '\u010b': 'c', '\u010d': 'c',
+  '\u010e': 'D',  '\u0110': 'D', '\u010f': 'd', '\u0111': 'd',
+  '\u0112': 'E',  '\u0114': 'E', '\u0116': 'E', '\u0118': 'E', '\u011a': 'E',
+  '\u0113': 'e',  '\u0115': 'e', '\u0117': 'e', '\u0119': 'e', '\u011b': 'e',
+  '\u011c': 'G',  '\u011e': 'G', '\u0120': 'G', '\u0122': 'G',
+  '\u011d': 'g',  '\u011f': 'g', '\u0121': 'g', '\u0123': 'g',
+  '\u0124': 'H',  '\u0126': 'H', '\u0125': 'h', '\u0127': 'h',
+  '\u0128': 'I',  '\u012a': 'I', '\u012c': 'I', '\u012e': 'I', '\u0130': 'I',
+  '\u0129': 'i',  '\u012b': 'i', '\u012d': 'i', '\u012f': 'i', '\u0131': 'i',
+  '\u0134': 'J',  '\u0135': 'j',
+  '\u0136': 'K',  '\u0137': 'k', '\u0138': 'k',
+  '\u0139': 'L',  '\u013b': 'L', '\u013d': 'L', '\u013f': 'L', '\u0141': 'L',
+  '\u013a': 'l',  '\u013c': 'l', '\u013e': 'l', '\u0140': 'l', '\u0142': 'l',
+  '\u0143': 'N',  '\u0145': 'N', '\u0147': 'N', '\u014a': 'N',
+  '\u0144': 'n',  '\u0146': 'n', '\u0148': 'n', '\u014b': 'n',
+  '\u014c': 'O',  '\u014e': 'O', '\u0150': 'O',
+  '\u014d': 'o',  '\u014f': 'o', '\u0151': 'o',
+  '\u0154': 'R',  '\u0156': 'R', '\u0158': 'R',
+  '\u0155': 'r',  '\u0157': 'r', '\u0159': 'r',
+  '\u015a': 'S',  '\u015c': 'S', '\u015e': 'S', '\u0160': 'S',
+  '\u015b': 's',  '\u015d': 's', '\u015f': 's', '\u0161': 's',
+  '\u0162': 'T',  '\u0164': 'T', '\u0166': 'T',
+  '\u0163': 't',  '\u0165': 't', '\u0167': 't',
+  '\u0168': 'U',  '\u016a': 'U', '\u016c': 'U', '\u016e': 'U', '\u0170': 'U', '\u0172': 'U',
+  '\u0169': 'u',  '\u016b': 'u', '\u016d': 'u', '\u016f': 'u', '\u0171': 'u', '\u0173': 'u',
+  '\u0174': 'W',  '\u0175': 'w',
+  '\u0176': 'Y',  '\u0177': 'y', '\u0178': 'Y',
+  '\u0179': 'Z',  '\u017b': 'Z', '\u017d': 'Z',
+  '\u017a': 'z',  '\u017c': 'z', '\u017e': 'z',
+  '\u0132': 'IJ', '\u0133': 'ij',
+  '\u0152': 'Oe', '\u0153': 'oe',
+  '\u0149': "'n", '\u017f': 'ss'
+};
+
+/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
+
+/**
+ * A specialized version of `_.reduce` for arrays without support for
+ * iteratee shorthands.
+ *
+ * @private
+ * @param {Array} [array] The array to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @param {*} [accumulator] The initial value.
+ * @param {boolean} [initAccum] Specify using the first element of `array` as
+ *  the initial value.
+ * @returns {*} Returns the accumulated value.
+ */
+function arrayReduce(array, iteratee, accumulator, initAccum) {
+  var index = -1,
+      length = array ? array.length : 0;
+
+  if (initAccum && length) {
+    accumulator = array[++index];
+  }
+  while (++index < length) {
+    accumulator = iteratee(accumulator, array[index], index, array);
+  }
+  return accumulator;
+}
+
+/**
+ * Converts an ASCII `string` to an array.
+ *
+ * @private
+ * @param {string} string The string to convert.
+ * @returns {Array} Returns the converted array.
+ */
+function asciiToArray(string) {
+  return string.split('');
+}
+
+/**
+ * Splits an ASCII `string` into an array of its words.
+ *
+ * @private
+ * @param {string} The string to inspect.
+ * @returns {Array} Returns the words of `string`.
+ */
+function asciiWords(string) {
+  return string.match(reAsciiWord) || [];
+}
+
+/**
+ * The base implementation of `_.propertyOf` without support for deep paths.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Function} Returns the new accessor function.
+ */
+function basePropertyOf(object) {
+  return function(key) {
+    return object == null ? undefined : object[key];
+  };
+}
+
+/**
+ * Used by `_.deburr` to convert Latin-1 Supplement and Latin Extended-A
+ * letters to basic Latin letters.
+ *
+ * @private
+ * @param {string} letter The matched letter to deburr.
+ * @returns {string} Returns the deburred letter.
+ */
+var deburrLetter = basePropertyOf(deburredLetters);
+
+/**
+ * Checks if `string` contains Unicode symbols.
+ *
+ * @private
+ * @param {string} string The string to inspect.
+ * @returns {boolean} Returns `true` if a symbol is found, else `false`.
+ */
+function hasUnicode(string) {
+  return reHasUnicode.test(string);
+}
+
+/**
+ * Checks if `string` contains a word composed of Unicode symbols.
+ *
+ * @private
+ * @param {string} string The string to inspect.
+ * @returns {boolean} Returns `true` if a word is found, else `false`.
+ */
+function hasUnicodeWord(string) {
+  return reHasUnicodeWord.test(string);
+}
+
+/**
+ * Converts `string` to an array.
+ *
+ * @private
+ * @param {string} string The string to convert.
+ * @returns {Array} Returns the converted array.
+ */
+function stringToArray(string) {
+  return hasUnicode(string)
+    ? unicodeToArray(string)
+    : asciiToArray(string);
+}
+
+/**
+ * Converts a Unicode `string` to an array.
+ *
+ * @private
+ * @param {string} string The string to convert.
+ * @returns {Array} Returns the converted array.
+ */
+function unicodeToArray(string) {
+  return string.match(reUnicode) || [];
+}
+
+/**
+ * Splits a Unicode `string` into an array of its words.
+ *
+ * @private
+ * @param {string} The string to inspect.
+ * @returns {Array} Returns the words of `string`.
+ */
+function unicodeWords(string) {
+  return string.match(reUnicodeWord) || [];
+}
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var objectToString = objectProto.toString;
+
+/** Built-in value references. */
+var Symbol = root.Symbol;
+
+/** Used to convert symbols to primitives and strings. */
+var symbolProto = Symbol ? Symbol.prototype : undefined,
+    symbolToString = symbolProto ? symbolProto.toString : undefined;
+
+/**
+ * The base implementation of `_.slice` without an iteratee call guard.
+ *
+ * @private
+ * @param {Array} array The array to slice.
+ * @param {number} [start=0] The start position.
+ * @param {number} [end=array.length] The end position.
+ * @returns {Array} Returns the slice of `array`.
+ */
+function baseSlice(array, start, end) {
+  var index = -1,
+      length = array.length;
+
+  if (start < 0) {
+    start = -start > length ? 0 : (length + start);
+  }
+  end = end > length ? length : end;
+  if (end < 0) {
+    end += length;
+  }
+  length = start > end ? 0 : ((end - start) >>> 0);
+  start >>>= 0;
+
+  var result = Array(length);
+  while (++index < length) {
+    result[index] = array[index + start];
+  }
+  return result;
+}
+
+/**
+ * The base implementation of `_.toString` which doesn't convert nullish
+ * values to empty strings.
+ *
+ * @private
+ * @param {*} value The value to process.
+ * @returns {string} Returns the string.
+ */
+function baseToString(value) {
+  // Exit early for strings to avoid a performance hit in some environments.
+  if (typeof value == 'string') {
+    return value;
+  }
+  if (isSymbol(value)) {
+    return symbolToString ? symbolToString.call(value) : '';
+  }
+  var result = (value + '');
+  return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;
+}
+
+/**
+ * Casts `array` to a slice if it's needed.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {number} start The start position.
+ * @param {number} [end=array.length] The end position.
+ * @returns {Array} Returns the cast slice.
+ */
+function castSlice(array, start, end) {
+  var length = array.length;
+  end = end === undefined ? length : end;
+  return (!start && end >= length) ? array : baseSlice(array, start, end);
+}
+
+/**
+ * Creates a function like `_.lowerFirst`.
+ *
+ * @private
+ * @param {string} methodName The name of the `String` case method to use.
+ * @returns {Function} Returns the new case function.
+ */
+function createCaseFirst(methodName) {
+  return function(string) {
+    string = toString(string);
+
+    var strSymbols = hasUnicode(string)
+      ? stringToArray(string)
+      : undefined;
+
+    var chr = strSymbols
+      ? strSymbols[0]
+      : string.charAt(0);
+
+    var trailing = strSymbols
+      ? castSlice(strSymbols, 1).join('')
+      : string.slice(1);
+
+    return chr[methodName]() + trailing;
+  };
+}
+
+/**
+ * Creates a function like `_.camelCase`.
+ *
+ * @private
+ * @param {Function} callback The function to combine each word.
+ * @returns {Function} Returns the new compounder function.
+ */
+function createCompounder(callback) {
+  return function(string) {
+    return arrayReduce(words(deburr(string).replace(reApos, '')), callback, '');
+  };
+}
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return !!value && typeof value == 'object';
+}
+
+/**
+ * Checks if `value` is classified as a `Symbol` primitive or object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+ * @example
+ *
+ * _.isSymbol(Symbol.iterator);
+ * // => true
+ *
+ * _.isSymbol('abc');
+ * // => false
+ */
+function isSymbol(value) {
+  return typeof value == 'symbol' ||
+    (isObjectLike(value) && objectToString.call(value) == symbolTag);
+}
+
+/**
+ * Converts `value` to a string. An empty string is returned for `null`
+ * and `undefined` values. The sign of `-0` is preserved.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to process.
+ * @returns {string} Returns the string.
+ * @example
+ *
+ * _.toString(null);
+ * // => ''
+ *
+ * _.toString(-0);
+ * // => '-0'
+ *
+ * _.toString([1, 2, 3]);
+ * // => '1,2,3'
+ */
+function toString(value) {
+  return value == null ? '' : baseToString(value);
+}
+
+/**
+ * Deburrs `string` by converting
+ * [Latin-1 Supplement](https://en.wikipedia.org/wiki/Latin-1_Supplement_(Unicode_block)#Character_table)
+ * and [Latin Extended-A](https://en.wikipedia.org/wiki/Latin_Extended-A)
+ * letters to basic Latin letters and removing
+ * [combining diacritical marks](https://en.wikipedia.org/wiki/Combining_Diacritical_Marks).
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category String
+ * @param {string} [string=''] The string to deburr.
+ * @returns {string} Returns the deburred string.
+ * @example
+ *
+ * _.deburr('déjà vu');
+ * // => 'deja vu'
+ */
+function deburr(string) {
+  string = toString(string);
+  return string && string.replace(reLatin, deburrLetter).replace(reComboMark, '');
+}
+
+/**
+ * Converts `string` to
+ * [start case](https://en.wikipedia.org/wiki/Letter_case#Stylistic_or_specialised_usage).
+ *
+ * @static
+ * @memberOf _
+ * @since 3.1.0
+ * @category String
+ * @param {string} [string=''] The string to convert.
+ * @returns {string} Returns the start cased string.
+ * @example
+ *
+ * _.startCase('--foo-bar--');
+ * // => 'Foo Bar'
+ *
+ * _.startCase('fooBar');
+ * // => 'Foo Bar'
+ *
+ * _.startCase('__FOO_BAR__');
+ * // => 'FOO BAR'
+ */
+var startCase = createCompounder(function(result, word, index) {
+  return result + (index ? ' ' : '') + upperFirst(word);
+});
+
+/**
+ * Converts the first character of `string` to upper case.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category String
+ * @param {string} [string=''] The string to convert.
+ * @returns {string} Returns the converted string.
+ * @example
+ *
+ * _.upperFirst('fred');
+ * // => 'Fred'
+ *
+ * _.upperFirst('FRED');
+ * // => 'FRED'
+ */
+var upperFirst = createCaseFirst('toUpperCase');
+
+/**
+ * Splits `string` into an array of its words.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category String
+ * @param {string} [string=''] The string to inspect.
+ * @param {RegExp|string} [pattern] The pattern to match words.
+ * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+ * @returns {Array} Returns the words of `string`.
+ * @example
+ *
+ * _.words('fred, barney, & pebbles');
+ * // => ['fred', 'barney', 'pebbles']
+ *
+ * _.words('fred, barney, & pebbles', /[^, ]+/g);
+ * // => ['fred', 'barney', '&', 'pebbles']
+ */
+function words(string, pattern, guard) {
+  string = toString(string);
+  pattern = guard ? undefined : pattern;
+
+  if (pattern === undefined) {
+    return hasUnicodeWord(string) ? unicodeWords(string) : asciiWords(string);
+  }
+  return string.match(pattern) || [];
+}
+
+module.exports = startCase;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
@@ -29627,7 +33210,7 @@ function isSlowBuffer (obj) {
 
 /***/ }),
 
-/***/ "./node_modules/process/browser.js":
+/***/ "./node_modules/node-libs-browser/node_modules/process/browser.js":
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -29815,6 +33398,2620 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
+
+/***/ }),
+
+/***/ "./node_modules/popper.js/dist/esm/popper.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function(global) {/**!
+ * @fileOverview Kickass library to create and place poppers near their reference elements.
+ * @version 1.15.0
+ * @license
+ * Copyright (c) 2016 Federico Zivolo and contributors
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+var isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
+
+var longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox'];
+var timeoutDuration = 0;
+for (var i = 0; i < longerTimeoutBrowsers.length; i += 1) {
+  if (isBrowser && navigator.userAgent.indexOf(longerTimeoutBrowsers[i]) >= 0) {
+    timeoutDuration = 1;
+    break;
+  }
+}
+
+function microtaskDebounce(fn) {
+  var called = false;
+  return function () {
+    if (called) {
+      return;
+    }
+    called = true;
+    window.Promise.resolve().then(function () {
+      called = false;
+      fn();
+    });
+  };
+}
+
+function taskDebounce(fn) {
+  var scheduled = false;
+  return function () {
+    if (!scheduled) {
+      scheduled = true;
+      setTimeout(function () {
+        scheduled = false;
+        fn();
+      }, timeoutDuration);
+    }
+  };
+}
+
+var supportsMicroTasks = isBrowser && window.Promise;
+
+/**
+* Create a debounced version of a method, that's asynchronously deferred
+* but called in the minimum time possible.
+*
+* @method
+* @memberof Popper.Utils
+* @argument {Function} fn
+* @returns {Function}
+*/
+var debounce = supportsMicroTasks ? microtaskDebounce : taskDebounce;
+
+/**
+ * Check if the given variable is a function
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Any} functionToCheck - variable to check
+ * @returns {Boolean} answer to: is a function?
+ */
+function isFunction(functionToCheck) {
+  var getType = {};
+  return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+}
+
+/**
+ * Get CSS computed property of the given element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Eement} element
+ * @argument {String} property
+ */
+function getStyleComputedProperty(element, property) {
+  if (element.nodeType !== 1) {
+    return [];
+  }
+  // NOTE: 1 DOM access here
+  var window = element.ownerDocument.defaultView;
+  var css = window.getComputedStyle(element, null);
+  return property ? css[property] : css;
+}
+
+/**
+ * Returns the parentNode or the host of the element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Element} parent
+ */
+function getParentNode(element) {
+  if (element.nodeName === 'HTML') {
+    return element;
+  }
+  return element.parentNode || element.host;
+}
+
+/**
+ * Returns the scrolling parent of the given element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Element} scroll parent
+ */
+function getScrollParent(element) {
+  // Return body, `getScroll` will take care to get the correct `scrollTop` from it
+  if (!element) {
+    return document.body;
+  }
+
+  switch (element.nodeName) {
+    case 'HTML':
+    case 'BODY':
+      return element.ownerDocument.body;
+    case '#document':
+      return element.body;
+  }
+
+  // Firefox want us to check `-x` and `-y` variations as well
+
+  var _getStyleComputedProp = getStyleComputedProperty(element),
+      overflow = _getStyleComputedProp.overflow,
+      overflowX = _getStyleComputedProp.overflowX,
+      overflowY = _getStyleComputedProp.overflowY;
+
+  if (/(auto|scroll|overlay)/.test(overflow + overflowY + overflowX)) {
+    return element;
+  }
+
+  return getScrollParent(getParentNode(element));
+}
+
+var isIE11 = isBrowser && !!(window.MSInputMethodContext && document.documentMode);
+var isIE10 = isBrowser && /MSIE 10/.test(navigator.userAgent);
+
+/**
+ * Determines if the browser is Internet Explorer
+ * @method
+ * @memberof Popper.Utils
+ * @param {Number} version to check
+ * @returns {Boolean} isIE
+ */
+function isIE(version) {
+  if (version === 11) {
+    return isIE11;
+  }
+  if (version === 10) {
+    return isIE10;
+  }
+  return isIE11 || isIE10;
+}
+
+/**
+ * Returns the offset parent of the given element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Element} offset parent
+ */
+function getOffsetParent(element) {
+  if (!element) {
+    return document.documentElement;
+  }
+
+  var noOffsetParent = isIE(10) ? document.body : null;
+
+  // NOTE: 1 DOM access here
+  var offsetParent = element.offsetParent || null;
+  // Skip hidden elements which don't have an offsetParent
+  while (offsetParent === noOffsetParent && element.nextElementSibling) {
+    offsetParent = (element = element.nextElementSibling).offsetParent;
+  }
+
+  var nodeName = offsetParent && offsetParent.nodeName;
+
+  if (!nodeName || nodeName === 'BODY' || nodeName === 'HTML') {
+    return element ? element.ownerDocument.documentElement : document.documentElement;
+  }
+
+  // .offsetParent will return the closest TH, TD or TABLE in case
+  // no offsetParent is present, I hate this job...
+  if (['TH', 'TD', 'TABLE'].indexOf(offsetParent.nodeName) !== -1 && getStyleComputedProperty(offsetParent, 'position') === 'static') {
+    return getOffsetParent(offsetParent);
+  }
+
+  return offsetParent;
+}
+
+function isOffsetContainer(element) {
+  var nodeName = element.nodeName;
+
+  if (nodeName === 'BODY') {
+    return false;
+  }
+  return nodeName === 'HTML' || getOffsetParent(element.firstElementChild) === element;
+}
+
+/**
+ * Finds the root node (document, shadowDOM root) of the given element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} node
+ * @returns {Element} root node
+ */
+function getRoot(node) {
+  if (node.parentNode !== null) {
+    return getRoot(node.parentNode);
+  }
+
+  return node;
+}
+
+/**
+ * Finds the offset parent common to the two provided nodes
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element1
+ * @argument {Element} element2
+ * @returns {Element} common offset parent
+ */
+function findCommonOffsetParent(element1, element2) {
+  // This check is needed to avoid errors in case one of the elements isn't defined for any reason
+  if (!element1 || !element1.nodeType || !element2 || !element2.nodeType) {
+    return document.documentElement;
+  }
+
+  // Here we make sure to give as "start" the element that comes first in the DOM
+  var order = element1.compareDocumentPosition(element2) & Node.DOCUMENT_POSITION_FOLLOWING;
+  var start = order ? element1 : element2;
+  var end = order ? element2 : element1;
+
+  // Get common ancestor container
+  var range = document.createRange();
+  range.setStart(start, 0);
+  range.setEnd(end, 0);
+  var commonAncestorContainer = range.commonAncestorContainer;
+
+  // Both nodes are inside #document
+
+  if (element1 !== commonAncestorContainer && element2 !== commonAncestorContainer || start.contains(end)) {
+    if (isOffsetContainer(commonAncestorContainer)) {
+      return commonAncestorContainer;
+    }
+
+    return getOffsetParent(commonAncestorContainer);
+  }
+
+  // one of the nodes is inside shadowDOM, find which one
+  var element1root = getRoot(element1);
+  if (element1root.host) {
+    return findCommonOffsetParent(element1root.host, element2);
+  } else {
+    return findCommonOffsetParent(element1, getRoot(element2).host);
+  }
+}
+
+/**
+ * Gets the scroll value of the given element in the given side (top and left)
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @argument {String} side `top` or `left`
+ * @returns {number} amount of scrolled pixels
+ */
+function getScroll(element) {
+  var side = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'top';
+
+  var upperSide = side === 'top' ? 'scrollTop' : 'scrollLeft';
+  var nodeName = element.nodeName;
+
+  if (nodeName === 'BODY' || nodeName === 'HTML') {
+    var html = element.ownerDocument.documentElement;
+    var scrollingElement = element.ownerDocument.scrollingElement || html;
+    return scrollingElement[upperSide];
+  }
+
+  return element[upperSide];
+}
+
+/*
+ * Sum or subtract the element scroll values (left and top) from a given rect object
+ * @method
+ * @memberof Popper.Utils
+ * @param {Object} rect - Rect object you want to change
+ * @param {HTMLElement} element - The element from the function reads the scroll values
+ * @param {Boolean} subtract - set to true if you want to subtract the scroll values
+ * @return {Object} rect - The modifier rect object
+ */
+function includeScroll(rect, element) {
+  var subtract = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+  var scrollTop = getScroll(element, 'top');
+  var scrollLeft = getScroll(element, 'left');
+  var modifier = subtract ? -1 : 1;
+  rect.top += scrollTop * modifier;
+  rect.bottom += scrollTop * modifier;
+  rect.left += scrollLeft * modifier;
+  rect.right += scrollLeft * modifier;
+  return rect;
+}
+
+/*
+ * Helper to detect borders of a given element
+ * @method
+ * @memberof Popper.Utils
+ * @param {CSSStyleDeclaration} styles
+ * Result of `getStyleComputedProperty` on the given element
+ * @param {String} axis - `x` or `y`
+ * @return {number} borders - The borders size of the given axis
+ */
+
+function getBordersSize(styles, axis) {
+  var sideA = axis === 'x' ? 'Left' : 'Top';
+  var sideB = sideA === 'Left' ? 'Right' : 'Bottom';
+
+  return parseFloat(styles['border' + sideA + 'Width'], 10) + parseFloat(styles['border' + sideB + 'Width'], 10);
+}
+
+function getSize(axis, body, html, computedStyle) {
+  return Math.max(body['offset' + axis], body['scroll' + axis], html['client' + axis], html['offset' + axis], html['scroll' + axis], isIE(10) ? parseInt(html['offset' + axis]) + parseInt(computedStyle['margin' + (axis === 'Height' ? 'Top' : 'Left')]) + parseInt(computedStyle['margin' + (axis === 'Height' ? 'Bottom' : 'Right')]) : 0);
+}
+
+function getWindowSizes(document) {
+  var body = document.body;
+  var html = document.documentElement;
+  var computedStyle = isIE(10) && getComputedStyle(html);
+
+  return {
+    height: getSize('Height', body, html, computedStyle),
+    width: getSize('Width', body, html, computedStyle)
+  };
+}
+
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+var createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+}();
+
+
+
+
+
+var defineProperty = function (obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+};
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+/**
+ * Given element offsets, generate an output similar to getBoundingClientRect
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Object} offsets
+ * @returns {Object} ClientRect like output
+ */
+function getClientRect(offsets) {
+  return _extends({}, offsets, {
+    right: offsets.left + offsets.width,
+    bottom: offsets.top + offsets.height
+  });
+}
+
+/**
+ * Get bounding client rect of given element
+ * @method
+ * @memberof Popper.Utils
+ * @param {HTMLElement} element
+ * @return {Object} client rect
+ */
+function getBoundingClientRect(element) {
+  var rect = {};
+
+  // IE10 10 FIX: Please, don't ask, the element isn't
+  // considered in DOM in some circumstances...
+  // This isn't reproducible in IE10 compatibility mode of IE11
+  try {
+    if (isIE(10)) {
+      rect = element.getBoundingClientRect();
+      var scrollTop = getScroll(element, 'top');
+      var scrollLeft = getScroll(element, 'left');
+      rect.top += scrollTop;
+      rect.left += scrollLeft;
+      rect.bottom += scrollTop;
+      rect.right += scrollLeft;
+    } else {
+      rect = element.getBoundingClientRect();
+    }
+  } catch (e) {}
+
+  var result = {
+    left: rect.left,
+    top: rect.top,
+    width: rect.right - rect.left,
+    height: rect.bottom - rect.top
+  };
+
+  // subtract scrollbar size from sizes
+  var sizes = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : {};
+  var width = sizes.width || element.clientWidth || result.right - result.left;
+  var height = sizes.height || element.clientHeight || result.bottom - result.top;
+
+  var horizScrollbar = element.offsetWidth - width;
+  var vertScrollbar = element.offsetHeight - height;
+
+  // if an hypothetical scrollbar is detected, we must be sure it's not a `border`
+  // we make this check conditional for performance reasons
+  if (horizScrollbar || vertScrollbar) {
+    var styles = getStyleComputedProperty(element);
+    horizScrollbar -= getBordersSize(styles, 'x');
+    vertScrollbar -= getBordersSize(styles, 'y');
+
+    result.width -= horizScrollbar;
+    result.height -= vertScrollbar;
+  }
+
+  return getClientRect(result);
+}
+
+function getOffsetRectRelativeToArbitraryNode(children, parent) {
+  var fixedPosition = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+  var isIE10 = isIE(10);
+  var isHTML = parent.nodeName === 'HTML';
+  var childrenRect = getBoundingClientRect(children);
+  var parentRect = getBoundingClientRect(parent);
+  var scrollParent = getScrollParent(children);
+
+  var styles = getStyleComputedProperty(parent);
+  var borderTopWidth = parseFloat(styles.borderTopWidth, 10);
+  var borderLeftWidth = parseFloat(styles.borderLeftWidth, 10);
+
+  // In cases where the parent is fixed, we must ignore negative scroll in offset calc
+  if (fixedPosition && isHTML) {
+    parentRect.top = Math.max(parentRect.top, 0);
+    parentRect.left = Math.max(parentRect.left, 0);
+  }
+  var offsets = getClientRect({
+    top: childrenRect.top - parentRect.top - borderTopWidth,
+    left: childrenRect.left - parentRect.left - borderLeftWidth,
+    width: childrenRect.width,
+    height: childrenRect.height
+  });
+  offsets.marginTop = 0;
+  offsets.marginLeft = 0;
+
+  // Subtract margins of documentElement in case it's being used as parent
+  // we do this only on HTML because it's the only element that behaves
+  // differently when margins are applied to it. The margins are included in
+  // the box of the documentElement, in the other cases not.
+  if (!isIE10 && isHTML) {
+    var marginTop = parseFloat(styles.marginTop, 10);
+    var marginLeft = parseFloat(styles.marginLeft, 10);
+
+    offsets.top -= borderTopWidth - marginTop;
+    offsets.bottom -= borderTopWidth - marginTop;
+    offsets.left -= borderLeftWidth - marginLeft;
+    offsets.right -= borderLeftWidth - marginLeft;
+
+    // Attach marginTop and marginLeft because in some circumstances we may need them
+    offsets.marginTop = marginTop;
+    offsets.marginLeft = marginLeft;
+  }
+
+  if (isIE10 && !fixedPosition ? parent.contains(scrollParent) : parent === scrollParent && scrollParent.nodeName !== 'BODY') {
+    offsets = includeScroll(offsets, parent);
+  }
+
+  return offsets;
+}
+
+function getViewportOffsetRectRelativeToArtbitraryNode(element) {
+  var excludeScroll = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+  var html = element.ownerDocument.documentElement;
+  var relativeOffset = getOffsetRectRelativeToArbitraryNode(element, html);
+  var width = Math.max(html.clientWidth, window.innerWidth || 0);
+  var height = Math.max(html.clientHeight, window.innerHeight || 0);
+
+  var scrollTop = !excludeScroll ? getScroll(html) : 0;
+  var scrollLeft = !excludeScroll ? getScroll(html, 'left') : 0;
+
+  var offset = {
+    top: scrollTop - relativeOffset.top + relativeOffset.marginTop,
+    left: scrollLeft - relativeOffset.left + relativeOffset.marginLeft,
+    width: width,
+    height: height
+  };
+
+  return getClientRect(offset);
+}
+
+/**
+ * Check if the given element is fixed or is inside a fixed parent
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @argument {Element} customContainer
+ * @returns {Boolean} answer to "isFixed?"
+ */
+function isFixed(element) {
+  var nodeName = element.nodeName;
+  if (nodeName === 'BODY' || nodeName === 'HTML') {
+    return false;
+  }
+  if (getStyleComputedProperty(element, 'position') === 'fixed') {
+    return true;
+  }
+  var parentNode = getParentNode(element);
+  if (!parentNode) {
+    return false;
+  }
+  return isFixed(parentNode);
+}
+
+/**
+ * Finds the first parent of an element that has a transformed property defined
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Element} first transformed parent or documentElement
+ */
+
+function getFixedPositionOffsetParent(element) {
+  // This check is needed to avoid errors in case one of the elements isn't defined for any reason
+  if (!element || !element.parentElement || isIE()) {
+    return document.documentElement;
+  }
+  var el = element.parentElement;
+  while (el && getStyleComputedProperty(el, 'transform') === 'none') {
+    el = el.parentElement;
+  }
+  return el || document.documentElement;
+}
+
+/**
+ * Computed the boundaries limits and return them
+ * @method
+ * @memberof Popper.Utils
+ * @param {HTMLElement} popper
+ * @param {HTMLElement} reference
+ * @param {number} padding
+ * @param {HTMLElement} boundariesElement - Element used to define the boundaries
+ * @param {Boolean} fixedPosition - Is in fixed position mode
+ * @returns {Object} Coordinates of the boundaries
+ */
+function getBoundaries(popper, reference, padding, boundariesElement) {
+  var fixedPosition = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
+
+  // NOTE: 1 DOM access here
+
+  var boundaries = { top: 0, left: 0 };
+  var offsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
+
+  // Handle viewport case
+  if (boundariesElement === 'viewport') {
+    boundaries = getViewportOffsetRectRelativeToArtbitraryNode(offsetParent, fixedPosition);
+  } else {
+    // Handle other cases based on DOM element used as boundaries
+    var boundariesNode = void 0;
+    if (boundariesElement === 'scrollParent') {
+      boundariesNode = getScrollParent(getParentNode(reference));
+      if (boundariesNode.nodeName === 'BODY') {
+        boundariesNode = popper.ownerDocument.documentElement;
+      }
+    } else if (boundariesElement === 'window') {
+      boundariesNode = popper.ownerDocument.documentElement;
+    } else {
+      boundariesNode = boundariesElement;
+    }
+
+    var offsets = getOffsetRectRelativeToArbitraryNode(boundariesNode, offsetParent, fixedPosition);
+
+    // In case of HTML, we need a different computation
+    if (boundariesNode.nodeName === 'HTML' && !isFixed(offsetParent)) {
+      var _getWindowSizes = getWindowSizes(popper.ownerDocument),
+          height = _getWindowSizes.height,
+          width = _getWindowSizes.width;
+
+      boundaries.top += offsets.top - offsets.marginTop;
+      boundaries.bottom = height + offsets.top;
+      boundaries.left += offsets.left - offsets.marginLeft;
+      boundaries.right = width + offsets.left;
+    } else {
+      // for all the other DOM elements, this one is good
+      boundaries = offsets;
+    }
+  }
+
+  // Add paddings
+  padding = padding || 0;
+  var isPaddingNumber = typeof padding === 'number';
+  boundaries.left += isPaddingNumber ? padding : padding.left || 0;
+  boundaries.top += isPaddingNumber ? padding : padding.top || 0;
+  boundaries.right -= isPaddingNumber ? padding : padding.right || 0;
+  boundaries.bottom -= isPaddingNumber ? padding : padding.bottom || 0;
+
+  return boundaries;
+}
+
+function getArea(_ref) {
+  var width = _ref.width,
+      height = _ref.height;
+
+  return width * height;
+}
+
+/**
+ * Utility used to transform the `auto` placement to the placement with more
+ * available space.
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function computeAutoPlacement(placement, refRect, popper, reference, boundariesElement) {
+  var padding = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
+
+  if (placement.indexOf('auto') === -1) {
+    return placement;
+  }
+
+  var boundaries = getBoundaries(popper, reference, padding, boundariesElement);
+
+  var rects = {
+    top: {
+      width: boundaries.width,
+      height: refRect.top - boundaries.top
+    },
+    right: {
+      width: boundaries.right - refRect.right,
+      height: boundaries.height
+    },
+    bottom: {
+      width: boundaries.width,
+      height: boundaries.bottom - refRect.bottom
+    },
+    left: {
+      width: refRect.left - boundaries.left,
+      height: boundaries.height
+    }
+  };
+
+  var sortedAreas = Object.keys(rects).map(function (key) {
+    return _extends({
+      key: key
+    }, rects[key], {
+      area: getArea(rects[key])
+    });
+  }).sort(function (a, b) {
+    return b.area - a.area;
+  });
+
+  var filteredAreas = sortedAreas.filter(function (_ref2) {
+    var width = _ref2.width,
+        height = _ref2.height;
+    return width >= popper.clientWidth && height >= popper.clientHeight;
+  });
+
+  var computedPlacement = filteredAreas.length > 0 ? filteredAreas[0].key : sortedAreas[0].key;
+
+  var variation = placement.split('-')[1];
+
+  return computedPlacement + (variation ? '-' + variation : '');
+}
+
+/**
+ * Get offsets to the reference element
+ * @method
+ * @memberof Popper.Utils
+ * @param {Object} state
+ * @param {Element} popper - the popper element
+ * @param {Element} reference - the reference element (the popper will be relative to this)
+ * @param {Element} fixedPosition - is in fixed position mode
+ * @returns {Object} An object containing the offsets which will be applied to the popper
+ */
+function getReferenceOffsets(state, popper, reference) {
+  var fixedPosition = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+
+  var commonOffsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
+  return getOffsetRectRelativeToArbitraryNode(reference, commonOffsetParent, fixedPosition);
+}
+
+/**
+ * Get the outer sizes of the given element (offset size + margins)
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Object} object containing width and height properties
+ */
+function getOuterSizes(element) {
+  var window = element.ownerDocument.defaultView;
+  var styles = window.getComputedStyle(element);
+  var x = parseFloat(styles.marginTop || 0) + parseFloat(styles.marginBottom || 0);
+  var y = parseFloat(styles.marginLeft || 0) + parseFloat(styles.marginRight || 0);
+  var result = {
+    width: element.offsetWidth + y,
+    height: element.offsetHeight + x
+  };
+  return result;
+}
+
+/**
+ * Get the opposite placement of the given one
+ * @method
+ * @memberof Popper.Utils
+ * @argument {String} placement
+ * @returns {String} flipped placement
+ */
+function getOppositePlacement(placement) {
+  var hash = { left: 'right', right: 'left', bottom: 'top', top: 'bottom' };
+  return placement.replace(/left|right|bottom|top/g, function (matched) {
+    return hash[matched];
+  });
+}
+
+/**
+ * Get offsets to the popper
+ * @method
+ * @memberof Popper.Utils
+ * @param {Object} position - CSS position the Popper will get applied
+ * @param {HTMLElement} popper - the popper element
+ * @param {Object} referenceOffsets - the reference offsets (the popper will be relative to this)
+ * @param {String} placement - one of the valid placement options
+ * @returns {Object} popperOffsets - An object containing the offsets which will be applied to the popper
+ */
+function getPopperOffsets(popper, referenceOffsets, placement) {
+  placement = placement.split('-')[0];
+
+  // Get popper node sizes
+  var popperRect = getOuterSizes(popper);
+
+  // Add position, width and height to our offsets object
+  var popperOffsets = {
+    width: popperRect.width,
+    height: popperRect.height
+  };
+
+  // depending by the popper placement we have to compute its offsets slightly differently
+  var isHoriz = ['right', 'left'].indexOf(placement) !== -1;
+  var mainSide = isHoriz ? 'top' : 'left';
+  var secondarySide = isHoriz ? 'left' : 'top';
+  var measurement = isHoriz ? 'height' : 'width';
+  var secondaryMeasurement = !isHoriz ? 'height' : 'width';
+
+  popperOffsets[mainSide] = referenceOffsets[mainSide] + referenceOffsets[measurement] / 2 - popperRect[measurement] / 2;
+  if (placement === secondarySide) {
+    popperOffsets[secondarySide] = referenceOffsets[secondarySide] - popperRect[secondaryMeasurement];
+  } else {
+    popperOffsets[secondarySide] = referenceOffsets[getOppositePlacement(secondarySide)];
+  }
+
+  return popperOffsets;
+}
+
+/**
+ * Mimics the `find` method of Array
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Array} arr
+ * @argument prop
+ * @argument value
+ * @returns index or -1
+ */
+function find(arr, check) {
+  // use native find if supported
+  if (Array.prototype.find) {
+    return arr.find(check);
+  }
+
+  // use `filter` to obtain the same behavior of `find`
+  return arr.filter(check)[0];
+}
+
+/**
+ * Return the index of the matching object
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Array} arr
+ * @argument prop
+ * @argument value
+ * @returns index or -1
+ */
+function findIndex(arr, prop, value) {
+  // use native findIndex if supported
+  if (Array.prototype.findIndex) {
+    return arr.findIndex(function (cur) {
+      return cur[prop] === value;
+    });
+  }
+
+  // use `find` + `indexOf` if `findIndex` isn't supported
+  var match = find(arr, function (obj) {
+    return obj[prop] === value;
+  });
+  return arr.indexOf(match);
+}
+
+/**
+ * Loop trough the list of modifiers and run them in order,
+ * each of them will then edit the data object.
+ * @method
+ * @memberof Popper.Utils
+ * @param {dataObject} data
+ * @param {Array} modifiers
+ * @param {String} ends - Optional modifier name used as stopper
+ * @returns {dataObject}
+ */
+function runModifiers(modifiers, data, ends) {
+  var modifiersToRun = ends === undefined ? modifiers : modifiers.slice(0, findIndex(modifiers, 'name', ends));
+
+  modifiersToRun.forEach(function (modifier) {
+    if (modifier['function']) {
+      // eslint-disable-line dot-notation
+      console.warn('`modifier.function` is deprecated, use `modifier.fn`!');
+    }
+    var fn = modifier['function'] || modifier.fn; // eslint-disable-line dot-notation
+    if (modifier.enabled && isFunction(fn)) {
+      // Add properties to offsets to make them a complete clientRect object
+      // we do this before each modifier to make sure the previous one doesn't
+      // mess with these values
+      data.offsets.popper = getClientRect(data.offsets.popper);
+      data.offsets.reference = getClientRect(data.offsets.reference);
+
+      data = fn(data, modifier);
+    }
+  });
+
+  return data;
+}
+
+/**
+ * Updates the position of the popper, computing the new offsets and applying
+ * the new style.<br />
+ * Prefer `scheduleUpdate` over `update` because of performance reasons.
+ * @method
+ * @memberof Popper
+ */
+function update() {
+  // if popper is destroyed, don't perform any further update
+  if (this.state.isDestroyed) {
+    return;
+  }
+
+  var data = {
+    instance: this,
+    styles: {},
+    arrowStyles: {},
+    attributes: {},
+    flipped: false,
+    offsets: {}
+  };
+
+  // compute reference element offsets
+  data.offsets.reference = getReferenceOffsets(this.state, this.popper, this.reference, this.options.positionFixed);
+
+  // compute auto placement, store placement inside the data object,
+  // modifiers will be able to edit `placement` if needed
+  // and refer to originalPlacement to know the original value
+  data.placement = computeAutoPlacement(this.options.placement, data.offsets.reference, this.popper, this.reference, this.options.modifiers.flip.boundariesElement, this.options.modifiers.flip.padding);
+
+  // store the computed placement inside `originalPlacement`
+  data.originalPlacement = data.placement;
+
+  data.positionFixed = this.options.positionFixed;
+
+  // compute the popper offsets
+  data.offsets.popper = getPopperOffsets(this.popper, data.offsets.reference, data.placement);
+
+  data.offsets.popper.position = this.options.positionFixed ? 'fixed' : 'absolute';
+
+  // run the modifiers
+  data = runModifiers(this.modifiers, data);
+
+  // the first `update` will call `onCreate` callback
+  // the other ones will call `onUpdate` callback
+  if (!this.state.isCreated) {
+    this.state.isCreated = true;
+    this.options.onCreate(data);
+  } else {
+    this.options.onUpdate(data);
+  }
+}
+
+/**
+ * Helper used to know if the given modifier is enabled.
+ * @method
+ * @memberof Popper.Utils
+ * @returns {Boolean}
+ */
+function isModifierEnabled(modifiers, modifierName) {
+  return modifiers.some(function (_ref) {
+    var name = _ref.name,
+        enabled = _ref.enabled;
+    return enabled && name === modifierName;
+  });
+}
+
+/**
+ * Get the prefixed supported property name
+ * @method
+ * @memberof Popper.Utils
+ * @argument {String} property (camelCase)
+ * @returns {String} prefixed property (camelCase or PascalCase, depending on the vendor prefix)
+ */
+function getSupportedPropertyName(property) {
+  var prefixes = [false, 'ms', 'Webkit', 'Moz', 'O'];
+  var upperProp = property.charAt(0).toUpperCase() + property.slice(1);
+
+  for (var i = 0; i < prefixes.length; i++) {
+    var prefix = prefixes[i];
+    var toCheck = prefix ? '' + prefix + upperProp : property;
+    if (typeof document.body.style[toCheck] !== 'undefined') {
+      return toCheck;
+    }
+  }
+  return null;
+}
+
+/**
+ * Destroys the popper.
+ * @method
+ * @memberof Popper
+ */
+function destroy() {
+  this.state.isDestroyed = true;
+
+  // touch DOM only if `applyStyle` modifier is enabled
+  if (isModifierEnabled(this.modifiers, 'applyStyle')) {
+    this.popper.removeAttribute('x-placement');
+    this.popper.style.position = '';
+    this.popper.style.top = '';
+    this.popper.style.left = '';
+    this.popper.style.right = '';
+    this.popper.style.bottom = '';
+    this.popper.style.willChange = '';
+    this.popper.style[getSupportedPropertyName('transform')] = '';
+  }
+
+  this.disableEventListeners();
+
+  // remove the popper if user explicity asked for the deletion on destroy
+  // do not use `remove` because IE11 doesn't support it
+  if (this.options.removeOnDestroy) {
+    this.popper.parentNode.removeChild(this.popper);
+  }
+  return this;
+}
+
+/**
+ * Get the window associated with the element
+ * @argument {Element} element
+ * @returns {Window}
+ */
+function getWindow(element) {
+  var ownerDocument = element.ownerDocument;
+  return ownerDocument ? ownerDocument.defaultView : window;
+}
+
+function attachToScrollParents(scrollParent, event, callback, scrollParents) {
+  var isBody = scrollParent.nodeName === 'BODY';
+  var target = isBody ? scrollParent.ownerDocument.defaultView : scrollParent;
+  target.addEventListener(event, callback, { passive: true });
+
+  if (!isBody) {
+    attachToScrollParents(getScrollParent(target.parentNode), event, callback, scrollParents);
+  }
+  scrollParents.push(target);
+}
+
+/**
+ * Setup needed event listeners used to update the popper position
+ * @method
+ * @memberof Popper.Utils
+ * @private
+ */
+function setupEventListeners(reference, options, state, updateBound) {
+  // Resize event listener on window
+  state.updateBound = updateBound;
+  getWindow(reference).addEventListener('resize', state.updateBound, { passive: true });
+
+  // Scroll event listener on scroll parents
+  var scrollElement = getScrollParent(reference);
+  attachToScrollParents(scrollElement, 'scroll', state.updateBound, state.scrollParents);
+  state.scrollElement = scrollElement;
+  state.eventsEnabled = true;
+
+  return state;
+}
+
+/**
+ * It will add resize/scroll events and start recalculating
+ * position of the popper element when they are triggered.
+ * @method
+ * @memberof Popper
+ */
+function enableEventListeners() {
+  if (!this.state.eventsEnabled) {
+    this.state = setupEventListeners(this.reference, this.options, this.state, this.scheduleUpdate);
+  }
+}
+
+/**
+ * Remove event listeners used to update the popper position
+ * @method
+ * @memberof Popper.Utils
+ * @private
+ */
+function removeEventListeners(reference, state) {
+  // Remove resize event listener on window
+  getWindow(reference).removeEventListener('resize', state.updateBound);
+
+  // Remove scroll event listener on scroll parents
+  state.scrollParents.forEach(function (target) {
+    target.removeEventListener('scroll', state.updateBound);
+  });
+
+  // Reset state
+  state.updateBound = null;
+  state.scrollParents = [];
+  state.scrollElement = null;
+  state.eventsEnabled = false;
+  return state;
+}
+
+/**
+ * It will remove resize/scroll events and won't recalculate popper position
+ * when they are triggered. It also won't trigger `onUpdate` callback anymore,
+ * unless you call `update` method manually.
+ * @method
+ * @memberof Popper
+ */
+function disableEventListeners() {
+  if (this.state.eventsEnabled) {
+    cancelAnimationFrame(this.scheduleUpdate);
+    this.state = removeEventListeners(this.reference, this.state);
+  }
+}
+
+/**
+ * Tells if a given input is a number
+ * @method
+ * @memberof Popper.Utils
+ * @param {*} input to check
+ * @return {Boolean}
+ */
+function isNumeric(n) {
+  return n !== '' && !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+/**
+ * Set the style to the given popper
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element - Element to apply the style to
+ * @argument {Object} styles
+ * Object with a list of properties and values which will be applied to the element
+ */
+function setStyles(element, styles) {
+  Object.keys(styles).forEach(function (prop) {
+    var unit = '';
+    // add unit if the value is numeric and is one of the following
+    if (['width', 'height', 'top', 'right', 'bottom', 'left'].indexOf(prop) !== -1 && isNumeric(styles[prop])) {
+      unit = 'px';
+    }
+    element.style[prop] = styles[prop] + unit;
+  });
+}
+
+/**
+ * Set the attributes to the given popper
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element - Element to apply the attributes to
+ * @argument {Object} styles
+ * Object with a list of properties and values which will be applied to the element
+ */
+function setAttributes(element, attributes) {
+  Object.keys(attributes).forEach(function (prop) {
+    var value = attributes[prop];
+    if (value !== false) {
+      element.setAttribute(prop, attributes[prop]);
+    } else {
+      element.removeAttribute(prop);
+    }
+  });
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} data.styles - List of style properties - values to apply to popper element
+ * @argument {Object} data.attributes - List of attribute properties - values to apply to popper element
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The same data object
+ */
+function applyStyle(data) {
+  // any property present in `data.styles` will be applied to the popper,
+  // in this way we can make the 3rd party modifiers add custom styles to it
+  // Be aware, modifiers could override the properties defined in the previous
+  // lines of this modifier!
+  setStyles(data.instance.popper, data.styles);
+
+  // any property present in `data.attributes` will be applied to the popper,
+  // they will be set as HTML attributes of the element
+  setAttributes(data.instance.popper, data.attributes);
+
+  // if arrowElement is defined and arrowStyles has some properties
+  if (data.arrowElement && Object.keys(data.arrowStyles).length) {
+    setStyles(data.arrowElement, data.arrowStyles);
+  }
+
+  return data;
+}
+
+/**
+ * Set the x-placement attribute before everything else because it could be used
+ * to add margins to the popper margins needs to be calculated to get the
+ * correct popper offsets.
+ * @method
+ * @memberof Popper.modifiers
+ * @param {HTMLElement} reference - The reference element used to position the popper
+ * @param {HTMLElement} popper - The HTML element used as popper
+ * @param {Object} options - Popper.js options
+ */
+function applyStyleOnLoad(reference, popper, options, modifierOptions, state) {
+  // compute reference element offsets
+  var referenceOffsets = getReferenceOffsets(state, popper, reference, options.positionFixed);
+
+  // compute auto placement, store placement inside the data object,
+  // modifiers will be able to edit `placement` if needed
+  // and refer to originalPlacement to know the original value
+  var placement = computeAutoPlacement(options.placement, referenceOffsets, popper, reference, options.modifiers.flip.boundariesElement, options.modifiers.flip.padding);
+
+  popper.setAttribute('x-placement', placement);
+
+  // Apply `position` to popper before anything else because
+  // without the position applied we can't guarantee correct computations
+  setStyles(popper, { position: options.positionFixed ? 'fixed' : 'absolute' });
+
+  return options;
+}
+
+/**
+ * @function
+ * @memberof Popper.Utils
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Boolean} shouldRound - If the offsets should be rounded at all
+ * @returns {Object} The popper's position offsets rounded
+ *
+ * The tale of pixel-perfect positioning. It's still not 100% perfect, but as
+ * good as it can be within reason.
+ * Discussion here: https://github.com/FezVrasta/popper.js/pull/715
+ *
+ * Low DPI screens cause a popper to be blurry if not using full pixels (Safari
+ * as well on High DPI screens).
+ *
+ * Firefox prefers no rounding for positioning and does not have blurriness on
+ * high DPI screens.
+ *
+ * Only horizontal placement and left/right values need to be considered.
+ */
+function getRoundedOffsets(data, shouldRound) {
+  var _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+  var round = Math.round,
+      floor = Math.floor;
+
+  var noRound = function noRound(v) {
+    return v;
+  };
+
+  var referenceWidth = round(reference.width);
+  var popperWidth = round(popper.width);
+
+  var isVertical = ['left', 'right'].indexOf(data.placement) !== -1;
+  var isVariation = data.placement.indexOf('-') !== -1;
+  var sameWidthParity = referenceWidth % 2 === popperWidth % 2;
+  var bothOddWidth = referenceWidth % 2 === 1 && popperWidth % 2 === 1;
+
+  var horizontalToInteger = !shouldRound ? noRound : isVertical || isVariation || sameWidthParity ? round : floor;
+  var verticalToInteger = !shouldRound ? noRound : round;
+
+  return {
+    left: horizontalToInteger(bothOddWidth && !isVariation && shouldRound ? popper.left - 1 : popper.left),
+    top: verticalToInteger(popper.top),
+    bottom: verticalToInteger(popper.bottom),
+    right: horizontalToInteger(popper.right)
+  };
+}
+
+var isFirefox = isBrowser && /Firefox/i.test(navigator.userAgent);
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function computeStyle(data, options) {
+  var x = options.x,
+      y = options.y;
+  var popper = data.offsets.popper;
+
+  // Remove this legacy support in Popper.js v2
+
+  var legacyGpuAccelerationOption = find(data.instance.modifiers, function (modifier) {
+    return modifier.name === 'applyStyle';
+  }).gpuAcceleration;
+  if (legacyGpuAccelerationOption !== undefined) {
+    console.warn('WARNING: `gpuAcceleration` option moved to `computeStyle` modifier and will not be supported in future versions of Popper.js!');
+  }
+  var gpuAcceleration = legacyGpuAccelerationOption !== undefined ? legacyGpuAccelerationOption : options.gpuAcceleration;
+
+  var offsetParent = getOffsetParent(data.instance.popper);
+  var offsetParentRect = getBoundingClientRect(offsetParent);
+
+  // Styles
+  var styles = {
+    position: popper.position
+  };
+
+  var offsets = getRoundedOffsets(data, window.devicePixelRatio < 2 || !isFirefox);
+
+  var sideA = x === 'bottom' ? 'top' : 'bottom';
+  var sideB = y === 'right' ? 'left' : 'right';
+
+  // if gpuAcceleration is set to `true` and transform is supported,
+  //  we use `translate3d` to apply the position to the popper we
+  // automatically use the supported prefixed version if needed
+  var prefixedProperty = getSupportedPropertyName('transform');
+
+  // now, let's make a step back and look at this code closely (wtf?)
+  // If the content of the popper grows once it's been positioned, it
+  // may happen that the popper gets misplaced because of the new content
+  // overflowing its reference element
+  // To avoid this problem, we provide two options (x and y), which allow
+  // the consumer to define the offset origin.
+  // If we position a popper on top of a reference element, we can set
+  // `x` to `top` to make the popper grow towards its top instead of
+  // its bottom.
+  var left = void 0,
+      top = void 0;
+  if (sideA === 'bottom') {
+    // when offsetParent is <html> the positioning is relative to the bottom of the screen (excluding the scrollbar)
+    // and not the bottom of the html element
+    if (offsetParent.nodeName === 'HTML') {
+      top = -offsetParent.clientHeight + offsets.bottom;
+    } else {
+      top = -offsetParentRect.height + offsets.bottom;
+    }
+  } else {
+    top = offsets.top;
+  }
+  if (sideB === 'right') {
+    if (offsetParent.nodeName === 'HTML') {
+      left = -offsetParent.clientWidth + offsets.right;
+    } else {
+      left = -offsetParentRect.width + offsets.right;
+    }
+  } else {
+    left = offsets.left;
+  }
+  if (gpuAcceleration && prefixedProperty) {
+    styles[prefixedProperty] = 'translate3d(' + left + 'px, ' + top + 'px, 0)';
+    styles[sideA] = 0;
+    styles[sideB] = 0;
+    styles.willChange = 'transform';
+  } else {
+    // othwerise, we use the standard `top`, `left`, `bottom` and `right` properties
+    var invertTop = sideA === 'bottom' ? -1 : 1;
+    var invertLeft = sideB === 'right' ? -1 : 1;
+    styles[sideA] = top * invertTop;
+    styles[sideB] = left * invertLeft;
+    styles.willChange = sideA + ', ' + sideB;
+  }
+
+  // Attributes
+  var attributes = {
+    'x-placement': data.placement
+  };
+
+  // Update `data` attributes, styles and arrowStyles
+  data.attributes = _extends({}, attributes, data.attributes);
+  data.styles = _extends({}, styles, data.styles);
+  data.arrowStyles = _extends({}, data.offsets.arrow, data.arrowStyles);
+
+  return data;
+}
+
+/**
+ * Helper used to know if the given modifier depends from another one.<br />
+ * It checks if the needed modifier is listed and enabled.
+ * @method
+ * @memberof Popper.Utils
+ * @param {Array} modifiers - list of modifiers
+ * @param {String} requestingName - name of requesting modifier
+ * @param {String} requestedName - name of requested modifier
+ * @returns {Boolean}
+ */
+function isModifierRequired(modifiers, requestingName, requestedName) {
+  var requesting = find(modifiers, function (_ref) {
+    var name = _ref.name;
+    return name === requestingName;
+  });
+
+  var isRequired = !!requesting && modifiers.some(function (modifier) {
+    return modifier.name === requestedName && modifier.enabled && modifier.order < requesting.order;
+  });
+
+  if (!isRequired) {
+    var _requesting = '`' + requestingName + '`';
+    var requested = '`' + requestedName + '`';
+    console.warn(requested + ' modifier is required by ' + _requesting + ' modifier in order to work, be sure to include it before ' + _requesting + '!');
+  }
+  return isRequired;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function arrow(data, options) {
+  var _data$offsets$arrow;
+
+  // arrow depends on keepTogether in order to work
+  if (!isModifierRequired(data.instance.modifiers, 'arrow', 'keepTogether')) {
+    return data;
+  }
+
+  var arrowElement = options.element;
+
+  // if arrowElement is a string, suppose it's a CSS selector
+  if (typeof arrowElement === 'string') {
+    arrowElement = data.instance.popper.querySelector(arrowElement);
+
+    // if arrowElement is not found, don't run the modifier
+    if (!arrowElement) {
+      return data;
+    }
+  } else {
+    // if the arrowElement isn't a query selector we must check that the
+    // provided DOM node is child of its popper node
+    if (!data.instance.popper.contains(arrowElement)) {
+      console.warn('WARNING: `arrow.element` must be child of its popper element!');
+      return data;
+    }
+  }
+
+  var placement = data.placement.split('-')[0];
+  var _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+
+  var isVertical = ['left', 'right'].indexOf(placement) !== -1;
+
+  var len = isVertical ? 'height' : 'width';
+  var sideCapitalized = isVertical ? 'Top' : 'Left';
+  var side = sideCapitalized.toLowerCase();
+  var altSide = isVertical ? 'left' : 'top';
+  var opSide = isVertical ? 'bottom' : 'right';
+  var arrowElementSize = getOuterSizes(arrowElement)[len];
+
+  //
+  // extends keepTogether behavior making sure the popper and its
+  // reference have enough pixels in conjunction
+  //
+
+  // top/left side
+  if (reference[opSide] - arrowElementSize < popper[side]) {
+    data.offsets.popper[side] -= popper[side] - (reference[opSide] - arrowElementSize);
+  }
+  // bottom/right side
+  if (reference[side] + arrowElementSize > popper[opSide]) {
+    data.offsets.popper[side] += reference[side] + arrowElementSize - popper[opSide];
+  }
+  data.offsets.popper = getClientRect(data.offsets.popper);
+
+  // compute center of the popper
+  var center = reference[side] + reference[len] / 2 - arrowElementSize / 2;
+
+  // Compute the sideValue using the updated popper offsets
+  // take popper margin in account because we don't have this info available
+  var css = getStyleComputedProperty(data.instance.popper);
+  var popperMarginSide = parseFloat(css['margin' + sideCapitalized], 10);
+  var popperBorderSide = parseFloat(css['border' + sideCapitalized + 'Width'], 10);
+  var sideValue = center - data.offsets.popper[side] - popperMarginSide - popperBorderSide;
+
+  // prevent arrowElement from being placed not contiguously to its popper
+  sideValue = Math.max(Math.min(popper[len] - arrowElementSize, sideValue), 0);
+
+  data.arrowElement = arrowElement;
+  data.offsets.arrow = (_data$offsets$arrow = {}, defineProperty(_data$offsets$arrow, side, Math.round(sideValue)), defineProperty(_data$offsets$arrow, altSide, ''), _data$offsets$arrow);
+
+  return data;
+}
+
+/**
+ * Get the opposite placement variation of the given one
+ * @method
+ * @memberof Popper.Utils
+ * @argument {String} placement variation
+ * @returns {String} flipped placement variation
+ */
+function getOppositeVariation(variation) {
+  if (variation === 'end') {
+    return 'start';
+  } else if (variation === 'start') {
+    return 'end';
+  }
+  return variation;
+}
+
+/**
+ * List of accepted placements to use as values of the `placement` option.<br />
+ * Valid placements are:
+ * - `auto`
+ * - `top`
+ * - `right`
+ * - `bottom`
+ * - `left`
+ *
+ * Each placement can have a variation from this list:
+ * - `-start`
+ * - `-end`
+ *
+ * Variations are interpreted easily if you think of them as the left to right
+ * written languages. Horizontally (`top` and `bottom`), `start` is left and `end`
+ * is right.<br />
+ * Vertically (`left` and `right`), `start` is top and `end` is bottom.
+ *
+ * Some valid examples are:
+ * - `top-end` (on top of reference, right aligned)
+ * - `right-start` (on right of reference, top aligned)
+ * - `bottom` (on bottom, centered)
+ * - `auto-end` (on the side with more space available, alignment depends by placement)
+ *
+ * @static
+ * @type {Array}
+ * @enum {String}
+ * @readonly
+ * @method placements
+ * @memberof Popper
+ */
+var placements = ['auto-start', 'auto', 'auto-end', 'top-start', 'top', 'top-end', 'right-start', 'right', 'right-end', 'bottom-end', 'bottom', 'bottom-start', 'left-end', 'left', 'left-start'];
+
+// Get rid of `auto` `auto-start` and `auto-end`
+var validPlacements = placements.slice(3);
+
+/**
+ * Given an initial placement, returns all the subsequent placements
+ * clockwise (or counter-clockwise).
+ *
+ * @method
+ * @memberof Popper.Utils
+ * @argument {String} placement - A valid placement (it accepts variations)
+ * @argument {Boolean} counter - Set to true to walk the placements counterclockwise
+ * @returns {Array} placements including their variations
+ */
+function clockwise(placement) {
+  var counter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+  var index = validPlacements.indexOf(placement);
+  var arr = validPlacements.slice(index + 1).concat(validPlacements.slice(0, index));
+  return counter ? arr.reverse() : arr;
+}
+
+var BEHAVIORS = {
+  FLIP: 'flip',
+  CLOCKWISE: 'clockwise',
+  COUNTERCLOCKWISE: 'counterclockwise'
+};
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function flip(data, options) {
+  // if `inner` modifier is enabled, we can't use the `flip` modifier
+  if (isModifierEnabled(data.instance.modifiers, 'inner')) {
+    return data;
+  }
+
+  if (data.flipped && data.placement === data.originalPlacement) {
+    // seems like flip is trying to loop, probably there's not enough space on any of the flippable sides
+    return data;
+  }
+
+  var boundaries = getBoundaries(data.instance.popper, data.instance.reference, options.padding, options.boundariesElement, data.positionFixed);
+
+  var placement = data.placement.split('-')[0];
+  var placementOpposite = getOppositePlacement(placement);
+  var variation = data.placement.split('-')[1] || '';
+
+  var flipOrder = [];
+
+  switch (options.behavior) {
+    case BEHAVIORS.FLIP:
+      flipOrder = [placement, placementOpposite];
+      break;
+    case BEHAVIORS.CLOCKWISE:
+      flipOrder = clockwise(placement);
+      break;
+    case BEHAVIORS.COUNTERCLOCKWISE:
+      flipOrder = clockwise(placement, true);
+      break;
+    default:
+      flipOrder = options.behavior;
+  }
+
+  flipOrder.forEach(function (step, index) {
+    if (placement !== step || flipOrder.length === index + 1) {
+      return data;
+    }
+
+    placement = data.placement.split('-')[0];
+    placementOpposite = getOppositePlacement(placement);
+
+    var popperOffsets = data.offsets.popper;
+    var refOffsets = data.offsets.reference;
+
+    // using floor because the reference offsets may contain decimals we are not going to consider here
+    var floor = Math.floor;
+    var overlapsRef = placement === 'left' && floor(popperOffsets.right) > floor(refOffsets.left) || placement === 'right' && floor(popperOffsets.left) < floor(refOffsets.right) || placement === 'top' && floor(popperOffsets.bottom) > floor(refOffsets.top) || placement === 'bottom' && floor(popperOffsets.top) < floor(refOffsets.bottom);
+
+    var overflowsLeft = floor(popperOffsets.left) < floor(boundaries.left);
+    var overflowsRight = floor(popperOffsets.right) > floor(boundaries.right);
+    var overflowsTop = floor(popperOffsets.top) < floor(boundaries.top);
+    var overflowsBottom = floor(popperOffsets.bottom) > floor(boundaries.bottom);
+
+    var overflowsBoundaries = placement === 'left' && overflowsLeft || placement === 'right' && overflowsRight || placement === 'top' && overflowsTop || placement === 'bottom' && overflowsBottom;
+
+    // flip the variation if required
+    var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
+
+    // flips variation if reference element overflows boundaries
+    var flippedVariationByRef = !!options.flipVariations && (isVertical && variation === 'start' && overflowsLeft || isVertical && variation === 'end' && overflowsRight || !isVertical && variation === 'start' && overflowsTop || !isVertical && variation === 'end' && overflowsBottom);
+
+    // flips variation if popper content overflows boundaries
+    var flippedVariationByContent = !!options.flipVariationsByContent && (isVertical && variation === 'start' && overflowsRight || isVertical && variation === 'end' && overflowsLeft || !isVertical && variation === 'start' && overflowsBottom || !isVertical && variation === 'end' && overflowsTop);
+
+    var flippedVariation = flippedVariationByRef || flippedVariationByContent;
+
+    if (overlapsRef || overflowsBoundaries || flippedVariation) {
+      // this boolean to detect any flip loop
+      data.flipped = true;
+
+      if (overlapsRef || overflowsBoundaries) {
+        placement = flipOrder[index + 1];
+      }
+
+      if (flippedVariation) {
+        variation = getOppositeVariation(variation);
+      }
+
+      data.placement = placement + (variation ? '-' + variation : '');
+
+      // this object contains `position`, we want to preserve it along with
+      // any additional property we may add in the future
+      data.offsets.popper = _extends({}, data.offsets.popper, getPopperOffsets(data.instance.popper, data.offsets.reference, data.placement));
+
+      data = runModifiers(data.instance.modifiers, data, 'flip');
+    }
+  });
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function keepTogether(data) {
+  var _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+
+  var placement = data.placement.split('-')[0];
+  var floor = Math.floor;
+  var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
+  var side = isVertical ? 'right' : 'bottom';
+  var opSide = isVertical ? 'left' : 'top';
+  var measurement = isVertical ? 'width' : 'height';
+
+  if (popper[side] < floor(reference[opSide])) {
+    data.offsets.popper[opSide] = floor(reference[opSide]) - popper[measurement];
+  }
+  if (popper[opSide] > floor(reference[side])) {
+    data.offsets.popper[opSide] = floor(reference[side]);
+  }
+
+  return data;
+}
+
+/**
+ * Converts a string containing value + unit into a px value number
+ * @function
+ * @memberof {modifiers~offset}
+ * @private
+ * @argument {String} str - Value + unit string
+ * @argument {String} measurement - `height` or `width`
+ * @argument {Object} popperOffsets
+ * @argument {Object} referenceOffsets
+ * @returns {Number|String}
+ * Value in pixels, or original string if no values were extracted
+ */
+function toValue(str, measurement, popperOffsets, referenceOffsets) {
+  // separate value from unit
+  var split = str.match(/((?:\-|\+)?\d*\.?\d*)(.*)/);
+  var value = +split[1];
+  var unit = split[2];
+
+  // If it's not a number it's an operator, I guess
+  if (!value) {
+    return str;
+  }
+
+  if (unit.indexOf('%') === 0) {
+    var element = void 0;
+    switch (unit) {
+      case '%p':
+        element = popperOffsets;
+        break;
+      case '%':
+      case '%r':
+      default:
+        element = referenceOffsets;
+    }
+
+    var rect = getClientRect(element);
+    return rect[measurement] / 100 * value;
+  } else if (unit === 'vh' || unit === 'vw') {
+    // if is a vh or vw, we calculate the size based on the viewport
+    var size = void 0;
+    if (unit === 'vh') {
+      size = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    } else {
+      size = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    }
+    return size / 100 * value;
+  } else {
+    // if is an explicit pixel unit, we get rid of the unit and keep the value
+    // if is an implicit unit, it's px, and we return just the value
+    return value;
+  }
+}
+
+/**
+ * Parse an `offset` string to extrapolate `x` and `y` numeric offsets.
+ * @function
+ * @memberof {modifiers~offset}
+ * @private
+ * @argument {String} offset
+ * @argument {Object} popperOffsets
+ * @argument {Object} referenceOffsets
+ * @argument {String} basePlacement
+ * @returns {Array} a two cells array with x and y offsets in numbers
+ */
+function parseOffset(offset, popperOffsets, referenceOffsets, basePlacement) {
+  var offsets = [0, 0];
+
+  // Use height if placement is left or right and index is 0 otherwise use width
+  // in this way the first offset will use an axis and the second one
+  // will use the other one
+  var useHeight = ['right', 'left'].indexOf(basePlacement) !== -1;
+
+  // Split the offset string to obtain a list of values and operands
+  // The regex addresses values with the plus or minus sign in front (+10, -20, etc)
+  var fragments = offset.split(/(\+|\-)/).map(function (frag) {
+    return frag.trim();
+  });
+
+  // Detect if the offset string contains a pair of values or a single one
+  // they could be separated by comma or space
+  var divider = fragments.indexOf(find(fragments, function (frag) {
+    return frag.search(/,|\s/) !== -1;
+  }));
+
+  if (fragments[divider] && fragments[divider].indexOf(',') === -1) {
+    console.warn('Offsets separated by white space(s) are deprecated, use a comma (,) instead.');
+  }
+
+  // If divider is found, we divide the list of values and operands to divide
+  // them by ofset X and Y.
+  var splitRegex = /\s*,\s*|\s+/;
+  var ops = divider !== -1 ? [fragments.slice(0, divider).concat([fragments[divider].split(splitRegex)[0]]), [fragments[divider].split(splitRegex)[1]].concat(fragments.slice(divider + 1))] : [fragments];
+
+  // Convert the values with units to absolute pixels to allow our computations
+  ops = ops.map(function (op, index) {
+    // Most of the units rely on the orientation of the popper
+    var measurement = (index === 1 ? !useHeight : useHeight) ? 'height' : 'width';
+    var mergeWithPrevious = false;
+    return op
+    // This aggregates any `+` or `-` sign that aren't considered operators
+    // e.g.: 10 + +5 => [10, +, +5]
+    .reduce(function (a, b) {
+      if (a[a.length - 1] === '' && ['+', '-'].indexOf(b) !== -1) {
+        a[a.length - 1] = b;
+        mergeWithPrevious = true;
+        return a;
+      } else if (mergeWithPrevious) {
+        a[a.length - 1] += b;
+        mergeWithPrevious = false;
+        return a;
+      } else {
+        return a.concat(b);
+      }
+    }, [])
+    // Here we convert the string values into number values (in px)
+    .map(function (str) {
+      return toValue(str, measurement, popperOffsets, referenceOffsets);
+    });
+  });
+
+  // Loop trough the offsets arrays and execute the operations
+  ops.forEach(function (op, index) {
+    op.forEach(function (frag, index2) {
+      if (isNumeric(frag)) {
+        offsets[index] += frag * (op[index2 - 1] === '-' ? -1 : 1);
+      }
+    });
+  });
+  return offsets;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @argument {Number|String} options.offset=0
+ * The offset value as described in the modifier description
+ * @returns {Object} The data object, properly modified
+ */
+function offset(data, _ref) {
+  var offset = _ref.offset;
+  var placement = data.placement,
+      _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+
+  var basePlacement = placement.split('-')[0];
+
+  var offsets = void 0;
+  if (isNumeric(+offset)) {
+    offsets = [+offset, 0];
+  } else {
+    offsets = parseOffset(offset, popper, reference, basePlacement);
+  }
+
+  if (basePlacement === 'left') {
+    popper.top += offsets[0];
+    popper.left -= offsets[1];
+  } else if (basePlacement === 'right') {
+    popper.top += offsets[0];
+    popper.left += offsets[1];
+  } else if (basePlacement === 'top') {
+    popper.left += offsets[0];
+    popper.top -= offsets[1];
+  } else if (basePlacement === 'bottom') {
+    popper.left += offsets[0];
+    popper.top += offsets[1];
+  }
+
+  data.popper = popper;
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function preventOverflow(data, options) {
+  var boundariesElement = options.boundariesElement || getOffsetParent(data.instance.popper);
+
+  // If offsetParent is the reference element, we really want to
+  // go one step up and use the next offsetParent as reference to
+  // avoid to make this modifier completely useless and look like broken
+  if (data.instance.reference === boundariesElement) {
+    boundariesElement = getOffsetParent(boundariesElement);
+  }
+
+  // NOTE: DOM access here
+  // resets the popper's position so that the document size can be calculated excluding
+  // the size of the popper element itself
+  var transformProp = getSupportedPropertyName('transform');
+  var popperStyles = data.instance.popper.style; // assignment to help minification
+  var top = popperStyles.top,
+      left = popperStyles.left,
+      transform = popperStyles[transformProp];
+
+  popperStyles.top = '';
+  popperStyles.left = '';
+  popperStyles[transformProp] = '';
+
+  var boundaries = getBoundaries(data.instance.popper, data.instance.reference, options.padding, boundariesElement, data.positionFixed);
+
+  // NOTE: DOM access here
+  // restores the original style properties after the offsets have been computed
+  popperStyles.top = top;
+  popperStyles.left = left;
+  popperStyles[transformProp] = transform;
+
+  options.boundaries = boundaries;
+
+  var order = options.priority;
+  var popper = data.offsets.popper;
+
+  var check = {
+    primary: function primary(placement) {
+      var value = popper[placement];
+      if (popper[placement] < boundaries[placement] && !options.escapeWithReference) {
+        value = Math.max(popper[placement], boundaries[placement]);
+      }
+      return defineProperty({}, placement, value);
+    },
+    secondary: function secondary(placement) {
+      var mainSide = placement === 'right' ? 'left' : 'top';
+      var value = popper[mainSide];
+      if (popper[placement] > boundaries[placement] && !options.escapeWithReference) {
+        value = Math.min(popper[mainSide], boundaries[placement] - (placement === 'right' ? popper.width : popper.height));
+      }
+      return defineProperty({}, mainSide, value);
+    }
+  };
+
+  order.forEach(function (placement) {
+    var side = ['left', 'top'].indexOf(placement) !== -1 ? 'primary' : 'secondary';
+    popper = _extends({}, popper, check[side](placement));
+  });
+
+  data.offsets.popper = popper;
+
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function shift(data) {
+  var placement = data.placement;
+  var basePlacement = placement.split('-')[0];
+  var shiftvariation = placement.split('-')[1];
+
+  // if shift shiftvariation is specified, run the modifier
+  if (shiftvariation) {
+    var _data$offsets = data.offsets,
+        reference = _data$offsets.reference,
+        popper = _data$offsets.popper;
+
+    var isVertical = ['bottom', 'top'].indexOf(basePlacement) !== -1;
+    var side = isVertical ? 'left' : 'top';
+    var measurement = isVertical ? 'width' : 'height';
+
+    var shiftOffsets = {
+      start: defineProperty({}, side, reference[side]),
+      end: defineProperty({}, side, reference[side] + reference[measurement] - popper[measurement])
+    };
+
+    data.offsets.popper = _extends({}, popper, shiftOffsets[shiftvariation]);
+  }
+
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function hide(data) {
+  if (!isModifierRequired(data.instance.modifiers, 'hide', 'preventOverflow')) {
+    return data;
+  }
+
+  var refRect = data.offsets.reference;
+  var bound = find(data.instance.modifiers, function (modifier) {
+    return modifier.name === 'preventOverflow';
+  }).boundaries;
+
+  if (refRect.bottom < bound.top || refRect.left > bound.right || refRect.top > bound.bottom || refRect.right < bound.left) {
+    // Avoid unnecessary DOM access if visibility hasn't changed
+    if (data.hide === true) {
+      return data;
+    }
+
+    data.hide = true;
+    data.attributes['x-out-of-boundaries'] = '';
+  } else {
+    // Avoid unnecessary DOM access if visibility hasn't changed
+    if (data.hide === false) {
+      return data;
+    }
+
+    data.hide = false;
+    data.attributes['x-out-of-boundaries'] = false;
+  }
+
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function inner(data) {
+  var placement = data.placement;
+  var basePlacement = placement.split('-')[0];
+  var _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+
+  var isHoriz = ['left', 'right'].indexOf(basePlacement) !== -1;
+
+  var subtractLength = ['top', 'left'].indexOf(basePlacement) === -1;
+
+  popper[isHoriz ? 'left' : 'top'] = reference[basePlacement] - (subtractLength ? popper[isHoriz ? 'width' : 'height'] : 0);
+
+  data.placement = getOppositePlacement(placement);
+  data.offsets.popper = getClientRect(popper);
+
+  return data;
+}
+
+/**
+ * Modifier function, each modifier can have a function of this type assigned
+ * to its `fn` property.<br />
+ * These functions will be called on each update, this means that you must
+ * make sure they are performant enough to avoid performance bottlenecks.
+ *
+ * @function ModifierFn
+ * @argument {dataObject} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {dataObject} The data object, properly modified
+ */
+
+/**
+ * Modifiers are plugins used to alter the behavior of your poppers.<br />
+ * Popper.js uses a set of 9 modifiers to provide all the basic functionalities
+ * needed by the library.
+ *
+ * Usually you don't want to override the `order`, `fn` and `onLoad` props.
+ * All the other properties are configurations that could be tweaked.
+ * @namespace modifiers
+ */
+var modifiers = {
+  /**
+   * Modifier used to shift the popper on the start or end of its reference
+   * element.<br />
+   * It will read the variation of the `placement` property.<br />
+   * It can be one either `-end` or `-start`.
+   * @memberof modifiers
+   * @inner
+   */
+  shift: {
+    /** @prop {number} order=100 - Index used to define the order of execution */
+    order: 100,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: shift
+  },
+
+  /**
+   * The `offset` modifier can shift your popper on both its axis.
+   *
+   * It accepts the following units:
+   * - `px` or unit-less, interpreted as pixels
+   * - `%` or `%r`, percentage relative to the length of the reference element
+   * - `%p`, percentage relative to the length of the popper element
+   * - `vw`, CSS viewport width unit
+   * - `vh`, CSS viewport height unit
+   *
+   * For length is intended the main axis relative to the placement of the popper.<br />
+   * This means that if the placement is `top` or `bottom`, the length will be the
+   * `width`. In case of `left` or `right`, it will be the `height`.
+   *
+   * You can provide a single value (as `Number` or `String`), or a pair of values
+   * as `String` divided by a comma or one (or more) white spaces.<br />
+   * The latter is a deprecated method because it leads to confusion and will be
+   * removed in v2.<br />
+   * Additionally, it accepts additions and subtractions between different units.
+   * Note that multiplications and divisions aren't supported.
+   *
+   * Valid examples are:
+   * ```
+   * 10
+   * '10%'
+   * '10, 10'
+   * '10%, 10'
+   * '10 + 10%'
+   * '10 - 5vh + 3%'
+   * '-10px + 5vh, 5px - 6%'
+   * ```
+   * > **NB**: If you desire to apply offsets to your poppers in a way that may make them overlap
+   * > with their reference element, unfortunately, you will have to disable the `flip` modifier.
+   * > You can read more on this at this [issue](https://github.com/FezVrasta/popper.js/issues/373).
+   *
+   * @memberof modifiers
+   * @inner
+   */
+  offset: {
+    /** @prop {number} order=200 - Index used to define the order of execution */
+    order: 200,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: offset,
+    /** @prop {Number|String} offset=0
+     * The offset value as described in the modifier description
+     */
+    offset: 0
+  },
+
+  /**
+   * Modifier used to prevent the popper from being positioned outside the boundary.
+   *
+   * A scenario exists where the reference itself is not within the boundaries.<br />
+   * We can say it has "escaped the boundaries" — or just "escaped".<br />
+   * In this case we need to decide whether the popper should either:
+   *
+   * - detach from the reference and remain "trapped" in the boundaries, or
+   * - if it should ignore the boundary and "escape with its reference"
+   *
+   * When `escapeWithReference` is set to`true` and reference is completely
+   * outside its boundaries, the popper will overflow (or completely leave)
+   * the boundaries in order to remain attached to the edge of the reference.
+   *
+   * @memberof modifiers
+   * @inner
+   */
+  preventOverflow: {
+    /** @prop {number} order=300 - Index used to define the order of execution */
+    order: 300,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: preventOverflow,
+    /**
+     * @prop {Array} [priority=['left','right','top','bottom']]
+     * Popper will try to prevent overflow following these priorities by default,
+     * then, it could overflow on the left and on top of the `boundariesElement`
+     */
+    priority: ['left', 'right', 'top', 'bottom'],
+    /**
+     * @prop {number} padding=5
+     * Amount of pixel used to define a minimum distance between the boundaries
+     * and the popper. This makes sure the popper always has a little padding
+     * between the edges of its container
+     */
+    padding: 5,
+    /**
+     * @prop {String|HTMLElement} boundariesElement='scrollParent'
+     * Boundaries used by the modifier. Can be `scrollParent`, `window`,
+     * `viewport` or any DOM element.
+     */
+    boundariesElement: 'scrollParent'
+  },
+
+  /**
+   * Modifier used to make sure the reference and its popper stay near each other
+   * without leaving any gap between the two. Especially useful when the arrow is
+   * enabled and you want to ensure that it points to its reference element.
+   * It cares only about the first axis. You can still have poppers with margin
+   * between the popper and its reference element.
+   * @memberof modifiers
+   * @inner
+   */
+  keepTogether: {
+    /** @prop {number} order=400 - Index used to define the order of execution */
+    order: 400,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: keepTogether
+  },
+
+  /**
+   * This modifier is used to move the `arrowElement` of the popper to make
+   * sure it is positioned between the reference element and its popper element.
+   * It will read the outer size of the `arrowElement` node to detect how many
+   * pixels of conjunction are needed.
+   *
+   * It has no effect if no `arrowElement` is provided.
+   * @memberof modifiers
+   * @inner
+   */
+  arrow: {
+    /** @prop {number} order=500 - Index used to define the order of execution */
+    order: 500,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: arrow,
+    /** @prop {String|HTMLElement} element='[x-arrow]' - Selector or node used as arrow */
+    element: '[x-arrow]'
+  },
+
+  /**
+   * Modifier used to flip the popper's placement when it starts to overlap its
+   * reference element.
+   *
+   * Requires the `preventOverflow` modifier before it in order to work.
+   *
+   * **NOTE:** this modifier will interrupt the current update cycle and will
+   * restart it if it detects the need to flip the placement.
+   * @memberof modifiers
+   * @inner
+   */
+  flip: {
+    /** @prop {number} order=600 - Index used to define the order of execution */
+    order: 600,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: flip,
+    /**
+     * @prop {String|Array} behavior='flip'
+     * The behavior used to change the popper's placement. It can be one of
+     * `flip`, `clockwise`, `counterclockwise` or an array with a list of valid
+     * placements (with optional variations)
+     */
+    behavior: 'flip',
+    /**
+     * @prop {number} padding=5
+     * The popper will flip if it hits the edges of the `boundariesElement`
+     */
+    padding: 5,
+    /**
+     * @prop {String|HTMLElement} boundariesElement='viewport'
+     * The element which will define the boundaries of the popper position.
+     * The popper will never be placed outside of the defined boundaries
+     * (except if `keepTogether` is enabled)
+     */
+    boundariesElement: 'viewport',
+    /**
+     * @prop {Boolean} flipVariations=false
+     * The popper will switch placement variation between `-start` and `-end` when
+     * the reference element overlaps its boundaries.
+     *
+     * The original placement should have a set variation.
+     */
+    flipVariations: false,
+    /**
+     * @prop {Boolean} flipVariationsByContent=false
+     * The popper will switch placement variation between `-start` and `-end` when
+     * the popper element overlaps its reference boundaries.
+     *
+     * The original placement should have a set variation.
+     */
+    flipVariationsByContent: false
+  },
+
+  /**
+   * Modifier used to make the popper flow toward the inner of the reference element.
+   * By default, when this modifier is disabled, the popper will be placed outside
+   * the reference element.
+   * @memberof modifiers
+   * @inner
+   */
+  inner: {
+    /** @prop {number} order=700 - Index used to define the order of execution */
+    order: 700,
+    /** @prop {Boolean} enabled=false - Whether the modifier is enabled or not */
+    enabled: false,
+    /** @prop {ModifierFn} */
+    fn: inner
+  },
+
+  /**
+   * Modifier used to hide the popper when its reference element is outside of the
+   * popper boundaries. It will set a `x-out-of-boundaries` attribute which can
+   * be used to hide with a CSS selector the popper when its reference is
+   * out of boundaries.
+   *
+   * Requires the `preventOverflow` modifier before it in order to work.
+   * @memberof modifiers
+   * @inner
+   */
+  hide: {
+    /** @prop {number} order=800 - Index used to define the order of execution */
+    order: 800,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: hide
+  },
+
+  /**
+   * Computes the style that will be applied to the popper element to gets
+   * properly positioned.
+   *
+   * Note that this modifier will not touch the DOM, it just prepares the styles
+   * so that `applyStyle` modifier can apply it. This separation is useful
+   * in case you need to replace `applyStyle` with a custom implementation.
+   *
+   * This modifier has `850` as `order` value to maintain backward compatibility
+   * with previous versions of Popper.js. Expect the modifiers ordering method
+   * to change in future major versions of the library.
+   *
+   * @memberof modifiers
+   * @inner
+   */
+  computeStyle: {
+    /** @prop {number} order=850 - Index used to define the order of execution */
+    order: 850,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: computeStyle,
+    /**
+     * @prop {Boolean} gpuAcceleration=true
+     * If true, it uses the CSS 3D transformation to position the popper.
+     * Otherwise, it will use the `top` and `left` properties
+     */
+    gpuAcceleration: true,
+    /**
+     * @prop {string} [x='bottom']
+     * Where to anchor the X axis (`bottom` or `top`). AKA X offset origin.
+     * Change this if your popper should grow in a direction different from `bottom`
+     */
+    x: 'bottom',
+    /**
+     * @prop {string} [x='left']
+     * Where to anchor the Y axis (`left` or `right`). AKA Y offset origin.
+     * Change this if your popper should grow in a direction different from `right`
+     */
+    y: 'right'
+  },
+
+  /**
+   * Applies the computed styles to the popper element.
+   *
+   * All the DOM manipulations are limited to this modifier. This is useful in case
+   * you want to integrate Popper.js inside a framework or view library and you
+   * want to delegate all the DOM manipulations to it.
+   *
+   * Note that if you disable this modifier, you must make sure the popper element
+   * has its position set to `absolute` before Popper.js can do its work!
+   *
+   * Just disable this modifier and define your own to achieve the desired effect.
+   *
+   * @memberof modifiers
+   * @inner
+   */
+  applyStyle: {
+    /** @prop {number} order=900 - Index used to define the order of execution */
+    order: 900,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: applyStyle,
+    /** @prop {Function} */
+    onLoad: applyStyleOnLoad,
+    /**
+     * @deprecated since version 1.10.0, the property moved to `computeStyle` modifier
+     * @prop {Boolean} gpuAcceleration=true
+     * If true, it uses the CSS 3D transformation to position the popper.
+     * Otherwise, it will use the `top` and `left` properties
+     */
+    gpuAcceleration: undefined
+  }
+};
+
+/**
+ * The `dataObject` is an object containing all the information used by Popper.js.
+ * This object is passed to modifiers and to the `onCreate` and `onUpdate` callbacks.
+ * @name dataObject
+ * @property {Object} data.instance The Popper.js instance
+ * @property {String} data.placement Placement applied to popper
+ * @property {String} data.originalPlacement Placement originally defined on init
+ * @property {Boolean} data.flipped True if popper has been flipped by flip modifier
+ * @property {Boolean} data.hide True if the reference element is out of boundaries, useful to know when to hide the popper
+ * @property {HTMLElement} data.arrowElement Node used as arrow by arrow modifier
+ * @property {Object} data.styles Any CSS property defined here will be applied to the popper. It expects the JavaScript nomenclature (eg. `marginBottom`)
+ * @property {Object} data.arrowStyles Any CSS property defined here will be applied to the popper arrow. It expects the JavaScript nomenclature (eg. `marginBottom`)
+ * @property {Object} data.boundaries Offsets of the popper boundaries
+ * @property {Object} data.offsets The measurements of popper, reference and arrow elements
+ * @property {Object} data.offsets.popper `top`, `left`, `width`, `height` values
+ * @property {Object} data.offsets.reference `top`, `left`, `width`, `height` values
+ * @property {Object} data.offsets.arrow] `top` and `left` offsets, only one of them will be different from 0
+ */
+
+/**
+ * Default options provided to Popper.js constructor.<br />
+ * These can be overridden using the `options` argument of Popper.js.<br />
+ * To override an option, simply pass an object with the same
+ * structure of the `options` object, as the 3rd argument. For example:
+ * ```
+ * new Popper(ref, pop, {
+ *   modifiers: {
+ *     preventOverflow: { enabled: false }
+ *   }
+ * })
+ * ```
+ * @type {Object}
+ * @static
+ * @memberof Popper
+ */
+var Defaults = {
+  /**
+   * Popper's placement.
+   * @prop {Popper.placements} placement='bottom'
+   */
+  placement: 'bottom',
+
+  /**
+   * Set this to true if you want popper to position it self in 'fixed' mode
+   * @prop {Boolean} positionFixed=false
+   */
+  positionFixed: false,
+
+  /**
+   * Whether events (resize, scroll) are initially enabled.
+   * @prop {Boolean} eventsEnabled=true
+   */
+  eventsEnabled: true,
+
+  /**
+   * Set to true if you want to automatically remove the popper when
+   * you call the `destroy` method.
+   * @prop {Boolean} removeOnDestroy=false
+   */
+  removeOnDestroy: false,
+
+  /**
+   * Callback called when the popper is created.<br />
+   * By default, it is set to no-op.<br />
+   * Access Popper.js instance with `data.instance`.
+   * @prop {onCreate}
+   */
+  onCreate: function onCreate() {},
+
+  /**
+   * Callback called when the popper is updated. This callback is not called
+   * on the initialization/creation of the popper, but only on subsequent
+   * updates.<br />
+   * By default, it is set to no-op.<br />
+   * Access Popper.js instance with `data.instance`.
+   * @prop {onUpdate}
+   */
+  onUpdate: function onUpdate() {},
+
+  /**
+   * List of modifiers used to modify the offsets before they are applied to the popper.
+   * They provide most of the functionalities of Popper.js.
+   * @prop {modifiers}
+   */
+  modifiers: modifiers
+};
+
+/**
+ * @callback onCreate
+ * @param {dataObject} data
+ */
+
+/**
+ * @callback onUpdate
+ * @param {dataObject} data
+ */
+
+// Utils
+// Methods
+var Popper = function () {
+  /**
+   * Creates a new Popper.js instance.
+   * @class Popper
+   * @param {Element|referenceObject} reference - The reference element used to position the popper
+   * @param {Element} popper - The HTML / XML element used as the popper
+   * @param {Object} options - Your custom options to override the ones defined in [Defaults](#defaults)
+   * @return {Object} instance - The generated Popper.js instance
+   */
+  function Popper(reference, popper) {
+    var _this = this;
+
+    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    classCallCheck(this, Popper);
+
+    this.scheduleUpdate = function () {
+      return requestAnimationFrame(_this.update);
+    };
+
+    // make update() debounced, so that it only runs at most once-per-tick
+    this.update = debounce(this.update.bind(this));
+
+    // with {} we create a new object with the options inside it
+    this.options = _extends({}, Popper.Defaults, options);
+
+    // init state
+    this.state = {
+      isDestroyed: false,
+      isCreated: false,
+      scrollParents: []
+    };
+
+    // get reference and popper elements (allow jQuery wrappers)
+    this.reference = reference && reference.jquery ? reference[0] : reference;
+    this.popper = popper && popper.jquery ? popper[0] : popper;
+
+    // Deep merge modifiers options
+    this.options.modifiers = {};
+    Object.keys(_extends({}, Popper.Defaults.modifiers, options.modifiers)).forEach(function (name) {
+      _this.options.modifiers[name] = _extends({}, Popper.Defaults.modifiers[name] || {}, options.modifiers ? options.modifiers[name] : {});
+    });
+
+    // Refactoring modifiers' list (Object => Array)
+    this.modifiers = Object.keys(this.options.modifiers).map(function (name) {
+      return _extends({
+        name: name
+      }, _this.options.modifiers[name]);
+    })
+    // sort the modifiers by order
+    .sort(function (a, b) {
+      return a.order - b.order;
+    });
+
+    // modifiers have the ability to execute arbitrary code when Popper.js get inited
+    // such code is executed in the same order of its modifier
+    // they could add new properties to their options configuration
+    // BE AWARE: don't add options to `options.modifiers.name` but to `modifierOptions`!
+    this.modifiers.forEach(function (modifierOptions) {
+      if (modifierOptions.enabled && isFunction(modifierOptions.onLoad)) {
+        modifierOptions.onLoad(_this.reference, _this.popper, _this.options, modifierOptions, _this.state);
+      }
+    });
+
+    // fire the first update to position the popper in the right place
+    this.update();
+
+    var eventsEnabled = this.options.eventsEnabled;
+    if (eventsEnabled) {
+      // setup event listeners, they will take care of update the position in specific situations
+      this.enableEventListeners();
+    }
+
+    this.state.eventsEnabled = eventsEnabled;
+  }
+
+  // We can't use class properties because they don't get listed in the
+  // class prototype and break stuff like Sinon stubs
+
+
+  createClass(Popper, [{
+    key: 'update',
+    value: function update$$1() {
+      return update.call(this);
+    }
+  }, {
+    key: 'destroy',
+    value: function destroy$$1() {
+      return destroy.call(this);
+    }
+  }, {
+    key: 'enableEventListeners',
+    value: function enableEventListeners$$1() {
+      return enableEventListeners.call(this);
+    }
+  }, {
+    key: 'disableEventListeners',
+    value: function disableEventListeners$$1() {
+      return disableEventListeners.call(this);
+    }
+
+    /**
+     * Schedules an update. It will run on the next UI update available.
+     * @method scheduleUpdate
+     * @memberof Popper
+     */
+
+
+    /**
+     * Collection of utilities useful when writing custom modifiers.
+     * Starting from version 1.7, this method is available only if you
+     * include `popper-utils.js` before `popper.js`.
+     *
+     * **DEPRECATION**: This way to access PopperUtils is deprecated
+     * and will be removed in v2! Use the PopperUtils module directly instead.
+     * Due to the high instability of the methods contained in Utils, we can't
+     * guarantee them to follow semver. Use them at your own risk!
+     * @static
+     * @private
+     * @type {Object}
+     * @deprecated since version 1.8
+     * @member Utils
+     * @memberof Popper
+     */
+
+  }]);
+  return Popper;
+}();
+
+/**
+ * The `referenceObject` is an object that provides an interface compatible with Popper.js
+ * and lets you use it as replacement of a real DOM node.<br />
+ * You can use this method to position a popper relatively to a set of coordinates
+ * in case you don't have a DOM node to use as reference.
+ *
+ * ```
+ * new Popper(referenceObject, popperNode);
+ * ```
+ *
+ * NB: This feature isn't supported in Internet Explorer 10.
+ * @name referenceObject
+ * @property {Function} data.getBoundingClientRect
+ * A function that returns a set of coordinates compatible with the native `getBoundingClientRect` method.
+ * @property {number} data.clientWidth
+ * An ES6 getter that will return the width of the virtual reference element.
+ * @property {number} data.clientHeight
+ * An ES6 getter that will return the height of the virtual reference element.
+ */
+
+
+Popper.Utils = (typeof window !== 'undefined' ? window : global).PopperUtils;
+Popper.placements = placements;
+Popper.Defaults = Defaults;
+
+/* harmony default export */ __webpack_exports__["default"] = (Popper);
+//# sourceMappingURL=popper.js.map
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
@@ -30784,7 +36981,7 @@ if (hadRuntime) {
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js"), __webpack_require__("./node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js"), __webpack_require__("./node_modules/node-libs-browser/node_modules/process/browser.js")))
 
 /***/ }),
 

@@ -28,6 +28,12 @@ export default new Vue ({
   // --------------------------------------
   // Методы
   // --------------------------------------
-  methods: {}
+  methods: {
+  changePage(e) {
+    e.preventDefault();    
+    console.log(e.target.attributes[1].nodeValue)    
+  }
+
+  }
   
 });
