@@ -12,7 +12,9 @@ export default new Vue ({
   el: '#app',
 
   data () {   
-    return {}
+    return {
+      showItems: false
+    }
   },
 
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
@@ -30,24 +32,31 @@ export default new Vue ({
   // --------------------------------------
   methods: {
   changePage(e, totalRecords) {
+
     e.preventDefault();    
   
     var firstVal = parseInt($( ".pageNum" ).first().text());
     var lastVal = parseInt($( ".pageNum" ).last().text());
-    var opNav = e.target.attributes[1].nodeValue;
+    var btnData = e.target.attributes[1].nodeValue;
     
-    if (opNav==="prev" && firstVal > 1) {
+    if (btnData==="prev" && firstVal > 1) {
       $( ".pageNum" ).each(function( index ) {
         var item = $(this).text();
         $(this).text(parseInt(item)-1)
       });   
     }
-    
-    if (opNav==="next" && lastVal!=totalRecords) {
+
+    if (btnData==="next" && lastVal!=totalRecords) {
       $( ".pageNum" ).each(function( index ) {
         var item = $(this).text();
         $(this).text(parseInt(item)+1)
       });   
+    }
+    
+    if (btnData!="next" && btnData!="prev"){
+      //alert(e.target.innerText);
+      $("#defaultItems").empty();
+      this.showItems=true;
     }
 
   }

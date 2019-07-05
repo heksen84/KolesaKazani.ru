@@ -22,6 +22,7 @@
       </div>      
     </div>
 
+  <div id="defaultItems">
   @foreach ( json_decode($results, true) as $item)    
     <div class="row">    
       <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 margin-auto">
@@ -35,8 +36,19 @@
       </div>
     </div>
   @endforeach
+  </div>
 
-  @if ($total_records>5)
+  <!--<items></items>-->
+
+  <div v-if="showItems">
+    <div class="row">    
+      <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 margin-auto text-center">
+        <h1>ITEMS</h1>
+      </div>
+    </div>
+  </div>
+
+  @if ($total_records>3)
   <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 margin-auto">
       <nav aria-label="Page navigation example">
@@ -44,7 +56,7 @@
           <li class="page-item">          
           <a class="page-link blue" href="#" data-page="prev" @click="changePage($event, {{ $total_records}})">Назад</a>
           </li>            
-            <li v-for="(i,index) in {{ $total_records/5 }}" :key="index" class="page-item">
+            <li v-for="(i,index) in Math.round({{ $total_records }}/4)" :key="index" class="page-item">
               <a class="page-link blue pageNum" href="#" :data-page=i @click="changePage($event, {{ $total_records}})">${i}</a>
             </li>          
           <li class="page-item">
