@@ -22,8 +22,10 @@
       </div>      
     </div>
 
+  <items :items="data" v-show="showItems"></items>
+
   <div id="defaultItems">
-  @foreach ( json_decode($results, true) as $item)    
+  @foreach (json_decode($results, true) as $item)    
     <div class="row">    
       <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 margin-auto">
         <div class="card mb-1">
@@ -36,17 +38,7 @@
       </div>
     </div>
   @endforeach
-  </div>
-
-  <!--<items></items>-->
-
-  <div v-if="showItems">
-    <div class="row">    
-      <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 margin-auto text-center">
-        <h1>ITEMS</h1>
-      </div>
-    </div>
-  </div>
+  </div>  
 
   @if ($total_records>3)
   <div class="row">

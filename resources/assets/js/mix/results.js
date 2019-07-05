@@ -2,6 +2,7 @@ require('./bootstrap');
 import Vue from 'vue';
 import $ from "jquery";
 import bootstrap from "bootstrap";
+import items from "../components/items.vue";
 import { get } from '../helpers/api' // axios
 
 // --------------------------
@@ -13,13 +14,15 @@ export default new Vue ({
 
   data () {   
     return {
-      showItems: false
+      showItems: false,
+      data: "123123"
     }
   },
 
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
   components: {    
-    bootstrap
+    bootstrap,
+    items
   },
 
   // -------------------------------
@@ -53,14 +56,11 @@ export default new Vue ({
       });   
     }
     
-    if (btnData!="next" && btnData!="prev"){
-      //alert(e.target.innerText);
-      $("#defaultItems").empty();
-      this.showItems=true;
+    if (btnData!="next" && btnData!="prev") {          
+      $("#defaultItems").empty();        
+      this.showItems=true;        
     }
-
   }
-
-  }
+}
   
 });
