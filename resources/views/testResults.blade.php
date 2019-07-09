@@ -18,7 +18,8 @@
   
   <div class="close_button shadow_text" id="results_close_button" title="Закрыть страницу" @click="closeAndReturn">X</div>
 
-  <div class="container" style="margin-top:40px">	  
+  <div class="container-fluid mycontainer" style="margin-top:40px">
+
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 margin-auto text-center">      
         <h1 class="shadow_text" style="font-size:24px">{{ $title }}</h1>
@@ -33,36 +34,20 @@
   <items :items="data" v-show="showItems"></items>
 
   <div id="defaultItems">
-  @foreach (json_decode($results, true) as $item)    
-    <!--<div class="row">    
-      <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 margin-auto">
-        <div class="card mb-1">
-            <div class="card-body" style="margin-top:-5px">              
-              <img src="/storage/app/images/{{ $item['image']}}" width="80" height="80"/>  
-                <h5 class="card-title">{{ $item["title"] }}</h5>
-                <p class="card-text">Цена: {{ $item["price"] }} тнг.</p>
-                <a href="#" class="btn btn-success btn-sm">Подробнее</a>
-            </div>
+    @foreach (json_decode($results, true) as $item)
+    <div class="row">    
+      <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2"></div>
+      <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">      
+        <div class="item">                            
+        <img src="/storage/app/images/{{ $item['image']}}" width="140" height="140" style="display:inline-block"/>          
+          <span style="position:absolute;top:10px;margin-left:5px;vertical-align:top;font-size:20px;width:600px">
+            {{ $item["title"] }}
+            <div style="font-size:18px">цена: {{ $item["price"] }} тнг.</div>
+          </span>          
         </div>
-      </div>
-    </div>-->
-
-  <div class="card mb-1" style="max-width: 700px;margin:auto">
-  <div class="row no-gutters">
-    <div class="col-md-3 col-sm-1">
-      <img src="/storage/app/images/{{ $item['image']}}" width="150" height="150"/> 
     </div>
-    <div class="col-md-9 col-sm-5">
-      <div class="card-body">
-        <h5 class="card-title">{{ $item["title"] }}</h5>
-        <p class="card-text">Цена {{ $item["price"] }} тнг.</p>
-        <a href="#" class="btn btn-success btn-sm">Подробнее</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-  @endforeach
+    </div>    
+    @endforeach
   </div>  
 
   @if ($total_records>3)
