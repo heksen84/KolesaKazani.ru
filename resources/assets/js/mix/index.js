@@ -32,6 +32,9 @@ export default new Vue ({
   // Компонент создан
   // -------------------------------
   created() {
+
+    $(".deferred").show();
+    
     
     // Вытаскивыю местоположение из локалстораджа
     var locationUrl = localStorage.getItem("locationUrl");

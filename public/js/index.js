@@ -50877,6 +50877,8 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
   // -------------------------------
   created: function created() {
 
+    __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".deferred").show();
+
     // Вытаскивыю местоположение из локалстораджа
     var locationUrl = localStorage.getItem("locationUrl");
     var locationName = localStorage.getItem("locationName");
