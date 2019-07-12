@@ -33,9 +33,9 @@ export default new Vue ({
   // -------------------------------
   created() {
 
+    // Отобразить отложенные данные
     $(".deferred").show();
-    
-    
+        
     // Вытаскивыю местоположение из локалстораджа
     var locationUrl = localStorage.getItem("locationUrl");
     var locationName = localStorage.getItem("locationName");

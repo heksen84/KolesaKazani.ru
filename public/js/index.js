@@ -50877,6 +50877,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
   // -------------------------------
   created: function created() {
 
+    // Отобразить отложенные данные
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".deferred").show();
 
     // Вытаскивыю местоположение из локалстораджа
