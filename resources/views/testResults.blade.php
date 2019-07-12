@@ -39,7 +39,7 @@
       <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2"></div>
       <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">      
         <div class="item">                            
-        <img src="/storage/app/images/{{ $item['image']}}" width="140" height="140" style="display:inline-block"/>          
+        <img src="/storage/app/images/{{ $item['image']}}" width="140" height="140" loading="auto" style="display:inline-block"/>          
           <span style="position:absolute;top:10px;margin-left:5px;vertical-align:top;font-size:20px;width:600px">
             {{ $item["title"] }}
             <div style="font-size:18px">цена: {{ $item["price"] }} тнг.</div>
