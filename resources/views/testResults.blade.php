@@ -23,10 +23,8 @@
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 margin-auto text-center">      
         <h1 class="shadow_text" style="font-size:24px">{{ $title }}</h1>
-        <h2 class="shadow_text deferred">
-          Найдено: 
-          <span v-show="!showItems">{{ $total_records }}</span>
-          <span v-show="showItems" class="shadow_text" id="totalRecords">${ totalRecords }</span>
+        <h2 class="shadow_text">
+          Найдено: <span v-show="!showItems">{{ $total_records }}</span><span v-show="showItems" class="shadow_text deferred" id="totalRecords">${ totalRecords }</span>
         </h2>        
       </div>      
   </div>
