@@ -8,21 +8,18 @@ import { get } from '../helpers/api' // axios
 // экземляр приложения vue
 // --------------------------
 export default new Vue ({
-
   el: '#app',
-
   data () {   
     return {      
       placesList: [], // массив городов / сёл / деревень
       regions: true,    
       places: false,
-      locationName: "",
-      tmpLocationName: "",
       categories: true,
-      subCategories: false,      
+      subCategories: false,
+      locationName: "",
+      tmpLocationName: ""     
     }
   },
-
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
   components: {    
     bootstrap

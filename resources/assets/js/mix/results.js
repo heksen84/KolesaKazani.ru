@@ -9,9 +9,7 @@ import { get } from '../helpers/api' // axios
 // экземляр приложения vue
 // --------------------------
 export default new Vue ({
-
   el: '#app',
-
   data () {   
     return {
       showItems: false,
@@ -20,7 +18,6 @@ export default new Vue ({
       countString: ""
     }
   },
-
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
   components: {    
     bootstrap,
@@ -30,7 +27,10 @@ export default new Vue ({
   // -------------------------------
   // Компонент создан
   // -------------------------------
-//  created() { alert("i'm ready!"); },
+  created() {
+    // Отобразить отложенные данные
+    $(".deferred").show();
+  },
 
   watch: {
     strNum: function(totalRecords) {

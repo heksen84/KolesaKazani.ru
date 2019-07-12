@@ -50851,21 +50851,18 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 // экземляр приложения vue
 // --------------------------
 /* harmony default export */ __webpack_exports__["default"] = (new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-
   el: '#app',
-
   data: function data() {
     return {
       placesList: [], // массив городов / сёл / деревень
       regions: true,
       places: false,
-      locationName: "",
-      tmpLocationName: "",
       categories: true,
-      subCategories: false
+      subCategories: false,
+      locationName: "",
+      tmpLocationName: ""
     };
   },
-
 
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
   components: {

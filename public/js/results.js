@@ -51106,9 +51106,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 // экземляр приложения vue
 // --------------------------
 /* harmony default export */ __webpack_exports__["default"] = (new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-
   el: '#app',
-
   data: function data() {
     return {
       showItems: false,
@@ -51117,7 +51115,6 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
       countString: ""
     };
   },
-
 
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
   components: {
@@ -51128,7 +51125,11 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
   // -------------------------------
   // Компонент создан
   // -------------------------------
-  //  created() { alert("i'm ready!"); },
+  created: function created() {
+    // Отобразить отложенные данные
+    __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".deferred").show();
+  },
+
 
   watch: {
     strNum: function strNum(totalRecords) {
