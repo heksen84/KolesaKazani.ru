@@ -142,14 +142,6 @@
   <div class="row" style="margin-top:20px">
     <h5 class="margin-auto">Google Advert</h5>
   </div>
-
-  <br>
-  <img src="https://photos-a-kl.kcdn.kz/b4/b479a766-863b-484e-a689-e5e9eb324504/1-200x150.jpg"></img>
-  <img src="https://photos-a-kl.kcdn.kz/2b/2bfb37c1-3d94-4b00-b5e1-a96299a5e758/3-200x150.jpg"></img>
-  <img src="https://photos-a-kl.kcdn.kz/b4/b479a766-863b-484e-a689-e5e9eb324504/1-200x150.jpg"></img>
-  <img src="https://photos-a-kl.kcdn.kz/b4/b479a766-863b-484e-a689-e5e9eb324504/1-200x150.jpg"></img>
-  <img src="https://photos-a-kl.kcdn.kz/b4/b479a766-863b-484e-a689-e5e9eb324504/1-200x150.jpg"></img>
-  <img src="https://photos-a-kl.kcdn.kz/b4/b479a766-863b-484e-a689-e5e9eb324504/1-200x150.jpg"></img>
   
   <div class="row" style="margin-top:40px">
     <div id="footer"><a href="/advertisers" class="underline_link">Реклама</a> | <a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a></div>
