@@ -1,11 +1,4 @@
 {
-    "/js/app.js": "/js/app.js?id=e0ebfaafc92c21b3b6f4",
-    "/js/create.js": "/js/create.js?id=68bd45d859b47e8a2ba7",
-    "/js/login.js": "/js/login.js?id=bd7d46543e905df15daf",
-    "/js/sendemail.js": "/js/sendemail.js?id=136f9251afd0f7fec096",
-    "/js/register.js": "/js/register.js?id=d6f7d7f98c8517b6d28a",
-    "/js/passwordreset.js": "/js/passwordreset.js?id=8536b53685feff4a1800",
-    "/js/results.js": "/js/results.js?id=1a6f3a9babf56bb88e00",
-    "/js/index.js": "/js/index.js?id=27d8da49bd62d49d45dd",
-    "/css/app.css": "/css/app.css?id=fdbffc053dc19553ae57"
+    "/js/index.js": "/js/index.js?id=a3f774fa1cda73e42e47",
+    "/css/app.css": "/css/app.css?id=c5f55283d46663c536ba"
 }
