@@ -51004,6 +51004,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
       var _this = this;
 
       e.preventDefault();
+
       this.tmpLocationName = e.target.innerText;
 
       // Получить города / сёлы

@@ -73,6 +73,7 @@ export default new Vue ({
   showPlacesByRegion(e, regionId) {    
     
     e.preventDefault();
+    
     this.tmpLocationName=e.target.innerText;
 
     // Получить города / сёлы

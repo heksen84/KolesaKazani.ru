@@ -3,6 +3,15 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 
+// -----------------------------------------------------------
+// Сервисы
+// -----------------------------------------------------------
+Route::get("test",  function () { return view("test"); });
+//Route::get("testSSR",  "TestController@testSSR");
+Route::post("checkPhotos", "TestController@checkPhotos");
+Route::get("/util/str2url", "UtilsController@str2url");
+
+
 Auth::routes(); // Стандартные роуты
 
 Route::get("isUserAuth", "UserController@isUserAuth");
@@ -129,11 +138,3 @@ Route::get("getCategoryCounts", "WelcomeController@getCategoryCounts");
 Route::get("panels/admin", "AdminController@login");
 Route::get("moderation",  function () { return view("moderation"); });
 Route::get("moderation/{advert_id}",  function () { return view("moderation_advert"); });
-
-// -----------------------------------------------------------
-// Сервисы
-// -----------------------------------------------------------
-Route::get("test",  function () { return view("test"); });
-//Route::get("testSSR",  "TestController@testSSR");
-Route::post("checkPhotos", "TestController@checkPhotos");
-Route::get("/util/str2url", "UtilsController@str2url");

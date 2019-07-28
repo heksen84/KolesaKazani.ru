@@ -123,12 +123,10 @@
         <div v-show="subCategories" id="subcats">
          <button style="border:1px solid white;font-size:14px" id="close_subcats_btn" class="btn-sm btn-primary hide" @click="returnToCategories">&#8634; Назад</button>
           <div id="subcategories" class="form-inline center">                                      
-            @foreach($subcategories as $subcategory)
-              @if ($subcategory["category_id"]===3)                
-              <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3">
-                <a href="/{{ $subcategory['url'] }}" class="url hide" data-category-id="{{ $subcategory['category_id'] }}"><div class="category_item subcategory">{{ $subcategory["name"] }}</div></a>
+            @foreach($subcategories as $subcategory)       
+              <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 hide subitem" data-category-id="{{ $subcategory['category_id'] }}">
+                <a href="/{{ $subcategory['url'] }}" class="url"><div class="category_item subcategory">{{ $subcategory["name"] }}</div></a>
               </div>
-              @endif
             @endforeach
           </div>
         </div>
