@@ -19,21 +19,21 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
- @if ($auth===1)
+        @if ($auth===1)
         <li class="nav-item active">	    
           <a class="nav-link" href="/podat-obyavlenie">Подать объявлениe <span class="sr-only">(current)</span></a>
         </li>	
         <li class="nav-item">
           <a class="nav-link" href="/home">Мои объявления</a>
         </li>
-	@else
+	      @else
         <li class="nav-item">
           <a class="nav-link" href="/login">Вход</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/register">Регистрация</a>
         </li>      
-	@endif
+	      @endif
       </ul>
     </div>
   </nav>
@@ -71,12 +71,12 @@
 
   <div class="row">
     <div class="margin-auto" id="login_register_col">
-@if ($auth===0)
+    @if ($auth===0)
       <a href="/login"><div class="button" id="button_login" style="margin-left:17px">Вход</div></a>
       <a href="/register"><div class="button" id="button_reg">Регистрация</div></a>          
-@else
+    @else
      	<a href="/home"><div class="button">мои объявления</div></a>
-@endif
+    @endif
     </div>
   </div>
 
