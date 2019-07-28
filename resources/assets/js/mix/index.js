@@ -32,6 +32,7 @@ export default new Vue ({
 
     // Отобразить отложенные данные
     $(".deferred").show();
+    $("#subcats").show();
         
     // Вытаскивыю местоположение из локалстораджа
     var locationUrl = localStorage.getItem("locationUrl");
@@ -142,7 +143,7 @@ export default new Vue ({
   // Показать подкатегории
   // --------------------------------------
   showSubcategories(e, categoryId) {
-    if (categoryId<3) {
+    if (categoryId < 4) {
       e.preventDefault();        
       $("*[data-category-id='"+(categoryId)+"']").show();
       this.categories=false;
