@@ -51080,7 +51080,8 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
     // Показать подкатегории
     // --------------------------------------
     showSubcategories: function showSubcategories(e, categoryId) {
-      if (categoryId < 4) {
+
+      if (categoryId < 10) {
         e.preventDefault();
         __WEBPACK_IMPORTED_MODULE_1_jquery___default()("*[data-category-id='" + categoryId + "']").show();
         this.categories = false;

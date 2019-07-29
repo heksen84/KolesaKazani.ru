@@ -144,12 +144,14 @@ export default new Vue ({
   // Показать подкатегории
   // --------------------------------------
   showSubcategories(e, categoryId) {
-    if (categoryId < 4) {
+
+    if ( categoryId < 10 ) {
       e.preventDefault();        
       $("*[data-category-id='"+(categoryId)+"']").show();
       this.categories=false;
       this.subCategories=true;
     }
+
   },
 
   // --------------------------------------
