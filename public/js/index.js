@@ -51086,7 +51086,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
     // --------------------------------------
     showSubcategories: function showSubcategories(e, categoryId) {
 
-      if (categoryId < 11) {
+      if (categoryId < 10) {
         e.preventDefault();
 
         // получаю элементы

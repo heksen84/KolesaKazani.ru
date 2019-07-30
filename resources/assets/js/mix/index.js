@@ -149,7 +149,7 @@ export default new Vue ({
   // --------------------------------------
   showSubcategories(e, categoryId) {
 
-    if ( categoryId < 11 ) {
+    if ( categoryId < 10 ) {
       e.preventDefault();        
 
       // получаю элементы
