@@ -1,4 +1,5 @@
 require('./bootstrap');
+
 import Vue from 'vue';
 import $ from "jquery";
 import bootstrap from "bootstrap";
@@ -8,7 +9,9 @@ import { get } from '../helpers/api' // axios
 // экземляр приложения vue
 // --------------------------
 export default new Vue ({
+
   el: '#app',
+
   data () {   
     return {      
       placesList: [], // массив городов / сёл / деревень
@@ -20,7 +23,9 @@ export default new Vue ({
       tmpLocationName: ""     
     }
   },
+
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
+
   components: {    
     bootstrap
   },
@@ -70,10 +75,9 @@ export default new Vue ({
   // --------------------------------------
   // Выбор региона
   // --------------------------------------
-  showPlacesByRegion(e, regionId) {    
-    
+  showPlacesByRegion(e, regionId) {
     e.preventDefault();
-    
+
     this.tmpLocationName=e.target.innerText;
 
     // Получить города / сёлы
@@ -124,9 +128,9 @@ export default new Vue ({
   // Выбрать город / село и т.п.
   // --------------------------------------
   selectPlace(e, placeName, placeUrl) {
+    e.preventDefault();
 
-    e.preventDefault();    
-    let self=this;        
+    let self=this;
     
     this.locationName=placeName;
     this.closeLocationWindow();
@@ -153,8 +157,8 @@ export default new Vue ({
 
       // сбиваю в кучу их если кол-во меньше 4	      
       if (elements.length < 4)
-       elements.addClass("col-xl-12")
-	
+       elements.addClass("col-xl-12")	
+    
       // отображаю
       elements.show();
 

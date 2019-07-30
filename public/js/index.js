@@ -50845,13 +50845,16 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
 
 
+
  // axios
 
 // --------------------------
 // экземляр приложения vue
 // --------------------------
 /* harmony default export */ __webpack_exports__["default"] = (new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
+
   el: '#app',
+
   data: function data() {
     return {
       placesList: [], // массив городов / сёл / деревень
@@ -50864,7 +50867,9 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
     };
   },
 
+
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
+
   components: {
     bootstrap: __WEBPACK_IMPORTED_MODULE_2_bootstrap___default.a
   },
@@ -50977,8 +50982,8 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
     // Выбрать город / село и т.п.
     // --------------------------------------
     selectPlace: function selectPlace(e, placeName, placeUrl) {
-
       e.preventDefault();
+
       var self = this;
 
       this.locationName = placeName;
