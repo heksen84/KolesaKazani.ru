@@ -45,9 +45,9 @@ export default new Vue ({
     
     if (locationUrl!=null) {
       this.locationName = locationName;
-      $( ".url" ).each(function( index ) {      
-        $(this).attr("href", locationUrl+$(this).data("default-url"));
-      });
+      //$( ".url" ).each(function( index ) {      
+      //  $(this).attr("href", locationUrl+$(this).data("default-url"));
+      //});
     }
 
     // Показываю то, что скрыто

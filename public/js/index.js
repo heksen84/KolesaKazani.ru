@@ -50972,9 +50972,9 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
     if (locationUrl != null) {
       this.locationName = locationName;
-      __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").each(function (index) {
-        __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).attr("href", locationUrl + __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).data("default-url"));
-      });
+      //$( ".url" ).each(function( index ) {      
+      //  $(this).attr("href", locationUrl+$(this).data("default-url"));
+      //});
     }
 
     // Показываю то, что скрыто
