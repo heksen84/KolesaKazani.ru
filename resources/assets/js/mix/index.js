@@ -147,7 +147,15 @@ export default new Vue ({
 
     if ( categoryId < 10 ) {
       e.preventDefault();        
-      $("*[data-category-id='"+(categoryId)+"']").show();
+
+      let elements = $("*[data-category-id='"+(categoryId)+"']");
+      
+      if (elements.length < 4) {
+       elements.addClass("col-xl-12")
+      }
+	
+      elements.show();
+
       this.categories=false;
       this.subCategories=true;
     }
