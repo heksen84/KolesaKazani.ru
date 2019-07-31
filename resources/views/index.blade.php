@@ -40,6 +40,7 @@
   </div>
   
   <div class="container-fluid mycontainer" id="index_page" style="margin-top:10px">
+
   <!-- Локация -->
   <div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -50,7 +51,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body text-center">                
+        <div class="modal-body text-center">	
           <div v-if="regions">
           <b class="link" @click="searchInCountry">Весь Казахстан</b><br><hr>
             @foreach($regions as $region)
