@@ -17,7 +17,7 @@ class IndexController extends Controller {
 		
 	/*
 	--------------------------------------------------
-	 Получить категории
+	 Получить категории с подкатегориями
 	--------------------------------------------------*/
     public function showIndexPage(Request $request) {
 		
@@ -31,7 +31,7 @@ class IndexController extends Controller {
 	
 	/*
 	---------------------------------------------
-	 Города, сёла, деревни
+	 Получить расположение
 	---------------------------------------------*/
 	public function getPlaces(Request $request) {
 		return Places::where('region_id',  $request->region_id )->orderBy('name', 'asc')->get();
