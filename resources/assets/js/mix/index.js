@@ -44,10 +44,10 @@ export default new Vue ({
     var locationName = localStorage.getItem("locationName");
     
     if (locationUrl!=null) {
-      this.locationName = locationName;
-      //$( ".url" ).each(function( index ) {      
-      //  $(this).attr("href", locationUrl+$(this).data("default-url"));
-      //});
+      this.locationName = locationName;      
+      $( ".url" ).each(function( index ) {      
+        $(this).attr("href", locationUrl+$(this).data("default-url"));
+      });
     }
 
     // Показываю то, что скрыто
