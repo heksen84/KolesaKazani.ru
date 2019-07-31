@@ -58,7 +58,7 @@
             @endforeach
           </div>
           <div v-if="places">
-            <b class="link" @click="searchInRegion">Искать в области</b><br><hr>
+            <b class="link" @click="searchInRegion">Искать по области</b><br><hr>
               <a v-for="(item, index) in placesList" :key="index" :href="item.url" class="black link block" @click="selectPlace($event, item.name, item.url)">${item.name}</a>
           </div>
         </div>
