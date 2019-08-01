@@ -6,24 +6,26 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\File;
-use DB;
 
-use App\Helpers\Petrovich;
 use App\Categories;
 use App\Regions;
 use App\Places;
 use App\SubCats;
+use DB;
+use App\Helpers\Petrovich;
 
 class IndexController extends Controller {
 		    
     // Базовая функция для главной страницы
     private function ShowIndexPage($region, $place) {
 						
+			// Страна
 			if ($region===null && $place===null) {
 				$title = "Доска объявлений Дамеля, все объявления Казахстана";
 				$description = "Описание";
 			}
 
+			// Регион
 			if ($region!=null && $place===null) {
 				
 				$region = Regions::select("name")->where("url", $region)->get();	
@@ -34,6 +36,7 @@ class IndexController extends Controller {
 					//$regionName = $region[0]->name;
 					//$regionName = trim(str_replace("обл.", "", $region[0]->name));
 					//$title = "Доска объявлений Дамеля, все объявления ".$petrovich->firstname($regionName, Petrovich::CASE_PREPOSITIONAL);
+
 					$title = "Доска объявлений Дамеля, объявления ".$region[0]->name;
 					$description = "Описание";
 				}
@@ -41,6 +44,7 @@ class IndexController extends Controller {
 					return view("errors/404"); // редирект
 			}
 
+			// Город, село
 			if ($region!=null && $place!=null) {				
 				
 				$place = Places::select("name")->where("url", $place)->get();
