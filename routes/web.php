@@ -9,12 +9,12 @@ Auth::routes();
 Route::get("/util/str2url", "UtilsController@str2url");
 
 // По стране
-Route::get("/", "IndexController@ShowIndexPage");
-Route::get("/kazakhstan", "IndexController@ShowIndexPage");
-Route::get("/qazaqstan", "IndexController@ShowIndexPage");
+Route::get("/", "IndexController@ShowCountryIndexPage");
+Route::get("/kazakhstan", "IndexController@ShowCountryIndexPage");
+Route::get("/qazaqstan", "IndexController@ShowCountryIndexPage");
 
 // По всему региону
-Route::get("/{region}", "IndexController@ShowIndexPage");
+Route::get("/{region}", "IndexController@ShowRegionIndexPage");
 
 // По городу или селу
-Route::get("/{region}/{place}", "IndexController@ShowIndexPage");
+Route::get("/{region}/{place}", "IndexController@ShowPlaceIndexPage");
