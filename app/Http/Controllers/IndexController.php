@@ -21,21 +21,20 @@ class IndexController extends Controller {
 			\Debugbar::info("REGION: ".$region);	
 			\Debugbar::info("PLACE: ".$place);
 			
-			$title = ""; 
-			$description = "";	    
+			$title = ""; $description = "";	    
 			
 			if ($region===null && $place===null) {
-				$title = "Доска объявлений Дамеля - все объявления Казахстана";
+				$title = "Доска объявлений Дамеля, все объявления Казахстана";
 				$description = "Описание";
 			}
 
 			if ($region!=null && $place===null) {
-				$title = "Регион";
+				$title = "Доска объявлений Дамеля, все объявления --- области";
 				$description = "Описание";
 			}
 
 			if ($region!=null && $place!=null) {
-				$title = "Город";
+				$title = "Доска объявлений Дамеля, все объявления ---";
 				$description = "Описание";
 			}
 		
@@ -48,7 +47,7 @@ class IndexController extends Controller {
 			->with("auth", Auth::user()?1:0)
 			->with("title", $title)
 			->with("description", $description);
-			
+
     }
 
     // Cтрана
