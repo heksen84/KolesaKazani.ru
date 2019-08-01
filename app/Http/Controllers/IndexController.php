@@ -19,13 +19,9 @@ class IndexController extends Controller {
 	--------------------------------------------------
 	 Получить категории с подкатегориями
 	--------------------------------------------------*/
-    public function showIndexPage(Request $request) {
+    public function ShowIndexPage(Request $request) {
 		
-		$subcats = DB::table("subcats")
-		->join('categories', 'categories.id', '=', 'subcats.category_id')
-            	->select('subcats.*', 'categories.url as category_url')
-		->get();
-
+		$subcats = DB::table("subcats")->join("categories", "categories.id", "=", "subcats.category_id")->select("subcats.*", "categories.url as category_url")->get();
 		return view("index")->with("categories", Categories::all())->with("subcategories", json_decode($subcats, true))->with("regions", Regions::all())->with("auth", Auth::user()?1:0);
 	}		
 	
@@ -33,7 +29,7 @@ class IndexController extends Controller {
 	---------------------------------------------
 	 Получить расположение
 	---------------------------------------------*/
-	public function getPlaces(Request $request) {
+	public function GetPlaces(Request $request) {
 		return Places::where('region_id',  $request->region_id )->orderBy('name', 'asc')->get();
 	}				
 }
