@@ -1,3 +1,5 @@
+"use strict";
+
 require('./bootstrap');
 
 import Vue from 'vue';
@@ -42,6 +44,7 @@ export default new Vue ({
   // Методы
   // --------------------------------------
   methods: {
+  
   // Отобразить окно расположения
   showLocationWindow() {
     $("#locationModal").modal("show");

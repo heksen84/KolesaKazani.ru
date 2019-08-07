@@ -14,12 +14,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\File;
 
+use App\Helpers\Petrovich;
 use App\Categories;
 use App\Regions;
 use App\Places;
 use App\SubCats;
 use DB;
-use App\Helpers\Petrovich;
 
 class IndexController extends Controller {
 		    

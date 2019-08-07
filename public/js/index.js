@@ -50841,6 +50841,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap__ = __webpack_require__("./node_modules/bootstrap/dist/js/bootstrap.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_bootstrap__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+
+
 __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
 
@@ -50887,6 +50889,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
   // Методы
   // --------------------------------------
   methods: {
+
     // Отобразить окно расположения
     showLocationWindow: function showLocationWindow() {
       __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#locationModal").modal("show");
