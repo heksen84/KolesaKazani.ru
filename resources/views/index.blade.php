@@ -98,7 +98,7 @@
 
     <!-- кнопки выбора региона и т.п.-->
     <div class="index_select_region_and_other_button_block">
-      <button class="search_options_button btn btn-light btn-sm" data-toggle="modal" id="locationButton" @click="showLocationWindow">Расположение <span class="deferred">${locationName}</span></button>
+      <button class="search_options_button btn btn-light btn-sm" data-toggle="modal" id="locationButton" @click="showLocationWindow">Расположение {{ $locationName }}</button>
     </div>
 
   </div>
@@ -116,7 +116,11 @@
 	      <div class="form-inline" v-show="categories">
           @foreach($categories as $category)
         	  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 col_item" @click="showSubcategories($event,{{ $category['id'] }})">          	   
-		          <a href="/{{ $category['url'] }}" class="url" data-default-url="/{{ $category['url'] }}"><div class="category_item">{{ $category["name"] }}</div></a>
+              @if ($location==="/")
+                <a href="{{ $category['url'] }}" class="url"><div class="category_item">{{ $category["name"] }}</div></a>
+              @else
+                <a href="/{{ $location }}/{{ $category['url'] }}" class="url"><div class="category_item">{{ $category["name"] }}</div></a>
+              @endif
         	  </div>
           @endforeach
 	      </div>
@@ -126,7 +130,11 @@
           <div id="subcategories" class="form-inline center">
             @foreach($subcategories as $subcategory)
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 hide" data-category-id="{{ $subcategory['category_id'] }}">
-                <a href="/{{ $subcategory['url'] }}" class="url" data-default-url="/{{ $subcategory['category_url'] }}/{{ $subcategory['url'] }}"><div class="category_item subcategory">{{ $subcategory["name"] }}</div></a>
+              @if ($location==="/")
+                <a href="/{{ $subcategory['url'] }}" class="url"><div class="category_item subcategory">{{ $subcategory["name"] }}</div></a>
+              @else
+                <a href="/{{ $location }}/{{ $subcategory['category_url'] }}/{{ $subcategory['url'] }}" class="url"><div class="category_item subcategory">{{ $subcategory["name"] }}</div></a>
+              @endif
               </div>
             @endforeach
           </div>

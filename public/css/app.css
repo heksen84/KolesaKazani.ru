@@ -111,8 +111,7 @@ h3 {
   font-size: 100%;
 }
 
-.hide,
-.deferred {
+.hide {
   display: none;
 }
 
