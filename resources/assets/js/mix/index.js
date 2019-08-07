@@ -81,7 +81,7 @@ export default new Vue ({
     this.tmpLocationName=e.target.innerText;
 
     // Получить города / сёлы
-    get("getPlaces?region_id="+regionId).then((res) => {    
+    get("/getPlaces?region_id="+regionId).then((res) => {    
       this.placesList=res.data;
       this.regionUrl=e.target.pathname;
       this.regions=false;
@@ -94,7 +94,7 @@ export default new Vue ({
   // --------------------------------------
   searchInCountry(e) {
 
-    this.locationName=e.target.innerText;
+    /*this.locationName=e.target.innerText;
   
     $( ".url" ).each(function( index ) {      
       $(this).attr("href", $(this).data("default-url"))      
@@ -103,15 +103,24 @@ export default new Vue ({
     localStorage.setItem("locationUrl", "");
     localStorage.setItem("locationName", this.locationName);
   
-    this.closeLocationWindow();
+    this.closeLocationWindow();*/
+
+    localStorage.setItem("locationUrl", "");
+    //localStorage.setItem("locationName", this.locationName);
+    localStorage.setItem("locationName", "Весь Казахстан");
+
+    // редирект
+    window.location = "/";
   },
 
   // --------------------------------------
   // Поиск в регионе
   // --------------------------------------
-  searchInRegion(e) {    
+  searchInRegion(e) {
+
+    console.log(e)
     
-    let self=this;    
+    /*let self=this;    
     this.locationName=this.tmpLocationName;
   
     $( ".url" ).each(function( index ) {      
@@ -121,13 +130,22 @@ export default new Vue ({
     localStorage.setItem("locationUrl", self.regionUrl);
     localStorage.setItem("locationName", this.locationName);
   
-    this.closeLocationWindow();
+    this.closeLocationWindow();*/
+
+    //localStorage.setItem("locationUrl", self.regionUrl);
+    //localStorage.setItem("locationName", this.locationName);
+
+    // редирект
+    //window.location = self.regionUrl;
+    window.location = this.regionUrl;
+
   },
   
   // --------------------------------------
   // Выбрать город / село и т.п.
   // --------------------------------------
   selectPlace(e, placeName, placeUrl) {
+    
     e.preventDefault();
 
     let self=this;

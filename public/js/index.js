@@ -50930,7 +50930,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
       this.tmpLocationName = e.target.innerText;
 
       // Получить города / сёлы
-      Object(__WEBPACK_IMPORTED_MODULE_3__helpers_api__["a" /* get */])("getPlaces?region_id=" + regionId).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_3__helpers_api__["a" /* get */])("/getPlaces?region_id=" + regionId).then(function (res) {
         _this.placesList = res.data;
         _this.regionUrl = e.target.pathname;
         _this.regions = false;
@@ -50946,16 +50946,20 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
     // --------------------------------------
     searchInCountry: function searchInCountry(e) {
 
-      this.locationName = e.target.innerText;
-
-      __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").each(function (index) {
-        __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).attr("href", __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).data("default-url"));
+      /*this.locationName=e.target.innerText;
+          $( ".url" ).each(function( index ) {      
+        $(this).attr("href", $(this).data("default-url"))      
       });
+        localStorage.setItem("locationUrl", "");
+      localStorage.setItem("locationName", this.locationName);
+          this.closeLocationWindow();*/
 
       localStorage.setItem("locationUrl", "");
-      localStorage.setItem("locationName", this.locationName);
+      //localStorage.setItem("locationName", this.locationName);
+      localStorage.setItem("locationName", "Весь Казахстан");
 
-      this.closeLocationWindow();
+      // редирект
+      window.location = "/";
     },
 
 
@@ -50964,17 +50968,23 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
     // --------------------------------------
     searchInRegion: function searchInRegion(e) {
 
-      var self = this;
-      this.locationName = this.tmpLocationName;
+      console.log(e);
 
-      __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").each(function (index) {
-        __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).attr("href", self.regionUrl + __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).data("default-url"));
+      /*let self=this;    
+      this.locationName=this.tmpLocationName;
+          $( ".url" ).each(function( index ) {      
+        $(this).attr("href", self.regionUrl+$(this).data("default-url"))      
       });
-
-      localStorage.setItem("locationUrl", self.regionUrl);
+        localStorage.setItem("locationUrl", self.regionUrl);
       localStorage.setItem("locationName", this.locationName);
+          this.closeLocationWindow();*/
 
-      this.closeLocationWindow();
+      //localStorage.setItem("locationUrl", self.regionUrl);
+      //localStorage.setItem("locationName", this.locationName);
+
+      // редирект
+      //window.location = self.regionUrl;
+      window.location = this.regionUrl;
     },
 
 
@@ -50982,6 +50992,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
     // Выбрать город / село и т.п.
     // --------------------------------------
     selectPlace: function selectPlace(e, placeName, placeUrl) {
+
       e.preventDefault();
 
       var self = this;

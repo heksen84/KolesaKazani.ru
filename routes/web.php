@@ -7,6 +7,7 @@ Auth::routes();
 
 // Сервисы
 Route::get("/util/str2url", "UtilsController@str2url");
+Route::get("/getPlaces", "IndexController@GetPlaces");
 
 // По стране
 Route::get("/", "IndexController@ShowCountryIndexPage");
@@ -18,3 +19,4 @@ Route::get("/{region}", "IndexController@ShowRegionIndexPage");
 
 // По городу или селу
 Route::get("/{region}/{place}", "IndexController@ShowPlaceIndexPage");
+
