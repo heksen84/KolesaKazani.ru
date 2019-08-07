@@ -1,5 +1,12 @@
 <?php
 
+/*
+---------------------------------------
+TaskList:
+
+1.Сделать правильные склонения title
+---------------------------------------*/
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -16,7 +23,9 @@ use App\Helpers\Petrovich;
 
 class IndexController extends Controller {
 		    
-    // Базовая функция для главной страницы
+	// ------------------------------------------------
+	// Базовая функция для главной страницы	
+	// ------------------------------------------------
     private function ShowIndexPage($region, $place) {
 						
 			// Страна
