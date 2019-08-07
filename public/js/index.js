@@ -50995,17 +50995,17 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
       e.preventDefault();
 
-      var self = this;
-
-      this.locationName = placeName;
+      /*let self=this;
+      
+      this.locationName=placeName;
       this.closeLocationWindow();
-
-      __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".url").each(function (index) {
-        __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).attr("href", self.regionUrl + "/" + placeUrl + __WEBPACK_IMPORTED_MODULE_1_jquery___default()(this).data("default-url"));
+        $( ".url" ).each(function( index ) {      
+        $(this).attr("href", self.regionUrl+"/"+placeUrl+$(this).data("default-url"))      
       });
+        localStorage.setItem("locationUrl", self.regionUrl+"/"+placeUrl);
+      localStorage.setItem("locationName", this.locationName);*/
 
-      localStorage.setItem("locationUrl", self.regionUrl + "/" + placeUrl);
-      localStorage.setItem("locationName", this.locationName);
+      window.location = this.regionUrl + "/" + placeUrl;
     },
 
 

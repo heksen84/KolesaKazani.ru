@@ -148,7 +148,7 @@ export default new Vue ({
     
     e.preventDefault();
 
-    let self=this;
+    /*let self=this;
     
     this.locationName=placeName;
     this.closeLocationWindow();
@@ -158,7 +158,9 @@ export default new Vue ({
     });
 
     localStorage.setItem("locationUrl", self.regionUrl+"/"+placeUrl);
-    localStorage.setItem("locationName", this.locationName);
+    localStorage.setItem("locationName", this.locationName);*/
+    
+    window.location = this.regionUrl+"/"+placeUrl;
 
   },
 
