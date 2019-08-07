@@ -50878,7 +50878,6 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
   // Компонент создан
   // -------------------------------
   created: function created() {
-    // Отобразить отложенные данные    
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#subcats").show();
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#close_subcats_btn").show();
   },
@@ -50888,7 +50887,6 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
   // Методы
   // --------------------------------------
   methods: {
-
     // Отобразить окно расположения
     showLocationWindow: function showLocationWindow() {
       __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#locationModal").modal("show");

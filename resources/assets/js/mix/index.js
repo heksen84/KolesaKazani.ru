@@ -33,8 +33,7 @@ export default new Vue ({
   // -------------------------------
   // Компонент создан
   // -------------------------------
-  created() {
-    // Отобразить отложенные данные    
+  created() {    
     $("#subcats").show();
     $("#close_subcats_btn").show();    
   },
@@ -43,7 +42,6 @@ export default new Vue ({
   // Методы
   // --------------------------------------
   methods: {
-
   // Отобразить окно расположения
   showLocationWindow() {
     $("#locationModal").modal("show");
