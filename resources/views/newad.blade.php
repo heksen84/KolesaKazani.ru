@@ -16,7 +16,7 @@
      <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col">
 
 	    <div class="close_button" title="Закрыть страницу" style="font-weight:bold" @click="closeAndReturn">X</div>
-	      <h1 class="title_text" style="margin-top:12px">подать объявление</h1>
+	      <h1 class="title_text" style="margin-top:12px">Новое объявление</h1>
 	      <hr>
         
         <div id="loading" style="margin-bottom:10px">Подготовка...</div>
