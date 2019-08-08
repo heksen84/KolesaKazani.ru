@@ -151,8 +151,8 @@ function forEach(data, callback) {
 // экземляр приложения vue
 // --------------------------
 export default new Vue ({
-  el: "#app",
-  
+
+  el: "#app",  
   data () {   
     return {}
   },
@@ -167,14 +167,18 @@ export default new Vue ({
   // Компонент создан
   // -------------------------------
   created() {
-    alert("hello")
+    $(".hide").show();
+    $(".spinner-grow").hide();
   },
-
   // --------------------------------------
   // Методы
   // --------------------------------------
-  methods: {  
-  showLocationWindow() {}  
+  methods: {
+
+   // Вернуться на предыдущую страницу
+   closeAndReturn() {
+ 	  window.history.back();
+   }
 }
   
 });

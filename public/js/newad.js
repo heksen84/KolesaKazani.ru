@@ -50994,8 +50994,8 @@ function forEach(data, callback) {
 // экземляр приложения vue
 // --------------------------
 /* harmony default export */ __webpack_exports__["default"] = (new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-  el: "#app",
 
+  el: "#app",
   data: function data() {
     return {};
   },
@@ -51011,15 +51011,19 @@ function forEach(data, callback) {
   // Компонент создан
   // -------------------------------
   created: function created() {
-    alert("hello");
+    __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".hide").show();
+    __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".spinner-grow").hide();
   },
-
 
   // --------------------------------------
   // Методы
   // --------------------------------------
   methods: {
-    showLocationWindow: function showLocationWindow() {}
+
+    // Вернуться на предыдущую страницу
+    closeAndReturn: function closeAndReturn() {
+      window.history.back();
+    }
   }
 
 }));
