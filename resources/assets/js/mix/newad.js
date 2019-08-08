@@ -155,7 +155,8 @@ export default new Vue ({
   el: "#app",  
   data () {   
     return {
-	  category: null
+      category: null,
+      sdelka: null
    }
   },
 
@@ -170,13 +171,13 @@ export default new Vue ({
   // -------------------------------
   created() {
     $(".hide").show();
-    $(".spinner-grow").hide();
+    $("#loading").hide();
   },
+  
   // --------------------------------------
   // Методы
   // --------------------------------------
   methods: {
-
    // Вернуться на предыдущую страницу
    closeAndReturn() {
  	  window.history.back();

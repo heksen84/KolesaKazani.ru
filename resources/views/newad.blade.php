@@ -18,10 +18,8 @@
 	    <div class="close_button" title="Закрыть страницу" style="font-weight:bold" @click="closeAndReturn">X</div>
 	      <h1 class="title_text" style="margin-top:12px">подать объявление</h1>
 	      <hr>
-
-        <div class="spinner-grow text-primary" role="status">
-          <span class="sr-only">Ожидайте...</span>
-        </div>                
+        
+        <div id="loading" style="margin-bottom:10px">Загрузка...</div>
 
         <div class="form-group hide" style="width:260px">
           <label for="categories">Категория товара или услуги:</label>
@@ -32,10 +30,14 @@
           </label>
         </div>
 
-        <div class="form-group hide" style="width:260px" v-if="category!=null">
-          <label for="default_group" style="width:270px">Вид сделки:</label>
-            <div v-for="(i,index) in {{ $dealtypes }}" :key="index">${i.deal_name_1}</div>
-          </label>
+        <div v-if="category!=null" style="margin-bottom:10px" class="hide">
+        <label style="width:270px">Вид сделки:</label>            
+        <div class="form-check" style="width:260px">
+            <div v-for="(item,index) in {{ $dealtypes }}" :key="index">
+              <input class="form-check-input" :id="item.id" type="radio" name="inlineRadioOptions" v-bind:value="item.id" v-model="sdelka">
+              <label class="form-check-label" :for="item.id">${item.deal_name_1}</label>
+            </div>
+        </div>
         </div>
 
       </div>

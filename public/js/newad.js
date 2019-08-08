@@ -50998,7 +50998,8 @@ function forEach(data, callback) {
   el: "#app",
   data: function data() {
     return {
-      category: null
+      category: null,
+      sdelka: null
     };
   },
 
@@ -51014,14 +51015,14 @@ function forEach(data, callback) {
   // -------------------------------
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".hide").show();
-    __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".spinner-grow").hide();
+    __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#loading").hide();
   },
+
 
   // --------------------------------------
   // Методы
   // --------------------------------------
   methods: {
-
     // Вернуться на предыдущую страницу
     closeAndReturn: function closeAndReturn() {
       window.history.back();
