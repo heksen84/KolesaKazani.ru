@@ -82,7 +82,7 @@
   </div>
 
   <div class="row" style="margin-top:2px">
-    <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center">      
+    <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center">
       <div id="logo_block">
         <div id="logo_block_text">Дамеля</div>
         <div style="font-size:16px;color:yellow;margin-top:-13px;letter-spacing:1px;">все объявления Казахстана</div>
