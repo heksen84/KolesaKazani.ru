@@ -2,8 +2,13 @@
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
+// ВНИМАНИЕ: Присутсвует приоритет роутов
+
 // Стандартные роуты
 Auth::routes();
+
+// Новое объявление
+Route::get("/podat-obyavlenie", "AdvertController@NewAd");
 
 // Сервисы
 Route::get("/util/str2url", "UtilsController@str2url");
@@ -19,4 +24,5 @@ Route::get("/{region}", "IndexController@ShowRegionIndexPage");
 
 // По городу или селу
 Route::get("/{region}/{place}", "IndexController@ShowPlaceIndexPage");
+
 

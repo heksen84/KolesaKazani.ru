@@ -12,6 +12,7 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/mix/index.js', 'public/js').
+mix.js('resources/assets/js/mix/newad.js', 'public/js').
 /*mix.js('resources/assets/js/mix/login.js', 'public/js').
 mix.js('resources/assets/js/mix/register.js', 'public/js').
 mix.js('resources/assets/js/mix/passwordreset.js', 'public/js').
