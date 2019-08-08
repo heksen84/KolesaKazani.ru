@@ -50841,6 +50841,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap__ = __webpack_require__("./node_modules/bootstrap/dist/js/bootstrap.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_bootstrap__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 
 
 __webpack_require__("./resources/assets/js/mix/bootstrap.js");
@@ -50849,6 +50850,8 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
 
  // axios
+
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_4_vuex__["a" /* default */]);
 
 var preview_images_array = [];
 
@@ -50959,17 +50962,22 @@ function number_to_string(num) {
  Инициализация большой карты (карта назначения координат)
 ---------------------------------------------------------*/
 function initMaps() {
+
   // координаты по умолчанию для всех карт
   mapCoords = [51.08, 71.26];
   bigmap = new ymaps.Map("bigmap", { center: mapCoords, zoom: 10 });
   smallmap = new ymaps.Map("smallmap", { center: mapCoords, zoom: 9 });
+
   // запрещаю перемение по мини карте
   smallmap.behaviors.disable("drag");
+
   // включаю скролл на большой карте
   bigmap.behaviors.enable("scrollZoom");
+
   // формирую метки
   myPlacemark1 = new ymaps.Placemark(mapCoords);
   myPlacemark2 = new ymaps.Placemark(mapCoords);
+
   // добавляю метки на карты
   bigmap.geoObjects.add(myPlacemark1);
   smallmap.geoObjects.add(myPlacemark2);
@@ -50990,11 +50998,71 @@ function forEach(data, callback) {
   }
 }
 
+// -----------------------------------
+// Реактивное хранилище
+// -----------------------------------
+var store = new __WEBPACK_IMPORTED_MODULE_4_vuex__["a" /* default */].Store({
+
+  state: {
+    price: "",
+    required_info: false,
+    info_label_description: "",
+    placeholder_info_text: "",
+    show_final_fields: false,
+    show_common_transport: false,
+    deal_selected: false,
+    str_realestate_area_label_text: ""
+  },
+
+  mutations: {
+    SetDealSelected: function SetDealSelected(state, value) {
+      state.deal_selected = value;
+    },
+
+
+    // установить заголовок для площади в недвижимости
+    SetRealEstateAreaLabelText: function SetRealEstateAreaLabelText(state, text) {
+      if (text == "default") state.str_realestate_area_label_text = "Площадь (кв.м.):";else state.str_realestate_area_label_text = text;
+    },
+
+
+    // установить заголовок доп. информации / текста объявления
+    SetInfoLabelDescription: function SetInfoLabelDescription(state, text) {
+      if (text == "default") state.info_label_description = "Текст объявления";else state.info_label_description = text;
+    },
+
+
+    // установить текст подсказки в поле описание
+    SetPlaceholderInfoText: function SetPlaceholderInfoText(state, text) {
+      if (text == "default") state.placeholder_info_text = "Введите текст объявления";else state.placeholder_info_text = text;
+    },
+
+
+    // сбросить содержимое поля
+    ResetField: function ResetField(state, field_name) {
+      switch (field_name) {
+        case "price":
+          state.price = "";break;
+      }
+    },
+    SetRequiredInfo: function SetRequiredInfo(state, value) {
+      state.required_info = value;
+    },
+    ShowFinalFields: function ShowFinalFields(state, value) {
+      state.show_final_fields = value;
+    },
+    ShowCommonTransport: function ShowCommonTransport(state, value) {
+      state.show_common_transport = value;
+    }
+  }
+});
+
 // --------------------------
 // экземляр приложения vue
 // --------------------------
 /* harmony default export */ __webpack_exports__["default"] = (new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: "#app",
+  store: store,
   data: function data() {
     return {
       category: null,
@@ -51016,6 +51084,7 @@ function forEach(data, callback) {
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".hide").show();
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#loading").hide();
+    //ymaps.ready(initMaps);
   },
 
 
@@ -51029,7 +51098,7 @@ function forEach(data, callback) {
       window.history.back();
     },
     changeCategory: function changeCategory(category) {
-      alert("change");
+      //alert("change")
     },
     setDeal: function setDeal(category) {
       alert(this.sdelka);

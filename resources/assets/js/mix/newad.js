@@ -6,6 +6,8 @@ import Vue from 'vue';
 import $ from "jquery";
 import bootstrap from "bootstrap";
 import { get } from '../helpers/api' // axios
+import Vuex from 'vuex';
+Vue.use(Vuex);
 
 var preview_images_array=[];
 
@@ -116,17 +118,22 @@ function number_to_string (num) {
  Инициализация большой карты (карта назначения координат)
 ---------------------------------------------------------*/
 function initMaps() {
-	  // координаты по умолчанию для всех карт
+    
+  // координаты по умолчанию для всех карт
 	  mapCoords = [51.08, 71.26];
 	  bigmap = new ymaps.Map ("bigmap", { center: mapCoords, zoom: 10 });
 	  smallmap = new ymaps.Map ("smallmap", { center: mapCoords, zoom: 9 });
-	  // запрещаю перемение по мини карте
+    
+    // запрещаю перемение по мини карте
 	  smallmap.behaviors.disable("drag");
-	  // включаю скролл на большой карте
+    
+    // включаю скролл на большой карте
 	  bigmap.behaviors.enable("scrollZoom");			
-	  // формирую метки
+    
+    // формирую метки
 	  myPlacemark1 = new ymaps.Placemark(mapCoords);
-	  myPlacemark2 = new ymaps.Placemark(mapCoords);
+    myPlacemark2 = new ymaps.Placemark(mapCoords);
+    
 	  // добавляю метки на карты
 	  bigmap.geoObjects.add(myPlacemark1);
 	  smallmap.geoObjects.add(myPlacemark2);
@@ -134,7 +141,8 @@ function initMaps() {
     mapCoords = e.get("coordPosition");
 		myPlacemark1.geometry.setCoordinates(mapCoords);
 		myPlacemark2.geometry.setCoordinates(mapCoords);
-		smallmap.setCenter(mapCoords, 14, "smallmap");
+    smallmap.setCenter(mapCoords, 14, "smallmap");
+    
 	});			
 }				
 
@@ -147,11 +155,81 @@ function forEach(data, callback) {
 	}
 }
 
+
+// -----------------------------------
+// Реактивное хранилище
+// -----------------------------------
+const store = new Vuex.Store({
+
+  state: {          
+    price: "", 
+    required_info: false,
+    info_label_description: "",
+    placeholder_info_text:  "",      
+    show_final_fields: false,
+    show_common_transport: false,
+    deal_selected: false,    
+    str_realestate_area_label_text: ""
+  },
+
+  mutations: {
+
+     SetDealSelected( state, value ) {
+      state.deal_selected=value;
+    },
+
+    // установить заголовок для площади в недвижимости
+    SetRealEstateAreaLabelText( state, text ) {
+      if (text=="default") 
+        state.str_realestate_area_label_text = "Площадь (кв.м.):"
+      else
+        state.str_realestate_area_label_text = text;
+    },
+
+    // установить заголовок доп. информации / текста объявления
+    SetInfoLabelDescription( state, text ) {
+      if (text=="default") 
+        state.info_label_description = "Текст объявления"
+      else
+        state.info_label_description = text;
+    },
+
+    // установить текст подсказки в поле описание
+    SetPlaceholderInfoText(state, text) {
+      if (text=="default") 
+        state.placeholder_info_text = "Введите текст объявления"
+      else
+        state.placeholder_info_text = text;
+    },
+
+    // сбросить содержимое поля
+    ResetField(state, field_name) {
+      switch(field_name) {
+        case "price": state.price=""; break;
+      }
+    },        
+
+    SetRequiredInfo (state, value) {
+      state.required_info=value;
+    },
+
+    ShowFinalFields (state, value) {
+      state.show_final_fields=value;
+    },
+
+    ShowCommonTransport (state, value) {
+      state.show_common_transport=value;
+    }
+
+  }
+})
+
 // --------------------------
 // экземляр приложения vue
 // --------------------------
 export default new Vue ({
-  el: "#app",  
+  el: "#app",
+  store,
   data () {   
     return {
       category: null,
@@ -169,9 +247,10 @@ export default new Vue ({
   // -------------------------------
   // Компонент создан
   // -------------------------------
-  created() {
+  created() {    
     $(".hide").show();
-    $("#loading").hide();
+    $("#loading").hide();    
+    //ymaps.ready(initMaps);
   },
   
   // --------------------------------------
@@ -185,7 +264,7 @@ export default new Vue ({
    },
 
   changeCategory(category) {
-   alert("change")
+   //alert("change")
   },
 
   setDeal(category) {

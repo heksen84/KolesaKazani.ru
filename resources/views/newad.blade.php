@@ -19,7 +19,7 @@
 	      <h1 class="title_text" style="margin-top:12px">подать объявление</h1>
 	      <hr>
         
-        <div id="loading" style="margin-bottom:10px">Загрузка...</div>
+        <div id="loading" style="margin-bottom:10px">Подготовка...</div>
 
         <div class="form-group hide" style="width:260px">
           <label for="categories">Категория товара или услуги:</label>
