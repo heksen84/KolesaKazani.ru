@@ -154,7 +154,9 @@ export default new Vue ({
 
   el: "#app",  
   data () {   
-    return {}
+    return {
+	  category: null
+   }
   },
 
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php

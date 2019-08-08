@@ -50997,7 +50997,9 @@ function forEach(data, callback) {
 
   el: "#app",
   data: function data() {
-    return {};
+    return {
+      category: null
+    };
   },
 
 
