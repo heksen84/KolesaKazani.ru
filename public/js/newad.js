@@ -50994,12 +50994,12 @@ function forEach(data, callback) {
 // экземляр приложения vue
 // --------------------------
 /* harmony default export */ __webpack_exports__["default"] = (new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-
   el: "#app",
   data: function data() {
     return {
       category: null,
-      sdelka: null
+      sdelka: null,
+      root: false
     };
   },
 
@@ -51023,10 +51023,21 @@ function forEach(data, callback) {
   // Методы
   // --------------------------------------
   methods: {
+
     // Вернуться на предыдущую страницу
     closeAndReturn: function closeAndReturn() {
       window.history.back();
-    }
+    },
+    changeCategory: function changeCategory(category) {
+      alert("change");
+    },
+    setDeal: function setDeal(category) {
+      alert(this.sdelka);
+    },
+
+
+    // Отправить форму
+    onSubmit: function onSubmit(evt) {}
   }
 
 }));

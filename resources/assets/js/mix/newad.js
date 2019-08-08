@@ -151,12 +151,12 @@ function forEach(data, callback) {
 // экземляр приложения vue
 // --------------------------
 export default new Vue ({
-
   el: "#app",  
   data () {   
     return {
       category: null,
-      sdelka: null
+      sdelka: null,
+      root: false
    }
   },
 
@@ -178,10 +178,23 @@ export default new Vue ({
   // Методы
   // --------------------------------------
   methods: {
-   // Вернуться на предыдущую страницу
+   
+    // Вернуться на предыдущую страницу
    closeAndReturn() {
  	  window.history.back();
-   }
+   },
+
+  changeCategory(category) {
+   alert("change")
+  },
+
+  setDeal(category) {
+    alert(this.sdelka)
+  },
+
+  // Отправить форму
+   onSubmit(evt) {
+  }
 }
   
 });
