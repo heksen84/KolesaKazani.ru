@@ -30,7 +30,7 @@ class IndexController extends Controller {
 		// Страна
 		if ($region===null && $place===null) {				
 			$location = "/";				
-			$title = "Доска объявлений Дамеля, все объявления Казахстана";
+			$title = "Доска объявлений flix, все объявления Казахстана";
 			$description = "Описание";
 			$locationName = "Казахстан";
 		}
@@ -44,13 +44,19 @@ class IndexController extends Controller {
 			$regionArr = Regions::select("name")->where("url", $region)->get();	
 
 			if ($regionArr->count()>0) {
-				$petrovich = new Petrovich(Petrovich::GENDER_MALE);
-					
-				//$regionName = $region[0]->name;
-				//$regionName = trim(str_replace("обл.", "", $region[0]->name));
-				//$title = "Доска объявлений Дамеля, все объявления ".$petrovich->firstname($regionName, Petrovich::CASE_PREPOSITIONAL);
+				
+				$petrovich = new Petrovich(Petrovich::GENDER_FEMALE);					
+				$regionName = $regionArr[0]->name;
+				$regionName = trim(str_replace("обл.", "", $regionName));				
+				
+				$sklonResult = $petrovich->lastname($regionName, 0);
 
-				$title = "Доска объявлений Дамеля, объявления ".$regionArr[0]->name;
+				// minifix
+				switch($sklonResult) {
+					case "Алмы-Атинской": $sklonResult="Алма-Атинской"; break;
+				}
+
+				$title = "Доска объявлений flix, все объявления ".$sklonResult." области";
 				$description = "Описание";
 			}
 				else return view("errors/404"); // редирект
@@ -67,7 +73,7 @@ class IndexController extends Controller {
 				
 			if ($placeArr->count()>0) {
 				$petrovich = new Petrovich(Petrovich::GENDER_MALE);
-				$title = "Доска объявлений Дамеля, объявления ".$petrovich->firstname($placeArr[0]->name, Petrovich::CASE_GENITIVE);
+				$title = "Доска объявлений flix, все объявления ".$petrovich->firstname($placeArr[0]->name, Petrovich::CASE_GENITIVE);
 				$description = "Описание";
 			}
 			else return view("errors/404"); // редирект
@@ -81,8 +87,10 @@ class IndexController extends Controller {
 		\Debugbar::info("location: ".$locationName);
 		\Debugbar::info("REGION: ".$region);
 		\Debugbar::info("PLACE: ".$place);
+
+		$petrovich = new Petrovich(Petrovich::GENDER_FEMALE);		
 											
-		return view("index")
+		return view("index")		
 		->with("locationName", $locationName)
 		->with("location", $location)
 		->with("categories", Categories::all())
