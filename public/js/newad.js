@@ -51150,7 +51150,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_4_vuex__["a" /* default */].Store({
       this.advert_data.adv_phone1 = "";
 
       // сброс моделей
-      this.sdelka = null;
+      this.sdelka = 0;
       this.price = "";
       this.info = "";
       this.phone1 = "";
@@ -51197,8 +51197,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_4_vuex__["a" /* default */].Store({
       // отрубить вид сделки в категориях: "работа и бизнес" и "услуги"
       // -----------------------------------------------------------------
       if (category == 4 || category == 9) {
-        this.$store.commit("SetDealSelected", true);
-        this.$store.commit("ShowFinalFields", true);
+        this.$store.commit("SetDealSelected", true);this.$store.commit("ShowFinalFields", true);
       }
 
       // добавляю категории
@@ -51319,7 +51318,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_4_vuex__["a" /* default */].Store({
       // Записываю изображения
       for (var i = 0; i < this.real_images.length; i++) {
         formData.append('images[' + i + ']', this.real_images[i]);
-      } // РАЗМЕЩЕНИЕ ОБЪЯВЛЕНИЯ		
+      } // Размещаю объявление
       axios.post("/create", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(function (response) {
 
         console.log(response);

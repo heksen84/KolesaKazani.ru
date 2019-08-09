@@ -299,7 +299,7 @@ export default new Vue ({
     this.advert_data.adv_phone1 = "";
 
     // сброс моделей
-    this.sdelka = null;
+    this.sdelka = 0;
     this.price = "";
     this.info = "";
     this.phone1 = "";
@@ -335,19 +335,16 @@ export default new Vue ({
   		 Изменения в категориях
   		--------------------------*/
   		changeCategory() {        
+
+        let category = this.category;        			
         
-        let category = this.category;        
-			
         // сброс объявления при выборе категории
         this.advReset(category);
   
         // -----------------------------------------------------------------
         // отрубить вид сделки в категориях: "работа и бизнес" и "услуги"
         // -----------------------------------------------------------------
-        if (category==4 || category==9) {
-          this.$store.commit("SetDealSelected", true);
-          this.$store.commit("ShowFinalFields", true);
-        }
+        if (category==4 || category==9) { this.$store.commit("SetDealSelected", true); this.$store.commit("ShowFinalFields", true); }
   
         // добавляю категории
         this.advert_data.adv_category=category;
@@ -452,7 +449,7 @@ export default new Vue ({
 		for( var i=0; i < this.real_images.length; i++ )
       formData.append('images['+i+']', this.real_images[i]);		
 						
-		// РАЗМЕЩЕНИЕ ОБЪЯВЛЕНИЯ		
+		// Размещаю объявление
 		axios.post("/create", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {
 			
 		console.log(response);
