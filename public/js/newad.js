@@ -50851,23 +50851,18 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
  // axios
 
+
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_4_vuex__["a" /* default */]);
 
+// массив изображений
 var preview_images_array = [];
-
-// ----------------------
-// карты
-// ----------------------
 var mapCoords = [];
 var myPlacemark1 = null;
 var myPlacemark2 = null;
 var bigmap = null;
 var smallmap = null;
 
-/*
-------------------------------
- Преобразует строку в массив
-------------------------------*/
+// Преобразует строку в массив
 function str_split(string, length) {
   var chunks, len, pos;
   string = string == null ? "" : string;
@@ -50878,23 +50873,16 @@ function str_split(string, length) {
   while (pos < len) {
     chunks.push(string.slice(pos, pos += length));
   }
-
   return chunks;
 };
 
-/*
-------------------------------
- Склоняем словоформу
-------------------------------*/
+// Склоняем словоформу
 function morph(number, titles) {
   var cases = [2, 0, 1, 1, 1, 2];
   return titles[number > 4 && number < 20 ? 2 : cases[Math.min(number, 5)]];
 };
 
-/*
-------------------------------
- Возвращает сумму прописью
-------------------------------*/
+// Возвращает сумму прописью
 function number_to_string(num) {
   var def_translite = {
     null: 'ноль',
@@ -50962,22 +50950,17 @@ function number_to_string(num) {
  Инициализация большой карты (карта назначения координат)
 ---------------------------------------------------------*/
 function initMaps() {
-
   // координаты по умолчанию для всех карт
   mapCoords = [51.08, 71.26];
   bigmap = new ymaps.Map("bigmap", { center: mapCoords, zoom: 10 });
   smallmap = new ymaps.Map("smallmap", { center: mapCoords, zoom: 9 });
-
   // запрещаю перемение по мини карте
   smallmap.behaviors.disable("drag");
-
   // включаю скролл на большой карте
   bigmap.behaviors.enable("scrollZoom");
-
   // формирую метки
   myPlacemark1 = new ymaps.Placemark(mapCoords);
   myPlacemark2 = new ymaps.Placemark(mapCoords);
-
   // добавляю метки на карты
   bigmap.geoObjects.add(myPlacemark1);
   smallmap.geoObjects.add(myPlacemark2);
@@ -51057,36 +51040,56 @@ var store = new __WEBPACK_IMPORTED_MODULE_4_vuex__["a" /* default */].Store({
   }
 });
 
-// --------------------------
 // экземляр приложения vue
-// --------------------------
 /* harmony default export */ __webpack_exports__["default"] = (new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: "#app",
   store: store,
   data: function data() {
     return {
+      advert_data: {}, // Объект объявления который пойдёт на сервер      
+      summ_str: "",
+      const_phone1_max_length: 9,
+      setCoordsDialog: false,
+      coordinates_set: false,
+      placeChanged: false,
       category: null,
       sdelka: null,
-      root: false
+      deal_id: null,
+      info: "",
+      price: "",
+      number: 0,
+      preview_images: [],
+      real_images: [],
+      root: false,
+      regions_model: null,
+      places: [],
+      places_model: null,
+      phone1: "",
+      phone2: "",
+      phone3: "",
+      transport: false, // транспорт
+      real_estate: false, // недвижимость
+      appliances: false, // бытовая техника
+      work_and_buisness: false, // работа и бизнес
+      for_home: false, // для дома и дачи
+      personal_effects: false, // личные вещи
+      animals: false, // животные
+      hobbies_and_leisure: false, // хобби и отдых
+      services: false, // услуги
+      other: false // другое
     };
   },
 
 
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
-
-  components: {
-    bootstrap: __WEBPACK_IMPORTED_MODULE_2_bootstrap___default.a
-  },
+  components: { bootstrap: __WEBPACK_IMPORTED_MODULE_2_bootstrap___default.a },
 
   // -------------------------------
   // Компонент создан
   // -------------------------------
   created: function created() {
-    __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".hide").show();
-    __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#loading").hide();
-    //ymaps.ready(initMaps);
+    __WEBPACK_IMPORTED_MODULE_1_jquery___default()(".hide").show();__WEBPACK_IMPORTED_MODULE_1_jquery___default()("#loading").hide(); /*ymaps.ready(initMaps);*/
   },
-
 
   // --------------------------------------
   // Методы
@@ -51097,16 +51100,238 @@ var store = new __WEBPACK_IMPORTED_MODULE_4_vuex__["a" /* default */].Store({
     closeAndReturn: function closeAndReturn() {
       window.history.back();
     },
-    changeCategory: function changeCategory(category) {
-      //alert("change")
+
+
+    // сброс данных объявления
+    advReset: function advReset(category_data) {
+
+      var form = document.getElementById("advertform");
+
+      if (form) form.reset();
+
+      this.summ_str = "";
+
+      this.$store.commit("SetRequiredInfo", false);
+      this.$store.commit("SetPlaceholderInfoText", "default");
+      this.$store.commit("SetDealSelected", false);
+
+      // сброс массива объявления и переинициализация его
+      this.advert_data = [];
+
+      // ----------------------------------------------------------------------------------------------------------------
+      // Не использовать операции сделки во всех категориях, т.к. пользователь может ввести описание объявления сам. 
+      // Типа: Продам то-то-то-то или Куплю то-то-то-то
+      // ----------------------------------------------------------------------------------------------------------------
+      switch (category_data) {
+        case 3:
+          this.advert_data.adv_deal = "";break;
+        case 4:
+          this.advert_data.adv_deal = "";break;
+        case 5:
+          this.advert_data.adv_deal = "";break;
+        case 6:
+          this.advert_data.adv_deal = "";break;
+        case 7:
+          this.advert_data.adv_deal = "";break;
+        case 8:
+          this.advert_data.adv_deal = "";break;
+        case 9:
+          this.advert_data.adv_deal = "";break;
+        case 10:
+          this.advert_data.adv_deal = "";break;
+        default:
+          this.advert_data.adv_deal = 0; // покупка по умолчанию
+      }
+
+      //this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
+
+      this.advert_data.adv_info = null; // добавляю формально поле доп. информация
+      this.advert_data.adv_price = "";
+      this.advert_data.adv_phone1 = "";
+
+      // сброс моделей
+      this.sdelka = null;
+      this.price = "";
+      this.info = "";
+      this.phone1 = "";
+      this.phone2 = "";
+      this.phone3 = "";
+      this.regions_model = null;
+      this.places_model = null;
+      this.preview_images = [];
+      this.coordinates_set = false;
+
+      // сброс категорий
+      if (category_data != null) {
+        this.root = false; // по умолчанию
+        this.transport = false; // транспорт
+        this.real_estate = false; // недвижимость
+        this.appliances = false; // электроника
+        this.work_and_buisness = false; // работа и бизнес
+        this.for_home = false; // для дома и дачи
+        this.personal_effects = false; // личные вещи
+        this.animals = false; // животные
+        this.hobbies_and_leisure = false; // хобби и отдых
+        this.services = false; // услуги
+        this.other = false; // другое
+      }
+
+      // сбрасываю фотки
+      var photos = document.querySelector("input[type=file]");
+      if (photos != null) photos.value = "";
     },
-    setDeal: function setDeal(category) {
-      alert(this.sdelka);
+
+
+    /*
+    --------------------------
+    Изменения в категориях
+    --------------------------*/
+    changeCategory: function changeCategory() {
+
+      var category = this.category;
+
+      // сброс объявления при выборе категории
+      this.advReset(category);
+
+      // -----------------------------------------------------------------
+      // отрубить вид сделки в категориях: "работа и бизнес" и "услуги"
+      // -----------------------------------------------------------------
+      if (category == 4 || category == 9) {
+        this.$store.commit("SetDealSelected", true);
+        this.$store.commit("ShowFinalFields", true);
+      }
+
+      // добавляю категории
+      this.advert_data.adv_category = category;
+
+      // скрываю дополнительные поля
+      this.$store.commit("ShowFinalFields", false);
+
+      switch (this.category) {
+        case null:
+          {
+            this.root = true;
+            this.$store.commit("ShowFinalFields", false);
+            break;
+          }
+        case 1:
+          {
+            this.transport = true;
+            this.$store.commit("ShowFinalFields", false);
+            break;
+          }
+        case 2:
+          {
+            this.real_estate = true;
+            this.$store.commit("ShowFinalFields", false);
+            break;
+          }
+        case 3:
+          {
+            this.appliances = true;
+            this.$store.commit("ShowFinalFields", true);
+            this.$store.commit("SetRequiredInfo", true);
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам телевизор Samsung б/у в отличном состоянии");
+            break;
+          }
+        case 4:
+          {
+            this.work_and_buisness = true;
+            this.$store.commit("ShowFinalFields", true);
+            this.$store.commit("SetRequiredInfo", true);
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Требуются разнорабочие");
+            break;
+          }
+        case 5:
+          {
+            this.for_home = true;
+            this.$store.commit("ShowFinalFields", true);
+            this.$store.commit("SetRequiredInfo", true);
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Куплю картофель");
+            break;
+          }
+        case 6:
+          {
+            this.personal_effects = true;
+            this.$store.commit("ShowFinalFields", true);
+            this.$store.commit("SetRequiredInfo", true);
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам пуховик");
+            break;
+          }
+        case 7:
+          {
+            this.animals = true;
+            this.$store.commit("ShowFinalFields", true);
+            this.$store.commit("SetRequiredInfo", true);
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам щенков хаски");
+            break;
+          }
+        case 8:
+          {
+            this.hobbies_and_leisure = true;
+            this.$store.commit("ShowFinalFields", true);
+            this.$store.commit("SetRequiredInfo", true);
+            break;
+          }
+        case 9:
+          {
+            this.services = true;
+            this.$store.commit("ShowFinalFields", true);
+            this.$store.commit("SetRequiredInfo", true);
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Распечатка текста");
+            break;
+          }
+        case 10:
+          {
+            this.other = true;
+            this.$store.commit("ShowFinalFields", true);
+            this.$store.commit("SetRequiredInfo", true);
+            break;
+          }
+      }
+    },
+
+
+    // Выбрать сделку
+    setDeal: function setDeal(deal_id) {
+      this.advert_data.adv_deal = deal_id;
+      this.deal_id = deal_id;
+      this.$store.commit("SetDealSelected", true);
     },
 
 
     // Отправить форму
-    onSubmit: function onSubmit(evt) {}
+    onSubmit: function onSubmit(evt) {
+      var _this = this;
+
+      evt.preventDefault();
+
+      var formData = new FormData();
+
+      // устанавливаю цену если она пустая, т.к. бэкенду нужна цена
+      if (this.$root.advert_data.adv_price == null || this.$root.advert_data.adv_price == "") this.$root.advert_data.adv_price = 0;
+
+      // записываю значения полей
+      forEach(this.$root.advert_data, function (key, value) {
+        formData.append(key, value);
+      });
+
+      // Записываю изображения
+      for (var i = 0; i < this.real_images.length; i++) {
+        formData.append('images[' + i + ']', this.real_images[i]);
+      } // РАЗМЕЩЕНИЕ ОБЪЯВЛЕНИЯ		
+      axios.post("/create", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(function (response) {
+
+        console.log(response);
+
+        if (response.data.result == "db.error") _this.$root.$notify({ group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error' });else if (response.data.result == "usr.error") _this.$root.$notify({ group: 'foo', text: "<h6>" + response.data.msg + "</h6>", type: 'error' });else alert("Объявление размещено");
+        //	else 
+        //	window.location="home"; // переходим в личный кабинет
+      }).catch(function (error) {
+        console.log(error.response);
+        _this.$root.$notify({ group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error' });
+      });
+    }
   }
 
 }));
