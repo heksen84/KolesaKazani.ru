@@ -4,8 +4,8 @@ require('./bootstrap');
 import Vue from 'vue';
 import $ from "jquery";
 import bootstrap from "bootstrap";
-import { get } from '../helpers/api' // axios
 import Vuex from 'vuex';
+import { get } from '../helpers/api' // axios
 
 Vue.use(Vuex);
 
@@ -19,15 +19,18 @@ let smallmap=null;
 
 // Преобразует строку в массив
 function str_split(string, length) {  
+  
   var chunks, len, pos;
   string = (string == null) ? "" : string;
   length =  (length == null) ? 1 : length;    
   var chunks = [];
   var pos = 0;
   var len = string.length;  
+  
   while (pos < len) {
     chunks.push(string.slice(pos, pos += length));
   }      
+  
   return chunks;
 };
 	
@@ -40,19 +43,19 @@ function morph(number, titles) {
 // Возвращает сумму прописью
 function number_to_string (num) {
     var def_translite = {
-        null: 'ноль',
-        a1: ['один','два','три','четыре','пять','шесть','семь','восемь','девять'],
-        a2: ['одна','две','три','четыре','пять','шесть','семь','восемь','девять'],
-        a10: ['десять','одиннадцать','двенадцать','тринадцать','четырнадцать','пятнадцать','шестнадцать','семнадцать','восемнадцать','девятнадцать'],
-        a20: ['двадцать','тридцать','сорок','пятьдесят','шестьдесят','семьдесят','восемьдесят','девяносто'],
-        a100: ['сто','двести','триста','четыреста','пятьсот','шестьсот','семьсот','восемьсот','девятьсот'],
-						uc: ['тиын', 'тиын', 'тиын'],
-						//uc: ['копейка', 'копейки', 'копеек'],
-						//ur: ['рубль', 'рубля', 'рублей'],
-						ur: ['тенге', 'тенге', 'тенге'],
-        u3: ['тысяча', 'тысячи', 'тысяч'],
-        u2: ['миллион', 'миллиона', 'миллионов'],
-        u1: ['миллиард', 'миллиарда', 'миллиардов'],
+      null: 'ноль',
+      a1: ['один','два','три','четыре','пять','шесть','семь','восемь','девять'],
+      a2: ['одна','две','три','четыре','пять','шесть','семь','восемь','девять'],
+      a10: ['десять','одиннадцать','двенадцать','тринадцать','четырнадцать','пятнадцать','шестнадцать','семнадцать','восемнадцать','девятнадцать'],
+      a20: ['двадцать','тридцать','сорок','пятьдесят','шестьдесят','семьдесят','восемьдесят','девяносто'],
+      a100: ['сто','двести','триста','четыреста','пятьсот','шестьсот','семьсот','восемьсот','девятьсот'],
+			uc: ['тиын', 'тиын', 'тиын'],
+			//uc: ['копейка', 'копейки', 'копеек'],
+			//ur: ['рубль', 'рубля', 'рублей'],
+			ur: ['тенге', 'тенге', 'тенге'],
+      u3: ['тысяча', 'тысячи', 'тысяч'],
+      u2: ['миллион', 'миллиона', 'миллионов'],
+      u1: ['миллиард', 'миллиарда', 'миллиардов'],
     }
 		
 	var i1, i2, i3, kop, out, rub, v, zeros, _ref, _ref1, _ref2, ax;
@@ -136,9 +139,7 @@ function forEach(data, callback) {
 	}
 }
 
-// -----------------------------------
-// Реактивное хранилище
-// -----------------------------------
+// Хранилище
 const store = new Vuex.Store({
 
   state: {          
@@ -159,26 +160,17 @@ const store = new Vuex.Store({
 
     // установить заголовок для площади в недвижимости
     SetRealEstateAreaLabelText( state, text ) {
-      if (text=="default") 
-        state.str_realestate_area_label_text = "Площадь (кв.м.):"
-      else
-        state.str_realestate_area_label_text = text;
+      text=="default"?state.str_realestate_area_label_text = "Площадь (кв.м.):":state.str_realestate_area_label_text = text;
     },
 
     // установить заголовок доп. информации / текста объявления
     SetInfoLabelDescription( state, text ) {
-      if (text=="default") 
-        state.info_label_description = "Текст объявления"
-      else
-        state.info_label_description = text;
+      text=="default"?state.info_label_description = "Текст объявления":state.info_label_description = text;
     },
 
     // установить текст подсказки в поле описание
     SetPlaceholderInfoText(state, text) {
-      if (text=="default") 
-        state.placeholder_info_text = "Введите текст объявления"
-      else
-        state.placeholder_info_text = text;
+      text=="default"?state.placeholder_info_text = "Введите текст объявления":state.placeholder_info_text = text;
     },
 
     // сбросить содержимое поля
@@ -255,20 +247,15 @@ export default new Vue ({
   methods: {
    
   // Вернуться на предыдущую страницу
-  closeAndReturn() {
- 	  window.history.back();
-  },
+  closeAndReturn() { window.history.back(); },
 
   // сброс данных объявления
   advReset(category_data) {
 
     let form = document.getElementById("advertform");
-
-    if (form) 
-      form.reset();
+    if (form) form.reset();
 
     this.summ_str = "";
-
     this.$store.commit("SetRequiredInfo", false);
     this.$store.commit("SetPlaceholderInfoText", "default");
     this.$store.commit("SetDealSelected", false);
@@ -281,14 +268,14 @@ export default new Vue ({
     // Типа: Продам то-то-то-то или Куплю то-то-то-то
     // ----------------------------------------------------------------------------------------------------------------
     switch(category_data) {
-      case 3: this.advert_data.adv_deal = ""; break; 
-      case 4: this.advert_data.adv_deal = ""; break; 
-      case 5: this.advert_data.adv_deal = ""; break; 
-      case 6: this.advert_data.adv_deal = ""; break; 
-      case 7: this.advert_data.adv_deal = ""; break; 
-      case 8: this.advert_data.adv_deal = ""; break; 
-      case 9: this.advert_data.adv_deal = ""; break; 
-      case 10: this.advert_data.adv_deal = ""; break; 
+        case 3: this.advert_data.adv_deal = ""; break; 
+        case 4: this.advert_data.adv_deal = ""; break; 
+        case 5: this.advert_data.adv_deal = ""; break; 
+        case 6: this.advert_data.adv_deal = ""; break; 
+        case 7: this.advert_data.adv_deal = ""; break; 
+        case 8: this.advert_data.adv_deal = ""; break; 
+        case 9: this.advert_data.adv_deal = ""; break; 
+        case 10: this.advert_data.adv_deal = ""; break; 
       default: this.advert_data.adv_deal = 0; // покупка по умолчанию
     }
       
@@ -330,100 +317,100 @@ export default new Vue ({
     if (photos!=null) photos.value = "";
   },
 
-      /*
-  		--------------------------
-  		 Изменения в категориях
-  		--------------------------*/
-  		changeCategory() {        
+  /*
+  --------------------------
+  	Изменения в категориях
+  --------------------------*/
+  changeCategory() {        
 
-        let category = this.category;        			
+  let category = this.category;        			
         
-        // сброс объявления при выборе категории
-        this.advReset(category);
+  // сброс объявления при выборе категории
+  this.advReset(category);
   
-        // -----------------------------------------------------------------
-        // отрубить вид сделки в категориях: "работа и бизнес" и "услуги"
-        // -----------------------------------------------------------------
-        if (category==4 || category==9) { this.$store.commit("SetDealSelected", true); this.$store.commit("ShowFinalFields", true); }
+  // -----------------------------------------------------------------
+  // отрубить вид сделки в категориях: "работа и бизнес" и "услуги"
+  // -----------------------------------------------------------------
+  if (category == 4 || category == 9) { this.$store.commit("SetDealSelected", true); this.$store.commit("ShowFinalFields", true); }
   
-        // добавляю категории
-        this.advert_data.adv_category=category;
-        
-        // скрываю дополнительные поля
-        this.$store.commit("ShowFinalFields", false);
+  // добавляю категории
+  this.advert_data.adv_category=category;        
   
-        switch(this.category) {
-            case null: {
-              this.root=true; 
-              this.$store.commit("ShowFinalFields", false);
-              break;
-            }
-            case 1: {              
-              this.transport=true; 
-              this.$store.commit("ShowFinalFields", false);
-              break; 
-            } 
-            case 2: {  
-              this.real_estate=true; 
-              this.$store.commit("ShowFinalFields", false);
-              break;
-          } 
-            case 3: {
-              this.appliances=true; 
-              this.$store.commit("ShowFinalFields", true);
-              this.$store.commit("SetRequiredInfo", true);
-              this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам телевизор Samsung б/у в отличном состоянии");
-              break; 
-            }
-            case 4: {
-              this.work_and_buisness=true;
-              this.$store.commit("ShowFinalFields", true);
-              this.$store.commit("SetRequiredInfo", true);
-              this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Требуются разнорабочие"); 
-              break; 
-            }
-            case 5: {
-              this.for_home=true; 
-              this.$store.commit("ShowFinalFields", true);
-              this.$store.commit("SetRequiredInfo", true);
-              this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Куплю картофель"); 
-              break; 
-            }
-            case 6: {
-              this.personal_effects=true; 
-              this.$store.commit("ShowFinalFields", true);
-              this.$store.commit("SetRequiredInfo", true);
-              this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам пуховик"); 
-              break; 
-            }
-            case 7: {
-            this.animals=true;
-            this.$store.commit("ShowFinalFields", true);
-            this.$store.commit("SetRequiredInfo", true);					
-            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам щенков хаски"); 
-            break; 
-            }
-            case 8: {
-            this.hobbies_and_leisure=true; 
-            this.$store.commit("ShowFinalFields", true);
-            this.$store.commit("SetRequiredInfo", true);					
-            break; 
-            }
-            case 9: { 
-            this.services=true;
-            this.$store.commit("ShowFinalFields", true);
-            this.$store.commit("SetRequiredInfo", true);
-            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Распечатка текста"); 
-            break; 
-            }
-            case 10: {
-            this.other=true;
-            this.$store.commit("ShowFinalFields", true);
-            this.$store.commit("SetRequiredInfo", true);
-            break; 
-            }
-          }
-      },
+  // скрываю дополнительные поля
+  this.$store.commit("ShowFinalFields", false);
+  
+  switch(this.category) {
+    case null: {
+      this.root=true; 
+      this.$store.commit("ShowFinalFields", false);
+      break;
+    }
+    case 1: {              
+      this.transport=true; 
+      this.$store.commit("ShowFinalFields", false);
+      break; 
+    } 
+    case 2: {  
+      this.real_estate=true; 
+      this.$store.commit("ShowFinalFields", false);
+      break;
+    } 
+    case 3: {
+      this.appliances=true; 
+      this.$store.commit("ShowFinalFields", true);
+      this.$store.commit("SetRequiredInfo", true);
+      this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам телевизор Samsung б/у в отличном состоянии");
+      break; 
+    }
+    case 4: {
+      this.work_and_buisness=true;
+      this.$store.commit("ShowFinalFields", true);
+      this.$store.commit("SetRequiredInfo", true);
+      this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Требуются разнорабочие"); 
+      break; 
+    }
+    case 5: {
+      this.for_home=true; 
+      this.$store.commit("ShowFinalFields", true);
+      this.$store.commit("SetRequiredInfo", true);
+      this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Куплю картофель"); 
+      break; 
+    }
+    case 6: {
+      this.personal_effects=true; 
+      this.$store.commit("ShowFinalFields", true);
+      this.$store.commit("SetRequiredInfo", true);
+      this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам пуховик"); 
+      break; 
+    }
+    case 7: {
+      this.animals=true;
+      this.$store.commit("ShowFinalFields", true);
+      this.$store.commit("SetRequiredInfo", true);					
+      this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам щенков хаски"); 
+      break; 
+    }
+    case 8: {
+      this.hobbies_and_leisure=true; 
+      this.$store.commit("ShowFinalFields", true);
+      this.$store.commit("SetRequiredInfo", true);
+      break;
+    }
+    case 9: { 
+      this.services=true;
+      this.$store.commit("ShowFinalFields", true);
+      this.$store.commit("SetRequiredInfo", true);
+      this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Распечатка текста"); 
+      break; 
+    }
+    case 10: {
+      this.other=true;
+      this.$store.commit("ShowFinalFields", true);
+      this.$store.commit("SetRequiredInfo", true);
+      break; 
+      }
+    }
+  },
 
   // Выбрать сделку
   setDeal(deal_id) {    
@@ -450,24 +437,22 @@ export default new Vue ({
       formData.append('images['+i+']', this.real_images[i]);		
 						
 		// Размещаю объявление
-		axios.post("/create", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {
-			
-		console.log(response);
-			
-		if (response.data.result=="db.error")
-			this.$root.$notify({group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error'});
-		else
-		  if (response.data.result=="usr.error")
-				this.$root.$notify({group: 'foo', text: "<h6>"+response.data.msg+"</h6>", type: 'error'});
-			else
-			alert("Объявление размещено");
-			//	else 
-			//	window.location="home"; // переходим в личный кабинет
+		axios.post("/create", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {			
+      
+      console.log(response);
+    			
+      if (response.data.result=="db.error") 
+        this.$root.$notify({group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error'});
+		  else
+		    if (response.data.result=="usr.error") this.$root.$notify({group: 'foo', text: "<h6>"+response.data.msg+"</h6>", type: 'error'});
+		  else
+		    alert("Объявление размещено");
+		  //	else 
+		  //	window.location="home"; // переходим в личный кабинет
     }).catch(error => {
 			console.log(error.response)
 			this.$root.$notify({group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error'});
 		})
   }
-}
-  
+}  
 });

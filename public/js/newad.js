@@ -50840,8 +50840,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap__ = __webpack_require__("./node_modules/bootstrap/dist/js/bootstrap.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_bootstrap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
 
 
 __webpack_require__("./resources/assets/js/mix/bootstrap.js");
@@ -50849,10 +50849,10 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
 
 
+
  // axios
 
-
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_4_vuex__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_3_vuex__["a" /* default */]);
 
 // массив изображений
 var preview_images_array = [];
@@ -50864,15 +50864,18 @@ var smallmap = null;
 
 // Преобразует строку в массив
 function str_split(string, length) {
+
   var chunks, len, pos;
   string = string == null ? "" : string;
   length = length == null ? 1 : length;
   var chunks = [];
   var pos = 0;
   var len = string.length;
+
   while (pos < len) {
     chunks.push(string.slice(pos, pos += length));
   }
+
   return chunks;
 };
 
@@ -50981,10 +50984,8 @@ function forEach(data, callback) {
   }
 }
 
-// -----------------------------------
-// Реактивное хранилище
-// -----------------------------------
-var store = new __WEBPACK_IMPORTED_MODULE_4_vuex__["a" /* default */].Store({
+// Хранилище
+var store = new __WEBPACK_IMPORTED_MODULE_3_vuex__["a" /* default */].Store({
 
   state: {
     price: "",
@@ -51005,19 +51006,19 @@ var store = new __WEBPACK_IMPORTED_MODULE_4_vuex__["a" /* default */].Store({
 
     // установить заголовок для площади в недвижимости
     SetRealEstateAreaLabelText: function SetRealEstateAreaLabelText(state, text) {
-      if (text == "default") state.str_realestate_area_label_text = "Площадь (кв.м.):";else state.str_realestate_area_label_text = text;
+      text == "default" ? state.str_realestate_area_label_text = "Площадь (кв.м.):" : state.str_realestate_area_label_text = text;
     },
 
 
     // установить заголовок доп. информации / текста объявления
     SetInfoLabelDescription: function SetInfoLabelDescription(state, text) {
-      if (text == "default") state.info_label_description = "Текст объявления";else state.info_label_description = text;
+      text == "default" ? state.info_label_description = "Текст объявления" : state.info_label_description = text;
     },
 
 
     // установить текст подсказки в поле описание
     SetPlaceholderInfoText: function SetPlaceholderInfoText(state, text) {
-      if (text == "default") state.placeholder_info_text = "Введите текст объявления";else state.placeholder_info_text = text;
+      text == "default" ? state.placeholder_info_text = "Введите текст объявления" : state.placeholder_info_text = text;
     },
 
 
@@ -51106,11 +51107,9 @@ var store = new __WEBPACK_IMPORTED_MODULE_4_vuex__["a" /* default */].Store({
     advReset: function advReset(category_data) {
 
       var form = document.getElementById("advertform");
-
       if (form) form.reset();
 
       this.summ_str = "";
-
       this.$store.commit("SetRequiredInfo", false);
       this.$store.commit("SetPlaceholderInfoText", "default");
       this.$store.commit("SetDealSelected", false);
@@ -51184,7 +51183,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_4_vuex__["a" /* default */].Store({
 
     /*
     --------------------------
-    Изменения в категориях
+    	Изменения в категориях
     --------------------------*/
     changeCategory: function changeCategory() {
 
@@ -51332,7 +51331,6 @@ var store = new __WEBPACK_IMPORTED_MODULE_4_vuex__["a" /* default */].Store({
       });
     }
   }
-
 }));
 
 /***/ }),
