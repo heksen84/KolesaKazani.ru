@@ -58,7 +58,7 @@ class IndexController extends Controller {
 				$title = config('app.name')." - объявления ".$sklonResult." области";
 				$description = "Объявления о покупке, продаже, обмене и сдаче в аренду в ".$sklonResult." области";
 			}
-				else return view("errors/404"); // редирект
+			else return view("errors/404"); // редирект
 		}
 
 		// Город, село
