@@ -30,8 +30,8 @@ class IndexController extends Controller {
 		// Страна
 		if ($region===null && $place===null) {				
 			$location = "/";				
-			$title = "Доска объявлений flix, все объявления Казахстана";
-			$description = "Описание";
+			$title = config('app.name')." - объявления Казахстана";
+			$description = "Объявления о покупке, продаже, обмене и сдаче в аренду в Казахстане";
 			$locationName = "Казахстан";
 		}
 
@@ -47,8 +47,7 @@ class IndexController extends Controller {
 				
 				$petrovich = new Petrovich(Petrovich::GENDER_FEMALE);					
 				$regionName = $regionArr[0]->name;
-				$regionName = trim(str_replace("обл.", "", $regionName));				
-				
+				$regionName = trim(str_replace("обл.", "", $regionName));
 				$sklonResult = $petrovich->lastname($regionName, 0);
 
 				// minifix
@@ -56,8 +55,8 @@ class IndexController extends Controller {
 					case "Алмы-Атинской": $sklonResult="Алма-Атинской"; break;
 				}
 
-				$title = "Доска объявлений flix, все объявления ".$sklonResult." области";
-				$description = "Описание";
+				$title = config('app.name')." - объявления ".$sklonResult." области";
+				$description = "Объявления о покупке, продаже, обмене и сдаче в аренду в ".$sklonResult." области";
 			}
 				else return view("errors/404"); // редирект
 		}
@@ -73,8 +72,10 @@ class IndexController extends Controller {
 				
 			if ($placeArr->count()>0) {
 				$petrovich = new Petrovich(Petrovich::GENDER_MALE);
-				$title = "Доска объявлений flix, все объявления ".$petrovich->firstname($placeArr[0]->name, Petrovich::CASE_GENITIVE);
-				$description = "Описание";
+				$sklonResult = $petrovich->lastname($placeArr[0]->name, 0);
+
+				$title = config('app.name')." - объявления ".$sklonResult;
+				$description = "Объявления о покупке, продаже, обмене и сдаче в аренду в ".$sklonResult;
 			}
 			else return view("errors/404"); // редирект
 		}

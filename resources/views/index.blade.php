@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="description" content="{{ $description }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 </head>
@@ -13,7 +14,7 @@
 <div id="app">
   <div id="navbar_menu">
     <nav class="navbar navbar-dark bg-primary">
-    <a class="navbar-brand" href="#"><h1 style="font-size:28px;font-weight:650;letter-spacing:5px">flix</h1><h2 style="font-size:16px;margin-top:-5px;font-weight:500">все объявления Казахстана</h2></a>
+    <a class="navbar-brand" href="#"><h1 style="font-size:26px;font-weight:650;letter-spacing:5px">{{config('app.name')}}</h1><h2 style="font-size:16px;margin-top:-5px;font-weight:500">все объявления Казахстана</h2></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -71,7 +72,7 @@
   </div>
 
   <div class="row">
-      
+
     <div class="margin-auto" id="login_register_col">
     @if ($auth===0)
       <a href="/login"><div class="button" id="button_login" style="margin-left:17px">Вход</div></a>
@@ -85,7 +86,7 @@
   <div class="row" style="margin-top:2px">
     <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center">
       <div id="logo_block">
-        <div id="logo_block_text">flix</div>
+        <div id="logo_block_text">{{config('app.name')}}</div>
         <div style="font-size:16px;color:yellow;margin-top:-13px;letter-spacing:1px;">все объявления Казахстана</div>
       </div>
   </div>

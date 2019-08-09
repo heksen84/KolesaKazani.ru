@@ -24,7 +24,7 @@ class AdvertController extends Controller {
     // Новое объявление
     public function NewAd() {
         return Auth::user()? view("newad")
-        ->with( "title", "Подать новое объявление на сайте flix" )
+        ->with( "title", "Новое объявление - Объявление на сайте ".config('app.name') )
         ->with( "categories", Categories::all() )
         ->with( "regions", Regions::all() )
         ->with( "dealtypes", DealType::all()->toJson() ) : redirect("login");
