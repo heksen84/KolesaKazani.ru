@@ -32,6 +32,7 @@ class IndexController extends Controller {
 			$location = "/";				
 			$title = config('app.name')." - объявления Казахстана";
 			$description = "Объявления о покупке, продаже, обмене и сдаче в аренду в Казахстане";
+			$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, FLIX, страна, казахстан";
 			$locationName = "Казахстан";
 		}
 
@@ -57,6 +58,7 @@ class IndexController extends Controller {
 
 				$title = config('app.name')." - объявления ".$sklonResult." области";
 				$description = "Объявления о покупке, продаже, обмене и сдаче в аренду в ".$sklonResult." области";
+				$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, FLIX, ".$regionName.", область";
 			}
 			else return view("errors/404"); // редирект
 		}
@@ -76,6 +78,7 @@ class IndexController extends Controller {
 
 				$title = config('app.name')." - объявления ".$sklonResult;
 				$description = "Объявления о покупке, продаже, обмене и сдаче в аренду в ".$sklonResult;
+				$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, FLIX, ".$locationName;
 			}
 			else return view("errors/404"); // редирект
 		}
@@ -99,7 +102,8 @@ class IndexController extends Controller {
 		->with("regions", Regions::all())
 		->with("auth", Auth::user()?1:0)
 		->with("title", $title)
-		->with("description", $description);
+		->with("description", $description)
+		->with("keywords", $keywords);
     }
 
     // Cтрана
