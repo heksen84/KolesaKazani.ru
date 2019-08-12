@@ -72,7 +72,7 @@ class IndexController extends Controller {
 				
 			if ($placeArr->count()>0) {
 				$petrovich = new Petrovich(Petrovich::GENDER_MALE);
-				$sklonResult = $petrovich->lastname($placeArr[0]->name, 0);
+				$sklonResult = $petrovich->lastname($placeArr[0]->name, 2);
 
 				$title = config('app.name')." - объявления ".$sklonResult;
 				$description = "Объявления о покупке, продаже, обмене и сдаче в аренду в ".$sklonResult;
