@@ -75,9 +75,10 @@ class IndexController extends Controller {
 			if ($placeArr->count()>0) {
 				$petrovich = new Petrovich(Petrovich::GENDER_MALE);
 				$sklonResult = $petrovich->lastname($placeArr[0]->name, 2);
+				$sklonResultForDesc = $petrovich->firstname($placeArr[0]->name, 4);
 
 				$title = config('app.name')." - объявления ".$sklonResult;
-				$description = "Объявления о покупке, продаже, обмене и сдаче в аренду в ".$sklonResult;
+				$description = "Объявления о покупке, продаже, обмене и сдаче в аренду в ".$sklonResultForDesc;
 				$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, FLIX, ".$locationName;
 			}
 			else return view("errors/404"); // редирект
