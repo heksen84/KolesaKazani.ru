@@ -50942,6 +50942,7 @@ function number_to_string(num) {
   }
   // Дописываем название "рубли"
   out.push(morph(rub, def_translite.ur));
+
   // Дописываем название "копейка"
   //out.push(kop + ' ' + morph(kop, def_translite.uc));
 
@@ -50953,17 +50954,22 @@ function number_to_string(num) {
  Инициализация большой карты (карта назначения координат)
 ---------------------------------------------------------*/
 function initMaps() {
+
   // координаты по умолчанию для всех карт
   mapCoords = [51.08, 71.26];
   bigmap = new ymaps.Map("bigmap", { center: mapCoords, zoom: 10 });
   smallmap = new ymaps.Map("smallmap", { center: mapCoords, zoom: 9 });
+
   // запрещаю перемение по мини карте
   smallmap.behaviors.disable("drag");
+
   // включаю скролл на большой карте
   bigmap.behaviors.enable("scrollZoom");
+
   // формирую метки
   myPlacemark1 = new ymaps.Placemark(mapCoords);
   myPlacemark2 = new ymaps.Placemark(mapCoords);
+
   // добавляю метки на карты
   bigmap.geoObjects.add(myPlacemark1);
   smallmap.geoObjects.add(myPlacemark2);
