@@ -50842,7 +50842,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_bootstrap__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
-
+ // строгий режим
 
 __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
@@ -50851,6 +50851,9 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
 
  // axios
+
+
+// Подрубить компоненты (транспорт, недвижимость)
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_3_vuex__["a" /* default */]);
 
@@ -50862,7 +50865,10 @@ var myPlacemark2 = null;
 var bigmap = null;
 var smallmap = null;
 
+// --------------------------------------
 // Преобразует строку в массив
+// Вынести в отдельный модуль
+// --------------------------------------
 function str_split(string, length) {
 
   var chunks, len, pos;
@@ -50879,13 +50885,19 @@ function str_split(string, length) {
   return chunks;
 };
 
+// --------------------------------------
 // Склоняем словоформу
+// Вынести в отдельный модуль
+// --------------------------------------
 function morph(number, titles) {
   var cases = [2, 0, 1, 1, 1, 2];
   return titles[number > 4 && number < 20 ? 2 : cases[Math.min(number, 5)]];
 };
 
+// --------------------------------------
 // Возвращает сумму прописью
+// Вынести в отдельный модуль
+// --------------------------------------
 function number_to_string(num) {
   var def_translite = {
     null: 'ноль',
@@ -50981,7 +50993,9 @@ function initMaps() {
   });
 }
 
+// --------------------------------------
 // Для заполнения изображений
+// --------------------------------------
 function forEach(data, callback) {
   for (var key in data) {
     if (data.hasOwnProperty(key)) {
@@ -50990,7 +51004,9 @@ function forEach(data, callback) {
   }
 }
 
+// --------------------------------------
 // Хранилище
+// --------------------------------------
 var store = new __WEBPACK_IMPORTED_MODULE_3_vuex__["a" /* default */].Store({
 
   state: {
@@ -51187,10 +51203,9 @@ var store = new __WEBPACK_IMPORTED_MODULE_3_vuex__["a" /* default */].Store({
     },
 
 
-    /*
-    --------------------------
-    	Изменения в категориях
-    --------------------------*/
+    // --------------------------------------
+    // Изменения в категориях
+    // --------------------------------------
     changeCategory: function changeCategory() {
 
       var category = this.category;
@@ -51296,7 +51311,9 @@ var store = new __WEBPACK_IMPORTED_MODULE_3_vuex__["a" /* default */].Store({
     },
 
 
+    // --------------------------------------
     // Выбрать сделку
+    // --------------------------------------
     setDeal: function setDeal(deal_id) {
       this.advert_data.adv_deal = deal_id;
       this.deal_id = deal_id;
