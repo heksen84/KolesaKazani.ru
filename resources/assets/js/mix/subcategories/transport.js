@@ -1,3 +1,5 @@
+"use strict";
+
 require('./bootstrap');
 
 import Vue from 'vue';
@@ -33,25 +35,8 @@ export default new Vue ({
   // -------------------------------
   // Компонент создан
   // -------------------------------
-  created() {
-
-    // Отобразить отложенные данные
-    $(".deferred").show();
+  created() {    
     $("#subcats").show();
-        
-    // Вытаскивыю местоположение из локалстораджа
-    var locationUrl = localStorage.getItem("locationUrl");
-    var locationName = localStorage.getItem("locationName");
-    
-    if (locationUrl!=null) {
-      this.locationName = locationName;      
-      $( ".url" ).each(function( index ) {      
-        $(this).attr("href", locationUrl+$(this).data("default-url"));
-      });
-    }
-
-    // Показываю то, что скрыто
-//    $("#locationButton").show();
     $("#close_subcats_btn").show();    
   },
 
@@ -59,7 +44,7 @@ export default new Vue ({
   // Методы
   // --------------------------------------
   methods: {
-
+  
   // Отобразить окно расположения
   showLocationWindow() {
     $("#locationModal").modal("show");
@@ -94,19 +79,7 @@ export default new Vue ({
   // --------------------------------------
   searchInCountry(e) {
 
-    /*this.locationName=e.target.innerText;
-  
-    $( ".url" ).each(function( index ) {      
-      $(this).attr("href", $(this).data("default-url"))      
-    });
-
-    localStorage.setItem("locationUrl", "");
-    localStorage.setItem("locationName", this.locationName);
-  
-    this.closeLocationWindow();*/
-
-    localStorage.setItem("locationUrl", "");
-    //localStorage.setItem("locationName", this.locationName);
+    localStorage.setItem("locationUrl", "");    
     localStorage.setItem("locationName", "Весь Казахстан");
 
     // редирект
@@ -117,51 +90,15 @@ export default new Vue ({
   // Поиск в регионе
   // --------------------------------------
   searchInRegion(e) {
-
-    console.log(e)
-    
-    /*let self=this;    
-    this.locationName=this.tmpLocationName;
-  
-    $( ".url" ).each(function( index ) {      
-      $(this).attr("href", self.regionUrl+$(this).data("default-url"))      
-    });
-
-    localStorage.setItem("locationUrl", self.regionUrl);
-    localStorage.setItem("locationName", this.locationName);
-  
-    this.closeLocationWindow();*/
-
-    //localStorage.setItem("locationUrl", self.regionUrl);
-    //localStorage.setItem("locationName", this.locationName);
-
-    // редирект
-    //window.location = self.regionUrl;
     window.location = this.regionUrl;
-
   },
   
   // --------------------------------------
   // Выбрать город / село и т.п.
   // --------------------------------------
-  selectPlace(e, placeName, placeUrl) {
-    
+  selectPlace(e, placeName, placeUrl) {    
     e.preventDefault();
-
-    /*let self=this;
-    
-    this.locationName=placeName;
-    this.closeLocationWindow();
-
-    $( ".url" ).each(function( index ) {      
-      $(this).attr("href", self.regionUrl+"/"+placeUrl+$(this).data("default-url"))      
-    });
-
-    localStorage.setItem("locationUrl", self.regionUrl+"/"+placeUrl);
-    localStorage.setItem("locationName", this.locationName);*/
-    
     window.location = this.regionUrl+"/"+placeUrl;
-
   },
 
   // --------------------------------------
