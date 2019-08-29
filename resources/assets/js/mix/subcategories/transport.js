@@ -15,15 +15,7 @@ export default new Vue ({
   el: '#app',
 
   data () {   
-    return {      
-      placesList: [], // массив городов / сёл / деревень
-      regions: true,    
-      places: false,
-      categories: true,
-      subCategories: false,
-      locationName: "",
-      tmpLocationName: ""     
-    }
+    return {}
   },
 
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
@@ -35,104 +27,16 @@ export default new Vue ({
   // -------------------------------
   // Компонент создан
   // -------------------------------
-  created() {    
-    $("#subcats").show();
-    $("#close_subcats_btn").show();    
-  },
+  created() {},
 
   // --------------------------------------
   // Методы
   // --------------------------------------
   methods: {
-  
-  // Отобразить окно расположения
-  showLocationWindow() {
-    $("#locationModal").modal("show");
-  },
-  
-  // Закрыть окно расположения
-  closeLocationWindow() {
-    this.regions=true;
-    this.places=false;
-    $("#locationModal").modal("hide");    
-  },
-  
-  // --------------------------------------
-  // Выбор региона
-  // --------------------------------------
-  showPlacesByRegion(e, regionId) {
-    e.preventDefault();
-
-    this.tmpLocationName=e.target.innerText;
-
-    // Получить города / сёлы
-    get("/getPlaces?region_id="+regionId).then((res) => {    
-      this.placesList=res.data;
-      this.regionUrl=e.target.pathname;
-      this.regions=false;
-      this.places=true;
-    }).catch((err) => { console.log(err) });    
-  },
-
-  // --------------------------------------
-  // Поиск в стране
-  // --------------------------------------
-  searchInCountry(e) {
-
-    localStorage.setItem("locationUrl", "");    
-    localStorage.setItem("locationName", "Весь Казахстан");
-
-    // редирект
-    window.location = "/";
-  },
-
-  // --------------------------------------
-  // Поиск в регионе
-  // --------------------------------------
-  searchInRegion(e) {
-    window.location = this.regionUrl;
-  },
-  
-  // --------------------------------------
-  // Выбрать город / село и т.п.
-  // --------------------------------------
-  selectPlace(e, placeName, placeUrl) {    
-    e.preventDefault();
-    window.location = this.regionUrl+"/"+placeUrl;
-  },
-
-  // --------------------------------------
-  // Показать подкатегории
-  // --------------------------------------
-  showSubcategories(e, categoryId) {
-
-    if ( categoryId < 10 ) {
-      e.preventDefault();        
-
-      // получаю элементы
-      let elements = $("*[data-category-id='"+(categoryId)+"']");
-
-      // сбиваю в кучу их если кол-во меньше 4	      
-      if (elements.length < 4)
-       elements.addClass("col-xl-12")	
     
-      // отображаю
-      elements.show();
-
-      this.categories=false;
-      this.subCategories=true;
+    showLocationWindow() {    
     }
-
-  },
-
-  // --------------------------------------
-  // Вернуться к категориям
-  // --------------------------------------
-  returnToCategories() {    
-    $("*[data-category-id]").hide();
-    this.categories=true;
-    this.subCategories=false;    
+  
   }
-}
   
 });

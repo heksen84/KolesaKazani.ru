@@ -6,6 +6,8 @@ import $ from "jquery";
 import bootstrap from "bootstrap";
 import Vuex from 'vuex';
 import { get } from '../helpers/api' // axios
+//import transport from './subcategories/transport' // компонент транспорт
+import transport from './subcategories/transport.vue' // компонент транспорт
 
 
 // Подрубить компоненты (транспорт, недвижимость)
@@ -258,7 +260,11 @@ export default new Vue ({
   },
 
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
-  components: { bootstrap },
+  
+  components: { 
+    bootstrap,
+    transport
+  },
 
   // -------------------------------
   // Компонент создан

@@ -44,9 +44,9 @@
 
           <!-- Категории -->
 			    <div v-if="root"></div>
-          <!--<transport v-else-if="transport"/>-->
-          <h1 v-else-if="transport" class="hide">transport</h1>
-          <h1 v-else-if="real_estate" class="hide">nedvizh</h1>
+          <transport v-else-if="transport"/>
+          <!--<h1 v-else-if="transport" class="hide">transport</h1>
+          <h1 v-else-if="real_estate" class="hide">nedvizh</h1>-->
         
         </form>
 
