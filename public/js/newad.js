@@ -1634,21 +1634,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 // Логика
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  // Входящие данные
-  props: ["categories", "dealtypes", "regions"],
+    // Входящие данные
+    props: ["categories", "dealtypes", "regions"],
+    data: function data() {
+        return {
+            category: null
+        };
+    },
 
-  methods: {
 
-    // Вернуться на предыдущую страницу
-    closeAndReturn: function closeAndReturn() {
-      window.history.back();
+    methods: {
+
+        // Вернуться на предыдущую страницу
+        closeAndReturn: function closeAndReturn() {
+            window.history.back();
+        }
     }
-  }
 
 });
 
@@ -19402,28 +19413,68 @@ var render = function() {
           _vm._v(" "),
           _c("hr"),
           _vm._v(" "),
-          _vm._m(0)
+          _c(
+            "div",
+            { staticClass: "form-group", staticStyle: { width: "260px" } },
+            [
+              _c("label", { attrs: { for: "categories" } }, [
+                _vm._v("Категория товара или услуги:")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.category,
+                      expression: "category"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.category = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      _vm.changeCategory
+                    ]
+                  }
+                },
+                [
+                  _c("option", { domProps: { value: null } }, [
+                    _vm._v("-- Выберите категорию --")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.categories, function(item, index) {
+                    return _c(
+                      "option",
+                      { key: index, domProps: { value: item.id } },
+                      [_vm._v(_vm._s(item.name))]
+                    )
+                  })
+                ],
+                2
+              )
+            ]
+          )
         ]
       )
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "form-group", staticStyle: { width: "260px" } },
-      [
-        _c("label", { attrs: { for: "categories" } }, [
-          _vm._v("Категория товара или услуги:")
-        ])
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

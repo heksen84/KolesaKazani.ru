@@ -7,6 +7,11 @@
             <hr>
             <div class="form-group" style="width:260px">
                 <label for="categories">Категория товара или услуги:</label>
+                    <select class="form-control" v-model="category" @change="changeCategory">            
+                    <option v-bind:value="null">-- Выберите категорию --</option>
+                    <option v-for="(item, index) in categories" :key="index" v-bind:value="item.id">{{ item.name }}</option>
+                    </select>
+                </label>
             </div>
         </div>
     </div>
@@ -19,6 +24,11 @@ export default {
 
 // Входящие данные
 props: ["categories", "dealtypes", "regions"],
+data () {
+    return 	{
+        category: null
+    }
+},
 
 methods: {
 
