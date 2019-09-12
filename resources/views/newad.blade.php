@@ -11,7 +11,7 @@
 </head>
 <body>
   <div id="app">
-  	<newad></newad>
+  	<newad :categories="{{ $categories }}" :dealtypes="{{ $dealtypes }}" :regions="{{ $regions }}"></newad>
   </div>
 <script src="https://api-maps.yandex.ru/2.0-stable/?apikey=123&load=package.standard&lang=ru-RU" type="text/javascript"></script>
 <script type="text/javascript" src="{{ mix('js/newad.js') }}"></script>

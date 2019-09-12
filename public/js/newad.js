@@ -1616,13 +1616,41 @@ module.exports = {
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/mix/views/newad.vue":
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+// Логика
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+  // Входящие данные
+  props: ["categories", "dealtypes", "regions"],
+
+  methods: {
+
+    // Вернуться на предыдущую страницу
+    closeAndReturn: function closeAndReturn() {
+      window.history.back();
+    }
+  }
+
+});
 
 /***/ }),
 
@@ -19343,9 +19371,59 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\r\n123\r\n")])
+  return _c("div", { staticClass: "container-fluid mycontainer_adv" }, [
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col"
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "close_button",
+              staticStyle: { "font-weight": "bold" },
+              attrs: { title: "Закрыть страницу" },
+              on: { click: _vm.closeAndReturn }
+            },
+            [_vm._v("X")]
+          ),
+          _vm._v(" "),
+          _c(
+            "h1",
+            {
+              staticClass: "title_text",
+              staticStyle: { "margin-top": "12px" }
+            },
+            [_vm._v("подать объявление")]
+          ),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _vm._m(0)
+        ]
+      )
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "form-group", staticStyle: { width: "260px" } },
+      [
+        _c("label", { attrs: { for: "categories" } }, [
+          _vm._v("Категория товара или услуги:")
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
