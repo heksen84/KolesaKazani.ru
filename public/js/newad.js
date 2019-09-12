@@ -1639,6 +1639,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 // Логика
 
@@ -1649,7 +1659,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            category: null
+            category: null,
+            sdelka: null,
+            advert_data: {}, // Объект объявления который пойдёт на сервер      
+            deal_id: null
         };
     },
 
@@ -1663,12 +1676,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
         // --------------------------------------
+        // Выбрать сделку
+        // --------------------------------------
+        setDeal: function setDeal(deal_id) {
+            this.advert_data.adv_deal = deal_id;
+            this.deal_id = deal_id;
+            this.$store.commit("SetDealSelected", true);
+        },
+
+
+        // --------------------------------------
         // Изменения в категориях
         // --------------------------------------
         changeCategory: function changeCategory() {
-
             var category = this.category;
-            alert(category);
         }
     }
 
@@ -19479,7 +19500,65 @@ var render = function() {
                 2
               )
             ]
-          )
+          ),
+          _vm._v(" "),
+          _vm.category != null
+            ? _c("div", { staticStyle: { "margin-bottom": "10px" } }, [
+                _c("label", { staticStyle: { width: "270px" } }, [
+                  _vm._v("Вид сделки:")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-check",
+                    staticStyle: { width: "260px" }
+                  },
+                  _vm._l(_vm.dealtypes, function(item, index) {
+                    return _c("div", { key: index }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.sdelka,
+                            expression: "sdelka"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          id: item.id,
+                          type: "radio",
+                          name: "inlineRadioOptions"
+                        },
+                        domProps: {
+                          value: item.id,
+                          checked: _vm._q(_vm.sdelka, item.id)
+                        },
+                        on: {
+                          change: [
+                            function($event) {
+                              _vm.sdelka = item.id
+                            },
+                            _vm.setDeal
+                          ]
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-check-label",
+                          attrs: { for: item.id }
+                        },
+                        [_vm._v(_vm._s(item.deal_name_1))]
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ])
+            : _vm._e()
         ]
       )
     ])

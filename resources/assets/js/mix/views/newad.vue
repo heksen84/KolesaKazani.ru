@@ -7,12 +7,22 @@
             <hr>
             <div class="form-group" style="width:260px">
                 <label for="categories">Категория товара или услуги:</label>
-                    <select class="form-control" v-model="category" @change="changeCategory">            
+                <select class="form-control" v-model="category" @change="changeCategory">            
                     <option v-bind:value="null">-- Выберите категорию --</option>
                     <option v-for="(item, index) in categories" :key="index" v-bind:value="item.id">{{ item.name }}</option>
-                    </select>
-                </label>
+                </select>                
             </div>
+
+            <div v-if="category!=null" style="margin-bottom:10px">
+            <label style="width:270px">Вид сделки:</label>            
+            <div class="form-check" style="width:260px">
+                <div v-for="(item,index) in dealtypes" :key="index">
+                    <input class="form-check-input" :id="item.id" type="radio" name="inlineRadioOptions" v-bind:value="item.id" v-model="sdelka" @change="setDeal">
+                    <label class="form-check-label" :for="item.id">{{ item.deal_name_1 }}</label>
+                </div>
+            </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -27,7 +37,10 @@ props: ["categories", "dealtypes", "regions"],
 
 data () {
     return 	{
-        category: null
+        category: null,
+        sdelka: null,
+        advert_data: {}, // Объект объявления который пойдёт на сервер      
+        deal_id: null,
     }
 },
 
@@ -39,12 +52,19 @@ closeAndReturn() {
 },
 
 // --------------------------------------
+// Выбрать сделку
+// --------------------------------------
+setDeal(deal_id) {    
+    this.advert_data.adv_deal=deal_id;
+    this.deal_id=deal_id;
+    this.$store.commit("SetDealSelected", true);
+},
+
+// --------------------------------------
 // Изменения в категориях
 // --------------------------------------
-changeCategory() {
-    
-    let category = this.category;
-    alert(category)
+changeCategory() {    
+    let category = this.category;    
 }
 
 }
