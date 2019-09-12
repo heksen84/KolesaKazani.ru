@@ -1646,6 +1646,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     // Входящие данные
     props: ["categories", "dealtypes", "regions"],
+
     data: function data() {
         return {
             category: null
@@ -1658,6 +1659,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         // Вернуться на предыдущую страницу
         closeAndReturn: function closeAndReturn() {
             window.history.back();
+        },
+
+
+        // --------------------------------------
+        // Изменения в категориях
+        // --------------------------------------
+        changeCategory: function changeCategory() {
+
+            var category = this.category;
+            alert(category);
         }
     }
 

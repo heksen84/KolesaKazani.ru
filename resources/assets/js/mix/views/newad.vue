@@ -24,6 +24,7 @@ export default {
 
 // Входящие данные
 props: ["categories", "dealtypes", "regions"],
+
 data () {
     return 	{
         category: null
@@ -35,6 +36,15 @@ methods: {
 // Вернуться на предыдущую страницу
 closeAndReturn() {
  	window.history.back();
+},
+
+// --------------------------------------
+// Изменения в категориях
+// --------------------------------------
+changeCategory() {
+    
+    let category = this.category;
+    alert(category)
 }
 
 }
