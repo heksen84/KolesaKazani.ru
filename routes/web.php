@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 // Стандартные роуты
 Auth::routes();
 
+// ---------------------------------------------------------------
+// Авто
+// ---------------------------------------------------------------
+Route::get("/getCarsMarks", "AdvertController@getCarsMarks" );
+Route::get("/getCarsModels", "AdvertController@getCarsModels" );
+
+
 // Новое объявление
 Route::get("/podat-obyavlenie", "AdvertController@NewAd");
 
@@ -24,5 +31,7 @@ Route::get("/{region}", "IndexController@ShowRegionIndexPage");
 
 // По городу или селу
 Route::get("/{region}/{place}", "IndexController@ShowPlaceIndexPage");
+
+
 
 

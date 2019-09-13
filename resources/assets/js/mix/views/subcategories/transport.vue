@@ -1,6 +1,32 @@
 <template>
-<div>
-  transport
+<div>  
+    <div style="width:100%;margin-bottom:10px;text-decoration:underline" v-if="[0,1,2,4].indexOf(this.selected.type_transport) != -1 && this.selected.type_transport!=null">Характеристики:</div>      
+      <div class="form-row" style="width:260px">
+        
+        <div class="form-group">        
+          <label for="transport_type">Вид транспорта:</label>
+          <select id="transport_type" class="form-control" v-model="selected.type_transport" @change="selectTransportType">                          
+              <option v-for="item in type_transport" :value="item.value" :key="item.value">{{ item.text }}</option>
+          </select>
+          </div>
+          
+          <div class="form-group" v-if="selected.type_transport==0 && carmarkLoaded">
+            <label for="mark_type">Марка автомобиля:</label>
+              <select id="mark_type" class="form-control" v-model="selected.carmark" @change="selectMark">                          
+                <option v-for="item in carmark" :value="item.id_car_mark" :key="item.id_car_mark">{{ item.name }}</option>
+              </select>
+          </div>
+
+          <div class="form-group" v-if="selected.carmark!=null && selected.type_transport==0">
+            <label for="mark_type">Модель:</label>
+              <select id="mark_type" class="form-control" v-model="selected.model" @change="selectModel">                          
+                <option :value="null">-- Выберите модель --</option>
+                <option v-for="item in models" :value="item.id_car_model" :key="item.id_car_model">{{ item.name }}</option>
+              </select>
+          </div>
+
+      </div>    
+  </div>
 <!--  <div class="form-inline" v-if="$store.state.deal_selected">
     <div style="width:100%;margin-bottom:10px;text-decoration:underline" v-if="[0,1,2,4].indexOf(this.selected.type_transport) != -1 && this.selected.type_transport!=null">Характеристики:</div>
     <b-form-group label="Вид транспорта:">
@@ -80,7 +106,9 @@ export default {
 
         // марки автомобилей
         carmark: [],
-        models:  [],
+        models: [],
+
+        carmarkLoaded: false,
 
         transport_chars: null,        
 
@@ -116,17 +144,16 @@ export default {
   // компонент создан
   created() {
 
-    console.log(this.$root.advert_data)
+//    console.log(this.$root.advert_data)
 
-    this.transport_chars = this.$root.advert_data;
-    //this.transport_chars = 123;
+    this.transport_chars = this.$root.advert_data;    
     
     // значения по умолчанию
-    /*this.transport_chars.rule_position   = 0;
+    this.transport_chars.rule_position   = 0;
     this.transport_chars.fuel_type       = 0;
     this.transport_chars.customs         = 1;
     this.transport_chars.release_date    = 0;
-    this.transport_chars.mileage         = 0;*/
+    this.transport_chars.mileage         = 0;
 
   },
   
@@ -144,7 +171,9 @@ export default {
     -----------------------------------
       Вид транспорта
     -----------------------------------*/
-    selectTransportType(transport_id) {
+    selectTransportType() {
+
+      console.log("Тип транспорта :"+this.selected.type_transport)
 
       this.$store.commit("SetRequiredInfo", true);
       this.$store.commit("ResetField", "price");
@@ -152,10 +181,9 @@ export default {
       this.$store.commit("SetInfoLabelDescription", "default");
       
       this.selected.model = null;
-
-      console.log(transport_id)
       
-      if (transport_id==null) {
+      
+      if (this.selected.type_transport==null) {
         this.$store.commit("ShowCommonTransport", false);
         this.$store.commit("ShowFinalFields", false);               
       }      
@@ -164,9 +192,9 @@ export default {
         this.$store.commit("ShowFinalFields", true);       
       }
 
-      this.transport_chars.transport_type = transport_id;
+      this.transport_chars.transport_type = this.selected.type_transport;
                 
-      switch(transport_id) {
+      switch(this.selected.type_transport) {
                 
         // легковой транспорт
         case 0: {
@@ -178,8 +206,11 @@ export default {
 
           this.carmark=[];
                       
-          get("/getCarsMarks").then((res) => {
-            this.carmark = res.data;                        
+          // запрос: получить марки автомобилей
+          get("/getCarsMarks").then((res) => {            
+            this.carmark = res.data;
+            this.selected.carmark=1;
+            this.carmarkLoaded=true;
             console.log(this.carmark);
           }).catch((err) => {
               console.log(err);
@@ -234,16 +265,17 @@ export default {
     // ------------------------------------------------
     // change марки
     // ------------------------------------------------
-    selectMark(mark_id) {
+    selectMark() {
       
       this.$store.commit("ShowCommonTransport", false);
       this.$store.commit("ShowFinalFields", false);
-      this.$store.commit("SetRequiredInfo", false);      
-      this.transport_chars.mark_id = mark_id;
+      this.$store.commit("SetRequiredInfo", false);
 
-      console.log(this.transport_chars.mark_id);
+      this.transport_chars.mark_id = this.selected.carmark;
+
+      console.log(this.selected.carmark);
       
-      get("/getCarsModels?mark_id="+mark_id).then((res) => {
+      get("/getCarsModels?mark_id="+this.selected.carmark).then((res) => {
 
         this.models=[];
         this.models = res.data;
@@ -254,7 +286,9 @@ export default {
       });
     },
 
+    // ---------------------------
     // change модели
+    // ---------------------------
     selectModel(model_id) {
       this.transport_chars.model_id = model_id;
       console.log(this.transport_chars.model_id);
@@ -262,17 +296,23 @@ export default {
       this.$store.commit("ShowFinalFields", true);
     },
 
+     // ---------------------------
      // положение руля
+     // ---------------------------
      SetHelmPosition(position_id) {
         this.transport_chars.rule_position = position_id;
      },
 
+     // ---------------------------
      // тип топлива
+     // ---------------------------
      SetFuelType(fuel_type) {
         this.transport_chars.fuel_type = fuel_type;
      },
      
+     // ---------------------------
      // растаможка
+     // ---------------------------
      SetTransportCustoms(customs_id) {
         this.transport_chars.customs = customs_id;
      },
@@ -287,13 +327,10 @@ export default {
      },
 
      // пробег
-     SetMileage(mileage) {
-        
+     SetMileage(mileage) {        
         if (mileage<0 || mileage>10000000) 
-          return this.transport_chars.mileage;
-          
-          this.transport_chars.mileage = mileage;
-                  
+          return this.transport_chars.mileage;          
+          this.transport_chars.mileage = mileage;                  
         return mileage;
      }
   },

@@ -2095,6 +2095,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2110,6 +2136,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // марки автомобилей
       carmark: [],
       models: [],
+
+      carmarkLoaded: false,
 
       transport_chars: null,
 
@@ -2136,17 +2164,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   // компонент создан
   created: function created() {
 
-    console.log(this.$root.advert_data);
+    //    console.log(this.$root.advert_data)
 
     this.transport_chars = this.$root.advert_data;
-    //this.transport_chars = 123;
 
     // значения по умолчанию
-    /*this.transport_chars.rule_position   = 0;
-    this.transport_chars.fuel_type       = 0;
-    this.transport_chars.customs         = 1;
-    this.transport_chars.release_date    = 0;
-    this.transport_chars.mileage         = 0;*/
+    this.transport_chars.rule_position = 0;
+    this.transport_chars.fuel_type = 0;
+    this.transport_chars.customs = 1;
+    this.transport_chars.release_date = 0;
+    this.transport_chars.mileage = 0;
   },
 
 
@@ -2164,8 +2191,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     -----------------------------------
       Вид транспорта
     -----------------------------------*/
-    selectTransportType: function selectTransportType(transport_id) {
+    selectTransportType: function selectTransportType() {
       var _this = this;
+
+      console.log("Тип транспорта :" + this.selected.type_transport);
 
       this.$store.commit("SetRequiredInfo", true);
       this.$store.commit("ResetField", "price");
@@ -2174,9 +2203,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.selected.model = null;
 
-      console.log(transport_id);
-
-      if (transport_id == null) {
+      if (this.selected.type_transport == null) {
         this.$store.commit("ShowCommonTransport", false);
         this.$store.commit("ShowFinalFields", false);
       } else {
@@ -2184,9 +2211,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.$store.commit("ShowFinalFields", true);
       }
 
-      this.transport_chars.transport_type = transport_id;
+      this.transport_chars.transport_type = this.selected.type_transport;
 
-      switch (transport_id) {
+      switch (this.selected.type_transport) {
 
         // легковой транспорт
         case 0:
@@ -2199,8 +2226,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.carmark = [];
 
+            // запрос: получить марки автомобилей
             Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/getCarsMarks").then(function (res) {
               _this.carmark = res.data;
+              _this.selected.carmark = 1;
+              _this.carmarkLoaded = true;
               console.log(_this.carmark);
             }).catch(function (err) {
               console.log(err);
@@ -2263,17 +2293,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // ------------------------------------------------
     // change марки
     // ------------------------------------------------
-    selectMark: function selectMark(mark_id) {
+    selectMark: function selectMark() {
       var _this2 = this;
 
       this.$store.commit("ShowCommonTransport", false);
       this.$store.commit("ShowFinalFields", false);
       this.$store.commit("SetRequiredInfo", false);
-      this.transport_chars.mark_id = mark_id;
 
-      console.log(this.transport_chars.mark_id);
+      this.transport_chars.mark_id = this.selected.carmark;
 
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/getCarsModels?mark_id=" + mark_id).then(function (res) {
+      console.log(this.selected.carmark);
+
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/getCarsModels?mark_id=" + this.selected.carmark).then(function (res) {
 
         _this2.models = [];
         _this2.models = res.data;
@@ -2284,7 +2315,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
+    // ---------------------------
     // change модели
+    // ---------------------------
     selectModel: function selectModel(model_id) {
       this.transport_chars.model_id = model_id;
       console.log(this.transport_chars.model_id);
@@ -2293,19 +2326,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
+    // ---------------------------
     // положение руля
+    // ---------------------------
     SetHelmPosition: function SetHelmPosition(position_id) {
       this.transport_chars.rule_position = position_id;
     },
 
 
+    // ---------------------------
     // тип топлива
+    // ---------------------------
     SetFuelType: function SetFuelType(fuel_type) {
       this.transport_chars.fuel_type = fuel_type;
     },
 
 
+    // ---------------------------
     // растаможка
+    // ---------------------------
     SetTransportCustoms: function SetTransportCustoms(customs_id) {
       this.transport_chars.customs = customs_id;
     },
@@ -2322,11 +2361,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     // пробег
     SetMileage: function SetMileage(mileage) {
-
       if (mileage < 0 || mileage > 10000000) return this.transport_chars.mileage;
-
       this.transport_chars.mileage = mileage;
-
       return mileage;
     }
   }
@@ -20835,7 +20871,192 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\r\n  transport\r\n")])
+  return _c("div", [
+    [0, 1, 2, 4].indexOf(this.selected.type_transport) != -1 &&
+    this.selected.type_transport != null
+      ? _c(
+          "div",
+          {
+            staticStyle: {
+              width: "100%",
+              "margin-bottom": "10px",
+              "text-decoration": "underline"
+            }
+          },
+          [_vm._v("Характеристики:")]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-row", staticStyle: { width: "260px" } }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "transport_type" } }, [
+          _vm._v("Вид транспорта:")
+        ]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.selected.type_transport,
+                expression: "selected.type_transport"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "transport_type" },
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.selected,
+                    "type_transport",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                },
+                _vm.selectTransportType
+              ]
+            }
+          },
+          _vm._l(_vm.type_transport, function(item) {
+            return _c(
+              "option",
+              { key: item.value, domProps: { value: item.value } },
+              [_vm._v(_vm._s(item.text))]
+            )
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _vm.selected.type_transport == 0 && _vm.carmarkLoaded
+        ? _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "mark_type" } }, [
+              _vm._v("Марка автомобиля:")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.selected.carmark,
+                    expression: "selected.carmark"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "mark_type" },
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.selected,
+                        "carmark",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    },
+                    _vm.selectMark
+                  ]
+                }
+              },
+              _vm._l(_vm.carmark, function(item) {
+                return _c(
+                  "option",
+                  {
+                    key: item.id_car_mark,
+                    domProps: { value: item.id_car_mark }
+                  },
+                  [_vm._v(_vm._s(item.name))]
+                )
+              }),
+              0
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.selected.carmark != null && _vm.selected.type_transport == 0
+        ? _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "mark_type" } }, [_vm._v("Модель:")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.selected.model,
+                    expression: "selected.model"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "mark_type" },
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.selected,
+                        "model",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    },
+                    _vm.selectModel
+                  ]
+                }
+              },
+              [
+                _c("option", { domProps: { value: null } }, [
+                  _vm._v("-- Выберите модель --")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.models, function(item) {
+                  return _c(
+                    "option",
+                    {
+                      key: item.id_car_model,
+                      domProps: { value: item.id_car_model }
+                    },
+                    [_vm._v(_vm._s(item.name))]
+                  )
+                })
+              ],
+              2
+            )
+          ])
+        : _vm._e()
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
