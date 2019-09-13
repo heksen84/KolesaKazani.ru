@@ -2121,8 +2121,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-
 
 
 
@@ -2165,8 +2163,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   // компонент создан
   created: function created() {
 
-    //    console.log(this.$root.advert_data)
-
     this.transport_chars = this.$root.advert_data;
 
     // значения по умолчанию
@@ -2203,6 +2199,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$store.commit("SetInfoLabelDescription", "default");
 
       this.selected.model = null;
+      this.selected.carmark = null;
 
       if (this.selected.type_transport == null) {
         this.$store.commit("ShowCommonTransport", false);

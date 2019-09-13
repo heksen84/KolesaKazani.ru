@@ -79,11 +79,9 @@
     </b-form-group>
   </div>
 -->
-</div>
 </template>
 
 <script>
-
 import { post, get, interceptors } from '../../../helpers/api'
 
 export default {
@@ -145,10 +143,8 @@ export default {
   // компонент создан
   created() {
 
-//    console.log(this.$root.advert_data)
-
-    this.transport_chars = this.$root.advert_data;    
-    
+    this.transport_chars = this.$root.advert_data;
+        
     // значения по умолчанию
     this.transport_chars.rule_position   = 0;
     this.transport_chars.fuel_type       = 0;
@@ -180,8 +176,9 @@ export default {
       this.$store.commit("ResetField", "price");
       this.$store.commit("SetPlaceholderInfoText",  "default");
       this.$store.commit("SetInfoLabelDescription", "default");
-      
+            
       this.selected.model = null;
+      this.selected.carmark = null;
       
       
       if (this.selected.type_transport==null) {
