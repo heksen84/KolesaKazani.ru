@@ -26,11 +26,25 @@
               </select>
           </div>
 
-          <div class="form-group" v-if="getComTransport">
+
+          <div class="form-group" v-if="getComTransport && selected.type_transport!=2">
+            <label for="helm_position">Положение руля:</label>
+            <select id="helm_position" class="form-control" v-model="selected.helm_position" @change="SetHelmPosition">                                        
+              <option :value="null">-- Выберите положение руля --</option>
+              <option v-for="(item, index) in helm_position" :value="item.value" :key="index">{{ item.text }}</option>
+            </select>
+          </div>
+
+          <div class="form-group" v-if="getComTransport && selected.helm_position!=null">
             <label for="car_year">Год выпуска:</label>
               <input id="car_year" class="form-control" style="width:120px"/>
           </div>
 
+          <div class="form-group" v-if="getComTransport && selected.helm_position!=null">
+            <label for="car_mileage">Пробег(км):</label>
+              <input id="car_mileage" class="form-control" type="number" v-model="mileage" style="width:145px" :formatter="SetMileage" required/>
+          </div>
+          
       </div>    
   </div>
 <!--  <div class="form-inline" v-if="$store.state.deal_selected">

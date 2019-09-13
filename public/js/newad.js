@@ -2126,6 +2126,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -21050,7 +21064,67 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _vm.getComTransport
+      _vm.getComTransport && _vm.selected.type_transport != 2
+        ? _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "helm_position" } }, [
+              _vm._v("Положение руля:")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.selected.helm_position,
+                    expression: "selected.helm_position"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "helm_position" },
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.selected,
+                        "helm_position",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    },
+                    _vm.SetHelmPosition
+                  ]
+                }
+              },
+              [
+                _c("option", { domProps: { value: null } }, [
+                  _vm._v("-- Выберите положение руля --")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.helm_position, function(item, index) {
+                  return _c(
+                    "option",
+                    { key: index, domProps: { value: item.value } },
+                    [_vm._v(_vm._s(item.text))]
+                  )
+                })
+              ],
+              2
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.getComTransport && _vm.selected.helm_position != null
         ? _c("div", { staticClass: "form-group" }, [
             _c("label", { attrs: { for: "car_year" } }, [
               _vm._v("Год выпуска:")
@@ -21060,6 +21134,42 @@ var render = function() {
               staticClass: "form-control",
               staticStyle: { width: "120px" },
               attrs: { id: "car_year" }
+            })
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.getComTransport && _vm.selected.helm_position != null
+        ? _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "car_mileage" } }, [
+              _vm._v("Пробег(км):")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.mileage,
+                  expression: "mileage"
+                }
+              ],
+              staticClass: "form-control",
+              staticStyle: { width: "145px" },
+              attrs: {
+                id: "car_mileage",
+                type: "number",
+                formatter: _vm.SetMileage,
+                required: ""
+              },
+              domProps: { value: _vm.mileage },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.mileage = $event.target.value
+                }
+              }
             })
           ])
         : _vm._e()
