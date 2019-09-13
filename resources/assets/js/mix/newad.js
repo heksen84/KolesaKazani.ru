@@ -65,12 +65,17 @@ const store = new Vuex.Store({
   }
 })
 
-
 // --------------------------
 // экземляр приложения vue
 // --------------------------
 export default new Vue ({
+  
+  data () {     
+    return { advert_data: {} }  // глобальный объект объявления
+  },
+
   store,
   el: '#app',
   components: { newad }
+
 });

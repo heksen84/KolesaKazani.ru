@@ -26,9 +26,9 @@
             <form id="advertform" @submit="onSubmit" v-if="sdelka!=null">  
                 <!-- Категории -->
 		        <div v-if="root"></div>
-                <!--<transport v-else-if="transport"/>-->
-                <h1 v-else-if="transport">transport</h1>
-                <h1 v-else-if="real_estate">nedvizh</h1>        
+                <transport v-else-if="transport"/>
+                <!--<h1 v-else-if="transport">transport</h1>
+                <h1 v-else-if="real_estate">nedvizh</h1>-->
             </form>
 
         </div>
@@ -37,45 +37,49 @@
 </template>
 <script>
 
+import transport from "./subcategories/transport.vue"
+
 // Логика
 export default {    
 
 // Входящие данные
 props: ["categories", "dealtypes", "regions"],
 
+components: { transport },
+
 data () {
     return 	{
-            advert_data: {}, // Объект объявления который пойдёт на сервер      
-			summ_str: "",					
-			const_phone1_max_length: 9,			
-			setCoordsDialog: false,
-			coordinates_set: false,
-			placeChanged: false,			
-			category: null,
-			sdelka: null,
-			deal_id: null,
-			info: "",
-			price: "",
-			number: 0,
-			preview_images: [],
-			real_images: [],
-			root: false,
-			regions_model: null,
-			places: [],
-			places_model: null,
-			phone1: "",
-			phone2: "",
-			phone3: "",
-			transport:false,			// транспорт
-			real_estate:false,			// недвижимость
-			appliances:false,			// бытовая техника
-			work_and_buisness:false,	// работа и бизнес
-			for_home:false,				// для дома и дачи
-			personal_effects:false,		// личные вещи
-			animals:false,				// животные
-			hobbies_and_leisure:false,	// хобби и отдых
-			services:false,				// услуги
-			other:false					// другое
+        //advert_data: {}, // Объект объявления который пойдёт на сервер
+		summ_str: "",
+		const_phone1_max_length: 9,			
+		setCoordsDialog: false,
+		coordinates_set: false,
+		placeChanged: false,			
+		category: null,
+		sdelka: null,
+		deal_id: null,
+		info: "",
+		price: "",
+		number: 0,
+		preview_images: [],
+		real_images: [],
+		root: false,
+		regions_model: null,
+		places: [],
+		places_model: null,
+		phone1: "",
+		phone2: "",
+		phone3: "",
+		transport:false,			// транспорт
+		real_estate:false,			// недвижимость
+		appliances:false,			// бытовая техника
+		work_and_buisness:false,	// работа и бизнес
+		for_home:false,				// для дома и дачи
+		personal_effects:false,		// личные вещи
+		animals:false,				// животные
+		hobbies_and_leisure:false,	// хобби и отдых
+		services:false,				// услуги
+		other:false					// другое
     }
 },
 
@@ -104,29 +108,30 @@ advReset(category_data) {
     this.$store.commit("SetDealSelected", false);
 
     // сброс массива объявления и переинициализация его
-    this.advert_data = [];
+    //this.$root.advert_data = [];
+    this.$root.advert_data = {};
 
     // ----------------------------------------------------------------------------------------------------------------
     // Не использовать операции сделки во всех категориях, т.к. пользователь может ввести описание объявления сам. 
     // Типа: Продам то-то-то-то или Куплю то-то-то-то
     // ----------------------------------------------------------------------------------------------------------------
     switch(category_data) {
-     case 3: this.advert_data.adv_deal = ""; break; 
-     case 4: this.advert_data.adv_deal = ""; break; 
-     case 5: this.advert_data.adv_deal = ""; break; 
-     case 6: this.advert_data.adv_deal = ""; break; 
-     case 7: this.advert_data.adv_deal = ""; break; 
-     case 8: this.advert_data.adv_deal = ""; break; 
-     case 9: this.advert_data.adv_deal = ""; break; 
-     case 10: this.advert_data.adv_deal = ""; break; 
-     default: this.advert_data.adv_deal = 0; // покупка по умолчанию
+     case 3: this.$root.advert_data.adv_deal = ""; break; 
+     case 4: this.$root.advert_data.adv_deal = ""; break; 
+     case 5: this.$root.advert_data.adv_deal = ""; break; 
+     case 6: this.$root.advert_data.adv_deal = ""; break; 
+     case 7: this.$root.advert_data.adv_deal = ""; break; 
+     case 8: this.$root.advert_data.adv_deal = ""; break; 
+     case 9: this.$root.advert_data.adv_deal = ""; break; 
+     case 10: this.$root.advert_data.adv_deal = ""; break; 
+     default: this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
     }
       
     //this.$root.advert_data.adv_deal = 0; // покупка по умолчанию    
 
-    this.advert_data.adv_info = null; // добавляю формально поле доп. информация
-    this.advert_data.adv_price = "";
-    this.advert_data.adv_phone1 = "";
+    this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
+    this.$root.advert_data.adv_price = "";
+    this.$root.advert_data.adv_phone1 = "";
 
     // сброс моделей
     this.sdelka = 0;
@@ -164,9 +169,10 @@ advReset(category_data) {
 // --------------------------------------
 // Выбрать сделку
 // --------------------------------------
-setDeal(deal_id) {    
-    this.advert_data.adv_deal=deal_id;
-    this.deal_id=deal_id;
+setDeal() {    
+    //console.log("Сделка: "+this.sdelka)
+    this.$root.advert_data.adv_deal=this.sdelka;
+    this.deal_id=this.sdelka;
     this.$store.commit("SetDealSelected", true);
 },
 
@@ -176,7 +182,6 @@ setDeal(deal_id) {
 advReset(category_data) {
 
     let form = document.getElementById("advertform");
-    
     if (form) form.reset();
 
     this.summ_str = "";
@@ -185,30 +190,30 @@ advReset(category_data) {
     this.$store.commit("SetDealSelected", false);
 
     // сброс массива объявления и переинициализация его
-    //this.advert_data = [];
-    this.advert_data = {};
+    //this.$root.advert_data = [];
+    this.$root.advert_data = {};
 
     // ----------------------------------------------------------------------------------------------------------------
     // Не использовать операции сделки во всех категориях, т.к. пользователь может ввести описание объявления сам. 
     // Типа: Продам то-то-то-то или Куплю то-то-то-то
     // ----------------------------------------------------------------------------------------------------------------
     switch(category_data) {
-        case 3: this.advert_data.adv_deal = ""; break; 
-        case 4: this.advert_data.adv_deal = ""; break; 
-        case 5: this.advert_data.adv_deal = ""; break; 
-        case 6: this.advert_data.adv_deal = ""; break; 
-        case 7: this.advert_data.adv_deal = ""; break; 
-        case 8: this.advert_data.adv_deal = ""; break; 
-        case 9: this.advert_data.adv_deal = ""; break; 
-        case 10: this.advert_data.adv_deal = ""; break; 
-      default: this.advert_data.adv_deal = 0; // покупка по умолчанию
+        case 3: this.$root.advert_data.adv_deal = ""; break; 
+        case 4: this.$root.advert_data.adv_deal = ""; break; 
+        case 5: this.$root.advert_data.adv_deal = ""; break; 
+        case 6: this.$root.advert_data.adv_deal = ""; break; 
+        case 7: this.$root.advert_data.adv_deal = ""; break; 
+        case 8: this.$root.advert_data.adv_deal = ""; break; 
+        case 9: this.$root.advert_data.adv_deal = ""; break; 
+        case 10: this.$root.advert_data.adv_deal = ""; break; 
+      default: this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
     }
       
     //this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
 
-    this.advert_data.adv_info = null; // добавляю формально поле доп. информация
-    this.advert_data.adv_price = "";
-    this.advert_data.adv_phone1 = "";
+    this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
+    this.$root.advert_data.adv_price = "";
+    this.$root.advert_data.adv_phone1 = "";
 
     // сброс моделей
     this.sdelka = null;
@@ -237,9 +242,9 @@ advReset(category_data) {
     this.other=false;				      // другое
   }
 
-    // сбрасываю фотки
-    let photos = document.querySelector("input[type=file]");
-    if (photos!=null) photos.value = "";
+  // сбрасываю фотки
+  let photos = document.querySelector("input[type=file]");
+  if (photos!=null) photos.value = "";
 
 },
 
@@ -259,7 +264,7 @@ changeCategory() {
   if (category == 4 || category == 9) { this.$store.commit("SetDealSelected", true); this.$store.commit("ShowFinalFields", true); }
   
   // добавляю категории
-  this.advert_data.adv_category=category;        
+  this.$root.advert_data.adv_category=category;        
   
   // скрываю дополнительные поля
   this.$store.commit("ShowFinalFields", false);
@@ -366,11 +371,13 @@ onSubmit(evt) {
     console.log(response);
     			
     if (response.data.result=="db.error") 
-        this.$root.$notify({group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error'});
+        //this.$root.$notify({group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error'});
+            alert("Неполадки в работе сервиса. Приносим свои извинения.")
 		else
-		if (response.data.result=="usr.error") this.$root.$notify({group: 'foo', text: "<h6>"+response.data.msg+"</h6>", type: 'error'});
+            if (response.data.result=="usr.error") 
+                this.$root.$notify({group: 'foo', text: "<h6>"+response.data.msg+"</h6>", type: 'error'});
 		else
-		alert("Объявление размещено");
+		    alert("Объявление размещено");
 		//	else 
 		//	window.location="home"; // переходим в личный кабинет
     }).catch(error => {

@@ -1,5 +1,7 @@
 <template>
-  <div class="form-inline" v-if="$store.state.deal_selected">
+<div>
+  transport
+<!--  <div class="form-inline" v-if="$store.state.deal_selected">
     <div style="width:100%;margin-bottom:10px;text-decoration:underline" v-if="[0,1,2,4].indexOf(this.selected.type_transport) != -1 && this.selected.type_transport!=null">Характеристики:</div>
     <b-form-group label="Вид транспорта:">
         <b-form-select v-model="selected.type_transport" class="mb-2 mr-sm-2 mb-sm-2"  @change="selectTransportType">
@@ -20,12 +22,7 @@
            <option v-for="item in models" :value="item.id_car_model" :key="item.id_car_model">{{item.name}}</option>
         </b-form-select>
     </b-form-group>
-
-  <!-------------------------------------------------------------
-    
-    Общие характеристики для всего транспорта
-    
-    ------------------------------------------------------------->
+  
    <b-form-group label="Год выпуска:" v-if="getComTransport">
        <b-form-input placeholder="Введите год" type="number" v-model="release_date" class="mb-2 mr-sm-2 mb-sm-2" style="width:130px" :formatter="SetReleaseDate" required></b-form-input>
    </b-form-group>
@@ -54,19 +51,22 @@
         </b-form-select>
     </b-form-group>
   </div>
+-->
+</div>
 </template>
 
 <script>
 
-import { post, get, interceptors } from '../../helpers/api'
+import { post, get, interceptors } from '../../../helpers/api'
+
 export default {
+
   data () {
     return 	{
 
         placeholder_info_text: "Введите текст объявления, например: ",
 
-        type_transport: 
-        [
+        type_transport: [
           { value: null, text: '-- Выберите вид транспорта --' },
           { value: 0, text: 'Легковой автомобиль' },
           { value: 1, text: 'Грузовой автомобиль' },
@@ -84,8 +84,7 @@ export default {
 
         transport_chars: null,        
 
-        selected: 
-        {
+        selected: {
           type_transport: null,
           carmark: null,
           model: null,
@@ -97,14 +96,12 @@ export default {
         release_date: null,
         mileage: null,
 
-        helm_position: 
-        [
+        helm_position: [
           { value: 0, text: 'Слева' },
           { value: 1, text: 'Справа' }
         ],
         
-        fuel_type: 
-        [
+        fuel_type: [
           { value: 0, text: 'Бензин' },
           { value: 1, text: 'Дизель' },
           { value: 2, text: 'Газ-бензин' },
@@ -119,14 +116,18 @@ export default {
   // компонент создан
   created() {
 
+    console.log(this.$root.advert_data)
+
     this.transport_chars = this.$root.advert_data;
+    //this.transport_chars = 123;
     
     // значения по умолчанию
-    this.transport_chars.rule_position   = 0;
+    /*this.transport_chars.rule_position   = 0;
     this.transport_chars.fuel_type       = 0;
     this.transport_chars.customs         = 1;
     this.transport_chars.release_date    = 0;
-    this.transport_chars.mileage         = 0;
+    this.transport_chars.mileage         = 0;*/
+
   },
   
   computed: {
