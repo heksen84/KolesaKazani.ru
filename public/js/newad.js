@@ -1677,7 +1677,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
   data: function data() {
     return {
-      //advert_data: {}, // Объект объявления который пойдёт на сервер
       summ_str: "",
       const_phone1_max_length: 9,
       setCoordsDialog: false,

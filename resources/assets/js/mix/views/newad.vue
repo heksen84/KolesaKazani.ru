@@ -48,8 +48,7 @@ props: ["categories", "dealtypes", "regions"],
 components: { transport },
 
 data () {
-    return 	{
-        //advert_data: {}, // Объект объявления который пойдёт на сервер
+    return 	{        
 		summ_str: "",
 		const_phone1_max_length: 9,			
 		setCoordsDialog: false,
