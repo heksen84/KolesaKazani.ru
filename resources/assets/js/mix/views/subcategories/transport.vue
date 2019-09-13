@@ -1,6 +1,6 @@
 <template>
 <div>  
-    <div style="width:100%;margin-bottom:10px;text-decoration:underline" v-if="[0,1,2,4].indexOf(this.selected.type_transport) != -1 && this.selected.type_transport!=null">Характеристики:</div>      
+    <!--<div style="width:100%;margin-bottom:10px;text-decoration:underline" v-if="[0,1,2,4].indexOf(this.selected.type_transport) != -1 && this.selected.type_transport!=null">Характеристики:</div>-->
       <div class="form-row" style="width:260px">
         
         <div class="form-group">        
@@ -12,7 +12,8 @@
           
           <div class="form-group" v-if="selected.type_transport==0 && carmarkLoaded">
             <label for="mark_type">Марка автомобиля:</label>
-              <select id="mark_type" class="form-control" v-model="selected.carmark" @change="selectMark">                          
+              <select id="mark_type" class="form-control" v-model="selected.carmark" @change="selectMark">
+                <option :value="null">-- Выберите марку --</option>
                 <option v-for="item in carmark" :value="item.id_car_mark" :key="item.id_car_mark">{{ item.name }}</option>
               </select>
           </div>
@@ -209,7 +210,7 @@ export default {
           // запрос: получить марки автомобилей
           get("/getCarsMarks").then((res) => {            
             this.carmark = res.data;
-            this.selected.carmark=1;
+            //this.selected.carmark=1;
             this.carmarkLoaded=true;
             console.log(this.carmark);
           }).catch((err) => {

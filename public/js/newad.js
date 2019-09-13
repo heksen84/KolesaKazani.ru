@@ -2121,6 +2121,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -2229,7 +2230,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             // запрос: получить марки автомобилей
             Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/getCarsMarks").then(function (res) {
               _this.carmark = res.data;
-              _this.selected.carmark = 1;
+              //this.selected.carmark=1;
               _this.carmarkLoaded = true;
               console.log(_this.carmark);
             }).catch(function (err) {
@@ -20872,21 +20873,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    [0, 1, 2, 4].indexOf(this.selected.type_transport) != -1 &&
-    this.selected.type_transport != null
-      ? _c(
-          "div",
-          {
-            staticStyle: {
-              width: "100%",
-              "margin-bottom": "10px",
-              "text-decoration": "underline"
-            }
-          },
-          [_vm._v("Характеристики:")]
-        )
-      : _vm._e(),
-    _vm._v(" "),
     _c("div", { staticClass: "form-row", staticStyle: { width: "260px" } }, [
       _c("div", { staticClass: "form-group" }, [
         _c("label", { attrs: { for: "transport_type" } }, [
@@ -20980,17 +20966,23 @@ var render = function() {
                   ]
                 }
               },
-              _vm._l(_vm.carmark, function(item) {
-                return _c(
-                  "option",
-                  {
-                    key: item.id_car_mark,
-                    domProps: { value: item.id_car_mark }
-                  },
-                  [_vm._v(_vm._s(item.name))]
-                )
-              }),
-              0
+              [
+                _c("option", { domProps: { value: null } }, [
+                  _vm._v("-- Выберите марку --")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.carmark, function(item) {
+                  return _c(
+                    "option",
+                    {
+                      key: item.id_car_mark,
+                      domProps: { value: item.id_car_mark }
+                    },
+                    [_vm._v(_vm._s(item.name))]
+                  )
+                })
+              ],
+              2
             )
           ])
         : _vm._e(),
