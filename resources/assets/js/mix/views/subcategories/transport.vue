@@ -26,6 +26,11 @@
               </select>
           </div>
 
+          <div class="form-group" v-if="getComTransport">
+            <label for="car_year">Год выпуска:</label>
+              <input id="car_year" class="form-control" style="width:120px"/>
+          </div>
+
       </div>    
   </div>
 <!--  <div class="form-inline" v-if="$store.state.deal_selected">
@@ -144,7 +149,7 @@ export default {
   created() {
 
     this.transport_chars = this.$root.advert_data;
-        
+
     // значения по умолчанию
     this.transport_chars.rule_position   = 0;
     this.transport_chars.fuel_type       = 0;

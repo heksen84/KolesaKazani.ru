@@ -2121,6 +2121,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -21042,6 +21047,20 @@ var render = function() {
               ],
               2
             )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.getComTransport
+        ? _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "car_year" } }, [
+              _vm._v("Год выпуска:")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              staticStyle: { width: "120px" },
+              attrs: { id: "car_year" }
+            })
           ])
         : _vm._e()
     ])
