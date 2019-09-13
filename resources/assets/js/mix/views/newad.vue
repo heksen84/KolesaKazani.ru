@@ -95,6 +95,7 @@ closeAndReturn() {
 advReset(category_data) {
 
     let form = document.getElementById("advertform");
+
     if (form) form.reset();
 
     this.summ_str = "";
@@ -175,6 +176,7 @@ setDeal(deal_id) {
 advReset(category_data) {
 
     let form = document.getElementById("advertform");
+    
     if (form) form.reset();
 
     this.summ_str = "";
@@ -335,11 +337,15 @@ changeCategory() {
     }
 },
 
+// --------------------
 // Отправить форму
+// --------------------
 onSubmit(evt) {
+
     evt.preventDefault();
     
-	var formData = new FormData();
+    // объект формы
+    var formData = new FormData();
 
 	// устанавливаю цену если она пустая, т.к. бэкенду нужна цена
 	if (this.$root.advert_data.adv_price==null || this.$root.advert_data.adv_price=="")       
@@ -352,22 +358,24 @@ onSubmit(evt) {
 	for( var i=0; i < this.real_images.length; i++ )
       formData.append('images['+i+']', this.real_images[i]);		
 						
-	// Размещаю объявление
+    // ------------------------------
+    // Размещение объявление
+    // ------------------------------
 	axios.post("/create", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {			
       
-      console.log(response);
+    console.log(response);
     			
-      if (response.data.result=="db.error") 
+    if (response.data.result=="db.error") 
         this.$root.$notify({group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error'});
-		  else
-		    if (response.data.result=="usr.error") this.$root.$notify({group: 'foo', text: "<h6>"+response.data.msg+"</h6>", type: 'error'});
-		  else
-		    alert("Объявление размещено");
-		  //	else 
-		  //	window.location="home"; // переходим в личный кабинет
+		else
+		if (response.data.result=="usr.error") this.$root.$notify({group: 'foo', text: "<h6>"+response.data.msg+"</h6>", type: 'error'});
+		else
+		alert("Объявление размещено");
+		//	else 
+		//	window.location="home"; // переходим в личный кабинет
     }).catch(error => {
-			console.log(error.response)
-			this.$root.$notify({group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error'});
+		console.log(error.response)
+		this.$root.$notify({group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error'});
 	})
   }
 }

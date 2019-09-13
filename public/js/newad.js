@@ -1723,6 +1723,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     advReset: function advReset(category_data) {
 
       var form = document.getElementById("advertform");
+
       if (form) form.reset();
 
       this.summ_str = "";
@@ -1808,6 +1809,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }, _defineProperty(_methods, "advReset", function advReset(category_data) {
 
     var form = document.getElementById("advertform");
+
     if (form) form.reset();
 
     this.summ_str = "";
@@ -1987,6 +1989,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     evt.preventDefault();
 
+    // объект формы
     var formData = new FormData();
 
     // устанавливаю цену если она пустая, т.к. бэкенду нужна цена
@@ -2000,7 +2003,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     // Записываю изображения
     for (var i = 0; i < this.real_images.length; i++) {
       formData.append('images[' + i + ']', this.real_images[i]);
-    } // Размещаю объявление
+    } // ------------------------------
+    // Размещение объявление
+    // ------------------------------
     axios.post("/create", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(function (response) {
 
       console.log(response);
