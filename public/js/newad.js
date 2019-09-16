@@ -1663,6 +1663,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -1859,7 +1863,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.$root.advert_data.adv_phone1 = "";
 
     // сброс моделей
-    this.sdelka = null;
+    //this.sdelka = null;
     this.price = "";
     this.info = "";
     this.phone1 = "";
@@ -2037,6 +2041,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -20887,9 +20909,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "form-row", staticStyle: { width: "260px" } }, [
-      _c("div", { staticClass: "form-group" }, [
+  return _c("span", [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6 form-group" }, [
         _c("label", { attrs: { for: "transport_type" } }, [
           _vm._v("Вид транспорта:")
         ]),
@@ -20940,7 +20962,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _vm.selected.type_transport == 0 && _vm.carmarkLoaded
-        ? _c("div", { staticClass: "form-group" }, [
+        ? _c("div", { staticClass: "col-md-6 form-group" }, [
             _c("label", { attrs: { for: "mark_type" } }, [
               _vm._v("Марка автомобиля:")
             ]),
@@ -21000,10 +21022,12 @@ var render = function() {
               2
             )
           ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.selected.carmark != null && _vm.selected.type_transport == 0
-        ? _c("div", { staticClass: "form-group" }, [
+        : _vm._e()
+    ]),
+    _vm._v(" "),
+    _vm.selected.carmark != null && _vm.selected.type_transport == 0
+      ? _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-6 form-group" }, [
             _c("label", { attrs: { for: "mark_type" } }, [_vm._v("Модель:")]),
             _vm._v(" "),
             _c(
@@ -21060,71 +21084,73 @@ var render = function() {
               ],
               2
             )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.getComTransport && _vm.selected.type_transport != 2
-        ? _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "helm_position" } }, [
-              _vm._v("Положение руля:")
-            ]),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.selected.helm_position,
-                    expression: "selected.helm_position"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { id: "helm_position" },
-                on: {
-                  change: [
-                    function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.selected,
-                        "helm_position",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    },
-                    _vm.SetHelmPosition
-                  ]
-                }
-              },
-              [
-                _c("option", { domProps: { value: null } }, [
-                  _vm._v("-- Выберите положение руля --")
+          ]),
+          _vm._v(" "),
+          _vm.getComTransport && _vm.selected.type_transport != 2
+            ? _c("div", { staticClass: "col-md-6 form-group" }, [
+                _c("label", { attrs: { for: "helm_position" } }, [
+                  _vm._v("Положение руля:")
                 ]),
                 _vm._v(" "),
-                _vm._l(_vm.helm_position, function(item, index) {
-                  return _c(
-                    "option",
-                    { key: index, domProps: { value: item.value } },
-                    [_vm._v(_vm._s(item.text))]
-                  )
-                })
-              ],
-              2
-            )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.selected.helm_position,
+                        expression: "selected.helm_position"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { id: "helm_position" },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.selected,
+                            "helm_position",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
+                        _vm.SetHelmPosition
+                      ]
+                    }
+                  },
+                  [
+                    _c("option", { domProps: { value: null } }, [
+                      _vm._v("-- Выберите положение руля --")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.helm_position, function(item, index) {
+                      return _c(
+                        "option",
+                        { key: index, domProps: { value: item.value } },
+                        [_vm._v(_vm._s(item.text))]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ])
+            : _vm._e()
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
       _vm.getComTransport && _vm.selected.helm_position != null
-        ? _c("div", { staticClass: "form-group" }, [
+        ? _c("div", { staticClass: "col-auto form-group" }, [
             _c("label", { attrs: { for: "car_year" } }, [
               _vm._v("Год выпуска:")
             ]),
@@ -21138,7 +21164,7 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm.getComTransport && _vm.selected.helm_position != null
-        ? _c("div", { staticClass: "form-group" }, [
+        ? _c("div", { staticClass: "col-auto form-group" }, [
             _c("label", { attrs: { for: "car_mileage" } }, [
               _vm._v("Пробег(км):")
             ]),
@@ -21170,6 +21196,105 @@ var render = function() {
                 }
               }
             })
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-auto form-group" }, [
+        _c("label", { attrs: { for: "mark_type" } }, [_vm._v("Вид топлива:")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.selected.fuel_type,
+                expression: "selected.fuel_type"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "mark_type" },
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.selected,
+                    "fuel_type",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                },
+                _vm.SetFuelType
+              ]
+            }
+          },
+          _vm._l(_vm.fuel_type, function(item, index) {
+            return _c(
+              "option",
+              { key: index, domProps: { value: item.value } },
+              [_vm._v(_vm._s(item.text))]
+            )
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _vm.getComTransport
+        ? _c("div", { staticClass: "col-auto form-group" }, [
+            _c("label", { attrs: { for: "helm_position" } }, [
+              _vm._v("Растоможен:")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.selected.car_customs,
+                    expression: "selected.car_customs"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "helm_position" },
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.selected,
+                        "car_customs",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    },
+                    _vm.SetTransportCustoms
+                  ]
+                }
+              },
+              [
+                _c("option", { domProps: { value: 1 } }, [_vm._v("Да")]),
+                _vm._v(" "),
+                _c("option", { domProps: { value: 0 } }, [_vm._v("Нет")])
+              ]
+            )
           ])
         : _vm._e()
     ])
@@ -21225,118 +21350,113 @@ var render = function() {
           _vm._v(" "),
           _c("hr"),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "form-group", staticStyle: { width: "260px" } },
-            [
-              _c("label", { attrs: { for: "categories" } }, [
-                _vm._v("Категория товара или услуги:")
-              ]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.category,
-                      expression: "category"
+          _c("div", { staticStyle: { "margin-bottom": "10px" } }, [
+            _c("label", { staticStyle: { width: "270px" } }, [
+              _vm._v("Вид сделки:")
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "form-check", staticStyle: { width: "260px" } },
+              _vm._l(_vm.dealtypes, function(item, index) {
+                return _c("div", { key: index }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.sdelka,
+                        expression: "sdelka"
+                      }
+                    ],
+                    staticClass: "form-check-input",
+                    attrs: {
+                      id: item.id,
+                      type: "radio",
+                      name: "inlineRadioOptions"
+                    },
+                    domProps: {
+                      value: item.id,
+                      checked: _vm._q(_vm.sdelka, item.id)
+                    },
+                    on: {
+                      change: [
+                        function($event) {
+                          _vm.sdelka = item.id
+                        },
+                        _vm.setDeal
+                      ]
                     }
-                  ],
-                  staticClass: "form-control",
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.category = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      },
-                      _vm.changeCategory
-                    ]
-                  }
-                },
-                [
-                  _c("option", { domProps: { value: null } }, [
-                    _vm._v("-- Выберите категорию --")
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "form-check-label",
+                      attrs: { for: item.id }
+                    },
+                    [_vm._v(_vm._s(item.deal_name_1))]
+                  )
+                ])
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _vm.sdelka != null
+            ? _c("div", { staticClass: "row form-group" }, [
+                _c("div", { staticClass: "col-md-4" }, [
+                  _c("label", { attrs: { for: "categories" } }, [
+                    _vm._v("Категория товара или услуги:")
                   ]),
                   _vm._v(" "),
-                  _vm._l(_vm.categories, function(item, index) {
-                    return _c(
-                      "option",
-                      { key: index, domProps: { value: item.id } },
-                      [_vm._v(_vm._s(item.name))]
-                    )
-                  })
-                ],
-                2
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _vm.category != null
-            ? _c("div", { staticStyle: { "margin-bottom": "10px" } }, [
-                _c("label", { staticStyle: { width: "270px" } }, [
-                  _vm._v("Вид сделки:")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "form-check",
-                    staticStyle: { width: "260px" }
-                  },
-                  _vm._l(_vm.dealtypes, function(item, index) {
-                    return _c("div", { key: index }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.sdelka,
-                            expression: "sdelka"
-                          }
-                        ],
-                        staticClass: "form-check-input",
-                        attrs: {
-                          id: item.id,
-                          type: "radio",
-                          name: "inlineRadioOptions"
-                        },
-                        domProps: {
-                          value: item.id,
-                          checked: _vm._q(_vm.sdelka, item.id)
-                        },
-                        on: {
-                          change: [
-                            function($event) {
-                              _vm.sdelka = item.id
-                            },
-                            _vm.setDeal
-                          ]
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
+                  _c(
+                    "select",
+                    {
+                      directives: [
                         {
-                          staticClass: "form-check-label",
-                          attrs: { for: item.id }
-                        },
-                        [_vm._v(_vm._s(item.deal_name_1))]
-                      )
-                    ])
-                  }),
-                  0
-                )
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.category,
+                          expression: "category"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.category = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                          _vm.changeCategory
+                        ]
+                      }
+                    },
+                    [
+                      _c("option", { domProps: { value: null } }, [
+                        _vm._v("-- Выберите категорию --")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.categories, function(item, index) {
+                        return _c(
+                          "option",
+                          { key: index, domProps: { value: item.id } },
+                          [_vm._v(_vm._s(item.name))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ])
               ])
             : _vm._e(),
           _vm._v(" "),

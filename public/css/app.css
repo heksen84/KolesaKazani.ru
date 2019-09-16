@@ -64,8 +64,7 @@ html {
 
 body {
   color: black;
-  background: white;
-  background-image: url("/images/site/fon.jpg");
+  background: gainsboro;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

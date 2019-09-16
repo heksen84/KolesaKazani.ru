@@ -5,15 +5,8 @@
             <div class="close_button" title="Закрыть страницу" style="font-weight:bold" @click="closeAndReturn">X</div>
 		    <h1 class="title_text" style="margin-top:12px">подать объявление</h1>
             <hr>
-            <div class="form-group" style="width:260px">
-                <label for="categories">Категория товара или услуги:</label>
-                <select class="form-control" v-model="category" @change="changeCategory">            
-                    <option v-bind:value="null">-- Выберите категорию --</option>
-                    <option v-for="(item, index) in categories" :key="index" v-bind:value="item.id">{{ item.name }}</option>
-                </select>                
-            </div>
 
-            <div v-if="category!=null" style="margin-bottom:10px">
+            <div style="margin-bottom:10px">
             <label style="width:270px">Вид сделки:</label>            
             <div class="form-check" style="width:260px">
                 <div v-for="(item,index) in dealtypes" :key="index">
@@ -22,6 +15,17 @@
                 </div>
             </div>
             </div>
+
+            <div class="row form-group" v-if="sdelka!=null">
+                <div class="col-md-4">
+                    <label for="categories">Категория товара или услуги:</label>
+                        <select class="form-control" v-model="category" @change="changeCategory">            
+                            <option v-bind:value="null">-- Выберите категорию --</option>
+                            <option v-for="(item, index) in categories" :key="index" v-bind:value="item.id">{{ item.name }}</option>
+                        </select>                
+                </div>
+            </div>    
+            
 
             <form id="advertform" @submit="onSubmit" v-if="sdelka!=null">  
                 <!-- Категории -->
@@ -215,7 +219,7 @@ advReset(category_data) {
     this.$root.advert_data.adv_phone1 = "";
 
     // сброс моделей
-    this.sdelka = null;
+    //this.sdelka = null;
     this.price = "";
     this.info = "";
     this.phone1 = "";
