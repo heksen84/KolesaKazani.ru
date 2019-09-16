@@ -21087,7 +21087,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _vm.getComTransport && _vm.selected.type_transport != 2
-            ? _c("div", { staticClass: "col-md-6 form-group" }, [
+            ? _c("div", { staticClass: "col-auto form-group" }, [
                 _c("label", { attrs: { for: "helm_position" } }, [
                   _vm._v("Положение руля:")
                 ]),
@@ -21148,23 +21148,11 @@ var render = function() {
         ])
       : _vm._e(),
     _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _vm.getComTransport && _vm.selected.helm_position != null
-        ? _c("div", { staticClass: "col-auto form-group" }, [
-            _c("label", { attrs: { for: "car_year" } }, [
-              _vm._v("Год выпуска:")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              staticStyle: { width: "120px" },
-              attrs: { id: "car_year" }
-            })
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.getComTransport && _vm.selected.helm_position != null
-        ? _c("div", { staticClass: "col-auto form-group" }, [
+    _vm.getComTransport && _vm.selected.helm_position != null
+      ? _c("div", { staticClass: "row" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-auto form-group" }, [
             _c("label", { attrs: { for: "car_mileage" } }, [
               _vm._v("Пробег(км):")
             ]),
@@ -21196,61 +21184,11 @@ var render = function() {
                 }
               }
             })
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-auto form-group" }, [
-        _c("label", { attrs: { for: "mark_type" } }, [_vm._v("Вид топлива:")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.selected.fuel_type,
-                expression: "selected.fuel_type"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { id: "mark_type" },
-            on: {
-              change: [
-                function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.$set(
-                    _vm.selected,
-                    "fuel_type",
-                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                  )
-                },
-                _vm.SetFuelType
-              ]
-            }
-          },
-          _vm._l(_vm.fuel_type, function(item, index) {
-            return _c(
-              "option",
-              { key: index, domProps: { value: item.value } },
-              [_vm._v(_vm._s(item.text))]
-            )
-          }),
-          0
-        )
-      ]),
-      _vm._v(" "),
-      _vm.getComTransport
-        ? _c("div", { staticClass: "col-auto form-group" }, [
-            _c("label", { attrs: { for: "helm_position" } }, [
-              _vm._v("Растоможен:")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-auto form-group" }, [
+            _c("label", { attrs: { for: "fuel_type" } }, [
+              _vm._v("Вид топлива:")
             ]),
             _vm._v(" "),
             _c(
@@ -21260,12 +21198,12 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.selected.car_customs,
-                    expression: "selected.car_customs"
+                    value: _vm.selected.fuel_type,
+                    expression: "selected.fuel_type"
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { id: "helm_position" },
+                attrs: { id: "fuel_type" },
                 on: {
                   change: [
                     function($event) {
@@ -21279,28 +21217,97 @@ var render = function() {
                         })
                       _vm.$set(
                         _vm.selected,
-                        "car_customs",
+                        "fuel_type",
                         $event.target.multiple
                           ? $$selectedVal
                           : $$selectedVal[0]
                       )
                     },
-                    _vm.SetTransportCustoms
+                    _vm.SetFuelType
                   ]
                 }
               },
-              [
-                _c("option", { domProps: { value: 1 } }, [_vm._v("Да")]),
-                _vm._v(" "),
-                _c("option", { domProps: { value: 0 } }, [_vm._v("Нет")])
-              ]
+              _vm._l(_vm.fuel_type, function(item, index) {
+                return _c(
+                  "option",
+                  { key: index, domProps: { value: item.value } },
+                  [_vm._v(_vm._s(item.text))]
+                )
+              }),
+              0
             )
-          ])
-        : _vm._e()
-    ])
+          ]),
+          _vm._v(" "),
+          _vm.getComTransport
+            ? _c("div", { staticClass: "col-auto form-group" }, [
+                _c("label", { attrs: { for: "car_customs" } }, [
+                  _vm._v("Растоможен:")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.selected.car_customs,
+                        expression: "selected.car_customs"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { id: "car_customs" },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.selected,
+                            "car_customs",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
+                        _vm.SetTransportCustoms
+                      ]
+                    }
+                  },
+                  [
+                    _c("option", { domProps: { value: 1 } }, [_vm._v("Да")]),
+                    _vm._v(" "),
+                    _c("option", { domProps: { value: 0 } }, [_vm._v("Нет")])
+                  ]
+                )
+              ])
+            : _vm._e()
+        ])
+      : _vm._e()
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-auto form-group" }, [
+      _c("label", { attrs: { for: "car_year" } }, [_vm._v("Год выпуска:")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        staticStyle: { width: "120px" },
+        attrs: { id: "car_year" }
+      })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

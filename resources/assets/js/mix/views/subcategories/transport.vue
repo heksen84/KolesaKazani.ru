@@ -28,7 +28,7 @@
                 </select>        
             </div>
 
-            <div class="col-md-6 form-group" v-if="getComTransport && selected.type_transport!=2">
+            <div class="col-auto form-group" v-if="getComTransport && selected.type_transport!=2">
               <label for="helm_position">Положение руля:</label>
                 <select id="helm_position" class="form-control" v-model="selected.helm_position" @change="SetHelmPosition">                                        
                   <option :value="null">-- Выберите положение руля --</option>
@@ -37,26 +37,26 @@
             </div>
           </div>
 
-          <div class="row">      
-            <div class="col-auto form-group" v-if="getComTransport && selected.helm_position!=null">
+          <div class="row" v-if="getComTransport && selected.helm_position!=null">      
+            <div class="col-auto form-group" >
               <label for="car_year">Год выпуска:</label>
                 <input id="car_year" class="form-control" style="width:120px"/>
             </div>
-            <div class="col-auto form-group" v-if="getComTransport && selected.helm_position!=null">
+            <div class="col-auto form-group">
               <label for="car_mileage">Пробег(км):</label>
                 <input id="car_mileage" class="form-control" type="number" v-model="mileage" style="width:145px" :formatter="SetMileage" required/>
             </div>
           
             <div class="col-auto form-group">
-              <label for="mark_type">Вид топлива:</label>
-                <select id="mark_type" class="form-control" v-model="selected.fuel_type" @change="SetFuelType">
+              <label for="fuel_type">Вид топлива:</label>
+                <select id="fuel_type" class="form-control" v-model="selected.fuel_type" @change="SetFuelType">
                   <option v-for="(item, index) in fuel_type" :value="item.value" :key="index">{{ item.text }}</option>
                 </select>        
             </div>
 
             <div class="col-auto form-group" v-if="getComTransport">
-              <label for="helm_position">Растоможен:</label>
-                <select id="helm_position" class="form-control" v-model="selected.car_customs" @change="SetTransportCustoms">
+              <label for="car_customs">Растоможен:</label>
+                <select id="car_customs" class="form-control" v-model="selected.car_customs" @change="SetTransportCustoms">
                   <option :value="1">Да</option>
                   <option :value="0">Нет</option>
                 </select>
