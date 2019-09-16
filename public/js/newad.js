@@ -1675,6 +1675,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1725,6 +1745,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
   // методы компонента
   methods: (_methods = {
+    addPhoneNumber: function addPhoneNumber() {},
+
 
     // --------------------------------------
     // Вернуться на предыдущую страницу
@@ -21562,7 +21584,53 @@ var render = function() {
                       ]
                     }
                   })
-                : _vm._e()
+                : _vm._e(),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("input", {
+                  staticClass: "form-control",
+                  staticStyle: {
+                    margin: "auto",
+                    width: "120px",
+                    "text-align": "center",
+                    "font-size": "18px"
+                  },
+                  attrs: {
+                    type: "text",
+                    placeholder: "цена",
+                    id: "price",
+                    formatter: _vm.setPrice,
+                    required: ""
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("label", [_vm._v("Контакты:")]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-sm",
+                  staticStyle: { margin: "auto" },
+                  attrs: { type: "button" },
+                  on: { click: _vm.addPhoneNumber }
+                },
+                [_vm._v("+ Добавить номер")]
+              ),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success",
+                  staticStyle: { margin: "auto" },
+                  attrs: { type: "button" }
+                },
+                [_vm._v("опубликовать")]
+              )
             ]
           )
         ]
@@ -21570,7 +21638,38 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "numberList" } }, [
+      _c("br"),
+      _c("input", {
+        staticClass: "form-control phone_input",
+        attrs: { type: "text" }
+      }),
+      _vm._v(" "),
+      _c("br"),
+      _c("input", {
+        staticClass: "form-control phone_input",
+        attrs: { type: "text" }
+      }),
+      _vm._v(" "),
+      _c("br"),
+      _c("input", {
+        staticClass: "form-control phone_input",
+        attrs: { type: "text" }
+      }),
+      _vm._v(" "),
+      _c("br"),
+      _c("input", {
+        staticClass: "form-control phone_input",
+        attrs: { type: "text" }
+      })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

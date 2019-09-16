@@ -7,7 +7,7 @@
             <hr>
 
             <div style="margin-bottom:10px">
-            <label style="width:270px">Вид сделки:</label>            
+            <label style="width:270px">Вид сделки:</label>
             <div class="form-check" style="width:260px">
                 <div v-for="(item,index) in dealtypes" :key="index">
                     <input class="form-check-input" :id="item.id" type="radio" name="inlineRadioOptions" v-bind:value="item.id" v-model="sdelka" @change="setDeal">
@@ -41,6 +41,26 @@
             <div v-show="this.$store.state.show_final_fields">
                 <label for="addit_info">{{ $store.state.info_label_description }}</label>
                 <textarea id="addit_info" v-if="!$store.state.required_info" class="form-control form-group" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></textarea>
+                <div class="row">                
+                    <input type="text" placeholder="цена" class="form-control" style="margin:auto;width:120px;text-align:center;font-size:18px" id="price" :formatter="setPrice" required/>                
+                </div>                
+                <label>Контакты:</label>                            
+                        <br>
+                        <button type="button" class="btn btn-primary btn-sm" style="margin:auto" @click="addPhoneNumber">+ Добавить номер</button>                    
+                        <div id="numberList">
+                            <br><input type="text" class="form-control phone_input"/>                                                        
+                            <br><input type="text" class="form-control phone_input"/>                                                        
+                            <br><input type="text" class="form-control phone_input"/>                                                        
+                            <br><input type="text" class="form-control phone_input"/>
+                        </div>                
+                <!--<p>контактные номера</p>
+                <p>фотографии</p>
+                <p>регионы</p>
+                <p>местность</p>
+                <p>расположение на карте</p>
+                <p>кнопка опубликовать</p>-->
+
+                <button type="button" class="btn btn-success" style="margin:auto">опубликовать</button>                    
             </div>
 
         </div>
@@ -96,6 +116,10 @@ data () {
 
 // методы компонента
 methods: {
+
+addPhoneNumber() {
+
+},
 
 // --------------------------------------
 // Вернуться на предыдущую страницу
