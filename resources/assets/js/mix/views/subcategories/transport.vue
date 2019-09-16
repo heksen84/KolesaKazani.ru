@@ -28,7 +28,7 @@
                 </select>        
             </div>
 
-            <div class="col-md-5 form-group" v-if="getComTransport && selected.type_transport!=2">
+            <div class="col-md-5 form-group" v-if="getComTransport && selected.type_transport!=2 && selected.model!=null">
               <label for="helm_position">Положение руля:</label>
                 <select id="helm_position" class="form-control" v-model="selected.helm_position" @change="SetHelmPosition">                                        
                   <option :value="null">-- Выберите положение руля --</option>
@@ -40,11 +40,11 @@
           <div class="row" v-if="getComTransport && selected.helm_position!=null">      
             <div class="col-auto form-group" >
               <label for="car_year">Год выпуска:</label>
-                <input id="car_year" class="form-control" style="width:120px"/>
+                <input type="number" id="car_year" class="form-control" style="width:120px"/>
             </div>
             <div class="col-auto form-group">
               <label for="car_mileage">Пробег(км):</label>
-                <input id="car_mileage" class="form-control" type="number" v-model="mileage" style="width:145px" :formatter="SetMileage" required/>
+                <input type="number" id="car_mileage" class="form-control" v-model="mileage" style="width:145px" :formatter="SetMileage" required/>
             </div>
           
             <div class="col-auto form-group">
@@ -325,23 +325,35 @@ export default {
     // change модели
     // ---------------------------
     selectModel() {
-      this.transport_chars.model_id = this.selected.model;
+      
+      // сброс полей, что после
+      this.selected.helm_position=null;
+      this.release_date=null;
+      this.mileage=null;
+      this.selected.fuel_type=null;
+      this.selected.car_customs=null;
+
+      this.transport_chars.model_id = this.selected.model;      
+      this.$store.commit("ShowCommonTransport", true);    
+      
       console.log(this.transport_chars.model_id);
-      this.$store.commit("ShowCommonTransport", true);      
     },
+
+    checkForFinalFields() {
+
+      if (this.selected.fuel_type!=null && this.selected.car_customs!=null && this.selected.helm_position!=null)
+        this.$store.commit("ShowFinalFields", true);
+      else
+        this.$store.commit("ShowFinalFields", false);
+        
+     },
 
      // ---------------------------
      // положение руля
      // ---------------------------
      SetHelmPosition() {
-        this.transport_chars.rule_position = this.selected.rule_position;
-     },
-
-     checkForFinalFields() {
-        if (this.selected.fuel_type!=null && this.selected.car_customs!=null)
-          this.$store.commit("ShowFinalFields", true);
-        else
-          this.$store.commit("ShowFinalFields", false);
+        this.transport_chars.rule_position = this.selected.helm_position;
+        this.checkForFinalFields()
      },
 
      // ---------------------------

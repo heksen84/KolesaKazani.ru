@@ -1674,6 +1674,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -2364,9 +2365,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // change модели
     // ---------------------------
     selectModel: function selectModel() {
+
+      // сброс полей, что после
+      this.selected.helm_position = null;
+      this.release_date = null;
+      this.mileage = null;
+      this.selected.fuel_type = null;
+      this.selected.car_customs = null;
+
       this.transport_chars.model_id = this.selected.model;
-      console.log(this.transport_chars.model_id);
       this.$store.commit("ShowCommonTransport", true);
+
+      console.log(this.transport_chars.model_id);
+    },
+    checkForFinalFields: function checkForFinalFields() {
+
+      if (this.selected.fuel_type != null && this.selected.car_customs != null && this.selected.helm_position != null) this.$store.commit("ShowFinalFields", true);else this.$store.commit("ShowFinalFields", false);
     },
 
 
@@ -2374,10 +2388,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // положение руля
     // ---------------------------
     SetHelmPosition: function SetHelmPosition() {
-      this.transport_chars.rule_position = this.selected.rule_position;
-    },
-    checkForFinalFields: function checkForFinalFields() {
-      if (this.selected.fuel_type != null && this.selected.car_customs != null) this.$store.commit("ShowFinalFields", true);else this.$store.commit("ShowFinalFields", false);
+      this.transport_chars.rule_position = this.selected.helm_position;
+      this.checkForFinalFields();
     },
 
 
@@ -21097,7 +21109,9 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm.getComTransport && _vm.selected.type_transport != 2
+          _vm.getComTransport &&
+          _vm.selected.type_transport != 2 &&
+          _vm.selected.model != null
             ? _c("div", { staticClass: "col-md-5 form-group" }, [
                 _c("label", { attrs: { for: "helm_position" } }, [
                   _vm._v("Положение руля:")
@@ -21180,8 +21194,8 @@ var render = function() {
               staticClass: "form-control",
               staticStyle: { width: "145px" },
               attrs: {
-                id: "car_mileage",
                 type: "number",
+                id: "car_mileage",
                 formatter: _vm.SetMileage,
                 required: ""
               },
@@ -21322,7 +21336,7 @@ var staticRenderFns = [
       _c("input", {
         staticClass: "form-control",
         staticStyle: { width: "120px" },
-        attrs: { id: "car_year" }
+        attrs: { type: "number", id: "car_year" }
       })
     ])
   }
@@ -21513,7 +21527,43 @@ var render = function() {
                 }
               ]
             },
-            [_c("textarea")]
+            [
+              _c("label", { attrs: { for: "addit_info" } }, [
+                _vm._v(_vm._s(_vm.$store.state.info_label_description))
+              ]),
+              _vm._v(" "),
+              !_vm.$store.state.required_info
+                ? _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.info,
+                        expression: "info"
+                      }
+                    ],
+                    staticClass: "form-control form-group",
+                    attrs: {
+                      id: "addit_info",
+                      placeholder: _vm.$store.state.placeholder_info_text,
+                      rows: 4,
+                      "max-rows": 4
+                    },
+                    domProps: { value: _vm.info },
+                    on: {
+                      input: [
+                        function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.info = $event.target.value
+                        },
+                        _vm.setInfo
+                      ]
+                    }
+                  })
+                : _vm._e()
+            ]
           )
         ]
       )

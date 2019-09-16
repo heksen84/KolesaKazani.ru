@@ -37,9 +37,10 @@
 
 
             <!-- Дополнительные поля -->
-			<!--<div v-show="this.$store.state.show_final_fields && $store.state.deal_selected">-->
+			<!--<div v-show="this.$store.state.show_final_fields && $store.state.deal_selected">-->            
             <div v-show="this.$store.state.show_final_fields">
-                <textarea></textarea>
+                <label for="addit_info">{{ $store.state.info_label_description }}</label>
+                <textarea id="addit_info" v-if="!$store.state.required_info" class="form-control form-group" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></textarea>
             </div>
 
         </div>
