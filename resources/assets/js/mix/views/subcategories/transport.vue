@@ -309,6 +309,7 @@ export default {
 
       console.log(this.selected.carmark);
       
+      // запрос
       get("/getCarsModels?mark_id="+this.selected.carmark).then((res) => {
 
         this.models=[];
@@ -323,8 +324,8 @@ export default {
     // ---------------------------
     // change модели
     // ---------------------------
-    selectModel(model_id) {
-      this.transport_chars.model_id = model_id;
+    selectModel() {
+      this.transport_chars.model_id = this.selected.model;
       console.log(this.transport_chars.model_id);
       this.$store.commit("ShowCommonTransport", true);      
     },
@@ -332,23 +333,31 @@ export default {
      // ---------------------------
      // положение руля
      // ---------------------------
-     SetHelmPosition(position_id) {
-        this.transport_chars.rule_position = position_id;
+     SetHelmPosition() {
+        this.transport_chars.rule_position = this.selected.rule_position;
+     },
+
+     checkForFinalFields() {
+        if (this.selected.fuel_type!=null && this.selected.car_customs!=null)
+          this.$store.commit("ShowFinalFields", true);
+        else
+          this.$store.commit("ShowFinalFields", false);
      },
 
      // ---------------------------
      // тип топлива
      // ---------------------------
-     SetFuelType(fuel_type) {
-        this.transport_chars.fuel_type = fuel_type;
+     SetFuelType() {
+        this.transport_chars.fuel_type = this.selected.fuel_type;
+        this.checkForFinalFields()
      },
      
      // ---------------------------
      // растаможка
      // ---------------------------
-     SetTransportCustoms(customs_id) {
-        this.transport_chars.customs = customs_id;
-        this.$store.commit("ShowFinalFields", true);
+     SetTransportCustoms() {
+        this.transport_chars.customs = this.selected.car_customs;
+        this.checkForFinalFields()
      },
 
      // год выпуска

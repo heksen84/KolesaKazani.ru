@@ -2348,6 +2348,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       console.log(this.selected.carmark);
 
+      // запрос
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/getCarsModels?mark_id=" + this.selected.carmark).then(function (res) {
 
         _this2.models = [];
@@ -2362,8 +2363,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // ---------------------------
     // change модели
     // ---------------------------
-    selectModel: function selectModel(model_id) {
-      this.transport_chars.model_id = model_id;
+    selectModel: function selectModel() {
+      this.transport_chars.model_id = this.selected.model;
       console.log(this.transport_chars.model_id);
       this.$store.commit("ShowCommonTransport", true);
     },
@@ -2372,25 +2373,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // ---------------------------
     // положение руля
     // ---------------------------
-    SetHelmPosition: function SetHelmPosition(position_id) {
-      this.transport_chars.rule_position = position_id;
+    SetHelmPosition: function SetHelmPosition() {
+      this.transport_chars.rule_position = this.selected.rule_position;
+    },
+    checkForFinalFields: function checkForFinalFields() {
+      if (this.selected.fuel_type != null && this.selected.car_customs != null) this.$store.commit("ShowFinalFields", true);else this.$store.commit("ShowFinalFields", false);
     },
 
 
     // ---------------------------
     // тип топлива
     // ---------------------------
-    SetFuelType: function SetFuelType(fuel_type) {
-      this.transport_chars.fuel_type = fuel_type;
+    SetFuelType: function SetFuelType() {
+      this.transport_chars.fuel_type = this.selected.fuel_type;
+      this.checkForFinalFields();
     },
 
 
     // ---------------------------
     // растаможка
     // ---------------------------
-    SetTransportCustoms: function SetTransportCustoms(customs_id) {
-      this.transport_chars.customs = customs_id;
-      this.$store.commit("ShowFinalFields", true);
+    SetTransportCustoms: function SetTransportCustoms() {
+      this.transport_chars.customs = this.selected.car_customs;
+      this.checkForFinalFields();
     },
 
 
