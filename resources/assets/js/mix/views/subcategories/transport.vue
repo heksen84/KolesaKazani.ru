@@ -4,7 +4,7 @@
      <!-- <div class="form-row" style="width:260px">-->
         
         <div class="row">        
-          <div class="col-md-6 form-group">
+          <div class="col-md-5 form-group">
             <label for="transport_type">Вид транспорта:</label>
               <select id="transport_type" class="form-control" v-model="selected.type_transport" @change="selectTransportType">                          
                 <option v-for="item in type_transport" :value="item.value" :key="item.value">{{ item.text }}</option>
@@ -20,7 +20,7 @@
           </div>
 
           <div class="row" v-if="selected.carmark!=null && selected.type_transport==0">
-            <div class="col-md-6 form-group">
+            <div class="col-md-5 form-group">
               <label for="mark_type">Модель:</label>
                 <select id="mark_type" class="form-control" v-model="selected.model" @change="selectModel">                          
                   <option :value="null">-- Выберите модель --</option>
@@ -28,7 +28,7 @@
                 </select>        
             </div>
 
-            <div class="col-auto form-group" v-if="getComTransport && selected.type_transport!=2">
+            <div class="col-md-5 form-group" v-if="getComTransport && selected.type_transport!=2">
               <label for="helm_position">Положение руля:</label>
                 <select id="helm_position" class="form-control" v-model="selected.helm_position" @change="SetHelmPosition">                                        
                   <option :value="null">-- Выберите положение руля --</option>
@@ -50,6 +50,7 @@
             <div class="col-auto form-group">
               <label for="fuel_type">Вид топлива:</label>
                 <select id="fuel_type" class="form-control" v-model="selected.fuel_type" @change="SetFuelType">
+                  <option :value="null">---</option>
                   <option v-for="(item, index) in fuel_type" :value="item.value" :key="index">{{ item.text }}</option>
                 </select>        
             </div>
@@ -57,6 +58,7 @@
             <div class="col-auto form-group" v-if="getComTransport">
               <label for="car_customs">Растоможен:</label>
                 <select id="car_customs" class="form-control" v-model="selected.car_customs" @change="SetTransportCustoms">
+                  <option :value="null">---</option>
                   <option :value="1">Да</option>
                   <option :value="0">Нет</option>
                 </select>
@@ -143,18 +145,16 @@ export default {
         // марки автомобилей
         carmark: [],
         models: [],
-
         carmarkLoaded: false,
-
-        transport_chars: null,        
+        transport_chars: null,
 
         selected: {
           type_transport: null,
           carmark: null,
           model: null,
           helm_position: null,
-          fuel_type: 0,
-          car_customs: 1
+          fuel_type: null,
+          car_customs: null
         },
 
         release_date: null,
@@ -181,7 +181,6 @@ export default {
   created() {
 
     this.transport_chars = this.$root.advert_data;
-
     // значения по умолчанию
     this.transport_chars.rule_position   = 0;
     this.transport_chars.fuel_type       = 0;
@@ -327,8 +326,7 @@ export default {
     selectModel(model_id) {
       this.transport_chars.model_id = model_id;
       console.log(this.transport_chars.model_id);
-      this.$store.commit("ShowCommonTransport", true);
-      this.$store.commit("ShowFinalFields", true);
+      this.$store.commit("ShowCommonTransport", true);      
     },
 
      // ---------------------------
@@ -350,6 +348,7 @@ export default {
      // ---------------------------
      SetTransportCustoms(customs_id) {
         this.transport_chars.customs = customs_id;
+        this.$store.commit("ShowFinalFields", true);
      },
 
      // год выпуска

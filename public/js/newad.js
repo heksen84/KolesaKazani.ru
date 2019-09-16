@@ -1667,6 +1667,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2161,6 +2168,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -2175,9 +2184,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // марки автомобилей
       carmark: [],
       models: [],
-
       carmarkLoaded: false,
-
       transport_chars: null,
 
       selected: {
@@ -2185,8 +2192,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         carmark: null,
         model: null,
         helm_position: null,
-        fuel_type: 0,
-        car_customs: 1
+        fuel_type: null,
+        car_customs: null
       },
 
       release_date: null,
@@ -2204,7 +2211,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   created: function created() {
 
     this.transport_chars = this.$root.advert_data;
-
     // значения по умолчанию
     this.transport_chars.rule_position = 0;
     this.transport_chars.fuel_type = 0;
@@ -2360,7 +2366,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.transport_chars.model_id = model_id;
       console.log(this.transport_chars.model_id);
       this.$store.commit("ShowCommonTransport", true);
-      this.$store.commit("ShowFinalFields", true);
     },
 
 
@@ -2385,6 +2390,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // ---------------------------
     SetTransportCustoms: function SetTransportCustoms(customs_id) {
       this.transport_chars.customs = customs_id;
+      this.$store.commit("ShowFinalFields", true);
     },
 
 
@@ -20911,7 +20917,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("span", [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-6 form-group" }, [
+      _c("div", { staticClass: "col-md-5 form-group" }, [
         _c("label", { attrs: { for: "transport_type" } }, [
           _vm._v("Вид транспорта:")
         ]),
@@ -21027,7 +21033,7 @@ var render = function() {
     _vm._v(" "),
     _vm.selected.carmark != null && _vm.selected.type_transport == 0
       ? _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-6 form-group" }, [
+          _c("div", { staticClass: "col-md-5 form-group" }, [
             _c("label", { attrs: { for: "mark_type" } }, [_vm._v("Модель:")]),
             _vm._v(" "),
             _c(
@@ -21087,7 +21093,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _vm.getComTransport && _vm.selected.type_transport != 2
-            ? _c("div", { staticClass: "col-auto form-group" }, [
+            ? _c("div", { staticClass: "col-md-5 form-group" }, [
                 _c("label", { attrs: { for: "helm_position" } }, [
                   _vm._v("Положение руля:")
                 ]),
@@ -21227,14 +21233,18 @@ var render = function() {
                   ]
                 }
               },
-              _vm._l(_vm.fuel_type, function(item, index) {
-                return _c(
-                  "option",
-                  { key: index, domProps: { value: item.value } },
-                  [_vm._v(_vm._s(item.text))]
-                )
-              }),
-              0
+              [
+                _c("option", { domProps: { value: null } }, [_vm._v("---")]),
+                _vm._v(" "),
+                _vm._l(_vm.fuel_type, function(item, index) {
+                  return _c(
+                    "option",
+                    { key: index, domProps: { value: item.value } },
+                    [_vm._v(_vm._s(item.text))]
+                  )
+                })
+              ],
+              2
             )
           ]),
           _vm._v(" "),
@@ -21281,6 +21291,10 @@ var render = function() {
                     }
                   },
                   [
+                    _c("option", { domProps: { value: null } }, [
+                      _vm._v("---")
+                    ]),
+                    _vm._v(" "),
                     _c("option", { domProps: { value: 1 } }, [_vm._v("Да")]),
                     _vm._v(" "),
                     _c("option", { domProps: { value: 0 } }, [_vm._v("Нет")])
@@ -21480,7 +21494,22 @@ var render = function() {
                 ],
                 1
               )
-            : _vm._e()
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: this.$store.state.show_final_fields,
+                  expression: "this.$store.state.show_final_fields"
+                }
+              ]
+            },
+            [_c("textarea")]
+          )
         ]
       )
     ])

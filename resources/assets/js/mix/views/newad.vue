@@ -35,6 +35,13 @@
                 <h1 v-else-if="real_estate">nedvizh</h1>-->
             </form>
 
+
+            <!-- Дополнительные поля -->
+			<!--<div v-show="this.$store.state.show_final_fields && $store.state.deal_selected">-->
+            <div v-show="this.$store.state.show_final_fields">
+                <textarea></textarea>
+            </div>
+
         </div>
     </div>
 </div>
