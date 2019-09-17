@@ -1,6 +1,6 @@
 <template>
-<div class="container-fluid mycontainer_adv">
-    <div class="row">
+<div class="container-fluid mycontainer_adv">  
+    <div class="row">  
         <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col">
         <div class="close_button" title="Закрыть страницу" style="font-weight:bold" @click="closeAndReturn">X</div>
 		    <h1 class="title_text" style="margin-top:12px">подать объявление</h1>
@@ -47,7 +47,8 @@
                       <label class="form-group">Контакты:</label>                            
                     </div>
                     <div class="col-md-12 text-center">
-                      <button type="button" class="btn btn-primary btn-sm form-group" @click="addPhoneNumber">+ Добавить номер</button>                    
+                      <button type="button" class="btn btn-primary btn-sm form-group" @click="addPhoneNumber">+ Добавить номер</button>
+                      <p style="color:red" v-if="this.showMaxPhonesNumMsg">не более 5 номеров</p>
                     </div>
                   </div>
                   <div class="row" id="phones_row">
@@ -82,7 +83,8 @@ import phoneNumberInput from "./components/phoneNumberInput.vue"
 // -----------------------
 // Логика
 // -----------------------
-export default {    
+export default {
+      
 // Входящие данные
 props: ["categories", "dealtypes", "regions"],
 
@@ -92,8 +94,8 @@ components: {
 },
 
 data () {
-  return 	{        
-    phonesNum: 0,
+  return 	{
+    showMaxPhonesNumMsg:false,
 		summ_str: "",
 		const_phone1_max_length: 9,			
 		setCoordsDialog: false,
@@ -149,8 +151,7 @@ setPrice(price) {
 },
 
 addPhoneNumber() {  
-
-  this.$store.commit("AddPhoneNumber");
+    this.$store.state.phones<5?this.$store.commit("AddPhoneNumber"):this.showMaxPhonesNumMsg=true
 
   //this.phonesNum++  
   /*var node = document.createElement("div");
