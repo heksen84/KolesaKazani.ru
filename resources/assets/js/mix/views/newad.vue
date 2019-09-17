@@ -38,9 +38,9 @@
               <label for="addit_info">{{ $store.state.info_label_description }}</label>
                 <textarea id="addit_info" v-if="!$store.state.required_info" class="form-control form-group" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></textarea>
                   <div class="row">                
-                    <div class="col-md-12 text-center">
+                    <div class="col-md-12 text-center" v-if="sdelka!=3">
                       <span style="margin-right:5px">Цена:</span>
-                      <input type="text" placeholder="0" class="form-group" id="price" :formatter="setPrice" style="margin-right:45px;width:130px;text-align:center;border:1px solid grey;border-radius:3px;padding:3px" required/>                                
+                      <input type="text" placeholder="0" class="form-group" id="price" :formatter="setPrice" style="margin-right:45px;width:120px;text-align:center;border:1px solid grey;border-radius:3px;padding:3px" required/>                                
                     </div>
                     <div class="col-md-12">
                       <hr>

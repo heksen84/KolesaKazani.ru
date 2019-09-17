@@ -4,13 +4,13 @@
      <!-- <div class="form-row" style="width:260px">-->
         
         <div class="row">        
-          <div class="col-md-5 form-group">
+          <div class="col-auto form-group">
             <label for="transport_type">Вид транспорта:</label>
               <select id="transport_type" class="form-control" v-model="selected.type_transport" @change="selectTransportType">                          
                 <option v-for="item in type_transport" :value="item.value" :key="item.value">{{ item.text }}</option>
               </select>
           </div>        
-          <div class="col-md-6 form-group" v-if="selected.type_transport==0 && carmarkLoaded">          
+          <div class="col-auto form-group" v-if="selected.type_transport==0 && carmarkLoaded">          
             <label for="mark_type">Марка автомобиля:</label>
               <select id="mark_type" class="form-control" v-model="selected.carmark" @change="selectMark">
                 <option :value="null">-- Выберите марку --</option>
@@ -20,7 +20,7 @@
           </div>
 
           <div class="row" v-if="selected.carmark!=null && selected.type_transport==0">
-            <div class="col-md-5 form-group">
+            <div class="col-auto form-group">
               <label for="mark_type">Модель:</label>
                 <select id="mark_type" class="form-control" v-model="selected.model" @change="selectModel">                          
                   <option :value="null">-- Выберите модель --</option>
@@ -28,7 +28,7 @@
                 </select>        
             </div>
 
-            <div class="col-md-5 form-group" v-if="getComTransport && selected.type_transport!=2 && selected.model!=null">
+            <div class="col-auto form-group" v-if="getComTransport && selected.type_transport!=2 && selected.model!=null">
               <label for="helm_position">Положение руля:</label>
                 <select id="helm_position" class="form-control" v-model="selected.helm_position" @change="SetHelmPosition">                                        
                   <option :value="null">-- Выберите положение руля --</option>
@@ -44,7 +44,7 @@
             </div>
             <div class="col-auto form-group">
               <label for="car_mileage">Пробег(км):</label>
-                <input type="number" id="car_mileage" class="form-control" v-model="mileage" style="width:145px" :formatter="SetMileage" required/>
+                <input type="number" id="car_mileage" class="form-control" v-model="mileage" style="width:145px" :formatter="SetMileage" placeholder="0" required/>
             </div>
           
             <div class="col-auto form-group">

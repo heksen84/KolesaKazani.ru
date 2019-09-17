@@ -20987,7 +20987,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("span", [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-5 form-group" }, [
+      _c("div", { staticClass: "col-auto form-group" }, [
         _c("label", { attrs: { for: "transport_type" } }, [
           _vm._v("Вид транспорта:")
         ]),
@@ -21038,7 +21038,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _vm.selected.type_transport == 0 && _vm.carmarkLoaded
-        ? _c("div", { staticClass: "col-md-6 form-group" }, [
+        ? _c("div", { staticClass: "col-auto form-group" }, [
             _c("label", { attrs: { for: "mark_type" } }, [
               _vm._v("Марка автомобиля:")
             ]),
@@ -21103,7 +21103,7 @@ var render = function() {
     _vm._v(" "),
     _vm.selected.carmark != null && _vm.selected.type_transport == 0
       ? _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-5 form-group" }, [
+          _c("div", { staticClass: "col-auto form-group" }, [
             _c("label", { attrs: { for: "mark_type" } }, [_vm._v("Модель:")]),
             _vm._v(" "),
             _c(
@@ -21165,7 +21165,7 @@ var render = function() {
           _vm.getComTransport &&
           _vm.selected.type_transport != 2 &&
           _vm.selected.model != null
-            ? _c("div", { staticClass: "col-md-5 form-group" }, [
+            ? _c("div", { staticClass: "col-auto form-group" }, [
                 _c("label", { attrs: { for: "helm_position" } }, [
                   _vm._v("Положение руля:")
                 ]),
@@ -21250,6 +21250,7 @@ var render = function() {
                 type: "number",
                 id: "car_mileage",
                 formatter: _vm.SetMileage,
+                placeholder: "0",
                 required: ""
               },
               domProps: { value: _vm.mileage },
@@ -21618,30 +21619,32 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-12 text-center" }, [
-                  _c("span", { staticStyle: { "margin-right": "5px" } }, [
-                    _vm._v("Цена:")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-group",
-                    staticStyle: {
-                      "margin-right": "45px",
-                      width: "130px",
-                      "text-align": "center",
-                      border: "1px solid grey",
-                      "border-radius": "3px",
-                      padding: "3px"
-                    },
-                    attrs: {
-                      type: "text",
-                      placeholder: "0",
-                      id: "price",
-                      formatter: _vm.setPrice,
-                      required: ""
-                    }
-                  })
-                ]),
+                _vm.sdelka != 3
+                  ? _c("div", { staticClass: "col-md-12 text-center" }, [
+                      _c("span", { staticStyle: { "margin-right": "5px" } }, [
+                        _vm._v("Цена:")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-group",
+                        staticStyle: {
+                          "margin-right": "45px",
+                          width: "120px",
+                          "text-align": "center",
+                          border: "1px solid grey",
+                          "border-radius": "3px",
+                          padding: "3px"
+                        },
+                        attrs: {
+                          type: "text",
+                          placeholder: "0",
+                          id: "price",
+                          formatter: _vm.setPrice,
+                          required: ""
+                        }
+                      })
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
                 _vm._m(0),
                 _vm._v(" "),
