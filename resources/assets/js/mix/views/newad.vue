@@ -84,7 +84,7 @@ import phoneNumberInput from "./components/phoneNumberInput.vue"
 // Логика
 // -----------------------
 export default {
-      
+
 // Входящие данные
 props: ["categories", "dealtypes", "regions"],
 
@@ -138,7 +138,7 @@ setInfo() {
 },
 
 // установить цену
-setPrice(price) {
+setPrice() {
 /*			
 	if (price < 0 || price > 10000000000) 
 			return this.price;
