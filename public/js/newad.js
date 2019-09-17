@@ -1615,6 +1615,34 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/mix/views/components/phoneNumberInput.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {};
+  },
+  created: function created() {},
+
+  components: {},
+  methods: {
+    removePhone: function removePhone() {
+      this.$store.commit("RemovePhoneNumber");
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/mix/views/newad.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1622,6 +1650,8 @@ module.exports = {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__subcategories_transport_vue__ = __webpack_require__("./resources/assets/js/mix/views/subcategories/transport.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__subcategories_transport_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__subcategories_transport_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_phoneNumberInput_vue__ = __webpack_require__("./resources/assets/js/mix/views/components/phoneNumberInput.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_phoneNumberInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_phoneNumberInput_vue__);
 var _methods;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -1698,6 +1728,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+
 
 
 
@@ -1709,10 +1744,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   // Входящие данные
   props: ["categories", "dealtypes", "regions"],
 
-  components: { transport: __WEBPACK_IMPORTED_MODULE_0__subcategories_transport_vue___default.a },
+  components: {
+    transport: __WEBPACK_IMPORTED_MODULE_0__subcategories_transport_vue___default.a,
+    phoneNumberInput: __WEBPACK_IMPORTED_MODULE_1__components_phoneNumberInput_vue___default.a
+  },
 
   data: function data() {
     return {
+      phonesNum: 0,
       summ_str: "",
       const_phone1_max_length: 9,
       setCoordsDialog: false,
@@ -1769,13 +1808,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return price;*/
     },
     addPhoneNumber: function addPhoneNumber() {
-      var node = document.createElement("div");
+
+      this.$store.commit("AddPhoneNumber");
+
+      //this.phonesNum++  
+      /*var node = document.createElement("div");
       node.className += "col-md-12 text-center";
-      node.innerHTML = "<input type='text' class='form-control phone_input'/><span style='margin-left:8px;cursor:pointer' @click='removePhone'>X</span>";
-      document.getElementById("phones_row").appendChild(node);
-    },
-    removePhone: function removePhone() {
-      alert("remove");
+      node.innerHTML = "<input type='text' class='form-control phone_input'/><span style='margin-left:8px;cursor:pointer' @click='removePhone'>X</span>"
+      document.getElementById("phones_row").appendChild(node);*/
     },
 
 
@@ -21661,9 +21701,38 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "row", attrs: { id: "phones_row" } }),
+              _c(
+                "div",
+                { staticClass: "row", attrs: { id: "phones_row" } },
+                _vm._l(this.$store.state.phones, function(i, index) {
+                  return _c(
+                    "div",
+                    { key: index, staticClass: "col-md-12 text-center" },
+                    [_c("phoneNumberInput")],
+                    1
+                  )
+                }),
+                0
+              ),
               _vm._v(" "),
-              _vm._m(1)
+              _c("div", { staticClass: "row" }, [
+                _c("br"),
+                _vm._v(" "),
+                this.$store.state.phones > 0
+                  ? _c("div", { staticClass: "col-md-12 text-center" }, [
+                      _c("hr"),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success form-group",
+                          attrs: { type: "button" }
+                        },
+                        [_vm._v("опубликовать")]
+                      )
+                    ])
+                  : _vm._e()
+              ])
             ]
           )
         ]
@@ -21681,12 +21750,6 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("label", { staticClass: "form-group" }, [_vm._v("Контакты:")])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [_c("br")])
   }
 ]
 render._withStripped = true
@@ -21695,6 +21758,40 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-1781d1ed", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-7d2a17b6\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/mix/views/components/phoneNumberInput.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("input", {
+      staticClass: "form-control phone_input",
+      attrs: { type: "text" }
+    }),
+    _c(
+      "span",
+      {
+        staticStyle: { "margin-left": "8px", cursor: "pointer" },
+        on: { click: _vm.removePhone }
+      },
+      [_vm._v("X")]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7d2a17b6", module.exports)
   }
 }
 
@@ -34901,10 +34998,17 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     show_final_fields: false,
     show_common_transport: false,
     deal_selected: false,
-    str_realestate_area_label_text: ""
+    str_realestate_area_label_text: "",
+    phones: 0
   },
 
   mutations: {
+    AddPhoneNumber: function AddPhoneNumber(state) {
+      state.phones++;
+    },
+    RemovePhoneNumber: function RemovePhoneNumber(state) {
+      state.phones--;
+    },
     SetDealSelected: function SetDealSelected(state, value) {
       state.deal_selected = value;
     },
@@ -34963,6 +35067,54 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
   components: { newad: __WEBPACK_IMPORTED_MODULE_2__views_newad_vue___default.a }
 
 }));
+
+/***/ }),
+
+/***/ "./resources/assets/js/mix/views/components/phoneNumberInput.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/mix/views/components/phoneNumberInput.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-7d2a17b6\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/mix/views/components/phoneNumberInput.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/mix/views/components/phoneNumberInput.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7d2a17b6", Component.options)
+  } else {
+    hotAPI.reload("data-v-7d2a17b6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
 
 /***/ }),
 

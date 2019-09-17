@@ -50,7 +50,11 @@
                       <button type="button" class="btn btn-primary btn-sm form-group" @click="addPhoneNumber">+ Добавить номер</button>                    
                     </div>
                   </div>
-                  <div class="row" id="phones_row"></div>
+                  <div class="row" id="phones_row">
+                    <div class="col-md-12 text-center" v-for="(i, index) in this.$store.state.phones" :key="index">
+                      <phoneNumberInput></phoneNumberInput>
+                    </div>
+                  </div>
                   <div class="row">                  
                   <br>
                   <!--
@@ -60,10 +64,10 @@
                   <p>расположение на карте</p>
                   <p>кнопка опубликовать</p>-->
 
-                  <!--<div class="col-md-12 text-center">
+                  <div class="col-md-12 text-center" v-if="this.$store.state.phones>0">
                     <hr>
-                      <button type="button" class="btn btn-success form-group">опубликовать</button>                    
-                  </div>-->
+                    <button type="button" class="btn btn-success form-group">опубликовать</button>                    
+                  </div>
                 </div>                
             </div>
         </div>
@@ -73,6 +77,7 @@
 <script>
 
 import transport from "./subcategories/transport.vue"
+import phoneNumberInput from "./components/phoneNumberInput.vue"
 
 // -----------------------
 // Логика
@@ -81,10 +86,14 @@ export default {
 // Входящие данные
 props: ["categories", "dealtypes", "regions"],
 
-components: { transport },
+components: { 
+  transport,
+  phoneNumberInput
+},
 
 data () {
   return 	{        
+    phonesNum: 0,
 		summ_str: "",
 		const_phone1_max_length: 9,			
 		setCoordsDialog: false,
@@ -140,15 +149,16 @@ setPrice(price) {
 },
 
 addPhoneNumber() {  
-  var node = document.createElement("div");
+
+  this.$store.commit("AddPhoneNumber");
+
+  //this.phonesNum++  
+  /*var node = document.createElement("div");
   node.className += "col-md-12 text-center";
   node.innerHTML = "<input type='text' class='form-control phone_input'/><span style='margin-left:8px;cursor:pointer' @click='removePhone'>X</span>"
-  document.getElementById("phones_row").appendChild(node);  
+  document.getElementById("phones_row").appendChild(node);*/
 },
 
-removePhone() {
-  alert("remove")
-},
 
 // --------------------------------------
 // Вернуться на предыдущую страницу

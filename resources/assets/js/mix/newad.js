@@ -21,11 +21,21 @@ const store = new Vuex.Store({
     show_final_fields: false,
     show_common_transport: false,
     deal_selected: false,    
-    str_realestate_area_label_text: ""
+    str_realestate_area_label_text: "",
+    phones: 0
   },
 
   mutations: {
-     SetDealSelected( state, value ) {
+
+    AddPhoneNumber( state ) {
+      state.phones++
+    },
+
+    RemovePhoneNumber( state ) {
+      state.phones--
+    },
+
+    SetDealSelected( state, value ) {
       state.deal_selected=value;
     },
 
