@@ -39,7 +39,8 @@
                 <textarea id="addit_info" v-if="!$store.state.required_info" class="form-control form-group" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></textarea>
                   <div class="row">                
                     <div class="col-md-12 text-center">
-                      <input type="text" placeholder="цена" class="form-group" id="price" :formatter="setPrice" style="border:1px solid grey;border-radius:3px;padding:3px" required/>                                
+                      <span style="margin-right:5px">Цена:</span>
+                      <input type="text" placeholder="0" class="form-group" id="price" :formatter="setPrice" style="margin-right:45px;width:130px;text-align:center;border:1px solid grey;border-radius:3px;padding:3px" required/>                                
                     </div>
                     <div class="col-md-12">
                       <hr>

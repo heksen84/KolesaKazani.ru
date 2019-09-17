@@ -1697,6 +1697,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -21618,16 +21619,23 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-md-12 text-center" }, [
+                  _c("span", { staticStyle: { "margin-right": "5px" } }, [
+                    _vm._v("Цена:")
+                  ]),
+                  _vm._v(" "),
                   _c("input", {
                     staticClass: "form-group",
                     staticStyle: {
+                      "margin-right": "45px",
+                      width: "130px",
+                      "text-align": "center",
                       border: "1px solid grey",
                       "border-radius": "3px",
                       padding: "3px"
                     },
                     attrs: {
                       type: "text",
-                      placeholder: "цена",
+                      placeholder: "0",
                       id: "price",
                       formatter: _vm.setPrice,
                       required: ""
