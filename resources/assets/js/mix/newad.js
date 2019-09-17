@@ -71,7 +71,9 @@ const store = new Vuex.Store({
 export default new Vue ({
   
   data () {     
-    return { advert_data: {} }  // глобальный объект объявления
+    return { 
+      advert_data: {} // глобальный объект объявления
+    }
   },
 
   store,

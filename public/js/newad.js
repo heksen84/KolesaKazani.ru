@@ -1695,6 +1695,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1745,7 +1751,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
   // методы компонента
   methods: (_methods = {
-    addPhoneNumber: function addPhoneNumber() {},
+
+    // доп. информация
+    setInfo: function setInfo() {
+      this.$root.advert_data.adv_info = this.info;
+    },
+
+
+    // установить цену
+    setPrice: function setPrice(price) {
+      /*			
+      	if (price < 0 || price > 10000000000) 
+      			return this.price;
+      
+      	this.price = price;
+      	this.$root.advert_data.adv_price = price;			
+      	this.summ_str = number_to_string(price);
+      
+        return price;*/
+    },
+    addPhoneNumber: function addPhoneNumber() {
+      var node = document.createElement("div");
+      node.className += "col-md-12 text-center";
+      node.innerHTML = "<input type='text' class='form-control phone_input'/><span style='margin-left:8px;cursor:pointer' @click='removePhone'>X</span>";
+      document.getElementById("phones_row").appendChild(node);
+    },
+    removePhone: function removePhone() {
+      alert("remove");
+    },
 
 
     // --------------------------------------
@@ -21587,50 +21620,37 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
-                _c("input", {
-                  staticClass: "form-control",
-                  staticStyle: {
-                    margin: "auto",
-                    width: "120px",
-                    "text-align": "center",
-                    "font-size": "18px"
-                  },
-                  attrs: {
-                    type: "text",
-                    placeholder: "цена",
-                    id: "price",
-                    formatter: _vm.setPrice,
-                    required: ""
-                  }
-                })
+                _c("div", { staticClass: "col-md-12 text-center" }, [
+                  _c("input", {
+                    staticClass: "form-group",
+                    attrs: {
+                      type: "text",
+                      placeholder: "цена",
+                      id: "price",
+                      formatter: _vm.setPrice,
+                      required: ""
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 text-center" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary btn-sm form-group",
+                      attrs: { type: "button" },
+                      on: { click: _vm.addPhoneNumber }
+                    },
+                    [_vm._v("+ Добавить номер")]
+                  )
+                ])
               ]),
               _vm._v(" "),
-              _c("label", [_vm._v("Контакты:")]),
+              _c("div", { staticClass: "row", attrs: { id: "phones_row" } }),
               _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary btn-sm",
-                  staticStyle: { margin: "auto" },
-                  attrs: { type: "button" },
-                  on: { click: _vm.addPhoneNumber }
-                },
-                [_vm._v("+ Добавить номер")]
-              ),
-              _vm._v(" "),
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-success",
-                  staticStyle: { margin: "auto" },
-                  attrs: { type: "button" }
-                },
-                [_vm._v("опубликовать")]
-              )
+              _vm._m(1)
             ]
           )
         ]
@@ -21643,31 +21663,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "numberList" } }, [
-      _c("br"),
-      _c("input", {
-        staticClass: "form-control phone_input",
-        attrs: { type: "text" }
-      }),
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("hr"),
       _vm._v(" "),
-      _c("br"),
-      _c("input", {
-        staticClass: "form-control phone_input",
-        attrs: { type: "text" }
-      }),
-      _vm._v(" "),
-      _c("br"),
-      _c("input", {
-        staticClass: "form-control phone_input",
-        attrs: { type: "text" }
-      }),
-      _vm._v(" "),
-      _c("br"),
-      _c("input", {
-        staticClass: "form-control phone_input",
-        attrs: { type: "text" }
-      })
+      _c("label", { staticClass: "form-group" }, [_vm._v("Контакты:")])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [_c("br")])
   }
 ]
 render._withStripped = true
@@ -34933,7 +34939,8 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 // --------------------------
 /* harmony default export */ __webpack_exports__["default"] = (new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   data: function data() {
-    return { advert_data: {} // глобальный объект объявления
+    return {
+      advert_data: {} // глобальный объект объявления
     };
   },
 

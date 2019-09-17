@@ -37,32 +37,38 @@
 
 
             <!-- Дополнительные поля -->
-			<!--<div v-show="this.$store.state.show_final_fields && $store.state.deal_selected">-->            
+			      <!--<div v-show="this.$store.state.show_final_fields && $store.state.deal_selected">-->            
             <div v-show="this.$store.state.show_final_fields">
                 <label for="addit_info">{{ $store.state.info_label_description }}</label>
                 <textarea id="addit_info" v-if="!$store.state.required_info" class="form-control form-group" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></textarea>
                 <div class="row">                
-                    <input type="text" placeholder="цена" class="form-control" style="margin:auto;width:120px;text-align:center;font-size:18px" id="price" :formatter="setPrice" required/>                
+                  <div class="col-md-12 text-center">
+                    <input type="text" placeholder="цена" class="form-group" id="price" :formatter="setPrice" required/>                                
+                  </div>
+                  <div class="col-md-12">
+                    <hr>
+                    <label class="form-group">Контакты:</label>                            
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <button type="button" class="btn btn-primary btn-sm form-group" @click="addPhoneNumber">+ Добавить номер</button>                    
+                  </div>
+                </div>
+                <div class="row" id="phones_row"></div>
+                <div class="row">                  
+                  <br>
+                  <!--
+                  <p>фотографии</p>
+                  <p>регионы</p>
+                  <p>местность</p>
+                  <p>расположение на карте</p>
+                  <p>кнопка опубликовать</p>-->
+
+                  <!--<div class="col-md-12 text-center">
+                    <hr>
+                      <button type="button" class="btn btn-success form-group">опубликовать</button>                    
+                  </div>-->
                 </div>                
-                <label>Контакты:</label>                            
-                        <br>
-                        <button type="button" class="btn btn-primary btn-sm" style="margin:auto" @click="addPhoneNumber">+ Добавить номер</button>                    
-                        <div id="numberList">
-                            <br><input type="text" class="form-control phone_input"/>                                                        
-                            <br><input type="text" class="form-control phone_input"/>                                                        
-                            <br><input type="text" class="form-control phone_input"/>                                                        
-                            <br><input type="text" class="form-control phone_input"/>
-                        </div>                
-                <!--<p>контактные номера</p>
-                <p>фотографии</p>
-                <p>регионы</p>
-                <p>местность</p>
-                <p>расположение на карте</p>
-                <p>кнопка опубликовать</p>-->
-
-                <button type="button" class="btn btn-success" style="margin:auto">опубликовать</button>                    
             </div>
-
         </div>
     </div>
 </div>
@@ -117,8 +123,33 @@ data () {
 // методы компонента
 methods: {
 
-addPhoneNumber() {
+// доп. информация
+setInfo() {
+	this.$root.advert_data.adv_info=this.info;
+},
 
+// установить цену
+setPrice(price) {
+/*			
+	if (price < 0 || price > 10000000000) 
+			return this.price;
+
+	this.price = price;
+	this.$root.advert_data.adv_price = price;			
+	this.summ_str = number_to_string(price);
+
+  return price;*/
+},
+
+addPhoneNumber() {  
+  var node = document.createElement("div");
+  node.className += "col-md-12 text-center";
+  node.innerHTML = "<input type='text' class='form-control phone_input'/><span style='margin-left:8px;cursor:pointer' @click='removePhone'>X</span>"
+  document.getElementById("phones_row").appendChild(node);  
+},
+
+removePhone() {
+  alert("remove")
 },
 
 // --------------------------------------
