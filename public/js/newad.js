@@ -1697,17 +1697,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
 
 
 
 
+// -----------------------
 // Логика
+// -----------------------
 /* harmony default export */ __webpack_exports__["default"] = ({
-
   // Входящие данные
   props: ["categories", "dealtypes", "regions"],
 
@@ -21623,6 +21620,11 @@ var render = function() {
                 _c("div", { staticClass: "col-md-12 text-center" }, [
                   _c("input", {
                     staticClass: "form-group",
+                    staticStyle: {
+                      border: "1px solid grey",
+                      "border-radius": "3px",
+                      padding: "3px"
+                    },
                     attrs: {
                       type: "text",
                       placeholder: "цена",

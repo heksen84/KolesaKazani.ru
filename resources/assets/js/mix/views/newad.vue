@@ -2,59 +2,55 @@
 <div class="container-fluid mycontainer_adv">
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col">
-            <div class="close_button" title="Закрыть страницу" style="font-weight:bold" @click="closeAndReturn">X</div>
+        <div class="close_button" title="Закрыть страницу" style="font-weight:bold" @click="closeAndReturn">X</div>
 		    <h1 class="title_text" style="margin-top:12px">подать объявление</h1>
             <hr>
-
             <div style="margin-bottom:10px">
             <label style="width:270px">Вид сделки:</label>
             <div class="form-check" style="width:260px">
-                <div v-for="(item,index) in dealtypes" :key="index">
-                    <input class="form-check-input" :id="item.id" type="radio" name="inlineRadioOptions" v-bind:value="item.id" v-model="sdelka" @change="setDeal">
-                    <label class="form-check-label" :for="item.id">{{ item.deal_name_1 }}</label>
-                </div>
+              <div v-for="(item,index) in dealtypes" :key="index">
+                <input class="form-check-input" :id="item.id" type="radio" name="inlineRadioOptions" v-bind:value="item.id" v-model="sdelka" @change="setDeal">
+                <label class="form-check-label" :for="item.id">{{ item.deal_name_1 }}</label>
+              </div>
             </div>
             </div>
 
             <div class="row form-group" v-if="sdelka!=null">
                 <div class="col-md-4">
-                    <label for="categories">Категория товара или услуги:</label>
-                        <select class="form-control" v-model="category" @change="changeCategory">            
-                            <option v-bind:value="null">-- Выберите категорию --</option>
-                            <option v-for="(item, index) in categories" :key="index" v-bind:value="item.id">{{ item.name }}</option>
-                        </select>                
+                  <label for="categories">Категория товара или услуги:</label>
+                    <select class="form-control" v-model="category" @change="changeCategory">            
+                      <option v-bind:value="null">-- Выберите категорию --</option>
+                      <option v-for="(item, index) in categories" :key="index" v-bind:value="item.id">{{ item.name }}</option>
+                    </select>                
                 </div>
             </div>    
             
-
             <form id="advertform" @submit="onSubmit" v-if="sdelka!=null">  
-                <!-- Категории -->
-		        <div v-if="root"></div>
+              <!-- Категории -->
+		          <div v-if="root"></div>
                 <transport v-else-if="transport"/>
                 <!--<h1 v-else-if="transport">transport</h1>
                 <h1 v-else-if="real_estate">nedvizh</h1>-->
             </form>
 
-
-            <!-- Дополнительные поля -->
-			      <!--<div v-show="this.$store.state.show_final_fields && $store.state.deal_selected">-->            
+            <!-- Дополнительные поля -->			      
             <div v-show="this.$store.state.show_final_fields">
-                <label for="addit_info">{{ $store.state.info_label_description }}</label>
+              <label for="addit_info">{{ $store.state.info_label_description }}</label>
                 <textarea id="addit_info" v-if="!$store.state.required_info" class="form-control form-group" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></textarea>
-                <div class="row">                
-                  <div class="col-md-12 text-center">
-                    <input type="text" placeholder="цена" class="form-group" id="price" :formatter="setPrice" required/>                                
+                  <div class="row">                
+                    <div class="col-md-12 text-center">
+                      <input type="text" placeholder="цена" class="form-group" id="price" :formatter="setPrice" style="border:1px solid grey;border-radius:3px;padding:3px" required/>                                
+                    </div>
+                    <div class="col-md-12">
+                      <hr>
+                      <label class="form-group">Контакты:</label>                            
+                    </div>
+                    <div class="col-md-12 text-center">
+                      <button type="button" class="btn btn-primary btn-sm form-group" @click="addPhoneNumber">+ Добавить номер</button>                    
+                    </div>
                   </div>
-                  <div class="col-md-12">
-                    <hr>
-                    <label class="form-group">Контакты:</label>                            
-                  </div>
-                  <div class="col-md-12 text-center">
-                    <button type="button" class="btn btn-primary btn-sm form-group" @click="addPhoneNumber">+ Добавить номер</button>                    
-                  </div>
-                </div>
-                <div class="row" id="phones_row"></div>
-                <div class="row">                  
+                  <div class="row" id="phones_row"></div>
+                  <div class="row">                  
                   <br>
                   <!--
                   <p>фотографии</p>
@@ -77,16 +73,17 @@
 
 import transport from "./subcategories/transport.vue"
 
+// -----------------------
 // Логика
+// -----------------------
 export default {    
-
 // Входящие данные
 props: ["categories", "dealtypes", "regions"],
 
 components: { transport },
 
 data () {
-    return 	{        
+  return 	{        
 		summ_str: "",
 		const_phone1_max_length: 9,			
 		setCoordsDialog: false,
@@ -107,17 +104,17 @@ data () {
 		phone1: "",
 		phone2: "",
 		phone3: "",
-		transport:false,			// транспорт
-		real_estate:false,			// недвижимость
-		appliances:false,			// бытовая техника
-		work_and_buisness:false,	// работа и бизнес
-		for_home:false,				// для дома и дачи
-		personal_effects:false,		// личные вещи
-		animals:false,				// животные
+		transport:false,			      // транспорт
+		real_estate:false,			    // недвижимость
+		appliances:false,			      // бытовая техника
+		work_and_buisness:false,	  // работа и бизнес
+		for_home:false,				      // для дома и дачи
+		personal_effects:false,		  // личные вещи
+		animals:false,				      // животные
 		hobbies_and_leisure:false,	// хобби и отдых
-		services:false,				// услуги
-		other:false					// другое
-    }
+		services:false,				      // услуги
+		other:false					        // другое
+  }
 },
 
 // методы компонента
@@ -229,7 +226,6 @@ advReset(category_data) {
   // сбрасываю фотки
   let photos = document.querySelector("input[type=file]");
   if (photos!=null) photos.value = "";
-
 },
 
 // --------------------------------------
