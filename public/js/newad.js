@@ -1631,23 +1631,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   props: ["index", "value"],
 
-  components: {},
-
-  data: function data() {
-    return {
-      cloneValue: this.value
-    };
+  // перехватчик
+  computed: {
+    valueInput: {
+      get: function get() {
+        return this.value;
+      },
+      set: function set(newValue) {
+        this.$emit("update:value", newValue);
+        this.$store.commit("SetPhoneNumber", [this.index, newValue]);
+      }
+    }
   },
-  created: function created() {
-    console.log("created index : " + this.index);
-  },
-
   methods: {
-    input: function input() {
-      console.log(this.cloneValue);
-      //this.$store.state.phonesArr[this.index] = this
-      this.$store.commit("SetPhoneNumber", this.index, "---");
-    },
     removePhone: function removePhone() {
       this.$store.commit("RemovePhoneNumber", this.index);
     }
@@ -1747,6 +1743,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -1767,6 +1764,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
   data: function data() {
     return {
+      lastPhoneNumber: null,
       summ_str: "",
       const_phone1_max_length: 9,
       setCoordsDialog: false,
@@ -1824,18 +1822,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     addPhoneNumber: function addPhoneNumber() {
 
-      /*if (this.$store.state.phonesArr[this.$store.state.phonesArr]=="") {
-        alert("заполните значение")
-        return;
-      }*/
+      this.lastPhoneNumber = this.$store.state.phonesArr[this.$store.state.phonesArr.length - 1];
+      console.log("LAST PHONE : " + this.lastPhoneNumber);
 
-      if (this.$store.state.phonesArr.length < 5) this.$store.commit("AddPhoneNumber");
-
-      //this.phonesNum++  
-      /*var node = document.createElement("div");
-      node.className += "col-md-12 text-center";
-      node.innerHTML = "<input type='text' class='form-control phone_input'/><span style='margin-left:8px;cursor:pointer' @click='removePhone'>X</span>"
-      document.getElementById("phones_row").appendChild(node);*/
+      if (this.$store.state.phonesArr.length < 5) {
+        this.$store.commit("AddPhoneNumber");
+      }
     },
 
 
@@ -21740,6 +21732,13 @@ var render = function() {
                     ? _c("p", { staticStyle: { color: "red" } }, [
                         _vm._v("не более 5 номеров")
                       ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.lastPhoneNumber === "" &&
+                  _vm.$store.state.phonesArr.length > 0
+                    ? _c("p", { staticStyle: { color: "red" } }, [
+                        _vm._v("введите номер")
+                      ])
                     : _vm._e()
                 ])
               ]),
@@ -21747,7 +21746,7 @@ var render = function() {
               _c(
                 "div",
                 { staticClass: "row", attrs: { id: "phones_row" } },
-                _vm._l(this.$store.state.phonesArr.length, function(i, index) {
+                _vm._l(_vm.$store.state.phonesArr.length, function(i, index) {
                   return _c(
                     "div",
                     { key: index, staticClass: "col-md-12 text-center" },
@@ -21768,7 +21767,7 @@ var render = function() {
               _c("div", { staticClass: "row" }, [
                 _c("br"),
                 _vm._v(" "),
-                this.$store.state.phones > 0
+                _vm.$store.state.phonesArr.length > 0
                   ? _c("div", { staticClass: "col-md-12 text-center" }, [
                       _c("hr"),
                       _vm._v(" "),
@@ -21826,20 +21825,19 @@ var render = function() {
         {
           name: "model",
           rawName: "v-model",
-          value: _vm.cloneValue,
-          expression: "cloneValue"
+          value: _vm.valueInput,
+          expression: "valueInput"
         }
       ],
       staticClass: "form-control phone_input",
       attrs: { type: "text" },
-      domProps: { value: _vm.cloneValue },
+      domProps: { value: _vm.valueInput },
       on: {
-        keyup: _vm.input,
         input: function($event) {
           if ($event.target.composing) {
             return
           }
-          _vm.cloneValue = $event.target.value
+          _vm.valueInput = $event.target.value
         }
       }
     }),
@@ -35045,6 +35043,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_newad_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__views_newad_vue__);
 
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
 
@@ -35072,19 +35072,17 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 
   mutations: {
     AddPhoneNumber: function AddPhoneNumber(state) {
-      state.phones++;
       state.phonesArr.push("");
-      console.log(state.phonesArr);
     },
     RemovePhoneNumber: function RemovePhoneNumber(state, index) {
-      console.log("REMOVE INDEX: " + index);
       state.phonesArr.splice(index, 1);
-      console.log(state.phonesArr);
     },
-    SetPhoneNumber: function SetPhoneNumber(state, index, text) {
-      console.log("INDEX : " + index);
-      console.log("VALUE : " + text);
-      state.phonesArr.splice(index, 1, index);
+    SetPhoneNumber: function SetPhoneNumber(state, _ref) {
+      var _ref2 = _slicedToArray(_ref, 2),
+          index = _ref2[0],
+          text = _ref2[1];
+
+      state.phonesArr.splice(index, 1, text);
       console.log(state.phonesArr);
     },
     SetDealSelected: function SetDealSelected(state, value) {

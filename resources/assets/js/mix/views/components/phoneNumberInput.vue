@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type='text' class='form-control phone_input' @keyup="input" v-model="cloneValue" /><span style='margin-left:8px;cursor:pointer' @click='removePhone'>X</span>
+    <input type='text' class='form-control phone_input' v-model="valueInput"/><span style='margin-left:8px;cursor:pointer' @click='removePhone'>X</span>    
  </div>
 </template>
 
@@ -8,23 +8,20 @@
 export default {
   
   props: ["index", "value"],
-
-  components: {},
-
-  data () {
-    return 	{
-      cloneValue: this.value      
+  
+  // перехватчик
+  computed: {
+    valueInput: {
+      get: function(){
+        return this.value;
+      },
+      set: function(newValue){                
+        this.$emit("update:value", newValue)
+        this.$store.commit("SetPhoneNumber", [ this.index, newValue ]);
+      }   
     }
-	},
-  created() {
-    console.log("created index : "+this.index)
   },
-  methods: {
-    input() {
-      console.log(this.cloneValue)
-      //this.$store.state.phonesArr[this.index] = this
-      this.$store.commit("SetPhoneNumber", this.index, "---");
-    },
+  methods: {    
     removePhone() {
       this.$store.commit("RemovePhoneNumber", this.index);
     }

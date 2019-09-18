@@ -49,10 +49,11 @@
                     <div class="col-md-12 text-center">
                       <button type="button" class="btn btn-primary btn-sm form-group" @click="addPhoneNumber">+ Добавить номер</button>
                       <p style="color:red" v-if="$store.state.phonesArr.length>=5">не более 5 номеров</p>
+                      <p style="color:red" v-if="lastPhoneNumber==='' && $store.state.phonesArr.length>0">введите номер</p>
                     </div>
                   </div>
                   <div class="row" id="phones_row">                    
-                    <div class="col-md-12 text-center" v-for="(i, index) in this.$store.state.phonesArr.length" :key="index">
+                    <div class="col-md-12 text-center" v-for="(i, index) in $store.state.phonesArr.length" :key="index">
                       <phoneNumberInput :index=index :value=$store.state.phonesArr[index]></phoneNumberInput>
                     </div>
                   </div>
@@ -66,7 +67,7 @@
                   <p>расположение на карте</p>
                   <p>кнопка опубликовать</p>-->
 
-                  <div class="col-md-12 text-center" v-if="this.$store.state.phones>0">
+                  <div class="col-md-12 text-center" v-if="$store.state.phonesArr.length>0">
                     <hr>
                     <button type="button" class="btn btn-success form-group">опубликовать</button>                    
                   </div>
@@ -96,6 +97,7 @@ components: {
 
 data () {
   return 	{    
+    lastPhoneNumber: null,
 		summ_str: "",
 		const_phone1_max_length: 9,			
 		setCoordsDialog: false,
@@ -150,21 +152,15 @@ setPrice() {
   return price;*/
 },
 
-addPhoneNumber() {  
+addPhoneNumber() {      
 
-    /*if (this.$store.state.phonesArr[this.$store.state.phonesArr]=="") {
-      alert("заполните значение")
-      return;
-    }*/
-    
-    if (this.$store.state.phonesArr.length<5) 
+    this.lastPhoneNumber = this.$store.state.phonesArr[this.$store.state.phonesArr.length-1];
+    console.log("LAST PHONE : "+this.lastPhoneNumber)
+
+    if (this.$store.state.phonesArr.length<5) {
       this.$store.commit("AddPhoneNumber")
-
-  //this.phonesNum++  
-  /*var node = document.createElement("div");
-  node.className += "col-md-12 text-center";
-  node.innerHTML = "<input type='text' class='form-control phone_input'/><span style='margin-left:8px;cursor:pointer' @click='removePhone'>X</span>"
-  document.getElementById("phones_row").appendChild(node);*/
+    }
+          
 },
 
 
