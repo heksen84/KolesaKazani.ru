@@ -34,30 +34,31 @@
             </form>
 
             <!-- Дополнительные поля -->			      
-            <div v-show="this.$store.state.show_final_fields">
+            <div v-show="$store.state.show_final_fields">
               <label for="addit_info">{{ $store.state.info_label_description }}</label>
                 <textarea id="addit_info" v-if="!$store.state.required_info" class="form-control form-group" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></textarea>
                   <div class="row">                
                     <div class="col-md-12 text-center" v-if="sdelka!=3">
                       <span style="margin-right:5px">Цена:</span>
-                      <input type="text" placeholder="0" class="form-group" id="price" :formatter="setPrice" style="margin-right:45px;width:120px;text-align:center;border:1px solid grey;border-radius:3px;padding:3px" required/>                                
-                    </div>
+                      <input type="text" placeholder="0" class="form-group" id="price" :formatter="setPrice" v-model="price" style="margin-right:45px;width:120px;text-align:center;border:1px solid grey;border-radius:3px;padding:3px" required/>                                
+                    </div>                 
                     <div class="col-md-12">
                       <hr>
                       <label class="form-group">Контакты:</label>                            
                     </div>
                     <div class="col-md-12 text-center">
                       <button type="button" class="btn btn-primary btn-sm form-group" @click="addPhoneNumber">+ Добавить номер</button>
-                      <p style="color:red" v-if="this.showMaxPhonesNumMsg">не более 5 номеров</p>
+                      <p style="color:red" v-if="$store.state.phonesArr.length>=5">не более 5 номеров</p>
                     </div>
                   </div>
-                  <div class="row" id="phones_row">
-                    <div class="col-md-12 text-center" v-for="(i, index) in this.$store.state.phones" :key="index">
-                      <phoneNumberInput></phoneNumberInput>
+                  <div class="row" id="phones_row">                    
+                    <div class="col-md-12 text-center" v-for="(i, index) in this.$store.state.phonesArr.length" :key="index">
+                      <phoneNumberInput :index=index :value=$store.state.phonesArr[index]></phoneNumberInput>
                     </div>
                   </div>
                   <div class="row">                  
                   <br>
+
                   <!--
                   <p>фотографии</p>
                   <p>регионы</p>
@@ -94,8 +95,7 @@ components: {
 },
 
 data () {
-  return 	{
-    showMaxPhonesNumMsg:false,
+  return 	{    
 		summ_str: "",
 		const_phone1_max_length: 9,			
 		setCoordsDialog: false,
@@ -151,7 +151,14 @@ setPrice() {
 },
 
 addPhoneNumber() {  
-    this.$store.state.phones<5?this.$store.commit("AddPhoneNumber"):this.showMaxPhonesNumMsg=true
+
+    if (this.$store.state.phonesArr[this.$store.state.phonesArr]=="") {
+      alert("заполните значение")
+      return;
+    }
+    
+    if (this.$store.state.phonesArr.length<5) 
+      this.$store.commit("AddPhoneNumber")
 
   //this.phonesNum++  
   /*var node = document.createElement("div");

@@ -22,17 +22,30 @@ const store = new Vuex.Store({
     show_common_transport: false,
     deal_selected: false,    
     str_realestate_area_label_text: "",
-    phones: 0
+    phones: 0,
+    phonesArr: []
   },
 
   mutations: {
 
-    AddPhoneNumber( state ) {
-      state.phones++
+    AddPhoneNumber( state ) {      
+      state.phones++;      
+      state.phonesArr.push("")
+      console.log(state.phonesArr)
     },
 
-    RemovePhoneNumber( state ) {
-      state.phones--
+    RemovePhoneNumber( state, index ) {      
+      state.phonesArr.splice(index, 1)
+      console.log(state.phonesArr)
+      state.phones-- 
+    },
+
+    SetPhoneNumber( state, index, text ) {      
+      console.log("INDEX : "+index)      
+      console.log("VALUE : "+text)     
+      //state.phonesArr[index] = value
+      state.phonesArr.splice(index, 1, "value");
+      console.log(state.phonesArr)      
     },
 
     SetDealSelected( state, value ) {
@@ -85,7 +98,6 @@ export default new Vue ({
       advert_data: {} // глобальный объект объявления
     }
   },
-
   store,
   el: '#app',
   components: { newad }

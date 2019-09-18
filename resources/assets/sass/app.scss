@@ -258,7 +258,7 @@ h3 {
   width: 250px;
   display:inline-block;  
   text-align:center;
-  margin: 3px auto;
+  margin: 3px auto;  
 }
 .title_text {
   margin-top:10px;
@@ -478,7 +478,7 @@ h3 {
 @media screen and (max-width:1280px) {
   .mycontainer {
     width: 100%;
-   }
+  }
 }
 
 @media screen and (max-width:1224px) {
@@ -666,6 +666,15 @@ body {
 
 #addit_info {
   width:100%;
+}
+
+}
+
+// iphone 5
+@media screen and (max-width:320px) {
+.subcategory {
+  width:270px !important;
+  font-size:15px !important;
 }
 
 }

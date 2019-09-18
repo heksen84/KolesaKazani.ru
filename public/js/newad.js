@@ -1628,15 +1628,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {};
-  },
-  created: function created() {},
+
+  props: ["index", "value"],
 
   components: {},
+
+  data: function data() {
+    return {
+      cloneValue: this.value
+    };
+  },
+  created: function created() {
+    console.log("created index : " + this.index);
+  },
+
   methods: {
+    input: function input() {
+      console.log(this.cloneValue);
+      //this.$store.state.phonesArr[this.index] = this
+      this.$store.commit("SetPhoneNumber", this.index, "---");
+    },
     removePhone: function removePhone() {
-      this.$store.commit("RemovePhoneNumber");
+      this.$store.commit("RemovePhoneNumber", this.index);
     }
   }
 });
@@ -1656,6 +1669,7 @@ var _methods;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -1753,7 +1767,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
   data: function data() {
     return {
-      showMaxPhonesNumMsg: false,
       summ_str: "",
       const_phone1_max_length: 9,
       setCoordsDialog: false,
@@ -1810,7 +1823,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return price;*/
     },
     addPhoneNumber: function addPhoneNumber() {
-      this.$store.state.phones < 5 ? this.$store.commit("AddPhoneNumber") : this.showMaxPhonesNumMsg = true;
+
+      if (this.$store.state.phonesArr[this.$store.state.phonesArr] == "") {
+        alert("заполните значение");
+        return;
+      }
+
+      if (this.$store.state.phonesArr.length < 5) this.$store.commit("AddPhoneNumber");
 
       //this.phonesNum++  
       /*var node = document.createElement("div");
@@ -21617,8 +21636,8 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: this.$store.state.show_final_fields,
-                  expression: "this.$store.state.show_final_fields"
+                  value: _vm.$store.state.show_final_fields,
+                  expression: "$store.state.show_final_fields"
                 }
               ]
             },
@@ -21667,6 +21686,14 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.price,
+                            expression: "price"
+                          }
+                        ],
                         staticClass: "form-group",
                         staticStyle: {
                           "margin-right": "45px",
@@ -21682,6 +21709,15 @@ var render = function() {
                           id: "price",
                           formatter: _vm.setPrice,
                           required: ""
+                        },
+                        domProps: { value: _vm.price },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.price = $event.target.value
+                          }
                         }
                       })
                     ])
@@ -21700,7 +21736,7 @@ var render = function() {
                     [_vm._v("+ Добавить номер")]
                   ),
                   _vm._v(" "),
-                  this.showMaxPhonesNumMsg
+                  _vm.$store.state.phonesArr.length >= 5
                     ? _c("p", { staticStyle: { color: "red" } }, [
                         _vm._v("не более 5 номеров")
                       ])
@@ -21711,11 +21747,18 @@ var render = function() {
               _c(
                 "div",
                 { staticClass: "row", attrs: { id: "phones_row" } },
-                _vm._l(this.$store.state.phones, function(i, index) {
+                _vm._l(this.$store.state.phonesArr.length, function(i, index) {
                   return _c(
                     "div",
                     { key: index, staticClass: "col-md-12 text-center" },
-                    [_c("phoneNumberInput")],
+                    [
+                      _c("phoneNumberInput", {
+                        attrs: {
+                          index: index,
+                          value: _vm.$store.state.phonesArr[index]
+                        }
+                      })
+                    ],
                     1
                   )
                 }),
@@ -21779,8 +21822,26 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.cloneValue,
+          expression: "cloneValue"
+        }
+      ],
       staticClass: "form-control phone_input",
-      attrs: { type: "text" }
+      attrs: { type: "text" },
+      domProps: { value: _vm.cloneValue },
+      on: {
+        keyup: _vm.input,
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.cloneValue = $event.target.value
+        }
+      }
     }),
     _c(
       "span",
@@ -35006,15 +35067,27 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     show_common_transport: false,
     deal_selected: false,
     str_realestate_area_label_text: "",
-    phones: 0
+    phones: 0,
+    phonesArr: []
   },
 
   mutations: {
     AddPhoneNumber: function AddPhoneNumber(state) {
       state.phones++;
+      state.phonesArr.push("");
+      console.log(state.phonesArr);
     },
-    RemovePhoneNumber: function RemovePhoneNumber(state) {
+    RemovePhoneNumber: function RemovePhoneNumber(state, index) {
+      state.phonesArr.splice(index, 1);
+      console.log(state.phonesArr);
       state.phones--;
+    },
+    SetPhoneNumber: function SetPhoneNumber(state, index, text) {
+      console.log("INDEX : " + index);
+      console.log("VALUE : " + text);
+      //state.phonesArr[index] = value
+      state.phonesArr.splice(index, 1, "value");
+      console.log(state.phonesArr);
     },
     SetDealSelected: function SetDealSelected(state, value) {
       state.deal_selected = value;
@@ -35067,7 +35140,6 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
       advert_data: {} // глобальный объект объявления
     };
   },
-
 
   store: store,
   el: '#app',
