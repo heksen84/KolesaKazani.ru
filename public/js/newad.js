@@ -1626,6 +1626,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -1638,8 +1639,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return this.value;
       },
       set: function set(newValue) {
-        this.$emit("update:value", newValue);
-        this.$store.commit("SetPhoneNumber", [this.index, newValue]);
+
+        var x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+        var val = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+
+        this.$emit("update:value", val);
+        this.$store.commit("SetPhoneNumber", [this.index, val]);
       }
     }
   },
@@ -21690,7 +21695,6 @@ var render = function() {
                         staticStyle: {
                           "margin-right": "45px",
                           width: "120px",
-                          "text-align": "center",
                           border: "1px solid grey",
                           "border-radius": "3px",
                           padding: "3px"
@@ -21820,6 +21824,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
     _c("input", {
       directives: [
         {
@@ -21830,7 +21836,14 @@ var render = function() {
         }
       ],
       staticClass: "form-control phone_input",
-      attrs: { type: "text" },
+      attrs: {
+        type: "tel",
+        maxlength: "14",
+        placeholder: "(705) 555-5555",
+        autocomplete: "tel",
+        pattern: "[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}",
+        required: ""
+      },
       domProps: { value: _vm.valueInput },
       on: {
         input: function($event) {
@@ -21852,7 +21865,14 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("span", [_vm._v("+7")])])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

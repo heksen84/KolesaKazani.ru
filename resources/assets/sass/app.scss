@@ -2,6 +2,7 @@
 // ----------------------------------------------
 // константы
 // ----------------------------------------------
+$inputPlaceHolder: rgb(230,230,230);
 $background: rgb(245, 245, 245);
 $shadow_text_color: rgb(50, 50, 50);
 $scroll_bar_back_color: rgb(80, 80, 80);
@@ -48,19 +49,23 @@ input[type="number"] {
 }
 
 ::-webkit-input-placeholder {
- text-align: center;
+ //text-align: center;
+ color:$inputPlaceHolder;
 }
 
 :-moz-placeholder {
- text-align: center;
+ //text-align: center;
+ color:$inputPlaceHolder;
 }
 
 ::-moz-placeholder {
- text-align: center;
+ //text-align: center;
+ color:$inputPlaceHolder;
 }
 
 :-ms-input-placeholder {
- text-align: center;
+ //text-align: center;
+ color:$inputPlaceHolder;
 }
 
 #navbar_menu {
@@ -255,9 +260,9 @@ h3 {
 }
 
 .phone_input {
-  width: 250px;
+  width: 230px;
   display:inline-block;  
-  text-align:center;
+  //text-align:center;
   margin: 3px auto;  
 }
 .title_text {

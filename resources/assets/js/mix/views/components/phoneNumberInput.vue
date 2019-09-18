@@ -1,6 +1,7 @@
 <template>
   <div>
-    <input type='text' class='form-control phone_input' v-model="valueInput"/><span style='margin-left:10px;cursor:pointer' @click='removePhone' title="удалить номер">X</span>    
+    <span ><span>+7</span></span>
+    <input type="tel" maxlength="14" placeholder="(705) 555-5555" autocomplete="tel" pattern="[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}" class='form-control phone_input' v-model="valueInput" required/><span style='margin-left:10px;cursor:pointer' @click='removePhone' title="удалить номер">X</span>    
  </div>
 </template>
 
@@ -16,12 +17,16 @@ export default {
         return this.value;
       },
       set: function(newValue){                
-        this.$emit("update:value", newValue)
-        this.$store.commit("SetPhoneNumber", [ this.index, newValue ]);
+        
+        let x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);        
+        let val = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');                
+
+        this.$emit("update:value", val)
+        this.$store.commit("SetPhoneNumber", [ this.index, val ]);
       }   
     }
   },
-  methods: {    
+  methods: {
     removePhone() {
       this.$store.commit("RemovePhoneNumber", this.index);
     }
