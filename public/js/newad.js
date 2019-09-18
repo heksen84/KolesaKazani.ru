@@ -1824,10 +1824,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     addPhoneNumber: function addPhoneNumber() {
 
-      if (this.$store.state.phonesArr[this.$store.state.phonesArr] == "") {
-        alert("заполните значение");
+      /*if (this.$store.state.phonesArr[this.$store.state.phonesArr]=="") {
+        alert("заполните значение")
         return;
-      }
+      }*/
 
       if (this.$store.state.phonesArr.length < 5) this.$store.commit("AddPhoneNumber");
 
@@ -35067,7 +35067,6 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     show_common_transport: false,
     deal_selected: false,
     str_realestate_area_label_text: "",
-    phones: 0,
     phonesArr: []
   },
 
@@ -35078,15 +35077,14 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
       console.log(state.phonesArr);
     },
     RemovePhoneNumber: function RemovePhoneNumber(state, index) {
+      console.log("REMOVE INDEX: " + index);
       state.phonesArr.splice(index, 1);
       console.log(state.phonesArr);
-      state.phones--;
     },
     SetPhoneNumber: function SetPhoneNumber(state, index, text) {
       console.log("INDEX : " + index);
       console.log("VALUE : " + text);
-      //state.phonesArr[index] = value
-      state.phonesArr.splice(index, 1, "value");
+      state.phonesArr.splice(index, 1, index);
       console.log(state.phonesArr);
     },
     SetDealSelected: function SetDealSelected(state, value) {

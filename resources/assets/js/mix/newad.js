@@ -22,7 +22,6 @@ const store = new Vuex.Store({
     show_common_transport: false,
     deal_selected: false,    
     str_realestate_area_label_text: "",
-    phones: 0,
     phonesArr: []
   },
 
@@ -35,16 +34,15 @@ const store = new Vuex.Store({
     },
 
     RemovePhoneNumber( state, index ) {      
+      console.log("REMOVE INDEX: "+index)
       state.phonesArr.splice(index, 1)
       console.log(state.phonesArr)
-      state.phones-- 
     },
 
     SetPhoneNumber( state, index, text ) {      
       console.log("INDEX : "+index)      
-      console.log("VALUE : "+text)     
-      //state.phonesArr[index] = value
-      state.phonesArr.splice(index, 1, "value");
+      console.log("VALUE : "+text)      
+      state.phonesArr.splice(index, 1, index);
       console.log(state.phonesArr)      
     },
 

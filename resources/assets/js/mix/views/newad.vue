@@ -152,10 +152,10 @@ setPrice() {
 
 addPhoneNumber() {  
 
-    if (this.$store.state.phonesArr[this.$store.state.phonesArr]=="") {
+    /*if (this.$store.state.phonesArr[this.$store.state.phonesArr]=="") {
       alert("заполните значение")
       return;
-    }
+    }*/
     
     if (this.$store.state.phonesArr.length<5) 
       this.$store.commit("AddPhoneNumber")
