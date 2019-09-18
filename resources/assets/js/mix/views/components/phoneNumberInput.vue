@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type='text' class='form-control phone_input' v-model="valueInput"/><span style='margin-left:8px;cursor:pointer' @click='removePhone'>X</span>    
+    <input type='text' class='form-control phone_input' v-model="valueInput"/><span style='margin-left:10px;cursor:pointer' @click='removePhone' title="удалить номер">X</span>    
  </div>
 </template>
 

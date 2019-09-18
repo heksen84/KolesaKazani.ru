@@ -21844,7 +21844,8 @@ var render = function() {
     _c(
       "span",
       {
-        staticStyle: { "margin-left": "8px", cursor: "pointer" },
+        staticStyle: { "margin-left": "10px", cursor: "pointer" },
+        attrs: { title: "удалить номер" },
         on: { click: _vm.removePhone }
       },
       [_vm._v("X")]
