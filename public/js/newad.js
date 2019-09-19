@@ -1749,6 +1749,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1841,6 +1851,55 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     // --------------------------------------
     closeAndReturn: function closeAndReturn() {
       window.history.back();
+    },
+
+
+    // ------------------------------------------------
+    //
+    // Загрузка изображений
+    //
+    // ------------------------------------------------
+    loadImage: function loadImage(evt) {
+
+      var root = this.$root;
+      var files = evt.target.files;
+      var input_images = document.querySelector("input[type=file]");
+      var preview_images = this.preview_images;
+      var real_images = this.real_images;
+
+      if (input_images.files.length + preview_images.length > this.$root.max_loaded_images) return;
+
+      for (var i = 0; i < files.length; i++) {
+        if (i === this.$root.max_loaded_images) break;
+
+        // если уже существует, не обрабатывать изображение
+        for (var j = 0; j < preview_images.length; j++) {
+          if (files[i].name == preview_images[j].name) return false;
+        }var image = files[i];
+        var reader = new FileReader();
+
+        reader.onload = function (theFile) {
+
+          return function (e) {
+            if (theFile.type == "image/jpeg" || theFile.type == "image/pjpeg" || theFile.type == "image/png") {
+              preview_images.push({ "name": theFile.name, "src": e.target.result });
+              real_images.push(theFile);
+            }
+            //	else
+            //	root.$notify({group: 'foo', text: "<h6>Только изображения!</h6>", type: 'error'});				
+          };
+        }(image);
+        reader.readAsDataURL(image);
+      }
+      input_images.value = "";
+    },
+
+
+    // Удаление фото по щелчку
+    deletePhoto: function deletePhoto(index) {
+      document.querySelector("input[type=file]").value = "";
+      this.preview_images.splice(index, 1);
+      this.real_images.splice(index, 1);
     },
 
 
@@ -21730,26 +21789,13 @@ var render = function() {
                       on: { click: _vm.addPhoneNumber }
                     },
                     [_vm._v("+ Добавить номер")]
-                  ),
-                  _vm._v(" "),
-                  _vm.$store.state.phonesArr.length >= 5
-                    ? _c("p", { staticStyle: { color: "red" } }, [
-                        _vm._v("не более 5 номеров")
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.lastPhoneNumber === "" &&
-                  _vm.$store.state.phonesArr.length > 0
-                    ? _c("p", { staticStyle: { color: "red" } }, [
-                        _vm._v("введите номер")
-                      ])
-                    : _vm._e()
+                  )
                 ])
               ]),
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "row", attrs: { id: "phones_row" } },
+                { staticClass: "row" },
                 _vm._l(_vm.$store.state.phonesArr.length, function(i, index) {
                   return _c(
                     "div",
@@ -21768,24 +21814,63 @@ var render = function() {
                 0
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("br"),
-                _vm._v(" "),
-                _vm.$store.state.phonesArr.length > 0
-                  ? _c("div", { staticClass: "col-md-12 text-center" }, [
-                      _c("hr"),
+              _vm.$store.state.phonesArr.length > 0
+                ? _c("div", { staticClass: "row" }, [
+                    _c("br"),
+                    _vm._v(" "),
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-md-12 text-center" },
+                      _vm._l(_vm.preview_images, function(i, index) {
+                        return _c("img", {
+                          key: i.name,
+                          staticClass: "image",
+                          attrs: { src: i.src, title: i.name },
+                          on: {
+                            click: function($event) {
+                              return _vm.deletePhoto(index)
+                            }
+                          }
+                        })
+                      }),
+                      0
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-12 text-center" }, [
+                      _c("br"),
                       _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-success form-group",
-                          attrs: { type: "button" }
+                      _c("input", {
+                        staticClass: "form-group",
+                        attrs: {
+                          name: "input2[]",
+                          type: "file",
+                          accept: ".png, .jpg, .jpeg",
+                          multiple: "",
+                          "data-show-upload": "true",
+                          "data-show-caption": "true"
                         },
-                        [_vm._v("опубликовать")]
-                      )
-                    ])
-                  : _vm._e()
-              ])
+                        on: { change: _vm.loadImage }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _vm.$store.state.phonesArr.length > 0
+                      ? _c("div", { staticClass: "col-md-12 text-center" }, [
+                          _c("hr"),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success form-group",
+                              attrs: { type: "button" }
+                            },
+                            [_vm._v("опубликовать")]
+                          )
+                        ])
+                      : _vm._e()
+                  ])
+                : _vm._e()
             ]
           )
         ]
@@ -21802,6 +21887,14 @@ var staticRenderFns = [
       _c("hr"),
       _vm._v(" "),
       _c("label", { staticClass: "form-group" }, [_vm._v("Контакты:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("label", { staticClass: "form-group" }, [_vm._v("Фотографии:")])
     ])
   }
 ]
@@ -21839,7 +21932,6 @@ var render = function() {
       attrs: {
         type: "tel",
         maxlength: "14",
-        placeholder: "(705) 555-5555",
         autocomplete: "tel",
         pattern: "[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}",
         required: ""

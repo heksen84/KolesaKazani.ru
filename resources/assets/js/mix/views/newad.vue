@@ -48,17 +48,27 @@
                     </div>
                     <div class="col-md-12 text-center">
                       <button type="button" class="btn btn-primary btn-sm form-group" @click="addPhoneNumber">+ Добавить номер</button>
-                      <p style="color:red" v-if="$store.state.phonesArr.length>=5">не более 5 номеров</p>
-                      <p style="color:red" v-if="lastPhoneNumber==='' && $store.state.phonesArr.length>0">введите номер</p>
+                      <!--<p style="color:red" v-if="$store.state.phonesArr.length>=5">не более 5 номеров</p>
+                      <p style="color:red" v-if="lastPhoneNumber==='' && $store.state.phonesArr.length>0">введите номер</p>-->
                     </div>
                   </div>
-                  <div class="row" id="phones_row">                    
+                  <div class="row">                    
                     <div class="col-md-12 text-center" v-for="(i, index) in $store.state.phonesArr.length" :key="index">
                       <phoneNumberInput :index=index :value=$store.state.phonesArr[index]></phoneNumberInput>
                     </div>
                   </div>
-                  <div class="row">                  
+                  <div class="row" v-if="$store.state.phonesArr.length>0">                  
                   <br>
+                  <div class="col-md-12">
+                    <label class="form-group">Фотографии:</label>
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <img v-for="(i, index) in preview_images" :src="i.src" :key="i.name" @click="deletePhoto(index)" class="image" :title="i.name"/>
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <br>                    
+                    <input @change="loadImage" name="input2[]" type="file" class="form-group" accept=".png, .jpg, .jpeg" multiple data-show-upload="true" data-show-caption="true">
+                  </div>
 
                   <!--
                   <p>фотографии</p>
@@ -171,6 +181,57 @@ closeAndReturn() {
  	window.history.back();
 },
 
+	// ------------------------------------------------
+	//
+	// Загрузка изображений
+	//
+	// ------------------------------------------------
+  loadImage(evt) {
+			  
+		var root  = this.$root;  
+		var files = evt.target.files;			
+		var input_images = document.querySelector("input[type=file]");	
+		var preview_images = this.preview_images;		
+		var real_images = this.real_images;
+
+		if (input_images.files.length + preview_images.length > this.$root.max_loaded_images) 
+			return;
+		
+		for (var i=0; i<files.length; i++) {
+			if (i===this.$root.max_loaded_images) break;
+
+			// если уже существует, не обрабатывать изображение
+			for (var j=0; j<preview_images.length; j++)
+				if (files[i].name==preview_images[j].name)
+					return false;
+
+      var image  = files[i]
+			var reader = new FileReader();
+
+  		reader.onload = (function(theFile) {
+
+    return function(e) {
+			if (theFile.type=="image/jpeg" || theFile.type=="image/pjpeg" || theFile.type=="image/png") {					
+				preview_images.push({ "name": theFile.name, "src": e.target.result });
+				real_images.push(theFile);
+			}
+		//	else
+		//	root.$notify({group: 'foo', text: "<h6>Только изображения!</h6>", type: 'error'});				
+    };
+
+		})(image);		  
+			reader.readAsDataURL(image);			
+		}
+			input_images.value = "";
+	},
+
+	// Удаление фото по щелчку
+  deletePhoto(index) {
+		document.querySelector("input[type=file]").value = "";
+		this.preview_images.splice(index, 1);
+		this.real_images.splice(index, 1);
+  },
+
 // --------------------------------------
 // сброс данных объявления
 // --------------------------------------
@@ -275,14 +336,14 @@ advReset(category_data) {
     // Типа: Продам то-то-то-то или Куплю то-то-то-то
     // ----------------------------------------------------------------------------------------------------------------
     switch(category_data) {
-        case 3: this.$root.advert_data.adv_deal = ""; break; 
-        case 4: this.$root.advert_data.adv_deal = ""; break; 
-        case 5: this.$root.advert_data.adv_deal = ""; break; 
-        case 6: this.$root.advert_data.adv_deal = ""; break; 
-        case 7: this.$root.advert_data.adv_deal = ""; break; 
-        case 8: this.$root.advert_data.adv_deal = ""; break; 
-        case 9: this.$root.advert_data.adv_deal = ""; break; 
-        case 10: this.$root.advert_data.adv_deal = ""; break; 
+      case 3: this.$root.advert_data.adv_deal = ""; break; 
+      case 4: this.$root.advert_data.adv_deal = ""; break; 
+      case 5: this.$root.advert_data.adv_deal = ""; break; 
+      case 6: this.$root.advert_data.adv_deal = ""; break; 
+      case 7: this.$root.advert_data.adv_deal = ""; break; 
+      case 8: this.$root.advert_data.adv_deal = ""; break; 
+      case 9: this.$root.advert_data.adv_deal = ""; break; 
+      case 10: this.$root.advert_data.adv_deal = ""; break; 
       default: this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
     }
       

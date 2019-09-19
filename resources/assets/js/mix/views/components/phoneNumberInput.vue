@@ -1,7 +1,7 @@
 <template>
   <div>
     <span ><span>+7</span></span>
-    <input type="tel" maxlength="14" placeholder="(705) 555-5555" autocomplete="tel" pattern="[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}" class='form-control phone_input' v-model="valueInput" required/><span style='margin-left:10px;cursor:pointer' @click='removePhone' title="удалить номер">X</span>    
+    <input type="tel" maxlength="14" autocomplete="tel" pattern="[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}" class='form-control phone_input' v-model="valueInput" required/><span style='margin-left:10px;cursor:pointer' @click='removePhone' title="удалить номер">X</span>    
  </div>
 </template>
 
