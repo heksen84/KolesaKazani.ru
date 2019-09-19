@@ -1662,10 +1662,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__subcategories_transport_vue__ = __webpack_require__("./resources/assets/js/mix/views/subcategories/transport.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__subcategories_transport_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__subcategories_transport_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_phoneNumberInput_vue__ = __webpack_require__("./resources/assets/js/mix/views/components/phoneNumberInput.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_phoneNumberInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_phoneNumberInput_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__subcategories_transport_vue__ = __webpack_require__("./resources/assets/js/mix/views/subcategories/transport.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__subcategories_transport_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__subcategories_transport_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_phoneNumberInput_vue__ = __webpack_require__("./resources/assets/js/mix/views/components/phoneNumberInput.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_phoneNumberInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_phoneNumberInput_vue__);
 var _methods;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -1787,6 +1788,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 // -----------------------
 // Логика
 // -----------------------
@@ -1796,8 +1798,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   props: ["categories", "dealtypes", "regions"],
 
   components: {
-    transport: __WEBPACK_IMPORTED_MODULE_0__subcategories_transport_vue___default.a,
-    phoneNumberInput: __WEBPACK_IMPORTED_MODULE_1__components_phoneNumberInput_vue___default.a
+    transport: __WEBPACK_IMPORTED_MODULE_1__subcategories_transport_vue___default.a,
+    phoneNumberInput: __WEBPACK_IMPORTED_MODULE_2__components_phoneNumberInput_vue___default.a
   },
 
   data: function data() {
@@ -1877,10 +1879,59 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
 
 
+    // обработка выбора региона
+    changeRegion: function changeRegion() {
+      var _this = this;
+
+      this.$root.advert_data.region_id = this.regions_model;
+
+      // -------------------------------
+      // Получить города / сёлы
+      // -------------------------------
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("getPlaces?region_id=" + this.regions_model).then(function (res) {
+        _this.places = res.data;
+        _this.places_model = null;
+        console.log(res.data);
+      }).catch(function (err) {});
+    },
+
+
+    // -----------------------------------
+    // обработка выбора местоположения
+    // -----------------------------------
+    changePlace: function changePlace() {
+
+      if (this.places_model == null) return; // не обрабатыать если null
+
+      var arr = this.places_model.replace(" ", "").split("@");
+      var city_id = arr[0];
+      var coords = arr[1];
+      var lanlng = coords.split(",");
+
+      mapCoords = [];
+      mapCoords.push(lanlng[0]);
+      mapCoords.push(lanlng[1]);
+
+      bigmap.setCenter(mapCoords, 15, "bigmap");
+      smallmap.setCenter(mapCoords, 11, "smallmap");
+
+      myPlacemark1.geometry.setCoordinates(mapCoords);
+      myPlacemark2.geometry.setCoordinates(mapCoords);
+
+      this.placeChanged = true;
+      this.coordinates_set = true;
+
+      // записываю id городи или деревни
+      this.$root.advert_data.city_id = city_id;
+
+      // записываю координаты
+      this.$root.advert_data.adv_coords = [];
+      this.$root.advert_data.adv_coords = mapCoords;
+    },
+
+
     // ------------------------------------------------
-    //
     // Загрузка изображений
-    //
     // ------------------------------------------------
     loadImage: function loadImage(evt) {
 
@@ -1919,7 +1970,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
 
 
+    // -------------------------
     // Удаление фото по щелчку
+    // -------------------------
     deletePhoto: function deletePhoto(index) {
       document.querySelector("input[type=file]").value = "";
       this.preview_images.splice(index, 1);
@@ -2196,7 +2249,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
     }
   }), _defineProperty(_methods, "onSubmit", function onSubmit(evt) {
-    var _this = this;
+    var _this2 = this;
 
     evt.preventDefault();
 
@@ -2223,7 +2276,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (response.data.result == "db.error")
         //this.$root.$notify({group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error'});
-        alert("Неполадки в работе сервиса. Приносим свои извинения.");else if (response.data.result == "usr.error") _this.$root.$notify({ group: 'foo', text: "<h6>" + response.data.msg + "</h6>", type: 'error' });else alert("Объявление размещено");
+        alert("Неполадки в работе сервиса. Приносим свои извинения.");else if (response.data.result == "usr.error") _this2.$root.$notify({ group: 'foo', text: "<h6>" + response.data.msg + "</h6>", type: 'error' });else alert("Объявление размещено");
       //	else 
       //	window.location="home"; // переходим в личный кабинет
     }).catch(function (error) {
