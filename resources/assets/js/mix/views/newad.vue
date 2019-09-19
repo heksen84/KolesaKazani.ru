@@ -40,7 +40,7 @@
                   <div class="row">                
                     <div class="col-md-12 text-center" v-if="sdelka!=3">
                       <span style="margin-right:5px">Цена:</span>
-                      <input type="text" placeholder="0" class="form-group" id="price" :formatter="setPrice" v-model="price" style="margin-right:45px;width:120px;border:1px solid grey;border-radius:3px;padding:3px" required/>
+                      <input type="text" placeholder="0" class="form-group" id="price" :formatter="setPrice" v-model="price" style="margin-right:45px;width:120px;border:1px solid grey;border-radius:3px;padding:5px" required/>
                     </div>                 
                     <div class="col-md-12">
                       <hr>
@@ -69,7 +69,30 @@
                     <br>                    
                     <input @change="loadImage" name="input2[]" type="file" class="form-group" accept=".png, .jpg, .jpeg" multiple data-show-upload="true" data-show-caption="true">
                   </div>
+                  <div class="col-md-12">
+                    <label class="form-group">Расположение:</label>
+                  </div>
+                  
+                  <div class="col-md-12">
+                    <div style="width:280px;margin:auto">
+                    <label for="selectRegion">Регион:</label>
+                      <select id="selectRegion" class="form-control form-group" @change="changeRegion" v-model="regions_model">            
+                        <option v-bind:value="null">-- Выберите регион --</option>
+                        <option v-for="item in regions" :value="item.region_id" :key="item.name">{{ item.name }}</option>
+                      </select>
+                    </div>
+                  </div>
 
+                  <div class="col-md-12" v-show="regions_model!=null">
+                    <div style="width:280px;margin:auto">
+                    <label for="selectPlace">Местность:</label>
+                      <select id="selectPlace" class="form-control form-group" @change="changePlace" v-model="places_model">            
+                        <option v-bind:value="null">-- Выберите местность --</option>
+                        <option v-for="item in places" :value="item.city_id+'@'+item.coords" :key="item.name">{{ item.name }}</option>
+                      </select>
+                    </div>
+                  </div>
+                  
                   <!--
                   <p>фотографии</p>
                   <p>регионы</p>
@@ -173,7 +196,6 @@ addPhoneNumber() {
           
 },
 
-
 // --------------------------------------
 // Вернуться на предыдущую страницу
 // --------------------------------------
@@ -181,56 +203,58 @@ closeAndReturn() {
  	window.history.back();
 },
 
-	// ------------------------------------------------
-	//
-	// Загрузка изображений
-	//
-	// ------------------------------------------------
-  loadImage(evt) {
+// ------------------------------------------------
+//
+// Загрузка изображений
+//
+// ------------------------------------------------
+loadImage(evt) {
 			  
-		var root  = this.$root;  
-		var files = evt.target.files;			
-		var input_images = document.querySelector("input[type=file]");	
-		var preview_images = this.preview_images;		
-		var real_images = this.real_images;
+	var root  = this.$root;  
+	var files = evt.target.files;			
+	var input_images = document.querySelector("input[type=file]");	
+	var preview_images = this.preview_images;		
+	var real_images = this.real_images;
 
-		if (input_images.files.length + preview_images.length > this.$root.max_loaded_images) 
-			return;
+	if (input_images.files.length + preview_images.length > this.$root.max_loaded_images) 
+		return;
 		
-		for (var i=0; i<files.length; i++) {
-			if (i===this.$root.max_loaded_images) break;
+	for (var i=0; i<files.length; i++) {
+		if (i===this.$root.max_loaded_images) break;
 
-			// если уже существует, не обрабатывать изображение
-			for (var j=0; j<preview_images.length; j++)
-				if (files[i].name==preview_images[j].name)
-					return false;
+		// если уже существует, не обрабатывать изображение
+		for (var j=0; j<preview_images.length; j++)
+			if (files[i].name==preview_images[j].name)
+				return false;
 
-      var image  = files[i]
-			var reader = new FileReader();
+    var image  = files[i]
+		var reader = new FileReader();
 
-  		reader.onload = (function(theFile) {
+  	reader.onload = (function(theFile) {
 
     return function(e) {
-			if (theFile.type=="image/jpeg" || theFile.type=="image/pjpeg" || theFile.type=="image/png") {					
-				preview_images.push({ "name": theFile.name, "src": e.target.result });
-				real_images.push(theFile);
-			}
+		if (theFile.type=="image/jpeg" || theFile.type=="image/pjpeg" || theFile.type=="image/png") {					
+			preview_images.push({ "name": theFile.name, "src": e.target.result });
+			real_images.push(theFile);
+		}
 		//	else
 		//	root.$notify({group: 'foo', text: "<h6>Только изображения!</h6>", type: 'error'});				
-    };
+  };
 
 		})(image);		  
 			reader.readAsDataURL(image);			
-		}
-			input_images.value = "";
-	},
+  }
+    
+  input_images.value = "";
+  
+},
 
-	// Удаление фото по щелчку
-  deletePhoto(index) {
-		document.querySelector("input[type=file]").value = "";
-		this.preview_images.splice(index, 1);
-		this.real_images.splice(index, 1);
-  },
+// Удаление фото по щелчку
+deletePhoto(index) {
+	document.querySelector("input[type=file]").value = "";
+	this.preview_images.splice(index, 1);
+	this.real_images.splice(index, 1);
+},
 
 // --------------------------------------
 // сброс данных объявления
@@ -286,17 +310,17 @@ advReset(category_data) {
 
     // сброс категорий
     if (category_data!=null) {
-    this.root=false;				    // по умолчанию
-    this.transport=false;			    // транспорт
+    this.root=false;				        // по умолчанию
+    this.transport=false;			      // транспорт
     this.real_estate=false;			    // недвижимость
     this.appliances=false;			    // электроника
-    this.work_and_buisness=false; 	    // работа и бизнес
-    this.for_home=false;			    // для дома и дачи
-    this.personal_effects=false;	    // личные вещи
-    this.animals=false;				    // животные
-    this.hobbies_and_leisure=false;	    // хобби и отдых
-    this.services=false;			    // услуги
-    this.other=false;				    // другое
+    this.work_and_buisness=false; 	// работа и бизнес
+    this.for_home=false;			      // для дома и дачи
+    this.personal_effects=false;	  // личные вещи
+    this.animals=false;				      // животные
+    this.hobbies_and_leisure=false;	// хобби и отдых
+    this.services=false;			      // услуги
+    this.other=false;				        // другое
   }
 
   // сбрасываю фотки
@@ -367,17 +391,17 @@ advReset(category_data) {
 
     // сброс категорий
     if (category_data!=null) {
-    this.root=false;				      // по умолчанию
+    this.root=false;				        // по умолчанию
     this.transport=false;			      // транспорт
-    this.real_estate=false;			      // недвижимость
-    this.appliances=false;			      // электроника
-    this.work_and_buisness=false; 	      // работа и бизнес
+    this.real_estate=false;			    // недвижимость
+    this.appliances=false;			    // электроника
+    this.work_and_buisness=false; 	// работа и бизнес
     this.for_home=false;			      // для дома и дачи
-    this.personal_effects=false;	      // личные вещи
+    this.personal_effects=false;	  // личные вещи
     this.animals=false;				      // животные
-    this.hobbies_and_leisure=false;	      // хобби и отдых
+    this.hobbies_and_leisure=false;	// хобби и отдых
     this.services=false;			      // услуги
-    this.other=false;				      // другое
+    this.other=false;				        // другое
   }
 
   // сбрасываю фотки
@@ -485,10 +509,10 @@ changeCategory() {
 // --------------------
 onSubmit(evt) {
 
-    evt.preventDefault();
+  evt.preventDefault();
     
-    // объект формы
-    var formData = new FormData();
+  // объект формы
+  var formData = new FormData();
 
 	// устанавливаю цену если она пустая, т.к. бэкенду нужна цена
 	if (this.$root.advert_data.adv_price==null || this.$root.advert_data.adv_price=="")       
@@ -501,27 +525,27 @@ onSubmit(evt) {
 	for( var i=0; i < this.real_images.length; i++ )
       formData.append('images['+i+']', this.real_images[i]);		
 						
-    // ------------------------------
-    // Размещение объявление
-    // ------------------------------
+  // ------------------------------
+  // Размещение объявление
+  // ------------------------------
 	axios.post("/create", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {			
       
     console.log(response);
     			
     if (response.data.result=="db.error") 
-        //this.$root.$notify({group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error'});
-            alert("Неполадки в работе сервиса. Приносим свои извинения.")
+      //this.$root.$notify({group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error'});
+      alert("Неполадки в работе сервиса. Приносим свои извинения.")
 		else
-            if (response.data.result=="usr.error") 
-                this.$root.$notify({group: 'foo', text: "<h6>"+response.data.msg+"</h6>", type: 'error'});
+      if (response.data.result=="usr.error") 
+       this.$root.$notify({group: 'foo', text: "<h6>"+response.data.msg+"</h6>", type: 'error'});
 		else
-		    alert("Объявление размещено");
+		  alert("Объявление размещено");
 		//	else 
 		//	window.location="home"; // переходим в личный кабинет
     }).catch(error => {
 		console.log(error.response)
-		this.$root.$notify({group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error'});
-	})
+		//this.$root.$notify({group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error'});
+	  })
   }
 }
 

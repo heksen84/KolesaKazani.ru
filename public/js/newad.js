@@ -1759,6 +1759,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1891,6 +1914,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }(image);
         reader.readAsDataURL(image);
       }
+
       input_images.value = "";
     },
 
@@ -2204,7 +2228,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       //	window.location="home"; // переходим в личный кабинет
     }).catch(function (error) {
       console.log(error.response);
-      _this.$root.$notify({ group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error' });
+      //this.$root.$notify({group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error'});
     });
   }), _methods)
 
@@ -21756,7 +21780,7 @@ var render = function() {
                           width: "120px",
                           border: "1px solid grey",
                           "border-radius": "3px",
-                          padding: "3px"
+                          padding: "5px"
                         },
                         attrs: {
                           type: "text",
@@ -21855,6 +21879,154 @@ var render = function() {
                       })
                     ]),
                     _vm._v(" "),
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c(
+                        "div",
+                        { staticStyle: { width: "280px", margin: "auto" } },
+                        [
+                          _c("label", { attrs: { for: "selectRegion" } }, [
+                            _vm._v("Регион:")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.regions_model,
+                                  expression: "regions_model"
+                                }
+                              ],
+                              staticClass: "form-control form-group",
+                              attrs: { id: "selectRegion" },
+                              on: {
+                                change: [
+                                  function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.regions_model = $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  },
+                                  _vm.changeRegion
+                                ]
+                              }
+                            },
+                            [
+                              _c("option", { domProps: { value: null } }, [
+                                _vm._v("-- Выберите регион --")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.regions, function(item) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: item.name,
+                                    domProps: { value: item.region_id }
+                                  },
+                                  [_vm._v(_vm._s(item.name))]
+                                )
+                              })
+                            ],
+                            2
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.regions_model != null,
+                            expression: "regions_model!=null"
+                          }
+                        ],
+                        staticClass: "col-md-12"
+                      },
+                      [
+                        _c(
+                          "div",
+                          { staticStyle: { width: "280px", margin: "auto" } },
+                          [
+                            _c("label", { attrs: { for: "selectPlace" } }, [
+                              _vm._v("Местность:")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.places_model,
+                                    expression: "places_model"
+                                  }
+                                ],
+                                staticClass: "form-control form-group",
+                                attrs: { id: "selectPlace" },
+                                on: {
+                                  change: [
+                                    function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.places_model = $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    },
+                                    _vm.changePlace
+                                  ]
+                                }
+                              },
+                              [
+                                _c("option", { domProps: { value: null } }, [
+                                  _vm._v("-- Выберите местность --")
+                                ]),
+                                _vm._v(" "),
+                                _vm._l(_vm.places, function(item) {
+                                  return _c(
+                                    "option",
+                                    {
+                                      key: item.name,
+                                      domProps: {
+                                        value: item.city_id + "@" + item.coords
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(item.name))]
+                                  )
+                                })
+                              ],
+                              2
+                            )
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
                     _vm.$store.state.phonesArr.length > 0
                       ? _c("div", { staticClass: "col-md-12 text-center" }, [
                           _c("hr"),
@@ -21895,6 +22067,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-12" }, [
       _c("label", { staticClass: "form-group" }, [_vm._v("Фотографии:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("label", { staticClass: "form-group" }, [_vm._v("Расположение:")])
     ])
   }
 ]
