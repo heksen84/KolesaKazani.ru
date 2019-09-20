@@ -37,38 +37,47 @@
             <div v-show="$store.state.show_final_fields">
               <label for="addit_info">{{ $store.state.info_label_description }}</label>
                 <textarea id="addit_info" v-if="!$store.state.required_info" class="form-control form-group" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></textarea>
-                  <div class="row">                
+                  <div class="row">
+
                     <div class="col-md-12 text-center" v-if="sdelka!=3">
                       <span style="margin-right:5px">Цена:</span>
                       <input type="text" placeholder="0" class="form-group" id="price" :formatter="setPrice" v-model="price" style="margin-right:45px;width:120px;border:1px solid grey;border-radius:3px;padding:5px;text-align:center" required/>
-                    </div>                                                                                  ;
+                    </div>
+                                                                                                      ;
                     <div class="col-md-12">
                       <hr>
                       <label class="form-group">Контакты:</label>                            
                     </div>
+
                     <div class="col-md-12 text-center">
                       <button type="button" class="btn btn-primary btn-sm form-group" @click="addPhoneNumber">+ Добавить номер</button>
                       <!--<p style="color:red" v-if="$store.state.phonesArr.length>=5">не более 5 номеров</p>
                       <p style="color:red" v-if="lastPhoneNumber==='' && $store.state.phonesArr.length>0">введите номер</p>-->
                     </div>
                   </div>
+
                   <div class="row">                    
                     <div class="col-md-12 text-center" v-for="(i, index) in $store.state.phonesArr.length" :key="index">
                       <phoneNumberInput :index=index :value=$store.state.phonesArr[index] :name="index"></phoneNumberInput>
                     </div>
                   </div>
+
                   <div class="row" v-if="$store.state.phonesArr.length>0">                  
                   <br>
+
                   <div class="col-md-12">
                     <label class="form-group">Фотографии:</label>
                   </div>
+
                   <div class="col-md-12 text-center">
                     <img v-for="(i, index) in preview_images" :src="i.src" :key="i.name" @click="deletePhoto(index)" class="image" :title="i.name"/>
                   </div>
+
                   <div class="col-md-12 text-center">
                     <br>                    
                     <input @change="loadImage" name="input2[]" type="file" class="form-group" accept=".png, .jpg, .jpeg" multiple data-show-upload="true" data-show-caption="true">
                   </div>
+
                   <div class="col-md-12">
                     <label class="form-group">Расположение:</label>
                   </div>

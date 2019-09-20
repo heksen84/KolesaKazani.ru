@@ -1898,6 +1898,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -21746,7 +21755,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.price = $event.target.value
       }
     }
-  })]) : _vm._e(), _vm._v("                                                                                  ;\r\n                    "), _vm._m(0), _vm._v(" "), _c('div', {
+  })]) : _vm._e(), _vm._v("\r\n                                                                                                      ;\r\n                    "), _vm._m(0), _vm._v(" "), _c('div', {
     staticClass: "col-md-12 text-center"
   }, [_c('button', {
     staticClass: "btn btn-primary btn-sm form-group",
