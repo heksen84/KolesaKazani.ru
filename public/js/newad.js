@@ -1906,7 +1906,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -21755,32 +21754,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.price = $event.target.value
       }
     }
-  })]) : _vm._e(), _vm._v("\r\n                                                                                                      ;\r\n                    "), _vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "col-md-12 text-center"
-  }, [_c('button', {
-    staticClass: "btn btn-success btn-sm form-group",
-    attrs: {
-      "type": "button"
-    },
-    on: {
-      "click": _vm.addPhoneNumber
-    }
-  }, [_vm._v("+ Добавить номер")])])]), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, _vm._l((_vm.$store.state.phonesArr.length), function(i, index) {
-    return _c('div', {
-      key: index,
-      staticClass: "col-md-12 text-center"
-    }, [_c('phoneNumberInput', {
-      attrs: {
-        "index": index,
-        "value": _vm.$store.state.phonesArr[index],
-        "name": index
-      }
-    })], 1)
-  }), 0), _vm._v(" "), (_vm.$store.state.phonesArr.length > 0) ? _c('div', {
-    staticClass: "row"
-  }, [_c('br'), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+  })]) : _vm._e(), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('div', {
     staticClass: "col-md-12 text-center"
   }, _vm._l((_vm.preview_images), function(i, index) {
     return _c('img', {
@@ -21811,7 +21785,32 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "change": _vm.loadImage
     }
-  })]), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
+  })]), _vm._v("\r\n                                                                                                      ;\r\n                    "), _vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "col-md-12 text-center"
+  }, [_c('button', {
+    staticClass: "btn btn-primary btn-sm form-group",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": _vm.addPhoneNumber
+    }
+  }, [_vm._v("+ Добавить номер")])])]), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, _vm._l((_vm.$store.state.phonesArr.length), function(i, index) {
+    return _c('div', {
+      key: index,
+      staticClass: "col-md-12 text-center"
+    }, [_c('phoneNumberInput', {
+      attrs: {
+        "index": index,
+        "value": _vm.$store.state.phonesArr[index],
+        "name": index
+      }
+    })], 1)
+  }), 0), _vm._v(" "), _c('div', {
+    staticClass: "row"
+  }, [_c('br'), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
     staticClass: "col-md-12"
   }, [_c('div', {
     staticStyle: {
@@ -21910,21 +21909,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('hr'), _vm._v(" "), _c('button', {
     staticClass: "btn btn-success form-group",
     attrs: {
-      "type": "button"
+      "type": "onSubmit"
     }
-  }, [_vm._v("опубликовать")])]) : _vm._e()]) : _vm._e()])])])])
+  }, [_vm._v("опубликовать")])]) : _vm._e()])])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col-md-12"
-  }, [_c('hr'), _vm._v(" "), _c('label', {
-    staticClass: "form-group"
-  }, [_vm._v("Контакты:")])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col-md-12"
   }, [_c('label', {
     staticClass: "form-group"
   }, [_vm._v("Фотографии:")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col-md-12"
+  }, [_c('hr'), _vm._v(" "), _c('label', {
+    staticClass: "form-group"
+  }, [_vm._v("Контакты:")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col-md-12"

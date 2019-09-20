@@ -43,6 +43,19 @@
                       <span style="margin-right:5px">Цена:</span>
                       <input type="text" placeholder="0" class="form-group" id="price" :formatter="setPrice" v-model="price" style="margin-right:45px;width:120px;border:1px solid grey;border-radius:3px;padding:5px;text-align:center" required/>
                     </div>
+
+                    <div class="col-md-12">
+                      <label class="form-group">Фотографии:</label>
+                    </div>
+
+                    <div class="col-md-12 text-center">
+                      <img v-for="(i, index) in preview_images" :src="i.src" :key="i.name" @click="deletePhoto(index)" class="image" :title="i.name"/>
+                    </div>
+
+                    <div class="col-md-12 text-center">
+                      <br>                    
+                      <input @change="loadImage" name="input2[]" type="file" class="form-group" accept=".png, .jpg, .jpeg" multiple data-show-upload="true" data-show-caption="true">
+                    </div>
                                                                                                       ;
                     <div class="col-md-12">
                       <hr>
@@ -50,7 +63,7 @@
                     </div>
 
                     <div class="col-md-12 text-center">
-                      <button type="button" class="btn btn-success btn-sm form-group" @click="addPhoneNumber">+ Добавить номер</button>
+                      <button type="button" class="btn btn-primary btn-sm form-group" @click="addPhoneNumber">+ Добавить номер</button>
                       <!--<p style="color:red" v-if="$store.state.phonesArr.length>=5">не более 5 номеров</p>
                       <p style="color:red" v-if="lastPhoneNumber==='' && $store.state.phonesArr.length>0">введите номер</p>-->
                     </div>
@@ -62,22 +75,8 @@
                     </div>
                   </div>
 
-                  <div class="row" v-if="$store.state.phonesArr.length>0">                  
+                  <div class="row">                  
                   <br>
-
-                  <div class="col-md-12">
-                    <label class="form-group">Фотографии:</label>
-                  </div>
-
-                  <div class="col-md-12 text-center">
-                    <img v-for="(i, index) in preview_images" :src="i.src" :key="i.name" @click="deletePhoto(index)" class="image" :title="i.name"/>
-                  </div>
-
-                  <div class="col-md-12 text-center">
-                    <br>                    
-                    <input @change="loadImage" name="input2[]" type="file" class="form-group" accept=".png, .jpg, .jpeg" multiple data-show-upload="true" data-show-caption="true">
-                  </div>
-
                   <div class="col-md-12">
                     <label class="form-group">Расположение:</label>
                   </div>
@@ -111,7 +110,7 @@
 
                   <div class="col-md-12 text-center" v-if="$store.state.phonesArr.length>0">
                     <hr>
-                    <button type="button" class="btn btn-success form-group">опубликовать</button>                    
+                    <button type="onSubmit" class="btn btn-success form-group">опубликовать</button>                    
                   </div>
                 </div>                
             </div>
