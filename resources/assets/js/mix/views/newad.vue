@@ -40,8 +40,8 @@
                   <div class="row">                
                     <div class="col-md-12 text-center" v-if="sdelka!=3">
                       <span style="margin-right:5px">Цена:</span>
-                      <input type="text" placeholder="0" class="form-group" id="price" :formatter="setPrice" v-model="price" style="margin-right:45px;width:120px;border:1px solid grey;border-radius:3px;padding:5px" required/>
-                    </div>                 
+                      <input type="text" placeholder="0" class="form-group" id="price" :formatter="setPrice" v-model="price" style="margin-right:45px;width:120px;border:1px solid grey;border-radius:3px;padding:5px;text-align:center" required/>
+                    </div>                                                                                  ;
                     <div class="col-md-12">
                       <hr>
                       <label class="form-group">Контакты:</label>                            

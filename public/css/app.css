@@ -39,19 +39,19 @@ input[type="number"] {
 }
 
 ::-webkit-input-placeholder {
-  color: #e6e6e6;
+  color: #323232;
 }
 
 :-moz-placeholder {
-  color: #e6e6e6;
+  color: #323232;
 }
 
 ::-moz-placeholder {
-  color: #e6e6e6;
+  color: #323232;
 }
 
 :-ms-input-placeholder {
-  color: #e6e6e6;
+  color: #323232;
 }
 
 #navbar_menu {
@@ -65,6 +65,7 @@ html {
 body {
   color: black;
   background: whitesmoke;
+  background-image: url("/images/site/fon.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

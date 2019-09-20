@@ -2,7 +2,7 @@
 // ----------------------------------------------
 // константы
 // ----------------------------------------------
-$inputPlaceHolder: rgb(230,230,230);
+$inputPlaceHolder: rgb(50,50,50);
 $background: rgb(245, 245, 245);
 $shadow_text_color: rgb(50, 50, 50);
 $scroll_bar_back_color: rgb(80, 80, 80);
@@ -79,7 +79,7 @@ html {
 body {
  color:black;
  background: $background;
-// background-image: url('/images/site/fon.jpg');
+ background-image: url('/images/site/fon.jpg');
  background-size: cover;
  background-position: center;
  background-repeat: no-repeat;
