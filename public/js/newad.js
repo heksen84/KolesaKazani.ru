@@ -1978,9 +1978,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     addPhoneNumber: function addPhoneNumber() {
 
       this.lastPhoneNumber = this.$store.state.phonesArr[this.$store.state.phonesArr.length - 1];
-      console.log("LAST PHONE : " + this.lastPhoneNumber);
-
-      if (this.$store.state.phonesArr.length < 5) {
+      if (this.lastPhoneNumber != "" && this.$store.state.phonesArr.length < 5) {
         this.$store.commit("AddPhoneNumber");
       }
     },
