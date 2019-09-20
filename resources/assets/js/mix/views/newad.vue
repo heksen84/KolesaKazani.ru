@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="col-md-12 text-center">
-                      <button type="button" class="btn btn-primary btn-sm form-group" @click="addPhoneNumber">+ Добавить номер</button>
+                      <button type="button" class="btn btn-success btn-sm form-group" @click="addPhoneNumber">+ Добавить номер</button>
                       <!--<p style="color:red" v-if="$store.state.phonesArr.length>=5">не более 5 номеров</p>
                       <p style="color:red" v-if="lastPhoneNumber==='' && $store.state.phonesArr.length>0">введите номер</p>-->
                     </div>
