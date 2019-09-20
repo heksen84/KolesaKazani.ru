@@ -54,7 +54,7 @@
                   </div>
                   <div class="row">                    
                     <div class="col-md-12 text-center" v-for="(i, index) in $store.state.phonesArr.length" :key="index">
-                      <phoneNumberInput :index=index :value=$store.state.phonesArr[index]></phoneNumberInput>
+                      <phoneNumberInput :index=index :value=$store.state.phonesArr[index] :name="index"></phoneNumberInput>
                     </div>
                   </div>
                   <div class="row" v-if="$store.state.phonesArr.length>0">                  

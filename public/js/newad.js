@@ -1741,7 +1741,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ["index", "value"],
+  props: ["index", "value", "name"],
+  created: function created() {
+    //document.getElementsByTagName("input")[0].setAttribute("name", index);
+  },
+
 
   // перехватчик
   computed: {
@@ -21515,6 +21519,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "form-control phone_input",
     attrs: {
       "type": "tel",
+      "name": _vm.name,
       "maxlength": "14",
       "autocomplete": "tel",
       "pattern": "[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}",
@@ -21762,7 +21767,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('phoneNumberInput', {
       attrs: {
         "index": index,
-        "value": _vm.$store.state.phonesArr[index]
+        "value": _vm.$store.state.phonesArr[index],
+        "name": index
       }
     })], 1)
   }), 0), _vm._v(" "), (_vm.$store.state.phonesArr.length > 0) ? _c('div', {
