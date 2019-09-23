@@ -1652,8 +1652,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         //this.$emit("update:value", newValue)
         //this.$emit('change', newValue, oldValue);
         //this.$refs.input.value = newValue;
-        //this.$emit('change', newValue, 0);
-        this.$emit('input', newValue);
+        //this.$emit('change', newValue, 0);          
+        //this.$emit("update:value", val)
+        //this.$store.commit("SetPhoneNumber", [ this.index, val ]);
+
+        switch (this.type) {
+
+          // телефон
+          case "phone":
+            {
+              var x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+              var val = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+              this.$emit('input', val);
+              break;
+            }
+
+        }
 
         /*switch(this.type) {
           
@@ -21960,11 +21974,8 @@ var render = function() {
                   "div",
                   { staticClass: "col-md-12 text-center" },
                   [
-                    _vm._v(
-                      "\r\n                      " +
-                        _vm._s(_vm.phone1) +
-                        "\r\n                      "
-                    ),
+                    _c("p", [_vm._v(_vm._s(_vm.phone1))]),
+                    _vm._v(" "),
                     _c("superInput", {
                       attrs: { type: "phone", placeholder: "номер телефона" },
                       model: {
@@ -22197,6 +22208,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _vm.type === "phone"
+      ? _c("span", { staticStyle: { "margin-right": "10px" } }, [_vm._v("+7")])
+      : _vm._e(),
+    _vm._v(" "),
     _c("input", {
       directives: [
         {
@@ -22212,8 +22227,6 @@ var render = function() {
         placeholder: _vm.placeholder,
         name: _vm.name,
         maxlength: "14",
-        autocomplete: "tel",
-        pattern: "[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}",
         required: ""
       },
       domProps: { value: _vm.valueInput },
