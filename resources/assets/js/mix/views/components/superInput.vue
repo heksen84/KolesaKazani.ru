@@ -37,7 +37,31 @@ export default {
 
           // телефон
           case "phone": {
-            let x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);        
+
+            console.log(newValue)
+
+            /*if (newValue==='a') {
+              this.$emit('input', '123')
+              return;
+            }*/
+
+            /*if (/^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/.test(newValue)) {
+              console.log("ok")
+              return;
+            }
+            else {
+              this.$emit('input', val)
+            } */
+
+             var rep = /[-\.;":'a-zA-Zа-яА-Я]/;
+             
+             if (rep.test(newValue)) {
+              this.$emit('input', "---")
+              return;
+             }
+
+
+            let x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);            
             let val = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');            
             this.$emit('input', val)
             break;

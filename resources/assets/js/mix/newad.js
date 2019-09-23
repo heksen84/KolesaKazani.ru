@@ -36,8 +36,8 @@ const store = new Vuex.Store({
     },
     
     SetPhoneNumber( state, [index, text] ) {      
-      state.phonesArr.splice(index, 1, text);
-      console.log(state.phonesArr)
+     // state.phonesArr.splice(index, 1, text);
+     // console.log(state.phonesArr)
     },
 
     SetDealSelected( state, value ) {

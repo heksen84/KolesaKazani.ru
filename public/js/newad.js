@@ -1661,6 +1661,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           // телефон
           case "phone":
             {
+
+              console.log(newValue);
+
+              /*if (newValue==='a') {
+                this.$emit('input', '123')
+                return;
+              }*/
+
+              /*if (/^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/.test(newValue)) {
+                console.log("ok")
+                return;
+              }
+              else {
+                this.$emit('input', val)
+              } */
+
+              var rep = /[-\.;":'a-zA-Zа-яА-Я]/;
+
+              if (rep.test(newValue)) {
+                this.$emit('input', "---");
+                return;
+              }
+
               var x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
               var val = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
               this.$emit('input', val);
@@ -1934,10 +1957,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     addPhoneNumber: function addPhoneNumber() {
 
-      this.lastPhoneNumber = this.$store.state.phonesArr[this.$store.state.phonesArr.length - 1];
-      if (this.lastPhoneNumber != "" && this.$store.state.phonesArr.length < 5) {
-        this.$store.commit("AddPhoneNumber");
-      }
+      /*this.lastPhoneNumber = this.$store.state.phonesArr[this.$store.state.phonesArr.length-1];
+      if (this.lastPhoneNumber!="" && this.$store.state.phonesArr.length<5) {
+        this.$store.commit("AddPhoneNumber")
+      }*/
+
     },
 
 
@@ -21974,8 +21998,6 @@ var render = function() {
                   "div",
                   { staticClass: "col-md-12 text-center" },
                   [
-                    _c("p", [_vm._v(_vm._s(_vm.phone1))]),
-                    _vm._v(" "),
                     _c("superInput", {
                       attrs: { type: "phone", placeholder: "номер телефона" },
                       model: {
@@ -35468,12 +35490,12 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
       state.phonesArr.splice(index, 1);
     },
     SetPhoneNumber: function SetPhoneNumber(state, _ref) {
+      // state.phonesArr.splice(index, 1, text);
+      // console.log(state.phonesArr)
+
       var _ref2 = _slicedToArray(_ref, 2),
           index = _ref2[0],
           text = _ref2[1];
-
-      state.phonesArr.splice(index, 1, text);
-      console.log(state.phonesArr);
     },
     SetDealSelected: function SetDealSelected(state, value) {
       state.deal_selected = value;
