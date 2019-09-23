@@ -2,7 +2,7 @@
   <div>
     <span style="margin-right:10px" v-if="type==='phone'">+7</span>
     <!--<input type="tel" :name="name" maxlength="14" autocomplete="tel" pattern="[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}" class='form-control phone_input' v-model="valueInput" required/><span style='margin-left:10px;cursor:pointer' @click='removePhone' title="удалить номер">X</span>-->
-    <input type="tel" :placeholder="placeholder" :name="name" :maxlength="maxlength" class='form-control phone_input' v-model="valueInput" required/>
+    <input type="text" :placeholder="placeholder" :name="name" :maxlength="maxlength" class='form-control phone_input' v-model="valueInput" required/>
  </div>
 </template>
 
@@ -11,7 +11,43 @@ export default {
   
   props: ["index", "value", "name", "type", "placeholder", "maxlength"],
 
+  
+  data () {
+    return 	{
+      lastValue: ""
+    }
+  },
+
   created() {},
+  
+  /*watch: {
+
+    valueInput: function (nval) {
+
+      console.log("NVAL: "+nval)
+    
+    var rep = /[\.;":'a-zA-Zа-яА-Я]/;
+             
+    if (rep.test(nval)) {      
+     console.log("bad")
+     return;
+    }
+
+    }
+
+  },*/
+
+/*
+methods:
+повешать обработчик
+  inputHandler(e) {
+			const newValue = e.target.value;
+			const numericPattern = /^-{0,1}\d*(\.\d*)*$/i;
+			if (!numericPattern.test(newValue)) e.target.value = this.value;
+			else this.makeStep(newValue);
+    },
+    
+*/
   
   // перехватчик
   computed: {
@@ -39,32 +75,16 @@ export default {
           case "phone": {
 
             console.log(newValue)
+                      
+            
 
-            /*if (newValue==='a') {
-              this.$emit('input', '123')
-              return;
-            }*/
-
-            /*if (/^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/.test(newValue)) {
-              console.log("ok")
-              return;
-            }
-            else {
+              this.lastValue = newValue;
+              let x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);            
+              let val = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');            
               this.$emit('input', val)
-            } */
-
-             /*var rep = /[-\.;":'a-zA-Zа-яА-Я]/;
-             
-             if (rep.test(newValue)) {
-              this.$emit('input', "---")
-              return;
-             }*/
+              break;
 
 
-            let x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);            
-            let val = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');            
-            this.$emit('input', val)
-            break;
           }
 
         }

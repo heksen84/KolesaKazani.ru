@@ -1633,8 +1633,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   props: ["index", "value", "name", "type", "placeholder", "maxlength"],
 
+  data: function data() {
+    return {
+      lastValue: ""
+    };
+  },
   created: function created() {},
 
+
+  /*watch: {
+      valueInput: function (nval) {
+        console.log("NVAL: "+nval)
+    
+    var rep = /[\.;":'a-zA-Zа-яА-Я]/;
+             
+    if (rep.test(nval)) {      
+     console.log("bad")
+     return;
+    }
+      }
+    },*/
+
+  /*
+  methods:
+  повешать обработчик
+    inputHandler(e) {
+  			const newValue = e.target.value;
+  			const numericPattern = /^-{0,1}\d*(\.\d*)*$/i;
+  			if (!numericPattern.test(newValue)) e.target.value = this.value;
+  			else this.makeStep(newValue);
+      },
+      
+  */
 
   // перехватчик
   computed: {
@@ -1664,26 +1694,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
               console.log(newValue);
 
-              /*if (newValue==='a') {
-                this.$emit('input', '123')
-                return;
-              }*/
-
-              /*if (/^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/.test(newValue)) {
-                console.log("ok")
-                return;
-              }
-              else {
-                this.$emit('input', val)
-              } */
-
-              /*var rep = /[-\.;":'a-zA-Zа-яА-Я]/;
-              
-              if (rep.test(newValue)) {
-               this.$emit('input', "---")
-               return;
-              }*/
-
+              this.lastValue = newValue;
               var x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
               var val = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
               this.$emit('input', val);
@@ -1750,6 +1761,7 @@ var _methods;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -22001,7 +22013,7 @@ var render = function() {
                     _c("superInput", {
                       attrs: {
                         type: "phone",
-                        placeholder: "номер телефона",
+                        placeholder: "номер телефона 1",
                         maxlength: "14"
                       },
                       model: {
@@ -22010,6 +22022,21 @@ var render = function() {
                           _vm.phone1 = $$v
                         },
                         expression: "phone1"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("superInput", {
+                      attrs: {
+                        type: "phone",
+                        placeholder: "номер телефона 2",
+                        maxlength: "14"
+                      },
+                      model: {
+                        value: _vm.phone2,
+                        callback: function($$v) {
+                          _vm.phone2 = $$v
+                        },
+                        expression: "phone2"
                       }
                     })
                   ],
@@ -22249,7 +22276,7 @@ var render = function() {
       ],
       staticClass: "form-control phone_input",
       attrs: {
-        type: "tel",
+        type: "text",
         placeholder: _vm.placeholder,
         name: _vm.name,
         maxlength: _vm.maxlength,
