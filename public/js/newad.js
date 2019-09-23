@@ -880,7 +880,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/node-libs-browser/node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/process/browser.js")))
 
 /***/ }),
 
@@ -1649,39 +1649,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // сеттер
       set: function set(newValue) {
 
-        switch (this.type) {
+        //this.$emit("update:value", newValue)
+        //this.$emit('change', newValue, oldValue);
+        //this.$refs.input.value = newValue;
+        //this.$emit('change', newValue, 0);
+        this.$emit('input', newValue);
 
+        /*switch(this.type) {
+          
           // телефон
-          case "phone":
-            {
-              var x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-              var val = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
-              this.$emit("update:value", val);
-              this.$store.commit("SetPhoneNumber", [this.index, val]);
-              break;
-            }
-
+          case "phone": {
+            let x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);        
+            let val = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+            this.$emit("update:value", val)
+            this.$store.commit("SetPhoneNumber", [ this.index, val ]);
+            break;
+          }
+          
           // число
-          case "number":
-            {
-              if (/^\d*$/.test(newValue)) {
-                console.log("ok");
-                this.$emit("update:value", newValue);
-                this.$store.commit("SetPhoneNumber", [this.index, newValue]);
-              } else {
-                console.log("ne ok");
-                this.$emit("update:value", "");
-                this.$store.commit("SetPhoneNumber", [this.index, ""]);
-              }
-              break;
+          case "number": {
+            if(/^\d*$/.test(newValue)) {
+              console.log("ok")
+              this.$emit("update:value", newValue)
+              this.$store.commit("SetPhoneNumber", [ this.index, newValue ]);
+            }              
+            else {
+              console.log("ne ok")
+              this.$emit("update:value", "")
+              this.$store.commit("SetPhoneNumber", [ this.index, "" ]);
             }
-
+            break;
+          }
+          
           // строка
-          case "string":
-            {
-              break;
-            }
-        } // end switch
+          case "string": {
+            break;
+          }
+        } */
+        // end switch
       }
     }
   },
@@ -1708,6 +1713,7 @@ var _methods;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -2171,7 +2177,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     //this.sdelka = null;
     this.price = "";
     this.info = "";
-    this.phone1 = "";
+    this.phone1 = "123";
     this.phone2 = "";
     this.phone3 = "";
     this.regions_model = null;
@@ -19880,7 +19886,7 @@ function isSlowBuffer (obj) {
 
 /***/ }),
 
-/***/ "./node_modules/node-libs-browser/node_modules/process/browser.js":
+/***/ "./node_modules/process/browser.js":
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -21037,7 +21043,7 @@ if (hadRuntime) {
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js"), __webpack_require__("./node_modules/node-libs-browser/node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js"), __webpack_require__("./node_modules/process/browser.js")))
 
 /***/ }),
 
@@ -21954,8 +21960,20 @@ var render = function() {
                   "div",
                   { staticClass: "col-md-12 text-center" },
                   [
+                    _vm._v(
+                      "\r\n                      " +
+                        _vm._s(_vm.phone1) +
+                        "\r\n                      "
+                    ),
                     _c("superInput", {
-                      attrs: { type: "phone", placeholder: "номер телефона" }
+                      attrs: { type: "phone", placeholder: "номер телефона" },
+                      model: {
+                        value: _vm.phone1,
+                        callback: function($$v) {
+                          _vm.phone1 = $$v
+                        },
+                        expression: "phone1"
+                      }
                     })
                   ],
                   1

@@ -26,7 +26,13 @@ export default {
       // сеттер
       set: function(newValue) {
 
-        switch(this.type) {
+          //this.$emit("update:value", newValue)
+          //this.$emit('change', newValue, oldValue);
+          //this.$refs.input.value = newValue;
+          //this.$emit('change', newValue, 0);
+          this.$emit('input', newValue)
+
+        /*switch(this.type) {
           
           // телефон
           case "phone": {
@@ -56,7 +62,8 @@ export default {
           case "string": {
             break;
           }
-        } // end switch
+        } */
+        // end switch
 
       }   
     }

@@ -76,7 +76,8 @@
                     </div>-->
 
                     <div class="col-md-12 text-center">
-                      <superInput type="phone" placeholder="номер телефона"></superInput>
+                      {{ phone1 }}
+                      <superInput type="phone" placeholder="номер телефона" v-model="phone1"></superInput>
                       <!--<superInput type="phone" placeholder="телефонный номер 2"></superInput>-->
                     </div>
 
@@ -445,7 +446,7 @@ advReset(category_data) {
     //this.sdelka = null;
     this.price = "";
     this.info = "";
-    this.phone1 = "";
+    this.phone1 = "123";
     this.phone2 = "";
     this.phone3 = "";
     this.regions_model = null;
