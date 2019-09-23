@@ -53,12 +53,12 @@ export default {
               this.$emit('input', val)
             } */
 
-             var rep = /[-\.;":'a-zA-Zа-яА-Я]/;
+             /*var rep = /[-\.;":'a-zA-Zа-яА-Я]/;
              
              if (rep.test(newValue)) {
               this.$emit('input', "---")
               return;
-             }
+             }*/
 
 
             let x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);            

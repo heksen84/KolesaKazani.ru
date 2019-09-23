@@ -1677,12 +1677,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.$emit('input', val)
               } */
 
-              var rep = /[-\.;":'a-zA-Zа-яА-Я]/;
-
+              /*var rep = /[-\.;":'a-zA-Zа-яА-Я]/;
+              
               if (rep.test(newValue)) {
-                this.$emit('input', "---");
-                return;
-              }
+               this.$emit('input', "---")
+               return;
+              }*/
 
               var x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
               var val = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
