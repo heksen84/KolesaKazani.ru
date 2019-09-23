@@ -2,14 +2,14 @@
   <div>
     <span style="margin-right:10px" v-if="type==='phone'">+7</span>
     <!--<input type="tel" :name="name" maxlength="14" autocomplete="tel" pattern="[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}" class='form-control phone_input' v-model="valueInput" required/><span style='margin-left:10px;cursor:pointer' @click='removePhone' title="удалить номер">X</span>-->
-    <input type="tel" :placeholder="placeholder" :name="name" maxlength="14" class='form-control phone_input' v-model="valueInput" required/>
+    <input type="tel" :placeholder="placeholder" :name="name" :maxlength="maxlength" class='form-control phone_input' v-model="valueInput" required/>
  </div>
 </template>
 
 <script>
 export default {
   
-  props: ["index", "value", "name", "type", "placeholder"],
+  props: ["index", "value", "name", "type", "placeholder", "maxlength"],
 
   created() {},
   

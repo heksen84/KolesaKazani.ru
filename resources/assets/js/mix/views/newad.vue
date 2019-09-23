@@ -77,7 +77,7 @@
 
                     <div class="col-md-12 text-center">
                       <!--<p>{{ phone1}}</p>-->
-                      <superInput type="phone" placeholder="номер телефона" v-model="phone1"></superInput>
+                      <superInput type="phone" placeholder="номер телефона" v-model="phone1" maxlength=14></superInput>
                       <!--<superInput type="phone" placeholder="телефонный номер 2"></superInput>-->
                     </div>
 

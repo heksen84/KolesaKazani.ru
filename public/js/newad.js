@@ -1631,7 +1631,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ["index", "value", "name", "type", "placeholder"],
+  props: ["index", "value", "name", "type", "placeholder", "maxlength"],
 
   created: function created() {},
 
@@ -21999,7 +21999,11 @@ var render = function() {
                   { staticClass: "col-md-12 text-center" },
                   [
                     _c("superInput", {
-                      attrs: { type: "phone", placeholder: "номер телефона" },
+                      attrs: {
+                        type: "phone",
+                        placeholder: "номер телефона",
+                        maxlength: "14"
+                      },
                       model: {
                         value: _vm.phone1,
                         callback: function($$v) {
@@ -22248,7 +22252,7 @@ var render = function() {
         type: "tel",
         placeholder: _vm.placeholder,
         name: _vm.name,
-        maxlength: "14",
+        maxlength: _vm.maxlength,
         required: ""
       },
       domProps: { value: _vm.valueInput },
