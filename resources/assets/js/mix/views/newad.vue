@@ -446,7 +446,7 @@ advReset(category_data) {
     //this.sdelka = null;
     this.price = "";
     this.info = "";
-    this.phone1 = "123";
+    this.phone1 = "";
     this.phone2 = "";
     this.phone3 = "";
     this.regions_model = null;
