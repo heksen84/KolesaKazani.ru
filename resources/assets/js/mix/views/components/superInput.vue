@@ -1,0 +1,70 @@
+<template>
+  <div>
+    <!--<span style="margin-right:10px">+7</span>-->
+    <!--<input type="tel" :name="name" maxlength="14" autocomplete="tel" pattern="[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}" class='form-control phone_input' v-model="valueInput" required/><span style='margin-left:10px;cursor:pointer' @click='removePhone' title="удалить номер">X</span>-->
+    <input type="tel" :placeholder="placeholder" :name="name" maxlength="14" autocomplete="tel" pattern="[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}" class='form-control phone_input' v-model="valueInput" required/>
+ </div>
+</template>
+
+<script>
+export default {
+  
+  props: ["index", "value", "name", "type", "placeholder"],
+
+  created() {},
+  
+  // перехватчик
+  computed: {
+    
+    valueInput: {
+
+      // геттер
+      get: function() {
+        return this.value;
+      },
+
+      // сеттер
+      set: function(newValue) {
+
+        switch(this.type) {
+          
+          // телефон
+          case "phone": {
+            let x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);        
+            let val = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+            this.$emit("update:value", val)
+            this.$store.commit("SetPhoneNumber", [ this.index, val ]);
+            break;
+          }
+          
+          // число
+          case "number": {
+            if(/^\d*$/.test(newValue)) {
+              console.log("ok")
+              this.$emit("update:value", newValue)
+              this.$store.commit("SetPhoneNumber", [ this.index, newValue ]);
+            }              
+            else {
+              console.log("ne ok")
+              this.$emit("update:value", "")
+              this.$store.commit("SetPhoneNumber", [ this.index, "" ]);
+            }
+            break;
+          }
+          
+          // строка
+          case "string": {
+            break;
+          }
+        } // end switch
+
+      }   
+    }
+  },
+  methods: {
+    removePhone() {
+      this.$store.commit("RemovePhoneNumber", this.index);
+    }
+  }
+}
+</script>

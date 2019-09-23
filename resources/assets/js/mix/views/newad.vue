@@ -62,17 +62,24 @@
                       <label class="form-group">Контакты:</label>                            
                     </div>
 
-                    <div class="col-md-12 text-center">
+                    <!--<div class="col-md-12 text-center">
                       <button type="button" class="btn btn-primary btn-sm form-group" @click="addPhoneNumber">+ Добавить номер</button>
-                      <!--<p style="color:red" v-if="$store.state.phonesArr.length>=5">не более 5 номеров</p>
-                      <p style="color:red" v-if="lastPhoneNumber==='' && $store.state.phonesArr.length>0">введите номер</p>-->
-                    </div>
+                      <p style="color:red" v-if="$store.state.phonesArr.length>=5">не более 5 номеров</p>
+                      <p style="color:red" v-if="lastPhoneNumber==='' && $store.state.phonesArr.length>0">введите номер</p>
+                    </div>-->
+
                   </div>
 
                   <div class="row">                    
-                    <div class="col-md-12 text-center" v-for="(i, index) in $store.state.phonesArr.length" :key="index">
-                      <phoneNumberInput :index=index :value=$store.state.phonesArr[index] :name="index"></phoneNumberInput>
+                    <!--<div class="col-md-12 text-center" v-for="(i, index) in $store.state.phonesArr.length" :key="index">
+                      <superInput type="number" :index=index :value=$store.state.phonesArr[index] :name="index"></superInput>
+                    </div>-->
+
+                    <div class="col-md-12 text-center">
+                      <superInput type="phone" placeholder="номер телефона"></superInput>
+                      <!--<superInput type="phone" placeholder="телефонный номер 2"></superInput>-->
                     </div>
+
                   </div>
 
                   <div class="row">                  
@@ -122,7 +129,7 @@
 
 import { post, get } from '../../helpers/api'
 import transport from "./subcategories/transport.vue"
-import phoneNumberInput from "./components/phoneNumberInput.vue"
+import superInput from "./components/superInput.vue"
 
 // -----------------------
 // Логика
@@ -134,7 +141,7 @@ props: ["categories", "dealtypes", "regions"],
 
 components: { 
   transport,
-  phoneNumberInput
+  superInput
 },
 
 data () {
@@ -321,6 +328,7 @@ advReset(category_data) {
   if (form) form.reset();
 
   this.summ_str = "";
+
   this.$store.commit("SetRequiredInfo", false);
   this.$store.commit("SetPlaceholderInfoText", "default");
   this.$store.commit("SetDealSelected", false);
