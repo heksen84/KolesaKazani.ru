@@ -1656,7 +1656,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   /*
   methods:
-  повешать обработчик
+  повешать обработчик @input.prevent="inputHandler"
     inputHandler(e) {
   			const newValue = e.target.value;
   			const numericPattern = /^-{0,1}\d*(\.\d*)*$/i;
