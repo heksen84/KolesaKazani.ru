@@ -230,10 +230,10 @@ changeRegion() {
   if (this.places_model==null) 
     return; // не обрабатыать если null
 
-	var arr = this.places_model.replace(" ", "").split("@");
-	var city_id = arr[0];
-	var coords = arr[1];
-	var lanlng = coords.split(",")
+	let arr = this.places_model.replace(" ", "").split("@");
+	let city_id = arr[0];
+	let coords = arr[1];
+	let lanlng = coords.split(",")
 
 	mapCoords=[];
 	mapCoords.push(lanlng[0])
@@ -261,26 +261,26 @@ changeRegion() {
 // ------------------------------------------------
 loadImage(evt) {
 			  
-	var root = this.$root;  
-	var files = evt.target.files;			
-	var input_images = document.querySelector("input[type=file]");	
-	var preview_images = this.preview_images;		
-	var real_images = this.real_images;
+	let root = this.$root;  
+	let files = evt.target.files;			
+	let input_images = document.querySelector("input[type=file]");	
+	let preview_images = this.preview_images;		
+	let real_images = this.real_images;
 
 	if (input_images.files.length + preview_images.length > this.$root.max_loaded_images) 
 		return;
 		
-	for (var i=0; i<files.length; i++) {
+	for (let i=0; i<files.length; i++) {
     if (i===this.$root.max_loaded_images) 
     break;
 
 		// если уже существует, не обрабатывать изображение
-		for (var j=0; j<preview_images.length; j++)
+		for (let j=0; j<preview_images.length; j++)
 			if (files[i].name==preview_images[j].name)
 				return false;
 
-    var image = files[i]
-		var reader = new FileReader();
+    let image = files[i]
+		let reader = new FileReader();
 
   	reader.onload = (function(theFile) {
 
@@ -367,17 +367,17 @@ advReset(category_data) {
 
   // сброс категорий
   if (category_data!=null) {
-  this.root=false;				        // по умолчанию
-  this.transport=false;			      // транспорт
-  this.real_estate=false;			    // недвижимость
-  this.appliances=false;			    // электроника
-  this.work_and_buisness=false; 	// работа и бизнес
-  this.for_home=false;			      // для дома и дачи
-  this.personal_effects=false;	  // личные вещи
-  this.animals=false;				      // животные
-  this.hobbies_and_leisure=false;	// хобби и отдых
-  this.services=false;			      // услуги
-  this.other=false;				        // другое
+    this.root=false;				        // по умолчанию
+    this.transport=false;			      // транспорт
+    this.real_estate=false;			    // недвижимость
+    this.appliances=false;			    // электроника
+    this.work_and_buisness=false; 	// работа и бизнес
+    this.for_home=false;			      // для дома и дачи
+    this.personal_effects=false;	  // личные вещи
+    this.animals=false;				      // животные
+    this.hobbies_and_leisure=false;	// хобби и отдых
+    this.services=false;			      // услуги
+    this.other=false;				        // другое
 }
 
   // сбрасываю фотки
@@ -569,7 +569,7 @@ onSubmit(evt) {
   evt.preventDefault();
 
   // объект формы
-  var formData = new FormData();
+  let formData = new FormData();
 
 	// устанавливаю цену если она пустая, т.к. бэкенду нужна цена
 	if (this.$root.advert_data.adv_price==null || this.$root.advert_data.adv_price=="")       
@@ -579,7 +579,7 @@ onSubmit(evt) {
 	forEach(this.$root.advert_data, function(key, value) { formData.append(key, value); })
 
 	// Записываю изображения
-	for( var i=0; i < this.real_images.length; i++ )
+	for( let i=0; i < this.real_images.length; i++ )
       formData.append('images['+i+']', this.real_images[i]);		
 						
   // ------------------------------
