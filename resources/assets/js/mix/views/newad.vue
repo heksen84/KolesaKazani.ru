@@ -56,7 +56,7 @@
                       <br>                    
                       <input @change="loadImage" name="input2[]" type="file" class="form-group" accept=".png, .jpg, .jpeg" multiple data-show-upload="true" data-show-caption="true">
                     </div>
-                                                                                                      ;
+                    
                     <div class="col-md-12">
                       <hr>
                       <label class="form-group">Контакты:</label>                            
@@ -77,8 +77,8 @@
 
                     <div class="col-md-12 text-center">
                       <!--<p>{{ phone1}}</p>-->
-                      <superInput type="phone" placeholder="номер телефона 1" v-model="phone1" maxlength=14></superInput>
-                      <superInput type="phone" placeholder="номер телефона 2" v-model="phone2" maxlength=14></superInput>                      
+                      <superInput type="phone" placeholder="контактный номер" v-model="phone1" maxlength=14></superInput>
+                      <!--<superInput type="phone" placeholder="номер телефона 2" v-model="phone2" maxlength=14></superInput>-->
                       
                     </div>
 

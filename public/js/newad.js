@@ -1634,37 +1634,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   props: ["index", "value", "name", "type", "placeholder", "maxlength"],
 
   data: function data() {
-    return {
-      lastValue: ""
-    };
+    return {};
   },
   created: function created() {},
 
-
-  /*watch: {
-      valueInput: function (nval) {
-        console.log("NVAL: "+nval)
-    
-    var rep = /[\.;":'a-zA-Zа-яА-Я]/;
-             
-    if (rep.test(nval)) {      
-     console.log("bad")
-     return;
-    }
-      }
-    },*/
-
-  /*
-  methods:
-  повешать обработчик @input.prevent="inputHandler"
-    inputHandler(e) {
-  			const newValue = e.target.value;
-  			const numericPattern = /^-{0,1}\d*(\.\d*)*$/i;
-  			if (!numericPattern.test(newValue)) e.target.value = this.value;
-  			else this.makeStep(newValue);
-      },
-      
-  */
 
   // перехватчик
   computed: {
@@ -1691,54 +1664,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           // телефон
           case "phone":
             {
-
-              console.log(newValue);
-
               this.lastValue = newValue;
               var x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
               var val = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
               this.$emit('input', val);
               break;
             }
-
         }
-
-        /*switch(this.type) {
-          
-          // телефон
-          case "phone": {
-            let x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);        
-            let val = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
-            this.$emit("update:value", val)
-            this.$store.commit("SetPhoneNumber", [ this.index, val ]);
-            break;
-          }
-          
-          // число
-          case "number": {
-            if(/^\d*$/.test(newValue)) {
-              console.log("ok")
-              this.$emit("update:value", newValue)
-              this.$store.commit("SetPhoneNumber", [ this.index, newValue ]);
-            }              
-            else {
-              console.log("ne ok")
-              this.$emit("update:value", "")
-              this.$store.commit("SetPhoneNumber", [ this.index, "" ]);
-            }
-            break;
-          }
-          
-          // строка
-          case "string": {
-            break;
-          }
-        } */
-        // end switch
       }
     }
   },
   methods: {
+    inputHandler: function inputHandler(e) {
+      var newValue = e.target.value;
+      var numericPattern = /^-{0,1}\d*(\.\d*)*$/i;
+      if (!numericPattern.test(newValue)) e.target.value = this.value;
+    },
     removePhone: function removePhone() {
       this.$store.commit("RemovePhoneNumber", this.index);
     }
@@ -21999,9 +21940,7 @@ var render = function() {
                     on: { change: _vm.loadImage }
                   })
                 ]),
-                _vm._v(
-                  "\r\n                                                                                                      ;\r\n                    "
-                ),
+                _vm._v(" "),
                 _vm._m(1)
               ]),
               _vm._v(" "),
@@ -22013,7 +21952,7 @@ var render = function() {
                     _c("superInput", {
                       attrs: {
                         type: "phone",
-                        placeholder: "номер телефона 1",
+                        placeholder: "контактный номер",
                         maxlength: "14"
                       },
                       model: {
@@ -22022,21 +21961,6 @@ var render = function() {
                           _vm.phone1 = $$v
                         },
                         expression: "phone1"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("superInput", {
-                      attrs: {
-                        type: "phone",
-                        placeholder: "номер телефона 2",
-                        maxlength: "14"
-                      },
-                      model: {
-                        value: _vm.phone2,
-                        callback: function($$v) {
-                          _vm.phone2 = $$v
-                        },
-                        expression: "phone2"
                       }
                     })
                   ],
@@ -22284,12 +22208,18 @@ var render = function() {
       },
       domProps: { value: _vm.valueInput },
       on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
+        input: [
+          function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.valueInput = $event.target.value
+          },
+          function($event) {
+            $event.preventDefault()
+            return _vm.inputHandler($event)
           }
-          _vm.valueInput = $event.target.value
-        }
+        ]
       }
     })
   ])
