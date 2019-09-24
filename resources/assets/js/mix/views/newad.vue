@@ -72,7 +72,7 @@
                     </div>
                   </div>
 
-                  <div class="row" v-if="phone1!=''">                  
+                  <div class="row" v-if="phone1!='' && phone1.length===14">                  
                   <br>
                   <div class="col-md-12">
                     <label class="form-group">Расположение:</label>
@@ -344,7 +344,7 @@ advReset(category_data) {
     case 9: this.$root.advert_data.adv_deal = ""; break; 
     case 10: this.$root.advert_data.adv_deal = ""; break; 
     default: this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
-    
+
   }
       
   //this.$root.advert_data.adv_deal = 0; // покупка по умолчанию    

@@ -21954,7 +21954,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm.phone1 != ""
+              _vm.phone1 != "" && _vm.phone1.length === 14
                 ? _c("div", { staticClass: "row" }, [
                     _c("br"),
                     _vm._v(" "),
