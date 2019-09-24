@@ -1633,22 +1633,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   props: ["index", "value", "name", "type", "placeholder"],
 
-  data: function data() {
-    return {};
-  },
-  created: function created() {},
-
+  /*
+    data () {
+      return 	{}
+    },
+  
+    created() {},
+  
+  */
 
   // перехватчик
   computed: {
 
     valueInput: {
-
       // геттер
       get: function get() {
         return this.value;
       },
-
       // сеттер
       set: function set(newValue) {}
     }
@@ -1665,7 +1666,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       switch (this.type) {
 
+        // ------------------
         // телефон
+        // ------------------
         case "phone":
           {
 
@@ -1678,11 +1681,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             break;
           }
 
-        // телефон
+        // ------------------
+        // число
+        // ------------------
         case "number":
           {
-
-            console.log("число");
 
             if (!numericPattern.test(newValue)) e.target.value = this.value;else this.$emit('input', newValue);
 
@@ -1690,6 +1693,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
       }
     },
+
+
+    // ------------------
+    // телефон
+    // ------------------
     removePhone: function removePhone() {
       this.$store.commit("RemovePhoneNumber", this.index);
     }

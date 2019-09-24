@@ -11,23 +11,23 @@ export default {
   
   props: ["index", "value", "name", "type", "placeholder"],
 
-  
+/*
   data () {
     return 	{}
   },
 
   created() {},
+
+*/
     
   // перехватчик
   computed: {
     
     valueInput: {
-
       // геттер
       get: function() {
         return this.value;
       },
-
       // сеттер
       set: function(newValue) {}   
     }
@@ -44,8 +44,10 @@ export default {
 
       switch(this.type) {
 
+          // ------------------
           // телефон
-          case "phone": {                                            
+          // ------------------
+          case "phone": {                                                        
             
             if (!numericPattern.test(newValue)) 
               e.target.value = this.value;
@@ -57,22 +59,24 @@ export default {
             break;
           }
 
-            // телефон
-          case "number": { 
-            
-            console.log("число")
+          // ------------------
+          // число
+          // ------------------
+          case "number": {      
             
             if (!numericPattern.test(newValue)) 
               e.target.value = this.value;
             else
               this.$emit('input', newValue)
 
-              break;
+            break;
           }
-      }
-      			
+      }      			
     },
 
+    // ------------------
+    // телефон
+    // ------------------
     removePhone() {
       this.$store.commit("RemovePhoneNumber", this.index);
     }
