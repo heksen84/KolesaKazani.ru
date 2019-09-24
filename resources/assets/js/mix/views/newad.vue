@@ -72,7 +72,7 @@
                     </div>
                   </div>
 
-                  <div class="row" v-if="phone1!='' && phone1.length===14">                  
+                  <div class="row" v-if="phone1.length===14">                  
                   <br>
                   <div class="col-md-12">
                     <label class="form-group">Расположение:</label>
