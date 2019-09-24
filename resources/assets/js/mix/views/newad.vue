@@ -41,7 +41,8 @@
 
                     <div class="col-md-12 text-center" v-if="sdelka!=3">
                       <span style="margin-right:5px">Цена:</span>
-                      <input type="text" placeholder="0" class="form-group" id="price" :formatter="setPrice" v-model="price" style="margin-right:45px;width:120px;border:1px solid grey;border-radius:3px;padding:5px;text-align:center" required/>
+                      <!--<input type="text" placeholder="0" class="form-group" id="price" :formatter="setPrice" v-model="price" style="margin-right:45px;width:120px;border:1px solid grey;border-radius:3px;padding:5px;text-align:center" required/>-->                      
+                      <superInput type="number" placeholder="0" v-model="price"></superInput>
                     </div>
 
                     <div class="col-md-12">
@@ -56,7 +57,7 @@
                       <br>                    
                       <input @change="loadImage" name="input2[]" type="file" class="form-group" accept=".png, .jpg, .jpeg" multiple data-show-upload="true" data-show-caption="true">
                     </div>
-                    
+
                     <div class="col-md-12">
                       <hr>
                       <label class="form-group">Контакты:</label>                            
@@ -75,9 +76,8 @@
                       <superInput type="number" :index=index :value=$store.state.phonesArr[index] :name="index"></superInput>
                     </div>-->
 
-                    <div class="col-md-12 text-center">
-                      <!--<p>{{ phone1}}</p>-->
-                      <superInput type="phone" placeholder="контактный номер" v-model="phone1" maxlength=14></superInput>
+                    <div class="col-md-12 text-center">                      
+                      <superInput type="phone" placeholder="контактный номер" v-model="phone1"></superInput>
                       <!--<superInput type="phone" placeholder="номер телефона 2" v-model="phone2" maxlength=14></superInput>-->
                       
                     </div>

@@ -1631,7 +1631,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ["index", "value", "name", "type", "placeholder", "maxlength"],
+  props: ["index", "value", "name", "type", "placeholder"],
 
   data: function data() {
     return {};
@@ -1650,35 +1650,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       },
 
       // сеттер
-      set: function set(newValue) {
-
-        //this.$emit("update:value", newValue)
-        //this.$emit('change', newValue, oldValue);
-        //this.$refs.input.value = newValue;
-        //this.$emit('change', newValue, 0);          
-        //this.$emit("update:value", val)
-        //this.$store.commit("SetPhoneNumber", [ this.index, val ]);
-
-        switch (this.type) {
-
-          // телефон
-          case "phone":
-            {
-              this.lastValue = newValue;
-              var x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-              var val = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
-              this.$emit('input', val);
-              break;
-            }
-        }
-      }
+      set: function set(newValue) {}
     }
   },
   methods: {
+
+    // --------------------
+    // обработчик ввода
+    // --------------------
     inputHandler: function inputHandler(e) {
+
       var newValue = e.target.value;
       var numericPattern = /^-{0,1}\d*(\.\d*)*$/i;
-      if (!numericPattern.test(newValue)) e.target.value = this.value;
+
+      switch (this.type) {
+
+        // телефон
+        case "phone":
+          {
+
+            if (!numericPattern.test(newValue)) e.target.value = this.value;
+
+            var x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+            var val = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+
+            this.$emit('input', val);
+            break;
+          }
+
+        // телефон
+        case "number":
+          {
+
+            console.log("число");
+
+            if (!numericPattern.test(newValue)) e.target.value = this.value;else this.$emit('input', newValue);
+
+            break;
+          }
+      }
     },
     removePhone: function removePhone() {
       this.$store.commit("RemovePhoneNumber", this.index);
@@ -21861,47 +21871,27 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
                 _vm.sdelka != 3
-                  ? _c("div", { staticClass: "col-md-12 text-center" }, [
-                      _c("span", { staticStyle: { "margin-right": "5px" } }, [
-                        _vm._v("Цена:")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
+                  ? _c(
+                      "div",
+                      { staticClass: "col-md-12 text-center" },
+                      [
+                        _c("span", { staticStyle: { "margin-right": "5px" } }, [
+                          _vm._v("Цена:")
+                        ]),
+                        _vm._v(" "),
+                        _c("superInput", {
+                          attrs: { type: "number", placeholder: "0" },
+                          model: {
                             value: _vm.price,
+                            callback: function($$v) {
+                              _vm.price = $$v
+                            },
                             expression: "price"
                           }
-                        ],
-                        staticClass: "form-group",
-                        staticStyle: {
-                          "margin-right": "45px",
-                          width: "120px",
-                          border: "1px solid grey",
-                          "border-radius": "3px",
-                          padding: "5px",
-                          "text-align": "center"
-                        },
-                        attrs: {
-                          type: "text",
-                          placeholder: "0",
-                          id: "price",
-                          formatter: _vm.setPrice,
-                          required: ""
-                        },
-                        domProps: { value: _vm.price },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.price = $event.target.value
-                          }
-                        }
-                      })
-                    ])
+                        })
+                      ],
+                      1
+                    )
                   : _vm._e(),
                 _vm._v(" "),
                 _vm._m(0),
@@ -21950,11 +21940,7 @@ var render = function() {
                   { staticClass: "col-md-12 text-center" },
                   [
                     _c("superInput", {
-                      attrs: {
-                        type: "phone",
-                        placeholder: "контактный номер",
-                        maxlength: "14"
-                      },
+                      attrs: { type: "phone", placeholder: "контактный номер" },
                       model: {
                         value: _vm.phone1,
                         callback: function($$v) {
@@ -22189,39 +22175,77 @@ var render = function() {
       ? _c("span", { staticStyle: { "margin-right": "10px" } }, [_vm._v("+7")])
       : _vm._e(),
     _vm._v(" "),
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.valueInput,
-          expression: "valueInput"
-        }
-      ],
-      staticClass: "form-control phone_input",
-      attrs: {
-        type: "text",
-        placeholder: _vm.placeholder,
-        name: _vm.name,
-        maxlength: _vm.maxlength,
-        required: ""
-      },
-      domProps: { value: _vm.valueInput },
-      on: {
-        input: [
-          function($event) {
-            if ($event.target.composing) {
-              return
+    _vm.type === "phone"
+      ? _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.valueInput,
+              expression: "valueInput"
             }
-            _vm.valueInput = $event.target.value
+          ],
+          staticClass: "form-control phone_input",
+          attrs: {
+            type: "text",
+            placeholder: _vm.placeholder,
+            name: _vm.name,
+            maxlength: "14",
+            required: ""
           },
-          function($event) {
-            $event.preventDefault()
-            return _vm.inputHandler($event)
+          domProps: { value: _vm.valueInput },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.valueInput = $event.target.value
+              },
+              function($event) {
+                $event.preventDefault()
+                return _vm.inputHandler($event)
+              }
+            ]
           }
-        ]
-      }
-    })
+        })
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.type === "number"
+      ? _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.valueInput,
+              expression: "valueInput"
+            }
+          ],
+          staticClass: "form-control number_input",
+          attrs: {
+            type: "text",
+            placeholder: _vm.placeholder,
+            name: _vm.name,
+            maxlength: "10",
+            required: ""
+          },
+          domProps: { value: _vm.valueInput },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.valueInput = $event.target.value
+              },
+              function($event) {
+                $event.preventDefault()
+                return _vm.inputHandler($event)
+              }
+            ]
+          }
+        })
+      : _vm._e()
   ])
 }
 var staticRenderFns = []

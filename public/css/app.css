@@ -247,6 +247,11 @@ h3 {
   margin: 3px auto;
 }
 
+.number_input {
+  width: 120px;
+  margin: auto;
+}
+
 .title_text {
   margin-top: 10px;
   font-size: 130%;
