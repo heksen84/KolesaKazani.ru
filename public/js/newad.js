@@ -35442,8 +35442,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_newad_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__views_newad_vue__);
 
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
 __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
 
@@ -35465,25 +35463,10 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     show_final_fields: false,
     show_common_transport: false,
     deal_selected: false,
-    str_realestate_area_label_text: "",
-    phonesArr: []
+    str_realestate_area_label_text: ""
   },
 
   mutations: {
-    AddPhoneNumber: function AddPhoneNumber(state) {
-      state.phonesArr.push("");
-    },
-    RemovePhoneNumber: function RemovePhoneNumber(state, index) {
-      state.phonesArr.splice(index, 1);
-    },
-    SetPhoneNumber: function SetPhoneNumber(state, _ref) {
-      // state.phonesArr.splice(index, 1, text);
-      // console.log(state.phonesArr)
-
-      var _ref2 = _slicedToArray(_ref, 2),
-          index = _ref2[0],
-          text = _ref2[1];
-    },
     SetDealSelected: function SetDealSelected(state, value) {
       state.deal_selected = value;
     },
