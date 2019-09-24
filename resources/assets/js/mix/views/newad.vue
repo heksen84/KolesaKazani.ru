@@ -63,28 +63,16 @@
                       <label class="form-group">Контакты:</label>                            
                     </div>
 
-                    <!--<div class="col-md-12 text-center">
-                      <button type="button" class="btn btn-primary btn-sm form-group" @click="addPhoneNumber">+ Добавить номер</button>
-                      <p style="color:red" v-if="$store.state.phonesArr.length>=5">не более 5 номеров</p>
-                      <p style="color:red" v-if="lastPhoneNumber==='' && $store.state.phonesArr.length>0">введите номер</p>
-                    </div>-->
-
                   </div>
 
-                  <div class="row">                    
-                    <!--<div class="col-md-12 text-center" v-for="(i, index) in $store.state.phonesArr.length" :key="index">
-                      <superInput type="number" :index=index :value=$store.state.phonesArr[index] :name="index"></superInput>
-                    </div>-->
-
+                  <div class="row">                                        
                     <div class="col-md-12 text-center">                      
-                      <superInput type="phone" placeholder="контактный номер" v-model="phone1"></superInput>
-                      <!--<superInput type="phone" placeholder="номер телефона 2" v-model="phone2" maxlength=14></superInput>-->
-                      
+                      <superInput type="phone" placeholder="контактный номер" v-model="phone1"></superInput>                      
+                      <br>
                     </div>
-
                   </div>
 
-                  <div class="row">                  
+                  <div class="row" v-if="phone1!=''">                  
                   <br>
                   <div class="col-md-12">
                     <label class="form-group">Расположение:</label>
@@ -117,7 +105,7 @@
                   <p>расположение на карте</p>
                   <p>кнопка опубликовать</p>-->
 
-                  <div class="col-md-12 text-center" v-if="$store.state.phonesArr.length>0">
+                  <div class="col-md-12 text-center" v-if="places_model!=null">
                     <hr>
                     <button type="onSubmit" class="btn btn-success form-group">опубликовать</button>                    
                   </div>

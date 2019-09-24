@@ -1837,18 +1837,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -21956,175 +21944,182 @@ var render = function() {
                         },
                         expression: "phone1"
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _c("br")
                   ],
                   1
                 )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("br"),
-                _vm._v(" "),
-                _vm._m(2),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-12" }, [
-                  _c(
-                    "div",
-                    { staticStyle: { width: "280px", margin: "auto" } },
-                    [
-                      _c("label", { attrs: { for: "selectRegion" } }, [
-                        _vm._v("Регион:")
-                      ]),
-                      _vm._v(" "),
+              _vm.phone1 != ""
+                ? _c("div", { staticClass: "row" }, [
+                    _c("br"),
+                    _vm._v(" "),
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-12" }, [
                       _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.regions_model,
-                              expression: "regions_model"
-                            }
-                          ],
-                          staticClass: "form-control form-group",
-                          attrs: { id: "selectRegion" },
-                          on: {
-                            change: [
-                              function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.regions_model = $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              },
-                              _vm.changeRegion
-                            ]
-                          }
-                        },
+                        "div",
+                        { staticStyle: { width: "280px", margin: "auto" } },
                         [
-                          _c("option", { domProps: { value: null } }, [
-                            _vm._v("-- Выберите регион --")
+                          _c("label", { attrs: { for: "selectRegion" } }, [
+                            _vm._v("Регион:")
                           ]),
                           _vm._v(" "),
-                          _vm._l(_vm.regions, function(item) {
-                            return _c(
-                              "option",
-                              {
-                                key: item.name,
-                                domProps: { value: item.region_id }
-                              },
-                              [_vm._v(_vm._s(item.name))]
-                            )
-                          })
-                        ],
-                        2
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.regions_model,
+                                  expression: "regions_model"
+                                }
+                              ],
+                              staticClass: "form-control form-group",
+                              attrs: { id: "selectRegion" },
+                              on: {
+                                change: [
+                                  function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.regions_model = $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  },
+                                  _vm.changeRegion
+                                ]
+                              }
+                            },
+                            [
+                              _c("option", { domProps: { value: null } }, [
+                                _vm._v("-- Выберите регион --")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.regions, function(item) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: item.name,
+                                    domProps: { value: item.region_id }
+                                  },
+                                  [_vm._v(_vm._s(item.name))]
+                                )
+                              })
+                            ],
+                            2
+                          )
+                        ]
                       )
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.regions_model != null,
-                        expression: "regions_model!=null"
-                      }
-                    ],
-                    staticClass: "col-md-12"
-                  },
-                  [
+                    ]),
+                    _vm._v(" "),
                     _c(
                       "div",
-                      { staticStyle: { width: "280px", margin: "auto" } },
-                      [
-                        _c("label", { attrs: { for: "selectPlace" } }, [
-                          _vm._v("Местность:")
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "select",
+                      {
+                        directives: [
                           {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.places_model,
-                                expression: "places_model"
-                              }
-                            ],
-                            staticClass: "form-control form-group",
-                            attrs: { id: "selectPlace" },
-                            on: {
-                              change: [
-                                function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.places_model = $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                },
-                                _vm.changePlace
-                              ]
-                            }
-                          },
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.regions_model != null,
+                            expression: "regions_model!=null"
+                          }
+                        ],
+                        staticClass: "col-md-12"
+                      },
+                      [
+                        _c(
+                          "div",
+                          { staticStyle: { width: "280px", margin: "auto" } },
                           [
-                            _c("option", { domProps: { value: null } }, [
-                              _vm._v("-- Выберите местность --")
+                            _c("label", { attrs: { for: "selectPlace" } }, [
+                              _vm._v("Местность:")
                             ]),
                             _vm._v(" "),
-                            _vm._l(_vm.places, function(item) {
-                              return _c(
-                                "option",
-                                {
-                                  key: item.name,
-                                  domProps: {
-                                    value: item.city_id + "@" + item.coords
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.places_model,
+                                    expression: "places_model"
                                   }
-                                },
-                                [_vm._v(_vm._s(item.name))]
-                              )
-                            })
-                          ],
-                          2
+                                ],
+                                staticClass: "form-control form-group",
+                                attrs: { id: "selectPlace" },
+                                on: {
+                                  change: [
+                                    function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.places_model = $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    },
+                                    _vm.changePlace
+                                  ]
+                                }
+                              },
+                              [
+                                _c("option", { domProps: { value: null } }, [
+                                  _vm._v("-- Выберите местность --")
+                                ]),
+                                _vm._v(" "),
+                                _vm._l(_vm.places, function(item) {
+                                  return _c(
+                                    "option",
+                                    {
+                                      key: item.name,
+                                      domProps: {
+                                        value: item.city_id + "@" + item.coords
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(item.name))]
+                                  )
+                                })
+                              ],
+                              2
+                            )
+                          ]
                         )
                       ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _vm.$store.state.phonesArr.length > 0
-                  ? _c("div", { staticClass: "col-md-12 text-center" }, [
-                      _c("hr"),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-success form-group",
-                          attrs: { type: "onSubmit" }
-                        },
-                        [_vm._v("опубликовать")]
-                      )
-                    ])
-                  : _vm._e()
-              ])
+                    ),
+                    _vm._v(" "),
+                    _vm.places_model != null
+                      ? _c("div", { staticClass: "col-md-12 text-center" }, [
+                          _c("hr"),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success form-group",
+                              attrs: { type: "onSubmit" }
+                            },
+                            [_vm._v("опубликовать")]
+                          )
+                        ])
+                      : _vm._e()
+                  ])
+                : _vm._e()
             ]
           )
         ]
