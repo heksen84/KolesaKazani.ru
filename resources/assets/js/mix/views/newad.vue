@@ -261,7 +261,7 @@ changeRegion() {
 // ------------------------------------------------
 loadImage(evt) {
 			  
-	var root  = this.$root;  
+	var root = this.$root;  
 	var files = evt.target.files;			
 	var input_images = document.querySelector("input[type=file]");	
 	var preview_images = this.preview_images;		
@@ -271,14 +271,15 @@ loadImage(evt) {
 		return;
 		
 	for (var i=0; i<files.length; i++) {
-		if (i===this.$root.max_loaded_images) break;
+    if (i===this.$root.max_loaded_images) 
+    break;
 
 		// если уже существует, не обрабатывать изображение
 		for (var j=0; j<preview_images.length; j++)
 			if (files[i].name==preview_images[j].name)
 				return false;
 
-    var image  = files[i]
+    var image = files[i]
 		var reader = new FileReader();
 
   	reader.onload = (function(theFile) {
@@ -333,6 +334,7 @@ advReset(category_data) {
   // Типа: Продам то-то-то-то или Куплю то-то-то-то
   // ----------------------------------------------------------------------------------------------------------------
   switch(category_data) {
+
     case 3: this.$root.advert_data.adv_deal = ""; break; 
     case 4: this.$root.advert_data.adv_deal = ""; break; 
     case 5: this.$root.advert_data.adv_deal = ""; break; 
@@ -342,6 +344,7 @@ advReset(category_data) {
     case 9: this.$root.advert_data.adv_deal = ""; break; 
     case 10: this.$root.advert_data.adv_deal = ""; break; 
     default: this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
+    
   }
       
   //this.$root.advert_data.adv_deal = 0; // покупка по умолчанию    
@@ -563,7 +566,8 @@ changeCategory() {
 // Отправить форму
 // --------------------
 onSubmit(evt) {
-  evt.preventDefault();    
+  evt.preventDefault();
+
   // объект формы
   var formData = new FormData();
 

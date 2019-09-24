@@ -2057,6 +2057,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // Типа: Продам то-то-то-то или Куплю то-то-то-то
       // ----------------------------------------------------------------------------------------------------------------
       switch (category_data) {
+
         case 3:
           this.$root.advert_data.adv_deal = "";break;
         case 4:
@@ -2075,6 +2076,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           this.$root.advert_data.adv_deal = "";break;
         default:
           this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
+
       }
 
       //this.$root.advert_data.adv_deal = 0; // покупка по умолчанию    
@@ -2306,6 +2308,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _this2 = this;
 
     evt.preventDefault();
+
     // объект формы
     var formData = new FormData();
 
