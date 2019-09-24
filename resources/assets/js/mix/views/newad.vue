@@ -121,9 +121,9 @@ import { post, get } from '../../helpers/api'
 import transport from "./subcategories/transport.vue"
 import superInput from "./components/superInput.vue"
 
-// -----------------------
+// ----------------------------------------------
 // Логика
-// -----------------------
+// ----------------------------------------------
 export default {
 
 // Входящие данные
@@ -377,9 +377,9 @@ advReset(category_data) {
   this.other=false;				        // другое
 }
 
-// сбрасываю фотки
-let photos = document.querySelector("input[type=file]");
-if (photos!=null) photos.value = "";
+  // сбрасываю фотки
+  let photos = document.querySelector("input[type=file]");
+  if (photos!=null) photos.value = "";
 
 },
 
@@ -563,9 +563,7 @@ changeCategory() {
 // Отправить форму
 // --------------------
 onSubmit(evt) {
-
-  evt.preventDefault();
-    
+  evt.preventDefault();    
   // объект формы
   var formData = new FormData();
 

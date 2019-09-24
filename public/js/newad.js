@@ -1843,9 +1843,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-// -----------------------
+// ----------------------------------------------
 // Логика
-// -----------------------
+// ----------------------------------------------
 /* harmony default export */ __webpack_exports__["default"] = ({
 
   // Входящие данные
@@ -2306,7 +2306,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _this2 = this;
 
     evt.preventDefault();
-
     // объект формы
     var formData = new FormData();
 
