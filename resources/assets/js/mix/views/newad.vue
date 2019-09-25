@@ -94,7 +94,7 @@
                     </div>
                   </div>
 
-                  <div class="row" v-if="phone1.length===14">                  
+                  <div class="row" v-show="phone1.length===14">                  
                   <br>
                   <div class="col-md-12">
                     <label class="form-group">Расположение:</label>
@@ -120,12 +120,13 @@
                     </div>
                   </div>
 
-                  <div class="col-md-12 text-center">
+                  <div class="col-md-12 text-center" v-show="places_model!=null">
                     <div id="smallmap" style="border:1px solid rgb(180,180,180);margin-bottom:10px;width: 100%; height: 200px" v-show="coordinates_set"></div>
-                    <button class="btn btn-primary form-group" @click="showSetCoordsDialog">уточнить местоположение</button>                    
+                    <br>
+                    <button class="btn btn-secondary form-group" @click="showSetCoordsDialog">уточнить местоположение</button>                    
                   </div>
                   
-                  <div class="col-md-12 text-center" v-if="places_model!=null">
+                  <div class="col-md-12 text-center" v-show="places_model!=null">
                     <hr>
                     <button type="onSubmit" class="btn btn-success form-group">опубликовать</button>                    
                   </div>
@@ -161,7 +162,7 @@ var smallmap=null;
 ---------------------------------------------------------*/
 function initMaps() {
 
-  console.log("INIT MAPS...")
+  //console.log("INIT MAPS...")
 
 	// координаты по умолчанию для всех карт
 	mapCoords = [51.08, 71.26];
@@ -188,7 +189,8 @@ function initMaps() {
 	  myPlacemark1.geometry.setCoordinates(mapCoords);
 		myPlacemark2.geometry.setCoordinates(mapCoords);
 		smallmap.setCenter(mapCoords, 14, "smallmap");
-	});			
+  });	
+  		
 }				
 
 // --------------------------------
@@ -252,7 +254,7 @@ data () {
 
 // компонент создан
 created() {
-  console.log("CREATED...")
+  //console.log("CREATED...")
 	ymaps.ready(initMaps);
 	this.advReset();
 },
@@ -299,9 +301,9 @@ changeRegion() {
 
 	this.$root.advert_data.region_id = this.regions_model;
 
-	// -------------------------------
+	// -------------------------------------------------------------
 	// Получить города / сёлы
-	// -------------------------------
+	// -------------------------------------------------------------
   get("getPlaces?region_id="+this.regions_model).then((res) => {
 		this.places=res.data;
 		this.places_model=null;
