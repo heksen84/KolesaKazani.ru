@@ -1,5 +1,26 @@
 <template>
 <div class="container-fluid mycontainer_adv">  
+
+  <!-- карта -->
+  <div class="modal fade bd-example-modal-lg" id="ShowMapModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Расположение</h5>
+          <button type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <div id="bigmap" style="width: 100%; height: 300px"></div>        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary margin-auto" @click="setCoords">Сохранить</button>
+        </div>
+      </div>
+    </div>
+  </div>    
+
     <div class="row">  
         <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col">
         <div class="close_button" title="Закрыть страницу" style="font-weight:bold" @click="closeAndReturn">X</div>
@@ -97,14 +118,12 @@
                       </select>
                     </div>
                   </div>
-                  
-                  <!--
-                  <p>фотографии</p>
-                  <p>регионы</p>
-                  <p>местность</p>
-                  <p>расположение на карте</p>
-                  <p>кнопка опубликовать</p>-->
 
+                  <div class="col-md-12 text-center">
+                    <div id="smallmap" style="border:1px solid rgb(180,180,180);margin-bottom:10px;width: 100%; height: 200px" v-show="coordinates_set"></div>
+                    <button class="btn btn-primary form-group" @click="showSetCoordsDialog">уточнить местоположение</button>                    
+                  </div>
+                  
                   <div class="col-md-12 text-center" v-if="places_model!=null">
                     <hr>
                     <button type="onSubmit" class="btn btn-success form-group">опубликовать</button>                    
@@ -117,9 +136,69 @@
 </template>
 <script>
 
+import $ from "jquery";
+import bootstrap from "bootstrap";
 import { post, get } from '../../helpers/api'
 import transport from "./subcategories/transport.vue"
 import superInput from "./components/superInput.vue"
+
+var preview_images_array=[];
+
+// ----------------------
+// карты
+// ----------------------
+var mapCoords=[];
+var myPlacemark1=null;
+var myPlacemark2=null;
+var bigmap=null;
+var smallmap=null;
+
+/*
+---------------------------------------------------------
+ Инициализация большой карты (карта назначения координат)
+---------------------------------------------------------*/
+function initMaps() {
+
+  console.log("INIT MAPS...")
+
+	// координаты по умолчанию для всех карт
+	mapCoords = [51.08, 71.26];
+
+	bigmap = new ymaps.Map ("bigmap", { center: mapCoords, zoom: 10 });
+	smallmap = new ymaps.Map ("smallmap", { center: mapCoords, zoom: 9 });
+
+	// запрещаю перемение по мини карте
+	smallmap.behaviors.disable("drag");
+
+	// включаю скролл на большой карте
+	bigmap.behaviors.enable("scrollZoom");
+			
+	// формирую метки
+	myPlacemark1 = new ymaps.Placemark(mapCoords);
+	myPlacemark2 = new ymaps.Placemark(mapCoords);
+
+	// добавляю метки на карты
+	bigmap.geoObjects.add(myPlacemark1);
+	smallmap.geoObjects.add(myPlacemark2);
+
+  bigmap.events.add("click", function (e) {
+    mapCoords = e.get("coordPosition");
+	  myPlacemark1.geometry.setCoordinates(mapCoords);
+		myPlacemark2.geometry.setCoordinates(mapCoords);
+		smallmap.setCenter(mapCoords, 14, "smallmap");
+	});			
+}				
+
+// --------------------------------
+// Функция заполнения изображений
+// --------------------------------
+function forEach(data, callback) { 
+	for(var key in data) { 
+		if(data.hasOwnProperty(key)) { 
+			callback(key, data[key]); 
+		} 
+	}
+}
 
 // ----------------------------------------------
 // Логика
@@ -138,8 +217,7 @@ data () {
   return 	{    
     lastPhoneNumber: null,
 		summ_str: "",
-		const_phone1_max_length: 9,			
-		setCoordsDialog: false,
+		const_phone1_max_length: 9,		
 		coordinates_set: false,
 		placeChanged: false,			
 		category: null,
@@ -168,6 +246,12 @@ data () {
 		services:false,				      // услуги
 		other:false					        // другое
   }
+},
+
+created() {
+  console.log("CREATED...")
+	ymaps.ready(initMaps);
+	this.advReset();
 },
 
 // методы компонента
@@ -566,6 +650,7 @@ changeCategory() {
 // Отправить форму
 // --------------------
 onSubmit(evt) {
+
   evt.preventDefault();
 
   // объект формы
@@ -600,10 +685,40 @@ onSubmit(evt) {
 		//	else 
 		//	window.location="home"; // переходим в личный кабинет
     }).catch(error => {
-		console.log(error.response)
+		  console.log(error.response)
 		//this.$root.$notify({group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error'});
 	  })
-  }
+  },
+
+  // -------------------------------------
+	// Показать диалог выбора расположения
+	// -------------------------------------
+	showSetCoordsDialog() {    
+    
+    $("#ShowMapModal").modal("show");
+
+    if (!navigator.geolocation) {
+      console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается		
+    }
+    else {
+			  navigator.geolocation.getCurrentPosition(function(position) {				
+			  let lat = position.coords.latitude;
+			  let lon = position.coords.longitude;
+			  let geoCoords=[lat,lon];
+			  myPlacemark.geometry.setCoordinates(getCoords);				
+			});
+		}
+	},
+
+	// ---------------------------------
+	// Установить координаты
+	// ---------------------------------
+	setCoords() {    
+    $("#ShowMapModal").modal("hide");
+		this.$root.advert_data.adv_coords=[];
+		this.$root.advert_data.adv_coords=mapCoords;
+		this.coordinates_set=true;
+	}
 }
 
 }
