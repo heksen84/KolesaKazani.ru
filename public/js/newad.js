@@ -1860,6 +1860,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -1973,6 +1974,9 @@ function forEach(data, callback) {
       other: false // другое
     };
   },
+
+
+  // компонент создан
   created: function created() {
     console.log("CREATED...");
     ymaps.ready(initMaps);
