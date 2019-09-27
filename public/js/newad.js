@@ -39993,7 +39993,11 @@ var staticRenderFns = [
         "button",
         {
           staticClass: "close",
-          attrs: { type: "button", "aria-label": "Close" }
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
         },
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
       )
