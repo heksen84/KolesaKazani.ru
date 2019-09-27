@@ -76,8 +76,9 @@
                     </div>
 
                     <div class="col-md-12 text-center">                      
+                      <br>
                       <div class="custom-file" id="customFile" lang="ru">
-                        <input @change="loadImage" name="input2[]" type="file" class="form-group custom-file-input" accept=".png, .jpg, .jpeg" multiple data-show-upload="true" data-show-caption="true">
+                        <input @change="loadImage" name="input2[]" type="file" class="custom-file-input" accept=".png, .jpg, .jpeg" multiple data-show-upload="true" data-show-caption="true">
                         <label class="custom-file-label" for="exampleInputFile">Выберите файл...</label>
                       </div>
                     </div>

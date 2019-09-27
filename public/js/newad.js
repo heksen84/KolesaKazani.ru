@@ -1865,6 +1865,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 // импорт модулей
@@ -39692,6 +39693,8 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-12 text-center" }, [
+                  _c("br"),
+                  _vm._v(" "),
                   _c(
                     "div",
                     {
@@ -39700,7 +39703,7 @@ var render = function() {
                     },
                     [
                       _c("input", {
-                        staticClass: "form-group custom-file-input",
+                        staticClass: "custom-file-input",
                         attrs: {
                           name: "input2[]",
                           type: "file",
