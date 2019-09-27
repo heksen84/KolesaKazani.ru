@@ -1631,7 +1631,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ["index", "value", "name", "type", "placeholder"],
+  props: ["index", "value", "name", "type", "placeholder", "maxlength"],
 
   /*
     data () {
@@ -1715,11 +1715,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap__ = __webpack_require__("./node_modules/bootstrap/dist/js/bootstrap.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_bootstrap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__subcategories_transport_vue__ = __webpack_require__("./resources/assets/js/mix/views/subcategories/transport.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__subcategories_transport_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__subcategories_transport_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_superInput_vue__ = __webpack_require__("./resources/assets/js/mix/views/components/superInput.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_superInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_superInput_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__subcategories_transport_vue__ = __webpack_require__("./resources/assets/js/mix/views/subcategories/transport.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__subcategories_transport_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__subcategories_transport_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_superInput_vue__ = __webpack_require__("./resources/assets/js/mix/views/components/superInput.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_superInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_superInput_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
 var _methods;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -1938,8 +1938,8 @@ function forEach(data, callback) {
   props: ["categories", "dealtypes", "regions"],
 
   components: {
-    transport: __WEBPACK_IMPORTED_MODULE_3__subcategories_transport_vue___default.a,
-    superInput: __WEBPACK_IMPORTED_MODULE_4__components_superInput_vue___default.a
+    transport: __WEBPACK_IMPORTED_MODULE_2__subcategories_transport_vue___default.a,
+    superInput: __WEBPACK_IMPORTED_MODULE_3__components_superInput_vue___default.a
   },
 
   data: function data() {
@@ -2034,7 +2034,7 @@ function forEach(data, callback) {
       // -------------------------------------------------------------
       // Получить города / сёлы
       // -------------------------------------------------------------
-      Object(__WEBPACK_IMPORTED_MODULE_2__helpers_api__["a" /* get */])("getPlaces?region_id=" + this.regions_model).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_4__helpers_api__["a" /* get */])("getPlaces?region_id=" + this.regions_model).then(function (res) {
         _this.places = res.data;
         _this.places_model = null;
         console.log(res.data);
@@ -2463,6 +2463,8 @@ function forEach(data, callback) {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_superInput_vue__ = __webpack_require__("./resources/assets/js/mix/views/components/superInput.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_superInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_superInput_vue__);
 //
 //
 //
@@ -2534,61 +2536,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+
+  components: {
+    superInput: __WEBPACK_IMPORTED_MODULE_1__components_superInput_vue___default.a
+  },
+
   data: function data() {
     return {
 
@@ -2626,6 +2583,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   created: function created() {
 
     this.transport_chars = this.$root.advert_data;
+
     // значения по умолчанию
     this.transport_chars.rule_position = 0;
     this.transport_chars.fuel_type = 0;
@@ -39251,42 +39209,49 @@ var render = function() {
     _vm._v(" "),
     _vm.getComTransport && _vm.selected.helm_position != null
       ? _c("div", { staticClass: "row" }, [
-          _vm._m(0),
+          _c(
+            "div",
+            { staticClass: "col-auto form-group" },
+            [
+              _c("label", { attrs: { for: "car_year" } }, [
+                _vm._v("Год выпуска:")
+              ]),
+              _vm._v(" "),
+              _c("superInput", {
+                attrs: { type: "number", maxlength: 4, placeholder: "0" },
+                model: {
+                  value: _vm.release_date,
+                  callback: function($$v) {
+                    _vm.release_date = $$v
+                  },
+                  expression: "release_date"
+                }
+              })
+            ],
+            1
+          ),
           _vm._v(" "),
-          _c("div", { staticClass: "col-auto form-group" }, [
-            _c("label", { attrs: { for: "car_mileage" } }, [
-              _vm._v("Пробег(км):")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
+          _c(
+            "div",
+            { staticClass: "col-auto form-group" },
+            [
+              _c("label", { attrs: { for: "car_mileage" } }, [
+                _vm._v("Пробег(км):")
+              ]),
+              _vm._v(" "),
+              _c("superInput", {
+                attrs: { type: "number", maxlength: 10, placeholder: "0" },
+                model: {
                   value: _vm.mileage,
+                  callback: function($$v) {
+                    _vm.mileage = $$v
+                  },
                   expression: "mileage"
                 }
-              ],
-              staticClass: "form-control",
-              staticStyle: { width: "145px" },
-              attrs: {
-                type: "number",
-                id: "car_mileage",
-                formatter: _vm.SetMileage,
-                placeholder: "0",
-                required: ""
-              },
-              domProps: { value: _vm.mileage },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.mileage = $event.target.value
-                }
-              }
-            })
-          ]),
+              })
+            ],
+            1
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "col-auto form-group" }, [
             _c("label", { attrs: { for: "fuel_type" } }, [
@@ -39402,22 +39367,7 @@ var render = function() {
       : _vm._e()
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-auto form-group" }, [
-      _c("label", { attrs: { for: "car_year" } }, [_vm._v("Год выпуска:")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        staticStyle: { width: "120px" },
-        attrs: { type: "number", id: "car_year" }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -39690,7 +39640,11 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("superInput", {
-                          attrs: { type: "number", placeholder: "0" },
+                          attrs: {
+                            type: "number",
+                            placeholder: "0",
+                            maxlength: 10
+                          },
                           model: {
                             value: _vm.price,
                             callback: function($$v) {
@@ -39750,7 +39704,11 @@ var render = function() {
                   { staticClass: "col-md-12 text-center" },
                   [
                     _c("superInput", {
-                      attrs: { type: "phone", placeholder: "контактный номер" },
+                      attrs: {
+                        type: "phone",
+                        placeholder: "контактный номер",
+                        maxlength: 14
+                      },
                       model: {
                         value: _vm.phone1,
                         callback: function($$v) {
@@ -40106,7 +40064,7 @@ var render = function() {
             type: "text",
             placeholder: _vm.placeholder,
             name: _vm.name,
-            maxlength: "14",
+            maxlength: _vm.maxlength,
             required: ""
           },
           domProps: { value: _vm.valueInput },
@@ -40142,7 +40100,7 @@ var render = function() {
             type: "text",
             placeholder: _vm.placeholder,
             name: _vm.name,
-            maxlength: "10",
+            maxlength: _vm.maxlength,
             required: ""
           },
           domProps: { value: _vm.valueInput },

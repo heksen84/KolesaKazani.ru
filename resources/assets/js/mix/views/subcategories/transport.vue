@@ -1,7 +1,5 @@
 <template>
 <span>  
-    <!--<div style="width:100%;margin-bottom:10px;text-decoration:underline" v-if="[0,1,2,4].indexOf(this.selected.type_transport) != -1 && this.selected.type_transport!=null">Характеристики:</div>-->
-     <!-- <div class="form-row" style="width:260px">-->
         
         <div class="row">        
           <div class="col-auto form-group">
@@ -40,11 +38,13 @@
           <div class="row" v-if="getComTransport && selected.helm_position!=null">      
             <div class="col-auto form-group" >
               <label for="car_year">Год выпуска:</label>
-                <input type="number" id="car_year" class="form-control" style="width:120px"/>
+                <!--<input type="number" id="car_year" class="form-control" style="width:120px"/>-->
+                <superInput type="number" v-model="release_date" :maxlength="4" placeholder="0"></superInput>
             </div>
             <div class="col-auto form-group">
               <label for="car_mileage">Пробег(км):</label>
-                <input type="number" id="car_mileage" class="form-control" v-model="mileage" style="width:145px" :formatter="SetMileage" placeholder="0" required/>
+                <!--<input type="number" id="car_mileage" class="form-control" v-model="mileage" style="width:145px" :formatter="SetMileage" placeholder="0" required/>-->
+                <superInput type="number" v-model="mileage" :maxlength="10" placeholder="0"></superInput>
             </div>
           
             <div class="col-auto form-group">
@@ -64,66 +64,20 @@
                 </select>
             </div>
           </div>
-          
+
       </span>    
-  <!--</div>-->
-<!--  <div class="form-inline" v-if="$store.state.deal_selected">
-    <div style="width:100%;margin-bottom:10px;text-decoration:underline" v-if="[0,1,2,4].indexOf(this.selected.type_transport) != -1 && this.selected.type_transport!=null">Характеристики:</div>
-    <b-form-group label="Вид транспорта:">
-        <b-form-select v-model="selected.type_transport" class="mb-2 mr-sm-2 mb-sm-2"  @change="selectTransportType">
-           <option v-for="item in type_transport" :value="item.value" :key="item.value">{{item.text}}</option>
-        </b-form-select>
-    </b-form-group>
-
-    <b-form-group label="Марка автомобиля:" v-if="carmark && selected.type_transport==0">
-        <b-form-select v-model="selected.carmark" class="mb-2 mr-sm-2 mb-sm-2" @change="selectMark">
-           <option :value="null">-- Выберите марку автомобиля --</option>
-           <option v-for="item in carmark" :value="item.id_car_mark" :key="item.id_car_mark">{{item.name}}</option>
-        </b-form-select>
-    </b-form-group>
-
-    <b-form-group label="Модель:" v-if="selected.carmark!=null && selected.type_transport==0">
-        <b-form-select v-model="selected.model" class="mb-2 mr-sm-2 mb-sm-2" @change="selectModel">
-           <option :value="null">-- Выберите модель --</option>
-           <option v-for="item in models" :value="item.id_car_model" :key="item.id_car_model">{{item.name}}</option>
-        </b-form-select>
-    </b-form-group>
   
-   <b-form-group label="Год выпуска:" v-if="getComTransport">
-       <b-form-input placeholder="Введите год" type="number" v-model="release_date" class="mb-2 mr-sm-2 mb-sm-2" style="width:130px" :formatter="SetReleaseDate" required></b-form-input>
-   </b-form-group>
-
-    <b-form-group label="Положение руля:" v-if="getComTransport && selected.type_transport!=2">
-        <b-form-select v-model="selected.helm_position" class="mb-2 mr-sm-2 mb-sm-2" @change="SetHelmPosition">
-           <option :value="null">-- Выберите положение руля --</option>
-           <option v-for="(item, index) in helm_position" :value="item.value" :key="index">{{item.text}}</option>
-        </b-form-select>
-    </b-form-group>
-
-    <b-form-group label="Пробег(км):" v-if="getComTransport">
-       <b-form-input type="number" v-model="mileage" placeholder="Введите пробег" class="mb-2 mr-sm-2 mb-sm-2" style="width:145px" :formatter="SetMileage" required></b-form-input>
-    </b-form-group>
-
-     <b-form-group label="Вид топлива:" v-if="getComTransport">
-        <b-form-select v-model="selected.fuel_type" class="mb-2 mr-sm-2 mb-sm-2" @change="SetFuelType">
-           <option v-for="(item, index) in fuel_type" :value="item.value" :key="index">{{item.text}}</option>
-        </b-form-select>
-    </b-form-group>
-
-    <b-form-group label="Растаможен:" v-if="getComTransport">
-        <b-form-select style="width:100px" v-model="selected.car_customs" class="mb-2 mr-sm-2 mb-sm-2" @change="SetTransportCustoms">
-           <option :value="1">Да</option>
-           <option :value="0">Нет</option>
-        </b-form-select>
-    </b-form-group>
-  </div>
--->
 </template>
 
 <script>
 import { post, get, interceptors } from '../../../helpers/api'
+import superInput from "../components/superInput.vue"
 
 export default {
+
+  components: {
+    superInput
+  },
 
   data () {
     return 	{
@@ -181,6 +135,7 @@ export default {
   created() {
 
     this.transport_chars = this.$root.advert_data;
+    
     // значения по умолчанию
     this.transport_chars.rule_position   = 0;
     this.transport_chars.fuel_type       = 0;

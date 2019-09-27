@@ -64,7 +64,7 @@
                     <div class="col-md-12 text-center" v-if="sdelka!=3">
                       <span style="margin-right:5px">Цена:</span>
                       <!--<input type="text" placeholder="0" class="form-group" id="price" :formatter="setPrice" v-model="price" style="margin-right:45px;width:120px;border:1px solid grey;border-radius:3px;padding:5px;text-align:center" required/>-->                      
-                      <superInput type="number" placeholder="0" v-model="price"></superInput>
+                      <superInput type="number" placeholder="0" v-model="price" :maxlength="10"></superInput>
                     </div>
 
                     <div class="col-md-12">
@@ -89,7 +89,7 @@
 
                   <div class="row">                                        
                     <div class="col-md-12 text-center">                      
-                      <superInput type="phone" placeholder="контактный номер" v-model="phone1"></superInput>                      
+                      <superInput type="phone" placeholder="контактный номер" v-model="phone1" :maxlength="14"></superInput>                      
                       <br>
                     </div>
                   </div>
@@ -141,9 +141,9 @@
 // импорт модулей
 import $ from "jquery";
 import bootstrap from "bootstrap";
-import { post, get } from '../../helpers/api'
 import transport from "./subcategories/transport.vue"
 import superInput from "./components/superInput.vue"
+import { post, get } from '../../helpers/api'
 
 var preview_images_array=[];
 
