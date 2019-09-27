@@ -1863,6 +1863,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 // импорт модулей
@@ -39690,20 +39692,36 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-12 text-center" }, [
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-group",
-                    attrs: {
-                      name: "input2[]",
-                      type: "file",
-                      accept: ".png, .jpg, .jpeg",
-                      multiple: "",
-                      "data-show-upload": "true",
-                      "data-show-caption": "true"
+                  _c(
+                    "div",
+                    {
+                      staticClass: "custom-file",
+                      attrs: { id: "customFile", lang: "ru" }
                     },
-                    on: { change: _vm.loadImage }
-                  })
+                    [
+                      _c("input", {
+                        staticClass: "form-group custom-file-input",
+                        attrs: {
+                          name: "input2[]",
+                          type: "file",
+                          accept: ".png, .jpg, .jpeg",
+                          multiple: "",
+                          "data-show-upload": "true",
+                          "data-show-caption": "true"
+                        },
+                        on: { change: _vm.loadImage }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "custom-file-label",
+                          attrs: { for: "exampleInputFile" }
+                        },
+                        [_vm._v("Выберите файл...")]
+                      )
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
                 _vm._m(3)

@@ -75,9 +75,11 @@
                       <img v-for="(i, index) in preview_images" :src="i.src" :key="i.name" @click="deletePhoto(index)" class="image" :title="i.name"/>
                     </div>
 
-                    <div class="col-md-12 text-center">
-                      <br>                    
-                      <input @change="loadImage" name="input2[]" type="file" class="form-group" accept=".png, .jpg, .jpeg" multiple data-show-upload="true" data-show-caption="true">
+                    <div class="col-md-12 text-center">                      
+                      <div class="custom-file" id="customFile" lang="ru">
+                        <input @change="loadImage" name="input2[]" type="file" class="form-group custom-file-input" accept=".png, .jpg, .jpeg" multiple data-show-upload="true" data-show-caption="true">
+                        <label class="custom-file-label" for="exampleInputFile">Выберите файл...</label>
+                      </div>
                     </div>
 
                     <div class="col-md-12">
