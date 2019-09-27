@@ -1631,7 +1631,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ["index", "value", "name", "type", "placeholder", "maxlength"],
+  props: ["index", "value", "name", "type", "placeholder", "maxlength", "id"],
 
   /*
     data () {
@@ -1650,6 +1650,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       get: function get() {
         return this.value;
       },
+
       // сеттер
       set: function set(newValue) {}
     }
@@ -39218,7 +39219,12 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("superInput", {
-                attrs: { type: "number", maxlength: 4, placeholder: "0" },
+                attrs: {
+                  type: "number",
+                  maxlength: "4",
+                  placeholder: "0",
+                  id: "car_year"
+                },
                 model: {
                   value: _vm.release_date,
                   callback: function($$v) {
@@ -39240,7 +39246,12 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("superInput", {
-                attrs: { type: "number", maxlength: 10, placeholder: "0" },
+                attrs: {
+                  type: "number",
+                  maxlength: "10",
+                  placeholder: "0",
+                  id: "car_mileage"
+                },
                 model: {
                   value: _vm.mileage,
                   callback: function($$v) {
@@ -40062,6 +40073,7 @@ var render = function() {
           staticClass: "form-control phone_input",
           attrs: {
             type: "text",
+            id: _vm.id,
             placeholder: _vm.placeholder,
             name: _vm.name,
             maxlength: _vm.maxlength,
@@ -40098,6 +40110,7 @@ var render = function() {
           staticClass: "form-control number_input",
           attrs: {
             type: "text",
+            id: _vm.id,
             placeholder: _vm.placeholder,
             name: _vm.name,
             maxlength: _vm.maxlength,

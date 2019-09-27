@@ -62,7 +62,7 @@
                   <div class="row">
 
                     <div class="col-md-12 text-center" v-if="sdelka!=3">
-                      <span style="margin-right:5px">Цена:</span>
+                      <span style="margin-right:5px">Цена:</span>                      
                       <!--<input type="text" placeholder="0" class="form-group" id="price" :formatter="setPrice" v-model="price" style="margin-right:45px;width:120px;border:1px solid grey;border-radius:3px;padding:5px;text-align:center" required/>-->                      
                       <superInput type="number" placeholder="0" v-model="price" :maxlength="10"></superInput>
                     </div>
@@ -95,7 +95,7 @@
                   </div>
 
                   <div class="row" v-show="phone1.length===14">                  
-                  <br>
+                    <br>
                   <div class="col-md-12">
                     <label class="form-group">Расположение:</label>
                   </div>
