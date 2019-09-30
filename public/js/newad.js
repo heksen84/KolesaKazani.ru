@@ -2431,7 +2431,7 @@ function forEach(data, callback) {
     } // ------------------------------
     // Размещение объявление
     // ------------------------------
-    axios.post("/create", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(function (response) {
+    axios.post("/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(function (response) {
 
       console.log(response);
 

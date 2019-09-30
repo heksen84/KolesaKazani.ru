@@ -685,7 +685,7 @@ onSubmit(evt) {
   // ------------------------------
   // Размещение объявление
   // ------------------------------
-	axios.post("/create", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {			
+	axios.post("/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {			
       
     console.log(response);
     			

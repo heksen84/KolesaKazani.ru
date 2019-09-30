@@ -64,5 +64,322 @@ class AdvertController extends Controller {
     public function getCarsModels(Request $request) {
      	return DB::table("car_model")->where("id_car_mark", $request->mark_id )->get();
     }
+
+    /*
+    -----------------------------------------------
+    Создать объявление
+    -----------------------------------------------*/
+    public function createAdvert(Request $request) {                
+
+        $data = $request->all();
+    
+        \Debugbar::info("--------------------------");
+        \Debugbar::info($data);
+        \Debugbar::info("--------------------------");
+
+        // ---------------------------
+        // правила валидации
+        // ---------------------------
+        $rules = [
+            //"adv_deal"      => "required",
+            "adv_category"  => "required", 
+            "adv_price"     => "required|numeric",
+            "adv_phone1"    => "required|numeric",
+            "images.*"      => "image|mimes:jpeg,png,jpg",
+            "region_id"     => "required|numeric",
+            "city_id"       => "required|numeric"
+        ]; 
+
+        // ---------------------------
+        // сообщения валидации
+        // ---------------------------
+        $messages = [
+            "adv_deal.required"        => "Укажите вид сделки", 
+            "adv_category.required"    => "Укажите категорию товара или услуги",
+            "adv_price.required"       => "Укажите цену",
+            "adv_price.numeric"        => "Введите числовое значение для цены",
+            "adv_phone1.required"      => "Укажите телефон",
+            "adv_phone1.numeric"       => "Введите числовое значение для номера телефона 1",                        
+            "adv_phone2.numeric"       => "Введите числовое значение для номера телефона 2",            
+            "adv_phone3.numeric"       => "Введите числовое значение для номера телефона 3",            
+            "images.*.image"           => "Только изображения!",
+            "region_id.required"       => "Укажите регион",
+            "region_id.numeric"        => "Введите числовое значение для региона",
+            "city_id.required"         => "Укажите расположение",
+            "city_id.numeric"          => "Введите числовое значение для расположения"
+        ];
+
+        
+        // проверка
+        $validator = Validator::make( $data, $rules, $messages );
+
+        // если проверка не прошла
+        if ( $validator->fails() )  
+            return response()->json( ["result"=>"usr.error", "msg" => $validator->errors()->first()] );                    
+
+        $category = $data["adv_category"];
+        $deal     = $data["adv_deal"]; // Вид сделки
+        $text     = $data["adv_info"];
+        $price    = $data["adv_price"];
+        $phone1   = $data["adv_phone1"];
+
+        if (isset($data["adv_phone2"])) $phone2 = $data["adv_phone2"];
+        if (isset($data["adv_phone3"])) $phone3 = $data["adv_phone3"];
+
+        $region_id = $data["region_id"];
+        $city_id = $data["city_id"];
+                
+     	try {
+     			
+            $advert = new Adverts();
+
+     		$advert->user_id = Auth::id();
+        	$advert->text  	 = $text;
+            $advert->phone1  = $phone1; 
+
+            if (isset($data["adv_phone2"])) $advert->phone2 = $phone2; 
+            if (isset($data["adv_phone3"])) $advert->phone3 = $phone3; 
+
+        	$advert->price  		 = $price;
+            $advert->category_id  	 = $category;
+            $advert->deal  	         = $deal;            
+            $advert->region_id       = $region_id;
+            $advert->city_id         = $city_id;
+            $advert->lang            = "ru";
+            $advert->adv_category_id = 0;            
+            $advert->vip             = false;
+            $advert->full            = false;
+
+            $url_text = ""; // строка url в sitemap
+
+            switch($category) {
+
+                // FIXME: Обозвать переменные одинаковыми именами steering_position, engine_type и т.д.
+
+                // --------------------------------
+                // транспорт
+                // --------------------------------
+                case 1: {                    
+
+                    $transport = new Transport();                    
+                    
+                    $transport->type                 = $data["transport_type"];   // тип транспорта: легковой / грузовой и т.д.
+                    $transport->mark                 = null;
+                    $transport->model                = null;
+                    $transport->year                 = null;
+                    $transport->steering_position    = null;
+                    $transport->mileage              = null;
+                    $transport->engine_type          = null;
+                    $transport->customs              = null;
+                    
+                    // легковушки
+                    if ($data["transport_type"]==0) {
+                        $transport->mark                = $data["mark_id"];            // id марки авто
+                        $transport->model               = $data["model_id"];           // id модели авто                        
+                        $transport->year                = $data["release_date"];       // год выпуска
+                        $transport->steering_position   = $data["rule_position"];      // положение руля
+                        $transport->mileage             = $data["mileage"];            // пробег
+                        $transport->engine_type         = $data["fuel_type"];          // тип движка
+                        $transport->customs             = $data["customs"];            // растаможка
+
+                        // значение записи url в sitemap.xml
+                        $url_text = "Транспорт легковое авто";
+                        
+                        $advert->full = true; // полное объявление с моделями (в item будет указан вид сделки)
+                    }
+
+                    // грузовой
+                    if ($data["transport_type"]==1) {
+                        $transport->year                = $data["release_date"];       // год выпуска
+                        $transport->steering_position   = $data["rule_position"];      // положение руля
+                        $transport->mileage             = $data["mileage"];            // пробег
+                        $transport->engine_type         = $data["fuel_type"];          // тип движка
+                        $transport->customs             = $data["customs"];            // растаможка
+
+                        // значение записи url в sitemap.xml
+                        $url_text = "Транспорт грузовое авто";
+                    }
+
+                    // мото
+                    if ($data["transport_type"]==2) {
+                        $transport->year            = $data["release_date"];       // год выпуска
+                        $transport->mileage         = $data["mileage"];            // пробег
+                        $transport->engine_type     = $data["fuel_type"];          // тип движка
+                        $transport->customs         = $data["customs"];            // растаможка
+
+                        // значение записи url в sitemap.xml
+                        $url_text = "Транспорт мото";
+                    }
+
+                    // спецтехника
+                    if ($data["transport_type"]==3) {                        
+                        // значение записи url в sitemap.xml
+                        $url_text = "Транспорт спецтехника";
+                    }
+
+                    // ретро-авто
+                    if ($data["transport_type"]==4) {
+                        $transport->year                = $data["release_date"];       // год выпуска
+                        $transport->steering_position   = $data["rule_position"];      // положение руля
+                        $transport->mileage             = $data["mileage"];            // пробег
+                        $transport->engine_type         = $data["fuel_type"];          // тип движка
+                        $transport->customs             = $data["customs"];            // растаможка
+
+                        // значение записи url в sitemap.xml
+                        $url_text = "Транспорт спецтехника";
+                    }
+
+                    // водный транспорт
+                    if ($data["transport_type"]==5) {
+                        // значение записи url в sitemap.xml
+                        $url_text = "Транспорт водный";
+                    }
+
+                    // велосипед
+                    if ($data["transport_type"]==6) {
+                        // значение записи url в sitemap.xml
+                        $url_text = "Транспорт велосипед";
+                    }
+
+                    // воздушный транспорт
+                    if ($data["transport_type"]==7) {
+                        // значение записи url в sitemap.xml
+                        $url_text = "Транспорт воздушный";
+                    }
+                                        
+                    $transport->save();
+
+                    // записываю id подкатегории
+                    $advert->adv_category_id = $transport->id;  // указываем id' шник
+                    break;
+                }
+
+                // --------------------------------
+                // недвижимость
+                // --------------------------------
+                case 2: {
+
+                    $realestate = new RealEstate();
+                    $realestate->property_type  = $data["property_type"];
+                    $realestate->floor          = $data["floor_num"];
+                    $realestate->floors_house   = $data["number_of_floors"];
+                    $realestate->rooms          = $data["number_of_rooms"];
+                    $realestate->area           = $data["area_num"];
+                    $realestate->ownership      = $data["property_num"];
+                    $realestate->kind_of_object = $data["object_type"];
+
+                    // Дом, Дача, Коттедж
+                    if (isset($data["type_of_building"]))
+                        $realestate->type_of_building = $data["type_of_building"];
+
+                    // квартира
+                    /*if ( $data["property_type"]==0 ) {
+                        $advert->full = true; // полное объявление с хар-ками (в item будет указан вид сделки)
+                    }*/
+                    
+                    $advert->full = true; // детальное объявление
+
+                    $realestate->save();
+
+                    // записываю id подкатегории
+                    $advert->adv_category_id = $realestate->id;
+
+                    // значение записи url в sitemap.xml
+                    $url_text = "Недвижимость квартира";
+
+                    break;
+                }
+
+                // электроника
+                case 3: {
+                    //$appliances= new Appliances();
+                    break;
+                }
+
+                case 4: {
+                    break;
+                }
+
+                case 5: {
+                    break;
+                }
+
+                case 6: {
+                    break;
+                }
+
+                case 7: {
+                    break;
+                }
+
+                case 8: {
+                    break;
+                }
+
+                case 9: {
+                    break;
+                }
+
+                case 10: {
+                    break;
+                }
+
+            }
+            
+            // ------------------------------
+            // координаты
+            // ------------------------------
+            if (isset($data["adv_coords"])) {
+                $coords = explode(",", $data["adv_coords"]);
+                $advert->coord_lat = $coords[0];
+                $advert->coord_lon = $coords[1];
+                \Debugbar::info($coords);
+            }
+            else {
+                $advert->coord_lat = 0;
+                $advert->coord_lon = 0;
+            }
+
+            \Debugbar::info("id подкатегории :".$advert->adv_category_id);            
+            
+            $advert->public = true; // публикую объявление сходу                        
+            $advert->save();  // СОХРАНЕНИЕ ОБЪЯВЛЕНИЯ
+            
+            // Закидываю данные в таблицу urls для SEO
+            $urls = new Urls();
+
+            // url sitemap
+            if (strlen($text) > 5)
+                $url_text = $text;
+            
+            $urls->url = substr($advert->id."-".Helper::str2url($url_text), 0, 100);
+            $urls->advert_id = $advert->id;
+            $urls->save();
+                         
+            // Сохраняю картинки        
+            //\App\Jobs\loadImages::dispatch($request, $advert->id);
+            
+
+	    // --------------------------------------
+	    // Определяю теги категории:
+	    // Например транспорт
+	    // --------------------------------------
+	    // tag, advert_id
+	    // --------------------------------------
+	    // Авто,   134
+	    // Тойота, 134
+	    // Камри,  134
+            
+        Sitemap::addUrl($urls->url);
+
+        return $advert->id;
+        
+		}		
+        catch(\Exception $e) {
+               return response()->json( ["result"=>"db.error", "msg"=>$e->getMessage()] );  
+    	}
+     	
+     	return $data;
+    }
     
 }

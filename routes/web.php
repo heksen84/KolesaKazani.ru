@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 // Стандартные роуты
 Auth::routes();
 
+Route::post("createAdvert",  "AdvertController@createAdvert");
+
 // ---------------------------------------------------------------
 // Авто
 // ---------------------------------------------------------------
