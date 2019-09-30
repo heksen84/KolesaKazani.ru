@@ -1868,7 +1868,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 // импорт модулей
@@ -1902,29 +1901,27 @@ function initMaps() {
 
   bigmap = new ymaps.Map("bigmap", { center: mapCoords, zoom: 10 });
   smallmap = new ymaps.Map("smallmap", { center: mapCoords, zoom: 9 });
-  /*
-  	// запрещаю перемение по мини карте
-  	smallmap.behaviors.disable("drag");
-  
-  	// включаю скролл на большой карте
-  	bigmap.behaviors.enable("scrollZoom");
-  			
-  	// формирую метки
-  	myPlacemark1 = new ymaps.Placemark(mapCoords);
-  	myPlacemark2 = new ymaps.Placemark(mapCoords);
-  
-  	// добавляю метки на карты
-  	bigmap.geoObjects.add(myPlacemark1);
-  	smallmap.geoObjects.add(myPlacemark2);
-  
-    bigmap.events.add("click", function (e) {
-      mapCoords = e.get("coordPosition");
-  	  myPlacemark1.geometry.setCoordinates(mapCoords);
-  		myPlacemark2.geometry.setCoordinates(mapCoords);
-  		smallmap.setCenter(mapCoords, 14, "smallmap");
-    });	
-  
-    */
+
+  // запрещаю перемение по мини карте
+  smallmap.behaviors.disable("drag");
+
+  // включаю скролл на большой карте
+  bigmap.behaviors.enable("scrollZoom");
+
+  // формирую метки
+  myPlacemark1 = new ymaps.Placemark(mapCoords);
+  myPlacemark2 = new ymaps.Placemark(mapCoords);
+
+  // добавляю метки на карты
+  bigmap.geoObjects.add(myPlacemark1);
+  smallmap.geoObjects.add(myPlacemark2);
+
+  bigmap.events.add("click", function (e) {
+    mapCoords = e.get("coordPosition");
+    myPlacemark1.geometry.setCoordinates(mapCoords);
+    myPlacemark2.geometry.setCoordinates(mapCoords);
+    smallmap.setCenter(mapCoords, 14, "smallmap");
+  });
 }
 
 // --------------------------------
@@ -1955,7 +1952,7 @@ function forEach(data, callback) {
     return {
       lastPhoneNumber: null,
       summ_str: "",
-      const_phone1_max_length: 9,
+      const_phone_max_length: 9,
       coordinates_set: false,
       placeChanged: false,
       category: null,
@@ -1970,9 +1967,7 @@ function forEach(data, callback) {
       regions_model: null,
       places: [],
       places_model: null,
-      phone1: "",
-      phone2: "",
-      phone3: "",
+      phone: "",
       transport: false, // транспорт
       real_estate: false, // недвижимость
       appliances: false, // бытовая техника
@@ -2015,14 +2010,6 @@ function forEach(data, callback) {
       	this.summ_str = number_to_string(price);
       
         return price;*/
-    },
-    addPhoneNumber: function addPhoneNumber() {
-
-      /*this.lastPhoneNumber = this.$store.state.phonesArr[this.$store.state.phonesArr.length-1];
-      if (this.lastPhoneNumber!="" && this.$store.state.phonesArr.length<5) {
-        this.$store.commit("AddPhoneNumber")
-      }*/
-
     },
 
 
@@ -2185,13 +2172,13 @@ function forEach(data, callback) {
 
       this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
       this.$root.advert_data.adv_price = 0;
-      this.$root.advert_data.adv_phone1 = "";
+      this.$root.advert_data.adv_phone = "";
 
       // сброс моделей
       this.sdelka = 0;
       this.price = 0;
       this.info = "";
-      this.phone1 = "";
+      this.phone = "";
       this.phone2 = "";
       this.phone3 = "";
       this.regions_model = null;
@@ -2216,6 +2203,7 @@ function forEach(data, callback) {
 
       // сбрасываю фотки
       var photos = document.querySelector("input[type=file]");
+
       if (photos != null) photos.value = "";
     },
 
@@ -2272,15 +2260,13 @@ function forEach(data, callback) {
 
     this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
     this.$root.advert_data.adv_price = 0;
-    this.$root.advert_data.adv_phone1 = "";
+    this.$root.advert_data.adv_phone = "";
 
     // сброс моделей
     //this.sdelka = null;
     this.price = 0;
     this.info = "";
-    this.phone1 = "";
-    this.phone2 = "";
-    this.phone3 = "";
+    this.phone = "";
     this.regions_model = null;
     this.places_model = null;
     this.preview_images = [];
@@ -39740,11 +39726,11 @@ var render = function() {
                             maxlength: 14
                           },
                           model: {
-                            value: _vm.phone1,
+                            value: _vm.phone,
                             callback: function($$v) {
-                              _vm.phone1 = $$v
+                              _vm.phone = $$v
                             },
-                            expression: "phone1"
+                            expression: "phone"
                           }
                         }),
                         _vm._v(" "),
@@ -39761,8 +39747,8 @@ var render = function() {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: _vm.phone1.length === 14,
-                          expression: "phone1.length===14"
+                          value: _vm.phone.length === 14,
+                          expression: "phone.length===14"
                         }
                       ],
                       staticClass: "row"
@@ -39954,12 +39940,10 @@ var render = function() {
                             attrs: { id: "smallmap" }
                           }),
                           _vm._v(" "),
-                          _c("br"),
-                          _vm._v(" "),
                           _c(
                             "button",
                             {
-                              staticClass: "btn btn-secondary form-group",
+                              staticClass: "btn btn-link form-group",
                               on: { click: _vm.showSetCoordsDialog }
                             },
                             [_vm._v("уточнить местоположение")]

@@ -91,12 +91,12 @@
 
                   <div class="row">                                        
                     <div class="col-md-12 text-center">                      
-                      <superInput type="phone" placeholder="контактный номер" v-model="phone1" :maxlength="14"></superInput>                      
+                      <superInput type="phone" placeholder="контактный номер" v-model="phone" :maxlength="14"></superInput>                      
                       <br>
                     </div>
                   </div>
 
-                  <div class="row" v-show="phone1.length===14">                  
+                  <div class="row" v-show="phone.length===14">                  
                     <br>
                   <div class="col-md-12">
                     <label class="form-group">Расположение:</label>
@@ -124,8 +124,7 @@
 
                   <div class="col-md-12 text-center" v-show="places_model!=null">
                     <div id="smallmap" style="border:1px solid rgb(180,180,180);margin-bottom:10px;width: 100%; height: 200px" v-show="coordinates_set"></div>
-                    <br>
-                    <button class="btn btn-secondary form-group" @click="showSetCoordsDialog">уточнить местоположение</button>                    
+                    <button class="btn btn-link form-group" @click="showSetCoordsDialog">уточнить местоположение</button>                    
                   </div>
                   
                   <div class="col-md-12 text-center" v-show="places_model!=null">
@@ -175,7 +174,7 @@ function initMaps() {
 
 	bigmap = new ymaps.Map ("bigmap", { center: mapCoords, zoom: 10 });
 	smallmap = new ymaps.Map ("smallmap", { center: mapCoords, zoom: 9 });
-/*
+
 	// запрещаю перемение по мини карте
 	smallmap.behaviors.disable("drag");
 
@@ -195,9 +194,7 @@ function initMaps() {
 	  myPlacemark1.geometry.setCoordinates(mapCoords);
 		myPlacemark2.geometry.setCoordinates(mapCoords);
 		smallmap.setCenter(mapCoords, 14, "smallmap");
-  });	
-
-  */
+  });
   		
 }				
 
@@ -229,7 +226,7 @@ data () {
   return 	{    
     lastPhoneNumber: null,
 		summ_str: "",
-		const_phone1_max_length: 9,		
+		const_phone_max_length: 9,		
 		coordinates_set: false,
 		placeChanged: false,			
 		category: null,
@@ -244,9 +241,7 @@ data () {
 		regions_model: null,
 		places: [],
 		places_model: null,
-		phone1: "",
-		phone2: "",
-		phone3: "",
+		phone: "",		
 		transport:false,			      // транспорт
 		real_estate:false,			    // недвижимость
 		appliances:false,			      // бытовая техника
@@ -288,14 +283,6 @@ setPrice() {
   return price;*/
 },
 
-addPhoneNumber() {
-
-  /*this.lastPhoneNumber = this.$store.state.phonesArr[this.$store.state.phonesArr.length-1];
-  if (this.lastPhoneNumber!="" && this.$store.state.phonesArr.length<5) {
-    this.$store.commit("AddPhoneNumber")
-  }*/
-
-},
 
 // --------------------------------------
 // Вернуться на предыдущую страницу
@@ -448,13 +435,13 @@ advReset(category_data) {
 
   this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
   this.$root.advert_data.adv_price = 0;
-  this.$root.advert_data.adv_phone1 = "";
+  this.$root.advert_data.adv_phone = "";
 
   // сброс моделей
   this.sdelka = 0;
   this.price = 0;
   this.info = "";
-  this.phone1 = "";
+  this.phone = "";
   this.phone2 = "";
   this.phone3 = "";
   this.regions_model = null;
@@ -479,6 +466,7 @@ advReset(category_data) {
 
   // сбрасываю фотки
   let photos = document.querySelector("input[type=file]");
+  
   if (photos!=null) photos.value = "";
 
 },
@@ -530,15 +518,13 @@ advReset(category_data) {
 
     this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
     this.$root.advert_data.adv_price = 0;
-    this.$root.advert_data.adv_phone1 = "";
+    this.$root.advert_data.adv_phone = "";
 
     // сброс моделей
     //this.sdelka = null;
     this.price = 0;
     this.info = "";
-    this.phone1 = "";
-    this.phone2 = "";
-    this.phone3 = "";
+    this.phone = "";
     this.regions_model = null;
     this.places_model = null;
     this.preview_images = [];
