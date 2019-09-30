@@ -124,7 +124,7 @@
 
                   <div class="col-md-12 text-center" v-show="places_model!=null">
                     <div id="smallmap" style="border:1px solid rgb(180,180,180);margin-bottom:10px;width: 100%; height: 200px" v-show="coordinates_set"></div>
-                    <button class="btn btn-link form-group" @click="showSetCoordsDialog">уточнить местоположение</button>                    
+                    <button type="button" class="btn btn-link form-group" @click="showSetCoordsDialog">уточнить местоположение</button>                    
                   </div>
                   
                   <div class="col-md-12 text-center" v-show="places_model!=null">

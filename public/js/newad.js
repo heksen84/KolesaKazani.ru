@@ -39933,6 +39933,7 @@ var render = function() {
                             "button",
                             {
                               staticClass: "btn btn-link form-group",
+                              attrs: { type: "button" },
                               on: { click: _vm.showSetCoordsDialog }
                             },
                             [_vm._v("уточнить местоположение")]
