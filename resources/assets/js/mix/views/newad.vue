@@ -293,7 +293,7 @@ changeRegion() {
   get("getPlaces?region_id="+this.regions_model).then((res) => {
 		this.places=res.data;
 		this.places_model=null;
-      console.log(res.data);
+    //console.log(res.data);
 	  }).catch((err) => {});			  
 	},
 
