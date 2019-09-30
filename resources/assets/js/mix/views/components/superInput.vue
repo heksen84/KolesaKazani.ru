@@ -26,7 +26,7 @@ export default {
     valueInput: {
       // геттер
       get: function() { return this.value; },
-      
+
       // сеттер
       set: function(newValue) {}   
     }
@@ -39,7 +39,8 @@ export default {
     inputHandler(e) {
 
       const newValue = e.target.value;
-      const numericPattern = /^-{0,1}\d*(\.\d*)*$/i;      
+      //const numericPattern = /^-{0,1}\d*(\.\d*)*$/i;            
+      const numericPattern = /^[0-9]*$/;
 
       switch(this.type) {
 
