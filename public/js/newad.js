@@ -1997,19 +1997,9 @@ function forEach(data, callback) {
     setInfo: function setInfo() {
       this.$root.advert_data.adv_info = this.info;
     },
-
-
-    // установить цену
-    setPrice: function setPrice() {
-      /*			
-      	if (price < 0 || price > 10000000000) 
-      			return this.price;
-      
-      	this.price = price;
-      	this.$root.advert_data.adv_price = price;			
-      	this.summ_str = number_to_string(price);
-      
-        return price;*/
+    setPhone: function setPhone() {
+      console.log(this.phone);
+      this.$root.advert_data.adv_phone = this.phone;
     },
 
 
@@ -2179,8 +2169,6 @@ function forEach(data, callback) {
       this.price = 0;
       this.info = "";
       this.phone = "";
-      this.phone2 = "";
-      this.phone3 = "";
       this.regions_model = null;
       this.places_model = null;
       this.preview_images = [];
@@ -2395,7 +2383,7 @@ function forEach(data, callback) {
   }), _defineProperty(_methods, "onSubmit", function onSubmit(evt) {
     var _this2 = this;
 
-    console.log("поехали...");
+    //console.log("поехали...")
 
     evt.preventDefault();
 
@@ -2414,16 +2402,16 @@ function forEach(data, callback) {
     // Записываю изображения
     for (var i = 0; i < this.real_images.length; i++) {
       formData.append('images[' + i + ']', this.real_images[i]);
-    } // ------------------------------
+    } // ------------------------------------------------------------------------------------------------------------------------
     // Размещение объявление
-    // ------------------------------
+    // ------------------------------------------------------------------------------------------------------------------------
     axios.post("/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(function (response) {
 
       console.log(response);
 
       if (response.data.result == "db.error")
         //this.$root.$notify({group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error'});
-        alert("Неполадки в работе сервиса. Приносим свои извинения.");else if (response.data.result == "usr.error") _this2.$root.$notify({ group: 'foo', text: "<h6>" + response.data.msg + "</h6>", type: 'error' });else alert("Объявление размещено");
+        alert("Неполадки в работе сервиса");else if (response.data.result == "usr.error") _this2.$root.$notify({ group: 'foo', text: "<h6>" + response.data.msg + "</h6>", type: 'error' });else alert("Объявление размещено");
       //	else 
       //	window.location="home"; // переходим в личный кабинет
     }).catch(function (error) {
@@ -39725,6 +39713,7 @@ var render = function() {
                             placeholder: "контактный номер",
                             maxlength: 14
                           },
+                          on: { input: _vm.setPhone },
                           model: {
                             value: _vm.phone,
                             callback: function($$v) {

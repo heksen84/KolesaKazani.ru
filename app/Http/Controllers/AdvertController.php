@@ -80,11 +80,11 @@ class AdvertController extends Controller {
         // ---------------------------
         // правила валидации
         // ---------------------------
-        $rules = [
-            //"adv_deal"      => "required",
+        $rules = 
+        [            
             "adv_category"  => "required", 
             "adv_price"     => "required|numeric",
-            "adv_phone1"    => "required|numeric",
+            "adv_phone"    => "required",
             "images.*"      => "image|mimes:jpeg,png,jpg",
             "region_id"     => "required|numeric",
             "city_id"       => "required|numeric"
@@ -93,15 +93,13 @@ class AdvertController extends Controller {
         // ---------------------------
         // сообщения валидации
         // ---------------------------
-        $messages = [
+        $messages = 
+        [
             "adv_deal.required"        => "Укажите вид сделки", 
             "adv_category.required"    => "Укажите категорию товара или услуги",
             "adv_price.required"       => "Укажите цену",
             "adv_price.numeric"        => "Введите числовое значение для цены",
-            "adv_phone1.required"      => "Укажите телефон",
-            "adv_phone1.numeric"       => "Введите числовое значение для номера телефона 1",                        
-            "adv_phone2.numeric"       => "Введите числовое значение для номера телефона 2",            
-            "adv_phone3.numeric"       => "Введите числовое значение для номера телефона 3",            
+            "adv_phone.required"       => "Укажите телефон",            
             "images.*.image"           => "Только изображения!",
             "region_id.required"       => "Укажите регион",
             "region_id.numeric"        => "Введите числовое значение для региона",
@@ -121,11 +119,9 @@ class AdvertController extends Controller {
         $deal     = $data["adv_deal"]; // Вид сделки
         $text     = $data["adv_info"];
         $price    = $data["adv_price"];
-        $phone1   = $data["adv_phone1"];
+        $phone    = $data["adv_phone"];
 
-        if (isset($data["adv_phone2"])) $phone2 = $data["adv_phone2"];
-        if (isset($data["adv_phone3"])) $phone3 = $data["adv_phone3"];
-
+        
         $region_id = $data["region_id"];
         $city_id = $data["city_id"];
                 
@@ -135,11 +131,9 @@ class AdvertController extends Controller {
 
      		$advert->user_id = Auth::id();
         	$advert->text  	 = $text;
-            $advert->phone1  = $phone1; 
+            $advert->phone  = $phone; 
 
-            if (isset($data["adv_phone2"])) $advert->phone2 = $phone2; 
-            if (isset($data["adv_phone3"])) $advert->phone3 = $phone3; 
-
+        
         	$advert->price  		 = $price;
             $advert->category_id  	 = $category;
             $advert->deal  	         = $deal;            

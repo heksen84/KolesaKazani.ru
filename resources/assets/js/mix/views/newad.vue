@@ -91,7 +91,7 @@
 
                   <div class="row">                                        
                     <div class="col-md-12 text-center">                      
-                      <superInput type="phone" placeholder="контактный номер" v-model="phone" :maxlength="14"></superInput>                      
+                      <superInput type="phone" placeholder="контактный номер" v-model="phone" :maxlength="14" @input="setPhone"></superInput>                      
                       <br>
                     </div>
                   </div>
@@ -270,19 +270,10 @@ setInfo() {
 	this.$root.advert_data.adv_info=this.info;
 },
 
-// установить цену
-setPrice() {
-/*			
-	if (price < 0 || price > 10000000000) 
-			return this.price;
-
-	this.price = price;
-	this.$root.advert_data.adv_price = price;			
-	this.summ_str = number_to_string(price);
-
-  return price;*/
+setPhone() {
+  console.log(this.phone)
+  this.$root.advert_data.adv_phone=this.phone;
 },
-
 
 // --------------------------------------
 // Вернуться на предыдущую страницу
@@ -442,8 +433,6 @@ advReset(category_data) {
   this.price = 0;
   this.info = "";
   this.phone = "";
-  this.phone2 = "";
-  this.phone3 = "";
   this.regions_model = null;
   this.places_model = null;
   this.preview_images = [];
@@ -650,7 +639,7 @@ changeCategory() {
 // --------------------
 onSubmit(evt) {
 
-  console.log("поехали...")
+  //console.log("поехали...")
 
   evt.preventDefault();
 
@@ -668,16 +657,16 @@ onSubmit(evt) {
 	for( let i=0; i < this.real_images.length; i++ )
       formData.append('images['+i+']', this.real_images[i]);		
 						
-  // ------------------------------
+  // ------------------------------------------------------------------------------------------------------------------------
   // Размещение объявление
-  // ------------------------------
+  // ------------------------------------------------------------------------------------------------------------------------
 	axios.post("/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {			
       
     console.log(response);
     			
     if (response.data.result=="db.error") 
       //this.$root.$notify({group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error'});
-      alert("Неполадки в работе сервиса. Приносим свои извинения.")
+      alert("Неполадки в работе сервиса")
 		else
       if (response.data.result=="usr.error") 
        this.$root.$notify({group: 'foo', text: "<h6>"+response.data.msg+"</h6>", type: 'error'});
