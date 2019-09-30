@@ -47,7 +47,7 @@
                 </div>
             </div>    
             
-            <form id="advertform" @submit="onSubmit" v-if="sdelka!=null">  
+          <form id="advertform" @submit="onSubmit" v-show="sdelka!=null">  
               <!-- Категории -->
 		          <div v-if="root"></div>
                 <transport v-else-if="transport"/>
@@ -175,7 +175,7 @@ function initMaps() {
 
 	bigmap = new ymaps.Map ("bigmap", { center: mapCoords, zoom: 10 });
 	smallmap = new ymaps.Map ("smallmap", { center: mapCoords, zoom: 9 });
-
+/*
 	// запрещаю перемение по мини карте
 	smallmap.behaviors.disable("drag");
 
@@ -196,6 +196,8 @@ function initMaps() {
 		myPlacemark2.geometry.setCoordinates(mapCoords);
 		smallmap.setCenter(mapCoords, 14, "smallmap");
   });	
+
+  */
   		
 }				
 
