@@ -131,8 +131,7 @@
                     <button type="submit" class="btn btn-success form-group">опубликовать</button>                    
                   </div>
                   
-                </div>                
-                
+                </div>                 
             </div>
 
             </form>
