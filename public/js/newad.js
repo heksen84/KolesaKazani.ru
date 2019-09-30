@@ -1867,7 +1867,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 // импорт модулей
@@ -1893,8 +1892,6 @@ var smallmap = null;
  Инициализация большой карты (карта назначения координат)
 ---------------------------------------------------------*/
 function initMaps() {
-
-  //console.log("INIT MAPS...")
 
   // координаты по умолчанию для всех карт
   mapCoords = [51.08, 71.26];
@@ -2383,16 +2380,10 @@ function forEach(data, callback) {
   }), _defineProperty(_methods, "onSubmit", function onSubmit(evt) {
     var _this2 = this;
 
-    //console.log("поехали...")
-
     evt.preventDefault();
 
     // объект формы
     var formData = new FormData();
-
-    // устанавливаю цену если она пустая, т.к. бэкенду нужна цена
-    /*if (this.$root.advert_data.adv_price==null || this.$root.advert_data.adv_price=="")       
-       this.$root.advert_data.adv_price=0;*/
 
     // записываю значения полей
     forEach(this.$root.advert_data, function (key, value) {
@@ -2422,18 +2413,19 @@ function forEach(data, callback) {
 
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#ShowMapModal").modal("show");
 
-    if (!navigator.geolocation) {
-      console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается		
-    } else {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        var lat = position.coords.latitude;
-        var lon = position.coords.longitude;
-        var geoCoords = [lat, lon];
-        myPlacemark.geometry.setCoordinates(getCoords);
-      });
-    }
+    if (!navigator.geolocation) console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается		    
+    else {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          var lat = position.coords.latitude;
+          var lon = position.coords.longitude;
+          var geoCoords = [lat, lon];
+          myPlacemark.geometry.setCoordinates(getCoords);
+        });
+      }
   }), _defineProperty(_methods, "setCoords", function setCoords() {
+
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#ShowMapModal").modal("hide");
+
     this.$root.advert_data.adv_coords = [];
     this.$root.advert_data.adv_coords = mapCoords;
     this.coordinates_set = true;

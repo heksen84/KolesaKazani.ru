@@ -62,7 +62,6 @@
 
                     <div class="col-md-12 text-center" v-if="sdelka!=3">
                       <span style="margin-right:5px">Цена:</span>                      
-                      <!--<input type="text" placeholder="0" class="form-group" id="price" :formatter="setPrice" v-model="price" style="margin-right:45px;width:120px;border:1px solid grey;border-radius:3px;padding:5px;text-align:center" required/>-->                      
                       <superInput type="number" v-model="price" :maxlength="10"></superInput>
                     </div>
 
@@ -165,9 +164,7 @@ var smallmap=null;
 ---------------------------------------------------------
  Инициализация большой карты (карта назначения координат)
 ---------------------------------------------------------*/
-function initMaps() {
-
-  //console.log("INIT MAPS...")
+function initMaps() {  
 
 	// координаты по умолчанию для всех карт
 	mapCoords = [51.08, 71.26];
@@ -639,17 +636,11 @@ changeCategory() {
 // --------------------
 onSubmit(evt) {
 
-  //console.log("поехали...")
-
   evt.preventDefault();
 
   // объект формы
   let formData = new FormData();
-
-	// устанавливаю цену если она пустая, т.к. бэкенду нужна цена
-	/*if (this.$root.advert_data.adv_price==null || this.$root.advert_data.adv_price=="")       
-    this.$root.advert_data.adv_price=0;*/
-		
+	
 	// записываю значения полей
 	forEach(this.$root.advert_data, function(key, value) { formData.append(key, value); })
 
@@ -687,9 +678,8 @@ onSubmit(evt) {
     
     $("#ShowMapModal").modal("show");
 
-    if (!navigator.geolocation) {
-      console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается		
-    }
+    if (!navigator.geolocation)     
+      console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается		    
     else {
 			  navigator.geolocation.getCurrentPosition(function(position) {				
 			  let lat = position.coords.latitude;
@@ -703,8 +693,10 @@ onSubmit(evt) {
 	// ---------------------------------
 	// Установить координаты
 	// ---------------------------------
-	setCoords() {    
+	setCoords() {
+
     $("#ShowMapModal").modal("hide");
+
 		this.$root.advert_data.adv_coords=[];
 		this.$root.advert_data.adv_coords=mapCoords;
 		this.coordinates_set=true;
