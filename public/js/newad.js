@@ -39678,7 +39678,7 @@ var render = function() {
                           }),
                           _vm._v(" "),
                           _c("label", { staticClass: "custom-file-label" }, [
-                            _vm._v("Выберите файл...")
+                            _vm._v("Выберите файлы изображений...")
                           ])
                         ]
                       )
