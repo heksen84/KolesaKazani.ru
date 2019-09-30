@@ -52,8 +52,7 @@
 		          <div v-if="root"></div>
                 <transport v-else-if="transport"/>
                 <!--<h1 v-else-if="transport">transport</h1>
-                <h1 v-else-if="real_estate">nedvizh</h1>-->
-            </form>
+                <h1 v-else-if="real_estate">nedvizh</h1>-->            
 
             <!-- Дополнительные поля -->			      
             <div v-show="$store.state.show_final_fields">
@@ -64,7 +63,7 @@
                     <div class="col-md-12 text-center" v-if="sdelka!=3">
                       <span style="margin-right:5px">Цена:</span>                      
                       <!--<input type="text" placeholder="0" class="form-group" id="price" :formatter="setPrice" v-model="price" style="margin-right:45px;width:120px;border:1px solid grey;border-radius:3px;padding:5px;text-align:center" required/>-->                      
-                      <superInput type="number" placeholder="0" v-model="price" :maxlength="10"></superInput>
+                      <superInput type="number" v-model="price" :maxlength="10"></superInput>
                     </div>
 
                     <div class="col-md-12">
@@ -131,10 +130,14 @@
                   
                   <div class="col-md-12 text-center" v-show="places_model!=null">
                     <hr>
-                    <button type="onSubmit" class="btn btn-success form-group">опубликовать</button>                    
+                    <button type="submit" class="btn btn-success form-group">опубликовать</button>                    
                   </div>
+                  
                 </div>                
+                
             </div>
+
+            </form>
         </div>
     </div>
 </div>
@@ -231,7 +234,7 @@ data () {
 		sdelka: null,
 		deal_id: null,
 		info: "",
-		price: "",
+		price: 0,
 		number: 0,
 		preview_images: [],
 		real_images: [],
@@ -442,12 +445,12 @@ advReset(category_data) {
   //this.$root.advert_data.adv_deal = 0; // покупка по умолчанию    
 
   this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
-  this.$root.advert_data.adv_price = "";
+  this.$root.advert_data.adv_price = 0;
   this.$root.advert_data.adv_phone1 = "";
 
   // сброс моделей
   this.sdelka = 0;
-  this.price = "";
+  this.price = 0;
   this.info = "";
   this.phone1 = "";
   this.phone2 = "";
@@ -524,12 +527,12 @@ advReset(category_data) {
     //this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
 
     this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
-    this.$root.advert_data.adv_price = "";
+    this.$root.advert_data.adv_price = 0;
     this.$root.advert_data.adv_phone1 = "";
 
     // сброс моделей
     //this.sdelka = null;
-    this.price = "";
+    this.price = 0;
     this.info = "";
     this.phone1 = "";
     this.phone2 = "";
@@ -659,14 +662,16 @@ changeCategory() {
 // --------------------
 onSubmit(evt) {
 
+  console.log("поехали...")
+
   evt.preventDefault();
 
   // объект формы
   let formData = new FormData();
 
 	// устанавливаю цену если она пустая, т.к. бэкенду нужна цена
-	if (this.$root.advert_data.adv_price==null || this.$root.advert_data.adv_price=="")       
-    this.$root.advert_data.adv_price=0;
+	/*if (this.$root.advert_data.adv_price==null || this.$root.advert_data.adv_price=="")       
+    this.$root.advert_data.adv_price=0;*/
 		
 	// записываю значения полей
 	forEach(this.$root.advert_data, function(key, value) { formData.append(key, value); })

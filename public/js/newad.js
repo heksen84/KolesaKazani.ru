@@ -1866,6 +1866,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 // импорт модулей
@@ -1957,7 +1960,7 @@ function forEach(data, callback) {
       sdelka: null,
       deal_id: null,
       info: "",
-      price: "",
+      price: 0,
       number: 0,
       preview_images: [],
       real_images: [],
@@ -2179,12 +2182,12 @@ function forEach(data, callback) {
       //this.$root.advert_data.adv_deal = 0; // покупка по умолчанию    
 
       this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
-      this.$root.advert_data.adv_price = "";
+      this.$root.advert_data.adv_price = 0;
       this.$root.advert_data.adv_phone1 = "";
 
       // сброс моделей
       this.sdelka = 0;
-      this.price = "";
+      this.price = 0;
       this.info = "";
       this.phone1 = "";
       this.phone2 = "";
@@ -2266,12 +2269,12 @@ function forEach(data, callback) {
     //this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
 
     this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
-    this.$root.advert_data.adv_price = "";
+    this.$root.advert_data.adv_price = 0;
     this.$root.advert_data.adv_phone1 = "";
 
     // сброс моделей
     //this.sdelka = null;
-    this.price = "";
+    this.price = 0;
     this.info = "";
     this.phone1 = "";
     this.phone2 = "";
@@ -2404,13 +2407,16 @@ function forEach(data, callback) {
   }), _defineProperty(_methods, "onSubmit", function onSubmit(evt) {
     var _this2 = this;
 
+    console.log("поехали...");
+
     evt.preventDefault();
 
     // объект формы
     var formData = new FormData();
 
     // устанавливаю цену если она пустая, т.к. бэкенду нужна цена
-    if (this.$root.advert_data.adv_price == null || this.$root.advert_data.adv_price == "") this.$root.advert_data.adv_price = 0;
+    /*if (this.$root.advert_data.adv_price==null || this.$root.advert_data.adv_price=="")       
+       this.$root.advert_data.adv_price=0;*/
 
     // записываю значения полей
     forEach(this.$root.advert_data, function (key, value) {
@@ -2573,7 +2579,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       },
 
       release_date: null,
-      mileage: null,
+      mileage: 0,
 
       helm_position: [{ value: 0, text: 'Слева' }, { value: 1, text: 'Справа' }],
 
@@ -2592,7 +2598,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     this.transport_chars.rule_position = 0;
     this.transport_chars.fuel_type = 0;
     this.transport_chars.customs = 1;
-    this.transport_chars.release_date = 0;
+    this.transport_chars.release_date = null;
     this.transport_chars.mileage = 0;
   },
 
@@ -2745,7 +2751,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // сброс полей, что после
       this.selected.helm_position = null;
       this.release_date = null;
-      this.mileage = null;
+      this.mileage = 0;
       this.selected.fuel_type = null;
       this.selected.car_customs = null;
 
@@ -39222,12 +39228,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("superInput", {
-                attrs: {
-                  type: "number",
-                  maxlength: "4",
-                  placeholder: "0",
-                  id: "car_year"
-                },
+                attrs: { type: "number", maxlength: "4", id: "car_year" },
                 model: {
                   value: _vm.release_date,
                   callback: function($$v) {
@@ -39249,12 +39250,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("superInput", {
-                attrs: {
-                  type: "number",
-                  maxlength: "10",
-                  placeholder: "0",
-                  id: "car_mileage"
-                },
+                attrs: { type: "number", maxlength: "10", id: "car_mileage" },
                 model: {
                   value: _vm.mileage,
                   callback: function($$v) {
@@ -39588,411 +39584,438 @@ var render = function() {
                     ? _c("div")
                     : _vm.transport
                     ? _c("transport")
-                    : _vm._e()
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.$store.state.show_final_fields,
-                  expression: "$store.state.show_final_fields"
-                }
-              ]
-            },
-            [
-              _c("label", { attrs: { for: "addit_info" } }, [
-                _vm._v(_vm._s(_vm.$store.state.info_label_description))
-              ]),
-              _vm._v(" "),
-              !_vm.$store.state.required_info
-                ? _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.info,
-                        expression: "info"
-                      }
-                    ],
-                    staticClass: "form-control form-group",
-                    attrs: {
-                      id: "addit_info",
-                      placeholder: _vm.$store.state.placeholder_info_text,
-                      rows: 4,
-                      "max-rows": 4
-                    },
-                    domProps: { value: _vm.info },
-                    on: {
-                      input: [
-                        function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.info = $event.target.value
-                        },
-                        _vm.setInfo
-                      ]
-                    }
-                  })
-                : _vm._e(),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _vm.sdelka != 3
-                  ? _c(
-                      "div",
-                      { staticClass: "col-md-12 text-center" },
-                      [
-                        _c("span", { staticStyle: { "margin-right": "5px" } }, [
-                          _vm._v("Цена:")
-                        ]),
-                        _vm._v(" "),
-                        _c("superInput", {
-                          attrs: {
-                            type: "number",
-                            placeholder: "0",
-                            maxlength: 10
-                          },
-                          model: {
-                            value: _vm.price,
-                            callback: function($$v) {
-                              _vm.price = $$v
-                            },
-                            expression: "price"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm._m(2),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-md-12 text-center" },
-                  _vm._l(_vm.preview_images, function(i, index) {
-                    return _c("img", {
-                      key: i.name,
-                      staticClass: "image",
-                      attrs: { src: i.src, title: i.name },
-                      on: {
-                        click: function($event) {
-                          return _vm.deletePhoto(index)
-                        }
-                      }
-                    })
-                  }),
-                  0
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-12 text-center" }, [
-                  _c("br"),
+                    : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "div",
                     {
-                      staticClass: "custom-file",
-                      attrs: { id: "customFile", lang: "ru" }
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.$store.state.show_final_fields,
+                          expression: "$store.state.show_final_fields"
+                        }
+                      ]
                     },
                     [
-                      _c("input", {
-                        staticClass: "custom-file-input",
-                        attrs: {
-                          name: "input2[]",
-                          type: "file",
-                          accept: ".png, .jpg, .jpeg",
-                          multiple: "",
-                          "data-show-upload": "true",
-                          "data-show-caption": "true"
-                        },
-                        on: { change: _vm.loadImage }
-                      }),
+                      _c("label", { attrs: { for: "addit_info" } }, [
+                        _vm._v(_vm._s(_vm.$store.state.info_label_description))
+                      ]),
                       _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "custom-file-label",
-                          attrs: { for: "exampleInputFile" }
-                        },
-                        [_vm._v("Выберите файл...")]
-                      )
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _vm._m(3)
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c(
-                  "div",
-                  { staticClass: "col-md-12 text-center" },
-                  [
-                    _c("superInput", {
-                      attrs: {
-                        type: "phone",
-                        placeholder: "контактный номер",
-                        maxlength: 14
-                      },
-                      model: {
-                        value: _vm.phone1,
-                        callback: function($$v) {
-                          _vm.phone1 = $$v
-                        },
-                        expression: "phone1"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("br")
-                  ],
-                  1
-                )
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.phone1.length === 14,
-                      expression: "phone1.length===14"
-                    }
-                  ],
-                  staticClass: "row"
-                },
-                [
-                  _c("br"),
-                  _vm._v(" "),
-                  _vm._m(4),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-12" }, [
-                    _c(
-                      "div",
-                      { staticStyle: { width: "280px", margin: "auto" } },
-                      [
-                        _c("label", { attrs: { for: "selectRegion" } }, [
-                          _vm._v("Регион:")
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "select",
-                          {
+                      !_vm.$store.state.required_info
+                        ? _c("textarea", {
                             directives: [
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.regions_model,
-                                expression: "regions_model"
+                                value: _vm.info,
+                                expression: "info"
                               }
                             ],
                             staticClass: "form-control form-group",
-                            attrs: { id: "selectRegion" },
+                            attrs: {
+                              id: "addit_info",
+                              placeholder:
+                                _vm.$store.state.placeholder_info_text,
+                              rows: 4,
+                              "max-rows": 4
+                            },
+                            domProps: { value: _vm.info },
                             on: {
-                              change: [
+                              input: [
                                 function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.regions_model = $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.info = $event.target.value
                                 },
-                                _vm.changeRegion
+                                _vm.setInfo
                               ]
                             }
-                          },
-                          [
-                            _c("option", { domProps: { value: null } }, [
-                              _vm._v("-- Выберите регион --")
-                            ]),
-                            _vm._v(" "),
-                            _vm._l(_vm.regions, function(item) {
-                              return _c(
-                                "option",
-                                {
-                                  key: item.name,
-                                  domProps: { value: item.region_id }
-                                },
-                                [_vm._v(_vm._s(item.name))]
-                              )
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _vm.sdelka != 3
+                          ? _c(
+                              "div",
+                              { staticClass: "col-md-12 text-center" },
+                              [
+                                _c(
+                                  "span",
+                                  { staticStyle: { "margin-right": "5px" } },
+                                  [_vm._v("Цена:")]
+                                ),
+                                _vm._v(" "),
+                                _c("superInput", {
+                                  attrs: { type: "number", maxlength: 10 },
+                                  model: {
+                                    value: _vm.price,
+                                    callback: function($$v) {
+                                      _vm.price = $$v
+                                    },
+                                    expression: "price"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-md-12 text-center" },
+                          _vm._l(_vm.preview_images, function(i, index) {
+                            return _c("img", {
+                              key: i.name,
+                              staticClass: "image",
+                              attrs: { src: i.src, title: i.name },
+                              on: {
+                                click: function($event) {
+                                  return _vm.deletePhoto(index)
+                                }
+                              }
                             })
+                          }),
+                          0
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-12 text-center" }, [
+                          _c("br"),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "custom-file",
+                              attrs: { id: "customFile", lang: "ru" }
+                            },
+                            [
+                              _c("input", {
+                                staticClass: "custom-file-input",
+                                attrs: {
+                                  name: "input2[]",
+                                  type: "file",
+                                  accept: ".png, .jpg, .jpeg",
+                                  multiple: "",
+                                  "data-show-upload": "true",
+                                  "data-show-caption": "true"
+                                },
+                                on: { change: _vm.loadImage }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "custom-file-label",
+                                  attrs: { for: "exampleInputFile" }
+                                },
+                                [_vm._v("Выберите файл...")]
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(3)
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-md-12 text-center" },
+                          [
+                            _c("superInput", {
+                              attrs: {
+                                type: "phone",
+                                placeholder: "контактный номер",
+                                maxlength: 14
+                              },
+                              model: {
+                                value: _vm.phone1,
+                                callback: function($$v) {
+                                  _vm.phone1 = $$v
+                                },
+                                expression: "phone1"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("br")
                           ],
-                          2
+                          1
                         )
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.regions_model != null,
-                          expression: "regions_model!=null"
-                        }
-                      ],
-                      staticClass: "col-md-12"
-                    },
-                    [
+                      ]),
+                      _vm._v(" "),
                       _c(
                         "div",
-                        { staticStyle: { width: "280px", margin: "auto" } },
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.phone1.length === 14,
+                              expression: "phone1.length===14"
+                            }
+                          ],
+                          staticClass: "row"
+                        },
                         [
-                          _c("label", { attrs: { for: "selectPlace" } }, [
-                            _vm._v("Местность:")
+                          _c("br"),
+                          _vm._v(" "),
+                          _vm._m(4),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-12" }, [
+                            _c(
+                              "div",
+                              {
+                                staticStyle: { width: "280px", margin: "auto" }
+                              },
+                              [
+                                _c(
+                                  "label",
+                                  { attrs: { for: "selectRegion" } },
+                                  [_vm._v("Регион:")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.regions_model,
+                                        expression: "regions_model"
+                                      }
+                                    ],
+                                    staticClass: "form-control form-group",
+                                    attrs: { id: "selectRegion" },
+                                    on: {
+                                      change: [
+                                        function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.regions_model = $event.target
+                                            .multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        },
+                                        _vm.changeRegion
+                                      ]
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "option",
+                                      { domProps: { value: null } },
+                                      [_vm._v("-- Выберите регион --")]
+                                    ),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.regions, function(item) {
+                                      return _c(
+                                        "option",
+                                        {
+                                          key: item.name,
+                                          domProps: { value: item.region_id }
+                                        },
+                                        [_vm._v(_vm._s(item.name))]
+                                      )
+                                    })
+                                  ],
+                                  2
+                                )
+                              ]
+                            )
                           ]),
                           _vm._v(" "),
                           _c(
-                            "select",
+                            "div",
                             {
                               directives: [
                                 {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.places_model,
-                                  expression: "places_model"
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.regions_model != null,
+                                  expression: "regions_model!=null"
                                 }
                               ],
-                              staticClass: "form-control form-group",
-                              attrs: { id: "selectPlace" },
-                              on: {
-                                change: [
-                                  function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.places_model = $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  },
-                                  _vm.changePlace
-                                ]
-                              }
+                              staticClass: "col-md-12"
                             },
                             [
-                              _c("option", { domProps: { value: null } }, [
-                                _vm._v("-- Выберите местность --")
-                              ]),
-                              _vm._v(" "),
-                              _vm._l(_vm.places, function(item) {
-                                return _c(
-                                  "option",
+                              _c(
+                                "div",
+                                {
+                                  staticStyle: {
+                                    width: "280px",
+                                    margin: "auto"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "label",
+                                    { attrs: { for: "selectPlace" } },
+                                    [_vm._v("Местность:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.places_model,
+                                          expression: "places_model"
+                                        }
+                                      ],
+                                      staticClass: "form-control form-group",
+                                      attrs: { id: "selectPlace" },
+                                      on: {
+                                        change: [
+                                          function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.places_model = $event.target
+                                              .multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          },
+                                          _vm.changePlace
+                                        ]
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        { domProps: { value: null } },
+                                        [_vm._v("-- Выберите местность --")]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.places, function(item) {
+                                        return _c(
+                                          "option",
+                                          {
+                                            key: item.name,
+                                            domProps: {
+                                              value:
+                                                item.city_id + "@" + item.coords
+                                            }
+                                          },
+                                          [_vm._v(_vm._s(item.name))]
+                                        )
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ]
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.places_model != null,
+                                  expression: "places_model!=null"
+                                }
+                              ],
+                              staticClass: "col-md-12 text-center"
+                            },
+                            [
+                              _c("div", {
+                                directives: [
                                   {
-                                    key: item.name,
-                                    domProps: {
-                                      value: item.city_id + "@" + item.coords
-                                    }
-                                  },
-                                  [_vm._v(_vm._s(item.name))]
-                                )
-                              })
-                            ],
-                            2
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: _vm.coordinates_set,
+                                    expression: "coordinates_set"
+                                  }
+                                ],
+                                staticStyle: {
+                                  border: "1px solid rgb(180,180,180)",
+                                  "margin-bottom": "10px",
+                                  width: "100%",
+                                  height: "200px"
+                                },
+                                attrs: { id: "smallmap" }
+                              }),
+                              _vm._v(" "),
+                              _c("br"),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-secondary form-group",
+                                  on: { click: _vm.showSetCoordsDialog }
+                                },
+                                [_vm._v("уточнить местоположение")]
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.places_model != null,
+                                  expression: "places_model!=null"
+                                }
+                              ],
+                              staticClass: "col-md-12 text-center"
+                            },
+                            [
+                              _c("hr"),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-success form-group",
+                                  attrs: { type: "submit" }
+                                },
+                                [_vm._v("опубликовать")]
+                              )
+                            ]
                           )
                         ]
                       )
                     ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.places_model != null,
-                          expression: "places_model!=null"
-                        }
-                      ],
-                      staticClass: "col-md-12 text-center"
-                    },
-                    [
-                      _c("div", {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.coordinates_set,
-                            expression: "coordinates_set"
-                          }
-                        ],
-                        staticStyle: {
-                          border: "1px solid rgb(180,180,180)",
-                          "margin-bottom": "10px",
-                          width: "100%",
-                          height: "200px"
-                        },
-                        attrs: { id: "smallmap" }
-                      }),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-secondary form-group",
-                          on: { click: _vm.showSetCoordsDialog }
-                        },
-                        [_vm._v("уточнить местоположение")]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.places_model != null,
-                          expression: "places_model!=null"
-                        }
-                      ],
-                      staticClass: "col-md-12 text-center"
-                    },
-                    [
-                      _c("hr"),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-success form-group",
-                          attrs: { type: "onSubmit" }
-                        },
-                        [_vm._v("опубликовать")]
-                      )
-                    ]
                   )
-                ]
+                ],
+                1
               )
-            ]
-          )
+            : _vm._e()
         ]
       )
     ])

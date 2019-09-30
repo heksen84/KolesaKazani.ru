@@ -39,12 +39,12 @@
             <div class="col-auto form-group" >
               <label for="car_year">Год выпуска:</label>
                 <!--<input type="number" id="car_year" class="form-control" style="width:120px"/>-->
-                <superInput type="number" v-model="release_date" maxlength="4" placeholder="0" id="car_year"></superInput>
+                <superInput type="number" v-model="release_date" maxlength="4" id="car_year"></superInput>
             </div>
             <div class="col-auto form-group">
               <label for="car_mileage">Пробег(км):</label>
                 <!--<input type="number" id="car_mileage" class="form-control" v-model="mileage" style="width:145px" :formatter="SetMileage" placeholder="0" required/>-->
-                <superInput type="number" v-model="mileage" maxlength="10" placeholder="0" id="car_mileage"></superInput>
+                <superInput type="number" v-model="mileage" maxlength="10" id="car_mileage"></superInput>
             </div>
           
             <div class="col-auto form-group">
@@ -112,7 +112,7 @@ export default {
         },
 
         release_date: null,
-        mileage: null,
+        mileage: 0,
 
         helm_position: [
           { value: 0, text: 'Слева' },
@@ -140,7 +140,7 @@ export default {
     this.transport_chars.rule_position   = 0;
     this.transport_chars.fuel_type       = 0;
     this.transport_chars.customs         = 1;
-    this.transport_chars.release_date    = 0;
+    this.transport_chars.release_date    = null;
     this.transport_chars.mileage         = 0;
 
   },
@@ -284,7 +284,7 @@ export default {
       // сброс полей, что после
       this.selected.helm_position=null;
       this.release_date=null;
-      this.mileage=null;
+      this.mileage=0;
       this.selected.fuel_type=null;
       this.selected.car_customs=null;
 
