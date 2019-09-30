@@ -1998,7 +1998,7 @@ function forEach(data, callback) {
       this.$root.advert_data.adv_info = this.info;
     },
     setPhone: function setPhone() {
-      console.log(this.phone);
+      //console.log(this.phone)
       this.$root.advert_data.adv_phone = this.phone;
     },
 
@@ -2770,19 +2770,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     // год выпуска
-    SetReleaseDate: function SetReleaseDate(date) {
-      var d = new Date();
-      if (date < 0 || date > d.getFullYear()) return this.release_date;
-      this.transport_chars.release_date = date;
-      return date;
+    SetReleaseDate: function SetReleaseDate() {
+      this.transport_chars.release_date = this.release_date;
     },
 
 
     // пробег
-    SetMileage: function SetMileage(mileage) {
-      if (mileage < 0 || mileage > 10000000) return this.transport_chars.mileage;
-      this.transport_chars.mileage = mileage;
-      return mileage;
+    SetMileage: function SetMileage() {
+      this.transport_chars.mileage = this.mileage;
     }
   }
 });
@@ -39205,6 +39200,7 @@ var render = function() {
               _vm._v(" "),
               _c("superInput", {
                 attrs: { type: "number", maxlength: "4", id: "car_year" },
+                on: { input: _vm.SetReleaseDate },
                 model: {
                   value: _vm.release_date,
                   callback: function($$v) {
@@ -39227,6 +39223,7 @@ var render = function() {
               _vm._v(" "),
               _c("superInput", {
                 attrs: { type: "number", maxlength: "10", id: "car_mileage" },
+                on: { input: _vm.SetMileage },
                 model: {
                   value: _vm.mileage,
                   callback: function($$v) {

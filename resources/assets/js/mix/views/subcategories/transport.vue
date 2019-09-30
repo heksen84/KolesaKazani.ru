@@ -39,12 +39,12 @@
             <div class="col-auto form-group" >
               <label for="car_year">Год выпуска:</label>
                 <!--<input type="number" id="car_year" class="form-control" style="width:120px"/>-->
-                <superInput type="number" v-model="release_date" maxlength="4" id="car_year"></superInput>
+                <superInput type="number" v-model="release_date" maxlength="4" id="car_year" @input="SetReleaseDate"></superInput>
             </div>
             <div class="col-auto form-group">
               <label for="car_mileage">Пробег(км):</label>
                 <!--<input type="number" id="car_mileage" class="form-control" v-model="mileage" style="width:145px" :formatter="SetMileage" placeholder="0" required/>-->
-                <superInput type="number" v-model="mileage" maxlength="10" id="car_mileage"></superInput>
+                <superInput type="number" v-model="mileage" maxlength="10" id="car_mileage" @input="SetMileage"></superInput>
             </div>
           
             <div class="col-auto form-group">
@@ -170,7 +170,6 @@ export default {
             
       this.selected.model = null;
       this.selected.carmark = null;
-      
       
       if (this.selected.type_transport==null) {
         this.$store.commit("ShowCommonTransport", false);
@@ -328,20 +327,13 @@ export default {
      },
 
      // год выпуска
-     SetReleaseDate(date) {
-      var d = new Date();        
-      if ( date < 0 || date > d.getFullYear() ) 
-        return this.release_date;
-        this.transport_chars.release_date = date;
-        return date;
+     SetReleaseDate() {      
+        this.transport_chars.release_date = this.release_date;
      },
 
      // пробег
-     SetMileage(mileage) {        
-        if (mileage<0 || mileage>10000000) 
-          return this.transport_chars.mileage;          
-          this.transport_chars.mileage = mileage;                  
-        return mileage;
+     SetMileage() {        
+        this.transport_chars.mileage = this.mileage;
      }
   },
 }

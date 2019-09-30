@@ -528,4 +528,34 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/94-</loc>
+    <lastmod>2019-09-30T10:26:45+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/95-transport-legkovoe-avto</loc>
+    <lastmod>2019-09-30T10:31:05+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/96-transport-legkovoe-avto</loc>
+    <lastmod>2019-09-30T10:31:33+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/97-transport-legkovoe-avto</loc>
+    <lastmod>2019-09-30T10:32:09+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/98-transport-legkovoe-avto</loc>
+    <lastmod>2019-09-30T10:34:06+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

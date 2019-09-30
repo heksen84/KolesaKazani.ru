@@ -271,7 +271,7 @@ setInfo() {
 },
 
 setPhone() {
-  console.log(this.phone)
+  //console.log(this.phone)
   this.$root.advert_data.adv_phone=this.phone;
 },
 
