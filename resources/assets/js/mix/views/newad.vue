@@ -56,14 +56,14 @@
               <h1 v-if="real_estate">nedvizh</h1>
 
               <div class="row">                                
-                <selector v-if="appliances" label="appliances"/>
-                <selector v-if="work_and_buisness" label="work_and_buisness"/>
-                <selector v-if="for_home" label="for_home"/>
-                <selector v-if="personal_effects" label="1"/>
-                <selector v-if="animals " label="2"/>
-                <selector v-if="hobbies_and_leisure" label="3"/>
-                <selector v-if="services" label="4"/>
-                <selector v-if="other" label="5"/>
+                <superSelect v-if="appliances" label="appliances"/>
+                <superSelect v-if="work_and_buisness" label="work_and_buisness"/>
+                <superSelect v-if="for_home" label="for_home"/>
+                <superSelect v-if="personal_effects" label="1"/>
+                <superSelect v-if="animals " label="животные"/>
+                <superSelect v-if="hobbies_and_leisure" label="3"/>
+                <superSelect v-if="services" label="4"/>
+                <superSelect v-if="other" label="5"/>
               </div>
 
             <!-- Дополнительные поля -->			      
@@ -89,7 +89,7 @@
                       <br>
                       <div class="custom-file" id="customFile" lang="ru">
                         <input @change="loadImage" name="input2[]" type="file" class="custom-file-input" accept=".png, .jpg, .jpeg" multiple data-show-upload="true" data-show-caption="true">
-                        <label class="custom-file-label">Выберите изображения...</label>
+                        <label class="custom-file-label"></label>
                       </div>
                     </div>
 
@@ -158,7 +158,7 @@ import $ from "jquery";
 import bootstrap from "bootstrap";
 import transport from "./subcategories/transport.vue"
 import superInput from "./components/superInput.vue"
-import selector from "./components/selector.vue"
+import superSelect from "./components/superSelect.vue"
 import { post, get } from '../../helpers/api'
 
 var preview_images_array=[];
@@ -230,7 +230,7 @@ props: ["categories", "dealtypes", "regions"],
 components: { 
   transport,
   superInput,
-  selector
+  superSelect
 },
 
 data () {
