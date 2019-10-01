@@ -46,48 +46,24 @@
                 </select>                
               </div>
           </div>    
-
-<!--
-      transport:false,			      // транспорт
-		  real_estate:false,			    // недвижимость
-		  appliances:false,			      // бытовая техника
-		  work_and_buisness:false,	  // работа и бизнес
-	  	for_home:false,				      // для дома и дачи
-  		personal_effects:false,		  // личные вещи
-		  animals:false,				      // животные
-		  hobbies_and_leisure:false,	// хобби и отдых
-		  services:false,				      // услуги
-		  other:false					        // другое
-
-      -->
             
-          <form id="advertform" @submit="onSubmit" v-show="sdelka!=null">
-            
+          <form id="advertform" @submit="onSubmit" v-show="sdelka!=null">            
             <!-- Категории -->
 		        <div v-if="root"></div>
-
+              
               <transport v-if="transport"/> 
-                             
+              
               <h1 v-if="real_estate">nedvizh</h1>
 
-              <div class="row">
-                
-                <div v-if="appliances" class="col-auto">
-                 <label for="selectRegion">Подкатегория:</label>
-                 <select id="selectRegion" class="form-control form-group" @change="changeRegion" v-model="regions_model">            
-                 <option v-bind:value="null">-- Выберите регион --</option>
-                 <option v-for="item in regions" :value="item.region_id" :key="item.name">{{ item.name }}</option>
-                 </select>
-                </div>
-
-                <h1 v-if="work_and_buisness">работа и бизнес</h1>
-                <h1 v-if="for_home">для дома и дачи</h1>
-                <h1 v-if="personal_effects">личные вещи</h1>
-                <h1 v-if="animals">животные</h1>
-                <h1 v-if="hobbies_and_leisure">хобби и отдых</h1>
-                <h1 v-if="services">услуги</h1>
-                <h1 v-if="other">другое</h1>
-
+              <div class="row">                                
+                <selector v-if="appliances" label="appliances"/>
+                <selector v-if="work_and_buisness" label="work_and_buisness"/>
+                <selector v-if="for_home" label="for_home"/>
+                <selector v-if="personal_effects" label="1"/>
+                <selector v-if="animals " label="2"/>
+                <selector v-if="hobbies_and_leisure" label="3"/>
+                <selector v-if="services" label="4"/>
+                <selector v-if="other" label="5"/>
               </div>
 
             <!-- Дополнительные поля -->			      
@@ -165,11 +141,9 @@
                   <div class="col-md-12 text-center" v-show="places_model!=null">
                     <hr>
                     <button type="submit" class="btn btn-success form-group">опубликовать</button>                    
-                  </div>
-                  
+                  </div>         
                 </div>                 
             </div>
-
           </form>
         </div>
     </div>
@@ -182,6 +156,7 @@ import $ from "jquery";
 import bootstrap from "bootstrap";
 import transport from "./subcategories/transport.vue"
 import superInput from "./components/superInput.vue"
+import selector from "./components/selector.vue"
 import { post, get } from '../../helpers/api'
 
 var preview_images_array=[];
@@ -251,7 +226,8 @@ props: ["categories", "dealtypes", "regions"],
 
 components: { 
   transport,
-  superInput
+  superInput,
+  selector
 },
 
 data () {
@@ -334,33 +310,34 @@ changeRegion() {
 	// -----------------------------------
 	changePlace() {
 
-  if (this.places_model==null) 
-    return; // не обрабатыать если null
+    if (this.places_model==null) 
+      return; // не обрабатыать если null
 
-	let arr = this.places_model.replace(" ", "").split("@");
-	let city_id = arr[0];
-	let coords = arr[1];
-	let lanlng = coords.split(",")
+	  let arr = this.places_model.replace(" ", "").split("@");
+	  let city_id = arr[0];
+	  let coords = arr[1];
+	  let lanlng = coords.split(",")
 
-	mapCoords=[];
-	mapCoords.push(lanlng[0])
-	mapCoords.push(lanlng[1])
+	  mapCoords=[];
+	  mapCoords.push(lanlng[0])
+	  mapCoords.push(lanlng[1])
 
-	bigmap.setCenter(mapCoords, 15, "bigmap");
-	smallmap.setCenter(mapCoords, 11, "smallmap");
+	  bigmap.setCenter(mapCoords, 15, "bigmap");
+	  smallmap.setCenter(mapCoords, 11, "smallmap");
 
-	myPlacemark1.geometry.setCoordinates(mapCoords);
-	myPlacemark2.geometry.setCoordinates(mapCoords);
+	  myPlacemark1.geometry.setCoordinates(mapCoords);
+	  myPlacemark2.geometry.setCoordinates(mapCoords);
 
-	this.placeChanged = true;
-	this.coordinates_set = true;
+	  this.placeChanged = true;
+	  this.coordinates_set = true;
 
-	// записываю id городи или деревни
-	this.$root.advert_data.city_id = city_id;
+	  // записываю id городи или деревни
+	  this.$root.advert_data.city_id = city_id;
 
-	// записываю координаты
-	this.$root.advert_data.adv_coords=[];
-	this.$root.advert_data.adv_coords=mapCoords;
+	  // записываю координаты
+	  this.$root.advert_data.adv_coords=[];
+    this.$root.advert_data.adv_coords=mapCoords;
+    
 },
 
 // ------------------------------------------------
