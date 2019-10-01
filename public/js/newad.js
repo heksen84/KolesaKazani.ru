@@ -1935,7 +1935,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 
+// ---------------------------
 // импорт модулей
+// ---------------------------
 
 
 
@@ -1945,9 +1947,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var preview_images_array = [];
 
-// ----------------------
-// карты
-// ----------------------
+/*
+ ----------------------
+ карты
+ ----------------------*/
 var mapCoords = [];
 var myPlacemark1 = null;
 var myPlacemark2 = null;

@@ -151,7 +151,9 @@
 </template>
 <script>
 
+// ---------------------------
 // импорт модулей
+// ---------------------------
 import $ from "jquery";
 import bootstrap from "bootstrap";
 import transport from "./subcategories/transport.vue"
@@ -161,9 +163,10 @@ import { post, get } from '../../helpers/api'
 
 var preview_images_array=[];
 
-// ----------------------
-// карты
-// ----------------------
+/*
+ ----------------------
+ карты
+ ----------------------*/
 var mapCoords=[];
 var myPlacemark1=null;
 var myPlacemark2=null;
@@ -179,8 +182,8 @@ function initMaps() {
 	// координаты по умолчанию для всех карт
 	mapCoords = [51.08, 71.26];
 
-	bigmap = new ymaps.Map ("bigmap", { center: mapCoords, zoom: 10 });
-	smallmap = new ymaps.Map ("smallmap", { center: mapCoords, zoom: 9 });
+	bigmap = new ymaps.Map("bigmap", { center: mapCoords, zoom: 10 });
+	smallmap = new ymaps.Map("smallmap", { center: mapCoords, zoom: 9 });
 
 	// запрещаю перемение по мини карте
 	smallmap.behaviors.disable("drag");
