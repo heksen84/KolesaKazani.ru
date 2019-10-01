@@ -141,7 +141,8 @@
                   <div class="col-md-12 text-center" v-show="places_model!=null">
                     <hr>
                     <button type="submit" class="btn btn-success form-group">опубликовать</button>                    
-                  </div>         
+                  </div>
+                           
                 </div>                 
             </div>
           </form>
