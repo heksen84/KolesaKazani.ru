@@ -62,19 +62,33 @@
       -->
             
           <form id="advertform" @submit="onSubmit" v-show="sdelka!=null">
+            
 
             <!-- Категории -->
 		        <div v-if="root"></div>
-            <transport v-else-if="transport"/>                
-            <h1 v-else-if="real_estate">nedvizh</h1>
-            <h1 v-else-if="appliances">электроника</h1>
-            <h1 v-else-if="work_and_buisness">работа и бизнес</h1>
-            <h1 v-else-if="for_home">для дома и дачи</h1>
-            <h1 v-else-if="personal_effects">личные вещи</h1>
-            <h1 v-else-if="animals">животные</h1>
-            <h1 v-else-if="hobbies_and_leisure">хобби и отдых</h1>
-            <h1 v-else-if="services">услуги</h1>
-            <h1 v-else-if="other">другое</h1>
+            
+              <transport v-if="transport"/>                
+              <h1 v-if="real_estate">nedvizh</h1>
+
+              <div class="row">
+                
+                <div v-if="appliances" class="col-auto">
+                 <label for="selectRegion">Подкатегория:</label>
+                 <select id="selectRegion" class="form-control form-group" @change="changeRegion" v-model="regions_model">            
+                 <option v-bind:value="null">-- Выберите регион --</option>
+                 <option v-for="item in regions" :value="item.region_id" :key="item.name">{{ item.name }}</option>
+                 </select>
+                </div>
+
+                <h1 v-if="work_and_buisness">работа и бизнес</h1>
+                <h1 v-if="for_home">для дома и дачи</h1>
+                <h1 v-if="personal_effects">личные вещи</h1>
+                <h1 v-if="animals">животные</h1>
+                <h1 v-if="hobbies_and_leisure">хобби и отдых</h1>
+                <h1 v-if="services">услуги</h1>
+                <h1 v-if="other">другое</h1>
+
+              </div>
 
             <!-- Дополнительные поля -->			      
             <div v-show="$store.state.show_final_fields">

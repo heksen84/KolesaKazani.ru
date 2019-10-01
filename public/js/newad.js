@@ -1890,6 +1890,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // импорт модулей
@@ -39577,29 +39591,92 @@ var render = function() {
               on: { submit: _vm.onSubmit }
             },
             [
-              _vm.root
-                ? _c("div")
-                : _vm.transport
-                ? _c("transport")
-                : _vm.real_estate
-                ? _c("h1", [_vm._v("nedvizh")])
-                : _vm.appliances
-                ? _c("h1", [_vm._v("электроника")])
-                : _vm.work_and_buisness
-                ? _c("h1", [_vm._v("работа и бизнес")])
-                : _vm.for_home
-                ? _c("h1", [_vm._v("для дома и дачи")])
-                : _vm.personal_effects
-                ? _c("h1", [_vm._v("личные вещи")])
-                : _vm.animals
-                ? _c("h1", [_vm._v("животные")])
-                : _vm.hobbies_and_leisure
-                ? _c("h1", [_vm._v("хобби и отдых")])
-                : _vm.services
-                ? _c("h1", [_vm._v("услуги")])
-                : _vm.other
-                ? _c("h1", [_vm._v("другое")])
-                : _vm._e(),
+              _vm.root ? _c("div") : _vm._e(),
+              _vm._v(" "),
+              _vm.transport ? _c("transport") : _vm._e(),
+              _vm._v(" "),
+              _vm.real_estate ? _c("h1", [_vm._v("nedvizh")]) : _vm._e(),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _vm.appliances
+                  ? _c("div", { staticClass: "col-auto" }, [
+                      _c("label", { attrs: { for: "selectRegion" } }, [
+                        _vm._v("Подкатегория:")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.regions_model,
+                              expression: "regions_model"
+                            }
+                          ],
+                          staticClass: "form-control form-group",
+                          attrs: { id: "selectRegion" },
+                          on: {
+                            change: [
+                              function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.regions_model = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              },
+                              _vm.changeRegion
+                            ]
+                          }
+                        },
+                        [
+                          _c("option", { domProps: { value: null } }, [
+                            _vm._v("-- Выберите регион --")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.regions, function(item) {
+                            return _c(
+                              "option",
+                              {
+                                key: item.name,
+                                domProps: { value: item.region_id }
+                              },
+                              [_vm._v(_vm._s(item.name))]
+                            )
+                          })
+                        ],
+                        2
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.work_and_buisness
+                  ? _c("h1", [_vm._v("работа и бизнес")])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.for_home ? _c("h1", [_vm._v("для дома и дачи")]) : _vm._e(),
+                _vm._v(" "),
+                _vm.personal_effects
+                  ? _c("h1", [_vm._v("личные вещи")])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.animals ? _c("h1", [_vm._v("животные")]) : _vm._e(),
+                _vm._v(" "),
+                _vm.hobbies_and_leisure
+                  ? _c("h1", [_vm._v("хобби и отдых")])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.services ? _c("h1", [_vm._v("услуги")]) : _vm._e(),
+                _vm._v(" "),
+                _vm.other ? _c("h1", [_vm._v("другое")]) : _vm._e()
+              ]),
               _vm._v(" "),
               _c(
                 "div",
