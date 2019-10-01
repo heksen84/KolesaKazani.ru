@@ -1868,6 +1868,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // импорт модулей
@@ -2625,9 +2647,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             // запрос: получить марки автомобилей
             Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/getCarsMarks").then(function (res) {
               _this.carmark = res.data;
-              //this.selected.carmark=1;
               _this.carmarkLoaded = true;
-              console.log(_this.carmark);
+              //console.log(this.carmark);
             }).catch(function (err) {
               console.log(err);
             });
@@ -39556,7 +39577,29 @@ var render = function() {
               on: { submit: _vm.onSubmit }
             },
             [
-              _vm.root ? _c("div") : _vm.transport ? _c("transport") : _vm._e(),
+              _vm.root
+                ? _c("div")
+                : _vm.transport
+                ? _c("transport")
+                : _vm.real_estate
+                ? _c("h1", [_vm._v("nedvizh")])
+                : _vm.appliances
+                ? _c("h1", [_vm._v("электроника")])
+                : _vm.work_and_buisness
+                ? _c("h1", [_vm._v("работа и бизнес")])
+                : _vm.for_home
+                ? _c("h1", [_vm._v("для дома и дачи")])
+                : _vm.personal_effects
+                ? _c("h1", [_vm._v("личные вещи")])
+                : _vm.animals
+                ? _c("h1", [_vm._v("животные")])
+                : _vm.hobbies_and_leisure
+                ? _c("h1", [_vm._v("хобби и отдых")])
+                : _vm.services
+                ? _c("h1", [_vm._v("услуги")])
+                : _vm.other
+                ? _c("h1", [_vm._v("другое")])
+                : _vm._e(),
               _vm._v(" "),
               _c(
                 "div",
@@ -39678,7 +39721,7 @@ var render = function() {
                           }),
                           _vm._v(" "),
                           _c("label", { staticClass: "custom-file-label" }, [
-                            _vm._v("Выберите файлы изображений...")
+                            _vm._v("Выберите изображения...")
                           ])
                         ]
                       )

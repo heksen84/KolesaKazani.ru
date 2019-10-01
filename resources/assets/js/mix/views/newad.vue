@@ -23,9 +23,9 @@
   </div>    
 
     <div class="row">  
-        <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col">
+      <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col">
         <div class="close_button" title="Закрыть страницу" style="font-weight:bold" @click="closeAndReturn">X</div>
-		    <h1 class="title_text" style="margin-top:12px">подать объявление</h1>
+		      <h1 class="title_text" style="margin-top:12px">подать объявление</h1>
             <hr>
             <div style="margin-bottom:10px">
             <label style="width:270px">Вид сделки:</label>
@@ -46,13 +46,35 @@
                     </select>                
                 </div>
             </div>    
+
+<!--
+      transport:false,			      // транспорт
+		  real_estate:false,			    // недвижимость
+		  appliances:false,			      // бытовая техника
+		  work_and_buisness:false,	  // работа и бизнес
+	  	for_home:false,				      // для дома и дачи
+  		personal_effects:false,		  // личные вещи
+		  animals:false,				      // животные
+		  hobbies_and_leisure:false,	// хобби и отдых
+		  services:false,				      // услуги
+		  other:false					        // другое
+
+      -->
             
-          <form id="advertform" @submit="onSubmit" v-show="sdelka!=null">  
-              <!-- Категории -->
-		          <div v-if="root"></div>
-                <transport v-else-if="transport"/>
-                <!--<h1 v-else-if="transport">transport</h1>
-                <h1 v-else-if="real_estate">nedvizh</h1>-->            
+          <form id="advertform" @submit="onSubmit" v-show="sdelka!=null">
+
+            <!-- Категории -->
+		        <div v-if="root"></div>
+            <transport v-else-if="transport"/>                
+            <h1 v-else-if="real_estate">nedvizh</h1>
+            <h1 v-else-if="appliances">электроника</h1>
+            <h1 v-else-if="work_and_buisness">работа и бизнес</h1>
+            <h1 v-else-if="for_home">для дома и дачи</h1>
+            <h1 v-else-if="personal_effects">личные вещи</h1>
+            <h1 v-else-if="animals">животные</h1>
+            <h1 v-else-if="hobbies_and_leisure">хобби и отдых</h1>
+            <h1 v-else-if="services">услуги</h1>
+            <h1 v-else-if="other">другое</h1>
 
             <!-- Дополнительные поля -->			      
             <div v-show="$store.state.show_final_fields">
@@ -77,7 +99,7 @@
                       <br>
                       <div class="custom-file" id="customFile" lang="ru">
                         <input @change="loadImage" name="input2[]" type="file" class="custom-file-input" accept=".png, .jpg, .jpeg" multiple data-show-upload="true" data-show-caption="true">
-                        <label class="custom-file-label">Выберите файлы изображений...</label>
+                        <label class="custom-file-label">Выберите изображения...</label>
                       </div>
                     </div>
 
@@ -134,7 +156,7 @@
                 </div>                 
             </div>
 
-            </form>
+          </form>
         </div>
     </div>
 </div>

@@ -197,12 +197,9 @@ export default {
           // запрос: получить марки автомобилей
           get("/getCarsMarks").then((res) => {            
             this.carmark = res.data;
-            //this.selected.carmark=1;
             this.carmarkLoaded=true;
-            console.log(this.carmark);
-          }).catch((err) => {
-              console.log(err);
-          });
+            //console.log(this.carmark);
+          }).catch((err) => { console.log(err); });
           break;
        }
 

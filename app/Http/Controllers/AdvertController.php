@@ -165,6 +165,9 @@ class AdvertController extends Controller {
                     $transport->mileage              = null;
                     $transport->engine_type          = null;
                     $transport->customs              = null;
+
+
+                    \Debugbar::info("NULL PHP: ".$transport->year);
                     
                     // легковушки
                     if ($data["transport_type"]==0) {
@@ -181,9 +184,13 @@ class AdvertController extends Controller {
                         
                         $advert->full = true; // полное объявление с моделями (в item будет указан вид сделки)
                     }
+                    
 
                     // грузовой
                     if ($data["transport_type"]==1) {
+
+                        \Debugbar::info("NULL JS: ".$data["release_date"]);
+
                         $transport->year                = $data["release_date"];       // год выпуска
                         $transport->steering_position   = $data["rule_position"];      // положение руля
                         $transport->mileage             = $data["mileage"];            // пробег
