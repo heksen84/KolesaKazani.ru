@@ -65,7 +65,7 @@ html {
 body {
   color: black;
   background: whitesmoke;
-  background-image: url("/images/site/fon.jpg");
+/*  background-image: url("/images/site/fon.jpg");*/
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -268,21 +268,24 @@ h3 {
 .category_item {
   cursor: pointer;
   margin: 5px auto;
-  border: 1px solid white;
-  border-radius: 4px;
-  padding: 8px;
+  /*border: 1px solid white;*/
+  border: 1px solid rgb(230,230,230);  
+  padding: 10px;
   text-align: left;
   padding-left: 12px;
   font-size: 17px;
   width: 250px;
-  color: white;
-  opacity: 0.9;
-  background: #6c6c6c;
+/*  color: white;*/
+  color:rgb(0,0,0);
+/*  opacity: 0.9;
+  background: #6c6c6c;*/
+  background: white;
 }
 
 .category_item:hover {
-  background: #787878;
-  font-weight: bold;
+/*  background: #787878;*/
+  font-weight: 600;
+  /*text-decoration: underline;*/
 }
 
 .standart_input {
@@ -568,7 +571,7 @@ h3 {
 
 @media screen and (max-width: 768px) {
   body {
-    background-image: url("/images/site/fon_750px.jpg");
+    /*background-image: url("/images/site/fon_750px.jpg");*/
   }
 
   #search_string {
