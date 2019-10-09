@@ -112,6 +112,9 @@
 
   </div>  
 
+  <br>
+  <br>
+
   <div id="categories_line">
     <div class="center">    
     
@@ -129,7 +132,7 @@
 	      </div>
         
         <div v-show="subCategories" id="subcats">
-         <button style="border:1px solid white;font-size:14px" id="close_subcats_btn" class="btn-sm btn-primary hide" @click="returnToCategories">&#8634; Назад</button>
+         <button style="border:1px solid white;font-size:14px" id="close_subcats_btn" class="btn-sm btn-primary hide" @click="returnToCategories">&#8634; Назад</button>         
           <div id="subcategories" class="form-inline center">
             @foreach($subcategories as $subcategory)
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 hide" data-category-id="{{ $subcategory['category_id'] }}">
@@ -146,7 +149,7 @@
       </div>
     </div>
   
-  <div class="row" style="margin-top:20px">
+  <div class="row" style="margin-top:50px">
     <h5 class="margin-auto">Google Advert</h5>
   </div>
   
