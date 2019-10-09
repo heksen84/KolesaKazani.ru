@@ -79,7 +79,7 @@ html {
 body {
  color:black;
  background: $background;
-// background-image: url('/images/site/fon.jpg');
+ background-image: url('/images/site/fon.jpg');
  background-size: cover;
  background-position: center;
  background-repeat: no-repeat;
@@ -286,7 +286,7 @@ h3 {
 .category_item {
   cursor: pointer;
   margin: 5px auto;
-  border: 1px solid grey;
+  border: 1px solid white;
   border-radius: 2px;
   padding: 8px;
   text-align:left;
@@ -295,7 +295,7 @@ h3 {
   width: 250px;
   /*color: white;*/
   color:white;
-  background: rgb(120, 120, 120)
+  background: rgb(130, 130, 130)
 }
 
 .category_item:hover {
@@ -613,7 +613,7 @@ h3 {
 @media screen and (max-width:768px) {
 
 body {
- /*background-image: url('/images/site/fon_750px.jpg');*/
+ background-image: url('/images/site/fon_750px.jpg');
 }
 
 #search_string {
