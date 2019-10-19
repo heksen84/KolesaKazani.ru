@@ -15,7 +15,7 @@
 <div id="app">
   <div id="navbar_menu">
     <nav class="navbar navbar-dark bg-primary">
-    <a class="navbar-brand" href="#"><h1 style="font-size:26px;font-weight:650;letter-spacing:5px">{{config('app.name')}}</h1><h2 style="font-size:16px;margin-top:-5px;font-weight:500">все объявления Казахстана</h2></a>
+    <a class="navbar-brand" href="#"><h2 style="font-size:26px;font-weight:650;letter-spacing:5px">{{config('app.name')}}</h2><h2 style="font-size:16px;margin-top:-5px;font-weight:500">Объявления {{ $locationName }}</h2></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -88,7 +88,7 @@
     <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center">
       <div id="logo_block">
         <div id="logo_block_text">{{config('app.name')}}</div>
-        <div style="font-size:16px;color:yellow;margin-top:-13px;letter-spacing:1px;">все объявления Казахстана</div>
+        <h1 style="font-size:15px;color:yellow;margin-top:-10px;letter-spacing:1px;">Объявления {{ $locationName }}</h1>
       </div>
   </div>
 

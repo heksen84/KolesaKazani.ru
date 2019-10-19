@@ -47,7 +47,9 @@
               </div>
           </div>    
             
-          <form id="advertform" @submit="onSubmit" v-show="sdelka!=null">            
+          <!-- ОСНОВНАЯ ФОРМА -->
+          <form id="advertform" @submit="onSubmit" v-show="sdelka!=null">
+
             <!-- Категории -->
 		        <div v-if="root"></div>
               
@@ -56,14 +58,14 @@
               <h1 v-if="real_estate">nedvizh</h1>
 
               <div class="row">                                
-                <superSelect v-if="appliances" label="appliances"/>
-                <superSelect v-if="work_and_buisness" label="work_and_buisness"/>
-                <superSelect v-if="for_home" label="for_home"/>
-                <superSelect v-if="personal_effects" label="1"/>
-                <superSelect v-if="animals " label="животные"/>
-                <superSelect v-if="hobbies_and_leisure" label="3"/>
-                <superSelect v-if="services" label="4"/>
-                <superSelect v-if="other" label="5"/>
+                <superSelect v-if="appliances" label="appliances" @change="changeSubCategory"/>
+                <superSelect v-if="work_and_buisness" label="work_and_buisness" @change="changeSubCategory"/>
+                <superSelect v-if="for_home" label="for_home" @change="changeSubCategory"/>
+                <superSelect v-if="personal_effects" label="1" @change="changeSubCategory"/>
+                <superSelect v-if="animals " label="животные" @change="changeSubCategory"/>
+                <superSelect v-if="hobbies_and_leisure" label="3" @change="changeSubCategory"/>
+                <superSelect v-if="services" label="4" @change="changeSubCategory"/>
+                <superSelect v-if="other" label="5" @change="changeSubCategory"/>
               </div>
 
             <!-- Дополнительные поля -->			      
@@ -276,6 +278,10 @@ created() {
 
 // методы компонента
 methods: {
+
+changeSubCategory() {
+  alert("ok ")
+},
 
 // доп. информация
 setInfo() {

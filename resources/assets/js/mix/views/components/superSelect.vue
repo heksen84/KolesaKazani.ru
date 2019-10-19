@@ -1,18 +1,18 @@
 <template>
   <div class="col-auto">
       <label for="selector">{{ label }}</label>
-        <!--<select id="selector" class="form-control form-group" @change="changeRegion" v-model="regions_model">            -->
-          <select id="selector" class="form-control form-group">
-          <option v-bind:value="null">-- Выберите --</option>
-          <!--<option v-for="item in regions" :value="item.region_id" :key="item.name">{{ item.name }}</option>-->
-        </select>
+      <select id="selector" class="form-control form-group">
+      <option v-bind:value="null">-- Выберите --</option>
+      <option value="1">item1</option>
+      <option value="2">item2</option>
+      </select>
  </div>
 </template>
 
 <script>
 export default {
   
-  props: ["label"],
+  props: ["label", "data"],
 
 /*
   data () {

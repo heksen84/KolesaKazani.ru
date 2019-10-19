@@ -1839,7 +1839,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ["label"],
+  props: ["label", "data"],
 
   /*
     data () {
@@ -1893,6 +1893,8 @@ var _methods;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
 //
 //
 //
@@ -2172,6 +2174,10 @@ function forEach(data, callback) {
 
   // методы компонента
   methods: (_methods = {
+    changeSubCategory: function changeSubCategory() {
+      alert("ok ");
+    },
+
 
     // доп. информация
     setInfo: function setInfo() {
@@ -39049,7 +39055,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     domProps: {
       "value": null
     }
-  }, [_vm._v("-- Выберите --")])])])
+  }, [_vm._v("-- Выберите --")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "1"
+    }
+  }, [_vm._v("item1")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "2"
+    }
+  }, [_vm._v("item2")])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -39585,34 +39599,58 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [(_vm.appliances) ? _c('superSelect', {
     attrs: {
       "label": "appliances"
+    },
+    on: {
+      "change": _vm.changeSubCategory
     }
   }) : _vm._e(), _vm._v(" "), (_vm.work_and_buisness) ? _c('superSelect', {
     attrs: {
       "label": "work_and_buisness"
+    },
+    on: {
+      "change": _vm.changeSubCategory
     }
   }) : _vm._e(), _vm._v(" "), (_vm.for_home) ? _c('superSelect', {
     attrs: {
       "label": "for_home"
+    },
+    on: {
+      "change": _vm.changeSubCategory
     }
   }) : _vm._e(), _vm._v(" "), (_vm.personal_effects) ? _c('superSelect', {
     attrs: {
       "label": "1"
+    },
+    on: {
+      "change": _vm.changeSubCategory
     }
   }) : _vm._e(), _vm._v(" "), (_vm.animals) ? _c('superSelect', {
     attrs: {
       "label": "животные"
+    },
+    on: {
+      "change": _vm.changeSubCategory
     }
   }) : _vm._e(), _vm._v(" "), (_vm.hobbies_and_leisure) ? _c('superSelect', {
     attrs: {
       "label": "3"
+    },
+    on: {
+      "change": _vm.changeSubCategory
     }
   }) : _vm._e(), _vm._v(" "), (_vm.services) ? _c('superSelect', {
     attrs: {
       "label": "4"
+    },
+    on: {
+      "change": _vm.changeSubCategory
     }
   }) : _vm._e(), _vm._v(" "), (_vm.other) ? _c('superSelect', {
     attrs: {
       "label": "5"
+    },
+    on: {
+      "change": _vm.changeSubCategory
     }
   }) : _vm._e()], 1), _vm._v(" "), _c('div', {
     directives: [{
