@@ -25,7 +25,9 @@ class IndexController extends Controller {
 	// ------------------------------------------------
 	// Базовая функция для главной страницы	
 	// ------------------------------------------------
-    private function ShowIndexPage($region, $place) {			
+    private function ShowIndexPage($region, $place) {
+		
+		$sklonResult="";
 						
 		// Страна
 		if ($region===null && $place===null) {				
