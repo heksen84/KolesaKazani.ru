@@ -103,6 +103,7 @@ class IndexController extends Controller {
 		->with("regions", Regions::all())
 		->with("auth", Auth::user()?1:0)
 		->with("title", $title)
+		->with("sklonResult", $sklonResult)
 		->with("description", $description)
 		->with("keywords", $keywords);
     }
