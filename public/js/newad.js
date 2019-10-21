@@ -39623,7 +39623,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       key: index
     }, [_vm._v(_vm._s(item.name))])
   })], 2)]) : _vm._e(), _vm._v(" "), (_vm.work_and_buisness && _vm.category) ? _c('div', {
-    staticClass: "col-11 col-xl-3 col-md-3 col-sm-12"
+    staticClass: "col-11 col-xl-4 col-md-4 col-sm-12"
   }, [_c('select', {
     staticClass: "form-group form-control",
     on: {
@@ -39653,7 +39653,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       key: index
     }, [_vm._v(_vm._s(item.name))])
   })], 2)]) : _vm._e(), _vm._v(" "), (_vm.personal_effects && _vm.category) ? _c('div', {
-    staticClass: "col-11 col-xl-4 col-md-4 col-sm-12"
+    staticClass: "col-11 col-xl-5 col-md-5 col-sm-12"
   }, [_c('select', {
     staticClass: "form-group form-control",
     on: {

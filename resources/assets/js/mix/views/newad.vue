@@ -71,7 +71,7 @@
                 </div>
 
                 <!-- работа и бизнес -->
-                <div class="col-11 col-xl-3 col-md-3 col-sm-12" v-if="work_and_buisness && category">
+                <div class="col-11 col-xl-4 col-md-4 col-sm-12" v-if="work_and_buisness && category">
                   <select class="form-group form-control" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
                     <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
@@ -87,7 +87,7 @@
                 </div>
 
                 <!-- личные вещи -->
-                <div class="col-11 col-xl-4 col-md-4 col-sm-12" v-if="personal_effects && category">
+                <div class="col-11 col-xl-5 col-md-5 col-sm-12" v-if="personal_effects && category">
                   <select class="form-group form-control" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
                     <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
