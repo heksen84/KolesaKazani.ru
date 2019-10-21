@@ -38,7 +38,7 @@
           </div>
 
           <div class="row form-group" v-if="sdelka!=null">
-            <div class="col-md-4">
+            <div class="col-auto">
               <label for="categories">Категория товара или услуги:</label>
                 <select class="form-control" v-model="category" @change="changeCategory">            
                   <option v-bind:value="null">-- Выберите категорию --</option>

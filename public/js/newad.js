@@ -39546,7 +39546,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), 0)]), _vm._v(" "), (_vm.sdelka != null) ? _c('div', {
     staticClass: "row form-group"
   }, [_c('div', {
-    staticClass: "col-md-4"
+    staticClass: "col-auto"
   }, [_c('label', {
     attrs: {
       "for": "categories"
