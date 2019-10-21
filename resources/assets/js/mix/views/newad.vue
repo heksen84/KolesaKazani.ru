@@ -47,25 +47,70 @@
               </div>
           </div>    
             
-          <!-- ОСНОВНАЯ ФОРМА -->
+          <!------------------------------------------------------------------ 
+           ОСНОВНАЯ ФОРМА 
+          ------------------------------------------------------------------>
           <form id="advertform" @submit="onSubmit" v-show="sdelka!=null">
 
             <!-- Категории -->
 		        <div v-if="root"></div>
-              
-              <transport v-if="transport"/> 
-              
+
+              <transport v-if="transport"/>    
+
               <h1 v-if="real_estate">nedvizh</h1>
 
-              <div class="row">                                
-                <superSelect v-if="appliances" label="appliances" @change="changeSubCategory"/>
-                <superSelect v-if="work_and_buisness" label="work_and_buisness" @change="changeSubCategory"/>
-                <superSelect v-if="for_home" label="for_home" @change="changeSubCategory"/>
-                <superSelect v-if="personal_effects" label="1" @change="changeSubCategory"/>
-                <superSelect v-if="animals " label="животные" @change="changeSubCategory"/>
-                <superSelect v-if="hobbies_and_leisure" label="3" @change="changeSubCategory"/>
-                <superSelect v-if="services" label="4" @change="changeSubCategory"/>
-                <superSelect v-if="other" label="5" @change="changeSubCategory"/>
+              <!-- fix: поместить селекты в компонент superSelect -->
+              <div class="row">
+
+                <!-- электроника -->
+                <div class="col-auto" v-if="appliances && category">
+                  <select class="form-group form-control" @change="changeSubCategory">
+                    <option v-bind:value="null">-- Подкатегория --</option>
+                  </select>
+                </div>
+
+                <!-- работа и бизнес -->
+                <div class="col-auto" v-if="work_and_buisness && category">
+                  <select class="form-group form-control" @change="changeSubCategory">
+                    <option v-bind:value="null">-- Подкатегория --</option>
+                  </select>
+                </div>
+
+                <!-- для дома и дачи -->
+                <div class="col-auto" v-if="for_home && category">
+                  <select class="form-group form-control" @change="changeSubCategory">
+                    <option v-bind:value="null">-- Подкатегория --</option>
+                  </select>
+                </div>
+
+                <!-- личные вещи -->
+                <div class="col-auto" v-if="personal_effects && category">
+                  <select class="form-group form-control" @change="changeSubCategory">
+                    <option v-bind:value="null">-- Подкатегория --</option>
+                  </select>
+                </div>
+
+                <!-- животные -->
+                <div class="col-auto" v-if="animals && category">
+                  <select class="form-group form-control" @change="changeSubCategory">
+                    <option v-bind:value="null">-- Подкатегория --</option>
+                  </select>
+                </div>
+
+                <!-- хобби и бизнес -->
+                <div class="col-auto" v-if="hobbies_and_leisure && category">
+                  <select class="form-group form-control" @change="changeSubCategory">
+                    <option v-bind:value="null">-- Подкатегория --</option>
+                  </select>
+                </div>
+
+                <!-- услуги -->
+                <div class="col-auto" v-if="services && category">
+                  <select class="form-group form-control" @change="changeSubCategory">
+                    <option v-bind:value="null">-- Подкатегория --</option>
+                  </select>
+                </div>  
+
               </div>
 
             <!-- Дополнительные поля -->			      
@@ -110,7 +155,7 @@
                   </div>
 
                   <div class="row" v-show="phone.length===14">                  
-                    <br>
+                  <br>
                   <div class="col-md-12">
                     <label class="form-group">Расположение:</label>
                   </div>
@@ -161,7 +206,7 @@ import $ from "jquery";
 import bootstrap from "bootstrap";
 import transport from "./subcategories/transport.vue"
 import superInput from "./components/superInput.vue"
-import superSelect from "./components/superSelect.vue"
+//import superSelect from "./components/superSelect.vue"
 import { post, get } from '../../helpers/api'
 
 var preview_images_array=[];
@@ -233,7 +278,7 @@ props: ["categories", "dealtypes", "regions"],
 components: { 
   transport,
   superInput,
-  superSelect
+  //superSelect
 },
 
 data () {

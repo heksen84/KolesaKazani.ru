@@ -1820,59 +1820,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/mix/views/components/superSelect.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-
-  props: ["label", "data"],
-
-  /*
-    data () {
-      return 	{}
-    },
-  
-    created() {},
-  
-  */
-
-  // перехватчик
-  computed: {
-
-    /*    valueInput: {
-          // геттер
-          get: function() { return this.value; },
-    
-          // сеттер
-          set: function(newValue) {}   
-        }*/
-  },
-
-  methods: {
-
-    // --------------------
-    // обработчик ввода
-    // --------------------
-    inputHandler: function inputHandler(e) {}
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/mix/views/newad.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1886,13 +1833,56 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__subcategories_transport_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__subcategories_transport_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_superInput_vue__ = __webpack_require__("./resources/assets/js/mix/views/components/superInput.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_superInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_superInput_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_superSelect_vue__ = __webpack_require__("./resources/assets/js/mix/views/components/superSelect.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_superSelect_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_superSelect_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
 var _methods;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2056,7 +2046,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
+//import superSelect from "./components/superSelect.vue"
 
 
 var preview_images_array = [];
@@ -2126,8 +2116,8 @@ function forEach(data, callback) {
 
   components: {
     transport: __WEBPACK_IMPORTED_MODULE_2__subcategories_transport_vue___default.a,
-    superInput: __WEBPACK_IMPORTED_MODULE_3__components_superInput_vue___default.a,
-    superSelect: __WEBPACK_IMPORTED_MODULE_4__components_superSelect_vue___default.a
+    superInput: __WEBPACK_IMPORTED_MODULE_3__components_superInput_vue___default.a
+    //superSelect
   },
 
   data: function data() {
@@ -2206,7 +2196,7 @@ function forEach(data, callback) {
       // -------------------------------------------------------------
       // Получить города / сёлы
       // -------------------------------------------------------------
-      Object(__WEBPACK_IMPORTED_MODULE_5__helpers_api__["a" /* get */])("getPlaces?region_id=" + this.regions_model).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_4__helpers_api__["a" /* get */])("getPlaces?region_id=" + this.regions_model).then(function (res) {
         _this.places = res.data;
         _this.places_model = null;
         //console.log(res.data);
@@ -39036,45 +39026,6 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/template-compiler.js?{\"id\":\"data-v-13f14634\"}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/mix/views/components/superSelect.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col-auto"
-  }, [_c('label', {
-    attrs: {
-      "for": "selector"
-    }
-  }, [_vm._v(_vm._s(_vm.label))]), _vm._v(" "), _c('select', {
-    staticClass: "form-control form-group",
-    attrs: {
-      "id": "selector"
-    }
-  }, [_c('option', {
-    domProps: {
-      "value": null
-    }
-  }, [_vm._v("-- Выберите --")]), _vm._v(" "), _c('option', {
-    attrs: {
-      "value": "1"
-    }
-  }, [_vm._v("item1")]), _vm._v(" "), _c('option', {
-    attrs: {
-      "value": "2"
-    }
-  }, [_vm._v("item2")])])])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-13f14634", module.exports)
-  }
-}
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/template-compiler.js?{\"id\":\"data-v-16ecc4c2\"}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/mix/views/components/superInput.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -39596,63 +39547,84 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [(_vm.root) ? _c('div') : _vm._e(), _vm._v(" "), (_vm.transport) ? _c('transport') : _vm._e(), _vm._v(" "), (_vm.real_estate) ? _c('h1', [_vm._v("nedvizh")]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "row"
-  }, [(_vm.appliances) ? _c('superSelect', {
-    attrs: {
-      "label": "appliances"
-    },
+  }, [(_vm.appliances && _vm.category) ? _c('div', {
+    staticClass: "col-auto"
+  }, [_c('select', {
+    staticClass: "form-group form-control",
     on: {
       "change": _vm.changeSubCategory
     }
-  }) : _vm._e(), _vm._v(" "), (_vm.work_and_buisness) ? _c('superSelect', {
-    attrs: {
-      "label": "work_and_buisness"
-    },
+  }, [_c('option', {
+    domProps: {
+      "value": null
+    }
+  }, [_vm._v("-- Подкатегория --")])])]) : _vm._e(), _vm._v(" "), (_vm.work_and_buisness && _vm.category) ? _c('div', {
+    staticClass: "col-auto"
+  }, [_c('select', {
+    staticClass: "form-group form-control",
     on: {
       "change": _vm.changeSubCategory
     }
-  }) : _vm._e(), _vm._v(" "), (_vm.for_home) ? _c('superSelect', {
-    attrs: {
-      "label": "for_home"
-    },
+  }, [_c('option', {
+    domProps: {
+      "value": null
+    }
+  }, [_vm._v("-- Подкатегория --")])])]) : _vm._e(), _vm._v(" "), (_vm.for_home && _vm.category) ? _c('div', {
+    staticClass: "col-auto"
+  }, [_c('select', {
+    staticClass: "form-group form-control",
     on: {
       "change": _vm.changeSubCategory
     }
-  }) : _vm._e(), _vm._v(" "), (_vm.personal_effects) ? _c('superSelect', {
-    attrs: {
-      "label": "1"
-    },
+  }, [_c('option', {
+    domProps: {
+      "value": null
+    }
+  }, [_vm._v("-- Подкатегория --")])])]) : _vm._e(), _vm._v(" "), (_vm.personal_effects && _vm.category) ? _c('div', {
+    staticClass: "col-auto"
+  }, [_c('select', {
+    staticClass: "form-group form-control",
     on: {
       "change": _vm.changeSubCategory
     }
-  }) : _vm._e(), _vm._v(" "), (_vm.animals) ? _c('superSelect', {
-    attrs: {
-      "label": "животные"
-    },
+  }, [_c('option', {
+    domProps: {
+      "value": null
+    }
+  }, [_vm._v("-- Подкатегория --")])])]) : _vm._e(), _vm._v(" "), (_vm.animals && _vm.category) ? _c('div', {
+    staticClass: "col-auto"
+  }, [_c('select', {
+    staticClass: "form-group form-control",
     on: {
       "change": _vm.changeSubCategory
     }
-  }) : _vm._e(), _vm._v(" "), (_vm.hobbies_and_leisure) ? _c('superSelect', {
-    attrs: {
-      "label": "3"
-    },
+  }, [_c('option', {
+    domProps: {
+      "value": null
+    }
+  }, [_vm._v("-- Подкатегория --")])])]) : _vm._e(), _vm._v(" "), (_vm.hobbies_and_leisure && _vm.category) ? _c('div', {
+    staticClass: "col-auto"
+  }, [_c('select', {
+    staticClass: "form-group form-control",
     on: {
       "change": _vm.changeSubCategory
     }
-  }) : _vm._e(), _vm._v(" "), (_vm.services) ? _c('superSelect', {
-    attrs: {
-      "label": "4"
-    },
+  }, [_c('option', {
+    domProps: {
+      "value": null
+    }
+  }, [_vm._v("-- Подкатегория --")])])]) : _vm._e(), _vm._v(" "), (_vm.services && _vm.category) ? _c('div', {
+    staticClass: "col-auto"
+  }, [_c('select', {
+    staticClass: "form-group form-control",
     on: {
       "change": _vm.changeSubCategory
     }
-  }) : _vm._e(), _vm._v(" "), (_vm.other) ? _c('superSelect', {
-    attrs: {
-      "label": "5"
-    },
-    on: {
-      "change": _vm.changeSubCategory
+  }, [_c('option', {
+    domProps: {
+      "value": null
     }
-  }) : _vm._e()], 1), _vm._v(" "), _c('div', {
+  }, [_vm._v("-- Подкатегория --")])])]) : _vm._e()]), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -53266,41 +53238,6 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-16ecc4c2", Component.options)
   } else {
     hotAPI.reload("data-v-16ecc4c2", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ "./resources/assets/js/mix/views/components/superSelect.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var Component = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")(
-  /* script */
-  __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/mix/views/components/superSelect.vue"),
-  /* template */
-  __webpack_require__("./node_modules/vue-loader/lib/template-compiler.js?{\"id\":\"data-v-13f14634\"}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/mix/views/components/superSelect.vue"),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "C:\\OSPanel\\domains\\damelya\\resources\\assets\\js\\mix\\views\\components\\superSelect.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] superSelect.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-13f14634", Component.options)
-  } else {
-    hotAPI.reload("data-v-13f14634", Component.options)
   }
 })()}
 
