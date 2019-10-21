@@ -2482,6 +2482,8 @@ function forEach(data, callback) {
     // скрываю дополнительные поля
     this.$store.commit("ShowFinalFields", false);
 
+    //let subItemId=null;
+
     switch (this.category) {
       case null:
         {
@@ -2503,6 +2505,10 @@ function forEach(data, callback) {
         }
       case 3:
         {
+
+          //alert("Гружу электронику")
+          //subItemId=this.category;
+
           this.appliances = true;
           this.$store.commit("ShowFinalFields", true);
           this.$store.commit("SetRequiredInfo", true);
@@ -2511,6 +2517,9 @@ function forEach(data, callback) {
         }
       case 4:
         {
+
+          //subItemId=this.category;
+
           this.work_and_buisness = true;
           this.$store.commit("ShowFinalFields", true);
           this.$store.commit("SetRequiredInfo", true);
@@ -2519,6 +2528,9 @@ function forEach(data, callback) {
         }
       case 5:
         {
+
+          //subItemId=this.category;
+
           this.for_home = true;
           this.$store.commit("ShowFinalFields", true);
           this.$store.commit("SetRequiredInfo", true);
@@ -2527,6 +2539,9 @@ function forEach(data, callback) {
         }
       case 6:
         {
+
+          //subItemId=this.category;
+
           this.personal_effects = true;
           this.$store.commit("ShowFinalFields", true);
           this.$store.commit("SetRequiredInfo", true);
@@ -2535,6 +2550,9 @@ function forEach(data, callback) {
         }
       case 7:
         {
+
+          //subItemId=this.category;
+
           this.animals = true;
           this.$store.commit("ShowFinalFields", true);
           this.$store.commit("SetRequiredInfo", true);
@@ -2543,6 +2561,9 @@ function forEach(data, callback) {
         }
       case 8:
         {
+
+          //subItemId=this.category;
+
           this.hobbies_and_leisure = true;
           this.$store.commit("ShowFinalFields", true);
           this.$store.commit("SetRequiredInfo", true);
@@ -2550,6 +2571,9 @@ function forEach(data, callback) {
         }
       case 9:
         {
+
+          //subItemId=this.category;
+
           this.services = true;
           this.$store.commit("ShowFinalFields", true);
           this.$store.commit("SetRequiredInfo", true);
@@ -2558,11 +2582,24 @@ function forEach(data, callback) {
         }
       case 10:
         {
+
           this.other = true;
           this.$store.commit("ShowFinalFields", true);
           this.$store.commit("SetRequiredInfo", true);
           break;
         }
+    }
+
+    // только для конкретный категорий
+    var subItems = [3, 4, 5, 6, 7, 8, 9];
+
+    // гружу названия подкатегорий
+    if (subItems.indexOf(this.category) != -1) {
+      Object(__WEBPACK_IMPORTED_MODULE_4__helpers_api__["a" /* get */])("getSubcategoryDataById?id=" + this.category).then(function (res) {
+        //this.places=res.data;
+        //this.places_model=null;
+        //console.log(res.data);
+      }).catch(function (err) {});
     }
   }), _defineProperty(_methods, "onSubmit", function onSubmit(evt) {
     var _this2 = this;

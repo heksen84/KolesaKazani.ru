@@ -625,13 +625,17 @@ changeCategory() {
   // -----------------------------------------------------------------
   // отрубить вид сделки в категориях: "работа и бизнес" и "услуги"
   // -----------------------------------------------------------------
-  if (category == 4 || category == 9) { this.$store.commit("SetDealSelected", true); this.$store.commit("ShowFinalFields", true); }
+  if (category == 4 || category == 9) { 
+    this.$store.commit("SetDealSelected", true); this.$store.commit("ShowFinalFields", true); 
+  }
   
   // добавляю категории
   this.$root.advert_data.adv_category=category;        
   
   // скрываю дополнительные поля
   this.$store.commit("ShowFinalFields", false);
+
+  //let subItemId=null;
   
   switch(this.category) {
     case null: {
@@ -650,6 +654,10 @@ changeCategory() {
       break;
     } 
     case 3: {
+
+      //alert("Гружу электронику")
+      //subItemId=this.category;
+
       this.appliances=true; 
       this.$store.commit("ShowFinalFields", true);
       this.$store.commit("SetRequiredInfo", true);
@@ -657,6 +665,9 @@ changeCategory() {
       break; 
     }
     case 4: {
+
+      //subItemId=this.category;
+
       this.work_and_buisness=true;
       this.$store.commit("ShowFinalFields", true);
       this.$store.commit("SetRequiredInfo", true);
@@ -664,6 +675,9 @@ changeCategory() {
       break; 
     }
     case 5: {
+
+      //subItemId=this.category;
+
       this.for_home=true; 
       this.$store.commit("ShowFinalFields", true);
       this.$store.commit("SetRequiredInfo", true);
@@ -671,6 +685,9 @@ changeCategory() {
       break; 
     }
     case 6: {
+
+      //subItemId=this.category;
+
       this.personal_effects=true; 
       this.$store.commit("ShowFinalFields", true);
       this.$store.commit("SetRequiredInfo", true);
@@ -678,6 +695,9 @@ changeCategory() {
       break; 
     }
     case 7: {
+
+      //subItemId=this.category;
+
       this.animals=true;
       this.$store.commit("ShowFinalFields", true);
       this.$store.commit("SetRequiredInfo", true);					
@@ -685,12 +705,18 @@ changeCategory() {
       break; 
     }
     case 8: {
+
+      //subItemId=this.category;
+
       this.hobbies_and_leisure=true; 
       this.$store.commit("ShowFinalFields", true);
       this.$store.commit("SetRequiredInfo", true);
       break;
     }
-    case 9: { 
+    case 9: {
+      
+      //subItemId=this.category;
+
       this.services=true;
       this.$store.commit("ShowFinalFields", true);
       this.$store.commit("SetRequiredInfo", true);
@@ -698,11 +724,24 @@ changeCategory() {
       break; 
     }
     case 10: {
+
       this.other=true;
       this.$store.commit("ShowFinalFields", true);
       this.$store.commit("SetRequiredInfo", true);
       break; 
       }
+    }
+
+    // только для конкретный категорий
+    let subItems = [3, 4, 5, 6, 7, 8, 9];
+
+    // гружу названия подкатегорий
+    if (subItems.indexOf(this.category)!=-1) {
+      get("getSubcategoryDataById?id="+this.category).then((res) => {
+		  //this.places=res.data;
+		  //this.places_model=null;
+      //console.log(res.data);
+      }).catch((err) => {});
     }
 },
 
