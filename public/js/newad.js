@@ -2037,6 +2037,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 // ---------------------------
@@ -2087,6 +2094,7 @@ function initMaps() {
   bigmap.geoObjects.add(myPlacemark1);
   smallmap.geoObjects.add(myPlacemark2);
 
+  // обработчик клика по карте
   bigmap.events.add("click", function (e) {
     mapCoords = e.get("coordPosition");
     myPlacemark1.geometry.setCoordinates(mapCoords);
@@ -2111,8 +2119,7 @@ function forEach(data, callback) {
 // ----------------------------------------------
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  // Входящие данные
-  props: ["categories", "dealtypes", "regions"],
+  props: ["categories", "dealtypes", "regions"], // Входящие данные
 
   components: {
     transport: __WEBPACK_IMPORTED_MODULE_2__subcategories_transport_vue___default.a,
@@ -2122,8 +2129,9 @@ function forEach(data, callback) {
 
   data: function data() {
     return {
+      subCategoryItems: [{ name: "1" }, { name: "2" }, { name: "3" }],
       lastPhoneNumber: null,
-      summ_str: "",
+      //		summ_str: "",
       const_phone_max_length: 9,
       coordinates_set: false,
       placeChanged: false,
@@ -39555,10 +39563,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "change": _vm.changeSubCategory
     }
   }, [_c('option', {
-    domProps: {
-      "value": null
+    attrs: {
+      "value": "null"
     }
-  }, [_vm._v("-- Подкатегория --")])])]) : _vm._e(), _vm._v(" "), (_vm.work_and_buisness && _vm.category) ? _c('div', {
+  }, [_vm._v("-- Подкатегория --")]), _vm._v(" "), _vm._l((_vm.subCategoryItems), function(item, index) {
+    return _c('option', {
+      key: index
+    }, [_vm._v(_vm._s(item.name))])
+  })], 2)]) : _vm._e(), _vm._v(" "), (_vm.work_and_buisness && _vm.category) ? _c('div', {
     staticClass: "col-auto"
   }, [_c('select', {
     staticClass: "form-group form-control",
@@ -39566,10 +39578,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "change": _vm.changeSubCategory
     }
   }, [_c('option', {
-    domProps: {
-      "value": null
+    attrs: {
+      "value": "null"
     }
-  }, [_vm._v("-- Подкатегория --")])])]) : _vm._e(), _vm._v(" "), (_vm.for_home && _vm.category) ? _c('div', {
+  }, [_vm._v("-- Подкатегория --")]), _vm._v(" "), _vm._l((_vm.subCategoryItems), function(item, index) {
+    return _c('option', {
+      key: index
+    }, [_vm._v(_vm._s(item.name))])
+  })], 2)]) : _vm._e(), _vm._v(" "), (_vm.for_home && _vm.category) ? _c('div', {
     staticClass: "col-auto"
   }, [_c('select', {
     staticClass: "form-group form-control",
@@ -39577,10 +39593,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "change": _vm.changeSubCategory
     }
   }, [_c('option', {
-    domProps: {
-      "value": null
+    attrs: {
+      "value": "null"
     }
-  }, [_vm._v("-- Подкатегория --")])])]) : _vm._e(), _vm._v(" "), (_vm.personal_effects && _vm.category) ? _c('div', {
+  }, [_vm._v("-- Подкатегория --")]), _vm._v(" "), _vm._l((_vm.subCategoryItems), function(item, index) {
+    return _c('option', {
+      key: index
+    }, [_vm._v(_vm._s(item.name))])
+  })], 2)]) : _vm._e(), _vm._v(" "), (_vm.personal_effects && _vm.category) ? _c('div', {
     staticClass: "col-auto"
   }, [_c('select', {
     staticClass: "form-group form-control",
@@ -39588,10 +39608,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "change": _vm.changeSubCategory
     }
   }, [_c('option', {
-    domProps: {
-      "value": null
+    attrs: {
+      "value": "null"
     }
-  }, [_vm._v("-- Подкатегория --")])])]) : _vm._e(), _vm._v(" "), (_vm.animals && _vm.category) ? _c('div', {
+  }, [_vm._v("-- Подкатегория --")]), _vm._v(" "), _vm._l((_vm.subCategoryItems), function(item, index) {
+    return _c('option', {
+      key: index
+    }, [_vm._v(_vm._s(item.name))])
+  })], 2)]) : _vm._e(), _vm._v(" "), (_vm.animals && _vm.category) ? _c('div', {
     staticClass: "col-auto"
   }, [_c('select', {
     staticClass: "form-group form-control",
@@ -39599,10 +39623,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "change": _vm.changeSubCategory
     }
   }, [_c('option', {
-    domProps: {
-      "value": null
+    attrs: {
+      "value": "null"
     }
-  }, [_vm._v("-- Подкатегория --")])])]) : _vm._e(), _vm._v(" "), (_vm.hobbies_and_leisure && _vm.category) ? _c('div', {
+  }, [_vm._v("-- Подкатегория --")]), _vm._v(" "), _vm._l((_vm.subCategoryItems), function(item, index) {
+    return _c('option', {
+      key: index
+    }, [_vm._v(_vm._s(item.name))])
+  })], 2)]) : _vm._e(), _vm._v(" "), (_vm.hobbies_and_leisure && _vm.category) ? _c('div', {
     staticClass: "col-auto"
   }, [_c('select', {
     staticClass: "form-group form-control",
@@ -39610,10 +39638,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "change": _vm.changeSubCategory
     }
   }, [_c('option', {
-    domProps: {
-      "value": null
+    attrs: {
+      "value": "null"
     }
-  }, [_vm._v("-- Подкатегория --")])])]) : _vm._e(), _vm._v(" "), (_vm.services && _vm.category) ? _c('div', {
+  }, [_vm._v("-- Подкатегория --")]), _vm._v(" "), _vm._l((_vm.subCategoryItems), function(item, index) {
+    return _c('option', {
+      key: index
+    }, [_vm._v(_vm._s(item.name))])
+  })], 2)]) : _vm._e(), _vm._v(" "), (_vm.services && _vm.category) ? _c('div', {
     staticClass: "col-auto"
   }, [_c('select', {
     staticClass: "form-group form-control",
@@ -39621,10 +39653,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "change": _vm.changeSubCategory
     }
   }, [_c('option', {
-    domProps: {
-      "value": null
+    attrs: {
+      "value": "null"
     }
-  }, [_vm._v("-- Подкатегория --")])])]) : _vm._e()]), _vm._v(" "), _c('div', {
+  }, [_vm._v("-- Подкатегория --")]), _vm._v(" "), _vm._l((_vm.subCategoryItems), function(item, index) {
+    return _c('option', {
+      key: index
+    }, [_vm._v(_vm._s(item.name))])
+  })], 2)]) : _vm._e()]), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",

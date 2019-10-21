@@ -65,49 +65,56 @@
                 <!-- электроника -->
                 <div class="col-auto" v-if="appliances && category">
                   <select class="form-group form-control" @change="changeSubCategory">
-                    <option v-bind:value="null">-- Подкатегория --</option>
+                    <option value="null">-- Подкатегория --</option>
+                    <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
                   </select>
                 </div>
 
                 <!-- работа и бизнес -->
                 <div class="col-auto" v-if="work_and_buisness && category">
                   <select class="form-group form-control" @change="changeSubCategory">
-                    <option v-bind:value="null">-- Подкатегория --</option>
+                    <option value="null">-- Подкатегория --</option>
+                    <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
                   </select>
                 </div>
 
                 <!-- для дома и дачи -->
                 <div class="col-auto" v-if="for_home && category">
                   <select class="form-group form-control" @change="changeSubCategory">
-                    <option v-bind:value="null">-- Подкатегория --</option>
+                    <option value="null">-- Подкатегория --</option>
+                    <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
                   </select>
                 </div>
 
                 <!-- личные вещи -->
                 <div class="col-auto" v-if="personal_effects && category">
                   <select class="form-group form-control" @change="changeSubCategory">
-                    <option v-bind:value="null">-- Подкатегория --</option>
+                    <option value="null">-- Подкатегория --</option>
+                    <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
                   </select>
                 </div>
 
                 <!-- животные -->
                 <div class="col-auto" v-if="animals && category">
                   <select class="form-group form-control" @change="changeSubCategory">
-                    <option v-bind:value="null">-- Подкатегория --</option>
+                    <option value="null">-- Подкатегория --</option>
+                    <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
                   </select>
                 </div>
 
                 <!-- хобби и бизнес -->
                 <div class="col-auto" v-if="hobbies_and_leisure && category">
                   <select class="form-group form-control" @change="changeSubCategory">
-                    <option v-bind:value="null">-- Подкатегория --</option>
+                    <option value="null">-- Подкатегория --</option>
+                    <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
                   </select>
                 </div>
 
                 <!-- услуги -->
                 <div class="col-auto" v-if="services && category">
                   <select class="form-group form-control" @change="changeSubCategory">
-                    <option v-bind:value="null">-- Подкатегория --</option>
+                    <option value="null">-- Подкатегория --</option>
+                    <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
                   </select>
                 </div>  
 
@@ -247,6 +254,7 @@ function initMaps() {
 	bigmap.geoObjects.add(myPlacemark1);
 	smallmap.geoObjects.add(myPlacemark2);
 
+  // обработчик клика по карте
   bigmap.events.add("click", function (e) {
     mapCoords = e.get("coordPosition");
 	  myPlacemark1.geometry.setCoordinates(mapCoords);
@@ -272,8 +280,7 @@ function forEach(data, callback) {
 // ----------------------------------------------
 export default {
 
-// Входящие данные
-props: ["categories", "dealtypes", "regions"],
+props: ["categories", "dealtypes", "regions"], // Входящие данные
 
 components: { 
   transport,
@@ -282,9 +289,10 @@ components: {
 },
 
 data () {
-  return 	{    
+  return 	{
+    subCategoryItems: [{name:"1"}, {name:"2"}, {name:"3"}],    
     lastPhoneNumber: null,
-		summ_str: "",
+//		summ_str: "",
 		const_phone_max_length: 9,		
 		coordinates_set: false,
 		placeChanged: false,			
