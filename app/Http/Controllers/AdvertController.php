@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redis;
-use App\Helpers\Petrovich;
+//use Illuminate\Support\Facades\Redis;
+//use App\Helpers\Petrovich;
 use App\Helpers\Helper;
 use App\Helpers\Sitemap;
 use App\Adverts;
@@ -15,6 +15,7 @@ use App\Transport;
 use App\RealEstate;
 use App\DealType;
 use App\Regions;
+use App\SubCats;
 use App\Urls;
 use Validator;
 use DB;
@@ -63,6 +64,44 @@ class AdvertController extends Controller {
     ----------------------------------------------------*/
     public function getCarsModels(Request $request) {
      	return DB::table("car_model")->where("id_car_mark", $request->mark_id )->get();
+    }
+
+    public function getSubcategoryDataById(Request $request) {
+        
+        \Debugbar::info("CATEGORY ID: ".$request->id);
+
+        /*switch($request->id) {
+            case 3: {
+                \Debugbar::info("Электроника");
+                break;
+            }
+            case 4: {
+                \Debugbar::info("Работа и бизнес");
+                break;
+            }
+            case 5: {
+                \Debugbar::info("Для дома и дачи");
+                break;
+            }
+            case 6: {
+                \Debugbar::info("Личные вещи");
+                break;
+            }
+            case 7: {
+                \Debugbar::info("Животные");
+                break;
+            }
+            case 8: {
+                \Debugbar::info("Хобби и отдых");
+                break;
+            }
+            case 9: {
+                \Debugbar::info("Услуги");
+                break;
+            }
+        }*/
+
+        return SubCats::select("name")->where("category_id", $request->id)->get();
     }
 
     /*
@@ -382,5 +421,7 @@ class AdvertController extends Controller {
      	
      	return $data;
     }
+
+    
     
 }

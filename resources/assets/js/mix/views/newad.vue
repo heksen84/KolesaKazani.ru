@@ -290,7 +290,7 @@ components: {
 
 data () {
   return 	{
-    subCategoryItems: [{name:"1"}, {name:"2"}, {name:"3"}],    
+    subCategoryItems: [],    
     lastPhoneNumber: null,
 //		summ_str: "",
 		const_phone_max_length: 9,		
@@ -732,16 +732,20 @@ changeCategory() {
       }
     }
 
-    // только для конкретный категорий
+    // Выборка только в конкретных категориях
     let subItems = [3, 4, 5, 6, 7, 8, 9];
 
+    // -------------------------------
     // гружу названия подкатегорий
+    // -------------------------------
     if (subItems.indexOf(this.category)!=-1) {
-      get("getSubcategoryDataById?id="+this.category).then((res) => {
-		  //this.places=res.data;
-		  //this.places_model=null;
-      //console.log(res.data);
-      }).catch((err) => {});
+
+      // запрос
+      get("getSubCategoryDataById?id="+this.category).then((res) => {
+		    this.subCategoryItems=res.data;
+      }).catch((err) => {
+        console.log(err)
+      });
     }
 },
 

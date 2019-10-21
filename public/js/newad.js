@@ -2129,7 +2129,7 @@ function forEach(data, callback) {
 
   data: function data() {
     return {
-      subCategoryItems: [{ name: "1" }, { name: "2" }, { name: "3" }],
+      subCategoryItems: [],
       lastPhoneNumber: null,
       //		summ_str: "",
       const_phone_max_length: 9,
@@ -2463,6 +2463,7 @@ function forEach(data, callback) {
     var photos = document.querySelector("input[type=file]");
     if (photos != null) photos.value = "";
   }), _defineProperty(_methods, "changeCategory", function changeCategory() {
+    var _this2 = this;
 
     var category = this.category;
 
@@ -2590,19 +2591,23 @@ function forEach(data, callback) {
         }
     }
 
-    // только для конкретный категорий
+    // Выборка только в конкретных категориях
     var subItems = [3, 4, 5, 6, 7, 8, 9];
 
+    // -------------------------------
     // гружу названия подкатегорий
+    // -------------------------------
     if (subItems.indexOf(this.category) != -1) {
-      Object(__WEBPACK_IMPORTED_MODULE_4__helpers_api__["a" /* get */])("getSubcategoryDataById?id=" + this.category).then(function (res) {
-        //this.places=res.data;
-        //this.places_model=null;
-        //console.log(res.data);
-      }).catch(function (err) {});
+
+      // запрос
+      Object(__WEBPACK_IMPORTED_MODULE_4__helpers_api__["a" /* get */])("getSubCategoryDataById?id=" + this.category).then(function (res) {
+        _this2.subCategoryItems = res.data;
+      }).catch(function (err) {
+        console.log(err);
+      });
     }
   }), _defineProperty(_methods, "onSubmit", function onSubmit(evt) {
-    var _this2 = this;
+    var _this3 = this;
 
     evt.preventDefault();
 
@@ -2626,7 +2631,7 @@ function forEach(data, callback) {
 
       if (response.data.result == "db.error")
         //this.$root.$notify({group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error'});
-        alert("Неполадки в работе сервиса");else if (response.data.result == "usr.error") _this2.$root.$notify({ group: 'foo', text: "<h6>" + response.data.msg + "</h6>", type: 'error' });else alert("Объявление размещено");
+        alert("Неполадки в работе сервиса");else if (response.data.result == "usr.error") _this3.$root.$notify({ group: 'foo', text: "<h6>" + response.data.msg + "</h6>", type: 'error' });else alert("Объявление размещено");
       //	else 
       //	window.location="home"; // переходим в личный кабинет
     }).catch(function (error) {
