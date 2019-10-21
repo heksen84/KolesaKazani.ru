@@ -2231,6 +2231,7 @@ function forEach(data, callback) {
       var lanlng = coords.split(",");
 
       mapCoords = [];
+
       mapCoords.push(lanlng[0]);
       mapCoords.push(lanlng[1]);
 
@@ -39607,7 +39608,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [(_vm.root) ? _c('div') : _vm._e(), _vm._v(" "), (_vm.transport) ? _c('transport') : _vm._e(), _vm._v(" "), (_vm.real_estate) ? _c('h1', [_vm._v("nedvizh")]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, [(_vm.appliances && _vm.category) ? _c('div', {
-    staticClass: "col-auto"
+    staticClass: "col-5"
   }, [_c('select', {
     staticClass: "form-group form-control",
     on: {
@@ -39622,7 +39623,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       key: index
     }, [_vm._v(_vm._s(item.name))])
   })], 2)]) : _vm._e(), _vm._v(" "), (_vm.work_and_buisness && _vm.category) ? _c('div', {
-    staticClass: "col-auto"
+    staticClass: "col-3"
   }, [_c('select', {
     staticClass: "form-group form-control",
     on: {
@@ -39637,7 +39638,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       key: index
     }, [_vm._v(_vm._s(item.name))])
   })], 2)]) : _vm._e(), _vm._v(" "), (_vm.for_home && _vm.category) ? _c('div', {
-    staticClass: "col-auto"
+    staticClass: "col-4"
   }, [_c('select', {
     staticClass: "form-group form-control",
     on: {
@@ -39652,7 +39653,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       key: index
     }, [_vm._v(_vm._s(item.name))])
   })], 2)]) : _vm._e(), _vm._v(" "), (_vm.personal_effects && _vm.category) ? _c('div', {
-    staticClass: "col-auto"
+    staticClass: "col-4"
   }, [_c('select', {
     staticClass: "form-group form-control",
     on: {
@@ -39667,7 +39668,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       key: index
     }, [_vm._v(_vm._s(item.name))])
   })], 2)]) : _vm._e(), _vm._v(" "), (_vm.animals && _vm.category) ? _c('div', {
-    staticClass: "col-auto"
+    staticClass: "col-4"
   }, [_c('select', {
     staticClass: "form-group form-control",
     on: {
@@ -39682,7 +39683,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       key: index
     }, [_vm._v(_vm._s(item.name))])
   })], 2)]) : _vm._e(), _vm._v(" "), (_vm.hobbies_and_leisure && _vm.category) ? _c('div', {
-    staticClass: "col-auto"
+    staticClass: "col-4"
   }, [_c('select', {
     staticClass: "form-group form-control",
     on: {
@@ -39697,7 +39698,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       key: index
     }, [_vm._v(_vm._s(item.name))])
   })], 2)]) : _vm._e(), _vm._v(" "), (_vm.services && _vm.category) ? _c('div', {
-    staticClass: "col-auto"
+    staticClass: "col-5"
   }, [_c('select', {
     staticClass: "form-group form-control",
     on: {

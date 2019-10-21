@@ -63,7 +63,7 @@
               <div class="row">
 
                 <!-- электроника -->
-                <div class="col-auto" v-if="appliances && category">
+                <div class="col-5" v-if="appliances && category">
                   <select class="form-group form-control" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
                     <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
@@ -71,7 +71,7 @@
                 </div>
 
                 <!-- работа и бизнес -->
-                <div class="col-auto" v-if="work_and_buisness && category">
+                <div class="col-3" v-if="work_and_buisness && category">
                   <select class="form-group form-control" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
                     <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
@@ -79,7 +79,7 @@
                 </div>
 
                 <!-- для дома и дачи -->
-                <div class="col-auto" v-if="for_home && category">
+                <div class="col-4" v-if="for_home && category">
                   <select class="form-group form-control" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
                     <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
@@ -87,7 +87,7 @@
                 </div>
 
                 <!-- личные вещи -->
-                <div class="col-auto" v-if="personal_effects && category">
+                <div class="col-4" v-if="personal_effects && category">
                   <select class="form-group form-control" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
                     <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
@@ -95,7 +95,7 @@
                 </div>
 
                 <!-- животные -->
-                <div class="col-auto" v-if="animals && category">
+                <div class="col-4" v-if="animals && category">
                   <select class="form-group form-control" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
                     <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
@@ -103,7 +103,7 @@
                 </div>
 
                 <!-- хобби и бизнес -->
-                <div class="col-auto" v-if="hobbies_and_leisure && category">
+                <div class="col-4" v-if="hobbies_and_leisure && category">
                   <select class="form-group form-control" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
                     <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
@@ -111,7 +111,7 @@
                 </div>
 
                 <!-- услуги -->
-                <div class="col-auto" v-if="services && category">
+                <div class="col-5" v-if="services && category">
                   <select class="form-group form-control" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
                     <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
@@ -386,7 +386,8 @@ changeRegion() {
 	  let coords = arr[1];
 	  let lanlng = coords.split(",")
 
-	  mapCoords=[];
+    mapCoords=[];
+    
 	  mapCoords.push(lanlng[0])
 	  mapCoords.push(lanlng[1])
 
