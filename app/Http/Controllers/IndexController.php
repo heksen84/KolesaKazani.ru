@@ -10,8 +10,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redis;
-use Illuminate\Support\Facades\File;
+//use Illuminate\Support\Facades\Redis;
+//use Illuminate\Support\Facades\File;
 
 use App\Helpers\Petrovich;
 use App\Categories;
@@ -37,7 +37,7 @@ class IndexController extends Controller {
 			$description = "Объявления о покупке, продаже, обмене и сдаче в аренду в Казахстане";
 			$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, FLIX, страна, казахстан";
 			$locationName = "Казахстан";
-			
+
 		}
 
 		// Регион
