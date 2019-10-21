@@ -495,7 +495,7 @@ advReset(category_data) {
     case 8: this.$root.advert_data.adv_deal = ""; break; 
     case 9: this.$root.advert_data.adv_deal = ""; break; 
     case 10: this.$root.advert_data.adv_deal = ""; break;
-     
+
     default: this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
 
   }
@@ -614,7 +614,9 @@ advReset(category_data) {
 
   // сбрасываю фотки
   let photos = document.querySelector("input[type=file]");
-  if (photos!=null) photos.value = "";
+
+  if (photos!=null) 
+    photos.value = "";
 
 },
 

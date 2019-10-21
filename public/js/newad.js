@@ -2468,6 +2468,7 @@ function forEach(data, callback) {
 
     // сбрасываю фотки
     var photos = document.querySelector("input[type=file]");
+
     if (photos != null) photos.value = "";
   }), _defineProperty(_methods, "changeCategory", function changeCategory() {
     var _this2 = this;
