@@ -463,7 +463,7 @@ deletePhoto(index) {
 },
 
 // --------------------------------------
-// сброс данных объявления
+// Cброс данных объявления
 // --------------------------------------
 advReset(category_data) {
 
@@ -494,7 +494,8 @@ advReset(category_data) {
     case 7: this.$root.advert_data.adv_deal = ""; break; 
     case 8: this.$root.advert_data.adv_deal = ""; break; 
     case 9: this.$root.advert_data.adv_deal = ""; break; 
-    case 10: this.$root.advert_data.adv_deal = ""; break; 
+    case 10: this.$root.advert_data.adv_deal = ""; break;
+     
     default: this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
 
   }

@@ -2303,7 +2303,7 @@ function forEach(data, callback) {
 
 
     // --------------------------------------
-    // сброс данных объявления
+    // Cброс данных объявления
     // --------------------------------------
     advReset: function advReset(category_data) {
 
@@ -2343,6 +2343,7 @@ function forEach(data, callback) {
           this.$root.advert_data.adv_deal = "";break;
         case 10:
           this.$root.advert_data.adv_deal = "";break;
+
         default:
           this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
 
