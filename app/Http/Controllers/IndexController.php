@@ -30,12 +30,14 @@ class IndexController extends Controller {
 		$sklonResult="";
 						
 		// Страна
-		if ($region===null && $place===null) {				
+		if ($region===null && $place===null) {
+
 			$location = "/";				
 			$title = config('app.name')." - объявления Казахстана";
 			$description = "Объявления о покупке, продаже, обмене и сдаче в аренду в Казахстане";
 			$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, FLIX, страна, казахстан";
 			$locationName = "Казахстан";
+			
 		}
 
 		// Регион
@@ -74,7 +76,8 @@ class IndexController extends Controller {
 
 			$placeArr = Places::select("name")->where("url", $place)->get();
 				
-			if ($placeArr->count()>0) {
+			if ($placeArr->count() > 0) {
+			
 				$petrovich = new Petrovich(Petrovich::GENDER_MALE);
 				$sklonResult = $petrovich->lastname($placeArr[0]->name, 2);
 				$sklonResultForDesc = $petrovich->firstname($placeArr[0]->name, 4);
@@ -82,14 +85,15 @@ class IndexController extends Controller {
 				$title = config('app.name')." - объявления ".$sklonResult;
 				$description = "Объявления о покупке, продаже, обмене и сдаче в аренду в ".$sklonResultForDesc;
 				$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, FLIX, ".$locationName;
+			
 			}
 			else return view("errors/404"); // редирект
 		}
 		
 		$subcats = DB::table("subcats")
-		->join("categories", "categories.id", "=", "subcats.category_id")
-		->select("subcats.*", "categories.url as category_url")
-		->get();
+			->join("categories", "categories.id", "=", "subcats.category_id")
+			->select("subcats.*", "categories.url as category_url")
+			->get();
 
 		\Debugbar::info("location: ".$locationName);
 		\Debugbar::info("REGION: ".$region);
