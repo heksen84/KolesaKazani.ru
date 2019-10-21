@@ -2162,7 +2162,9 @@ function forEach(data, callback) {
   },
 
 
+  // ------------------------------
   // компонент создан
+  // ------------------------------
   created: function created() {
     //console.log("CREATED...")
     ymaps.ready(initMaps);
@@ -2197,7 +2199,9 @@ function forEach(data, callback) {
     },
 
 
+    // ------------------------------
     // обработка выбора региона
+    // ------------------------------
     changeRegion: function changeRegion() {
       var _this = this;
 

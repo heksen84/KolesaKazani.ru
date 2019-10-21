@@ -322,7 +322,9 @@ data () {
   }
 },
 
+// ------------------------------
 // компонент создан
+// ------------------------------
 created() {
   //console.log("CREATED...")
 	ymaps.ready(initMaps);
@@ -354,7 +356,9 @@ closeAndReturn() {
  	window.history.back();
 },
 
+// ------------------------------
 // обработка выбора региона
+// ------------------------------
 changeRegion() {
 
 	this.$root.advert_data.region_id = this.regions_model;
