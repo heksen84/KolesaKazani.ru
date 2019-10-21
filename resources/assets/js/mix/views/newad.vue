@@ -807,8 +807,7 @@ onSubmit(evt) {
     
     $("#ShowMapModal").modal("show");
 
-    if (!navigator.geolocation) 
-    {    
+    if (!navigator.geolocation) {    
       console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается
     }		    
     else {
