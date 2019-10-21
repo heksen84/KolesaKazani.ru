@@ -2172,8 +2172,10 @@ function forEach(data, callback) {
 
   // методы компонента
   methods: (_methods = {
+
+    // Выбор подкатегории
     changeSubCategory: function changeSubCategory() {
-      alert("ok ");
+      //alert("ok ")
     },
 
 

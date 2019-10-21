@@ -332,8 +332,9 @@ created() {
 // методы компонента
 methods: {
 
+// Выбор подкатегории
 changeSubCategory() {
-  alert("ok ")
+  //alert("ok ")
 },
 
 // доп. информация
