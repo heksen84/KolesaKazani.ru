@@ -739,7 +739,6 @@ changeCategory() {
     // гружу названия подкатегорий
     // -------------------------------
     if (subItems.indexOf(this.category)!=-1) {
-
       // запрос
       get("getSubCategoryDataById?id="+this.category).then((res) => {
 		    this.subCategoryItems=res.data;

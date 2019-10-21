@@ -2598,7 +2598,6 @@ function forEach(data, callback) {
     // гружу названия подкатегорий
     // -------------------------------
     if (subItems.indexOf(this.category) != -1) {
-
       // запрос
       Object(__WEBPACK_IMPORTED_MODULE_4__helpers_api__["a" /* get */])("getSubCategoryDataById?id=" + this.category).then(function (res) {
         _this2.subCategoryItems = res.data;
