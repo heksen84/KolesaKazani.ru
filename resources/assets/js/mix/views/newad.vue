@@ -534,7 +534,8 @@ advReset(category_data) {
   // сбрасываю фотки
   let photos = document.querySelector("input[type=file]");
   
-  if (photos!=null) photos.value = "";
+  if (photos!=null) 
+    photos.value = "";
 
 },
 
@@ -554,7 +555,9 @@ setDeal() {
 advReset(category_data) {
 
     let form = document.getElementById("advertform");
-    if (form) form.reset();
+
+    if (form) 
+      form.reset();
 
     this.summ_str = "";
     this.$store.commit("SetRequiredInfo", false);
@@ -803,8 +806,10 @@ onSubmit(evt) {
     
     $("#ShowMapModal").modal("show");
 
-    if (!navigator.geolocation)     
-      console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается		    
+    if (!navigator.geolocation) 
+    {    
+      console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается
+    }		    
     else {
 			  navigator.geolocation.getCurrentPosition(function(position) {				
 			  let lat = position.coords.latitude;

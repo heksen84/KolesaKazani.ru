@@ -2399,6 +2399,7 @@ function forEach(data, callback) {
   }, _defineProperty(_methods, "advReset", function advReset(category_data) {
 
     var form = document.getElementById("advertform");
+
     if (form) form.reset();
 
     this.summ_str = "";
@@ -2649,15 +2650,16 @@ function forEach(data, callback) {
 
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#ShowMapModal").modal("show");
 
-    if (!navigator.geolocation) console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается		    
-    else {
-        navigator.geolocation.getCurrentPosition(function (position) {
-          var lat = position.coords.latitude;
-          var lon = position.coords.longitude;
-          var geoCoords = [lat, lon];
-          myPlacemark.geometry.setCoordinates(getCoords);
-        });
-      }
+    if (!navigator.geolocation) {
+      console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается
+    } else {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        var lat = position.coords.latitude;
+        var lon = position.coords.longitude;
+        var geoCoords = [lat, lon];
+        myPlacemark.geometry.setCoordinates(getCoords);
+      });
+    }
   }), _defineProperty(_methods, "setCoords", function setCoords() {
 
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#ShowMapModal").modal("hide");
