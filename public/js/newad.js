@@ -2136,6 +2136,7 @@ function forEach(data, callback) {
       coordinates_set: false,
       placeChanged: false,
       category: null,
+      subCategory: null,
       sdelka: null,
       deal_id: null,
       info: "",
@@ -2177,7 +2178,7 @@ function forEach(data, callback) {
 
     // Выбор подкатегории
     changeSubCategory: function changeSubCategory() {
-      //alert("ok ")
+      alert(this.subCategory);
     },
 
 
@@ -2400,6 +2401,8 @@ function forEach(data, callback) {
   }, _defineProperty(_methods, "advReset", function advReset(category_data) {
 
     var form = document.getElementById("advertform");
+
+    this.subCategory = null; // сбрасываю подкатегории
 
     if (form) form.reset();
 
@@ -39610,9 +39613,23 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [(_vm.appliances && _vm.category) ? _c('div', {
     staticClass: "col-11 col-xl-5 col-md-5 col-sm-12"
   }, [_c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.subCategory),
+      expression: "subCategory"
+    }],
     staticClass: "form-group form-control",
     on: {
-      "change": _vm.changeSubCategory
+      "change": [function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.subCategory = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }, _vm.changeSubCategory]
     }
   }, [_c('option', {
     attrs: {
@@ -39620,14 +39637,31 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("-- Подкатегория --")]), _vm._v(" "), _vm._l((_vm.subCategoryItems), function(item, index) {
     return _c('option', {
-      key: index
+      key: index,
+      domProps: {
+        "value": item.id
+      }
     }, [_vm._v(_vm._s(item.name))])
   })], 2)]) : _vm._e(), _vm._v(" "), (_vm.work_and_buisness && _vm.category) ? _c('div', {
     staticClass: "col-11 col-xl-4 col-md-4 col-sm-12"
   }, [_c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.subCategory),
+      expression: "subCategory"
+    }],
     staticClass: "form-group form-control",
     on: {
-      "change": _vm.changeSubCategory
+      "change": [function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.subCategory = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }, _vm.changeSubCategory]
     }
   }, [_c('option', {
     attrs: {
@@ -39635,14 +39669,31 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("-- Подкатегория --")]), _vm._v(" "), _vm._l((_vm.subCategoryItems), function(item, index) {
     return _c('option', {
-      key: index
+      key: index,
+      domProps: {
+        "value": item.id
+      }
     }, [_vm._v(_vm._s(item.name))])
   })], 2)]) : _vm._e(), _vm._v(" "), (_vm.for_home && _vm.category) ? _c('div', {
     staticClass: "col-11 col-xl-4 col-md-4 col-sm-12"
   }, [_c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.subCategory),
+      expression: "subCategory"
+    }],
     staticClass: "form-group form-control",
     on: {
-      "change": _vm.changeSubCategory
+      "change": [function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.subCategory = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }, _vm.changeSubCategory]
     }
   }, [_c('option', {
     attrs: {
@@ -39650,14 +39701,31 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("-- Подкатегория --")]), _vm._v(" "), _vm._l((_vm.subCategoryItems), function(item, index) {
     return _c('option', {
-      key: index
+      key: index,
+      domProps: {
+        "value": item.id
+      }
     }, [_vm._v(_vm._s(item.name))])
   })], 2)]) : _vm._e(), _vm._v(" "), (_vm.personal_effects && _vm.category) ? _c('div', {
     staticClass: "col-11 col-xl-5 col-md-5 col-sm-12"
   }, [_c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.subCategory),
+      expression: "subCategory"
+    }],
     staticClass: "form-group form-control",
     on: {
-      "change": _vm.changeSubCategory
+      "change": [function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.subCategory = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }, _vm.changeSubCategory]
     }
   }, [_c('option', {
     attrs: {
@@ -39665,14 +39733,31 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("-- Подкатегория --")]), _vm._v(" "), _vm._l((_vm.subCategoryItems), function(item, index) {
     return _c('option', {
-      key: index
+      key: index,
+      domProps: {
+        "value": item.id
+      }
     }, [_vm._v(_vm._s(item.name))])
   })], 2)]) : _vm._e(), _vm._v(" "), (_vm.animals && _vm.category) ? _c('div', {
     staticClass: "col-11 col-xl-4 col-md-4 col-sm-12"
   }, [_c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.subCategory),
+      expression: "subCategory"
+    }],
     staticClass: "form-group form-control",
     on: {
-      "change": _vm.changeSubCategory
+      "change": [function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.subCategory = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }, _vm.changeSubCategory]
     }
   }, [_c('option', {
     attrs: {
@@ -39680,14 +39765,31 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("-- Подкатегория --")]), _vm._v(" "), _vm._l((_vm.subCategoryItems), function(item, index) {
     return _c('option', {
-      key: index
+      key: index,
+      domProps: {
+        "value": item.id
+      }
     }, [_vm._v(_vm._s(item.name))])
   })], 2)]) : _vm._e(), _vm._v(" "), (_vm.hobbies_and_leisure && _vm.category) ? _c('div', {
     staticClass: "col-11 col-xl-4 col-md-4 col-sm-12"
   }, [_c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.subCategory),
+      expression: "subCategory"
+    }],
     staticClass: "form-group form-control",
     on: {
-      "change": _vm.changeSubCategory
+      "change": [function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.subCategory = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }, _vm.changeSubCategory]
     }
   }, [_c('option', {
     attrs: {
@@ -39695,14 +39797,31 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("-- Подкатегория --")]), _vm._v(" "), _vm._l((_vm.subCategoryItems), function(item, index) {
     return _c('option', {
-      key: index
+      key: index,
+      domProps: {
+        "value": item.id
+      }
     }, [_vm._v(_vm._s(item.name))])
   })], 2)]) : _vm._e(), _vm._v(" "), (_vm.services && _vm.category) ? _c('div', {
     staticClass: "col-11 col-xl-5 col-md-5 col-sm-12"
   }, [_c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.subCategory),
+      expression: "subCategory"
+    }],
     staticClass: "form-group form-control",
     on: {
-      "change": _vm.changeSubCategory
+      "change": [function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.subCategory = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }, _vm.changeSubCategory]
     }
   }, [_c('option', {
     attrs: {
@@ -39710,7 +39829,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("-- Подкатегория --")]), _vm._v(" "), _vm._l((_vm.subCategoryItems), function(item, index) {
     return _c('option', {
-      key: index
+      key: index,
+      domProps: {
+        "value": item.id
+      }
     }, [_vm._v(_vm._s(item.name))])
   })], 2)]) : _vm._e()]), _vm._v(" "), _c('div', {
     directives: [{

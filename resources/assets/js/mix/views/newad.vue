@@ -64,57 +64,57 @@
 
                 <!-- электроника -->
                 <div class="col-11 col-xl-5 col-md-5 col-sm-12" v-if="appliances && category">
-                  <select class="form-group form-control" @change="changeSubCategory">
+                  <select class="form-group form-control" v-model="subCategory" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
-                    <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
+                    <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name }}</option>
                   </select>
                 </div>
 
                 <!-- работа и бизнес -->
                 <div class="col-11 col-xl-4 col-md-4 col-sm-12" v-if="work_and_buisness && category">
-                  <select class="form-group form-control" @change="changeSubCategory">
+                  <select class="form-group form-control" v-model="subCategory" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
-                    <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
+                    <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name }}</option>
                   </select>
                 </div>
 
                 <!-- для дома и дачи -->
                 <div class="col-11 col-xl-4 col-md-4 col-sm-12" v-if="for_home && category">
-                  <select class="form-group form-control" @change="changeSubCategory">
+                  <select class="form-group form-control" v-model="subCategory" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
-                    <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
+                    <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name }}</option>
                   </select>
                 </div>
 
                 <!-- личные вещи -->
                 <div class="col-11 col-xl-5 col-md-5 col-sm-12" v-if="personal_effects && category">
-                  <select class="form-group form-control" @change="changeSubCategory">
+                  <select class="form-group form-control" v-model="subCategory" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
-                    <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
+                    <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name }}</option>
                   </select>
                 </div>
 
                 <!-- животные -->
                 <div class="col-11 col-xl-4 col-md-4 col-sm-12" v-if="animals && category">
-                  <select class="form-group form-control" @change="changeSubCategory">
+                  <select class="form-group form-control" v-model="subCategory" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
-                    <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
+                    <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name }}</option>
                   </select>
                 </div>
 
                 <!-- хобби и бизнес -->
                 <div class="col-11 col-xl-4 col-md-4 col-sm-12" v-if="hobbies_and_leisure && category">
-                  <select class="form-group form-control" @change="changeSubCategory">
+                  <select class="form-group form-control" v-model="subCategory" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
-                    <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
+                    <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name }}</option>
                   </select>
                 </div>
 
                 <!-- услуги -->
                 <div class="col-11 col-xl-5 col-md-5 col-sm-12" v-if="services && category">
-                  <select class="form-group form-control" @change="changeSubCategory">
+                  <select class="form-group form-control" v-model="subCategory" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
-                    <option v-for="(item, index) in subCategoryItems" :key="index">{{ item.name }}</option>
+                    <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name }}</option>
                   </select>
                 </div>  
 
@@ -297,6 +297,7 @@ data () {
 		coordinates_set: false,
 		placeChanged: false,			
 		category: null,
+    subCategory: null,
 		sdelka: null,
 		deal_id: null,
 		info: "",
@@ -336,7 +337,7 @@ methods: {
 
 // Выбор подкатегории
 changeSubCategory() {
-  //alert("ok ")
+  alert(this.subCategory)
 },
 
 // доп. информация
@@ -556,6 +557,8 @@ setDeal() {
 advReset(category_data) {
 
     let form = document.getElementById("advertform");
+
+    this.subCategory=null; // сбрасываю подкатегории
 
     if (form) 
       form.reset();

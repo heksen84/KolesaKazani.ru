@@ -67,41 +67,8 @@ class AdvertController extends Controller {
     }
 
     public function getSubcategoryDataById(Request $request) {
-        
         \Debugbar::info("CATEGORY ID: ".$request->id);
-
-        /*switch($request->id) {
-            case 3: {
-                \Debugbar::info("Электроника");
-                break;
-            }
-            case 4: {
-                \Debugbar::info("Работа и бизнес");
-                break;
-            }
-            case 5: {
-                \Debugbar::info("Для дома и дачи");
-                break;
-            }
-            case 6: {
-                \Debugbar::info("Личные вещи");
-                break;
-            }
-            case 7: {
-                \Debugbar::info("Животные");
-                break;
-            }
-            case 8: {
-                \Debugbar::info("Хобби и отдых");
-                break;
-            }
-            case 9: {
-                \Debugbar::info("Услуги");
-                break;
-            }
-        }*/
-
-        return SubCats::select("name")->where("category_id", $request->id)->get();
+        return SubCats::select( "id", "name" )->where("category_id", $request->id)->get();
     }
 
     /*
