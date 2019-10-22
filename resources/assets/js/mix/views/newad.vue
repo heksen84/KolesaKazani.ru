@@ -768,6 +768,7 @@ changeCategory() {
 		    this.subCategoryItems=res.data;
       }).catch((err) => {
         console.log(err)
+        //this.serviceUnavailable=true;
       });
     }
 },

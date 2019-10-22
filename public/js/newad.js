@@ -2625,6 +2625,7 @@ function forEach(data, callback) {
         _this2.subCategoryItems = res.data;
       }).catch(function (err) {
         console.log(err);
+        //this.serviceUnavailable=true;
       });
     }
   }), _defineProperty(_methods, "onSubmit", function onSubmit(evt) {
