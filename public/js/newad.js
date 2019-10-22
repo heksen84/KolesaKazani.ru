@@ -2167,7 +2167,6 @@ function forEach(data, callback) {
   // компонент создан
   // ------------------------------
   created: function created() {
-    //console.log("CREATED...")
     ymaps.ready(initMaps);
     this.advReset();
   },
@@ -2214,7 +2213,6 @@ function forEach(data, callback) {
       Object(__WEBPACK_IMPORTED_MODULE_4__helpers_api__["a" /* get */])("getPlaces?region_id=" + this.regions_model).then(function (res) {
         _this.places = res.data;
         _this.places_model = null;
-        //console.log(res.data);
       }).catch(function (err) {});
     },
 
