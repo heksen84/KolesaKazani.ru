@@ -2044,6 +2044,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // ---------------------------
@@ -2129,6 +2139,8 @@ function forEach(data, callback) {
 
   data: function data() {
     return {
+
+      serviceUnavailable: false,
       subCategoryItems: [],
       lastPhoneNumber: null,
       //		summ_str: "",
@@ -2169,6 +2181,8 @@ function forEach(data, callback) {
   created: function created() {
     ymaps.ready(initMaps);
     this.advReset();
+
+    //this.serviceUnavailable=true;
   },
 
 
@@ -2177,7 +2191,7 @@ function forEach(data, callback) {
 
     // Выбор подкатегории
     changeSubCategory: function changeSubCategory() {
-      alert(this.subCategory);
+      //alert(this.subCategory)
     },
 
 
@@ -2641,7 +2655,8 @@ function forEach(data, callback) {
 
       if (response.data.result == "db.error")
         //this.$root.$notify({group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error'});
-        alert("Неполадки в работе сервиса");else if (response.data.result == "usr.error") _this3.$root.$notify({ group: 'foo', text: "<h6>" + response.data.msg + "</h6>", type: 'error' });else alert("Объявление размещено");
+        //alert("Сервис временно не доступен")
+        _this3.serviceUnavailable = true;else if (response.data.result == "usr.error") _this3.$root.$notify({ group: 'foo', text: "<h6>" + response.data.msg + "</h6>", type: 'error' });else alert("Объявление размещено");
       //	else 
       //	window.location="home"; // переходим в личный кабинет
     }).catch(function (error) {
@@ -39466,6 +39481,17 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "container-fluid mycontainer_adv"
+  }, [(_vm.serviceUnavailable) ? _c('div', {
+    staticClass: "alert alert-light"
+  }, [_c('h4', {
+    staticClass: "alert-heading"
+  }, [_vm._v("Cервис временно не доступен!")])]) : _vm._e(), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.serviceUnavailable),
+      expression: "!serviceUnavailable"
+    }]
   }, [_c('div', {
     staticClass: "modal fade bd-example-modal-lg",
     attrs: {
@@ -40092,7 +40118,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "submit"
     }
-  }, [_vm._v("опубликовать")])])])])], 1)])])])
+  }, [_vm._v("опубликовать")])])])])], 1)])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "modal-header"

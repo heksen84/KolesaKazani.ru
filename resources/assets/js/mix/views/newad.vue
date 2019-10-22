@@ -1,7 +1,15 @@
 <template>
 
+
 <div class="container-fluid mycontainer_adv">
 
+  
+  <div class="alert alert-light" v-if="serviceUnavailable">
+    <h4 class="alert-heading">Cервис временно не доступен!</h4>
+  </div>
+
+
+  <div v-show="!serviceUnavailable">
   <!-- карта -->
   <div class="modal fade bd-example-modal-lg" id="ShowMapModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -202,6 +210,8 @@
           </form>
         </div>
     </div>
+
+  </div>
 </div>
 </template>
 <script>
@@ -290,6 +300,8 @@ components: {
 
 data () {
   return 	{
+
+    serviceUnavailable: false,
     subCategoryItems: [],    
     lastPhoneNumber: null,
 //		summ_str: "",
@@ -328,7 +340,9 @@ data () {
 // ------------------------------
 created() {
 	ymaps.ready(initMaps);
-	this.advReset();
+  this.advReset();
+  
+  //this.serviceUnavailable=true;
 },
 
 // методы компонента
@@ -336,7 +350,7 @@ methods: {
 
 // Выбор подкатегории
 changeSubCategory() {
-  alert(this.subCategory)
+  //alert(this.subCategory)
 },
 
 // доп. информация
@@ -787,7 +801,8 @@ onSubmit(evt) {
     			
     if (response.data.result=="db.error") 
       //this.$root.$notify({group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error'});
-      alert("Неполадки в работе сервиса")
+      //alert("Сервис временно не доступен")
+      this.serviceUnavailable=true;
 		else
       if (response.data.result=="usr.error") 
        this.$root.$notify({group: 'foo', text: "<h6>"+response.data.msg+"</h6>", type: 'error'});
