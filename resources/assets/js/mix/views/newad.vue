@@ -1,13 +1,10 @@
 <template>
 
-
 <div class="container-fluid mycontainer_adv">
-
   
   <div class="alert alert-light" v-if="serviceUnavailable">
     <h4 class="alert-heading">Cервис временно не доступен!</h4>
   </div>
-
 
   <div v-show="!serviceUnavailable">
   <!-- карта -->
