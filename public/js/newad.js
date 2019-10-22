@@ -2311,7 +2311,7 @@ function forEach(data, callback) {
 
       if (form) form.reset();
 
-      this.summ_str = "";
+      //this.summ_str = "";
 
       this.$store.commit("SetRequiredInfo", false);
       this.$store.commit("SetPlaceholderInfoText", "default");
@@ -2404,7 +2404,7 @@ function forEach(data, callback) {
 
     if (form) form.reset();
 
-    this.summ_str = "";
+    //this.summ_str = "";
     this.$store.commit("SetRequiredInfo", false);
     this.$store.commit("SetPlaceholderInfoText", "default");
     this.$store.commit("SetDealSelected", false);
