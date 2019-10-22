@@ -60,7 +60,7 @@
             <!-- Категории -->
 		        <div v-if="root"></div>
 
-              <transport v-if="transport"/>    
+              <transport v-if="transport && category"/>    
 
               <h1 v-if="real_estate">nedvizh</h1>
 

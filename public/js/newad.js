@@ -39630,7 +39630,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "submit": _vm.onSubmit
     }
-  }, [(_vm.root) ? _c('div') : _vm._e(), _vm._v(" "), (_vm.transport) ? _c('transport') : _vm._e(), _vm._v(" "), (_vm.real_estate) ? _c('h1', [_vm._v("nedvizh")]) : _vm._e(), _vm._v(" "), _c('div', {
+  }, [(_vm.root) ? _c('div') : _vm._e(), _vm._v(" "), (_vm.transport && _vm.category) ? _c('transport') : _vm._e(), _vm._v(" "), (_vm.real_estate) ? _c('h1', [_vm._v("nedvizh")]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, [(_vm.appliances && _vm.category) ? _c('div', {
     staticClass: "col-11 col-xl-5 col-md-5 col-sm-12"
