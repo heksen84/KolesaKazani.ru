@@ -62,7 +62,7 @@
 
               <transport v-if="transport && category"/>    
 
-              <h1 v-if="real_estate">nedvizh</h1>
+              <h1 v-if="real_estate">недвижимость</h1>
 
               <!-- fix: поместить селекты в компонент superSelect -->
               <div class="row">
@@ -819,7 +819,7 @@ onSubmit(evt) {
 	// -------------------------------------
 	showSetCoordsDialog() {    
     
-    $("#ShowMapModal").modal("show");
+    $("#ShowMapModal").modal("show"); // отобразить окно
 
     if (!navigator.geolocation) {    
       console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается
@@ -839,7 +839,7 @@ onSubmit(evt) {
 	// ---------------------------------
 	setCoords() {
 
-    $("#ShowMapModal").modal("hide");
+    $("#ShowMapModal").modal("hide"); // скрыть окно
 
 		this.$root.advert_data.adv_coords=[];
 		this.$root.advert_data.adv_coords=mapCoords;

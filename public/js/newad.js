@@ -2663,7 +2663,7 @@ function forEach(data, callback) {
     });
   }), _defineProperty(_methods, "showSetCoordsDialog", function showSetCoordsDialog() {
 
-    __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#ShowMapModal").modal("show");
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#ShowMapModal").modal("show"); // отобразить окно
 
     if (!navigator.geolocation) {
       console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается
@@ -2677,7 +2677,7 @@ function forEach(data, callback) {
     }
   }), _defineProperty(_methods, "setCoords", function setCoords() {
 
-    __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#ShowMapModal").modal("hide");
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#ShowMapModal").modal("hide"); // скрыть окно
 
     this.$root.advert_data.adv_coords = [];
     this.$root.advert_data.adv_coords = mapCoords;
@@ -39630,7 +39630,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "submit": _vm.onSubmit
     }
-  }, [(_vm.root) ? _c('div') : _vm._e(), _vm._v(" "), (_vm.transport && _vm.category) ? _c('transport') : _vm._e(), _vm._v(" "), (_vm.real_estate) ? _c('h1', [_vm._v("nedvizh")]) : _vm._e(), _vm._v(" "), _c('div', {
+  }, [(_vm.root) ? _c('div') : _vm._e(), _vm._v(" "), (_vm.transport && _vm.category) ? _c('transport') : _vm._e(), _vm._v(" "), (_vm.real_estate) ? _c('h1', [_vm._v("недвижимость")]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, [(_vm.appliances && _vm.category) ? _c('div', {
     staticClass: "col-11 col-xl-5 col-md-5 col-sm-12"
