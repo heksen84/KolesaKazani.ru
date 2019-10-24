@@ -15,8 +15,7 @@
                 <option v-for="item in type_of_building" :value="item.value" :key="item.value">{{ item.text }}</option>
               </select>
           </div>
-
-          
+           
       </div>
   </div>
 </template>
