@@ -2727,6 +2727,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -40447,21 +40452,31 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v(_vm._s(item.text))])
   }), 0)]) : _vm._e(), _vm._v(" "), (_vm.selected.apartment && _vm.selected_type == 0 || _vm.selected_type == 1) ? _c('div', {
     staticClass: "col-auto form-group"
-  }, [_c('label', {
-    attrs: {
-      "for": "floor_num"
-    }
-  }, [_vm._v("Этаж:")]), _vm._v(" "), _c('superInput', {
+  }, [_c('label', [_vm._v("Этаж:")]), _vm._v(" "), _c('superInput', {
     attrs: {
       "type": "number",
-      "maxlength": "4"
+      "maxlength": "3"
     },
     model: {
-      value: (_vm.test),
+      value: (_vm.selected_floor),
       callback: function($$v) {
-        _vm.test = $$v
+        _vm.selected_floor = $$v
       },
-      expression: "test"
+      expression: "selected_floor"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), (_vm.selected.apartment && _vm.selected_type == 0 && _vm.selected_type != 1 || _vm.selected_type == 2) ? _c('div', {
+    staticClass: "col-auto form-group"
+  }, [_c('label', [_vm._v("Кол-во комнат:")]), _vm._v(" "), _c('superInput', {
+    attrs: {
+      "type": "number",
+      "maxlength": "2"
+    },
+    model: {
+      value: (_vm.selected_number_of_rooms),
+      callback: function($$v) {
+        _vm.selected_number_of_rooms = $$v
+      },
+      expression: "selected_number_of_rooms"
     }
   })], 1) : _vm._e()])])
 },staticRenderFns: []}

@@ -18,8 +18,13 @@
           </div>
 
           <div class="col-auto form-group" v-if="selected.apartment && selected_type==0 || selected_type==1">
-            <label for="floor_num">Этаж:</label>
-              <superInput type="number" v-model="test" maxlength="4"></superInput>
+            <label>Этаж:</label>
+            <superInput type="number" v-model="selected_floor" maxlength="3"></superInput>
+          </div>
+
+          <div class="col-auto form-group" v-if="selected.apartment && selected_type==0 && selected_type!=1 || selected_type==2">
+            <label>Кол-во комнат:</label>
+              <superInput type="number" v-model="selected_number_of_rooms" maxlength="2"></superInput>
           </div>
 
       </div>
@@ -104,7 +109,7 @@ export default {
     this.realestate_chars.property_num = 0;
     this.realestate_chars.object_type = 0;
   },
-  
+
   methods: {
   
     // тип строения: дом, дача, коттедж
