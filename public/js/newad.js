@@ -2697,6 +2697,14 @@ function forEach(data, callback) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_superInput_vue__ = __webpack_require__("./resources/assets/js/mix/views/components/superInput.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_superInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_superInput_vue__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2720,9 +2728,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+
+  components: {
+    superInput: __WEBPACK_IMPORTED_MODULE_0__components_superInput_vue___default.a
+  },
+
   data: function data() {
     return {
+
+      test: 0,
 
       realestate_chars: null,
 
@@ -2767,7 +2785,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     this.realestate_chars.object_type = 0;
   },
 
-  components: {},
+
   methods: {
 
     // тип строения: дом, дача, коттедж
@@ -40361,7 +40379,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col-auto form-group"
   }, [_c('label', {
     attrs: {
-      "for": "transport_type"
+      "for": "selected_type"
     }
   }, [_vm._v("Вид недвижимости:")]), _vm._v(" "), _c('select', {
     directives: [{
@@ -40372,7 +40390,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control",
     attrs: {
-      "id": "transport_type"
+      "id": "selected_type"
     },
     on: {
       "change": [function($event) {
@@ -40396,7 +40414,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col-auto form-group"
   }, [_c('label', {
     attrs: {
-      "for": "transport_type"
+      "for": "type_of_building"
     }
   }, [_vm._v("Вид строения:")]), _vm._v(" "), _c('select', {
     directives: [{
@@ -40407,7 +40425,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control",
     attrs: {
-      "id": "transport_type"
+      "id": "type_of_building"
     },
     on: {
       "change": [function($event) {
@@ -40427,7 +40445,25 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "value": item.value
       }
     }, [_vm._v(_vm._s(item.text))])
-  }), 0)]) : _vm._e()])])
+  }), 0)]) : _vm._e(), _vm._v(" "), (_vm.selected.apartment && _vm.selected_type == 0 || _vm.selected_type == 1) ? _c('div', {
+    staticClass: "col-auto form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "floor_num"
+    }
+  }, [_vm._v("Этаж:")]), _vm._v(" "), _c('superInput', {
+    attrs: {
+      "type": "number",
+      "maxlength": "4"
+    },
+    model: {
+      value: (_vm.test),
+      callback: function($$v) {
+        _vm.test = $$v
+      },
+      expression: "test"
+    }
+  })], 1) : _vm._e()])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

@@ -1,53 +1,65 @@
 <template>
-  <!--<div class="form-inline" v-if="$store.state.deal_selected">-->
+
   <div>
-    <div class="row">        
+    <div class="row">
+
           <div class="col-auto form-group">
-            <label for="transport_type">Вид недвижимости:</label>
-              <select id="transport_type" class="form-control" v-model="selected_type" @change="changeProperyType">                          
+            <label for="selected_type">Вид недвижимости:</label>
+              <select id="selected_type" class="form-control" v-model="selected_type" @change="changeProperyType">                          
                 <option v-for="item in type" :value="item.value" :key="item.value">{{item.text}}</option>
               </select>
           </div>
 
           <div class="col-auto form-group" v-if="selected_type==2">
-            <label for="transport_type">Вид строения:</label>
-              <select id="transport_type" class="form-control" v-model="selected_type_of_building" @change="changeTypeOfBuilding">                          
+            <label for="type_of_building">Вид строения:</label>
+              <select id="type_of_building" class="form-control" v-model="selected_type_of_building" @change="changeTypeOfBuilding">                          
                 <option v-for="item in type_of_building" :value="item.value" :key="item.value">{{ item.text }}</option>
               </select>
           </div>
-           
+
+          <div class="col-auto form-group" v-if="selected.apartment && selected_type==0 || selected_type==1">
+            <label for="floor_num">Этаж:</label>
+              <superInput type="number" v-model="test" maxlength="4"></superInput>
+          </div>
+
       </div>
   </div>
 </template>
 
 <script>
+
+import superInput from "../components/superInput.vue"
+
 export default {
+
+  components: {
+    superInput
+  },
+
   data () {
     return 	{
 
+      test: 0,
+
         realestate_chars: null,
 
-        type_of_building: 
-        [
+        type_of_building: [
           { value: 0, text: 'Дом' },
           { value: 1, text: 'Дача' },
           { value: 2, text: 'Коттедж' }         
         ],
 
-        object_type: 
-        [
+        object_type: [
           { value: 0, text: 'Вторичка' },
           { value: 1, text: 'Новостройка' },
          
         ],
-        property_rights: 
-        [
+        property_rights: [
           { value: 0, text: 'Собственник' },
           { value: 1, text: 'Посредник' },
          
         ],
-        type: 
-        [
+        type: [
           { value: null, text: '-- Выберите вид недвижимости --' },
           { value: 0, text: 'Квартира' },
           { value: 1, text: 'Комната' },
@@ -92,7 +104,7 @@ export default {
     this.realestate_chars.property_num = 0;
     this.realestate_chars.object_type = 0;
   },
-  components: {},
+  
   methods: {
   
     // тип строения: дом, дача, коттедж
