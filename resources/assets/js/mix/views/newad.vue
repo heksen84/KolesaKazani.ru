@@ -61,8 +61,7 @@
 		        <div v-if="root"></div>
 
               <transport v-if="transport && category"/>    
-
-              <h1 v-if="real_estate">недвижимость</h1>
+              <realEstate v-if="real_estate"/>
 
               <!-- fix: поместить селекты в компонент superSelect -->
               <div class="row">
@@ -219,6 +218,7 @@
 import $ from "jquery";
 import bootstrap from "bootstrap";
 import transport from "./subcategories/transport.vue"
+import realEstate from "./subcategories/realEstate.vue"
 import superInput from "./components/superInput.vue"
 //import superSelect from "./components/superSelect.vue"
 import { post, get } from '../../helpers/api'
@@ -291,6 +291,7 @@ props: ["categories", "dealtypes", "regions"], // Входящие данные
 
 components: { 
   transport,
+  realEstate,
   superInput,
   //superSelect
 },

@@ -1831,14 +1831,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_bootstrap__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__subcategories_transport_vue__ = __webpack_require__("./resources/assets/js/mix/views/subcategories/transport.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__subcategories_transport_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__subcategories_transport_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_superInput_vue__ = __webpack_require__("./resources/assets/js/mix/views/components/superInput.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_superInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_superInput_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__subcategories_realEstate_vue__ = __webpack_require__("./resources/assets/js/mix/views/subcategories/realEstate.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__subcategories_realEstate_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__subcategories_realEstate_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_superInput_vue__ = __webpack_require__("./resources/assets/js/mix/views/components/superInput.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_superInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_superInput_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
 var _methods;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
 //
 //
 //
@@ -2060,6 +2061,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 //import superSelect from "./components/superSelect.vue"
 
 
@@ -2130,7 +2132,8 @@ function forEach(data, callback) {
 
   components: {
     transport: __WEBPACK_IMPORTED_MODULE_2__subcategories_transport_vue___default.a,
-    superInput: __WEBPACK_IMPORTED_MODULE_3__components_superInput_vue___default.a
+    realEstate: __WEBPACK_IMPORTED_MODULE_3__subcategories_realEstate_vue___default.a,
+    superInput: __WEBPACK_IMPORTED_MODULE_4__components_superInput_vue___default.a
     //superSelect
   },
 
@@ -2221,7 +2224,7 @@ function forEach(data, callback) {
       // -------------------------------------------------------------
       // Получить города / сёлы
       // -------------------------------------------------------------
-      Object(__WEBPACK_IMPORTED_MODULE_4__helpers_api__["a" /* get */])("getPlaces?region_id=" + this.regions_model).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_5__helpers_api__["a" /* get */])("getPlaces?region_id=" + this.regions_model).then(function (res) {
         _this.places = res.data;
         _this.places_model = null;
       }).catch(function (err) {});
@@ -2621,7 +2624,7 @@ function forEach(data, callback) {
     // -------------------------------
     if (subItems.indexOf(this.category) != -1) {
       // запрос
-      Object(__WEBPACK_IMPORTED_MODULE_4__helpers_api__["a" /* get */])("getSubCategoryDataById?id=" + this.category).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_5__helpers_api__["a" /* get */])("getSubCategoryDataById?id=" + this.category).then(function (res) {
         _this2.subCategoryItems = res.data;
       }).catch(function (err) {
         console.log(err);
@@ -2684,6 +2687,163 @@ function forEach(data, callback) {
     this.coordinates_set = true;
   }), _methods)
 
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/mix/views/subcategories/realEstate.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+
+      realestate_chars: null,
+
+      type_of_building: [{ value: 0, text: 'Дом' }, { value: 1, text: 'Дача' }, { value: 2, text: 'Коттедж' }],
+
+      object_type: [{ value: 0, text: 'Вторичка' }, { value: 1, text: 'Новостройка' }],
+      property_rights: [{ value: 0, text: 'Собственник' }, { value: 1, text: 'Посредник' }],
+      type: [{ value: null, text: '-- Выберите вид недвижимости --' }, { value: 0, text: 'Квартира' }, { value: 1, text: 'Комната' }, { value: 2, text: 'Дом, дача, коттедж' }, { value: 3, text: 'Земельный участок' }, { value: 5, text: 'Гараж или машиноместо' }, { value: 6, text: 'Коммерческая недвижимость' }, { value: 7, text: 'Недвижимость за рубежом' }],
+
+      selected_type_of_building: 0,
+      selected_type: null,
+      selected_floor: 1,
+      selected_number_of_floors: 5,
+      selected_number_of_rooms: 1,
+      input_area: null,
+      selected_property_rights: 0,
+      selected_object_type: 0,
+
+      selected: {
+        apartment: false,
+        room: false,
+        house_cottage: false,
+        land_plot: false,
+        garage: false,
+        commercial_property: false,
+        property_abroad: false
+      }
+    };
+  },
+  created: function created() {
+
+    this.realestate_chars = this.$root.advert_data; // указатель на массив объявления
+
+    // значения недвижимости по умолчанию
+    this.realestate_chars.property_type = 0;
+    this.realestate_chars.type_of_building = 0, // дом
+    this.realestate_chars.floor_num = 1;
+    this.realestate_chars.number_of_floors = 5;
+    this.realestate_chars.number_of_rooms = 1;
+    this.realestate_chars.area_num = 0;
+    this.realestate_chars.property_num = 0;
+    this.realestate_chars.object_type = 0;
+  },
+
+  components: {},
+  methods: {
+
+    // тип строения: дом, дача, коттедж
+    changeTypeOfBuilding: function changeTypeOfBuilding(type) {
+      this.realestate_chars.type_of_building = type;
+    },
+
+
+    // --------------------------------
+    // изменения в недвижимости
+    // --------------------------------
+    changeProperyType: function changeProperyType(property_id) {
+
+      console.log("Вид недвижимости: " + property_id);
+
+      this.realestate_chars.property_type = property_id;
+
+      this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления");
+      this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
+      this.$store.commit("SetRealEstateAreaLabelText", "default");
+      this.$store.commit("ShowFinalFields", true); // показываю дополнительные поля
+
+      switch (property_id) {
+        case null:
+          {
+            this.$store.commit("ShowFinalFields", false);
+            break;
+          }
+        case 0:
+          {
+            this.selected.apartment = true;
+            break;
+          }
+        case 1:
+          {
+            break;
+          }
+        case 2:
+          {
+            break;
+          }
+        case 3:
+          {
+            this.$store.commit("SetRealEstateAreaLabelText", "Площадь (сот.):");
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам земельный участок");
+            break;
+          }
+        case 4:
+          {
+            break;
+          }
+        case 5:
+          {
+            break;
+          }
+        case 6:
+          {
+            break;
+          }
+        case 7:
+          {
+            break;
+          }
+        case 8:
+          {
+            break;
+          }
+      }
+    },
+    changeFloor: function changeFloor(floor_num) {
+      this.realestate_chars.floor_num = floor_num;
+    },
+    changeNumberOfFloors: function changeNumberOfFloors(number_of_floors) {
+      this.realestate_chars.number_of_floors = number_of_floors;
+    },
+    changeNumberOfRooms: function changeNumberOfRooms(number_of_rooms) {
+      this.realestate_chars.number_of_rooms = number_of_rooms;
+    },
+    changeTotalArea: function changeTotalArea(area_num) {
+
+      if (area_num >= 10000000) return this.input_area;
+
+      this.realestate_chars.area_num = area_num;
+      return area_num;
+    },
+    changePropertyRights: function changePropertyRights(property_num) {
+      this.realestate_chars.property_num = property_num;
+    },
+    changeObjectType: function changeObjectType(object_type) {
+      this.realestate_chars.object_type = object_type;
+    }
+  }
 });
 
 /***/ }),
@@ -39630,7 +39790,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "submit": _vm.onSubmit
     }
-  }, [(_vm.root) ? _c('div') : _vm._e(), _vm._v(" "), (_vm.transport && _vm.category) ? _c('transport') : _vm._e(), _vm._v(" "), (_vm.real_estate) ? _c('h1', [_vm._v("недвижимость")]) : _vm._e(), _vm._v(" "), _c('div', {
+  }, [(_vm.root) ? _c('div') : _vm._e(), _vm._v(" "), (_vm.transport && _vm.category) ? _c('transport') : _vm._e(), _vm._v(" "), (_vm.real_estate) ? _c('realEstate') : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, [(_vm.appliances && _vm.category) ? _c('div', {
     staticClass: "col-11 col-xl-5 col-md-5 col-sm-12"
@@ -40173,6 +40333,22 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-4e298146", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler.js?{\"id\":\"data-v-7942be73\"}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/mix/views/subcategories/realEstate.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_vm._v("\n  Недвижимость\n")])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-7942be73", module.exports)
   }
 }
 
@@ -53505,6 +53681,41 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-4e298146", Component.options)
   } else {
     hotAPI.reload("data-v-4e298146", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/mix/views/subcategories/realEstate.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")(
+  /* script */
+  __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/mix/views/subcategories/realEstate.vue"),
+  /* template */
+  __webpack_require__("./node_modules/vue-loader/lib/template-compiler.js?{\"id\":\"data-v-7942be73\"}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/mix/views/subcategories/realEstate.vue"),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "C:\\OSPanel\\domains\\damelya\\resources\\assets\\js\\mix\\views\\subcategories\\realEstate.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] realEstate.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7942be73", Component.options)
+  } else {
+    hotAPI.reload("data-v-7942be73", Component.options)
   }
 })()}
 
