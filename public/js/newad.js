@@ -2052,6 +2052,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 // ---------------------------
@@ -2696,6 +2697,22 @@ function forEach(data, callback) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -39340,7 +39357,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('span', [_c('div', {
+  return _c('div', [_c('div', {
     staticClass: "row"
   }, [_c('div', {
     staticClass: "col-auto form-group"
@@ -40342,7 +40359,79 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_vm._v("\n  Недвижимость\n")])
+  return _c('div', [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-auto form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "transport_type"
+    }
+  }, [_vm._v("Вид недвижимости:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.selected_type),
+      expression: "selected_type"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "transport_type"
+    },
+    on: {
+      "change": [function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.selected_type = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }, _vm.changeProperyType]
+    }
+  }, _vm._l((_vm.type), function(item) {
+    return _c('option', {
+      key: item.value,
+      domProps: {
+        "value": item.value
+      }
+    }, [_vm._v(_vm._s(item.text))])
+  }), 0)]), _vm._v(" "), (_vm.selected_type == 2) ? _c('div', {
+    staticClass: "col-auto form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "transport_type"
+    }
+  }, [_vm._v("Вид строения:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.selected_type_of_building),
+      expression: "selected_type_of_building"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "transport_type"
+    },
+    on: {
+      "change": [function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.selected_type_of_building = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }, _vm.changeTypeOfBuilding]
+    }
+  }, _vm._l((_vm.type_of_building), function(item) {
+    return _c('option', {
+      key: item.value,
+      domProps: {
+        "value": item.value
+      }
+    }, [_vm._v(_vm._s(item.text))])
+  }), 0)]) : _vm._e()])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

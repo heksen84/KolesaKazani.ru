@@ -1,7 +1,23 @@
 <template>
   <!--<div class="form-inline" v-if="$store.state.deal_selected">-->
   <div>
-    Недвижимость
+    <div class="row">        
+          <div class="col-auto form-group">
+            <label for="transport_type">Вид недвижимости:</label>
+              <select id="transport_type" class="form-control" v-model="selected_type" @change="changeProperyType">                          
+                <option v-for="item in type" :value="item.value" :key="item.value">{{item.text}}</option>
+              </select>
+          </div>
+
+          <div class="col-auto form-group" v-if="selected_type==2">
+            <label for="transport_type">Вид строения:</label>
+              <select id="transport_type" class="form-control" v-model="selected_type_of_building" @change="changeTypeOfBuilding">                          
+                <option v-for="item in type_of_building" :value="item.value" :key="item.value">{{ item.text }}</option>
+              </select>
+          </div>
+
+          
+      </div>
   </div>
 </template>
 

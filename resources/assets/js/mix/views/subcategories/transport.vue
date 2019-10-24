@@ -1,6 +1,5 @@
 <template>
-<span>  
-        
+<div>  
         <div class="row">        
           <div class="col-auto form-group">
             <label for="transport_type">Вид транспорта:</label>
@@ -64,9 +63,7 @@
                 </select>
             </div>
           </div>
-
-      </span>    
-  
+      </div>    
 </template>
 
 <script>

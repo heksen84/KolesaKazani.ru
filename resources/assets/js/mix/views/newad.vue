@@ -7,6 +7,7 @@
   </div>
 
   <div v-show="!serviceUnavailable">
+    
   <!-- карта -->
   <div class="modal fade bd-example-modal-lg" id="ShowMapModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
