@@ -2732,6 +2732,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -40478,7 +40497,77 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "selected_number_of_rooms"
     }
-  })], 1) : _vm._e()])])
+  })], 1) : _vm._e(), _vm._v(" "), (_vm.selected.apartment && _vm.selected_type == 0 && _vm.selected_type != 1 || _vm.selected_type == 2) ? _c('div', {
+    staticClass: "col-auto form-group"
+  }, [_c('label', [_vm._v("Площадь:")]), _vm._v(" "), _c('superInput', {
+    attrs: {
+      "type": "number",
+      "maxlength": "2"
+    },
+    model: {
+      value: (_vm.selected_number_of_rooms),
+      callback: function($$v) {
+        _vm.selected_number_of_rooms = $$v
+      },
+      expression: "selected_number_of_rooms"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), (_vm.selected_type != null) ? _c('div', {
+    staticClass: "col-auto form-group"
+  }, [_c('label', [_vm._v("Право собственности:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.selected_property_rights),
+      expression: "selected_property_rights"
+    }],
+    staticClass: "form-control",
+    on: {
+      "change": [function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.selected_property_rights = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }, _vm.changePropertyRights]
+    }
+  }, _vm._l((_vm.property_rights), function(item) {
+    return _c('option', {
+      key: item.value,
+      domProps: {
+        "value": item.value
+      }
+    }, [_vm._v(_vm._s(item.text))])
+  }), 0)]) : _vm._e(), _vm._v(" "), (_vm.selected_type != null && _vm.selected_type != 3 && _vm.selected_type != 5) ? _c('div', {
+    staticClass: "col-auto form-group"
+  }, [_c('label', [_vm._v("Вид объекта:")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.selected_object_type),
+      expression: "selected_object_type"
+    }],
+    staticClass: "form-control",
+    on: {
+      "change": [function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.selected_object_type = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }, _vm.changeObjectType]
+    }
+  }, _vm._l((_vm.object_type), function(item) {
+    return _c('option', {
+      key: item.value,
+      domProps: {
+        "value": item.value
+      }
+    }, [_vm._v(_vm._s(item.text))])
+  }), 0)]) : _vm._e()])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

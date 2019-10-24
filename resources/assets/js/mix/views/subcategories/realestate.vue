@@ -27,6 +27,25 @@
               <superInput type="number" v-model="selected_number_of_rooms" maxlength="2"></superInput>
           </div>
 
+          <div class="col-auto form-group" v-if="selected.apartment && selected_type==0 && selected_type!=1 || selected_type==2">
+            <label>Площадь:</label>
+              <superInput type="number" v-model="selected_number_of_rooms" maxlength="2"></superInput>
+          </div>
+
+          <div class="col-auto form-group" v-if="selected_type!=null">
+            <label>Право собственности:</label>
+              <select class="form-control" v-model="selected_property_rights" @change="changePropertyRights">                          
+                <option v-for="item in property_rights" :value="item.value" :key="item.value">{{ item.text }}</option>
+              </select>
+          </div>
+
+          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=3 && selected_type!=5">
+            <label>Вид объекта:</label>
+              <select class="form-control" v-model="selected_object_type" @change="changeObjectType">                          
+                <option v-for="item in object_type" :value="item.value" :key="item.value">{{ item.text }}</option>
+              </select>
+          </div>
+
       </div>
   </div>
 </template>
