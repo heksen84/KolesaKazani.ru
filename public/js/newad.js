@@ -40292,7 +40292,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "smallmap"
     }
   }), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-link form-group",
+    staticClass: "btn btn-primary form-group",
     attrs: {
       "type": "button"
     },
