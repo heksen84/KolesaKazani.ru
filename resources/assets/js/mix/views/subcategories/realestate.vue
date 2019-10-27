@@ -1,8 +1,6 @@
 <template>
-
   <div>
     <div class="row">
-
           <div class="col-auto form-group">
             <label for="selected_type">Вид недвижимости:</label>
               <select id="selected_type" class="form-control" v-model="selected_type" @change="changeProperyType">                          
@@ -45,7 +43,6 @@
                 <option v-for="item in object_type" :value="item.value" :key="item.value">{{ item.text }}</option>
               </select>
           </div>
-
       </div>
   </div>
 </template>
@@ -63,8 +60,6 @@ export default {
   data () {
     return 	{
 
-      test: 0,
-
         realestate_chars: null,
 
         type_of_building: [
@@ -79,11 +74,13 @@ export default {
           { value: 1, text: 'Новостройка' },
          
         ],
+
         property_rights: [
           { value: 0, text: 'Собственник' },
           { value: 1, text: 'Посредник' },
          
         ],
+
         type: [
           { value: null, text: '-- Выберите вид недвижимости --' },
           { value: 0, text: 'Квартира' },
@@ -100,7 +97,7 @@ export default {
         selected_number_of_floors: 5,
         selected_property_rights: 0,
         selected_object_type: 0,
-        
+
         input_floor: null,
         input_number_of_rooms: null,
         input_area: null,

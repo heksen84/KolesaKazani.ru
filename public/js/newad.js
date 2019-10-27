@@ -2748,9 +2748,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 
@@ -2764,14 +2761,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
 
-      test: 0,
-
       realestate_chars: null,
 
       type_of_building: [{ value: 0, text: 'Дом' }, { value: 1, text: 'Дача' }, { value: 2, text: 'Коттедж' }, { value: 3, text: 'Другое' }],
 
       object_type: [{ value: 0, text: 'Вторичка' }, { value: 1, text: 'Новостройка' }],
+
       property_rights: [{ value: 0, text: 'Собственник' }, { value: 1, text: 'Посредник' }],
+
       type: [{ value: null, text: '-- Выберите вид недвижимости --' }, { value: 0, text: 'Квартира' }, { value: 1, text: 'Комната' }, { value: 2, text: 'Дом, дача, коттедж' }, { value: 3, text: 'Земельный участок' }, { value: 5, text: 'Гараж или машиноместо' }, { value: 6, text: 'Коммерческая недвижимость' }, { value: 7, text: 'Недвижимость за рубежом' }],
 
       selected_type_of_building: 0,
