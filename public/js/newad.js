@@ -2771,25 +2771,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       type: [{ value: null, text: '-- Выберите вид недвижимости --' }, { value: 0, text: 'Квартира' }, { value: 1, text: 'Комната' }, { value: 2, text: 'Дом, дача, коттедж' }, { value: 3, text: 'Земельный участок' }, { value: 5, text: 'Гараж или машиноместо' }, { value: 6, text: 'Коммерческая недвижимость' }, { value: 7, text: 'Недвижимость за рубежом' }],
 
+      // модели для селектов
       selected_type_of_building: 0,
       selected_type: null,
       selected_number_of_floors: 5,
       selected_property_rights: 0,
       selected_object_type: 0,
 
+      // модели для инпутов
       input_floor: null,
       input_number_of_rooms: null,
-      input_area: null,
+      input_area: null
 
-      selected: {
-        apartment: false,
-        room: false,
-        house_cottage: false,
-        land_plot: false,
-        garage: false,
-        commercial_property: false,
-        property_abroad: false
-      }
+      /*selected: {
+        apartment:false,
+        room:false,
+        house_cottage:false,
+        land_plot:false,
+        garage:false,
+        commercial_property:false,
+        property_abroad:false
+      }*/
     };
   },
   created: function created() {
@@ -2821,10 +2823,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // --------------------------------
     changeProperyType: function changeProperyType(property_id) {
 
-      console.log("Вид недвижимости: " + property_id);
+      //console.log("Вид недвижимости: "+property_id)
 
       this.realestate_chars.property_type = property_id;
-
       this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления");
       this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
       this.$store.commit("SetRealEstateAreaLabelText", "default");
@@ -2838,7 +2839,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
         case 0:
           {
-            this.selected.apartment = true;
+            //this.selected.apartment=true;            
             break;
           }
         case 1:

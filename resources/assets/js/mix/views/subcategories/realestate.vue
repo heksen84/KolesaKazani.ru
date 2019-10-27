@@ -92,17 +92,19 @@ export default {
           { value: 7, text: 'Недвижимость за рубежом' }
         ],
 
+        // модели для селектов
         selected_type_of_building: 0,
         selected_type: null,
         selected_number_of_floors: 5,
         selected_property_rights: 0,
         selected_object_type: 0,
 
+        // модели для инпутов
         input_floor: null,
         input_number_of_rooms: null,
         input_area: null,
 
-        selected: {
+        /*selected: {
           apartment:false,
           room:false,
           house_cottage:false,
@@ -110,7 +112,7 @@ export default {
           garage:false,
           commercial_property:false,
           property_abroad:false
-        }
+        }*/
 		}
 	},
   created() {
@@ -140,10 +142,9 @@ export default {
     // --------------------------------
     changeProperyType(property_id) {
 
-        console.log("Вид недвижимости: "+property_id)
+        //console.log("Вид недвижимости: "+property_id)
         
         this.realestate_chars.property_type = property_id;
-
         this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления"); 
         this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
         this.$store.commit("SetRealEstateAreaLabelText", "default");
@@ -155,7 +156,7 @@ export default {
             break;
           }
           case 0: {
-            this.selected.apartment=true;            
+            //this.selected.apartment=true;            
             break;
           }
           case 1: {
