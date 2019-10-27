@@ -40434,7 +40434,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "value": item.value
       }
     }, [_vm._v(_vm._s(item.text))])
-  }), 0)]), _vm._v(" "), (_vm.selected_type == 2) ? _c('div', {
+  }), 0)]), _vm._v(" "), (_vm.selected_type != null && _vm.selected_type != 0 && _vm.selected_type != 1) ? _c('div', {
     staticClass: "col-auto form-group"
   }, [_c('label', {
     attrs: {
@@ -40469,7 +40469,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "value": item.value
       }
     }, [_vm._v(_vm._s(item.text))])
-  }), 0)]) : _vm._e(), _vm._v(" "), (_vm.selected.apartment && _vm.selected_type == 0 || _vm.selected_type == 1) ? _c('div', {
+  }), 0)]) : _vm._e(), _vm._v(" "), (_vm.selected_type != null && _vm.selected_type != 2) ? _c('div', {
     staticClass: "col-auto form-group"
   }, [_c('label', [_vm._v("Этаж:")]), _vm._v(" "), _c('superInput', {
     attrs: {
@@ -40483,7 +40483,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "selected_floor"
     }
-  })], 1) : _vm._e(), _vm._v(" "), (_vm.selected.apartment && _vm.selected_type == 0 && _vm.selected_type != 1 || _vm.selected_type == 2) ? _c('div', {
+  })], 1) : _vm._e(), _vm._v(" "), (_vm.selected_type != null && _vm.selected_type != 1) ? _c('div', {
     staticClass: "col-auto form-group"
   }, [_c('label', [_vm._v("Кол-во комнат:")]), _vm._v(" "), _c('superInput', {
     attrs: {
@@ -40497,7 +40497,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "selected_number_of_rooms"
     }
-  })], 1) : _vm._e(), _vm._v(" "), (_vm.selected.apartment && _vm.selected_type == 0 && _vm.selected_type != 1 || _vm.selected_type == 2) ? _c('div', {
+  })], 1) : _vm._e(), _vm._v(" "), (_vm.selected_type != null) ? _c('div', {
     staticClass: "col-auto form-group"
   }, [_c('label', [_vm._v("Площадь:")]), _vm._v(" "), _c('superInput', {
     attrs: {
@@ -40539,7 +40539,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "value": item.value
       }
     }, [_vm._v(_vm._s(item.text))])
-  }), 0)]) : _vm._e(), _vm._v(" "), (_vm.selected_type != null && _vm.selected_type != 3 && _vm.selected_type != 5) ? _c('div', {
+  }), 0)]) : _vm._e(), _vm._v(" "), (_vm.selected_type != null && _vm.selected_type != 1) ? _c('div', {
     staticClass: "col-auto form-group"
   }, [_c('label', [_vm._v("Вид объекта:")]), _vm._v(" "), _c('select', {
     directives: [{

@@ -10,24 +10,24 @@
               </select>
           </div>
 
-          <div class="col-auto form-group" v-if="selected_type==2">
+          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=0 && selected_type!=1">
             <label for="type_of_building">Вид строения:</label>
               <select id="type_of_building" class="form-control" v-model="selected_type_of_building" @change="changeTypeOfBuilding">                          
                 <option v-for="item in type_of_building" :value="item.value" :key="item.value">{{ item.text }}</option>
               </select>
           </div>
 
-          <div class="col-auto form-group" v-if="selected.apartment && selected_type==0 || selected_type==1">
+          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=2">
             <label>Этаж:</label>
             <superInput type="number" v-model="selected_floor" maxlength="3"></superInput>
           </div>
 
-          <div class="col-auto form-group" v-if="selected.apartment && selected_type==0 && selected_type!=1 || selected_type==2">
+          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=1">
             <label>Кол-во комнат:</label>
               <superInput type="number" v-model="selected_number_of_rooms" maxlength="2"></superInput>
           </div>
 
-          <div class="col-auto form-group" v-if="selected.apartment && selected_type==0 && selected_type!=1 || selected_type==2">
+          <div class="col-auto form-group" v-if="selected_type!=null">
             <label>Площадь:</label>
               <superInput type="number" v-model="selected_number_of_rooms" maxlength="2"></superInput>
           </div>
@@ -39,7 +39,7 @@
               </select>
           </div>
 
-          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=3 && selected_type!=5">
+          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=1">
             <label>Вид объекта:</label>
               <select class="form-control" v-model="selected_object_type" @change="changeObjectType">                          
                 <option v-for="item in object_type" :value="item.value" :key="item.value">{{ item.text }}</option>
