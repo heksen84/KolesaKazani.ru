@@ -37,12 +37,10 @@
           <div class="row" v-if="getComTransport && selected.helm_position!=null">      
             <div class="col-auto form-group" >
               <label for="car_year">Год выпуска:</label>
-                <!--<input type="number" id="car_year" class="form-control" style="width:120px"/>-->
                 <superInput type="number" v-model="release_date" maxlength="4" id="car_year" @input="SetReleaseDate"></superInput>
             </div>
             <div class="col-auto form-group">
               <label for="car_mileage">Пробег(км):</label>
-                <!--<input type="number" id="car_mileage" class="form-control" v-model="mileage" style="width:145px" :formatter="SetMileage" placeholder="0" required/>-->
                 <superInput type="number" v-model="mileage" maxlength="10" id="car_mileage" @input="SetMileage"></superInput>
             </div>
           
@@ -158,13 +156,12 @@ export default {
     -----------------------------------*/
     selectTransportType() {
 
-      console.log("Тип транспорта :"+this.selected.type_transport)
+      //console.log("Тип транспорта :"+this.selected.type_transport)
 
       this.$store.commit("SetRequiredInfo", true);
       this.$store.commit("ResetField", "price");
       this.$store.commit("SetPlaceholderInfoText",  "default");
-      this.$store.commit("SetInfoLabelDescription", "default");
-            
+      this.$store.commit("SetInfoLabelDescription", "default");       
       this.selected.model = null;
       this.selected.carmark = null;
       
@@ -195,7 +192,6 @@ export default {
           get("/getCarsMarks").then((res) => {            
             this.carmark = res.data;
             this.carmarkLoaded=true;
-            //console.log(this.carmark);
           }).catch((err) => { console.log(err); });
           break;
        }
@@ -280,7 +276,6 @@ export default {
       this.mileage=null;
       this.selected.fuel_type=null;
       this.selected.car_customs=null;
-
       this.transport_chars.model_id = this.selected.model;      
       this.$store.commit("ShowCommonTransport", true);    
       

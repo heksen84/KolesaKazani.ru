@@ -2965,8 +2965,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -3041,13 +3039,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     selectTransportType: function selectTransportType() {
       var _this = this;
 
-      console.log("Тип транспорта :" + this.selected.type_transport);
+      //console.log("Тип транспорта :"+this.selected.type_transport)
 
       this.$store.commit("SetRequiredInfo", true);
       this.$store.commit("ResetField", "price");
       this.$store.commit("SetPlaceholderInfoText", "default");
       this.$store.commit("SetInfoLabelDescription", "default");
-
       this.selected.model = null;
       this.selected.carmark = null;
 
@@ -3078,7 +3075,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/getCarsMarks").then(function (res) {
               _this.carmark = res.data;
               _this.carmarkLoaded = true;
-              //console.log(this.carmark);
             }).catch(function (err) {
               console.log(err);
             });
@@ -3174,7 +3170,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.mileage = null;
       this.selected.fuel_type = null;
       this.selected.car_customs = null;
-
       this.transport_chars.model_id = this.selected.model;
       this.$store.commit("ShowCommonTransport", true);
 
