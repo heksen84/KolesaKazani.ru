@@ -2748,6 +2748,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2772,18 +2777,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // модели для селектов
       selected_type_of_building: 0,
       selected_type: null,
-      selected_number_of_floors: 5,
       selected_property_rights: 0,
       selected_object_type: 0,
 
       // модели для инпутов
       input_floor: null,
+      input_number_of_floors: null,
       input_number_of_rooms: null,
       input_area: null
 
     };
   },
   created: function created() {
+
     this.realestate_chars = this.$root.advert_data; // указатель на массив объявления
     // значения недвижимости по умолчанию
     this.realestate_chars.property_type = 0;
@@ -2819,6 +2825,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$store.commit("ShowFinalFields", true); // показываю дополнительные поля
 
       switch (property_id) {
+
         case null:
           {
             this.$store.commit("ShowFinalFields", false);
@@ -40463,6 +40470,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.input_floor = $$v
       },
       expression: "input_floor"
+    }
+  })], 1) : _vm._e(), _vm._v(" "), (_vm.selected_type != null && _vm.selected_type != 2 && _vm.selected_type != 2 && _vm.selected_type != 3 && _vm.selected_type != 5) ? _c('div', {
+    staticClass: "col-auto form-group"
+  }, [_c('label', [_vm._v("Кол-во этажей:")]), _vm._v(" "), _c('superInput', {
+    attrs: {
+      "type": "number",
+      "maxlength": "3"
+    },
+    model: {
+      value: (_vm.input_number_of_floors),
+      callback: function($$v) {
+        _vm.input_number_of_floors = $$v
+      },
+      expression: "input_number_of_floors"
     }
   })], 1) : _vm._e(), _vm._v(" "), (_vm.selected_type != null && _vm.selected_type != 1 && _vm.selected_type != 3 && _vm.selected_type != 5) ? _c('div', {
     staticClass: "col-auto form-group"

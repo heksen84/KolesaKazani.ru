@@ -20,6 +20,11 @@
             <superInput type="number" v-model="input_floor" maxlength="3"></superInput>
           </div>
 
+          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=2 && selected_type!=2 && selected_type!=3 && selected_type!=5">
+            <label>Кол-во этажей:</label>
+            <superInput type="number" v-model="input_number_of_floors" maxlength="3"></superInput>
+          </div>
+
           <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=1 && selected_type!=3 && selected_type!=5">
             <label>Кол-во комнат:</label>
               <superInput type="number" v-model="input_number_of_rooms" maxlength="2"></superInput>
@@ -93,18 +98,19 @@ export default {
         // модели для селектов
         selected_type_of_building: 0,
         selected_type: null,
-        selected_number_of_floors: 5,
         selected_property_rights: 0,
         selected_object_type: 0,
 
         // модели для инпутов
         input_floor: null,
+        input_number_of_floors: null,
         input_number_of_rooms: null,
         input_area: null,
 
 		}
 	},
   created() {
+
     this.realestate_chars = this.$root.advert_data; // указатель на массив объявления
     // значения недвижимости по умолчанию
     this.realestate_chars.property_type = 0;
@@ -138,6 +144,7 @@ export default {
         this.$store.commit("ShowFinalFields", true); // показываю дополнительные поля
      
         switch(property_id) {
+          
           case null: {
             this.$store.commit("ShowFinalFields", false);
             break;
