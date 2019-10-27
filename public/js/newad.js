@@ -2768,7 +2768,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       realestate_chars: null,
 
-      type_of_building: [{ value: 0, text: 'Дом' }, { value: 1, text: 'Дача' }, { value: 2, text: 'Коттедж' }],
+      type_of_building: [{ value: 0, text: 'Дом' }, { value: 1, text: 'Дача' }, { value: 2, text: 'Коттедж' }, { value: 3, text: 'Другое' }],
 
       object_type: [{ value: 0, text: 'Вторичка' }, { value: 1, text: 'Новостройка' }],
       property_rights: [{ value: 0, text: 'Собственник' }, { value: 1, text: 'Посредник' }],
@@ -2776,12 +2776,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       selected_type_of_building: 0,
       selected_type: null,
-      selected_floor: 1,
       selected_number_of_floors: 5,
-      selected_number_of_rooms: 1,
-      input_area: null,
       selected_property_rights: 0,
       selected_object_type: 0,
+
+      input_floor: null,
+      input_number_of_rooms: null,
+      input_area: null,
 
       selected: {
         apartment: false,
@@ -40434,7 +40435,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "value": item.value
       }
     }, [_vm._v(_vm._s(item.text))])
-  }), 0)]), _vm._v(" "), (_vm.selected_type != null && _vm.selected_type != 0 && _vm.selected_type != 1) ? _c('div', {
+  }), 0)]), _vm._v(" "), (_vm.selected_type != null && _vm.selected_type != 0 && _vm.selected_type != 1 && _vm.selected_type != 3 && _vm.selected_type != 5) ? _c('div', {
     staticClass: "col-auto form-group"
   }, [_c('label', {
     attrs: {
@@ -40469,7 +40470,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "value": item.value
       }
     }, [_vm._v(_vm._s(item.text))])
-  }), 0)]) : _vm._e(), _vm._v(" "), (_vm.selected_type != null && _vm.selected_type != 2) ? _c('div', {
+  }), 0)]) : _vm._e(), _vm._v(" "), (_vm.selected_type != null && _vm.selected_type != 2 && _vm.selected_type != 3 && _vm.selected_type != 5) ? _c('div', {
     staticClass: "col-auto form-group"
   }, [_c('label', [_vm._v("Этаж:")]), _vm._v(" "), _c('superInput', {
     attrs: {
@@ -40477,13 +40478,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "maxlength": "3"
     },
     model: {
-      value: (_vm.selected_floor),
+      value: (_vm.input_floor),
       callback: function($$v) {
-        _vm.selected_floor = $$v
+        _vm.input_floor = $$v
       },
-      expression: "selected_floor"
+      expression: "input_floor"
     }
-  })], 1) : _vm._e(), _vm._v(" "), (_vm.selected_type != null && _vm.selected_type != 1) ? _c('div', {
+  })], 1) : _vm._e(), _vm._v(" "), (_vm.selected_type != null && _vm.selected_type != 1 && _vm.selected_type != 3 && _vm.selected_type != 5) ? _c('div', {
     staticClass: "col-auto form-group"
   }, [_c('label', [_vm._v("Кол-во комнат:")]), _vm._v(" "), _c('superInput', {
     attrs: {
@@ -40491,25 +40492,25 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "maxlength": "2"
     },
     model: {
-      value: (_vm.selected_number_of_rooms),
+      value: (_vm.input_number_of_rooms),
       callback: function($$v) {
-        _vm.selected_number_of_rooms = $$v
+        _vm.input_number_of_rooms = $$v
       },
-      expression: "selected_number_of_rooms"
+      expression: "input_number_of_rooms"
     }
   })], 1) : _vm._e(), _vm._v(" "), (_vm.selected_type != null) ? _c('div', {
     staticClass: "col-auto form-group"
   }, [_c('label', [_vm._v("Площадь:")]), _vm._v(" "), _c('superInput', {
     attrs: {
       "type": "number",
-      "maxlength": "2"
+      "maxlength": "3"
     },
     model: {
-      value: (_vm.selected_number_of_rooms),
+      value: (_vm.input_area),
       callback: function($$v) {
-        _vm.selected_number_of_rooms = $$v
+        _vm.input_area = $$v
       },
-      expression: "selected_number_of_rooms"
+      expression: "input_area"
     }
   })], 1) : _vm._e(), _vm._v(" "), (_vm.selected_type != null) ? _c('div', {
     staticClass: "col-auto form-group"
@@ -40539,7 +40540,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "value": item.value
       }
     }, [_vm._v(_vm._s(item.text))])
-  }), 0)]) : _vm._e(), _vm._v(" "), (_vm.selected_type != null && _vm.selected_type != 1) ? _c('div', {
+  }), 0)]) : _vm._e(), _vm._v(" "), (_vm.selected_type != null && _vm.selected_type != 1 && _vm.selected_type != 3 && _vm.selected_type != 5) ? _c('div', {
     staticClass: "col-auto form-group"
   }, [_c('label', [_vm._v("Вид объекта:")]), _vm._v(" "), _c('select', {
     directives: [{

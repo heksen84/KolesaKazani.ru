@@ -10,26 +10,26 @@
               </select>
           </div>
 
-          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=0 && selected_type!=1">
+          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=0 && selected_type!=1 && selected_type!=3 && selected_type!=5">
             <label for="type_of_building">Вид строения:</label>
               <select id="type_of_building" class="form-control" v-model="selected_type_of_building" @change="changeTypeOfBuilding">                          
                 <option v-for="item in type_of_building" :value="item.value" :key="item.value">{{ item.text }}</option>
               </select>
           </div>
 
-          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=2">
+          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=2 && selected_type!=3 && selected_type!=5">
             <label>Этаж:</label>
-            <superInput type="number" v-model="selected_floor" maxlength="3"></superInput>
+            <superInput type="number" v-model="input_floor" maxlength="3"></superInput>
           </div>
 
-          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=1">
+          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=1 && selected_type!=3 && selected_type!=5">
             <label>Кол-во комнат:</label>
-              <superInput type="number" v-model="selected_number_of_rooms" maxlength="2"></superInput>
+              <superInput type="number" v-model="input_number_of_rooms" maxlength="2"></superInput>
           </div>
 
           <div class="col-auto form-group" v-if="selected_type!=null">
             <label>Площадь:</label>
-              <superInput type="number" v-model="selected_number_of_rooms" maxlength="2"></superInput>
+              <superInput type="number" v-model="input_area" maxlength="3"></superInput>
           </div>
 
           <div class="col-auto form-group" v-if="selected_type!=null">
@@ -39,7 +39,7 @@
               </select>
           </div>
 
-          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=1">
+          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=1 && selected_type!=3 && selected_type!=5">
             <label>Вид объекта:</label>
               <select class="form-control" v-model="selected_object_type" @change="changeObjectType">                          
                 <option v-for="item in object_type" :value="item.value" :key="item.value">{{ item.text }}</option>
@@ -70,7 +70,8 @@ export default {
         type_of_building: [
           { value: 0, text: 'Дом' },
           { value: 1, text: 'Дача' },
-          { value: 2, text: 'Коттедж' }         
+          { value: 2, text: 'Коттедж' },
+          { value: 3, text: 'Другое' }         
         ],
 
         object_type: [
@@ -96,12 +97,13 @@ export default {
 
         selected_type_of_building: 0,
         selected_type: null,
-        selected_floor: 1,
         selected_number_of_floors: 5,
-        selected_number_of_rooms: 1,
-        input_area: null,
         selected_property_rights: 0,
         selected_object_type: 0,
+        
+        input_floor: null,
+        input_number_of_rooms: null,
+        input_area: null,
 
         selected: {
           apartment:false,
