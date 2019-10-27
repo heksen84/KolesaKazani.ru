@@ -48,9 +48,7 @@
 </template>
 
 <script>
-
 import superInput from "../components/superInput.vue"
-
 export default {
 
   components: {
@@ -104,21 +102,10 @@ export default {
         input_number_of_rooms: null,
         input_area: null,
 
-        /*selected: {
-          apartment:false,
-          room:false,
-          house_cottage:false,
-          land_plot:false,
-          garage:false,
-          commercial_property:false,
-          property_abroad:false
-        }*/
 		}
 	},
   created() {
-
     this.realestate_chars = this.$root.advert_data; // указатель на массив объявления
-
     // значения недвижимости по умолчанию
     this.realestate_chars.property_type = 0;
     this.realestate_chars.type_of_building = 0, // дом
@@ -155,8 +142,7 @@ export default {
             this.$store.commit("ShowFinalFields", false);
             break;
           }
-          case 0: {
-            //this.selected.apartment=true;            
+          case 0: {          
             break;
           }
           case 1: {

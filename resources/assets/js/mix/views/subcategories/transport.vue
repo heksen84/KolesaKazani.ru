@@ -109,7 +109,7 @@ export default {
         },
 
         release_date: null,
-        mileage: 0,
+        mileage: null,
 
         helm_position: [
           { value: 0, text: 'Слева' },
@@ -138,7 +138,7 @@ export default {
     this.transport_chars.fuel_type       = 0;
     this.transport_chars.customs         = 1;
     this.transport_chars.release_date    = null;
-    this.transport_chars.mileage         = 0;
+    this.transport_chars.mileage         = null;
 
   },
   
@@ -277,7 +277,7 @@ export default {
       // сброс полей, что после
       this.selected.helm_position=null;
       this.release_date=null;
-      this.mileage=0;
+      this.mileage=null;
       this.selected.fuel_type=null;
       this.selected.car_customs=null;
 
