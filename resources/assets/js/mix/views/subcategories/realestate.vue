@@ -108,10 +108,12 @@ export default {
         input_area: null,
 
 		}
-	},
+  },
+  
   created() {
 
     this.realestate_chars = this.$root.advert_data; // указатель на массив объявления
+
     // значения недвижимости по умолчанию
     this.realestate_chars.property_type = 0;
     this.realestate_chars.type_of_building = 0, // дом
