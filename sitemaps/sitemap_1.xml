@@ -810,4 +810,16 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/113-transport-legkovoe-avto</loc>
+    <lastmod>2019-11-04T15:03:07+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/114-transport-legkovoe-avto</loc>
+    <lastmod>2019-11-04T15:03:16+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

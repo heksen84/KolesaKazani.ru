@@ -379,14 +379,14 @@ closeAndReturn() {
 // ------------------------------
 changeRegion() {
 
-	this.$root.advert_data.region_id = this.regions_model;
+	  this.$root.advert_data.region_id = this.regions_model;
 
-	// -------------------------------------------------------------
-	// Получить города / сёлы
-	// -------------------------------------------------------------
-  get("getPlaces?region_id="+this.regions_model).then((res) => {
-		this.places=res.data;
-		this.places_model=null;
+	  // -------------------------------------------------------------
+	  // Получить города / сёлы
+	  // -------------------------------------------------------------
+    get("getPlaces?region_id="+this.regions_model).then((res) => {
+		  this.places=res.data;
+		  this.places_model=null;
 	  }).catch((err) => {});			  
 	},
 
