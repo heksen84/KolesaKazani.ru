@@ -799,10 +799,11 @@ onSubmit(evt) {
       
     console.log(response);
     			
-    if (response.data.result=="db.error") 
+    if (response.data.result=="db.error") { 
       //this.$root.$notify({group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error'});
       //alert("Сервис временно не доступен")
-      this.serviceUnavailable=true;
+      //this.serviceUnavailable=true;
+    }
 		else
       if (response.data.result=="usr.error") 
        this.$root.$notify({group: 'foo', text: "<h6>"+response.data.msg+"</h6>", type: 'error'});

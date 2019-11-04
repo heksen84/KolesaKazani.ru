@@ -146,7 +146,7 @@ class AdvertController extends Controller {
             $advert->region_id       = $region_id;
             $advert->city_id         = $city_id;
             $advert->lang            = "ru";
-            $advert->adv_category_id = 0;            
+            $advert->sub_category_id = 0;            
             $advert->vip             = false;
             $advert->full            = false;
 
@@ -257,7 +257,7 @@ class AdvertController extends Controller {
                     $transport->save();
 
                     // записываю id подкатегории
-                    $advert->adv_category_id = $transport->id;  // указываем id' шник
+                    $advert->sub_category_id = $transport->id;  // указываем id' шник
                     break;
                 }
 
@@ -289,7 +289,7 @@ class AdvertController extends Controller {
                     $realestate->save();
 
                     // записываю id подкатегории
-                    $advert->adv_category_id = $realestate->id;
+                    $advert->sub_category_id = $realestate->id;
 
                     // значение записи url в sitemap.xml
                     $url_text = "Недвижимость квартира";
@@ -347,7 +347,7 @@ class AdvertController extends Controller {
                 $advert->coord_lon = 0;
             }
 
-            \Debugbar::info("id подкатегории :".$advert->adv_category_id);            
+            \Debugbar::info("id подкатегории :".$advert->sub_category_id);            
             
             $advert->public = true; // публикую объявление сходу                        
             $advert->save();  // СОХРАНЕНИЕ ОБЪЯВЛЕНИЯ

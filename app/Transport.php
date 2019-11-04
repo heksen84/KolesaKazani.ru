@@ -5,6 +5,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Transport extends Model {
-    protected $table = 'adv_transport';
+    protected $table = 'sub_transport';
 	public $timestamps = false;
 }
