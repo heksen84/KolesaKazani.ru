@@ -2299,7 +2299,12 @@ function forEach(data, callback) {
     // Выбрать сделку
     // --------------------------------------
     setDeal: function setDeal() {
-      //console.log("Сделка: "+this.sdelka)
+
+      //  console.log("Сделка: "+this.sdelka)
+
+      // если отдам даром, то обнуляю цену
+      if (this.sdelka === 3) this.$root.advert_data.adv_price = 0;
+
       this.$root.advert_data.adv_deal = this.sdelka;
       this.deal_id = this.sdelka;
       this.$store.commit("SetDealSelected", true);

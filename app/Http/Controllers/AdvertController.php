@@ -79,9 +79,9 @@ class AdvertController extends Controller {
 
         $data = $request->all();
     
-        \Debugbar::info("--------------------------");
+        \Debugbar::info("----[ Входящие данные ]----");
         \Debugbar::info($data);
-        \Debugbar::info("--------------------------");
+        \Debugbar::info("---------------------------");
 
         // ---------------------------
         // правила валидации
@@ -89,8 +89,7 @@ class AdvertController extends Controller {
         $rules = 
         [            
             "adv_category"  => "required", 
-            "adv_price"     => "required|numeric",
-            "adv_phone"    => "required",
+            "adv_phone"     => "required",
             "images.*"      => "image|mimes:jpeg,png,jpg",
             "region_id"     => "required|numeric",
             "city_id"       => "required|numeric"
@@ -102,9 +101,7 @@ class AdvertController extends Controller {
         $messages = 
         [
             "adv_deal.required"        => "Укажите вид сделки", 
-            "adv_category.required"    => "Укажите категорию товара или услуги",
-            "adv_price.required"       => "Укажите цену",
-            "adv_price.numeric"        => "Введите числовое значение для цены",
+            "adv_category.required"    => "Укажите категорию товара или услуги",            
             "adv_phone.required"       => "Укажите телефон",            
             "images.*.image"           => "Только изображения!",
             "region_id.required"       => "Укажите регион",
@@ -137,7 +134,7 @@ class AdvertController extends Controller {
 
      		$advert->user_id = Auth::id();
         	$advert->text  	 = $text;
-            $advert->phone  = $phone; 
+            $advert->phone   = $phone; 
 
         
         	$advert->price  		 = $price;
