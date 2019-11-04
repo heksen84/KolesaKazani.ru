@@ -2303,7 +2303,10 @@ function forEach(data, callback) {
       //  console.log("Сделка: "+this.sdelka)
 
       // если отдам даром, то обнуляю цену
-      if (this.sdelka === 3) this.$root.advert_data.adv_price = 0;
+      if (this.sdelka === 3) {
+        this.$root.advert_data.adv_price = 0;
+        this.price = 0;
+      }
 
       this.$root.advert_data.adv_deal = this.sdelka;
       this.deal_id = this.sdelka;
