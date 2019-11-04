@@ -41,7 +41,7 @@
             </div>
             <div class="col-auto form-group">
               <label for="car_mileage">Пробег(км):</label>
-                <superInput type="number" v-model="mileage" maxlength="10" id="car_mileage" @input="SetMileage"></superInput>
+                <superInput type="number" v-model="mileage" maxlength="7" id="car_mileage" @input="SetMileage"></superInput>
             </div>
           
             <div class="col-auto form-group">

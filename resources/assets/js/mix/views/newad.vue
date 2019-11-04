@@ -133,7 +133,7 @@
 
                     <div class="col-md-12 text-center" v-if="sdelka!=3">
                       <span style="margin-right:5px">Цена:</span>                      
-                      <superInput type="number" v-model="price" :maxlength="10"></superInput>
+                      <superInput type="number" v-model="price" :maxlength="10" @input="setPrice"></superInput>
                     </div>
 
                     <div class="col-md-12">
@@ -355,6 +355,11 @@ changeSubCategory() {
 // доп. информация
 setInfo() {
 	this.$root.advert_data.adv_info=this.info;
+},
+
+setPrice() {
+  //console.log(this.phone)
+  this.$root.advert_data.adv_price=this.price;
 },
 
 setPhone() {

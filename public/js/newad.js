@@ -2089,6 +2089,10 @@ function forEach(data, callback) {
     setInfo: function setInfo() {
       this.$root.advert_data.adv_info = this.info;
     },
+    setPrice: function setPrice() {
+      //console.log(this.phone)
+      this.$root.advert_data.adv_price = this.price;
+    },
     setPhone: function setPhone() {
       //console.log(this.phone)
       this.$root.advert_data.adv_phone = this.phone;
@@ -39560,7 +39564,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("superInput", {
-                attrs: { type: "number", maxlength: "10", id: "car_mileage" },
+                attrs: { type: "number", maxlength: "7", id: "car_mileage" },
                 on: { input: _vm.SetMileage },
                 model: {
                   value: _vm.mileage,
@@ -40448,6 +40452,7 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("superInput", {
                                   attrs: { type: "number", maxlength: 10 },
+                                  on: { input: _vm.setPrice },
                                   model: {
                                     value: _vm.price,
                                     callback: function($$v) {
