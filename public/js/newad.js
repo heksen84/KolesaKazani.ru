@@ -2879,8 +2879,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -3002,8 +3000,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         // грузовой транспорт
         case 1:
           {
-            //this.$store.commit("ShowFinalFields", false);                                                              
-            //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам Камаз 2009 г. в хорошем состоянии.");
             break;
           }
 
@@ -3011,14 +3007,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         case 2:
           {
             this.$store.commit("ShowFinalFields", true);
-            //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам мотоцикл Yamaha 2015 г. в отличном состоянии.");          
             break;
           }
 
         // спецтехника
         case 3:
           {
-            //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам прицеп.");          
             this.$store.commit("ShowFinalFields", true);
             break;
           }
@@ -3033,7 +3027,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         case 5:
           {
             this.$store.commit("ShowFinalFields", true);
-            //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам моторную лодку в хорошем состоянии.");          
             break;
           }
 
@@ -3041,7 +3034,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         case 6:
           {
             this.$store.commit("ShowFinalFields", true);
-            //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам новый велосипед.");          
             break;
           }
 
@@ -3049,7 +3041,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         case 7:
           {
             this.$store.commit("ShowFinalFields", true);
-            //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам двухместный самолёт.");          
             break;
           }
 

@@ -24,9 +24,7 @@
                 </select>        
             </div>
 
-          </div>
-          
-          <!--<h2>ЗДЕСЬ ROW и в нём</h2>-->
+          </div>      
 
           <div class="row">            
             
@@ -207,24 +205,20 @@ export default {
           break;
        }
 
-        // грузовой транспорт
-        case 1: {
-            //this.$store.commit("ShowFinalFields", false);                                                              
-            //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам Камаз 2009 г. в хорошем состоянии.");
+      // грузовой транспорт
+        case 1: {            
           break;
        }
 
       // мототехника
        case 2: {
-          this.$store.commit("ShowFinalFields", true);                                                              
-            //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам мотоцикл Yamaha 2015 г. в отличном состоянии.");          
+          this.$store.commit("ShowFinalFields", true);                                                                          
           break;
        }
 
       // спецтехника
-       case 3: {
-            //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам прицеп.");          
-            this.$store.commit("ShowFinalFields", true);                                                              
+       case 3: {            
+          this.$store.commit("ShowFinalFields", true);                                                              
           break;
        }
 
@@ -235,24 +229,21 @@ export default {
       
       // водный транспорт
        case 5: {            
-          this.$store.commit("ShowFinalFields", true);                                                              
-          //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам моторную лодку в хорошем состоянии.");          
+          this.$store.commit("ShowFinalFields", true);                                                                        
           break;
        }
 
       // велосипеды
        case 6: {            
-          this.$store.commit("ShowFinalFields", true);                                                              
-          //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам новый велосипед.");          
+          this.$store.commit("ShowFinalFields", true);                                                                             
           break;
        }
 
       // воздушный транспорт
-       case 7: {            
-          this.$store.commit("ShowFinalFields", true);                                                              
-          //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам двухместный самолёт.");          
+      case 7: {            
+          this.$store.commit("ShowFinalFields", true);                                                                                 
           break;
-       }
+      }
              
       }
     },
