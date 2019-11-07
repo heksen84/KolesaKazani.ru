@@ -189,14 +189,14 @@ export default {
 
       this.$store.commit("SetInfoLabelDescription", "Дополнительно");
       this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
+      this.$store.commit("ShowFinalFields", false);                                                            
                 
       switch(this.selected.type_transport) {
                 
         // легковой транспорт
         case 0: {
 
-          this.$store.commit("ShowCommonTransport", false);          
-          this.$store.commit("ShowFinalFields", false);                                                            
+          this.$store.commit("ShowCommonTransport", false);                    
           this.carmark=[];
                       
           // запрос: получить марки автомобилей
@@ -208,21 +208,23 @@ export default {
        }
 
         // грузовой транспорт
-        /*case 1: {
+        case 1: {
             //this.$store.commit("ShowFinalFields", false);                                                              
-            this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам Камаз 2009 г. в хорошем состоянии.");
+            //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам Камаз 2009 г. в хорошем состоянии.");
           break;
        }
 
       // мототехника
        case 2: {
-            this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам мотоцикл Yamaha 2015 г. в отличном состоянии.");          
+          this.$store.commit("ShowFinalFields", true);                                                              
+            //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам мотоцикл Yamaha 2015 г. в отличном состоянии.");          
           break;
        }
 
       // спецтехника
        case 3: {
-            this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам прицеп.");          
+            //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам прицеп.");          
+            this.$store.commit("ShowFinalFields", true);                                                              
           break;
        }
 
@@ -233,21 +235,24 @@ export default {
       
       // водный транспорт
        case 5: {            
-          this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам моторную лодку в хорошем состоянии.");          
+          this.$store.commit("ShowFinalFields", true);                                                              
+          //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам моторную лодку в хорошем состоянии.");          
           break;
        }
 
       // велосипеды
        case 6: {            
-          this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам новый велосипед.");          
+          this.$store.commit("ShowFinalFields", true);                                                              
+          //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам новый велосипед.");          
           break;
        }
 
       // воздушный транспорт
        case 7: {            
-          this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам двухместный самолёт.");          
+          this.$store.commit("ShowFinalFields", true);                                                              
+          //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам двухместный самолёт.");          
           break;
-       }*/
+       }
              
       }
     },

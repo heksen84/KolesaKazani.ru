@@ -2978,6 +2978,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.$store.commit("SetInfoLabelDescription", "Дополнительно");
       this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
+      this.$store.commit("ShowFinalFields", false);
 
       switch (this.selected.type_transport) {
 
@@ -2986,7 +2987,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           {
 
             this.$store.commit("ShowCommonTransport", false);
-            this.$store.commit("ShowFinalFields", false);
             this.carmark = [];
 
             // запрос: получить марки автомобилей
@@ -3000,40 +3000,58 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
 
         // грузовой транспорт
-        /*case 1: {
+        case 1:
+          {
             //this.$store.commit("ShowFinalFields", false);                                                              
-            this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам Камаз 2009 г. в хорошем состоянии.");
-          break;
-        }
+            //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам Камаз 2009 г. в хорошем состоянии.");
+            break;
+          }
+
         // мототехника
-        case 2: {
-            this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам мотоцикл Yamaha 2015 г. в отличном состоянии.");          
-          break;
-        }
+        case 2:
+          {
+            this.$store.commit("ShowFinalFields", true);
+            //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам мотоцикл Yamaha 2015 г. в отличном состоянии.");          
+            break;
+          }
+
         // спецтехника
-        case 3: {
-            this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам прицеп.");          
-          break;
-        }
-         // ретроавто
-        case 4: {            
-          break;
-        }
-              // водный транспорт
-        case 5: {            
-          this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам моторную лодку в хорошем состоянии.");          
-          break;
-        }
+        case 3:
+          {
+            //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам прицеп.");          
+            this.$store.commit("ShowFinalFields", true);
+            break;
+          }
+
+        // ретроавто
+        case 4:
+          {
+            break;
+          }
+
+        // водный транспорт
+        case 5:
+          {
+            this.$store.commit("ShowFinalFields", true);
+            //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам моторную лодку в хорошем состоянии.");          
+            break;
+          }
+
         // велосипеды
-        case 6: {            
-          this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам новый велосипед.");          
-          break;
-        }
+        case 6:
+          {
+            this.$store.commit("ShowFinalFields", true);
+            //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам новый велосипед.");          
+            break;
+          }
+
         // воздушный транспорт
-        case 7: {            
-          this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам двухместный самолёт.");          
-          break;
-        }*/
+        case 7:
+          {
+            this.$store.commit("ShowFinalFields", true);
+            //this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам двухместный самолёт.");          
+            break;
+          }
 
       }
     },
