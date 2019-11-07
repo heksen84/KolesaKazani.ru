@@ -1,23 +1,22 @@
 <template>
-<div>  
+<div>         
         <div class="row">        
           <div class="col-auto form-group">
             <label for="transport_type">Вид транспорта:</label>
               <select id="transport_type" class="form-control" v-model="selected.type_transport" @change="selectTransportType">                          
                 <option v-for="item in type_transport" :value="item.value" :key="item.value">{{ item.text }}</option>
               </select>
-          </div>        
+          </div>                
+
           <div class="col-auto form-group" v-if="selected.type_transport==0 && carmarkLoaded">          
             <label for="mark_type">Марка автомобиля:</label>
               <select id="mark_type" class="form-control" v-model="selected.carmark" @change="selectMark">
                 <option :value="null">-- Выберите марку --</option>
                 <option v-for="item in carmark" :value="item.id_car_mark" :key="item.id_car_mark">{{ item.name }}</option>
               </select>          
-            </div>
           </div>
 
-          <div class="row" v-if="selected.carmark!=null && selected.type_transport==0">
-            <div class="col-auto form-group">
+          <div class="col-auto form-group" v-if="selected.carmark!=null && selected.type_transport==0">
               <label for="mark_type">Модель:</label>
                 <select id="mark_type" class="form-control" v-model="selected.model" @change="selectModel">                          
                   <option :value="null">-- Выберите модель --</option>
@@ -25,7 +24,14 @@
                 </select>        
             </div>
 
-            <div class="col-auto form-group" v-if="getComTransport && selected.type_transport!=2 && selected.model!=null">
+          </div>
+          
+          <!--<h2>ЗДЕСЬ ROW и в нём</h2>-->
+
+          <div class="row">            
+            
+            <!--<div class="col-auto form-group" v-if="getComTransport && selected.type_transport!=2 && selected.model!=null">-->
+            <div class="col-auto form-group" v-if="getComTransport && selected.type_transport!=2">
               <label for="helm_position">Положение руля:</label>
                 <select id="helm_position" class="form-control" v-model="selected.helm_position" @change="SetHelmPosition">                                        
                   <option :value="null">-- Выберите положение руля --</option>
@@ -147,6 +153,7 @@ export default {
     getComTransport() { 
       return [0,1,2,4].indexOf(this.selected.type_transport) != -1 && this.selected.type_transport!=null && this.$store.state.show_common_transport;      
     }
+    
   },
   
   methods: {
@@ -157,7 +164,7 @@ export default {
     -----------------------------------*/
     selectTransportType() {
 
-      //console.log("Тип транспорта :"+this.selected.type_transport)
+      console.log("Тип транспорта: "+this.selected.type_transport)
 
       this.$store.commit("SetRequiredInfo", true);
       this.$store.commit("ResetField", "price");
@@ -199,6 +206,7 @@ export default {
 
         // грузовой транспорт
         case 1: {
+                this.$store.commit("ShowFinalFields", true);                                                  
             this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам Камаз 2009 г. в хорошем состоянии.");
           break;
        }
