@@ -84,7 +84,7 @@ export default {
   data () {
     return 	{
 
-        placeholder_info_text: "Введите текст объявления, например: ",
+        //placeholder_info_text: "Введите текст объявления, например: ",
 
         type_transport: [
           { value: null, text: '-- Выберите вид транспорта --' },
@@ -153,7 +153,7 @@ export default {
     getComTransport() { 
       return [0,1,2,4].indexOf(this.selected.type_transport) != -1 && this.selected.type_transport!=null && this.$store.state.show_common_transport;      
     }
-    
+
   },
   
   methods: {
@@ -166,23 +166,29 @@ export default {
 
       console.log("Тип транспорта: "+this.selected.type_transport)
 
-      this.$store.commit("SetRequiredInfo", true);
+      //this.$store.commit("SetRequiredInfo", true);
       this.$store.commit("ResetField", "price");
       this.$store.commit("SetPlaceholderInfoText",  "default");
       this.$store.commit("SetInfoLabelDescription", "default");       
+      
       this.selected.model = null;
       this.selected.carmark = null;
       
-      if (this.selected.type_transport==null) {
+      if (this.selected.type_transport==null) 
+      {
         this.$store.commit("ShowCommonTransport", false);
         this.$store.commit("ShowFinalFields", false);               
       }      
-      else {
+      else 
+      {
         this.$store.commit("ShowCommonTransport", true);
         this.$store.commit("ShowFinalFields", true);       
       }
 
       this.transport_chars.transport_type = this.selected.type_transport;
+
+      this.$store.commit("SetInfoLabelDescription", "Дополнительно");
+      this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
                 
       switch(this.selected.type_transport) {
                 
@@ -190,10 +196,7 @@ export default {
         case 0: {
 
           this.$store.commit("ShowCommonTransport", false);          
-          this.$store.commit("ShowFinalFields", false);                                                  
-          this.$store.commit("SetInfoLabelDescription", "Дополнительно");
-          this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
-
+          this.$store.commit("ShowFinalFields", false);                                                            
           this.carmark=[];
                       
           // запрос: получить марки автомобилей
@@ -205,8 +208,8 @@ export default {
        }
 
         // грузовой транспорт
-        case 1: {
-                this.$store.commit("ShowFinalFields", true);                                                  
+        /*case 1: {
+            //this.$store.commit("ShowFinalFields", false);                                                              
             this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам Камаз 2009 г. в хорошем состоянии.");
           break;
        }
@@ -244,7 +247,7 @@ export default {
        case 7: {            
           this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам двухместный самолёт.");          
           break;
-       }
+       }*/
              
       }
     },
@@ -256,7 +259,7 @@ export default {
       
       this.$store.commit("ShowCommonTransport", false);
       this.$store.commit("ShowFinalFields", false);
-      this.$store.commit("SetRequiredInfo", false);
+      //this.$store.commit("SetRequiredInfo", false);
 
       this.transport_chars.mark_id = this.selected.carmark;
 
@@ -291,13 +294,14 @@ export default {
       console.log(this.transport_chars.model_id);
     },
 
-    checkForFinalFields() {
+    checkForFinalFields() {      
 
       if (this.selected.fuel_type!=null && this.selected.car_customs!=null && this.selected.helm_position!=null)
         this.$store.commit("ShowFinalFields", true);
       else
         this.$store.commit("ShowFinalFields", false);
-        
+        this.$store.commit("SetRequiredInfo", true);                                                              
+
      },
 
      // ---------------------------
@@ -314,15 +318,7 @@ export default {
      SetFuelType() {
         this.transport_chars.fuel_type = this.selected.fuel_type;
         this.checkForFinalFields()
-     },
-     
-     // ---------------------------
-     // растаможка
-     // ---------------------------
-     SetTransportCustoms() {
-        this.transport_chars.customs = this.selected.car_customs;
-        this.checkForFinalFields()
-     },
+     },          
 
      // год выпуска
      SetReleaseDate() {      
@@ -332,6 +328,14 @@ export default {
      // пробег
      SetMileage() {        
         this.transport_chars.mileage = this.mileage;
+     },
+
+     // ---------------------------
+     // растаможка
+     // ---------------------------
+     SetTransportCustoms() {
+        this.transport_chars.customs = this.selected.car_customs;
+        this.checkForFinalFields()
      }
   },
 }

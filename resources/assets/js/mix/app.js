@@ -123,7 +123,7 @@ const store = new Vuex.Store({
       // установить текст подсказки в поле описание
       SetPlaceholderInfoText(state, text) {
         if (text=="default") 
-          state.placeholder_info_text = "Введите текст объявления"
+          state.placeholder_info_text = "Дополнительная информация"
         else
           state.placeholder_info_text = text;
       },

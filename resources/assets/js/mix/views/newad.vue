@@ -128,7 +128,7 @@
             <!-- Дополнительные поля -->			      
             <div v-show="$store.state.show_final_fields">
               <label for="addit_info">{{ $store.state.info_label_description }}</label>
-                <textarea id="addit_info" v-if="!$store.state.required_info" class="form-control form-group" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></textarea>
+                <textarea id="addit_info" class="form-control form-group" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></textarea>
                   <div class="row">
 
                     <div class="col-md-12 text-center" v-if="sdelka!=3">
@@ -491,7 +491,7 @@ advReset(category_data) {
 
   //this.summ_str = "";
 
-  this.$store.commit("SetRequiredInfo", false);
+  //this.$store.commit("SetRequiredInfo", false);
   this.$store.commit("SetPlaceholderInfoText", "default");
   this.$store.commit("SetDealSelected", false);
 
@@ -588,7 +588,7 @@ advReset(category_data) {
       form.reset();
 
     //this.summ_str = "";
-    this.$store.commit("SetRequiredInfo", false);
+    //this.$store.commit("SetRequiredInfo", false);
     this.$store.commit("SetPlaceholderInfoText", "default");
     this.$store.commit("SetDealSelected", false);
 
@@ -699,7 +699,7 @@ changeCategory() {
 
       this.appliances=true; 
       this.$store.commit("ShowFinalFields", true);
-      this.$store.commit("SetRequiredInfo", true);
+      //this.$store.commit("SetRequiredInfo", true);
       this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам телевизор Samsung б/у в отличном состоянии");
       break; 
     }
@@ -709,7 +709,7 @@ changeCategory() {
 
       this.work_and_buisness=true;
       this.$store.commit("ShowFinalFields", true);
-      this.$store.commit("SetRequiredInfo", true);
+      //this.$store.commit("SetRequiredInfo", true);
       this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Требуются разнорабочие"); 
       break; 
     }
@@ -719,7 +719,7 @@ changeCategory() {
 
       this.for_home=true; 
       this.$store.commit("ShowFinalFields", true);
-      this.$store.commit("SetRequiredInfo", true);
+      //this.$store.commit("SetRequiredInfo", true);
       this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Куплю картофель"); 
       break; 
     }
@@ -729,7 +729,7 @@ changeCategory() {
 
       this.personal_effects=true; 
       this.$store.commit("ShowFinalFields", true);
-      this.$store.commit("SetRequiredInfo", true);
+      //this.$store.commit("SetRequiredInfo", true);
       this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам пуховик"); 
       break; 
     }
@@ -739,7 +739,7 @@ changeCategory() {
 
       this.animals=true;
       this.$store.commit("ShowFinalFields", true);
-      this.$store.commit("SetRequiredInfo", true);					
+      //this.$store.commit("SetRequiredInfo", true);					
       this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам щенков хаски"); 
       break; 
     }
@@ -749,7 +749,7 @@ changeCategory() {
 
       this.hobbies_and_leisure=true; 
       this.$store.commit("ShowFinalFields", true);
-      this.$store.commit("SetRequiredInfo", true);
+      //this.$store.commit("SetRequiredInfo", true);
       break;
     }
     case 9: {
@@ -758,7 +758,7 @@ changeCategory() {
 
       this.services=true;
       this.$store.commit("ShowFinalFields", true);
-      this.$store.commit("SetRequiredInfo", true);
+      //this.$store.commit("SetRequiredInfo", true);
       this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Распечатка текста"); 
       break; 
     }
@@ -766,7 +766,7 @@ changeCategory() {
 
       this.other=true;
       this.$store.commit("ShowFinalFields", true);
-      this.$store.commit("SetRequiredInfo", true);
+      //this.$store.commit("SetRequiredInfo", true);
       break; 
       }
     }

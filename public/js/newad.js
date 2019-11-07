@@ -2221,7 +2221,7 @@ function forEach(data, callback) {
 
       //this.summ_str = "";
 
-      this.$store.commit("SetRequiredInfo", false);
+      //this.$store.commit("SetRequiredInfo", false);
       this.$store.commit("SetPlaceholderInfoText", "default");
       this.$store.commit("SetDealSelected", false);
 
@@ -2321,7 +2321,7 @@ function forEach(data, callback) {
     if (form) form.reset();
 
     //this.summ_str = "";
-    this.$store.commit("SetRequiredInfo", false);
+    //this.$store.commit("SetRequiredInfo", false);
     this.$store.commit("SetPlaceholderInfoText", "default");
     this.$store.commit("SetDealSelected", false);
 
@@ -2439,7 +2439,7 @@ function forEach(data, callback) {
 
           this.appliances = true;
           this.$store.commit("ShowFinalFields", true);
-          this.$store.commit("SetRequiredInfo", true);
+          //this.$store.commit("SetRequiredInfo", true);
           this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам телевизор Samsung б/у в отличном состоянии");
           break;
         }
@@ -2450,7 +2450,7 @@ function forEach(data, callback) {
 
           this.work_and_buisness = true;
           this.$store.commit("ShowFinalFields", true);
-          this.$store.commit("SetRequiredInfo", true);
+          //this.$store.commit("SetRequiredInfo", true);
           this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Требуются разнорабочие");
           break;
         }
@@ -2461,7 +2461,7 @@ function forEach(data, callback) {
 
           this.for_home = true;
           this.$store.commit("ShowFinalFields", true);
-          this.$store.commit("SetRequiredInfo", true);
+          //this.$store.commit("SetRequiredInfo", true);
           this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Куплю картофель");
           break;
         }
@@ -2472,7 +2472,7 @@ function forEach(data, callback) {
 
           this.personal_effects = true;
           this.$store.commit("ShowFinalFields", true);
-          this.$store.commit("SetRequiredInfo", true);
+          //this.$store.commit("SetRequiredInfo", true);
           this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам пуховик");
           break;
         }
@@ -2483,7 +2483,7 @@ function forEach(data, callback) {
 
           this.animals = true;
           this.$store.commit("ShowFinalFields", true);
-          this.$store.commit("SetRequiredInfo", true);
+          //this.$store.commit("SetRequiredInfo", true);					
           this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам щенков хаски");
           break;
         }
@@ -2494,7 +2494,7 @@ function forEach(data, callback) {
 
           this.hobbies_and_leisure = true;
           this.$store.commit("ShowFinalFields", true);
-          this.$store.commit("SetRequiredInfo", true);
+          //this.$store.commit("SetRequiredInfo", true);
           break;
         }
       case 9:
@@ -2504,7 +2504,7 @@ function forEach(data, callback) {
 
           this.services = true;
           this.$store.commit("ShowFinalFields", true);
-          this.$store.commit("SetRequiredInfo", true);
+          //this.$store.commit("SetRequiredInfo", true);
           this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Распечатка текста");
           break;
         }
@@ -2513,7 +2513,7 @@ function forEach(data, callback) {
 
           this.other = true;
           this.$store.commit("ShowFinalFields", true);
-          this.$store.commit("SetRequiredInfo", true);
+          //this.$store.commit("SetRequiredInfo", true);
           break;
         }
     }
@@ -2895,7 +2895,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
 
-      placeholder_info_text: "Введите текст объявления, например: ",
+      //placeholder_info_text: "Введите текст объявления, например: ",
 
       type_transport: [{ value: null, text: '-- Выберите вид транспорта --' }, { value: 0, text: 'Легковой автомобиль' }, { value: 1, text: 'Грузовой автомобиль' }, { value: 2, text: 'Мототехника' }, { value: 3, text: 'Спецтехника' }, { value: 4, text: 'Ретро-автомобиль' }, { value: 5, text: 'Водный транспорт' }, { value: 6, text: 'Велосипед' }, { value: 7, text: 'Воздушный транспорт' }],
 
@@ -2958,10 +2958,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       console.log("Тип транспорта: " + this.selected.type_transport);
 
-      this.$store.commit("SetRequiredInfo", true);
+      //this.$store.commit("SetRequiredInfo", true);
       this.$store.commit("ResetField", "price");
       this.$store.commit("SetPlaceholderInfoText", "default");
       this.$store.commit("SetInfoLabelDescription", "default");
+
       this.selected.model = null;
       this.selected.carmark = null;
 
@@ -2975,6 +2976,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.transport_chars.transport_type = this.selected.type_transport;
 
+      this.$store.commit("SetInfoLabelDescription", "Дополнительно");
+      this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
+
       switch (this.selected.type_transport) {
 
         // легковой транспорт
@@ -2983,9 +2987,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.$store.commit("ShowCommonTransport", false);
             this.$store.commit("ShowFinalFields", false);
-            this.$store.commit("SetInfoLabelDescription", "Дополнительно");
-            this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
-
             this.carmark = [];
 
             // запрос: получить марки автомобилей
@@ -2999,53 +3000,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
 
         // грузовой транспорт
-        case 1:
-          {
-            this.$store.commit("ShowFinalFields", true);
-            this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text + "Продам Камаз 2009 г. в хорошем состоянии.");
-            break;
-          }
-
+        /*case 1: {
+            //this.$store.commit("ShowFinalFields", false);                                                              
+            this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам Камаз 2009 г. в хорошем состоянии.");
+          break;
+        }
         // мототехника
-        case 2:
-          {
-            this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text + "Продам мотоцикл Yamaha 2015 г. в отличном состоянии.");
-            break;
-          }
-
+        case 2: {
+            this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам мотоцикл Yamaha 2015 г. в отличном состоянии.");          
+          break;
+        }
         // спецтехника
-        case 3:
-          {
-            this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text + "Продам прицеп.");
-            break;
-          }
-
-        // ретроавто
-        case 4:
-          {
-            break;
-          }
-
-        // водный транспорт
-        case 5:
-          {
-            this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text + "Продам моторную лодку в хорошем состоянии.");
-            break;
-          }
-
+        case 3: {
+            this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам прицеп.");          
+          break;
+        }
+         // ретроавто
+        case 4: {            
+          break;
+        }
+              // водный транспорт
+        case 5: {            
+          this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам моторную лодку в хорошем состоянии.");          
+          break;
+        }
         // велосипеды
-        case 6:
-          {
-            this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text + "Продам новый велосипед.");
-            break;
-          }
-
+        case 6: {            
+          this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам новый велосипед.");          
+          break;
+        }
         // воздушный транспорт
-        case 7:
-          {
-            this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text + "Продам двухместный самолёт.");
-            break;
-          }
+        case 7: {            
+          this.$store.commit("SetPlaceholderInfoText", this.placeholder_info_text+"Продам двухместный самолёт.");          
+          break;
+        }*/
 
       }
     },
@@ -3059,7 +3047,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.$store.commit("ShowCommonTransport", false);
       this.$store.commit("ShowFinalFields", false);
-      this.$store.commit("SetRequiredInfo", false);
+      //this.$store.commit("SetRequiredInfo", false);
 
       this.transport_chars.mark_id = this.selected.carmark;
 
@@ -3096,6 +3084,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     checkForFinalFields: function checkForFinalFields() {
 
       if (this.selected.fuel_type != null && this.selected.car_customs != null && this.selected.helm_position != null) this.$store.commit("ShowFinalFields", true);else this.$store.commit("ShowFinalFields", false);
+      this.$store.commit("SetRequiredInfo", true);
     },
 
 
@@ -3117,15 +3106,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    // ---------------------------
-    // растаможка
-    // ---------------------------
-    SetTransportCustoms: function SetTransportCustoms() {
-      this.transport_chars.customs = this.selected.car_customs;
-      this.checkForFinalFields();
-    },
-
-
     // год выпуска
     SetReleaseDate: function SetReleaseDate() {
       this.transport_chars.release_date = this.release_date;
@@ -3135,6 +3115,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // пробег
     SetMileage: function SetMileage() {
       this.transport_chars.mileage = this.mileage;
+    },
+
+
+    // ---------------------------
+    // растаможка
+    // ---------------------------
+    SetTransportCustoms: function SetTransportCustoms() {
+      this.transport_chars.customs = this.selected.car_customs;
+      this.checkForFinalFields();
     }
   }
 });
@@ -40418,38 +40407,35 @@ var render = function() {
                         _vm._v(_vm._s(_vm.$store.state.info_label_description))
                       ]),
                       _vm._v(" "),
-                      !_vm.$store.state.required_info
-                        ? _c("textarea", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.info,
-                                expression: "info"
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.info,
+                            expression: "info"
+                          }
+                        ],
+                        staticClass: "form-control form-group",
+                        attrs: {
+                          id: "addit_info",
+                          placeholder: _vm.$store.state.placeholder_info_text,
+                          rows: 4,
+                          "max-rows": 4
+                        },
+                        domProps: { value: _vm.info },
+                        on: {
+                          input: [
+                            function($event) {
+                              if ($event.target.composing) {
+                                return
                               }
-                            ],
-                            staticClass: "form-control form-group",
-                            attrs: {
-                              id: "addit_info",
-                              placeholder:
-                                _vm.$store.state.placeholder_info_text,
-                              rows: 4,
-                              "max-rows": 4
+                              _vm.info = $event.target.value
                             },
-                            domProps: { value: _vm.info },
-                            on: {
-                              input: [
-                                function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.info = $event.target.value
-                                },
-                                _vm.setInfo
-                              ]
-                            }
-                          })
-                        : _vm._e(),
+                            _vm.setInfo
+                          ]
+                        }
+                      }),
                       _vm._v(" "),
                       _c("div", { staticClass: "row" }, [
                         _vm.sdelka != 3
