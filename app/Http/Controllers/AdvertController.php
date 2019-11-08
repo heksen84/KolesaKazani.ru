@@ -91,8 +91,7 @@ class AdvertController extends Controller {
         // ---------------------------
         // правила валидации
         // ---------------------------
-        $rules = 
-        [            
+        $rules = [            
             "adv_category"  => "required", 
             "adv_phone"     => "required",
             "images.*"      => "image|mimes:jpeg,png,jpg",
@@ -103,8 +102,7 @@ class AdvertController extends Controller {
         // ---------------------------
         // сообщения валидации
         // ---------------------------
-        $messages = 
-        [
+        $messages = [
             "adv_deal.required"        => "Укажите вид сделки", 
             "adv_category.required"    => "Укажите категорию товара или услуги",            
             "adv_phone.required"       => "Укажите телефон",            
@@ -189,9 +187,7 @@ class AdvertController extends Controller {
                         $url_text = "Транспорт легковое авто";
                         
                         $advert->full = true; // полное объявление с моделями (в item будет указан вид сделки)
-                    }
-
-                    // конвертация с js "null" в php null
+                    }                    
                     
                     // грузовой
                     if ($data["transport_type"]==1) {
