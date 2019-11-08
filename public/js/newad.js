@@ -2956,6 +2956,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.selected.fuel_type = null;
       this.selected.car_customs = null;
       this.release_date = null, this.mileage = null;
+
+      this.transport_chars.rule_position = null;
+      this.transport_chars.fuel_type = null;
+      this.transport_chars.release_date = null;
+      this.transport_chars.mileage = null;
+      this.transport_chars.customs = null;
+
+      // ---
     },
 
 
@@ -40442,7 +40450,8 @@ var render = function() {
                           id: "addit_info",
                           placeholder: _vm.$store.state.placeholder_info_text,
                           rows: 4,
-                          "max-rows": 4
+                          "max-rows": 4,
+                          maxlength: "1024"
                         },
                         domProps: { value: _vm.info },
                         on: {

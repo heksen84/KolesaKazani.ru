@@ -21,6 +21,17 @@ use Validator;
 use DB;
 
 class AdvertController extends Controller {
+
+    private function to_php_null($value) {
+
+        /*if ($value==="null")
+            return null;
+            else
+            return $value;*/
+
+        return ($value==="null")?null:$value;
+
+    }
     
     // Новое объявление
     public function NewAd() {
@@ -187,8 +198,9 @@ class AdvertController extends Controller {
                         
                         $advert->full = true; // полное объявление с моделями (в item будет указан вид сделки)
                     }
-                    
 
+                    // конвертация с js "null" в php null
+                    
                     // грузовой
                     if ($data["transport_type"]==1) {
 
@@ -206,10 +218,11 @@ class AdvertController extends Controller {
 
                     // мото
                     if ($data["transport_type"]==2) {
-                        $transport->year            = $data["release_date"];       // год выпуска
-                        $transport->mileage         = $data["mileage"];            // пробег
-                        $transport->engine_type     = $data["fuel_type"];          // тип движка
-                        $transport->customs         = $data["customs"];            // растаможка
+
+                        $transport->year            = $this->to_php_null($data["release_date"]);       // год выпуска
+                        $transport->mileage         = $this->to_php_null($data["mileage"]);            // пробег
+                        $transport->engine_type     = $this->to_php_null($data["fuel_type"]);          // тип движка
+                        $transport->customs         = $this->to_php_null($data["customs"]);            // растаможка
 
                         // значение записи url в sitemap.xml
                         $url_text = "Транспорт мото";
@@ -217,12 +230,19 @@ class AdvertController extends Controller {
 
                     // спецтехника
                     if ($data["transport_type"]==3) {                        
+
+                        $transport->year            = $this->to_php_null($data["release_date"]);       // год выпуска
+                        $transport->mileage         = $this->to_php_null($data["mileage"]);            // пробег
+                        $transport->engine_type     = $this->to_php_null($data["fuel_type"]);          // тип движка
+                        $transport->customs         = $this->to_php_null($data["customs"]);            // растаможка
+
                         // значение записи url в sitemap.xml
                         $url_text = "Транспорт спецтехника";
                     }
 
                     // ретро-авто
                     if ($data["transport_type"]==4) {
+
                         $transport->year                = $data["release_date"];       // год выпуска
                         $transport->steering_position   = $data["rule_position"];      // положение руля
                         $transport->mileage             = $data["mileage"];            // пробег
@@ -235,18 +255,37 @@ class AdvertController extends Controller {
 
                     // водный транспорт
                     if ($data["transport_type"]==5) {
+
+                        $transport->year            = $this->to_php_null($data["release_date"]);       // год выпуска
+                        $transport->mileage         = $this->to_php_null($data["mileage"]);            // пробег
+                        $transport->engine_type     = $this->to_php_null($data["fuel_type"]);          // тип движка
+                        $transport->customs         = $this->to_php_null($data["customs"]);            // растаможка
+
                         // значение записи url в sitemap.xml
                         $url_text = "Транспорт водный";
                     }
 
                     // велосипед
                     if ($data["transport_type"]==6) {
+
+                        $transport->year            = $this->to_php_null($data["release_date"]);       // год выпуска
+                        $transport->mileage         = $this->to_php_null($data["mileage"]);            // пробег
+                        $transport->engine_type     = $this->to_php_null($data["fuel_type"]);          // тип движка
+                        $transport->customs         = $this->to_php_null($data["customs"]);            // растаможка
+
+
                         // значение записи url в sitemap.xml
                         $url_text = "Транспорт велосипед";
                     }
 
                     // воздушный транспорт
                     if ($data["transport_type"]==7) {
+
+                        $transport->year            = $this->to_php_null($data["release_date"]);       // год выпуска
+                        $transport->mileage         = $this->to_php_null($data["mileage"]);            // пробег
+                        $transport->engine_type     = $this->to_php_null($data["fuel_type"]);          // тип движка
+                        $transport->customs         = $this->to_php_null($data["customs"]);            // растаможка
+
                         // значение записи url в sitemap.xml
                         $url_text = "Транспорт воздушный";
                     }

@@ -128,7 +128,7 @@
             <!-- Дополнительные поля -->			      
             <div v-show="$store.state.show_final_fields">
               <label for="addit_info">{{ $store.state.info_label_description }}</label>
-                <textarea id="addit_info" class="form-control form-group" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" @input="setInfo" v-model="info"></textarea>
+                <textarea id="addit_info" class="form-control form-group" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" maxlength="1024" @input="setInfo" v-model="info"></textarea>
                   <div class="row">
 
                     <div class="col-md-12 text-center" v-if="sdelka!=3">
