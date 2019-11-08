@@ -2947,6 +2947,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
 
+    // сброс дополнительных полей
+    resetFields: function resetFields() {
+
+      this.selected.carmark = null;
+      this.selected.model = null;
+      this.selected.helm_position = null;
+      this.selected.fuel_type = null;
+      this.selected.car_customs = null;
+      this.release_date = null, this.mileage = null;
+    },
+
+
     /*
     -----------------------------------
       Вид транспорта
@@ -2961,8 +2973,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$store.commit("SetPlaceholderInfoText", "default");
       this.$store.commit("SetInfoLabelDescription", "default");
 
-      this.selected.model = null;
-      this.selected.carmark = null;
+      this.resetFields();
 
       if (this.selected.type_transport == null) {
         this.$store.commit("ShowCommonTransport", false);
@@ -2994,6 +3005,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (err) {
               console.log(err);
             });
+
             break;
           }
 
@@ -40459,7 +40471,7 @@ var render = function() {
                                 ),
                                 _vm._v(" "),
                                 _c("superInput", {
-                                  attrs: { type: "number", maxlength: 10 },
+                                  attrs: { type: "number", maxlength: 8 },
                                   on: { input: _vm.setPrice },
                                   model: {
                                     value: _vm.price,

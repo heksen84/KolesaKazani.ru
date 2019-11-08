@@ -155,6 +155,18 @@ export default {
   },
   
   methods: {
+
+    // сброс дополнительных полей
+    resetFields() {
+
+      this.selected.carmark = null;
+      this.selected.model = null
+      this.selected.helm_position = null;
+      this.selected.fuel_type = null
+      this.selected.car_customs = null;
+      this.release_date =  null,
+      this.mileage = null
+    },
     
     /*
     -----------------------------------
@@ -168,17 +180,14 @@ export default {
       this.$store.commit("ResetField", "price");
       this.$store.commit("SetPlaceholderInfoText",  "default");
       this.$store.commit("SetInfoLabelDescription", "default");       
+            
+      this.resetFields();
       
-      this.selected.model = null;
-      this.selected.carmark = null;
-      
-      if (this.selected.type_transport==null) 
-      {
+      if (this.selected.type_transport==null) {
         this.$store.commit("ShowCommonTransport", false);
         this.$store.commit("ShowFinalFields", false);               
       }      
-      else 
-      {
+      else {
         this.$store.commit("ShowCommonTransport", true);
         this.$store.commit("ShowFinalFields", true);       
       }
@@ -201,7 +210,10 @@ export default {
           get("/getCarsMarks").then((res) => {            
             this.carmark = res.data;
             this.carmarkLoaded=true;
-          }).catch((err) => { console.log(err); });
+          }).catch((err) => { 
+            console.log(err); 
+          });
+          
           break;
        }
 

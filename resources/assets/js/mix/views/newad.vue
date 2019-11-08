@@ -133,7 +133,7 @@
 
                     <div class="col-md-12 text-center" v-if="sdelka!=3">
                       <span style="margin-right:5px">Цена:</span>                      
-                      <superInput type="number" v-model="price" :maxlength="10" @input="setPrice"></superInput>
+                      <superInput type="number" v-model="price" :maxlength="8" @input="setPrice"></superInput>
                     </div>
 
                     <div class="col-md-12">
