@@ -2304,8 +2304,8 @@ function forEach(data, callback) {
 
       // если отдам даром, то обнуляю цену
       if (this.sdelka === 3) {
-        this.$root.advert_data.adv_price = 0;
-        this.price = 0;
+        this.$root.advert_data.adv_price = null;
+        this.price = null;
       }
 
       this.$root.advert_data.adv_deal = this.sdelka;

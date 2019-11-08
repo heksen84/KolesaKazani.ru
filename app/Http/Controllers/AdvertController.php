@@ -22,15 +22,9 @@ use DB;
 
 class AdvertController extends Controller {
 
+    // js "null" в php null
     private function to_php_null($value) {
-
-        /*if ($value==="null")
-            return null;
-            else
-            return $value;*/
-
         return ($value==="null")?null:$value;
-
     }
     
     // Новое объявление
@@ -131,10 +125,10 @@ class AdvertController extends Controller {
 
         $category = $data["adv_category"];
         $deal     = $data["adv_deal"]; // Вид сделки
-        $text     = $data["adv_info"];
-        $price    = $data["adv_price"];
+        $text     = $data["adv_info"];        
         $phone    = $data["adv_phone"];
 
+        $price = $this->to_php_null($data["adv_price"]);
         
         $region_id = $data["region_id"];
         $city_id = $data["city_id"];
@@ -143,11 +137,9 @@ class AdvertController extends Controller {
      			
             $advert = new Adverts();
 
-     		$advert->user_id = Auth::id();
-        	$advert->text  	 = $text;
-            $advert->phone   = $phone; 
-
-        
+     		$advert->user_id         = Auth::id();
+        	$advert->text  	         = $text;
+            $advert->phone           = $phone; 
         	$advert->price  		 = $price;
             $advert->category_id  	 = $category;
             $advert->deal  	         = $deal;            

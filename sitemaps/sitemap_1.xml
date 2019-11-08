@@ -954,4 +954,40 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/137-k4k4k4k4k4k4k4k</loc>
+    <lastmod>2019-11-08T11:08:55+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/138-k4k4k4k4k4k4k4k</loc>
+    <lastmod>2019-11-08T11:09:54+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/139-k4k4k4k4k4k4k4k</loc>
+    <lastmod>2019-11-08T11:10:22+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/140-k4k4k4k4k4k4k4k</loc>
+    <lastmod>2019-11-08T11:10:22+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/141-123123123</loc>
+    <lastmod>2019-11-08T11:16:30+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/142-123123123</loc>
+    <lastmod>2019-11-08T11:16:38+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
