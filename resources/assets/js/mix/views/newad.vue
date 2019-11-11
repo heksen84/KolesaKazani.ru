@@ -513,36 +513,13 @@ advReset(category_data) {
     //this.summ_str = "";
     //this.$store.commit("SetRequiredInfo", false);
     this.$store.commit("SetPlaceholderInfoText", "default");
-    this.$store.commit("SetDealSelected", false);
-
-    // сброс массива объявления и переинициализация его
-    
-    //this.$root.advert_data = {};
-
-    // ----------------------------------------------------------------------------------------------------------------
-    // Не использовать операции сделки во всех категориях, т.к. пользователь может ввести описание объявления сам. 
-    // Типа: Продам то-то-то-то или Куплю то-то-то-то
-    // ----------------------------------------------------------------------------------------------------------------
-    /*switch(category_data) {
-      case 3: this.$root.advert_data.adv_deal = ""; break; 
-      case 4: this.$root.advert_data.adv_deal = ""; break; 
-      case 5: this.$root.advert_data.adv_deal = ""; break; 
-      case 6: this.$root.advert_data.adv_deal = ""; break; 
-      case 7: this.$root.advert_data.adv_deal = ""; break; 
-      case 8: this.$root.advert_data.adv_deal = ""; break; 
-      case 9: this.$root.advert_data.adv_deal = ""; break; 
-      case 10: this.$root.advert_data.adv_deal = ""; break; 
-      default: this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
-    }*/
-      
-    //this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
+    this.$store.commit("SetDealSelected", false);    
 
     this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
     this.$root.advert_data.adv_price = null;
     this.$root.advert_data.adv_phone = null;
 
-    // сброс моделей
-    //this.sdelka = null;
+    // сброс моделей    
     this.price = null;
     this.info = "";
     this.phone = "";
