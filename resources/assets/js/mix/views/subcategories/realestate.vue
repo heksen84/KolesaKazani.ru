@@ -53,12 +53,12 @@
 </template>
 
 <script>
+
 import superInput from "../components/superInput.vue"
+
 export default {
 
-  components: {
-    superInput
-  },
+  components: { superInput },
 
   data () {
     return 	{
