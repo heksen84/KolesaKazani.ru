@@ -1,28 +1,23 @@
 <template>
 
 <div class="container-fluid mycontainer_adv">
-  
-  <div class="alert alert-light" v-if="serviceUnavailable">
-    <h4 class="alert-heading">Cервис временно не доступен!</h4>
-  </div>
-
-  <div v-show="!serviceUnavailable">
-    
+     
   <!-- карта -->
-  <div class="modal fade bd-example-modal-lg" id="ShowMapModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal fade bd-example-modal-lg" id="ShowModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Расположение</h5>          
+          <h5 v-show="!serviceUnavailable" class="modal-title" id="exampleModalLabel">Расположение</h5>          
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body text-center">
-          <div id="bigmap" style="width: 100%; height: 300px"></div>        
+        <div class="modal-body text-center" >
+          <div v-show="!serviceUnavailable" id="bigmap" style="width: 100%; height: 300px" ></div>
+          <h4 v-show="serviceUnavailable" class="alert-heading">Cервис временно не доступен!</h4>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary margin-auto" @click="setCoords">Сохранить</button>
+        <div class="modal-footer" v-show="!serviceUnavailable">          
+          <button type="button" class="btn btn-primary margin-auto" @click="setCoords">Сохранить</button>          
         </div>
       </div>
     </div>
@@ -206,9 +201,7 @@
             </div>
           </form>
         </div>
-    </div>
-
-  </div>
+    </div>  
 </div>
 </template>
 <script>
@@ -221,7 +214,6 @@ import bootstrap from "bootstrap";
 import transport from "./subcategories/transport.vue"
 import realEstate from "./subcategories/realEstate.vue"
 import superInput from "./components/superInput.vue"
-//import superSelect from "./components/superSelect.vue"
 import { post, get } from '../../helpers/api'
 
 var preview_images_array=[];
@@ -290,42 +282,40 @@ props: ["categories", "dealtypes", "regions"], // Входящие данные
 components: { 
   transport,
   realEstate,
-  superInput,
-  //superSelect
+  superInput,  
 },
 
 data () {
   return 	{
-
-    serviceUnavailable: false,
-    subCategoryItems: [],    
-    lastPhoneNumber: null,
-		const_phone_max_length: 9,		
-		coordinates_set: false,
-		placeChanged: false,			
-		category: null,
-    subCategory: null,
-		sdelka: null,		
-		info: "",
-		price: 0,
-		number: 0,
-		preview_images: [],
-		real_images: [],
-		root: false,
-		regions_model: null,
-		places: [],
-		places_model: null,
-		phone: "",		
-		transport:false,			      // транспорт
-		real_estate:false,			    // недвижимость
-		appliances:false,			      // бытовая техника
-		work_and_buisness:false,	  // работа и бизнес
-		for_home:false,				      // для дома и дачи
-		personal_effects:false,		  // личные вещи
-		animals:false,				      // животные
-		hobbies_and_leisure:false,	// хобби и отдых
-		services:false,				      // услуги
-		other:false					        // другое
+  serviceUnavailable: false,
+  subCategoryItems: [],    
+  lastPhoneNumber: null,
+	const_phone_max_length: 9,		
+	coordinates_set: false,
+	placeChanged: false,			
+	category: null,
+  subCategory: null,
+	sdelka: null,		
+	info: "",
+	price: 0,
+	number: 0,
+	preview_images: [],
+	real_images: [],
+	root: false,
+	regions_model: null,
+	places: [],
+	places_model: null,
+	phone: "",		
+	transport:false,			      // транспорт
+	real_estate:false,			    // недвижимость
+	appliances:false,			      // бытовая техника
+	work_and_buisness:false,	  // работа и бизнес
+	for_home:false,				      // для дома и дачи
+	personal_effects:false,		  // личные вещи
+	animals:false,				      // животные
+	hobbies_and_leisure:false,	// хобби и отдых
+	services:false,				      // услуги
+	other:false					        // другое
   }
 },
 
@@ -335,13 +325,16 @@ data () {
 created() {
   ymaps.ready(initMaps);  
   this.$root.advert_data = []; 
-  this.advReset();  
-  
-  //this.serviceUnavailable=true;
+  this.advReset();    
 },
 
 // методы компонента
 methods: {
+
+serviceError() {
+  this.serviceUnavailable=true;
+  $("#ShowModal").modal("show"); // отобразить окно
+},
 
 // Выбор подкатегории
 changeSubCategory() {
@@ -381,7 +374,9 @@ changeRegion() {
     get("getPlaces?region_id="+this.regions_model).then((res) => {
 		  this.places=res.data;
 		  this.places_model=null;
-	  }).catch((err) => {});			  
+	  }).catch((err) => {
+      this.serviceError();
+    });			  
 	},
 
 	// -----------------------------------
@@ -479,7 +474,7 @@ deletePhoto(index) {
 // --------------------------------------
 // Выбрать сделку
 // --------------------------------------
-setDeal() {
+setDeal() {    
 
    console.log("Сделка: "+this.sdelka)
 
@@ -497,6 +492,8 @@ setDeal() {
 // сброс данных объявления
 // --------------------------------------
 advReset(category_data) {
+
+    this.serviceUnavailable=false;
 
     let form = document.getElementById("advertform");
 
@@ -564,8 +561,7 @@ changeCategory() {
   this.$root.advert_data.adv_category=category;          
 
   // скрываю дополнительные поля
-  this.$store.commit("ShowFinalFields", false);  
-  
+  this.$store.commit("ShowFinalFields", true);  
   
   switch(this.category) {
     case null: {
@@ -584,48 +580,38 @@ changeCategory() {
       break;
     } 
     case 3: {
-      this.appliances=true; 
-      this.$store.commit("ShowFinalFields", true);      
+      this.appliances=true;   
       break; 
     }
     case 4: {
-      this.work_and_buisness=true;
-      this.$store.commit("ShowFinalFields", true);      
+      this.work_and_buisness=true;      
       break; 
     }
     case 5: {
-      this.for_home=true; 
-      this.$store.commit("ShowFinalFields", true);      
+      this.for_home=true;       
       break; 
     }
     case 6: {
-      this.personal_effects=true; 
-      this.$store.commit("ShowFinalFields", true);      
+      this.personal_effects=true;       
       break; 
     }
     case 7: {
-
-      this.animals=true;      
-      this.$store.commit("ShowFinalFields", true);            
+      this.animals=true;            
       break; 
     }
     case 8: {
-      this.hobbies_and_leisure=true; 
-      this.$store.commit("ShowFinalFields", true);      
+      this.hobbies_and_leisure=true;       
       break;
     }
     case 9: {      
-      this.services=true;
-      this.$store.commit("ShowFinalFields", true);      
+      this.services=true;      
       break; 
     }
     case 10: {
-      this.other=true;
-      this.$store.commit("ShowFinalFields", true);      
+      this.other=true;      
       break; 
       }
     }
-
 
     // Выборка только в конкретных категориях
     let subItems = [3, 4, 5, 6, 7, 8, 9];
@@ -637,9 +623,8 @@ changeCategory() {
       // запрос
       get("getSubCategoryDataById?id="+this.category).then((res) => {
 		    this.subCategoryItems=res.data;
-      }).catch((err) => {
-        console.log(err)
-        //this.serviceUnavailable=true;
+      }).catch((err) => {        
+        this.serviceError();
       });
     }
 },
@@ -668,21 +653,17 @@ onSubmit(evt) {
       
     console.log(response);
     			
-    if (response.data.result=="db.error") { 
-      //this.$root.$notify({group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error'});
-      //alert("Сервис временно не доступен")
-      //this.serviceUnavailable=true;
-    }
+    if (response.data.result=="db.error")
+      this.serviceError();
 		else
       if (response.data.result=="usr.error") 
-       this.$root.$notify({group: 'foo', text: "<h6>"+response.data.msg+"</h6>", type: 'error'});
+       this.serviceError();
 		else
 		  alert("Объявление размещено");
 		//	else 
 		//	window.location="home"; // переходим в личный кабинет
     }).catch(error => {
-		  console.log(error.response)
-		//this.$root.$notify({group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error'});
+		  this.serviceError();
 	  })
   },
 
@@ -690,18 +671,18 @@ onSubmit(evt) {
 	// Показать диалог выбора расположения
 	// -------------------------------------
 	showSetCoordsDialog() {    
-    
-    $("#ShowMapModal").modal("show"); // отобразить окно
+        
+    $("#ShowModal").modal("show"); // отобразить окно
 
     if (!navigator.geolocation) {    
       console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается
     }		    
     else {
-			  navigator.geolocation.getCurrentPosition(function(position) {				
-			  let lat = position.coords.latitude;
-			  let lon = position.coords.longitude;
-			  let geoCoords=[lat,lon];
-			  myPlacemark.geometry.setCoordinates(getCoords);				
+			    navigator.geolocation.getCurrentPosition(function(position) {				
+			    let lat = position.coords.latitude;
+			    let lon = position.coords.longitude;
+			    let geoCoords=[lat,lon];
+			    myPlacemark.geometry.setCoordinates(getCoords);				
 			});
 		}
 	},
@@ -711,7 +692,7 @@ onSubmit(evt) {
 	// ---------------------------------
 	setCoords() {
 
-    $("#ShowMapModal").modal("hide"); // скрыть окно
+    $("#ShowModal").modal("hide"); // скрыть окно
 
 		this.$root.advert_data.adv_coords=[];
 		this.$root.advert_data.adv_coords=mapCoords;

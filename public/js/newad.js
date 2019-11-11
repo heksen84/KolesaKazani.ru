@@ -1931,13 +1931,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 // ---------------------------
@@ -1948,7 +1941,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-//import superSelect from "./components/superSelect.vue"
 
 
 var preview_images_array = [];
@@ -2017,12 +2009,10 @@ function forEach(data, callback) {
     transport: __WEBPACK_IMPORTED_MODULE_2__subcategories_transport_vue___default.a,
     realEstate: __WEBPACK_IMPORTED_MODULE_3__subcategories_realEstate_vue___default.a,
     superInput: __WEBPACK_IMPORTED_MODULE_4__components_superInput_vue___default.a
-    //superSelect
   },
 
   data: function data() {
     return {
-
       serviceUnavailable: false,
       subCategoryItems: [],
       lastPhoneNumber: null,
@@ -2063,13 +2053,16 @@ function forEach(data, callback) {
     ymaps.ready(initMaps);
     this.$root.advert_data = [];
     this.advReset();
-
-    //this.serviceUnavailable=true;
   },
 
 
   // методы компонента
   methods: {
+    serviceError: function serviceError() {
+      this.serviceUnavailable = true;
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#ShowModal").modal("show"); // отобразить окно
+    },
+
 
     // Выбор подкатегории
     changeSubCategory: function changeSubCategory() {
@@ -2111,7 +2104,9 @@ function forEach(data, callback) {
       Object(__WEBPACK_IMPORTED_MODULE_5__helpers_api__["a" /* get */])("getPlaces?region_id=" + this.regions_model).then(function (res) {
         _this.places = res.data;
         _this.places_model = null;
-      }).catch(function (err) {});
+      }).catch(function (err) {
+        _this.serviceError();
+      });
     },
 
 
@@ -2222,6 +2217,8 @@ function forEach(data, callback) {
     // --------------------------------------
     advReset: function advReset(category_data) {
 
+      this.serviceUnavailable = false;
+
       var form = document.getElementById("advertform");
 
       this.subCategory = null; // сбрасываю подкатегории
@@ -2287,7 +2284,7 @@ function forEach(data, callback) {
       this.$root.advert_data.adv_category = category;
 
       // скрываю дополнительные поля
-      this.$store.commit("ShowFinalFields", false);
+      this.$store.commit("ShowFinalFields", true);
 
       switch (this.category) {
         case null:
@@ -2311,50 +2308,41 @@ function forEach(data, callback) {
         case 3:
           {
             this.appliances = true;
-            this.$store.commit("ShowFinalFields", true);
             break;
           }
         case 4:
           {
             this.work_and_buisness = true;
-            this.$store.commit("ShowFinalFields", true);
             break;
           }
         case 5:
           {
             this.for_home = true;
-            this.$store.commit("ShowFinalFields", true);
             break;
           }
         case 6:
           {
             this.personal_effects = true;
-            this.$store.commit("ShowFinalFields", true);
             break;
           }
         case 7:
           {
-
             this.animals = true;
-            this.$store.commit("ShowFinalFields", true);
             break;
           }
         case 8:
           {
             this.hobbies_and_leisure = true;
-            this.$store.commit("ShowFinalFields", true);
             break;
           }
         case 9:
           {
             this.services = true;
-            this.$store.commit("ShowFinalFields", true);
             break;
           }
         case 10:
           {
             this.other = true;
-            this.$store.commit("ShowFinalFields", true);
             break;
           }
       }
@@ -2370,8 +2358,7 @@ function forEach(data, callback) {
         Object(__WEBPACK_IMPORTED_MODULE_5__helpers_api__["a" /* get */])("getSubCategoryDataById?id=" + this.category).then(function (res) {
           _this2.subCategoryItems = res.data;
         }).catch(function (err) {
-          console.log(err);
-          //this.serviceUnavailable=true;
+          _this2.serviceError();
         });
       }
     },
@@ -2403,16 +2390,11 @@ function forEach(data, callback) {
 
         console.log(response);
 
-        if (response.data.result == "db.error") {
-          //this.$root.$notify({group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error'});
-          //alert("Сервис временно не доступен")
-          //this.serviceUnavailable=true;
-        } else if (response.data.result == "usr.error") _this3.$root.$notify({ group: 'foo', text: "<h6>" + response.data.msg + "</h6>", type: 'error' });else alert("Объявление размещено");
+        if (response.data.result == "db.error") _this3.serviceError();else if (response.data.result == "usr.error") _this3.serviceError();else alert("Объявление размещено");
         //	else 
         //	window.location="home"; // переходим в личный кабинет
       }).catch(function (error) {
-        console.log(error.response);
-        //this.$root.$notify({group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error'});
+        _this3.serviceError();
       });
     },
 
@@ -2422,7 +2404,7 @@ function forEach(data, callback) {
     // -------------------------------------
     showSetCoordsDialog: function showSetCoordsDialog() {
 
-      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#ShowMapModal").modal("show"); // отобразить окно
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#ShowModal").modal("show"); // отобразить окно
 
       if (!navigator.geolocation) {
         console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается
@@ -2442,7 +2424,7 @@ function forEach(data, callback) {
     // ---------------------------------
     setCoords: function setCoords() {
 
-      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#ShowMapModal").modal("hide"); // скрыть окно
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#ShowModal").modal("hide"); // скрыть окно
 
       this.$root.advert_data.adv_coords = [];
       this.$root.advert_data.adv_coords = mapCoords;
@@ -39624,680 +39606,813 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid mycontainer_adv" }, [
-    _vm.serviceUnavailable
-      ? _c("div", { staticClass: "alert alert-light" }, [
-          _c("h4", { staticClass: "alert-heading" }, [
-            _vm._v("Cервис временно не доступен!")
-          ])
-        ])
-      : _vm._e(),
-    _vm._v(" "),
     _c(
       "div",
       {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: !_vm.serviceUnavailable,
-            expression: "!serviceUnavailable"
-          }
-        ]
+        staticClass: "modal fade bd-example-modal-lg",
+        attrs: {
+          id: "ShowModal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-hidden": "true"
+        }
       },
       [
         _c(
           "div",
-          {
-            staticClass: "modal fade bd-example-modal-lg",
-            attrs: {
-              id: "ShowMapModal",
-              tabindex: "-1",
-              role: "dialog",
-              "aria-hidden": "true"
-            }
-          },
+          { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
           [
-            _c(
-              "div",
-              {
-                staticClass: "modal-dialog modal-lg",
-                attrs: { role: "document" }
-              },
-              [
-                _c("div", { staticClass: "modal-content" }, [
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "modal-footer" }, [
-                    _c(
-                      "button",
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    directives: [
                       {
-                        staticClass: "btn btn-primary margin-auto",
-                        attrs: { type: "button" },
-                        on: { click: _vm.setCoords }
-                      },
-                      [_vm._v("Сохранить")]
-                    )
-                  ])
-                ])
-              ]
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col"
-            },
-            [
-              _c(
-                "div",
-                {
-                  staticClass: "close_button",
-                  staticStyle: { "font-weight": "bold" },
-                  attrs: { title: "Закрыть страницу" },
-                  on: { click: _vm.closeAndReturn }
-                },
-                [_vm._v("X")]
-              ),
+                        name: "show",
+                        rawName: "v-show",
+                        value: !_vm.serviceUnavailable,
+                        expression: "!serviceUnavailable"
+                      }
+                    ],
+                    staticClass: "modal-title",
+                    attrs: { id: "exampleModalLabel" }
+                  },
+                  [_vm._v("Расположение")]
+                ),
+                _vm._v(" "),
+                _vm._m(0)
+              ]),
               _vm._v(" "),
-              _c(
-                "h1",
-                {
-                  staticClass: "title_text",
-                  staticStyle: { "margin-top": "12px" }
-                },
-                [_vm._v("подать объявление")]
-              ),
-              _vm._v(" "),
-              _c("hr"),
-              _vm._v(" "),
-              _c("div", { staticStyle: { "margin-bottom": "10px" } }, [
-                _c("label", { staticStyle: { width: "270px" } }, [
-                  _vm._v("Вид сделки:")
-                ]),
+              _c("div", { staticClass: "modal-body text-center" }, [
+                _c("div", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: !_vm.serviceUnavailable,
+                      expression: "!serviceUnavailable"
+                    }
+                  ],
+                  staticStyle: { width: "100%", height: "300px" },
+                  attrs: { id: "bigmap" }
+                }),
                 _vm._v(" "),
                 _c(
-                  "div",
+                  "h4",
                   {
-                    staticClass: "form-check",
-                    staticStyle: { width: "260px" }
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.serviceUnavailable,
+                        expression: "serviceUnavailable"
+                      }
+                    ],
+                    staticClass: "alert-heading"
                   },
-                  _vm._l(_vm.dealtypes, function(item, index) {
-                    return _c("div", { key: index }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.sdelka,
-                            expression: "sdelka"
-                          }
-                        ],
-                        staticClass: "form-check-input",
-                        attrs: {
-                          id: item.id,
-                          type: "radio",
-                          name: "inlineRadioOptions"
-                        },
-                        domProps: {
-                          value: item.id,
-                          checked: _vm._q(_vm.sdelka, item.id)
-                        },
-                        on: {
-                          change: [
-                            function($event) {
-                              _vm.sdelka = item.id
-                            },
-                            _vm.setDeal
-                          ]
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-check-label",
-                          attrs: { for: item.id }
-                        },
-                        [_vm._v(_vm._s(item.deal_name_1))]
-                      )
-                    ])
-                  }),
-                  0
+                  [_vm._v("Cервис временно не доступен!")]
                 )
               ]),
               _vm._v(" "),
-              _vm.sdelka != null
-                ? _c("div", { staticClass: "row form-group" }, [
-                    _c("div", { staticClass: "col-auto" }, [
-                      _c("label", { attrs: { for: "categories" } }, [
-                        _vm._v("Категория товара или услуги:")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.category,
-                              expression: "category"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          on: {
-                            change: [
-                              function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.category = $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              },
-                              _vm.changeCategory
-                            ]
-                          }
-                        },
-                        [
-                          _c("option", { domProps: { value: null } }, [
-                            _vm._v("-- Выберите категорию --")
-                          ]),
-                          _vm._v(" "),
-                          _vm._l(_vm.categories, function(item, index) {
-                            return _c(
-                              "option",
-                              { key: index, domProps: { value: item.id } },
-                              [_vm._v(_vm._s(item.name))]
-                            )
-                          })
-                        ],
-                        2
-                      )
-                    ])
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
               _c(
-                "form",
+                "div",
                 {
                   directives: [
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.sdelka != null,
-                      expression: "sdelka!=null"
+                      value: !_vm.serviceUnavailable,
+                      expression: "!serviceUnavailable"
                     }
                   ],
-                  attrs: { id: "advertform" },
-                  on: { submit: _vm.onSubmit }
+                  staticClass: "modal-footer"
                 },
                 [
-                  _vm.root ? _c("div") : _vm._e(),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary margin-auto",
+                      attrs: { type: "button" },
+                      on: { click: _vm.setCoords }
+                    },
+                    [_vm._v("Сохранить")]
+                  )
+                ]
+              )
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col"
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "close_button",
+              staticStyle: { "font-weight": "bold" },
+              attrs: { title: "Закрыть страницу" },
+              on: { click: _vm.closeAndReturn }
+            },
+            [_vm._v("X")]
+          ),
+          _vm._v(" "),
+          _c(
+            "h1",
+            {
+              staticClass: "title_text",
+              staticStyle: { "margin-top": "12px" }
+            },
+            [_vm._v("подать объявление")]
+          ),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("div", { staticStyle: { "margin-bottom": "10px" } }, [
+            _c("label", { staticStyle: { width: "270px" } }, [
+              _vm._v("Вид сделки:")
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "form-check", staticStyle: { width: "260px" } },
+              _vm._l(_vm.dealtypes, function(item, index) {
+                return _c("div", { key: index }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.sdelka,
+                        expression: "sdelka"
+                      }
+                    ],
+                    staticClass: "form-check-input",
+                    attrs: {
+                      id: item.id,
+                      type: "radio",
+                      name: "inlineRadioOptions"
+                    },
+                    domProps: {
+                      value: item.id,
+                      checked: _vm._q(_vm.sdelka, item.id)
+                    },
+                    on: {
+                      change: [
+                        function($event) {
+                          _vm.sdelka = item.id
+                        },
+                        _vm.setDeal
+                      ]
+                    }
+                  }),
                   _vm._v(" "),
-                  _vm.transport && _vm.category ? _c("transport") : _vm._e(),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "form-check-label",
+                      attrs: { for: item.id }
+                    },
+                    [_vm._v(_vm._s(item.deal_name_1))]
+                  )
+                ])
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _vm.sdelka != null
+            ? _c("div", { staticClass: "row form-group" }, [
+                _c("div", { staticClass: "col-auto" }, [
+                  _c("label", { attrs: { for: "categories" } }, [
+                    _vm._v("Категория товара или услуги:")
+                  ]),
                   _vm._v(" "),
-                  _vm.real_estate ? _c("realEstate") : _vm._e(),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.category,
+                          expression: "category"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.category = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                          _vm.changeCategory
+                        ]
+                      }
+                    },
+                    [
+                      _c("option", { domProps: { value: null } }, [
+                        _vm._v("-- Выберите категорию --")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.categories, function(item, index) {
+                        return _c(
+                          "option",
+                          { key: index, domProps: { value: item.id } },
+                          [_vm._v(_vm._s(item.name))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.sdelka != null,
+                  expression: "sdelka!=null"
+                }
+              ],
+              attrs: { id: "advertform" },
+              on: { submit: _vm.onSubmit }
+            },
+            [
+              _vm.root ? _c("div") : _vm._e(),
+              _vm._v(" "),
+              _vm.transport && _vm.category ? _c("transport") : _vm._e(),
+              _vm._v(" "),
+              _vm.real_estate ? _c("realEstate") : _vm._e(),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _vm.appliances && _vm.category
+                  ? _c(
+                      "div",
+                      { staticClass: "col-11 col-xl-5 col-md-5 col-sm-12" },
+                      [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.subCategory,
+                                expression: "subCategory"
+                              }
+                            ],
+                            staticClass: "form-group form-control",
+                            on: {
+                              change: [
+                                function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.subCategory = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                },
+                                _vm.changeSubCategory
+                              ]
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "null" } }, [
+                              _vm._v("-- Подкатегория --")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.subCategoryItems, function(item, index) {
+                              return _c(
+                                "option",
+                                { key: index, domProps: { value: item.id } },
+                                [_vm._v(_vm._s(item.name))]
+                              )
+                            })
+                          ],
+                          2
+                        )
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.work_and_buisness && _vm.category
+                  ? _c(
+                      "div",
+                      { staticClass: "col-11 col-xl-4 col-md-4 col-sm-12" },
+                      [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.subCategory,
+                                expression: "subCategory"
+                              }
+                            ],
+                            staticClass: "form-group form-control",
+                            on: {
+                              change: [
+                                function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.subCategory = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                },
+                                _vm.changeSubCategory
+                              ]
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "null" } }, [
+                              _vm._v("-- Подкатегория --")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.subCategoryItems, function(item, index) {
+                              return _c(
+                                "option",
+                                { key: index, domProps: { value: item.id } },
+                                [_vm._v(_vm._s(item.name))]
+                              )
+                            })
+                          ],
+                          2
+                        )
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.for_home && _vm.category
+                  ? _c(
+                      "div",
+                      { staticClass: "col-11 col-xl-4 col-md-4 col-sm-12" },
+                      [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.subCategory,
+                                expression: "subCategory"
+                              }
+                            ],
+                            staticClass: "form-group form-control",
+                            on: {
+                              change: [
+                                function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.subCategory = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                },
+                                _vm.changeSubCategory
+                              ]
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "null" } }, [
+                              _vm._v("-- Подкатегория --")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.subCategoryItems, function(item, index) {
+                              return _c(
+                                "option",
+                                { key: index, domProps: { value: item.id } },
+                                [_vm._v(_vm._s(item.name))]
+                              )
+                            })
+                          ],
+                          2
+                        )
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.personal_effects && _vm.category
+                  ? _c(
+                      "div",
+                      { staticClass: "col-11 col-xl-5 col-md-5 col-sm-12" },
+                      [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.subCategory,
+                                expression: "subCategory"
+                              }
+                            ],
+                            staticClass: "form-group form-control",
+                            on: {
+                              change: [
+                                function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.subCategory = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                },
+                                _vm.changeSubCategory
+                              ]
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "null" } }, [
+                              _vm._v("-- Подкатегория --")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.subCategoryItems, function(item, index) {
+                              return _c(
+                                "option",
+                                { key: index, domProps: { value: item.id } },
+                                [_vm._v(_vm._s(item.name))]
+                              )
+                            })
+                          ],
+                          2
+                        )
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.animals && _vm.category
+                  ? _c(
+                      "div",
+                      { staticClass: "col-11 col-xl-4 col-md-4 col-sm-12" },
+                      [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.subCategory,
+                                expression: "subCategory"
+                              }
+                            ],
+                            staticClass: "form-group form-control",
+                            on: {
+                              change: [
+                                function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.subCategory = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                },
+                                _vm.changeSubCategory
+                              ]
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "null" } }, [
+                              _vm._v("-- Подкатегория --")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.subCategoryItems, function(item, index) {
+                              return _c(
+                                "option",
+                                { key: index, domProps: { value: item.id } },
+                                [_vm._v(_vm._s(item.name))]
+                              )
+                            })
+                          ],
+                          2
+                        )
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.hobbies_and_leisure && _vm.category
+                  ? _c(
+                      "div",
+                      { staticClass: "col-11 col-xl-4 col-md-4 col-sm-12" },
+                      [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.subCategory,
+                                expression: "subCategory"
+                              }
+                            ],
+                            staticClass: "form-group form-control",
+                            on: {
+                              change: [
+                                function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.subCategory = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                },
+                                _vm.changeSubCategory
+                              ]
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "null" } }, [
+                              _vm._v("-- Подкатегория --")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.subCategoryItems, function(item, index) {
+                              return _c(
+                                "option",
+                                { key: index, domProps: { value: item.id } },
+                                [_vm._v(_vm._s(item.name))]
+                              )
+                            })
+                          ],
+                          2
+                        )
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.services && _vm.category
+                  ? _c(
+                      "div",
+                      { staticClass: "col-11 col-xl-5 col-md-5 col-sm-12" },
+                      [
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.subCategory,
+                                expression: "subCategory"
+                              }
+                            ],
+                            staticClass: "form-group form-control",
+                            on: {
+                              change: [
+                                function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.subCategory = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                },
+                                _vm.changeSubCategory
+                              ]
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "null" } }, [
+                              _vm._v("-- Подкатегория --")
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.subCategoryItems, function(item, index) {
+                              return _c(
+                                "option",
+                                { key: index, domProps: { value: item.id } },
+                                [_vm._v(_vm._s(item.name))]
+                              )
+                            })
+                          ],
+                          2
+                        )
+                      ]
+                    )
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.$store.state.show_final_fields,
+                      expression: "$store.state.show_final_fields"
+                    }
+                  ]
+                },
+                [
+                  _c("label", { attrs: { for: "addit_info" } }, [
+                    _vm._v(_vm._s(_vm.$store.state.info_label_description))
+                  ]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.info,
+                        expression: "info"
+                      }
+                    ],
+                    staticClass: "form-control form-group",
+                    attrs: {
+                      id: "addit_info",
+                      placeholder: _vm.$store.state.placeholder_info_text,
+                      rows: 4,
+                      "max-rows": 4,
+                      maxlength: "1024"
+                    },
+                    domProps: { value: _vm.info },
+                    on: {
+                      input: [
+                        function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.info = $event.target.value
+                        },
+                        _vm.setInfo
+                      ]
+                    }
+                  }),
                   _vm._v(" "),
                   _c("div", { staticClass: "row" }, [
-                    _vm.appliances && _vm.category
+                    _vm.sdelka != 3
                       ? _c(
                           "div",
-                          { staticClass: "col-11 col-xl-5 col-md-5 col-sm-12" },
+                          { staticClass: "col-md-12 text-center" },
                           [
                             _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.subCategory,
-                                    expression: "subCategory"
-                                  }
-                                ],
-                                staticClass: "form-group form-control",
-                                on: {
-                                  change: [
-                                    function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.subCategory = $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    },
-                                    _vm.changeSubCategory
-                                  ]
-                                }
-                              },
-                              [
-                                _c("option", { attrs: { value: "null" } }, [
-                                  _vm._v("-- Подкатегория --")
-                                ]),
-                                _vm._v(" "),
-                                _vm._l(_vm.subCategoryItems, function(
-                                  item,
-                                  index
-                                ) {
-                                  return _c(
-                                    "option",
-                                    {
-                                      key: index,
-                                      domProps: { value: item.id }
-                                    },
-                                    [_vm._v(_vm._s(item.name))]
-                                  )
-                                })
-                              ],
-                              2
-                            )
-                          ]
+                              "span",
+                              { staticStyle: { "margin-right": "5px" } },
+                              [_vm._v("Цена:")]
+                            ),
+                            _vm._v(" "),
+                            _c("superInput", {
+                              attrs: { type: "number", maxlength: 8 },
+                              on: { input: _vm.setPrice },
+                              model: {
+                                value: _vm.price,
+                                callback: function($$v) {
+                                  _vm.price = $$v
+                                },
+                                expression: "price"
+                              }
+                            })
+                          ],
+                          1
                         )
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.work_and_buisness && _vm.category
-                      ? _c(
-                          "div",
-                          { staticClass: "col-11 col-xl-4 col-md-4 col-sm-12" },
-                          [
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.subCategory,
-                                    expression: "subCategory"
-                                  }
-                                ],
-                                staticClass: "form-group form-control",
-                                on: {
-                                  change: [
-                                    function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.subCategory = $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    },
-                                    _vm.changeSubCategory
-                                  ]
-                                }
-                              },
-                              [
-                                _c("option", { attrs: { value: "null" } }, [
-                                  _vm._v("-- Подкатегория --")
-                                ]),
-                                _vm._v(" "),
-                                _vm._l(_vm.subCategoryItems, function(
-                                  item,
-                                  index
-                                ) {
-                                  return _c(
-                                    "option",
-                                    {
-                                      key: index,
-                                      domProps: { value: item.id }
-                                    },
-                                    [_vm._v(_vm._s(item.name))]
-                                  )
-                                })
-                              ],
-                              2
-                            )
-                          ]
-                        )
-                      : _vm._e(),
+                    _vm._m(1),
                     _vm._v(" "),
-                    _vm.for_home && _vm.category
-                      ? _c(
-                          "div",
-                          { staticClass: "col-11 col-xl-4 col-md-4 col-sm-12" },
-                          [
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.subCategory,
-                                    expression: "subCategory"
-                                  }
-                                ],
-                                staticClass: "form-group form-control",
-                                on: {
-                                  change: [
-                                    function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.subCategory = $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    },
-                                    _vm.changeSubCategory
-                                  ]
-                                }
-                              },
-                              [
-                                _c("option", { attrs: { value: "null" } }, [
-                                  _vm._v("-- Подкатегория --")
-                                ]),
-                                _vm._v(" "),
-                                _vm._l(_vm.subCategoryItems, function(
-                                  item,
-                                  index
-                                ) {
-                                  return _c(
-                                    "option",
-                                    {
-                                      key: index,
-                                      domProps: { value: item.id }
-                                    },
-                                    [_vm._v(_vm._s(item.name))]
-                                  )
-                                })
-                              ],
-                              2
-                            )
-                          ]
-                        )
-                      : _vm._e(),
+                    _c(
+                      "div",
+                      { staticClass: "col-md-12 text-center" },
+                      _vm._l(_vm.preview_images, function(i, index) {
+                        return _c("img", {
+                          key: i.name,
+                          staticClass: "image",
+                          attrs: { src: i.src, title: i.name },
+                          on: {
+                            click: function($event) {
+                              return _vm.deletePhoto(index)
+                            }
+                          }
+                        })
+                      }),
+                      0
+                    ),
                     _vm._v(" "),
-                    _vm.personal_effects && _vm.category
-                      ? _c(
-                          "div",
-                          { staticClass: "col-11 col-xl-5 col-md-5 col-sm-12" },
-                          [
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.subCategory,
-                                    expression: "subCategory"
-                                  }
-                                ],
-                                staticClass: "form-group form-control",
-                                on: {
-                                  change: [
-                                    function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.subCategory = $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    },
-                                    _vm.changeSubCategory
-                                  ]
-                                }
-                              },
-                              [
-                                _c("option", { attrs: { value: "null" } }, [
-                                  _vm._v("-- Подкатегория --")
-                                ]),
-                                _vm._v(" "),
-                                _vm._l(_vm.subCategoryItems, function(
-                                  item,
-                                  index
-                                ) {
-                                  return _c(
-                                    "option",
-                                    {
-                                      key: index,
-                                      domProps: { value: item.id }
-                                    },
-                                    [_vm._v(_vm._s(item.name))]
-                                  )
-                                })
-                              ],
-                              2
-                            )
-                          ]
-                        )
-                      : _vm._e(),
+                    _c("div", { staticClass: "col-md-12 text-center" }, [
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "custom-file",
+                          attrs: { id: "customFile", lang: "ru" }
+                        },
+                        [
+                          _c("input", {
+                            staticClass: "custom-file-input",
+                            attrs: {
+                              name: "input2[]",
+                              type: "file",
+                              accept: ".png, .jpg, .jpeg",
+                              multiple: "",
+                              "data-show-upload": "true",
+                              "data-show-caption": "true"
+                            },
+                            on: { change: _vm.loadImage }
+                          }),
+                          _vm._v(" "),
+                          _c("label", { staticClass: "custom-file-label" })
+                        ]
+                      )
+                    ]),
                     _vm._v(" "),
-                    _vm.animals && _vm.category
-                      ? _c(
-                          "div",
-                          { staticClass: "col-11 col-xl-4 col-md-4 col-sm-12" },
-                          [
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.subCategory,
-                                    expression: "subCategory"
-                                  }
-                                ],
-                                staticClass: "form-group form-control",
-                                on: {
-                                  change: [
-                                    function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.subCategory = $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    },
-                                    _vm.changeSubCategory
-                                  ]
-                                }
-                              },
-                              [
-                                _c("option", { attrs: { value: "null" } }, [
-                                  _vm._v("-- Подкатегория --")
-                                ]),
-                                _vm._v(" "),
-                                _vm._l(_vm.subCategoryItems, function(
-                                  item,
-                                  index
-                                ) {
-                                  return _c(
-                                    "option",
-                                    {
-                                      key: index,
-                                      domProps: { value: item.id }
-                                    },
-                                    [_vm._v(_vm._s(item.name))]
-                                  )
-                                })
-                              ],
-                              2
-                            )
-                          ]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.hobbies_and_leisure && _vm.category
-                      ? _c(
-                          "div",
-                          { staticClass: "col-11 col-xl-4 col-md-4 col-sm-12" },
-                          [
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.subCategory,
-                                    expression: "subCategory"
-                                  }
-                                ],
-                                staticClass: "form-group form-control",
-                                on: {
-                                  change: [
-                                    function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.subCategory = $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    },
-                                    _vm.changeSubCategory
-                                  ]
-                                }
-                              },
-                              [
-                                _c("option", { attrs: { value: "null" } }, [
-                                  _vm._v("-- Подкатегория --")
-                                ]),
-                                _vm._v(" "),
-                                _vm._l(_vm.subCategoryItems, function(
-                                  item,
-                                  index
-                                ) {
-                                  return _c(
-                                    "option",
-                                    {
-                                      key: index,
-                                      domProps: { value: item.id }
-                                    },
-                                    [_vm._v(_vm._s(item.name))]
-                                  )
-                                })
-                              ],
-                              2
-                            )
-                          ]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.services && _vm.category
-                      ? _c(
-                          "div",
-                          { staticClass: "col-11 col-xl-5 col-md-5 col-sm-12" },
-                          [
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.subCategory,
-                                    expression: "subCategory"
-                                  }
-                                ],
-                                staticClass: "form-group form-control",
-                                on: {
-                                  change: [
-                                    function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.subCategory = $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    },
-                                    _vm.changeSubCategory
-                                  ]
-                                }
-                              },
-                              [
-                                _c("option", { attrs: { value: "null" } }, [
-                                  _vm._v("-- Подкатегория --")
-                                ]),
-                                _vm._v(" "),
-                                _vm._l(_vm.subCategoryItems, function(
-                                  item,
-                                  index
-                                ) {
-                                  return _c(
-                                    "option",
-                                    {
-                                      key: index,
-                                      domProps: { value: item.id }
-                                    },
-                                    [_vm._v(_vm._s(item.name))]
-                                  )
-                                })
-                              ],
-                              2
-                            )
-                          ]
-                        )
-                      : _vm._e()
+                    _vm._m(2)
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c(
+                      "div",
+                      { staticClass: "col-md-12 text-center" },
+                      [
+                        _c("superInput", {
+                          attrs: {
+                            type: "phone",
+                            placeholder: "контактный номер",
+                            maxlength: 14
+                          },
+                          on: { input: _vm.setPhone },
+                          model: {
+                            value: _vm.phone,
+                            callback: function($$v) {
+                              _vm.phone = $$v
+                            },
+                            expression: "phone"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("br")
+                      ],
+                      1
+                    )
                   ]),
                   _vm._v(" "),
                   _c(
@@ -40307,150 +40422,80 @@ var render = function() {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: _vm.$store.state.show_final_fields,
-                          expression: "$store.state.show_final_fields"
+                          value: _vm.phone.length === 14,
+                          expression: "phone.length===14"
                         }
-                      ]
+                      ],
+                      staticClass: "row"
                     },
                     [
-                      _c("label", { attrs: { for: "addit_info" } }, [
-                        _vm._v(_vm._s(_vm.$store.state.info_label_description))
-                      ]),
+                      _c("br"),
                       _vm._v(" "),
-                      _c("textarea", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.info,
-                            expression: "info"
-                          }
-                        ],
-                        staticClass: "form-control form-group",
-                        attrs: {
-                          id: "addit_info",
-                          placeholder: _vm.$store.state.placeholder_info_text,
-                          rows: 4,
-                          "max-rows": 4,
-                          maxlength: "1024"
-                        },
-                        domProps: { value: _vm.info },
-                        on: {
-                          input: [
-                            function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.info = $event.target.value
-                            },
-                            _vm.setInfo
-                          ]
-                        }
-                      }),
+                      _vm._m(3),
                       _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _vm.sdelka != 3
-                          ? _c(
-                              "div",
-                              { staticClass: "col-md-12 text-center" },
-                              [
-                                _c(
-                                  "span",
-                                  { staticStyle: { "margin-right": "5px" } },
-                                  [_vm._v("Цена:")]
-                                ),
-                                _vm._v(" "),
-                                _c("superInput", {
-                                  attrs: { type: "number", maxlength: 8 },
-                                  on: { input: _vm.setPrice },
-                                  model: {
-                                    value: _vm.price,
-                                    callback: function($$v) {
-                                      _vm.price = $$v
-                                    },
-                                    expression: "price"
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c(
+                          "div",
+                          { staticStyle: { width: "280px", margin: "auto" } },
+                          [
+                            _c("label", { attrs: { for: "selectRegion" } }, [
+                              _vm._v("Регион:")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.regions_model,
+                                    expression: "regions_model"
                                   }
+                                ],
+                                staticClass: "form-control form-group",
+                                attrs: { id: "selectRegion" },
+                                on: {
+                                  change: [
+                                    function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.regions_model = $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    },
+                                    _vm.changeRegion
+                                  ]
+                                }
+                              },
+                              [
+                                _c("option", { domProps: { value: null } }, [
+                                  _vm._v("-- Выберите регион --")
+                                ]),
+                                _vm._v(" "),
+                                _vm._l(_vm.regions, function(item) {
+                                  return _c(
+                                    "option",
+                                    {
+                                      key: item.name,
+                                      domProps: { value: item.region_id }
+                                    },
+                                    [_vm._v(_vm._s(item.name))]
+                                  )
                                 })
                               ],
-                              1
+                              2
                             )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm._m(2),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "col-md-12 text-center" },
-                          _vm._l(_vm.preview_images, function(i, index) {
-                            return _c("img", {
-                              key: i.name,
-                              staticClass: "image",
-                              attrs: { src: i.src, title: i.name },
-                              on: {
-                                click: function($event) {
-                                  return _vm.deletePhoto(index)
-                                }
-                              }
-                            })
-                          }),
-                          0
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-12 text-center" }, [
-                          _c("br"),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass: "custom-file",
-                              attrs: { id: "customFile", lang: "ru" }
-                            },
-                            [
-                              _c("input", {
-                                staticClass: "custom-file-input",
-                                attrs: {
-                                  name: "input2[]",
-                                  type: "file",
-                                  accept: ".png, .jpg, .jpeg",
-                                  multiple: "",
-                                  "data-show-upload": "true",
-                                  "data-show-caption": "true"
-                                },
-                                on: { change: _vm.loadImage }
-                              }),
-                              _vm._v(" "),
-                              _c("label", { staticClass: "custom-file-label" })
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(3)
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c(
-                          "div",
-                          { staticClass: "col-md-12 text-center" },
-                          [
-                            _c("superInput", {
-                              attrs: {
-                                type: "phone",
-                                placeholder: "контактный номер",
-                                maxlength: 14
-                              },
-                              on: { input: _vm.setPhone },
-                              model: {
-                                value: _vm.phone,
-                                callback: function($$v) {
-                                  _vm.phone = $$v
-                                },
-                                expression: "phone"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("br")
-                          ],
-                          1
+                          ]
                         )
                       ]),
                       _vm._v(" "),
@@ -40461,271 +40506,163 @@ var render = function() {
                             {
                               name: "show",
                               rawName: "v-show",
-                              value: _vm.phone.length === 14,
-                              expression: "phone.length===14"
+                              value: _vm.regions_model != null,
+                              expression: "regions_model!=null"
                             }
                           ],
-                          staticClass: "row"
+                          staticClass: "col-md-12"
                         },
                         [
-                          _c("br"),
-                          _vm._v(" "),
-                          _vm._m(4),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-12" }, [
-                            _c(
-                              "div",
-                              {
-                                staticStyle: { width: "280px", margin: "auto" }
-                              },
-                              [
-                                _c(
-                                  "label",
-                                  { attrs: { for: "selectRegion" } },
-                                  [_vm._v("Регион:")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "select",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.regions_model,
-                                        expression: "regions_model"
-                                      }
-                                    ],
-                                    staticClass: "form-control form-group",
-                                    attrs: { id: "selectRegion" },
-                                    on: {
-                                      change: [
-                                        function($event) {
-                                          var $$selectedVal = Array.prototype.filter
-                                            .call(
-                                              $event.target.options,
-                                              function(o) {
-                                                return o.selected
-                                              }
-                                            )
-                                            .map(function(o) {
-                                              var val =
-                                                "_value" in o
-                                                  ? o._value
-                                                  : o.value
-                                              return val
-                                            })
-                                          _vm.regions_model = $event.target
-                                            .multiple
-                                            ? $$selectedVal
-                                            : $$selectedVal[0]
-                                        },
-                                        _vm.changeRegion
-                                      ]
-                                    }
-                                  },
-                                  [
-                                    _c(
-                                      "option",
-                                      { domProps: { value: null } },
-                                      [_vm._v("-- Выберите регион --")]
-                                    ),
-                                    _vm._v(" "),
-                                    _vm._l(_vm.regions, function(item) {
-                                      return _c(
-                                        "option",
-                                        {
-                                          key: item.name,
-                                          domProps: { value: item.region_id }
-                                        },
-                                        [_vm._v(_vm._s(item.name))]
-                                      )
-                                    })
-                                  ],
-                                  2
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
                           _c(
                             "div",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.regions_model != null,
-                                  expression: "regions_model!=null"
-                                }
-                              ],
-                              staticClass: "col-md-12"
-                            },
+                            { staticStyle: { width: "280px", margin: "auto" } },
                             [
+                              _c("label", { attrs: { for: "selectPlace" } }, [
+                                _vm._v("Местность:")
+                              ]),
+                              _vm._v(" "),
                               _c(
-                                "div",
+                                "select",
                                 {
-                                  staticStyle: {
-                                    width: "280px",
-                                    margin: "auto"
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.places_model,
+                                      expression: "places_model"
+                                    }
+                                  ],
+                                  staticClass: "form-control form-group",
+                                  attrs: { id: "selectPlace" },
+                                  on: {
+                                    change: [
+                                      function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.places_model = $event.target
+                                          .multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      },
+                                      _vm.changePlace
+                                    ]
                                   }
                                 },
                                 [
-                                  _c(
-                                    "label",
-                                    { attrs: { for: "selectPlace" } },
-                                    [_vm._v("Местность:")]
-                                  ),
+                                  _c("option", { domProps: { value: null } }, [
+                                    _vm._v("-- Выберите местность --")
+                                  ]),
                                   _vm._v(" "),
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.places_model,
-                                          expression: "places_model"
+                                  _vm._l(_vm.places, function(item) {
+                                    return _c(
+                                      "option",
+                                      {
+                                        key: item.name,
+                                        domProps: {
+                                          value:
+                                            item.city_id + "@" + item.coords
                                         }
-                                      ],
-                                      staticClass: "form-control form-group",
-                                      attrs: { id: "selectPlace" },
-                                      on: {
-                                        change: [
-                                          function($event) {
-                                            var $$selectedVal = Array.prototype.filter
-                                              .call(
-                                                $event.target.options,
-                                                function(o) {
-                                                  return o.selected
-                                                }
-                                              )
-                                              .map(function(o) {
-                                                var val =
-                                                  "_value" in o
-                                                    ? o._value
-                                                    : o.value
-                                                return val
-                                              })
-                                            _vm.places_model = $event.target
-                                              .multiple
-                                              ? $$selectedVal
-                                              : $$selectedVal[0]
-                                          },
-                                          _vm.changePlace
-                                        ]
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        { domProps: { value: null } },
-                                        [_vm._v("-- Выберите местность --")]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm._l(_vm.places, function(item) {
-                                        return _c(
-                                          "option",
-                                          {
-                                            key: item.name,
-                                            domProps: {
-                                              value:
-                                                item.city_id + "@" + item.coords
-                                            }
-                                          },
-                                          [_vm._v(_vm._s(item.name))]
-                                        )
-                                      })
-                                    ],
-                                    2
-                                  )
-                                ]
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.places_model != null,
-                                  expression: "places_model!=null"
-                                }
-                              ],
-                              staticClass: "col-md-12 text-center"
-                            },
-                            [
-                              _c("div", {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: _vm.coordinates_set,
-                                    expression: "coordinates_set"
-                                  }
+                                      },
+                                      [_vm._v(_vm._s(item.name))]
+                                    )
+                                  })
                                 ],
-                                staticStyle: {
-                                  border: "1px solid rgb(180,180,180)",
-                                  "margin-bottom": "10px",
-                                  width: "100%",
-                                  height: "200px"
-                                },
-                                attrs: { id: "smallmap" }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-primary form-group",
-                                  attrs: { type: "button" },
-                                  on: { click: _vm.showSetCoordsDialog }
-                                },
-                                [_vm._v("уточнить местоположение")]
+                                2
                               )
                             ]
-                          ),
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.places_model != null,
+                              expression: "places_model!=null"
+                            }
+                          ],
+                          staticClass: "col-md-12 text-center"
+                        },
+                        [
+                          _c("div", {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.coordinates_set,
+                                expression: "coordinates_set"
+                              }
+                            ],
+                            staticStyle: {
+                              border: "1px solid rgb(180,180,180)",
+                              "margin-bottom": "10px",
+                              width: "100%",
+                              height: "200px"
+                            },
+                            attrs: { id: "smallmap" }
+                          }),
                           _vm._v(" "),
                           _c(
-                            "div",
+                            "button",
                             {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.places_model != null,
-                                  expression: "places_model!=null"
-                                }
-                              ],
-                              staticClass: "col-md-12 text-center"
+                              staticClass: "btn btn-primary form-group",
+                              attrs: { type: "button" },
+                              on: { click: _vm.showSetCoordsDialog }
                             },
-                            [
-                              _c("hr"),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-success form-group",
-                                  attrs: { type: "submit" }
-                                },
-                                [_vm._v("опубликовать")]
-                              )
-                            ]
+                            [_vm._v("уточнить местоположение")]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.places_model != null,
+                              expression: "places_model!=null"
+                            }
+                          ],
+                          staticClass: "col-md-12 text-center"
+                        },
+                        [
+                          _c("hr"),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success form-group",
+                              attrs: { type: "submit" }
+                            },
+                            [_vm._v("опубликовать")]
                           )
                         ]
                       )
                     ]
                   )
-                ],
-                1
+                ]
               )
-            ]
+            ],
+            1
           )
-        ])
-      ]
-    )
+        ]
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -40733,37 +40670,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "h5",
-        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
-        [_vm._v("Расположение")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-body text-center" }, [
-      _c("div", {
-        staticStyle: { width: "100%", height: "300px" },
-        attrs: { id: "bigmap" }
-      })
-    ])
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
   },
   function() {
     var _vm = this
