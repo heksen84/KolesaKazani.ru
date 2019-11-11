@@ -161,8 +161,7 @@ export default {
         this.resetData(); // обнуляю поля
         
         this.realestate_chars.property_type = this.selected_type;
-        this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления"); 
-        this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
+        
         this.$store.commit("SetRealEstateAreaLabelText", "default");
         this.$store.commit("ShowFinalFields", true); // показываю дополнительные поля
      
@@ -182,8 +181,6 @@ export default {
             break; 
           }
           case 3: {
-              //this.$store.commit("SetRealEstateAreaLabelText", "Площадь (сот.):");
-              //this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам земельный участок"); 
             break; 
           }
           case 4: { 

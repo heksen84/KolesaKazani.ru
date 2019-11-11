@@ -1218,4 +1218,40 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/181-nedvizhimost-kvartira</loc>
+    <lastmod>2019-11-11T15:34:29+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/182-nedvizhimost-kvartira</loc>
+    <lastmod>2019-11-11T15:40:22+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/183-nedvizhimost-kvartira</loc>
+    <lastmod>2019-11-11T15:47:12+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/184-nedvizhimost-kvartira</loc>
+    <lastmod>2019-11-11T15:47:22+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/185-</loc>
+    <lastmod>2019-11-11T15:47:56+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/186-</loc>
+    <lastmod>2019-11-11T15:48:54+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

@@ -2228,7 +2228,6 @@ function forEach(data, callback) {
 
       if (form) form.reset();
 
-      this.$store.commit("SetPlaceholderInfoText", "default");
       this.$store.commit("SetDealSelected", false);
 
       this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
@@ -2311,83 +2310,51 @@ function forEach(data, callback) {
           }
         case 3:
           {
-
             this.appliances = true;
             this.$store.commit("ShowFinalFields", true);
-            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам телевизор Samsung б/у в отличном состоянии");
             break;
           }
         case 4:
           {
-
-            //subItemId=this.category;
-
             this.work_and_buisness = true;
             this.$store.commit("ShowFinalFields", true);
-            //this.$store.commit("SetRequiredInfo", true);
-            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Требуются разнорабочие");
             break;
           }
         case 5:
           {
-
-            //subItemId=this.category;
-
             this.for_home = true;
             this.$store.commit("ShowFinalFields", true);
-            //this.$store.commit("SetRequiredInfo", true);
-            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Куплю картофель");
             break;
           }
         case 6:
           {
-
-            //subItemId=this.category;
-
             this.personal_effects = true;
             this.$store.commit("ShowFinalFields", true);
-            //this.$store.commit("SetRequiredInfo", true);
-            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам пуховик");
             break;
           }
         case 7:
           {
 
-            //subItemId=this.category;
-
             this.animals = true;
             this.$store.commit("ShowFinalFields", true);
-            //this.$store.commit("SetRequiredInfo", true);					
-            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам щенков хаски");
             break;
           }
         case 8:
           {
-
-            //subItemId=this.category;
-
             this.hobbies_and_leisure = true;
             this.$store.commit("ShowFinalFields", true);
-            //this.$store.commit("SetRequiredInfo", true);
             break;
           }
         case 9:
           {
-
-            //subItemId=this.category;
-
             this.services = true;
             this.$store.commit("ShowFinalFields", true);
-            //this.$store.commit("SetRequiredInfo", true);
-            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Распечатка текста");
             break;
           }
         case 10:
           {
-
             this.other = true;
             this.$store.commit("ShowFinalFields", true);
-            //this.$store.commit("SetRequiredInfo", true);
             break;
           }
       }
@@ -2635,8 +2602,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.resetData(); // обнуляю поля
 
       this.realestate_chars.property_type = this.selected_type;
-      this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления");
-      this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
+
       this.$store.commit("SetRealEstateAreaLabelText", "default");
       this.$store.commit("ShowFinalFields", true); // показываю дополнительные поля
 
@@ -2661,8 +2627,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
         case 3:
           {
-            //this.$store.commit("SetRealEstateAreaLabelText", "Площадь (сот.):");
-            //this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам земельный участок"); 
             break;
           }
         case 4:
@@ -2897,7 +2861,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       //this.$store.commit("SetRequiredInfo", true);
       this.$store.commit("ResetField", "price");
-      this.$store.commit("SetPlaceholderInfoText", "default");
       this.$store.commit("SetInfoLabelDescription", "default");
 
       this.resetFields();
@@ -2913,7 +2876,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.transport_chars.transport_type = this.selected.type_transport;
 
       this.$store.commit("SetInfoLabelDescription", "Дополнительно");
-      this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
       this.$store.commit("ShowFinalFields", false);
 
       switch (this.selected.type_transport) {
@@ -54461,7 +54423,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     price: "",
     required_info: false,
     info_label_description: "",
-    placeholder_info_text: "",
+    placeholder_info_text: "Введите описание",
     show_final_fields: false,
     show_common_transport: false,
     deal_selected: false,
@@ -54488,7 +54450,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 
     // установить текст подсказки в поле описание
     SetPlaceholderInfoText: function SetPlaceholderInfoText(state, text) {
-      text == "default" ? state.placeholder_info_text = "Введите текст объявления" : state.placeholder_info_text = text;
+      state.placeholder_info_text = text;
     },
 
 

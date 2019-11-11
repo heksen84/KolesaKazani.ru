@@ -79,7 +79,7 @@ const store = new Vuex.Store({
       required_info: false,       // обязательное поле дополнительной информации
       price: "",      
       info_label_description: "",
-      placeholder_info_text:  "",      
+      placeholder_info_text:  "Введите описание",      
       show_final_fields: false,
       show_common_transport: false,
       deal_selected: false,
@@ -122,10 +122,11 @@ const store = new Vuex.Store({
 
       // установить текст подсказки в поле описание
       SetPlaceholderInfoText(state, text) {
-        if (text=="default") 
-          state.placeholder_info_text = "Дополнительная информация"
-        else
-          state.placeholder_info_text = text;
+
+        console.log("xxxxxxxxxx");  
+        console.log(text);
+
+          if (text == "") state.placeholder_info_text="Введите описание"; else state.placeholder_info_text = text;
       },
 
       // сбросить содержимое поля

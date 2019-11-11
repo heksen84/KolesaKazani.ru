@@ -185,8 +185,7 @@ export default {
       console.log("Тип транспорта: "+this.selected.type_transport)
 
       //this.$store.commit("SetRequiredInfo", true);
-      this.$store.commit("ResetField", "price");
-      this.$store.commit("SetPlaceholderInfoText",  "default");
+      this.$store.commit("ResetField", "price");      
       this.$store.commit("SetInfoLabelDescription", "default");       
             
       this.resetFields();
@@ -202,8 +201,7 @@ export default {
 
       this.transport_chars.transport_type = this.selected.type_transport;
 
-      this.$store.commit("SetInfoLabelDescription", "Дополнительно");
-      this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
+      this.$store.commit("SetInfoLabelDescription", "Дополнительно");      
       this.$store.commit("ShowFinalFields", false);                                                            
                 
       switch(this.selected.type_transport) {
