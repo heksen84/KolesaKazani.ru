@@ -1725,10 +1725,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_superInput_vue__ = __webpack_require__("./resources/assets/js/mix/views/components/superInput.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_superInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_superInput_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
-var _methods;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -2040,7 +2036,6 @@ function forEach(data, callback) {
       category: null,
       subCategory: null,
       sdelka: null,
-      deal_id: null,
       info: "",
       price: 0,
       number: 0,
@@ -2070,6 +2065,7 @@ function forEach(data, callback) {
   // ------------------------------
   created: function created() {
     ymaps.ready(initMaps);
+    this.$root.advert_data = [];
     this.advReset();
 
     //this.serviceUnavailable=true;
@@ -2077,7 +2073,7 @@ function forEach(data, callback) {
 
 
   // методы компонента
-  methods: (_methods = {
+  methods: {
 
     // Выбор подкатегории
     changeSubCategory: function changeSubCategory() {
@@ -2211,61 +2207,69 @@ function forEach(data, callback) {
 
 
     // --------------------------------------
-    // Cброс данных объявления
+    // Выбрать сделку
+    // --------------------------------------
+    setDeal: function setDeal() {
+
+      console.log("Сделка: " + this.sdelka);
+
+      // если отдам даром, то обнуляю цену
+      if (this.sdelka === 3) {
+        this.$root.advert_data.adv_price = null;
+        this.price = null;
+      }
+
+      this.$root.advert_data.adv_deal = this.sdelka;
+      //this.deal_id=this.sdelka;
+      this.$store.commit("SetDealSelected", true);
+    },
+
+
+    // --------------------------------------
+    // сброс данных объявления
     // --------------------------------------
     advReset: function advReset(category_data) {
 
       var form = document.getElementById("advertform");
 
+      this.subCategory = null; // сбрасываю подкатегории
+
       if (form) form.reset();
 
       //this.summ_str = "";
-
       //this.$store.commit("SetRequiredInfo", false);
       this.$store.commit("SetPlaceholderInfoText", "default");
       this.$store.commit("SetDealSelected", false);
 
       // сброс массива объявления и переинициализация его
-      //this.$root.advert_data = [];
-      this.$root.advert_data = {};
+
+      //this.$root.advert_data = {};
 
       // ----------------------------------------------------------------------------------------------------------------
       // Не использовать операции сделки во всех категориях, т.к. пользователь может ввести описание объявления сам. 
       // Типа: Продам то-то-то-то или Куплю то-то-то-то
       // ----------------------------------------------------------------------------------------------------------------
-      switch (category_data) {
+      /*switch(category_data) {
+        case 3: this.$root.advert_data.adv_deal = ""; break; 
+        case 4: this.$root.advert_data.adv_deal = ""; break; 
+        case 5: this.$root.advert_data.adv_deal = ""; break; 
+        case 6: this.$root.advert_data.adv_deal = ""; break; 
+        case 7: this.$root.advert_data.adv_deal = ""; break; 
+        case 8: this.$root.advert_data.adv_deal = ""; break; 
+        case 9: this.$root.advert_data.adv_deal = ""; break; 
+        case 10: this.$root.advert_data.adv_deal = ""; break; 
+        default: this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
+      }*/
 
-        case 3:
-          this.$root.advert_data.adv_deal = "";break;
-        case 4:
-          this.$root.advert_data.adv_deal = "";break;
-        case 5:
-          this.$root.advert_data.adv_deal = "";break;
-        case 6:
-          this.$root.advert_data.adv_deal = "";break;
-        case 7:
-          this.$root.advert_data.adv_deal = "";break;
-        case 8:
-          this.$root.advert_data.adv_deal = "";break;
-        case 9:
-          this.$root.advert_data.adv_deal = "";break;
-        case 10:
-          this.$root.advert_data.adv_deal = "";break;
-
-        default:
-          this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
-
-      }
-
-      //this.$root.advert_data.adv_deal = 0; // покупка по умолчанию    
+      //this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
 
       this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
-      this.$root.advert_data.adv_price = 0;
-      this.$root.advert_data.adv_phone = "";
+      this.$root.advert_data.adv_price = null;
+      this.$root.advert_data.adv_phone = null;
 
       // сброс моделей
-      this.sdelka = 0;
-      this.price = 0;
+      //this.sdelka = null;
+      this.price = null;
       this.info = "";
       this.phone = "";
       this.regions_model = null;
@@ -2296,299 +2300,227 @@ function forEach(data, callback) {
 
 
     // --------------------------------------
-    // Выбрать сделку
+    // Изменения в категориях
     // --------------------------------------
-    setDeal: function setDeal() {
+    changeCategory: function changeCategory() {
+      var _this2 = this;
 
-      //  console.log("Сделка: "+this.sdelka)
+      var category = this.category;
 
-      // если отдам даром, то обнуляю цену
-      if (this.sdelka === 3) {
-        this.$root.advert_data.adv_price = null;
-        this.price = null;
+      // сброс объявления при выборе категории
+      this.advReset(category);
+
+      // -----------------------------------------------------------------
+      // отрубить вид сделки в категориях: "работа и бизнес" и "услуги"
+      // -----------------------------------------------------------------
+      if (category == 4 || category == 9) {
+        this.$store.commit("SetDealSelected", true);this.$store.commit("ShowFinalFields", true);
       }
 
-      this.$root.advert_data.adv_deal = this.sdelka;
-      this.deal_id = this.sdelka;
-      this.$store.commit("SetDealSelected", true);
-    }
-  }, _defineProperty(_methods, "advReset", function advReset(category_data) {
+      // добавляю категории
+      this.$root.advert_data.adv_category = category;
 
-    var form = document.getElementById("advertform");
+      // скрываю дополнительные поля
+      this.$store.commit("ShowFinalFields", false);
 
-    this.subCategory = null; // сбрасываю подкатегории
+      //let subItemId=null;
 
-    if (form) form.reset();
+      switch (this.category) {
+        case null:
+          {
+            this.root = true;
+            this.$store.commit("ShowFinalFields", false);
+            break;
+          }
+        case 1:
+          {
+            this.transport = true;
+            this.$store.commit("ShowFinalFields", false);
+            break;
+          }
+        case 2:
+          {
+            this.real_estate = true;
+            this.$store.commit("ShowFinalFields", false);
+            break;
+          }
+        case 3:
+          {
 
-    //this.summ_str = "";
-    //this.$store.commit("SetRequiredInfo", false);
-    this.$store.commit("SetPlaceholderInfoText", "default");
-    this.$store.commit("SetDealSelected", false);
+            //alert("Гружу электронику")
+            //subItemId=this.category;
 
-    // сброс массива объявления и переинициализация его
-    //this.$root.advert_data = [];
-    this.$root.advert_data = {};
+            this.appliances = true;
+            this.$store.commit("ShowFinalFields", true);
+            //this.$store.commit("SetRequiredInfo", true);
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам телевизор Samsung б/у в отличном состоянии");
+            break;
+          }
+        case 4:
+          {
 
-    // ----------------------------------------------------------------------------------------------------------------
-    // Не использовать операции сделки во всех категориях, т.к. пользователь может ввести описание объявления сам. 
-    // Типа: Продам то-то-то-то или Куплю то-то-то-то
-    // ----------------------------------------------------------------------------------------------------------------
-    switch (category_data) {
-      case 3:
-        this.$root.advert_data.adv_deal = "";break;
-      case 4:
-        this.$root.advert_data.adv_deal = "";break;
-      case 5:
-        this.$root.advert_data.adv_deal = "";break;
-      case 6:
-        this.$root.advert_data.adv_deal = "";break;
-      case 7:
-        this.$root.advert_data.adv_deal = "";break;
-      case 8:
-        this.$root.advert_data.adv_deal = "";break;
-      case 9:
-        this.$root.advert_data.adv_deal = "";break;
-      case 10:
-        this.$root.advert_data.adv_deal = "";break;
-      default:
-        this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
-    }
+            //subItemId=this.category;
 
-    //this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
+            this.work_and_buisness = true;
+            this.$store.commit("ShowFinalFields", true);
+            //this.$store.commit("SetRequiredInfo", true);
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Требуются разнорабочие");
+            break;
+          }
+        case 5:
+          {
 
-    this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
-    this.$root.advert_data.adv_price = 0;
-    this.$root.advert_data.adv_phone = "";
+            //subItemId=this.category;
 
-    // сброс моделей
-    //this.sdelka = null;
-    this.price = 0;
-    this.info = "";
-    this.phone = "";
-    this.regions_model = null;
-    this.places_model = null;
-    this.preview_images = [];
-    this.coordinates_set = false;
+            this.for_home = true;
+            this.$store.commit("ShowFinalFields", true);
+            //this.$store.commit("SetRequiredInfo", true);
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Куплю картофель");
+            break;
+          }
+        case 6:
+          {
 
-    // сброс категорий
-    if (category_data != null) {
-      this.root = false; // по умолчанию
-      this.transport = false; // транспорт
-      this.real_estate = false; // недвижимость
-      this.appliances = false; // электроника
-      this.work_and_buisness = false; // работа и бизнес
-      this.for_home = false; // для дома и дачи
-      this.personal_effects = false; // личные вещи
-      this.animals = false; // животные
-      this.hobbies_and_leisure = false; // хобби и отдых
-      this.services = false; // услуги
-      this.other = false; // другое
-    }
+            //subItemId=this.category;
 
-    // сбрасываю фотки
-    var photos = document.querySelector("input[type=file]");
+            this.personal_effects = true;
+            this.$store.commit("ShowFinalFields", true);
+            //this.$store.commit("SetRequiredInfo", true);
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам пуховик");
+            break;
+          }
+        case 7:
+          {
 
-    if (photos != null) photos.value = "";
-  }), _defineProperty(_methods, "changeCategory", function changeCategory() {
-    var _this2 = this;
+            //subItemId=this.category;
 
-    var category = this.category;
+            this.animals = true;
+            this.$store.commit("ShowFinalFields", true);
+            //this.$store.commit("SetRequiredInfo", true);					
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам щенков хаски");
+            break;
+          }
+        case 8:
+          {
 
-    // сброс объявления при выборе категории
-    this.advReset(category);
+            //subItemId=this.category;
 
-    // -----------------------------------------------------------------
-    // отрубить вид сделки в категориях: "работа и бизнес" и "услуги"
-    // -----------------------------------------------------------------
-    if (category == 4 || category == 9) {
-      this.$store.commit("SetDealSelected", true);this.$store.commit("ShowFinalFields", true);
-    }
+            this.hobbies_and_leisure = true;
+            this.$store.commit("ShowFinalFields", true);
+            //this.$store.commit("SetRequiredInfo", true);
+            break;
+          }
+        case 9:
+          {
 
-    // добавляю категории
-    this.$root.advert_data.adv_category = category;
+            //subItemId=this.category;
 
-    // скрываю дополнительные поля
-    this.$store.commit("ShowFinalFields", false);
+            this.services = true;
+            this.$store.commit("ShowFinalFields", true);
+            //this.$store.commit("SetRequiredInfo", true);
+            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Распечатка текста");
+            break;
+          }
+        case 10:
+          {
 
-    //let subItemId=null;
+            this.other = true;
+            this.$store.commit("ShowFinalFields", true);
+            //this.$store.commit("SetRequiredInfo", true);
+            break;
+          }
+      }
 
-    switch (this.category) {
-      case null:
-        {
-          this.root = true;
-          this.$store.commit("ShowFinalFields", false);
-          break;
-        }
-      case 1:
-        {
-          this.transport = true;
-          this.$store.commit("ShowFinalFields", false);
-          break;
-        }
-      case 2:
-        {
-          this.real_estate = true;
-          this.$store.commit("ShowFinalFields", false);
-          break;
-        }
-      case 3:
-        {
+      // Выборка только в конкретных категориях
+      var subItems = [3, 4, 5, 6, 7, 8, 9];
 
-          //alert("Гружу электронику")
-          //subItemId=this.category;
+      // -------------------------------
+      // гружу названия подкатегорий
+      // -------------------------------
+      if (subItems.indexOf(this.category) != -1) {
+        // запрос
+        Object(__WEBPACK_IMPORTED_MODULE_5__helpers_api__["a" /* get */])("getSubCategoryDataById?id=" + this.category).then(function (res) {
+          _this2.subCategoryItems = res.data;
+        }).catch(function (err) {
+          console.log(err);
+          //this.serviceUnavailable=true;
+        });
+      }
+    },
 
-          this.appliances = true;
-          this.$store.commit("ShowFinalFields", true);
-          //this.$store.commit("SetRequiredInfo", true);
-          this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам телевизор Samsung б/у в отличном состоянии");
-          break;
-        }
-      case 4:
-        {
 
-          //subItemId=this.category;
+    // --------------------
+    // Отправить форму
+    // --------------------
+    onSubmit: function onSubmit(evt) {
+      var _this3 = this;
 
-          this.work_and_buisness = true;
-          this.$store.commit("ShowFinalFields", true);
-          //this.$store.commit("SetRequiredInfo", true);
-          this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Требуются разнорабочие");
-          break;
-        }
-      case 5:
-        {
+      evt.preventDefault();
 
-          //subItemId=this.category;
+      // объект формы
+      var formData = new FormData();
 
-          this.for_home = true;
-          this.$store.commit("ShowFinalFields", true);
-          //this.$store.commit("SetRequiredInfo", true);
-          this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Куплю картофель");
-          break;
-        }
-      case 6:
-        {
-
-          //subItemId=this.category;
-
-          this.personal_effects = true;
-          this.$store.commit("ShowFinalFields", true);
-          //this.$store.commit("SetRequiredInfo", true);
-          this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам пуховик");
-          break;
-        }
-      case 7:
-        {
-
-          //subItemId=this.category;
-
-          this.animals = true;
-          this.$store.commit("ShowFinalFields", true);
-          //this.$store.commit("SetRequiredInfo", true);					
-          this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам щенков хаски");
-          break;
-        }
-      case 8:
-        {
-
-          //subItemId=this.category;
-
-          this.hobbies_and_leisure = true;
-          this.$store.commit("ShowFinalFields", true);
-          //this.$store.commit("SetRequiredInfo", true);
-          break;
-        }
-      case 9:
-        {
-
-          //subItemId=this.category;
-
-          this.services = true;
-          this.$store.commit("ShowFinalFields", true);
-          //this.$store.commit("SetRequiredInfo", true);
-          this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Распечатка текста");
-          break;
-        }
-      case 10:
-        {
-
-          this.other = true;
-          this.$store.commit("ShowFinalFields", true);
-          //this.$store.commit("SetRequiredInfo", true);
-          break;
-        }
-    }
-
-    // Выборка только в конкретных категориях
-    var subItems = [3, 4, 5, 6, 7, 8, 9];
-
-    // -------------------------------
-    // гружу названия подкатегорий
-    // -------------------------------
-    if (subItems.indexOf(this.category) != -1) {
-      // запрос
-      Object(__WEBPACK_IMPORTED_MODULE_5__helpers_api__["a" /* get */])("getSubCategoryDataById?id=" + this.category).then(function (res) {
-        _this2.subCategoryItems = res.data;
-      }).catch(function (err) {
-        console.log(err);
-        //this.serviceUnavailable=true;
+      // записываю значения полей
+      forEach(this.$root.advert_data, function (key, value) {
+        formData.append(key, value);
       });
-    }
-  }), _defineProperty(_methods, "onSubmit", function onSubmit(evt) {
-    var _this3 = this;
 
-    evt.preventDefault();
+      // Записываю изображения
+      for (var i = 0; i < this.real_images.length; i++) {
+        formData.append('images[' + i + ']', this.real_images[i]);
+      } // ------------------------------------------------------------------------------------------------------------------------
+      // Размещение объявление
+      // ------------------------------------------------------------------------------------------------------------------------
+      axios.post("/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(function (response) {
 
-    // объект формы
-    var formData = new FormData();
+        console.log(response);
 
-    // записываю значения полей
-    forEach(this.$root.advert_data, function (key, value) {
-      formData.append(key, value);
-    });
-
-    // Записываю изображения
-    for (var i = 0; i < this.real_images.length; i++) {
-      formData.append('images[' + i + ']', this.real_images[i]);
-    } // ------------------------------------------------------------------------------------------------------------------------
-    // Размещение объявление
-    // ------------------------------------------------------------------------------------------------------------------------
-    axios.post("/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(function (response) {
-
-      console.log(response);
-
-      if (response.data.result == "db.error") {
-        //this.$root.$notify({group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error'});
-        //alert("Сервис временно не доступен")
-        //this.serviceUnavailable=true;
-      } else if (response.data.result == "usr.error") _this3.$root.$notify({ group: 'foo', text: "<h6>" + response.data.msg + "</h6>", type: 'error' });else alert("Объявление размещено");
-      //	else 
-      //	window.location="home"; // переходим в личный кабинет
-    }).catch(function (error) {
-      console.log(error.response);
-      //this.$root.$notify({group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error'});
-    });
-  }), _defineProperty(_methods, "showSetCoordsDialog", function showSetCoordsDialog() {
-
-    __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#ShowMapModal").modal("show"); // отобразить окно
-
-    if (!navigator.geolocation) {
-      console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается
-    } else {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        var lat = position.coords.latitude;
-        var lon = position.coords.longitude;
-        var geoCoords = [lat, lon];
-        myPlacemark.geometry.setCoordinates(getCoords);
+        if (response.data.result == "db.error") {
+          //this.$root.$notify({group: 'foo', text: "<h6>Неполадки в работе сервиса. Приносим свои извинения.</h6>", type: 'error'});
+          //alert("Сервис временно не доступен")
+          //this.serviceUnavailable=true;
+        } else if (response.data.result == "usr.error") _this3.$root.$notify({ group: 'foo', text: "<h6>" + response.data.msg + "</h6>", type: 'error' });else alert("Объявление размещено");
+        //	else 
+        //	window.location="home"; // переходим в личный кабинет
+      }).catch(function (error) {
+        console.log(error.response);
+        //this.$root.$notify({group: 'foo', text: "<h6>Невозможно отправить запрос. Проверьте подключение к интернету.</h6>", type: 'error'});
       });
+    },
+
+
+    // -------------------------------------
+    // Показать диалог выбора расположения
+    // -------------------------------------
+    showSetCoordsDialog: function showSetCoordsDialog() {
+
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#ShowMapModal").modal("show"); // отобразить окно
+
+      if (!navigator.geolocation) {
+        console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается
+      } else {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          var lat = position.coords.latitude;
+          var lon = position.coords.longitude;
+          var geoCoords = [lat, lon];
+          myPlacemark.geometry.setCoordinates(getCoords);
+        });
+      }
+    },
+
+
+    // ---------------------------------
+    // Установить координаты
+    // ---------------------------------
+    setCoords: function setCoords() {
+
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#ShowMapModal").modal("hide"); // скрыть окно
+
+      this.$root.advert_data.adv_coords = [];
+      this.$root.advert_data.adv_coords = mapCoords;
+      this.coordinates_set = true;
     }
-  }), _defineProperty(_methods, "setCoords", function setCoords() {
-
-    __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#ShowMapModal").modal("hide"); // скрыть окно
-
-    this.$root.advert_data.adv_coords = [];
-    this.$root.advert_data.adv_coords = mapCoords;
-    this.coordinates_set = true;
-  }), _methods)
+  }
 
 });
 

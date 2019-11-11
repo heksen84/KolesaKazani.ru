@@ -291,17 +291,17 @@ class AdvertController extends Controller {
                 case 2: {
 
                     $realestate = new RealEstate();
-                    $realestate->property_type  = $data["property_type"];
-                    $realestate->floor          = $data["floor_num"];
-                    $realestate->floors_house   = $data["number_of_floors"];
-                    $realestate->rooms          = $data["number_of_rooms"];
-                    $realestate->area           = $data["area_num"];
-                    $realestate->ownership      = $data["property_num"];
-                    $realestate->kind_of_object = $data["object_type"];
+                    $realestate->property_type  = $this->to_php_null($data["property_type"]);
+                    $realestate->floor          = $this->to_php_null($data["floor_num"]);
+                    $realestate->floors_house   = $this->to_php_null($data["number_of_floors"]);
+                    $realestate->rooms          = $this->to_php_null($data["number_of_rooms"]);
+                    $realestate->area           = $this->to_php_null($data["area_num"]);
+                    $realestate->ownership      = $this->to_php_null($data["property_num"]);
+                    $realestate->kind_of_object = $this->to_php_null($data["object_type"]);
 
                     // Дом, Дача, Коттедж
                     if (isset($data["type_of_building"]))
-                        $realestate->type_of_building = $data["type_of_building"];
+                        $realestate->type_of_building = $this->to_php_null($data["type_of_building"]);
 
                     // квартира
                     /*if ( $data["property_type"]==0 ) {

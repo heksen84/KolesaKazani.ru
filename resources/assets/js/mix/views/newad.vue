@@ -309,8 +309,7 @@ data () {
 		placeChanged: false,			
 		category: null,
     subCategory: null,
-		sdelka: null,
-		deal_id: null,
+		sdelka: null,		
 		info: "",
 		price: 0,
 		number: 0,
@@ -338,8 +337,9 @@ data () {
 // компонент создан
 // ------------------------------
 created() {
-	ymaps.ready(initMaps);
-  this.advReset();
+  ymaps.ready(initMaps);  
+  this.$root.advert_data = []; 
+  this.advReset();  
   
   //this.serviceUnavailable=true;
 },
@@ -481,88 +481,11 @@ deletePhoto(index) {
 },
 
 // --------------------------------------
-// Cброс данных объявления
-// --------------------------------------
-advReset(category_data) {
-
-  let form = document.getElementById("advertform");
-
-  if (form) form.reset();
-
-  //this.summ_str = "";
-
-  //this.$store.commit("SetRequiredInfo", false);
-  this.$store.commit("SetPlaceholderInfoText", "default");
-  this.$store.commit("SetDealSelected", false);
-
-  // сброс массива объявления и переинициализация его
-  //this.$root.advert_data = [];
-  this.$root.advert_data = {};
-
-  // ----------------------------------------------------------------------------------------------------------------
-  // Не использовать операции сделки во всех категориях, т.к. пользователь может ввести описание объявления сам. 
-  // Типа: Продам то-то-то-то или Куплю то-то-то-то
-  // ----------------------------------------------------------------------------------------------------------------
-  switch(category_data) {
-
-    case 3: this.$root.advert_data.adv_deal = ""; break; 
-    case 4: this.$root.advert_data.adv_deal = ""; break; 
-    case 5: this.$root.advert_data.adv_deal = ""; break; 
-    case 6: this.$root.advert_data.adv_deal = ""; break; 
-    case 7: this.$root.advert_data.adv_deal = ""; break; 
-    case 8: this.$root.advert_data.adv_deal = ""; break; 
-    case 9: this.$root.advert_data.adv_deal = ""; break; 
-    case 10: this.$root.advert_data.adv_deal = ""; break;
-
-    default: this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
-
-  }
-      
-  //this.$root.advert_data.adv_deal = 0; // покупка по умолчанию    
-
-  this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
-  this.$root.advert_data.adv_price = 0;
-  this.$root.advert_data.adv_phone = "";
-
-  // сброс моделей
-  this.sdelka = 0;
-  this.price = 0;
-  this.info = "";
-  this.phone = "";
-  this.regions_model = null;
-  this.places_model = null;
-  this.preview_images = [];
-  this.coordinates_set = false;
-
-  // сброс категорий
-  if (category_data!=null) {
-    this.root=false;				        // по умолчанию
-    this.transport=false;			      // транспорт
-    this.real_estate=false;			    // недвижимость
-    this.appliances=false;			    // электроника
-    this.work_and_buisness=false; 	// работа и бизнес
-    this.for_home=false;			      // для дома и дачи
-    this.personal_effects=false;	  // личные вещи
-    this.animals=false;				      // животные
-    this.hobbies_and_leisure=false;	// хобби и отдых
-    this.services=false;			      // услуги
-    this.other=false;				        // другое
-}
-
-  // сбрасываю фотки
-  let photos = document.querySelector("input[type=file]");
-  
-  if (photos!=null) 
-    photos.value = "";
-
-},
-
-// --------------------------------------
 // Выбрать сделку
 // --------------------------------------
 setDeal() {
 
- //  console.log("Сделка: "+this.sdelka)
+   console.log("Сделка: "+this.sdelka)
 
   // если отдам даром, то обнуляю цену
   if (this.sdelka===3) {
@@ -571,7 +494,7 @@ setDeal() {
   }
 
   this.$root.advert_data.adv_deal=this.sdelka;
-  this.deal_id=this.sdelka;
+  //this.deal_id=this.sdelka;
   this.$store.commit("SetDealSelected", true);
 },
 
@@ -593,14 +516,14 @@ advReset(category_data) {
     this.$store.commit("SetDealSelected", false);
 
     // сброс массива объявления и переинициализация его
-    //this.$root.advert_data = [];
-    this.$root.advert_data = {};
+    
+    //this.$root.advert_data = {};
 
     // ----------------------------------------------------------------------------------------------------------------
     // Не использовать операции сделки во всех категориях, т.к. пользователь может ввести описание объявления сам. 
     // Типа: Продам то-то-то-то или Куплю то-то-то-то
     // ----------------------------------------------------------------------------------------------------------------
-    switch(category_data) {
+    /*switch(category_data) {
       case 3: this.$root.advert_data.adv_deal = ""; break; 
       case 4: this.$root.advert_data.adv_deal = ""; break; 
       case 5: this.$root.advert_data.adv_deal = ""; break; 
@@ -610,17 +533,17 @@ advReset(category_data) {
       case 9: this.$root.advert_data.adv_deal = ""; break; 
       case 10: this.$root.advert_data.adv_deal = ""; break; 
       default: this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
-    }
+    }*/
       
     //this.$root.advert_data.adv_deal = 0; // покупка по умолчанию
 
     this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
-    this.$root.advert_data.adv_price = 0;
-    this.$root.advert_data.adv_phone = "";
+    this.$root.advert_data.adv_price = null;
+    this.$root.advert_data.adv_phone = null;
 
     // сброс моделей
     //this.sdelka = null;
-    this.price = 0;
+    this.price = null;
     this.info = "";
     this.phone = "";
     this.regions_model = null;
