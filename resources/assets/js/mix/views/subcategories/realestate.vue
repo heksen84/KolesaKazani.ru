@@ -17,22 +17,22 @@
 
           <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=2 && selected_type!=3 && selected_type!=5">
             <label>Этаж:</label>
-            <superInput type="number" v-model="input_floor" maxlength="3"></superInput>
+            <superInput type="number" v-model="input_floor" maxlength="3" @input="changeFloor"></superInput>
           </div>
 
           <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=2 && selected_type!=2 && selected_type!=3 && selected_type!=5">
             <label>Кол-во этажей:</label>
-            <superInput type="number" v-model="input_number_of_floors" maxlength="3"></superInput>
+            <superInput type="number" v-model="input_number_of_floors" maxlength="3" @input="changeNumberOfFloors"></superInput>
           </div>
 
           <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=1 && selected_type!=3 && selected_type!=5">
             <label>Кол-во комнат:</label>
-              <superInput type="number" v-model="input_number_of_rooms" maxlength="2"></superInput>
+              <superInput type="number" v-model="input_number_of_rooms" maxlength="2" @input="changeNumberOfRooms"></superInput>
           </div>
 
           <div class="col-auto form-group" v-if="selected_type!=null">
             <label>Площадь:</label>
-              <superInput type="number" v-model="input_area" maxlength="3"></superInput>
+              <superInput type="number" v-model="input_area" maxlength="3" @input="changeTotalArea"></superInput>
           </div>
 
           <div class="col-auto form-group" v-if="selected_type!=null">
@@ -105,47 +105,68 @@ export default {
         input_floor: null,
         input_number_of_floors: null,
         input_number_of_rooms: null,
-        input_area: null,
-
+        input_area: null
 		}
   },
   
+  // компонент создан
   created() {
 
     this.realestate_chars = this.$root.advert_data; // указатель на массив объявления
-
+    
     // значения недвижимости по умолчанию
-    this.realestate_chars.property_type = 0;
-    this.realestate_chars.type_of_building = 0, // дом
-    this.realestate_chars.floor_num = 1;
-    this.realestate_chars.number_of_floors = 5;
-    this.realestate_chars.number_of_rooms = 1;
-    this.realestate_chars.area_num = 0;
-    this.realestate_chars.property_num = 0;
-    this.realestate_chars.object_type = 0;
+    this.selected_type = null;
+    this.realestate_chars.property_type = null;
+
+    this.resetData();
+
   },
 
   methods: {
+
+    // сброс содержимого полей
+    resetData() {
+      
+      this.selected_property_rights = 0;
+      this.selected_object_type = 0;
+
+      // модели для инпутов
+      this.input_floor = null;
+      this.input_number_of_floors = null;
+      this.input_number_of_rooms = null;
+      this.input_area = null,
+
+      this.realestate_chars.type_of_building = 0, // дом
+      this.realestate_chars.floor_num = null;
+      this.realestate_chars.number_of_floors = null;
+      this.realestate_chars.number_of_rooms = null;
+      this.realestate_chars.area_num = null;
+      this.realestate_chars.property_num = 0;
+      this.realestate_chars.object_type = 0;
+
+    },
   
     // тип строения: дом, дача, коттедж
-    changeTypeOfBuilding(type) {
-      this.realestate_chars.type_of_building = type;
+    changeTypeOfBuilding() {        
+        this.realestate_chars.type_of_building = this.selected_type_of_building;
     },
 
     // --------------------------------
     // изменения в недвижимости
     // --------------------------------
-    changeProperyType(property_id) {
+    changeProperyType() {
 
-        //console.log("Вид недвижимости: "+property_id)
+        console.log("Вид недвижимости: " + this.selected_type)
+
+        this.resetData(); // обнуляю поля
         
-        this.realestate_chars.property_type = property_id;
+        this.realestate_chars.property_type = this.selected_type;
         this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления"); 
         this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
         this.$store.commit("SetRealEstateAreaLabelText", "default");
         this.$store.commit("ShowFinalFields", true); // показываю дополнительные поля
      
-        switch(property_id) {
+        switch(this.selected_type) {
           
           case null: {
             this.$store.commit("ShowFinalFields", false);
@@ -161,8 +182,8 @@ export default {
             break; 
           }
           case 3: {
-              this.$store.commit("SetRealEstateAreaLabelText", "Площадь (сот.):");
-              this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам земельный участок"); 
+              //this.$store.commit("SetRealEstateAreaLabelText", "Площадь (сот.):");
+              //this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам земельный участок"); 
             break; 
           }
           case 4: { 
@@ -183,34 +204,38 @@ export default {
         }
       },
 
-      changeFloor(floor_num) {
-        this.realestate_chars.floor_num = floor_num;
+      changeFloor() {
+
+        //console.log(this.input_floor)
+
+        /*if (this.input_floor>this.input_number_of_floors)
+          this.input_floor=this.input_number_of_floors*/
+
+        this.realestate_chars.floor_num = this.input_floor;
       },
 
-      changeNumberOfFloors(number_of_floors) {        
-        this.realestate_chars.number_of_floors = number_of_floors;
+      changeNumberOfFloors() {                
+
+        /*if (this.input_number_of_floors<this.input_floor)
+          this.input_floor=this.input_number_of_floors*/
+
+        this.realestate_chars.number_of_floors = this.input_number_of_floors;
       },
 
-      changeNumberOfRooms(number_of_rooms) {
-        this.realestate_chars.number_of_rooms = number_of_rooms;
+      changeNumberOfRooms() {
+        this.realestate_chars.number_of_rooms = this.input_number_of_rooms;
       },
 
-      changeTotalArea(area_num) {
-
-        if (area_num >= 10000000)
-          return this.input_area;
-
-        this.realestate_chars.area_num = area_num;
-        return area_num;
-
+      changeTotalArea() {
+        this.realestate_chars.area_num = this.input_area;
       },
 
-      changePropertyRights(property_num) {        
-        this.realestate_chars.property_num = property_num;
+      changePropertyRights() {        
+        this.realestate_chars.property_num = this.selected_property_rights;
       },
 
-      changeObjectType(object_type) {
-        this.realestate_chars.object_type = object_type;
+      changeObjectType() {
+        this.realestate_chars.object_type = this.selected_object_type;
       }
   }
 }

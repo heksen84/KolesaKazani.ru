@@ -2687,47 +2687,67 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       input_number_of_floors: null,
       input_number_of_rooms: null,
       input_area: null
-
     };
   },
+
+
+  // компонент создан
   created: function created() {
 
     this.realestate_chars = this.$root.advert_data; // указатель на массив объявления
 
     // значения недвижимости по умолчанию
-    this.realestate_chars.property_type = 0;
-    this.realestate_chars.type_of_building = 0, // дом
-    this.realestate_chars.floor_num = 1;
-    this.realestate_chars.number_of_floors = 5;
-    this.realestate_chars.number_of_rooms = 1;
-    this.realestate_chars.area_num = 0;
-    this.realestate_chars.property_num = 0;
-    this.realestate_chars.object_type = 0;
+    this.selected_type = null;
+    this.realestate_chars.property_type = null;
+
+    this.resetData();
   },
 
 
   methods: {
 
+    // сброс содержимого полей
+    resetData: function resetData() {
+
+      this.selected_property_rights = 0;
+      this.selected_object_type = 0;
+
+      // модели для инпутов
+      this.input_floor = null;
+      this.input_number_of_floors = null;
+      this.input_number_of_rooms = null;
+      this.input_area = null, this.realestate_chars.type_of_building = 0, // дом
+      this.realestate_chars.floor_num = null;
+      this.realestate_chars.number_of_floors = null;
+      this.realestate_chars.number_of_rooms = null;
+      this.realestate_chars.area_num = null;
+      this.realestate_chars.property_num = 0;
+      this.realestate_chars.object_type = 0;
+    },
+
+
     // тип строения: дом, дача, коттедж
-    changeTypeOfBuilding: function changeTypeOfBuilding(type) {
-      this.realestate_chars.type_of_building = type;
+    changeTypeOfBuilding: function changeTypeOfBuilding() {
+      this.realestate_chars.type_of_building = this.selected_type_of_building;
     },
 
 
     // --------------------------------
     // изменения в недвижимости
     // --------------------------------
-    changeProperyType: function changeProperyType(property_id) {
+    changeProperyType: function changeProperyType() {
 
-      //console.log("Вид недвижимости: "+property_id)
+      console.log("Вид недвижимости: " + this.selected_type);
 
-      this.realestate_chars.property_type = property_id;
+      this.resetData(); // обнуляю поля
+
+      this.realestate_chars.property_type = this.selected_type;
       this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления");
       this.$store.commit("SetPlaceholderInfoText", "Введите дополнительную информацию");
       this.$store.commit("SetRealEstateAreaLabelText", "default");
       this.$store.commit("ShowFinalFields", true); // показываю дополнительные поля
 
-      switch (property_id) {
+      switch (this.selected_type) {
 
         case null:
           {
@@ -2748,8 +2768,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
         case 3:
           {
-            this.$store.commit("SetRealEstateAreaLabelText", "Площадь (сот.):");
-            this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам земельный участок");
+            //this.$store.commit("SetRealEstateAreaLabelText", "Площадь (сот.):");
+            //this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам земельный участок"); 
             break;
           }
         case 4:
@@ -2774,27 +2794,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
       }
     },
-    changeFloor: function changeFloor(floor_num) {
-      this.realestate_chars.floor_num = floor_num;
-    },
-    changeNumberOfFloors: function changeNumberOfFloors(number_of_floors) {
-      this.realestate_chars.number_of_floors = number_of_floors;
-    },
-    changeNumberOfRooms: function changeNumberOfRooms(number_of_rooms) {
-      this.realestate_chars.number_of_rooms = number_of_rooms;
-    },
-    changeTotalArea: function changeTotalArea(area_num) {
+    changeFloor: function changeFloor() {
 
-      if (area_num >= 10000000) return this.input_area;
+      //console.log(this.input_floor)
 
-      this.realestate_chars.area_num = area_num;
-      return area_num;
+      /*if (this.input_floor>this.input_number_of_floors)
+        this.input_floor=this.input_number_of_floors*/
+
+      this.realestate_chars.floor_num = this.input_floor;
     },
-    changePropertyRights: function changePropertyRights(property_num) {
-      this.realestate_chars.property_num = property_num;
+    changeNumberOfFloors: function changeNumberOfFloors() {
+
+      /*if (this.input_number_of_floors<this.input_floor)
+        this.input_floor=this.input_number_of_floors*/
+
+      this.realestate_chars.number_of_floors = this.input_number_of_floors;
     },
-    changeObjectType: function changeObjectType(object_type) {
-      this.realestate_chars.object_type = object_type;
+    changeNumberOfRooms: function changeNumberOfRooms() {
+      this.realestate_chars.number_of_rooms = this.input_number_of_rooms;
+    },
+    changeTotalArea: function changeTotalArea() {
+      this.realestate_chars.area_num = this.input_area;
+    },
+    changePropertyRights: function changePropertyRights() {
+      this.realestate_chars.property_num = this.selected_property_rights;
+    },
+    changeObjectType: function changeObjectType() {
+      this.realestate_chars.object_type = this.selected_object_type;
     }
   }
 });
@@ -41045,6 +41071,7 @@ var render = function() {
               _vm._v(" "),
               _c("superInput", {
                 attrs: { type: "number", maxlength: "3" },
+                on: { input: _vm.changeFloor },
                 model: {
                   value: _vm.input_floor,
                   callback: function($$v) {
@@ -41071,6 +41098,7 @@ var render = function() {
               _vm._v(" "),
               _c("superInput", {
                 attrs: { type: "number", maxlength: "3" },
+                on: { input: _vm.changeNumberOfFloors },
                 model: {
                   value: _vm.input_number_of_floors,
                   callback: function($$v) {
@@ -41096,6 +41124,7 @@ var render = function() {
               _vm._v(" "),
               _c("superInput", {
                 attrs: { type: "number", maxlength: "2" },
+                on: { input: _vm.changeNumberOfRooms },
                 model: {
                   value: _vm.input_number_of_rooms,
                   callback: function($$v) {
@@ -41118,6 +41147,7 @@ var render = function() {
               _vm._v(" "),
               _c("superInput", {
                 attrs: { type: "number", maxlength: "3" },
+                on: { input: _vm.changeTotalArea },
                 model: {
                   value: _vm.input_area,
                   callback: function($$v) {
