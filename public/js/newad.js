@@ -1953,10 +1953,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var preview_images_array = [];
 
-/*
- ----------------------
- карты
- ----------------------*/
+// карты
 var mapCoords = [];
 var myPlacemark1 = null;
 var myPlacemark2 = null;
@@ -2029,7 +2026,6 @@ function forEach(data, callback) {
       serviceUnavailable: false,
       subCategoryItems: [],
       lastPhoneNumber: null,
-      //		summ_str: "",
       const_phone_max_length: 9,
       coordinates_set: false,
       placeChanged: false,
@@ -2111,9 +2107,7 @@ function forEach(data, callback) {
 
       this.$root.advert_data.region_id = this.regions_model;
 
-      // -------------------------------------------------------------
       // Получить города / сёлы
-      // -------------------------------------------------------------
       Object(__WEBPACK_IMPORTED_MODULE_5__helpers_api__["a" /* get */])("getPlaces?region_id=" + this.regions_model).then(function (res) {
         _this.places = res.data;
         _this.places_model = null;
@@ -2181,12 +2175,11 @@ function forEach(data, callback) {
         reader.onload = function (theFile) {
 
           return function (e) {
+
             if (theFile.type == "image/jpeg" || theFile.type == "image/pjpeg" || theFile.type == "image/png") {
               preview_images.push({ "name": theFile.name, "src": e.target.result });
               real_images.push(theFile);
-            }
-            //	else
-            //	root.$notify({group: 'foo', text: "<h6>Только изображения!</h6>", type: 'error'});				
+            } else alert("Только изображения");
           };
         }(image);
         reader.readAsDataURL(image);
@@ -2220,7 +2213,6 @@ function forEach(data, callback) {
       }
 
       this.$root.advert_data.adv_deal = this.sdelka;
-      //this.deal_id=this.sdelka;
       this.$store.commit("SetDealSelected", true);
     },
 
@@ -2236,8 +2228,6 @@ function forEach(data, callback) {
 
       if (form) form.reset();
 
-      //this.summ_str = "";
-      //this.$store.commit("SetRequiredInfo", false);
       this.$store.commit("SetPlaceholderInfoText", "default");
       this.$store.commit("SetDealSelected", false);
 
@@ -2300,8 +2290,6 @@ function forEach(data, callback) {
       // скрываю дополнительные поля
       this.$store.commit("ShowFinalFields", false);
 
-      //let subItemId=null;
-
       switch (this.category) {
         case null:
           {
@@ -2324,12 +2312,8 @@ function forEach(data, callback) {
         case 3:
           {
 
-            //alert("Гружу электронику")
-            //subItemId=this.category;
-
             this.appliances = true;
             this.$store.commit("ShowFinalFields", true);
-            //this.$store.commit("SetRequiredInfo", true);
             this.$store.commit("SetPlaceholderInfoText", "Введите текст объявления, например: Продам телевизор Samsung б/у в отличном состоянии");
             break;
           }
