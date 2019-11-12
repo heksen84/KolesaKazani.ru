@@ -13,7 +13,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body" >
+        <div class="modal-body">
           <div v-show="!serviceUnavailable" id="bigmap" style="width: 100%; height: 300px"></div>
           <h4 v-show="serviceUnavailable" class="alert-heading">повторите позже</h4>
         </div>
@@ -339,8 +339,14 @@ serviceError() {
 
 // Выбор подкатегории
 changeSubCategory() {
-  //alert(this.subCategory)
+  
+  if (this.subCategory=="null") 
+    this.$store.commit("ShowFinalFields", false)
+  else
+    this.$store.commit("ShowFinalFields", true)
+
   this.$root.advert_data.adv_subcategory=this.subCategory;
+
 },
 
 // доп. информация
@@ -428,33 +434,32 @@ loadImage(evt) {
 	let preview_images = this.preview_images;		
 	let real_images = this.real_images;
 
-	if (input_images.files.length + preview_images.length > this.$root.max_loaded_images) 
-		return;
+	  if (input_images.files.length + preview_images.length > this.$root.max_loaded_images) 
+		  return;
 		
-	for (let i=0; i<files.length; i++) {
-    if (i===this.$root.max_loaded_images) 
-    break;
+	  for (let i=0; i<files.length; i++) {
+      if (i===this.$root.max_loaded_images) 
+        break;
 
-		// если уже существует, не обрабатывать изображение
-		for (let j=0; j<preview_images.length; j++)
-			if (files[i].name==preview_images[j].name)
-				return false;
+		  // если уже существует, не обрабатывать изображение
+		  for (let j=0; j<preview_images.length; j++)
+			  if (files[i].name==preview_images[j].name)
+			  	return false;
 
-    let image = files[i]
-		let reader = new FileReader();
+      let image = files[i]
+		  let reader = new FileReader();
 
-  	reader.onload = (function(theFile) {
+  	  reader.onload = (function(theFile) {
 
-    return function(e) {
+      return function(e) {
     
-    if (theFile.type=="image/jpeg" || theFile.type=="image/pjpeg" || theFile.type=="image/png") {					
-			preview_images.push({ "name": theFile.name, "src": e.target.result });
-			real_images.push(theFile);
-		}
+      if (theFile.type=="image/jpeg" || theFile.type=="image/pjpeg" || theFile.type=="image/png") {					
+			  preview_images.push({ "name": theFile.name, "src": e.target.result });
+			  real_images.push(theFile);
+		  }
 		  else
         alert("Только изображения")
-    
-  };
+      };
 
 		})(image);		  
 			reader.readAsDataURL(image);			
@@ -504,7 +509,7 @@ advReset(category_data) {
     if (form) 
       form.reset();
         
-    this.$store.commit("SetDealSelected", false);    
+    this.$store.commit("SetDealSelected", false);        
 
     this.$root.advert_data.adv_subcategory  = null;
     this.$root.advert_data.adv_info         = null;
@@ -552,7 +557,9 @@ changeCategory() {
 
   // сброс объявления при выборе категории
   this.advReset(category);
-  
+
+  // ОБРАТИТЬ ВНИМАНИЕ ПОМЕНЯТЬМЕСТАМИ СДЕЛКУ и категорию!!!
+
   // -----------------------------------------------------------------
   // отрубить вид сделки в категориях: "работа и бизнес" и "услуги"
   // -----------------------------------------------------------------
@@ -561,25 +568,20 @@ changeCategory() {
   }
   
   // добавляю категории
-  this.$root.advert_data.adv_category=category;          
-
-  // скрываю дополнительные поля
-  this.$store.commit("ShowFinalFields", true);  
+  this.$root.advert_data.adv_category=category;             
+  this.$store.commit("ShowFinalFields", false);  
   
   switch(this.category) {
     case null: {
-      this.root=true; 
-      this.$store.commit("ShowFinalFields", false);
+      this.root=true;       
       break;
     }
     case 1: {              
-      this.transport=true; 
-      this.$store.commit("ShowFinalFields", false);
+      this.transport=true;       
       break; 
     } 
     case 2: {  
-      this.real_estate=true; 
-      this.$store.commit("ShowFinalFields", false);
+      this.real_estate=true;       
       break;
     } 
     case 3: {

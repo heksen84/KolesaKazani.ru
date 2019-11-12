@@ -2067,7 +2067,9 @@ function forEach(data, callback) {
 
     // Выбор подкатегории
     changeSubCategory: function changeSubCategory() {
-      //alert(this.subCategory)
+
+      if (this.subCategory == "null") this.$store.commit("ShowFinalFields", false);else this.$store.commit("ShowFinalFields", true);
+
       this.$root.advert_data.adv_subcategory = this.subCategory;
     },
 
@@ -2276,6 +2278,8 @@ function forEach(data, callback) {
       // сброс объявления при выборе категории
       this.advReset(category);
 
+      // ОБРАТИТЬ ВНИМАНИЕ ПОМЕНЯТЬМЕСТАМИ СДЕЛКУ и категорию!!!
+
       // -----------------------------------------------------------------
       // отрубить вид сделки в категориях: "работа и бизнес" и "услуги"
       // -----------------------------------------------------------------
@@ -2285,27 +2289,22 @@ function forEach(data, callback) {
 
       // добавляю категории
       this.$root.advert_data.adv_category = category;
-
-      // скрываю дополнительные поля
-      this.$store.commit("ShowFinalFields", true);
+      this.$store.commit("ShowFinalFields", false);
 
       switch (this.category) {
         case null:
           {
             this.root = true;
-            this.$store.commit("ShowFinalFields", false);
             break;
           }
         case 1:
           {
             this.transport = true;
-            this.$store.commit("ShowFinalFields", false);
             break;
           }
         case 2:
           {
             this.real_estate = true;
-            this.$store.commit("ShowFinalFields", false);
             break;
           }
         case 3:
