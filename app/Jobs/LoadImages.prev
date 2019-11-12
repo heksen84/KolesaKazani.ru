@@ -11,7 +11,8 @@ use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Images;
 
-class LoadImages implements ShouldQueue {
+class LoadImages implements ShouldQueue
+{
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
@@ -20,25 +21,26 @@ class LoadImages implements ShouldQueue {
      * @return void
      */
     public function __construct(Request $request, $advert_id) {
-
         if ($request->images)
-
-        // бегу по картинкам
         foreach($request->file("images") as $img) {
 
-            // формирую имя
             $filename = str_random(32).".".$img->getClientOriginalExtension();
-
-            // узнаю имя
             $image_resize = Image::make($img->getRealPath());
             
             // изменяю размер с соотношением пропорций
-            $image_resize->resize(200, 150, function ($constraint) {
+            $image_resize->resize(800, 600, function ($constraint) {
                 $constraint->aspectRatio();
             });
 
-            // сохраняю в хранилище
-            $image_resize->save(storage_path().'/app/images/preview/' .$filename);
+            // пишу текст в картинку
+            $image_resize->text(env("APP_URL"), 8,22, function($font) {
+                $font->file(public_path()."/fonts/Brushie.ttf");
+                $font->color(array(255,255,255,1));
+                $font->size(18);
+            });
+
+            // ... и сохраняю в хранилище
+            $image_resize->save(storage_path().'/app/images/' .$filename);
             $image = new Images();
             $image->advert_id = $advert_id;
             $image->image = $filename;                
@@ -51,5 +53,8 @@ class LoadImages implements ShouldQueue {
      *
      * @return void
      */
-    public function handle() {}
+    public function handle()
+    {
+        //
+    }
 }
