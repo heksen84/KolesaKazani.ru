@@ -2344,6 +2344,7 @@ function forEach(data, callback) {
           }
         case 10:
           {
+            this.$store.commit("ShowFinalFields", true);
             this.other = true;
             break;
           }
