@@ -320,9 +320,7 @@ data () {
   }
 },
 
-// ------------------------------
 // компонент создан
-// ------------------------------
 created() {
   ymaps.ready(initMaps);  
   this.$root.advert_data = []; 
@@ -332,21 +330,20 @@ created() {
 // методы компонента
 methods: {
 
+// сервис не доступен
 serviceError() {
   this.serviceUnavailable=true;
   $("#ShowModal").modal("show"); // отобразить окно
 },
 
 // Выбор подкатегории
-changeSubCategory() {
-  
+changeSubCategory() { 
   if (this.subCategory=="null") 
     this.$store.commit("ShowFinalFields", false)
   else
     this.$store.commit("ShowFinalFields", true)
-
-  this.$root.advert_data.adv_subcategory=this.subCategory;
-
+  
+    this.$root.advert_data.adv_subcategory=this.subCategory;
 },
 
 // доп. информация
@@ -354,13 +351,13 @@ setInfo() {
 	this.$root.advert_data.adv_info=this.info;
 },
 
-setPrice() {
-  //console.log(this.phone)
+// установить цену
+setPrice() {  
   this.$root.advert_data.adv_price=this.price;
 },
 
-setPhone() {
-  //console.log(this.phone)
+// указать номер
+setPhone() {  
   this.$root.advert_data.adv_phone=this.phone;
 },
 
@@ -684,11 +681,11 @@ onSubmit(evt) {
       console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается
     }		    
     else {
-			    navigator.geolocation.getCurrentPosition(function(position) {				
-			    let lat = position.coords.latitude;
-			    let lon = position.coords.longitude;
-			    let geoCoords=[lat,lon];
-			    myPlacemark.geometry.setCoordinates(getCoords);				
+			  navigator.geolocation.getCurrentPosition(function(position) {				
+			  let lat = position.coords.latitude;
+			  let lon = position.coords.longitude;
+			  let geoCoords=[lat,lon];
+			  myPlacemark.geometry.setCoordinates(getCoords);				
 			});
 		}
 	},

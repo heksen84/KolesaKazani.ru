@@ -2,22 +2,19 @@
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
-// ВНИМАНИЕ: Присутсвует приоритет роутов
+// ВНИМАНИЕ!: Присутсвует приоритет роутов
 
-// Стандартные роуты
-Auth::routes();
+Auth::routes(); // Стандартные роуты
 
 Route::get("/getSubCategoryDataById", "AdvertController@getSubCategoryDataById" );
-
 
 Route::post("createAdvert",  "AdvertController@createAdvert");
 
 // ---------------------------------------------------------------
-// Авто
+// Авто (FIX: перенести в справочник
 // ---------------------------------------------------------------
 Route::get("/getCarsMarks", "AdvertController@getCarsMarks" );
 Route::get("/getCarsModels", "AdvertController@getCarsModels" );
-
 
 // Новое объявление
 Route::get("/podat-obyavlenie", "AdvertController@NewAd");
@@ -36,6 +33,16 @@ Route::get("/{region}", "IndexController@ShowRegionIndexPage");
 
 // По городу или селу
 Route::get("/{region}/{place}", "IndexController@ShowPlaceIndexPage");
+
+// task
+// транспорт кз
+// недвижимость кз
+// ...
+// транспорт обл.
+// недвиж. обл.
+// ...
+// транспорт города / села
+// недвиж. города / села
 
 
 

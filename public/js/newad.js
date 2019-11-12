@@ -2047,9 +2047,7 @@ function forEach(data, callback) {
   },
 
 
-  // ------------------------------
   // компонент создан
-  // ------------------------------
   created: function created() {
     ymaps.ready(initMaps);
     this.$root.advert_data = [];
@@ -2059,6 +2057,8 @@ function forEach(data, callback) {
 
   // методы компонента
   methods: {
+
+    // сервис не доступен
     serviceError: function serviceError() {
       this.serviceUnavailable = true;
       __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#ShowModal").modal("show"); // отобразить окно
@@ -2067,7 +2067,6 @@ function forEach(data, callback) {
 
     // Выбор подкатегории
     changeSubCategory: function changeSubCategory() {
-
       if (this.subCategory == "null") this.$store.commit("ShowFinalFields", false);else this.$store.commit("ShowFinalFields", true);
 
       this.$root.advert_data.adv_subcategory = this.subCategory;
@@ -2078,12 +2077,16 @@ function forEach(data, callback) {
     setInfo: function setInfo() {
       this.$root.advert_data.adv_info = this.info;
     },
+
+
+    // установить цену
     setPrice: function setPrice() {
-      //console.log(this.phone)
       this.$root.advert_data.adv_price = this.price;
     },
+
+
+    // указать номер
     setPhone: function setPhone() {
-      //console.log(this.phone)
       this.$root.advert_data.adv_phone = this.phone;
     },
 
