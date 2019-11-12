@@ -483,7 +483,7 @@ deletePhoto(index) {
 // --------------------------------------
 setDeal() {    
 
-   console.log("Сделка: "+this.sdelka)
+  console.log("Сделка: "+this.sdelka)
 
   // если отдам даром, то обнуляю цену
   if (this.sdelka===3) {
@@ -613,6 +613,7 @@ changeCategory() {
       break; 
     }
     case 10: {
+      this.$store.commit("ShowFinalFields", true);  
       this.other=true;      
       break; 
       }
