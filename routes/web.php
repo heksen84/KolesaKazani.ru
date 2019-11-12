@@ -34,7 +34,9 @@ Route::get("/{region}", "IndexController@ShowRegionIndexPage");
 // По городу или селу
 Route::get("/{region}/{place}", "IndexController@ShowPlaceIndexPage");
 
+// ------------------------------
 // task
+// ------------------------------
 // транспорт кз
 // недвижимость кз
 // ...
@@ -43,6 +45,21 @@ Route::get("/{region}/{place}", "IndexController@ShowPlaceIndexPage");
 // ...
 // транспорт города / села
 // недвиж. города / села
+
+// -------------------------------------------------------------------------------
+// Результаты по категориям по всему Казахстану
+// -------------------------------------------------------------------------------
+// TransportResultController
+Route::get("transport/{type}", 	  	"ResultsController@getResultsByCategoryForView");
+Route::get("nedvizhimost/{type}", 	"ResultsController@getResultsByCategoryForView");
+Route::get("elektronika/{type}", 	"ResultsController@getResultsByCategoryForView");
+Route::get("rabota-i-biznes/{type}", 	"ResultsController@getResultsByCategoryForView");
+Route::get("dlya-doma-i-dachi/{type}",	"ResultsController@getResultsByCategoryForView");
+Route::get("lichnye-veschi/{type}", 	"ResultsController@getResultsByCategoryForView");
+Route::get("zhivotnye/{type}", 		"ResultsController@getResultsByCategoryForView");
+Route::get("hobbi-i-otdyh/{type}", 	"ResultsController@getResultsByCategoryForView");
+Route::get("uslugi/{type}", 		"ResultsController@getResultsByCategoryForView");
+Route::get("drugoe/{type}", 		"ResultsController@getResultsByCategoryForView");
 
 
 
