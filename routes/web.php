@@ -27,16 +27,16 @@ Route::post("createAdvert",  "AdvertController@createAdvert");
 // Результаты по категориям по всему Казахстану
 // -------------------------------------------------------------------------------
 // TransportResultController
-Route::get("transport/{type}", 	  	"ResultsController@getResultsByCategoryForView123");
-Route::get("nedvizhimost/{type}", 	"ResultsController@getResultsByCategoryForView");
-Route::get("elektronika/{type}", 	"ResultsController@getResultsByCategoryForView");
-Route::get("rabota-i-biznes/{type}", 	"ResultsController@getResultsByCategoryForView");
-Route::get("dlya-doma-i-dachi/{type}",	"ResultsController@getResultsByCategoryForView");
-Route::get("lichnye-veschi/{type}", 	"ResultsController@getResultsByCategoryForView");
-Route::get("zhivotnye/{type}", 		"ResultsController@getResultsByCategoryForView");
-Route::get("hobbi-i-otdyh/{type}", 	"ResultsController@getResultsByCategoryForView");
-Route::get("uslugi/{type}", 		"ResultsController@getResultsByCategoryForView");
-Route::get("drugoe/{type}", 		"ResultsController@getResultsByCategoryForView");
+Route::get("transport/{type}", 	  	"TransportResultsController@getResultsByCategoryForView");
+Route::get("nedvizhimost/{type}", 	"NedvizhimostResultsController@getResultsByCategoryForView");
+Route::get("elektronika/{type}", 	"ElektronikaResultsController@getResultsByCategoryForView");
+Route::get("rabota-i-biznes/{type}", 	"Rabota-i-biznesResultsController@getResultsByCategoryForView");
+Route::get("dlya-doma-i-dachi/{type}",	"Dlya-doma-i-dachiResultsController@getResultsByCategoryForView");
+Route::get("lichnye-veschi/{type}", 	"Lichnye-veschiResultsController@getResultsByCategoryForView");
+Route::get("zhivotnye/{type}", 		"ZhivotnyeResultsController@getResultsByCategoryForView");
+Route::get("hobbi-i-otdyh/{type}", 	"Hobbi-i-otdyhResultsController@getResultsByCategoryForView");
+Route::get("uslugi/{type}", 		"UslugiResultsController@getResultsByCategoryForView");
+Route::get("drugoe/{type}", 		"DrugoeResultsController@getResultsByCategoryForView");
 
 // ---------------------------------------------------------------
 // Авто (FIX: перенести в справочник
