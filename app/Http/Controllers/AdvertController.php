@@ -121,10 +121,11 @@ class AdvertController extends Controller {
         if ( $validator->fails() )  
             return response()->json( ["result"=>"usr.error", "msg" => $validator->errors()->first()] );                    
 
-        $category = $data["adv_category"];
-        $deal     = $data["adv_deal"]; // Вид сделки
-        $text     = $data["adv_info"];        
-        $phone    = $data["adv_phone"];
+        $category       = $data["adv_category"];
+        $subcategory    = $data["adv_subcategory"];
+        $deal           = $data["adv_deal"]; // Вид сделки
+        $text           = $data["adv_info"];        
+        $phone          = $data["adv_phone"];
 
         $price = $this->to_php_null($data["adv_price"]);
         
@@ -140,6 +141,7 @@ class AdvertController extends Controller {
             $advert->phone           = $phone; 
         	$advert->price  		 = $price;
             $advert->category_id  	 = $category;
+            $advert->sub_category_id = $subcategory;
             $advert->deal  	         = $deal;            
             $advert->region_id       = $region_id;
             $advert->city_id         = $city_id;
@@ -147,6 +149,9 @@ class AdvertController extends Controller {
             $advert->sub_category_id = 0;            
             $advert->vip             = false;
             $advert->full            = false;
+
+
+            \Debugbar::info("advert->sub_category_id = ".$subcategory);
 
             $url_text = ""; // строка url в sitemap
 
@@ -323,35 +328,42 @@ class AdvertController extends Controller {
 
                 // электроника
                 case 3: {
-                    //$appliances= new Appliances();
+                    $advert->sub_category_id = $subcategory;
                     break;
                 }
 
                 case 4: {
+                    $advert->sub_category_id = $subcategory;
                     break;
                 }
 
                 case 5: {
+                    $advert->sub_category_id = $subcategory;
                     break;
                 }
 
                 case 6: {
+                    $advert->sub_category_id = $subcategory;
                     break;
                 }
 
                 case 7: {
+                    $advert->sub_category_id = $subcategory;
                     break;
                 }
 
                 case 8: {
+                    $advert->sub_category_id = $subcategory;
                     break;
                 }
 
                 case 9: {
+                    $advert->sub_category_id = $subcategory;
                     break;
                 }
 
                 case 10: {
+                    $advert->sub_category_id = $subcategory;
                     break;
                 }
 
@@ -372,6 +384,7 @@ class AdvertController extends Controller {
             }
 
             \Debugbar::info("id подкатегории :".$advert->sub_category_id);            
+            
             
             $advert->public = true; // публикую объявление сходу                        
             $advert->save();  // СОХРАНЕНИЕ ОБЪЯВЛЕНИЯ
@@ -403,11 +416,11 @@ class AdvertController extends Controller {
             
         Sitemap::addUrl($urls->url);
 
-        return $advert->id;
+        return $advert->id;        
+        }		
         
-		}		
         catch(\Exception $e) {
-               return response()->json( ["result"=>"db.error", "msg"=>$e->getMessage()] );  
+            return response()->json([ "result" => "db.error", "msg" => $e->getMessage() ]);  
     	}
      	
      	return $data;

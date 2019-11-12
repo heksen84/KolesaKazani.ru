@@ -1931,6 +1931,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 // ---------------------------
@@ -2067,6 +2068,7 @@ function forEach(data, callback) {
     // Выбор подкатегории
     changeSubCategory: function changeSubCategory() {
       //alert(this.subCategory)
+      this.$root.advert_data.adv_subcategory = this.subCategory;
     },
 
 
@@ -2227,7 +2229,8 @@ function forEach(data, callback) {
 
       this.$store.commit("SetDealSelected", false);
 
-      this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
+      this.$root.advert_data.adv_subcategory = null;
+      this.$root.advert_data.adv_info = null;
       this.$root.advert_data.adv_price = null;
       this.$root.advert_data.adv_phone = null;
 
@@ -39641,10 +39644,27 @@ var render = function() {
                   [_vm._v("Расположение")]
                 ),
                 _vm._v(" "),
+                _c(
+                  "h5",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.serviceUnavailable,
+                        expression: "serviceUnavailable"
+                      }
+                    ],
+                    staticClass: "modal-title",
+                    attrs: { id: "exampleModalLabel" }
+                  },
+                  [_vm._v("Cервис временно не доступен")]
+                ),
+                _vm._v(" "),
                 _vm._m(0)
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "modal-body text-center" }, [
+              _c("div", { staticClass: "modal-body" }, [
                 _c("div", {
                   directives: [
                     {
@@ -39671,7 +39691,7 @@ var render = function() {
                     ],
                     staticClass: "alert-heading"
                   },
-                  [_vm._v("Cервис временно не доступен!")]
+                  [_vm._v("повторите позже")]
                 )
               ]),
               _vm._v(" "),

@@ -8,13 +8,14 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 v-show="!serviceUnavailable" class="modal-title" id="exampleModalLabel">Расположение</h5>          
+          <h5 v-show="serviceUnavailable" class="modal-title" id="exampleModalLabel">Cервис временно не доступен</h5>          
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body text-center" >
-          <div v-show="!serviceUnavailable" id="bigmap" style="width: 100%; height: 300px" ></div>
-          <h4 v-show="serviceUnavailable" class="alert-heading">Cервис временно не доступен!</h4>
+        <div class="modal-body" >
+          <div v-show="!serviceUnavailable" id="bigmap" style="width: 100%; height: 300px"></div>
+          <h4 v-show="serviceUnavailable" class="alert-heading">повторите позже</h4>
         </div>
         <div class="modal-footer" v-show="!serviceUnavailable">          
           <button type="button" class="btn btn-primary margin-auto" @click="setCoords">Сохранить</button>          
@@ -339,6 +340,7 @@ serviceError() {
 // Выбор подкатегории
 changeSubCategory() {
   //alert(this.subCategory)
+  this.$root.advert_data.adv_subcategory=this.subCategory;
 },
 
 // доп. информация
@@ -504,9 +506,10 @@ advReset(category_data) {
         
     this.$store.commit("SetDealSelected", false);    
 
-    this.$root.advert_data.adv_info = null; // добавляю формально поле доп. информация
-    this.$root.advert_data.adv_price = null;
-    this.$root.advert_data.adv_phone = null;
+    this.$root.advert_data.adv_subcategory  = null;
+    this.$root.advert_data.adv_info         = null;
+    this.$root.advert_data.adv_price        = null;
+    this.$root.advert_data.adv_phone        = null;
 
     // сброс моделей    
     this.price = null;
