@@ -24,16 +24,54 @@ class TransportResultsController extends Controller
         // --- ru ---        
         case "legkovoy-avtomobil": {
 
-            /*$subcats = DB::table("subcats")
-			->join("categories", "categories.id", "=", "subcats.category_id")
-			->select("subcats.*", "categories.url as category_url")
-            ->get();*/
+/*
+                    $this->total = DB::select(
+                    "SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_transport, car_mark, car_model) ON (
+                    adv_transport.mark=car_mark.id_car_mark AND 
+                    adv.adv_category_id=adv_transport.id AND 
+                    adv_transport.model = car_model.id_car_model
+                    ) WHERE adv_transport.type=0 AND adv.category_id=1".$region_string.$place_string.$this->filter_string); 
 
-            $items = DB::table("adverts")->select("adverts.id", "dealtype.deal_name_2", "adverts.category_id", "adverts.price")->join("dealtype", "adverts.deal", "=", "dealtype.id")->get();
+                    $results = DB::select(
+                        "SELECT
+			            adv.region_id,
+			            adv.city_id,
+                        concat($this->dealRuString, car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
+                        adv.id as advert_id,
+                        DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
+                        adv.deal,
+                        adv.full,                                                
+                        adv.price,
+                        adv.category_id,
+                        mileage,
+                        (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
+                        FROM `adverts` as adv
+                        INNER JOIN (adv_transport, car_mark, car_model) ON (
+                        adv_transport.mark=car_mark.id_car_mark AND 
+                        adv.adv_category_id=adv_transport.id AND 
+                        adv_transport.model = car_model.id_car_model
+                        ) WHERE adv_transport.type=0 AND adv.category_id=1".$this->filter_string.$region_string.$place_string."
+                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit);                    */
 
+
+//            $count = DB::table("adverts")->join("dealtype", "adverts.deal", "=", "dealtype.id")->count();
+
+            $ormRequest = DB::table("adverts")
+			->select("adverts.id", "dealtype.deal_name_2", "car_mark.name", "car_model.name_rus", "adverts.price")
+			->join("sub_transport", "adverts.sub_category_id", "=", "sub_transport.id")
+		        ->join("dealtype", "adverts.deal", "=", "dealtype.id")
+		        ->join("car_mark", "car_mark.id_car_mark", "=", "sub_transport.mark")
+		        ->join("car_model", "car_model.id_car_model", "=", "sub_transport.model")
+			->where("adverts.category_id", "=", 1) // 1 = транспорт
+			->where("sub_transport.type", "=", 0); // 0 = легковой
+
+            $count = $ormRequest->count();
+	    $items = $ormRequest->get();
+
+            \Debugbar::info("ТАЧЕК: ".$count);
             \Debugbar::info($items);
             
-	        break;
+	    break;
          }
 
          case "gruzovoy-avtomobil": {
