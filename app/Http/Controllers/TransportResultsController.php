@@ -57,18 +57,29 @@ class TransportResultsController extends Controller
 //            $count = DB::table("adverts")->join("dealtype", "adverts.deal", "=", "dealtype.id")->count();
 
             $ormRequest = DB::table("adverts")
-			->select("adverts.id", "dealtype.deal_name_2", "car_mark.name", "car_model.name_rus", "adverts.price")
+			->select
+			 (
+			   "adverts.id", 
+			   "dealtype.deal_name_2", 
+			   "car_mark.name", 
+			   "car_model.name_rus", 
+			   "adverts.price", 
+			   DB::raw("DATE_FORMAT(adverts.created_at, '%d/%m/%Y в %H:%m') AS created_at"),
+			   DB::raw("image AS img")
+                         )
 			->join("sub_transport", "adverts.sub_category_id", "=", "sub_transport.id")
 		        ->join("dealtype", "adverts.deal", "=", "dealtype.id")
 		        ->join("car_mark", "car_mark.id_car_mark", "=", "sub_transport.mark")
 		        ->join("car_model", "car_model.id_car_model", "=", "sub_transport.model")
+		        ->join("images", "images.advert_id", "=", "adverts.id")
 			->where("adverts.category_id", "=", 1) // 1 = транспорт
 			->where("sub_transport.type", "=", 0); // 0 = легковой
 
-            $count = $ormRequest->count();
-	    $items = $ormRequest->get();
 
-            \Debugbar::info("ТАЧЕК: ".$count);
+            $count = $ormRequest->count(); // кол-во записей
+	    $items = $ormRequest->get();   // json массив записей
+
+            \Debugbar::info("Число легковых тачек: ".$count);
             \Debugbar::info($items);
             
 	    break;

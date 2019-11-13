@@ -23,6 +23,7 @@
   @foreach($items as $item)
   <div class="row">
     <div class="col col-sm-12 col-md-6 col-lg-6 col-xl-6 item" style="margin:auto">
+    <div style="margin:10px;font-size:10px">Размещено {{ $item->created_at }}</div>  
     <div style="margin:10px;font-size:20px;font-weight:500">{{  $item->deal_name_2 }} {{  $item->name }} {{  $item->name_rus }}</div>  
     </div>
    </div>
