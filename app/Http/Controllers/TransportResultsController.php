@@ -65,7 +65,7 @@ class TransportResultsController extends Controller
 			   "car_model.name_rus", 
 			   "adverts.price", 
 			   DB::raw("DATE_FORMAT(adverts.created_at, '%d/%m/%Y в %H:%m') AS created_at"),
-			   DB::raw("image AS img")
+			   "images.image"
                          )
 			->join("sub_transport", "adverts.sub_category_id", "=", "sub_transport.id")
 		        ->join("dealtype", "adverts.deal", "=", "dealtype.id")
@@ -74,10 +74,14 @@ class TransportResultsController extends Controller
 		        ->join("images", "images.advert_id", "=", "adverts.id")
 			->where("adverts.category_id", "=", 1) // 1 = транспорт
 			->where("sub_transport.type", "=", 0); // 0 = легковой
+//			->where("images.advert_id", "=", "adverts.id");
 
 
             $count = $ormRequest->count(); // кол-во записей
 	    $items = $ormRequest->get();   // json массив записей
+
+//	    $images = DB::table("images")->select("image")
+	    
 
             \Debugbar::info("Число легковых тачек: ".$count);
             \Debugbar::info($items);
