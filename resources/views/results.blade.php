@@ -10,16 +10,21 @@
   <title>{{ $title }}</title>
   <link rel="icon" href="{{ asset('public/shop.ico') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+<!--  <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">-->
+<link rel="stylesheet" type="text/css" href="{{ asset('css/results.css') }}">
 </head>
 <body>
 
 <div id="app">
-  <div class="container-fluid">
+
+  <div class="container-fluid text-center">
+
+  <h1 style="color:white;marhin:10px">{{ $title }}</h1>
+
   @foreach($items as $item)
   <div class="row">
     <div class="col col-sm-12 col-md-6 col-lg-6 col-xl-6 item" style="margin:auto">
-    {{  $item->deal_name_2 }}, {{  $item->category_id }}, {{  $item->price }}  
+    <h5>{{  $item->deal_name_2 }}, {{  $item->category_id }}, {{  $item->price }}</h5>  
     </div>
    </div>
   @endforeach

@@ -20,4 +20,6 @@ mix.js('resources/assets/js/mix/sendemail.js', 'public/js').
 mix.js('resources/assets/js/mix/results.js', 'public/js').
 mix.js('resources/assets/js/mix/create.js', 'public/js').
 mix.js('resources/assets/js/mix/app.js', 'public/js').*/
-sass('resources/assets/sass/app.scss', 'public/css').version();
+sass('resources/assets/sass/index.scss', 'public/css').
+sass('resources/assets/sass/results.scss', 'public/css').
+version();

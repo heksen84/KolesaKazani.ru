@@ -88,7 +88,11 @@ class TransportResultsController extends Controller
         ->with("place",  "null")
         ->with("searchString", "null");*/
 
-        return view("results")->with("keywords", "")->with("description", "")->with("title", "")->with("items", $items);
+        $title="Покупка, продажа, обмен, сдача в аренду легковых автомобилей в Казахстане";
+        $description = "";
+        $keywords = "";
+
+        return view("results")->with("title", $title)->with("description", $description)->with("keywords", $keywords)->with("items", $items);
 
 
     }
