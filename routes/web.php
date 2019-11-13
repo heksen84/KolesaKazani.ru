@@ -27,19 +27,19 @@ Route::post("createAdvert",  "AdvertController@createAdvert");
 // Результаты по категориям по всему Казахстану
 // -------------------------------------------------------------------------------
 // TransportResultController
-Route::get("transport/{type}", 	  	"TransportResultsController@getResultsByCategoryForView");
-Route::get("nedvizhimost/{type}", 	"NedvizhimostResultsController@getResultsByCategoryForView");
-Route::get("elektronika/{type}", 	"ElektronikaResultsController@getResultsByCategoryForView");
-Route::get("rabota-i-biznes/{type}", 	"Rabota-i-biznesResultsController@getResultsByCategoryForView");
-Route::get("dlya-doma-i-dachi/{type}",	"Dlya-doma-i-dachiResultsController@getResultsByCategoryForView");
-Route::get("lichnye-veschi/{type}", 	"Lichnye-veschiResultsController@getResultsByCategoryForView");
-Route::get("zhivotnye/{type}", 		"ZhivotnyeResultsController@getResultsByCategoryForView");
-Route::get("hobbi-i-otdyh/{type}", 	"Hobbi-i-otdyhResultsController@getResultsByCategoryForView");
-Route::get("uslugi/{type}", 		"UslugiResultsController@getResultsByCategoryForView");
-Route::get("drugoe/{type}", 		"DrugoeResultsController@getResultsByCategoryForView");
+Route::get("transport/{type}", 	  	"TransportResultsController@getTransportResultsByCountryForView");
+Route::get("nedvizhimost/{type}", 	"RealestateResultsController@getRealestateResultsByCountryForView");
+Route::get("elektronika/{type}", 	"ElektronikaResultsController@getTransportResultsByCountryForView");
+Route::get("rabota-i-biznes/{type}", 	"Rabota-i-biznesResultsController@getTransportResultsByCountryForView");
+Route::get("dlya-doma-i-dachi/{type}",	"Dlya-doma-i-dachiResultsController@getTransportResultsByCountryForView");
+Route::get("lichnye-veschi/{type}", 	"Lichnye-veschiResultsController@getTransportResultsByCountryForView");
+Route::get("zhivotnye/{type}", 		"ZhivotnyeResultsController@getTransportResultsByCountryForView");
+Route::get("hobbi-i-otdyh/{type}", 	"Hobbi-i-otdyhResultsController@getTransportResultsByCountryForView");
+Route::get("uslugi/{type}", 		"UslugiResultsController@getTransportResultsByCountryForView");
+Route::get("drugoe/{type}", 		"DrugoeResultsController@getTransportResultsByCountryForView");
 
 // ---------------------------------------------------------------
-// Авто (FIX: перенести в справочник
+// Авто (FIX: перенести в справочник)
 // ---------------------------------------------------------------
 Route::get("/getCarsMarks", "AdvertController@getCarsMarks" );
 Route::get("/getCarsModels", "AdvertController@getCarsModels" );

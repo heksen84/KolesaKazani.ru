@@ -12,8 +12,20 @@
   <link rel="icon" href="{{ asset('public/shop.ico') }}">
 </head>
 <body>
-hello
 <div id="app">
+  <results 
+  :title="{{ json_encode($title) }}"
+  :category="{{ $category }}" 
+  :category_name="{{ $category_name }}" 
+  :subcat="{{ $subcat }}" 
+  :results="{{ $results }}"   
+  :total_records="{{ $total_records }}"
+  :region="{{ $region }}"
+  :place="{{ $place }}"
+  :search_string="{{ $searchString }}">
+  </results>
 </div>
 </body>
 </html>
+<script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
