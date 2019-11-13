@@ -29,7 +29,7 @@ class TransportResultsController extends Controller
 			->select("subcats.*", "categories.url as category_url")
             ->get();*/
 
-            $items = DB::table("adverts")->select("adverts.id", "adverts.deal", "adverts.category_id", "adverts.price")->get();
+            $items = DB::table("adverts")->select("adverts.id", "dealtype.deal_name_2", "adverts.category_id", "adverts.price")->join("dealtype", "adverts.deal", "=", "dealtype.id")->get();
 
             \Debugbar::info($items);
             
