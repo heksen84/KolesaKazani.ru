@@ -3,58 +3,72 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TransportResultsController extends Controller
 {
 
-    public function getTransportResultsByCountry() {
+    public function getTransportResultsByCountry(Request $request) {
 
     }
 
     // -------------------------------------------------------------
-    // Ðåçóëüòàòû ïî ñòðàíå äëÿ âüþõè (results.blade.php)
+    // Ð ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ñ‹ Ð¿Ð¾ ÑÑ‚Ñ€Ð°Ð½Ðµ Ð´Ð»Ñ Ð²ÑŒÑŽÑ…Ð¸ (results.blade.php)
     // -------------------------------------------------------------
     public function getTransportResultsByCountryForView(Request $request, $type) {
 
-       \Debugbar::info($type);
+       \Debugbar::info($type);       
 
        switch($type) {
 
-         case "legkovoy-avtomobil": {
-	  break;
+        // --- ru ---        
+        case "legkovoy-avtomobil": {
+
+            /*$subcats = DB::table("subcats")
+			->join("categories", "categories.id", "=", "subcats.category_id")
+			->select("subcats.*", "categories.url as category_url")
+            ->get();*/
+
+            $items = DB::table("adverts")->select("adverts.id", "adverts.deal", "adverts.category_id", "adverts.price")->get();
+
+            \Debugbar::info($items);
+            
+	        break;
          }
 
          case "gruzovoy-avtomobil": {
-	  break;
+	        break;
          }
 
          case "mototehnika": {
-	  break;
+	        break;
          }         
 
          case "spectehnika": {
-	  break;
+	        break;
          }         
 
          case "retro-avtomobil": {
-	  break;
+	        break;
          }         
 
          case "vodnyy-transport": {
-	  break;
+	        break;
          }         
 
          case "velosiped": {
-	  break;
+	        break;
          }         
 
          case "vozdushnyy-transport": {
-	  break;
+	        break;
          }         
+
+	    // --- kz ---
 
        }
 		
-/*	$category = request()->segment(1); // âûðåçàþ êàòåãîðèþ èç url
+/*	$category = request()->segment(1); // Ð²Ñ‹Ñ€ÐµÐ·Ð°ÑŽ ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ð¸ÑŽ Ð¸Ð· url
         $result = $this->getResultsByCategory($request, null, null, $category);
 
         if ($result==null)
@@ -74,7 +88,7 @@ class TransportResultsController extends Controller
         ->with("place",  "null")
         ->with("searchString", "null");*/
 
-        return view("results")->with("keywords", "")->with("description", "")->with("title", "");
+        return view("results")->with("keywords", "")->with("description", "")->with("title", "")->with("items", $items);
 
 
     }

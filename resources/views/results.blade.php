@@ -12,8 +12,18 @@
   <link rel="icon" href="{{ asset('public/shop.ico') }}">
 </head>
 <body>
-hello
+
 <div id="app">
+
+  @foreach($items as $item)
+  <div class="item">
+    {{  $item->id }}
+    {{  $item->category_id }}
+    {{  $item->price }}  
+  <div>
+  @endforeach
+
 </div>
+
 </body>
 </html>
