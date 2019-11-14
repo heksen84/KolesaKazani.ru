@@ -102,7 +102,9 @@
 
     <!-- кнопки выбора региона и т.п.-->
     <div class="index_select_region_and_other_button_block">
-      <button class="search_options_button btn btn-light btn-sm" data-toggle="modal" id="locationButton" @click="showLocationWindow">&#10003; Расположение {{ $locationName }}</button>
+    <!--<button class="search_options_button btn btn-light btn-sm" data-toggle="modal" id="locationButton" @click="showLocationWindow">&#10003; Расположение {{ $locationName }}</button>-->
+      <button class="search_options_button btn btn-light btn-sm" data-toggle="modal" id="locationButton" @click="showLocationWindow">Расположение {{ $locationName }}</button>
+      <!--<button class="btn btn-link" data-toggle="modal" id="locationButton" @click="showLocationWindow">Расположение {{ $locationName }}</button>-->
     </div>
 
   </div>
