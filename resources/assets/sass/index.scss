@@ -159,8 +159,7 @@ h3 {
 }
 
 .subcategory {
-/*  width:310px !important;*/
-  width:100%;
+ // width:310px !important;
   font-size:18px !important;
   text-align:center !important;
   margin:auto;
@@ -321,7 +320,8 @@ h3 {
 
 .category_item:hover {
  /*background: rgb(120,120,120);*/
- font-weight:bold;
+ //font-weight:500;
+ text-decoration: underline;
 }
 
 .standart_input {
