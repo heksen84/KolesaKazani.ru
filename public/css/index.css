@@ -141,8 +141,12 @@ h3 {
 }
 
 .subcategory {
-  width: 300px !important;
+  /*  width:310px !important;*/
+  width: 100%;
   font-size: 17px !important;
+  text-align: center !important;
+  margin: auto;
+  /*border:1px solid grey;*/
 }
 
 #subcats {
@@ -285,7 +289,7 @@ h3 {
   background: rgb(125, 125, 125);*/
   color: #323232;
   font-size: 18px;
-  padding: 12px;
+  padding: 14px;
   text-align: left;
   width: 250px;
 }
@@ -350,7 +354,7 @@ h3 {
 
 .custom-file-input:lang(ru) ~ .custom-file-label::after {
   /*background: rgb(100,200,100);*/
-  background: #6464c8;
+  background: #787878;
   color: white;
   content: "\434\43E\431\430\432\438\442\44C   \444\43E\442\43E";
 }
@@ -556,12 +560,12 @@ h3 {
 }
 
 @media screen and (max-width: 768px) {
-  body {
-    /*background-image: url('/images/site/fon_750px.jpg');*/
-  }
-
   #search_string {
     width: 90%;
+  }
+
+  #index_select_region_and_other_button_block {
+    margin-top: 0px;
   }
 
   .vip_block {
@@ -578,8 +582,10 @@ h3 {
     border-radius: 0px;
   }
 
-  #index_select_region_and_other_button_block {
-    margin-top: 0px;
+  .category_item {
+    text-align: center;
+    width: 100%;
+    margin: 5px;
   }
 }
 
@@ -620,7 +626,7 @@ h3 {
 
 @media screen and (max-width: 320px) {
   .subcategory {
-    width: 270px !important;
+    width: 280px !important;
     font-size: 15px !important;
   }
 }
