@@ -39734,7 +39734,8 @@ var render = function() {
         "div",
         {
           staticClass:
-            "col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col"
+            "col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col",
+          staticStyle: { border: "1px solid rgb(200,200,200)" }
         },
         [
           _c(

@@ -9,7 +9,7 @@
   <meta name="description" content="{{ $description }}">
   <meta name="keywords" content="{{ $keywords }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/index.css') }}">
 </head>
 <body>
   <div id="app">

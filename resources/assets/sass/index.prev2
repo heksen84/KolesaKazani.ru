@@ -3,7 +3,7 @@
 // константы
 // ----------------------------------------------
 $inputPlaceHolder: rgb(50,50,50);
-$background: rgb(250, 250, 250);
+$background: rgb(230, 230, 230);
 $shadow_text_color: rgb(50, 50, 50);
 $scroll_bar_back_color: rgb(80, 80, 80);
 $scroll_bar_width: 8px;
@@ -284,7 +284,7 @@ h3 {
 }
 
 .category_item {
-  /*cursor: pointer;
+  cursor: pointer;
   margin: 5px auto;
   border: 1px solid white;
   border-radius: 2px;
@@ -294,12 +294,7 @@ h3 {
   font-size: 17px;
   width: 250px;
   color:white;
-  background: rgb(125, 125, 125);*/
-  color:rgb(50,50,50);
-  font-size: 18px;
-  padding: 12px;
-  text-align:left;
-  width: 250px;
+  background: rgb(125, 125, 125)
 }
 
 .category_item:hover {
@@ -596,7 +591,7 @@ h3 {
 @media screen and (max-width:768px) {
 
 body {
- /*background-image: url('/images/site/fon_750px.jpg');*/
+ background-image: url('/images/site/fon_750px.jpg');
 }
 
 #search_string {

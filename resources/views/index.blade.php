@@ -117,7 +117,7 @@
   <div id="categories_line">
     <div class="center">    
     
-      <div id="categories_title" class="shadow_text" style="margin-bottom:18px">категории</div>    
+      <div id="categories_title" class="shadow_text" style="margin-bottom:80px"></div>    
 	      <div class="form-inline" v-show="categories">
           @foreach($categories as $category)
         	  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 col_item" @click="showSubcategories($event,{{ $category['id'] }})">          	   
