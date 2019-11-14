@@ -143,7 +143,7 @@ h3 {
 .subcategory {
   /*  width:310px !important;*/
   width: 100%;
-  font-size: 17px !important;
+  font-size: 18px !important;
   text-align: center !important;
   margin: auto;
   /*border:1px solid grey;*/
@@ -287,10 +287,10 @@ h3 {
   width: 250px;
   color:white;
   background: rgb(125, 125, 125);*/
-  color: #6e6e6e;
+  color: #505050;
   font-size: 18px;
   padding: 12px;
-  text-align: left;
+  text-align: center;
   width: 250px;
 }
 
