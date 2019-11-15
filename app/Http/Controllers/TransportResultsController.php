@@ -32,7 +32,7 @@ class TransportResultsController extends Controller
             dealtype.deal_name_2, 
             car_mark.name, 
             car_model.name_rus,
-            (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image
+            (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as imageName
             FROM `adverts` AS adv JOIN (dealtype, sub_transport, car_mark, car_model) 
             ON (
                 adv.deal = dealtype.id AND 
