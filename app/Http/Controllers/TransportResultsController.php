@@ -14,10 +14,17 @@ class TransportResultsController extends Controller
 
     // -------------------------------------------------------------
     // Результаты по стране для вьюхи (results.blade.php)
-    // -------------------------------------------------------------
+    // -------------------------------------------------------------    
     public function getTransportResultsByCountryForView(Request $request, $type) {
 
        \Debugbar::info($type);       
+
+
+        // $filter = new TransportFilter($request);
+        // $filter->getStartPage();
+        // $filter->getStartPrice();
+        // $filter->getEndPrice();
+
 
        switch($type) {
 
@@ -42,7 +49,6 @@ class TransportResultsController extends Controller
             WHERE adv.category_id=1 AND sub_transport.type=0"
             );
                                 
-            
             $total = count($items);
 
             \Debugbar::info("Число легковых тачек: ".$total);
