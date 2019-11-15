@@ -116,6 +116,10 @@ h3 {
   color: black !important;
 }
 
+.grey {
+  color: #323232 !important;
+}
+
 .blue {
   color: blue !important;
 }
@@ -322,6 +326,10 @@ h3 {
   height: 80px;
   margin: 2px;
 }
+
+/*.link {
+  margin:14px;
+}*/
 
 .link:hover {
   text-decoration: underline;

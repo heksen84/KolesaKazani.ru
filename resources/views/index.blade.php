@@ -57,12 +57,14 @@
           <div v-if="regions">
           <b class="link" @click="searchInCountry">Весь Казахстан</b><br><hr>
             @foreach($regions as $region)
-              <a href="/{{ $region["url"]}}" class="black link" @click="showPlacesByRegion($event,{{ $region['region_id'] }})">{{$region["name"]}}</a><br>
+            <div style="margin:5px">  
+              <a href="/{{ $region["url"]}}" class="grey link" @click="showPlacesByRegion($event,{{ $region['region_id'] }})">{{$region["name"]}}</a><br>
+            </div>
             @endforeach
           </div>
           <div v-if="places">
-            <b class="link" @click="searchInRegion">Искать в области</b><br><hr>
-              <a v-for="(item, index) in placesList" :key="index" :href="item.url" class="black link block" @click="selectPlace($event, item.name, item.url)">${item.name}</a>
+            <b class="link" @click="searchInRegion">Искать в области</b><br><hr>            
+              <a v-for="(item, index) in placesList" :key="index" :href="item.url" class="grey link block" style="margin:5px" @click="selectPlace($event, item.name, item.url)">${item.name}</a>            
           </div>
         </div>
         <div class="modal-footer">

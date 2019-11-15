@@ -134,6 +134,10 @@ h3 {
   color: black !important;
 }
 
+.grey {
+  color: rgb(50,50,50) !important;
+}
+
 .blue {
   color: blue !important;
 }
@@ -349,7 +353,13 @@ h3 {
   width:80px; 
   height:80px;
   margin:2px; 
+
+  
 }
+
+/*.link {
+  margin:14px;
+}*/
 
 .link:hover {
   text-decoration:underline;
