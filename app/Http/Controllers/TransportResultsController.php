@@ -24,15 +24,15 @@ class TransportResultsController extends Controller
         // --- ru ---        
         case "legkovoy-avtomobil": {
 
-            $items = 
-            DB::select("SELECT            
-            DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
+            $dbItems = 
+            DB::select("SELECT                                    
             adv.id, 
             adv.price,
             dealtype.deal_name_2, 
             car_mark.name, 
             car_model.name_rus,
-            (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as imageName
+            (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as imageName,
+            DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at
             FROM `adverts` AS adv JOIN (dealtype, sub_transport, car_mark, car_model) 
             ON (
                 adv.deal = dealtype.id AND 
@@ -40,23 +40,22 @@ class TransportResultsController extends Controller
                 sub_transport.mark=car_mark.id_car_mark AND 
                 sub_transport.model = car_model.id_car_model
                 ) 
-            WHERE 
-                adv.category_id=1 AND sub_transport.type=0"
+            WHERE adv.category_id=1 AND sub_transport.type=0"
             );
                                 
-            $count=DB::select("SELECT COUNT(*) AS count FROM `adverts` AS adv JOIN (dealtype, sub_transport, car_mark, car_model) 
+            $dbTotal =
+            DB::select("SELECT COUNT(*) AS count FROM `adverts` AS adv JOIN (dealtype, sub_transport, car_mark, car_model) 
             ON (
                 adv.deal = dealtype.id AND 
                 adv.sub_category_id=sub_transport.id AND 
                 sub_transport.mark=car_mark.id_car_mark AND 
                 sub_transport.model = car_model.id_car_model
                 ) 
-            WHERE 
-                adv.category_id=1 AND sub_transport.type=0"
+            WHERE adv.category_id=1 AND sub_transport.type=0"
             );
 
-            //\Debugbar::info("Число легковых тачек: ". json_encode($count));
-            \Debugbar::info($items);
+            \Debugbar::info("Число легковых тачек: ".$dbTotal[0]->count);
+            \Debugbar::info($dbItems);
             
 	    break;
          }
@@ -117,7 +116,7 @@ class TransportResultsController extends Controller
         $description = "";
         $keywords = "";
 
-        return view("results")->with("title", $title)->with("description", $description)->with("keywords", $keywords)->with("items", $items)->with("itemsCount", json_encode($count));
+        return view("results")->with("title", $title)->with("description", $description)->with("keywords", $keywords)->with("items", $dbItems)->with("itemsCount", $dbTotal[0]->count);
 
 
     }
