@@ -24,8 +24,7 @@ class TransportResultsController extends Controller
         // --- ru ---        
         case "legkovoy-avtomobil": {
 
-            $dbItems = 
-            DB::select("SELECT                                    
+            $items = DB::select("SELECT                                    
             adv.id, 
             adv.price,
             dealtype.deal_name_2, 
@@ -43,19 +42,11 @@ class TransportResultsController extends Controller
             WHERE adv.category_id=1 AND sub_transport.type=0"
             );
                                 
-            $dbTotal =
-            DB::select("SELECT COUNT(*) AS count FROM `adverts` AS adv JOIN (dealtype, sub_transport, car_mark, car_model) 
-            ON (
-                adv.deal = dealtype.id AND 
-                adv.sub_category_id=sub_transport.id AND 
-                sub_transport.mark=car_mark.id_car_mark AND 
-                sub_transport.model = car_model.id_car_model
-                ) 
-            WHERE adv.category_id=1 AND sub_transport.type=0"
-            );
+            
+            $total = count($items);
 
-            \Debugbar::info("Число легковых тачек: ".$dbTotal[0]->count);
-            \Debugbar::info($dbItems);
+            \Debugbar::info("Число легковых тачек: ".$total);
+            \Debugbar::info($items);
             
 	    break;
          }
@@ -116,8 +107,7 @@ class TransportResultsController extends Controller
         $description = "";
         $keywords = "";
 
-        return view("results")->with("title", $title)->with("description", $description)->with("keywords", $keywords)->with("items", $dbItems)->with("itemsCount", $dbTotal[0]->count);
-
+        return view("results")->with("title", $title)->with("description", $description)->with("keywords", $keywords)->with("items", $items)->with("itemsCount", $total);    
 
     }
 
