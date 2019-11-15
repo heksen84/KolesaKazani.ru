@@ -103,8 +103,8 @@
     <!-- кнопки выбора региона и т.п.-->
     <div class="index_select_region_and_other_button_block">
     <!--<button class="search_options_button btn btn-light btn-sm" data-toggle="modal" id="locationButton" @click="showLocationWindow">&#10003; Расположение {{ $locationName }}</button>-->
-      <button class="search_options_button btn btn-light btn-sm" data-toggle="modal" id="locationButton" @click="showLocationWindow">Расположение {{ $locationName }}</button>
-      <!--<button class="btn btn-link" data-toggle="modal" id="locationButton" @click="showLocationWindow">Расположение {{ $locationName }}</button>-->
+      <!--<button class="search_options_button btn btn-light btn-sm" data-toggle="modal" id="locationButton" @click="showLocationWindow">Расположение {{ $locationName }}</button>-->
+      <button class="btn btn-link" data-toggle="modal" id="locationButton" @click="showLocationWindow">Расположение {{ $locationName }}</button>
     </div>
 
   </div>
@@ -134,7 +134,7 @@
 	      </div>
         
         <div v-show="subCategories" id="subcats">
-         <button type="button" style="font-size:16px" id="close_subcats_btn" class="btn btn-link hide" @click="returnToCategories">&#8634; Назад</button>         
+         <button type="button" style="font-size:16px;color:grey" id="close_subcats_btn" class="btn btn-link hide" @click="returnToCategories">&#8634; Назад</button>         
           <div id="subcategories" class="form-inline center">
             @foreach($subcategories as $subcategory)
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 hide" data-category-id="{{ $subcategory['category_id'] }}">
