@@ -24,64 +24,27 @@ class TransportResultsController extends Controller
         // --- ru ---        
         case "legkovoy-avtomobil": {
 
-/*
-                    $this->total = DB::select(
-                    "SELECT COUNT(*) as count FROM `adverts` as adv INNER JOIN (adv_transport, car_mark, car_model) ON (
-                    adv_transport.mark=car_mark.id_car_mark AND 
-                    adv.adv_category_id=adv_transport.id AND 
-                    adv_transport.model = car_model.id_car_model
-                    ) WHERE adv_transport.type=0 AND adv.category_id=1".$region_string.$place_string.$this->filter_string); 
-
-                    $results = DB::select(
-                        "SELECT
-			            adv.region_id,
-			            adv.city_id,
-                        concat($this->dealRuString, car_mark.name, ' ', car_model.name, ' ', year, ' г.') AS title,
-                        adv.id as advert_id,
-                        DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
-                        adv.deal,
-                        adv.full,                                                
-                        adv.price,
-                        adv.category_id,
-                        mileage,
-                        (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image 
-                        FROM `adverts` as adv
-                        INNER JOIN (adv_transport, car_mark, car_model) ON (
-                        adv_transport.mark=car_mark.id_car_mark AND 
-                        adv.adv_category_id=adv_transport.id AND 
-                        adv_transport.model = car_model.id_car_model
-                        ) WHERE adv_transport.type=0 AND adv.category_id=1".$this->filter_string.$region_string.$place_string."
-                        ORDER BY vip DESC, price, created_at DESC LIMIT ".$this->start_record.",".$this->records_limit);                    */
-
-
-//            $count = DB::table("adverts")->join("dealtype", "adverts.deal", "=", "dealtype.id")->count();
-
-            $ormRequest = DB::table("adverts")
-			->select
-			 (
-			   "adverts.id", 
-			   "dealtype.deal_name_2", 
-			   "car_mark.name", 
-			   "car_model.name_rus", 
-			   "adverts.price", 
-			   DB::raw("DATE_FORMAT(adverts.created_at, '%d/%m/%Y в %H:%m') AS created_at"),
-			   "images.image"
-                         )
-			->join("sub_transport", "adverts.sub_category_id", "=", "sub_transport.id")
-		        ->join("dealtype", "adverts.deal", "=", "dealtype.id")
-		        ->join("car_mark", "car_mark.id_car_mark", "=", "sub_transport.mark")
-		        ->join("car_model", "car_model.id_car_model", "=", "sub_transport.model")
-		        ->join("images", "images.advert_id", "=", "adverts.id")
-			->where("adverts.category_id", "=", 1) // 1 = транспорт
-			->where("sub_transport.type", "=", 0); // 0 = легковой
-//			->where("images.advert_id", "=", "adverts.id");
-
-
-            $count = $ormRequest->count(); // кол-во записей
-	    $items = $ormRequest->get();   // json массив записей
-
-//	    $images = DB::table("images")->select("image")
-	    
+            $items = 
+            DB::select("SELECT            
+            DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at,
+            adv.id, 
+            adv.price,
+            dealtype.deal_name_2, 
+            car_mark.name, 
+            car_model.name_rus,
+            (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as image
+            FROM `adverts` AS adv JOIN (dealtype, sub_transport, car_mark, car_model) 
+            ON (
+                adv.deal = dealtype.id AND 
+                adv.sub_category_id=sub_transport.id AND 
+                sub_transport.mark=car_mark.id_car_mark AND 
+                sub_transport.model = car_model.id_car_model
+                ) 
+            WHERE 
+                adv.category_id=1 AND sub_transport.type=0"
+            );            
+                                
+            $count=5;
 
             \Debugbar::info("Число легковых тачек: ".$count);
             \Debugbar::info($items);
