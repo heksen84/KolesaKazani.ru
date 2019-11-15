@@ -42,11 +42,20 @@ class TransportResultsController extends Controller
                 ) 
             WHERE 
                 adv.category_id=1 AND sub_transport.type=0"
-            );            
+            );
                                 
-            $count=5;
+            $count=DB::select("SELECT COUNT(*) AS count FROM `adverts` AS adv JOIN (dealtype, sub_transport, car_mark, car_model) 
+            ON (
+                adv.deal = dealtype.id AND 
+                adv.sub_category_id=sub_transport.id AND 
+                sub_transport.mark=car_mark.id_car_mark AND 
+                sub_transport.model = car_model.id_car_model
+                ) 
+            WHERE 
+                adv.category_id=1 AND sub_transport.type=0"
+            );
 
-            \Debugbar::info("Число легковых тачек: ".$count);
+            //\Debugbar::info("Число легковых тачек: ". json_encode($count));
             \Debugbar::info($items);
             
 	    break;
@@ -108,7 +117,7 @@ class TransportResultsController extends Controller
         $description = "";
         $keywords = "";
 
-        return view("results")->with("title", $title)->with("description", $description)->with("keywords", $keywords)->with("items", $items);
+        return view("results")->with("title", $title)->with("description", $description)->with("keywords", $keywords)->with("items", $items)->with("itemsCount", json_encode($count));
 
 
     }

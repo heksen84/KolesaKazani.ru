@@ -19,6 +19,8 @@
   <div class="container-fluid text-center">
 
   <h1 style="color:grey;margin:20px">{{ $title }}</h1>
+  <h1 style="color:grey;margin:20px">{{ $itemsCount }}</h1>
+
 
   @foreach($items as $item)
   <div class="row">
