@@ -154,6 +154,21 @@
     </div>
   
   <div class="row" style="margin-top:50px">
+<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+  <h3>Новые объявления</h3>
+</div>
+ <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3" v-for="i in 8">
+<div class="card" style="width: 18rem;margin:auto">
+  <!--<img src="..." class="card-img-top" alt="...">-->
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+</div>
+
     <h5 class="margin-auto">Google Advert</h5>
   </div>
   
