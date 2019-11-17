@@ -208,6 +208,7 @@ h3 {
   /*border: 1px solid grey;*/
   border-radius: 8px;
   cursor: default;
+  border: 1px solid #e1e1e1;
 }
 
 #logo_block_text {
