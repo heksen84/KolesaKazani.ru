@@ -151,12 +151,13 @@
         </div>
         
       </div>
+
     </div>
   
   <div class="row" style="margin-top:50px">
 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-  <h3>Новые объявления</h3>
-  <br>
+  <h3>Новые объявления</h3>  
+<br>
 </div>
  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3" v-for="i in 8">
 <div class="card" style="width: 18rem;margin:auto">
