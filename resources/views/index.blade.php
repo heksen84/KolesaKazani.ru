@@ -163,13 +163,16 @@
   <div class="card-body">
     <h5 class="card-title">Card title</h5>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <a href="#" class="btn btn-secondary btn-sm">Go somewhere</a>
   </div>
 </div>
 
 </div>
 
-    <h5 class="margin-auto">Google Advert</h5>
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+  	<h3>Adscence</h3>
+    </div>
+
   </div>
   
   <div class="row" style="margin-top:40px">
