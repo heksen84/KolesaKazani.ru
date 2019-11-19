@@ -292,14 +292,16 @@ h3 {
   background: rgb(125, 125, 125);*/
   color: #323232;
   font-size: 18px;
-  padding: 12px;
+  padding: 10px;
   text-align: center;
   width: 250px;
+  border: 1px solid gainsboro;
+  margin: auto;
 }
 
 .category_item:hover {
-  /*background: rgb(120,120,120);*/
-  text-decoration: underline;
+  background: #6e6ed2;
+  color: white;
 }
 
 .standart_input {
@@ -459,12 +461,6 @@ h3 {
 }
 
 @media screen and (max-width: 1280px) {
-  .category_item {
-    text-align: center;
-    width: 100%;
-    margin: 5px;
-  }
-
   .mycontainer {
     width: 100%;
   }
