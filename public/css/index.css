@@ -281,10 +281,11 @@ h3 {
 .category_item {
   color: #323232;
   font-size: 17px;
-  padding: 8px;
+  padding: 5px;
   text-align: center;
   width: 260px;
   border: 1px solid #e6e6e6;
+  border-radius: 5px;
   margin: 1px auto;
 }
 
