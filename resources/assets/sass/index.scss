@@ -304,23 +304,11 @@ h3 {
 }
 
 .category_item {
-  /*cursor: pointer;
-  margin: 5px auto;
-  border: 1px solid white;
-  border-radius: 2px;
-  padding: 8px;
-  text-align:left;
-  padding-left: 12px;
-  font-size: 17px;
-  width: 250px;
-  color:white;
-  background: rgb(125, 125, 125);*/
   color:rgb(50,50,50);
   font-size: 18px;
   padding: 10px;
   text-align:center;
   width: 250px;
-  //font-weight: 600;
   border: 1px solid rgb(220,220,220);  
   margin:auto;
 }
@@ -328,10 +316,6 @@ h3 {
 .category_item:hover {
  background: rgb(110,110,210);
  color:white;
- //font-weight:500;
-  //text-decoration: underline;
-  //border: 1px solid rgb(230,230,230);
-  //border-radius: 10px;
 }
 
 .standart_input {
