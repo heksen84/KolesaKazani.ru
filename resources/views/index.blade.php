@@ -108,7 +108,7 @@
       <div id="logo_block">
         <div id="logo_block_text">{{config('app.name')}}</div>
         <!--<h1 style="font-size:15px;color:yellow;margin-top:-10px;letter-spacing:1px;">Объявления {{ $sklonResult }}</h1>-->
-        <h1 style="font-size:14px;color:grey;margin-top:-15px;letter-spacing:3px;">Объявления {{ $sklonResult }}</h1>
+        <h1 style="font-size:14px;color:grey;margin-top:-20px;letter-spacing:3px;">Объявления {{ $sklonResult }}</h1>
       </div>
   </div>
 
