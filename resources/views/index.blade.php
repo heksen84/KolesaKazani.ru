@@ -82,6 +82,23 @@
       <a href="/register"><div class="button" id="button_reg">Регистрация</div></a>          
     @else
      	<a href="/home"><div class="button">мои объявления</div></a>
+
+
+      <!-- Example single danger button -->
+      <div class="btn-group">
+        <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Action
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Separated link</a>
+        </div>
+      </div>
+
+
     @endif
     </div>
   </div>
@@ -136,7 +153,7 @@
 	      </div>
         
         <div v-show="subCategories" id="subcats">
-         <button type="button" style="font-size:16px;color:grey" id="close_subcats_btn" class="btn btn-link hide" @click="returnToCategories">&#8634; Назад</button>         
+         <button type="button" style="font-size:16px;color:grey;font-weight:bold" id="close_subcats_btn" class="btn btn-link hide" @click="returnToCategories">&#8634; Назад</button>         
           <div id="subcategories" class="form-inline center">
             @foreach($subcategories as $subcategory)
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 hide" data-category-id="{{ $subcategory['category_id'] }}">
