@@ -459,6 +459,12 @@ h3 {
 }
 
 @media screen and (max-width: 1280px) {
+  .category_item {
+    text-align: center;
+    width: 100%;
+    margin: 5px;
+  }
+
   .mycontainer {
     width: 100%;
   }
@@ -587,12 +593,6 @@ h3 {
   .create_advert_col {
     margin-top: 0px;
     border-radius: 0px;
-  }
-
-  .category_item {
-    text-align: center;
-    width: 100%;
-    margin: 5px;
   }
 }
 
