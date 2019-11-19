@@ -145,7 +145,7 @@ h3 {
 }
 
 .subcategory {
-  font-size: 18px !important;
+  font-size: 17px !important;
   text-align: center !important;
   margin: auto;
   /*border:1px solid grey;*/
@@ -218,12 +218,12 @@ h3 {
   margin-top:-12px;
   font-weight: 650;
   color:white;*/
-  font-size: 270%;
+  font-size: 300%;
   letter-spacing: 10px;
   padding: 7px;
   margin-top: -12px;
   font-weight: 650;
-  color: #5a5a5a;
+  color: #505050;
 }
 
 #categories_line {
@@ -280,7 +280,7 @@ h3 {
 
 .category_item {
   color: #323232;
-  font-size: 18px;
+  font-size: 17px;
   padding: 8px;
   text-align: center;
   width: 260px;
@@ -289,7 +289,7 @@ h3 {
 }
 
 .category_item:hover {
-  background: #6e6ed2;
+  background: #7878dc;
   color: white;
 }
 
