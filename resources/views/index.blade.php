@@ -137,8 +137,7 @@
   <br>
 
   <div id="categories_line">
-    <div class="center">    
-    
+    <div class="center">        
       <div id="categories_title" class="shadow_text" style="margin-bottom:80px"></div>    
 	      <div class="form-inline" v-show="categories">
           @foreach($categories as $category)
@@ -151,7 +150,7 @@
         	  </div>
           @endforeach
 	      </div>
-        
+                
         <div v-show="subCategories" id="subcats">
          <button type="button" style="font-size:15px;color:rgb(70,70,70);font-weight:bold" id="close_subcats_btn" class="btn btn-link hide" @click="returnToCategories">&#8634; назад</button>         
           <div id="subcategories" class="form-inline center">
@@ -165,10 +164,8 @@
               </div>
             @endforeach
           </div>
-        </div>
-        
+        </div>        
       </div>
-
     </div>
   
 <div class="row" style="margin-top:30px">
