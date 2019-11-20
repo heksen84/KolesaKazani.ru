@@ -83,7 +83,6 @@
     @else
      	<a href="/home"><div class="button">мои объявления</div></a>
 
-
       <!-- Example single danger button -->
       <div class="btn-group">
         <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -98,7 +97,6 @@
         </div>
       </div>
 
-
     @endif
     </div>
   </div>
@@ -106,8 +104,7 @@
   <div class="row" style="margin-top:2px">
     <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center">
       <div id="logo_block">
-        <div id="logo_block_text">{{config('app.name')}}</div>
-        <!--<h1 style="font-size:15px;color:yellow;margin-top:-10px;letter-spacing:1px;">Объявления {{ $sklonResult }}</h1>-->
+        <div id="logo_block_text">{{config('app.name')}}</div>        
         <h1 style="font-size:14px;color:grey;margin-top:-20px;letter-spacing:3px;">Объявления {{ $sklonResult }}</h1>
       </div>
   </div>
@@ -120,9 +117,7 @@
     </form>
 
     <!-- кнопки выбора региона и т.п.-->
-    <div class="index_select_region_and_other_button_block">
-    <!--<button class="search_options_button btn btn-light btn-sm" data-toggle="modal" id="locationButton" @click="showLocationWindow">&#10003; Расположение {{ $locationName }}</button>-->
-      <!--<button class="search_options_button btn btn-light btn-sm" data-toggle="modal" id="locationButton" @click="showLocationWindow">Расположение {{ $locationName }}</button>-->
+    <div class="index_select_region_and_other_button_block">    
       <button class="btn btn-link" data-toggle="modal" id="locationButton" style="margin-top:-10px" @click="showLocationWindow">Расположение {{ $locationName }}</button>
     </div>
 
@@ -150,7 +145,7 @@
         	  </div>
           @endforeach
 	      </div>
-                
+
         <div v-show="subCategories" id="subcats">
          <button type="button" style="font-size:15px;color:rgb(70,70,70);font-weight:bold" id="close_subcats_btn" class="btn btn-link hide" @click="returnToCategories">&#8634; назад</button>         
           <div id="subcategories" class="form-inline center">
@@ -185,10 +180,10 @@
 
 </div>
 
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-	<br>
-  	<h3>Adscence</h3>
-    </div>
+  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+    <br>
+    <h3>Adscence</h3>
+  </div>
 
   </div>
   
