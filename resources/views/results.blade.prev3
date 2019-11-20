@@ -25,11 +25,16 @@
   @foreach($items as $item)
   <div class="row">
     <div class="col col-sm-12 col-md-5 col-lg-5 col-xl-5" style="margin:auto">
+      <!--<div style="margin:10px;font-size:10px">Размещено {{ $item->created_at }}</div>
+      <div style="margin:10px;font-size:20px;font-weight:500">{{  $item->deal_name_2 }} {{  $item->name }} {{  $item->name_rus }}</div>-->
+
       <div class="card text-left">
+        <!--<img src="..." class="card-img-top" alt="...">-->
         <div class="card-body">
         Размещено {{ $item->created_at }}
           <h5 class="card-title">{{ $item->deal_name_2 }} {{  $item->name }} {{  $item->name_rus }}</h5>
-          <a href="#" class="btn btn-primary btn-sm">Подробнее</a>
+          <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+          <a href="#" class="btn btn-secondary btn-sm">Подробнее</a>
         </div>
       </div>
 
