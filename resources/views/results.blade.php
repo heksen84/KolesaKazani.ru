@@ -26,6 +26,7 @@
   @foreach($items as $item)
     <div class="col col-sm-12 col-md-4 col-lg-4 col-xl-4">
       <div class="card text-left">
+        <img src="..." class="card-img-top" alt="картинка">
         <div class="card-body">
           <div style="font-size:12px;color:grey">Размещено {{ $item->created_at }}</div>
           <h5 class="card-title">{{ $item->deal_name_2 }} {{  $item->name }} {{  $item->name_rus }}</h5>
