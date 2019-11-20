@@ -16,7 +16,7 @@
 
 <div id="app">
 
-  <div class="container-fluid" style="width:1100px;margin:auto">
+  <div class="container-fluid" style="width:1280px">
   <hr>
   <h4 style="color:rgb(50,50,50)">{{ $title }}</h4>
   <h4 style="color:rgb(50,50,50)">Найдено: {{ $itemsCount }}</h4>
@@ -24,13 +24,14 @@
 
   <div class="row">
   @foreach($items as $item)
-    <div class="col col-sm-12 col-md-4 col-lg-4 col-xl-4">
+    <div class="col col-sm-12 col-md-3 col-lg-3 col-xl-3">
       <div class="card text-left">
-        <img src="..." class="card-img-top" alt="картинка">
-        <div class="card-body">
-          <div style="font-size:12px;color:grey">Размещено {{ $item->created_at }}</div>
+        <!--<img src="..." class="card-img-top" alt="картинка">-->
+        <div class="card-body">          
           <h5 class="card-title">{{ $item->deal_name_2 }} {{  $item->name }} {{  $item->name_rus }}</h5>
-          <!--<a href="#" class="btn btn-primary btn-sm">Подробнее</a>-->
+          <div style="font-size:12px;color:grey">Размещено {{ $item->created_at }}</div>
+          <p class="card-text">Детали</p>
+          <a href="#" class="btn btn-secondary btn-sm">Подробнее</a>
         </div>
       </div>
     </div>
