@@ -153,7 +153,7 @@
 	      </div>
         
         <div v-show="subCategories" id="subcats">
-         <button type="button" style="font-size:15px;color:rgb(50,50,50);font-weight:bold" id="close_subcats_btn" class="btn btn-link hide" @click="returnToCategories">&#8634; назад</button>         
+         <button type="button" style="font-size:15px;color:rgb(70,70,70);font-weight:bold" id="close_subcats_btn" class="btn btn-link hide" @click="returnToCategories">&#8634; назад</button>         
           <div id="subcategories" class="form-inline center">
             @foreach($subcategories as $subcategory)
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 hide" data-category-id="{{ $subcategory['category_id'] }}">
