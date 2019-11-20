@@ -8,11 +8,11 @@ $shadow_text_color: rgb(50, 50, 50);
 $scroll_bar_back_color: rgb(80, 80, 80);
 $scroll_bar_width: 8px;
 
-@font-face {
+/*@font-face {
  font-family: "carefree";
  src: url("../fonts/carefree.ttf") format("truetype");
  font-weight: normal;
-}
+}*/
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -239,7 +239,7 @@ h3 {
 }
 
 #logo_block_text {
-  font-family: "carefree";
+  //font-family: "carefree";
   /*font-size:184%;
   letter-spacing:8px;
   padding:7px;
@@ -247,12 +247,13 @@ h3 {
   font-weight: 650;
   color:white;*/
   //text-decoration: underline;
-  font-size:300%;
+  font-size:250%;
   letter-spacing:10px;
   padding:7px;
   margin-top:-12px;
   font-weight: 650;
-  color:rgb(80,80,80);
+  //color:rgb(80,80,80);
+  color:rgb(90,90,90);
 }
 
 #categories_line {

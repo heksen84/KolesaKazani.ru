@@ -82,7 +82,6 @@
       <a href="/register"><div class="button" id="button_reg">Регистрация</div></a>          
     @else
      	<a href="/home"><div class="button">мои объявления</div></a>
-
       <!-- Example single danger button -->
       <div class="btn-group">
         <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -96,7 +95,6 @@
           <a class="dropdown-item" href="#">Separated link</a>
         </div>
       </div>
-
     @endif
     </div>
   </div>
@@ -116,21 +114,18 @@
       <button id="button_search" type="submit" title="Найти что требуется">найти</button>
     </form>
 
-    <!-- кнопки выбора региона и т.п.-->
-    <div class="index_select_region_and_other_button_block">    
-      <button class="btn btn-link" data-toggle="modal" id="locationButton" style="margin-top:-10px" @click="showLocationWindow">Расположение {{ $locationName }}</button>
-    </div>
-
-  </div>
+      <!-- кнопки выбора региона и т.п.-->
+      <div class="index_select_region_and_other_button_block">    
+        <button class="btn btn-link" data-toggle="modal" id="locationButton" style="margin-top:-10px" @click="showLocationWindow">Расположение {{ $locationName }}</button>
+        </div>
+      </div>
 
     <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center" title="Подать новое объявление" id="new_advert_col">
       <a href="/podat-obyavlenie"><div id="new_advert_block">подать объявление</div></a>    
     </div>
 
   </div>  
-
   <br>
-
   <div id="categories_line">
     <div class="center">        
       <div id="categories_title" class="shadow_text" style="margin-bottom:80px"></div>    
@@ -163,34 +158,29 @@
       </div>
     </div>
   
-<div class="row" style="margin-top:30px">
-<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-  <h3>Новые объявления</h3>  
-<br>
-</div>
-<div class="col-sm-12 col-md-12 col-lg-12 col-xl-3" v-for="i in 8">
-<div class="card" style="width: 18rem;margin:auto">
-  <!--<img src="..." class="card-img-top" alt="...">-->
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-secondary btn-sm">Go somewhere</a>
+  <div class="row" style="margin-top:30px">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+      <h3>Новые объявления</h3>  
+      <br>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3" v-for="i in 8">
+      <div class="card" style="width: 18rem;margin:auto">
+        <!--<img src="..." class="card-img-top" alt="...">-->
+        <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-secondary btn-sm">Go somewhere</a>
+      </div>
+    </div>
   </div>
-</div>
-
-</div>
-
-  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-    <br>
-    <h3>Adscence</h3>
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+      <br>
+      <h3>Adscence</h3>
+    </div>
   </div>
-
-  </div>
-  
   <div class="row" style="margin-top:40px">
     <div id="footer"><a href="/advertisers" class="underline_link">Реклама</a> | <a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a></div>
   </div>
-
  </div>
 </div>
   <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>
