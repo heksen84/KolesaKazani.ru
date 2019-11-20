@@ -15,7 +15,7 @@
 <div id="app">
   <div id="navbar_menu">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#"><h2 style="font-size:26px;font-weight:650;letter-spacing:5px;color:grey">{{config('app.name')}}</h2><h2 style="font-size:16px;margin-top:-5px;font-weight:500">Объявления {{ $sklonResult }}</h2></a>
+    <a class="navbar-brand" href="#"><h2 style="font-size:30px;font-weight:650;letter-spacing:5px;color:rgb(50,50,50);font-family:'carefree'">{{config('app.name')}}</h2><h2 style="font-size:16px;margin-top:-10px;font-weight:500">Объявления {{ $sklonResult }}</h2></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
