@@ -83,7 +83,7 @@
     @else
      	<a href="/home"><div class="button">мои объявления</div></a>
       <!-- Example single danger button -->
-      <div class="btn-group">
+      <!--<div class="btn-group">
         <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Action
         </button>
@@ -94,7 +94,7 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Separated link</a>
         </div>
-      </div>
+      </div>-->
     @endif
     </div>
   </div>
