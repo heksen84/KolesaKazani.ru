@@ -10,6 +10,7 @@
   <title>{{ $title }}</title>
   <link rel="icon" href="{{ asset('public/shop.ico') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/common.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/results.css') }}">
 </head>
 <body>
