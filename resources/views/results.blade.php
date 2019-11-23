@@ -16,13 +16,18 @@
 <body>
 
 <div id="app">
-
   <div class="container-fluid container1">
   <hr>
-  <h4 style="color:rgb(50,50,50)">{{ $title }}</h4>
-  <h4 style="color:rgb(50,50,50)">Найдено: {{ $itemsCount }}</h4>
+  <h1 style="color:rgb(50,50,50)">{{ $title }}</h1>
+  <p style="color:rgb(50,50,50)">Найдено: {{ $itemsCount }}</p>
   <hr>
 
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      Фильтра
+      <hr>
+    </div>
+  </div>
   <div class="row">
   @foreach($items as $item)
     <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
