@@ -42,7 +42,7 @@
   </nav>
   </div>
   
-  <div class="container-fluid mycontainer" id="index_page" style="margin-top:10px">
+  <div class="container-fluid container1" id="index_page" style="margin-top:10px">
 
   <!-- Локация -->
   <div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

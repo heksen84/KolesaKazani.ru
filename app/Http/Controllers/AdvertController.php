@@ -92,11 +92,12 @@ class AdvertController extends Controller {
         // правила валидации
         // ---------------------------
         $rules = [            
-            "adv_category"  => "required", 
-            "adv_phone"     => "required",
+            "adv_category"  => "required|numeric|min:0", 
+            "adv_phone"     => "required|string|max:14",
+            "adv_info"      => "string",
             "images.*"      => "image|mimes:jpeg,png,jpg",
-            "region_id"     => "required|numeric",
-            "city_id"       => "required|numeric"
+            "region_id"     => "required|numeric|min:0",
+            "city_id"       => "required|numeric|min:0"
         ]; 
 
         // ---------------------------
