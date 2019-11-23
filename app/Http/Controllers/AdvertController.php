@@ -114,7 +114,6 @@ class AdvertController extends Controller {
             "city_id.numeric"          => "Введите числовое значение для расположения"
         ];
 
-        
         // проверка
         $validator = Validator::make( $data, $rules, $messages );
 
@@ -151,7 +150,6 @@ class AdvertController extends Controller {
             $advert->vip             = false;
             $advert->full            = false;
 
-
             \Debugbar::info("advert->sub_category_id = ".$subcategory);
 
             $url_text = ""; // строка url в sitemap
@@ -175,7 +173,6 @@ class AdvertController extends Controller {
                     $transport->mileage              = null;
                     $transport->engine_type          = null;
                     $transport->customs              = null;
-
 
                     \Debugbar::info("NULL PHP: ".$transport->year);
                     
