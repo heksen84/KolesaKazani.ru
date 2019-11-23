@@ -17,7 +17,7 @@
 
 <div id="app">
 
-  <div class="container-fluid" style="width:1280px">
+  <div class="container-fluid container1">
   <hr>
   <h4 style="color:rgb(50,50,50)">{{ $title }}</h4>
   <h4 style="color:rgb(50,50,50)">Найдено: {{ $itemsCount }}</h4>
@@ -25,7 +25,7 @@
 
   <div class="row">
   @foreach($items as $item)
-    <div class="col col-sm-12 col-md-3 col-lg-3 col-xl-3">
+    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
       <div class="card text-left">
         <!--<img src="..." class="card-img-top" alt="картинка">-->
         <div class="card-body">          

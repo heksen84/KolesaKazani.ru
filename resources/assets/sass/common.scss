@@ -1,0 +1,23 @@
+// --------------------------------------------
+// Большие мониторы
+// --------------------------------------------
+@media screen and (max-width:9000px) {
+  
+    .container1 {
+     width: 1280px;
+    }   
+}
+
+@media screen and (max-width:1280px) {
+
+    .container1 {
+      width: 100%;
+     }   
+}
+
+@media screen and (max-width:1224px) {
+
+    .container1 {
+      width: 100%;
+    }
+}

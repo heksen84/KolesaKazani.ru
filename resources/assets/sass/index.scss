@@ -475,10 +475,6 @@ h3 {
  border-radius: 5px;
 }
 
-.container1 {
- width: 1280px;
-}
-
 .alert {
   margin: 5px auto;
   width: 430px;
@@ -488,18 +484,9 @@ h3 {
 }
 
 @media screen and (max-width:1280px) {
-
-.container1 {
-  width: 100%;
- }
-
 }
 
 @media screen and (max-width:1224px) {
-
-.container1 {
-  width: 100%;
-}
 
 #new_advert_block {
   font-size:10px;
