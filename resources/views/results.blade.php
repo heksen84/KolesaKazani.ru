@@ -28,6 +28,17 @@
       ЛЕГКОВОЕ АВТО: марка, модель, положение руля, год выпуска, пробег, вид топлива, растаможен
       -->
       <form>
+
+      Марка:
+      <select name="select"> <!--Supplement an id here instead of using 'name'-->
+        <option value="value1">Audi</option> 
+      </select>
+
+      Модель:
+      <select name="select"> <!--Supplement an id here instead of using 'name'-->
+        <option value="value1">100</option> 
+      </select>
+
       Цена: от
       <input type="text" size="10" required ></input> 
       до 
