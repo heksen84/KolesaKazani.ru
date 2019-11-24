@@ -65,6 +65,7 @@
    </div>
   </div>
 </div>
+<!-- http://flix:90/transport/legkovoy-avtomobil?price_from=0&price_to=999999&car_mark=10&car_model=199&role=-->
 <script type="text/javascript" src="{{ mix('js/results.js') }}"></script>
 </body>
 </html>
