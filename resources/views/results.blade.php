@@ -45,8 +45,7 @@
   @endforeach
    </div>
   </div>
-
 </div>
-
+<script type="text/javascript" src="{{ mix('js/results.js') }}"></script>
 </body>
 </html>
