@@ -16,5 +16,6 @@ mix.js('resources/assets/js/mix/newad.js', 'public/js').
 mix.js('resources/assets/js/mix/results.js', 'public/js').
 sass('resources/assets/sass/common.scss', 'public/css').
 sass('resources/assets/sass/index.scss', 'public/css').
+sass('resources/assets/sass/newad.scss', 'public/css').
 sass('resources/assets/sass/results.scss', 'public/css').
 version();

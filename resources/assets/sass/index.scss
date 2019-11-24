@@ -1,94 +1,5 @@
-
-// ----------------------------------------------
-// константы
-// ----------------------------------------------
-$inputPlaceHolder: rgb(50,50,50);
-$background: rgb(250, 250, 250);
-$shadow_text_color: rgb(50, 50, 50);
-$scroll_bar_back_color: rgb(80, 80, 80);
-$scroll_bar_width: 8px;
-
-@font-face {
- font-family: "carefree";
- src: url("../fonts/carefree.ttf") format("truetype");
- font-weight: normal;
- //font-weight: bold;
-}
-
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-  //text-align: center;
-}
-
-input[type="number"] {
-  -moz-appearance: textfield;
-  //text-align: center;
-}
-
-::-webkit-scrollbar-thumb{
-  width: $scroll_bar_width;
-  background:white;
-  border: 1px solid grey;
-  border-radius: 2px;
-}
-
-::-webkit-scrollbar{
- width: $scroll_bar_width;
- background: $scroll_bar_back_color;
-}
-
-::-webkit-scrollbar:horizontal{
- height: 7px;
- background: $scroll_bar_back_color;
-}
-
-::-webkit-scrollbar-thumb:horizontal{
- height: 7px;
- background: $scroll_bar_back_color;
-}
-
-::-webkit-input-placeholder {
- //text-align: center;
- color:$inputPlaceHolder;
-}
-
-:-moz-placeholder {
- //text-align: center;
- color:$inputPlaceHolder;
-}
-
-::-moz-placeholder {
- //text-align: center;
- color:$inputPlaceHolder;
-}
-
-:-ms-input-placeholder {
- //text-align: center;
- color:$inputPlaceHolder;
-}
-
 #navbar_menu {
   display: none;
-}
-
-html {
-  color:white;
-}
-
-body {
- color:black;
- background: $background;
- //background-image: url('/images/site/fon.jpg');
- background-size: cover;
- background-position: center;
- background-repeat: no-repeat;
- background-attachment: fixed;
--moz-background-size: cover;
--webkit-background-size: cover;
--o-background-size: cover;
-//display:none; 
 }
 
 #select_location_mobile{
@@ -276,23 +187,6 @@ h3 {
   margin-top:0px;
 }
 
-.phone_input {
-  width: 230px;
-  display:inline-block;
-  margin: 3px auto;  
-}
-
-.number_input {
-  width:120px;
-  margin:auto;
-}
-
-.title_text {
-  margin-top:10px;
-  font-size: 130%;
-  color: rgb(80,80,80);
-}
-
 .form_title {
   text-align:center;
   margin-top:10px;
@@ -332,7 +226,6 @@ h3 {
   display:block;
 }
 
-
 .item-content {
   position:relative;
   top:-113px;
@@ -341,31 +234,9 @@ h3 {
   width:55%;
 }
 
-.image {
-  width:80px; 
-  height:80px;
-  margin:2px; 
-
-  
-}
-
-/*.link {
-  margin:14px;
-}*/
-
 .link:hover {
   text-decoration:underline;
   cursor:default;
-}
-
-.shadow_text {
- color: #fff;
- letter-spacing: 2px;
- text-shadow:   
- -1px -1px 0 $shadow_text_color, 
- 1px -1px 0 $shadow_text_color,
- -1px 1px 0 $shadow_text_color, 
- 1px 1px 0 $shadow_text_color
 }
 
 .vip_block {
@@ -373,33 +244,6 @@ h3 {
   left:83%;
   top:120px;
   width:16%;
-}
-
-.close_button {
-  position: absolute;
-  top:17px;
-  right:20px;
-  cursor:pointer;
-  font-weight: 700;
-  color:rgb(80, 80, 80);
-}
-
-.custom-file-input:lang(ru)~.custom-file-label::after {
-  /*background: rgb(100,200,100);*/
-  background: rgb(120,120,120);
-  color:white;
-  content: "добавить фото";
-}
-
-.create_advert_col {
-  text-align:left;
-  margin: auto;
-  color:black;
-  background:white;
- }
- 
-.mycontainer_adv {
-  width: 1000px;
 }
 
 .underline_link:hover {
@@ -472,9 +316,8 @@ h3 {
 // --------------------------------------------
 @media screen and (max-width:9000px) {
   
-
 .create_advert_col {
- border-radius: 5px;
+  border-radius: 5px;
 }
 
 .alert {
@@ -523,7 +366,6 @@ h3 {
   display:none;
 }
 
-// ----------------------------------------------
 }
 
 // --------------------------------------------
@@ -569,10 +411,6 @@ h3 {
 #button_search {
   padding:8px;
   font-size:18px;
-}
-
-.mycontainer_adv {
-  width: 100%;
 }
 
 .alert {
@@ -645,10 +483,6 @@ h3 {
 
 .form {
   margin-top:0px;
-}
-
-.close_button {
- left:90%;
 }
 
 #welcome_menu {

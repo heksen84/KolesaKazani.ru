@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+.mycontainer_adv {
+  width: 1000px;
+}
+
+.close_button {
+  position: absolute;
+  top: 17px;
+  right: 20px;
+  cursor: pointer;
+  font-weight: 700;
+  color: #505050;
+}
+
+.number_input {
+  width: 120px;
+  margin: auto;
+}
+
+.phone_input {
+  width: 230px;
+  display: inline-block;
+  margin: 3px auto;
+}
+
+.create_advert_col {
+  text-align: left;
+  margin: auto;
+  color: black;
+  background: white;
+}
+
+.image {
+  width: 80px;
+  height: 80px;
+  margin: 2px;
+}
+
+.custom-file-input:lang(ru) ~ .custom-file-label::after {
+  /*background: rgb(100,200,100);*/
+  background: #787878;
+  color: white;
+  content: "\434\43E\431\430\432\438\442\44C   \444\43E\442\43E";
+}
+
+.title_text {
+  margin-top: 10px;
+  font-size: 130%;
+  color: #505050;
+}
+
+@media screen and (max-width: 960px) {
+  .mycontainer_adv {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .close_button {
+    left: 90%;
+  }
+}
+

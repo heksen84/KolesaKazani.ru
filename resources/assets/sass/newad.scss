@@ -1,0 +1,67 @@
+.mycontainer_adv {
+  width: 1000px;
+}
+
+.close_button {
+  position: absolute;
+  top:17px;
+  right:20px;
+  cursor:pointer;
+  font-weight: 700;
+  color:rgb(80, 80, 80);
+}
+
+.number_input {
+  width:120px;
+  margin:auto;
+}
+
+.phone_input {
+  width: 230px;
+  display:inline-block;
+  margin: 3px auto;  
+}
+
+.create_advert_col {
+  text-align:left;
+  margin: auto;
+  color:black;
+  background:white;
+ }
+
+.image {
+  width:80px; 
+  height:80px;
+  margin:2px;   
+}
+
+.custom-file-input:lang(ru)~.custom-file-label::after {
+  /*background: rgb(100,200,100);*/
+  background: rgb(120,120,120);
+  color:white;
+  content: "добавить фото";
+}
+
+.title_text {
+  margin-top:10px;
+  font-size: 130%;
+  color: rgb(80,80,80);
+}
+
+// --------------------------------------------
+// Большие устройства
+// --------------------------------------------
+@media screen and (max-width:960px) {
+  .mycontainer_adv {
+    width: 100%;
+  }
+}
+
+// --------------------------------------------
+// Cмартфоны
+// --------------------------------------------
+@media screen and (max-width:420px) {
+  .close_button {
+   left:90%;
+  }
+}

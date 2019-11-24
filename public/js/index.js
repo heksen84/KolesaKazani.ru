@@ -51135,6 +51135,13 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 
 /***/ }),
 
+/***/ "./resources/assets/sass/newad.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/assets/sass/results.scss":
 /***/ (function(module, exports) {
 
@@ -51148,6 +51155,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 __webpack_require__("./resources/assets/js/mix/index.js");
 __webpack_require__("./resources/assets/sass/common.scss");
 __webpack_require__("./resources/assets/sass/index.scss");
+__webpack_require__("./resources/assets/sass/newad.scss");
 module.exports = __webpack_require__("./resources/assets/sass/results.scss");
 
 
