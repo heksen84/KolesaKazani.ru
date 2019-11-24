@@ -24,9 +24,17 @@
 
   <div class="row">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-      Фильтра: (базовый цена от-до) <br> 
+      <!--Фильтра: (базовый цена от-до) <br> 
       ЛЕГКОВОЕ АВТО: марка, модель, положение руля, год выпуска, пробег, вид топлива, растаможен
+      -->
+      <form>
+      Цена: от
+      <input type="text" size="10" required ></input> 
+      до 
+      <input type="text" size="10" required></input>
+      <button type="submit">применить</button>
       <hr>
+      </form>
     </div>
   </div>
   <div class="row">
