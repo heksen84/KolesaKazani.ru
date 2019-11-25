@@ -46,11 +46,18 @@
                 <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                   <label>Цена до</label>
                     <input type="text" size="10" required class="form-control"></input> 
+                </div>                            
+
+                <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                  <button type="submit" class="btn btn-primary form-control">применить</button>
                 </div>            
 
-                <button type="submit" class="btn btn-primary">применить</button>
-                
               </div> <!-- end row -->              
+
+              <div class="row">                     
+                
+              </div>            
+
             </div>              
             
                                   
