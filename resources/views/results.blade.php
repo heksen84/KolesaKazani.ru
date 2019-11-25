@@ -41,27 +41,25 @@
                 <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                   <label>Цена от</label>
                     <input type="text" size="10" required class="form-control"></input> 
-                </div>                
+                </div>
+
                 <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                   <label>Цена до</label>
                     <input type="text" size="10" required class="form-control"></input> 
                 </div>                            
 
                 <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                  <button type="submit" class="btn btn-primary form-control">применить</button>
+                  <button type="submit" class="btn btn-secondary form-control">применить</button>
                 </div>            
               </div> <!-- end row -->              
 
-              <div class="row">                                     
-              </div>            
-
-            </div>              
-                                            
+              <div class="row"></div>
+            </div>                                            
           </form>          
         <hr>
 
   <div class="row">
-  @foreach($items as $item)
+    @foreach($items as $item)
     <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
       <div class="card text-left">
         <!--<img src="..." class="card-img-top" alt="картинка">-->
@@ -73,9 +71,31 @@
         </div>
       </div>
     </div>
-  @endforeach
-   </div>
-  </div>
+    @endforeach
+   </div>   
+
+  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+  <br>    
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+      <span class="page-link">Назад</span>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item active">
+      <span class="page-link">
+        2
+        <span class="sr-only">(current)</span>
+      </span>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Вперёд</a>
+    </li>
+  </ul>
+</div>
+
+
+  </div>  
 </div>
 <!-- http://flix:90/transport/legkovoy-avtomobil?price_from=0&price_to=999999&car_mark=10&car_model=199&role=-->
 <script type="text/javascript" src="{{ mix('js/results.js') }}"></script>
