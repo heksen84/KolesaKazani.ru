@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\CarMark;
 
 class TransportResultsController extends Controller
 {
@@ -53,6 +54,12 @@ class TransportResultsController extends Controller
 
             \Debugbar::info("Число легковых тачек: ".$total);
             \Debugbar::info($items);
+
+
+            $car_marks = DB::select("SELECT * FROM `car_mark` ORDER BY name");
+
+            
+            \Debugbar::info($car_marks);
             
 	    break;
          }
@@ -113,7 +120,13 @@ class TransportResultsController extends Controller
         $description = "";
         $keywords = "";
 
-        return view("results")->with("title", $title)->with("description", $description)->with("keywords", $keywords)->with("items", $items)->with("itemsCount", $total);    
+        return view("results")
+        ->with("title", $title)
+        ->with("description", $description)
+        ->with("keywords", $keywords)
+        ->with("items", $items)
+        ->with("itemsCount", $total)
+        ->with("car_marks", $car_marks);
 
     }
 

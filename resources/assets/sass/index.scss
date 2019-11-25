@@ -140,22 +140,17 @@ h3 {
 #logo_block {
   padding:5px;
   border-radius:8px;
-  cursor:default;
-  //border: 1px solid rgb(215,215,215);
-  //border: 1px solid rgb(225,225,225);
-
+  cursor:default;  
 }
 
 #logo_block_text {
   font-family: "carefree";  
-  font-size:300%;
+  font-size:280%;
   letter-spacing:10px;
   padding:7px;
   margin-top:-12px;
   font-weight: 700;
-  color:rgb(80,80,80);
-  //color:rgb(100,100,100);
-  //color:rgb(60,60,60);
+  color:rgb(80,80,80);  
 }
 
 #categories_line {
@@ -193,19 +188,15 @@ h3 {
   font-weight:550;
 }
 
-.category_item {
-  //color:rgb(20,20,20);
-  color:black;
-  //background: rgb(255,255,255);
-  //background: rgb(240,240,240);
+.category_item {  
+  color:black;  
   font-size: 17px;
   padding: 5px;
   text-align:center;
   width: 260px;
   border: 1px solid rgb(220,220,220);  
   border-radius: 5px;
-  margin: 1px auto;
-  //margin:1px;
+  margin: 1px auto;  
 }
 
 .category_item:hover {

@@ -17,37 +17,52 @@
 
 <div id="app">
   <div class="container-fluid container1">
-  <hr>
-  <h1 style="color:rgb(50,50,50)">{{ $title }}</h1>
-  <p style="color:rgb(50,50,50)">Найдено: {{ $itemsCount }}</p>
-  <hr>
+    <hr>
+      <h1 style="color:rgb(50,50,50)">{{ $title }}</h1>
+        <p style="color:rgb(50,50,50);text-decoration:underline">Найдено: {{ $itemsCount }}</p>
+          <form>
+            <div class="form-group">
+              <div class="row">     
+                
+                <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3">
+                  <label>Марка:</label>
+                  <select name="select" class="form-control">
+                    <option value="null">Выберите марку</option>              
+                    @foreach($car_marks as $item)          
+                      <option value={{ $item->id_car_mark }}>{{ $item->name }}</option>
+                    @endforeach
+                  </select>
+                </div>
 
-  <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-      <!--Фильтра: (базовый цена от-до) <br> 
-      ЛЕГКОВОЕ АВТО: марка, модель, положение руля, год выпуска, пробег, вид топлива, растаможен
-      -->
-      <form>
+                <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3">
+                  <label>Модель:</label>
+                    <select name="select" class="form-control">
+                      <option value="null">Выберите модель</option> 
+                    </select>
+                  </div>                        
+                </div>                  
 
-      Марка:
-      <select name="select"> <!--Supplement an id here instead of using 'name'-->
-        <option value="value1">Audi</option> 
-      </select>
+                <div class="row">
 
-      Модель:
-      <select name="select"> <!--Supplement an id here instead of using 'name'-->
-        <option value="value1">100</option> 
-      </select>
+                  <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                    Цена от <input type="text" size="10" required class="form-control"></input> 
+                  </div>
 
-      Цена: от
+                  <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                  Цена до <input type="text" size="10" required class="form-control"></input> 
+                  </div>
+                </div>
+
+              </div>              
+            </form>          
+          <hr>
+
+<!--Цена: от
       <input type="text" size="10" required ></input> 
       до 
       <input type="text" size="10" required></input>
-      <button type="submit">применить</button>
-      <hr>
-      </form>
-    </div>
-  </div>
+      <button type="submit">применить</button>-->            
+
   <div class="row">
   @foreach($items as $item)
     <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
