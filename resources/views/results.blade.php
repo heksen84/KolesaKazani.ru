@@ -22,8 +22,7 @@
         <p style="color:rgb(50,50,50);text-decoration:underline">Найдено: {{ $itemsCount }}</p>
           <form>
             <div class="form-group">
-              <div class="row">     
-                
+              <div class="row">                     
                 <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3">
                   <label>Марка:</label>
                   <select name="select" class="form-control">
@@ -33,35 +32,31 @@
                     @endforeach
                   </select>
                 </div>
-
                 <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3">
                   <label>Модель:</label>
                     <select name="select" class="form-control">
                       <option value="null">Выберите модель</option> 
                     </select>
-                  </div>                        
-                </div>                  
+                </div> 
+              
+                <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                  <label>Цена от</label>
+                    <input type="text" size="10" required class="form-control"></input> 
+                </div>                
+                <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                  <label>Цена до</label>
+                    <input type="text" size="10" required class="form-control"></input> 
+                </div>            
 
-                <div class="row">
+                <button type="submit" class="btn btn-primary">применить</button>
+                
+              </div> <!-- end row -->              
+            </div>              
+            
+                                  
 
-                  <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                    Цена от <input type="text" size="10" required class="form-control"></input> 
-                  </div>
-
-                  <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                  Цена до <input type="text" size="10" required class="form-control"></input> 
-                  </div>
-                </div>
-
-              </div>              
-            </form>          
-          <hr>
-
-<!--Цена: от
-      <input type="text" size="10" required ></input> 
-      до 
-      <input type="text" size="10" required></input>
-      <button type="submit">применить</button>-->            
+          </form>          
+        <hr>
 
   <div class="row">
   @foreach($items as $item)
