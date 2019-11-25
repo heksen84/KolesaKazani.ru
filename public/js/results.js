@@ -33269,7 +33269,6 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
 
 //import $ from "jquery";
-//import bootstrap from "bootstrap";
  // axios
 
 // --------------------------
@@ -33285,15 +33284,13 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
 
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
-
-  components: {//bootstrap 
-  },
+  components: {},
 
   // -------------------------------
   // Компонент создан
   // -------------------------------
   created: function created() {
-    alert("i'm ready!");
+    //alert("i'm ready!")
   },
 
 

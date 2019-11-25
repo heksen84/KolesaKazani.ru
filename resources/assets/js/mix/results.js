@@ -4,7 +4,6 @@ require('./bootstrap');
 
 import Vue from 'vue';
 //import $ from "jquery";
-//import bootstrap from "bootstrap";
 import { get } from '../helpers/api' // axios
 
 // --------------------------
@@ -19,15 +18,13 @@ export default new Vue ({
   },
 
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
-
-  components: { //bootstrap 
-  },
+  components: {},
 
   // -------------------------------
   // Компонент создан
   // -------------------------------
   created() {
-    alert("i'm ready!")
+    //alert("i'm ready!")
   },
 
   // --------------------------------------

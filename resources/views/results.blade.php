@@ -14,7 +14,6 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('css/results.css') }}">
 </head>
 <body>
-
 <div id="app">
   <div class="container-fluid container1">
     <hr>
@@ -51,17 +50,13 @@
                 <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                   <button type="submit" class="btn btn-primary form-control">применить</button>
                 </div>            
-
               </div> <!-- end row -->              
 
-              <div class="row">                     
-                
+              <div class="row">                                     
               </div>            
 
             </div>              
-            
-                                  
-
+                                            
           </form>          
         <hr>
 
