@@ -16,18 +16,18 @@ class TransportResultsController extends Controller
     // -------------------------------------------------------------
     // Результаты по стране для вьюхи (results.blade.php)
     // -------------------------------------------------------------    
-    public function getTransportResultsByCountryForView(Request $request, $type) {
+    public function getTransportResultsByCountryForView(Request $request, $subcategory) {
 
-       \Debugbar::info($type);       
+       \Debugbar::info($subcategory);       
 
 
         // $filter = new TransportFilter($request);
         // $filter->getStartPage();
         // $filter->getStartPrice();
-        // $filter->getEndPrice();
+        // $filter->getEndPrice();        
 
 
-       switch($type) {
+       switch($subcategory) {
 
         // --- ru ---        
         case "legkovoy-avtomobil": {
@@ -38,9 +38,10 @@ class TransportResultsController extends Controller
             dealtype.deal_name_2, 
             car_mark.name, 
             car_model.name_rus,
-            (SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as imageName,
-            DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at
-            FROM `adverts` AS adv JOIN (dealtype, sub_transport, car_mark, car_model) 
+            (
+                SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as imageName,
+                DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at
+                FROM `adverts` AS adv JOIN (dealtype, sub_transport, car_mark, car_model) 
             ON (
                 adv.deal = dealtype.id AND 
                 adv.sub_category_id=sub_transport.id AND 
@@ -50,14 +51,12 @@ class TransportResultsController extends Controller
             WHERE adv.category_id=1 AND sub_transport.type=0"
             );
                                 
-            $total = count($items);
+            $total = count($items); // подсчитываю кол-во объявлений
 
             \Debugbar::info("Число легковых тачек: ".$total);
             \Debugbar::info($items);
 
-
             $car_marks = DB::select("SELECT * FROM `car_mark` ORDER BY name");
-
             
             \Debugbar::info($car_marks);
             
@@ -93,32 +92,18 @@ class TransportResultsController extends Controller
          }         
 
 	    // --- kz ---
-
-       }
+       }        
 		
-/*	$category = request()->segment(1); // вырезаю категорию из url
-        $result = $this->getResultsByCategory($request, null, null, $category);
-
-        if ($result==null)
-            return view("errors/404");
-    
-        return view("results")
-        ->with("keywords", $result["keywords"])
-        ->with("description", $result["description"])
-        ->with("title", $result["title"])        
-		->with("results", $result["results"])
-        ->with("category", $result["category"])
-        ->with("category_name", $result["category_name"])
-        ->with("subcat", "null")
-        ->with("start_record", $result["start_record"])
-        ->with("total_records", $result["total_records"])
-        ->with("region", "null")
-        ->with("place",  "null")
-        ->with("searchString", "null");*/
-
         $title="Покупка, продажа, обмен, сдача в аренду легковых автомобилей в Казахстане";
         $description = "";
         $keywords = "";
+
+        // нужно во вьюху передать id подкатегории категории и на базе него формировать фильтр
+
+        // получучаю id подкатегории
+        $subcategory = DB::select("SELECT id as subcategory_id FROM `subcats` WHERE url_ru='".$subcategory."'");
+        \Debugbar::info($subcategory);
+
 
         return view("results")
         ->with("title", $title)
@@ -126,7 +111,8 @@ class TransportResultsController extends Controller
         ->with("keywords", $keywords)
         ->with("items", $items)
         ->with("itemsCount", $total)
-        ->with("car_marks", $car_marks);
+        ->with("car_marks", $car_marks)
+        ->with("subcategory", $subcategory);
 
     }
 

@@ -76,8 +76,7 @@
       </div>
     </div>
 
-  <div class="row">
-    
+  <div class="row">    
     <div class="margin-auto" id="login_register_col">
     @if ($auth===0)
       <a href="/login"><div class="button" id="button_login" style="margin-left:17px">Вход</div></a>
@@ -149,9 +148,9 @@
             @foreach($subcategories as $subcategory)
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 hide" data-category-id="{{ $subcategory['category_id'] }}">
               @if ($location==="/")
-                <a href="/{{ $subcategory['category_url']}}/{{ $subcategory['url'] }}" class="url"><div class="category_item subcategory">{{ $subcategory["name"] }}</div></a>
+                <a href="/{{ $subcategory['category_url']}}/{{ $subcategory['url_ru'] }}" class="url"><div class="category_item subcategory">{{ $subcategory["name_ru"] }}</div></a>
               @else
-                <a href="/{{ $location }}/{{ $subcategory['category_url'] }}/{{ $subcategory['url'] }}" class="url"><div class="category_item subcategory">{{ $subcategory["name"] }}</div></a>
+                <a href="/{{ $location }}/{{ $subcategory['category_url'] }}/{{ $subcategory['url_ru'] }}" class="url"><div class="category_item subcategory">{{ $subcategory["name_ru"] }}</div></a>
               @endif
               </div>
             @endforeach
