@@ -193,6 +193,7 @@ h3 {
   border: 1px solid #c8c8c8;
   border-radius: 5px;
   margin: 1px auto;
+  background: white;
 }
 
 .category_item:hover {
