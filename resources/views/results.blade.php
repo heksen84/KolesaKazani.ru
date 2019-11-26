@@ -18,13 +18,14 @@
   <div class="container-fluid container1">
     <hr>
       <h1 style="color:rgb(50,50,50)">{{ $title }}</h1>
-        <p style="color:rgb(50,50,50);text-decoration:underline">Найдено: {{ $itemsCount }}</p>
-        {{ $subcategory[0]->id }}  
+        <div style="color:rgb(50,50,50);text-decoration:underline">Найдено: {{ $itemsCount }}</div>
+        подкатегория: <b>{{ $subcategory[0]->id }}</b>          
         <form>
+        <br>
             <div class="form-group">
               <div class="row">                     
-                <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3">
-
+              @if ($subcategory[0]->id===1)  
+              <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3">                
                   <label>Марка:</label>
                   <select name="select" class="form-control">
                     <option value="null">Выберите марку</option>              
@@ -54,7 +55,7 @@
                   <button type="submit" class="btn btn-secondary form-control">применить</button>
                 </div>            
               </div> <!-- end row -->              
-
+              @endif
               <div class="row"></div>
             </div>                                            
           </form>          
