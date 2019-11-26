@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\SubCats;
 use App\CarMark;
 
 class TransportResultsController extends Controller
@@ -101,7 +102,8 @@ class TransportResultsController extends Controller
         // нужно во вьюху передать id подкатегории категории и на базе него формировать фильтр
 
         // получучаю id подкатегории
-        $subcategory = DB::select("SELECT id as subcategory_id FROM `subcats` WHERE url_ru='".$subcategory."'");
+        //$subcategory = DB::select("SELECT id as subcategory_id FROM `subcats` WHERE url_ru='".$subcategory."'");
+        $subcategory = SubCats::select("id")->where("url_ru", $subcategory)->get();
         \Debugbar::info($subcategory);
 
 

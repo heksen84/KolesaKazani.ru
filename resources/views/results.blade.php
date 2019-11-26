@@ -19,10 +19,12 @@
     <hr>
       <h1 style="color:rgb(50,50,50)">{{ $title }}</h1>
         <p style="color:rgb(50,50,50);text-decoration:underline">Найдено: {{ $itemsCount }}</p>
-          <form>
+        {{ $subcategory[0]->id }}  
+        <form>
             <div class="form-group">
               <div class="row">                     
                 <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3">
+
                   <label>Марка:</label>
                   <select name="select" class="form-control">
                     <option value="null">Выберите марку</option>              
