@@ -2160,7 +2160,10 @@ function forEach(data, callback) {
 
   // компонент создан
   created: function created() {
+
+    // заюзать require js для загрузки yandex модулей
     ymaps.ready(initMaps);
+
     this.$root.advert_data = [];
     this.advReset();
   },
@@ -2501,7 +2504,7 @@ function forEach(data, callback) {
       for (var i = 0; i < this.real_images.length; i++) {
         formData.append('images[' + i + ']', this.real_images[i]);
       } // ------------------------------------------------------------------------------------------------------------------------
-      // Размещение объявление
+      // Размещение объявления
       // ------------------------------------------------------------------------------------------------------------------------
       axios.post("/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(function (response) {
 

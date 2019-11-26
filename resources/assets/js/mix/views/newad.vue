@@ -322,7 +322,10 @@ data () {
 
 // компонент создан
 created() {
+
+  // заюзать require js для загрузки yandex модулей
   ymaps.ready(initMaps);  
+  
   this.$root.advert_data = []; 
   this.advReset();    
 },
@@ -650,7 +653,7 @@ onSubmit(evt) {
       formData.append('images['+i+']', this.real_images[i]);		
 						
   // ------------------------------------------------------------------------------------------------------------------------
-  // Размещение объявление
+  // Размещение объявления
   // ------------------------------------------------------------------------------------------------------------------------
 	axios.post("/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {			
       
