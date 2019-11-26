@@ -67,7 +67,7 @@
                 <div class="col-11 col-xl-5 col-md-5 col-sm-12" v-if="appliances && category">
                   <select class="form-group form-control" v-model="subCategory" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
-                    <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name }}</option>
+                    <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name_ru }}</option>
                   </select>
                 </div>
 
@@ -75,7 +75,7 @@
                 <div class="col-11 col-xl-4 col-md-4 col-sm-12" v-if="work_and_buisness && category">
                   <select class="form-group form-control" v-model="subCategory" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
-                    <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name }}</option>
+                    <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name_ru }}</option>
                   </select>
                 </div>
 
@@ -83,7 +83,7 @@
                 <div class="col-11 col-xl-4 col-md-4 col-sm-12" v-if="for_home && category">
                   <select class="form-group form-control" v-model="subCategory" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
-                    <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name }}</option>
+                    <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name_ru }}</option>
                   </select>
                 </div>
 
@@ -91,7 +91,7 @@
                 <div class="col-11 col-xl-5 col-md-5 col-sm-12" v-if="personal_effects && category">
                   <select class="form-group form-control" v-model="subCategory" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
-                    <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name }}</option>
+                    <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name_ru }}</option>
                   </select>
                 </div>
 
@@ -99,7 +99,7 @@
                 <div class="col-11 col-xl-4 col-md-4 col-sm-12" v-if="animals && category">
                   <select class="form-group form-control" v-model="subCategory" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
-                    <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name }}</option>
+                    <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name_ru }}</option>
                   </select>
                 </div>
 
@@ -107,7 +107,7 @@
                 <div class="col-11 col-xl-4 col-md-4 col-sm-12" v-if="hobbies_and_leisure && category">
                   <select class="form-group form-control" v-model="subCategory" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
-                    <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name }}</option>
+                    <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name_ru }}</option>
                   </select>
                 </div>
 
@@ -115,7 +115,7 @@
                 <div class="col-11 col-xl-5 col-md-5 col-sm-12" v-if="services && category">
                   <select class="form-group form-control" v-model="subCategory" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
-                    <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name }}</option>
+                    <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name_ru }}</option>
                   </select>
                 </div>  
 

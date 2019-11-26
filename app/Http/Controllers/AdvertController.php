@@ -73,7 +73,7 @@ class AdvertController extends Controller {
 
     public function getSubcategoryDataById(Request $request) {
         \Debugbar::info("CATEGORY ID: ".$request->id);
-        return SubCats::select( "id", "name" )->where("category_id", $request->id)->get();
+        return SubCats::select( "id", "name_ru" )->where("category_id", $request->id)->get();
     }
 
     /*
