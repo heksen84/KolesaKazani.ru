@@ -19,12 +19,14 @@
     <hr>
       <h1 style="color:rgb(50,50,50)">{{ $title }}</h1>
         <div style="color:rgb(50,50,50);text-decoration:underline">Найдено: {{ $itemsCount }}</div>
-        подкатегория: <b>{{ $subcategory[0]->id }}</b>          
+          подкатегория: <b>{{ $subcategory[0]->id }}</b>          
         <form>
         <br>
             <div class="form-group">
               <div class="row">                     
-              @if ($subcategory[0]->id===1)  
+              @if ($itemsCount>0)
+                @if ($subcategory[0]->id==1)
+
               <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3">                
                   <label>Марка:</label>
                   <select name="select" class="form-control">
@@ -34,6 +36,7 @@
                     @endforeach
                   </select>
                 </div>
+
                 <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3">
                   <label>Модель:</label>
                     <select name="select" class="form-control">
@@ -42,40 +45,46 @@
                 </div> 
               
                 <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                  <label>Цена от</label>
-                    <input type="text" size="10" required class="form-control"></input> 
+                  <label>Цена</label>
+                    <input type="text" size="10" required class="form-control" placeholder="от"></input> 
                 </div>
 
                 <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                  <label>Цена до</label>
-                    <input type="text" size="10" required class="form-control"></input> 
+                  <label>-</label>
+                    <input type="text" size="10" required class="form-control" placeholder="до"></input> 
                 </div>                            
 
                 <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                   <button type="submit" class="btn btn-secondary form-control">применить</button>
-                </div>            
-              </div> <!-- end row -->              
+                </div>          
+
+              </div> <!-- end row -->                      
+                @endif
               @endif
-              <div class="row"></div>
+              <div class="row">Рекламка?</div>
             </div>                                            
           </form>          
         <hr>
 
-  <div class="row">
-    @foreach($items as $item)
-    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-      <div class="card text-left">
-        <!--<img src="..." class="card-img-top" alt="картинка">-->
-        <div class="card-body">          
-          <h5 class="card-title">{{ $item->deal_name_2 }} {{  $item->name }} {{  $item->name_rus }}</h5>
-          <div style="font-size:12px;color:grey">Размещено {{ $item->created_at }}</div>
-          <p class="card-text">Детали</p>
-          <a href="#" class="btn btn-secondary btn-sm">Подробнее</a>
-        </div>
-      </div>
-    </div>
-    @endforeach
-   </div>   
+    <div class="row">
+      @if ($itemsCount>0)
+        @foreach($items as $item)
+          <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+            <div class="card text-left">
+              <!--<img src="..." class="card-img-top" alt="картинка">-->
+              <div class="card-body">          
+              @if ($subcategory[0]->id==1)
+                <h5 class="card-title">{{ $item->deal_name_2 }} {{  $item->name }} {{  $item->name_rus }}</h5>
+                <div style="font-size:12px;color:grey">Размещено {{ $item->created_at }}</div>
+                  <p class="card-text">Детали</p>
+                  <a href="#" class="btn btn-secondary btn-sm">Подробнее</a>
+                </div>
+              @endif
+            </div>
+          </div>
+          @endforeach
+        @endif
+      </div>   
 
   <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
     <br>    
