@@ -10,9 +10,7 @@ use App\CarMark;
 class TransportResultsController extends Controller
 {
 
-    public function getTransportResultsByCountry(Request $request) {
-
-    }
+    public function getTransportResultsByCountry(Request $request) {}
 
     // -------------------------------------------------------------
     // Результаты по стране для вьюхи (results.blade.php)
@@ -21,16 +19,18 @@ class TransportResultsController extends Controller
 
        \Debugbar::info($subcategory);       
 
+       $subcategoryId = SubCats::select("id")->where("url_ru", $subcategory)->get();
+       \Debugbar::info($subcategoryId);
 
         // $filter = new TransportFilter($request);
         // $filter->getStartPage();
         // $filter->getStartPrice();
         // $filter->getEndPrice();        
-
-
+        
+        // RU
        switch($subcategory) {
-
-        // --- ru ---        
+        
+        // ЛЕГКОВОЕ АВТО
         case "legkovoy-avtomobil": {
 
             $items = DB::select("SELECT                                    
@@ -38,8 +38,7 @@ class TransportResultsController extends Controller
             adv.price,
             dealtype.deal_name_2, 
             car_mark.name, 
-            car_model.name_rus,
-            (
+            car_model.name_rus,(
                 SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as imageName,
                 DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at
                 FROM `adverts` AS adv JOIN (dealtype, sub_transport, car_mark, car_model) 
@@ -60,11 +59,54 @@ class TransportResultsController extends Controller
             $car_marks = DB::select("SELECT * FROM `car_mark` ORDER BY name");
             
             \Debugbar::info($car_marks);
+
+            $title="Покупка, продажа, обмен, сдача в аренду легковых автомобилей в Казахстане";
+            $description = "";
+            $keywords = "";
+
+            return view("results")
+            ->with("title", $title)
+            ->with("description", $description)
+            ->with("keywords", $keywords)
+            ->with("items", $items)
+            ->with("itemsCount", $total)
+            ->with("car_marks", $car_marks)
+            ->with("subcategory", $subcategoryId);
             
-	    break;
+	        break;
          }
 
+         // ГРУЗОВОЕ АВТО
          case "gruzovoy-avtomobil": {
+
+            $items = DB::select("SELECT                                    
+            adv.id, 
+            adv.price,
+            dealtype.deal_name_2, (
+                SELECT image FROM images WHERE advert_id = adv.id LIMIT 1) as imageName,
+                DATE_FORMAT(adv.created_at, '%d/%m/%Y в %H:%m') AS created_at
+                FROM `adverts` AS adv JOIN (dealtype, sub_transport) 
+            ON  (
+                adv.deal = dealtype.id AND 
+                adv.sub_category_id=sub_transport.id                
+                ) 
+            WHERE adv.category_id=1 AND sub_transport.type=1"
+            );
+                                
+            $total = count($items); // подсчитываю кол-во объявлений
+
+            $title="Покупка, продажа, обмен, сдача в аренду грузового авто в Казахстане";
+            $description = "";
+            $keywords = "";
+
+            return view("results")
+            ->with("title", $title)
+            ->with("description", $description)
+            ->with("keywords", $keywords)
+            ->with("items", $items)
+            ->with("itemsCount", $total)            
+            ->with("subcategory", $subcategoryId);
+
 	        break;
          }
 
@@ -94,27 +136,7 @@ class TransportResultsController extends Controller
 
 	    // --- kz ---
        }        
-		
-        $title="Покупка, продажа, обмен, сдача в аренду легковых автомобилей в Казахстане";
-        $description = "";
-        $keywords = "";
-
-        // нужно во вьюху передать id подкатегории категории и на базе него формировать фильтр
-
-        // получучаю id подкатегории
-        //$subcategory = DB::select("SELECT id as subcategory_id FROM `subcats` WHERE url_ru='".$subcategory."'");
-        $subcategory = SubCats::select("id")->where("url_ru", $subcategory)->get();
-        \Debugbar::info($subcategory);
-
-
-        return view("results")
-        ->with("title", $title)
-        ->with("description", $description)
-        ->with("keywords", $keywords)
-        ->with("items", $items)
-        ->with("itemsCount", $total)
-        ->with("car_marks", $car_marks)
-        ->with("subcategory", $subcategory);
+		                        
 
     }
 
