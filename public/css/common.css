@@ -74,6 +74,10 @@ body {
   text-shadow: -1px -1px 0 #323232, 1px -1px 0 #323232, -1px 1px 0 #323232, 1px 1px 0 #323232;
 }
 
+.margin-auto {
+  margin: auto;
+}
+
 @media screen and (max-width: 9000px) {
   .container1 {
     width: 1280px;

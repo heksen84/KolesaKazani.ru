@@ -39896,7 +39896,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm.getLength(_vm.ad_title) > 5
+          _vm.getLength(_vm.ad_title) > 8
             ? _c("div", { staticStyle: { "margin-bottom": "10px" } }, [
                 _c("label", { staticStyle: { width: "270px" } }, [
                   _vm._v("Операция (вид сделки):")
@@ -39954,7 +39954,7 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _vm.sdelka != null
+          _vm.sdelka != null && _vm.getLength(_vm.ad_title) > 8
             ? _c("div", { staticClass: "row form-group" }, [
                 _c("div", { staticClass: "col-auto" }, [
                   _c("label", { attrs: { for: "categories" } }, [
@@ -40018,8 +40018,8 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: _vm.sdelka != null,
-                  expression: "sdelka!=null"
+                  value: _vm.sdelka != null && _vm.getLength(_vm.ad_title) > 8,
+                  expression: "sdelka!=null && getLength(ad_title)>8"
                 }
               ],
               attrs: { id: "advertform" },

@@ -37,7 +37,7 @@
               </div>
             </div>    
 
-            <div style="margin-bottom:10px" v-if="getLength(ad_title)>5">
+            <div style="margin-bottom:10px" v-if="getLength(ad_title)>8">
             <label style="width:270px">Операция (вид сделки):</label>
             <div class="form-check" style="width:260px">
               <div v-for="(item,index) in dealtypes" :key="index">
@@ -47,7 +47,7 @@
             </div>
           </div>          
 
-          <div class="row form-group" v-if="sdelka!=null">
+          <div class="row form-group" v-if="sdelka!=null && getLength(ad_title)>8">
             <div class="col-auto">
               <label for="categories">Категория товара или услуги:</label>
                 <select class="form-control" v-model="category" @change="changeCategory">            
@@ -60,7 +60,7 @@
           <!------------------------------------------------------------------ 
            ОСНОВНАЯ ФОРМА 
           ------------------------------------------------------------------>
-          <form id="advertform" @submit="onSubmit" v-show="sdelka!=null">
+          <form id="advertform" @submit="onSubmit" v-show="sdelka!=null && getLength(ad_title)>8">
 
             <!-- Категории -->
 		        <div v-if="root"></div>
