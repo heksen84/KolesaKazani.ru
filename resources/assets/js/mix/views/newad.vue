@@ -1,7 +1,7 @@
 <template>
 
 <div class="container-fluid mycontainer_adv">
-     
+  
   <!-- карта -->
   <div class="modal fade bd-example-modal-lg" id="ShowModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">

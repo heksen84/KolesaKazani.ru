@@ -20,7 +20,17 @@ sass('resources/assets/sass/newad.scss', 'public/css').
 sass('resources/assets/sass/results.scss', 'public/css').
 version().
 browserSync({
-    proxy: 'flix:90',
-    port: 99,
-    notify: false
+    files: [
+           'app/**/*',
+           'public/**/*',
+           'resources/views/**/*',
+           'resources/lang/**/*',
+           'routes/**/*'
+    ],
+    notify: {
+        styles: {
+            top: 'auto',
+            bottom: '0'
+        }
+    },
 });
