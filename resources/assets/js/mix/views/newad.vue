@@ -33,12 +33,12 @@
             <div class="row form-group">
               <div class="col-auto">
                 <label>Заголовок объявления</label>
-                <input type="text" class="form-control" size="120" placeholder="Введите заголовок"/>
+                <input type="text" class="form-control" size="120" placeholder="Введите заголовок" v-model="ad_title"/>
               </div>
             </div>    
 
             <div style="margin-bottom:10px">
-            <label style="width:270px">Вид сделки:</label>
+            <label style="width:270px">Операция (вид сделки):</label>
             <div class="form-check" style="width:260px">
               <div v-for="(item,index) in dealtypes" :key="index">
                 <input class="form-check-input" :id="item.id" type="radio" name="inlineRadioOptions" v-bind:value="item.id" v-model="sdelka" @change="setDeal">
@@ -296,6 +296,7 @@ components: {
 
 data () {
   return 	{
+  ad_title: null,
   serviceUnavailable: false,
   subCategoryItems: [],    
   lastPhoneNumber: null,
