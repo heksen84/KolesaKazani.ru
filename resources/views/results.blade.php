@@ -46,16 +46,16 @@
               
                 <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                   <label>Цена</label>
-                    <input type="text" size="10" required class="form-control" placeholder="от"></input> 
+                    <input type="text" size="10" required class="form-control" placeholder="от" v-model="priceFrom"></input> 
                 </div>
 
                 <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                   <label>-</label>
-                    <input type="text" size="10" required class="form-control" placeholder="до"></input> 
+                    <input type="text" size="10" required class="form-control" placeholder="до" v-model="priceTo"></input> 
                 </div>                            
 
                 <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                  <button type="submit" class="btn btn-secondary form-control">применить</button>
+                  <button type="button" class="btn btn-secondary form-control" @click="filter">применить</button>
                 </div>          
 
               </div> <!-- end row -->                      

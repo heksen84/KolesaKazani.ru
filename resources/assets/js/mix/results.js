@@ -3,7 +3,6 @@
 require('./bootstrap');
 
 import Vue from 'vue';
-//import $ from "jquery";
 import { get } from '../helpers/api' // axios
 
 // --------------------------
@@ -14,7 +13,10 @@ export default new Vue ({
   el: '#app',
 
   data () {   
-    return {}
+    return {
+      priceFrom: null,
+      priceTo: null
+    }
   },
 
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
@@ -24,12 +26,17 @@ export default new Vue ({
   // Компонент создан
   // -------------------------------
   created() {
-    //alert("i'm ready!")
+    this.priceFrom=0;
+    this.priceTo=1000;
   },
 
   // --------------------------------------
   // Методы
   // --------------------------------------
-  methods: {}
+  methods: {
+    filter() {
+      alert("!")
+    }
+  }
   
 });

@@ -33268,7 +33268,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
 
-//import $ from "jquery";
  // axios
 
 // --------------------------
@@ -33279,7 +33278,10 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
   el: '#app',
 
   data: function data() {
-    return {};
+    return {
+      priceFrom: null,
+      priceTo: null
+    };
   },
 
 
@@ -33290,14 +33292,19 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
   // Компонент создан
   // -------------------------------
   created: function created() {
-    //alert("i'm ready!")
+    this.priceFrom = 0;
+    this.priceTo = 1000;
   },
 
 
   // --------------------------------------
   // Методы
   // --------------------------------------
-  methods: {}
+  methods: {
+    filter: function filter() {
+      alert("!");
+    }
+  }
 
 }));
 
