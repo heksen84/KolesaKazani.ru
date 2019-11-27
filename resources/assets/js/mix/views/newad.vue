@@ -22,13 +22,21 @@
         </div>
       </div>
     </div>
-  </div>    
+  </div>        
 
     <div class="row">  
       <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col" style="border: 1px solid rgb(200,200,200)">
         <div class="close_button" title="Закрыть страницу" style="font-weight:bold" @click="closeAndReturn">X</div>
 		      <h1 class="title_text" style="margin-top:12px">подать объявление</h1>
             <hr>
+
+            <div class="row form-group">
+              <div class="col-auto">
+                <label>Заголовок объявления</label>
+                <input type="text" class="form-control" size="120" placeholder="Введите заголовок"/>
+              </div>
+            </div>    
+
             <div style="margin-bottom:10px">
             <label style="width:270px">Вид сделки:</label>
             <div class="form-check" style="width:260px">
@@ -37,7 +45,7 @@
                 <label class="form-check-label" :for="item.id">{{ item.deal_name_1 }}</label>
               </div>
             </div>
-          </div>
+          </div>          
 
           <div class="row form-group" v-if="sdelka!=null">
             <div class="col-auto">
@@ -47,7 +55,7 @@
                   <option v-for="(item, index) in categories" :key="index" v-bind:value="item.id">{{ item.name }}</option>
                 </select>                
               </div>
-          </div>    
+          </div>
             
           <!------------------------------------------------------------------ 
            ОСНОВНАЯ ФОРМА 

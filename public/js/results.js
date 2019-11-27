@@ -33279,6 +33279,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
   data: function data() {
     return {
+      //subcategoryId: null,
       priceFrom: null,
       priceTo: null
     };
@@ -33292,6 +33293,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
   // Компонент создан
   // -------------------------------
   created: function created() {
+    //alert(this.subcategoryId)
     this.priceFrom = 0;
     this.priceTo = 1000;
   },

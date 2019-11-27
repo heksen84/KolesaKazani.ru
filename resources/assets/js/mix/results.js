@@ -14,6 +14,7 @@ export default new Vue ({
 
   data () {   
     return {
+      //subcategoryId: null,
       priceFrom: null,
       priceTo: null
     }
@@ -26,6 +27,7 @@ export default new Vue ({
   // Компонент создан
   // -------------------------------
   created() {
+    //alert(this.subcategoryId)
     this.priceFrom=0;
     this.priceTo=1000;
   },

@@ -20,7 +20,7 @@
       <h1 style="color:rgb(50,50,50)">{{ $title }}</h1>
         <div style="color:rgb(50,50,50);text-decoration:underline">Найдено: {{ $itemsCount }}</div>
           подкатегория: <b>{{ $subcategory[0]->id }}</b>          
-        <form>
+        <!--<form>
         <br>
             <div class="form-group">
               <div class="row">                     
@@ -58,12 +58,11 @@
                   <button type="button" class="btn btn-secondary form-control" @click="filter">применить</button>
                 </div>          
 
-              </div> <!-- end row -->                      
+              </div>
                 @endif
-              @endif
-              <div class="row">Рекламка?</div>
+              @endif            
             </div>                                            
-          </form>          
+          </form>-->       
         <hr>
 
     <div class="row">
