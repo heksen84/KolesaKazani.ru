@@ -33,7 +33,7 @@
             <div class="row form-group">
               <div class="col-auto">
                 <label>Заголовок объявления</label>
-                <input type="text" class="form-control" size="120" placeholder="Введите заголовок объявления" v-model="ad_title"/>
+                <input type="text" class="form-control" size="100" maxlength="100" placeholder="Введите заголовок объявления" v-model="ad_title"/>
               </div>
             </div>    
 
