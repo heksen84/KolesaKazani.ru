@@ -2133,7 +2133,7 @@ function forEach(data, callback) {
 
   data: function data() {
     return {
-      ad_title: null,
+      ad_title: "",
       serviceUnavailable: false,
       subCategoryItems: [],
       lastPhoneNumber: null,
@@ -2180,6 +2180,10 @@ function forEach(data, callback) {
 
   // методы компонента
   methods: {
+    getLength: function getLength(item) {
+      return item.length;
+    },
+
 
     // сервис не доступен
     serviceError: function serviceError() {
@@ -39877,7 +39881,7 @@ var render = function() {
                 attrs: {
                   type: "text",
                   size: "120",
-                  placeholder: "Введите заголовок"
+                  placeholder: "Введите заголовок объявления"
                 },
                 domProps: { value: _vm.ad_title },
                 on: {
@@ -39892,58 +39896,63 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticStyle: { "margin-bottom": "10px" } }, [
-            _c("label", { staticStyle: { width: "270px" } }, [
-              _vm._v("Операция (вид сделки):")
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-check", staticStyle: { width: "260px" } },
-              _vm._l(_vm.dealtypes, function(item, index) {
-                return _c("div", { key: index }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.sdelka,
-                        expression: "sdelka"
-                      }
-                    ],
-                    staticClass: "form-check-input",
-                    attrs: {
-                      id: item.id,
-                      type: "radio",
-                      name: "inlineRadioOptions"
-                    },
-                    domProps: {
-                      value: item.id,
-                      checked: _vm._q(_vm.sdelka, item.id)
-                    },
-                    on: {
-                      change: [
-                        function($event) {
-                          _vm.sdelka = item.id
+          _vm.getLength(_vm.ad_title) > 5
+            ? _c("div", { staticStyle: { "margin-bottom": "10px" } }, [
+                _c("label", { staticStyle: { width: "270px" } }, [
+                  _vm._v("Операция (вид сделки):")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-check",
+                    staticStyle: { width: "260px" }
+                  },
+                  _vm._l(_vm.dealtypes, function(item, index) {
+                    return _c("div", { key: index }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.sdelka,
+                            expression: "sdelka"
+                          }
+                        ],
+                        staticClass: "form-check-input",
+                        attrs: {
+                          id: item.id,
+                          type: "radio",
+                          name: "inlineRadioOptions"
                         },
-                        _vm.setDeal
-                      ]
-                    }
+                        domProps: {
+                          value: item.id,
+                          checked: _vm._q(_vm.sdelka, item.id)
+                        },
+                        on: {
+                          change: [
+                            function($event) {
+                              _vm.sdelka = item.id
+                            },
+                            _vm.setDeal
+                          ]
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "form-check-label",
+                          attrs: { for: item.id }
+                        },
+                        [_vm._v(_vm._s(item.deal_name_1))]
+                      )
+                    ])
                   }),
-                  _vm._v(" "),
-                  _c(
-                    "label",
-                    {
-                      staticClass: "form-check-label",
-                      attrs: { for: item.id }
-                    },
-                    [_vm._v(_vm._s(item.deal_name_1))]
-                  )
-                ])
-              }),
-              0
-            )
-          ]),
+                  0
+                )
+              ])
+            : _vm._e(),
           _vm._v(" "),
           _vm.sdelka != null
             ? _c("div", { staticClass: "row form-group" }, [

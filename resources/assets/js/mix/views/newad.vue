@@ -33,11 +33,11 @@
             <div class="row form-group">
               <div class="col-auto">
                 <label>Заголовок объявления</label>
-                <input type="text" class="form-control" size="120" placeholder="Введите заголовок" v-model="ad_title"/>
+                <input type="text" class="form-control" size="120" placeholder="Введите заголовок объявления" v-model="ad_title"/>
               </div>
             </div>    
 
-            <div style="margin-bottom:10px">
+            <div style="margin-bottom:10px" v-if="getLength(ad_title)>5">
             <label style="width:270px">Операция (вид сделки):</label>
             <div class="form-check" style="width:260px">
               <div v-for="(item,index) in dealtypes" :key="index">
@@ -296,7 +296,7 @@ components: {
 
 data () {
   return 	{
-  ad_title: null,
+  ad_title: "",
   serviceUnavailable: false,
   subCategoryItems: [],    
   lastPhoneNumber: null,
@@ -341,6 +341,10 @@ created() {
 
 // методы компонента
 methods: {
+
+getLength(item) {
+  return item.length;
+},
 
 // сервис не доступен
 serviceError() {
