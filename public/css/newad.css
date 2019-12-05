@@ -39,7 +39,7 @@
 
 .custom-file-input:lang(ru) ~ .custom-file-label::after {
   /*background: rgb(100,200,100);*/
-  background: #787878;
+  background: #64648c;
   color: white;
   content: "\434\43E\431\430\432\438\442\44C   \444\43E\442\43E";
 }
