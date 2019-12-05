@@ -92,7 +92,7 @@ class AdvertController extends Controller {
         // правила валидации
         // ---------------------------
         $rules = [            
-            "adv_title"     => "required|string|min:0|max:100", 
+            "adv_title"     => "required|string|min:6|max:100", 
             "adv_category"  => "required|numeric|min:0", 
             "adv_phone"     => "required|string|max:14",
             "adv_info"      => "string",
@@ -105,7 +105,7 @@ class AdvertController extends Controller {
         // сообщения валидации
         // ---------------------------
         $messages = [            
-            "adv_title.required"       => "Не указан заголовок сообщения",            
+            "adv_title.required"       => "Не указан заголовок объявления",            
             "adv_category.required"    => "Укажите категорию товара или услуги",            
             "adv_phone.required"       => "Укажите телефон",            
             "images.*.image"           => "Только изображения!",
