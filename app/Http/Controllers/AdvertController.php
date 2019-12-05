@@ -92,6 +92,7 @@ class AdvertController extends Controller {
         // правила валидации
         // ---------------------------
         $rules = [            
+            "adv_title"     => "required|string|min:0|max:100", 
             "adv_category"  => "required|numeric|min:0", 
             "adv_phone"     => "required|string|max:14",
             "adv_info"      => "string",
@@ -103,8 +104,8 @@ class AdvertController extends Controller {
         // ---------------------------
         // сообщения валидации
         // ---------------------------
-        $messages = [
-            "adv_deal.required"        => "Укажите вид сделки", 
+        $messages = [            
+            "adv_title.required"       => "Не указан заголовок сообщения",            
             "adv_category.required"    => "Укажите категорию товара или услуги",            
             "adv_phone.required"       => "Укажите телефон",            
             "images.*.image"           => "Только изображения!",
@@ -121,9 +122,9 @@ class AdvertController extends Controller {
         if ( $validator->fails() )  
             return response()->json( ["result"=>"usr.error", "msg" => $validator->errors()->first()] );                    
 
+        $title          = $data["adv_title"];
         $category       = $data["adv_category"];
-        $subcategory    = $data["adv_subcategory"];
-        $deal           = $data["adv_deal"]; // Вид сделки
+        $subcategory    = $data["adv_subcategory"];        
         $text           = $data["adv_info"];        
         $phone          = $data["adv_phone"];
 
@@ -137,12 +138,12 @@ class AdvertController extends Controller {
             $advert = new Adverts();
 
      		$advert->user_id         = Auth::id();
-        	$advert->text  	         = $text;
+            $advert->title  	     = $title;
+            $advert->text  	         = $text;
             $advert->phone           = $phone; 
         	$advert->price  		 = $price;
             $advert->category_id  	 = $category;
-            $advert->sub_category_id = $subcategory;
-            $advert->deal  	         = $deal;            
+            $advert->sub_category_id = $subcategory;            
             $advert->region_id       = $region_id;
             $advert->city_id         = $city_id;
             $advert->lang            = "ru";
@@ -385,7 +386,12 @@ class AdvertController extends Controller {
             
             
             $advert->public = true; // публикую объявление сходу                        
+            
+            \Debugbar::info("Prepare save");   
+
             $advert->save();  // СОХРАНЕНИЕ ОБЪЯВЛЕНИЯ
+
+            \Debugbar::info("Saved");            
             
             // Закидываю данные в таблицу urls для SEO
             $urls = new Urls();

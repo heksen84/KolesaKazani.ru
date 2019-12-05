@@ -2050,16 +2050,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 // ---------------------------
@@ -2132,7 +2122,7 @@ function forEach(data, callback) {
 // ----------------------------------------------
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ["categories", "dealtypes", "regions"], // Входящие данные
+  props: ["categories", "regions"], // Входящие данные
 
   components: {
     transport: __WEBPACK_IMPORTED_MODULE_2__subcategories_transport_vue___default.a,
@@ -2142,7 +2132,7 @@ function forEach(data, callback) {
 
   data: function data() {
     return {
-      ad_title: "",
+      title: "",
       serviceUnavailable: false,
       subCategoryItems: [],
       lastPhoneNumber: null,
@@ -2151,7 +2141,6 @@ function forEach(data, callback) {
       placeChanged: false,
       category: null,
       subCategory: null,
-      sdelka: null,
       info: "",
       price: 0,
       number: 0,
@@ -2206,6 +2195,12 @@ function forEach(data, callback) {
       if (this.subCategory == "null") this.$store.commit("ShowFinalFields", false);else this.$store.commit("ShowFinalFields", true);
 
       this.$root.advert_data.adv_subcategory = this.subCategory;
+    },
+
+
+    // Заголовок
+    setTitle: function setTitle() {
+      this.$root.advert_data.adv_title = this.title;
     },
 
 
@@ -2338,24 +2333,6 @@ function forEach(data, callback) {
 
 
     // --------------------------------------
-    // Выбрать сделку
-    // --------------------------------------
-    setDeal: function setDeal() {
-
-      console.log("Сделка: " + this.sdelka);
-
-      // если отдам даром, то обнуляю цену
-      if (this.sdelka === 3) {
-        this.$root.advert_data.adv_price = null;
-        this.price = null;
-      }
-
-      this.$root.advert_data.adv_deal = this.sdelka;
-      this.$store.commit("SetDealSelected", true);
-    },
-
-
-    // --------------------------------------
     // сброс данных объявления
     // --------------------------------------
     advReset: function advReset(category_data) {
@@ -2367,8 +2344,6 @@ function forEach(data, callback) {
       this.subCategory = null; // сбрасываю подкатегории
 
       if (form) form.reset();
-
-      this.$store.commit("SetDealSelected", false);
 
       this.$root.advert_data.adv_subcategory = null;
       this.$root.advert_data.adv_info = null;
@@ -2417,17 +2392,9 @@ function forEach(data, callback) {
       // сброс объявления при выборе категории
       this.advReset(category);
 
-      // ОБРАТИТЬ ВНИМАНИЕ ПОМЕНЯТЬМЕСТАМИ СДЕЛКУ и категорию!!!
-
-      // -----------------------------------------------------------------
-      // отрубить вид сделки в категориях: "работа и бизнес" и "услуги"
-      // -----------------------------------------------------------------
-      if (category == 4 || category == 9) {
-        this.$store.commit("SetDealSelected", true);this.$store.commit("ShowFinalFields", true);
-      }
-
       // добавляю категории
       this.$root.advert_data.adv_category = category;
+
       this.$store.commit("ShowFinalFields", false);
 
       switch (this.category) {
@@ -39882,8 +39849,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.ad_title,
-                    expression: "ad_title"
+                    value: _vm.title,
+                    expression: "title"
                   }
                 ],
                 staticClass: "form-control",
@@ -39893,78 +39860,23 @@ var render = function() {
                   maxlength: "100",
                   placeholder: "Введите заголовок объявления"
                 },
-                domProps: { value: _vm.ad_title },
+                domProps: { value: _vm.title },
                 on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.ad_title = $event.target.value
-                  }
+                  input: [
+                    function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.title = $event.target.value
+                    },
+                    _vm.setTitle
+                  ]
                 }
               })
             ])
           ]),
           _vm._v(" "),
-          _vm.getLength(_vm.ad_title) > 8
-            ? _c("div", { staticStyle: { "margin-bottom": "10px" } }, [
-                _c("label", { staticStyle: { width: "270px" } }, [
-                  _vm._v("Операция (вид сделки):")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "form-check",
-                    staticStyle: { width: "260px" }
-                  },
-                  _vm._l(_vm.dealtypes, function(item, index) {
-                    return _c("div", { key: index }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.sdelka,
-                            expression: "sdelka"
-                          }
-                        ],
-                        staticClass: "form-check-input",
-                        attrs: {
-                          id: item.id,
-                          type: "radio",
-                          name: "inlineRadioOptions"
-                        },
-                        domProps: {
-                          value: item.id,
-                          checked: _vm._q(_vm.sdelka, item.id)
-                        },
-                        on: {
-                          change: [
-                            function($event) {
-                              _vm.sdelka = item.id
-                            },
-                            _vm.setDeal
-                          ]
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-check-label",
-                          attrs: { for: item.id }
-                        },
-                        [_vm._v(_vm._s(item.deal_name_1))]
-                      )
-                    ])
-                  }),
-                  0
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.sdelka != null && _vm.getLength(_vm.ad_title) > 8
+          _vm.getLength(_vm.title) > 8
             ? _c("div", { staticClass: "row form-group" }, [
                 _c("div", { staticClass: "col-auto" }, [
                   _c("label", { attrs: { for: "categories" } }, [
@@ -40028,8 +39940,8 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: _vm.sdelka != null && _vm.getLength(_vm.ad_title) > 8,
-                  expression: "sdelka!=null && getLength(ad_title)>8"
+                  value: _vm.getLength(_vm.title) > 8,
+                  expression: "getLength(title)>8"
                 }
               ],
               attrs: { id: "advertform" },
@@ -40485,32 +40397,28 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("div", { staticClass: "row" }, [
-                    _vm.sdelka != 3
-                      ? _c(
-                          "div",
-                          { staticClass: "col-md-12 text-center" },
-                          [
-                            _c(
-                              "span",
-                              { staticStyle: { "margin-right": "5px" } },
-                              [_vm._v("Цена:")]
-                            ),
-                            _vm._v(" "),
-                            _c("superInput", {
-                              attrs: { type: "number", maxlength: 8 },
-                              on: { input: _vm.setPrice },
-                              model: {
-                                value: _vm.price,
-                                callback: function($$v) {
-                                  _vm.price = $$v
-                                },
-                                expression: "price"
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      : _vm._e(),
+                    _c(
+                      "div",
+                      { staticClass: "col-md-12 text-center" },
+                      [
+                        _c("span", { staticStyle: { "margin-right": "5px" } }, [
+                          _vm._v("Цена:")
+                        ]),
+                        _vm._v(" "),
+                        _c("superInput", {
+                          attrs: { type: "number", maxlength: 8 },
+                          on: { input: _vm.setPrice },
+                          model: {
+                            value: _vm.price,
+                            callback: function($$v) {
+                              _vm.price = $$v
+                            },
+                            expression: "price"
+                          }
+                        })
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
                     _vm._m(1),
                     _vm._v(" "),

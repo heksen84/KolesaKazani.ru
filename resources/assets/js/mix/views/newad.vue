@@ -33,21 +33,11 @@
             <div class="row form-group">
               <div class="col-auto">
                 <label>Заголовок объявления</label>
-                <input type="text" class="form-control" size="100" maxlength="100" placeholder="Введите заголовок объявления" v-model="ad_title"/>
+                <input type="text" class="form-control" size="100" maxlength="100" placeholder="Введите заголовок объявления" v-model="title" @input="setTitle"/>
               </div>
             </div>    
-
-            <div style="margin-bottom:10px" v-if="getLength(ad_title)>8">
-            <label style="width:270px">Операция (вид сделки):</label>
-            <div class="form-check" style="width:260px">
-              <div v-for="(item,index) in dealtypes" :key="index">
-                <input class="form-check-input" :id="item.id" type="radio" name="inlineRadioOptions" v-bind:value="item.id" v-model="sdelka" @change="setDeal">
-                <label class="form-check-label" :for="item.id">{{ item.deal_name_1 }}</label>
-              </div>
-            </div>
-          </div>          
-
-          <div class="row form-group" v-if="sdelka!=null && getLength(ad_title)>8">
+  
+          <div class="row form-group" v-if="getLength(title)>8">
             <div class="col-auto">
               <label for="categories">Категория товара или услуги:</label>
                 <select class="form-control" v-model="category" @change="changeCategory">            
@@ -69,7 +59,7 @@
           <!------------------------------------------------------------------ 
            ОСНОВНАЯ ФОРМА 
           ------------------------------------------------------------------>
-          <form id="advertform" @submit="onSubmit" v-show="sdelka!=null && getLength(ad_title)>8">
+          <form id="advertform" @submit="onSubmit" v-show="getLength(title)>8">
 
             <!-- Категории -->
 		        <div v-if="root"></div>
@@ -144,7 +134,7 @@
                 <textarea id="addit_info" class="form-control form-group" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" maxlength="1024" @input="setInfo" v-model="info"></textarea>
                   <div class="row">
 
-                    <div class="col-md-12 text-center" v-if="sdelka!=3">
+                    <div class="col-md-12 text-center">
                       <span style="margin-right:5px">Цена:</span>                      
                       <superInput type="number" v-model="price" :maxlength="8" @input="setPrice"></superInput>
                     </div>
@@ -295,7 +285,7 @@ function forEach(data, callback) {
 // ----------------------------------------------
 export default {
 
-props: ["categories", "dealtypes", "regions"], // Входящие данные
+props: ["categories", "regions"], // Входящие данные
 
 components: { 
   transport,
@@ -305,7 +295,7 @@ components: {
 
 data () {
   return 	{
-  ad_title: "",
+  title: "",
   serviceUnavailable: false,
   subCategoryItems: [],    
   lastPhoneNumber: null,
@@ -314,7 +304,6 @@ data () {
 	placeChanged: false,			
 	category: null,
   subCategory: null,
-	sdelka: null,		
 	info: "",
 	price: 0,
 	number: 0,
@@ -369,6 +358,11 @@ changeSubCategory() {
     this.$store.commit("ShowFinalFields", true)
   
     this.$root.advert_data.adv_subcategory=this.subCategory;
+},
+
+// Заголовок
+setTitle() {
+	this.$root.advert_data.adv_title=this.title;
 },
 
 // доп. информация
@@ -500,22 +494,6 @@ deletePhoto(index) {
 	this.real_images.splice(index, 1);
 },
 
-// --------------------------------------
-// Выбрать сделку
-// --------------------------------------
-setDeal() {    
-
-  console.log("Сделка: "+this.sdelka)
-
-  // если отдам даром, то обнуляю цену
-  if (this.sdelka===3) {
-    this.$root.advert_data.adv_price=null;
-    this.price=null;
-  }
-
-  this.$root.advert_data.adv_deal=this.sdelka;
-  this.$store.commit("SetDealSelected", true);
-},
 
 // --------------------------------------
 // сброс данных объявления
@@ -529,9 +507,7 @@ advReset(category_data) {
     this.subCategory=null; // сбрасываю подкатегории
 
     if (form) 
-      form.reset();
-        
-    this.$store.commit("SetDealSelected", false);        
+      form.reset();        
 
     this.$root.advert_data.adv_subcategory  = null;
     this.$root.advert_data.adv_info         = null;
@@ -580,17 +556,9 @@ changeCategory() {
   // сброс объявления при выборе категории
   this.advReset(category);
 
-  // ОБРАТИТЬ ВНИМАНИЕ ПОМЕНЯТЬМЕСТАМИ СДЕЛКУ и категорию!!!
-
-  // -----------------------------------------------------------------
-  // отрубить вид сделки в категориях: "работа и бизнес" и "услуги"
-  // -----------------------------------------------------------------
-  if (category == 4 || category == 9) { 
-    this.$store.commit("SetDealSelected", true); this.$store.commit("ShowFinalFields", true); 
-  }
-  
   // добавляю категории
   this.$root.advert_data.adv_category=category;             
+
   this.$store.commit("ShowFinalFields", false);  
   
   switch(this.category) {
