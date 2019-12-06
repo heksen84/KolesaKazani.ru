@@ -32,7 +32,7 @@ class TransportResultsController extends Controller
         $items = DB::select("SELECT adv.id, adv.price, adv.text FROM `adverts` AS adv");
 
         // adverts: categoryId, subCategoryId, subCategoryInnerId,
-        // where idSubcat = ...
+        // where subCategoryId = ...
         
         
         // RU
@@ -77,7 +77,6 @@ class TransportResultsController extends Controller
 	        break;
          }         
 
-	    // --- kz ---
        }        
 
        return view("results")->with("title", $title)->with("description", $description)->with("keywords", $keywords)->with("items", [])->with("itemsCount", 0);
