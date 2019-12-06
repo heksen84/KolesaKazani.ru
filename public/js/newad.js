@@ -39728,7 +39728,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c(
-                  "h5",
+                  "b",
                   {
                     directives: [
                       {
@@ -39762,7 +39762,7 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c(
-                  "h4",
+                  "p",
                   {
                     directives: [
                       {

@@ -143,11 +143,10 @@ class AdvertController extends Controller {
             $advert->phone           = $phone; 
         	$advert->price  		 = $price;
             $advert->category_id  	 = $category;
-            $advert->sub_category_id = $subcategory;            
+            $advert->subcategory_id  = $subcategory;            
             $advert->region_id       = $region_id;
             $advert->city_id         = $city_id;
-            $advert->lang            = "ru";
-            $advert->sub_category_id = 0;            
+            $advert->lang            = "ru";            
             $advert->vip             = false;
             $advert->full            = false;
 
@@ -285,7 +284,8 @@ class AdvertController extends Controller {
                     $transport->save();
 
                     // записываю id подкатегории
-                    $advert->sub_category_id = $transport->id;  // указываем id' шник
+                    $advert->inner_id = $transport->id;  // указываем id' шник
+
                     break;
                 }
 
@@ -317,7 +317,7 @@ class AdvertController extends Controller {
                     $realestate->save();
 
                     // записываю id подкатегории
-                    $advert->sub_category_id = $realestate->id;
+                    $advert->inner_id = $realestate->id;
 
                     // значение записи url в sitemap.xml
                     $url_text = "Недвижимость квартира";
@@ -327,42 +327,42 @@ class AdvertController extends Controller {
 
                 // электроника
                 case 3: {
-                    $advert->sub_category_id = $subcategory;
+                    $advert->inner_id = $subcategory;
                     break;
                 }
 
                 case 4: {
-                    $advert->sub_category_id = $subcategory;
+                    $advert->inner_id = $subcategory;
                     break;
                 }
 
                 case 5: {
-                    $advert->sub_category_id = $subcategory;
+                    $advert->inner_id = $subcategory;
                     break;
                 }
 
                 case 6: {
-                    $advert->sub_category_id = $subcategory;
+                    $advert->inner_id = $subcategory;
                     break;
                 }
 
                 case 7: {
-                    $advert->sub_category_id = $subcategory;
+                    $advert->inner_id = $subcategory;
                     break;
                 }
 
                 case 8: {
-                    $advert->sub_category_id = $subcategory;
+                    $advert->inner_id = $subcategory;
                     break;
                 }
 
                 case 9: {
-                    $advert->sub_category_id = $subcategory;
+                    $advert->inner_id = $subcategory;
                     break;
                 }
 
                 case 10: {
-                    $advert->sub_category_id = $subcategory;
+                    $advert->inner_id = $subcategory;
                     break;
                 }
 
