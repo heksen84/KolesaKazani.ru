@@ -156,7 +156,7 @@ export default {
     // --------------------------------
     changeProperyType() {
 
-        console.log("Вид недвижимости: " + this.selected_type)
+        console.log("Вид недвижимости: " + this.selected_type)        
 
         this.resetData(); // обнуляю поля
         
