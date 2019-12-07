@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 //use Illuminate\Support\Facades\Redis;
-//use App\Helpers\Petrovich;
 use App\Helpers\Helper;
 use App\Helpers\Sitemap;
 use App\Adverts;
@@ -15,7 +14,6 @@ use App\Transport;
 use App\RealEstate;
 use App\DealType;
 use App\Regions;
-use App\SubCats;
 use App\Urls;
 use Validator;
 use DB;
@@ -69,11 +67,6 @@ class AdvertController extends Controller {
     ----------------------------------------------------*/
     public function getCarsModels(Request $request) {
      	return DB::table("car_model")->where("id_car_mark", $request->mark_id )->get();
-    }
-
-    public function getSubcategoryDataById(Request $request) {
-        \Debugbar::info("CATEGORY ID: ".$request->id);
-        return SubCats::select( "id", "name_ru" )->where("category_id", $request->id)->get();
     }
 
     /*

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 Auth::routes(); // Стандартные роуты
 
-Route::get("/getSubCategoryDataById", "AdvertController@getSubCategoryDataById" );
+Route::get("api/getSubCategoryNamesById", "JournalController@getSubCategoryNamesById" );
 
 Route::post("createAdvert",  "AdvertController@createAdvert");
 

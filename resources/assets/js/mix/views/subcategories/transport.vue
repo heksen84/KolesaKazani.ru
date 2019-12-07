@@ -84,7 +84,7 @@ export default {
 
         //placeholder_info_text: "Введите текст объявления, например: ",
 
-        type_transport: [
+        /*type_transport: [
           { value: null, text: '-- Выберите вид транспорта --' },
           { value: 0, text: 'Легковой автомобиль' },
           { value: 1, text: 'Грузовой автомобиль' },
@@ -94,7 +94,9 @@ export default {
           { value: 5, text: 'Водный транспорт' },
           { value: 6, text: 'Велосипед' },
           { value: 7, text: 'Воздушный транспорт' }
-        ],        
+        ],*/
+        
+        type_transport: [],
 
         // марки автомобилей
         carmark: [],

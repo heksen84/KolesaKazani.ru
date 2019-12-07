@@ -42,15 +42,6 @@
               <label for="categories">Категория товара или услуги:</label>
                 <select class="form-control" v-model="category" @change="changeCategory">            
                   <option v-bind:value="null">-- Выберите категорию --</option>
-                  <!--  v-for="preset in filterItems(presets)" 
-                  method:
-                  filterItems: function(presets) {
-                   var app = this;
-                   return presets.filter(function(preset) {
-                   let regex = new RegExp('(' + app.searchQuery + ')', 'i');
-                    return preset.presetName.match(regex);
-                  })
-                  }-->
                   <option v-for="(item, index) in categories" :key="index" v-bind:value="item.id">{{ item.name }}</option>
                 </select>                
               </div>
@@ -617,7 +608,7 @@ changeCategory() {
     // -------------------------------
     if (subItems.indexOf(this.category)!=-1) {
       // запрос
-      get("getSubCategoryDataById?id="+this.category).then((res) => {
+      get("api/getSubCategoryNamesById?id="+this.category).then((res) => {
 		    this.subCategoryItems=res.data;
       }).catch((err) => {        
         this.serviceError();

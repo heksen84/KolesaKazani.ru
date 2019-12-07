@@ -2041,15 +2041,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 // ---------------------------
@@ -2464,7 +2455,7 @@ function forEach(data, callback) {
       // -------------------------------
       if (subItems.indexOf(this.category) != -1) {
         // запрос
-        Object(__WEBPACK_IMPORTED_MODULE_5__helpers_api__["a" /* get */])("getSubCategoryDataById?id=" + this.category).then(function (res) {
+        Object(__WEBPACK_IMPORTED_MODULE_5__helpers_api__["a" /* get */])("api/getSubCategoryNamesById?id=" + this.category).then(function (res) {
           _this2.subCategoryItems = res.data;
         }).catch(function (err) {
           _this2.serviceError();
@@ -2869,7 +2860,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       //placeholder_info_text: "Введите текст объявления, например: ",
 
-      type_transport: [{ value: null, text: '-- Выберите вид транспорта --' }, { value: 0, text: 'Легковой автомобиль' }, { value: 1, text: 'Грузовой автомобиль' }, { value: 2, text: 'Мототехника' }, { value: 3, text: 'Спецтехника' }, { value: 4, text: 'Ретро-автомобиль' }, { value: 5, text: 'Водный транспорт' }, { value: 6, text: 'Велосипед' }, { value: 7, text: 'Воздушный транспорт' }],
+      /*type_transport: [
+        { value: null, text: '-- Выберите вид транспорта --' },
+        { value: 0, text: 'Легковой автомобиль' },
+        { value: 1, text: 'Грузовой автомобиль' },
+        { value: 2, text: 'Мототехника' },
+        { value: 3, text: 'Спецтехника' },
+        { value: 4, text: 'Ретро-автомобиль' },
+        { value: 5, text: 'Водный транспорт' },
+        { value: 6, text: 'Велосипед' },
+        { value: 7, text: 'Воздушный транспорт' }
+      ],*/
+
+      type_transport: [],
 
       // марки автомобилей
       carmark: [],
