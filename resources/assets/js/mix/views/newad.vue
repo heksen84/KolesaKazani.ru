@@ -386,7 +386,7 @@ changeRegion() {
     this.$root.advert_data.region_id = this.regions_model;	  
     
 	  // Получить города / сёлы
-    get("getPlaces?region_id="+this.regions_model).then((res) => {
+    get("api/getPlaces?region_id="+this.regions_model).then((res) => {
 		  this.places=res.data;
 		  this.places_model=null;
 	  }).catch((err) => {
@@ -636,7 +636,7 @@ onSubmit(evt) {
   // ------------------------------------------------------------------------------------------------------------------------
   // Размещение объявления
   // ------------------------------------------------------------------------------------------------------------------------
-	axios.post("/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {			
+	axios.post("api/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {			
       
     console.log(response);
     			

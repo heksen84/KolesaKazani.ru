@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 Auth::routes(); // Стандартные роуты
 
 Route::get("api/getSubCategoryNamesById", "JournalController@getSubCategoryNamesById" );
-
-Route::post("createAdvert",  "AdvertController@createAdvert");
+Route::post("api/createAdvert", "AdvertController@createAdvert");
+Route::get("api/getPlaces", "IndexController@GetPlaces");
 
 
 // ------------------------------
@@ -49,7 +49,6 @@ Route::get("/podat-obyavlenie", "AdvertController@NewAd");
 
 // Сервисы
 Route::get("/util/str2url", "UtilsController@str2url");
-Route::get("/getPlaces", "IndexController@GetPlaces");
 
 // По стране
 Route::get("/", "IndexController@ShowCountryIndexPage");

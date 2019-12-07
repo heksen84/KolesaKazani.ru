@@ -2230,7 +2230,7 @@ function forEach(data, callback) {
       this.$root.advert_data.region_id = this.regions_model;
 
       // Получить города / сёлы
-      Object(__WEBPACK_IMPORTED_MODULE_5__helpers_api__["a" /* get */])("getPlaces?region_id=" + this.regions_model).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_5__helpers_api__["a" /* get */])("api/getPlaces?region_id=" + this.regions_model).then(function (res) {
         _this.places = res.data;
         _this.places_model = null;
       }).catch(function (err) {
@@ -2486,7 +2486,7 @@ function forEach(data, callback) {
       } // ------------------------------------------------------------------------------------------------------------------------
       // Размещение объявления
       // ------------------------------------------------------------------------------------------------------------------------
-      axios.post("/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(function (response) {
+      axios.post("api/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(function (response) {
 
         console.log(response);
 

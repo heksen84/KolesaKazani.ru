@@ -66,7 +66,7 @@ export default new Vue ({
     this.tmpLocationName=e.target.innerText;
 
     // Получить города / сёлы
-    get("/getPlaces?region_id="+regionId).then((res) => {    
+    get("api/getPlaces?region_id="+regionId).then((res) => {    
       this.placesList=res.data;
       this.regionUrl=e.target.pathname;
       this.regions=false;

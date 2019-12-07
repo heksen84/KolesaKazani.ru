@@ -51003,7 +51003,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
       this.tmpLocationName = e.target.innerText;
 
       // Получить города / сёлы
-      Object(__WEBPACK_IMPORTED_MODULE_3__helpers_api__["a" /* get */])("/getPlaces?region_id=" + regionId).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_3__helpers_api__["a" /* get */])("api/getPlaces?region_id=" + regionId).then(function (res) {
         _this.placesList = res.data;
         _this.regionUrl = e.target.pathname;
         _this.regions = false;
