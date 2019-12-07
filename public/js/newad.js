@@ -3051,7 +3051,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.$store.commit("ShowCommonTransport", false);
       this.$store.commit("ShowFinalFields", false);
-      //this.$store.commit("SetRequiredInfo", false);
 
       this.transport_chars.mark_id = this.selected.carmark;
 
