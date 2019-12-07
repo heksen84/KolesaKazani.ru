@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 
 Auth::routes(); // Стандартные роуты
 
-Route::get("api/getSubCategoryNamesById", "JournalController@getSubCategoryNamesById" );
 Route::post("api/createAdvert", "AdvertController@createAdvert");
+Route::get("api/getSubCategoryNamesById", "JournalController@getSubCategoryNamesById" );
 Route::get("api/getPlaces", "IndexController@GetPlaces");
+Route::get("api/getCarsMarks", "AdvertController@getCarsMarks" );
+Route::get("api/getCarsModels", "AdvertController@getCarsModels" );
 
 
 // ------------------------------
@@ -38,11 +40,6 @@ Route::get("hobbi-i-otdyh/{subcategory}", 	    "Hobbi-i-otdyhResultsController@g
 Route::get("uslugi/{subcategory}", 		        "UslugiResultsController@getTransportResultsByCountryForView");
 Route::get("drugoe/{subcategory}", 		        "DrugoeResultsController@getTransportResultsByCountryForView");
 
-// ---------------------------------------------------------------
-// Авто (FIX: перенести в справочник)
-// ---------------------------------------------------------------
-Route::get("/getCarsMarks", "AdvertController@getCarsMarks" );
-Route::get("/getCarsModels", "AdvertController@getCarsModels" );
 
 // Новое объявление
 Route::get("/podat-obyavlenie", "AdvertController@NewAd");

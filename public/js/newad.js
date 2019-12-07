@@ -2982,7 +2982,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.carmark = [];
 
             // запрос: получить марки автомобилей
-            Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/getCarsMarks").then(function (res) {
+            Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("api/getCarsMarks").then(function (res) {
               _this.carmark = res.data;
               _this.carmarkLoaded = true;
             }).catch(function (err) {
@@ -3058,7 +3058,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       console.log(this.selected.carmark);
 
       // запрос
-      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("/getCarsModels?mark_id=" + this.selected.carmark).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("api/getCarsModels?mark_id=" + this.selected.carmark).then(function (res) {
 
         _this2.models = [];
         _this2.models = res.data;

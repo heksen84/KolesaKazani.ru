@@ -215,7 +215,7 @@ export default {
           this.carmark=[];
                       
           // запрос: получить марки автомобилей
-          get("/getCarsMarks").then((res) => {            
+          get("api/getCarsMarks").then((res) => {            
             this.carmark = res.data;
             this.carmarkLoaded=true;
           }).catch((err) => { 
@@ -275,14 +275,13 @@ export default {
       
       this.$store.commit("ShowCommonTransport", false);
       this.$store.commit("ShowFinalFields", false);
-      //this.$store.commit("SetRequiredInfo", false);
 
       this.transport_chars.mark_id = this.selected.carmark;
 
       console.log(this.selected.carmark);
       
       // запрос
-      get("/getCarsModels?mark_id="+this.selected.carmark).then((res) => {
+      get("api/getCarsModels?mark_id="+this.selected.carmark).then((res) => {
 
         this.models=[];
         this.models = res.data;
