@@ -8,9 +8,9 @@ Auth::routes(); // Стандартные роуты
 
 Route::post("api/createAdvert", "AdvertController@createAdvert");
 Route::get("api/getSubCategoryNamesById", "JournalController@getSubCategoryNamesById" );
-Route::get("api/getPlaces", "IndexController@GetPlaces");
-Route::get("api/getCarsMarks", "AdvertController@getCarsMarks" );
-Route::get("api/getCarsModels", "AdvertController@getCarsModels" );
+Route::get("api/getPlaces", "JournalController@GetPlaces");
+Route::get("api/getCarsMarks", "JournalController@getCarsMarks" );
+Route::get("api/getCarsModels", "JournalController@getCarsModels" );
 
 // -------------------------------------------------------------------------------
 // Результаты по категориям по всему Казахстану

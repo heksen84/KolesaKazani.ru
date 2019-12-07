@@ -17,7 +17,6 @@ use App\Helpers\Petrovich;
 use App\Categories;
 use App\Regions;
 use App\Places;
-use App\SubCats;
 use DB;
 
 class IndexController extends Controller {
@@ -128,12 +127,5 @@ class IndexController extends Controller {
     public function ShowPlaceIndexPage($region, $place) {
 	    return $this->ShowIndexPage($region, $place);
     }		
-	
-	/*
-	---------------------------------------------
-	 Получить расположение
-	---------------------------------------------*/
-	public function GetPlaces(Request $request) {
-   	  return Places::where("region_id",  $request->region_id )->orderBy("name", "asc")->get();
-	}				
+					
 }
