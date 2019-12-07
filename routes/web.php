@@ -12,23 +12,9 @@ Route::get("api/getPlaces", "IndexController@GetPlaces");
 Route::get("api/getCarsMarks", "AdvertController@getCarsMarks" );
 Route::get("api/getCarsModels", "AdvertController@getCarsModels" );
 
-
-// ------------------------------
-// task
-// ------------------------------
-// транспорт кз
-// недвижимость кз
-// ...
-// транспорт обл.
-// недвиж. обл.
-// ...
-// транспорт города / села
-// недвиж. города / села
-
 // -------------------------------------------------------------------------------
 // Результаты по категориям по всему Казахстану
 // -------------------------------------------------------------------------------
-// TransportResultController
 Route::get("transport/{subcategory}",           "TransportResultsController@getTransportResultsByCountryForView");
 Route::get("nedvizhimost/{subcategory}", 	    "RealestateResultsController@getRealestateResultsByCountryForView");
 Route::get("elektronika/{subcategory}", 	    "ElektronikaResultsController@getTransportResultsByCountryForView");
