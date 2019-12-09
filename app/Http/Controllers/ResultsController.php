@@ -113,6 +113,34 @@ class ResultsController extends Controller {
 	        break;
 	 }
 
+	 case "komnata":  {
+
+            $title="Покупка, продажа, обмен и сдача в аренду комнат в Казахстане";
+            $description = "";
+            $keywords = "";            
+
+	        break;
+	 }
+
+	 case "dom-dacha-kottedzh":  {
+
+            $title="Покупка, продажа, обмен и сдача в аренду дома, дачи, коттеджа в Казахстане";
+            $description = "";
+            $keywords = "";            
+
+	        break;
+	 }
+
+
+
+	/* 
+        dom-dacha-kottedzh
+	zemel-nyy-uchastok
+	garazh-ili-mashinomesto
+	kommercheskaya-nedvizhimost
+	nedvizhimost-za-rubezhom
+	*/
+
        }        
 
        return view("results")
