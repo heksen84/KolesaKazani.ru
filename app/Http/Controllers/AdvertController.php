@@ -85,10 +85,8 @@ class AdvertController extends Controller {
         $category       = $data["adv_category"];        
         $text           = $data["adv_info"];        
         $phone          = $data["adv_phone"];
-
         $subcategory    = $this->to_php_null($data["adv_subcategory"]);        
         $price          = $this->to_php_null($data["adv_price"]);
-        
         $region_id      = $data["region_id"];
         $city_id        = $data["city_id"];
                 
@@ -106,8 +104,7 @@ class AdvertController extends Controller {
             $advert->region_id       = $region_id;
             $advert->city_id         = $city_id;
             $advert->lang            = "ru";            
-            $advert->vip             = false;
-            $advert->full            = false;
+            $advert->vip             = false;            
 
             \Debugbar::info("advert->sub_category_id = ".$subcategory);
 
@@ -146,9 +143,7 @@ class AdvertController extends Controller {
                         $transport->customs             = $data["customs"];            // растаможка
 
                         // значение записи url в sitemap.xml
-                        $url_text = "Транспорт легковое авто";
-                        
-                        $advert->full = true; // полное объявление с моделями (в item будет указан вид сделки)
+                        $url_text = "Транспорт легковое авто";                                                
                     }                    
                     
                     // грузовой
@@ -265,13 +260,7 @@ class AdvertController extends Controller {
                     // Дом, Дача, Коттедж
                     if (isset($data["type_of_building"]))
                         $realestate->type_of_building = $this->to_php_null($data["type_of_building"]);
-
-                    // квартира
-                    /*if ( $data["property_type"]==0 ) {
-                        $advert->full = true; // полное объявление с хар-ками (в item будет указан вид сделки)
-                    }*/
                     
-                    $advert->full = true; // детальное объявление
 
                     $realestate->save();
 
@@ -339,21 +328,12 @@ class AdvertController extends Controller {
             else {
                 $advert->coord_lat = 0;
                 $advert->coord_lon = 0;
-            }
-
-            \Debugbar::info("id подкатегории :".$advert->sub_category_id);            
-            
+            }            
             
             $advert->public = true; // публикую объявление сходу                        
-            
-            \Debugbar::info("Prepare save");   
-
             $advert->save();  // СОХРАНЕНИЕ ОБЪЯВЛЕНИЯ
-
-            \Debugbar::info("Saved");            
             
-            // Закидываю данные в таблицу urls для SEO
-            $urls = new Urls();
+            $urls = new Urls(); // Закидываю данные в таблицу urls для SEO
 
             // url sitemap
             if (strlen($text) > 5)
