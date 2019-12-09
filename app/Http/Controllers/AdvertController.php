@@ -82,15 +82,15 @@ class AdvertController extends Controller {
             return response()->json( ["result"=>"usr.error", "msg" => $validator->errors()->first()] );                    
 
         $title          = $data["adv_title"];
-        $category       = $data["adv_category"];
-        $subcategory    = $data["adv_subcategory"];        
+        $category       = $data["adv_category"];        
         $text           = $data["adv_info"];        
         $phone          = $data["adv_phone"];
 
-        $price = $this->to_php_null($data["adv_price"]);
+        $subcategory    = $this->to_php_null($data["adv_subcategory"]);        
+        $price          = $this->to_php_null($data["adv_price"]);
         
-        $region_id = $data["region_id"];
-        $city_id = $data["city_id"];
+        $region_id      = $data["region_id"];
+        $city_id        = $data["city_id"];
                 
      	try {
      			
