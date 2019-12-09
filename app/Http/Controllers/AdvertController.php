@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-//use Illuminate\Support\Facades\Redis;
 use App\Helpers\Helper;
 use App\Helpers\Sitemap;
 use App\Adverts;
@@ -84,11 +83,13 @@ class AdvertController extends Controller {
         $title          = $data["adv_title"];
         $category       = $data["adv_category"];        
         $text           = $data["adv_info"];        
-        $phone          = $data["adv_phone"];
-        $subcategory    = $this->to_php_null($data["adv_subcategory"]);        
-        $price          = $this->to_php_null($data["adv_price"]);
+        $phone          = $data["adv_phone"];        
         $region_id      = $data["region_id"];
         $city_id        = $data["city_id"];
+
+        // поля которым требуется прведение типа null
+        $subcategory    = $this->to_php_null($data["adv_subcategory"]);        
+        $price          = $this->to_php_null($data["adv_price"]);
                 
      	try {
      			
