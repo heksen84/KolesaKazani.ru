@@ -87,7 +87,7 @@ class AdvertController extends Controller {
         $region_id      = $data["region_id"];
         $city_id        = $data["city_id"];
 
-        // поля которым требуется прведение типа null
+        // поля которым требуется приведение к типу null
         $subcategory    = $this->to_php_null($data["adv_subcategory"]);        
         $price          = $this->to_php_null($data["adv_price"]);
                 

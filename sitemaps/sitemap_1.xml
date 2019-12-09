@@ -1584,4 +1584,16 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/1-v-otlichnom-sosotoyanii</loc>
+    <lastmod>2019-12-09T14:58:38+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/2-ustal</loc>
+    <lastmod>2019-12-09T15:16:39+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

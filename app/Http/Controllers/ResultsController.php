@@ -21,7 +21,7 @@ class ResultsController extends Controller {
     public function getResultsByCountryForView(Request $request, $subcategory) {        
        
         $subcategoryId = SubCats::select("id")->where("url_ru", $subcategory)->get();                                    
-        $items = Adverts::select("id", "price", "text", "created_at")->where("subcategory_id", $subcategoryId)->get();
+        $items = Adverts::select("id", "title", "price", "text", "created_at")->where("subcategory_id", $subcategoryId[0]->id)->get();
         
         \Debugbar::info("субкатегория: ".$subcategory);       
         \Debugbar::info("id субкатегории: ".$subcategoryId);      
@@ -106,6 +106,12 @@ class ResultsController extends Controller {
 
        }        
 
-       return view("results")->with("title", $title)->with("description", $description)->with("keywords", $keywords)->with("items", $items)->with("itemsCount", count($items));		                        
+       return view("results")
+       ->with("title", $title)
+       ->with("description", $description)
+       ->with("keywords", $keywords)
+       ->with("items", $items)
+       ->with("itemsCount", count($items));	
+       	                        
     }
 }
