@@ -191,7 +191,8 @@ return [
     */
 
     'aliases' => [
-
+		
+        'ObsceneCensorRus' => \App\Helpers\ObsceneCensorRus::class,
         'Petrovich' => \App\Helpers\Petrovich\Petrovich::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
