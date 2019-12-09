@@ -38,7 +38,8 @@
                 @endforeach
             @endif
           </div>   
-        
+
+       @if ($itemsCount>10)  
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <br>    
         <ul class="pagination justify-content-center">
@@ -58,6 +59,7 @@
           </li>
         </ul>
       </div>
+      @endif
 
   </div>  
 </div>
