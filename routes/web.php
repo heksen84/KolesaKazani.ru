@@ -15,16 +15,16 @@ Route::get("api/getCarsModels", "JournalController@getCarsModels" );
 // -------------------------------------------------------------------------------
 // Результаты по категориям по всему Казахстану
 // -------------------------------------------------------------------------------
-Route::get("transport/{subcategory}",           "TransportResultsController@getTransportResultsByCountryForView");
-Route::get("nedvizhimost/{subcategory}", 	    "RealestateResultsController@getRealestateResultsByCountryForView");
-Route::get("elektronika/{subcategory}", 	    "ElektronikaResultsController@getTransportResultsByCountryForView");
-Route::get("rabota-i-biznes/{subcategory}", 	"Rabota-i-biznesResultsController@getTransportResultsByCountryForView");
-Route::get("dlya-doma-i-dachi/{subcategory}",	"Dlya-doma-i-dachiResultsController@getTransportResultsByCountryForView");
-Route::get("lichnye-veschi/{subcategory}", 	    "Lichnye-veschiResultsController@getTransportResultsByCountryForView");
-Route::get("zhivotnye/{subcategory}", 		    "ZhivotnyeResultsController@getTransportResultsByCountryForView");
-Route::get("hobbi-i-otdyh/{subcategory}", 	    "Hobbi-i-otdyhResultsController@getTransportResultsByCountryForView");
-Route::get("uslugi/{subcategory}", 		        "UslugiResultsController@getTransportResultsByCountryForView");
-Route::get("drugoe/{subcategory}", 		        "DrugoeResultsController@getTransportResultsByCountryForView");
+Route::get("transport/{subcategory}",           "ResultsController@getResultsByCountryForView");
+Route::get("nedvizhimost/{subcategory}", 	    "ResultsController@getResultsByCountryForView");
+Route::get("elektronika/{subcategory}", 	    "ResultsController@getResultsByCountryForView");
+Route::get("rabota-i-biznes/{subcategory}", 	"ResultsController@getResultsByCountryForView");
+Route::get("dlya-doma-i-dachi/{subcategory}",	"ResultsController@getResultsByCountryForView");
+Route::get("lichnye-veschi/{subcategory}", 	    "ResultsController@getResultsByCountryForView");
+Route::get("zhivotnye/{subcategory}", 		    "ResultsController@getResultsByCountryForView");
+Route::get("hobbi-i-otdyh/{subcategory}", 	    "ResultsController@getResultsByCountryForView");
+Route::get("uslugi/{subcategory}", 		        "ResultsController@getResultsByCountryForView");
+Route::get("drugoe/{subcategory}", 		        "ResultsController@getResultsByCountryForView");
 
 
 // Новое объявление
