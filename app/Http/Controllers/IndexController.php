@@ -28,7 +28,9 @@ class IndexController extends Controller {
     private function ShowIndexPage($region, $place) {
 
 //		\Debugbar::info(ObsceneCensorRus::getFiltered('мандавошка, но хорошая!'));
-		\Debugbar::info(ObsceneCensorRus::isAllowed('привет')?"чисто":"обнаружен мат");
+//		\Debugbar::info(ObsceneCensorRus::isAllowed('привет')?"чисто":"обнаружен мат");
+		\Debugbar::info(ObsceneCensorRus::isAllowed('наёбка')?"чисто":"обнаружен мат");
+		\Debugbar::info(ObsceneCensorRus::isAllowed('песня')?"чисто":"обнаружен мат");
 		
 		$sklonResult="";
 						
