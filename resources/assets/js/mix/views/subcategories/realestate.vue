@@ -4,7 +4,8 @@
           <div class="col-auto form-group">
             <label for="selected_type">Вид недвижимости:</label>
               <select id="selected_type" class="form-control" v-model="selected_type" @change="changeProperyType">                          
-                <option v-for="item in type" :value="item.value" :key="item.value">{{item.text}}</option>
+                <option value="null">-- Выберите вид недвижимости --</option>
+                <option v-for="item in realEstate_type" :value="item.id" :key="item.id">{{ item.name_ru }}</option>
               </select>
           </div>
 
@@ -53,7 +54,7 @@
 </template>
 
 <script>
-
+import { post, get, interceptors } from '../../../helpers/api'
 import superInput from "../components/superInput.vue"
 
 export default {
@@ -74,17 +75,15 @@ export default {
 
         object_type: [
           { value: 0, text: 'Вторичка' },
-          { value: 1, text: 'Новостройка' },
-         
+          { value: 1, text: 'Новостройка' }         
         ],
 
         property_rights: [
           { value: 0, text: 'Собственник' },
-          { value: 1, text: 'Посредник' },
-         
+          { value: 1, text: 'Посредник' }         
         ],
 
-        type: [
+        /*type: [
           { value: null, text: '-- Выберите вид недвижимости --' },
           { value: 0, text: 'Квартира' },
           { value: 1, text: 'Комната' },
@@ -93,7 +92,9 @@ export default {
           { value: 5, text: 'Гараж или машиноместо' },
           { value: 6, text: 'Коммерческая недвижимость' },
           { value: 7, text: 'Недвижимость за рубежом' }
-        ],
+        ],*/
+
+        realEstate_type: [],
 
         // модели для селектов
         selected_type_of_building: 0,
@@ -112,13 +113,18 @@ export default {
   // компонент создан
   created() {
 
-    this.realestate_chars = this.$root.advert_data; // указатель на массив объявления
-    
-    // значения недвижимости по умолчанию
+    this.realestate_chars = this.$root.advert_data; // указатель на массив объявления    
     this.selected_type = null;
     this.realestate_chars.property_type = null;
 
-    this.resetData();
+    // получить имена подкатегорий недвижимости
+    get("api/getSubCategoryNamesById?id=2").then((res) => {		                 
+        console.log(res.data)
+        this.realEstate_type = res.data;
+        this.resetData();
+      }).catch((err) => {        
+        console.log(err)
+    });    
 
   },
 
@@ -148,7 +154,7 @@ export default {
   
     // тип строения: дом, дача, коттедж
     changeTypeOfBuilding() {        
-        this.realestate_chars.type_of_building = this.selected_type_of_building;
+      this.realestate_chars.type_of_building = this.selected_type_of_building;
     },
 
     // --------------------------------
@@ -156,12 +162,11 @@ export default {
     // --------------------------------
     changeProperyType() {
 
-        console.log("Вид недвижимости: " + this.selected_type)        
-
+        console.log("Вид недвижимости: " + this.selected_type)     
+        
         this.resetData(); // обнуляю поля
-        
-        this.realestate_chars.property_type = this.selected_type;
-        
+        this.realestate_chars.adv_subcategory = this.selected_type; // inner_id            
+        this.realestate_chars.property_type = this.selected_type;      
         this.$store.commit("SetRealEstateAreaLabelText", "default");
         this.$store.commit("ShowFinalFields", true); // показываю дополнительные поля
      
@@ -171,51 +176,41 @@ export default {
             this.$store.commit("ShowFinalFields", false);
             break;
           }
-          case 0: {          
+          case 9: {          
             break;
           }
-          case 1: {
+          case 10: {
             break; 
           } 
-          case 2: {
+          case 11: {
             break; 
           }
-          case 3: {
+          case 12: {
             break; 
           }
-          case 4: { 
+          case 13: { 
             break; 
           }
-          case 5: { 
+          case 14: { 
             break; 
           }
-          case 6: { 
+          case 15: { 
             break; 
           }
-          case 7: { 
+          case 16: { 
             break; 
           }
-          case 8: { 
+          case 17: { 
             break; 
           }
         }
       },
 
-      changeFloor() {
-
-        //console.log(this.input_floor)
-
-        /*if (this.input_floor>this.input_number_of_floors)
-          this.input_floor=this.input_number_of_floors*/
-
+      changeFloor() {        
         this.realestate_chars.floor_num = this.input_floor;
       },
 
       changeNumberOfFloors() {                
-
-        /*if (this.input_number_of_floors<this.input_floor)
-          this.input_floor=this.input_number_of_floors*/
-
         this.realestate_chars.number_of_floors = this.input_number_of_floors;
       },
 

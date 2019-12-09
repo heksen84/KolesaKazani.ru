@@ -4,11 +4,12 @@
           <div class="col-auto form-group">
             <label for="transport_type">Вид транспорта:</label>
               <select id="transport_type" class="form-control" v-model="selected.type_transport" @change="selectTransportType">                          
-                <option v-for="item in type_transport" :value="item.value" :key="item.value">{{ item.text }}</option>
+                <option value="null" :key="null">-- Выберите вид транспорта --</option>
+                <option v-for="item in type_transport" :value="item.id" :key="item.id">{{ item.name_ru }}</option>
               </select>
           </div>                
 
-          <div class="col-auto form-group" v-if="selected.type_transport==0 && carmarkLoaded">          
+          <div class="col-auto form-group" v-if="selected.type_transport==1 && carmarkLoaded">          
             <label for="mark_type">Марка автомобиля:</label>
               <select id="mark_type" class="form-control" v-model="selected.carmark" @change="selectMark">
                 <option :value="null">-- Выберите марку --</option>
@@ -16,7 +17,7 @@
               </select>          
           </div>
 
-          <div class="col-auto form-group" v-if="selected.carmark!=null && selected.type_transport==0">
+          <div class="col-auto form-group" v-if="selected.carmark!=null && selected.type_transport==1">
               <label for="mark_type">Модель:</label>
                 <select id="mark_type" class="form-control" v-model="selected.model" @change="selectModel">                          
                   <option :value="null">-- Выберите модель --</option>
@@ -26,10 +27,8 @@
 
           </div>      
 
-          <div class="row">            
-            
-            <!--<div class="col-auto form-group" v-if="getComTransport && selected.type_transport!=2 && selected.model!=null">-->
-            <div class="col-auto form-group" v-if="getComTransport && selected.type_transport!=2">
+          <div class="row">                        
+            <div class="col-auto form-group" v-if="getComTransport && selected.type_transport!=3">
               <label for="helm_position">Положение руля:</label>
                 <select id="helm_position" class="form-control" v-model="selected.helm_position" @change="SetHelmPosition">                                        
                   <option :value="null">-- Выберите положение руля --</option>
@@ -138,12 +137,19 @@ export default {
 
     this.transport_chars = this.$root.advert_data;
     
-    // значения по умолчанию
+    // значения по умолчанию    
     this.transport_chars.rule_position   = 0;
     this.transport_chars.fuel_type       = 0;
     this.transport_chars.customs         = 1;
     this.transport_chars.release_date    = null;
     this.transport_chars.mileage         = null;
+
+    get("api/getSubCategoryNamesById?id=1").then((res) => {		 
+        this.type_transport = res.data;
+        console.log(res.data)
+      }).catch((err) => {        
+        console.log(err)
+    });
 
   },
   
@@ -151,7 +157,7 @@ export default {
     
     // категории транспорта
     getComTransport() { 
-      return [0,1,2,4].indexOf(this.selected.type_transport) != -1 && this.selected.type_transport!=null && this.$store.state.show_common_transport;      
+      return [1,2,3,5].indexOf(this.selected.type_transport) != -1 && this.selected.type_transport!=null && this.$store.state.show_common_transport;      
     }
 
   },
@@ -160,7 +166,6 @@ export default {
 
     // сброс дополнительных полей
     resetFields() {
-
       this.selected.carmark = null;
       this.selected.model = null
       this.selected.helm_position = null;
@@ -173,9 +178,7 @@ export default {
       this.transport_chars.fuel_type      = null;     
       this.transport_chars.release_date   = null;     
       this.transport_chars.mileage        = null;     
-      this.transport_chars.customs        = null;        
-
-      // ---
+      this.transport_chars.customs        = null;
     },
     
     /*
@@ -186,17 +189,20 @@ export default {
 
       console.log("Тип транспорта: "+this.selected.type_transport)
 
-      //this.$store.commit("SetRequiredInfo", true);
+      this.transport_chars.adv_subcategory = this.selected.type_transport; // inner_id
+
       this.$store.commit("ResetField", "price");      
       this.$store.commit("SetInfoLabelDescription", "default");       
             
       this.resetFields();
       
-      if (this.selected.type_transport==null) {
+      if (this.selected.type_transport==null) 
+      {
         this.$store.commit("ShowCommonTransport", false);
         this.$store.commit("ShowFinalFields", false);               
       }      
-      else {
+      else 
+      {
         this.$store.commit("ShowCommonTransport", true);
         this.$store.commit("ShowFinalFields", true);       
       }
@@ -209,15 +215,15 @@ export default {
       switch(this.selected.type_transport) {
                 
         // легковой транспорт
-        case 0: {
-
+        case 1: {
+          
           this.$store.commit("ShowCommonTransport", false);                    
           this.carmark=[];
                       
           // запрос: получить марки автомобилей
           get("api/getCarsMarks").then((res) => {            
             this.carmark = res.data;
-            this.carmarkLoaded=true;
+            this.carmarkLoaded = true;
           }).catch((err) => { 
             console.log(err); 
           });
@@ -226,44 +232,44 @@ export default {
        }
 
       // грузовой транспорт
-        case 1: {            
+      case 2: {            
           break;
        }
 
       // мототехника
-       case 2: {
+      case 3: {
           this.$store.commit("ShowFinalFields", true);                                                                          
           break;
        }
 
       // спецтехника
-       case 3: {            
+      case 4: {            
           this.$store.commit("ShowFinalFields", true);                                                              
           break;
        }
 
-       // ретроавто
-       case 4: {            
+       // ретро авто
+      case 5: {            
           break;
        }
       
       // водный транспорт
-       case 5: {            
+      case 6: {            
           this.$store.commit("ShowFinalFields", true);                                                                        
           break;
        }
 
       // велосипеды
-       case 6: {            
+      case 7: {            
           this.$store.commit("ShowFinalFields", true);                                                                             
           break;
        }
 
       // воздушный транспорт
-      case 7: {            
+      case 8: {            
           this.$store.commit("ShowFinalFields", true);                                                                                 
           break;
-      }
+        }
              
       }
     },

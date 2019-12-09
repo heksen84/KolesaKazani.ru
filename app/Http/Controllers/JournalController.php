@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\SubCats;
 use App\CarMark;
 use App\Places;
+use DB;
 
 class JournalController extends Controller {
 

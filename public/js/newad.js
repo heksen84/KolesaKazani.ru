@@ -2541,8 +2541,10 @@ function forEach(data, callback) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_superInput_vue__ = __webpack_require__("./resources/assets/js/mix/views/components/superInput.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_superInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_superInput_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_superInput_vue__ = __webpack_require__("./resources/assets/js/mix/views/components/superInput.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_superInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_superInput_vue__);
+//
 //
 //
 //
@@ -2603,7 +2605,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  components: { superInput: __WEBPACK_IMPORTED_MODULE_0__components_superInput_vue___default.a },
+  components: { superInput: __WEBPACK_IMPORTED_MODULE_1__components_superInput_vue___default.a },
 
   data: function data() {
     return {
@@ -2616,7 +2618,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       property_rights: [{ value: 0, text: 'Собственник' }, { value: 1, text: 'Посредник' }],
 
-      type: [{ value: null, text: '-- Выберите вид недвижимости --' }, { value: 0, text: 'Квартира' }, { value: 1, text: 'Комната' }, { value: 2, text: 'Дом, дача, коттедж' }, { value: 3, text: 'Земельный участок' }, { value: 5, text: 'Гараж или машиноместо' }, { value: 6, text: 'Коммерческая недвижимость' }, { value: 7, text: 'Недвижимость за рубежом' }],
+      /*type: [
+        { value: null, text: '-- Выберите вид недвижимости --' },
+        { value: 0, text: 'Квартира' },
+        { value: 1, text: 'Комната' },
+        { value: 2, text: 'Дом, дача, коттедж' },
+        { value: 3, text: 'Земельный участок' },
+        { value: 5, text: 'Гараж или машиноместо' },
+        { value: 6, text: 'Коммерческая недвижимость' },
+        { value: 7, text: 'Недвижимость за рубежом' }
+      ],*/
+
+      realEstate_type: [],
 
       // модели для селектов
       selected_type_of_building: 0,
@@ -2635,14 +2648,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   // компонент создан
   created: function created() {
+    var _this = this;
 
-    this.realestate_chars = this.$root.advert_data; // указатель на массив объявления
-
-    // значения недвижимости по умолчанию
+    this.realestate_chars = this.$root.advert_data; // указатель на массив объявления    
     this.selected_type = null;
     this.realestate_chars.property_type = null;
 
-    this.resetData();
+    // получить имена подкатегорий недвижимости
+    Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("api/getSubCategoryNamesById?id=2").then(function (res) {
+      console.log(res.data);
+      _this.realEstate_type = res.data;
+      _this.resetData();
+    }).catch(function (err) {
+      console.log(err);
+    });
   },
 
 
@@ -2682,9 +2701,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       console.log("Вид недвижимости: " + this.selected_type);
 
       this.resetData(); // обнуляю поля
-
+      this.realestate_chars.adv_subcategory = this.selected_type; // inner_id            
       this.realestate_chars.property_type = this.selected_type;
-
       this.$store.commit("SetRealEstateAreaLabelText", "default");
       this.$store.commit("ShowFinalFields", true); // показываю дополнительные поля
 
@@ -2695,58 +2713,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$store.commit("ShowFinalFields", false);
             break;
           }
-        case 0:
+        case 9:
           {
             break;
           }
-        case 1:
+        case 10:
           {
             break;
           }
-        case 2:
+        case 11:
           {
             break;
           }
-        case 3:
+        case 12:
           {
             break;
           }
-        case 4:
+        case 13:
           {
             break;
           }
-        case 5:
+        case 14:
           {
             break;
           }
-        case 6:
+        case 15:
           {
             break;
           }
-        case 7:
+        case 16:
           {
             break;
           }
-        case 8:
+        case 17:
           {
             break;
           }
       }
     },
     changeFloor: function changeFloor() {
-
-      //console.log(this.input_floor)
-
-      /*if (this.input_floor>this.input_number_of_floors)
-        this.input_floor=this.input_number_of_floors*/
-
       this.realestate_chars.floor_num = this.input_floor;
     },
     changeNumberOfFloors: function changeNumberOfFloors() {
-
-      /*if (this.input_number_of_floors<this.input_floor)
-        this.input_floor=this.input_number_of_floors*/
-
       this.realestate_chars.number_of_floors = this.input_number_of_floors;
     },
     changeNumberOfRooms: function changeNumberOfRooms() {
@@ -2774,7 +2782,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_superInput_vue__ = __webpack_require__("./resources/assets/js/mix/views/components/superInput.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_superInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_superInput_vue__);
-//
 //
 //
 //
@@ -2902,15 +2909,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   // компонент создан
   created: function created() {
+    var _this = this;
 
     this.transport_chars = this.$root.advert_data;
 
-    // значения по умолчанию
+    // значения по умолчанию    
     this.transport_chars.rule_position = 0;
     this.transport_chars.fuel_type = 0;
     this.transport_chars.customs = 1;
     this.transport_chars.release_date = null;
     this.transport_chars.mileage = null;
+
+    Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("api/getSubCategoryNamesById?id=1").then(function (res) {
+      _this.type_transport = res.data;
+      console.log(res.data);
+    }).catch(function (err) {
+      console.log(err);
+    });
   },
 
 
@@ -2918,7 +2933,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     // категории транспорта
     getComTransport: function getComTransport() {
-      return [0, 1, 2, 4].indexOf(this.selected.type_transport) != -1 && this.selected.type_transport != null && this.$store.state.show_common_transport;
+      return [1, 2, 3, 5].indexOf(this.selected.type_transport) != -1 && this.selected.type_transport != null && this.$store.state.show_common_transport;
     }
   },
 
@@ -2926,7 +2941,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     // сброс дополнительных полей
     resetFields: function resetFields() {
-
       this.selected.carmark = null;
       this.selected.model = null;
       this.selected.helm_position = null;
@@ -2939,8 +2953,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.transport_chars.release_date = null;
       this.transport_chars.mileage = null;
       this.transport_chars.customs = null;
-
-      // ---
     },
 
 
@@ -2949,11 +2961,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       Вид транспорта
     -----------------------------------*/
     selectTransportType: function selectTransportType() {
-      var _this = this;
+      var _this2 = this;
 
       console.log("Тип транспорта: " + this.selected.type_transport);
 
-      //this.$store.commit("SetRequiredInfo", true);
+      this.transport_chars.adv_subcategory = this.selected.type_transport; // inner_id
+
       this.$store.commit("ResetField", "price");
       this.$store.commit("SetInfoLabelDescription", "default");
 
@@ -2975,7 +2988,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       switch (this.selected.type_transport) {
 
         // легковой транспорт
-        case 0:
+        case 1:
           {
 
             this.$store.commit("ShowCommonTransport", false);
@@ -2983,8 +2996,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             // запрос: получить марки автомобилей
             Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("api/getCarsMarks").then(function (res) {
-              _this.carmark = res.data;
-              _this.carmarkLoaded = true;
+              _this2.carmark = res.data;
+              _this2.carmarkLoaded = true;
             }).catch(function (err) {
               console.log(err);
             });
@@ -2993,47 +3006,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
 
         // грузовой транспорт
-        case 1:
+        case 2:
           {
             break;
           }
 
         // мототехника
-        case 2:
-          {
-            this.$store.commit("ShowFinalFields", true);
-            break;
-          }
-
-        // спецтехника
         case 3:
           {
             this.$store.commit("ShowFinalFields", true);
             break;
           }
 
-        // ретроавто
+        // спецтехника
         case 4:
-          {
-            break;
-          }
-
-        // водный транспорт
-        case 5:
           {
             this.$store.commit("ShowFinalFields", true);
             break;
           }
 
-        // велосипеды
+        // ретро авто
+        case 5:
+          {
+            break;
+          }
+
+        // водный транспорт
         case 6:
           {
             this.$store.commit("ShowFinalFields", true);
             break;
           }
 
-        // воздушный транспорт
+        // велосипеды
         case 7:
+          {
+            this.$store.commit("ShowFinalFields", true);
+            break;
+          }
+
+        // воздушный транспорт
+        case 8:
           {
             this.$store.commit("ShowFinalFields", true);
             break;
@@ -3047,7 +3060,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // change марки
     // ------------------------------------------------
     selectMark: function selectMark() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.$store.commit("ShowCommonTransport", false);
       this.$store.commit("ShowFinalFields", false);
@@ -3059,9 +3072,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // запрос
       Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["a" /* get */])("api/getCarsModels?mark_id=" + this.selected.carmark).then(function (res) {
 
-        _this2.models = [];
-        _this2.models = res.data;
-        _this2.selected.model = null;
+        _this3.models = [];
+        _this3.models = res.data;
+        _this3.selected.model = null;
       }).catch(function (err) {
         console.log(err);
       });
@@ -39314,18 +39327,24 @@ var render = function() {
               ]
             }
           },
-          _vm._l(_vm.type_transport, function(item) {
-            return _c(
-              "option",
-              { key: item.value, domProps: { value: item.value } },
-              [_vm._v(_vm._s(item.text))]
-            )
-          }),
-          0
+          [
+            _c("option", { key: null, attrs: { value: "null" } }, [
+              _vm._v("-- Выберите вид транспорта --")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.type_transport, function(item) {
+              return _c(
+                "option",
+                { key: item.id, domProps: { value: item.id } },
+                [_vm._v(_vm._s(item.name_ru))]
+              )
+            })
+          ],
+          2
         )
       ]),
       _vm._v(" "),
-      _vm.selected.type_transport == 0 && _vm.carmarkLoaded
+      _vm.selected.type_transport == 1 && _vm.carmarkLoaded
         ? _c("div", { staticClass: "col-auto form-group" }, [
             _c("label", { attrs: { for: "mark_type" } }, [
               _vm._v("Марка автомобиля:")
@@ -39388,7 +39407,7 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _vm.selected.carmark != null && _vm.selected.type_transport == 0
+      _vm.selected.carmark != null && _vm.selected.type_transport == 1
         ? _c("div", { staticClass: "col-auto form-group" }, [
             _c("label", { attrs: { for: "mark_type" } }, [_vm._v("Модель:")]),
             _vm._v(" "),
@@ -39451,7 +39470,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _vm.getComTransport && _vm.selected.type_transport != 2
+      _vm.getComTransport && _vm.selected.type_transport != 3
         ? _c("div", { staticClass: "col-auto form-group" }, [
             _c("label", { attrs: { for: "helm_position" } }, [
               _vm._v("Положение руля:")
@@ -40852,14 +40871,20 @@ var render = function() {
               ]
             }
           },
-          _vm._l(_vm.type, function(item) {
-            return _c(
-              "option",
-              { key: item.value, domProps: { value: item.value } },
-              [_vm._v(_vm._s(item.text))]
-            )
-          }),
-          0
+          [
+            _c("option", { attrs: { value: "null" } }, [
+              _vm._v("-- Выберите вид недвижимости --")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.realEstate_type, function(item) {
+              return _c(
+                "option",
+                { key: item.id, domProps: { value: item.id } },
+                [_vm._v(_vm._s(item.name_ru))]
+              )
+            })
+          ],
+          2
         )
       ]),
       _vm._v(" "),
