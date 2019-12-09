@@ -1596,4 +1596,10 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/3-uyutnaya-i-chistaya</loc>
+    <lastmod>2019-12-09T16:31:40+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

@@ -104,6 +104,15 @@ class ResultsController extends Controller {
 	        break;
          }         
 
+	 case "kvartira":  {
+
+            $title="Покупка, продажа, обмен и сдача в аренду квартир в Казахстане";
+            $description = "";
+            $keywords = "";            
+
+	        break;
+	 }
+
        }        
 
        return view("results")
