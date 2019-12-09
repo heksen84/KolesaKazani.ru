@@ -33,8 +33,8 @@ class ResultsController extends Controller {
         // ЛЕГКОВОЕ АВТО
         case "legkovoy-avtomobil": {
 
-            $title="Покупка, продажа, обмен и сдача в аренду легкового авто в Казахстане";
-            $description = "";
+            $title="Легковое авто";
+            $description = "Покупка, продажа, обмен и сдача в аренду легкового авто в Казахстане";
             $keywords = "";            
 
 	        break;
@@ -43,8 +43,8 @@ class ResultsController extends Controller {
          // ГРУЗОВОЕ АВТО
          case "gruzovoy-avtomobil": {            
 
-            $title="Покупка, продажа, обмен и сдача в аренду грузового авто в Казахстане";
-            $description = "";
+            $title="Грузовое авто";
+            $description = "Покупка, продажа, обмен и сдача в аренду грузового авто в Казахстане";
             $keywords = "";            
 
 	        break;
@@ -52,8 +52,8 @@ class ResultsController extends Controller {
 
          case "mototehnika": {
 
-            $title="Покупка, продажа, обмен и сдача в аренду мототехники в Казахстане";
-            $description = "";
+            $title="Мототехника";
+            $description = "Покупка, продажа, обмен и сдача в аренду мототехники в Казахстане";
             $keywords = "";            
 
 	        break;
