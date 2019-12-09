@@ -10,15 +10,6 @@
 export default {
   
   props: ["index", "value", "name", "type", "placeholder", "maxlength", "id"],
-
-/*
-  data () {
-    return 	{}
-  },
-
-  created() {},
-
-*/
     
   // перехватчик
   computed: {
@@ -40,7 +31,6 @@ export default {
     inputHandler(e) {
 
       const newValue = e.target.value;
-      //const numericPattern = /^-{0,1}\d*(\.\d*)*$/i;            
       const numericPattern = /^[0-9]*$/;
 
       switch(this.type) {

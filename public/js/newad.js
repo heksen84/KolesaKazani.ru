@@ -1744,15 +1744,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   props: ["index", "value", "name", "type", "placeholder", "maxlength", "id"],
 
-  /*
-    data () {
-      return 	{}
-    },
-  
-    created() {},
-  
-  */
-
   // перехватчик
   computed: {
 
@@ -1775,7 +1766,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     inputHandler: function inputHandler(e) {
 
       var newValue = e.target.value;
-      //const numericPattern = /^-{0,1}\d*(\.\d*)*$/i;            
       var numericPattern = /^[0-9]*$/;
 
       switch (this.type) {
