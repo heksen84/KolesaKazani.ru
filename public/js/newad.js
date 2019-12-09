@@ -2930,7 +2930,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.selected.fuel_type = null;
       this.selected.car_customs = null;
       this.release_date = null, this.mileage = null;
-
       this.transport_chars.rule_position = null;
       this.transport_chars.fuel_type = null;
       this.transport_chars.release_date = null;
