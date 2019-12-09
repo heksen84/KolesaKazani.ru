@@ -2732,18 +2732,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           {
             break;
           }
-        case 15:
-          {
-            break;
-          }
-        case 16:
-          {
-            break;
-          }
-        case 17:
-          {
-            break;
-          }
       }
     },
     changeFloor: function changeFloor() {
