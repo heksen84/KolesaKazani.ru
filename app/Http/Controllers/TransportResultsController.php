@@ -29,7 +29,9 @@ class TransportResultsController extends Controller
        \Debugbar::info("субкатегория: ".$subcategory);       
        \Debugbar::info("id субкатегории: ".$subcategoryId);      
               
-        $items = DB::select("SELECT adv.id, adv.price, adv.text FROM `adverts` AS adv");
+        ///$items = DB::select("SELECT adv.id, adv.price, adv.text FROM `adverts` AS adv")->where("subcategory_id", $subcategoryId)->get();
+        $items = Adverts::select("id", "price", "text", "created_at")->where("subcategory_id", $subcategoryId)->get();
+        \Debugbar::info($items);
 
         // adverts: categoryId, subCategoryId, subCategoryInnerId,
         // where subCategoryId = ...
@@ -79,7 +81,7 @@ class TransportResultsController extends Controller
 
        }        
 
-       return view("results")->with("title", $title)->with("description", $description)->with("keywords", $keywords)->with("items", [])->with("itemsCount", 0);
+       return view("results")->with("title", $title)->with("description", $description)->with("keywords", $keywords)->with("items", $items)->with("itemsCount", count($items));
 		                        
     }
 

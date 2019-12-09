@@ -218,7 +218,6 @@ class AdvertController extends Controller {
                         $transport->engine_type     = $this->to_php_null($data["fuel_type"]);          // тип движка
                         $transport->customs         = $this->to_php_null($data["customs"]);            // растаможка
 
-
                         // значение записи url в sitemap.xml
                         $url_text = "Транспорт велосипед";
                     }
