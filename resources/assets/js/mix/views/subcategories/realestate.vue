@@ -1,5 +1,13 @@
 <template>
   <div>
+      <!--
+        0/9
+        1/10
+        2/11
+        3/12
+        5/13
+        6/14
+      -->
     <div class="row">
           <div class="col-auto form-group">
             <label for="selected_type">Вид недвижимости:</label>
@@ -9,24 +17,24 @@
               </select>
           </div>
 
-          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=0 && selected_type!=1 && selected_type!=3 && selected_type!=5">
+          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=9 && selected_type!=10 && selected_type!=12 && selected_type!=13">
             <label for="type_of_building">Вид строения:</label>
               <select id="type_of_building" class="form-control" v-model="selected_type_of_building" @change="changeTypeOfBuilding">                          
                 <option v-for="item in type_of_building" :value="item.value" :key="item.value">{{ item.text }}</option>
               </select>
           </div>
 
-          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=2 && selected_type!=3 && selected_type!=5">
+          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=11 && selected_type!=12 && selected_type!=13">
             <label>Этаж:</label>
             <superInput type="number" v-model="input_floor" maxlength="3" @input="changeFloor"></superInput>
           </div>
 
-          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=2 && selected_type!=2 && selected_type!=3 && selected_type!=5">
+          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=11 && selected_type!=12 && selected_type!=13">
             <label>Кол-во этажей:</label>
             <superInput type="number" v-model="input_number_of_floors" maxlength="3" @input="changeNumberOfFloors"></superInput>
           </div>
 
-          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=1 && selected_type!=3 && selected_type!=5">
+          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=10 && selected_type!=12 && selected_type!=13">
             <label>Кол-во комнат:</label>
               <superInput type="number" v-model="input_number_of_rooms" maxlength="2" @input="changeNumberOfRooms"></superInput>
           </div>
@@ -43,7 +51,7 @@
               </select>
           </div>
 
-          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=1 && selected_type!=3 && selected_type!=5">
+          <div class="col-auto form-group" v-if="selected_type!=null && selected_type!=10 && selected_type!=12 && selected_type!=13">
             <label>Вид объекта:</label>
               <select class="form-control" v-model="selected_object_type" @change="changeObjectType">                          
                 <option v-for="item in object_type" :value="item.value" :key="item.value">{{ item.text }}</option>
@@ -52,11 +60,9 @@
       </div>
   </div>
 </template>
-
 <script>
 import { post, get, interceptors } from '../../../helpers/api'
 import superInput from "../components/superInput.vue"
-
 export default {
 
   components: { superInput },
@@ -82,17 +88,6 @@ export default {
           { value: 0, text: 'Собственник' },
           { value: 1, text: 'Посредник' }         
         ],
-
-        /*type: [
-          { value: null, text: '-- Выберите вид недвижимости --' },
-          { value: 0, text: 'Квартира' },
-          { value: 1, text: 'Комната' },
-          { value: 2, text: 'Дом, дача, коттедж' },
-          { value: 3, text: 'Земельный участок' },
-          { value: 5, text: 'Гараж или машиноместо' },
-          { value: 6, text: 'Коммерческая недвижимость' },
-          { value: 7, text: 'Недвижимость за рубежом' }
-        ],*/
 
         realEstate_type: [],
 

@@ -2599,7 +2599,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2617,17 +2623,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       object_type: [{ value: 0, text: 'Вторичка' }, { value: 1, text: 'Новостройка' }],
 
       property_rights: [{ value: 0, text: 'Собственник' }, { value: 1, text: 'Посредник' }],
-
-      /*type: [
-        { value: null, text: '-- Выберите вид недвижимости --' },
-        { value: 0, text: 'Квартира' },
-        { value: 1, text: 'Комната' },
-        { value: 2, text: 'Дом, дача, коттедж' },
-        { value: 3, text: 'Земельный участок' },
-        { value: 5, text: 'Гараж или машиноместо' },
-        { value: 6, text: 'Коммерческая недвижимость' },
-        { value: 7, text: 'Недвижимость за рубежом' }
-      ],*/
 
       realEstate_type: [],
 
@@ -40889,10 +40884,10 @@ var render = function() {
       ]),
       _vm._v(" "),
       _vm.selected_type != null &&
-      _vm.selected_type != 0 &&
-      _vm.selected_type != 1 &&
-      _vm.selected_type != 3 &&
-      _vm.selected_type != 5
+      _vm.selected_type != 9 &&
+      _vm.selected_type != 10 &&
+      _vm.selected_type != 12 &&
+      _vm.selected_type != 13
         ? _c("div", { staticClass: "col-auto form-group" }, [
             _c("label", { attrs: { for: "type_of_building" } }, [
               _vm._v("Вид строения:")
@@ -40943,9 +40938,9 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm.selected_type != null &&
-      _vm.selected_type != 2 &&
-      _vm.selected_type != 3 &&
-      _vm.selected_type != 5
+      _vm.selected_type != 11 &&
+      _vm.selected_type != 12 &&
+      _vm.selected_type != 13
         ? _c(
             "div",
             { staticClass: "col-auto form-group" },
@@ -40969,10 +40964,9 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm.selected_type != null &&
-      _vm.selected_type != 2 &&
-      _vm.selected_type != 2 &&
-      _vm.selected_type != 3 &&
-      _vm.selected_type != 5
+      _vm.selected_type != 11 &&
+      _vm.selected_type != 12 &&
+      _vm.selected_type != 13
         ? _c(
             "div",
             { staticClass: "col-auto form-group" },
@@ -40996,9 +40990,9 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm.selected_type != null &&
-      _vm.selected_type != 1 &&
-      _vm.selected_type != 3 &&
-      _vm.selected_type != 5
+      _vm.selected_type != 10 &&
+      _vm.selected_type != 12 &&
+      _vm.selected_type != 13
         ? _c(
             "div",
             { staticClass: "col-auto form-group" },
@@ -41092,9 +41086,9 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm.selected_type != null &&
-      _vm.selected_type != 1 &&
-      _vm.selected_type != 3 &&
-      _vm.selected_type != 5
+      _vm.selected_type != 10 &&
+      _vm.selected_type != 12 &&
+      _vm.selected_type != 13
         ? _c("div", { staticClass: "col-auto form-group" }, [
             _c("label", [_vm._v("Вид объекта:")]),
             _vm._v(" "),
