@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\ObsceneCensorRus;
@@ -100,8 +98,7 @@ class AdvertController extends Controller {
         $subcategory = $this->to_php_null($data["adv_subcategory"]);        
         $price       = $this->to_php_null($data["adv_price"]);
                 
-     	try {
-     			
+     	try {     			
             $advert = new Adverts();
 
      		$advert->user_id         = Auth::id();
@@ -258,6 +255,7 @@ class AdvertController extends Controller {
                 case 2: {
 
                     $realestate = new RealEstate();
+
                     $realestate->property_type  = $this->to_php_null($data["property_type"]);
                     $realestate->floor          = $this->to_php_null($data["floor_num"]);
                     $realestate->floors_house   = $this->to_php_null($data["number_of_floors"]);
@@ -324,18 +322,15 @@ class AdvertController extends Controller {
                 }
 
             }
-            
-            // ------------------------------
-            // координаты
-            // ------------------------------
+                        
+            // координаты            
             if (isset($data["adv_coords"])) {
                 $coords = explode(",", $data["adv_coords"]);
                 $advert->coord_lat = $coords[0];
                 $advert->coord_lon = $coords[1];
                 \Debugbar::info($coords);
             }
-            else 
-            {
+            else {
                 $advert->coord_lat = 0;
                 $advert->coord_lon = 0;
             }            
@@ -346,7 +341,7 @@ class AdvertController extends Controller {
             $urls = new Urls(); // Закидываю данные в таблицу urls для SEO
 
             // url sitemap
-            if (strlen($text) > 5)
+            if (strlen($text) > 5) 
                 $url_text = $text;
             
             $urls->url = substr($advert->id."-".Helper::str2url($url_text), 0, 100);
@@ -356,20 +351,8 @@ class AdvertController extends Controller {
             // Сохраняю картинки        
             \App\Jobs\loadImages::dispatch($request, $advert->id);
             
-
-	    // --------------------------------------
-	    // Определяю теги категории:
-	    // Например транспорт
-	    // --------------------------------------
-	    // tag, advert_id
-	    // --------------------------------------
-	    // Авто,   134
-	    // Тойота, 134
-	    // Камри,  134
-            
-        Sitemap::addUrl($urls->url);
-
-        return $advert->id;        
+            Sitemap::addUrl($urls->url);
+            return $advert->id;
         }		
         
         catch(\Exception $e) {
@@ -378,7 +361,5 @@ class AdvertController extends Controller {
      	
      	return $data;
     }
-
-    
     
 }
