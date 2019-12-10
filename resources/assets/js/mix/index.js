@@ -83,7 +83,7 @@ export default new Vue ({
     
     e.preventDefault();
 
-    if (this.searchString=="about::author") {      
+    if (this.searchString==="about::author") {      
       window.location = "https://moikrug.ru/heksen";
     }
 

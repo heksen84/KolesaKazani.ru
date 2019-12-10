@@ -51022,7 +51022,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
       e.preventDefault();
 
-      if (this.searchString == "about::author") {
+      if (this.searchString === "about::author") {
         window.location = "https://moikrug.ru/heksen";
       }
     },
