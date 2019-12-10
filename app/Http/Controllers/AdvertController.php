@@ -19,6 +19,7 @@ use DB;
 
 class AdvertController extends Controller {
 
+    
     // js "null" в php null
     private function to_php_null($value) {
         return ($value==="null")?null:$value;
@@ -44,8 +45,7 @@ class AdvertController extends Controller {
         $data = $request->all();
     
         \Debugbar::info("----[ Входящие данные ]----");
-        \Debugbar::info($data);
-        \Debugbar::info("---------------------------");
+        \Debugbar::info($data);        
 
         // ---------------------------
         // правила валидации
@@ -78,27 +78,27 @@ class AdvertController extends Controller {
         $validator = Validator::make( $data, $rules, $messages );
 
         // если проверка не прошла
-        if ( $validator->fails() )  
+        if ( $validator->fails() ) { 
             return response()->json( ["result"=>"usr.error", "msg" => $validator->errors()->first()] );                    
+        }
 
-        $title          = $data["adv_title"];
-        $category       = $data["adv_category"];        
-        $text           = $data["adv_info"];        
-        $phone          = $data["adv_phone"];        
-        $region_id      = $data["region_id"];
-        $city_id        = $data["city_id"];
+        $title      = $data["adv_title"];
+        $category   = $data["adv_category"];        
+        $text       = $data["adv_info"];        
+        $phone      = $data["adv_phone"];        
+        $region_id  = $data["region_id"];
+        $city_id    = $data["city_id"];
 
-
-        \Debugbar::info(ObsceneCensorRus::isAllowed($title)?"чисто":"обнаружен мат");
-		\Debugbar::info(ObsceneCensorRus::isAllowed($text)?"чисто":"обнаружен мат");
+        //\Debugbar::info(ObsceneCensorRus::isAllowed($title)?"чисто":"обнаружен мат");
+		//\Debugbar::info(ObsceneCensorRus::isAllowed($text)?"чисто":"обнаружен мат");
 
         if (!ObsceneCensorRus::isAllowed($title) || !ObsceneCensorRus::isAllowed($text)) {
             return response()->json( ["result"=>"usr.error", "msg" => "Отклонено"] );
         }
 
         // поля которым требуется приведение к типу null
-        $subcategory    = $this->to_php_null($data["adv_subcategory"]);        
-        $price          = $this->to_php_null($data["adv_price"]);
+        $subcategory = $this->to_php_null($data["adv_subcategory"]);        
+        $price       = $this->to_php_null($data["adv_price"]);
                 
      	try {
      			
@@ -334,7 +334,8 @@ class AdvertController extends Controller {
                 $advert->coord_lon = $coords[1];
                 \Debugbar::info($coords);
             }
-            else {
+            else 
+            {
                 $advert->coord_lat = 0;
                 $advert->coord_lon = 0;
             }            
