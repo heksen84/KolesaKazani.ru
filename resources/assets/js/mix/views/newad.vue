@@ -623,13 +623,11 @@ changeCategory() {
 onSubmit(evt) {
 
   evt.preventDefault();
-
   // объект формы
   let formData = new FormData();
-	
 	// записываю значения полей
-	forEach(this.$root.advert_data, function(key, value) { formData.append(key, value); })
-
+  forEach(this.$root.advert_data, function(key, value) { formData.append(key, value); })
+  
 	// Записываю изображения
 	for( let i=0; i < this.real_images.length; i++ )
       formData.append('images['+i+']', this.real_images[i]);		

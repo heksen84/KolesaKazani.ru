@@ -2462,10 +2462,8 @@ function forEach(data, callback) {
       var _this3 = this;
 
       evt.preventDefault();
-
       // объект формы
       var formData = new FormData();
-
       // записываю значения полей
       forEach(this.$root.advert_data, function (key, value) {
         formData.append(key, value);
