@@ -1608,4 +1608,16 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/4-blya</loc>
+    <lastmod>2019-12-10T11:30:58+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/5-</loc>
+    <lastmod>2019-12-10T11:38:09+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

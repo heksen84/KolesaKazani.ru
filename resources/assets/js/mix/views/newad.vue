@@ -8,14 +8,14 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 v-show="!serviceUnavailable" class="modal-title" id="exampleModalLabel">Расположение</h5>          
-          <b v-show="serviceUnavailable" class="modal-title" id="exampleModalLabel">Cервис временно не доступен</b>
+          <!--<b v-show="serviceUnavailable" class="modal-title" id="exampleModalLabel">Cервис временно не доступен</b>-->
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div v-show="!serviceUnavailable" id="bigmap" style="width: 100%; height: 300px"></div>
-          <p v-show="serviceUnavailable" class="alert-heading">повторите позже</p>
+          <p v-show="serviceUnavailable" class="alert-heading">{{ errorMsg }}</p>
         </div>
         <div class="modal-footer" v-show="!serviceUnavailable">          
           <button type="button" class="btn btn-primary margin-auto" @click="setCoords">Сохранить</button>          
@@ -286,6 +286,7 @@ components: {
 
 data () {
   return 	{
+  errorMsg: "повторите позже",
   title: "",
   serviceUnavailable: false,
   subCategoryItems: [],    
@@ -643,8 +644,10 @@ onSubmit(evt) {
     if (response.data.result=="db.error")
       this.serviceError();
 		else
-      if (response.data.result=="usr.error") 
+      if (response.data.result=="usr.error") {
+       this.errorMsg = response.data.msg;
        this.serviceError();
+      }
 		else
 		  alert("Объявление размещено");
 		//	else 

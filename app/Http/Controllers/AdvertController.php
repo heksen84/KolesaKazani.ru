@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Helpers\ObsceneCensorRus;
 use App\Helpers\Helper;
 use App\Helpers\Sitemap;
 use App\Adverts;
@@ -86,6 +87,14 @@ class AdvertController extends Controller {
         $phone          = $data["adv_phone"];        
         $region_id      = $data["region_id"];
         $city_id        = $data["city_id"];
+
+
+        \Debugbar::info(ObsceneCensorRus::isAllowed($title)?"чисто":"обнаружен мат");
+		\Debugbar::info(ObsceneCensorRus::isAllowed($text)?"чисто":"обнаружен мат");
+
+        if (!ObsceneCensorRus::isAllowed($title) || !ObsceneCensorRus::isAllowed($text)) {
+            return response()->json( ["result"=>"usr.error", "msg" => "Отклонено"] );
+        }
 
         // поля которым требуется приведение к типу null
         $subcategory    = $this->to_php_null($data["adv_subcategory"]);        

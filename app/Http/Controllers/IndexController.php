@@ -12,8 +12,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 //use Illuminate\Support\Facades\Redis;
 //use Illuminate\Support\Facades\File;
-
-use App\Helpers\ObsceneCensorRus;
 use App\Helpers\Petrovich;
 use App\Categories;
 use App\Regions;
@@ -27,10 +25,6 @@ class IndexController extends Controller {
 	// ------------------------------------------------
     private function ShowIndexPage($region, $place) {
 
-//		\Debugbar::info(ObsceneCensorRus::getFiltered('мандавошка, но хорошая!'));
-//		\Debugbar::info(ObsceneCensorRus::isAllowed('привет')?"чисто":"обнаружен мат");
-		\Debugbar::info(ObsceneCensorRus::isAllowed('наёбка')?"чисто":"обнаружен мат");
-		\Debugbar::info(ObsceneCensorRus::isAllowed('песня')?"чисто":"обнаружен мат");
 		
 		$sklonResult="";
 						

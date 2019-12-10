@@ -2113,6 +2113,7 @@ function forEach(data, callback) {
 
   data: function data() {
     return {
+      errorMsg: "повторите позже",
       title: "",
       serviceUnavailable: false,
       subCategoryItems: [],
@@ -2480,7 +2481,10 @@ function forEach(data, callback) {
 
         console.log(response);
 
-        if (response.data.result == "db.error") _this3.serviceError();else if (response.data.result == "usr.error") _this3.serviceError();else alert("Объявление размещено");
+        if (response.data.result == "db.error") _this3.serviceError();else if (response.data.result == "usr.error") {
+          _this3.errorMsg = response.data.msg;
+          _this3.serviceError();
+        } else alert("Объявление размещено");
         //	else 
         //	window.location="home"; // переходим в личный кабинет
       }).catch(function (error) {
@@ -39720,23 +39724,6 @@ var render = function() {
                   [_vm._v("Расположение")]
                 ),
                 _vm._v(" "),
-                _c(
-                  "b",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.serviceUnavailable,
-                        expression: "serviceUnavailable"
-                      }
-                    ],
-                    staticClass: "modal-title",
-                    attrs: { id: "exampleModalLabel" }
-                  },
-                  [_vm._v("Cервис временно не доступен")]
-                ),
-                _vm._v(" "),
                 _vm._m(0)
               ]),
               _vm._v(" "),
@@ -39767,7 +39754,7 @@ var render = function() {
                     ],
                     staticClass: "alert-heading"
                   },
-                  [_vm._v("повторите позже")]
+                  [_vm._v(_vm._s(_vm.errorMsg))]
                 )
               ]),
               _vm._v(" "),
