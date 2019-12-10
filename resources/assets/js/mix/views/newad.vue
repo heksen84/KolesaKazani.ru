@@ -1,28 +1,27 @@
 <template>
-
-<div class="container-fluid mycontainer_adv">
-  
-  <!-- карта -->
-  <div class="modal fade bd-example-modal-lg" id="ShowModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 v-show="!serviceUnavailable" class="modal-title" id="exampleModalLabel">Расположение</h5>          
-          <!--<b v-show="serviceUnavailable" class="modal-title" id="exampleModalLabel">Cервис временно не доступен</b>-->
+<div class="container-fluid mycontainer_adv"> 
+   
+    <!-- карта -->
+    <div class="modal fade bd-example-modal-lg" id="ShowModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 v-show="!serviceUnavailable" class="modal-title" id="exampleModalLabel">Расположение</h5>          
+            <b v-show="serviceUnavailable" class="modal-title" id="exampleModalLabel">{{ dialogTitleMsg }}</b>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div v-show="!serviceUnavailable" id="bigmap" style="width: 100%; height: 300px"></div>
-          <p v-show="serviceUnavailable" class="alert-heading">{{ errorMsg }}</p>
-        </div>
-        <div class="modal-footer" v-show="!serviceUnavailable">          
-          <button type="button" class="btn btn-primary margin-auto" @click="setCoords">Сохранить</button>          
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div v-show="!serviceUnavailable" id="bigmap" style="width: 100%; height: 300px"></div>
+            <p v-show="serviceUnavailable" class="alert-heading">{{ dialogMsg }}</p>
+          </div>
+          <div class="modal-footer" v-show="!serviceUnavailable">          
+            <button type="button" class="btn btn-primary margin-auto" @click="setCoords">Сохранить</button>          
+          </div>
         </div>
       </div>
-    </div>
-  </div>        
+    </div>        
 
     <div class="row">  
       <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col" style="border: 1px solid rgb(200,200,200)">
@@ -286,7 +285,10 @@ components: {
 
 data () {
   return 	{
-  errorMsg: "повторите позже",
+  
+  dialogMsg: "повторите позже",
+  dialogTitleMsg: "Cервис временно не доступен",
+
   title: "",
   serviceUnavailable: false,
   subCategoryItems: [],    
@@ -321,10 +323,8 @@ data () {
 
 // компонент создан
 created() {
-
   // заюзать require js для загрузки yandex модулей
   ymaps.ready(initMaps);  
-  
   this.$root.advert_data = []; 
   this.advReset();    
 },
@@ -343,7 +343,8 @@ serviceError() {
 },
 
 // Выбор подкатегории
-changeSubCategory() { 
+changeSubCategory() {
+
   if (this.subCategory=="null") 
     this.$store.commit("ShowFinalFields", false)
   else
@@ -392,7 +393,8 @@ changeRegion() {
 		  this.places_model=null;
 	  }).catch((err) => {
       this.serviceError();
-    });			  
+    });
+
 	},
 
 	// -----------------------------------
@@ -643,7 +645,8 @@ onSubmit(evt) {
       this.serviceError();
 		else
       if (response.data.result=="usr.error") {
-       this.errorMsg = response.data.msg;
+       this.dialogTitleMsg = "Объявление отклонено";
+       this.dialogMsg = response.data.msg;
        this.serviceError();
       }
 		else

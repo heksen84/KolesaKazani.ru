@@ -91,7 +91,7 @@ class AdvertController extends Controller {
 		//\Debugbar::info(ObsceneCensorRus::isAllowed($text)?"чисто":"обнаружен мат");
 
         if (!ObsceneCensorRus::isAllowed($title) || !ObsceneCensorRus::isAllowed($text)) {
-            return response()->json( ["result"=>"usr.error", "msg" => "Отклонено"] );
+            return response()->json( ["result"=>"usr.error", "msg" => "нецензурная лексика"] );
         }
 
         // поля которым требуется приведение к типу null

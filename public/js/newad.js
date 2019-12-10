@@ -2030,7 +2030,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 // ---------------------------
@@ -2113,7 +2112,10 @@ function forEach(data, callback) {
 
   data: function data() {
     return {
-      errorMsg: "повторите позже",
+
+      dialogMsg: "повторите позже",
+      dialogTitleMsg: "Cервис временно не доступен",
+
       title: "",
       serviceUnavailable: false,
       subCategoryItems: [],
@@ -2149,10 +2151,8 @@ function forEach(data, callback) {
 
   // компонент создан
   created: function created() {
-
     // заюзать require js для загрузки yandex модулей
     ymaps.ready(initMaps);
-
     this.$root.advert_data = [];
     this.advReset();
   },
@@ -2174,6 +2174,7 @@ function forEach(data, callback) {
 
     // Выбор подкатегории
     changeSubCategory: function changeSubCategory() {
+
       if (this.subCategory == "null") this.$store.commit("ShowFinalFields", false);else this.$store.commit("ShowFinalFields", true);
 
       this.$root.advert_data.adv_subcategory = this.subCategory;
@@ -2480,7 +2481,8 @@ function forEach(data, callback) {
         console.log(response);
 
         if (response.data.result == "db.error") _this3.serviceError();else if (response.data.result == "usr.error") {
-          _this3.errorMsg = response.data.msg;
+          _this3.dialogTitleMsg = "Объявление отклонено";
+          _this3.dialogMsg = response.data.msg;
           _this3.serviceError();
         } else alert("Объявление размещено");
         //	else 
@@ -39722,6 +39724,23 @@ var render = function() {
                   [_vm._v("Расположение")]
                 ),
                 _vm._v(" "),
+                _c(
+                  "b",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.serviceUnavailable,
+                        expression: "serviceUnavailable"
+                      }
+                    ],
+                    staticClass: "modal-title",
+                    attrs: { id: "exampleModalLabel" }
+                  },
+                  [_vm._v(_vm._s(_vm.dialogTitleMsg))]
+                ),
+                _vm._v(" "),
                 _vm._m(0)
               ]),
               _vm._v(" "),
@@ -39752,7 +39771,7 @@ var render = function() {
                     ],
                     staticClass: "alert-heading"
                   },
-                  [_vm._v(_vm._s(_vm.errorMsg))]
+                  [_vm._v(_vm._s(_vm.dialogMsg))]
                 )
               ]),
               _vm._v(" "),
