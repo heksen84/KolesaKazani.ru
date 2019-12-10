@@ -50953,7 +50953,8 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
       categories: true,
       subCategories: false,
       locationName: "",
-      tmpLocationName: ""
+      tmpLocationName: "",
+      searchString: ""
     };
   },
 
@@ -51011,6 +51012,19 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
       }).catch(function (err) {
         console.log(err);
       });
+    },
+
+
+    // --------------------------------------
+    // Поиск в регионе
+    // --------------------------------------
+    search: function search(e) {
+
+      e.preventDefault();
+
+      if (this.searchString == "about::author") {
+        window.location = "https://moikrug.ru/heksen";
+      }
     },
 
 

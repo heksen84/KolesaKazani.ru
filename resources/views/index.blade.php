@@ -110,8 +110,8 @@
 
   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 center">
 
-    <form>
-      <input type="text" id="search_string" placeholder="поиск по объявлениям" required/>
+    <form @submit="search">
+      <input type="text" id="search_string" v-model="searchString" placeholder="поиск по объявлениям" required/>
       <button id="button_search" type="submit" title="Найти что требуется">найти</button>
     </form>
 

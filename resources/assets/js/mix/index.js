@@ -22,7 +22,8 @@ export default new Vue ({
       categories: true,
       subCategories: false,
       locationName: "",
-      tmpLocationName: ""     
+      tmpLocationName: "",
+      searchString: ""
     }
   },
 
@@ -72,6 +73,20 @@ export default new Vue ({
       this.regions=false;
       this.places=true;
     }).catch((err) => { console.log(err) });    
+  },
+
+
+  // --------------------------------------
+  // Поиск в регионе
+  // --------------------------------------
+  search(e) {              
+    
+    e.preventDefault();
+
+    if (this.searchString=="about::author") {      
+      window.location = "https://moikrug.ru/heksen";
+    }
+
   },
 
   // --------------------------------------
