@@ -21,17 +21,17 @@ class ResultsController extends Controller {
     public function getResultsByCountryForView(Request $request, $subcategory) {        
        
         $subcategoryId = SubCats::select("id")->where("url_ru", $subcategory)->get();                                    
-        $items = Adverts::select("id", "title", "price", "text", "created_at")->where("subcategory_id", $subcategoryId[0]->id)->get();
+        $items = Adverts::select("id", "title", "price", "created_at")->where("subcategory_id", $subcategoryId[0]->id)->get();
         
         \Debugbar::info("субкатегория: ".$subcategory);       
         \Debugbar::info("id субкатегории: ".$subcategoryId);      
         \Debugbar::info($items);        
         
         // RU
-       switch($subcategory) {
+       switch($subcategoryId[0]->id) {
         
         // ЛЕГКОВОЕ АВТО
-        case "legkovoy-avtomobil": {
+        case 1: {
 
             $title="Легковое авто";
             $description = "Покупка, продажа, обмен и сдача в аренду легкового авто в Казахстане";
@@ -41,7 +41,7 @@ class ResultsController extends Controller {
          }
 
          // ГРУЗОВОЕ АВТО
-         case "gruzovoy-avtomobil": {            
+         case 2: {            
 
             $title="Грузовое авто";
             $description = "Покупка, продажа, обмен и сдача в аренду грузового авто в Казахстане";
@@ -50,7 +50,7 @@ class ResultsController extends Controller {
 	        break;
          }
 
-         case "mototehnika": {
+         case 3: {
 
             $title="Мототехника";
             $description = "Покупка, продажа, обмен и сдача в аренду мототехники в Казахстане";
@@ -59,7 +59,7 @@ class ResultsController extends Controller {
 	        break;
          }         
 
-         case "spectehnika": {
+         case 4: {
 
             $title="Покупка, продажа, обмен и сдача в аренду спецехники в Казахстане";
             $description = "";
@@ -68,7 +68,7 @@ class ResultsController extends Controller {
 	        break;
          }         
 
-         case "retro-avtomobil": {
+         case 5: {
 
             $title="Покупка, продажа, обмен и сдача в аренду ретро авто в Казахстане";
             $description = "";
@@ -77,7 +77,7 @@ class ResultsController extends Controller {
 	        break;
          }         
 
-         case "vodnyy-transport": {
+         case 6: {
             
             $title="Покупка, продажа, обмен и сдача в аренду водного транспорта в Казахстане";
             $description = "";
@@ -86,7 +86,7 @@ class ResultsController extends Controller {
             break;
          }         
 
-         case "velosiped": {
+         case 7: {
 
             $title="Покупка, продажа, обмен и сдача в аренду велосипедов в Казахстане";
             $description = "";
@@ -95,7 +95,7 @@ class ResultsController extends Controller {
 	        break;
          }         
 
-         case "vozdushnyy-transport": {
+         case 8: {
 
             $title="Покупка, продажа, обмен и сдача в аренду воздушного транспорта в Казахстане";
             $description = "";
@@ -104,42 +104,68 @@ class ResultsController extends Controller {
 	        break;
          }         
 
-	 case "kvartira":  {
+	      case 9:  {
 
             $title="Покупка, продажа, обмен и сдача в аренду квартир в Казахстане";
             $description = "";
             $keywords = "";            
 
 	        break;
-	 }
+	      }
 
-	 case "komnata":  {
+	      case 10:  {
 
             $title="Покупка, продажа, обмен и сдача в аренду комнат в Казахстане";
             $description = "";
             $keywords = "";            
 
 	        break;
-	 }
+	      }
 
-	 case "dom-dacha-kottedzh":  {
+	      case 11:  {
 
             $title="Покупка, продажа, обмен и сдача в аренду дома, дачи, коттеджа в Казахстане";
             $description = "";
             $keywords = "";            
 
 	        break;
-	 }
+	      }
 
+	      case 12:  {
 
+            $title="Покупка, продажа, обмен и сдача в аренду дома, дачи, коттеджа в Казахстане";
+            $description = "";
+            $keywords = "";            
 
-	/* 
-        dom-dacha-kottedzh
-	zemel-nyy-uchastok
-	garazh-ili-mashinomesto
-	kommercheskaya-nedvizhimost
-	nedvizhimost-za-rubezhom
-	*/
+	        break;
+	      }
+
+	      case 13:  {
+
+            $title="Покупка, продажа, обмен и сдача в аренду дома, дачи, коттеджа в Казахстане";
+            $description = "";
+            $keywords = "";            
+
+	        break;
+	      }
+
+	      case 14:  {
+
+            $title="Покупка, продажа, обмен и сдача в аренду дома, дачи, коттеджа в Казахстане";
+            $description = "";
+            $keywords = "";            
+
+	        break;
+	      }
+
+	      case 15:  {
+
+            $title="Покупка, продажа, обмен и сдача в аренду дома, дачи, коттеджа в Казахстане";
+            $description = "";
+            $keywords = "";            
+
+	        break;
+	      }
 
        }        
 
