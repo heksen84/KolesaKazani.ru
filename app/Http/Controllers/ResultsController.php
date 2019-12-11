@@ -23,28 +23,20 @@ class ResultsController extends Controller {
         // получаю id подкатегории по названию в url
         $subcategoryId = SubCats::select("id")->where("url_ru", $subcategory)->get();                                    
         
-        // делаю выборку объявлений
-        //$items = Adverts::select("id", "title", "price", "created_at")->where("subcategory_id", $subcategoryId[0]->id)->get();
+         // делаю выборку объявлений
+         //$items = Adverts::select("id", "title", "price", "created_at")->where("subcategory_id", $subcategoryId[0]->id)->get();
 
-        // выбрать титульное изображение
-        // выбрать данные сео 
-
-         //$itemsSql = DB::select("SELECT name, adv.id, adv.price, adv.price, adv.created_at FROM `images` INNER JOIN `adverts` AS adv ON (images.advert_id=adv.id)");
-         //\Debugbar::info($itemsSql);           
+         // выбрать титульное изображение
+         // выбрать данные сео                  
 
         $items = DB::select(
            "SELECT 
            adv.id, 
            adv.title,
-           adv.price,            
-           adv.created_at, 
+           adv.price,
            (SELECT name FROM bigImages WHERE bigImages.advert_id=adv.id LIMIT 1) AS imageName 
-           FROM `adverts` AS adv WHERE subcategory_id = ".$subcategoryId[0]->id);
-            
-
-         //\Debugbar::info($itemsSql);           
+           FROM `adverts` AS adv WHERE subcategory_id = ".$subcategoryId[0]->id);            
    
-
          \Debugbar::info("субкатегория: ".$subcategory);       
          \Debugbar::info("id субкатегории: ".$subcategoryId);      
          \Debugbar::info($items);        
