@@ -36,7 +36,7 @@ class ResultsController extends Controller {
            adv.id, 
            adv.title,
            adv.price,
-           concat('".$imagePath."', (SELECT name FROM bigImages WHERE bigImages.advert_id=adv.id LIMIT 1)) AS imageName
+           concat('".$imagePath."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
            FROM `adverts` AS adv WHERE subcategory_id = ".$subcategoryId[0]->id);            
    
          \Debugbar::info("субкатегория: ".$subcategory);       

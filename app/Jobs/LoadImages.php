@@ -39,9 +39,13 @@ class LoadImages implements ShouldQueue {
 
             // сохраняю в хранилище
             $image_resize->save(storage_path().'/app/images/preview/' .$filename);
+            
             $image = new Images();
+
             $image->advert_id = $advert_id;
-            $image->image = $filename;                
+            $image->name = $filename;                
+            $image->type = 0; // 0 = small (тип preview)
+
             $image->save();
         }
     }
