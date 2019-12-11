@@ -18,7 +18,7 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     // Результаты по стране для вьюхи (results.blade.php)
     // -------------------------------------------------------------    
-    public function getResultsByCountryForView(Request $request, $subcategory) {        
+    public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {        
        
         $subcategoryId = SubCats::select("id")->where("url_ru", $subcategory)->get();                                    
         $items = Adverts::select("id", "title", "price", "created_at")->where("subcategory_id", $subcategoryId[0]->id)->get();
