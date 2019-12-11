@@ -1650,4 +1650,10 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/15-okokokok</loc>
+    <lastmod>2019-12-11T15:55:17+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
