@@ -26,7 +26,7 @@
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
                   <!--<div class="card text-left" style="background:rgb(250,220,220)">-->
                   <div class="card text-left">
-                    <img class="card-img-top" src="{{ $item->imageName }}">
+                    <img class="card-img-top" src="{{ $item->imageName }}" alt="{{ $item->title }}">
                     <div class="card-body">                                                        
                         <h5 class="card-title">{{ $item->title }}</h5>                                                  
                         <p class="card-text">{{ $item->price }} тнг.</p>

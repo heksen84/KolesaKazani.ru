@@ -1656,4 +1656,22 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/16-transport-gruzovoe-avto</loc>
+    <lastmod>2019-12-11T19:54:14+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/17-transport-gruzovoe-avto</loc>
+    <lastmod>2019-12-11T19:56:03+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/18-transport-gruzovoe-avto</loc>
+    <lastmod>2019-12-11T20:30:52+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

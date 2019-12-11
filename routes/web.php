@@ -14,8 +14,10 @@ Route::get("api/getCarsModels", "JournalController@getCarsModels" );
 
 // Результаты по категориям по стране
 Route::get("{category}/{subcategory}", "ResultsController@getCountrySubCategoryResults");
+
 // Результаты по категориям по региону
 Route::get("{region}/{category}/{subcategory}", "ResultsController@getRegionSubCategoryResults");
+
 // Результаты по категориям по местности
 Route::get("{region}/{city}/{category}/{subcategory}", "ResultsController@getCitySubCategoryResults");
 
