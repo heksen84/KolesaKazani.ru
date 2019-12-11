@@ -19,15 +19,14 @@
     <hr>
       <h1 style="color:rgb(50,50,50)">{{ $title }}</h1>
         <div style="color:rgb(50,50,50);text-decoration:underline">Найдено: {{ $itemsCount }}</div>     
-	<br>
+	        <br>
           <div class="row">
             @if ($itemsCount>0)
               @foreach($items as $item)
                 <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
                   <div class="card text-left">
                     <img class="card-img-top" src="{{ $item->imageName }}">
-                    <div class="card-body">                                              
-                      <!--<div style="font-size:12px;color:grey">Размещено {{ $item->created_at }}</div>-->
+                    <div class="card-body">                                                        
                         <h5 class="card-title">{{ $item->title }}</h5>                                                  
                         <p class="card-text">{{ $item->price }} тнг.</p>
                         </div>              
