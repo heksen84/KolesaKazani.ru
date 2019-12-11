@@ -24,14 +24,12 @@
             @if ($itemsCount>0)
               @foreach($items as $item)
                 <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-                  <div class="card text-left">              
-                    <div class="card-body">                        
-                      <div style="font-size:12px;color:grey">Размещено {{ $item->created_at }}</div>
+                  <div class="card text-left">
+                    <img class="card-img-top" src="{{ $item->imageName }}">
+                    <div class="card-body">                                              
+                      <!--<div style="font-size:12px;color:grey">Размещено {{ $item->created_at }}</div>-->
                         <h5 class="card-title">{{ $item->title }}</h5>                                                  
-                          <p class="card-text">
-                            {{ $item->price }} тнг.
-                          </p>
-                          <!--<a href="#" class="btn btn-secondary btn-sm">Подробнее</a>-->
+                        <p class="card-text">{{ $item->price }} тнг.</p>
                         </div>              
                       </div>
                     </div>

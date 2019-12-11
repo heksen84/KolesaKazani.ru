@@ -18,14 +18,36 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     // Результаты по стране для вьюхи (results.blade.php)
     // -------------------------------------------------------------    
-    public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {        
+    public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {              
        
+        // получаю id подкатегории по названию в url
         $subcategoryId = SubCats::select("id")->where("url_ru", $subcategory)->get();                                    
-        $items = Adverts::select("id", "title", "price", "created_at")->where("subcategory_id", $subcategoryId[0]->id)->get();
         
-        \Debugbar::info("субкатегория: ".$subcategory);       
-        \Debugbar::info("id субкатегории: ".$subcategoryId);      
-        \Debugbar::info($items);        
+        // делаю выборку объявлений
+        //$items = Adverts::select("id", "title", "price", "created_at")->where("subcategory_id", $subcategoryId[0]->id)->get();
+
+        // выбрать титульное изображение
+        // выбрать данные сео 
+
+         //$itemsSql = DB::select("SELECT name, adv.id, adv.price, adv.price, adv.created_at FROM `images` INNER JOIN `adverts` AS adv ON (images.advert_id=adv.id)");
+         //\Debugbar::info($itemsSql);           
+
+        $items = DB::select(
+           "SELECT 
+           adv.id, 
+           adv.title,
+           adv.price,            
+           adv.created_at, 
+           (SELECT name FROM bigImages WHERE bigImages.advert_id=adv.id LIMIT 1) AS imageName 
+           FROM `adverts` AS adv WHERE subcategory_id = ".$subcategoryId[0]->id);
+            
+
+         //\Debugbar::info($itemsSql);           
+   
+
+         \Debugbar::info("субкатегория: ".$subcategory);       
+         \Debugbar::info("id субкатегории: ".$subcategoryId);      
+         \Debugbar::info($items);        
         
         // RU
        switch($subcategoryId[0]->id) {
