@@ -27,14 +27,16 @@ class ResultsController extends Controller {
          //$items = Adverts::select("id", "title", "price", "created_at")->where("subcategory_id", $subcategoryId[0]->id)->get();
 
          // выбрать титульное изображение
-         // выбрать данные сео                  
+         // выбрать данные сео 
+
+	$imagePath = \Storage::disk('local')->url('app/images/preview/');
 
         $items = DB::select(
            "SELECT 
            adv.id, 
            adv.title,
            adv.price,
-           (SELECT name FROM bigImages WHERE bigImages.advert_id=adv.id LIMIT 1) AS imageName 
+           concat('".$imagePath."', (SELECT name FROM bigImages WHERE bigImages.advert_id=adv.id LIMIT 1)) AS imageName
            FROM `adverts` AS adv WHERE subcategory_id = ".$subcategoryId[0]->id);            
    
          \Debugbar::info("субкатегория: ".$subcategory);       
