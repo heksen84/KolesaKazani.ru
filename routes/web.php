@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 
 Auth::routes();
 
+// api вызовы
 Route::post("api/createAdvert", "AdvertController@createAdvert");
 Route::get("api/getSubCategoryNamesById", "JournalController@getSubCategoryNamesById" );
 Route::get("api/getPlaces", "JournalController@GetPlaces");
@@ -19,14 +20,11 @@ Route::get("{region}/{city}/{category}/{subcategory}", "ResultsController@getCit
 
 // Новое объявление
 Route::get("/podat-obyavlenie", "AdvertController@NewAd");
-
 // Сервисы
 Route::get("/util/str2url", "UtilsController@str2url");
 
 // По стране
 Route::get("/", "IndexController@ShowCountryIndexPage");
-Route::get("/kazakhstan", "IndexController@ShowCountryIndexPage");
-Route::get("/qazaqstan", "IndexController@ShowCountryIndexPage");
 // По всему региону
 Route::get("/{region}", "IndexController@ShowRegionIndexPage");
 // По городу или селу
