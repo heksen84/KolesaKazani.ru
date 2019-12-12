@@ -16,10 +16,9 @@ export default new Vue ({
   el: '#app',
 
   data () {   
-    return {      
-      placesList: [], // массив городов / сёл / деревень
-      regions: true,    
-      places: false,
+    return {   
+      
+      showLocationDialog:false,      
       categories: true,
       subCategories: false,
       locationName: "",
@@ -46,73 +45,19 @@ export default new Vue ({
   methods: {
   
   // Отобразить окно расположения
-  showLocationWindow() {
+  showLocationWindow() {    
     $("#locationModal").modal("show");
   },
   
-  // Закрыть окно расположения
-  closeLocationWindow() {
-    this.regions=true;
-    this.places=false;
-    $("#locationModal").modal("hide");    
-  },
   
-  // --------------------------------------
-  // Выбор региона
-  // --------------------------------------
-  showPlacesByRegion(e, regionId) {
-    e.preventDefault();
-
-    this.tmpLocationName=e.target.innerText;
-
-    // Получить города / сёлы
-    get("api/getPlaces?region_id="+regionId).then((res) => {    
-      this.placesList=res.data;
-      this.regionUrl=e.target.pathname;
-      this.regions=false;
-      this.places=true;
-    }).catch((err) => { console.log(err) });    
-  },
-
-
   // --------------------------------------
   // Поиск в регионе
   // --------------------------------------
-  search(e) {              
-    
+  search(e) {    
     e.preventDefault();
-
     if (this.searchString==="about::author") {      
       window.location = "https://moikrug.ru/heksen";
     }
-
-  },
-
-  // --------------------------------------
-  // Поиск в стране
-  // --------------------------------------
-  searchInCountry(e) {
-
-    localStorage.setItem("locationUrl", "");    
-    localStorage.setItem("locationName", "Весь Казахстан");
-
-    // редирект
-    window.location = "/";
-  },
-
-  // --------------------------------------
-  // Поиск в регионе
-  // --------------------------------------
-  searchInRegion(e) {
-    window.location = this.regionUrl;
-  },
-  
-  // --------------------------------------
-  // Выбрать город / село и т.п.
-  // --------------------------------------
-  selectPlace(e, placeName, placeUrl) {    
-    e.preventDefault();
-    window.location = this.regionUrl+"/"+placeUrl;
   },
 
   // --------------------------------------
