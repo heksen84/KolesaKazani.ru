@@ -59,7 +59,8 @@ class IndexController extends Controller {
 				$description = "Объявления о покупке, продаже, обмене и сдаче в аренду в ".$sklonResult." области";
 				$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, FLIX, ".$regionName." область";
 			}
-			else return view("errors/404"); // редирект
+			else 
+				return view("errors/404"); // редирект
 		}
 
 		// Город, село
@@ -84,7 +85,7 @@ class IndexController extends Controller {
 			}
 
 			else 
-			return view("errors/404"); // редирект
+				return view("errors/404"); // редирект
 		}
 		
 		$subcats = DB::table("subcats")
