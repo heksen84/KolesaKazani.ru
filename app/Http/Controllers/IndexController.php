@@ -10,8 +10,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-//use Illuminate\Support\Facades\Redis;
-//use Illuminate\Support\Facades\File;
 use App\Helpers\Petrovich;
 use App\Categories;
 use App\Regions;
@@ -35,7 +33,6 @@ class IndexController extends Controller {
 			$description = "Объявления о покупке, продаже, обмене и сдаче в аренду в Казахстане";
 			$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, FLIX, страна, казахстан";
 			$locationName = "Казахстан";
-
 		}
 
 		// Регион
@@ -85,7 +82,9 @@ class IndexController extends Controller {
 				$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, FLIX, ".$locationName;
 			
 			}
-			else return view("errors/404"); // редирект
+
+			else 
+			return view("errors/404"); // редирект
 		}
 		
 		$subcats = DB::table("subcats")
