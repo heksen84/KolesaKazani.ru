@@ -114,7 +114,7 @@ class IndexController extends Controller {
 		->with("sklonResult", $sklonResult)
 		->with("description", $description)
 		->with("keywords", $keywords)
-		->with("lang", "ru");
+		->with("lang", "kz");
     }
 
     // Cтрана

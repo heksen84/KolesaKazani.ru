@@ -20,7 +20,19 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------    
     public function getCountrySubCategoryResults(Request $request, $lang, $category, $subcategory) {  
        
-      \Debugbar::info("!!!!");
+         // --- коды языков ---
+         // русский = 570
+         // казахский = 255
+
+         // страна/язык
+         // kz/570
+
+         $inLocation=null;
+
+         switch($lang) {
+            case "kz": $inLocation = "в Казахстане"; break;
+            case "ru": $inLocation = "в России"; break;
+         }
        
         $table = new SubCats();
 
@@ -44,7 +56,7 @@ class ResultsController extends Controller {
          \Debugbar::info($items);
                 
          return view("results")
-         ->with("title", $subcategories[0]->title)
+         ->with("title", $subcategories[0]->title." ".$inLocation)
          ->with("description", $subcategories[0]->description)
          ->with("keywords", $subcategories[0]->keywords)
          ->with("items", $items)

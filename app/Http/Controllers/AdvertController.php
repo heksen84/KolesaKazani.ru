@@ -31,7 +31,7 @@ class AdvertController extends Controller {
         ->with( "categories", Categories::all() )
         ->with( "regions", Regions::all() )
         ->with( "dealtypes", DealType::all()->toJson() )
-        ->with( "lang", "ru" )
+        ->with( "lang", "kz" )
         : redirect("login");
     }
 
