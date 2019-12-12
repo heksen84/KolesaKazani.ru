@@ -1,5 +1,5 @@
 <template>
-  <div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -11,11 +11,14 @@
         <div class="modal-body text-center">	
           <div v-if="regions">
             <div class="link" @click="searchInCountry"><b>Весь Казахстан</b></div><hr>
-              @foreach($regions as $region)
+              <!--@foreach($regions as $region)
               <div style="margin:5px">  
-    <!--            <a href="/{{ $region["url"]}}" class="grey link" @click="showPlacesByRegion($event,{{ $region['region_id'] }})">{{$region["name"]}}</a><br>-->
+                <a href="/{{ $region["url"]}}" class="grey link" @click="showPlacesByRegion($event,{{ $region['region_id'] }})">{{$region["name"]}}</a><br>
               </div>
-              @endforeach
+              @endforeach-->
+              <div style="margin:5px">  
+                <a href="/" v-for="(item,index) in regions" :key=index class="grey link">{{ item.name }}</a><br>
+              </div>
             </div>
             <div v-if="places">
               <div class="link" @click="searchInRegion"><b>Искать в области</b></div><hr>            
@@ -31,35 +34,36 @@
 </template>
 
 <script>
-
 import $ from "jquery";
+import { get } from '../../../helpers/api' // axios
 
 export default {
 
-  props: ["lang"],
+  props: ["lang", "regions"],
+  
   components: {},
 
   data () {
     return 	{
-
-      placesList: [], // массив городов / сёл / деревень
-      regions: true,    
+      placesList: [],
+      //regions: true,    
       places: false,
-
+      locationName: "",
+      tmpLocationName: ""
 		}
-	},
+  },
+  
   created() {
-    $("#locationModal").modal("show");
+    console.log(this.lang)
+    console.log(this.regions)
   },
   
   methods: {
-    details(event) {
-    },
 
     // Закрыть окно расположения
   closeLocationWindow() {
-//    this.regions=true;
-//    this.places=false;
+    //this.regions=true;
+    //this.places=false;
     $("#locationModal").modal("hide");    
   },
   
@@ -69,7 +73,7 @@ export default {
   showPlacesByRegion(e, regionId) {
     e.preventDefault();
 
-  /*  this.tmpLocationName=e.target.innerText;
+    this.tmpLocationName=e.target.innerText;
 
     // Получить города / сёлы
     get("api/getPlaces?region_id="+regionId).then((res) => {    
@@ -77,7 +81,8 @@ export default {
       this.regionUrl=e.target.pathname;
       this.regions=false;
       this.places=true;
-    }).catch((err) => { console.log(err) });    */
+    }).catch((err) => { console.log(err) });
+
   },
 
   // --------------------------------------

@@ -47,7 +47,7 @@
   <div class="container-fluid container1" id="index_page" style="margin-top:10px">
 
   <!-- окно выбора расположения -->
-  <location lang={{ $lang }}></location>
+  <location lang="{{ $lang }}" regions="{{ $regions }}"></location>
 
   <div class="row">    
     <div class="margin-auto" id="login_register_col">

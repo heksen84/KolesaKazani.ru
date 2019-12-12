@@ -5,7 +5,6 @@ require('./bootstrap');
 import Vue from 'vue';
 import $ from "jquery";
 import bootstrap from "bootstrap";
-import { get } from '../helpers/api' // axios
 import location from './views/components/location'
 
 // --------------------------
@@ -16,18 +15,14 @@ export default new Vue ({
   el: '#app',
 
   data () {   
-    return {   
-      
-      showLocationDialog:false,      
+    return {     
       categories: true,
-      subCategories: false,
-      locationName: "",
-      tmpLocationName: "",
+      subCategories: false,      
       searchString: ""
     }
   },
 
-  delimiters: ['${', '}'], // для разрешения конфликта c переменными php
+  //delimiters: ['${', '}'], // для разрешения конфликта c переменными php
 
   components: { bootstrap, location },
 
@@ -67,17 +62,13 @@ export default new Vue ({
 
     if ( categoryId < 10 ) {
       e.preventDefault();        
-
       // получаю элементы
       let elements = $("*[data-category-id='"+(categoryId)+"']");
-
       // сбиваю в кучу их если кол-во меньше 4	      
       if (elements.length < 4)
-       elements.addClass("col-xl-12")	
-    
+       elements.addClass("col-xl-12")	    
       // отображаю
       elements.show();
-
       this.categories=false;
       this.subCategories=true;
     }
