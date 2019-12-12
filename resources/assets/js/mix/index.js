@@ -6,6 +6,7 @@ import Vue from 'vue';
 import $ from "jquery";
 import bootstrap from "bootstrap";
 import { get } from '../helpers/api' // axios
+import location from './views/components/location'
 
 // --------------------------
 // экземляр приложения vue
@@ -29,7 +30,7 @@ export default new Vue ({
 
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
 
-  components: { bootstrap },
+  components: { bootstrap, location },
 
   // -------------------------------
   // Компонент создан

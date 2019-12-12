@@ -1,9 +1,13 @@
 <template>
-  <div></div>
+  <div>
+   Язык: {{ lang }}
+  </div>
 </template>
 
 <script>
 export default {
+  props: ["lang"],
+
   data () {
     return 	{
 		}
