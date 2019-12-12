@@ -16,7 +16,6 @@ use Validator;
 use DB;
 
 class AdvertController extends Controller {
-
     
     // js "null" в php null
     private function to_php_null($value) {
@@ -31,7 +30,9 @@ class AdvertController extends Controller {
         ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте")
         ->with( "categories", Categories::all() )
         ->with( "regions", Regions::all() )
-        ->with( "dealtypes", DealType::all()->toJson() ) : redirect("login");
+        ->with( "dealtypes", DealType::all()->toJson() )
+        ->with( "lang", "ru" )
+        : redirect("login");
     }
 
     /*

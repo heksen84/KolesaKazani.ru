@@ -39998,7 +39998,7 @@ var render = function() {
                               return _c(
                                 "option",
                                 { key: index, domProps: { value: item.id } },
-                                [_vm._v(_vm._s(item.name_ru))]
+                                [_vm._v(_vm._s(item.name))]
                               )
                             })
                           ],
@@ -40054,7 +40054,7 @@ var render = function() {
                               return _c(
                                 "option",
                                 { key: index, domProps: { value: item.id } },
-                                [_vm._v(_vm._s(item.name_ru))]
+                                [_vm._v(_vm._s(item.name))]
                               )
                             })
                           ],
@@ -40110,7 +40110,7 @@ var render = function() {
                               return _c(
                                 "option",
                                 { key: index, domProps: { value: item.id } },
-                                [_vm._v(_vm._s(item.name_ru))]
+                                [_vm._v(_vm._s(item.name))]
                               )
                             })
                           ],
@@ -40166,7 +40166,7 @@ var render = function() {
                               return _c(
                                 "option",
                                 { key: index, domProps: { value: item.id } },
-                                [_vm._v(_vm._s(item.name_ru))]
+                                [_vm._v(_vm._s(item.name))]
                               )
                             })
                           ],
@@ -40222,7 +40222,7 @@ var render = function() {
                               return _c(
                                 "option",
                                 { key: index, domProps: { value: item.id } },
-                                [_vm._v(_vm._s(item.name_ru))]
+                                [_vm._v(_vm._s(item.name))]
                               )
                             })
                           ],
@@ -40278,7 +40278,7 @@ var render = function() {
                               return _c(
                                 "option",
                                 { key: index, domProps: { value: item.id } },
-                                [_vm._v(_vm._s(item.name_ru))]
+                                [_vm._v(_vm._s(item.name))]
                               )
                             })
                           ],
@@ -40334,7 +40334,7 @@ var render = function() {
                               return _c(
                                 "option",
                                 { key: index, domProps: { value: item.id } },
-                                [_vm._v(_vm._s(item.name_ru))]
+                                [_vm._v(_vm._s(item.name))]
                               )
                             })
                           ],
