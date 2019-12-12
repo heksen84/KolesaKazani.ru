@@ -5,7 +5,7 @@
             <label for="transport_type">Вид транспорта:</label>
               <select id="transport_type" class="form-control" v-model="selected.type_transport" @change="selectTransportType">                          
                 <option value="null" :key="null">-- Выберите вид транспорта --</option>
-                <option v-for="item in type_transport" :value="item.id" :key="item.id">{{ item.name_ru }}</option>
+                <option v-for="item in type_transport" :value="item.id" :key="item.id">{{ item.name }}</option>
               </select>
           </div>                
 

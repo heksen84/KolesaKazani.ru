@@ -23,7 +23,7 @@ class ResultsController extends Controller {
         $table = new SubCats();
 
         // получаю id подкатегории по названию в url
-        $subcategories = $table::select("id", "title_ru", "description_ru", "keywords_ru")->where("url_ru", $subcategory)->get();                                    
+        $subcategories = $table::select("id", "title", "description", "keywords")->where("url", $subcategory)->get();                                    
                         
 	     $imagePath = \Storage::disk('local')->url('app/images/preview/');
 
@@ -42,9 +42,9 @@ class ResultsController extends Controller {
          \Debugbar::info($items);
                 
          return view("results")
-         ->with("title", $subcategories[0]->title_ru)
-         ->with("description", $subcategories[0]->description_ru)
-         ->with("keywords", $subcategories[0]->keywords_ru)
+         ->with("title", $subcategories[0]->title)
+         ->with("description", $subcategories[0]->description)
+         ->with("keywords", $subcategories[0]->keywords)
          ->with("items", $items)
          ->with("itemsCount", count($items));	
        	                        

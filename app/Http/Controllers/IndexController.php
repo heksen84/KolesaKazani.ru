@@ -24,7 +24,6 @@ class IndexController extends Controller {
 	// Базовая функция для главной страницы	
 	// ------------------------------------------------
     private function ShowIndexPage($region, $place) {
-
 		
 		$sklonResult="";
 						
@@ -92,6 +91,7 @@ class IndexController extends Controller {
 		$subcats = DB::table("subcats")
 			->join("categories", "categories.id", "=", "subcats.category_id")
 			->select("subcats.*", "categories.url as category_url")
+			->where("lang", "=", 0) // ru - default
 			->get();
 
 		\Debugbar::info("location: ".$locationName);

@@ -18,7 +18,7 @@
   <div class="container-fluid container1">
     <hr>
       <h1 style="color:rgb(50,50,50)">{{ $title }}</h1>
-        <div style="color:rgb(50,50,50);text-decoration:underline">Найдено: {{ $itemsCount }}</div>     
+        <div style="color:rgb(50,50,50)">Найдено: ({{ $itemsCount }})</div>     
 	        <br>
           <div class="row">
             @if ($itemsCount>0)
