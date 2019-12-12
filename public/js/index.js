@@ -50961,9 +50961,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
 
-  components: {
-    bootstrap: __WEBPACK_IMPORTED_MODULE_2_bootstrap___default.a
-  },
+  components: { bootstrap: __WEBPACK_IMPORTED_MODULE_2_bootstrap___default.a },
 
   // -------------------------------
   // Компонент создан

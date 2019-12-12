@@ -40,8 +40,9 @@ class IndexController extends Controller {
 
 			$location = $region;
 			$locationName = Regions::select("name")->where("url", $region)->get();
+			$regionArr = $locationName; // ???
 			$locationName = $locationName[0]->name;
-			$regionArr = Regions::select("name")->where("url", $region)->get();	
+			//$regionArr = Regions::select("name")->where("url", $region)->get();	
 
 			if ($regionArr->count()>0) {
 				
@@ -68,9 +69,10 @@ class IndexController extends Controller {
 				
 			$location = $region."/".$place;
 			$locationName = Places::select("name")->where("url", $place)->get();
+			$placeArr = $locationName;
 			$locationName = $locationName[0]->name;
 
-			$placeArr = Places::select("name")->where("url", $place)->get();
+			//$placeArr = Places::select("name")->where("url", $place)->get();
 				
 			if ($placeArr->count() > 0) {
 			
@@ -83,16 +85,17 @@ class IndexController extends Controller {
 				$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, FLIX, ".$locationName;
 			
 			}
-
 			else 
 				return view("errors/404"); // редирект
 		}
+		
 		
 		$subcats = DB::table("subcats")
 			->join("categories", "categories.id", "=", "subcats.category_id")
 			->select("subcats.*", "categories.url as category_url")
 			->where("lang", "=", 0) // ru - default
 			->get();
+
 
 		\Debugbar::info("location: ".$locationName);
 		\Debugbar::info("REGION: ".$region);
@@ -110,21 +113,23 @@ class IndexController extends Controller {
 		->with("title", $title)
 		->with("sklonResult", $sklonResult)
 		->with("description", $description)
-		->with("keywords", $keywords);
+		->with("keywords", $keywords)
+		->with("lang", "ru");
     }
 
     // Cтрана
-    public function ShowCountryIndexPage() {
+    public function ShowCountryIndexPage($lang=null) {
+		\Debugbar::info($lang);
 	    return $this->ShowIndexPage(null, null);
     }		
 
     // Регион
-    public function ShowRegionIndexPage($region) {
+    public function ShowRegionIndexPage($lang, $region) {
 	    return $this->ShowIndexPage($region, null);
     }		
 
     // Город или село
-    public function ShowPlaceIndexPage($region, $place) {
+    public function ShowPlaceIndexPage($lang, $region, $place) {
 	    return $this->ShowIndexPage($region, $place);
     }		
 					

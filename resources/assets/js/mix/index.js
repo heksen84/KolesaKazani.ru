@@ -29,16 +29,14 @@ export default new Vue ({
 
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
 
-  components: {    
-    bootstrap
-  },
+  components: { bootstrap },
 
   // -------------------------------
   // Компонент создан
   // -------------------------------
   created() {    
     $("#subcats").show();
-    $("#close_subcats_btn").show();    
+    $("#close_subcats_btn").show();
   },
 
   // --------------------------------------

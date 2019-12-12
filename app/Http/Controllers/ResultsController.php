@@ -18,7 +18,9 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     // Результаты по стране для вьюхи (results.blade.php)
     // -------------------------------------------------------------    
-    public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {              
+    public function getCountrySubCategoryResults(Request $request, $lang, $category, $subcategory) {  
+       
+      \Debugbar::info("!!!!");
        
         $table = new SubCats();
 
