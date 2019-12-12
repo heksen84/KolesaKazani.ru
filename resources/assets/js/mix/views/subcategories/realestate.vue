@@ -13,7 +13,7 @@
             <label for="selected_type">Вид недвижимости:</label>
               <select id="selected_type" class="form-control" v-model="selected_type" @change="changeProperyType">                          
                 <option value="null">-- Выберите вид недвижимости --</option>
-                <option v-for="item in realEstate_type" :value="item.id" :key="item.id">{{ item.name_ru }}</option>
+                <option v-for="item in realEstate_type" :value="item.id" :key="item.id">{{ item.name }}</option>
               </select>
           </div>
 

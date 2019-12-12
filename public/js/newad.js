@@ -40856,7 +40856,7 @@ var render = function() {
               return _c(
                 "option",
                 { key: item.id, domProps: { value: item.id } },
-                [_vm._v(_vm._s(item.name_ru))]
+                [_vm._v(_vm._s(item.name))]
               )
             })
           ],
