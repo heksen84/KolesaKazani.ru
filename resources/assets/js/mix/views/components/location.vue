@@ -3,7 +3,6 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Расположение</h5>
             <button type="button" class="close" aria-label="Close" @click="closeLocationWindow">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -11,18 +10,13 @@
         <div class="modal-body text-center">	
           <div v-if="regions">
             <div class="link" @click="searchInCountry"><b>Весь Казахстан</b></div><hr>
-              <!--@foreach($regions as $region)
-              <div style="margin:5px">  
-                <a href="/{{ $region["url"]}}" class="grey link" @click="showPlacesByRegion($event,{{ $region['region_id'] }})">{{$region["name"]}}</a><br>
-              </div>
-              @endforeach-->
-              <div style="margin:5px">  
-                <a href="/" v-for="(item,index) in regions" :key=index class="grey link">{{ item.name }}</a><br>
+              <div v-for="(item, index) in regionsList" :key=index style="margin:5px">  
+                <a :href="getUrl(item.url)" class="grey link" @click="showPlacesByRegion($event, item.region_id)">{{ item.name }}</a><br>
               </div>
             </div>
             <div v-if="places">
               <div class="link" @click="searchInRegion"><b>Искать в области</b></div><hr>            
-                <a v-for="(item, index) in placesList" :key="index" :href="item.url" class="grey link block" style="margin:5px" @click="selectPlace($event, item.name, item.url)">${item.name}</a>            
+                <a v-for="(item, index) in placesList" :key="index" :href="item.url" class="grey link block" style="margin:5px" @click="selectPlace($event, item.name, item.url)">{{item.name}}</a>            
               </div>
             </div>
             <div class="modal-footer">
@@ -38,15 +32,14 @@ import $ from "jquery";
 import { get } from '../../../helpers/api' // axios
 
 export default {
-
-  props: ["lang", "regions"],
   
-  components: {},
+  props: ["country"],
 
   data () {
     return 	{
       placesList: [],
-      //regions: true,    
+      regionsList: [],
+      regions: true,    
       places: false,
       locationName: "",
       tmpLocationName: ""
@@ -54,16 +47,25 @@ export default {
   },
   
   created() {
-    console.log(this.lang)
-    console.log(this.regions)
+    
+    console.log(this.country)
+  
+    // Получить города / сёлы
+    get(this.country+"/api/getRegions").then((res) => {    
+      console.log(res.data)
+      this.regionsList = res.data;
+    }).catch((err) => { console.log(err) });
+
   },
   
   methods: {
 
+  getUrl(url) { return "/"+url; },
+
     // Закрыть окно расположения
   closeLocationWindow() {
-    //this.regions=true;
-    //this.places=false;
+    this.regions=true;
+    this.places=false;
     $("#locationModal").modal("hide");    
   },
   
@@ -76,7 +78,7 @@ export default {
     this.tmpLocationName=e.target.innerText;
 
     // Получить города / сёлы
-    get("api/getPlaces?region_id="+regionId).then((res) => {    
+    get(this.country+"/api/getPlaces?region_id="+regionId).then((res) => {    
       this.placesList=res.data;
       this.regionUrl=e.target.pathname;
       this.regions=false;

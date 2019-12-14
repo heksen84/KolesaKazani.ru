@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\SubCats;
 use App\CarMark;
+use App\Regions;
 use App\Places;
 use DB;
 
@@ -28,6 +29,12 @@ class JournalController extends Controller {
         \Debugbar::info("язык: ".$lang);
         return DB::table("car_model")->where("id_car_mark", $request->mark_id )->get();
     }
+
+    // Получить расположение
+    public function GetRegions($lang) {
+        \Debugbar::info("язык: ".$lang);
+        return Regions::all();
+   }
 
     // Получить расположение
     public function GetPlaces(Request $request, $lang) {

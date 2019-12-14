@@ -13,7 +13,6 @@ use App\DealType;
 use App\Regions;
 use App\Urls;
 use Validator;
-use DB;
 
 class AdvertController extends Controller {
     

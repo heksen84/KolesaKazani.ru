@@ -108,7 +108,6 @@ class IndexController extends Controller {
 		->with("location", $location)
 		->with("categories", Categories::all())
 		->with("subcategories", json_decode($subcats, true))
-		->with("regions", Regions::all())
 		->with("auth", Auth::user()?1:0)
 		->with("title", $title)
 		->with("sklonResult", $sklonResult)

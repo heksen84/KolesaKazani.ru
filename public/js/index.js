@@ -1763,43 +1763,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
  // axios
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ["lang", "regions"],
-
-  components: {},
+  props: ["country"],
 
   data: function data() {
     return {
       placesList: [],
-      //regions: true,    
+      regionsList: [],
+      regions: true,
       places: false,
       locationName: "",
       tmpLocationName: ""
     };
   },
   created: function created() {
-    console.log(this.lang);
-    console.log(this.regions);
+    var _this = this;
+
+    console.log(this.country);
+
+    // Получить города / сёлы
+    Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])(this.country + "/api/getRegions").then(function (res) {
+      console.log(res.data);
+      _this.regionsList = res.data;
+    }).catch(function (err) {
+      console.log(err);
+    });
   },
 
 
   methods: {
+    getUrl: function getUrl(url) {
+      return "/" + url;
+    },
+
 
     // Закрыть окно расположения
     closeLocationWindow: function closeLocationWindow() {
-      //this.regions=true;
-      //this.places=false;
+      this.regions = true;
+      this.places = false;
       __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#locationModal").modal("hide");
     },
 
@@ -1808,18 +1814,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // Выбор региона
     // --------------------------------------
     showPlacesByRegion: function showPlacesByRegion(e, regionId) {
-      var _this = this;
+      var _this2 = this;
 
       e.preventDefault();
 
       this.tmpLocationName = e.target.innerText;
 
       // Получить города / сёлы
-      Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])("api/getPlaces?region_id=" + regionId).then(function (res) {
-        _this.placesList = res.data;
-        _this.regionUrl = e.target.pathname;
-        _this.regions = false;
-        _this.places = true;
+      Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])(this.country + "/api/getPlaces?region_id=" + regionId).then(function (res) {
+        _this2.placesList = res.data;
+        _this2.regionUrl = e.target.pathname;
+        _this2.regions = false;
+        _this2.places = true;
       }).catch(function (err) {
         console.log(err);
       });
@@ -38015,15 +38021,6 @@ var render = function() {
         _c("div", { staticClass: "modal-content" }, [
           _c("div", { staticClass: "modal-header" }, [
             _c(
-              "h5",
-              {
-                staticClass: "modal-title",
-                attrs: { id: "exampleModalLabel" }
-              },
-              [_vm._v("Расположение")]
-            ),
-            _vm._v(" "),
-            _c(
               "button",
               {
                 staticClass: "close",
@@ -38036,34 +38033,47 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "modal-body text-center" }, [
             _vm.regions
-              ? _c("div", [
-                  _c(
-                    "div",
-                    { staticClass: "link", on: { click: _vm.searchInCountry } },
-                    [_c("b", [_vm._v("Весь Казахстан")])]
-                  ),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticStyle: { margin: "5px" } },
-                    [
-                      _vm._l(_vm.regions, function(item, index) {
-                        return _c(
-                          "a",
-                          {
-                            key: index,
-                            staticClass: "grey link",
-                            attrs: { href: "/" }
-                          },
-                          [_vm._v(_vm._s(item.name))]
-                        )
-                      }),
-                      _c("br")
-                    ],
-                    2
-                  )
-                ])
+              ? _c(
+                  "div",
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "link",
+                        on: { click: _vm.searchInCountry }
+                      },
+                      [_c("b", [_vm._v("Весь Казахстан")])]
+                    ),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _vm._l(_vm.regionsList, function(item, index) {
+                      return _c(
+                        "div",
+                        { key: index, staticStyle: { margin: "5px" } },
+                        [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "grey link",
+                              attrs: { href: _vm.getUrl(item.url) },
+                              on: {
+                                click: function($event) {
+                                  return _vm.showPlacesByRegion(
+                                    $event,
+                                    item.region_id
+                                  )
+                                }
+                              }
+                            },
+                            [_vm._v(_vm._s(item.name))]
+                          ),
+                          _c("br")
+                        ]
+                      )
+                    })
+                  ],
+                  2
+                )
               : _vm._e(),
             _vm._v(" "),
             _vm.places
@@ -38098,7 +38108,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("${item.name}")]
+                        [_vm._v(_vm._s(item.name))]
                       )
                     })
                   ],
