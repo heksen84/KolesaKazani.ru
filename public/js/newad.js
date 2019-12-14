@@ -2102,7 +2102,7 @@ function forEach(data, callback) {
 // ----------------------------------------------
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ["categories", "regions"], // Входящие данные
+  props: ["categories", "regions", "lang"], // Входящие данные
 
   components: {
     transport: __WEBPACK_IMPORTED_MODULE_2__subcategories_transport_vue___default.a,

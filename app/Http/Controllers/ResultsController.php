@@ -27,12 +27,14 @@ class ResultsController extends Controller {
          // страна/язык
          // kz/570
 
+         \Debugbar::info("Язык: ".$request->lang);
+
          $inLocation=null;
 
-         /*switch($country) {
+         switch($request->lang) {
             case "kz": $inLocation = "в Казахстане"; break;
             case "ru": $inLocation = "в России"; break;
-         }*/
+         }
        
         $table = new SubCats();
 

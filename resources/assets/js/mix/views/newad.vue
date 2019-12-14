@@ -275,7 +275,7 @@ function forEach(data, callback) {
 // ----------------------------------------------
 export default {
 
-props: ["categories", "regions"], // Входящие данные
+props: ["categories", "regions", "lang"], // Входящие данные
 
 components: { 
   transport,
