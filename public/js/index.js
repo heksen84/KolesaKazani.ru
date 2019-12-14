@@ -51340,7 +51340,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 // --------------------------
 /* harmony default export */ __webpack_exports__["default"] = (new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 
-  el: '#app',
+  el: "#app",
 
   data: function data() {
     return {

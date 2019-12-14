@@ -12,7 +12,7 @@ import location from './views/components/location'
 // --------------------------
 export default new Vue ({
 
-  el: '#app',
+  el: "#app",
 
   data () {   
     return {     
@@ -69,7 +69,7 @@ export default new Vue ({
       // сбиваю в кучу их если кол-во меньше 4	      
       if (elements.length < 4)
        elements.addClass("col-xl-12")	  
-         
+
       // отображаю
       elements.show();
       this.categories=false;
