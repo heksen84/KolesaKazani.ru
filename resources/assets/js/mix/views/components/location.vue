@@ -103,7 +103,9 @@ export default {
   // Поиск в регионе
   // --------------------------------------
   searchInRegion(e) {
-    window.location = this.regionUrl;
+    e.preventDefault();
+    //window.location = this.country+"/"+this.language+this.regionUrl;
+    window.location = this.language+this.regionUrl;
   },
   
   // --------------------------------------
@@ -111,6 +113,7 @@ export default {
   // --------------------------------------
   selectPlace(e, placeName, placeUrl) {    
     e.preventDefault();
+    //window.location = this.country+"/"+this.language+this.regionUrl+"/"+placeUrl;
     window.location = this.regionUrl+"/"+placeUrl;
   }
 

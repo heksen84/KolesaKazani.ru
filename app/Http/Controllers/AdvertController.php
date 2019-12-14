@@ -22,7 +22,7 @@ class AdvertController extends Controller {
     }
     
     // Новое объявление
-    public function NewAd() {
+    public function NewAd($country=null, $language=null) {
         return Auth::user()? view("newad")
         ->with( "title", "Подать объявление" )
         ->with( "description", "Подать новое объявление на сайте ".config('app.name'))
@@ -30,7 +30,8 @@ class AdvertController extends Controller {
         ->with( "categories", Categories::all() )
         ->with( "regions", Regions::all() )
         ->with( "dealtypes", DealType::all()->toJson() )
-        ->with( "lang", "kz" )
+        ->with( "country", "kz" )
+        ->with( "language", "ru" )
         : redirect("login");
     }
 

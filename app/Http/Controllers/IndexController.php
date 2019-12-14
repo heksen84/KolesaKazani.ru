@@ -21,7 +21,7 @@ class IndexController extends Controller {
 	// ------------------------------------------------
 	// Базовая функция для главной страницы	
 	// ------------------------------------------------
-    private function ShowIndexPage($region, $place) {
+    private function ShowIndexPage($country, $language, $region, $place) {
 		
 		$sklonResult="";
 						
@@ -118,19 +118,18 @@ class IndexController extends Controller {
     }
 
     // Cтрана
-    public function ShowCountryIndexPage($lang=null) {
-		\Debugbar::info($lang);
-	    return $this->ShowIndexPage(null, null);
+    public function ShowCountryIndexPage($country=null, $language=null) {
+	    return $this->ShowIndexPage(null, null, null, null);
     }		
 
     // Регион
-    public function ShowRegionIndexPage($lang, $region) {
-	    return $this->ShowIndexPage($region, null);
+    public function ShowRegionIndexPage($country, $language, $region) {
+	    return $this->ShowIndexPage($country, $language, $region, null);
     }		
 
     // Город или село
-    public function ShowPlaceIndexPage($lang, $region, $place) {
-	    return $this->ShowIndexPage($region, $place);
+    public function ShowPlaceIndexPage($country, $language, $region, $place) {
+	    return $this->ShowIndexPage($country, $language, $region, $place);
     }		
 					
 }

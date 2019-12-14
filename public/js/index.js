@@ -1849,7 +1849,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // Поиск в регионе
     // --------------------------------------
     searchInRegion: function searchInRegion(e) {
-      window.location = this.regionUrl;
+      e.preventDefault();
+      //window.location = this.country+"/"+this.language+this.regionUrl;
+      window.location = this.language + this.regionUrl;
     },
 
 
@@ -1858,6 +1860,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // --------------------------------------
     selectPlace: function selectPlace(e, placeName, placeUrl) {
       e.preventDefault();
+      //window.location = this.country+"/"+this.language+this.regionUrl+"/"+placeUrl;
       window.location = this.regionUrl + "/" + placeUrl;
     }
   }
