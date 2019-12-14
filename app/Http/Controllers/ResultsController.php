@@ -20,13 +20,6 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------    
     public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {  
        
-         // --- коды языков ---
-         // русский = 570
-         // казахский = 255
-
-         // страна/язык
-         // kz/570
-
          \Debugbar::info("Язык: ".$request->lang);
 
          $inLocation=null;
