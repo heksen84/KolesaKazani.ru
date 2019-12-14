@@ -62,11 +62,14 @@ export default new Vue ({
 
     if ( categoryId < 10 ) {
       e.preventDefault();        
+
       // получаю элементы
       let elements = $("*[data-category-id='"+(categoryId)+"']");
+
       // сбиваю в кучу их если кол-во меньше 4	      
       if (elements.length < 4)
-       elements.addClass("col-xl-12")	    
+       elements.addClass("col-xl-12")	  
+         
       // отображаю
       elements.show();
       this.categories=false;

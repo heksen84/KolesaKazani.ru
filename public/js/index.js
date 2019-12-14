@@ -51393,10 +51393,13 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
       if (categoryId < 10) {
         e.preventDefault();
+
         // получаю элементы
         var elements = __WEBPACK_IMPORTED_MODULE_1_jquery___default()("*[data-category-id='" + categoryId + "']");
+
         // сбиваю в кучу их если кол-во меньше 4	      
         if (elements.length < 4) elements.addClass("col-xl-12");
+
         // отображаю
         elements.show();
         this.categories = false;
