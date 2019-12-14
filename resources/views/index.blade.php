@@ -26,7 +26,7 @@
       <ul class="navbar-nav">
         @if ($auth===1)
         <li class="nav-item active">	    
-          <a class="nav-link" href="{{ $country }}/{{ $language }}/podat-obyavlenie">Подать объявлениe <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/podat-obyavlenie">Подать объявлениe <span class="sr-only">(current)</span></a>
         </li>	
         <li class="nav-item">
           <a class="nav-link" href="/home">Мои объявления</a>
@@ -95,7 +95,7 @@
       </div>
 
     <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center" title="Подать новое объявление" id="new_advert_col">
-      <a href="{{ $country }}/{{ $language }}/podat-obyavlenie"><div id="new_advert_block">подать объявление</div></a>    
+      <a href="/podat-obyavlenie"><div id="new_advert_block">подать объявление</div></a>    
     </div>
 
   </div>  
@@ -107,9 +107,9 @@
           @foreach($categories as $category)
         	  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 col_item" @click="showSubcategories($event,{{ $category['id'] }})">          	   
               @if ($location==="/")
-                <a href="{{ $country }}/{{ $language }}/{{ $category['url'] }}" class="url"><div class="category_item">{{ $category["name"] }}</div></a>
+                <a href="/category/{{ $category['url'] }}" class="url"><div class="category_item">{{ $category["name"] }}</div></a>
               @else
-                <a href="{{ $country }}/{{ $language }}/{{ $location }}/{{ $category['url'] }}" class="url"><div class="category_item">{{ $category["name"] }}</div></a>
+                <a href="/{{ $location }}/category/{{ $category['url'] }}" class="url"><div class="category_item">{{ $category["name"] }}</div></a>
               @endif
         	  </div>
           @endforeach
@@ -121,9 +121,9 @@
             @foreach($subcategories as $subcategory)
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 hide" data-category-id="{{ $subcategory['category_id'] }}">
               @if ($location==="/")
-                <a href="{{ $country }}/{{ $language }}/category/{{ $subcategory['category_url']}}/{{ $subcategory['url'] }}" class="url"><div class="category_item subcategory">{{ $subcategory["name"] }}</div></a>
+                <a href="/category/{{ $subcategory['category_url']}}/{{ $subcategory['url'] }}" class="url"><div class="category_item subcategory">{{ $subcategory["name"] }}</div></a>
               @else
-                <a href="{{ $country }}/{{ $language }}/{{ $location }}/category/{{ $subcategory['category_url'] }}/{{ $subcategory['url'] }}" class="url"><div class="category_item subcategory">{{ $subcategory["name"] }}</div></a>
+                <a href="/{{ $location }}/category/{{ $subcategory['category_url'] }}/{{ $subcategory['url'] }}" class="url"><div class="category_item subcategory">{{ $subcategory["name"] }}</div></a>
               @endif
               </div>
             @endforeach

@@ -51,7 +51,7 @@ export default {
     console.log(this.country)
   
     // Получить города / сёлы
-    get(this.country+"/api/getRegions").then((res) => {    
+    get("/api/getRegions").then((res) => {    
       console.log(res.data)
       this.regionsList = res.data;
     }).catch((err) => { console.log(err) });
@@ -78,7 +78,7 @@ export default {
     this.tmpLocationName=e.target.innerText;
 
     // Получить города / сёлы
-    get(this.country+"/api/getPlaces?region_id="+regionId).then((res) => {    
+    get("/api/getPlaces?region_id="+regionId).then((res) => {    
       this.placesList=res.data;
       this.regionUrl=e.target.pathname;
       this.regions=false;
@@ -105,7 +105,7 @@ export default {
   searchInRegion(e) {
     e.preventDefault();
     //window.location = this.country+"/"+this.language+this.regionUrl;
-    window.location = this.language+this.regionUrl;
+    window.location = this.regionUrl;
   },
   
   // --------------------------------------

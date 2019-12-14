@@ -1787,7 +1787,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     console.log(this.country);
 
     // Получить города / сёлы
-    Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])(this.country + "/api/getRegions").then(function (res) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])("/api/getRegions").then(function (res) {
       console.log(res.data);
       _this.regionsList = res.data;
     }).catch(function (err) {
@@ -1821,7 +1821,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.tmpLocationName = e.target.innerText;
 
       // Получить города / сёлы
-      Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])(this.country + "/api/getPlaces?region_id=" + regionId).then(function (res) {
+      Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])("/api/getPlaces?region_id=" + regionId).then(function (res) {
         _this2.placesList = res.data;
         _this2.regionUrl = e.target.pathname;
         _this2.regions = false;
@@ -1851,7 +1851,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     searchInRegion: function searchInRegion(e) {
       e.preventDefault();
       //window.location = this.country+"/"+this.language+this.regionUrl;
-      window.location = this.language + this.regionUrl;
+      window.location = this.regionUrl;
     },
 
 
