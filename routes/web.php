@@ -13,8 +13,6 @@ Route::get("api/getCarsModels", "JournalController@getCarsModels" );
 // По стране
 Route::get("/", "IndexController@ShowCountryIndexPage");
 
-Route::get("/", "IndexController@ShowCountryIndexPage");
-
 // Новое объявление
 Route::get("/podat-obyavlenie", "AdvertController@NewAd");
 

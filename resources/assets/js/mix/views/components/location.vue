@@ -33,7 +33,7 @@ import { get } from '../../../helpers/api' // axios
 
 export default {
   
-  props: ["country", "language"],
+ //props: ["country", "language"],
 
   data () {
     return 	{
