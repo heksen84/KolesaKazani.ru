@@ -2,33 +2,34 @@
 Auth::routes();
 
 // api вызовы
-Route::post("{lang}/api/createAdvert", "AdvertController@createAdvert");
-Route::get("{lang}/api/getSubCategoryNamesById", "JournalController@getSubCategoryNamesById" );
-Route::get("{lang}/api/getRegions", "JournalController@GetRegions");
-Route::get("{lang}/api/getPlaces", "JournalController@GetPlaces");
-Route::get("{lang}/api/getCarsMarks", "JournalController@getCarsMarks" );
-Route::get("{lang}/api/getCarsModels", "JournalController@getCarsModels" );
+Route::post("{country}/api/createAdvert", "AdvertController@createAdvert");
+Route::get("{country}/api/getSubCategoryNamesById", "JournalController@getSubCategoryNamesById" );
+Route::get("{country}/api/getRegions", "JournalController@GetRegions");
+Route::get("{country}/api/getPlaces", "JournalController@GetPlaces");
+Route::get("{country}/api/getCarsMarks", "JournalController@getCarsMarks" );
+Route::get("{country}/api/getCarsModels", "JournalController@getCarsModels" );
 
 
 // По стране
 Route::get("/", "IndexController@ShowCountryIndexPage");
-Route::get("{lang}/", "IndexController@ShowCountryIndexPage");
+
+Route::get("{country}/", "IndexController@ShowCountryIndexPage");
 
 // Новое объявление
-Route::get("{lang}/podat-obyavlenie", "AdvertController@NewAd");
+Route::get("{country}/{language}/podat-obyavlenie", "AdvertController@NewAd");
 
 // По всему региону
-Route::get("{lang}/{region}", "IndexController@ShowRegionIndexPage");
+Route::get("{country}/{region}", "IndexController@ShowRegionIndexPage");
 // По городу или селу
-Route::get("{lang}/{region}/{place}", "IndexController@ShowPlaceIndexPage");
+Route::get("{country}/{region}/{place}", "IndexController@ShowPlaceIndexPage");
 
 
 // Результаты по категориям по стране
-Route::get("{lang}/category/{category}/{subcategory}", "ResultsController@getCountrySubCategoryResults");
+Route::get("{country}/{language}/category/{category}/{subcategory}", "ResultsController@getCountrySubCategoryResults");
 // Результаты по категориям по региону
-Route::get("{lang}/{region}/category/{category}/{subcategory}", "ResultsController@getRegionSubCategoryResults");
+Route::get("{country}/{language}/{region}/category/{category}/{subcategory}", "ResultsController@getRegionSubCategoryResults");
 // Результаты по категориям по местности
-Route::get("{lang}/{region}/{city}/category/{category}/{subcategory}", "ResultsController@getCitySubCategoryResults");
+Route::get("{country}/{language}/{region}/{city}/category/{category}/{subcategory}", "ResultsController@getCitySubCategoryResults");
 
 // Сервисы
 Route::get("/util/str2url", "UtilsController@str2url");

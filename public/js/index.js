@@ -1769,7 +1769,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ["country"],
+  props: ["country", "language"],
 
   data: function data() {
     return {

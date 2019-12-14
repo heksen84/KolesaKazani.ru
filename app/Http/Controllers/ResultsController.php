@@ -18,7 +18,7 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     // Результаты по стране для вьюхи (results.blade.php)
     // -------------------------------------------------------------    
-    public function getCountrySubCategoryResults(Request $request, $lang, $category, $subcategory) {  
+    public function getCountrySubCategoryResults(Request $request, $country, $language, $category, $subcategory) {  
        
          // --- коды языков ---
          // русский = 570
@@ -29,7 +29,7 @@ class ResultsController extends Controller {
 
          $inLocation=null;
 
-         switch($lang) {
+         switch($country) {
             case "kz": $inLocation = "в Казахстане"; break;
             case "ru": $inLocation = "в России"; break;
          }

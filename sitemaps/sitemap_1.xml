@@ -1692,4 +1692,16 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/18-transport-gruzovoe-avto</loc>
+    <lastmod>2019-12-14T18:46:38+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/19-prodam-korovu-ne-b-u</loc>
+    <lastmod>2019-12-14T18:53:45+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
