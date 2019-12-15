@@ -2151,6 +2151,9 @@ function forEach(data, callback) {
 
   // компонент создан
   created: function created() {
+
+    //alert(this.lang)
+
     // заюзать require js для загрузки yandex модулей
     ymaps.ready(initMaps);
     this.$root.advert_data = [];
@@ -2476,7 +2479,7 @@ function forEach(data, callback) {
       } // ------------------------------------------------------------------------------------------------------------------------
       // Размещение объявления
       // ------------------------------------------------------------------------------------------------------------------------
-      axios.post("api/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(function (response) {
+      axios.post("/api/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(function (response) {
 
         console.log(response);
 

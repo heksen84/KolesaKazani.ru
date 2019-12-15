@@ -1,13 +1,15 @@
 <?php
+
 Auth::routes();
 
 // api вызовы
-Route::post("api/createAdvert", "AdvertController@createAdvert");
-Route::get("api/getSubCategoryNamesById", "ApiController@getSubCategoryNamesById" );
-Route::get("api/getRegions", "ApiController@GetRegions");
-Route::get("api/getPlaces", "ApiController@GetPlaces");
-Route::get("api/getCarsMarks", "ApiController@getCarsMarks" );
-Route::get("api/getCarsModels", "ApiController@getCarsModels" );
+Route::post("/api/createAdvert", "ApiController@createAdvert");
+Route::get("/api/getSubCategoryNamesById", "ApiController@getSubCategoryNamesById" );
+Route::get("/api/getRegions", "ApiController@GetRegions");
+Route::get("/api/getPlaces", "ApiController@GetPlaces");
+Route::get("/api/getCarsMarks", "ApiController@getCarsMarks" );
+Route::get("/api/getCarsModels", "ApiController@getCarsModels" );
+
 
 
 // По стране
@@ -20,7 +22,6 @@ Route::get("/podat-obyavlenie", "AdvertController@NewAd");
 Route::get("/{region}", "IndexController@ShowRegionIndexPage");
 // По городу или селу
 Route::get("/{region}/{place}", "IndexController@ShowPlaceIndexPage");
-
 
 // Результаты по категориям по стране
 Route::get("/category/{category}/{subcategory}", "ResultsController@getCountrySubCategoryResults");

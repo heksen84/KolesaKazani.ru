@@ -47,8 +47,6 @@ export default {
   },
   
   created() {
-    
-    console.log(this.country)
   
     // Получить города / сёлы
     get("/api/getRegions").then((res) => {    
@@ -73,6 +71,7 @@ export default {
   // Выбор региона
   // --------------------------------------
   showPlacesByRegion(e, regionId) {
+    
     e.preventDefault();
 
     this.tmpLocationName=e.target.innerText;

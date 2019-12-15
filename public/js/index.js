@@ -1784,8 +1784,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   created: function created() {
     var _this = this;
 
-    console.log(this.country);
-
     // Получить города / сёлы
     Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])("/api/getRegions").then(function (res) {
       console.log(res.data);
