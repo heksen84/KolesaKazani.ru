@@ -10,8 +10,6 @@ Route::get("/api/getPlaces", "ApiController@GetPlaces");
 Route::get("/api/getCarsMarks", "ApiController@getCarsMarks" );
 Route::get("/api/getCarsModels", "ApiController@getCarsModels" );
 
-
-
 // По стране
 Route::get("/", "IndexController@ShowCountryIndexPage");
 
@@ -20,6 +18,7 @@ Route::get("/podat-obyavlenie", "AdvertController@NewAd");
 
 // По всему региону
 Route::get("/{region}", "IndexController@ShowRegionIndexPage");
+
 // По городу или селу
 Route::get("/{region}/{place}", "IndexController@ShowPlaceIndexPage");
 
