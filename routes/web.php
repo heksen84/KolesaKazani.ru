@@ -3,11 +3,11 @@ Auth::routes();
 
 // api вызовы
 Route::post("api/createAdvert", "AdvertController@createAdvert");
-Route::get("api/getSubCategoryNamesById", "JournalController@getSubCategoryNamesById" );
-Route::get("api/getRegions", "JournalController@GetRegions");
-Route::get("api/getPlaces", "JournalController@GetPlaces");
-Route::get("api/getCarsMarks", "JournalController@getCarsMarks" );
-Route::get("api/getCarsModels", "JournalController@getCarsModels" );
+Route::get("api/getSubCategoryNamesById", "ApiController@getSubCategoryNamesById" );
+Route::get("api/getRegions", "ApiController@GetRegions");
+Route::get("api/getPlaces", "ApiController@GetPlaces");
+Route::get("api/getCarsMarks", "ApiController@getCarsMarks" );
+Route::get("api/getCarsModels", "ApiController@getCarsModels" );
 
 
 // По стране

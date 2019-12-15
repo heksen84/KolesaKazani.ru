@@ -9,7 +9,7 @@ use App\Regions;
 use App\Places;
 use DB;
 
-class JournalController extends Controller {
+class ApiController extends Controller {
 
    // Получить имена подкатегорий
     public function getSubCategoryNamesById(Request $request) {
