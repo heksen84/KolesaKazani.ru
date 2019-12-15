@@ -38,18 +38,22 @@ input[type="number"] {
 
 ::-webkit-input-placeholder {
   color: #323232;
+  text-align: center;
 }
 
 :-moz-placeholder {
   color: #323232;
+  text-align: center;
 }
 
 ::-moz-placeholder {
   color: #323232;
+  text-align: center;
 }
 
 :-ms-input-placeholder {
   color: #323232;
+  text-align: center;
 }
 
 html {

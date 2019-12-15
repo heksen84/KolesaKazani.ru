@@ -44,18 +44,22 @@ $scroll_bar_width: 8px;
  
  ::-webkit-input-placeholder {
   color:$inputPlaceHolder;
+  text-align:center;
  }
  
  :-moz-placeholder {
   color:$inputPlaceHolder;
+  text-align:center;
  }
  
  ::-moz-placeholder {
   color:$inputPlaceHolder;
+  text-align:center;
  }
  
  :-ms-input-placeholder {
   color:$inputPlaceHolder;
+  text-align:center;
  }
 
 html {
