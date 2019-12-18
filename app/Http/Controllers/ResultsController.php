@@ -26,17 +26,17 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     // получить расположение
     // -------------------------------------------------------------
-    private function getLocationName($lang) {
+    private function getLocationName($country) {
         
-        \Debugbar::info("Язык: ".$lang);
+        \Debugbar::info("Язык: ".$country);
 
-        $inLocation="";
+        $str="";
 
-        switch($lang) {
-            case "kz": $inLocation = "в Казахстане"; break;
-            case "ru": $inLocation = "в России"; break;
+        switch($country) {
+            case "kz": $str = "в Казахстане"; break;
+            case "ru": $str = "в России"; break;
         }
-        return $inLocation;
+        return $str;
     }
 
     // -------------------------------------------------------------
@@ -66,7 +66,7 @@ class ResultsController extends Controller {
          \Debugbar::info($items);
                 
          return view("results")
-         ->with("title", $subcategories[0]->title." ".$this->getLocationName($request->lang))
+         ->with("title", $subcategories[0]->title." ".$this->getLocationName($request->country))
          ->with("description", $subcategories[0]->description)
          ->with("keywords", $subcategories[0]->keywords)
          ->with("items", $items)
@@ -93,7 +93,7 @@ class ResultsController extends Controller {
          \Debugbar::info($items);
                 
          return view("results")
-         ->with("title", $subcategories[0]->title." ".$this->getLocationName($request->lang))
+         ->with("title", $subcategories[0]->title." ".$this->getLocationName($request->country))
          ->with("description", $subcategories[0]->description)
          ->with("keywords", $subcategories[0]->keywords)
          ->with("items", $items)
@@ -120,7 +120,7 @@ class ResultsController extends Controller {
          \Debugbar::info($items);
                 
          return view("results")
-         ->with("title", $subcategories[0]->title." ".$this->getLocationName($request->lang))
+         ->with("title", $subcategories[0]->title." ".$this->getLocationName($request->country))
          ->with("description", $subcategories[0]->description)
          ->with("keywords", $subcategories[0]->keywords)
          ->with("items", $items)
