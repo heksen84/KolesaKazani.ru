@@ -18,7 +18,7 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     // получить данные подкатегории
     // -------------------------------------------------------------
-    private function getSubCategoryDataByUrl(Request $request, $subcategoryUrl) {  
+    private function getSubCategoryData(Request $request, $subcategoryUrl) {  
         $table = new SubCats();         
         return $table::select("id", "title", "description", "keywords")->where("url", $subcategoryUrl)->get();
     }
@@ -51,7 +51,7 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------    
     public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {                 
                        
-        $subcategories = $this->getSubCategoryDataByUrl($request, $subcategory);                        
+        $subcategories = $this->getSubCategoryData($request, $subcategory);                        
 
         $items = DB::select(
          "SELECT 
@@ -78,7 +78,7 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     public function getRegionSubCategoryResults(Request $request, $region, $category, $subcategory) {        
         
-        $subcategories = $this->getSubCategoryDataByUrl($request, $subcategory);                        
+        $subcategories = $this->getSubCategoryData($request, $subcategory);                        
 
         $items = DB::select(
          "SELECT 
@@ -105,7 +105,7 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     public function getCitySubCategoryResults(Request $request, $region, $city, $category, $subcategory) {
 
-        $subcategories = $this->getSubCategoryDataByUrl($request, $subcategory);                        
+        $subcategories = $this->getSubCategoryData($request, $subcategory);                        
 
         $items = DB::select(
          "SELECT 
