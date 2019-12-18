@@ -60,8 +60,7 @@ class ResultsController extends Controller {
          adv.title,
          adv.price,
          concat('".$this->getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
-         FROM `adverts` AS adv WHERE subcategory_id = ".$subcategories[0]->id
-         );            
+         FROM `adverts` AS adv WHERE subcategory_id = ".$subcategories[0]->id);            
    
          \Debugbar::info("субкатегория: ".$subcategory);       
          \Debugbar::info("id субкатегории: ".$subcategories);      
