@@ -114,7 +114,7 @@ class IndexController extends Controller {
 		->with("description", $description)
 		->with("keywords", $keywords)
 		->with("country", "kz")
-		->with("language", "ru");
+		->with("language", "kz");
     }
 
     // Cтрана
