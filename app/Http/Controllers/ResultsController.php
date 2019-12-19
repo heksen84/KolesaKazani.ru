@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Helpers\Petrovich;
 use App\Adverts;
 use App\SubCats;
 use App\CarMark;
@@ -111,7 +112,8 @@ class ResultsController extends Controller {
          \Debugbar::info("id субкатегории: ".$subcategories);      
          \Debugbar::info($items);
 
-         $locationName = " в ".$regionData->name;
+         $petrovich = new Petrovich(Petrovich::GENDER_MALE);         
+         $locationName = " в ".$petrovich->firstname($regionData->name, 0);
                 
          return view("results")
          ->with("title", $subcategories[0]->title." ".$locationName)
@@ -142,8 +144,9 @@ class ResultsController extends Controller {
          \Debugbar::info("субкатегория: ".$subcategory);       
          \Debugbar::info("id субкатегории: ".$subcategories);      
          \Debugbar::info($items);
-
-         $locationName = " в ".$cityData->name;
+         
+         $petrovich = new Petrovich(Petrovich::GENDER_MALE);         
+         $locationName = " в ".$petrovich->firstname($cityData->name, 4);
                 
          return view("results")
          ->with("title", $subcategories[0]->title." ".$locationName)
