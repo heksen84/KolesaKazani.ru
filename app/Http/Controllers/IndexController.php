@@ -1,11 +1,5 @@
 <?php
 
-/*
----------------------------------------
-TaskList:
-1.Сделать правильные склонения title
----------------------------------------*/
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -49,7 +43,7 @@ class IndexController extends Controller {
 				$petrovich = new Petrovich(Petrovich::GENDER_FEMALE);					
 				$regionName = $regionArr[0]->name;
 				$regionName = trim(str_replace("обл.", "", $regionName));
-				$sklonResult = $petrovich->lastname($regionName, 0);
+				$sklonResult = $petrovich->firstname($regionName, 0);
 
 				// minifix
 				switch($sklonResult) {
@@ -71,13 +65,11 @@ class IndexController extends Controller {
 			$locationName = Places::select("name")->where("url", $place)->get();
 			$placeArr = $locationName;
 			$locationName = $locationName[0]->name;
-
-			//$placeArr = Places::select("name")->where("url", $place)->get();
 				
 			if ($placeArr->count() > 0) {
 			
 				$petrovich = new Petrovich(Petrovich::GENDER_MALE);
-				$sklonResult = $petrovich->lastname($placeArr[0]->name, 2);
+				$sklonResult = $petrovich->firstname($placeArr[0]->name, 0);
 				$sklonResultForDesc = $petrovich->firstname($placeArr[0]->name, 4);
 
 				$title = config('app.name')." - объявления ".$sklonResult;
