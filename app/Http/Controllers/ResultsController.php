@@ -127,8 +127,7 @@ class ResultsController extends Controller {
     public function getCitySubCategoryResults(Request $request, $region, $city, $category, $subcategory) {
 
         $subcategories = $this->getSubCategoryData($request, $subcategory);
-
-        $regionData = $this->getRegionData($region);
+        $regionData = $this->getRegionData($region);        
         $cityData = $this->getCityData($city);                        
 
         $items = DB::select(
