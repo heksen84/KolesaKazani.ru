@@ -84,7 +84,7 @@
   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 center">
 
     <form @submit="search">
-      <input type="text" id="search_string" v-model="searchString" placeholder="поиск по объявлениям" required/>
+      <input type="text" id="search_string" v-model="searchString" placeholder="поиск по объявлениям {{ $sklonResult }}" required/>
       <button id="button_search" type="submit" title="Найти что требуется">найти</button>
     </form>
 
