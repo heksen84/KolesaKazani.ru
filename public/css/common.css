@@ -39,21 +39,25 @@ input[type="number"] {
 ::-webkit-input-placeholder {
   color: #323232;
   text-align: center;
+  font-weight: normal;
 }
 
 :-moz-placeholder {
   color: #323232;
   text-align: center;
+  font-weight: normal;
 }
 
 ::-moz-placeholder {
   color: #323232;
   text-align: center;
+  font-weight: normal;
 }
 
 :-ms-input-placeholder {
   color: #323232;
   text-align: center;
+  font-weight: normal;
 }
 
 html {

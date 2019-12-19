@@ -39854,6 +39854,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
+                staticStyle: { "font-weight": "600" },
                 attrs: {
                   type: "text",
                   size: "100",

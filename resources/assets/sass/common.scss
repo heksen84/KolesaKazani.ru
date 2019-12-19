@@ -45,21 +45,25 @@ $scroll_bar_width: 8px;
  ::-webkit-input-placeholder {
   color:$inputPlaceHolder;
   text-align:center;
+  font-weight:normal;
  }
  
  :-moz-placeholder {
   color:$inputPlaceHolder;
   text-align:center;
+  font-weight:normal;
  }
  
  ::-moz-placeholder {
   color:$inputPlaceHolder;
   text-align:center;
+  font-weight:normal;
  }
  
  :-ms-input-placeholder {
   color:$inputPlaceHolder;
   text-align:center;
+  font-weight:normal;
  }
 
 html {
