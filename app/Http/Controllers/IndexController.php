@@ -24,7 +24,7 @@ class IndexController extends Controller {
 
 			$location = "/";				
 			$title = config('app.name')." - объявления Казахстана";
-			$description = "Объявления о покупке, продаже, обмене и сдаче в аренду в Казахстане";
+			$description = "Объявления о покупке, продаже, обмене, а так же сдаче в аренду в Казахстане";
 			$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, FLIX, страна, казахстан";
 			$locationName = "Казахстан";
 		}
@@ -51,7 +51,7 @@ class IndexController extends Controller {
 				}
 
 				$title = config('app.name')." - объявления ".$sklonResult." области";
-				$description = "Объявления о покупке, продаже, обмене и сдаче в аренду в ".$sklonResult." области";
+				$description = "Объявления о покупке, продаже, обмене, а так же сдаче в аренду в ".$sklonResult." области";
 				$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, FLIX, ".$regionName." область";
 			}
 			else 
@@ -73,7 +73,7 @@ class IndexController extends Controller {
 				$sklonResultForDesc = $petrovich->firstname($placeArr[0]->name, 4);
 
 				$title = config('app.name')." - объявления ".$sklonResult;
-				$description = "Объявления о покупке, продаже, обмене и сдаче в аренду в ".$sklonResultForDesc;
+				$description = "Объявления о покупке, продаже, обмене, а так же сдаче в аренду в ".$sklonResultForDesc;
 				$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, FLIX, ".$locationName;
 			
 			}
