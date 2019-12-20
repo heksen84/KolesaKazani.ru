@@ -23,10 +23,10 @@
           <div class="row">
             @if ($itemsCount>0)
 
-	    <!-- фильтра -->
-	    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-  	      <filterTransport></filterTransport>
-	    </div>
+	          <!-- фильтра -->
+	          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+  	          <BaseFilter></BaseFilter>
+	          </div>
 
               @foreach($items as $item)
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
