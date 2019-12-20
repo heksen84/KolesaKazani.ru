@@ -1,8 +1,6 @@
 <template>
-  <div style="margin:10px">
-	От: <input type="text" placeholder="0"/>
-	До: <input type="text" placeholder="0"/>
-	<button class="btn btn-primary btn-sm" @click="helloWorld">применить</button>
+  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">  
+	<p>фильтр недвижимость</p>
  </div>
 </template>
 

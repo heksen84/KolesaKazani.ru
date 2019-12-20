@@ -18,24 +18,36 @@
   <div class="container-fluid container1">
     <hr>
       <h1 style="color:rgb(50,50,50)">{{ $title }}</h1>
-        <div style="color:rgb(50,50,50)">Найдено: ({{ $itemsCount }})</div>
-          {{ $categoryId }}, {{ $subcategoryId }}
+        <div style="color:rgb(50,50,50)">Найдено: ({{ $itemsCount }})</div>{{ $categoryId }}, {{ $subcategoryId }}          
 	        <br>
-          <div class="row">
-            @if ($itemsCount>0)
-	          
-              <!-- фильтра -->            	          
-              @if ($categoryId===1)
-  	            <transportFilter></transportFilter>
-              @endif	          
+            <div class="row">
+              
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3" id="filtersSpinner">
+                <div class="spinner-border-sm text-success" role="status">
+                  <span class="sr-only">Загрузка...</span>
+                </div>
+              </div>
+               <!--
+                 optimize html выхлоп
+                 https://freesoft.dev/program/121545735
+                -->
+              @if ($itemsCount>0)
 
-              @foreach($items as $item)
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">                  
-                  <div class="card text-left">
-                    <img class="card-img-top" src="{{ $item->imageName }}" alt="{{ $item->title }}">
-                    <div class="card-body">                                                        
-                        <h5 class="card-title">{{ $item->title }}</h5>                                                  
-                        <p class="card-text">{{ $item->price }} тнг.</p>
+                @if ($categoryId===1)
+                  <transportFilter></transportFilter>
+                @endif
+
+                @if ($categoryId===2)
+                  <realEstateFilter></realEstateFilter>
+                @endif
+
+                @foreach($items as $item)
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                    <div class="card text-left">
+                      <img class="card-img-top" src="{{ $item->imageName }}" alt="{{ $item->title }}">
+                        <div class="card-body">                                                        
+                          <h5 class="card-title">{{ $item->title }}</h5>                                                  
+                          <p class="card-text">{{ $item->price }} тнг.</p>
                         </div>              
                       </div>
                     </div>

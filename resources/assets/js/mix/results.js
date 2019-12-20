@@ -3,6 +3,7 @@ require('./bootstrap');
 import Vue from 'vue';
 import basefilter from './views/components/filters/baseFilter'
 import transportfilter from './views/components/filters/transportFilter'
+import realestatefilter from './views/components/filters/realEstateFilter'
 
 export default new Vue ({
   
@@ -10,7 +11,18 @@ export default new Vue ({
 
   components: { 
     basefilter,
-    transportfilter
+    transportfilter,
+    realestatefilter
+  },
+
+  data () {   
+    return {           
+    }
+  },
+
+  created() {
+    let element = document.getElementById("filtersSpinner");
+    element.style.display = "none"
   },
 
   methods: {}
