@@ -18,20 +18,20 @@
   <div class="container-fluid container1">
     <hr>
       <h1 style="color:rgb(50,50,50)">{{ $title }}</h1>
-        <div style="color:rgb(50,50,50)">Найдено: ({{ $itemsCount }})</div>     
+        <div style="color:rgb(50,50,50)">Найдено: ({{ $itemsCount }})</div>
+          {{ $categoryId }}, {{ $subcategoryId }}
 	        <br>
           <div class="row">
             @if ($itemsCount>0)
 
-	          <!-- фильтра -->
-            <!-- сделать условие для неотображения всех фильтров на страничке-->
-	          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-  	          <BaseFilter></BaseFilter>
-	          </div>
+	          
+              <!-- фильтра -->            	          
+              @if ($categoryId===1)
+  	            <transportFilter></transportFilter>
+              @endif	          
 
               @foreach($items as $item)
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-                  <!--<div class="card text-left" style="background:rgb(250,220,220)">-->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">                  
                   <div class="card text-left">
                     <img class="card-img-top" src="{{ $item->imageName }}" alt="{{ $item->title }}">
                     <div class="card-body">                                                        

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\Petrovich;
 use App\Adverts;
+use App\Categories;
 use App\SubCats;
 use App\CarMark;
 use App\Regions;
@@ -17,6 +18,15 @@ class ResultsController extends Controller {
     // $filter->getStartPage();
     // $filter->getStartPrice();
     // $filter->getEndPrice();        
+
+
+    // -------------------------------------------------------------
+    // получить данные категории
+    // -------------------------------------------------------------
+    private function getCategoryData(Request $request, $category) {  
+        $table = new Categories();         
+        return $table::select("id")->where("url", $category)->get();
+    }
 
     // -------------------------------------------------------------
     // получить данные подкатегории
@@ -70,6 +80,7 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------    
     public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {                 
                        
+        $categories = $this->getCategoryData($request, $category);                        
         $subcategories = $this->getSubCategoryData($request, $subcategory);                        
 
         $items = DB::select(
@@ -89,7 +100,9 @@ class ResultsController extends Controller {
          ->with("description", $subcategories[0]->description)
          ->with("keywords", $subcategories[0]->keywords)
          ->with("items", $items)
-         ->with("itemsCount", count($items));
+         ->with("itemsCount", count($items))
+         ->with("categoryId", $categories[0]->id)
+         ->with("subcategoryId", $subcategories[0]->id);
     }
 
     // -------------------------------------------------------------
