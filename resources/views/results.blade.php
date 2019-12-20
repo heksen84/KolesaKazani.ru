@@ -22,6 +22,12 @@
 	        <br>
           <div class="row">
             @if ($itemsCount>0)
+
+	    <!-- фильтра -->
+	    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+  	      <filterTransport></filterTransport>
+	    </div>
+
               @foreach($items as $item)
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
                   <!--<div class="card text-left" style="background:rgb(250,220,220)">-->
@@ -59,7 +65,6 @@
       @endif
   </div>  
 </div>
-<!-- http://flix:90/transport/legkovoy-avtomobil?price_from=0&price_to=999999&car_mark=10&car_model=199&role=-->
 <script type="text/javascript" src="{{ mix('js/results.js') }}"></script>
 </body>
 </html>

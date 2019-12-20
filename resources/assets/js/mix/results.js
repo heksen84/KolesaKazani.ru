@@ -3,7 +3,8 @@
 require('./bootstrap');
 
 import Vue from 'vue';
-import { get } from '../helpers/api' // axios
+import { get } from '../helpers/api'
+import filtertransport from './views/components/filterTransport'
 
 // --------------------------
 // экземляр приложения vue
@@ -12,25 +13,17 @@ export default new Vue ({
 
   el: '#app',
 
+  components: { filtertransport },
+
   data () {   
     return {
-      //subcategoryId: null,
-      priceFrom: null,
-      priceTo: null
     }
   },
-
-  delimiters: ['${', '}'], // для разрешения конфликта c переменными php
-  components: {},
 
   // -------------------------------
   // Компонент создан
   // -------------------------------
-  created() {
-    //alert(this.subcategoryId)
-    this.priceFrom=0;
-    this.priceTo=1000;
-  },
+  created() {},
 
   // --------------------------------------
   // Методы
