@@ -19,7 +19,6 @@ class ResultsController extends Controller {
     // $filter->getStartPrice();
     // $filter->getEndPrice();        
 
-
     // -------------------------------------------------------------
     // получить данные категории
     // -------------------------------------------------------------
@@ -110,6 +109,7 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     public function getRegionSubCategoryResults(Request $request, $region, $category, $subcategory) {        
         
+        $categories = $this->getCategoryData($request, $category);
         $subcategories = $this->getSubCategoryData($request, $subcategory);
         $regionData = $this->getRegionData($region);
 
@@ -133,7 +133,9 @@ class ResultsController extends Controller {
          ->with("description", $subcategories[0]->description)
          ->with("keywords", $subcategories[0]->keywords)
          ->with("items", $items)
-         ->with("itemsCount", count($items));
+         ->with("itemsCount", count($items))
+         ->with("categoryId", $categories[0]->id)
+         ->with("subcategoryId", $subcategories[0]->id);
     }
 
     // -------------------------------------------------------------
@@ -141,6 +143,7 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     public function getCitySubCategoryResults(Request $request, $region, $city, $category, $subcategory) {
 
+        $categories = $this->getCategoryData($request, $category);
         $subcategories = $this->getSubCategoryData($request, $subcategory);
         $regionData = $this->getRegionData($region);        
         $cityData = $this->getCityData($city);                        
@@ -166,7 +169,9 @@ class ResultsController extends Controller {
          ->with("description", $subcategories[0]->description)
          ->with("keywords", $subcategories[0]->keywords)
          ->with("items", $items)
-         ->with("itemsCount", count($items));        
+         ->with("itemsCount", count($items))
+         ->with("categoryId", $categories[0]->id)
+         ->with("subcategoryId", $subcategories[0]->id);
     }
     
 }
