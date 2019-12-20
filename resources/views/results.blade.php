@@ -23,7 +23,6 @@
 	        <br>
           <div class="row">
             @if ($itemsCount>0)
-
 	          
               <!-- фильтра -->            	          
               @if ($categoryId===1)
