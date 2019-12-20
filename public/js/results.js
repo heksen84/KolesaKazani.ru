@@ -1741,17 +1741,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {};
-  },
-  created: function created() {},
+
+	props: ["region", "city", "category", "subcategory", "country", "lang", "page", "startPrice", "endPrice"],
+
+	data: function data() {
+		return {};
+	},
+	created: function created() {},
 
 
-  methods: {
-    helloWorld: function helloWorld() {
-      alert("hello bro!");
-    }
-  }
+	methods: {
+		helloWorld: function helloWorld() {
+			alert("hello bro!");
+		}
+	}
 
 });
 

@@ -24,6 +24,7 @@
             @if ($itemsCount>0)
 
 	          <!-- фильтра -->
+            <!-- сделать условие для неотображения всех фильтров на страничке-->
 	          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
   	          <BaseFilter></BaseFilter>
 	          </div>

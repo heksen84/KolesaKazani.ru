@@ -9,6 +9,18 @@
 <script>
 export default {  
 
+props: [
+	"region", 
+	"city", 
+	"category", 
+	"subcategory", 
+	"country", 
+	"lang", 
+	"page", 
+	"startPrice", 
+	"endPrice"
+	],
+
 data () {
     return 	{}
   },
