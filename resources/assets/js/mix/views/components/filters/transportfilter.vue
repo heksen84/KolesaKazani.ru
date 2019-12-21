@@ -1,8 +1,10 @@
 <template>
-<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">  
-	От: <input type="text" placeholder="0"/>
-	До: <input type="text" placeholder="0"/>
-	<button class="btn btn-primary btn-sm" @click="helloWorld">применить</button>
+<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin:20px">
+<form>  
+	От: <input type="text" placeholder="0" style="width:100px" required/>
+	До: <input type="text" placeholder="0" style="width:100px" required/>
+	<button type="submit" class="btn btn-primary btn-sm">применить</button>
+</form>
  </div>
 </template>
 
@@ -29,7 +31,7 @@ data () {
   
   methods: {
 	helloWorld() {
-		alert("hello bro!")
+	//	alert("hello bro!")
 	}
 }
 

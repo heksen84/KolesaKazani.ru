@@ -1805,6 +1805,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -1818,7 +1820,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	methods: {
 		helloWorld: function helloWorld() {
-			alert("hello bro!");
+			//	alert("hello bro!")
 		}
 	}
 
@@ -19520,27 +19522,45 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" },
-    [
-      _vm._v("  \r\n\tОт: "),
-      _c("input", { attrs: { type: "text", placeholder: "0" } }),
-      _vm._v("\r\n\tДо: "),
-      _c("input", { attrs: { type: "text", placeholder: "0" } }),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary btn-sm",
-          on: { click: _vm.helloWorld }
-        },
-        [_vm._v("применить")]
-      )
-    ]
-  )
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12",
+        staticStyle: { margin: "20px" }
+      },
+      [
+        _c("form", [
+          _vm._v("  \r\n\tОт: "),
+          _c("input", {
+            staticStyle: { width: "100px" },
+            attrs: { type: "text", placeholder: "0", required: "" }
+          }),
+          _vm._v("\r\n\tДо: "),
+          _c("input", {
+            staticStyle: { width: "100px" },
+            attrs: { type: "text", placeholder: "0", required: "" }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary btn-sm",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("применить")]
+          )
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
