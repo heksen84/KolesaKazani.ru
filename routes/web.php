@@ -2,9 +2,9 @@
 
 Auth::routes();
 
-
 // Новое объявление
 Route::get("/podat-obyavlenie", "AdvertController@NewAd");
+
 
 // api вызовы
 Route::post("/api/createAdvert", "ApiController@createAdvert");
@@ -18,20 +18,20 @@ Route::get("/api/getCarsModels", "ApiController@getCarsModels" );
 Route::get("/", "IndexController@ShowCountryIndexPage");
 
 
+// Результаты по категориям по стране
+Route::get("/category/{category}", "ResultsController@getCountryCategoryResults");
+// Результаты по подкатегориям по стране
+Route::get("/category/{category}/{subcategory}", "ResultsController@getCountrySubCategoryResults");
+// Результаты по подкатегориям по региону
+Route::get("/{region}/category/{category}/{subcategory}", "ResultsController@getRegionSubCategoryResults");
+// Результаты по подкатегориям по местности
+Route::get("/{region}/{city}/category/{category}/{subcategory}", "ResultsController@getCitySubCategoryResults");
+
 
 // По всему региону
 Route::get("/{region}", "IndexController@ShowRegionIndexPage");
-
 // По городу или селу
 Route::get("/{region}/{place}", "IndexController@ShowPlaceIndexPage");
 
-// Результаты по категориям по стране
-Route::get("/category/{category}/{subcategory}", "ResultsController@getCountrySubCategoryResults");
-// Результаты по категориям по региону
-Route::get("/{region}/category/{category}/{subcategory}", "ResultsController@getRegionSubCategoryResults");
-// Результаты по категориям по местности
-Route::get("/{region}/{city}/category/{category}/{subcategory}", "ResultsController@getCitySubCategoryResults");
-
 // Сервисы
 Route::get("/util/str2url", "UtilsController@str2url");
-
