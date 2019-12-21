@@ -13,7 +13,7 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('css/newad.css') }}">
 </head>
 <body>
-  <div id="app">  	
+  <div id="app"> 	
     <newad :categories="{{ $categories }}" :regions="{{ $regions }}" lang="{{ $lang }}"></newad>
   </div>
 <script src="https://api-maps.yandex.ru/2.0-stable/?apikey=123&load=package.standard&lang=ru-RU" type="text/javascript"></script>
