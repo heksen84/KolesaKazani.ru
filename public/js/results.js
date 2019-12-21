@@ -31698,8 +31698,8 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
     return {};
   },
   created: function created() {
-    var element = document.getElementById("filtersSpinner");
-    element.style.display = "none";
+    // let element = document.getElementById("filtersSpinner");
+    // element.style.display = "none"
   },
 
 

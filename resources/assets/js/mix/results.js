@@ -21,8 +21,8 @@ export default new Vue ({
   },
 
   created() {
-    let element = document.getElementById("filtersSpinner");
-    element.style.display = "none"
+   // let element = document.getElementById("filtersSpinner");
+   // element.style.display = "none"
   },
 
   methods: {}

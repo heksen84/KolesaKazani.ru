@@ -13,8 +13,8 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('css/newad.css') }}">
 </head>
 <body>
-  <div id="app"> 	
-    <newad :categories="{{ $categories }}" :regions="{{ $regions }}" lang="{{ $lang }}"></newad>
+  <div id="app">	
+    <newad :categories="{{ $categories }}" :regions="{{ $regions }}" lang="{{ $lang }}" auth="{{ $auth }}"></newad>
   </div>
 <script src="https://api-maps.yandex.ru/2.0-stable/?apikey=123&load=package.standard&lang=ru-RU" type="text/javascript"></script>
 <script type="text/javascript" src="{{ mix('js/newad.js') }}"></script>

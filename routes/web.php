@@ -2,6 +2,10 @@
 
 Auth::routes();
 
+
+// Новое объявление
+Route::get("/podat-obyavlenie", "AdvertController@NewAd");
+
 // api вызовы
 Route::post("/api/createAdvert", "ApiController@createAdvert");
 Route::get("/api/getSubCategoryNamesById", "ApiController@getSubCategoryNamesById" );
@@ -13,8 +17,7 @@ Route::get("/api/getCarsModels", "ApiController@getCarsModels" );
 // По стране
 Route::get("/", "IndexController@ShowCountryIndexPage");
 
-// Новое объявление
-Route::get("/podat-obyavlenie", "AdvertController@NewAd");
+
 
 // По всему региону
 Route::get("/{region}", "IndexController@ShowRegionIndexPage");

@@ -13,7 +13,8 @@ class AdvertController extends Controller {
 
         \Debugbar::info("Язык: ".$request->lang);
 
-        return Auth::user()? view("newad")
+
+	return view("newad")
         ->with( "title", "Подать объявление" )
         ->with( "description", "Подать новое объявление на сайте ".config('app.name'))
         ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте")
@@ -22,8 +23,8 @@ class AdvertController extends Controller {
         ->with( "dealtypes", DealType::all()->toJson() )
         ->with( "country", "kz" )
         ->with( "lang", $request->lang )
-        : redirect("login");
-    }
+	->with( "auth", Auth::check() );
+     }
 
     
     
