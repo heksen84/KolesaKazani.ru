@@ -155,6 +155,8 @@
   </div>   
 
   <div class="row" style="margin-top:40px">
+     <a href="http://flix:90/aktyubinskaya-obl/aktyubinsk" class="hide">Актюбинск</a>
+     <a href="http://flix:90/pavlodarskaya-obl" class="hide">Павлодарская обл.</a>
     <div id="footer"><a href="/advertisers" class="underline_link">Реклама</a> | <a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a></div>
   </div>  
 
