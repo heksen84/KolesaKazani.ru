@@ -86,6 +86,10 @@ body {
   margin: auto;
 }
 
+.grey {
+  color: #5a5a5a;
+}
+
 @media screen and (max-width: 9000px) {
   .container1 {
     width: 1280px;

@@ -39847,7 +39847,7 @@ var render = function() {
                         expression: "!serviceUnavailable"
                       }
                     ],
-                    staticClass: "modal-title"
+                    staticClass: "modal-title grey"
                   },
                   [_vm._v("Расположение")]
                 ),
@@ -39863,7 +39863,7 @@ var render = function() {
                         expression: "serviceUnavailable"
                       }
                     ],
-                    staticClass: "modal-title"
+                    staticClass: "modal-title grey"
                   },
                   [_vm._v(_vm._s(_vm.dialogTitleMsg))]
                 ),
@@ -40879,7 +40879,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
-      _c("h5", { staticClass: "modal-title" }, [_vm._v("Авторизируйтесь")]),
+      _c("h5", { staticClass: "modal-title grey" }, [
+        _vm._v("Требуется авторизация")
+      ]),
       _vm._v(" "),
       _c(
         "button",

@@ -7,7 +7,7 @@
         <div class="modal-content">
           <div class="modal-header">
 
-            <h5 class="modal-title">Авторизируйтесь</h5>            
+            <h5 class="modal-title grey">Требуется авторизация</h5>            
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>          
@@ -37,8 +37,8 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 v-show="!serviceUnavailable" class="modal-title">Расположение</h5>          
-            <b v-show="serviceUnavailable" class="modal-title">{{ dialogTitleMsg }}</b>
+            <h5 v-show="!serviceUnavailable" class="modal-title grey">Расположение</h5>          
+            <b v-show="serviceUnavailable" class="modal-title grey">{{ dialogTitleMsg }}</b>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
