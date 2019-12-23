@@ -17,7 +17,7 @@
 <div id="app">
   <div id="navbar_menu">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#"><h2 style="font-size:30px;font-weight:650;letter-spacing:5px;color:rgb(50,50,50);font-family:'carefree'">{{config('app.name')}}</h2><h2 style="font-size:16px;margin-top:-10px;font-weight:500">Объявления {{ $sklonResult }}</h2></a>    
+    <a class="navbar-brand" href="#"><h2 style="font-size:22px;font-weight:650;letter-spacing:5px;color:rgb(50,50,50)">{{config('app.name')}}</h2><h2 style="font-size:12px;margin-top:-10px;font-weight:500">объявления {{ $sklonResult }}</h2></a>    
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -76,7 +76,7 @@
     <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center">
       <div id="logo_block">
         <div id="logo_block_text">{{config('app.name')}}</div>        
-        <h1 style="font-size:14px;color:grey;margin-top:-17px;letter-spacing:3px;">Объявления {{ $sklonResult }}</h1>
+        <h1 style="font-size:14px;color:grey;margin-top:-15px;letter-spacing:3px;">Объявления {{ $sklonResult }}</h1>
       </div>
   </div>
 
