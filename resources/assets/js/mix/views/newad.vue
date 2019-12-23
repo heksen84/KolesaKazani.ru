@@ -55,7 +55,7 @@
     </div>        
 
     <div class="row">  
-      <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col" style="border: 1px solid rgb(200,200,200)">
+      <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col" style="border: 1px solid rgb(220,220,220)">
         <div class="close_button" title="Закрыть страницу" style="font-weight:bold" @click="closeAndReturn">X</div>
 		      <h1 class="title_text" style="margin-top:12px">подать объявление</h1>
             <hr>

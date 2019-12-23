@@ -18,10 +18,8 @@
   <div class="container-fluid container1">
     <hr>
       <h1 style="color:rgb(50,50,50)">{{ $title }}</h1>
-        <div style="color:rgb(50,50,50)">Найдено: ({{ $itemsCount }})</div>{{ $categoryId }}, {{ $subcategoryId }}          
-	        <br>
-            <div class="row">
-              
+        <div style="color:rgb(50,50,50)">Найдено: ({{ $itemsCount }}) [категория: {{ $categoryId }}, подкатегория: {{ $subcategoryId }}]</div>	        
+            <div class="row">              
                <!--
                  optimize html выхлоп
                  https://freesoft.dev/program/121545735
@@ -35,6 +33,8 @@
                 @if ($categoryId===2)
                   <realEstateFilter></realEstateFilter>
                 @endif
+
+                <hr style="color:black">
 
                 @foreach($items as $item)
                   <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">

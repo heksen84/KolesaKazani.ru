@@ -1807,6 +1807,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -19536,27 +19542,30 @@ var staticRenderFns = [
         staticStyle: { margin: "20px" }
       },
       [
-        _c("form", [
-          _c("input", {
-            staticClass: "form-control",
-            staticStyle: { width: "100px" },
-            attrs: { type: "text", placeholder: "0", required: "" }
-          }),
+        _c("form", { staticClass: "form-inline" }, [
+          _c("div", { staticClass: "form-group mx-sm-1 mb-2" }, [
+            _c("input", {
+              staticClass: "form-control",
+              staticStyle: { width: "100px" },
+              attrs: { type: "text", placeholder: "0", required: "" }
+            })
+          ]),
           _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            staticStyle: { width: "100px" },
-            attrs: { type: "text", placeholder: "0", required: "" }
-          }),
+          _c("div", { staticClass: "form-group mx-sm-1 mb-2" }, [
+            _c("input", {
+              staticClass: "form-control",
+              staticStyle: { width: "100px" },
+              attrs: { type: "text", placeholder: "0", required: "" }
+            })
+          ]),
           _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-primary btn-sm",
-              attrs: { type: "submit" }
-            },
-            [_vm._v("применить")]
-          )
+          _c("div", { staticClass: "form-group mx-sm-1 mb-2" }, [
+            _c(
+              "button",
+              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+              [_vm._v("применить")]
+            )
+          ])
         ])
       ]
     )
