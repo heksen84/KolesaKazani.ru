@@ -20,10 +20,7 @@
       <h1 style="color:rgb(50,50,50)">{{ $title }}</h1>
         <div style="color:rgb(50,50,50)">Найдено: ({{ $itemsCount }}) [категория: {{ $categoryId }}, подкатегория: {{ $subcategoryId }}]</div>	        
             <div class="row">              
-               <!--
-                 optimize html выхлоп
-                 https://freesoft.dev/program/121545735
-                -->
+                           
               @if ($itemsCount>0)
 
                 @if ($categoryId===1)
@@ -33,8 +30,6 @@
                 @if ($categoryId===2)
                   <realEstateFilter></realEstateFilter>
                 @endif
-
-                <hr style="color:black">
 
                 @foreach($items as $item)
                   <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
@@ -49,26 +44,27 @@
                 @endforeach
             @endif
           </div>   
-       @if ($itemsCount>10)  
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <br>    
-        <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-          <span class="page-link">Назад</span>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item active">
-          <span class="page-link">
-            2
-          <span class="sr-only">(current)</span>
-        </span>
-      </li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Вперёд</a>
+      
+      @if ($itemsCount>5)  
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <br>    
+          <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <span class="page-link">Назад</span>
           </li>
-        </ul>
-      </div>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item active">
+            <span class="page-link">
+              2
+            <span class="sr-only">(current)</span>
+          </span>
+        </li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#">Вперёд</a>
+            </li>
+          </ul>
+        </div>
       @endif
   </div>  
 </div>

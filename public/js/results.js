@@ -19562,7 +19562,7 @@ var staticRenderFns = [
           _c("div", { staticClass: "form-group mx-sm-1 mb-2" }, [
             _c(
               "button",
-              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+              { staticClass: "btn btn-secondary", attrs: { type: "submit" } },
               [_vm._v("применить")]
             )
           ])
