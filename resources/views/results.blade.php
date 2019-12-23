@@ -16,21 +16,21 @@
 <body>
 <div id="app">
 
-  <div class="container-fluid container1">
-    <hr>
-      <h1 style="color:rgb(50,50,50)">{{ $title }}</h1>
-        <div style="color:rgb(50,50,50)">Найдено: ({{ $itemsCount }}) [категория: {{ $categoryId }}, подкатегория: {{ $subcategoryId }}]</div>	        
+  <div class="container-fluid container1">  
+      <br>  
+      <h1 class="grey">{{ $title }}</h1>
+        <div class="grey">Найдено: ({{ $itemsCount }}) [категория: {{ $categoryId }}, подкатегория: {{ $subcategoryId }}]</div>	        
           <div class="row">
 
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin:20px">
               <div class="d-flex justify-content-center">
                 <div class="spinner-border text-success" role="status" id="spinner">
                   <span class="sr-only">загрузка фильтров...</span>
                 </div>
-              </div>              
-            </div>              
+              </div>                                    
 
               @if ($itemsCount>0)
+
                 @if ($categoryId===1)
                   <transportFilter></transportFilter>
                 @endif
@@ -38,6 +38,8 @@
                 @if ($categoryId===2)
                   <realEstateFilter></realEstateFilter>
                 @endif
+
+              </div>
 
                 @foreach($items as $item)
                   <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">

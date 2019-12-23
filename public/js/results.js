@@ -1811,8 +1811,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -19535,40 +19533,31 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12",
-        staticStyle: { margin: "20px" }
-      },
-      [
-        _c("form", { staticClass: "form-inline" }, [
-          _c("div", { staticClass: "form-group mx-sm-1 mb-2" }, [
-            _c("input", {
-              staticClass: "form-control",
-              staticStyle: { width: "100px" },
-              attrs: { type: "text", placeholder: "0", required: "" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group mx-sm-1 mb-2" }, [
-            _c("input", {
-              staticClass: "form-control",
-              staticStyle: { width: "100px" },
-              attrs: { type: "text", placeholder: "0", required: "" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group mx-sm-1 mb-2" }, [
-            _c(
-              "button",
-              { staticClass: "btn btn-secondary", attrs: { type: "submit" } },
-              [_vm._v("применить")]
-            )
-          ])
-        ])
-      ]
-    )
+    return _c("form", { staticClass: "form-inline" }, [
+      _c("div", { staticClass: "form-group mx-sm-1 mb-2" }, [
+        _c("input", {
+          staticClass: "form-control",
+          staticStyle: { width: "100px" },
+          attrs: { type: "text", placeholder: "0", required: "" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group mx-sm-1 mb-2" }, [
+        _c("input", {
+          staticClass: "form-control",
+          staticStyle: { width: "100px" },
+          attrs: { type: "text", placeholder: "0", required: "" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group mx-sm-1 mb-2" }, [
+        _c(
+          "button",
+          { staticClass: "btn btn-secondary", attrs: { type: "submit" } },
+          [_vm._v("применить")]
+        )
+      ])
+    ])
   }
 ]
 render._withStripped = true
