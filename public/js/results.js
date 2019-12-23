@@ -19529,14 +19529,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12",
-        staticStyle: { margin: "20px" }
-      },
-      [
-        _c("form", [
+    return _c("form", [
+      _c(
+        "div",
+        {
+          staticClass: "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12",
+          staticStyle: { margin: "20px" }
+        },
+        [
           _c("input", {
             staticClass: "form-control",
             staticStyle: { width: "100px" },
@@ -19557,9 +19557,9 @@ var staticRenderFns = [
             },
             [_vm._v("применить")]
           )
-        ])
-      ]
-    )
+        ]
+      )
+    ])
   }
 ]
 render._withStripped = true

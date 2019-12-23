@@ -1,11 +1,11 @@
 <template>
-<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin:20px">
 <form>  
+<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin:20px">
 	<input type="text" class="form-control" placeholder="0" style="width:100px" required/>
 	<input type="text" class="form-control" placeholder="0" style="width:100px" required/>
 	<button type="submit" class="btn btn-primary btn-sm">применить</button>
-</form>
  </div>
+ </form>
 </template>
 
 <script>
