@@ -70,13 +70,10 @@ h3 {
   display: block;
 }
 
-.subcategory {
- // width:310px !important;
+.subcategory { 
   font-size:17px !important;
   text-align:center !important;
   margin:auto;
-  /*border:1px solid grey;*/
-
 }
 
 #subcats {
@@ -244,7 +241,6 @@ h3 {
   color:white;
   letter-spacing:2px;
   font-size:16px;
-//  font-weight:bold;
   border:1px solid white;
   border-radius:5px
 }
@@ -258,8 +254,7 @@ h3 {
   padding:10px;
   background: rgb(200,100,100);
   border-radius:8px;
-  font-size: 18px;
-  //font-weight:bold;
+  font-size: 18px;  
   letter-spacing: 2px;
   margin-right: 8px;
   margin-top: 8px;

@@ -36,8 +36,7 @@
 }
 
 .custom-file-input:lang(ru)~.custom-file-label::after {
-  background: rgb(110,180,110);
-  //background: rgb(120,140,120);
+  background: rgb(110,180,110);  
   color:white;
   content: "добавить фото";
 }
