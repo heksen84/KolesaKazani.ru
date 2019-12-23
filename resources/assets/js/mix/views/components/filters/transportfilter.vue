@@ -1,13 +1,13 @@
 <template>
 <form class="form-inline">  
 	<div class="form-group mx-sm-1 mb-2">		
-		<input type="text" class="form-control" placeholder="0" style="width:100px" required/>
+		<input type="text" class="form-control form-control-sm" placeholder="0" style="width:100px" required/>
 	</div>
 	 <div class="form-group mx-sm-1 mb-2">
-		<input type="text" class="form-control" placeholder="0" style="width:100px" required/>
+		<input type="text" class="form-control form-control-sm" placeholder="0" style="width:100px" required/>
 	</div>
 	<div class="form-group mx-sm-1 mb-2">
-		<button type="submit" class="btn btn-secondary">применить</button>
+		<button type="submit" class="btn btn-secondary btn-sm">применить</button>
 	</div>
  </form>
 </template>

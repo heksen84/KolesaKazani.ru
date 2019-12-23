@@ -19536,7 +19536,7 @@ var staticRenderFns = [
     return _c("form", { staticClass: "form-inline" }, [
       _c("div", { staticClass: "form-group mx-sm-1 mb-2" }, [
         _c("input", {
-          staticClass: "form-control",
+          staticClass: "form-control form-control-sm",
           staticStyle: { width: "100px" },
           attrs: { type: "text", placeholder: "0", required: "" }
         })
@@ -19544,7 +19544,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("div", { staticClass: "form-group mx-sm-1 mb-2" }, [
         _c("input", {
-          staticClass: "form-control",
+          staticClass: "form-control form-control-sm",
           staticStyle: { width: "100px" },
           attrs: { type: "text", placeholder: "0", required: "" }
         })
@@ -19553,7 +19553,10 @@ var staticRenderFns = [
       _c("div", { staticClass: "form-group mx-sm-1 mb-2" }, [
         _c(
           "button",
-          { staticClass: "btn btn-secondary", attrs: { type: "submit" } },
+          {
+            staticClass: "btn btn-secondary btn-sm",
+            attrs: { type: "submit" }
+          },
           [_vm._v("применить")]
         )
       ])

@@ -76,12 +76,11 @@
     <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center">
       <div id="logo_block">
         <div id="logo_block_text">{{config('app.name')}}</div>        
-        <h1 style="font-size:14px;color:grey;margin-top:-20px;letter-spacing:3px;">Объявления {{ $sklonResult }}</h1>
+        <h1 style="font-size:14px;color:grey;margin-top:-17px;letter-spacing:3px;">Объявления {{ $sklonResult }}</h1>
       </div>
   </div>
 
   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 center">
-
     <form @submit="search">
       <input type="text" id="search_string" v-model="searchString" placeholder="поиск по объявлениям {{ $sklonResult }}" required/>
       <button id="button_search" type="submit" title="Найти что требуется">найти</button>
