@@ -17,21 +17,21 @@
 <div id="app">
   <div id="navbar_menu">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-<!--    <a class="navbar-brand" href="#"><h2 style="font-size:30px;font-weight:650;letter-spacing:5px;color:rgb(50,50,50);font-family:'carefree'">{{config('app.name')}}</h2><h2 style="font-size:16px;margin-top:-10px;font-weight:500">Объявления {{ $sklonResult }}</h2></a>-->
-    <a class="navbar-brand" href="#"><h2 style="font-size:30px;font-weight:650;letter-spacing:5px;color:rgb(80,80,80)">{{config('app.name')}}</h2><h2 style="font-size:16px;margin-top:-10px;font-weight:500">Объявления {{ $sklonResult }}</h2></a>
+    <a class="navbar-brand" href="#"><h2 style="font-size:30px;font-weight:650;letter-spacing:5px;color:rgb(50,50,50);font-family:'carefree'">{{config('app.name')}}</h2><h2 style="font-size:16px;margin-top:-10px;font-weight:500">Объявления {{ $sklonResult }}</h2></a>
+    <!--<a class="navbar-brand" href="#"><h2 style="font-size:30px;font-weight:650;letter-spacing:5px;color:rgb(80,80,80)">{{config('app.name')}}</h2><h2 style="font-size:16px;margin-top:-10px;font-weight:500">Объявления {{ $sklonResult }}</h2></a>-->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
-        @if ($auth===1)
         <li class="nav-item active">	    
           <a class="nav-link" href="/podat-obyavlenie?country={{$country}}&lang={{$language}}">Подать объявлениe <span class="sr-only">(current)</span></a>
-        </li>	
+        </li>
+        @if ($auth===1)
         <li class="nav-item">
           <a class="nav-link" href="/home">Мои объявления</a>
         </li>
-	      @else
+	      @else        
         <li class="nav-item">
           <a class="nav-link" href="/login">Вход</a>
         </li>
