@@ -15,11 +15,12 @@
 </head>
 <body>
 <div id="app">
+
   <div class="container-fluid container1">
     <hr>
       <h1 style="color:rgb(50,50,50)">{{ $title }}</h1>
         <div style="color:rgb(50,50,50)">Найдено: ({{ $itemsCount }}) [категория: {{ $categoryId }}, подкатегория: {{ $subcategoryId }}]</div>	        
-            <div class="row">
+          <div class="row">
 
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
               <div class="d-flex justify-content-center">
@@ -30,7 +31,6 @@
             </div>              
 
               @if ($itemsCount>0)
-
                 @if ($categoryId===1)
                   <transportFilter></transportFilter>
                 @endif
@@ -51,29 +51,28 @@
                     </div>
                 @endforeach
             @endif
+
           </div>   
       
-      @if ($itemsCount>5)  
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <br>    
-          <ul class="pagination justify-content-center">
-          <li class="page-item disabled">
-            <span class="page-link">Назад</span>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active">
-            <span class="page-link">
-              2
-            <span class="sr-only">(current)</span>
-          </span>
-        </li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#">Вперёд</a>
+        @if ($itemsCount>5)  
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <br>    
+            <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+              <span class="page-link">Назад</span>
             </li>
-          </ul>
-        </div>
-      @endif
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item active">
+              <span class="page-link">2<span class="sr-only">(current)</span></span>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">Вперёд</a>
+              </li>
+            </ul>
+          </div>
+        @endif
+        
   </div>  
 </div>
 <script type="text/javascript" src="{{ mix('js/results.js') }}"></script>
