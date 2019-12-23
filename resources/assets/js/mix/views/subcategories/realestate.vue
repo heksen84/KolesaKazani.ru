@@ -57,6 +57,7 @@
                 <option v-for="item in object_type" :value="item.value" :key="item.value">{{ item.text }}</option>
               </select>
           </div>
+          
       </div>
   </div>
 </template>

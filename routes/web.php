@@ -2,6 +2,8 @@
 
 Auth::routes();
 
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
 // Новое объявление
 Route::get("/podat-obyavlenie", "AdvertController@NewAd");
 

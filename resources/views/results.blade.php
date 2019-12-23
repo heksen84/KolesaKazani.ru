@@ -37,7 +37,7 @@
                 @endif
 
                 @foreach($items as $item)
-                  <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                     <div class="card text-left">
                       <img class="card-img-top" src="{{ $item->imageName }}" alt="{{ $item->title }}">
                         <div class="card-body">                                                        

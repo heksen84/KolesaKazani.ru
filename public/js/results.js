@@ -19537,13 +19537,14 @@ var staticRenderFns = [
       },
       [
         _c("form", [
-          _vm._v("  \r\n\tОт: "),
           _c("input", {
+            staticClass: "form-control",
             staticStyle: { width: "100px" },
             attrs: { type: "text", placeholder: "0", required: "" }
           }),
-          _vm._v("\r\n\tДо: "),
+          _vm._v(" "),
           _c("input", {
+            staticClass: "form-control",
             staticStyle: { width: "100px" },
             attrs: { type: "text", placeholder: "0", required: "" }
           }),

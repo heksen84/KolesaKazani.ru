@@ -2030,6 +2030,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // ---------------------------
@@ -2079,6 +2110,7 @@ function initMaps() {
 
   // обработчик клика по карте
   bigmap.events.add("click", function (e) {
+
     mapCoords = e.get("coordPosition");
     myPlacemark1.geometry.setCoordinates(mapCoords);
     myPlacemark2.geometry.setCoordinates(mapCoords);
@@ -2102,7 +2134,8 @@ function forEach(data, callback) {
 // ----------------------------------------------
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ["categories", "regions", "lang"], // Входящие данные
+  // Входящие данные
+  props: ["categories", "regions", "lang", "auth"],
 
   components: {
     transport: __WEBPACK_IMPORTED_MODULE_2__subcategories_transport_vue___default.a,
@@ -2152,9 +2185,8 @@ function forEach(data, callback) {
   // компонент создан
   created: function created() {
 
-    //alert(this.lang)
+    // FIX?: заюзать require js для загрузки yandex модулей
 
-    // заюзать require js для загрузки yandex модулей
     ymaps.ready(initMaps);
     this.$root.advert_data = [];
     this.advReset();
@@ -2466,8 +2498,16 @@ function forEach(data, callback) {
       var _this3 = this;
 
       evt.preventDefault();
+
+      if (!this.auth) {
+        // отобразить окно авторизации
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#authModal").modal("show");
+        return;
+      }
+
       // объект формы
       var formData = new FormData();
+
       // записываю значения полей
       forEach(this.$root.advert_data, function (key, value) {
         formData.append(key, value);
@@ -2541,6 +2581,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_api__ = __webpack_require__("./resources/assets/js/helpers/api.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_superInput_vue__ = __webpack_require__("./resources/assets/js/mix/views/components/superInput.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_superInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_superInput_vue__);
+//
 //
 //
 //
@@ -39695,7 +39736,92 @@ var render = function() {
     _c(
       "div",
       {
-        staticClass: "modal fade bd-example-modal-lg",
+        staticClass: "modal",
+        attrs: {
+          id: "authModal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "mySmallModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c(
+                  "div",
+                  { staticClass: "col-md-12 text-center" },
+                  [
+                    _c("span", [_vm._v("Логин:")]),
+                    _vm._v(" "),
+                    _c("superInput", {
+                      attrs: { type: "number", maxlength: 12 },
+                      on: { input: _vm.setPrice },
+                      model: {
+                        value: _vm.price,
+                        callback: function($$v) {
+                          _vm.price = $$v
+                        },
+                        expression: "price"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-md-12 text-center" },
+                  [
+                    _c("span", [_vm._v("Пароль:")]),
+                    _vm._v(" "),
+                    _c("superInput", {
+                      attrs: { type: "number", maxlength: 12 },
+                      on: { input: _vm.setPrice },
+                      model: {
+                        value: _vm.price,
+                        callback: function($$v) {
+                          _vm.price = $$v
+                        },
+                        expression: "price"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("a", { attrs: { href: "/register" } }, [
+                      _vm._v("регистрация")
+                    ])
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary margin-auto",
+                    attrs: { type: "button" },
+                    on: { click: _vm.setCoords }
+                  },
+                  [_vm._v("Войти")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal bd-example-modal-lg",
         attrs: {
           id: "ShowModal",
           tabindex: "-1",
@@ -39721,8 +39847,7 @@ var render = function() {
                         expression: "!serviceUnavailable"
                       }
                     ],
-                    staticClass: "modal-title",
-                    attrs: { id: "exampleModalLabel" }
+                    staticClass: "modal-title"
                   },
                   [_vm._v("Расположение")]
                 ),
@@ -39738,13 +39863,12 @@ var render = function() {
                         expression: "serviceUnavailable"
                       }
                     ],
-                    staticClass: "modal-title",
-                    attrs: { id: "exampleModalLabel" }
+                    staticClass: "modal-title"
                   },
                   [_vm._v(_vm._s(_vm.dialogTitleMsg))]
                 ),
                 _vm._v(" "),
-                _vm._m(0)
+                _vm._m(1)
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -40421,7 +40545,7 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _vm._m(1),
+                    _vm._m(2),
                     _vm._v(" "),
                     _c(
                       "div",
@@ -40469,7 +40593,7 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _vm._m(2)
+                    _vm._m(3)
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "row" }, [
@@ -40515,7 +40639,7 @@ var render = function() {
                     [
                       _c("br"),
                       _vm._v(" "),
-                      _vm._m(3),
+                      _vm._m(4),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-12" }, [
                         _c(
@@ -40750,6 +40874,27 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title" }, [_vm._v("Авторизируйтесь")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

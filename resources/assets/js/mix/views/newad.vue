@@ -1,13 +1,44 @@
 <template>
 <div class="container-fluid mycontainer_adv"> 
+
+    <!-- авторизация -->
+    <div class="modal" id="authModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+
+            <h5 class="modal-title">Авторизируйтесь</h5>            
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>          
+          </div>
+
+          <div class="modal-body">
+            <div class="col-md-12 text-center">
+                <span>Логин:</span>                      
+                <superInput type="number" v-model="price" :maxlength="12" @input="setPrice"></superInput>
+            </div>
+            <div class="col-md-12 text-center">
+                <span>Пароль:</span>                      
+                <superInput type="number" v-model="price" :maxlength="12" @input="setPrice"></superInput>
+                <a href="/register">регистрация</a>
+            </div>
+          </div>
+
+          <div class="modal-footer">          
+            <button type="button" class="btn btn-primary margin-auto" @click="setCoords">Войти</button>          
+          </div>
+        </div>
+      </div>
+    </div>        
    
     <!-- карта -->
-    <div class="modal fade bd-example-modal-lg" id="ShowModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal bd-example-modal-lg" id="ShowModal" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 v-show="!serviceUnavailable" class="modal-title" id="exampleModalLabel">Расположение</h5>          
-            <b v-show="serviceUnavailable" class="modal-title" id="exampleModalLabel">{{ dialogTitleMsg }}</b>
+            <h5 v-show="!serviceUnavailable" class="modal-title">Расположение</h5>          
+            <b v-show="serviceUnavailable" class="modal-title">{{ dialogTitleMsg }}</b>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -251,10 +282,11 @@ function initMaps() {
 
   // обработчик клика по карте
   bigmap.events.add("click", function (e) {
+
     mapCoords = e.get("coordPosition");
 	  myPlacemark1.geometry.setCoordinates(mapCoords);
 		myPlacemark2.geometry.setCoordinates(mapCoords);
-		smallmap.setCenter(mapCoords, 14, "smallmap");
+    smallmap.setCenter(mapCoords, 14, "smallmap");    
   });
   		
 }				
@@ -275,7 +307,8 @@ function forEach(data, callback) {
 // ----------------------------------------------
 export default {
 
-props: ["categories", "regions", "lang"], // Входящие данные
+// Входящие данные
+props: ["categories", "regions", "lang", "auth"],
 
 components: { 
   transport,
@@ -323,10 +356,9 @@ data () {
 
 // компонент создан
 created() {
+  
+  // FIX?: заюзать require js для загрузки yandex модулей
 
-  //alert(this.lang)
-
-  // заюзать require js для загрузки yandex модулей
   ymaps.ready(initMaps);  
   this.$root.advert_data = []; 
   this.advReset();    
@@ -628,9 +660,17 @@ changeCategory() {
 onSubmit(evt) {
 
   evt.preventDefault();
+
+  if (!this.auth) {
+    // отобразить окно авторизации
+    $("#authModal").modal("show");
+    return;
+  }
+  
   // объект формы
   let formData = new FormData();
-	// записываю значения полей
+  
+  // записываю значения полей
   forEach(this.$root.advert_data, function(key, value) { formData.append(key, value); })
   
 	// Записываю изображения
