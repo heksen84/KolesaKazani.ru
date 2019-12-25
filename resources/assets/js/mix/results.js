@@ -24,5 +24,12 @@ export default new Vue ({
     document.getElementById("spinner").style.display = "none";
   },
 
-  methods: {}
+  methods: {
+  
+  // Вернуться на предыдущую страницу
+  closeAndReturn() {
+    window.history.back();
+  },
+
+  }
 });

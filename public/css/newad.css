@@ -4,15 +4,6 @@
   width: 1000px;
 }
 
-.close_button {
-  cursor: pointer;
-  position: absolute;
-  top: 17px;
-  right: 20px;
-  font-weight: 500;
-  color: #323232;
-}
-
 .number_input {
   width: 120px;
   margin: auto;

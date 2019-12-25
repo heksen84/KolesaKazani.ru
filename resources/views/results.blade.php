@@ -17,6 +17,7 @@
 <div id="app">
 
   <div class="container-fluid container1">  
+      <div class="close_button" title="Закрыть страницу" style="font-weight:bold" @click="closeAndReturn">X</div>
       <br>  
       <h1 class="grey">{{ $title }}</h1>
         <div class="grey">Найдено: ({{ $itemsCount }}) [категория: {{ $categoryId }}, подкатегория: {{ $subcategoryId }}]</div>	        

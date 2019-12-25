@@ -84,6 +84,15 @@ body {
   color: #5a5a5a;
 }
 
+.close_button {
+  cursor: pointer;
+  position: absolute;
+  top: 17px;
+  right: 20px;
+  font-weight: 500;
+  color: #323232;
+}
+
 @media screen and (max-width: 9000px) {
   .container1 {
     width: 1280px;

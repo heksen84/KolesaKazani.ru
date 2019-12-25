@@ -19534,7 +19534,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("form", { staticClass: "form-inline" }, [
-      _c("div", { staticClass: "form-group mx-sm-1 mb-2" }, [
+      _c("div", { staticClass: "form-group mx-sm-1" }, [
         _c("input", {
           staticClass: "form-control form-control-sm",
           staticStyle: { width: "100px" },
@@ -19542,7 +19542,7 @@ var staticRenderFns = [
         })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group mx-sm-1 mb-2" }, [
+      _c("div", { staticClass: "form-group mx-sm-1" }, [
         _c("input", {
           staticClass: "form-control form-control-sm",
           staticStyle: { width: "100px" },
@@ -19550,7 +19550,7 @@ var staticRenderFns = [
         })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group mx-sm-1 mb-2" }, [
+      _c("div", { staticClass: "form-group mx-sm-1" }, [
         _c(
           "button",
           { staticClass: "btn btn-sm btn-warning", attrs: { type: "submit" } },
@@ -31719,7 +31719,13 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
   },
 
 
-  methods: {}
+  methods: {
+
+    // Вернуться на предыдущую страницу
+    closeAndReturn: function closeAndReturn() {
+      window.history.back();
+    }
+  }
 }));
 
 /***/ }),
