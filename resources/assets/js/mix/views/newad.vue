@@ -56,10 +56,9 @@
 
     <div class="row">  
       <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col" style="border: 1px solid rgb(220,220,220)">
-        <div class="close_button" title="Закрыть страницу" style="font-weight:bold" @click="closeAndReturn">X</div>
-		      <h1 class="title_text" style="margin-top:12px">подать объявление</h1>
+        <div class="close_button mt-2" title="Закрыть страницу" @click="closeAndReturn">X</div>
+		      <h1 class="title_text">подать объявление</h1>
             <hr>
-
             <div class="row form-group">
               <div class="col-auto">
                 <label>Заголовок объявления</label>
@@ -78,8 +77,8 @@
           </div>
             
           <!------------------------------------------------------------------ 
-           ОСНОВНАЯ ФОРМА 
-          ------------------------------------------------------------------>
+            ОСНОВНАЯ ФОРМА 
+            ------------------------------------------------------------------>
           <form id="advertform" @submit="onSubmit" v-show="getLength(title)>8">
 
             <!-- Категории -->

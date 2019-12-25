@@ -95,11 +95,9 @@ body {
 }
 
 .close_button {
-  cursor:pointer;
-  position: absolute;
-  top:17px;
-  right:20px;
-  font-weight: 500;
+  cursor:pointer;  
+  text-align:right;
+  font-weight: 600;  
   color:rgb(50, 50, 50);
 }
 

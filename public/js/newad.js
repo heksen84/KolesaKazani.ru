@@ -2060,7 +2060,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 // ---------------------------
@@ -39943,22 +39942,16 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "close_button",
-              staticStyle: { "font-weight": "bold" },
+              staticClass: "close_button mt-2",
               attrs: { title: "Закрыть страницу" },
               on: { click: _vm.closeAndReturn }
             },
             [_vm._v("X")]
           ),
           _vm._v(" "),
-          _c(
-            "h1",
-            {
-              staticClass: "title_text",
-              staticStyle: { "margin-top": "12px" }
-            },
-            [_vm._v("подать объявление")]
-          ),
+          _c("h1", { staticClass: "title_text" }, [
+            _vm._v("подать объявление")
+          ]),
           _vm._v(" "),
           _c("hr"),
           _vm._v(" "),

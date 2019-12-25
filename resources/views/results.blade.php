@@ -16,13 +16,13 @@
 <body>
 <div id="app">
 
-  <div class="container-fluid container1">  
-      <div class="close_button" title="Закрыть страницу" style="font-weight:bold" @click="closeAndReturn">X</div>
-      <br>  
+  <div class="container-fluid container1">      
+      
+      <div class="close_button mt-3" title="Закрыть страницу" @click="closeAndReturn">X</div>      
+      
       <h1 class="grey">{{ $title }}</h1>
         <div class="grey">Найдено: ({{ $itemsCount }}) [категория: {{ $categoryId }}, подкатегория: {{ $subcategoryId }}]</div>	        
           <div class="row">
-
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin:20px">
               <div class="d-flex justify-content-center">
                 <div class="spinner-border spinner-border-sm text-success" role="status" id="spinner">
