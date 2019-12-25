@@ -1,5 +1,5 @@
 <template>
-<form class="form-inline">  	
+<form class="form-inline" @submit="onSubmit">  	
 	<div class="form-group mx-1">
 		Цена:
 	</div>
@@ -20,7 +20,8 @@
 <script>
 export default {  
 
-props: [
+props: 
+[
 	"region", 
 	"city", 
 	"category", 
@@ -30,7 +31,7 @@ props: [
 	"page", 
 	"startPrice", 
 	"endPrice"
-	],
+],
 
 data () {
     return 	{}
@@ -39,9 +40,12 @@ data () {
   created() {},
   
   methods: {
-	helloWorld() {
-	//	alert("hello bro!")
-	}
+	
+	onSubmit(evt) {
+		evt.preventDefault();
+		window.location="/"
+  	}
+
 }
 
 }

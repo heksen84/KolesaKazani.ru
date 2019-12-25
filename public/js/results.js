@@ -1828,8 +1828,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 	methods: {
-		helloWorld: function helloWorld() {
-			//	alert("hello bro!")
+		onSubmit: function onSubmit(evt) {
+			evt.preventDefault();
+			window.location = "/";
 		}
 	}
 
@@ -19531,59 +19532,70 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "form",
+    { staticClass: "form-inline", on: { submit: _vm.onSubmit } },
+    [
+      _c("div", { staticClass: "form-group mx-1" }, [
+        _vm._v("\r\n\t\tЦена:\r\n\t")
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _vm._m(2)
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("form", { staticClass: "form-inline" }, [
-      _c("div", { staticClass: "form-group mx-1" }, [
-        _vm._v("\r\n\t\tЦена:\r\n\t")
+    return _c("div", { staticClass: "form-group mx-1" }, [
+      _c("label", { staticClass: "sr-only", attrs: { for: "startPrice" } }, [
+        _vm._v("От")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group mx-1" }, [
-        _c("label", { staticClass: "sr-only", attrs: { for: "startPrice" } }, [
-          _vm._v("От")
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-sm",
-          staticStyle: { width: "100px" },
-          attrs: {
-            type: "text",
-            id: "startPrice",
-            placeholder: "от",
-            required: ""
-          }
-        })
+      _c("input", {
+        staticClass: "form-control form-control-sm",
+        staticStyle: { width: "100px" },
+        attrs: {
+          type: "text",
+          id: "startPrice",
+          placeholder: "от",
+          required: ""
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group mx-1" }, [
+      _c("label", { staticClass: "sr-only", attrs: { for: "endPrice" } }, [
+        _vm._v("До")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group mx-1" }, [
-        _c("label", { staticClass: "sr-only", attrs: { for: "endPrice" } }, [
-          _vm._v("До")
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control form-control-sm",
-          staticStyle: { width: "100px" },
-          attrs: {
-            type: "text",
-            id: "endPrice",
-            placeholder: "до",
-            required: ""
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group mx-1" }, [
-        _c(
-          "button",
-          { staticClass: "btn btn-sm btn-warning", attrs: { type: "submit" } },
-          [_vm._v("применить")]
-        )
-      ])
+      _c("input", {
+        staticClass: "form-control form-control-sm",
+        staticStyle: { width: "100px" },
+        attrs: { type: "text", id: "endPrice", placeholder: "до", required: "" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group mx-1" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-sm btn-warning", attrs: { type: "submit" } },
+        [_vm._v("применить")]
+      )
     ])
   }
 ]
