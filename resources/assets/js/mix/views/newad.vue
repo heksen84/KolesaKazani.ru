@@ -408,9 +408,7 @@ setPhone() {
   this.$root.advert_data.adv_phone=this.phone;
 },
 
-// --------------------------------------
 // Вернуться на предыдущую страницу
-// --------------------------------------
 closeAndReturn() {
  	window.history.back();
 },
