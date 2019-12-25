@@ -1,12 +1,17 @@
 <template>
-<form class="form-inline">  
-	<div class="form-group mx-sm-1">		
-		<input type="text" class="form-control form-control-sm" placeholder="0" style="width:100px" required/>
+<form class="form-inline">  	
+	<div class="form-group mx-1">
+		Цена:
 	</div>
-	 <div class="form-group mx-sm-1">
-		<input type="text" class="form-control form-control-sm" placeholder="0" style="width:100px" required/>
+	<div class="form-group mx-1">
+		<label for="startPrice" class="sr-only">От</label>
+		<input type="text" id="startPrice" class="form-control form-control-sm" style="width:100px" placeholder="от" required/>
 	</div>
-	<div class="form-group mx-sm-1">
+	 <div class="form-group mx-1">
+		 <label for="endPrice" class="sr-only">До</label>
+		<input type="text" id="endPrice" class="form-control form-control-sm" style="width:100px" placeholder="до" required/>
+	</div>
+	<div class="form-group mx-1">
 		<button type="submit" class="btn btn-sm btn-warning">применить</button>
 	</div>
  </form>

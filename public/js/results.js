@@ -1811,6 +1811,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -19534,23 +19539,45 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("form", { staticClass: "form-inline" }, [
-      _c("div", { staticClass: "form-group mx-sm-1" }, [
+      _c("div", { staticClass: "form-group mx-1" }, [
+        _vm._v("\r\n\t\tЦена:\r\n\t")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group mx-1" }, [
+        _c("label", { staticClass: "sr-only", attrs: { for: "startPrice" } }, [
+          _vm._v("От")
+        ]),
+        _vm._v(" "),
         _c("input", {
           staticClass: "form-control form-control-sm",
           staticStyle: { width: "100px" },
-          attrs: { type: "text", placeholder: "0", required: "" }
+          attrs: {
+            type: "text",
+            id: "startPrice",
+            placeholder: "от",
+            required: ""
+          }
         })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group mx-sm-1" }, [
+      _c("div", { staticClass: "form-group mx-1" }, [
+        _c("label", { staticClass: "sr-only", attrs: { for: "endPrice" } }, [
+          _vm._v("До")
+        ]),
+        _vm._v(" "),
         _c("input", {
           staticClass: "form-control form-control-sm",
           staticStyle: { width: "100px" },
-          attrs: { type: "text", placeholder: "0", required: "" }
+          attrs: {
+            type: "text",
+            id: "endPrice",
+            placeholder: "до",
+            required: ""
+          }
         })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group mx-sm-1" }, [
+      _c("div", { staticClass: "form-group mx-1" }, [
         _c(
           "button",
           { staticClass: "btn btn-sm btn-warning", attrs: { type: "submit" } },
