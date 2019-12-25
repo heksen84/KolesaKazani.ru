@@ -85,10 +85,10 @@ body {
 }
 
 .close_button {
-  cursor: pointer;
   text-align: right;
   font-weight: 600;
-  color: #323232;
+  color: #282828;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 9000px) {

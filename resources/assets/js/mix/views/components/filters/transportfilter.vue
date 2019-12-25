@@ -1,6 +1,6 @@
 <template>
 <form class="form-inline">  	
-	<div class="form-group">
+	<div class="form-group mx-1">
 		Цена:
 	</div>
 	<div class="form-group mx-1">

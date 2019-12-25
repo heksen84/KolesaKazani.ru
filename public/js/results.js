@@ -19539,7 +19539,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("form", { staticClass: "form-inline" }, [
-      _c("div", { staticClass: "form-group" }, [_vm._v("\r\n\t\tЦена:\r\n\t")]),
+      _c("div", { staticClass: "form-group mx-1" }, [
+        _vm._v("\r\n\t\tЦена:\r\n\t")
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-group mx-1" }, [
         _c("label", { staticClass: "sr-only", attrs: { for: "startPrice" } }, [
