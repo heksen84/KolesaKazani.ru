@@ -34,7 +34,7 @@ class LoadImages implements ShouldQueue {
             
             // изменяю размер с соотношением пропорций
             $image_resize->resize(200, 150, function ($constraint) {
-                $constraint->aspectRatio();
+                //$constraint->aspectRatio();
             });
 
             // сохраняю в хранилище

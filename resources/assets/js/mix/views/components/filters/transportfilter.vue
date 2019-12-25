@@ -7,7 +7,7 @@
 		<input type="text" class="form-control form-control-sm" placeholder="0" style="width:100px" required/>
 	</div>
 	<div class="form-group mx-sm-1 mb-2">
-		<button type="submit" class="btn btn-secondary btn-sm">применить</button>
+		<button type="submit" class="btn btn-sm btn-warning">применить</button>
 	</div>
  </form>
 </template>
