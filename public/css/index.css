@@ -153,6 +153,19 @@ h3 {
   margin-left: 10px;
 }
 
+#navbrand-title {
+  font-size: 22px;
+  font-weight: 650;
+  letter-spacing: 5px;
+  color: #464646;
+}
+
+#navbrand-description {
+  font-size: 12px;
+  margin-top: -10px;
+  font-weight: 500;
+}
+
 .form {
   text-align: left;
   margin: 60px auto;
