@@ -24,7 +24,7 @@
 .image {
   width:80px; 
   height:80px;
-  margin:2px;   
+  margin:1px;   
 }
 
 .custom-file-input:lang(ru)~.custom-file-label::after {
@@ -34,6 +34,7 @@
 }
 
 .title_text {  
+  margin-top: -20px;  
   font-size: 130%;
   color: rgb(80,80,80);
 }
