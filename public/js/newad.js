@@ -2208,9 +2208,7 @@ function forEach(data, callback) {
 
     // Выбор подкатегории
     changeSubCategory: function changeSubCategory() {
-
-      if (this.subCategory == "null") this.$store.commit("ShowFinalFields", false);else this.$store.commit("ShowFinalFields", true);
-
+      this.subCategory == "null" ? this.$store.commit("ShowFinalFields", false) : this.$store.commit("ShowFinalFields", true);
       this.$root.advert_data.adv_subcategory = this.subCategory;
     },
 

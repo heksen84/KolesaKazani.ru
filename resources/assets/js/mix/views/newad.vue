@@ -378,13 +378,8 @@ serviceError() {
 
 // Выбор подкатегории
 changeSubCategory() {
-
-  if (this.subCategory=="null") 
-    this.$store.commit("ShowFinalFields", false)
-  else
-    this.$store.commit("ShowFinalFields", true)
-  
-    this.$root.advert_data.adv_subcategory=this.subCategory;
+  this.subCategory=="null"?this.$store.commit("ShowFinalFields", false):this.$store.commit("ShowFinalFields", true);  
+  this.$root.advert_data.adv_subcategory=this.subCategory;
 },
 
 // Заголовок
