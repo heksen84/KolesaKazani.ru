@@ -109,7 +109,9 @@ class ResultsController extends Controller {
          ->with("items", $items)
          ->with("itemsCount", count($items))
          ->with("categoryId", $categories[0]->id)
-         ->with("subcategoryId", $subcategories[0]->id)                
+         ->with("subcategoryId", $subcategories[0]->id)
+
+         // --[ фильтры ]------------------------------------------------
          ->with("region", null)
          ->with("city", null)
          ->with("category", $category)
@@ -148,7 +150,18 @@ class ResultsController extends Controller {
          ->with("items", $items)
          ->with("itemsCount", count($items))
          ->with("categoryId", $categories[0]->id)
-         ->with("subcategoryId", $subcategories[0]->id);
+         ->with("subcategoryId", $subcategories[0]->id)
+         
+         // --[ фильтры ]------------------------------------------------
+         ->with("region", null)
+         ->with("city", null)
+         ->with("category", $category)
+         ->with("subcategory", $subcategory)
+         ->with("country", $request->country)
+         ->with("lang", $request->lang)
+         ->with("page", $request->page?$request->page:0)
+         ->with("start_price", $request->start_price)
+         ->with("end_price", $request->end_price);
     }
 
     // -------------------------------------------------------------
@@ -180,7 +193,18 @@ class ResultsController extends Controller {
          ->with("items", $items)
          ->with("itemsCount", count($items))
          ->with("categoryId", $categories[0]->id)
-         ->with("subcategoryId", $subcategories[0]->id);
+         ->with("subcategoryId", $subcategories[0]->id)
+
+         // --[ фильтры ]------------------------------------------------
+         ->with("region", null)
+         ->with("city", null)
+         ->with("category", $category)
+         ->with("subcategory", $subcategory)
+         ->with("country", $request->country)
+         ->with("lang", $request->lang)
+         ->with("page", $request->page?$request->page:0)
+         ->with("start_price", $request->start_price)
+         ->with("end_price", $request->end_price);
     }
     
 }
