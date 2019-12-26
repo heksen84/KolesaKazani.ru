@@ -72,12 +72,11 @@ class ResultsController extends Controller {
         return \Storage::disk('local')->url('app/images/preview/');
     }
 
-
     // -------------------------------------------------------------
     // результаты по стране
     // -------------------------------------------------------------    
     public function getCountryCategoryResults(Request $request, $category) {
-     }
+    }
 
     // -------------------------------------------------------------
     // результаты по стране
