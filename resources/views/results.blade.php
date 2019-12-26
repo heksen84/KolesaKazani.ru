@@ -31,9 +31,20 @@
               </div>                                    
 
               @if ($itemsCount>0)
-
                 @if ($categoryId===1)
-                  <transportFilter></transportFilter>
+                
+                  <transportFilter
+                  region="{{$region}}"
+                  city="{{$city}}"
+                  category="{{$category}}"
+                  subcategory="{{$subcategory}}"
+                  country="{{$country}}"
+                  lang="{{$lang}}"
+	                page="{{$page}}"
+	                startPrice="{{$startPrice}}"
+	                endPrice="{{$endPrice}}">                  
+                  </transportFilter>
+
                 @endif
 
                 @if ($categoryId===2)

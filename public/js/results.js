@@ -1824,7 +1824,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	data: function data() {
 		return {};
 	},
-	created: function created() {},
+	created: function created() {
+		console.log("region: " + this.region);
+		console.log("city: " + this.city);
+		console.log("category: " + this.category);
+		console.log("subcategory: " + this.subcategory);
+		console.log(this.country);
+		console.log(this.lang);
+		console.log(this.page);
+		console.log(this.startPrice);
+		console.log(this.endPrice);
+	},
 
 
 	methods: {

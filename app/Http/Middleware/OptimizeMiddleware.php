@@ -25,8 +25,8 @@ class OptimizeMiddleware
         $buffer = $response->getContent();
         if (strpos($buffer, '<pre>') !== false) {
             $replace = array(
-                '/<!--[^\[](.*?)[^\]]-->/s' => '',
-                "/<\?php/" => '<?php ',
+//                '/<!--[^\[](.*?)[^\]]-->/s' => '',
+//                "/<\?php/" => '<?php ',
                 "/\r/" => '',
                 "/>\n</" => '><',
                 "/>\s+\n</" => '><',
@@ -34,8 +34,8 @@ class OptimizeMiddleware
             );
         } else {
             $replace = array(
-                '/<!--[^\[](.*?)[^\]]-->/s' => '',
-                "/<\?php/" => '<?php ',
+ //               '/<!--[^\[](.*?)[^\]]-->/s' => '',
+ //               "/<\?php/" => '<?php ',
                 "/\n([\S])/" => '$1',
                 "/\r/" => '',
                 "/\n/" => '',

@@ -107,7 +107,16 @@ class ResultsController extends Controller {
          ->with("items", $items)
          ->with("itemsCount", count($items))
          ->with("categoryId", $categories[0]->id)
-         ->with("subcategoryId", $subcategories[0]->id);
+         ->with("subcategoryId", $subcategories[0]->id)                
+         ->with("region", null)
+         ->with("city", null)
+         ->with("category", $category)
+         ->with("subcategory", $subcategory)
+         ->with("country", $request->country)
+         ->with("lang", $request->lang)
+         ->with("page", 1)
+         ->with("startPrice", 0)
+         ->with("endPrice", 0);
     }
 
     // -------------------------------------------------------------

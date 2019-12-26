@@ -33,13 +33,22 @@ props:
 	"endPrice"
 ],
 
-data () {
-    return 	{}
-  },
+data () { return {} },
   
-  created() {},
+created() {
+	console.log("region: "+this.region);
+    console.log("city: "+this.city);
+	console.log("category: "+this.category);
+    console.log("subcategory: "+this.subcategory);
+    console.log(this.country);
+    console.log(this.lang);
+	console.log(this.page);
+	console.log(this.startPrice);
+	console.log(this.endPrice);
+
+},
   
-  methods: {
+methods: {
 	
 	onSubmit(evt) {
 		evt.preventDefault();
