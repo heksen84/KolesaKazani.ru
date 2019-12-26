@@ -51381,6 +51381,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
     showSubcategories: function showSubcategories(e, categoryId) {
 
       if (categoryId < 10) {
+
         e.preventDefault();
 
         // получаю элементы
@@ -51391,6 +51392,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
         // отображаю
         elements.show();
+
         this.categories = false;
         this.subCategories = true;
       }

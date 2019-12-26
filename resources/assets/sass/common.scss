@@ -96,13 +96,17 @@ body {
 
 .close_button {    
   text-align: right;
-  position:relative;
-  right:5px;
-  top:5px;
-  font-size: 18px;
+  position: relative;
+  right: 5px;
+  top: 5px;
+  font-size: 16px;
   font-weight: 500;  
   color: rgb(50, 50, 50);
   cursor: pointer;   
+}
+
+.close_button:hover {  
+  text-decoration: underline; 
 }
 
 // --------------------------------------------
