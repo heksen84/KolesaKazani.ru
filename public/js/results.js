@@ -1819,30 +1819,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-	props: ["region", "city", "category", "subcategory", "country", "lang", "page", "startPrice", "endPrice"],
+		props: ["region", "city", "category", "subcategory", "country", "lang", "page", "startprice", "endprice"],
 
-	data: function data() {
-		return {};
-	},
-	created: function created() {
-		console.log("region: " + this.region);
-		console.log("city: " + this.city);
-		console.log("category: " + this.category);
-		console.log("subcategory: " + this.subcategory);
-		console.log(this.country);
-		console.log(this.lang);
-		console.log(this.page);
-		console.log(this.startPrice);
-		console.log(this.endPrice);
-	},
+		data: function data() {
+				return {};
+		},
+		created: function created() {
+
+				console.log("region: " + this.region);
+				console.log("city: " + this.city);
+				console.log("category: " + this.category);
+				console.log("subcategory: " + this.subcategory);
+				console.log("country: " + this.country);
+				console.log("lang: " + this.lang);
+				console.log("page:" + this.page);
+				console.log("startprice: " + this.startprice);
+				console.log("endprice: " + this.endprice);
+		},
 
 
-	methods: {
-		onSubmit: function onSubmit(evt) {
-			evt.preventDefault();
-			window.location = "/";
+		methods: {
+				onSubmit: function onSubmit(evt) {
+
+						evt.preventDefault();
+
+						window.location = "/category/" + this.category + "/" + this.subcategory + "?country=" + this.country + "&lang=" + this.lang + "&page=1&startPrice=" + this.startprice + "&endPrice=" + this.endprice;
+				}
 		}
-	}
 
 });
 

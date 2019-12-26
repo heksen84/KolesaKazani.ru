@@ -29,30 +29,43 @@ props:
 	"country", 
 	"lang", 
 	"page", 
-	"startPrice", 
-	"endPrice"
+	"startprice", 
+	"endprice"
 ],
 
 data () { return {} },
   
 created() {
+	
 	console.log("region: "+this.region);
     console.log("city: "+this.city);
 	console.log("category: "+this.category);
     console.log("subcategory: "+this.subcategory);
-    console.log(this.country);
-    console.log(this.lang);
-	console.log(this.page);
-	console.log(this.startPrice);
-	console.log(this.endPrice);
+    console.log("country: "+this.country);
+    console.log("lang: "+this.lang);
+	console.log("page:" +this.page);
+	console.log("startprice: "+this.startprice);
+	console.log("endprice: "+this.endprice);
 
 },
   
 methods: {
 	
 	onSubmit(evt) {
+		
 		evt.preventDefault();
-		window.location="/"
+		
+		window.location=
+		"/category/"+this.category+
+		"/"+this.subcategory+
+		"?country="+
+		this.country+
+		"&lang="+this.lang+
+		"&page=1&startPrice="+
+		this.startprice+
+		"&endPrice="+
+		this.endprice;
+
   	}
 
 }
