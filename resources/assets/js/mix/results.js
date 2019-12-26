@@ -28,7 +28,8 @@ export default new Vue ({
   
   // Вернуться на предыдущую страницу
   closeAndReturn() {
-    window.history.back();
+    //window.history.back();
+    window.location="/";
   }
 
   

@@ -2183,9 +2183,7 @@ function forEach(data, callback) {
 
   // компонент создан
   created: function created() {
-
     // FIX?: заюзать require js для загрузки yandex модулей
-
     ymaps.ready(initMaps);
     this.$root.advert_data = [];
     this.advReset();
@@ -2239,7 +2237,8 @@ function forEach(data, callback) {
 
     // Вернуться на предыдущую страницу
     closeAndReturn: function closeAndReturn() {
-      window.history.back();
+      //window.history.back();
+      window.location = "/";
     },
 
 

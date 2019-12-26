@@ -31775,7 +31775,8 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
     // Вернуться на предыдущую страницу
     closeAndReturn: function closeAndReturn() {
-      window.history.back();
+      //window.history.back();
+      window.location = "/";
     }
   }
 }));

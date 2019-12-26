@@ -42,7 +42,8 @@
                   lang="{{$lang}}"
 	                page="{{$page}}"
 	                startprice="{{$startprice}}"
-	                endprice="{{$endprice}}">                  
+	                endprice="{{$endprice}}">
+                                    
                   </transportFilter>
 
                 @endif

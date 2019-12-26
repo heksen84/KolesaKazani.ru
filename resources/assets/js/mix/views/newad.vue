@@ -354,10 +354,8 @@ data () {
 },
 
 // компонент создан
-created() {
-  
+created() {  
   // FIX?: заюзать require js для загрузки yandex модулей
-
   ymaps.ready(initMaps);  
   this.$root.advert_data = []; 
   this.advReset();    
@@ -404,7 +402,8 @@ setPhone() {
 
 // Вернуться на предыдущую страницу
 closeAndReturn() {
- 	window.history.back();
+   //window.history.back();
+   window.location="/";
 },
 
 // ------------------------------
