@@ -2237,8 +2237,7 @@ function forEach(data, callback) {
 
     // Вернуться на предыдущую страницу
     closeAndReturn: function closeAndReturn() {
-      //window.history.back();
-      window.location = "/";
+      window.history.back();
     },
 
 

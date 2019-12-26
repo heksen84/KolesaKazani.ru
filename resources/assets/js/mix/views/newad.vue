@@ -402,8 +402,7 @@ setPhone() {
 
 // Вернуться на предыдущую страницу
 closeAndReturn() {
-   //window.history.back();
-   window.location="/";
+   window.history.back();   
 },
 
 // ------------------------------
