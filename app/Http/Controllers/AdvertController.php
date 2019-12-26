@@ -13,7 +13,6 @@ class AdvertController extends Controller {
 
         \Debugbar::info("Язык: ".$request->lang);
 
-
 	return view("newad")
         ->with( "title", "Подать объявление" )
         ->with( "description", "Подать новое объявление на сайте ".config('app.name'))
