@@ -51327,8 +51327,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_bootstrap__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_components_location__ = __webpack_require__("./resources/assets/js/mix/views/components/location.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_components_location___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__views_components_location__);
-
-
 __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
 
@@ -51336,9 +51334,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
 
 
-// --------------------------
 // экземляр приложения vue
-// --------------------------
 /* harmony default export */ __webpack_exports__["default"] = (new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 
   el: "#app",
@@ -51356,18 +51352,14 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
   components: { bootstrap: __WEBPACK_IMPORTED_MODULE_2_bootstrap___default.a, location: __WEBPACK_IMPORTED_MODULE_3__views_components_location___default.a },
 
-  // -------------------------------
   // Компонент создан
-  // -------------------------------
   created: function created() {
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#subcats").show();
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#close_subcats_btn").show();
   },
 
 
-  // --------------------------------------
   // Методы
-  // --------------------------------------
   methods: {
 
     // Отобразить окно расположения
@@ -51376,9 +51368,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
     },
 
 
-    // --------------------------------------
-    // Поиск в регионе
-    // --------------------------------------
+    // Поиск в регионе  
     search: function search(e) {
       e.preventDefault();
       if (this.searchString === "about::author") {
@@ -51387,9 +51377,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
     },
 
 
-    // --------------------------------------
     // Показать подкатегории
-    // --------------------------------------
     showSubcategories: function showSubcategories(e, categoryId) {
 
       if (categoryId < 10) {
@@ -51409,9 +51397,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
     },
 
 
-    // --------------------------------------
     // Вернуться к категориям
-    // --------------------------------------
     returnToCategories: function returnToCategories() {
       __WEBPACK_IMPORTED_MODULE_1_jquery___default()("*[data-category-id]").hide();
       this.categories = true;

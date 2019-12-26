@@ -1,5 +1,3 @@
-"use strict";
-
 require('./bootstrap');
 
 import Vue from 'vue';
@@ -7,9 +5,7 @@ import $ from "jquery";
 import bootstrap from "bootstrap";
 import location from './views/components/location'
 
-// --------------------------
 // экземляр приложения vue
-// --------------------------
 export default new Vue ({
 
   el: "#app",
@@ -26,28 +22,21 @@ export default new Vue ({
 
   components: { bootstrap, location },
 
-  // -------------------------------
   // Компонент создан
-  // -------------------------------
   created() {    
     $("#subcats").show();
     $("#close_subcats_btn").show();
   },
 
-  // --------------------------------------
   // Методы
-  // --------------------------------------
-  methods: {
-  
+  methods: {  
+
   // Отобразить окно расположения
   showLocationWindow() {    
     $("#locationModal").modal("show");
   },
   
-  
-  // --------------------------------------
-  // Поиск в регионе
-  // --------------------------------------
+  // Поиск в регионе  
   search(e) {    
     e.preventDefault();
     if (this.searchString==="about::author") {      
@@ -55,9 +44,7 @@ export default new Vue ({
     }
   },
 
-  // --------------------------------------
   // Показать подкатегории
-  // --------------------------------------
   showSubcategories(e, categoryId) {
 
     if ( categoryId < 10 ) {
@@ -78,9 +65,7 @@ export default new Vue ({
 
   },
 
-  // --------------------------------------
   // Вернуться к категориям
-  // --------------------------------------
   returnToCategories() {    
     $("*[data-category-id]").hide();
     this.categories=true;
