@@ -1843,7 +1843,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 						evt.preventDefault();
 
-						window.location = "/category/" + this.category + "/" + this.subcategory + "?country=" + this.country + "&lang=" + this.lang + "&page=1&startPrice=" + this.startprice + "&endPrice=" + this.endprice;
+						window.location = "/category/" + this.category + "/" + this.subcategory + "?country=" + this.country + "&lang=" + this.lang + "&page=1&startprice=" + this.startprice + "&endprice=" + this.endprice;
 				}
 		}
 

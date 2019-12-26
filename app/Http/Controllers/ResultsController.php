@@ -114,9 +114,9 @@ class ResultsController extends Controller {
          ->with("subcategory", $subcategory)
          ->with("country", $request->country)
          ->with("lang", $request->lang)
-         ->with("page", 1)
-         ->with("startprice", 0)
-         ->with("endprice", 0);
+         ->with("page", $request->page)
+         ->with("startprice", $request->startprice?$request->startprice:0)
+         ->with("endprice", $request->endprice?$request->endprice:0);
     }
 
     // -------------------------------------------------------------

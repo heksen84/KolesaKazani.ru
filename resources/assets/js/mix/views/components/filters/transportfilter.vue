@@ -36,7 +36,7 @@ props:
 data () { return {} },
   
 created() {
-	
+
 	console.log("region: "+this.region);
     console.log("city: "+this.city);
 	console.log("category: "+this.category);
@@ -61,9 +61,9 @@ methods: {
 		"?country="+
 		this.country+
 		"&lang="+this.lang+
-		"&page=1&startPrice="+
+		"&page=1&startprice="+
 		this.startprice+
-		"&endPrice="+
+		"&endprice="+
 		this.endprice;
 
   	}
