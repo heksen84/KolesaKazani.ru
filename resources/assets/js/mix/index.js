@@ -48,6 +48,7 @@ export default new Vue ({
   showSubcategories(e, categoryId) {
 
     if ( categoryId < 10 ) {
+      
       e.preventDefault();        
 
       // получаю элементы
@@ -59,8 +60,10 @@ export default new Vue ({
 
       // отображаю
       elements.show();
+
       this.categories=false;
       this.subCategories=true;
+
     }
 
   },
