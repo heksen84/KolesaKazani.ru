@@ -76,16 +76,16 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     // результаты по стране
     // -------------------------------------------------------------    
-    public function getCountrySubCategoryResults(Request $request, $category, $subcategory) { 
+    public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {         
         
-        \Debugbar::info("start_price: ".$request->start_price);
+        $startPrice = $request->start_price;
+        $endPrice = $request->end_price;
                        
         $categories = $this->getCategoryData($request, $category);                        
         $subcategories = $this->getSubCategoryData($request, $subcategory);                        
 
-        $items = DB::select(
-         "SELECT adv.id, adv.title, adv.price,         
-         concat('".$this->getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
+        $items = DB::select("SELECT adv.id, adv.title, adv.price,         
+         concat('".$this->getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 AND adv.price BETWEEN ".$startPrice."LIMIT 1)) AS imageName
          FROM `adverts` AS adv WHERE subcategory_id = ".$subcategories[0]->id);            
    
          \Debugbar::info("субкатегория: ".$subcategory);       
@@ -109,8 +109,8 @@ class ResultsController extends Controller {
          ->with("country", $request->country)
          ->with("lang", $request->lang)
          ->with("page", $request->page?$request->page:0)
-         ->with("start_price", $request->start_price?$request->start_price:0)
-         ->with("end_price", $request->end_price?$request->end_price:0);
+         ->with("start_price", $startPrice)
+         ->with("end_price", $endPrice);
     }
 
     // -------------------------------------------------------------
@@ -122,8 +122,7 @@ class ResultsController extends Controller {
         $subcategories = $this->getSubCategoryData($request, $subcategory);
         $regionData = $this->getRegionData($region);
 
-        $items = DB::select(
-         "SELECT adv.id, adv.title, adv.price,
+        $items = DB::select("SELECT adv.id, adv.title, adv.price,
          concat('".$this->getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
          FROM `adverts` AS adv WHERE subcategory_id = ".$subcategories[0]->id." AND region_id = ".$regionData->region_id);            
    
@@ -154,8 +153,7 @@ class ResultsController extends Controller {
         $regionData = $this->getRegionData($region);        
         $cityData = $this->getCityData($city);                        
 
-        $items = DB::select(
-         "SELECT adv.id, adv.title, adv.price,
+        $items = DB::select("SELECT adv.id, adv.title, adv.price,
          concat('".$this->getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
          FROM `adverts` AS adv WHERE subcategory_id = ".$subcategories[0]->id.
          " AND city_id = ".$cityData->city_id." AND region_id = ".$regionData->region_id);
