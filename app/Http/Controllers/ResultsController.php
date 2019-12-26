@@ -76,17 +76,25 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     // результаты по стране
     // -------------------------------------------------------------    
-    public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {         
-        
+    public function getCountrySubCategoryResults(Request $request, $category, $subcategory) { 
+                
+        \Debugbar::info("start_price: ".$request->start_price);
+        \Debugbar::info("end_price: ".$request->end_price);
+
         $startPrice = $request->start_price;
         $endPrice = $request->end_price;
+
+        $priceBetweenSql="";
+
+        if ($startPrice && $endPrice) 
+            $priceBetweenSql = " AND price BETWEEN ".$startPrice." AND ".$endPrice;
                        
         $categories = $this->getCategoryData($request, $category);                        
         $subcategories = $this->getSubCategoryData($request, $subcategory);                        
 
         $items = DB::select("SELECT adv.id, adv.title, adv.price,         
-         concat('".$this->getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 AND adv.price BETWEEN ".$startPrice."LIMIT 1)) AS imageName
-         FROM `adverts` AS adv WHERE subcategory_id = ".$subcategories[0]->id);            
+         concat('".$this->getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
+         FROM `adverts` AS adv WHERE subcategory_id=".$subcategories[0]->id.$priceBetweenSql);            
    
          \Debugbar::info("субкатегория: ".$subcategory);       
          \Debugbar::info("id субкатегории: ".$subcategories);      
@@ -109,8 +117,8 @@ class ResultsController extends Controller {
          ->with("country", $request->country)
          ->with("lang", $request->lang)
          ->with("page", $request->page?$request->page:0)
-         ->with("start_price", $startPrice)
-         ->with("end_price", $endPrice);
+         ->with("start_price", $request->start_price)
+         ->with("end_price", $request->end_price);
     }
 
     // -------------------------------------------------------------

@@ -30,7 +30,7 @@
                 </div>
               </div>                                    
 
-              @if ($itemsCount>0 && $categoryId===1)                
+              @if ($categoryId===1)                
 
                 <!-- легковой транспорт -->
                 <transportFilter
@@ -45,7 +45,7 @@
 	                end_price="{{$end_price}}">                                    
                 </transportFilter>                
 
-                @if ($itemsCount>0 && $categoryId===2)
+                @if ($categoryId===2)
                   <realEstateFilter></realEstateFilter>
                 @endif
 
