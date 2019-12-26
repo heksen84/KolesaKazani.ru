@@ -59,8 +59,8 @@ class ResultsController extends Controller {
     private function getLocationName($country) {        
         \Debugbar::info("Язык: ".$country);                
         switch($country) {
-            case "kz": $str = "в Казахстане"; break;
-            case "ru": $str = "в России"; break;
+            case "kz": $str = "Казахстане"; break;
+            case "ru": $str = "России"; break;
         }
         return $str;
     }
@@ -98,11 +98,13 @@ class ResultsController extends Controller {
          \Debugbar::info("субкатегория: ".$subcategory);       
          \Debugbar::info("id субкатегории: ".$subcategories);      
          \Debugbar::info($items);
+
+         $locationName = $this->getLocationName($request->country);
                 
-         return view("results")
-         ->with("title", $subcategories[0]->title." ".$this->getLocationName($request->country))
-         ->with("description", $subcategories[0]->description)
-         ->with("keywords", $subcategories[0]->keywords)
+         return view("results")         
+         ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
+         ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
+         ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))
          ->with("items", $items)
          ->with("itemsCount", count($items))
          ->with("categoryId", $categories[0]->id)
@@ -131,12 +133,12 @@ class ResultsController extends Controller {
          \Debugbar::info($items);
 
          $petrovich = new Petrovich(Petrovich::GENDER_MALE);         
-         $locationName = " в ".$petrovich->firstname($regionData->name, 0);
+         $locationName = $petrovich->firstname($regionData->name, 0);         
                 
          return view("results")
-         ->with("title", $subcategories[0]->title." ".$locationName)
-         ->with("description", $subcategories[0]->description)
-         ->with("keywords", $subcategories[0]->keywords)
+         ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
+         ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
+         ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))
          ->with("items", $items)
          ->with("itemsCount", count($items))
          ->with("categoryId", $categories[0]->id)
@@ -167,12 +169,12 @@ class ResultsController extends Controller {
          \Debugbar::info($items);
          
          $petrovich = new Petrovich(Petrovich::GENDER_MALE);         
-         $locationName = " в ".$petrovich->firstname($cityData->name, 4);
+         $locationName = $petrovich->firstname($cityData->name, 4);
                 
          return view("results")
-         ->with("title", $subcategories[0]->title." ".$locationName)
-         ->with("description", $subcategories[0]->description)
-         ->with("keywords", $subcategories[0]->keywords)
+         ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
+         ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
+         ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))
          ->with("items", $items)
          ->with("itemsCount", count($items))
          ->with("categoryId", $categories[0]->id)
