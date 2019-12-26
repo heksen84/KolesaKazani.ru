@@ -24,8 +24,8 @@
           <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin:20px">
               <div class="d-flex justify-content-center">
-                <!--<div class="spinner-border spinner-border-sm text-success" role="status" id="spinner">-->
-                <div class="spinner-border text-success" role="status" id="spinner">
+                <div class="spinner-border spinner-border-sm text-success" role="status" id="spinner">
+                <!--<div class="spinner-border text-success" role="status" id="spinner">-->
                   <span class="sr-only">загрузка фильтров...</span>
                 </div>
               </div>                                    
@@ -41,8 +41,8 @@
                   country="{{$country}}"
                   lang="{{$lang}}"
 	                page="{{$page}}"
-	                startprice="{{$startprice}}"
-	                endprice="{{$endprice}}">                                    
+	                start_price="{{$start_price}}"
+	                end_price="{{$end_price}}">                                    
                 </transportFilter>                
 
                 @if ($itemsCount>0 && $categoryId===2)

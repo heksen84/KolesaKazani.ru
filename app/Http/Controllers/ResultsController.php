@@ -81,7 +81,9 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     // результаты по стране
     // -------------------------------------------------------------    
-    public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {                 
+    public function getCountrySubCategoryResults(Request $request, $category, $subcategory) { 
+        
+        \Debugbar::info("start_price: ".$request->start_price);
                        
         $categories = $this->getCategoryData($request, $category);                        
         $subcategories = $this->getSubCategoryData($request, $subcategory);                        
@@ -112,8 +114,8 @@ class ResultsController extends Controller {
          ->with("country", $request->country)
          ->with("lang", $request->lang)
          ->with("page", $request->page?$request->page:0)
-         ->with("startprice", $request->startprice?$request->startprice:0)
-         ->with("endprice", $request->endprice?$request->endprice:0);
+         ->with("start_price", $request->start_price?$request->start_price:0)
+         ->with("end_price", $request->end_price?$request->end_price:0);
     }
 
     // -------------------------------------------------------------

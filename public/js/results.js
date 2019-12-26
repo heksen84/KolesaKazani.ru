@@ -1819,33 +1819,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-		props: ["region", "city", "category", "subcategory", "country", "lang", "page", "startprice", "endprice"],
+	props: ["region", "city", "category", "subcategory", "country", "lang", "page", "start_price", "end_price"],
 
-		data: function data() {
-				return {};
-		},
-		created: function created() {
+	data: function data() {
+		return {};
+	},
+	created: function created() {
 
-				console.log("region: " + this.region);
-				console.log("city: " + this.city);
-				console.log("category: " + this.category);
-				console.log("subcategory: " + this.subcategory);
-				console.log("country: " + this.country);
-				console.log("lang: " + this.lang);
-				console.log("page:" + this.page);
-				console.log("startprice: " + this.startprice);
-				console.log("endprice: " + this.endprice);
-		},
+		console.log("region: " + this.region);
+		console.log("city: " + this.city);
+		console.log("category: " + this.category);
+		console.log("subcategory: " + this.subcategory);
+		console.log("country: " + this.country);
+		console.log("lang: " + this.lang);
+		console.log("page:" + this.page);
+		console.log("start_price: " + this.startprice);
+		console.log("end_price: " + this.endprice);
+	},
 
 
-		methods: {
-				onSubmit: function onSubmit(evt) {
+	methods: {
+		onSubmit: function onSubmit(evt) {
 
-						evt.preventDefault();
+			evt.preventDefault();
 
-						window.location = "/category/" + this.category + "/" + this.subcategory + "?country=" + this.country + "&lang=" + this.lang + "&page=1&startprice=" + this.startprice + "&endprice=" + this.endprice;
-				}
+			window.location = "/category/" + this.category + "/" + this.subcategory + "?country=" + this.country + "&lang=" + this.lang + "&page=1&start_price=" + this.start_price + "&end_price=" + this.end_price;
 		}
+	}
 
 });
 
@@ -19553,52 +19553,79 @@ var render = function() {
         _vm._v("\r\n\t\tЦена:\r\n\t")
       ]),
       _vm._v(" "),
-      _vm._m(0),
+      _c("div", { staticClass: "form-group mx-1" }, [
+        _c("label", { staticClass: "sr-only", attrs: { for: "startPrice" } }, [
+          _vm._v("От")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.start_price,
+              expression: "start_price"
+            }
+          ],
+          staticClass: "form-control form-control-sm",
+          staticStyle: { width: "100px" },
+          attrs: {
+            type: "text",
+            id: "startPrice",
+            placeholder: "от",
+            required: ""
+          },
+          domProps: { value: _vm.start_price },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.start_price = $event.target.value
+            }
+          }
+        })
+      ]),
       _vm._v(" "),
-      _vm._m(1),
+      _c("div", { staticClass: "form-group mx-1" }, [
+        _c("label", { staticClass: "sr-only", attrs: { for: "endPrice" } }, [
+          _vm._v("До")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.end_price,
+              expression: "end_price"
+            }
+          ],
+          staticClass: "form-control form-control-sm",
+          staticStyle: { width: "100px" },
+          attrs: {
+            type: "text",
+            id: "endPrice",
+            placeholder: "до",
+            required: ""
+          },
+          domProps: { value: _vm.end_price },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.end_price = $event.target.value
+            }
+          }
+        })
+      ]),
       _vm._v(" "),
-      _vm._m(2)
+      _vm._m(0)
     ]
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group mx-1" }, [
-      _c("label", { staticClass: "sr-only", attrs: { for: "startPrice" } }, [
-        _vm._v("От")
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control form-control-sm",
-        staticStyle: { width: "100px" },
-        attrs: {
-          type: "text",
-          id: "startPrice",
-          placeholder: "от",
-          required: ""
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group mx-1" }, [
-      _c("label", { staticClass: "sr-only", attrs: { for: "endPrice" } }, [
-        _vm._v("До")
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control form-control-sm",
-        staticStyle: { width: "100px" },
-        attrs: { type: "text", id: "endPrice", placeholder: "до", required: "" }
-      })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
