@@ -15,25 +15,25 @@
 </head>
 <body>
 <div id="app">
-
   <div class="container-fluid container1">
 
     <!-- кнопка закрытия -->
-    <div class="close_button mt-2" title="Закрыть страницу" @click="closeAndReturn">X</div>      
+    <div class="close_button mt-2" title="Закрыть страницу" @click="closeAndReturn">X</div>     
       <h1 class="grey">{{ $title }}</h1>
         <div class="grey">Найдено: ({{ $itemsCount }}) [категория: {{ $categoryId }}, подкатегория: {{ $subcategoryId }}]</div>	        
           <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin:20px">
               <div class="d-flex justify-content-center">
-                <div class="spinner-border spinner-border-sm text-success" role="status" id="spinner">
+                <!--<div class="spinner-border spinner-border-sm text-success" role="status" id="spinner">-->
+                <div class="spinner-border text-success" role="status" id="spinner">
                   <span class="sr-only">загрузка фильтров...</span>
                 </div>
               </div>                                    
 
-              @if ($itemsCount>0)
-                @if ($categoryId===1)
-                
-                  <transportFilter
+              @if ($itemsCount>0 && $categoryId===1)                
+
+                <!-- легковой транспорт -->
+                <transportFilter
                   region="{{$region}}"
                   city="{{$city}}"
                   category="{{$category}}"
@@ -42,13 +42,10 @@
                   lang="{{$lang}}"
 	                page="{{$page}}"
 	                startprice="{{$startprice}}"
-	                endprice="{{$endprice}}">
-                                    
-                  </transportFilter>
+	                endprice="{{$endprice}}">                                    
+                </transportFilter>                
 
-                @endif
-
-                @if ($categoryId===2)
+                @if ($itemsCount>0 && $categoryId===2)
                   <realEstateFilter></realEstateFilter>
                 @endif
 
@@ -65,8 +62,8 @@
                       </div>
                     </div>
                 @endforeach
-            @endif
 
+            @endif
           </div>   
       
         @if ($itemsCount>5)  
