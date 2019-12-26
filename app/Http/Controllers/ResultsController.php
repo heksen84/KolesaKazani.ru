@@ -13,12 +13,7 @@ use App\Regions;
 use App\Places;
 
 class ResultsController extends Controller {
-
-    // $filter = new TransportFilter($request);
-    // $filter->getStartPage();
-    // $filter->getStartPrice();
-    // $filter->getEndPrice();        
-
+    
     // -------------------------------------------------------------
     // получить данные категории
     // -------------------------------------------------------------
