@@ -2,23 +2,18 @@ require('./bootstrap');
 
 import Vue from 'vue';
 import basefilter from './views/components/filters/baseFilter'
-import transportfilter from './views/components/filters/transportFilter'
-import realestatefilter from './views/components/filters/realEstateFilter'
+import legkovoyfilter from './views/components/filters/transport/legkovoy'
 
 export default new Vue ({
   
   el: '#app',
 
-  components: { 
+  components: {
     basefilter,
-    transportfilter,
-    realestatefilter
+    legkovoyfilter
   },
 
-  data () {   
-    return {           
-    }
-  },
+  data () { return {} },
 
   created() {
     document.getElementById("spinner").style.display = "none";

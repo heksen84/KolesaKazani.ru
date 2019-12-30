@@ -1,6 +1,10 @@
 <template>
-<form class="form-inline" @submit="onSubmit">  	
-	<div class="form-group mx-1">
+<div>
+
+<div class="m-2">Легковой транспорт</div>
+
+<form class="form-inline" @submit="onSubmit">
+		<div class="form-group mx-1">
 		Цена:
 	</div>
 	<div class="form-group mx-1">
@@ -15,6 +19,7 @@
 		<button type="submit" class="btn btn-sm btn-warning">применить</button>
 	</div>
  </form>
+ </div>
 </template>
 
 <script>

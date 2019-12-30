@@ -30,10 +30,10 @@
                 </div>
               </div>                                    
 
-              @if ($categoryId===1)                
+              @if ($categoryId===1 && $subcategoryId===1)
 
                 <!-- легковой транспорт -->
-                <transportFilter
+                <legkovoyfilter
                   region="{{$region}}"
                   city="{{$city}}"
                   category="{{$category}}"
@@ -43,11 +43,24 @@
 	                page="{{$page}}"
 	                start_price="{{$start_price}}"
 	                end_price="{{$end_price}}">                                    
-                </transportFilter>                
+                </legkovoyfilter>
+              
+              @else
 
-                @if ($categoryId===2)
-                  <realEstateFilter></realEstateFilter>
-                @endif
+                <basefilter
+                  region="{{$region}}"
+                  city="{{$city}}"
+                  category="{{$category}}"
+                  subcategory="{{$subcategory}}"
+                  country="{{$country}}"
+                  lang="{{$lang}}"
+	                page="{{$page}}"
+	                start_price="{{$start_price}}"
+	                end_price="{{$end_price}}">                                    
+                </basefilter>
+
+              @endif
+                
 
               </div>
 
@@ -62,8 +75,7 @@
                       </div>
                     </div>
                 @endforeach
-
-            @endif
+            
           </div>   
       
         @if ($itemsCount>5)  
