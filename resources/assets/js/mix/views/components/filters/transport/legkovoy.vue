@@ -12,8 +12,8 @@
 		<input type="text" id="endPrice" v-model="end_price" class="form-control form-control-sm" style="width:100px" placeholder="до" required/>
 	</div>
 
-	<superInput type="number" v-model="start_price" :maxlength="8"></superInput>
-	<superInput type="number" v-model="end_price" :maxlength="8"></superInput>
+	<superInput type="number" v-model="start_price" :maxlength="8" placeholder="от"></superInput>
+	<superInput type="number" v-model="end_price" :maxlength="8" placeholder="до"></superInput>
 
 	<div class="form-group mx-1">
 		<br>

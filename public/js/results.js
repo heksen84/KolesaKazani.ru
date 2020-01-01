@@ -19718,7 +19718,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("superInput", {
-        attrs: { type: "number", maxlength: 8 },
+        attrs: { type: "number", maxlength: 8, placeholder: "от" },
         model: {
           value: _vm.start_price,
           callback: function($$v) {
@@ -19729,7 +19729,7 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("superInput", {
-        attrs: { type: "number", maxlength: 8 },
+        attrs: { type: "number", maxlength: 8, placeholder: "до" },
         model: {
           value: _vm.end_price,
           callback: function($$v) {
