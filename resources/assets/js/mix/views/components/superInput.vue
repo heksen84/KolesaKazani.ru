@@ -17,7 +17,7 @@ export default {
     "placeholder", 
     "maxlength", 
     "id"
-    ],
+  ],
     
   // перехватчик
   computed: {
