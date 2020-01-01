@@ -1815,6 +1815,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -1830,8 +1831,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		data: function data() {
 				return {
 
-						startPrice: null,
-						endPrice: null
+						//startPrice: null,
+						//endPrice: null,
 
 				};
 		},
@@ -1887,10 +1888,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // геттер
       get: function get() {
         return this.value;
-      },
+      }
 
       // сеттер
-      set: function set(newValue) {}
+      //set: function(newValue) {}   
     }
   },
 
@@ -19717,13 +19718,24 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("superInput", {
-        attrs: { type: "number", maxlength: 5 },
+        attrs: { type: "number", maxlength: 8 },
         model: {
-          value: _vm.startPrice,
+          value: _vm.start_price,
           callback: function($$v) {
-            _vm.startPrice = $$v
+            _vm.start_price = $$v
           },
-          expression: "startPrice"
+          expression: "start_price"
+        }
+      }),
+      _vm._v(" "),
+      _c("superInput", {
+        attrs: { type: "number", maxlength: 8 },
+        model: {
+          value: _vm.end_price,
+          callback: function($$v) {
+            _vm.end_price = $$v
+          },
+          expression: "end_price"
         }
       }),
       _vm._v(" "),

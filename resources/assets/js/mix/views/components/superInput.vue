@@ -19,7 +19,7 @@ export default {
       get: function() { return this.value; },
 
       // сеттер
-      set: function(newValue) {}   
+      //set: function(newValue) {}   
     }
   },
   

@@ -1751,10 +1751,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // геттер
       get: function get() {
         return this.value;
-      },
+      }
 
       // сеттер
-      set: function set(newValue) {}
+      //set: function(newValue) {}   
     }
   },
 
