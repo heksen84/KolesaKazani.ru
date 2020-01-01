@@ -1790,6 +1790,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__superInput_vue__ = __webpack_require__("./resources/assets/js/mix/views/components/superInput.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__superInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__superInput_vue__);
 //
 //
 //
@@ -1806,6 +1808,65 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+		props: ["region", "city", "category", "subcategory", "country", "lang", "page", "start_price", "end_price"],
+
+		components: {
+				superInput: __WEBPACK_IMPORTED_MODULE_0__superInput_vue___default.a
+		},
+
+		data: function data() {
+				return {
+
+						startPrice: null,
+						endPrice: null
+
+				};
+		},
+		created: function created() {
+
+				console.log("region: " + this.region);
+				console.log("city: " + this.city);
+				console.log("category: " + this.category);
+				console.log("subcategory: " + this.subcategory);
+				console.log("country: " + this.country);
+				console.log("lang: " + this.lang);
+				console.log("page:" + this.page);
+				console.log("start_price: " + this.startprice);
+				console.log("end_price: " + this.endprice);
+		},
+
+
+		methods: {
+				onSubmit: function onSubmit(evt) {
+
+						evt.preventDefault();
+
+						window.location = "/category/" + this.category + "/" + this.subcategory + "?country=" + this.country + "&lang=" + this.lang + "&page=1&start_price=" + this.start_price + "&end_price=" + this.end_price;
+				}
+		}
+
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/mix/views/components/superInput.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -1817,34 +1878,70 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-	props: ["region", "city", "category", "subcategory", "country", "lang", "page", "start_price", "end_price"],
+  props: ["index", "value", "name", "type", "placeholder", "maxlength", "id"],
 
-	data: function data() {
-		return {};
-	},
-	created: function created() {
+  // перехватчик
+  computed: {
 
-		console.log("region: " + this.region);
-		console.log("city: " + this.city);
-		console.log("category: " + this.category);
-		console.log("subcategory: " + this.subcategory);
-		console.log("country: " + this.country);
-		console.log("lang: " + this.lang);
-		console.log("page:" + this.page);
-		console.log("start_price: " + this.startprice);
-		console.log("end_price: " + this.endprice);
-	},
+    valueInput: {
+      // геттер
+      get: function get() {
+        return this.value;
+      },
+
+      // сеттер
+      set: function set(newValue) {}
+    }
+  },
+
+  methods: {
+
+    // --------------------
+    // обработчик ввода
+    // --------------------
+    inputHandler: function inputHandler(e) {
+
+      var newValue = e.target.value;
+      var numericPattern = /^[0-9]*$/;
+
+      switch (this.type) {
+
+        // ------------------
+        // телефон
+        // ------------------
+        case "phone":
+          {
+
+            if (!numericPattern.test(newValue)) e.target.value = this.value;
+
+            var x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+            var val = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+
+            this.$emit('input', val);
+            break;
+          }
+
+        // ------------------
+        // число
+        // ------------------
+        case "number":
+          {
+
+            if (!numericPattern.test(newValue)) e.target.value = this.value;else this.$emit('input', newValue);
+
+            break;
+          }
+      }
+    },
 
 
-	methods: {
-		onSubmit: function onSubmit(evt) {
-
-			evt.preventDefault();
-
-			window.location = "/category/" + this.category + "/" + this.subcategory + "?country=" + this.country + "&lang=" + this.lang + "&page=1&start_price=" + this.start_price + "&end_price=" + this.end_price;
-		}
-	}
-
+    // ------------------
+    // телефон
+    // ------------------
+    removePhone: function removePhone() {
+      this.$store.commit("RemovePhoneNumber", this.index);
+    }
+  }
 });
 
 /***/ }),
@@ -19543,10 +19640,10 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "m-2" }, [_vm._v("Легковой транспорт")]),
-    _vm._v(" "),
-    _c("form", { staticClass: "form-inline", on: { submit: _vm.onSubmit } }, [
+  return _c(
+    "form",
+    { staticClass: "form-inline", on: { submit: _vm.onSubmit } },
+    [
       _c("div", { staticClass: "form-group mx-1" }, [
         _vm._v("\r\n\t\tЦена:\r\n\t")
       ]),
@@ -19619,9 +19716,21 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
+      _c("superInput", {
+        attrs: { type: "number", maxlength: 5 },
+        model: {
+          value: _vm.startPrice,
+          callback: function($$v) {
+            _vm.startPrice = $$v
+          },
+          expression: "startPrice"
+        }
+      }),
+      _vm._v(" "),
       _vm._m(0)
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -19629,6 +19738,8 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group mx-1" }, [
+      _c("br"),
+      _vm._v(" "),
       _c(
         "button",
         { staticClass: "btn btn-sm btn-warning", attrs: { type: "submit" } },
@@ -19643,6 +19754,105 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-5aff4e2b", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-aca7915c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/mix/views/components/superInput.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.type === "phone"
+      ? _c("span", { staticStyle: { "margin-right": "10px" } }, [_vm._v("+7")])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.type === "phone"
+      ? _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.valueInput,
+              expression: "valueInput"
+            }
+          ],
+          staticClass: "form-control phone_input",
+          attrs: {
+            type: "text",
+            id: _vm.id,
+            placeholder: _vm.placeholder,
+            name: _vm.name,
+            maxlength: _vm.maxlength,
+            required: ""
+          },
+          domProps: { value: _vm.valueInput },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.valueInput = $event.target.value
+              },
+              function($event) {
+                $event.preventDefault()
+                return _vm.inputHandler($event)
+              }
+            ]
+          }
+        })
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.type === "number"
+      ? _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.valueInput,
+              expression: "valueInput"
+            }
+          ],
+          staticClass: "form-control number_input",
+          attrs: {
+            type: "text",
+            id: _vm.id,
+            placeholder: _vm.placeholder,
+            name: _vm.name,
+            maxlength: _vm.maxlength,
+            required: ""
+          },
+          domProps: { value: _vm.valueInput },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.valueInput = $event.target.value
+              },
+              function($event) {
+                $event.preventDefault()
+                return _vm.inputHandler($event)
+              }
+            ]
+          }
+        })
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-aca7915c", module.exports)
   }
 }
 
@@ -31939,6 +32149,54 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-5aff4e2b", Component.options)
   } else {
     hotAPI.reload("data-v-5aff4e2b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/mix/views/components/superInput.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/mix/views/components/superInput.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-aca7915c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/mix/views/components/superInput.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/mix/views/components/superInput.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-aca7915c", Component.options)
+  } else {
+    hotAPI.reload("data-v-aca7915c", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true

@@ -1,8 +1,4 @@
 <template>
-<div>
-
-<div class="m-2">Легковой транспорт</div>
-
 <form class="form-inline" @submit="onSubmit">
 		<div class="form-group mx-1">
 		Цена:
@@ -15,14 +11,20 @@
 		 <label for="endPrice" class="sr-only">До</label>
 		<input type="text" id="endPrice" v-model="end_price" class="form-control form-control-sm" style="width:100px" placeholder="до" required/>
 	</div>
+
+	<superInput type="number" v-model="startPrice" :maxlength="5"></superInput>
+
 	<div class="form-group mx-1">
+		<br>
 		<button type="submit" class="btn btn-sm btn-warning">применить</button>
 	</div>
  </form>
- </div>
 </template>
 
 <script>
+
+import superInput from  "../../superInput.vue";
+
 export default {  
 
 props: 
@@ -38,9 +40,14 @@ props:
 	"end_price"
 ],
 
+components: { 
+  superInput
+},
+
 data () { return {
 
-
+	startPrice: null,
+	endPrice: null,
 	
 } },
   
