@@ -9,7 +9,15 @@
 <script>
 export default {
   
-  props: ["index", "value", "name", "type", "placeholder", "maxlength", "id"],
+  props: [
+    "index", 
+    "value", 
+    "name", 
+    "type", 
+    "placeholder", 
+    "maxlength", 
+    "id"
+    ],
     
   // перехватчик
   computed: {
