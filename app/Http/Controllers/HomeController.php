@@ -15,11 +15,12 @@ class HomeController extends Controller {
 		    
     public function ShowHomePage() {
 
-        $results = Adverts::all();
+        
+        $results = Adverts::all()->where("user_id", Auth::id() );
 
         return view("home")
         ->with("results", $results)
-        ->with("title", "Личный кабинет")
+        ->with("title", "Личный кабинет ".Auth::id())
         ->with("description", "Личный кабинет")
         ->with("keywords", "Личный кабинет");    
     
