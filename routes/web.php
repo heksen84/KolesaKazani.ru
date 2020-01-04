@@ -19,6 +19,9 @@ Route::get("/api/getCarsModels", "ApiController@getCarsModels" );
 // По стране
 Route::get("/", "IndexController@ShowCountryIndexPage");
 
+// мои объявления
+Route::get("/home", "HomeController@ShowHomePage");
+
 
 // Результаты по категориям по стране
 Route::get("/category/{category}", "ResultsController@getCountryCategoryResults");
