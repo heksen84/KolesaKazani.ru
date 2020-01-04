@@ -13,7 +13,11 @@ use DB;
 class HomeController extends Controller {
 		    
     public function ShowHomePage() {
-		
+        return view("home")
+        ->with("title", "Личный кабинет")
+        ->with("description", "Личный кабинет")
+        ->with("keywords", "Личный кабинет");    
+    
     }		
 					
 }
