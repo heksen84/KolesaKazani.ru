@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -51314,7 +51314,7 @@ if (token) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/mix/index.js":
+/***/ "./resources/assets/js/mix/home.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -51499,50 +51499,10 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 
 /***/ }),
 
-/***/ "./resources/assets/sass/common.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/assets/sass/home.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/assets/sass/index.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/assets/sass/newad.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/assets/sass/results.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 0:
+/***/ 3:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__("./resources/assets/js/mix/index.js");
-__webpack_require__("./resources/assets/sass/common.scss");
-__webpack_require__("./resources/assets/sass/index.scss");
-__webpack_require__("./resources/assets/sass/newad.scss");
-__webpack_require__("./resources/assets/sass/results.scss");
-module.exports = __webpack_require__("./resources/assets/sass/home.scss");
+module.exports = __webpack_require__("./resources/assets/js/mix/home.js");
 
 
 /***/ })
