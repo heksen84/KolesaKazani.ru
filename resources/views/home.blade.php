@@ -14,6 +14,13 @@
 </head>
 <body>
   <div id="app"></div>
+
+  <center>
+  @foreach($results as $item)
+    <p>{{ $item["title"] }}</p>
+  @endforeach
+  </center>
+
 <script type="text/javascript" src="{{ mix('js/home.js') }}"></script>
 </body>
 </html>
