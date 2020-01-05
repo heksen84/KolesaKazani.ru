@@ -45,42 +45,32 @@
   
   <div class="container-fluid container1" id="index_page" style="margin-top:10px">
 
-  <!-- окно выбора расположения -->
-  <location></location>
+    <!-- компонент выбора расположения -->
+      <location></location>
+    <!----------------------------------->
 
-  <div class="row">    
-    <div class="margin-auto" id="login_register_col">
-    @if ($auth===0)
-      <a href="/login"><div class="button" id="button_login" style="margin-left:17px">Вход</div></a>
-      <a href="/register"><div class="button" id="button_reg">Регистрация</div></a>          
-    @else
-     	<a href="/home"><div class="button">мои объявления</div></a>
-      <!-- Example single danger button -->
-      <!--<div class="btn-group">
-        <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Action
-        </button>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Separated link</a>
-        </div>
-      </div>-->
-    @endif
-    </div>
-  </div>
-
-  <div class="row" style="margin-top:2px">
-    <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center">
-      <div id="logo_block">
-        <div id="logo_block_text">{{config('app.name')}}</div>        
-        <h1 style="font-size:14px;color:grey;margin-top:-15px;letter-spacing:3px;">Объявления {{ $sklonResult }}</h1>
+    <div class="row">    
+      <div class="margin-auto" id="login_register_col">
+        @if ($auth===0)
+          <a href="/login"><div class="button" id="button_login" style="margin-left:17px">Вход</div></a>
+          <a href="/register"><div class="button" id="button_reg">Регистрация</div></a>          
+        @else
+     	    <a href="/home"><div class="button">мои объявления</div></a>      
+        @endif
       </div>
-  </div>
+    </div>
 
-  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 center">
+    <div class="row" style="margin-top:2px">
+      <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center">
+        <div id="logo_block">
+          <div id="logo_block_text">{{config('app.name')}}</div>        
+            <h1 style="font-size:14px;color:grey;margin-top:-15px;letter-spacing:3px;">Объявления {{ $sklonResult }}</h1>
+          </div>
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 center">
+
+    <!-- вынести в компонент -->
     <form @submit="search">
       <input type="text" id="search_string" v-model="searchString" placeholder="поиск по объявлениям {{ $sklonResult }}" required/>
       <button id="button_search" type="submit" title="Найти что требуется">найти</button>
@@ -93,8 +83,7 @@
       </div>
 
     <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center" title="Подать новое объявление на сайте" id="new_advert_col">
-      <a href="/podat-obyavlenie?country={{$country}}&lang={{$language}}"><div id="new_advert_block">подать объявление</div></a>
-	<!--<a href="/podat-obyavlenie"><div id="new_advert_block">подать объявление</div></a>-->    
+      <a href="/podat-obyavlenie?country={{$country}}&lang={{$language}}"><div id="new_advert_block">подать объявление</div></a>	
     </div>
 
   </div>  
