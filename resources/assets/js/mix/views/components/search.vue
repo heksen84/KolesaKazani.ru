@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  
+
   props: ["country", "lang", "searchlocation"],
 
   data () { return {
@@ -15,7 +15,8 @@ export default {
     }  
   },
   
-  created() {},
+  created() {    
+  },
   
   methods: {
 

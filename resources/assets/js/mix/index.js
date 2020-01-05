@@ -25,7 +25,7 @@ export default new Vue ({
   // Компонент создан
   created() {    
     $("#subcats").show();
-    $("#close_subcats_btn").show();
+    $("#close_subcats_btn").show();    
   },
 
   // Методы

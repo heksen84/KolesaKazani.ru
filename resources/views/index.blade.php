@@ -75,8 +75,9 @@
       <input type="text" id="search_string" v-model="searchString" placeholder="поиск по объявлениям {{ $sklonResult }}" required/>
       <button id="button_search" type="submit" title="Найти что требуется">найти</button>
     </form>-->
+
     
-    <search country="kaz" lang="ru" searchlocation="{{ $sklonResult }}"></search>
+    <search country="kz" lang="ru" searchlocation="{{ $sklonResult }}"></search>
 
       <!-- кнопки выбора региона и т.п.-->
       <div class="index_select_region_and_other_button_block">    
