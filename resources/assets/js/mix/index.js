@@ -38,10 +38,17 @@ export default new Vue ({
   
   // Поиск в регионе  
   search(e) {    
+    
     e.preventDefault();
-    if (this.searchString==="about::author") {      
-      window.location = "https://moikrug.ru/heksen";
-    }
+
+    if (this.searchString.length===0)
+      return;
+    
+    if (this.searchString==="about::author")
+      window.location = "https://moikrug.ru/heksen";    
+    else
+      window.location = "/search?str="+this.searchString;
+
   },
 
   // Показать подкатегории

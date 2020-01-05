@@ -4,9 +4,12 @@ Auth::routes();
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
+
+// Новое объявление
+Route::get("/search", "SearchController@search");
+
 // Новое объявление
 Route::get("/podat-obyavlenie", "AdvertController@NewAd");
-
 
 // api вызовы
 Route::post("/api/createAdvert", "ApiController@createAdvert");

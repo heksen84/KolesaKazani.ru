@@ -10,12 +10,10 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Доска объявлений Дамеля</title>
   <link rel="icon" href="{{ asset('public/shop.ico') }}">
+  <link rel="stylesheet" type="text/css" href="{{ mix('css/common.css') }}">
 </head>
 <body>
 <div id="app">
-  <results :items="{{ $items }}"></results>
 </div>
 </body>
 </html>
-<script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
-<link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
