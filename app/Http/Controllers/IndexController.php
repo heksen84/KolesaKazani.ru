@@ -101,6 +101,7 @@ class IndexController extends Controller {
 		
 		\Debugbar::info("-- newAdverts --");
 		\Debugbar::info($newAdverts);
+
 											
 		return view("index")		
 		->with("locationName", $locationName)

@@ -23,7 +23,11 @@ export default new Vue ({
   components: { bootstrap, location, search },
 
   // Компонент создан
-  created() {    
+  created() {
+
+    //alert(window.country);
+    //alert(window.lang);
+    
     $("#subcats").show();
     $("#close_subcats_btn").show();    
   },

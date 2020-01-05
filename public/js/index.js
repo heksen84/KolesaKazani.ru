@@ -51458,6 +51458,10 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
   // Компонент создан
   created: function created() {
+
+    //alert(window.country);
+    //alert(window.lang);
+
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#subcats").show();
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#close_subcats_btn").show();
   },
