@@ -22,10 +22,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item active">	    
-          <a class="nav-link" href="/podat-obyavlenie?country={{$country}}&lang={{$language}}">Подать объявлениe <span class="sr-only">(current)</span></a>
-        </li>
+      <ul class="navbar-nav">        
         @if ($auth===1)
         <li class="nav-item">
           <a class="nav-link" href="/home">Мои объявления</a>
@@ -37,7 +34,10 @@
         <li class="nav-item">
           <a class="nav-link" href="/register">Регистрация</a>
         </li>      
-	      @endif
+        @endif
+        <li class="nav-item active">	    
+          <a class="nav-link" href="/podat-obyavlenie?country={{$country}}&lang={{$language}}">Подать объявлениe <span class="sr-only">(current)</span></a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -136,13 +136,12 @@
       <h3>Новые объявления</h3>  
       <br>
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3" v-for="i in 8">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3" v-for="i in {{ $newAdverts }}">
       <div class="card" style="width: 18rem;margin:auto">
         <!--<img src="..." class="card-img-top" alt="...">-->
         <div class="card-body">
-        <h5 class="card-title">Продам</h5>
-        <p class="card-text">Что-то там...</p>
-        <a href="#" class="btn btn-secondary btn-sm">Go somewhere</a>
+        <h6 class="card-title">${ i.title }</h6>
+        <p class="card-text">Цена ${ i.price } тнг.</p>        
       </div>
     </div>
   </div>

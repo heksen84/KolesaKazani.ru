@@ -18,7 +18,7 @@ export default new Vue ({
     }
   },
 
-  //delimiters: ['${', '}'], // для разрешения конфликта c переменными php
+  delimiters: ['${', '}'], // для разрешения конфликта c переменными php
 
   components: { bootstrap, location },
 

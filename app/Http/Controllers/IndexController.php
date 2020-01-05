@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Petrovich;
+use App\Adverts;
 use App\Categories;
 use App\Regions;
 use App\Places;
@@ -93,7 +94,13 @@ class IndexController extends Controller {
 		\Debugbar::info("REGION: ".$region);
 		\Debugbar::info("PLACE: ".$place);
 
-		$petrovich = new Petrovich(Petrovich::GENDER_FEMALE);		
+		$petrovich = new Petrovich(Petrovich::GENDER_FEMALE);	
+		
+		// новые объявления
+		$newAdverts = Adverts::all()->take(8);
+		
+		\Debugbar::info("-- newAdverts --");
+		\Debugbar::info($newAdverts);
 											
 		return view("index")		
 		->with("locationName", $locationName)
@@ -106,7 +113,8 @@ class IndexController extends Controller {
 		->with("description", $description)
 		->with("keywords", $keywords)
 		->with("country", "kz")
-		->with("language", "ru");
+		->with("language", "ru")
+		->with("newAdverts", $newAdverts);
     }
 
     // Cтрана

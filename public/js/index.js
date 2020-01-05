@@ -51348,7 +51348,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
   },
 
 
-  //delimiters: ['${', '}'], // для разрешения конфликта c переменными php
+  delimiters: ['${', '}'], // для разрешения конфликта c переменными php
 
   components: { bootstrap: __WEBPACK_IMPORTED_MODULE_2_bootstrap___default.a, location: __WEBPACK_IMPORTED_MODULE_3__views_components_location___default.a },
 
