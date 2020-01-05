@@ -3,6 +3,7 @@ require('./bootstrap');
 import Vue from 'vue';
 import $ from "jquery";
 import bootstrap from "bootstrap";
+import search from './views/components/search'
 import location from './views/components/location'
 
 // экземляр приложения vue
@@ -13,14 +14,13 @@ export default new Vue ({
   data () {   
     return {     
       categories: true,
-      subCategories: false,      
-      searchString: ""
+      subCategories: false      
     }
   },
 
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
 
-  components: { bootstrap, location },
+  components: { bootstrap, location, search },
 
   // Компонент создан
   created() {    
@@ -34,45 +34,22 @@ export default new Vue ({
   // Отобразить окно расположения
   showLocationWindow() {    
     $("#locationModal").modal("show");
-  },
-  
-  // Поиск в регионе  
-  search(e) {    
-    
-    e.preventDefault();
-
-    if (this.searchString.length===0)
-      return;
-    
-    if (this.searchString==="about::author")
-      window.location = "https://moikrug.ru/heksen";    
-    else
-      window.location = "/search?str="+this.searchString;
-
-  },
+  },  
 
   // Показать подкатегории
   showSubcategories(e, categoryId) {
-
-    if ( categoryId < 10 ) {
-      
-      e.preventDefault();        
-
+    if ( categoryId < 10 ) {      
+      e.preventDefault();
       // получаю элементы
       let elements = $("*[data-category-id='"+(categoryId)+"']");
-
       // сбиваю в кучу их если кол-во меньше 4	      
       if (elements.length < 4)
        elements.addClass("col-xl-12")	  
-
       // отображаю
       elements.show();
-
       this.categories=false;
       this.subCategories=true;
-
     }
-
   },
 
   // Вернуться к категориям
