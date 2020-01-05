@@ -3,7 +3,7 @@ require('./bootstrap');
 import Vue from 'vue';
 import $ from "jquery";
 import bootstrap from "bootstrap";
-import search from './views/components/search'
+//import search from './views/components/search'
 import location from './views/components/location'
 
 // экземляр приложения vue
@@ -12,7 +12,8 @@ export default new Vue ({
   el: "#app",
 
   data () {   
-    return {     
+    return {
+      searchString: "",     
       categories: true,
       subCategories: false      
     }
@@ -20,7 +21,7 @@ export default new Vue ({
 
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
 
-  components: { bootstrap, location, search },
+  components: { bootstrap, location },
 
   // Компонент создан
   created() {
@@ -33,7 +34,21 @@ export default new Vue ({
   },
 
   // Методы
-  methods: {  
+  methods: {
+    
+    search(e) {
+
+      e.preventDefault();
+
+      if (this.searchString.length===0)
+        return;
+    
+      if (this.searchString==="about::author")
+        window.location = "https://moikrug.ru/heksen";    
+      else
+        window.location = "/search?str="+this.searchString+"&country="+window.country+"&lang="+window.lang;
+
+    },
 
   // Отобразить окно расположения
   showLocationWindow() {    

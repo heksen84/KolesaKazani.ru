@@ -71,8 +71,10 @@
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 center">
         
       <!-- компонент поиска по сайту -->
-      <search country="kz" lang="ru" searchlocation="{{ $sklonResult }}"></search>
-
+      <form @submit="search">
+        <input type="text" id="search_string" v-model="searchString" placeholder="поиск по объявлениям {{ $sklonResult }}" required/>
+        <button id="button_search" type="submit" title="Найти что требуется">найти</button>
+      </form>
       <!-- кнопки выбора региона и т.п.-->
       <div class="index_select_region_and_other_button_block">    
         <button class="btn btn-link" data-toggle="modal" id="locationButton" style="margin-top:-10px" @click="showLocationWindow">расположение {{ $locationName }}</button>

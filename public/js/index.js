@@ -1866,49 +1866,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/mix/views/components/search.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-
-  props: ["country", "lang", "searchlocation"],
-
-  data: function data() {
-    return {
-      searchString: ""
-    };
-  },
-  created: function created() {},
-
-
-  methods: {
-    getPlaceholder: function getPlaceholder() {
-      return "поиск по объявлениям " + this.searchlocation;
-    },
-    search: function search(e) {
-
-      e.preventDefault();
-
-      if (this.searchString.length === 0) return;
-
-      if (this.searchString === "about::author") window.location = "https://moikrug.ru/heksen";else window.location = "/search?str=" + this.searchString + "&country=" + this.country + "&lang=" + this.lang;
-    }
-  }
-
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-runtime/regenerator/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -38042,65 +37999,6 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-171eee2a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/mix/views/components/search.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("form", { on: { submit: _vm.search } }, [
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.searchString,
-          expression: "searchString"
-        }
-      ],
-      attrs: {
-        type: "text",
-        id: "search_string",
-        placeholder: _vm.getPlaceholder(),
-        required: ""
-      },
-      domProps: { value: _vm.searchString },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
-          }
-          _vm.searchString = $event.target.value
-        }
-      }
-    }),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        attrs: {
-          id: "button_search",
-          type: "submit",
-          title: "Найти что требуется"
-        }
-      },
-      [_vm._v("найти")]
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-171eee2a", module.exports)
-  }
-}
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-627d1490\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/mix/views/components/location.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -51427,16 +51325,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap__ = __webpack_require__("./node_modules/bootstrap/dist/js/bootstrap.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_bootstrap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_components_search__ = __webpack_require__("./resources/assets/js/mix/views/components/search.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_components_search___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__views_components_search__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_components_location__ = __webpack_require__("./resources/assets/js/mix/views/components/location.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_components_location___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__views_components_location__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_components_location__ = __webpack_require__("./resources/assets/js/mix/views/components/location.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_components_location___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__views_components_location__);
 __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
 
 
 
-
+//import search from './views/components/search'
 
 
 // экземляр приложения vue
@@ -51446,6 +51342,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
   data: function data() {
     return {
+      searchString: "",
       categories: true,
       subCategories: false
     };
@@ -51454,7 +51351,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
 
-  components: { bootstrap: __WEBPACK_IMPORTED_MODULE_2_bootstrap___default.a, location: __WEBPACK_IMPORTED_MODULE_4__views_components_location___default.a, search: __WEBPACK_IMPORTED_MODULE_3__views_components_search___default.a },
+  components: { bootstrap: __WEBPACK_IMPORTED_MODULE_2_bootstrap___default.a, location: __WEBPACK_IMPORTED_MODULE_3__views_components_location___default.a },
 
   // Компонент создан
   created: function created() {
@@ -51469,6 +51366,15 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
   // Методы
   methods: {
+    search: function search(e) {
+
+      e.preventDefault();
+
+      if (this.searchString.length === 0) return;
+
+      if (this.searchString === "about::author") window.location = "https://moikrug.ru/heksen";else window.location = "/search?str=" + this.searchString + "&country=" + window.country + "&lang=" + window.lang;
+    },
+
 
     // Отобразить окно расположения
     showLocationWindow: function showLocationWindow() {
@@ -51541,54 +51447,6 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-627d1490", Component.options)
   } else {
     hotAPI.reload("data-v-627d1490", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ "./resources/assets/js/mix/views/components/search.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
-/* script */
-var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/mix/views/components/search.vue")
-/* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-171eee2a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/mix/views/components/search.vue")
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/mix/views/components/search.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-171eee2a", Component.options)
-  } else {
-    hotAPI.reload("data-v-171eee2a", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
