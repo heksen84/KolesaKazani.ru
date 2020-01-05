@@ -50,6 +50,7 @@
     <tr>
       <th scope="col" style="width:1%">№</th>
       <th scope="col">Заголовок</th>
+      <th scope="col">Статус</th>
       <th scope="col">Действие</th>      
     </tr>
   </thead>
@@ -58,6 +59,7 @@
     <tr>
       <th scope="row">{{ $key+1 }}</th>
       <td>{{ $item["title"] }}</td>
+      <td style="width:6.9%">На модерации</td>
       <td style="width:12.1%">
         <button class="btn btn-outline-secondary btn-sm m-1">продлить</button>
         <button class="btn btn-outline-success btn-sm m-1">поднять в топ</button>
