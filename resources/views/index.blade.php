@@ -145,6 +145,9 @@
 
  </div>
 </div>  
-  <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>
+  <script>
+    localStorage.setItem("itemm", "123");
+  </script>
+  <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>  
 </body>
 </html>
