@@ -45,29 +45,33 @@
   </div>
 </nav>
 
-  <table class="table table-bordered table-hover">
-  <thead>
-    <tr>
-      <th scope="col" style="width:1%">№</th>
-      <th scope="col">Заголовок</th>
-      <th scope="col">Статус</th>
-      <th scope="col">Действие</th>      
-    </tr>
-  </thead>
-  <tbody>
-  @foreach($results as $key => $item)
-    <tr>
-      <th scope="row">{{ $key+1 }}</th>
-      <td>{{ $item["title"] }}</td>
-      <td style="width:6.9%">На модерации</td>
-      <td style="width:12.1%">
-        <button class="btn btn-outline-secondary btn-sm m-1">продлить</button>
-        <button class="btn btn-outline-success btn-sm m-1">поднять в топ</button>
-      </td>
-    </tr>
-  @endforeach    
-  </tbody>
-</table>
+<div class="container-fluid">
+  <div class="row">    
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th scope="col" style="width:1%">№</th>
+          <th scope="col">Заголовок</th>
+          <th scope="col">Статус</th>
+          <th scope="col">Действие</th>      
+        </tr>
+      </thead>
+    <tbody>
+    @foreach($results as $key => $item)
+      <tr>
+        <th scope="row">{{ $key+1 }}</th>
+          <td>{{ $item["title"] }}</td>
+          <td style="width:6.9%">На модерации</td>
+          <td style="width:12.1%">
+            <button class="btn btn-outline-secondary btn-sm m-1">продлить</button>
+            <button class="btn btn-outline-success btn-sm m-1">поднять в топ</button>
+          </td>
+      </tr>
+      @endforeach    
+    </tbody>
+  </table>
+</div>
+</div>
 
 <script type="text/javascript" src="{{ mix('js/home.js') }}"></script>
 </body>
