@@ -1901,7 +1901,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       if (this.searchString.length === 0) return;
 
-      if (this.searchString === "about::author") window.location = "https://moikrug.ru/heksen";else window.location = "/search?str=" + this.searchString;
+      if (this.searchString === "about::author") window.location = "https://moikrug.ru/heksen";else window.location = "/search?str=" + this.searchString + "&country=" + this.country + "&lang=" + this.lang;
     }
   }
 
