@@ -3,15 +3,14 @@ require('./bootstrap');
 import Vue from 'vue';
 import $ from "jquery";
 import bootstrap from "bootstrap";
-//import search from './views/components/search'
 import location from './views/components/location'
 
+// --------------------------
 // экземляр приложения vue
+// --------------------------
 export default new Vue ({
-
-  el: "#app",
-
-  data () {   
+el: "#app",
+data () {   
     return {
       searchString: "",     
       categories: true,
@@ -24,11 +23,7 @@ export default new Vue ({
   components: { bootstrap, location },
 
   // Компонент создан
-  created() {
-
-    //alert(window.country);
-    //alert(window.lang);
-    
+  created() {    
     $("#subcats").show();
     $("#close_subcats_btn").show();    
   },
