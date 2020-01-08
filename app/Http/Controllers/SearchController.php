@@ -36,9 +36,9 @@ class SearchController extends Controller {
     \Debugbar::info($adverts);
     
     return view("results")         
-         ->with("title", "Результаты поиска по запросу: ".$request->str)         
-         ->with("description", "123")         
-         ->with("keywords", "123")
+         ->with("title", $request->str)         
+         ->with("description", "Результаты поиска по запросу: ".$request->str)         
+         ->with("keywords", "поиск, результат, запрос")
          ->with("items", $adverts)
          ->with("itemsCount", count($adverts))
          ->with("categoryId", null)
