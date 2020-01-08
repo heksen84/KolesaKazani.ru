@@ -24,7 +24,11 @@
           <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin:20px">
               
-              @include('filters/base')
+              @if ($categoryId===1 && $subcategoryId===1)  
+                @include('filters/legkovoy')
+              @else
+                @include('filters/base')
+              @endif
 
               <!--
                 @if ($categoryId===1 && $subcategoryId===1)
