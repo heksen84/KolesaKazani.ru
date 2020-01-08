@@ -29,14 +29,18 @@ class SearchController extends Controller {
   // ----------------------------------------
   // Поиск
   // ----------------------------------------
-  public function search(Request $request) {    
+  public function search(Request $request) {
+    
+    $adverts = Adverts::select("id", "title", "price")->whereRaw("title LIKE '%".$request->str."%'")->get();
+
+    \Debugbar::info($adverts);
     
     return view("results")         
          ->with("title", "Результаты поиска: ".$request->str)         
          ->with("description", "123")         
          ->with("keywords", "123")
-         ->with("items", [])
-         ->with("itemsCount", 0)
+         ->with("items", $adverts)
+         ->with("itemsCount", count($adverts))
          ->with("categoryId", null)
          ->with("subcategoryId", null)
          ->with("region", null)
