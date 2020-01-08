@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -51332,14 +51332,13 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
 
 
-//import search from './views/components/search'
 
 
+// --------------------------
 // экземляр приложения vue
+// --------------------------
 /* harmony default export */ __webpack_exports__["default"] = (new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-
   el: "#app",
-
   data: function data() {
     return {
       searchString: "",
@@ -51355,10 +51354,6 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
   // Компонент создан
   created: function created() {
-
-    //alert(window.country);
-    //alert(window.lang);
-
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#subcats").show();
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#close_subcats_btn").show();
   },
@@ -51498,50 +51493,10 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 
 /***/ }),
 
-/***/ "./resources/assets/sass/common.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/assets/sass/home.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/assets/sass/index.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/assets/sass/newad.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/assets/sass/results.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 0:
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__("./resources/assets/js/mix/index.js");
-__webpack_require__("./resources/assets/sass/common.scss");
-__webpack_require__("./resources/assets/sass/index.scss");
-__webpack_require__("./resources/assets/sass/newad.scss");
-__webpack_require__("./resources/assets/sass/results.scss");
-module.exports = __webpack_require__("./resources/assets/sass/home.scss");
+module.exports = __webpack_require__("./resources/assets/js/mix/index.js");
 
 
 /***/ })

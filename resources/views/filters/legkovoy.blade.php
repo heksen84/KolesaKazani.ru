@@ -1,4 +1,3 @@
-{{ $category }}
 <form class="form-inline" @submit="onSubmit">  		
 	<div class="form-group mx-1">
 		Цена:

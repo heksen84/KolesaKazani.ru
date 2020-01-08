@@ -101,6 +101,6 @@
         
   </div>  
 </div>
-<script type="text/javascript" src="{{ mix('js/results.js') }}"></script>
+  <script type="text/javascript" src="{{ mix('js/common.js') }}"></script>  
 </body>
 </html>
