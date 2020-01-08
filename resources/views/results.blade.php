@@ -27,11 +27,13 @@
                 <div class="spinner-border spinner-border-sm text-success" role="status" id="spinner">               
                   <span class="sr-only">загрузка фильтров...</span>
                 </div>
-              </div>                                    
+              </div> 
+              
+              @include('filters/base')
 
-              @if ($categoryId===1 && $subcategoryId===1)
-
-                <!-- легковой транспорт -->
+              <!--
+                @if ($categoryId===1 && $subcategoryId===1)
+                
                 <legkovoyfilter
                   region="{{$region}}"
                   city="{{$city}}"
@@ -59,6 +61,8 @@
                 </basefilter>
 
               @endif
+
+              -->
                 
 
               </div>
