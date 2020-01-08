@@ -148,7 +148,8 @@
  </div>
 </div>  
   <script>
-    window.country = "{{ $country }}"; window.lang = "{{ $language }}";
+    window.country = "{{ $country }}"; 
+    window.lang = "{{ $language }}";
   </script>
   <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>  
 </body>
