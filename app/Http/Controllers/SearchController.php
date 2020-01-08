@@ -18,18 +18,36 @@ class SearchController extends Controller {
   // ----------------------------------------
   // Обработка фильтра
   // ----------------------------------------
-  private function getFilterData($request) {
-
-    $data = $request->all();
- 
-     if (!$data)
+  private function getFilterData($request) {    
+     
+    if (!$request->all())
       return false;
+      
   } 
 
 
-  public function search(Request $request) {
-	return view("search");
+  // ----------------------------------------
+  // Поиск
+  // ----------------------------------------
+  public function search(Request $request) {    
+    
+    return view("results")         
+         ->with("title", "Результаты поиска: ".$request->str)         
+         ->with("description", "123")         
+         ->with("keywords", "123")
+         ->with("items", [])
+         ->with("itemsCount", 0)
+         ->with("categoryId", null)
+         ->with("subcategoryId", null)
+         ->with("region", null)
+         ->with("city", null)
+         ->with("category", null)
+         ->with("subcategory", null)
+         ->with("country", null)
+         ->with("lang", null)
+         ->with("page", 0)
+         ->with("start_price", 0)
+         ->with("end_price", 0);
   }
-
 
 }
