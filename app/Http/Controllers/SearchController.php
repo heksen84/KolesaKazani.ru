@@ -31,7 +31,10 @@ class SearchController extends Controller {
   // ----------------------------------------
   public function search(Request $request) {
     
-    $adverts = Adverts::select("id", "title", "price")->whereRaw("title LIKE '%".$request->str."%'")->get();
+    //$adverts = Adverts::select("id", "title", "price")->whereRaw("title LIKE '%".$request->str."%'")->get();
+
+    $adverts = Adverts::select("id", "title", "price")->whereRaw("MATCH (title) AGAINST('".$request->str."*' IN BOOLEAN MODE)>0")->get();
+    //$adverts = Adverts::select("id", "title", "price")->whereRaw("MATCH (title) AGAINST('".$request->str."'")->get();
 
     \Debugbar::info($adverts);
     
