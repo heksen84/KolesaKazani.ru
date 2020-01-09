@@ -32,7 +32,6 @@ class SearchController extends Controller {
       return \Storage::disk('local')->url('app/images/preview/');
   }
 
-
   // ----------------------------------------
   // Поиск
   // ----------------------------------------
