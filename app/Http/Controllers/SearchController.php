@@ -23,7 +23,14 @@ class SearchController extends Controller {
     if (!$request->all())
       return false;
       
-  } 
+  }
+  
+  // -------------------------------------------------------------
+  // получить хранилище изображений
+  // -------------------------------------------------------------
+    private function getImagePath() {      
+      return \Storage::disk('local')->url('app/images/preview/');
+  }
 
 
   // ----------------------------------------
@@ -32,8 +39,15 @@ class SearchController extends Controller {
   public function search(Request $request) {
     
     //$adverts = Adverts::select("id", "title", "price")->whereRaw("title LIKE '%".$request->str."%'")->get();
-    $adverts = Adverts::select("id", "title", "price")->whereRaw("MATCH (title) AGAINST('".$request->str."*' IN BOOLEAN MODE)>0")->get();
+    //$adverts = Adverts::select("id", "title", "price")->whereRaw("MATCH (title) AGAINST('".$request->str."*' IN BOOLEAN MODE)>0")->get();
     //$adverts = Adverts::select("id", "title", "price")->whereRaw("MATCH (title) AGAINST('".$request->str."'")->get();
+
+    $adverts = DB::select("SELECT 
+        adv.id, 
+        adv.title, 
+        adv.price,         
+        concat('".$this->getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
+        FROM `adverts` AS adv WHERE MATCH (title) AGAINST('".$request->str."')");            
 
     \Debugbar::info($adverts);
     
