@@ -1879,7 +1879,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ["index", "value", "name", "type", "placeholder", "maxlength", "id"],
+  props: ["id", "index", "value", "name", "type", "placeholder", "maxlength"],
 
   // перехватчик
   computed: {
@@ -1888,10 +1888,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // геттер
       get: function get() {
         return this.value;
-      }
-
+      },
       // сеттер
-      //set: function(newValue) {}   
+      set: function set(newValue) {}
     }
   },
 
@@ -1907,9 +1906,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       switch (this.type) {
 
-        // ------------------
         // телефон
-        // ------------------
         case "phone":
           {
 
@@ -1922,9 +1919,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             break;
           }
 
-        // ------------------
-        // число
-        // ------------------
+        // число          
         case "number":
           {
 

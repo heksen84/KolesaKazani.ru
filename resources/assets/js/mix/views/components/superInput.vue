@@ -10,13 +10,13 @@
 export default {
   
   props: [
+    "id",
     "index", 
     "value", 
     "name", 
     "type", 
     "placeholder", 
-    "maxlength", 
-    "id"
+    "maxlength",     
   ],
     
   // перехватчик
@@ -25,9 +25,8 @@ export default {
     valueInput: {
       // геттер
       get: function() { return this.value; },
-
       // сеттер
-      //set: function(newValue) {}   
+      set: function(newValue) {}   
     }
   },
   
@@ -43,9 +42,7 @@ export default {
 
       switch(this.type) {
 
-          // ------------------
           // телефон
-          // ------------------
           case "phone": {                                                        
             
             if (!numericPattern.test(newValue)) 
@@ -57,10 +54,8 @@ export default {
             this.$emit('input', val)
             break;
           }
-
-          // ------------------
-          // число
-          // ------------------
+          
+          // число          
           case "number": {      
             
             if (!numericPattern.test(newValue)) 

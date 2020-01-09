@@ -1,37 +1,8 @@
 <template>
 <div class="container-fluid mycontainer_adv"> 
 
-    <!-- авторизация -->
-    <div class="modal" id="authModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
+    <login v-if="showAuth"></login>
 
-            <h5 class="modal-title grey">Требуется авторизация</h5>            
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>          
-          </div>
-
-          <div class="modal-body">
-            <div class="col-md-12 text-center">
-                <span>Логин:</span>                      
-                <superInput type="number" v-model="price" :maxlength="12" @input="setPrice"></superInput>
-            </div>
-            <div class="col-md-12 text-center">
-                <span>Пароль:</span>                      
-                <superInput type="number" v-model="price" :maxlength="12" @input="setPrice"></superInput>
-                <a href="/register">регистрация</a>
-            </div>
-          </div>
-
-          <div class="modal-footer">          
-            <button type="button" class="btn btn-primary margin-auto" @click="setCoords">Войти</button>          
-          </div>
-        </div>
-      </div>
-    </div>        
-   
     <!-- карта -->
     <div class="modal bd-example-modal-lg" id="ShowModal" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
@@ -242,6 +213,11 @@ import bootstrap from "bootstrap";
 import transport from "./subcategories/transport.vue"
 import realEstate from "./subcategories/realEstate.vue"
 import superInput from "./components/superInput.vue"
+
+import login from "./components/auth/login.vue"
+import register from "./components/auth/register.vue"
+import restore from "./components/auth/restore.vue"
+
 import { post, get } from '../../helpers/api'
 
 var preview_images_array=[];
@@ -309,7 +285,10 @@ export default {
 // Входящие данные
 props: ["categories", "regions", "lang", "auth"],
 
-components: { 
+components: {
+  login,
+  register,
+  restore, 
   transport,
   realEstate,
   superInput,  
@@ -317,6 +296,8 @@ components: {
 
 data () {
   return 	{
+
+  showAuth: false,
   
   dialogMsg: "повторите позже",
   dialogTitleMsg: "Cервис временно не доступен",
@@ -653,7 +634,8 @@ onSubmit(evt) {
 
   if (!this.auth) {
     // отобразить окно авторизации
-    $("#authModal").modal("show");
+    //$("#authModal").modal("show");
+    this.showAuth=true;
     return;
   }
   
