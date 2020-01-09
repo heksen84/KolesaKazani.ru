@@ -43,6 +43,14 @@
 // Большие устройства 
 // --------------------------------------------
 @media screen and (max-width:960px) {
+
+  .create_advert_col {
+    text-align:left;
+    margin: 0px auto;
+    color:black;
+    background:white;
+  }
+
   .mycontainer_adv {
     width: 100%;
   }
@@ -53,13 +61,6 @@
 // --------------------------------------------
 @media screen and (max-width:420px) {
   
-  .create_advert_col {
-    text-align:left;
-    margin: 0px auto;
-    color:black;
-    background:white;
-  }
-
   .close_button {
    left:90%;
   }
