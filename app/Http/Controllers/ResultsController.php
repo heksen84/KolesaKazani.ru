@@ -75,7 +75,15 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     // результаты по стране
     // -------------------------------------------------------------    
-    public function getCountrySubCategoryResults(Request $request, $category, $subcategory) { 
+    public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {
+        
+        
+        // должна прийти page / буду отображать по 100 объявлений
+        // limit 0,100
+        // limit 100,200,
+        // limit 200,300
+        // limit 300, startPage+pageLimitNum
+        
                 
         \Debugbar::info("start_price: ".$request->start_price);
         \Debugbar::info("end_price: ".$request->end_price);

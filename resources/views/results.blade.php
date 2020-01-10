@@ -15,7 +15,12 @@
 </head>
 <body>
 <div id="app">
-  <div class="container-fluid container1">
+
+<div style="position:fixed;top:140px;left:50px">реклама</div>
+<div style="position:fixed;top:140px;right:50px">реклама</div>
+
+  <!--<div class="container-fluid container1">-->
+  <div class="container-fluid mycontainer">
 
     <!-- кнопка закрытия -->
     <div class="close_button mt-2" title="Закрыть страницу" @click="closeAndReturn">X</div>     
@@ -64,10 +69,10 @@
               -->
                 
 
-              </div>
+              </div>              
 
                 @foreach($items as $item)
-                  <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
                     <div class="card text-left" style="height:270px;margin:2px">
                       <img class="card-img-top" src="{{ $item->imageName }}" alt="{{ $item->title }}">
                         <div class="card-body">                                                        
@@ -80,7 +85,7 @@
             
           </div>   
       
-        @if ($itemsCount>5)  
+        @if ($itemsCount>=100)  
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <br>    
             <ul class="pagination justify-content-center">
