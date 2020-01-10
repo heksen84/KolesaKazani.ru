@@ -1,9 +1,5 @@
 @charset "UTF-8";
 
-.mycontainer_adv {
-  width: 1000px;
-}
-
 .number_input {
   width: 120px;
   margin: auto;
@@ -17,7 +13,7 @@
 
 .create_advert_col {
   text-align: left;
-  margin: 10px auto;
+  margin: auto;
   color: black;
   background: white;
 }
@@ -38,19 +34,6 @@
   margin-top: -20px;
   font-size: 130%;
   color: #505050;
-}
-
-@media screen and (max-width: 960px) {
-  .create_advert_col {
-    text-align: left;
-    margin: 0px auto;
-    color: black;
-    background: white;
-  }
-
-  .mycontainer_adv {
-    width: 100%;
-  }
 }
 
 @media screen and (max-width: 420px) {

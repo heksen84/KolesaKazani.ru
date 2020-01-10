@@ -1,5 +1,5 @@
 <template>
-<div class="container-fluid mycontainer_adv"> 
+<div class="container-fluid mycontainer"> 
 
     <login v-if="showAuth"></login>
 

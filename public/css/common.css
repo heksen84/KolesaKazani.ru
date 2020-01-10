@@ -70,6 +70,10 @@ body {
   -o-background-size: cover;
 }
 
+.mycontainer {
+  width: 1000px;
+}
+
 .shadow_text {
   color: #fff;
   letter-spacing: 2px;
@@ -117,6 +121,12 @@ body {
 
 @media screen and (max-width: 1224px) {
   .container1 {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1224px) and (max-width: 960px) {
+  .mycontainer {
     width: 100%;
   }
 }

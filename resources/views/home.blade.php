@@ -45,7 +45,7 @@
   </div>
 </nav>
 
-<div class="container-fluid" style="width:1000px">
+<div class="container-fluid mycontainer">
   <div class="row">    
     <table class="table table-bordered table-hover">
       <thead>
