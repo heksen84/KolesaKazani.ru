@@ -63,8 +63,10 @@
           <td>{{ $item["title"] }}</td>
           <td class="text-center">На модерации</td>
           <td class="text-center">
-            <button class="btn btn-outline-secondary btn-sm m-1 full-width">продлить</button>
+            <button class="btn btn-outline-danger btn-sm m-1 full-width">срочно, торг</button>
+            <button class="btn btn-outline-secondary btn-sm m-1 full-width">продлить</button>            
             <button class="btn btn-outline-success btn-sm m-1 full-width">поднять в топ</button>
+            <button class="btn btn-outline-secondary btn-sm m-1 full-width">покрасить</button>
           </td>
       </tr>
       @endforeach    
