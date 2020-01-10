@@ -85,20 +85,20 @@
             
           </div>   
       
-        @if ($itemsCount>=100)  
+        @if ($itemsCount>=1)  
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <br>    
             <ul class="pagination justify-content-center">
             <li class="page-item disabled">
               <span class="page-link">Назад</span>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="">1</a></li>
             <li class="page-item active">
               <span class="page-link">2<span class="sr-only">(current)</span></span>
             </li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="">3</a></li>
               <li class="page-item">
-                <a class="page-link" href="#">Вперёд</a>
+                <a class="page-link" href="">Вперёд</a>
               </li>
             </ul>
           </div>
@@ -107,5 +107,6 @@
   </div>  
 </div>
   <script type="text/javascript" src="{{ mix('js/common.js') }}"></script>  
+  <script type="text/javascript" src="{{ mix('js/results.js') }}"></script> 
 </body>
 </html>

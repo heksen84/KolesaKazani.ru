@@ -1,32 +1,17 @@
-require('./bootstrap');
+document.body.addEventListener('click', function (evt) {        
 
-import Vue from 'vue';
-import basefilter from './views/components/filters/baseFilter'
-import legkovoyfilter from './views/components/filters/transport/legkovoy'
 
-export default new Vue ({
-  
-  el: '#app',
+  console.log(evt.target.className)
 
-  components: {
-    basefilter,
-    legkovoyfilter
-  },
+/*  if (evt.target.classList[0] === 'close_button') {                        
 
-  data () { return {} },
-
-  created() {
-    document.getElementById("spinner").style.display = "none";
-  },
-
-  methods: {
-  
-  // Вернуться на предыдущую страницу
-  closeAndReturn() {
-    //window.history.back();
-    window.location="/";
+      if (window.history.length<=3)
+          window.location = "/"
+      else
+          window.history.back();
   }
 
-  
-  }
-});
+  */
+
+
+}, false);

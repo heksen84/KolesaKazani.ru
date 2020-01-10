@@ -115,8 +115,20 @@ class ApiController extends Controller {
         $subcategory = $this->to_php_null($data["adv_subcategory"]);        
         $price       = $this->to_php_null($data["adv_price"]);
                 
-     	try {     			
+     	try {
+            
             $advert = new Adverts();
+
+            /*\Debugbar::info("телефон до: ".$phone);
+            
+            $strArr = str_split($phone);            
+            $newStr=[];
+            foreach($strArr as $key => $item) {                
+                $newStr[$key] = $item & "1";
+            }
+
+            \Debugbar::info(implode($newStr));*/
+            
 
      		$advert->user_id         = Auth::id();
             $advert->title  	     = $title;
