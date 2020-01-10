@@ -99,6 +99,10 @@ body {
   text-decoration: underline;
 }
 
+.full-width {
+  width: 100%;
+}
+
 @media screen and (max-width: 9000px) {
   .container1 {
     width: 1280px;
