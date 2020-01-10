@@ -26,7 +26,7 @@
         <a class="nav-link" href="/">Подать объявление <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Счёт (4000 тнг.)</a>
+        <a class="nav-link" href="#" style="font-weight:bold">Счёт: 4000 тнг. [ пополнить ]</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/logout">Выход</a>
@@ -63,7 +63,7 @@
           <td>{{ $item["title"] }}</td>
           <td class="text-center">На модерации</td>
           <td class="text-center">
-            <button class="btn btn-outline-info btn-sm m-1 full-width">срочно, торг</button>
+            <button class="btn btn-outline-danger btn-sm m-1 full-width">срочно, торг</button>
             <button class="btn btn-outline-secondary btn-sm m-1 full-width">продлить</button>            
             <button class="btn btn-outline-success btn-sm m-1 full-width">поднять в топ</button>
             <button class="btn btn-outline-primary btn-sm m-1 full-width">покрасить</button>
