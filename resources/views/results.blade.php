@@ -16,8 +16,8 @@
 <body>
 <div id="app">
 
-<div style="position:fixed;top:140px;left:50px">реклама</div>
-<div style="position:fixed;top:140px;right:50px">реклама</div>
+<!--<div style="position:fixed;top:140px;left:50px">реклама</div>
+<div style="position:fixed;top:140px;right:50px">реклама</div>-->
 
   <!--<div class="container-fluid container1">-->
   <div class="container-fluid mycontainer">
