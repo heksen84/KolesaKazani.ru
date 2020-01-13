@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- test -->
 <html lang="{{ app()->getLocale() }}">
 <head>
   <title>{{ $title }}</title>
