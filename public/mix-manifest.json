@@ -1,12 +1,13 @@
 {
-    "/js/newad.js": "/js/newad.js?id=1e2358965b74d24e291d",
-    "/js/index.js": "/js/index.js?id=06d350e317b5fc6cd1d4",
-    "/js/home.js": "/js/home.js?id=35c05600f5528ae420f4",
-    "/js/results.js": "/js/results.js?id=51ced36e1f57c11cc3dd",
-    "/js/common.js": "/js/common.js?id=c4402a08cac8b242c610",
+    "/js/newad.js": "/js/newad.js?id=a338f42cd8dc9d72f7a9",
+    "/js/index.js": "/js/index.js?id=a401c3449fd479ccfae1",
+    "/js/home.js": "/js/home.js?id=cf2a1ad520cb5b695898",
+    "/js/app.js": "/js/app.js?id=60d86460336ef15a6e08",
     "/css/common.css": "/css/common.css?id=7cab52a2e4b8f3ed2030",
     "/css/index.css": "/css/index.css?id=b06447fdf33fb6b9f860",
     "/css/newad.css": "/css/newad.css?id=e75b1311b9ed00f415c7",
     "/css/results.css": "/css/results.css?id=441deb1f528694022e53",
-    "/css/home.css": "/css/home.css?id=d41d8cd98f00b204e980"
+    "/css/home.css": "/css/home.css?id=d41d8cd98f00b204e980",
+    "/js/results.js": "/js/results.js?id=ec4e8dd4cc2142597e34",
+    "/js/common.js": "/js/common.js?id=277172b0cecc44de1e86"
 }

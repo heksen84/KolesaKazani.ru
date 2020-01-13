@@ -9,7 +9,9 @@ import location from './views/components/location'
 // экземляр приложения vue
 // --------------------------
 export default new Vue ({
+
 el: "#app",
+
 data () {   
     return {
       searchString: "",     

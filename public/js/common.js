@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -78,50 +78,10 @@ document.body.addEventListener('click', function (evt) {
 
 /***/ }),
 
-/***/ "./resources/assets/sass/common.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/assets/sass/home.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/assets/sass/index.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/assets/sass/newad.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/assets/sass/results.scss":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 0:
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__("./resources/assets/js/mix/common.js");
-__webpack_require__("./resources/assets/sass/common.scss");
-__webpack_require__("./resources/assets/sass/index.scss");
-__webpack_require__("./resources/assets/sass/newad.scss");
-__webpack_require__("./resources/assets/sass/results.scss");
-module.exports = __webpack_require__("./resources/assets/sass/home.scss");
+module.exports = __webpack_require__("./resources/assets/js/mix/common.js");
 
 
 /***/ })
