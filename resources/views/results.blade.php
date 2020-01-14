@@ -86,6 +86,7 @@
           </div>   
       
         <br>
+
           <!-- totalCount / 50 = кол-во кнопок на странице -->
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">            
             <ul class="pagination justify-content-center">
@@ -94,7 +95,7 @@
                 <span class="page-link">Назад</span>
               </li>
 
-                @for( $i=1; $i<$totalCount/2; $i++ ) 
+                @for( $i=1; $i<10; $i++ ) 
                   <li class="page-item">
                     <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $i }}">{{ $i }}</a>
                   </li>              

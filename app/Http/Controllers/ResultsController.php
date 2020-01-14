@@ -78,12 +78,7 @@ class ResultsController extends Controller {
     public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {
         
         \Debugbar::info("start_price: ".$request->start_price);
-        \Debugbar::info("end_price: ".$request->end_price);
-        
-        $page = 1;
-
-        if ($request->page)
-            $page = $request->page;
+        \Debugbar::info("end_price: ".$request->end_price);        
                         
         $startPrice = $request->start_price;
         $endPrice = $request->end_price;
@@ -98,11 +93,20 @@ class ResultsController extends Controller {
             
         // общее число обяъвлений с условиями
         $totalCount = DB::select("SELECT COUNT(*) as num FROM `adverts` WHERE subcategory_id=".$subcategories[0]->id.$priceBetweenSql);     
-                
+                        
+        // должна прийти стартовое положение limit
+        
+        $elementsNumOnPage = 6;
+
+        if ($request->page)
+            $startPage = $elementsNumOnPage*($request->page-1);
+            else $startPage = 0;
+            
+                            
         
         $items = DB::select("SELECT adv.id, adv.title, adv.price,         
          concat('".$this->getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
-         FROM `adverts` AS adv WHERE subcategory_id=".$subcategories[0]->id.$priceBetweenSql." LIMIT ".$totalCount[0]->num/$page.",4");
+         FROM `adverts` AS adv WHERE subcategory_id=".$subcategories[0]->id.$priceBetweenSql." LIMIT ".$startPage.", ".$elementsNumOnPage);
    
          \Debugbar::info("субкатегория: ".$subcategory);       
          \Debugbar::info("id субкатегории: ".$subcategories);      
@@ -118,6 +122,8 @@ class ResultsController extends Controller {
          ->with("items", $items)
          ->with("itemsCount", count($items))
          ->with("totalCount", $totalCount[0]->num)
+         //->with("startPage", $startPage===0?$startPage+1:$startPage)
+         ->with("startPage", $startPage+1)
          ->with("categoryId", $categories[0]->id)
          ->with("subcategoryId", $subcategories[0]->id)
 
