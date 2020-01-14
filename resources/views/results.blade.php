@@ -96,7 +96,7 @@
 
                 @for( $i=1; $i<$totalCount/5; $i++ ) 
                   <li class="page-item">
-                    <a class="page-link" href="/">{{ $i }}</a>
+                    <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $i }}">{{ $i }}</a>
                   </li>              
                 @endfor
 

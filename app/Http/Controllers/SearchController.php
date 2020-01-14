@@ -56,6 +56,7 @@ class SearchController extends Controller {
          ->with("keywords", "поиск, результат, запрос")
          ->with("items", $adverts)
          ->with("itemsCount", count($adverts))
+         ->with("totalCount", 0)
          ->with("categoryId", null)
          ->with("subcategoryId", null)
          ->with("region", null)
