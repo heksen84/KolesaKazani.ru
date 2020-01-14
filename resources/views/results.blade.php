@@ -20,12 +20,12 @@
 <div style="position:fixed;top:140px;right:50px">реклама</div>-->
 
   <!--<div class="container-fluid container1">-->
-  <div class="container-fluid mycontainer">
+  <div class="container-fluid mycontainer">  
 
     <!-- кнопка закрытия -->
     <div class="close_button mt-2" title="Закрыть страницу" @click="closeAndReturn">X</div>     
       <h1 class="grey">{{ $title }}</h1>
-        <div class="grey">Найдено: ({{ $itemsCount }}) [категория: {{ $categoryId }}, подкатегория: {{ $subcategoryId }}]</div>	        
+        <div class="grey">Найдено: ({{ $itemsCount }} из {{ $totalCount }} ) [категория: {{ $categoryId }}, подкатегория: {{ $subcategoryId }}]</div>	        
           <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin:20px">
               
@@ -85,18 +85,25 @@
             
           </div>   
       
+        <!-- должны быть с ссылками-->
         @if ($itemsCount>=1)  
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <br>    
+        <br>
+          <!-- totalCount / 50 = кол-во кнопок на странице -->
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">            
             <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-              <span class="page-link">Назад</span>
-            </li>
-            <li class="page-item"><a class="page-link" href="">1</a></li>
-            <li class="page-item active">
-              <span class="page-link">2<span class="sr-only">(current)</span></span>
-            </li>
-            <li class="page-item"><a class="page-link" href="">3</a></li>
+              <li class="page-item">
+                <span class="page-link">Назад</span>
+              </li>
+              <li class="page-item active"><a class="page-link">1</a></li>
+              <li class="page-item">
+                <span class="page-link">2<span class="sr-only">(current)</span></span>
+              </li>
+              <li class="page-item">
+                <span class="page-link">3<span class="sr-only"></span></span>
+              </li>
+              <li class="page-item">
+                <span class="page-link">4<span class="sr-only"></span></span>
+              </li>            
               <li class="page-item">
                 <a class="page-link" href="">Вперёд</a>
               </li>

@@ -97,11 +97,14 @@ class ResultsController extends Controller {
             $priceBetweenSql = " AND price BETWEEN ".$startPrice." AND ".$endPrice;
                        
         $categories = $this->getCategoryData($request, $category);                        
-        $subcategories = $this->getSubCategoryData($request, $subcategory);                        
+        $subcategories = $this->getSubCategoryData($request, $subcategory);
+            
+        // общее число обяъвлений с условиями
+        $totalCount = DB::select("SELECT COUNT(*) as num FROM `adverts` WHERE subcategory_id=".$subcategories[0]->id.$priceBetweenSql);            
 
         $items = DB::select("SELECT adv.id, adv.title, adv.price,         
          concat('".$this->getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
-         FROM `adverts` AS adv WHERE subcategory_id=".$subcategories[0]->id.$priceBetweenSql);            
+         FROM `adverts` AS adv WHERE subcategory_id=".$subcategories[0]->id.$priceBetweenSql);
    
          \Debugbar::info("субкатегория: ".$subcategory);       
          \Debugbar::info("id субкатегории: ".$subcategories);      
@@ -115,6 +118,7 @@ class ResultsController extends Controller {
          ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))
          ->with("items", $items)
          ->with("itemsCount", count($items))
+         ->with("totalCount", $totalCount[0]->num)
          ->with("categoryId", $categories[0]->id)
          ->with("subcategoryId", $subcategories[0]->id)
 
