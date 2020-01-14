@@ -94,7 +94,7 @@
                 <span class="page-link">Назад</span>
               </li>
 
-                @for( $i=1; $i<$totalCount/5; $i++ ) 
+                @for( $i=1; $i<$totalCount/2; $i++ ) 
                   <li class="page-item">
                     <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $i }}">{{ $i }}</a>
                   </li>              
