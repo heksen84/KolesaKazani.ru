@@ -77,17 +77,14 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------    
     public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {
         
-        
-        // должна прийти page / буду отображать по 100 объявлений
-        // limit 0,100
-        // limit 100,200,
-        // limit 200,300
-        // limit 300, startPage+pageLimitNum
-        
-                
         \Debugbar::info("start_price: ".$request->start_price);
         \Debugbar::info("end_price: ".$request->end_price);
+        
+        $page = 1;
 
+        if ($request->page)
+            $page = $request->page;
+                        
         $startPrice = $request->start_price;
         $endPrice = $request->end_price;
 
@@ -100,16 +97,12 @@ class ResultsController extends Controller {
         $subcategories = $this->getSubCategoryData($request, $subcategory);        
             
         // общее число обяъвлений с условиями
-        $totalCount = DB::select("SELECT COUNT(*) as num FROM `adverts` WHERE subcategory_id=".$subcategories[0]->id.$priceBetweenSql);            
-
-        $page = 1;
-
-        if ($request->page)
-            $page = $request->page;
-
+        $totalCount = DB::select("SELECT COUNT(*) as num FROM `adverts` WHERE subcategory_id=".$subcategories[0]->id.$priceBetweenSql);     
+                
+        
         $items = DB::select("SELECT adv.id, adv.title, adv.price,         
          concat('".$this->getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
-         FROM `adverts` AS adv WHERE subcategory_id=".$subcategories[0]->id.$priceBetweenSql." LIMIT ".$page.",4");
+         FROM `adverts` AS adv WHERE subcategory_id=".$subcategories[0]->id.$priceBetweenSql." LIMIT ".$totalCount[0]->num/$page.",4");
    
          \Debugbar::info("субкатегория: ".$subcategory);       
          \Debugbar::info("id субкатегории: ".$subcategories);      
