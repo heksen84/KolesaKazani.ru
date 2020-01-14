@@ -51330,6 +51330,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
 
+//import $ from "jquery/dist/jquery.slim.js"
 
 
 

@@ -1,6 +1,7 @@
 require('./bootstrap');
 
 import Vue from 'vue';
+//import $ from "jquery/dist/jquery.slim.js"
 import $ from "jquery";
 import bootstrap from "bootstrap";
 import location from './views/components/location'
