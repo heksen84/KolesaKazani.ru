@@ -25,7 +25,7 @@
     <!-- кнопка закрытия -->
     <div class="close_button mt-2" title="Закрыть страницу" @click="closeAndReturn">X</div>     
       <h1 class="grey">{{ $title }}</h1>
-        <div class="grey">Найдено: ({{ $itemsCount }} из {{ $totalCount }} ) [категория: {{ $categoryId }}, подкатегория: {{ $subcategoryId }}]</div>	        
+        <div class="grey">Найдено: ({{ $itemsCount }} из {{ $totalCount }} ) [категория: {{ $categoryId }}, подкатегория: {{ $subcategoryId }}] startPage: {{ $startPage }}</div>	        
           <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin:20px">
               
@@ -34,40 +34,7 @@
               @else
                 @include('filters/base')
               @endif
-
-              <!--
-                @if ($categoryId===1 && $subcategoryId===1)
-                
-                <legkovoyfilter
-                  region="{{$region}}"
-                  city="{{$city}}"
-                  category="{{$category}}"
-                  subcategory="{{$subcategory}}"
-                  country="{{$country}}"
-                  lang="{{$lang}}"
-	                page="{{$page}}"
-	                start_price="{{$start_price}}"
-	                end_price="{{$end_price}}">                                    
-                </legkovoyfilter>
-              
-              @else
-
-                <basefilter
-                  region="{{$region}}"
-                  city="{{$city}}"
-                  category="{{$category}}"
-                  subcategory="{{$subcategory}}"
-                  country="{{$country}}"
-                  lang="{{$lang}}"
-	                page="{{$page}}"
-	                start_price="{{$start_price}}"
-	                end_price="{{$end_price}}">                                    
-                </basefilter>
-
-              @endif
-
-              -->
-                
+             
 
               </div>              
 
@@ -84,21 +51,21 @@
                 @endforeach
             
           </div>   
-      
-        <br>
+            
 
           <!-- totalCount / 50 = кол-во кнопок на странице -->
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">            
+
+          <br>
+          
             <ul class="pagination justify-content-center">
               
               <li class="page-item">
                 <span class="page-link">Назад</span>
               </li>
 
-                @for( $i=1; $i<10; $i++ ) 
-                  <li class="page-item">
-                    <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $i }}">{{ $i }}</a>
-                  </li>              
+                @for( $i=1; $i<6; $i++ ) 
+                  <li class="page-item"><a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $i }}">{{ $i }}</a></li>              
                 @endfor
 
               <li class="page-item">

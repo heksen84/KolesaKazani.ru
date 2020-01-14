@@ -96,17 +96,17 @@ class ResultsController extends Controller {
                         
         // должна прийти стартовое положение limit
         
-        $elementsNumOnPage = 6;
+        $elementsOnPage = 6;
 
         if ($request->page)
-            $startPage = $elementsNumOnPage*($request->page-1);
+            $startPage = $elementsOnPage*($request->page-1);
             else $startPage = 0;
             
                             
         
         $items = DB::select("SELECT adv.id, adv.title, adv.price,         
          concat('".$this->getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
-         FROM `adverts` AS adv WHERE subcategory_id=".$subcategories[0]->id.$priceBetweenSql." LIMIT ".$startPage.", ".$elementsNumOnPage);
+         FROM `adverts` AS adv WHERE subcategory_id=".$subcategories[0]->id.$priceBetweenSql." LIMIT ".$startPage.", ".$elementsOnPage);
    
          \Debugbar::info("субкатегория: ".$subcategory);       
          \Debugbar::info("id субкатегории: ".$subcategories);      
@@ -122,8 +122,8 @@ class ResultsController extends Controller {
          ->with("items", $items)
          ->with("itemsCount", count($items))
          ->with("totalCount", $totalCount[0]->num)
-         //->with("startPage", $startPage===0?$startPage+1:$startPage)
-         ->with("startPage", $startPage+1)
+         ->with("startPage", $startPage===0?$startPage+1:$startPage)
+         //->with("startPage", $startPage+1)
          ->with("categoryId", $categories[0]->id)
          ->with("subcategoryId", $subcategories[0]->id)
 
