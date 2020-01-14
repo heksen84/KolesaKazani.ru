@@ -85,32 +85,27 @@
             
           </div>   
       
-        <!-- должны быть с ссылками-->
-        @if ($itemsCount>=1)  
         <br>
           <!-- totalCount / 50 = кол-во кнопок на странице -->
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">            
             <ul class="pagination justify-content-center">
+              
               <li class="page-item">
                 <span class="page-link">Назад</span>
               </li>
-              <li class="page-item active"><a class="page-link">1</a></li>
-              <li class="page-item">
-                <span class="page-link">2<span class="sr-only">(current)</span></span>
-              </li>
-              <li class="page-item">
-                <span class="page-link">3<span class="sr-only"></span></span>
-              </li>
-              <li class="page-item">
-                <span class="page-link">4<span class="sr-only"></span></span>
-              </li>            
+
+                @for( $i=1; $i<$totalCount/5; $i++ ) 
+                  <li class="page-item">
+                    <a class="page-link" href="/">{{ $i }}</a>
+                  </li>              
+                @endfor
+
               <li class="page-item">
                 <a class="page-link" href="">Вперёд</a>
               </li>
+
             </ul>
-          </div>
-        @endif
-        
+          </div>        
   </div>  
 </div>
   <script type="text/javascript" src="{{ mix('js/common.js') }}"></script>  

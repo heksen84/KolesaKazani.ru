@@ -112,7 +112,8 @@ class ResultsController extends Controller {
 
          $locationName = $this->getLocationName($request->country);
                 
-         return view("results")         
+         return view("results")    
+              
          ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
          ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
          ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))
