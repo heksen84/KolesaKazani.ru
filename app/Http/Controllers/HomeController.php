@@ -14,7 +14,6 @@ use DB;
 class HomeController extends Controller {
 		    
     public function ShowHomePage() {
-
         
         $results = Adverts::all()->where("user_id", Auth::id() );
 
