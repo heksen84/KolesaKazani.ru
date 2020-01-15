@@ -46,8 +46,7 @@
   <div class="container-fluid container1" id="index_page" style="margin-top:10px">
 
     <!-- компонент выбора расположения -->
-      <location></location>
-    <!----------------------------------->
+    <location></location>
 
     <div class="row">    
       <div class="margin-auto" id="login_register_col">

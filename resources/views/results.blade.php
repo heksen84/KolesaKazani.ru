@@ -63,41 +63,15 @@
           -->
             
           @if ($totalCount>=12)
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <br>
-              <br>          
-              Страницы: <span>1 2 3 4 5 <b>6</b> 7 8 9 10</span>
-                <!--<ul class="pagination pagination-sm justify-content-center">                
-
-	                 
-                    <li class="page-item">
-		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page=1">В начало</a>
-                    </li>                  
-
-                   
-                    <li class="page-item">
-		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page=1">&#8592</a>
-                    </li>
-
-                    @for( $i=1; $i<$navButtonsNum+1; $i++ )                      
-                      <li class="page-item">
-			                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $i }}">{{ $i }}</a>
-		                  </li>                      
-                    @endfor
-
-                   
-                    <li class="page-item">
-		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $navButtonsNum+1 }}">&#8594;</a>
-                    </li>
-
-                   
-                    <li class="page-item">
-		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $navButtonsNum }}">В конец</a>
-                    </li>
-
-                </ul>
-                -->
-          </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <br>              
+                Страницы:                 
+                  @for( $i=1; $i<$navButtonsNum+1; $i++ )                                      
+			              <a href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $i }}" style="font-size:20px;margin:5px">{{ $i }}</a>		            
+                  @endfor                
+                  ... 4 5 6
+            </div>
+          <br>
           @endif    
   </div>  
 </div>
