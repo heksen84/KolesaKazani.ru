@@ -66,7 +66,8 @@
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <br>
               <br>          
-                <ul class="pagination justify-content-center">
+              Страницы:
+                <ul class="pagination pagination-sm justify-content-center">                
 
 	                  <!-- первая страница -->
                     <li class="page-item">
