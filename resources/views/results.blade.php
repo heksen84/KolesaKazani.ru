@@ -52,7 +52,7 @@
           </div>   
             
           @if ($totalCount>=12)
-          <!-- totalCount / 50 = кол-во кнопок на странице -->
+
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <br>
               <br>          
@@ -74,9 +74,9 @@
 		                </li>                      
                     @endfor
 
-                    <!-- предыдущая страница -->
+                    <!-- следующая страница -->
                     <li class="page-item">
-		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page=1">></a>
+		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $navButtonsNum+1 }}">></a>
                     </li>
 
                     <!-- последняя страница -->
@@ -84,7 +84,7 @@
 		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $navButtonsNum }}">&raquo</a>
                     </li>
 
-                  </ul>
+                </ul>
           </div>    
           @endif    
   </div>  
