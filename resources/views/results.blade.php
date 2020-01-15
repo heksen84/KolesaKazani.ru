@@ -70,12 +70,12 @@
 
 	                  <!-- первая страница -->
                     <li class="page-item">
-		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page=1">&laquo;</a>
+		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page=1">В начало</a>
                     </li>                  
 
                     <!-- предыдущая страница -->
                     <li class="page-item">
-		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page=1"><</a>
+		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page=1">&#8592</a>
                     </li>
 
                     @for( $i=1; $i<$navButtonsNum+1; $i++ )                      
@@ -86,12 +86,12 @@
 
                     <!-- следующая страница -->
                     <li class="page-item">
-		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $navButtonsNum+1 }}">></a>
+		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $navButtonsNum+1 }}">&#8594;</a>
                     </li>
 
                     <!-- последняя страница -->
                     <li class="page-item">
-		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $navButtonsNum }}">&raquo</a>
+		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $navButtonsNum }}">В конец</a>
                     </li>
 
                 </ul>
