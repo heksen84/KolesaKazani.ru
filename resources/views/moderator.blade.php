@@ -14,8 +14,10 @@
 </head>
 <body>
 @foreach($adverts as $advert)
-    <h2>{{ $advert->title }}</h2>
-    <h3>{{ $advert->text }}</h3>
+    <br>
+    <h3>{{ $advert->title }}</h3>
+    <h4>{{ $advert->text }}</h4>    
+    <br>
     <button>принять</button>
     <button>отклонить</button>
     <hr>
