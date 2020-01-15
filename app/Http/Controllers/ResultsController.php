@@ -70,7 +70,9 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     // результаты по стране
     // -------------------------------------------------------------    
-    public function getCountryCategoryResults(Request $request, $category) {}
+    public function getCountryCategoryResults(Request $request, $category) {
+        
+    }
 
     // -------------------------------------------------------------
     // результаты по стране
@@ -101,8 +103,7 @@ class ResultsController extends Controller {
         if ($request->page)
             $startPage = $elementsOnPage*($request->page-1);
             else $startPage = 0;
-            
-                            
+                                        
         
         $items = DB::select("SELECT adv.id, adv.title, adv.price,         
          concat('".$this->getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
