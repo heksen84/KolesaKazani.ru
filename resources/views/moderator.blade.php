@@ -23,3 +23,4 @@
     <hr>
 @endforeach
 </body>
+</html>
