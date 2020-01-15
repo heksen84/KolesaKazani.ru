@@ -66,15 +66,15 @@
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <br>
               <br>          
-              Страницы: 1 2 3 4 5 6 7 8 9 10
-                <ul class="pagination pagination-sm justify-content-center">                
+              Страницы: <span>1 2 3 4 5 <b>6</b> 7 8 9 10</span>
+                <!--<ul class="pagination pagination-sm justify-content-center">                
 
-	                  <!-- первая страница -->
+	                 
                     <li class="page-item">
 		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page=1">В начало</a>
                     </li>                  
 
-                    <!-- предыдущая страница -->
+                   
                     <li class="page-item">
 		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page=1">&#8592</a>
                     </li>
@@ -85,17 +85,18 @@
 		                  </li>                      
                     @endfor
 
-                    <!-- следующая страница -->
+                   
                     <li class="page-item">
 		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $navButtonsNum+1 }}">&#8594;</a>
                     </li>
 
-                    <!-- последняя страница -->
+                   
                     <li class="page-item">
 		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $navButtonsNum }}">В конец</a>
                     </li>
 
                 </ul>
+                -->
           </div>
           @endif    
   </div>  
