@@ -4,6 +4,9 @@ Auth::routes();
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
+// Сервисы (было внизу)
+Route::get("/moderator", "ModeratorController@showHomePage");
+Route::get("/util/str2url", "UtilsController@str2url");
 
 // Новое объявление
 Route::get("/search", "SearchController@search");
@@ -25,7 +28,6 @@ Route::get("/", "IndexController@ShowCountryIndexPage");
 // мои объявления
 Route::get("/home", "HomeController@ShowHomePage");
 
-
 // Результаты по категориям по стране
 Route::get("/category/{category}", "ResultsController@getCountryCategoryResults");
 // Результаты по подкатегориям по стране
@@ -35,11 +37,7 @@ Route::get("/{region}/category/{category}/{subcategory}", "ResultsController@get
 // Результаты по подкатегориям по местности
 Route::get("/{region}/{city}/category/{category}/{subcategory}", "ResultsController@getCitySubCategoryResults");
 
-
 // По всему региону
 Route::get("/{region}", "IndexController@ShowRegionIndexPage");
 // По городу или селу
 Route::get("/{region}/{place}", "IndexController@ShowPlaceIndexPage");
-
-// Сервисы
-Route::get("/util/str2url", "UtilsController@str2url");
