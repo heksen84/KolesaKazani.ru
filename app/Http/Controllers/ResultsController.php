@@ -123,6 +123,8 @@ class ResultsController extends Controller {
          ->with("itemsCount", count($items))
          ->with("totalCount", $totalCount[0]->num)
          ->with("startPage", $startPage===0?$startPage+1:$startPage)
+         ->with("elementsOnPage", $elementsOnPage)
+         ->with("navButtonsNum", ceil($totalCount[0]->num/$elementsOnPage))
          //->with("startPage", $startPage+1)
          ->with("categoryId", $categories[0]->id)
          ->with("subcategoryId", $subcategories[0]->id)

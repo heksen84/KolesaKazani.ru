@@ -35,7 +35,6 @@
                 @include('filters/base')
               @endif
              
-
               </div>              
 
                 @foreach($items as $item)
@@ -52,31 +51,45 @@
             
           </div>   
             
-
+          @if ($totalCount>=12)
           <!-- totalCount / 50 = кол-во кнопок на странице -->
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">            
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <br>
+              <br>          
+                <ul class="pagination justify-content-center">
 
-          <br>
-          
-            <ul class="pagination justify-content-center">
-              
-              <li class="page-item">
-                <span class="page-link">Назад</span>
-              </li>
+	                  <!-- первая страница -->
+                    <li class="page-item">
+		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page=1">&laquo;</a>
+                    </li>                  
 
-                @for( $i=1; $i<6; $i++ ) 
-                  <li class="page-item"><a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $i }}">{{ $i }}</a></li>              
-                @endfor
+                    <!-- предыдущая страница -->
+                    <li class="page-item">
+		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page=1"><</a>
+                    </li>
 
-              <li class="page-item">
-                <a class="page-link" href="">Вперёд</a>
-              </li>
+                    @for( $i=1; $i<$navButtonsNum+1; $i++ )                      
+                    <li class="page-item">
+			                <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $i }}">{{ $i }}</a>
+		                </li>                      
+                    @endfor
 
-            </ul>
-          </div>        
+                    <!-- предыдущая страница -->
+                    <li class="page-item">
+		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page=1">></a>
+                    </li>
+
+                    <!-- последняя страница -->
+                    <li class="page-item">
+		                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $navButtonsNum }}">&raquo</a>
+                    </li>
+
+                  </ul>
+          </div>    
+          @endif    
   </div>  
 </div>
-  <script type="text/javascript" src="{{ mix('js/common.js') }}"></script>  
-  <script type="text/javascript" src="{{ mix('js/results.js') }}"></script> 
+<script type="text/javascript" src="{{ mix('js/common.js') }}"></script>  
+<script type="text/javascript" src="{{ mix('js/results.js') }}"></script> 
 </body>
 </html>
