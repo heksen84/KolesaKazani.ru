@@ -80,9 +80,9 @@
                     </li>
 
                     @for( $i=1; $i<$navButtonsNum+1; $i++ )                      
-                    <li class="page-item">
-			                <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $i }}">{{ $i }}</a>
-		                </li>                      
+                      <li class="page-item">
+			                  <a class="page-link" href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $i }}">{{ $i }}</a>
+		                  </li>                      
                     @endfor
 
                     <!-- следующая страница -->
