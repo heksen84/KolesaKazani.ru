@@ -12,7 +12,7 @@ class ModeratorController extends Controller {
         ->with("title", "панель модератора")
         ->with("description", "панель модератора")
         ->with("keywords", "панель модератора")
-        ->with("adverts", Adverts::all());
+        ->with("adverts", Adverts::offset(0)->limit(1)->get());
     }
 
 }
