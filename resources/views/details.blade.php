@@ -30,6 +30,7 @@
 <div class="container-fluid mycontainer">
   <div class="row">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    
       @if ($advert->title!="null") 
         <h1>{{ $advert->title }}</h1>
       @endif      
@@ -41,6 +42,11 @@
       @if ($advert->price!="null")
         <h3>{{ $advert->price }} тнг.</h3>
       @endif
+
+      @foreach($images as $image)
+        <img src='{{ $image->name }}' alt='{{ $image->name }}'></img>
+      @endforeach
+
     </div>
   </div>
 </div>
