@@ -30,11 +30,17 @@
 <div class="container-fluid mycontainer">
   <div class="row">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-      <h1>{{ $advert[0]->title }}</h1>
+      @if ($advert->title) 
+        <h1>{{ $advert->title }}</h1>
+      @endif
       <hr>
-      <h2>{{ $advert[0]->text }}</h2>
+      @if ($advert->text)
+        <h2>{{ $advert->text }}</h2>
+      @endif
       <hr>
-      <h3>{{ $advert[0]->price }} тнг.</h3>
+      @if ($advert->price)
+        <h3>{{ $advert->price }} тнг.</h3>
+      @endif
     </div>
   </div>
 </div>
