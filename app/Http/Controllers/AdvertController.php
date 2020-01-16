@@ -10,12 +10,17 @@ use App\Adverts;
 use App\Images;
 
 
-class AdvertController extends Controller {        
+class AdvertController extends Controller {      
+        
+        // получить хранилище изображений
+        private function getImagePath() {      
+                return \Storage::disk('local')->url('app/images/preview/');
+        }
     
-    // Новое объявление
-    public function NewAd(Request $request) {
+        // новое объявление
+        public function NewAd(Request $request) {
 
-        \Debugbar::info("Язык: ".$request->lang);
+        \Debugbar::info("Язык: ".$request->lang);        
 
 	return view("newad")
         ->with( "title", "Подать объявление" )
@@ -26,13 +31,9 @@ class AdvertController extends Controller {
         ->with( "dealtypes", DealType::all()->toJson() )
         ->with( "country", "kz" )
         ->with( "lang", $request->lang )
-	->with( "auth", Auth::check() );
-        }
+        ->with( "auth", Auth::check() );
         
-        // получить хранилище изображений
-        private function getImagePath() {      
-                return \Storage::disk('local')->url('app/images/preview/');
-        }
+        }                
      
         // детали объявления
         public function getDetails(Request $request, $id) {
