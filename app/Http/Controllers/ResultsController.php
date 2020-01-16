@@ -52,11 +52,14 @@ class ResultsController extends Controller {
     // получить расположение
     // -------------------------------------------------------------
     private function getLocationName($country) {        
+        
         \Debugbar::info("Язык: ".$country);                
+        
         switch($country) {
             case "kz": $str = "Казахстане"; break;
-            case "ru": $str = "России"; break;
+            case "ru": $str = "России"; break;        
         }
+
         return $str;
     }
 
@@ -72,7 +75,7 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------    
     public function getCountryCategoryResults(Request $request, $category) {        
     }
-    
+
     // -------------------------------------------------------------
     // результаты по стране
     // -------------------------------------------------------------    
