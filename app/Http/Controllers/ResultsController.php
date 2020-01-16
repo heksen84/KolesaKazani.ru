@@ -70,10 +70,9 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     // результаты по стране
     // -------------------------------------------------------------    
-    public function getCountryCategoryResults(Request $request, $category) {
-        
+    public function getCountryCategoryResults(Request $request, $category) {        
     }
-
+    
     // -------------------------------------------------------------
     // результаты по стране
     // -------------------------------------------------------------    
