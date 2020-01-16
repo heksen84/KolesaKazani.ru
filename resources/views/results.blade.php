@@ -14,8 +14,6 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('css/results.css') }}">
 </head>
 <body>
-<div id="app">
-
 <!--<div style="position:fixed;top:140px;left:50px">реклама</div>
 <div style="position:fixed;top:140px;right:50px">реклама</div>-->
 
@@ -73,9 +71,8 @@
             </div>
           <br>
           @endif    
-  </div>  
-</div>
-<script type="text/javascript" src="{{ mix('js/common.js') }}"></script>  
-<script type="text/javascript" src="{{ mix('js/results.js') }}"></script> 
+  </div>
+  <script type="text/javascript" src="{{ mix('js/common.js') }}"></script>  
+  <script type="text/javascript" src="{{ mix('js/results.js') }}"></script> 
 </body>
 </html>
