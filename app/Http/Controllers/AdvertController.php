@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Adverts;
 use App\Categories;
 use App\DealType;
 use App\Regions;
@@ -23,8 +24,17 @@ class AdvertController extends Controller {
         ->with( "country", "kz" )
         ->with( "lang", $request->lang )
 	->with( "auth", Auth::check() );
-     }
+        }
 
-    
+     
+        // детали объявления
+        public function getDetails(Request $request) {
+        
+        return view("details")
+        ->with( "title", "Подать объявление" )
+        ->with( "description", "Подать новое объявление на сайте ".config('app.name'))
+        ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте");
+
+        }    
     
 }

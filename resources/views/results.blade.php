@@ -36,15 +36,17 @@
               </div>              
 
                 @foreach($items as $item)
-                  <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-                    <div class="card text-left" style="height:270px;margin:2px">
-                      <img class="card-img-top" src="{{ $item->imageName }}" alt="{{ $item->title }}">
-                        <div class="card-body">                                                        
-                          <h5 class="card-title">{{ $item->title }}</h5>                                                  
-                          <p class="card-text">{{ $item->price }} тнг.</p>
-                        </div>              
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">                  
+                    <a href="/objavlenie/{{ $item->id }}">
+                      <div class="card text-left" style="height:270px;margin:3px">
+                        <img class="card-img-top" src="{{ $item->imageName }}" alt="{{ $item->title }}">
+                          <div class="card-body">                                                                                 
+                            {{ $item->title }}
+                            <p class="card-text">{{ $item->price }} тнг.</p>
+                          </div>              
                       </div>
-                    </div>
+                    </a>
+                  </div>
                 @endforeach
             
           </div>   

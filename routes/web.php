@@ -8,6 +8,9 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get("/moderator", "ModeratorController@showHomePage");
 Route::get("/util/str2url", "UtilsController@str2url");
 
+// детали объявления
+Route::get("/objavlenie/{id}", "AdvertController@getDetails");
+
 // Новое объявление
 Route::get("/search", "SearchController@search");
 
