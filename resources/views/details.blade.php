@@ -13,8 +13,6 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
 </head>
 <body>
-  <div id="app"></div>
-
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a href="/">< На главную</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,8 +28,14 @@
 </nav>
 
 <div class="container-fluid mycontainer">
-  <div class="row">    
-    Детали объявления
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <h1>{{ $advert[0]->title }}</h1>
+      <hr>
+      <h2>{{ $advert[0]->text }}</h2>
+      <hr>
+      <h3>{{ $advert[0]->price }} тнг.</h3>
+    </div>
   </div>
 </div>
 

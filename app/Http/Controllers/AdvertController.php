@@ -28,12 +28,17 @@ class AdvertController extends Controller {
 
      
         // детали объявления
-        public function getDetails(Request $request) {
+        public function getDetails(Request $request, $id) {
+
+
+                $advert = Adverts::all()->where("id", $id);
         
-        return view("details")
-        ->with( "title", "Подать объявление" )
-        ->with( "description", "Подать новое объявление на сайте ".config('app.name'))
-        ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте");
+                return view("details")
+                ->with( "title", "Подать объявление" )
+                ->with( "description", "Подать новое объявление на сайте ".config('app.name'))
+                ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте")
+                ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте")
+                ->with( "advert", $advert);
 
         }    
     
