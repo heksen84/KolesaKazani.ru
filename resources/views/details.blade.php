@@ -10,7 +10,7 @@
   <meta name="keywords" content="{{ $keywords }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/common.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/details.css') }}">
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">

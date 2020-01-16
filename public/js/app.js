@@ -30394,6 +30394,13 @@ if (token) {
 
 /***/ }),
 
+/***/ "./resources/assets/sass/details.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/assets/sass/home.scss":
 /***/ (function(module, exports) {
 
@@ -30430,6 +30437,7 @@ __webpack_require__("./resources/assets/sass/common.scss");
 __webpack_require__("./resources/assets/sass/index.scss");
 __webpack_require__("./resources/assets/sass/newad.scss");
 __webpack_require__("./resources/assets/sass/results.scss");
+__webpack_require__("./resources/assets/sass/details.scss");
 module.exports = __webpack_require__("./resources/assets/sass/home.scss");
 
 
