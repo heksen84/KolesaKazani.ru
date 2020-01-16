@@ -30,15 +30,15 @@
 <div class="container-fluid mycontainer">
   <div class="row">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-      @if ($advert->title) 
+      @if ($advert->title!="null") 
         <h1>{{ $advert->title }}</h1>
-      @endif
+      @endif      
+      @if ($advert->text!="null")
       <hr>
-      @if ($advert->text)
         <h2>{{ $advert->text }}</h2>
       @endif
       <hr>
-      @if ($advert->price)
+      @if ($advert->price!="null")
         <h3>{{ $advert->price }} тнг.</h3>
       @endif
     </div>
