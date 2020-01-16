@@ -30,7 +30,7 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin:20px">
               
               @if ($categoryId===1 && $subcategoryId===1)  
-                @include('filters/legkovoy')
+                @include('filters/transport/legkovoy')
               @else
                 @include('filters/base')
               @endif
