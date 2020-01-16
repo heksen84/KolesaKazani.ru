@@ -48,5 +48,7 @@
       </div>
     </div>
   </div>
+  <script type="text/javascript" src="{{ mix('js/common.js') }}"></script>  
+  <script type="text/javascript" src="{{ mix('js/moderator.js') }}"></script> 
 </body>
 </html>
