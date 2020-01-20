@@ -56,7 +56,7 @@
           <img src='{{ $image->name }}' alt='{{ $image->name }}'></img>
         @endforeach
 
-        {{ $advert->phone }}
+        <h2>Номер: +7 {{ $advert->phone }}</h2>
 
         <div id="map" style="width:100%;height:300px;border:1px solid grey"></div>
         
