@@ -55,11 +55,15 @@
         @foreach($images as $image)
           <img src='{{ $image->name }}' alt='{{ $image->name }}'></img>
         @endforeach
+
+
+        <div id="map">карта</div>
         
     </div>
   </div>
 </div>
 
+<script src="https://api-maps.yandex.ru/2.0-stable/?apikey=123&load=package.standard&lang=ru-RU" type="text/javascript"></script>
 <script type="text/javascript" src="{{ mix('js/common.js') }}"></script>  
 <script type="text/javascript" src="{{ mix('js/details.js') }}"></script>
 
