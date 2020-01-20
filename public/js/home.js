@@ -1768,7 +1768,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  // axios
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+
   //props: ["country", "language"],
+
   data: function data() {
     return {
       placesList: [],
@@ -1779,6 +1781,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       tmpLocationName: ""
     };
   },
+
+
+  // Компонент создан
   created: function created() {
     var _this = this;
 
@@ -1806,9 +1811,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    // --------------------------------------
-    // Выбор региона
-    // --------------------------------------
+    // Выбор региона  
     showPlacesByRegion: function showPlacesByRegion(e, regionId) {
       var _this2 = this;
 
@@ -1827,9 +1830,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    // --------------------------------------
     // Поиск в стране
-    // --------------------------------------
     searchInCountry: function searchInCountry(e) {
       localStorage.setItem("locationUrl", "");
       localStorage.setItem("locationName", "Весь Казахстан");
@@ -1837,18 +1838,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    // --------------------------------------
-    // Поиск в регионе
-    // --------------------------------------
+    // Поиск в регионе  
     searchInRegion: function searchInRegion(e) {
       e.preventDefault();
       window.location = this.regionUrl;
     },
 
 
-    // --------------------------------------
-    // Выбрать город / село и т.п.
-    // --------------------------------------
+    // Выбрать город / село и т.п.  
     selectPlace: function selectPlace(e, placeName, placeUrl) {
       e.preventDefault();
       window.location = this.regionUrl + "/" + placeUrl;

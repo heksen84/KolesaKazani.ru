@@ -32,7 +32,9 @@ import $ from "jquery";
 import { get } from '../../../helpers/api' // axios
 
 export default {  
- //props: ["country", "language"],
+  
+  //props: ["country", "language"],
+
   data () {
     return 	{
       placesList: [],
@@ -44,6 +46,7 @@ export default {
 		}
   },
   
+  // Компонент создан
   created() {    
     get("/api/getRegions").then((res) => {      
       this.regionsList = res.data;
@@ -63,10 +66,8 @@ export default {
     this.places=false;
     $("#locationModal").modal("hide");    
   },
-  
-  // --------------------------------------
-  // Выбор региона
-  // --------------------------------------
+    
+  // Выбор региона  
   showPlacesByRegion(e, regionId) {    
     
     e.preventDefault();    
@@ -83,27 +84,21 @@ export default {
     });
 
   },
-
-  // --------------------------------------
+  
   // Поиск в стране
-  // --------------------------------------
   searchInCountry(e) {
     localStorage.setItem("locationUrl", "");    
     localStorage.setItem("locationName", "Весь Казахстан");    
     window.location = "/"; // редирект
   },
-
-  // --------------------------------------
-  // Поиск в регионе
-  // --------------------------------------
+  
+  // Поиск в регионе  
   searchInRegion(e) {
     e.preventDefault();    
     window.location = this.regionUrl;
   },
-  
-  // --------------------------------------
-  // Выбрать город / село и т.п.
-  // --------------------------------------
+    
+  // Выбрать город / село и т.п.  
   selectPlace(e, placeName, placeUrl) {    
     e.preventDefault();    
     window.location = this.regionUrl+"/"+placeUrl;
