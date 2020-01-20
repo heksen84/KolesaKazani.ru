@@ -38,7 +38,7 @@
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 
-        <div style="color:grey;font-size:16px">{{$advert->region_name}}, {{$advert->city_name}}</div>
+        <div style="color:rgb(50,50,50);font-size:16px">{{$advert->region_name}}, {{$advert->city_name}}</div>
     
         @if ($advert->title!="null") 
           <h1>{{ $advert->title }}</h1>
