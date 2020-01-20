@@ -52,7 +52,10 @@ export default {
   
   methods: {
 
-  getUrl(url) { return "/"+url; },
+  // Вернуть форматированный урл
+  getUrl(url) { 
+    return "/"+url; 
+  },
   
   // Закрыть окно расположения
   closeLocationWindow() {

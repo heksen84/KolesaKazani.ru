@@ -1791,6 +1791,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
   methods: {
+
+    // Вернуть форматированный урл
     getUrl: function getUrl(url) {
       return "/" + url;
     },
