@@ -49,8 +49,7 @@ export default {
   created() {
   
     // Получить города / сёлы
-    get("/api/getRegions").then((res) => {    
-      console.log(res.data)
+    get("/api/getRegions").then((res) => {      
       this.regionsList = res.data;
     }).catch((err) => { console.log(err) });
 
