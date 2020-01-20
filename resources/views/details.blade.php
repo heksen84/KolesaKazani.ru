@@ -63,6 +63,11 @@
   </div>
 </div>
 
+<script>
+    window.coord_lat = "{{$advert->coord_lat}}"; 
+    window.coord_lon = "{{$advert->coord_lon}}";
+</script>
+
 <script src="https://api-maps.yandex.ru/2.0-stable/?apikey=123&load=package.standard&lang=ru-RU" type="text/javascript"></script>
 <script type="text/javascript" src="{{ mix('js/common.js') }}"></script>  
 <script type="text/javascript" src="{{ mix('js/details.js') }}"></script>

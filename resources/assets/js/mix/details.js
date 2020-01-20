@@ -1,13 +1,6 @@
-document.body.addEventListener('click', function (evt) {        
+// document ready
+document.addEventListener('DOMContentLoaded', function(){ // Аналог $(document).ready(function(){
+ 
+    //alert(window.coord_lat+"\n"+window.coord_lon)
 
-    if (evt.target.classList[0] === 'close_button') {                        
-
-        /*if (window.history.length<=3)
-            window.location = "/"
-        else
-            window.history.back();*/
-
-            window.location = "/";
-    }
-
-}, false);
+});
