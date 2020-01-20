@@ -42,10 +42,10 @@
     
         @if ($advert->title!="null") 
           <h1>{{ $advert->title }}</h1>
+          <hr>
         @endif      
         
-        @if ($advert->text!="null")
-        <hr>
+        @if ($advert->text!="null")        
           <div style="font-size:18px">{{ $advert->text }}</div>
         @endif
         
@@ -59,7 +59,7 @@
 
         <div style="font-size:16px;margin:10px">Номер: <span style="font-weight:bold">+7 {{ $advert->phone }}</span></div>
 
-        <div id="map" style="width:100%;height:300px;border:1px solid grey;margin-bottom:10px"></div>
+        <div id="map" style="width:100%;height:300px;border:1px solid grey;margin-bottom:15px"></div>
         
     </div>
   </div>

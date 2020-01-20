@@ -37,6 +37,9 @@ class AdvertController extends Controller {
         // детали объявления
         public function getDetails(Request $request, $id) {
 
+                if ( $id < 0 ) 
+                        return redirect('errors/404');
+            
                 // region_id, city_id
                 $advert = Adverts::select( 
                         "id", 
@@ -52,6 +55,12 @@ class AdvertController extends Controller {
                         ->where( "id", $id )
                         ->limit(1)->get();
 
+                \Debugbar::info("advert count: ".count($advert));
+
+                if (count($advert)===0)
+                        return redirect('errors/404');
+
+                        
                 $images = Images::select(DB::raw( "concat('".$this->getImagePath()."', name) AS name" ))->where("advert_id", $id)->where("type", 1)->get();
 
                 \Debugbar::info($advert);
