@@ -38,7 +38,7 @@
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 
-        <div style="color:grey;font-weight:bold">{{$advert->region_name}}, {{$advert->city_name}}</div>
+        <div style="color:grey;font-size:16px">{{$advert->region_name}}, {{$advert->city_name}}</div>
     
         @if ($advert->title!="null") 
           <h1>{{ $advert->title }}</h1>
@@ -57,7 +57,7 @@
           <img src='{{ $image->name }}' alt='{{ $image->name }}'></img>
         @endforeach
 
-        <div style="font-size:18px;margin:10px">Номер: <b>+7 {{ $advert->phone }}</b></div>
+        <div style="font-size:16px;margin:10px">Номер: <span style="font-weight:bold">+7 {{ $advert->phone }}</span></div>
 
         <div id="map" style="width:100%;height:300px;border:1px solid grey;margin-bottom:10px"></div>
         
