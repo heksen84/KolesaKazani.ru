@@ -66,6 +66,7 @@ class SearchController extends Controller {
          ->with("country", null)
          ->with("lang", null)
          ->with("page", 0)
+         ->with("startPage", 0)
          ->with("start_price", 0)
          ->with("end_price", 0);
   }
