@@ -75,7 +75,9 @@ export default {
       this.regionUrl=e.target.pathname;
       this.regions=false;
       this.places=true;
-    }).catch((err) => { console.log(err) });
+    }).catch((err) => { 
+      console.log(err) 
+    });
 
   },
 
