@@ -46,8 +46,7 @@
         <hr>
           <h2>{{ $advert->text }}</h2>
         @endif
-
-        <hr>
+        
         @if ($advert->price!="null")
           <h3>{{ $advert->price }} тнг.</h3>
         @endif
@@ -56,7 +55,7 @@
           <img src='{{ $image->name }}' alt='{{ $image->name }}'></img>
         @endforeach
 
-        <h2>Номер: +7 {{ $advert->phone }}</h2>
+        <div style="font-size:18px;margin:10px">Номер: +7 {{ $advert->phone }}</div>
 
         <div id="map" style="width:100%;height:300px;border:1px solid grey"></div>
         
