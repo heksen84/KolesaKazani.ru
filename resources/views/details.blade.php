@@ -30,7 +30,7 @@
 </nav>
 -->
 
-<div class="container-fluid mycontainer" style="margin-top:10px">
+<div class="container-fluid mycontainer">
 
   <!-- кнопка закрытия -->
   <div class="close_button mt-2" title="Закрыть страницу" @click="closeAndReturn">X</div>  
