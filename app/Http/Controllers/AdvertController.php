@@ -38,10 +38,11 @@ class AdvertController extends Controller {
         // детали объявления
         public function getDetails(Request $request, $id) {
 
-                $advert = Adverts::select("id","title","text","price")->where("id", $id)->limit(1)->get();                                
-                $images = Images::select(DB::raw( "concat('".$this->getImagePath()."', name) AS name" ))->where("advert_id", $id)->get();
+                $advert = Adverts::select( "id", "title", "text", "price" )->where("id", $id)->limit(1)->get();                                
+                $images = Images::select(DB::raw( "concat('".$this->getImagePath()."', name) AS name" ))->where("advert_id", $id)->where("type", 1)->get();
 
                 \Debugbar::info($advert);
+                \Debugbar::info($images);
         
                 return view("details")
                 ->with( "title", "Подать объявление" )

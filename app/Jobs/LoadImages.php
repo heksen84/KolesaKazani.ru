@@ -26,26 +26,38 @@ class LoadImages implements ShouldQueue {
         // бегу по картинкам
         foreach($request->file("images") as $img) {
 
-            // формирую имя
+
+            /*                
+                сохранить в нормальном виде    
+                сохранить в уменьшенном виде              
+            */
+
+            // формирую рандомное имя
             $filename = str_random(32).".".$img->getClientOriginalExtension();
 
             // узнаю имя
-            $image_resize = Image::make($img->getRealPath());
+            $imageName = Image::make($img->getRealPath());            
+            $imageName->save(storage_path().'/app/images/normal/' .$filename);
             
-            // изменяю размер с соотношением пропорций
-            $image_resize->resize(200, 150, function ($constraint) {
-                //$constraint->aspectRatio();
-            });
-
-            // сохраняю в хранилище
-            $image_resize->save(storage_path().'/app/images/preview/' .$filename);
-            
-            $image = new Images();
+            // сохраняю в нормальном виде            
+            $image = new Images();            
 
             $image->advert_id = $advert_id;
             $image->name = $filename;                
-            $image->type = 0; // 0 = small (тип preview)
+            $image->type = 1; // 1 = normal (тип normal)
+            $image->save();
+            
+            // изменяю размер с соотношением пропорций
+            $imageName->resize(200, 150, function ($constraint) {
+                $constraint->aspectRatio();
+            });
 
+            $imageName->save(storage_path().'/app/images/preview/' .$filename);                        
+
+            // сохраняю в уменьшенном            
+            $image->advert_id = $advert_id;
+            $image->name = $filename;                
+            $image->type = 0; // 0 = small (тип preview)
             $image->save();
         }
     }

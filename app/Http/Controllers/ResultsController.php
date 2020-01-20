@@ -67,7 +67,7 @@ class ResultsController extends Controller {
     // получить хранилище изображений
     // -------------------------------------------------------------
     private function getImagePath() {      
-        return \Storage::disk('local')->url('app/images/preview/');
+        return \Storage::disk("local")->url('app/images/preview/');
     }
 
     // -------------------------------------------------------------
@@ -92,7 +92,8 @@ class ResultsController extends Controller {
         if ($startPrice && $endPrice) 
             $priceBetweenSql = " AND price BETWEEN ".$startPrice." AND ".$endPrice;
                        
-        $categories = $this->getCategoryData($request, $category);                        
+        $categories = $this->getCategoryData($request, $category);       
+                         
         $subcategories = $this->getSubCategoryData($request, $subcategory);        
             
         // общее число обяъвлений с условиями
