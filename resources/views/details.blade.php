@@ -57,7 +57,7 @@
         @endforeach
 
 
-        <div id="map">карта</div>
+        <div id="map"></div>
         
     </div>
   </div>
