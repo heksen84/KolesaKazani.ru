@@ -1768,9 +1768,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  // axios
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-
   //props: ["country", "language"],
-
   data: function data() {
     return {
       placesList: [],
@@ -1784,7 +1782,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   created: function created() {
     var _this = this;
 
-    // Получить города / сёлы
     Object(__WEBPACK_IMPORTED_MODULE_1__helpers_api__["a" /* get */])("/api/getRegions").then(function (res) {
       _this.regionsList = res.data;
     }).catch(function (err) {
@@ -1814,7 +1811,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       e.preventDefault();
-
       this.tmpLocationName = e.target.innerText;
 
       // Получить города / сёлы
@@ -1833,12 +1829,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // Поиск в стране
     // --------------------------------------
     searchInCountry: function searchInCountry(e) {
-
       localStorage.setItem("locationUrl", "");
       localStorage.setItem("locationName", "Весь Казахстан");
-
-      // редирект
-      window.location = "/";
+      window.location = "/"; // редирект
     },
 
 
@@ -1847,7 +1840,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // --------------------------------------
     searchInRegion: function searchInRegion(e) {
       e.preventDefault();
-      //window.location = this.country+"/"+this.language+this.regionUrl;
       window.location = this.regionUrl;
     },
 
@@ -1857,7 +1849,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // --------------------------------------
     selectPlace: function selectPlace(e, placeName, placeUrl) {
       e.preventDefault();
-      //window.location = this.country+"/"+this.language+this.regionUrl+"/"+placeUrl;
       window.location = this.regionUrl + "/" + placeUrl;
     }
   }

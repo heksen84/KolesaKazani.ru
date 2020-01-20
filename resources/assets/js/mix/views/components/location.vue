@@ -31,10 +31,8 @@
 import $ from "jquery";
 import { get } from '../../../helpers/api' // axios
 
-export default {
-  
+export default {  
  //props: ["country", "language"],
-
   data () {
     return 	{
       placesList: [],
@@ -46,20 +44,17 @@ export default {
 		}
   },
   
-  created() {
-  
-    // Получить города / сёлы
+  created() {    
     get("/api/getRegions").then((res) => {      
       this.regionsList = res.data;
     }).catch((err) => { console.log(err) });
-
   },
   
   methods: {
 
   getUrl(url) { return "/"+url; },
-
-    // Закрыть окно расположения
+  
+  // Закрыть окно расположения
   closeLocationWindow() {
     this.regions=true;
     this.places=false;
@@ -69,10 +64,9 @@ export default {
   // --------------------------------------
   // Выбор региона
   // --------------------------------------
-  showPlacesByRegion(e, regionId) {
+  showPlacesByRegion(e, regionId) {    
     
-    e.preventDefault();
-
+    e.preventDefault();    
     this.tmpLocationName=e.target.innerText;
 
     // Получить города / сёлы
@@ -89,20 +83,16 @@ export default {
   // Поиск в стране
   // --------------------------------------
   searchInCountry(e) {
-
     localStorage.setItem("locationUrl", "");    
-    localStorage.setItem("locationName", "Весь Казахстан");
-
-    // редирект
-    window.location = "/";
+    localStorage.setItem("locationName", "Весь Казахстан");    
+    window.location = "/"; // редирект
   },
 
   // --------------------------------------
   // Поиск в регионе
   // --------------------------------------
   searchInRegion(e) {
-    e.preventDefault();
-    //window.location = this.country+"/"+this.language+this.regionUrl;
+    e.preventDefault();    
     window.location = this.regionUrl;
   },
   
@@ -110,8 +100,7 @@ export default {
   // Выбрать город / село и т.п.
   // --------------------------------------
   selectPlace(e, placeName, placeUrl) {    
-    e.preventDefault();
-    //window.location = this.country+"/"+this.language+this.regionUrl+"/"+placeUrl;
+    e.preventDefault();    
     window.location = this.regionUrl+"/"+placeUrl;
   }
 
