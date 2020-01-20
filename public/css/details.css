@@ -3,16 +3,6 @@ h1 {
   font-size: 26px;
 }
 
-h2 {
-  font-size: 20px;
-  color: grey;
-}
-
-h3 {
-  font-size: 24px;
-  text-align: right;
-}
-
 .mycontainer {
   border: 1px solid #e6e6e6;
   border-radius: 7px;

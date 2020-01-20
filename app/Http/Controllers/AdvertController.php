@@ -38,7 +38,14 @@ class AdvertController extends Controller {
         // детали объявления
         public function getDetails(Request $request, $id) {
 
-                $advert = Adverts::select( "id", "title", "text", "price", "phone", "coord_lat", "coord_lon" )->where( "id", $id )->limit(1)->get();                                
+
+                // region_id, city_id
+
+                $advert = Adverts::select( "id", "title", "text", "price", "phone", "coord_lat", "coord_lon", DB::raw("kz_region.name AS region_name, kz_city.name AS city_name") )
+                ->join("kz_region", "adverts.region_id" , "=" , "kz_region.region_id" )                
+                ->join("kz_city", "adverts.city_id" , "=" , "kz_city.city_id" )                
+                ->where( "id", $id )->limit(1)->get();
+
                 $images = Images::select(DB::raw( "concat('".$this->getImagePath()."', name) AS name" ))->where("advert_id", $id)->where("type", 1)->get();
 
                 \Debugbar::info($advert);
