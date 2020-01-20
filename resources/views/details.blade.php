@@ -56,8 +56,9 @@
           <img src='{{ $image->name }}' alt='{{ $image->name }}'></img>
         @endforeach
 
+        {{ $advert->phone }}
 
-        <div id="map"></div>
+        <div id="map" style="width:100%;height:300px;border:1px solid grey"></div>
         
     </div>
   </div>
