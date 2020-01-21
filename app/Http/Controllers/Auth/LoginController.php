@@ -28,7 +28,10 @@ class LoginController extends Controller {
         $this->middleware('guest')->except('logout');
     }
 
-    public function showLoginForm() {
+    public function showLoginForm() {        
+
+        \Debugbar::info("locale: ".\App::getLocale());
+
         $title = 'Авторизация';
         $description = 'Авторизация нового пользователя на сайте объявлений';
         $keywords = "Авторизация, Пользователь";
