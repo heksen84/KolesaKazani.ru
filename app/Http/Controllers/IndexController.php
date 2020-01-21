@@ -18,6 +18,7 @@ class IndexController extends Controller {
 	// ------------------------------------------------
     private function ShowIndexPage($region, $place) {
 		
+		
 		$sklonResult="";
 						
 		// Страна
@@ -120,6 +121,9 @@ class IndexController extends Controller {
 
     // Cтрана
     public function ShowCountryIndexPage() {
+
+		\Debugbar::info("COUNTRY: ".config('app.country'));		
+
 	    return $this->ShowIndexPage(null, null);
     }		
 
