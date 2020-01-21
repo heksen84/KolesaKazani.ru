@@ -16,7 +16,7 @@
   <div id="app"></div>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a href="/">< На главную</a>
+  <a href="/">на главную</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -53,10 +53,10 @@
           <td>{{ $item["title"] }}</td>
           <td class="text-center">На модерации</td>
           <td class="text-center">
-            <button class="btn btn-outline-danger btn-sm m-1 full-width">срочно, торг</button>
-            <button class="btn btn-outline-secondary btn-sm m-1 full-width">продлить</button>            
+            <button class="btn btn-outline-primary btn-sm m-1 full-width">срочно, торг</button>
+            <button class="btn btn-outline-success btn-sm m-1 full-width">продлить</button>            
             <button class="btn btn-outline-success btn-sm m-1 full-width">поднять в топ</button>
-            <button class="btn btn-outline-primary btn-sm m-1 full-width">покрасить</button>
+            <button class="btn btn-outline-secondary btn-sm m-1 full-width">покрасить</button>
           </td>
       </tr>
       @endforeach    
