@@ -28,6 +28,13 @@ class LoginController extends Controller {
         $this->middleware('guest')->except('logout');
     }
 
+    public function showLoginForm() {
+        $title = 'Авторизация';
+        $description = 'Авторизация нового пользователя на сайте объявлений';
+        $keywords = "Авторизация, Пользователь";
+        return view('auth.login', compact('title', 'description', 'keywords'));
+   }
+
     /*
     public function login(Request $request) {
         $request->session()->flash('form_type', 'login');

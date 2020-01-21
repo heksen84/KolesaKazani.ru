@@ -88,4 +88,12 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+   public function showRegistrationForm() {
+        $title = 'Регистрация';
+        $description = 'Регистрация нового пользователя на сайте объявлений';
+        $keywords = "Регистрация, Новый пользователь";
+        return view('auth.register', compact('title', 'description', 'keywords'));
+   }
+   
 }

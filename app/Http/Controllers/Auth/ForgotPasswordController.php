@@ -29,4 +29,11 @@ class ForgotPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+
+    public function showLinkRequestForm() {
+        $title = 'Сброс пароля';
+        $description = 'Сброс пароля к сайту объявлений';
+        $keywords = "Сброс, Пароль";
+        return view('auth.passwords.email', compact('title', 'description', 'keywords'));
+    }
 }

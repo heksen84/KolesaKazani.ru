@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ $title }}</title>
+    <meta name="description" content="{{ $description }}">
+    <meta name="keywords" content="{{ $keywords }}">    
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">    
     <link href="{{ asset('css/common.css') }}" rel="stylesheet">
 </head>
