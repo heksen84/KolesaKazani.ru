@@ -26,10 +26,10 @@
         <a class="nav-link" href="/">Подать объявление <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" style="font-weight:bold">Счёт: 4000 тнг. [ пополнить ]</a>
+        <a class="nav-link" href="#">Счёт: 4000 тнг. [ пополнить ]</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/logout">Выход</a>
+        <a class="nav-link" href="/logout"><b>Выход</b></a>
       </li>
       <!--<li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
