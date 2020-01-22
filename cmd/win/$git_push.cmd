@@ -1,3 +1,4 @@
+cd ..\..
 cls
 git init
 git status

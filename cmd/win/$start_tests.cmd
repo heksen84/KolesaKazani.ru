@@ -1,1 +1,2 @@
+cd ..\..
 vendor/bin/phpunit

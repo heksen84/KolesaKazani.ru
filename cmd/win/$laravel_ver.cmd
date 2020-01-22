@@ -1,1 +1,2 @@
+cd ..\..
 php artisan --version
