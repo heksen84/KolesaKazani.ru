@@ -44,7 +44,7 @@ class AdvertController extends Controller {
                 \Debugbar::info("mykey: ".\Cache::get('mykey'));
 
                 if ( $id < 0 ) 
-                        return redirect('errors/404');
+                        return view("errors/404");
             
                 // region_id, city_id
                 $advert = Adverts::select( 
@@ -63,9 +63,8 @@ class AdvertController extends Controller {
 
                 \Debugbar::info("advert count: ".count($advert));
 
-                if (count($advert)===0)
-                        return redirect('errors/404');
-
+                if (count($advert)==0)
+                        return view("errors/404");
                         
                 $images = Images::select(DB::raw( "concat('".$this->getImagePath()."', name) AS name" ))->where("advert_id", $id)->where("type", 1)->get();
 
