@@ -1,7 +1,5 @@
 <template>
-<div class="container-fluid mycontainer"> 
-
-    <login v-if="showAuth"></login>
+<div class="container-fluid mycontainer">     
 
     <!-- карта -->
     <div class="modal bd-example-modal-lg" id="ShowModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -213,8 +211,6 @@ import bootstrap from "bootstrap";
 import transport from "./subcategories/transport.vue"
 import realEstate from "./subcategories/realEstate.vue"
 import superInput from "./components/superInput.vue"
-
-import login from "./components/auth/login.vue"
 import register from "./components/auth/register.vue"
 import restore from "./components/auth/restore.vue"
 
@@ -283,10 +279,9 @@ function forEach(data, callback) {
 export default {
 
 // Входящие данные
-props: ["categories", "regions", "lang", "auth"],
+props: ["categories", "regions", "lang"],
 
-components: {
-  login,
+components: {  
   register,
   restore, 
   transport,
@@ -295,9 +290,8 @@ components: {
 },
 
 data () {
-  return 	{
-
-  showAuth: false,
+  
+  return 	{  
   
   dialogMsg: "повторите позже",
   dialogTitleMsg: "Cервис временно не доступен",
@@ -631,13 +625,6 @@ changeCategory() {
 onSubmit(evt) {
 
   evt.preventDefault();
-
-  if (!this.auth) {
-    // отобразить окно авторизации
-    //$("#authModal").modal("show");
-    this.showAuth=true;
-    return;
-  }
   
   // объект формы
   let formData = new FormData();

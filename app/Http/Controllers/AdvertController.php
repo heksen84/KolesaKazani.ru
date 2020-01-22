@@ -20,18 +20,22 @@ class AdvertController extends Controller {
         // новое объявление
         public function NewAd(Request $request) {
 
-        \Debugbar::info("Язык: ".$request->lang);        
-
-	return view("newad")
-                ->with( "title", "Подать объявление" )
-                ->with( "description", "Подать новое объявление на сайте ".config('app.name'))
-                ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте")
-                ->with( "categories", Categories::all() )
-                ->with( "regions", Regions::all() )
-                ->with( "dealtypes", DealType::all()->toJson() )
-                ->with( "country", "kz" )
-                ->with( "lang", $request->lang )
-                ->with( "auth", Auth::check() );        
+        \Debugbar::info("Язык: ".$request->lang); 
+        
+        if (Auth::check()) {
+	        return view("newad")
+                        ->with( "title", "Подать объявление" )
+                        ->with( "description", "Подать новое объявление на сайте ".config('app.name'))
+                        ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте")
+                        ->with( "categories", Categories::all() )
+                        ->with( "regions", Regions::all() )
+                        ->with( "dealtypes", DealType::all()->toJson() )
+                        ->with( "country", "kz" )
+                        ->with( "lang", $request->lang );
+                        //->with( "auth", Auth::check() );
+                }
+                else 
+                return redirect('/login');
         }                
      
         // детали объявления
