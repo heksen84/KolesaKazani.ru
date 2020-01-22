@@ -68,30 +68,23 @@
 /***/ "./resources/assets/js/mix/details.js":
 /***/ (function(module, exports) {
 
+// инициализация карты
 function initMaps() {
-
-	console.log(window.coord_lat + "\n" + window.coord_lon);
-
 	// координаты по умолчанию для всех карт
 	var mapCoords = [window.coord_lat, window.coord_lon];
-
 	var map = new ymaps.Map("map", { center: mapCoords, zoom: 10 });
-
 	// включаю скролл на карте
 	map.behaviors.enable("scrollZoom");
-
-	// формирую метки
+	// формирую метку
 	myPlacemark = new ymaps.Placemark(mapCoords);
-
 	// добавляю метки на карты
 	map.geoObjects.add(myPlacemark);
 }
 
 // document ready
 document.addEventListener('DOMContentLoaded', function () {
-	// Аналог $(document).ready(function(){
-
 	ymaps.ready(initMaps);
+	console.log(window.advert_id);
 });
 
 /***/ }),

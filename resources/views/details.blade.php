@@ -56,14 +56,21 @@
           <img src='{{ $image->name }}' alt='{{ $image->name }}'></img>
         @endforeach
 
-        <div id="phone-number">Номер: <span>+7 {{ $advert->phone }}</span></div>
-        <div id="map"></div>
+        <div style="text-align:center">
+          <button type="button" class="btn btn-outline-primary btn-sm" id="showNumberBtn">показать номер</button>
+        </div>
+        <!--<div id="phone-number">Номер: <span>+7 {{ $advert->phone }}</span></div>-->
+
+        <div id="phone-number"></div>
+
+        <div id="map" style="margin-top:20px"></div>
         
     </div>
   </div>
 </div>
 
 <script>
+    window.advert_id = "{{$advert->id}}";
     window.coord_lat = "{{$advert->coord_lat}}"; 
     window.coord_lon = "{{$advert->coord_lon}}";
 </script>
