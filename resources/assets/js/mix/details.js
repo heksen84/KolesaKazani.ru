@@ -34,8 +34,11 @@ document.body.addEventListener('click', function (evt) {
 
 		if (xhr.status != 200)
 			alert( xhr.status + ': ' + xhr.statusText );
-		else {						  
-			console.log( "+7 "+JSON.parse(xhr.responseText)[0].phone );
+		
+		else {			
+			document.getElementById('showNumberBtn').style.display = "none";
+			document.getElementById('phone-number').style.display = "block";
+			document.getElementById('phone-number').innerHTML = "Номер: <b>+7 "+JSON.parse(xhr.responseText)[0].phone+"</b>";		
 		}
 		
 	}
