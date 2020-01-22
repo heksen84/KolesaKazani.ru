@@ -44,12 +44,17 @@ class ApiController extends Controller {
     // Получить расположение
     public function GetRegions() {
         return Regions::all();
-   }
+    }
 
     // Получить расположение
     public function GetPlaces(Request $request) {
         return Places::where("region_id",  $request->region_id )->orderBy("name", "asc")->get();
-   }
+    }
+
+    // Получить расположение
+    public function getPhoneNumber(Request $request) {
+        return Adverts::select("phone")->where("id",  $request->id )->get();
+    }
 
    /*
     -----------------------------------------------

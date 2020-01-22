@@ -55,10 +55,8 @@
         @foreach($images as $image)
           <img src='{{ $image->name }}' alt='{{ $image->name }}'></img>
         @endforeach
-
-        <div style="text-align:center">
-          <button type="button" class="btn btn-outline-primary btn-sm" id="showNumberBtn">показать номер</button>
-        </div>
+        
+        <button type="button" class="btn btn-primary btn-sm" id="showNumberBtn">показать номер</button>
         <!--<div id="phone-number">Номер: <span>+7 {{ $advert->phone }}</span></div>-->
 
         <div id="phone-number"></div>

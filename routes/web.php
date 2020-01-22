@@ -24,6 +24,7 @@ Route::get("/api/getRegions", "ApiController@GetRegions");
 Route::get("/api/getPlaces", "ApiController@GetPlaces");
 Route::get("/api/getCarsMarks", "ApiController@getCarsMarks" );
 Route::get("/api/getCarsModels", "ApiController@getCarsModels" );
+Route::get("/api/getPhoneNumber", "ApiController@getPhoneNumber" );
 
 // По стране
 Route::get("/", "IndexController@ShowCountryIndexPage");
