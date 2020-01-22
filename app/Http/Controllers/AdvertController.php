@@ -41,6 +41,8 @@ class AdvertController extends Controller {
         // детали объявления
         public function getDetails(Request $request, $id) {
 
+                \Debugbar::info("mykey: ".\Cache::get('mykey'));
+
                 if ( $id < 0 ) 
                         return redirect('errors/404');
             

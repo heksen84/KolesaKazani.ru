@@ -124,6 +124,9 @@ class IndexController extends Controller {
 
 		\Debugbar::info("COUNTRY: ".config('app.country'));		
 
+		\Cache::put('mykey', '12345');		
+		\Debugbar::info("mykey: ".\Cache::get('mykey'));		
+
 	    return $this->ShowIndexPage(null, null);
     }		
 
