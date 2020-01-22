@@ -1,2 +1,0 @@
-cd ..\..
-vendor/bin/phpunit
