@@ -70,6 +70,7 @@
 
 // инициализация карты
 function initMaps() {
+
 	// координаты по умолчанию для всех карт
 	var mapCoords = [window.coord_lat, window.coord_lon];
 	var map = new ymaps.Map("map", { center: mapCoords, zoom: 10 });
