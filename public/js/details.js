@@ -88,7 +88,6 @@ function initMaps() {
 // document ready
 document.addEventListener('DOMContentLoaded', function () {
 	ymaps.ready(initMaps);
-	console.log(window.advert_id);
 });
 
 // обработчик клика
@@ -98,14 +97,18 @@ document.body.addEventListener('click', function (evt) {
 	if (evt.target.id === "showNumberBtn") {
 
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', '/api/getPhoneNumber?id=' + window.advert_id, false);
-		xhr.send();
 
-		if (xhr.status != 200) alert(xhr.status + ': ' + xhr.statusText);else {
-			document.getElementById('showNumberBtn').style.display = "none";
-			document.getElementById('phone-number').style.display = "block";
-			document.getElementById('phone-number').innerHTML = "Номер: <b>+7 " + JSON.parse(xhr.responseText)[0].phone + "</b>";
-		}
+		xhr.open('GET', '/api/getPhoneNumber?id=' + window.advert_id, true);
+		xhr.onload = function () {
+
+			if (xhr.status != 200) alert(xhr.status + ': ' + xhr.statusText);else {
+				document.getElementById('showNumberBtn').style.display = "none";
+				document.getElementById('phone-number').style.display = "block";
+				document.getElementById('phone-number').innerHTML = "Номер: <b>+7 " + JSON.parse(xhr.responseText)[0].phone + "</b>";
+			}
+		};
+
+		xhr.send();
 	}
 }, false);
 
