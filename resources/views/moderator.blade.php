@@ -35,14 +35,15 @@
 
   <div class="container-fluid mycontainer">
     <div class="row">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin:20px">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         @foreach($adverts as $advert)
-        <br>
+        <hr>
         <h3>{{ $advert->title }}</h3>
-        <h4>{{ $advert->text }}</h4>    
+	<br>
+        <h5>{{ $advert->text }}</h5>    
         <br>
         <button class="btn btn-sm btn-success">принять</button>
-        <button class="btn btn-sm btn-danger">отклонить</button>
+        <button class="btn btn-sm btn-primary">отклонить</button>
         <hr>
       @endforeach
       </div>
