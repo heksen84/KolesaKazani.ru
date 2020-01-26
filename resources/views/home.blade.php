@@ -35,7 +35,9 @@
   </div>
 </nav>
 
-<div class="container-fluid mycontainer">
+<div class="container-fluid mycontainer text-center">
+
+  @if (count($results)>0)
   <div class="row">    
     <table class="table table-bordered table-hover">
       <thead>
@@ -63,6 +65,12 @@
     </tbody>
   </table>
 </div>
+@else
+<br>
+<h3>нет объявлений</h3>
+<br>
+<a href="/" class="btn btn-primary btn-sm">Подать объявление</a>
+@endif
 </div>
 
 <script type="text/javascript" src="{{ mix('js/home.js') }}"></script>
