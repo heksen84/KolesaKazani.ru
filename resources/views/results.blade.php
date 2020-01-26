@@ -69,8 +69,7 @@
                 Страницы:                 
                   @for( $i=1; $i<$navButtonsNum+1; $i++ )                                      
 			              <a href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $i }}" style="font-size:20px;margin:5px">{{ $i }}</a>		            
-                  @endfor                
-                  ... 4 5 6
+                  @endfor
             </div>
           <br>
           @endif    

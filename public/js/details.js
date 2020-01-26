@@ -1,1 +1,125 @@
-!function(e){var n={};function t(o){if(n[o])return n[o].exports;var r=n[o]={i:o,l:!1,exports:{}};return e[o].call(r.exports,r,r.exports,t),r.l=!0,r.exports}t.m=e,t.c=n,t.d=function(e,n,o){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:o})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,n){return Object.prototype.hasOwnProperty.call(e,n)},t.p="",t(t.s=5)}({5:function(e,n,t){e.exports=t("yWJX")},yWJX:function(e,n){function t(){var e=[window.coord_lat,window.coord_lon],n=new ymaps.Map("map",{center:e,zoom:10});n.behaviors.enable("scrollZoom"),myPlacemark=new ymaps.Placemark(e),n.geoObjects.add(myPlacemark)}document.addEventListener("DOMContentLoaded",function(){ymaps.ready(t)}),document.body.addEventListener("click",function(e){if("showNumberBtn"===e.target.id){var n=new XMLHttpRequest;n.open("GET","/api/getPhoneNumber?id="+window.advert_id,!0),n.onload=function(){200!=n.status?alert(n.status+": "+n.statusText):(document.getElementById("showNumberBtn").style.display="none",document.getElementById("phone-number").style.display="block",document.getElementById("phone-number").innerHTML="Номер: <b>+7 "+JSON.parse(n.responseText)[0].phone+"</b>")},n.send()}},!1)}});
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./resources/assets/js/mix/details.js":
+/***/ (function(module, exports) {
+
+// инициализация карты
+function initMaps() {
+
+	// координаты по умолчанию для всех карт
+	var mapCoords = [window.coord_lat, window.coord_lon];
+	var map = new ymaps.Map("map", { center: mapCoords, zoom: 10 });
+
+	// включаю скролл на карте
+	map.behaviors.enable("scrollZoom");
+
+	// формирую метку
+	myPlacemark = new ymaps.Placemark(mapCoords);
+
+	// добавляю метки на карты
+	map.geoObjects.add(myPlacemark);
+}
+
+// document ready
+document.addEventListener('DOMContentLoaded', function () {
+	ymaps.ready(initMaps);
+});
+
+// обработчик клика
+document.body.addEventListener('click', function (evt) {
+
+	// кнопка - показать номер
+	if (evt.target.id === "showNumberBtn") {
+
+		var xhr = new XMLHttpRequest();
+
+		xhr.open('GET', '/api/getPhoneNumber?id=' + window.advert_id, true);
+		xhr.onload = function () {
+
+			if (xhr.status != 200) alert(xhr.status + ': ' + xhr.statusText);else {
+				document.getElementById('showNumberBtn').style.display = "none";
+				document.getElementById('phone-number').style.display = "block";
+				document.getElementById('phone-number').innerHTML = "Номер: <b>+7 " + JSON.parse(xhr.responseText)[0].phone + "</b>";
+			}
+		};
+
+		xhr.send();
+	}
+}, false);
+
+/***/ }),
+
+/***/ 5:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("./resources/assets/js/mix/details.js");
+
+
+/***/ })
+
+/******/ });

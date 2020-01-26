@@ -21,7 +21,7 @@
     {{-- Footer --}}
     @slot('footer')
         @component('mail::footer')
-            &copy; {{ date('Y') }} {{ config('app.name') }}. Все права защищены.
+            © {{ date('Y') }} {{ config('app.name') }}. @lang('Все права защищены.')
         @endcomponent
     @endslot
 @endcomponent
