@@ -50,7 +50,7 @@
                   </div>
                 @endforeach
 
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin-top:20px">                
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">                
                 <hr>
                   <div class="pagination justify-content-center">                                                          
                   {{ $items->links() }}                         
