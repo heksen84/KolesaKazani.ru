@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Helpers\Common;
 use App\Categories;
 use App\Regions;
 use App\DealType;
@@ -11,12 +12,7 @@ use App\Images;
 
 
 class AdvertController extends Controller {      
-        
-        // получить хранилище изображений
-        private function getImagePath() {      
-         return \Storage::disk('local')->url('app/images/preview/');
-        }
-    
+                
         // новое объявление
         public function NewAd(Request $request) {
 
@@ -66,7 +62,7 @@ class AdvertController extends Controller {
                 if (count($advert)==0)
                         return view("errors/404");
                         
-                $images = Images::select(DB::raw( "concat('".$this->getImagePath()."', name) AS name" ))->where("advert_id", $id)->where("type", 1)->get();
+                $images = Images::select(DB::raw( "concat('".\Common::getImagePath()."', name) AS name" ))->where("advert_id", $id)->where("type", 1)->get();
 
                 \Debugbar::info($advert);
                 \Debugbar::info($images);

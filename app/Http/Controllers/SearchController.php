@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
+use App\Helpers\Common;
 use App\Adverts;
 use App\Categories;
 use DB;
@@ -25,27 +26,16 @@ class SearchController extends Controller {
       
   }
   
-  // -------------------------------------------------------------
-  // получить хранилище изображений
-  // -------------------------------------------------------------
-    private function getImagePath() {      
-      return \Storage::disk('local')->url('app/images/preview/');
-  }
-
   // ----------------------------------------
   // Поиск
   // ----------------------------------------
   public function search(Request $request) {
     
-    //$adverts = Adverts::select("id", "title", "price")->whereRaw("title LIKE '%".$request->str."%'")->get();
-    //$adverts = Adverts::select("id", "title", "price")->whereRaw("MATCH (title) AGAINST('".$request->str."*' IN BOOLEAN MODE)>0")->get();
-    //$adverts = Adverts::select("id", "title", "price")->whereRaw("MATCH (title) AGAINST('".$request->str."'")->get();
-
     $adverts = DB::select("SELECT 
         adv.id, 
         adv.title, 
         adv.price,         
-        concat('".$this->getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
+        concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
         FROM `adverts` AS adv WHERE MATCH (title) AGAINST('".$request->str."')");            
 
     \Debugbar::info($adverts);

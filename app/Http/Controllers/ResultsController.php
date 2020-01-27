@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-//use Illuminate\Support\Facades\Input;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Helpers\Common;
 use App\Helpers\Petrovich;
 use App\Adverts;
 use App\Categories;
@@ -66,13 +66,6 @@ class ResultsController extends Controller {
     }
 
     // -------------------------------------------------------------
-    // получить хранилище изображений
-    // -------------------------------------------------------------
-    private function getImagePath() {      
-        return \Storage::disk("local")->url('app/images/preview/');
-    }
-
-    // -------------------------------------------------------------
     // результаты по стране
     // -------------------------------------------------------------    
     public function getCountryCategoryResults(Request $request, $category) {        
@@ -110,7 +103,7 @@ class ResultsController extends Controller {
         $subcategories = $this->getSubCategoryData($request, $subcategory);            
         
         $items = DB::select("SELECT adv.id, adv.title, adv.price,         
-         concat('".$this->getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
+         concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
          FROM `adverts` AS adv WHERE subcategory_id=".$subcategories[0]->id.$priceBetweenSql);
    
         \Debugbar::info("субкатегория: ".$subcategory);       
@@ -149,7 +142,7 @@ class ResultsController extends Controller {
         $regionData = $this->getRegionData($region);
 
         $items = DB::select("SELECT adv.id, adv.title, adv.price,
-         concat('".$this->getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
+         concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
          FROM `adverts` AS adv WHERE subcategory_id = ".$subcategories[0]->id." AND region_id = ".$regionData->region_id);            
    
          \Debugbar::info("субкатегория: ".$subcategory);       
@@ -191,7 +184,7 @@ class ResultsController extends Controller {
         $cityData = $this->getCityData($city);                        
 
         $items = DB::select("SELECT adv.id, adv.title, adv.price,
-         concat('".$this->getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
+         concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
          FROM `adverts` AS adv WHERE subcategory_id = ".$subcategories[0]->id.
          " AND city_id = ".$cityData->city_id." AND region_id = ".$regionData->region_id);
    

@@ -13,6 +13,7 @@ use App\Transport;
 use App\RealEstate;
 use App\Helpers\ObsceneCensorRus;
 use App\Helpers\Helper;
+use App\Helpers\Common;
 use App\Helpers\Sitemap;
 use App\Adverts;
 use Validator;

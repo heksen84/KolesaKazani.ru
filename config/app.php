@@ -199,6 +199,9 @@ return [
 		
         'ObsceneCensorRus' => \App\Helpers\ObsceneCensorRus::class,
         'Petrovich' => \App\Helpers\Petrovich\Petrovich::class,
+	'Helper' => App\Helpers\Helper::class,
+	'Common' => App\Helpers\Common::class,
+
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
@@ -215,7 +218,6 @@ return [
         'File' => Illuminate\Support\Facades\File::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,
-	'Helper' => App\Helpers\Helper::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
