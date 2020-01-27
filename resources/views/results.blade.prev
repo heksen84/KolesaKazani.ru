@@ -24,7 +24,7 @@
     <div class="close_button mt-2" title="Закрыть страницу">X</div>
 
       <h1 class="grey">{{ $title }}</h1>
-        <div class="grey">Найдено: ({{ $items->count() }} из {{ $items->total() }} ) [категория: {{ $categoryId }}</div>	        
+        <div class="grey">Найдено: ({{ $itemsCount }} из {{ $totalCount }} ) [категория: {{ $categoryId }}, подкатегория: {{ $subcategoryId }}] startPage: {{ $startPage }}</div>	        
           <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin:20px">
               
@@ -49,13 +49,32 @@
                     </a>
                   </div>
                 @endforeach
+            
+          </div> 
 
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin-top:20px">
-                  <div class="pagination justify-content-center">
-                    {{ $items->links() }}     
-                  </div>
-                </div>
-          </div>                                  	                
+	{{ $items->count() }}  
+
+
+
+          <!--
+
+            если более 6, но неболее 30 - показать только кнопки (1,2,3,4,5)
+            если более 30 показать с кнопками (<< < 1,2,3,4,5 > >>)
+            при нажатии на кнопку выделять значение и центрировать его, а также смещать значения
+            определять кол-во отображаемых кнопок от размера устройства
+
+          -->
+            
+          @if ($totalCount>=12)
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <br>              
+                Страницы:                 
+                  @for( $i=1; $i<$navButtonsNum+1; $i++ )                                      
+			              <a href="/category/{{ $category }}/{{ $subcategory }}/?country={{ $country }}&lang={{ $lang }}&page={{ $i }}" style="font-size:20px;margin:5px">{{ $i }}</a>		            
+                  @endfor
+            </div>
+          <br>
+          @endif    
   </div>
   <script type="text/javascript" src="{{ mix('js/common.js') }}"></script>  
   <script type="text/javascript" src="{{ mix('js/results.js') }}"></script> 
