@@ -76,7 +76,8 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     public function arrayPaginator($array, $request) {
             
-        $page = $request->page?$request->page:1;
+        //$page = $request->page?$request->page:1;
+        $page = $request->page;
         $perPage = 10;
         $offset = ($page * $perPage) - $perPage;
 
@@ -87,6 +88,8 @@ class ResultsController extends Controller {
     // результаты по стране
     // -------------------------------------------------------------    
     public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {
+
+        //$items = DB::table("adverts")->select("id", "text")->paginate(5);
         
         \Debugbar::info("start_price: ".$request->start_price);
         \Debugbar::info("end_price: ".$request->end_price);        
@@ -102,10 +105,24 @@ class ResultsController extends Controller {
         $categories = $this->getCategoryData($request, $category);                         
         $subcategories = $this->getSubCategoryData($request, $subcategory);            
         
-        $items = DB::select("SELECT adv.id, adv.title, adv.price,         
+       /* $items = DB::select("SELECT adv.id, adv.title, adv.price,         
          concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
-         FROM `adverts` AS adv WHERE subcategory_id=".$subcategories[0]->id.$priceBetweenSql);
+         FROM `adverts` AS adv WHERE subcategory_id=".$subcategories[0]->id.$priceBetweenSql);*/
    
+        $items = DB::table("adverts as adv")->select(
+            "adv.id", 
+            "adv.title", 
+            "adv.price", 
+            DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
+        ))->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)->paginate(5);
+
+
+        \Debugbar::info("DBRAW:");
+        \Debugbar::info($items);
+
+
+        $items->withPath('?country=kz&lang=ru');
+
         \Debugbar::info("субкатегория: ".$subcategory);       
         \Debugbar::info("id субкатегории: ".$subcategories);      
         \Debugbar::info($items);
@@ -116,7 +133,8 @@ class ResultsController extends Controller {
          ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
          ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
          ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))
-	     ->with("items", $this->arrayPaginator($items, $request))
+         //->with("items", $this->arrayPaginator($items, $request))
+         ->with("items", $items)
          ->with("categoryId", $categories[0]->id)
          ->with("subcategoryId", $subcategories[0]->id)
 
