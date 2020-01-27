@@ -24,10 +24,11 @@
     <div class="close_button mt-2" title="Закрыть страницу">X</div>
 
       <h1 class="grey">{{ $title }}</h1>
-        <div class="grey">Найдено: ({{ $items->count() }} из {{ $items->total() }} ) [ категория: {{ $categoryId }} подкатегория: {{ $subcategoryId }} ]</div>	        
-          <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin:20px">
+        <!--<div class="grey">Найдено: ({{ $items->count() }} из {{ $items->total() }} ) [ категория: {{ $categoryId }} подкатегория: {{ $subcategoryId }} ]</div>-->	        
+          <div class="row" style="margin-top:35px">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin-bottom:10px">
               
+                <!-- ФИЛЬТРЫ -->
                 @if ($categoryId===1 && $subcategoryId===1)  
                   @include('filters/transport/legkovoy')
                 @else
