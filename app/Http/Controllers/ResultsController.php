@@ -72,19 +72,6 @@ class ResultsController extends Controller {
     }
 
     // -------------------------------------------------------------
-    // массив в пагинатор
-    // -------------------------------------------------------------
-    public function arrayPaginator($array, $request) {
-            
-        //$page = $request->page?$request->page:1;
-        $page = $request->page;
-        $perPage = 10;
-        $offset = ($page * $perPage) - $perPage;
-
-        return new LengthAwarePaginator(array_slice($array, $offset, $perPage, true), count($array), $perPage, $page, ['path' => $request->url(), 'query' => $request->query()]);
-    }
-
-    // -------------------------------------------------------------
     // результаты по стране
     // -------------------------------------------------------------    
     public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {
@@ -104,11 +91,9 @@ class ResultsController extends Controller {
                        
         $categories = $this->getCategoryData($request, $category);                         
         $subcategories = $this->getSubCategoryData($request, $subcategory);            
-        
-       /* $items = DB::select("SELECT adv.id, adv.title, adv.price,         
-         concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
-         FROM `adverts` AS adv WHERE subcategory_id=".$subcategories[0]->id.$priceBetweenSql);*/
-   
+
+        \Debugbar::info("check!");
+         
         $items = DB::table("adverts as adv")->select(
             "adv.id", 
             "adv.title", 
