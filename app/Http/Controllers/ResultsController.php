@@ -130,12 +130,10 @@ class ResultsController extends Controller {
         return view("results")    
          ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
          ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
-         ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))
-         //->with("items", $this->arrayPaginator($items, $request))
+         ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))         
          ->with("items", $items)
          ->with("categoryId", $categories[0]->id)
          ->with("subcategoryId", $subcategories[0]->id)
-
          // --[ фильтры ]------------------------------------------------
          ->with("region", null)
          ->with("city", null)
