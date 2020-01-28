@@ -31,21 +31,52 @@ class SearchController extends Controller {
   // ----------------------------------------
   public function search(Request $request) {
     
-    $adverts = DB::select("SELECT 
+    /*$items = DB::select("SELECT 
         adv.id, 
         adv.title, 
         adv.price,         
         concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
-        FROM `adverts` AS adv WHERE MATCH (title) AGAINST('".$request->str."')");            
+        FROM `adverts` AS adv WHERE MATCH (title) AGAINST('".$request->str."')");*/
 
-    \Debugbar::info($adverts);
+/*
+SELECT
+adv.id,
+adv.title,
+adv.price,
+concat('/storage/app/images/preview/', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
+FROM `adverts` AS adv WHERE MATCH (title) AGAINST('хуй')*/
+
+
+$items = DB::table("adverts as adv")->select(
+  "adv.id", 
+  "adv.title", 
+  "adv.price", 
+  DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
+))->paginate(3)->onEachSide(2);
+
+
+      /*$items = DB::table("adverts as adv")->select(
+          "adv.id", 
+          "adv.title", 
+          "adv.price", 
+          DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
+      ))->whereNotNull(DB::RAW("MATCH (title) AGAINST('".$request->str."' IN BOOLEAN MODE)"))->paginate(3);*/
+
+      /*$items = DB::table("adverts as adv")->select(
+        "adv.id", 
+        "adv.title", 
+        "adv.price", 
+        DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
+    ))->match("title")->against($request->str)->paginate(3);*/
+
+    \Debugbar::info($items);
     
     return view("results")         
          ->with("title", $request->str)         
          ->with("description", "Результаты поиска по запросу: ".$request->str)         
          ->with("keywords", "поиск, результат, запрос")
-         ->with("items", $adverts)
-         ->with("itemsCount", count($adverts))
+         ->with("items", $items)
+         ->with("itemsCount", count($items))
          ->with("totalCount", 0)
          ->with("categoryId", null)
          ->with("subcategoryId", null)
