@@ -97,7 +97,7 @@ class ResultsController extends Controller {
             "adv.title", 
             "adv.price", 
             DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
-        ))->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)->paginate(3)->onEachSide(2);
+        ))->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)->paginate(2)->onEachSide(1);
 
         \Debugbar::info("DBRAW:");
         \Debugbar::info($items);
