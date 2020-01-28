@@ -74,9 +74,7 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     // результаты по стране
     // -------------------------------------------------------------    
-    public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {
-
-        //$items = DB::table("adverts")->select("id", "text")->paginate(5);
+    public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {        
         
         \Debugbar::info("start_price: ".$request->start_price);
         \Debugbar::info("end_price: ".$request->end_price);        
@@ -99,7 +97,7 @@ class ResultsController extends Controller {
             "adv.title", 
             "adv.price", 
             DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
-        ))->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)->paginate(3);
+        ))->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)->paginate(3)->onEachSide(2);
 
         \Debugbar::info("DBRAW:");
         \Debugbar::info($items);
