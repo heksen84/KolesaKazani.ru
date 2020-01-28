@@ -27,7 +27,7 @@ class SearchController extends Controller {
   }
   
   // ----------------------------------------
-  // Поиск
+  // Полнотекстовой поиск
   // ----------------------------------------
   public function search(Request $request) {
     
