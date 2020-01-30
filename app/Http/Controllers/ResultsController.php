@@ -133,7 +133,7 @@ class ResultsController extends Controller {
     }
 
     // -------------------------------------------------------------
-    // результаты по региону
+    // результаты по области
     // -------------------------------------------------------------
     public function getRegionSubCategoryResults(Request $request, $region, $category, $subcategory) {    
 

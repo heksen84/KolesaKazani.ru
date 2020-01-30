@@ -14,17 +14,24 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('css/results.css') }}">
 </head>
 <body>
-<!--<div style="position:fixed;top:140px;left:50px">реклама</div>
-<div style="position:fixed;top:140px;right:50px">реклама</div>-->
 
-  <!--<div class="container-fluid container1">-->
   <div class="container-fluid mycontainer">  
 
-    <!-- кнопка закрытия -->
-    <div class="close_button mt-2" title="Закрыть страницу">X</div>
-
-    <a href="/{{$region}}/{{$city}}/">Домой</a>
-
+    <!-- закрыть страницу -->
+    @if (!$region && !$city)
+    <div class="close_button mt-2" title="Закрыть страницу">
+      <a href="/">X</a>    
+    </div>
+    @elseif ($region && !$city)
+    <div class="close_button mt-2" title="Закрыть страницу">
+      <a href="/{{$region}}">X</a>
+    </div>
+    @elseif ($region && $city)
+    <div class="close_button mt-2" title="Закрыть страницу">
+      <a href="/{{$region}}/{{$city}}">X</a>    
+    </div>
+    @endif
+    
       <h1 class="grey">{{ $title }}</h1>
         <!--<div class="grey">Найдено: ({{ $items->count() }} из {{ $items->total() }} ) [ категория: {{ $categoryId }} подкатегория: {{ $subcategoryId }} ]</div>-->	        
           <div class="row" style="margin-top:35px">
