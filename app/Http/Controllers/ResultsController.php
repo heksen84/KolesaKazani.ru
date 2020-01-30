@@ -97,7 +97,10 @@ class ResultsController extends Controller {
             "adv.title", 
             "adv.price", 
             DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
-        ))->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)->paginate(2)->onEachSide(1);
+        ))
+        ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
+        ->paginate(1)
+        ->onEachSide(1);
 
         \Debugbar::info("DBRAW:");
         \Debugbar::info($items);
@@ -132,85 +135,132 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     // результаты по региону
     // -------------------------------------------------------------
-    public function getRegionSubCategoryResults(Request $request, $region, $category, $subcategory) {        
-        
-        $categories = $this->getCategoryData($request, $category);
-        $subcategories = $this->getSubCategoryData($request, $subcategory);
-        $regionData = $this->getRegionData($region);
+    public function getRegionSubCategoryResults(Request $request, $region, $category, $subcategory) {    
 
-        $items = DB::select("SELECT adv.id, adv.title, adv.price,
-         concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
-         FROM `adverts` AS adv WHERE subcategory_id = ".$subcategories[0]->id." AND region_id = ".$regionData->region_id);            
-   
+         \Debugbar::info("start_price: ".$request->start_price);
+         \Debugbar::info("end_price: ".$request->end_price);        
+                         
+         $startPrice = $request->start_price;
+         $endPrice = $request->end_price;
+ 
+         $priceBetweenSql="";
+ 
+         if ($startPrice && $endPrice) 
+             $priceBetweenSql = " AND price BETWEEN ".$startPrice." AND ".$endPrice;
+                        
+            $categories = $this->getCategoryData($request, $category);
+            $subcategories = $this->getSubCategoryData($request, $subcategory);
+            $regionData = $this->getRegionData($region);           
+ 
+         \Debugbar::info("check!");
+ 
+         $items = DB::table("adverts as adv")->select(
+             "adv.id", 
+             "adv.title", 
+             "adv.price", 
+             DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
+         ))
+         ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
+         ->where("region_id", $regionData->region_id)
+         ->paginate(1)
+         ->onEachSide(1);
+ 
+         \Debugbar::info("DBRAW:");
+         \Debugbar::info($items);
+ 
+         $items->withPath('?country=kz&lang=ru');
+ 
          \Debugbar::info("субкатегория: ".$subcategory);       
          \Debugbar::info("id субкатегории: ".$subcategories);      
          \Debugbar::info($items);
+ 
+         $locationName = $this->getLocationName($request->country);
+                 
+         return view("results")    
+          ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
+          ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
+          ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))         
+          ->with("items", $items)
+          ->with("categoryId", $categories[0]->id)
+          ->with("subcategoryId", $subcategories[0]->id)
+          // --[ фильтры ]------------------------------------------------
+          ->with("region", null)
+          ->with("city", null)
+          ->with("category", $category)
+          ->with("subcategory", $subcategory)
+          ->with("country", $request->country)
+          ->with("lang", $request->lang)
+          ->with("page", $request->page?$request->page:0)
+          ->with("start_price", $request->start_price)
+          ->with("end_price", $request->end_price);
 
-         $petrovich = new Petrovich(Petrovich::GENDER_MALE);         
-         $locationName = $petrovich->firstname($regionData->name, 0);         
-                
-         return view("results")
-         ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
-         ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
-         ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))
-         ->with("items", $items)
-         ->with("itemsCount", count($items))
-         ->with("categoryId", $categories[0]->id)
-         ->with("subcategoryId", $subcategories[0]->id)
-         
-         // --[ фильтры ]------------------------------------------------
-         ->with("region", null)
-         ->with("city", null)
-         ->with("category", $category)
-         ->with("subcategory", $subcategory)
-         ->with("country", $request->country)
-         ->with("lang", $request->lang)
-         ->with("page", $request->page?$request->page:0)
-         ->with("start_price", $request->start_price)
-         ->with("end_price", $request->end_price);
+
     }
 
     // -------------------------------------------------------------
     // результаты по городу либо селу
     // -------------------------------------------------------------
-    public function getCitySubCategoryResults(Request $request, $region, $city, $category, $subcategory) {
+    public function getCitySubCategoryResults(Request $request, $region, $city, $category, $subcategory) {       
 
-        $categories = $this->getCategoryData($request, $category);
-        $subcategories = $this->getSubCategoryData($request, $subcategory);
-        $regionData = $this->getRegionData($region);        
-        $cityData = $this->getCityData($city);                        
-
-        $items = DB::select("SELECT adv.id, adv.title, adv.price,
-         concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) AS imageName
-         FROM `adverts` AS adv WHERE subcategory_id = ".$subcategories[0]->id.
-         " AND city_id = ".$cityData->city_id." AND region_id = ".$regionData->region_id);
-   
+         \Debugbar::info("start_price: ".$request->start_price);
+         \Debugbar::info("end_price: ".$request->end_price);        
+                         
+         $startPrice = $request->start_price;
+         $endPrice = $request->end_price;
+ 
+         $priceBetweenSql="";
+ 
+         if ($startPrice && $endPrice) 
+             $priceBetweenSql = " AND price BETWEEN ".$startPrice." AND ".$endPrice;
+                        
+            $categories = $this->getCategoryData($request, $category);
+            $subcategories = $this->getSubCategoryData($request, $subcategory);
+            $regionData = $this->getRegionData($region); 
+            $cityData = $this->getCityData($city);          
+ 
+         \Debugbar::info("check!");
+ 
+         $items = DB::table("adverts as adv")->select(
+             "adv.id", 
+             "adv.title", 
+             "adv.price", 
+             DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
+         ))
+         ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
+         ->where("region_id", $regionData->region_id)
+         ->where("city_id", $cityData->city_id)
+         ->paginate(1)
+         ->onEachSide(1);
+ 
+         \Debugbar::info("DBRAW:");
+         \Debugbar::info($items);
+ 
+         $items->withPath('?country=kz&lang=ru');
+ 
          \Debugbar::info("субкатегория: ".$subcategory);       
          \Debugbar::info("id субкатегории: ".$subcategories);      
          \Debugbar::info($items);
-         
-         $petrovich = new Petrovich(Petrovich::GENDER_MALE);         
-         $locationName = $petrovich->firstname($cityData->name, 4);
-                
-         return view("results")
-         ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
-         ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
-         ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))
-         ->with("items", $items)
-         ->with("itemsCount", count($items))
-         ->with("categoryId", $categories[0]->id)
-         ->with("subcategoryId", $subcategories[0]->id)
+ 
+         $locationName = $this->getLocationName($request->country);
+                 
+         return view("results")    
+          ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
+          ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
+          ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))         
+          ->with("items", $items)
+          ->with("categoryId", $categories[0]->id)
+          ->with("subcategoryId", $subcategories[0]->id)
+          // --[ фильтры ]------------------------------------------------
+          ->with("region", null)
+          ->with("city", null)
+          ->with("category", $category)
+          ->with("subcategory", $subcategory)
+          ->with("country", $request->country)
+          ->with("lang", $request->lang)
+          ->with("page", $request->page?$request->page:0)
+          ->with("start_price", $request->start_price)
+          ->with("end_price", $request->end_price);
 
-         // --[ фильтры ]------------------------------------------------
-         ->with("region", null)
-         ->with("city", null)
-         ->with("category", $category)
-         ->with("subcategory", $subcategory)
-         ->with("country", $request->country)
-         ->with("lang", $request->lang)
-         ->with("page", $request->page?$request->page:0)
-         ->with("start_price", $request->start_price)
-         ->with("end_price", $request->end_price);
     }
     
 }
