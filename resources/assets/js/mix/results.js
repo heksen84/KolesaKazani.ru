@@ -1,5 +1,5 @@
 // возврат назад
-document.body.addEventListener('click', function (evt) {
+/*document.body.addEventListener('click', function (evt) {
 
   if (evt.target.classList[0] === 'close_button') {                        
       //window.history.back();
@@ -7,4 +7,4 @@ document.body.addEventListener('click', function (evt) {
   }
 
 
-}, false);
+}, false);*/
