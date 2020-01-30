@@ -19,17 +19,11 @@
 
     <!-- закрыть страницу -->
     @if (!$region && !$city)
-    <div class="close_button mt-2" title="Закрыть страницу">
-      <a href="/">X</a>    
-    </div>
-    @elseif ($region && !$city)
-    <div class="close_button mt-2" title="Закрыть страницу">
-      <a href="/{{$region}}">X</a>
-    </div>
-    @elseif ($region && $city)
-    <div class="close_button mt-2" title="Закрыть страницу">
-      <a href="/{{$region}}/{{$city}}">X</a>    
-    </div>
+    <a href="/" style="position:relative;left:96%;top:13px;font-size:18px">X</a>
+    @elseif ($region && !$city)    
+      <a href="/{{$region}}" style="position:relative;left:96%;top:13px;font-size:18px">X</a>    
+    @elseif ($region && $city)    
+      <a href="/{{$region}}/{{$city}}" style="position:relative;left:96%;top:13px;font-size:18px">X</a>    
     @endif
     
       <h1 class="grey">{{ $title }}</h1>
