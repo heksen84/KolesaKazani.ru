@@ -23,6 +23,8 @@
     <!-- кнопка закрытия -->
     <div class="close_button mt-2" title="Закрыть страницу">X</div>
 
+    <a href="/{{$region}}/{{$city}}/">Домой</a>
+
       <h1 class="grey">{{ $title }}</h1>
         <!--<div class="grey">Найдено: ({{ $items->count() }} из {{ $items->total() }} ) [ категория: {{ $categoryId }} подкатегория: {{ $subcategoryId }} ]</div>-->	        
           <div class="row" style="margin-top:35px">

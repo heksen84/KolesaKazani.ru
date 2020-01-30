@@ -184,7 +184,7 @@ class ResultsController extends Controller {
           ->with("categoryId", $categories[0]->id)
           ->with("subcategoryId", $subcategories[0]->id)
           // --[ фильтры ]------------------------------------------------
-          ->with("region", null)
+          ->with("region", $region)
           ->with("city", null)
           ->with("category", $category)
           ->with("subcategory", $subcategory)
@@ -251,8 +251,8 @@ class ResultsController extends Controller {
           ->with("categoryId", $categories[0]->id)
           ->with("subcategoryId", $subcategories[0]->id)
           // --[ фильтры ]------------------------------------------------
-          ->with("region", null)
-          ->with("city", null)
+          ->with("region", $region)
+          ->with("city", $city)
           ->with("category", $category)
           ->with("subcategory", $subcategory)
           ->with("country", $request->country)
