@@ -38,6 +38,8 @@ class SearchController extends Controller {
     DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
   ))->whereRaw("MATCH (title) AGAINST('".$request->str."' IN BOOLEAN MODE)")->paginate(3)->onEachSide(2);
 
+  $items->withPath('?str='.$request->str);
+
   \Debugbar::info($items);
     
   return view("results")         
