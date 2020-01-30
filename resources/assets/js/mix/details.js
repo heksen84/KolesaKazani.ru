@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // обработчик клика
 document.body.addEventListener('click', function (evt) {
 
+	// вернуться назад
 	if (evt.target.classList[0] === 'close_button') {                        
 		window.history.back();
 	}
