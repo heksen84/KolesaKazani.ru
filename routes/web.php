@@ -15,7 +15,7 @@ Route::get("/objavlenie/{id}", "AdvertController@getDetails");
 Route::get("/search", "SearchController@search");
 
 // Новое объявление
-Route::get("/podat-obyavlenie", "AdvertController@NewAd");
+Route::get("/podat-obyavlenie", "AdvertController@newAdvert");
 
 // api вызовы
 Route::post("/api/createAdvert", "ApiController@createAdvert");

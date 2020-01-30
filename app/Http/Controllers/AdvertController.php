@@ -14,7 +14,7 @@ use App\Images;
 class AdvertController extends Controller {      
                 
         // новое объявление
-        public function NewAd(Request $request) {
+        public function newAdvert(Request $request) {
 
         \Debugbar::info("Язык: ".$request->lang); 
         
