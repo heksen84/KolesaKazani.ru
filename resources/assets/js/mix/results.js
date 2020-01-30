@@ -1,4 +1,3 @@
-
 // возврат назад
 document.body.addEventListener('click', function (evt) {
 

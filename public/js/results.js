@@ -68,7 +68,6 @@
 /***/ "./resources/assets/js/mix/results.js":
 /***/ (function(module, exports) {
 
-
 // возврат назад
 document.body.addEventListener('click', function (evt) {
 
