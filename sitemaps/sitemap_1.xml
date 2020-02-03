@@ -1980,4 +1980,16 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/42-transport-gruzovoe-avto</loc>
+    <lastmod>2020-02-03T16:35:44+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/43-transport-legkovoe-avto</loc>
+    <lastmod>2020-02-03T16:37:22+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
