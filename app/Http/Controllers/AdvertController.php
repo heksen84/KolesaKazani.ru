@@ -49,12 +49,37 @@ class AdvertController extends Controller {
                 \Debugbar::info("-------------------");
                 \Debugbar::info($advertData);
                 \Debugbar::info("-------------------");
+                
+                // легковое авто
+                if ($advertData[0]->category_id === 1 || $advertData[0]->subcategory_id === 1) {                        
+                }
 
-                switch($advertData[0]->category_id) {
-                        case 1: break;
-                        case 2: break;
-                        case 3: break;
-                        case 4: break;
+                // грузовое авто
+                if ($advertData[0]->category_id === 1 || $advertData[0]->subcategory_id === 2) {
+                }
+
+                // мототехника
+                if ($advertData[0]->category_id === 1 || $advertData[0]->subcategory_id === 3) {
+                }
+
+                // спецтехника
+                if ($advertData[0]->category_id === 1 || $advertData[0]->subcategory_id === 4) {
+                }
+
+                // ретро авто
+                if ($advertData[0]->category_id === 1 || $advertData[0]->subcategory_id === 5) {
+                }
+
+                // водный транспорт
+                if ($advertData[0]->category_id === 1 || $advertData[0]->subcategory_id === 6) {
+                }
+
+                // велосипед
+                if ($advertData[0]->category_id === 1 || $advertData[0]->subcategory_id === 7) {
+                }
+
+                // воздушный транспорт
+                if ($advertData[0]->category_id === 1 || $advertData[0]->subcategory_id === 8) {
                 }
             
                 // region_id, city_id
