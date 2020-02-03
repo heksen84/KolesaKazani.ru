@@ -52,6 +52,23 @@ class AdvertController extends Controller {
                 
                 // легковое авто
                 if ($advertData[0]->category_id === 1 || $advertData[0]->subcategory_id === 1) {                        
+
+                        $advert = Adverts::select( 
+                                "adverts.id", 
+                                "title", 
+                                "text", 
+                                "price", 
+                                "phone", 
+                                "coord_lat", 
+                                "coord_lon", 
+                                DB::raw("kz_region.name AS region_name, kz_city.name AS city_name") )
+                                ->join("kz_region", "adverts.region_id" , "=" , "kz_region.region_id" )                
+                                ->join("kz_city", "adverts.city_id" , "=" , "kz_city.city_id" )                
+                                //->join("sub_transport", "sub_transport.id" , "=" , "adverts.subcategory_id" )                
+                                ->where( "adverts.id", $id )                                
+                                ->limit(1)
+                                ->get();
+
                 }
 
                 // грузовое авто
@@ -83,7 +100,7 @@ class AdvertController extends Controller {
                 }
             
                 // базовая выборка
-                $advert = Adverts::select( 
+                /*$advert = Adverts::select( 
                         "id", 
                         "title", 
                         "text", 
@@ -96,7 +113,7 @@ class AdvertController extends Controller {
                         ->join("kz_city", "adverts.city_id" , "=" , "kz_city.city_id" )                
                         ->where( "id", $id )
                         ->limit(1)
-                        ->get();
+                        ->get();*/
 
                 \Debugbar::info("advert count: ".count($advert));
 
