@@ -29,8 +29,7 @@ class AdvertController extends Controller {
                         ->with( "regions", Regions::all() )
                         ->with( "dealtypes", DealType::all()->toJson() )
                         ->with( "country", "kz" )
-                        ->with( "lang", $request->lang );
-                        //->with( "auth", Auth::check() );
+                        ->with( "lang", $request->lang );                        
                         }
                         else 
                         return redirect('/login');
