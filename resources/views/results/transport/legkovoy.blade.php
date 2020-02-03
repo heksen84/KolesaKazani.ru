@@ -1,2 +1,1 @@
-<h5>Вставочка</h5>
-{{ $advert->price }}
+{{ $advert->car_name }}, {{ $advert->car_model }}

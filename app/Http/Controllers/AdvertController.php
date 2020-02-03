@@ -71,7 +71,7 @@ class AdvertController extends Controller {
                                 "adv.coord_lon", 
                                 "transport.type", 
                                 "car_mark.name as car_name", 
-                                "car_model.name as model_name", 
+                                "car_model.name as car_model", 
                                 DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
                                 ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                                 ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
