@@ -30,9 +30,9 @@ class AdvertController extends Controller {
                         ->with( "dealtypes", DealType::all()->toJson() )
                         ->with( "country", "kz" )
                         ->with( "lang", $request->lang );                        
-                        }
-                        else 
-                        return redirect('/login');
+                }
+                else 
+                return redirect('/login');
         }                
      
         // --------------------------------------------------
