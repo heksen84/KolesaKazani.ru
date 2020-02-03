@@ -37,12 +37,14 @@
 
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <div id="location">{{$advert->region_name}}, {{$advert->city_name}}</div>
+        <div id="location">{{ $advert->region_name }}, {{ $advert->city_name }}</div>
     
         @if ($advert->title!="null") 
           <h1>{{ $advert->title }}</h1>
           <hr>
         @endif      
+
+        @include('results/transport/legkovoy')
         
         @if ($advert->text!="null")        
           <div id="text">{{ $advert->text }}</div>
