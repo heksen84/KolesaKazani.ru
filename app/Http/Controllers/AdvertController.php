@@ -49,25 +49,40 @@ class AdvertController extends Controller {
                 \Debugbar::info("-------------------");
                 \Debugbar::info($advertData);
                 \Debugbar::info("-------------------");
+
+
+                /*$items = DB::table("adverts as adv")->select(
+                        "adv.id", 
+                        "adv.title", 
+                        "adv.price", 
+                        DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
+                ))*/
                 
                 // легковое авто
                 if ($advertData[0]->category_id === 1 || $advertData[0]->subcategory_id === 1) {                        
 
-                        $advert = Adverts::select( 
-                                "adverts.id", 
-                                "title", 
-                                "text", 
-                                "price", 
-                                "phone", 
-                                "coord_lat", 
-                                "coord_lon", 
-                                DB::raw("kz_region.name AS region_name, kz_city.name AS city_name") )
-                                ->join("kz_region", "adverts.region_id" , "=" , "kz_region.region_id" )                
-                                ->join("kz_city", "adverts.city_id" , "=" , "kz_city.city_id" )                
-                                //->join("sub_transport", "sub_transport.id" , "=" , "adverts.subcategory_id" )                
-                                ->where( "adverts.id", $id )                                
+                        $advert = DB::table("adverts as adv")->select( 
+                                "adv.id", 
+                                "adv.title", 
+                                "adv.text", 
+                                "adv.price", 
+                                "adv.phone", 
+                                "adv.coord_lat", 
+                                "adv.coord_lon", 
+                                "transport.type", 
+                                "car_mark.name as car_name", 
+                                "car_model.name as model_name", 
+                                DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
+                                ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
+                                ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
+                                ->join("sub_transport as transport", "adv.inner_id" , "=" , "transport.id" )                
+                                ->join("car_mark", "car_mark.id_car_mark" , "=" , "transport.mark" )                
+                                ->join("car_model", "car_mark.id_car_mark" , "=" , "car_model.id_car_mark" )                
+                                ->where( "adv.id", $id )                                
                                 ->limit(1)
                                 ->get();
+
+                                \DebugBar::info($advert);
 
                 }
 
