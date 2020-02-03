@@ -61,7 +61,7 @@ class AdvertController extends Controller {
                 // легковое авто
                 if ($advertData[0]->category_id === 1 || $advertData[0]->subcategory_id === 1) {                        
 
-                        $advert = DB::table("adverts as adv")->select( 
+                        $advert = DB::table("adverts as adv")->select(                                 
                                 "adv.id", 
                                 "adv.title", 
                                 "adv.text", 
@@ -76,7 +76,7 @@ class AdvertController extends Controller {
                                 "transport.steering_position", 
                                 "transport.mileage",
                                 "transport.engine_type",
-                                "transport.customs",
+                                "transport.customs",                                
                                 DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
                                 ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                                 ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
