@@ -13,13 +13,15 @@ use App\Images;
 
 class AdvertController extends Controller {      
                 
+        // --------------------------------------------------
         // новое объявление
+        // --------------------------------------------------
         public function newAdvert(Request $request) {
 
-        \Debugbar::info("Язык: ".$request->lang); 
+                \Debugbar::info("Язык: ".$request->lang); 
         
-        if (Auth::check()) {
-	        return view("newad")
+                if (Auth::check()) {
+	                return view("newad")
                         ->with( "title", "Подать объявление" )
                         ->with( "description", "Подать новое объявление на сайте ".config('app.name'))
                         ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте")
@@ -29,12 +31,14 @@ class AdvertController extends Controller {
                         ->with( "country", "kz" )
                         ->with( "lang", $request->lang );
                         //->with( "auth", Auth::check() );
-                }
-                else 
-                return redirect('/login');
+                        }
+                        else 
+                        return redirect('/login');
         }                
      
+        // --------------------------------------------------
         // детали объявления
+        // --------------------------------------------------
         public function getDetails(Request $request, $id) {
 
                 \Debugbar::info("mykey: ".\Cache::get('mykey'));
