@@ -41,6 +41,21 @@ class AdvertController extends Controller {
 
                 if ( $id < 0 ) 
                         return view("errors/404");
+
+                // 1. определить id категории
+                // 2. сделать выборку из необходимой таблицы                
+                $advertData = Adverts::select("category_id","subcategory_id")->where( "id", $id )->limit(1)->get();
+
+                \Debugbar::info("-------------------");
+                \Debugbar::info($advertData);
+                \Debugbar::info("-------------------");
+
+                switch($advertData[0]->category_id) {
+                        case 1: break;
+                        case 2: break;
+                        case 3: break;
+                        case 4: break;
+                }
             
                 // region_id, city_id
                 $advert = Adverts::select( 
