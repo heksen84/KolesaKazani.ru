@@ -82,7 +82,7 @@ class AdvertController extends Controller {
                 if ($advertData[0]->category_id === 1 || $advertData[0]->subcategory_id === 8) {
                 }
             
-                // region_id, city_id
+                // базовая выборка
                 $advert = Adverts::select( 
                         "id", 
                         "title", 
