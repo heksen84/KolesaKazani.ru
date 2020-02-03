@@ -29,6 +29,7 @@
       <h1 class="grey">{{ $title }}</h1>
         <!--<div class="grey">Найдено: ({{ $items->count() }} из {{ $items->total() }} ) [ категория: {{ $categoryId }} подкатегория: {{ $subcategoryId }} ]</div>-->	        
           <div class="row" style="margin-top:35px">
+            
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin-bottom:10px">              
                 <!-- ФИЛЬТРЫ -->
                 @if ($categoryId===1 && $subcategoryId===1)  
@@ -37,12 +38,13 @@
                   @include('filters/base')
                 @endif             
             </div>
+
             @foreach($items as $item)
               <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">                  
                 <a href="/objavlenie/{{ $item->id }}">
                   <div class="card text-left" style="height:270px;margin:3px">
                     <img class="card-img-top" src="{{ $item->imageName }}" alt="{{ $item->title }}">
-                      <div class="card-body">                                                                                 
+                      <div class="card-body">                                                                                             
                         {{ $item->title }}
                         <p class="card-text">{{ $item->price }} тнг.</p>
                       </div>              

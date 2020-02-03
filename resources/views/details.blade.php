@@ -39,40 +39,36 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <div id="location">{{ $advert->region_name }}, {{ $advert->city_name }}</div>
     
-        @if ($advert->title!="null") 
-          <h1>{{ $advert->title }}</h1>
-          <hr>
-        @endif      
+            @if ($advert->title!="null") 
+                <h1>{{ $advert->title }}</h1>
+                <hr>
+              @endif      
 
-        @include('results/transport/legkovoy')
+              @include('results/transport/legkovoy')
         
-        @if ($advert->text!="null")        
-          <div id="text">{{ $advert->text }}</div>
-        @endif
+              @if ($advert->text!="null")        
+                <div id="text">{{ $advert->text }}</div>
+              @endif
         
-        @if ($advert->price!="null")
-          <div id="price">{{ $advert->price }} тнг.</div>
-        @endif
+              @if ($advert->price!="null")
+                <div id="price">{{ $advert->price }} тнг.</div>
+              @endif
 
-        @foreach($images as $image)
-          <img src='{{ $image->name }}' alt='{{ $image->name }}'></img>
-        @endforeach
-        
-        <button type="button" class="btn btn-primary btn-sm" id="showNumberBtn">показать номер</button>
-        <!--<div id="phone-number">Номер: <span>+7 {{ $advert->phone }}</span></div>-->
+              @foreach($images as $image)
+                <img src='{{ $image->name }}' alt='{{ $image->name }}'></img>
+              @endforeach
 
-        <div id="phone-number"></div>
-
-        <div id="map" style="margin-top:20px"></div>
-        
+            <button type="button" class="btn btn-primary btn-sm" id="showNumberBtn">показать номер</button>                    
+          <div id="phone-number"></div>
+        <div id="map" style="margin-top:20px"></div>        
     </div>
   </div>
 </div>
 
 <script>
-    window.advert_id = "{{$advert->id}}";
-    window.coord_lat = "{{$advert->coord_lat}}"; 
-    window.coord_lon = "{{$advert->coord_lon}}";
+  window.advert_id = "{{$advert->id}}";
+  window.coord_lat = "{{$advert->coord_lat}}"; 
+  window.coord_lon = "{{$advert->coord_lon}}";
 </script>
 
 <script src="https://api-maps.yandex.ru/2.0-stable/?apikey=123&load=package.standard&lang=ru-RU" type="text/javascript"></script>
