@@ -95,7 +95,8 @@ class AdvertController extends Controller {
                         ->join("kz_region", "adverts.region_id" , "=" , "kz_region.region_id" )                
                         ->join("kz_city", "adverts.city_id" , "=" , "kz_city.city_id" )                
                         ->where( "id", $id )
-                        ->limit(1)->get();
+                        ->limit(1)
+                        ->get();
 
                 \Debugbar::info("advert count: ".count($advert));
 
