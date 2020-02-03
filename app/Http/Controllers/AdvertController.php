@@ -92,6 +92,10 @@ class AdvertController extends Controller {
 
                                 \DebugBar::info($advert);
 
+                                //$images = DB::table("images")->select("name")->where( "advert_id", $id )->get();
+                                //\DebugBar::info($images);
+        
+
                 }
 
                 // грузовое авто
@@ -152,7 +156,7 @@ class AdvertController extends Controller {
                 ->with( "title", "Подать объявление" )
                 ->with( "description", "Подать новое объявление на сайте ".config('app.name'))
                 ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте")                
-                ->with( "advert", $advert[0])
+                ->with( "advert", $advert[0])                
                 ->with( "images", $images);
         }    
     
