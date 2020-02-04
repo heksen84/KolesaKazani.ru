@@ -52,14 +52,6 @@ class AdvertController extends Controller {
                 \Debugbar::info("-------------------");
                 \Debugbar::info($advertData);
                 \Debugbar::info("-------------------");
-
-
-                /*$items = DB::table("adverts as adv")->select(
-                        "adv.id", 
-                        "adv.title", 
-                        "adv.price", 
-                        DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
-                ))*/
                 
                 // легковое авто
                 if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id === 1) {                        
