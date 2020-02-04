@@ -37,6 +37,7 @@
               @endif
         
               @if ($advert->text!="null")        
+		            <hr>
                 <div id="text">{{ $advert->text }}</div>
               @endif
         
