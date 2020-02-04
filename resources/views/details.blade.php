@@ -14,22 +14,6 @@
 </head>
 <body>
 
-<!--
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a href="/">< На главную</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-    <ul class="navbar-nav">      
-      <li class="nav-item">
-        <a class="nav-link" href="/logout">Выход</a>
-      </li>
-    </ul>
-  </div>
-</nav>
--->
-
 <div class="container-fluid mycontainer">
 
   <!-- кнопка закрытия -->
@@ -39,12 +23,16 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <div id="location">{{ $advert->region_name }}, {{ $advert->city_name }}</div>
     
-            @if ($advert->title!="null") 
+              @if ($advert->title!="null") 
                 <h1>{{ $advert->title }}</h1>
                 <hr>
               @endif      
 
-              @include('results/transport/legkovoy')
+              @if ($advert->category_id===1 && $advert->subcategory_id===1) 
+                @include('results/transport/legkovoy')
+              @elseif ($advert->category_id===1 && $advert->subcategory_id===2)
+                @include('results/transport/gruzovoy')
+              @endif
         
               @if ($advert->text!="null")        
                 <div id="text">{{ $advert->text }}</div>

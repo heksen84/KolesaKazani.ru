@@ -62,9 +62,11 @@ class AdvertController extends Controller {
                 ))*/
                 
                 // легковое авто
-                if ($advertData[0]->category_id === 1 || $advertData[0]->subcategory_id === 1) {                        
+                if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id === 1) {                        
 
                         $advert = DB::table("adverts as adv")->select(                                 
+                                "adv.category_id",
+                                "adv.subcategory_id",
                                 "adv.id", 
                                 "adv.title", 
                                 "adv.text", 
@@ -76,10 +78,17 @@ class AdvertController extends Controller {
                                 "car_mark.name as car_name", 
                                 "car_model.name as car_model", 
                                 "transport.year", 
-                                "transport.steering_position", 
+                                DB::raw("CASE WHEN transport.steering_position=0 THEN 'слева' ELSE 'справа' END as steering_position"),
                                 "transport.mileage",
-                                "transport.engine_type",
-                                "transport.customs",                                
+                                DB::raw("CASE 
+                                WHEN transport.engine_type=0 THEN 'бензин' 
+                                WHEN transport.engine_type=1 THEN 'дизель' 
+                                WHEN transport.engine_type=2 THEN 'газ-бензин'
+                                WHEN transport.engine_type=3 THEN 'газ'
+                                WHEN transport.engine_type=4 THEN 'гибрид'
+                                WHEN transport.engine_type=5 THEN 'электричество'
+                                ELSE '-' END as engine_type"),
+                                DB::raw("CASE WHEN transport.customs=1 THEN 'да' ELSE 'нет' END as customs"),                                
                                 DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
                                 ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                                 ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
@@ -88,18 +97,42 @@ class AdvertController extends Controller {
                                 ->join("car_model", "car_mark.id_car_mark" , "=" , "car_model.id_car_mark" )                
                                 ->where( "adv.id", $id )                                
                                 ->limit(1)
-                                ->get();
-
-                                \DebugBar::info($advert);
-
-                                //$images = DB::table("images")->select("name")->where( "advert_id", $id )->get();
-                                //\DebugBar::info($images);
-        
-
+                                ->get();                                
                 }
 
                 // грузовое авто
-                if ($advertData[0]->category_id === 1 || $advertData[0]->subcategory_id === 2) {
+                if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id === 2) {
+
+                        $advert = DB::table("adverts as adv")->select(                                 
+                                "adv.category_id",
+                                "adv.subcategory_id",
+                                "adv.id", 
+                                "adv.title", 
+                                "adv.text", 
+                                "adv.price", 
+                                "adv.phone", 
+                                "adv.coord_lat", 
+                                "adv.coord_lon", 
+                                "transport.type",                                
+                                "transport.year", 
+                                DB::raw("CASE WHEN transport.steering_position=0 THEN 'слева' ELSE 'справа' END as steering_position"),
+                                "transport.mileage",
+                                DB::raw("CASE 
+                                WHEN transport.engine_type=0 THEN 'бензин' 
+                                WHEN transport.engine_type=1 THEN 'дизель' 
+                                WHEN transport.engine_type=2 THEN 'газ-бензин'
+                                WHEN transport.engine_type=3 THEN 'газ'
+                                WHEN transport.engine_type=4 THEN 'гибрид'
+                                WHEN transport.engine_type=5 THEN 'электричество'
+                                ELSE '-' END as engine_type"),
+                                DB::raw("CASE WHEN transport.customs=1 THEN 'да' ELSE 'нет' END as customs"),                                
+                                DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
+                                ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
+                                ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
+                                ->join("sub_transport as transport", "adv.inner_id" , "=" , "transport.id" )                
+                                ->where( "adv.id", $id )                                
+                                ->limit(1)
+                                ->get();                                
                 }
 
                 // мототехника
@@ -142,6 +175,7 @@ class AdvertController extends Controller {
                         ->limit(1)
                         ->get();*/
 
+                \DebugBar::info($advert); 
                 \Debugbar::info("advert count: ".count($advert));
 
                 if (count($advert)==0)
