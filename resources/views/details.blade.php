@@ -33,6 +33,9 @@
               @elseif ($advert->category_id===1 && $advert->subcategory_id===2)
                 @include('results/transport/gruzovoy')
               @endif
+              @elseif ($advert->category_id===1 && $advert->subcategory_id===5)
+                @include('results/transport/retro')
+              @endif
         
               @if ($advert->text!="null")        
                 <div id="text">{{ $advert->text }}</div>

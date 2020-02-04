@@ -136,27 +136,88 @@ class AdvertController extends Controller {
                 }
 
                 // мототехника
-                if ($advertData[0]->category_id === 1 || $advertData[0]->subcategory_id === 3) {
+                if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id === 3) {
+
+                        $advert = Adverts::select( 
+                                "id", 
+                                "title", 
+                                "text", 
+                                "price", 
+                                "phone", 
+                                "coord_lat", 
+                                "coord_lon", 
+                                DB::raw("kz_region.name AS region_name, kz_city.name AS city_name") )
+                                ->join("kz_region", "adverts.region_id" , "=" , "kz_region.region_id" )                
+                                ->join("kz_city", "adverts.city_id" , "=" , "kz_city.city_id" )                
+                                ->where( "id", $id )
+                                ->limit(1)
+                                ->get();
                 }
 
                 // спецтехника
-                if ($advertData[0]->category_id === 1 || $advertData[0]->subcategory_id === 4) {
+                if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id === 4) {
+
+                        $advert = Adverts::select( 
+                                "id", 
+                                "title", 
+                                "text", 
+                                "price", 
+                                "phone", 
+                                "coord_lat", 
+                                "coord_lon", 
+                                DB::raw("kz_region.name AS region_name, kz_city.name AS city_name") )
+                                ->join("kz_region", "adverts.region_id" , "=" , "kz_region.region_id" )                
+                                ->join("kz_city", "adverts.city_id" , "=" , "kz_city.city_id" )                
+                                ->where( "id", $id )
+                                ->limit(1)
+                                ->get();
                 }
 
                 // ретро авто
-                if ($advertData[0]->category_id === 1 || $advertData[0]->subcategory_id === 5) {
+                if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id === 5) {
+
+                        $advert = DB::table("adverts as adv")->select(                                 
+                                "adv.category_id",
+                                "adv.subcategory_id",
+                                "adv.id", 
+                                "adv.title", 
+                                "adv.text", 
+                                "adv.price", 
+                                "adv.phone", 
+                                "adv.coord_lat", 
+                                "adv.coord_lon", 
+                                "transport.type",                                
+                                "transport.year", 
+                                DB::raw("CASE WHEN transport.steering_position=0 THEN 'слева' ELSE 'справа' END as steering_position"),
+                                "transport.mileage",
+                                DB::raw("CASE 
+                                WHEN transport.engine_type=0 THEN 'бензин' 
+                                WHEN transport.engine_type=1 THEN 'дизель' 
+                                WHEN transport.engine_type=2 THEN 'газ-бензин'
+                                WHEN transport.engine_type=3 THEN 'газ'
+                                WHEN transport.engine_type=4 THEN 'гибрид'
+                                WHEN transport.engine_type=5 THEN 'электричество'
+                                ELSE '-' END as engine_type"),
+                                DB::raw("CASE WHEN transport.customs=1 THEN 'да' ELSE 'нет' END as customs"),                                
+                                DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
+                                ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
+                                ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
+                                ->join("sub_transport as transport", "adv.inner_id" , "=" , "transport.id" )                
+                                ->where( "adv.id", $id )                                
+                                ->limit(1)
+                                ->get();                                
                 }
 
                 // водный транспорт
-                if ($advertData[0]->category_id === 1 || $advertData[0]->subcategory_id === 6) {
+                if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id === 6) {
                 }
 
                 // велосипед
-                if ($advertData[0]->category_id === 1 || $advertData[0]->subcategory_id === 7) {
+                if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id === 7) {
                 }
 
                 // воздушный транспорт
-                if ($advertData[0]->category_id === 1 || $advertData[0]->subcategory_id === 8) {
+                if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id === 8) {
                 }
             
                 // базовая выборка
