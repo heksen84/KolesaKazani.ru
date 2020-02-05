@@ -48,9 +48,9 @@
               @if ($advert->category_id===2 && $advert->subcategory_id===9) 
                 @include('results/nedvizhimost/kvartira')
               @elseif ($advert->category_id===2 && $advert->subcategory_id===10)
-                @include('results/nedvizhimost/common')          
+                @include('results/nedvizhimost/komnata')          
               @elseif ($advert->category_id===2 && $advert->subcategory_id===11)
-                @include('results/nedvizhimost/common')
+                @include('results/nedvizhimost/dom_dacha_kottedzh')
               @endif
               
               @if ($advert->text!="null")        

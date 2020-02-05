@@ -2034,4 +2034,22 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/70-schlschlschl</loc>
+    <lastmod>2020-02-05T14:49:49+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/71-nedvizhimost-kvartira</loc>
+    <lastmod>2020-02-05T14:57:36+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/72-nedvizhimost-kvartira</loc>
+    <lastmod>2020-02-05T15:04:29+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
