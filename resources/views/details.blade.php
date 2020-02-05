@@ -51,6 +51,8 @@
                 @include('results/nedvizhimost/komnata')          
               @elseif ($advert->category_id===2 && $advert->subcategory_id===11)
                 @include('results/nedvizhimost/dom_dacha_kottedzh')
+              @elseif ($advert->category_id===2 && $advert->subcategory_id===12)
+                @include('results/nedvizhimost/zemelnyu_uchastok')
               @endif
               
               @if ($advert->text!="null")        

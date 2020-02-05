@@ -244,7 +244,7 @@ class AdvertController extends Controller {
                         "realestate.floors_house",
                         "realestate.rooms",
                         "realestate.area",
-                        DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'владелец' END as ownership"),
+                        DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),
                         DB::raw("CASE WHEN realestate.kind_of_object=0 THEN 'вторичка' ELSE 'новостройка' END as kind_of_object"),                        
                         DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
                         ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -270,7 +270,7 @@ class AdvertController extends Controller {
                         "realestate.floor",
                         "realestate.floors_house",
                         "realestate.area",
-                        DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'владелец' END as ownership"),                        
+                        DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),                        
                         DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
                         ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                         ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
@@ -294,7 +294,7 @@ class AdvertController extends Controller {
                         "realestate.property_type",                        
                         "realestate.rooms",
                         "realestate.area",                        
-                        DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'владелец' END as ownership"),
+                        DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),
                         DB::raw("CASE WHEN realestate.kind_of_object=0 THEN 'вторичка' ELSE 'новостройка' END as kind_of_object"),
                         DB::raw("CASE 
                         WHEN realestate.type_of_building=0 THEN 'дом' 
@@ -322,17 +322,8 @@ class AdvertController extends Controller {
                         "adv.phone", 
                         "adv.coord_lat", 
                         "adv.coord_lon",
-                        "realestate.property_type",                        
-                        "realestate.rooms",
                         "realestate.area",                        
-                        DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'владелец' END as ownership"),
-                        DB::raw("CASE WHEN realestate.kind_of_object=0 THEN 'вторичка' ELSE 'новостройка' END as kind_of_object"),
-                        DB::raw("CASE 
-                        WHEN realestate.type_of_building=0 THEN 'дом' 
-                        WHEN realestate.type_of_building=1 THEN 'дача' 
-                        WHEN realestate.type_of_building=2 THEN 'коттедж' 
-                        ELSE '-' 
-                        END as type_of_building"),                        
+                        DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),                        
                         DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
                         ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                         ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
@@ -356,7 +347,7 @@ class AdvertController extends Controller {
                         "realestate.property_type",                        
                         "realestate.rooms",
                         "realestate.area",                        
-                        DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'владелец' END as ownership"),
+                        DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),
                         DB::raw("CASE WHEN realestate.kind_of_object=0 THEN 'вторичка' ELSE 'новостройка' END as kind_of_object"),
                         DB::raw("CASE 
                         WHEN realestate.type_of_building=0 THEN 'дом' 
@@ -387,7 +378,7 @@ class AdvertController extends Controller {
                         "realestate.property_type",                        
                         "realestate.rooms",
                         "realestate.area",                        
-                        DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'владелец' END as ownership"),
+                        DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),
                         DB::raw("CASE WHEN realestate.kind_of_object=0 THEN 'вторичка' ELSE 'новостройка' END as kind_of_object"),
                         DB::raw("CASE 
                         WHEN realestate.type_of_building=0 THEN 'дом' 
@@ -418,7 +409,7 @@ class AdvertController extends Controller {
                         "realestate.property_type",                        
                         "realestate.rooms",
                         "realestate.area",                        
-                        DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'владелец' END as ownership"),
+                        DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),
                         DB::raw("CASE WHEN realestate.kind_of_object=0 THEN 'вторичка' ELSE 'новостройка' END as kind_of_object"),
                         DB::raw("CASE 
                         WHEN realestate.type_of_building=0 THEN 'дом' 
