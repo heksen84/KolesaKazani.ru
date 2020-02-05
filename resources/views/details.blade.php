@@ -31,11 +31,11 @@
               @if ($advert->category_id===1 && $advert->subcategory_id===1) 
                 @include('results/transport/legkovoy')
               @elseif ($advert->category_id===1 && $advert->subcategory_id===2)
-                @include('results/transport/gruzovoy')          
+                @include('results/transport/common')          
               @elseif ($advert->category_id===1 && $advert->subcategory_id===5)
-                @include('results/transport/retro')
+                @include('results/transport/common')
               @endif
-        
+              
               @if ($advert->text!="null")        
 		            <hr>
                 <div id="text">{{ $advert->text }}</div>
