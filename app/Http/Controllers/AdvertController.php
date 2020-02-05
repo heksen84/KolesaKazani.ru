@@ -310,6 +310,131 @@ class AdvertController extends Controller {
                         ->limit(1)
                         ->get();                                                        
                 }
+                // земельный участок
+                if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 12) {
+                        $advert = DB::table("adverts as adv")->select(                                 
+                        "adv.category_id",
+                        "adv.subcategory_id",
+                        "adv.id", 
+                        "adv.title", 
+                        "adv.text", 
+                        "adv.price", 
+                        "adv.phone", 
+                        "adv.coord_lat", 
+                        "adv.coord_lon",
+                        "realestate.property_type",                        
+                        "realestate.rooms",
+                        "realestate.area",                        
+                        DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'владелец' END as ownership"),
+                        DB::raw("CASE WHEN realestate.kind_of_object=0 THEN 'вторичка' ELSE 'новостройка' END as kind_of_object"),
+                        DB::raw("CASE 
+                        WHEN realestate.type_of_building=0 THEN 'дом' 
+                        WHEN realestate.type_of_building=1 THEN 'дача' 
+                        WHEN realestate.type_of_building=2 THEN 'коттедж' 
+                        ELSE '-' 
+                        END as type_of_building"),                        
+                        DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
+                        ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
+                        ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
+                        ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
+                        ->where( "adv.id", $id )                                
+                        ->limit(1)
+                        ->get();                                                        
+                }
+                // гараж или машиноместо
+                if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 13) {
+                        $advert = DB::table("adverts as adv")->select(                                 
+                        "adv.category_id",
+                        "adv.subcategory_id",
+                        "adv.id", 
+                        "adv.title", 
+                        "adv.text", 
+                        "adv.price", 
+                        "adv.phone", 
+                        "adv.coord_lat", 
+                        "adv.coord_lon",
+                        "realestate.property_type",                        
+                        "realestate.rooms",
+                        "realestate.area",                        
+                        DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'владелец' END as ownership"),
+                        DB::raw("CASE WHEN realestate.kind_of_object=0 THEN 'вторичка' ELSE 'новостройка' END as kind_of_object"),
+                        DB::raw("CASE 
+                        WHEN realestate.type_of_building=0 THEN 'дом' 
+                        WHEN realestate.type_of_building=1 THEN 'дача' 
+                        WHEN realestate.type_of_building=2 THEN 'коттедж' 
+                        ELSE '-' 
+                        END as type_of_building"),                        
+                        DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
+                        ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
+                        ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
+                        ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
+                        ->where( "adv.id", $id )                                
+                        ->limit(1)
+                        ->get();                                                        
+                }
+                // коммерческая недвижимость
+                if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 14) {
+                        $advert = DB::table("adverts as adv")->select(                                 
+                        "adv.category_id",
+                        "adv.subcategory_id",
+                        "adv.id", 
+                        "adv.title", 
+                        "adv.text", 
+                        "adv.price", 
+                        "adv.phone", 
+                        "adv.coord_lat", 
+                        "adv.coord_lon",
+                        "realestate.property_type",                        
+                        "realestate.rooms",
+                        "realestate.area",                        
+                        DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'владелец' END as ownership"),
+                        DB::raw("CASE WHEN realestate.kind_of_object=0 THEN 'вторичка' ELSE 'новостройка' END as kind_of_object"),
+                        DB::raw("CASE 
+                        WHEN realestate.type_of_building=0 THEN 'дом' 
+                        WHEN realestate.type_of_building=1 THEN 'дача' 
+                        WHEN realestate.type_of_building=2 THEN 'коттедж' 
+                        ELSE '-' 
+                        END as type_of_building"),                        
+                        DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
+                        ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
+                        ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
+                        ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
+                        ->where( "adv.id", $id )                                
+                        ->limit(1)
+                        ->get();                                                        
+                }
+                // недвижимость за рубежом
+                if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 15) {
+                        $advert = DB::table("adverts as adv")->select(                                 
+                        "adv.category_id",
+                        "adv.subcategory_id",
+                        "adv.id", 
+                        "adv.title", 
+                        "adv.text", 
+                        "adv.price", 
+                        "adv.phone", 
+                        "adv.coord_lat", 
+                        "adv.coord_lon",
+                        "realestate.property_type",                        
+                        "realestate.rooms",
+                        "realestate.area",                        
+                        DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'владелец' END as ownership"),
+                        DB::raw("CASE WHEN realestate.kind_of_object=0 THEN 'вторичка' ELSE 'новостройка' END as kind_of_object"),
+                        DB::raw("CASE 
+                        WHEN realestate.type_of_building=0 THEN 'дом' 
+                        WHEN realestate.type_of_building=1 THEN 'дача' 
+                        WHEN realestate.type_of_building=2 THEN 'коттедж' 
+                        ELSE '-' 
+                        END as type_of_building"),                        
+                        DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
+                        ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
+                        ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
+                        ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
+                        ->where( "adv.id", $id )                                
+                        ->limit(1)
+                        ->get();                                                        
+                }
+
 
                 \DebugBar::info($advert); 
                 \Debugbar::info("advert count: ".count($advert));
