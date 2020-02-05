@@ -54,7 +54,8 @@
               @endif
               
               @if ($advert->text!="null")        
-		            <hr>
+                <br>  
+                <ins>Описание от продавца:</ins>                
                 <div id="text">{{ $advert->text }}</div>
               @endif
         

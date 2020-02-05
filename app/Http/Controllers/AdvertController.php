@@ -245,8 +245,8 @@ class AdvertController extends Controller {
                         "realestate.floors_house",
                         "realestate.rooms",
                         "realestate.area",
-                        "realestate.ownership",
-                        "realestate.kind_of_object",
+                        DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'владелец' END as ownership"),
+                        DB::raw("CASE WHEN realestate.kind_of_object=0 THEN 'вторичка' ELSE 'новостройка' END as kind_of_object"),                        
                         "realestate.type_of_building",
                         DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
                         ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
