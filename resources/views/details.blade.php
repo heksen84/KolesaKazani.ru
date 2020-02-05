@@ -21,6 +21,9 @@
 
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+        {{ $advert->category_id }} / {{ $advert->subcategory_id }}
+
         <div id="location">{{ $advert->region_name }}, {{ $advert->city_name }}</div>
     
               @if ($advert->title!="null") 
@@ -30,7 +33,7 @@
               
               <!----------------------------------------------------------------
                 характеристики 
-               ----------------------------------------------------------------->
+               ----------------------------------------------------------------->	       
 
               <!-- транспорт -->
               @if ($advert->category_id===1 && $advert->subcategory_id===1) 
@@ -42,11 +45,11 @@
               @endif
 
               <!-- недвижимость -->
-              @if ($advert->category_id===2 && $advert->subcategory_id===1) 
-                @include('results/nedvizhimost/legkovoy')
-              @elseif ($advert->category_id===2 && $advert->subcategory_id===2)
+              @if ($advert->category_id===2 && $advert->subcategory_id===9) 
+                @include('results/nedvizhimost/kvartira')
+              @elseif ($advert->category_id===2 && $advert->subcategory_id===10)
                 @include('results/nedvizhimost/common')          
-              @elseif ($advert->category_id===2 && $advert->subcategory_id===5)
+              @elseif ($advert->category_id===2 && $advert->subcategory_id===11)
                 @include('results/nedvizhimost/common')
               @endif
               
