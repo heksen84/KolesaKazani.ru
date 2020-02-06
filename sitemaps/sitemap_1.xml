@@ -2070,4 +2070,28 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/76-1111111</loc>
+    <lastmod>2020-02-06T13:59:04+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/77-nedvizhimost-kvartira</loc>
+    <lastmod>2020-02-06T14:07:17+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/78-nedvizhimost-kvartira</loc>
+    <lastmod>2020-02-06T14:07:36+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/79-nedvizhimost-kvartira</loc>
+    <lastmod>2020-02-06T14:08:52+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

@@ -1,7 +1,7 @@
 <div class="row">
  
  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-   <p>Площадь: <b>{{ $advert->area }}</b></p>
+   <p>Площадь: <b>{{ $advert->area }}м²</b></p>
  </div>
 
  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">

@@ -53,6 +53,12 @@
                 @include('results/nedvizhimost/dom_dacha_kottedzh')
               @elseif ($advert->category_id===2 && $advert->subcategory_id===12)
                 @include('results/nedvizhimost/zemelnyu_uchastok')
+              @elseif ($advert->category_id===2 && $advert->subcategory_id===13)
+                @include('results/nedvizhimost/garazh_ili_mashinomesto')  
+              @elseif ($advert->category_id===2 && $advert->subcategory_id===14)
+                @include('results/nedvizhimost/komm_nedvizhimost')  
+              @elseif ($advert->category_id===2 && $advert->subcategory_id===15)
+                @include('results/nedvizhimost/nedvizhimost_za_rubezhom')  
               @endif
               
               @if ($advert->text!="null")        

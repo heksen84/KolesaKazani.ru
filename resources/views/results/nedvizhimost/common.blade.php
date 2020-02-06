@@ -13,7 +13,7 @@
  </div>
  
  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
-   <p>Площадь: <b>{{ $advert->steering_position }}</b></p>
+   <p>Площадь: <b>{{ $advert->steering_position }}м²</b></p>
  </div>
 
  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
