@@ -32,9 +32,8 @@
               @endif
               
               <!----------------------------------------------------------------
-                характеристики 
+                подключаю характеристики по категориям
                ----------------------------------------------------------------->	       
-
               <!-- транспорт -->
               @if ($advert->category_id===1 && $advert->subcategory_id===1) 
                 @include('results/transport/legkovoy')
@@ -43,7 +42,6 @@
               @elseif ($advert->category_id===1 && $advert->subcategory_id===5)
                 @include('results/transport/common')
               @endif
-
               <!-- недвижимость -->
               @if ($advert->category_id===2 && $advert->subcategory_id===9) 
                 @include('results/nedvizhimost/kvartira')
@@ -61,13 +59,15 @@
                 @include('results/nedvizhimost/nedvizhimost_za_rubezhom')  
               @endif
               
-              @if ($advert->text!="null")        
+              <!-- убираю цену и описание от продавца для категорий работа и бизнес (category_id!=4) -->
+              @if ($advert->text!="null" && $advert->category_id!=4)        
                 <br>  
                 <ins>Описание от продавца:</ins>                
                 <div id="text">{{ $advert->text }}</div>
               @endif
         
-              @if ($advert->price!="null")
+              <!-- убираю цену и описание от продавца для категорий работа и бизнес (category_id!=4) -->
+              @if ($advert->price!="null" && $advert->category_id!=4)
                 <div id="price">{{ $advert->price }} тнг.</div>
               @endif
 
@@ -75,7 +75,8 @@
                 <img src='{{ $image->name }}' alt='{{ $image->name }}'></img>
               @endforeach
 
-            <button type="button" class="btn btn-primary btn-sm" id="showNumberBtn">показать номер</button>                    
+            <button type="button" class="btn btn-primary btn-sm" id="showNumberBtn">показать номер</button>
+
           <div id="phone-number"></div>
         <div id="map" style="margin-top:20px"></div>        
     </div>
