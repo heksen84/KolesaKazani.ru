@@ -21,7 +21,7 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 <!--        {{ $advert->category_id }} / {{ $advert->subcategory_id }}-->
         <div id="location">{{ $advert->region_name }}, {{ $advert->city_name }}</div>
-        
+
               @if ($advert->title!="null") 
                 <h1>{{ $advert->title }}</h1>
                 <hr>
@@ -73,7 +73,7 @@
             <button type="button" class="btn btn-primary btn-sm" id="showNumberBtn">показать номер</button>
 
           <div id="phone-number"></div>
-        <div id="map" style="margin-top:20px"></div>        
+        <div id="map"></div>        
 
     </div>
   </div>
