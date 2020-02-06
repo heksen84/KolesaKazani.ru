@@ -71,8 +71,7 @@
               @endforeach
 
             <button type="button" class="btn btn-primary btn-sm" id="showNumberBtn">показать номер</button>
-
-          <div id="phone-number"></div>
+            <div id="phone-number"></div>
         <div id="map"></div>        
 
     </div>
