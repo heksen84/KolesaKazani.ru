@@ -22,7 +22,7 @@
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 
-        {{ $advert->category_id }} / {{ $advert->subcategory_id }}
+<!--        {{ $advert->category_id }} / {{ $advert->subcategory_id }}-->
 
         <div id="location">{{ $advert->region_name }}, {{ $advert->city_name }}</div>
     
@@ -58,14 +58,14 @@
               @elseif ($advert->category_id===2 && $advert->subcategory_id===15)
                 @include('results/nedvizhimost/nedvizhimost_za_rubezhom')  
               @endif
-              
-              <!-- убираю цену в категориях работа и бизнес (category_id!=4) -->
+                            
               @if ($advert->text!="null")        
                 <br>  
                 <ins>Описание:</ins>                
                 <div id="text">{{ $advert->text }}</div>
               @endif
                       
+              <!-- убираю цену в категориях работа и бизнес (category_id!=4) -->
               @if ($advert->price!="null" && $advert->category_id!=4)
                 <div id="price">{{ $advert->price }} тнг.</div>
               @endif
