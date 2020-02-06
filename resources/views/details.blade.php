@@ -59,14 +59,13 @@
                 @include('results/nedvizhimost/nedvizhimost_za_rubezhom')  
               @endif
               
-              <!-- убираю цену и описание от продавца для категорий работа и бизнес (category_id!=4) -->
-              @if ($advert->text!="null" && $advert->category_id!=4)        
+              <!-- убираю цену в категориях работа и бизнес (category_id!=4) -->
+              @if ($advert->text!="null")        
                 <br>  
-                <ins>Описание от продавца:</ins>                
+                <ins>Описание:</ins>                
                 <div id="text">{{ $advert->text }}</div>
               @endif
-        
-              <!-- убираю цену и описание от продавца для категорий работа и бизнес (category_id!=4) -->
+                      
               @if ($advert->price!="null" && $advert->category_id!=4)
                 <div id="price">{{ $advert->price }} тнг.</div>
               @endif
