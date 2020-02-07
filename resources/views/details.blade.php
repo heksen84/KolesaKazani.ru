@@ -13,8 +13,8 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('css/details.css') }}">
 </head>
 <body>
-
 <div class="container-fluid mycontainer">
+
   <!-- кнопка закрытия -->
   <div class="close_button mt-2" title="Закрыть страницу" @click="closeAndReturn">X</div>
     <div class="row">
@@ -38,7 +38,7 @@
               @elseif ($advert->category_id===1 && $advert->subcategory_id===5)
                 @include('results/transport/common')
               @endif
-              
+
               <!-- недвижимость -->
               @if ($advert->category_id===2 && $advert->subcategory_id===9) 
                 @include('results/nedvizhimost/kvartira')
