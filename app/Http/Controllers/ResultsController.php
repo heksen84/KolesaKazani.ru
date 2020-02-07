@@ -21,7 +21,7 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     private function getCategoryData(Request $request, $category) {  
         $table = new Categories();         
-        return $table::select("id")->where("url", $category)->get();
+        return $table::select("id", "title", "description", "keywords")->where("url", $category)->get();
     }
 
     // -------------------------------------------------------------
@@ -69,6 +69,53 @@ class ResultsController extends Controller {
     // результаты по стране
     // -------------------------------------------------------------    
     public function getCountryCategoryResults(Request $request, $category) {        
+
+        \Debugbar::info("start_price: ".$request->start_price);
+        \Debugbar::info("end_price: ".$request->end_price);        
+                        
+        $startPrice = $request->start_price;
+        $endPrice = $request->end_price;
+
+        $priceBetweenSql="";
+
+        if ($startPrice && $endPrice) 
+            $priceBetweenSql = " AND price BETWEEN ".$startPrice." AND ".$endPrice;
+
+        $categories = $this->getCategoryData($request, $category); 
+                                                
+        $items = DB::table("adverts as adv")->select(
+            "adv.id", 
+            "adv.title", 
+            "adv.price", 
+            DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
+        ))
+        ->where("category_id", $categories[0]->id )
+        ->paginate(1)
+        ->onEachSide(1);
+
+        \Debugbar::info($items);
+
+        $items->withPath('?country=kz&lang=ru');        
+        $locationName = $this->getLocationName($request->country);
+                
+        return view("results")    
+        ->with("title", str_replace("@place", $locationName, $categories[0]->title ))         
+        ->with("description", str_replace("@place", $locationName, $categories[0]->description ))         
+        ->with("keywords", str_replace("@place", $locationName, $categories[0]->keywords ))         
+         ->with("items", $items)
+         ->with("categoryId", $categories[0]->id)
+         ->with("subcategoryId", null)
+         // --[ фильтры ]------------------------------------------------
+         ->with("region", null)
+         ->with("city", null)
+         ->with("category", $category)
+         ->with("subcategory", null)
+         ->with("country", $request->country)
+         ->with("lang", $request->lang)
+         ->with("page", $request->page?$request->page:0)
+         ->with("start_price", $request->start_price)
+         ->with("end_price", $request->end_price);
+
     }
 
     // -------------------------------------------------------------
@@ -89,9 +136,7 @@ class ResultsController extends Controller {
                        
         $categories = $this->getCategoryData($request, $category);                         
         $subcategories = $this->getSubCategoryData($request, $subcategory);            
-
-        \Debugbar::info("check!");
-         
+                 
         $items = DB::table("adverts as adv")->select(
             "adv.id", 
             "adv.title", 
@@ -100,10 +145,7 @@ class ResultsController extends Controller {
         ))
         ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
         ->paginate(1)
-        ->onEachSide(1);
-
-        \Debugbar::info("DBRAW:");
-        \Debugbar::info($items);
+        ->onEachSide(1);        
 
         $items->withPath('?country=kz&lang=ru');
 
@@ -164,10 +206,7 @@ class ResultsController extends Controller {
          ->where("region_id", $regionData->region_id)
          ->paginate(1)
          ->onEachSide(1);
- 
-         \Debugbar::info("DBRAW:");
-         \Debugbar::info($items);
- 
+          
          $items->withPath('?country=kz&lang=ru');
  
          \Debugbar::info("субкатегория: ".$subcategory);       
