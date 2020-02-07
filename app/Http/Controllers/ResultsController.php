@@ -90,7 +90,7 @@ class ResultsController extends Controller {
             DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
         ))
         ->where("category_id", $categories[0]->id )
-        ->paginate(50)
+        ->paginate(10)
         ->onEachSide(1);
 
         \Debugbar::info($items);
@@ -144,7 +144,7 @@ class ResultsController extends Controller {
             DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
         ))
         ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
-        ->paginate(50)
+        ->paginate(10)
         ->onEachSide(1);
 
         $items->withPath('?country=kz&lang=ru');
@@ -204,7 +204,7 @@ class ResultsController extends Controller {
          ))
          ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
          ->where("region_id", $regionData->region_id)
-         ->paginate(50)
+         ->paginate(10)
          ->onEachSide(1);
           
          $items->withPath('?country=kz&lang=ru');
@@ -268,7 +268,7 @@ class ResultsController extends Controller {
          ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
          ->where("region_id", $regionData->region_id)
          ->where("city_id", $cityData->city_id)
-         ->paginate(50)
+         ->paginate(10)
          ->onEachSide(1);
  
          \Debugbar::info("DBRAW:");
