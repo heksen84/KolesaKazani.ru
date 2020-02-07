@@ -38,6 +38,7 @@
               @elseif ($advert->category_id===1 && $advert->subcategory_id===5)
                 @include('results/transport/common')
               @endif
+              
               <!-- недвижимость -->
               @if ($advert->category_id===2 && $advert->subcategory_id===9) 
                 @include('results/nedvizhimost/kvartira')
