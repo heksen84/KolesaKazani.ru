@@ -55,8 +55,7 @@
                 @include('results/nedvizhimost/nedvizhimost_za_rubezhom')  
               @endif
                             
-              @if ($advert->text!="null")        
-                <br>  
+              @if ($advert->text!="null")                
                 <ins>Описание:</ins>                
                 <div id="text">{{ $advert->text }}</div>
               @endif

@@ -456,10 +456,11 @@ class AdvertController extends Controller {
                 \Debugbar::info($advert);
                 \Debugbar::info($images);
         
+                // проработать СЕО -->
                 return view("details")
-                ->with( "title", "Подать объявление" )
-                ->with( "description", "Подать новое объявление на сайте ".config('app.name'))
-                ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте")                
+                ->with( "title", $advert[0]->title )
+                ->with( "description", $advert[0]->title )
+                ->with( "keywords", $advert[0]->title)                
                 ->with( "advert", $advert[0])                
                 ->with( "images", $images);
         }    
