@@ -39916,7 +39916,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm.getLength(_vm.title) > 8
+          _vm.getLength(_vm.title) > 5
             ? _c("div", { staticClass: "row form-group" }, [
                 _c("div", { staticClass: "col-auto" }, [
                   _c("label", { attrs: { for: "categories" } }, [
@@ -39980,8 +39980,8 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: _vm.getLength(_vm.title) > 8,
-                  expression: "getLength(title)>8"
+                  value: _vm.getLength(_vm.title) > 5,
+                  expression: "getLength(title)>5"
                 }
               ],
               attrs: { id: "advertform" },
