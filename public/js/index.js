@@ -51359,7 +51359,9 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
       if (this.searchString.length === 0) return;
 
-      if (this.searchString === "about::author") window.location = "https://moikrug.ru/heksen";else window.location = "/search?str=" + this.searchString;
+      if (this.searchString === "about::author") window.location = "https://moikrug.ru/heksen";else
+        //window.location = "/search?str="+this.searchString;
+        window.location = "?search=" + this.searchString;
     },
 
 
