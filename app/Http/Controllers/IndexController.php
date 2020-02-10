@@ -43,7 +43,8 @@ class IndexController extends Controller {
 		$regionData = $this->getRegionData($region); 
 		$placeData = $this->getPlaceData($place);
 		
-		$whereStr = "MATCH (title) AGAINST('".$str."' IN BOOLEAN MODE)";
+		if (!$regionData && !$placeData)
+			$whereStr = "MATCH (title) AGAINST('".$str."' IN BOOLEAN MODE)";
 
 		if ($regionData && !$placeData)
 			$whereStr = "MATCH (title) AGAINST('".$str."' IN BOOLEAN MODE) AND region_id=".$regionData->region_id;		
@@ -58,8 +59,8 @@ class IndexController extends Controller {
             DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
 		))
 		->whereRaw($whereStr)
-		->paginate(3)
-		->onEachSide(2);                  
+		->paginate(10)
+		->onEachSide(1);                  
         
         \Debugbar::info($items);
             
