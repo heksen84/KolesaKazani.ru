@@ -81,16 +81,16 @@ class ResultsController extends Controller {
         ->with("title", str_replace("@place", $locationName, $categories[0]->title ))         
         ->with("description", str_replace("@place", $locationName, $categories[0]->description ))         
         ->with("keywords", str_replace("@place", $locationName, $categories[0]->keywords ))         
-         ->with("items", $items)
-         ->with("categoryId", $categories[0]->id)
-         ->with("subcategoryId", null)         
-         ->with("region", null)
-         ->with("city", null)
-         ->with("category", $category)
-         ->with("subcategory", null)         
-         ->with("page", $request->page?$request->page:0)
-         ->with("start_price", $request->start_price)
-         ->with("end_price", $request->end_price);
+        ->with("items", $items)
+        ->with("categoryId", $categories[0]->id)
+        ->with("subcategoryId", null)         
+        ->with("region", null)
+        ->with("city", null)
+        ->with("category", $category)
+        ->with("subcategory", null)         
+        ->with("page", $request->page?$request->page:0)
+        ->with("start_price", $request->start_price)
+        ->with("end_price", $request->end_price);
     }
 
     // -------------------------------------------------------------
@@ -129,19 +129,19 @@ class ResultsController extends Controller {
         $locationName = $this->getLocationName();
                 
         return view("results")    
-         ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
-         ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
-         ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))         
-         ->with("items", $items)
-         ->with("categoryId", $categories[0]->id)
-         ->with("subcategoryId", $subcategories[0]->id)         
-         ->with("region", null)
-         ->with("city", null)
-         ->with("category", $category)
-         ->with("subcategory", $subcategory)         
-         ->with("page", $request->page?$request->page:0)
-         ->with("start_price", $request->start_price)
-         ->with("end_price", $request->end_price);
+        ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
+        ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
+        ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))         
+        ->with("items", $items)
+        ->with("categoryId", $categories[0]->id)
+        ->with("subcategoryId", $subcategories[0]->id)         
+        ->with("region", null)
+        ->with("city", null)
+        ->with("category", $category)
+        ->with("subcategory", $subcategory)         
+        ->with("page", $request->page?$request->page:0)
+        ->with("start_price", $request->start_price)
+        ->with("end_price", $request->end_price);
     }
 
     // -------------------------------------------------------------
@@ -183,19 +183,19 @@ class ResultsController extends Controller {
          $locationName = $this->getLocationName();
                  
          return view("results")    
-          ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
-          ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
-          ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))         
-          ->with("items", $items)
-          ->with("categoryId", $categories[0]->id)
-          ->with("subcategoryId", $subcategories[0]->id)          
-          ->with("region", $region)
-          ->with("city", null)
-          ->with("category", $category)
-          ->with("subcategory", $subcategory)          
-          ->with("page", $request->page?$request->page:0)
-          ->with("start_price", $request->start_price)
-          ->with("end_price", $request->end_price);
+         ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
+         ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
+         ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))         
+         ->with("items", $items)
+         ->with("categoryId", $categories[0]->id)
+         ->with("subcategoryId", $subcategories[0]->id)          
+         ->with("region", $region)
+         ->with("city", null)
+         ->with("category", $category)
+         ->with("subcategory", $subcategory)          
+         ->with("page", $request->page?$request->page:0)
+         ->with("start_price", $request->start_price)
+         ->with("end_price", $request->end_price);
     }
 
     // -------------------------------------------------------------
@@ -238,18 +238,18 @@ class ResultsController extends Controller {
          $locationName = $this->getLocationName();
                  
          return view("results")    
-          ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
-          ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
-          ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))         
-          ->with("items", $items)
-          ->with("categoryId", $categories[0]->id)
-          ->with("subcategoryId", $subcategories[0]->id)     
-          ->with("region", $region)
-          ->with("city", $city)
-          ->with("category", $category)
-          ->with("subcategory", $subcategory)          
-          ->with("page", $request->page?$request->page:0)
-          ->with("start_price", $request->start_price)
-          ->with("end_price", $request->end_price);
+         ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
+         ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
+         ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))         
+         ->with("items", $items)
+         ->with("categoryId", $categories[0]->id)
+         ->with("subcategoryId", $subcategories[0]->id)     
+         ->with("region", $region)
+         ->with("city", $city)
+         ->with("category", $category)
+         ->with("subcategory", $subcategory)          
+         ->with("page", $request->page?$request->page:0)
+         ->with("start_price", $request->start_price)
+         ->with("end_price", $request->end_price);
     }    
 }
