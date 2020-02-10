@@ -19,17 +19,17 @@
 
     <!-- закрыть страницу -->
     @if (!$region && !$city)
-      <a href="/" style="position:relative;left:96%;top:13px;font-size:18px">X</a>
+      <a href="/" class="close_button">X</a>
     @elseif ($region && !$city)    
-      <a href="/{{$region}}" style="position:relative;left:96%;top:13px;font-size:18px">X</a>    
+      <a href="/{{$region}}" class="close_button">X</a>    
     @elseif ($region && $city)    
-      <a href="/{{$region}}/{{$city}}" style="position:relative;left:96%;top:13px;font-size:18px">X</a>    
+      <a href="/{{$region}}/{{$city}}" class="close_button">X</a>    
     @endif
     
       <h1 class="grey">{{ $title }}</h1>
 
         <!--<div class="grey">Найдено: ({{ $items->count() }} из {{ $items->total() }} ) [ категория: {{ $categoryId }} подкатегория: {{ $subcategoryId }} ]</div>-->
-        
+
           <div class="row" style="margin-top:35px">
             
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin-bottom:10px">              
