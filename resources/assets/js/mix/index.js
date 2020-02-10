@@ -44,7 +44,7 @@ data () {
       if (this.searchString==="about::author")
         window.location = "https://moikrug.ru/heksen";    
       else
-        window.location = "/search?str="+this.searchString+"&country="+window.country+"&lang="+window.lang;
+        window.location = "/search?str="+this.searchString;
 
     },
 

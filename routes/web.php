@@ -33,13 +33,13 @@ Route::get("/", "IndexController@ShowCountryIndexPage");
 Route::get("/home", "HomeController@ShowHomePage");
 
 // Результаты по категориям по стране
-Route::get("/category/{category}", "ResultsController@getCountryCategoryResults");
+Route::get("/c/{category}", "ResultsController@getCountryCategoryResults");
 // Результаты по подкатегориям по стране
-Route::get("/category/{category}/{subcategory}", "ResultsController@getCountrySubCategoryResults");
+Route::get("/c/{category}/{subcategory}", "ResultsController@getCountrySubCategoryResults");
 // Результаты по подкатегориям по региону
-Route::get("/{region}/category/{category}/{subcategory}", "ResultsController@getRegionSubCategoryResults");
+Route::get("/{region}/c/{category}/{subcategory}", "ResultsController@getRegionSubCategoryResults");
 // Результаты по подкатегориям по местности
-Route::get("/{region}/{city}/category/{category}/{subcategory}", "ResultsController@getCitySubCategoryResults");
+Route::get("/{region}/{city}/c/{category}/{subcategory}", "ResultsController@getCitySubCategoryResults");
 
 // По всему региону
 Route::get("/{region}", "IndexController@ShowRegionIndexPage");

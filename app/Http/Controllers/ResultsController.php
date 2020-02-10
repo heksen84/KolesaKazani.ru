@@ -15,59 +15,39 @@ use App\Regions;
 use App\Places;
 
 class ResultsController extends Controller {
-    
-    // -------------------------------------------------------------
-    // получить данные категории
-    // -------------------------------------------------------------
+        
+    // получить данные категории    
     private function getCategoryData(Request $request, $category) {  
         $table = new Categories();         
         return $table::select("id", "title", "description", "keywords")->where("url", $category)->get();
     }
-
-    // -------------------------------------------------------------
+    
     // получить данные подкатегории
-    // -------------------------------------------------------------
     private function getSubCategoryData(Request $request, $subcategory) {  
         $table = new SubCats();         
         return $table::select("id", "title", "description", "keywords")->where("url", $subcategory)->get();
     }
-
-    // -------------------------------------------------------------
+    
     // получить данные региона
-    // -------------------------------------------------------------
     private function getRegionData($region) {                
         $regionId = Regions::select("region_id", "name")->where("url", $region)->get();        
         \Debugbar::info("ID региона: ".$regionId[0]->region_id);
         return $regionId[0];
     }
-
-    // -------------------------------------------------------------
+    
     // получить данные города / села
-    // -------------------------------------------------------------
     private function getCityData($city) {                
         $cityId = Places::select("city_id", "name")->where("url", $city)->get();        
         \Debugbar::info("ID города/села: ".$cityId[0]->city_id);
         return $cityId[0];
     }
-
-    // -------------------------------------------------------------
+    
     // получить расположение
-    // -------------------------------------------------------------
-    private function getLocationName($country) {        
-        
-        \Debugbar::info("Язык: ".$country);                
-        
-        switch($country) {
-            case "kz": $str = "Казахстане"; break;
-            case "ru": $str = "России"; break;        
-        }
-
-        return $str;
+    private function getLocationName() {                        
+        return "Казахстане";
     }
-
-    // -------------------------------------------------------------
+    
     // результаты по стране
-    // -------------------------------------------------------------    
     public function getCountryCategoryResults(Request $request, $category) {        
 
         \Debugbar::info("start_price: ".$request->start_price);
@@ -94,9 +74,8 @@ class ResultsController extends Controller {
         ->onEachSide(1);
 
         \Debugbar::info($items);
-
-        $items->withPath('?country=kz&lang=ru');        
-        $locationName = $this->getLocationName($request->country);
+        
+        $locationName = $this->getLocationName();        
                 
         return view("results")    
         ->with("title", str_replace("@place", $locationName, $categories[0]->title ))         
@@ -104,8 +83,7 @@ class ResultsController extends Controller {
         ->with("keywords", str_replace("@place", $locationName, $categories[0]->keywords ))         
          ->with("items", $items)
          ->with("categoryId", $categories[0]->id)
-         ->with("subcategoryId", null)
-         // --[ фильтры ]------------------------------------------------
+         ->with("subcategoryId", null)         
          ->with("region", null)
          ->with("city", null)
          ->with("category", $category)
@@ -115,7 +93,6 @@ class ResultsController extends Controller {
          ->with("page", $request->page?$request->page:0)
          ->with("start_price", $request->start_price)
          ->with("end_price", $request->end_price);
-
     }
 
     // -------------------------------------------------------------
@@ -145,15 +122,13 @@ class ResultsController extends Controller {
         ))
         ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
         ->paginate(10)
-        ->onEachSide(1);
-
-        $items->withPath('?country=kz&lang=ru');
+        ->onEachSide(1);        
 
         \Debugbar::info("субкатегория: ".$subcategory);       
         \Debugbar::info("id субкатегории: ".$subcategories);      
         \Debugbar::info($items);
 
-        $locationName = $this->getLocationName($request->country);
+        $locationName = $this->getLocationName();
                 
         return view("results")    
          ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
@@ -161,8 +136,7 @@ class ResultsController extends Controller {
          ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))         
          ->with("items", $items)
          ->with("categoryId", $categories[0]->id)
-         ->with("subcategoryId", $subcategories[0]->id)
-         // --[ фильтры ]------------------------------------------------
+         ->with("subcategoryId", $subcategories[0]->id)         
          ->with("region", null)
          ->with("city", null)
          ->with("category", $category)
@@ -205,15 +179,13 @@ class ResultsController extends Controller {
          ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
          ->where("region_id", $regionData->region_id)
          ->paginate(10)
-         ->onEachSide(1);
-          
-         $items->withPath('?country=kz&lang=ru');
+         ->onEachSide(1);                 
  
          \Debugbar::info("субкатегория: ".$subcategory);       
          \Debugbar::info("id субкатегории: ".$subcategories);      
          \Debugbar::info($items);
  
-         $locationName = $this->getLocationName($request->country);
+         $locationName = $this->getLocationName();
                  
          return view("results")    
           ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
@@ -221,8 +193,7 @@ class ResultsController extends Controller {
           ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))         
           ->with("items", $items)
           ->with("categoryId", $categories[0]->id)
-          ->with("subcategoryId", $subcategories[0]->id)
-          // --[ фильтры ]------------------------------------------------
+          ->with("subcategoryId", $subcategories[0]->id)          
           ->with("region", $region)
           ->with("city", null)
           ->with("category", $category)
@@ -232,8 +203,6 @@ class ResultsController extends Controller {
           ->with("page", $request->page?$request->page:0)
           ->with("start_price", $request->start_price)
           ->with("end_price", $request->end_price);
-
-
     }
 
     // -------------------------------------------------------------
@@ -270,17 +239,12 @@ class ResultsController extends Controller {
          ->where("city_id", $cityData->city_id)
          ->paginate(10)
          ->onEachSide(1);
- 
-         \Debugbar::info("DBRAW:");
-         \Debugbar::info($items);
- 
-         $items->withPath('?country=kz&lang=ru');
- 
+  
          \Debugbar::info("субкатегория: ".$subcategory);       
          \Debugbar::info("id субкатегории: ".$subcategories);      
          \Debugbar::info($items);
  
-         $locationName = $this->getLocationName($request->country);
+         $locationName = $this->getLocationName();
                  
          return view("results")    
           ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
@@ -288,8 +252,7 @@ class ResultsController extends Controller {
           ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))         
           ->with("items", $items)
           ->with("categoryId", $categories[0]->id)
-          ->with("subcategoryId", $subcategories[0]->id)
-          // --[ фильтры ]------------------------------------------------
+          ->with("subcategoryId", $subcategories[0]->id)     
           ->with("region", $region)
           ->with("city", $city)
           ->with("category", $category)
@@ -299,7 +262,5 @@ class ResultsController extends Controller {
           ->with("page", $request->page?$request->page:0)
           ->with("start_price", $request->start_price)
           ->with("end_price", $request->end_price);
-
-    }
-    
+    }    
 }
