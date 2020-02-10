@@ -13,15 +13,54 @@ use DB;
 
 class IndexController extends Controller {
 
-	// получить расположение
-    private function search($str, $region, $place) {		                
+
+	// получить данные региона
+    private function getRegionData($region) {                
+		
+		if (!$region)
+			return false;
+
+        $regionId = Regions::select("region_id")->where("url", $region)->get();        
+		\Debugbar::info("ID региона: ".$regionId[0]->region_id);
+		
+        return $regionId[0];
+    }
+    
+    // получить данные города / села
+    private function getPlaceData($place) {                
+
+		if (!$place)
+			return false;
+
+        $placeId = Places::select("city_id")->where("url", $place)->get();        
+		\Debugbar::info("ID города/села: ".$placeId[0]->city_id);
+		
+        return $placeId[0];
+    }
+
+	// найти по строке
+    private function search($str, $region, $place) {
+		
+		$regionData = $this->getRegionData($region); 
+		$placeData = $this->getPlaceData($place);
+		
+		$whereStr = "MATCH (title) AGAINST('".$str."' IN BOOLEAN MODE)";
+
+		if ($regionData && !$placeData)
+			$whereStr = "MATCH (title) AGAINST('".$str."' IN BOOLEAN MODE) AND region_id=".$regionData->region_id;		
+
+		if ($regionData && $placeData)
+			$whereStr = "MATCH (title) AGAINST('".$str."' IN BOOLEAN MODE) AND region_id=".$regionData->region_id." AND city_id=".$placeData->city_id;		
         
         $items = DB::table("adverts as adv")->select(
             "adv.id", 
             "adv.title", 
             "adv.price",
             DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
-        ))->whereRaw("MATCH (title) AGAINST('".$str."' IN BOOLEAN MODE)")->paginate(3)->onEachSide(2);                  
+		))
+		->whereRaw($whereStr)
+		->paginate(3)
+		->onEachSide(2);                  
         
         \Debugbar::info($items);
             
@@ -47,7 +86,6 @@ class IndexController extends Controller {
 		
 		if ($request->search!="")
 			return $this->search($request->search, $region, $place);		
-		
 		
 			$sklonResult="";
 						
