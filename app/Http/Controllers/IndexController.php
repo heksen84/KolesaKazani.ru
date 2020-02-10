@@ -13,7 +13,9 @@ use DB;
 
 class IndexController extends Controller {
 
+	// ------------------------------------------
 	// получить данные региона
+	// ------------------------------------------
     private function getRegionData($region) {                
 		
 		if (!$region)
@@ -25,7 +27,9 @@ class IndexController extends Controller {
         return $regionId[0];
     }
     
-    // получить данные города / села
+	// ------------------------------------------
+	// получить данные города / села
+	// ------------------------------------------
     private function getPlaceData($place) {                
 
 		if (!$place)
@@ -37,7 +41,9 @@ class IndexController extends Controller {
         return $placeId[0];
     }
 
+	// ------------------------------------------
 	// найти по строке
+	// ------------------------------------------
     private function search($str, $region, $place) {
 		
 		$regionData = $this->getRegionData($region); 
@@ -81,7 +87,9 @@ class IndexController extends Controller {
             ->with("end_price", 0);          
     }
 		    	
+	// ------------------------------------------
 	// Базовая функция для главной страницы		
+	// ------------------------------------------
     private function ShowIndexPage(Request $request, $region, $place) {
 		
 		if ($request->search!="")
@@ -105,8 +113,7 @@ class IndexController extends Controller {
 			$location = $region;
 			$locationName = Regions::select("name")->where("url", $region)->get();
 			$regionArr = $locationName; // ???
-			$locationName = $locationName[0]->name;
-			//$regionArr = Regions::select("name")->where("url", $region)->get();	
+			$locationName = $locationName[0]->name;			
 
 			if ($regionArr->count()>0) {
 				
@@ -183,7 +190,9 @@ class IndexController extends Controller {
 		->with("newAdverts", $newAdverts);
     }
 
-    // Cтрана
+	// ------------------------------------------
+	// Cтрана
+	// ------------------------------------------
     public function ShowCountryIndexPage(Request $request) {
 
 		//\Debugbar::info("COUNTRY: ".config('app.country'));		
@@ -193,12 +202,16 @@ class IndexController extends Controller {
 	    return $this->ShowIndexPage($request, null, null);
     }		
 
-    // Регион
+	// ------------------------------------------
+	// Регион
+	// ------------------------------------------
     public function ShowRegionIndexPage(Request $request, $region) {
 	    return $this->ShowIndexPage($request, $region, null);
     }		
 
-    // Город или село
+	// ------------------------------------------
+	// Город или село
+	// ------------------------------------------
     public function ShowPlaceIndexPage(Request $request, $region, $place) {
 	    return $this->ShowIndexPage($request, $region, $place);
     }		
