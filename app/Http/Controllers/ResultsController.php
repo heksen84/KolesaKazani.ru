@@ -45,10 +45,10 @@ class ResultsController extends Controller {
     // получить расположение
     private function getLocationName() {                        
         return "Казахстане";
-    }
+    }    
     
     // результаты по стране
-    public function getCountryCategoryResults(Request $request, $category) {        
+    public function getCountryCategoryResults(Request $request, $category) {     
 
         \Debugbar::info("start_price: ".$request->start_price);
         \Debugbar::info("end_price: ".$request->end_price);        
@@ -96,7 +96,8 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     // результаты по стране
     // -------------------------------------------------------------    
-    public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {        
+    public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {
+        
         
         \Debugbar::info("start_price: ".$request->start_price);
         \Debugbar::info("end_price: ".$request->end_price);        

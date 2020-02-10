@@ -12,14 +12,44 @@ use App\Places;
 use DB;
 
 class IndexController extends Controller {
-		    
-	// ------------------------------------------------
-	// Базовая функция для главной страницы	
-	// ------------------------------------------------
-    private function ShowIndexPage($region, $place) {
+
+	// получить расположение
+    private function search($str, $region, $place) {		                
+        
+        $items = DB::table("adverts as adv")->select(
+            "adv.id", 
+            "adv.title", 
+            "adv.price",
+            DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
+        ))->whereRaw("MATCH (title) AGAINST('".$str."' IN BOOLEAN MODE)")->paginate(3)->onEachSide(2);                  
+        
+        \Debugbar::info($items);
+            
+        return view("results")         
+            ->with("title", $str)         
+            ->with("description", "Результаты поиска по запросу: ".$str)         
+            ->with("keywords", "поиск, результат, запрос")
+            ->with("items", $items)             
+            ->with("categoryId", null)
+            ->with("subcategoryId", null)
+            ->with("region", null)
+            ->with("city", null)
+            ->with("category", null)
+            ->with("subcategory", null)            
+            ->with("page", 0)
+            ->with("startPage", 0)
+            ->with("start_price", 0)
+            ->with("end_price", 0);          
+    }
+		    	
+	// Базовая функция для главной страницы		
+    private function ShowIndexPage(Request $request, $region, $place) {
+		
+		if ($request->search!="")
+			return $this->search($request->search, $region, $place);		
 		
 		
-		$sklonResult="";
+			$sklonResult="";
 						
 		// Страна
 		if ($region===null && $place===null) {
@@ -82,8 +112,7 @@ class IndexController extends Controller {
 			else 
 				return view("errors/404"); // редирект
 		}
-		
-		
+				
 		$subcats = DB::table("subcats")
 			->join("categories", "categories.id", "=", "subcats.category_id")
 			->select("subcats.*", "categories.url as category_url")
@@ -102,7 +131,6 @@ class IndexController extends Controller {
 		
 		\Debugbar::info("-- newAdverts --");
 		\Debugbar::info($newAdverts);
-
 											
 		return view("index")		
 		->with("locationName", $locationName)
@@ -118,24 +146,23 @@ class IndexController extends Controller {
     }
 
     // Cтрана
-    public function ShowCountryIndexPage() {
+    public function ShowCountryIndexPage(Request $request) {
 
-		\Debugbar::info("COUNTRY: ".config('app.country'));		
+		//\Debugbar::info("COUNTRY: ".config('app.country'));		
+		//\Cache::put('mykey', '12345');		
+		//\Debugbar::info("mykey: ".\Cache::get('mykey'));		
 
-		\Cache::put('mykey', '12345');		
-		\Debugbar::info("mykey: ".\Cache::get('mykey'));		
-
-	    return $this->ShowIndexPage(null, null);
+	    return $this->ShowIndexPage($request, null, null);
     }		
 
     // Регион
-    public function ShowRegionIndexPage($region) {
-	    return $this->ShowIndexPage($region, null);
+    public function ShowRegionIndexPage(Request $request, $region) {
+	    return $this->ShowIndexPage($request, $region, null);
     }		
 
     // Город или село
-    public function ShowPlaceIndexPage($region, $place) {
-	    return $this->ShowIndexPage($region, $place);
+    public function ShowPlaceIndexPage(Request $request, $region, $place) {
+	    return $this->ShowIndexPage($request, $region, $place);
     }		
 					
 }

@@ -6,6 +6,7 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 // Сервисы (было внизу)
 Route::get("/moderator", "ModeratorController@showHomePage");
+
 Route::get("/util/str2url", "UtilsController@str2url");
 
 // детали объявления
