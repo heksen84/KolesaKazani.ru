@@ -125,17 +125,6 @@ class ApiController extends Controller {
             
             $advert = new Adverts();
 
-            /*\Debugbar::info("телефон до: ".$phone);
-            
-            $strArr = str_split($phone);            
-            $newStr=[];
-            foreach($strArr as $key => $item) {                
-                $newStr[$key] = $item & "1";
-            }
-
-            \Debugbar::info(implode($newStr));*/
-            
-
      		$advert->user_id         = Auth::id();
             $advert->title  	     = $title;
             $advert->text  	         = $text;
