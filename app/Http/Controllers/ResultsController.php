@@ -167,8 +167,7 @@ class ResultsController extends Controller {
             $categories = $this->getCategoryData($request, $category);
             $subcategories = $this->getSubCategoryData($request, $subcategory);
             $regionData = $this->getRegionData($region);           
- 
-         \Debugbar::info("check!");
+         
  
          $items = DB::table("adverts as adv")->select(
              "adv.id", 
@@ -224,9 +223,7 @@ class ResultsController extends Controller {
             $categories = $this->getCategoryData($request, $category);
             $subcategories = $this->getSubCategoryData($request, $subcategory);
             $regionData = $this->getRegionData($region); 
-            $cityData = $this->getCityData($city);          
- 
-         \Debugbar::info("check!");
+            $cityData = $this->getCityData($city);                   
  
          $items = DB::table("adverts as adv")->select(
              "adv.id", 
