@@ -72,7 +72,7 @@ class ApiController extends Controller {
         // правила валидации
         // ---------------------------
         $rules = [            
-            "adv_title"     => "required|string|min:9|max:100", 
+            "adv_title"     => "required|string|min:5|max:100", 
             "adv_category"  => "required|numeric|min:0", 
             "adv_phone"     => "required|string|max:14",            
             "region_id"     => "required|numeric|min:0",

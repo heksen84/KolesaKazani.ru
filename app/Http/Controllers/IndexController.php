@@ -13,7 +13,6 @@ use DB;
 
 class IndexController extends Controller {
 
-
 	// получить данные региона
     private function getRegionData($region) {                
 		
