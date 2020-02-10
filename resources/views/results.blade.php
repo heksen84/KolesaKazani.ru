@@ -41,7 +41,7 @@
 
             @foreach($items as $item)
               <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">                  
-                <a href="/objavlenie/{{ $item->id }}">
+                <a href="/objavlenie/show/{{ $item->id }}">
                   <div class="card text-left" style="height:270px;margin:3px">
                     <img class="card-img-top" src="{{ $item->imageName }}" alt="{{ $item->title }}">
                       <div class="card-body">                                                                                             

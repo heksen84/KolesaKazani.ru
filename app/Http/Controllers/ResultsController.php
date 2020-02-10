@@ -87,9 +87,7 @@ class ResultsController extends Controller {
          ->with("region", null)
          ->with("city", null)
          ->with("category", $category)
-         ->with("subcategory", null)
-         ->with("country", $request->country)
-         ->with("lang", $request->lang)
+         ->with("subcategory", null)         
          ->with("page", $request->page?$request->page:0)
          ->with("start_price", $request->start_price)
          ->with("end_price", $request->end_price);
@@ -140,9 +138,7 @@ class ResultsController extends Controller {
          ->with("region", null)
          ->with("city", null)
          ->with("category", $category)
-         ->with("subcategory", $subcategory)
-         ->with("country", $request->country)
-         ->with("lang", $request->lang)
+         ->with("subcategory", $subcategory)         
          ->with("page", $request->page?$request->page:0)
          ->with("start_price", $request->start_price)
          ->with("end_price", $request->end_price);
@@ -196,9 +192,7 @@ class ResultsController extends Controller {
           ->with("region", $region)
           ->with("city", null)
           ->with("category", $category)
-          ->with("subcategory", $subcategory)
-          ->with("country", $request->country)
-          ->with("lang", $request->lang)
+          ->with("subcategory", $subcategory)          
           ->with("page", $request->page?$request->page:0)
           ->with("start_price", $request->start_price)
           ->with("end_price", $request->end_price);
@@ -253,9 +247,7 @@ class ResultsController extends Controller {
           ->with("region", $region)
           ->with("city", $city)
           ->with("category", $category)
-          ->with("subcategory", $subcategory)
-          ->with("country", $request->country)
-          ->with("lang", $request->lang)
+          ->with("subcategory", $subcategory)          
           ->with("page", $request->page?$request->page:0)
           ->with("start_price", $request->start_price)
           ->with("end_price", $request->end_price);

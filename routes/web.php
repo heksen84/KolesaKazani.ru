@@ -9,7 +9,7 @@ Route::get("/moderator", "ModeratorController@showHomePage");
 Route::get("/util/str2url", "UtilsController@str2url");
 
 // детали объявления
-Route::get("/objavlenie/{id}", "AdvertController@getDetails");
+Route::get("/objavlenie/show/{id}", "AdvertController@getDetails");
 
 // Новое объявление
 Route::get("/search", "SearchController@search");
