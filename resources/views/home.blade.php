@@ -23,7 +23,7 @@
   <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="/">Подать объявление <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/podat-obyavlenie">Подать объявление <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Счёт: 4000 тнг. [ пополнить ]</a>
