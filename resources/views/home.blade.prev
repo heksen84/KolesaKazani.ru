@@ -37,27 +37,42 @@
 
 <div class="container-fluid mycontainer text-center">
 
-@if (count($results)>0)
-  @foreach($results as $key => $item)
-    <div class="row text-left">
-      <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 col-title"><span id="title">{{ $item["title"] }}</span></div>
-      <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-status text-center"><span id="status"><ins>cтатус</ins><br>на модерации</span></div>
-      <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-action text-center">
-        <button class="btn btn-outline-primary btn-sm m-1">срочно, торг</button>
-        <button class="btn btn-outline-success btn-sm m-1">продлить</button>            
-        <button class="btn btn-outline-success btn-sm m-1">поднять в топ</button>
-        <button class="btn btn-outline-secondary btn-sm m-1">покрасить</button>
-      </div>
-    </div>
-  @endforeach 
-  @else
-  <br>
-  <h3>нет объявлений</h3>
-  <br>
-  <a href="/" class="btn btn-primary btn-sm">Подать объявление</a>
-@endif
-  
+  @if (count($results)>0)
+  <div class="row">    
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th scope="col" style="width:1%">№</th>
+          <th scope="col">Заголовок</th>
+          <th scope="col" style="width:14%">Статус</th>
+          <th scope="col" style="width:15%">Действие</th>      
+        </tr>
+      </thead>
+    <tbody>
+    @foreach($results as $key => $item)
+      <tr>
+        <th scope="row">{{ $key+1 }}</th>
+          <td>{{ $item["title"] }}</td>
+          <td class="text-center">На модерации</td>
+          <td class="text-center">
+            <button class="btn btn-outline-primary btn-sm m-1 full-width">срочно, торг</button>
+            <button class="btn btn-outline-success btn-sm m-1 full-width">продлить</button>            
+            <button class="btn btn-outline-success btn-sm m-1 full-width">поднять в топ</button>
+            <button class="btn btn-outline-secondary btn-sm m-1 full-width">покрасить</button>
+          </td>
+      </tr>
+      @endforeach    
+    </tbody>
+  </table>
 </div>
+@else
+<br>
+<h3>нет объявлений</h3>
+<br>
+<a href="/" class="btn btn-primary btn-sm">Подать объявление</a>
+@endif
+</div>
+
 <script type="text/javascript" src="{{ mix('js/home.js') }}"></script>
 </body>
 </html>

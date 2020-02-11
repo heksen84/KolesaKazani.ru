@@ -1,0 +1,33 @@
+.row:hover {
+    background:rgb(245,245,245);
+}
+
+.col-title {
+    border:1px solid rgb(230,230,230);
+    padding:4px;
+    margin:0px;
+}
+
+.col-status {
+    border:1px solid rgb(230,230,230);
+    padding:4px;
+    margin:0px;
+}
+
+.col-action {
+    border:1px solid rgb(230,230,230);
+    padding:16px;
+    margin:0px;
+}
+
+#title {
+    margin:10px;
+}
+
+#status {}
+
+@media screen and (min-width:800px) {
+    .btn {
+        width:100%;
+    }
+}
