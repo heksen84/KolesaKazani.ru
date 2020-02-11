@@ -1,10 +1,5 @@
-.mycontainer {
-    margin-top:2px;
-}
-
 .row {
-    border: 2px solid rgb(230,230,230);    
-    margin-top:-2px;
+    border: 1px solid rgb(230,230,230);    
 }
 .row:hover {
     background:rgb(245,245,245);
@@ -32,9 +27,7 @@
     margin:10px;
 }
 
-#status {
-
-}
+/*#status {}*/
 
 @media screen and (min-width:800px) {
     .btn {

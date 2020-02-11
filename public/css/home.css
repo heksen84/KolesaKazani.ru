@@ -1,10 +1,5 @@
-.mycontainer {
-  margin-top: 2px;
-}
-
 .row {
-  border: 2px solid #e6e6e6;
-  margin-top: -2px;
+  border: 1px solid #e6e6e6;
 }
 
 .row:hover {
@@ -32,6 +27,8 @@
 #title {
   margin: 10px;
 }
+
+/*#status {}*/
 
 @media screen and (min-width: 800px) {
   .btn {
