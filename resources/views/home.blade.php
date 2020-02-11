@@ -50,7 +50,7 @@
       </div>
     </div>
   @endforeach 
-  @else
+@else
   <br>
   <h3>нет объявлений</h3>
   <br>
