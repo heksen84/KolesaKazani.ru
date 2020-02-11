@@ -1,3 +1,12 @@
+.mycontainer {
+  margin-top: 2px;
+}
+
+.row {
+  border: 2px solid #e6e6e6;
+  margin-top: -2px;
+}
+
 .row:hover {
   background: whitesmoke;
 }

@@ -36,19 +36,18 @@
 </nav>
 
 <div class="container-fluid mycontainer text-center">
-
-@if (count($items)>0)
-  @foreach($items as $key => $item)
-    <div class="row text-left">
-      <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 col-title"><span id="title">{{ $item->title }}</span></div>
-      <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-status text-center"><span id="status"><ins>cтатус</ins><br>на модерации</span></div>
-      <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-action text-center">
-        <button class="btn btn-outline-primary btn-sm m-1">срочно, торг</button>
-        <button class="btn btn-outline-success btn-sm m-1">продлить</button>            
-        <button class="btn btn-outline-success btn-sm m-1">поднять в топ</button>
-        <button class="btn btn-outline-secondary btn-sm m-1">покрасить</button>
+  @if (count($items)>0)
+    @foreach($items as $key => $item)
+      <div class="row text-left">
+        <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 col-title"><span id="title">{{ $item->title }}</span></div>
+        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-status text-center"><span id="status"><ins>cтатус</ins><br>на модерации</span></div>
+        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-action text-center">
+          <button class="btn btn-outline-primary btn-sm m-1">срочно, торг</button>
+          <button class="btn btn-outline-success btn-sm m-1">продлить</button>            
+          <button class="btn btn-outline-success btn-sm m-1">поднять в топ</button>
+          <button class="btn btn-outline-secondary btn-sm m-1">покрасить</button>
+        </div>
       </div>
-    </div>
   @endforeach 
 @else
   <br>
@@ -57,8 +56,7 @@
   <a href="/" class="btn btn-primary btn-sm">Подать объявление</a>
 @endif
 
-<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">                
-  <hr>
+<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin-top:15px">  
     <div class="pagination justify-content-center pagination-sm">
       <!--<div class="pagination justify-content-center">-->
       {{ $items->links() }}                         
