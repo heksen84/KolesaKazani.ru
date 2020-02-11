@@ -11,7 +11,17 @@ use App\Adverts;
 use App\Images;
 
 
-class AdvertController extends Controller {      
+class AdvertController extends Controller {
+
+        private $raw_engine_type = 
+        "CASE 
+        WHEN transport.engine_type=0 THEN 'бензин' 
+        WHEN transport.engine_type=1 THEN 'дизель' 
+        WHEN transport.engine_type=2 THEN 'газ-бензин'
+        WHEN transport.engine_type=3 THEN 'газ'
+        WHEN transport.engine_type=4 THEN 'гибрид'
+        WHEN transport.engine_type=5 THEN 'электричество'
+        ELSE '-' END as engine_type";
                 
         // --------------------------------------------------
         // новое объявление
@@ -77,14 +87,7 @@ class AdvertController extends Controller {
                                 "transport.year", 
                                 DB::raw("CASE WHEN transport.steering_position=0 THEN 'слева' ELSE 'справа' END as steering_position"),
                                 "transport.mileage",
-                                DB::raw("CASE 
-                                WHEN transport.engine_type=0 THEN 'бензин' 
-                                WHEN transport.engine_type=1 THEN 'дизель' 
-                                WHEN transport.engine_type=2 THEN 'газ-бензин'
-                                WHEN transport.engine_type=3 THEN 'газ'
-                                WHEN transport.engine_type=4 THEN 'гибрид'
-                                WHEN transport.engine_type=5 THEN 'электричество'
-                                ELSE '-' END as engine_type"),
+                                DB::raw($this->raw_engine_type),
                                 DB::raw("CASE WHEN transport.customs=1 THEN 'да' ELSE 'нет' END as customs"),                                
                                 DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
                                 ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -114,14 +117,7 @@ class AdvertController extends Controller {
                                 "transport.year", 
                                 DB::raw("CASE WHEN transport.steering_position=0 THEN 'слева' ELSE 'справа' END as steering_position"),
                                 "transport.mileage",
-                                DB::raw("CASE 
-                                WHEN transport.engine_type=0 THEN 'бензин' 
-                                WHEN transport.engine_type=1 THEN 'дизель' 
-                                WHEN transport.engine_type=2 THEN 'газ-бензин'
-                                WHEN transport.engine_type=3 THEN 'газ'
-                                WHEN transport.engine_type=4 THEN 'гибрид'
-                                WHEN transport.engine_type=5 THEN 'электричество'
-                                ELSE '-' END as engine_type"),
+                                DB::raw($this->raw_engine_type),
                                 DB::raw("CASE WHEN transport.customs=1 THEN 'да' ELSE 'нет' END as customs"),                                
                                 DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
                                 ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -191,14 +187,7 @@ class AdvertController extends Controller {
                                 "transport.year", 
                                 DB::raw("CASE WHEN transport.steering_position=0 THEN 'слева' ELSE 'справа' END as steering_position"),
                                 "transport.mileage",
-                                DB::raw("CASE 
-                                WHEN transport.engine_type=0 THEN 'бензин' 
-                                WHEN transport.engine_type=1 THEN 'дизель' 
-                                WHEN transport.engine_type=2 THEN 'газ-бензин'
-                                WHEN transport.engine_type=3 THEN 'газ'
-                                WHEN transport.engine_type=4 THEN 'гибрид'
-                                WHEN transport.engine_type=5 THEN 'электричество'
-                                ELSE '-' END as engine_type"),
+                                DB::raw($this->raw_engine_type),
                                 DB::raw("CASE WHEN transport.customs=1 THEN 'да' ELSE 'нет' END as customs"),                                
                                 DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
                                 ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
