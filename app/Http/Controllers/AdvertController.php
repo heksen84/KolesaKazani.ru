@@ -12,16 +12,6 @@ use App\Images;
 
 
 class AdvertController extends Controller {
-
-        private $raw_engine_type = 
-        "CASE 
-        WHEN transport.engine_type=0 THEN 'бензин' 
-        WHEN transport.engine_type=1 THEN 'дизель' 
-        WHEN transport.engine_type=2 THEN 'газ-бензин'
-        WHEN transport.engine_type=3 THEN 'газ'
-        WHEN transport.engine_type=4 THEN 'гибрид'
-        WHEN transport.engine_type=5 THEN 'электричество'
-        ELSE '-' END as engine_type";
                 
         // --------------------------------------------------
         // новое объявление
@@ -42,9 +32,20 @@ class AdvertController extends Controller {
                         ->with( "lang", $request->lang );                        
                 }
                 else 
-                return redirect('/login');
+                        return redirect('/login');
         }                
-     
+
+        
+        private $raw_engine_type = "CASE 
+                WHEN transport.engine_type=0 THEN 'бензин' 
+                WHEN transport.engine_type=1 THEN 'дизель' 
+                WHEN transport.engine_type=2 THEN 'газ-бензин'
+                WHEN transport.engine_type=3 THEN 'газ'
+                WHEN transport.engine_type=4 THEN 'гибрид'
+                WHEN transport.engine_type=5 THEN 'электричество'
+                ELSE '-' 
+                END as engine_type";
+        
         // --------------------------------------------------
         // детали объявления
         // --------------------------------------------------
