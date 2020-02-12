@@ -22,11 +22,13 @@ class HomeController extends Controller {
         ->paginate(10)
         ->onEachSide(1);                
 
+        $userName = Auth::user()->name;
+
         return view("home")
         ->with("items", $items)
-        ->with("title", "Личный кабинет ".Auth::id())
-        ->with("description", "Личный кабинет")
-        ->with("keywords", "Личный кабинет");    
+        ->with("title", "Личный кабинет ".$userName)
+        ->with("description", "Личный кабинет пользователя ".$userName)
+        ->with("keywords", "Личный кабинет, ".$userName);    
     
     }		
 					
