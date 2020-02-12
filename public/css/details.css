@@ -36,8 +36,16 @@ h1 {
 }
 
 #phone-number {
+  display: none;
   margin-top: 15px;
   font-size: 18px;
+  text-align: center;
+  border: 1px solid #b4c8b4;
+  padding: 5px;
+}
+
+#phone-number a {
+  color: #505050;
 }
 
 #map {

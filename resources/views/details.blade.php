@@ -70,7 +70,7 @@
                 <img src='{{ $image->name }}' alt='{{ $image->name }}'></img>
               @endforeach
 
-            <button type="button" class="btn btn-primary btn-sm" id="showNumberBtn">показать номер</button>
+            <button type="button" class="btn btn-primary full-width" id="showNumberBtn">показать номер</button>
             
             <div id="phone-number"></div>
             <div id="map"></div>        
