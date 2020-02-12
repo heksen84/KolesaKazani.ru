@@ -49,11 +49,9 @@
         </div>
       </div>
   @endforeach 
-@else
-  <br>
-  <h3>нет объявлений</h3>
-  <br>
-  <a href="/" class="btn btn-primary btn-sm">Подать объявление</a>
+@else  
+  <h3 class="mt-5">нет объявлений</h3>  
+  <a href="/podat-obyavlenie" class="btn btn-danger mt-2" role="button" style="width:180px">Подать объявление</a>
 @endif
 
 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin-top:15px">  
