@@ -10,6 +10,7 @@
   border: 1px solid #e6e6e6;
   padding: 4px;
   word-wrap: break-word;
+  letter-spacing: 1px;
 }
 
 .col-status {
@@ -25,12 +26,6 @@
   margin: 0px;
   word-wrap: break-word;
 }
-
-/*#title {
-    margin:0px;    
-}*/
-
-/*#status {}*/
 
 @media screen and (min-width: 800px) {
   .btn {
