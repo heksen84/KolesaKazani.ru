@@ -118,33 +118,35 @@
       </div>
     </div>
   
-  <div class="row" style="margin-top:30px">
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-      <h3>Новые объявления</h3>  
-      <br>
-    </div>
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3" v-for="i in {{ $newAdverts }}">
-      <div class="card" style="width: 18rem;margin:auto">
-        <!--<img src="..." class="card-img-top" alt="...">-->
-        <div class="card-body">
-        <h6 class="card-title">${ i.title }</h6>
-        <p class="card-text">Цена ${ i.price } тнг.</p>        
+  <div class="row mt-3">
+    @if (count($newAdverts)>0)    
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+        <h3>Новые объявления</h3>  
+        <br>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3" v-for="i in {{ $newAdverts }}">
+        <div class="card" style="width: 18rem;margin:auto">    
+          <div class="card-body">
+          <h6 class="card-title">${ i.title }</h6>
+          <p class="card-text">Цена ${ i.price } тнг.</p>        
+        </div>
       </div>
     </div>
+  @endif
+
+  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+    <br>
+    <h3>Adscence</h3>
   </div>
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-      <br>
-      <h3>Adscence</h3>
-    </div>
-  </div>   
 
-  <div class="row" style="margin-top:40px">
-     <a href="http://flix:90/aktyubinskaya-obl/aktyubinsk" class="hide">Актюбинск</a>
-     <a href="http://flix:90/pavlodarskaya-obl" class="hide">Павлодарская обл.</a>
-    <div id="footer"><a href="/advertisers" class="underline_link">Реклама</a> | <a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a></div>
-  </div>  
+</div>   
 
- </div>
+<div class="row mt-3">
+  <div id="footer"><a href="/advertisers" class="underline_link">Реклама</a> | <a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a></div>
+</div>  
+
+</div>
+
 </div>  
   <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>  
 </body>
