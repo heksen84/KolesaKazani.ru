@@ -41,7 +41,7 @@
       <div class="row text-left">
         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 col-title">
         <span id="title">{{ $item->title }}</span>
-        <b><div>Просмотров(12)|Сообщений(11)</div></b>
+        <b><div>Просмотров(?)|Сообщений(?)</div></b>
         </div>
         <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-status text-center"><span id="status"><ins>cтатус</ins><br>на модерации</span></div>
         <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-action text-center">
