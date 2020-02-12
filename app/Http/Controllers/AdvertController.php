@@ -75,6 +75,7 @@ class AdvertController extends Controller {
                         $advert = DB::table("adverts as adv")->select(                                 
                                 "adv.category_id",
                                 "adv.subcategory_id",
+                                "adv.created_at",
                                 "adv.id", 
                                 "adv.title", 
                                 "adv.text", 
@@ -107,6 +108,7 @@ class AdvertController extends Controller {
                         $advert = DB::table("adverts as adv")->select(                                 
                                 "adv.category_id",
                                 "adv.subcategory_id",
+                                "adv.created_at",
                                 "adv.id", 
                                 "adv.title", 
                                 "adv.text", 
@@ -134,7 +136,8 @@ class AdvertController extends Controller {
 
                         $advert = Adverts::select(
                                 "category_id",
-                                "subcategory_id",                                
+                                "subcategory_id",
+                                "created_at",                                
                                 "id", 
                                 "title", 
                                 "text", 
@@ -155,7 +158,8 @@ class AdvertController extends Controller {
 
                         $advert = Adverts::select(
                                 "category_id",
-                                "subcategory_id",                                
+                                "subcategory_id",                            
+                                "created_at",                                    
                                 "id", 
                                 "title", 
                                 "text", 
@@ -177,6 +181,7 @@ class AdvertController extends Controller {
                         $advert = DB::table("adverts as adv")->select(                                 
                                 "adv.category_id",
                                 "adv.subcategory_id",
+                                "adv.created_at",
                                 "adv.id", 
                                 "adv.title", 
                                 "adv.text", 
@@ -203,7 +208,8 @@ class AdvertController extends Controller {
                 if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id > 5) {                        
                         $advert = Adverts::select(
                         "category_id",
-                        "subcategory_id",                                 
+                        "subcategory_id",        
+                        "created_at",                         
                         "id", 
                         "title", 
                         "text", 
@@ -228,6 +234,7 @@ class AdvertController extends Controller {
                         $advert = DB::table("adverts as adv")->select(                                 
                         "adv.category_id",
                         "adv.subcategory_id",
+                        "adv.created_at",
                         "adv.id", 
                         "adv.title", 
                         "adv.text", 
@@ -255,6 +262,7 @@ class AdvertController extends Controller {
                         $advert = DB::table("adverts as adv")->select(                                 
                         "adv.category_id",
                         "adv.subcategory_id",
+                        "adv.created_at",
                         "adv.id", 
                         "adv.title", 
                         "adv.text", 
@@ -280,6 +288,7 @@ class AdvertController extends Controller {
                         $advert = DB::table("adverts as adv")->select(                                 
                         "adv.category_id",
                         "adv.subcategory_id",
+                        "adv.created_at",
                         "adv.id", 
                         "adv.title", 
                         "adv.text", 
@@ -311,6 +320,7 @@ class AdvertController extends Controller {
                         $advert = DB::table("adverts as adv")->select(                                 
                         "adv.category_id",
                         "adv.subcategory_id",
+                        "adv.created_at",
                         "adv.id", 
                         "adv.title", 
                         "adv.text", 
@@ -333,6 +343,7 @@ class AdvertController extends Controller {
                         $advert = DB::table("adverts as adv")->select(                                 
                         "adv.category_id",
                         "adv.subcategory_id",
+                        "adv.created_at",
                         "adv.id", 
                         "adv.title", 
                         "adv.text", 
@@ -355,6 +366,7 @@ class AdvertController extends Controller {
                         $advert = DB::table("adverts as adv")->select(                                 
                         "adv.category_id",
                         "adv.subcategory_id",
+                        "adv.created_at",
                         "adv.id", 
                         "adv.title", 
                         "adv.text", 
@@ -386,6 +398,7 @@ class AdvertController extends Controller {
                         $advert = DB::table("adverts as adv")->select(                                 
                         "adv.category_id",
                         "adv.subcategory_id",
+                        "adv.created_at",
                         "adv.id", 
                         "adv.title", 
                         "adv.text", 
@@ -419,6 +432,7 @@ class AdvertController extends Controller {
                         $advert = Adverts::select(                                 
                         "category_id",
                         "subcategory_id",
+                        "created_at",
                         "id", 
                         "title", 
                         "text", 
