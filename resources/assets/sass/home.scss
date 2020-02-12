@@ -8,24 +8,26 @@
 .col-title {
     border:1px solid rgb(230,230,230);
     padding:4px;
-    margin:0px;
+    word-wrap: break-word;        
 }
 
 .col-status {
     border:1px solid rgb(230,230,230);
     padding:4px;
     margin:0px;
+    word-wrap: break-word;
 }
 
 .col-action {
     border:1px solid rgb(230,230,230);
     padding:16px;
     margin:0px;
+    word-wrap: break-word;
 }
 
-#title {
-    margin:10px;
-}
+/*#title {
+    margin:0px;    
+}*/
 
 /*#status {}*/
 
