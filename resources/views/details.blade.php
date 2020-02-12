@@ -20,7 +20,7 @@
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 <!--        {{ $advert->category_id }} / {{ $advert->subcategory_id }}-->
-        <div style="font-size:12px;color:grey">{{ $advert->created_at }}</div>
+        <div id="posted">{{ $advert->created_at }}</div>
         <div id="location">{{ $advert->region_name }}, {{ $advert->city_name }}</div>
 
               @if ($advert->title!="null") 
