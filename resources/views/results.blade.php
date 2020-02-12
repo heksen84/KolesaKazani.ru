@@ -30,10 +30,10 @@
 
         <!--<div class="grey">Найдено: ({{ $items->count() }} из {{ $items->total() }} ) [ категория: {{ $categoryId }} подкатегория: {{ $subcategoryId }} ]</div>-->
 
-          <div class="row" style="margin-top:35px">
+          <div class="row mt-5">
             
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin-bottom:10px">              
-                <!-- ФИЛЬТРЫ -->
+          <!-- ФИЛЬТРЫ -->  
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-3">                
                 @if ($categoryId===1 && $subcategoryId===1)  
                   @include('filters/transport/legkovoy')
                 @else
@@ -55,13 +55,15 @@
                 </div>
                 @endforeach
 
+                @if (count($items)>9)
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">                
-                <hr>
                   <div class="pagination justify-content-center pagination-sm">
                   <!--<div class="pagination justify-content-center">-->
                     {{ $items->links() }}                         
                   </div>
                 </div>
+                @endif
+
           </div>                                  	                
   </div>
   <script type="text/javascript" src="{{ mix('js/common.js') }}"></script>  
