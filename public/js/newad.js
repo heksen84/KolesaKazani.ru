@@ -2368,6 +2368,7 @@ function forEach(data, callback) {
     // --------------------------------------
     advReset: function advReset(category_data) {
 
+      this.$store.commit("SetShowPrice", true);
       this.serviceUnavailable = false;
 
       var form = document.getElementById("advertform");
@@ -2451,6 +2452,7 @@ function forEach(data, callback) {
           }
         case 4:
           {
+            this.$store.commit("SetShowPrice", false);
             this.work_and_buisness = true;
             break;
           }
@@ -40437,28 +40439,32 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("div", { staticClass: "row" }, [
-                    _c(
-                      "div",
-                      { staticClass: "col-md-12 text-center" },
-                      [
-                        _c("span", { staticStyle: { "margin-right": "5px" } }, [
-                          _vm._v("Цена:")
-                        ]),
-                        _vm._v(" "),
-                        _c("superInput", {
-                          attrs: { type: "number", maxlength: 8 },
-                          on: { input: _vm.setPrice },
-                          model: {
-                            value: _vm.price,
-                            callback: function($$v) {
-                              _vm.price = $$v
-                            },
-                            expression: "price"
-                          }
-                        })
-                      ],
-                      1
-                    ),
+                    _vm.$store.state.show_price
+                      ? _c(
+                          "div",
+                          { staticClass: "col-md-12 text-center" },
+                          [
+                            _c(
+                              "span",
+                              { staticStyle: { "margin-right": "5px" } },
+                              [_vm._v("Цена:")]
+                            ),
+                            _vm._v(" "),
+                            _c("superInput", {
+                              attrs: { type: "number", maxlength: 8 },
+                              on: { input: _vm.setPrice },
+                              model: {
+                                value: _vm.price,
+                                callback: function($$v) {
+                                  _vm.price = $$v
+                                },
+                                expression: "price"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e(),
                     _vm._v(" "),
                     _vm._m(1),
                     _vm._v(" "),
@@ -54515,10 +54521,14 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     show_final_fields: false,
     show_common_transport: false,
     deal_selected: false,
-    str_realestate_area_label_text: ""
+    str_realestate_area_label_text: "",
+    show_price: true
   },
 
   mutations: {
+    SetShowPrice: function SetShowPrice(state, value) {
+      state.show_price = value;
+    },
     SetDealSelected: function SetDealSelected(state, value) {
       state.deal_selected = value;
     },

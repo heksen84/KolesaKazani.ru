@@ -21,10 +21,15 @@ const store = new Vuex.Store({
     show_final_fields: false,
     show_common_transport: false,
     deal_selected: false,    
-    str_realestate_area_label_text: ""    
+    str_realestate_area_label_text: "",
+    show_price: true
   },
 
   mutations: {
+    
+    SetShowPrice( state, value ) {
+      state.show_price=value;
+    },
 
     SetDealSelected( state, value ) {
       state.deal_selected=value;

@@ -2154,4 +2154,40 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/3-trebuetsya-kassir-v-otdel-sotovoy-svyazi</loc>
+    <lastmod>2020-02-12T16:59:15+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/4-123123123</loc>
+    <lastmod>2020-02-12T17:02:03+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/5-trebuetsya-prodavec-v-rybnyy-otdel</loc>
+    <lastmod>2020-02-12T17:02:58+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/6-hochu-rabotat-v-aksu</loc>
+    <lastmod>2020-02-12T17:04:25+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/7-postavlyu-okna-za-nedorogo-hot-gde</loc>
+    <lastmod>2020-02-12T17:06:33+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/8-postavlyu-okna-za-nedorogo</loc>
+    <lastmod>2020-02-12T17:07:06+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

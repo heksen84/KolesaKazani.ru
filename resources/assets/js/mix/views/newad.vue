@@ -122,8 +122,8 @@
               <label for="addit_info">{{ $store.state.info_label_description }}</label>
                 <textarea id="addit_info" class="form-control form-group" :placeholder="$store.state.placeholder_info_text" :rows="4" :max-rows="4" maxlength="1024" @input="setInfo" v-model="info"></textarea>
                   <div class="row">
-
-                    <div class="col-md-12 text-center">
+                    
+                    <div class="col-md-12 text-center" v-if="$store.state.show_price">
                       <span style="margin-right:5px">Цена:</span>                      
                       <superInput type="number" v-model="price" :maxlength="8" @input="setPrice"></superInput>
                     </div>
@@ -494,6 +494,7 @@ deletePhoto(index) {
 // --------------------------------------
 advReset(category_data) {
 
+    this.$store.commit("SetShowPrice", true);
     this.serviceUnavailable=false;
 
     let form = document.getElementById("advertform");
@@ -572,7 +573,8 @@ changeCategory() {
       this.appliances=true;   
       break; 
     }
-    case 4: {
+    case 4: {      
+      this.$store.commit("SetShowPrice", false);  
       this.work_and_buisness=true;      
       break; 
     }
