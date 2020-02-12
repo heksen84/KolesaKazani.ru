@@ -16,6 +16,8 @@ class HomeController extends Controller {
 		    
     public function ShowHomePage() {
 
+    if (Auth::check()) {
+                
         // status
         $items = DB::table("adverts as adv")->select("adv.id", "adv.title", "adv.public")
         ->where("user_id", Auth::id())
@@ -29,7 +31,8 @@ class HomeController extends Controller {
         ->with("title", "Личный кабинет ".$userName)
         ->with("description", "Личный кабинет пользователя ".$userName)
         ->with("keywords", "Личный кабинет, ".$userName);    
-    
-    }		
-					
+        }                    
+        else 
+            return redirect('/login');
+    }					
 }
