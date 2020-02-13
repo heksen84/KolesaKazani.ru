@@ -21,3 +21,4 @@ zip
 qaz24.kz
 get24
 rick
+wip.kz
