@@ -425,14 +425,14 @@ class AdvertController extends Controller {
                         ->limit(1)
                         ->get();                                                        
                 }
-
+                
 
                 // выборка для всего остального
                 if ($advertData[0]->category_id > 2 && $advertData[0]->subcategory_id > 0 || $advertData[0]->category_id>0 && !$advertData[0]->subcategory_id) {                        
-                        $advert = Adverts::select(                                 
-                        "category_id",
-                        "subcategory_id",
+                        $advert = Adverts::select(                        
                         "created_at",
+                        "category_id",
+                        "subcategory_id",                        
                         "id", 
                         "title", 
                         "text", 

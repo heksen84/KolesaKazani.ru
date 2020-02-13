@@ -2190,4 +2190,40 @@
     <changefreq>hourly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/9-kuplyu-nechto-za-chto-to</loc>
+    <lastmod>2020-02-13T08:54:50+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/10-kuplyu-nechto-za-chto-to-2</loc>
+    <lastmod>2020-02-13T08:58:48+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/11-kuplyu-nechto-za-chto-to-3</loc>
+    <lastmod>2020-02-13T09:00:55+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/12-kuplyu-nechto-za-chto-to-3</loc>
+    <lastmod>2020-02-13T09:01:46+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/13-prodam-kamaz</loc>
+    <lastmod>2020-02-13T09:42:32+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://damelya:90/obyavlenie/14-prodam-motik</loc>
+    <lastmod>2020-02-13T10:08:29+0600</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
