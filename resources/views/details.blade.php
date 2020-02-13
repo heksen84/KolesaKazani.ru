@@ -19,8 +19,8 @@
   <div class="close_button mt-1" title="Закрыть страницу" @click="closeAndReturn">X</div>
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      
         <!--{{ $advert->category_id }} / {{ $advert->subcategory_id }}-->
-
         <div id="posted">{{ date("Размещено d/m/Y в h:i", strtotime($advert->created_at)) }}</div>
         <div id="location">{{ $advert->region_name }}, {{ $advert->city_name }}</div>
 
