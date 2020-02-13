@@ -25,7 +25,8 @@ h1 {
 #location {
   margin-top: 5px;
   color: #323232;
-  font-size: 14px;
+  font-size: 16px;
+  letter-spacing: 2px;
 }
 
 #text {
