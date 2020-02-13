@@ -7,7 +7,7 @@ wox
 gork
 rere
 naxt
-slip
+slip.kz
 nip
 tup
 tof
@@ -16,3 +16,8 @@ dado
 blim
 blit
 treo
+monga
+zip
+qaz24
+get24
+rick

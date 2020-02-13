@@ -74,7 +74,7 @@
 
             <button type="button" class="btn btn-primary full-width" id="showNumberBtn">ПОКАЗАТЬ ТЕЛЕФОН</button>
 
-            {{ config('app.name') }}
+            <!--Скажите продавцу, что нашли это объявление на {{ config('app.name') }}-->
             
             <div id="phone-number"></div>
             <div id="map"></div>        
