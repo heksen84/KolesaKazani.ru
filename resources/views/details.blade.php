@@ -13,8 +13,8 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('css/details.css') }}">
 </head>
 <body>
-<div class="container-fluid mycontainer">
 
+<div class="container-fluid mycontainer">
   <!-- кнопка закрытия -->
   <div class="close_button mt-1" title="Закрыть страницу" @click="closeAndReturn">X</div>
     <div class="row">
