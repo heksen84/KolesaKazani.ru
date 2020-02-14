@@ -48,7 +48,7 @@
   </nav>
   </div>
   
-  <div class="container-fluid container1" id="index_page" style="margin-top:10px">
+  <div class="container-fluid container1 mt-2" id="index_page">
 
     <!-- компонент выбора расположения -->
     <location></location>
@@ -64,7 +64,7 @@
       </div>
     </div>
 
-    <div class="row" style="margin-top:2px">
+    <div class="row mt-2">
       <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center">
         <div id="logo_block">
           <!--<div id="logo_block_text">{{config('app.name')}}</div>        -->
@@ -82,6 +82,7 @@
         <input type="text" id="search_string" v-model="searchString" placeholder="поиск по объявлениям {{ $sklonResult }}" required/>
         <button id="button_search" type="submit" title="Найти что требуется">найти</button>
       </form>
+
       <!-- кнопки выбора региона и т.п.-->
       <div class="index_select_region_and_other_button_block">    
         <button class="btn btn-link" data-toggle="modal" id="locationButton" style="margin-top:-10px" @click="showLocationWindow">расположение {{ $locationName }}</button>
@@ -110,7 +111,7 @@
 	      </div>
 
         <div v-show="subCategories" id="subcats">
-         <button type="button" style="font-size:15px;color:rgb(80,80,80);font-weight:bold" id="close_subcats_btn" class="btn btn-link hide" @click="returnToCategories">&#8634; назад</button>         
+         <button type="button" id="close_subcats_btn" class="btn btn-link hide" @click="returnToCategories">&#8634; назад</button>         
           <div id="subcategories" class="form-inline center">
             @foreach($subcategories as $subcategory)
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 hide" data-category-id="{{ $subcategory['category_id'] }}">
@@ -133,7 +134,7 @@
         <br>
       </div>
       <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3" v-for="i in {{ $newAdverts }}">
-        <div class="card" style="width: 18rem;margin:auto">    
+        <div class="card last-advert-card">    
           <div class="card-body">
           <h6 class="card-title">${ i.title }</h6>
           <p class="card-text">Цена ${ i.price } тнг.</p>        
