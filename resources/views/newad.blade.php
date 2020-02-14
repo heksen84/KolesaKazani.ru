@@ -14,7 +14,7 @@
 </head>
 <body>
   
-  <div class="m-2" id="loader">Подготовка.<br>Пожалуйста подождите...</div>
+  <div class="m-2" id="loader">Подготовка нового объявления.<br>Пожалуйста подождите...</div>
 
   <div id="app">    
     <newad :categories="{{ $categories }}" :regions="{{ $regions }}"></newad>
