@@ -23,6 +23,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">        
+        <li class="nav-item active">	    
+          <a class="nav-link" href="/podat-obyavlenie">Подать объявлениe <span class="sr-only">(current)</span></a>
+        </li>
         @if ($auth===1)
         <li class="nav-item">
           <a class="nav-link" href="/home">Мои объявления</a>
@@ -34,10 +37,7 @@
         <li class="nav-item">
           <a class="nav-link" href="/register">Регистрация</a>
         </li>      
-        @endif
-        <li class="nav-item active">	    
-          <a class="nav-link" href="/podat-obyavlenie">Подать объявлениe <span class="sr-only">(current)</span></a>
-        </li>
+        @endif        
       </ul>
     </div>
   </nav>
