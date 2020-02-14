@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+.close_button {
+  position: absolute;
+  right: 20px;
+}
+
 .number_input {
   width: 120px;
   margin: auto;
@@ -31,7 +36,7 @@
 }
 
 .title_text {
-  margin-top: -10px;
+  margin-top: 15px;
   font-size: 130%;
   color: #505050;
 }
