@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span class="mr-10" v-if="type=='phone'">+7</span>    
+    <span class="mr-2" v-if="type=='phone'">+7</span>    
     <input type="tel" :id="id" :placeholder="placeholder" :name="name" class='form-control phone_input' v-model="valueInput" @input.prevent="inputHandler" :maxlength="maxlength" v-if="type==='phone'" required/>
     <input type="text" :id="id" :placeholder="placeholder" :name="name" class='form-control number_input' v-model="valueInput" @input.prevent="inputHandler" :maxlength="maxlength" v-if="type==='number'" required/>
  </div>

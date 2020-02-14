@@ -41226,7 +41226,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm.type == "phone"
-      ? _c("span", { staticClass: "mr-10" }, [_vm._v("+7")])
+      ? _c("span", { staticClass: "mr-2" }, [_vm._v("+7")])
       : _vm._e(),
     _vm._v(" "),
     _vm.type === "phone"
