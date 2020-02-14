@@ -18,7 +18,7 @@
     <div class="d-flex justify-content-center">
       <button class="btn btn-primary m-2" type="button" disabled>
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-        Подготовка нового объявления<br>Пожалуйста подождите
+        Подготовка объявления<br>Пожалуйста подождите
       </button>
     </div>
   </div>
