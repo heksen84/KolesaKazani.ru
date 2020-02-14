@@ -1,1 +1,16 @@
-h1{font-size:24px;margin-bottom:10px;letter-spacing:2px}.close_button{position:relative;top:13px;left:96%}.close_button:hover{color:#000}
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
+
+.close_button {
+  position: relative;
+  top: 13px;
+  left: 96%;
+}
+
+.close_button:hover {
+  color: black;
+}
+

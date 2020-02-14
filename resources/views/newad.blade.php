@@ -14,7 +14,16 @@
 </head>
 <body>
   
-  <div class="m-2" id="loader">Подготовка.<br>Пожалуйста подождите...</div>
+  <!--<div class="m-2" id="loader">Подготовка.<br>Пожалуйста подождите...</div>-->
+
+  <div id="loader">
+    <div class="d-flex justify-content-center">
+      <button class="btn btn-primary m-2" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Подготовка...<br>Пожалуйста подождите.
+      </button>
+    </div>
+  </div>
 
   <div id="app">    
     <newad :categories="{{ $categories }}" :regions="{{ $regions }}"></newad>
