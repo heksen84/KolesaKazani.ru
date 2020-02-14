@@ -41223,7 +41223,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm.type === "phone"
-      ? _c("span", { staticStyle: { "margin-right": "10px" } }, [_vm._v("+7")])
+      ? _c("span", { staticClass: "mr-9" }, [_vm._v("+7")])
       : _vm._e(),
     _vm._v(" "),
     _vm.type === "phone"
@@ -41275,7 +41275,7 @@ var render = function() {
           ],
           staticClass: "form-control number_input",
           attrs: {
-            type: "number",
+            type: "tel",
             id: _vm.id,
             placeholder: _vm.placeholder,
             name: _vm.name,
