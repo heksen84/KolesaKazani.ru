@@ -2531,8 +2531,6 @@ function forEach(data, callback) {
       // ------------------------------------------------------------------------------------------------------------------------
       axios.post("/api/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(function (response) {
 
-        console.log(response);
-
         if (response.data.result == "db.error") _this3.serviceError();else if (response.data.result == "usr.error") {
           _this3.dialogTitleMsg = "Объявление отклонено";
           _this3.dialogMsg = response.data.msg;

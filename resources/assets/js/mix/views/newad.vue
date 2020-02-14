@@ -642,9 +642,7 @@ onSubmit(evt) {
   // ------------------------------------------------------------------------------------------------------------------------
   // Размещение объявления
   // ------------------------------------------------------------------------------------------------------------------------
-	axios.post("/api/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {			
-      
-    console.log(response);
+	axios.post("/api/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {			          
     			
     if (response.data.result=="db.error")
       this.serviceError();
