@@ -18,7 +18,11 @@
   <div id="navbar_menu">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 <!--    <a class="navbar-brand" href="#"><h2 id="navbrand-title">{{config('app.name')}}</h2><h2 id="navbrand-description">объявления {{ $sklonResult }}</h2></a>    -->
-    <a class="navbar-brand" href="#"><h2 id="navbrand-title">FLIX</h2><h2 id="navbrand-description">объявления {{ $sklonResult }}</h2></a>
+    
+    <a class="navbar-brand" href="/">
+      <h2 id="navbrand-title">FLIX</h2><h2 id="navbrand-description">объявления {{ $sklonResult }}</h2>
+    </a>
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -64,9 +68,11 @@
       <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center">
         <div id="logo_block">
           <!--<div id="logo_block_text">{{config('app.name')}}</div>        -->
+          <a href="/">
           <div id="logo_block_text">FLIX</div>
             <h1 style="font-size:12px;color:grey;margin-top:-10px;letter-spacing:3px;">Объявления {{ $sklonResult }}</h1>
           </div>
+          </a>
     </div>
 
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 center">
