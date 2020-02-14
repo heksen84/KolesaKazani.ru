@@ -41275,7 +41275,7 @@ var render = function() {
           ],
           staticClass: "form-control number_input",
           attrs: {
-            type: "text",
+            type: "number",
             id: _vm.id,
             placeholder: _vm.placeholder,
             name: _vm.name,
