@@ -35,7 +35,7 @@
               </div>
             </div>    
   
-          <div class="row form-group" v-if="getLength(title)>5">
+          <div class="row form-group" v-if="getTitleLength()>5">
             <div class="col-auto">
               <label for="categories">Категория товара или услуги:</label>
                 <select class="form-control" v-model="category" @change="changeCategory">            
@@ -48,7 +48,7 @@
           <!------------------------------------------------------------------ 
             ОСНОВНАЯ ФОРМА 
             ------------------------------------------------------------------>
-          <form id="advertform" @submit="onSubmit" v-show="getLength(title)>5">
+          <form id="advertform" @submit="onSubmit" v-show="getTitleLength()>5">
 
             <!-- Категории -->
 		        <div v-if="root"></div>
@@ -339,13 +339,8 @@ created() {
 // методы компонента
 methods: {
 
-getLength(item) {
-
-  console.log(item.length)
-
-  if (item.length>5) alert("5")
-
-  return item.length;
+getTitleLength() {
+  return this.title.length;
 },
 
 // сервис не доступен

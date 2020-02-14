@@ -2212,13 +2212,8 @@ function forEach(data, callback) {
 
   // методы компонента
   methods: {
-    getLength: function getLength(item) {
-
-      console.log(item.length);
-
-      if (item.length > 5) alert("5");
-
-      return item.length;
+    getTitleLength: function getTitleLength() {
+      return this.title.length;
     },
 
 
@@ -39923,7 +39918,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm.getLength(_vm.title) > 5
+          _vm.getTitleLength() > 5
             ? _c("div", { staticClass: "row form-group" }, [
                 _c("div", { staticClass: "col-auto" }, [
                   _c("label", { attrs: { for: "categories" } }, [
@@ -39987,8 +39982,8 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: _vm.getLength(_vm.title) > 5,
-                  expression: "getLength(title)>5"
+                  value: _vm.getTitleLength() > 5,
+                  expression: "getTitleLength()>5"
                 }
               ],
               attrs: { id: "advertform" },
