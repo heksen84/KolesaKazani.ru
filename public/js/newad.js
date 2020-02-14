@@ -41255,7 +41255,7 @@ var render = function() {
           ],
           staticClass: "form-control phone_input",
           attrs: {
-            type: "text",
+            type: "tel",
             id: _vm.id,
             placeholder: _vm.placeholder,
             name: _vm.name,
