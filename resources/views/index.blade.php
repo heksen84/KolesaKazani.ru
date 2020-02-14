@@ -17,7 +17,8 @@
 <div id="app">
   <div id="navbar_menu">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#"><h2 id="navbrand-title">{{config('app.name')}}</h2><h2 id="navbrand-description">объявления {{ $sklonResult }}</h2></a>    
+<!--    <a class="navbar-brand" href="#"><h2 id="navbrand-title">{{config('app.name')}}</h2><h2 id="navbrand-description">объявления {{ $sklonResult }}</h2></a>    -->
+    <a class="navbar-brand" href="#"><h2 id="navbrand-title">FLIX</h2><h2 id="navbrand-description">объявления {{ $sklonResult }}</h2></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
