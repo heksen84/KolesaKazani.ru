@@ -1,10 +1,5 @@
 @charset "UTF-8";
 
-.close_button {
-  position: absolute;
-  right: 20px;
-}
-
 .number_input {
   width: 120px;
   margin: auto;

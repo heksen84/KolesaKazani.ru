@@ -39866,11 +39866,16 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "close_button mt-2",
-              attrs: { title: "Закрыть страницу" },
+              staticClass: "mt-2",
+              staticStyle: {
+                "font-size": "14px",
+                color: "grey",
+                "letter-spacing": "2px"
+              },
+              attrs: { title: "Вернуться назад" },
               on: { click: _vm.closeAndReturn }
             },
-            [_vm._v("X")]
+            [_vm._v("назад")]
           ),
           _vm._v(" "),
           _c("h1", { staticClass: "title_text" }, [
