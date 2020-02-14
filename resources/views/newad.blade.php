@@ -12,15 +12,13 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('css/common.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/newad.css') }}">
 </head>
-<body>
-  
-  <!--<div class="m-2" id="loader">Подготовка.<br>Пожалуйста подождите...</div>-->
+<body>  
 
   <div id="loader">
     <div class="d-flex justify-content-center">
       <button class="btn btn-primary m-2" type="button" disabled>
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-        Подготовка...<br>Пожалуйста подождите.
+        Подготовка нового объявления<br>Пожалуйста подождите.
       </button>
     </div>
   </div>
