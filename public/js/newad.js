@@ -41222,7 +41222,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.type === "phone"
+    _vm.type == "phone"
       ? _c("span", { staticClass: "mr-9" }, [_vm._v("+7")])
       : _vm._e(),
     _vm._v(" "),
@@ -41275,7 +41275,7 @@ var render = function() {
           ],
           staticClass: "form-control number_input",
           attrs: {
-            type: "tel",
+            type: "text",
             id: _vm.id,
             placeholder: _vm.placeholder,
             name: _vm.name,
