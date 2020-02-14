@@ -39904,15 +39904,13 @@ var render = function() {
                 },
                 domProps: { value: _vm.title },
                 on: {
-                  input: [
-                    function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.title = $event.target.value
-                    },
-                    _vm.setTitle
-                  ]
+                  keypress: _vm.setTitle,
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.title = $event.target.value
+                  }
                 }
               })
             ])

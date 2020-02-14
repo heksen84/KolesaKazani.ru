@@ -31,7 +31,7 @@
             <div class="row form-group">
               <div class="col-auto">
                 <label>Заголовок объявления</label>
-                <input type="text" class="form-control" size="100" maxlength="100" placeholder="Введите заголовок объявления" v-model="title" @input="setTitle"/>
+                <input type="text" class="form-control" size="100" maxlength="100" placeholder="Введите заголовок объявления" v-model="title" @keypress="setTitle"/>
               </div>
             </div>    
   
