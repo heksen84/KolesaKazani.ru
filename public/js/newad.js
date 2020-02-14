@@ -39897,9 +39897,7 @@ var render = function() {
                 ],
                 staticClass: "form-control",
                 attrs: {
-                  type: "text",
                   size: "100",
-                  maxlength: "100",
                   placeholder: "Введите заголовок объявления"
                 },
                 domProps: { value: _vm.title },
