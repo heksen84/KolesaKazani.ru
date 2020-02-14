@@ -2213,6 +2213,11 @@ function forEach(data, callback) {
   // методы компонента
   methods: {
     getLength: function getLength(item) {
+
+      console.log(item.length);
+
+      if (item.length > 5) alert("5");
+
       return item.length;
     },
 
@@ -39904,13 +39909,15 @@ var render = function() {
                 },
                 domProps: { value: _vm.title },
                 on: {
-                  keypress: _vm.setTitle,
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.title = $event.target.value
-                  }
+                  input: [
+                    function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.title = $event.target.value
+                    },
+                    _vm.setTitle
+                  ]
                 }
               })
             ])
