@@ -39916,62 +39916,74 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm.title.length > 5
-            ? _c("div", { staticClass: "row form-group" }, [
-                _c("div", { staticClass: "col-auto" }, [
-                  _c("label", { attrs: { for: "categories" } }, [
-                    _vm._v("Категория товара или услуги:")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.category,
-                          expression: "category"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      on: {
-                        change: [
-                          function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.category = $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          },
-                          _vm.changeCategory
-                        ]
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.title.length > 5,
+                  expression: "title.length>5"
+                }
+              ],
+              staticClass: "row form-group"
+            },
+            [
+              _c("div", { staticClass: "col-auto" }, [
+                _c("label", { attrs: { for: "categories" } }, [
+                  _vm._v("Категория товара или услуги:")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.category,
+                        expression: "category"
                       }
-                    },
-                    [
-                      _c("option", { domProps: { value: null } }, [
-                        _vm._v("-- Выберите категорию --")
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.categories, function(item, index) {
-                        return _c(
-                          "option",
-                          { key: index, domProps: { value: item.id } },
-                          [_vm._v(_vm._s(item.name))]
-                        )
-                      })
                     ],
-                    2
-                  )
-                ])
+                    staticClass: "form-control",
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.category = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                        _vm.changeCategory
+                      ]
+                    }
+                  },
+                  [
+                    _c("option", { domProps: { value: null } }, [
+                      _vm._v("-- Выберите категорию --")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.categories, function(item, index) {
+                      return _c(
+                        "option",
+                        { key: index, domProps: { value: item.id } },
+                        [_vm._v(_vm._s(item.name))]
+                      )
+                    })
+                  ],
+                  2
+                )
               ])
-            : _vm._e(),
+            ]
+          ),
           _vm._v(" "),
           _c(
             "form",

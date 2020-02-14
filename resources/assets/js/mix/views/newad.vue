@@ -35,7 +35,7 @@
               </div>
             </div>    
   
-          <div class="row form-group" v-if="title.length>5">
+          <div class="row form-group" v-show="title.length>5">
             <div class="col-auto">
               <label for="categories">Категория товара или услуги:</label>
                 <select class="form-control" v-model="category" @change="changeCategory">            
