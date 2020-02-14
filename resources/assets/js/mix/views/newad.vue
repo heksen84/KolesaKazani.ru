@@ -25,7 +25,7 @@
 
     <div class="row">  
       <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col" style="border: 1px solid rgb(220,220,220)">
-        <div class="mt-2" title="Вернуться назад" @click="closeAndReturn" style="font-size:14px;color:grey;letter-spacing:2px;cursor:pointer">назад</div>
+        <div class="mt-2" title="Вернуться назад" @click="closeAndReturn" style="font-size:14px;color:rgb(100,100,100);letter-spacing:2px;cursor:pointer">назад</div>
         <br>
 		      <h1 class="title_text">подать объявление</h1>
             <hr>            

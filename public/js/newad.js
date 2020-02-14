@@ -39873,7 +39873,7 @@ var render = function() {
               staticClass: "mt-2",
               staticStyle: {
                 "font-size": "14px",
-                color: "grey",
+                color: "rgb(100,100,100)",
                 "letter-spacing": "2px",
                 cursor: "pointer"
               },
