@@ -39918,7 +39918,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm.getTitleLength() > 5
+          _vm.title.length > 5
             ? _c("div", { staticClass: "row form-group" }, [
                 _c("div", { staticClass: "col-auto" }, [
                   _c("label", { attrs: { for: "categories" } }, [
@@ -39982,8 +39982,8 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: _vm.getTitleLength() > 5,
-                  expression: "getTitleLength()>5"
+                  value: _vm.title.length > 5,
+                  expression: "title.length>5"
                 }
               ],
               attrs: { id: "advertform" },
