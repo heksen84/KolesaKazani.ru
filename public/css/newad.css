@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+#loader {
+  letter-spacing: 2px;
+}
+
 .number_input {
   width: 120px;
   margin: auto;

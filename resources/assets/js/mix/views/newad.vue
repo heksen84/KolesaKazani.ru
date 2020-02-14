@@ -332,6 +332,9 @@ data () {
 
 // компонент создан
 created() {  
+
+  document.getElementById("loader").style.display = "none";  
+
   // FIX?: заюзать require js для загрузки yandex модулей
   ymaps.ready(initMaps);  
   this.$root.advert_data = []; 
