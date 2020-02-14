@@ -2075,6 +2075,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 // ---------------------------
@@ -39877,6 +39878,8 @@ var render = function() {
             },
             [_vm._v("назад")]
           ),
+          _vm._v(" "),
+          _c("br"),
           _vm._v(" "),
           _c("h1", { staticClass: "title_text" }, [
             _vm._v("подать объявление")
