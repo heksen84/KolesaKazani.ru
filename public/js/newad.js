@@ -2074,6 +2074,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 // ---------------------------
@@ -2212,10 +2213,6 @@ function forEach(data, callback) {
 
   // методы компонента
   methods: {
-    getTitleLength: function getTitleLength() {
-      return this.title.length;
-    },
-
 
     // сервис не доступен
     serviceError: function serviceError() {
@@ -39882,124 +39879,101 @@ var render = function() {
           _vm._v(" "),
           _c("hr"),
           _vm._v(" "),
-          _c("div", { staticClass: "row form-group" }, [
-            _c("div", { staticClass: "col-auto" }, [
-              _c("label", [_vm._v("Заголовок объявления")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.title,
-                    expression: "title"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: {
-                  size: "100",
-                  placeholder: "Введите заголовок объявления"
-                },
-                domProps: { value: _vm.title },
-                on: {
-                  input: [
-                    function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.title = $event.target.value
-                    },
-                    _vm.setTitle
-                  ]
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
           _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.title.length > 5,
-                  expression: "title.length>5"
-                }
-              ],
-              staticClass: "row form-group"
-            },
+            "form",
+            { attrs: { id: "advertform" }, on: { submit: _vm.onSubmit } },
             [
-              _c("div", { staticClass: "col-auto" }, [
-                _c("label", { attrs: { for: "categories" } }, [
-                  _vm._v("Категория товара или услуги:")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "select",
-                  {
+              _c("div", { staticClass: "row form-group" }, [
+                _c("div", { staticClass: "col-auto" }, [
+                  _c("label", [_vm._v("Заголовок объявления")]),
+                  _vm._v(" "),
+                  _c("input", {
                     directives: [
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.category,
-                        expression: "category"
+                        value: _vm.title,
+                        expression: "title"
                       }
                     ],
                     staticClass: "form-control",
+                    attrs: {
+                      size: "100",
+                      maxlength: "100",
+                      placeholder: "Введите заголовок объявления",
+                      required: ""
+                    },
+                    domProps: { value: _vm.title },
                     on: {
-                      change: [
+                      input: [
                         function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.category = $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.title = $event.target.value
                         },
-                        _vm.changeCategory
+                        _vm.setTitle
                       ]
                     }
-                  },
-                  [
-                    _c("option", { domProps: { value: null } }, [
-                      _vm._v("-- Выберите категорию --")
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(_vm.categories, function(item, index) {
-                      return _c(
-                        "option",
-                        { key: index, domProps: { value: item.id } },
-                        [_vm._v(_vm._s(item.name))]
-                      )
-                    })
-                  ],
-                  2
-                )
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "form",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.title.length > 5,
-                  expression: "title.length>5"
-                }
-              ],
-              attrs: { id: "advertform" },
-              on: { submit: _vm.onSubmit }
-            },
-            [
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row form-group" }, [
+                _c("div", { staticClass: "col-auto" }, [
+                  _c("label", { attrs: { for: "categories" } }, [
+                    _vm._v("Категория товара или услуги:")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.category,
+                          expression: "category"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.category = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                          _vm.changeCategory
+                        ]
+                      }
+                    },
+                    [
+                      _c("option", { domProps: { value: null } }, [
+                        _vm._v("-- Выберите категорию --")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.categories, function(item, index) {
+                        return _c(
+                          "option",
+                          { key: index, domProps: { value: item.id } },
+                          [_vm._v(_vm._s(item.name))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ])
+              ]),
+              _vm._v(" "),
               _vm.root ? _c("div") : _vm._e(),
               _vm._v(" "),
               _vm.transport && _vm.category ? _c("transport") : _vm._e(),

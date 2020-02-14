@@ -27,15 +27,21 @@
       <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col" style="border: 1px solid rgb(220,220,220)">
         <div class="close_button mt-2" title="Закрыть страницу" @click="closeAndReturn">X</div>
 		      <h1 class="title_text">подать объявление</h1>
-            <hr>
+            <hr>            
+            
+          <!------------------------------------------------------------------ 
+            ОСНОВНАЯ ФОРМА 
+            ------------------------------------------------------------------>
+          <form id="advertform" @submit="onSubmit">
+
             <div class="row form-group">
               <div class="col-auto">
                 <label>Заголовок объявления</label>
-                <input class="form-control" size="100" placeholder="Введите заголовок объявления" v-model="title" @input="setTitle"/>
+                <input class="form-control" size="100" maxlength="100" placeholder="Введите заголовок объявления" v-model="title" @input="setTitle" required/>
               </div>
             </div>    
   
-          <div class="row form-group" v-show="title.length>5">
+          <div class="row form-group">
             <div class="col-auto">
               <label for="categories">Категория товара или услуги:</label>
                 <select class="form-control" v-model="category" @change="changeCategory">            
@@ -43,12 +49,7 @@
                   <option v-for="(item, index) in categories" :key="index" v-bind:value="item.id">{{ item.name }}</option>
                 </select>                
               </div>
-          </div>
-            
-          <!------------------------------------------------------------------ 
-            ОСНОВНАЯ ФОРМА 
-            ------------------------------------------------------------------>
-          <form id="advertform" @submit="onSubmit" v-show="title.length>5">
+            </div>
 
             <!-- Категории -->
 		        <div v-if="root"></div>
@@ -338,10 +339,6 @@ created() {
 
 // методы компонента
 methods: {
-
-getTitleLength() {
-  return this.title.length;
-},
 
 // сервис не доступен
 serviceError() {
