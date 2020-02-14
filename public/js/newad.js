@@ -39871,7 +39871,8 @@ var render = function() {
               staticStyle: {
                 "font-size": "14px",
                 color: "grey",
-                "letter-spacing": "2px"
+                "letter-spacing": "2px",
+                cursor: "pointer"
               },
               attrs: { title: "Вернуться назад" },
               on: { click: _vm.closeAndReturn }
