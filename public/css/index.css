@@ -435,6 +435,10 @@ h3 {
 }
 
 @media screen and (max-width: 420px) {
+  #button_search {
+    font-size: 14px;
+  }
+
   .item {
     font-size: 12px;
   }
