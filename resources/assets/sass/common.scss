@@ -76,6 +76,12 @@ body {
 -o-background-size: cover; 
 }
 
+#navbar-brand-text {
+  letter-spacing:4px;
+  font-weight:bold;
+  color:rgb(100,100,100);
+}
+
 .mycontainer {
   width: 1000px;
 }
