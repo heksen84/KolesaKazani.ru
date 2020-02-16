@@ -53,8 +53,8 @@
       </div>
   @endforeach 
 @else  
-  <h3 class="mt-3">нет объявлений</h3>  
-  <a href="/podat-obyavlenie" class="btn btn-danger mt-2" role="button" style="width:180px">Подать объявление</a>
+  <h3 class="mt-5">нет объявлений</h3>  
+  <a href="/podat-obyavlenie" class="btn btn-success mt-2" role="button" style="width:210px">Подать объявление</a>
 @endif
 
 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin-top:15px">  
