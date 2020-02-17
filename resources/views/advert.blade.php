@@ -12,8 +12,7 @@
 </head>
 <body>
 <center>
-	<h1>Реклама на сайте</h1>    
-	По всем вопросам размещения рекламы на сайте, пишите на почту: <a href="mailto:damelya@yandex.ru">damelya@yandex.ru</a>
+  Реклама на сайте
 </center>
 </body>
 </html>
