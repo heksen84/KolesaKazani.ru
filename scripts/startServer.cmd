@@ -1,2 +1,2 @@
-cd ..\..
+cd ..
 php -S localhost:8000

@@ -1,2 +1,2 @@
-cd ..\..
+cd ..
 composer require laravel/helpers

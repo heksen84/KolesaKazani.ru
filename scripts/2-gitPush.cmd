@@ -1,4 +1,4 @@
-cd ..\..
+cd ..
 git init
 git status
 git add .

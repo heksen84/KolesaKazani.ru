@@ -1,2 +1,2 @@
-cd ..\..
+cd ..
 php composer.phar update
