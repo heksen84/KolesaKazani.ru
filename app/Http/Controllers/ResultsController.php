@@ -50,7 +50,7 @@ class ResultsController extends Controller {
     // результаты по стране
     public function getCategoryResults(Request $request, $region, $city, $category) {     
 
-        \Debugbar::info("getCountryCategoryResults");        
+        \Debugbar::info("getCategoryResults");        
         \Debugbar::info("start_price: ".$request->start_price);
         \Debugbar::info("end_price: ".$request->end_price);        
                         
@@ -63,14 +63,29 @@ class ResultsController extends Controller {
             $priceBetweenSql = " AND price BETWEEN ".$startPrice." AND ".$endPrice;
 
         $categories = $this->getCategoryData($request, $category); 
+        
+        
+        if (!$region && !$city)
+            $whereRaw = "category_id = ".$categories[0]->id;
+
+        if ($region && !$city) {
+            $regionData = $this->getRegionData($region);             
+            $whereRaw = "region_id = ".$regionData->region_id." AND category_id = ".$categories[0]->id;
+        }
+
+        if ($region && $city) {            
+            $regionData = $this->getRegionData($region); 
+            $cityData = $this->getCityData($city);                   
+            $whereRaw = "region_id = ".$regionData->region_id." AND city_id = ".$cityData->city_id." AND category_id = ".$categories[0]->id;
+        }
                                                 
         $items = DB::table("adverts as adv")->select(
             "adv.id", 
             "adv.title", 
             "adv.price", 
             DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
-        ))
-        ->where("category_id", $categories[0]->id )
+        ))        
+        ->whereRaw($whereRaw)
         ->paginate(10)
         ->onEachSide(1);
 
@@ -98,7 +113,6 @@ class ResultsController extends Controller {
         return $this->getCategoryResults($request, null, null, $category);
     }
 
-    // !!!
     public function getRegionCategoryResults(Request $request, $region, $category) {
         return $this->getCategoryResults($request, $region, null, $category);
     }
@@ -107,9 +121,6 @@ class ResultsController extends Controller {
         return $this->getCategoryResults($request, $region, $city, $category);
     }
 
-
-    /*public function getCountrySubCategoryResults123(Request $request, $category, $subcategory) {
-    }*/
 
     // -------------------------------------------------------------
     // результаты по стране
