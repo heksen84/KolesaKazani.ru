@@ -17,9 +17,12 @@ h3 {
 
 .col-title {
     border:1px solid rgb(230,230,230);
-    padding:4px;
+    padding-right:4px;
     word-wrap: break-word; 
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    font-size: 17px;
+    font-weight: bold;
+    color:rgb(80,80,80);
 }
 
 .col-status {

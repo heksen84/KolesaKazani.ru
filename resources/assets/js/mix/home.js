@@ -4,10 +4,11 @@ import $ from "jquery";
 import "bootstrap";
 
 $( document ).ready(function() {
-
+    
+    // оплата
     $(".actions button").click(function(item) {
         //alert($(this).index());
-        $("#myModal").modal('show');
+        $("#payment_window").modal('show');
     });
-   
+
 });
