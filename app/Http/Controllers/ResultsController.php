@@ -47,7 +47,7 @@ class ResultsController extends Controller {
         return "Казахстане";
     }    
     
-    // результаты по стране
+    // результаты - общий запрос
     public function getCategoryResults(Request $request, $region, $city, $category) {     
 
         \Debugbar::info("getCategoryResults");        
@@ -64,7 +64,7 @@ class ResultsController extends Controller {
 
         $categories = $this->getCategoryData($request, $category); 
         
-        
+
         if (!$region && !$city)
             $whereRaw = "category_id = ".$categories[0]->id;
 
