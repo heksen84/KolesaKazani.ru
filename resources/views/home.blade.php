@@ -12,8 +12,28 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('css/common.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
 </head>
-<body>
-  <div id="app"></div>
+<body>  
+
+
+<div class="modal" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Оплата услуги</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2>Цена 100 тнг.</h2>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Оплатить</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a href="/">На главную</a>
@@ -44,7 +64,7 @@
         <!--<b><div>Просмотров(?)|Сообщений(?)</div></b>-->
         </div>
         <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-status text-center"><span id="status"><ins>cтатус</ins><br>на модерации</span></div>
-        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-action text-center">
+        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-action text-center actions">
           <button class="btn btn-outline-primary btn-sm m-1">срочно, торг</button>
           <button class="btn btn-outline-success btn-sm m-1">продлить</button>            
           <button class="btn btn-outline-success btn-sm m-1">поднять в топ</button>
