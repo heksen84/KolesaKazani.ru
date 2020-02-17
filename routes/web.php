@@ -2,6 +2,12 @@
 
 Auth::routes();
 
+// подвал
+Route::get('/advert', function() { return view('advert'); });
+Route::get('/rules', function() { return view('rules'); });
+Route::get('/about', function() { return view('about'); });
+
+
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 // Сервисы (было внизу)
