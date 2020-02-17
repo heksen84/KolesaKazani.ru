@@ -48,8 +48,9 @@ class ResultsController extends Controller {
     }    
     
     // результаты по стране
-    public function getCountryCategoryResults(Request $request, $category) {     
+    public function getCategoryResults(Request $request, $region, $city, $category) {     
 
+        \Debugbar::info("getCountryCategoryResults");        
         \Debugbar::info("start_price: ".$request->start_price);
         \Debugbar::info("end_price: ".$request->end_price);        
                         
@@ -92,6 +93,23 @@ class ResultsController extends Controller {
         ->with("start_price", $request->start_price)
         ->with("end_price", $request->end_price);
     }
+
+    public function getCountryCategoryResults(Request $request, $category) {
+        return $this->getCategoryResults($request, null, null, $category);
+    }
+
+    // !!!
+    public function getRegionCategoryResults(Request $request, $region, $category) {
+        return $this->getCategoryResults($request, $region, null, $category);
+    }
+
+    public function getCityCategoryResults(Request $request, $region, $city, $category) {
+        return $this->getCategoryResults($request, $region, $city, $category);
+    }
+
+
+    /*public function getCountrySubCategoryResults123(Request $request, $category, $subcategory) {
+    }*/
 
     // -------------------------------------------------------------
     // результаты по стране
