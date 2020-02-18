@@ -20,7 +20,7 @@
 <!--    <a class="navbar-brand" href="#"><h2 id="navbrand-title">{{config('app.name')}}</h2><h2 id="navbrand-description">объявления {{ $sklonResult }}</h2></a>    -->
     
     <a class="navbar-brand" href="/">
-      <h2 id="navbrand-title">Ильбо</h2><h2 id="navbrand-description">объявления {{ $sklonResult }}</h2>
+      <h2 id="navbrand-title">{{ config('app.name', 'Laravel') }}</h2><h2 id="navbrand-description">объявления {{ $sklonResult }}</h2>
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,7 @@
         <div id="logo_block">
           <!--<div id="logo_block_text">{{config('app.name')}}</div>        -->
           <a href="/">
-          <div id="logo_block_text">Ильбо</div>
+          <div id="logo_block_text">{{ config('app.name') }}</div>
             <h1 style="font-size:12px;color:grey;margin-top:-10px;letter-spacing:3px;">Объявления {{ $sklonResult }}</h1>
           </div>
           </a>
