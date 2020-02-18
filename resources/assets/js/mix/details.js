@@ -42,7 +42,7 @@ document.body.addEventListener('click', function (evt) {
 			else {			
 				document.getElementById('showNumberBtn').style.display = "none";
 				document.getElementById('phone-number').style.display = "block";
-				document.getElementById('phone-number').innerHTML = "<b>тел: <a href='tel:+7"+JSON.parse(xhr.responseText)[0].phone+"'>+7 "+JSON.parse(xhr.responseText)[0].phone+"</a></b><br>Скажите продавцу, что нашли это объявление на сайте объявлений <b>Фликс</b>.";
+				document.getElementById('phone-number').innerHTML = "<b>тел: <a href='tel:+7"+JSON.parse(xhr.responseText)[0].phone+"'>+7 "+JSON.parse(xhr.responseText)[0].phone+"</a></b><br>Скажите продавцу, что нашли это объявление на сайте объявлений <b>Ильбо</b>.";
 			}
 			
 		}

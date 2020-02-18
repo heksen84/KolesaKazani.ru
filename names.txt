@@ -24,3 +24,4 @@ rick
 wip.kz
 twip.kz
 briks.kz
+blit.kz
