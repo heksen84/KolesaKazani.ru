@@ -56,10 +56,10 @@
                 </div>-->                
                 
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">                  
-                <div class="card full-width">                  
+                <div class="card" style="width:80%">                  
                   <div class="card-body m-0 p-0">                  
-                    <img class="card-img-top" src="{{ $item->imageName }}" alt="{{ $item->title }}" style="width:160px;height:160px" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';">                  
-                    <div style="display:inline-block;position:relative;top:-20px;left:3px">
+                    <img class="card-img-top image" style="width:150px;height:150px" src="{{ $item->imageName }}" alt="{{ $item->title }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';">                  
+                    <div style="display:inline-block;position:relative;top:-15px;left:3px">
                     <a href="/objavlenie/show/{{ $item->id }}"">
                       <h5 class="card-title">{{ $item->title }}</h5>
                     </a>
