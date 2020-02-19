@@ -58,8 +58,12 @@
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">                  
                 <div class="card full-width">                  
                   <div class="card-body m-0 p-0">
-                  <img class="card-img-top" src="{{ $item->imageName }}" alt="{{ $item->title }}" style="width:150px;height:150px">
-                    <div style="display:inline-block;position:relative;top:-18px;left:5px">
+                  @if ($item->imageName!=null)
+                    <img class="card-img-top" src="{{ $item->imageName }}" alt="{{ $item->title }}" style="width:160px;height:160px">
+                  @else
+                   <img class="card-img-top" src="public/images/_nofoto.jpg" alt="{{ $item->title }}" style="width:160px;height:160px">
+                  @endif
+                    <div style="display:inline-block;position:relative;top:-20px;left:3px">
                     <a href="/objavlenie/show/{{ $item->id }}"">
                       <h5 class="card-title">{{ $item->title }}</h5>
                     </a>
