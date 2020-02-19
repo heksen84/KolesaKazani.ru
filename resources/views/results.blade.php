@@ -42,7 +42,8 @@
             </div>
 
             @foreach($items as $item)
-              <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">                  
+
+              <!--<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">                  
                 <a href="/objavlenie/show/{{ $item->id }}">
                   <div class="card text-left" style="height:270px;margin:3px">
                     <img class="card-img-top" src="{{ $item->imageName }}" alt="{{ $item->title }}">
@@ -52,8 +53,23 @@
                       </div>              
                     </div>
                   </a>
+                </div>-->
+                
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">                  
+                <div class="card full-width">                  
+                  <div class="card-body m-0 p-0">
+                  <img class="card-img-top" src="{{ $item->imageName }}" alt="{{ $item->title }}" style="width:150px;height:150px">
+                    <div style="display:inline-block;position:relative;top:-18px;left:5px">
+                    <a href="/objavlenie/show/{{ $item->id }}"">
+                      <h5 class="card-title">{{ $item->title }}</h5>
+                    </a>
+                    <p class="card-text">{{ $item->price }} тнг.</p>                                      
+                    </div>
+                  </div>
                 </div>
-                @endforeach
+                </div>
+
+              @endforeach
 
                 @if (count($items)>9)
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">                
