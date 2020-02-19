@@ -78,11 +78,27 @@ class ResultsController extends Controller {
             $cityData = $this->getCityData($city);                   
             $whereRaw = "region_id = ".$regionData->region_id." AND city_id = ".$cityData->city_id." AND category_id = ".$categories[0]->id;
         }
+
+        //$image = $this->checkFile("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName")
+
+        /*SELECT id, path, ISNULL(LOAD_FILE(path)) as not_exists
+        FROM images
+        HAVING not_exists = 1*/
+
+        //DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),
+
+        /*$imageRaw = "CASE WHEN ISNULL(LOAD_FILE(concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1))))=1  THEN
+        concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1))
+        ELSE null END as imageName";*/
+
+        //$imageFile = 
                                                 
         $items = DB::table("adverts as adv")->select(
             "adv.id", 
             "adv.title", 
             "adv.price", 
+            //DB::raw($imageRaw
+            //DB::raw("ISNULL(LOAD_FILE(concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)))) as imageName"
             DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
         ))        
         ->whereRaw($whereRaw)
