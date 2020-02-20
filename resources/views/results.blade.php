@@ -70,9 +70,10 @@
 
                     <!-- vertical-align: top; -->
 
-                    <img class="card-img-top image" style="width:130px;height:130px;display:inline-block;vertical-align:top" src="{{ $item->imageName }}" alt="{{ $item->title }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';">                    
-                    <div class="block-info-area">
-                    <div class="card-text">{{ $item->price }} тнг.</div>                                      
+                    <img class="card-img-top image" style="width:130px;height:130px;display:inline-block;vertical-align:top" src="{{ $item->imageName }}" alt="{{ $item->title }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';">                                                            
+                    <div class="block-info-area">                                        
+                    <div class="card-text">{{ $item->price }} тнг.</div>                                                                              
+                    <div style="display:inline-block;font-size:13px;">Аксу, Сегодня</div>                    
                       <div class="card-title mt-2">
                         {{ $item->title }}
                       </div>                      
