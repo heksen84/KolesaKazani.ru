@@ -18,9 +18,39 @@ h1 {
   width: 90%;
 }
 
+.block-info-area {
+  width: 70%;
+  display: inline-block;
+  vertical-align: top;
+  word-break: break-all;
+}
+
 @media screen and (max-width: 960px) {
   .card {
     width: 100%;
   }
+
+  .block-info-area {
+    width: 53%;
+  }
 }
+
+/*@media screen and (min-width:500px) {  
+  .card {
+    width:100%;
+  }
+
+  .block-info-area {
+    width:300px;
+  }
+
+}*/
+
+/*@media screen and (max-width:960px) {  
+  .block-info-area {
+    background: yellow;
+    width:200px;
+  }
+
+}*/
 

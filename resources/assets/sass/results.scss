@@ -18,6 +18,12 @@ h1 {
   width:90%;
 }
 
+.block-info-area {
+  width:70%;
+  display:inline-block;
+  vertical-align:top;
+  word-break:break-all;
+}
 // --------------------------------------------
 // Большие устройства 
 // --------------------------------------------
@@ -25,4 +31,38 @@ h1 {
   .card {
     width:100%;
   }
+
+  .block-info-area {
+   // width:725px;
+    width:53%;
+  }
+
 }
+
+
+// --------------------------------------------
+// Большие устройства 
+// --------------------------------------------
+/*@media screen and (min-width:500px) {  
+  .card {
+    width:100%;
+  }
+
+  .block-info-area {
+    width:300px;
+  }
+
+}*/
+
+
+// --------------------------------------------
+// Cмартфоны
+// --------------------------------------------
+/*@media screen and (max-width:960px) {  
+  .block-info-area {
+    background: yellow;
+    width:200px;
+  }
+
+}*/
+

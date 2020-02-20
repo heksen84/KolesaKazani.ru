@@ -70,7 +70,7 @@
 
                     <img class="card-img-top image" style="width:130px;height:130px;display:inline-block;vertical-align:top" src="{{ $item->imageName }}" alt="{{ $item->title }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';">
                     <!--<div style="width:130px;height:130px;background:grey;display:inline-block;vertical-align:top">1</div>-->
-                    <div style="width:735px;display:inline-block;vertical-align:top;word-break:break-all;">
+                    <div class="block-info-area">
                       <div class="card-title mt-2" style="font-size:16px;letter-spacing:1px;font-weight:bold">
                         {{ $item->title }}
                       </div>
