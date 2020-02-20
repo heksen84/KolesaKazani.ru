@@ -24,17 +24,21 @@ h1 {
   vertical-align:top;
   word-break:break-all;
 }
+
+.item a {
+  color: black;
+}
 // --------------------------------------------
 // Большие устройства 
 // --------------------------------------------
 @media screen and (max-width:960px) {  
   .card {
-    width:100%;
+    width:100%;    
   }
 
   .block-info-area {
    // width:725px;
-    width:53%;
+    width:53%;    
   }
 
 }

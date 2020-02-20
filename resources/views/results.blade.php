@@ -55,7 +55,9 @@
                   </a>
                 </div>-->                
                 
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">                  
+                
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 item">                  
+                <a href="/objavlenie/show/{{ $item->id }}"">
                 <div class="card" style="display:inline-block">                  
                   
                     <!--<img class="card-img-top image" style="width:150px;height:150px;" src="{{ $item->imageName }}" alt="{{ $item->title }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';">
@@ -68,16 +70,17 @@
 
                     <!-- vertical-align: top; -->
 
-                    <img class="card-img-top image" style="width:130px;height:130px;display:inline-block;vertical-align:top" src="{{ $item->imageName }}" alt="{{ $item->title }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';">
-                    <!--<div style="width:130px;height:130px;background:grey;display:inline-block;vertical-align:top">1</div>-->
+                    <img class="card-img-top image" style="width:130px;height:130px;display:inline-block;vertical-align:top" src="{{ $item->imageName }}" alt="{{ $item->title }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';">                    
                     <div class="block-info-area">
-                      <div class="card-title mt-2" style="font-size:16px;letter-spacing:1px;font-weight:bold">
+                      <div class="card-title mt-2" style="font-size:16px;letter-spacing:1px;font-weight:650">
                         {{ $item->title }}
                       </div>
+                      <p class="card-text">{{ $item->price }} тнг.</p>                                      
                     </div>
                   
                 </div>
-                </div>
+                </a>  
+              </div>                
 
               @endforeach
 
