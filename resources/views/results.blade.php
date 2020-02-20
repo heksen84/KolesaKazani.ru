@@ -33,7 +33,7 @@
           <div class="row mt-5">
             
           <!-- ФИЛЬТРЫ -->  
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-3">                
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-3" id="filters">                
                 @if ($categoryId===1 && $subcategoryId===1)  
                   @include('filters/transport/legkovoy')
                 @else
