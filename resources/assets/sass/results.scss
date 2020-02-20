@@ -1,6 +1,5 @@
 h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
+  font-size: 24px;  
   letter-spacing: 2px;
 }
 
@@ -51,6 +50,11 @@ h1 {
 // Большие устройства 
 // --------------------------------------------
 @media screen and (max-width:960px) {  
+  
+  h1 {
+    font-size: 18px;    
+  }
+
   .card {
     width:100%;    
   }
