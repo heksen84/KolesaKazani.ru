@@ -112,6 +112,10 @@ class IndexController extends Controller {
 
 			$location = $region;
 			$locationName = Regions::select("name")->where("url", $region)->get();
+
+			if (count($locationName)==0)
+				return view("errors/404"); // редирект
+
 			$regionArr = $locationName; // ???
 			$locationName = $locationName[0]->name;			
 
@@ -140,6 +144,10 @@ class IndexController extends Controller {
 				
 			$location = $region."/".$place;
 			$locationName = Places::select("name")->where("url", $place)->get();
+
+			if (count($locationName)==0)
+				return view("errors/404"); // редирект
+
 			$placeArr = $locationName;
 			$locationName = $locationName[0]->name;
 				
