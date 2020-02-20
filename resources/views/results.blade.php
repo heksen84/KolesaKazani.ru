@@ -72,10 +72,10 @@
 
                     <img class="card-img-top image" style="width:130px;height:130px;display:inline-block;vertical-align:top" src="{{ $item->imageName }}" alt="{{ $item->title }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';">                    
                     <div class="block-info-area">
-                      <div class="card-title mt-2" style="font-size:16px;letter-spacing:1px;font-weight:650">
+                      <div class="card-title mt-2">
                         {{ $item->title }}
                       </div>
-                      <p class="card-text">{{ $item->price }} тнг.</p>                                      
+                      <div class="card-text">{{ $item->price }} тнг.</div>                                      
                     </div>
                   
                 </div>
