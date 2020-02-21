@@ -210,7 +210,7 @@ class ResultsController extends Controller {
         ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
         ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
         ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
-        ->where("region_id", $regionData->region_id)
+        ->where("adv.region_id", $regionData->region_id)
         ->paginate(10)
         ->onEachSide(1);                 
  
@@ -269,8 +269,8 @@ class ResultsController extends Controller {
         ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
         ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
         ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
-        ->where("region_id", $regionData->region_id)
-        ->where("city_id", $cityData->city_id)
+        ->where("adv.region_id", $regionData->region_id)
+        ->where("adv.city_id", $cityData->city_id)
         ->paginate(10)
         ->onEachSide(1);
   
