@@ -72,7 +72,7 @@
                 <img src='{{ $image->name }}' alt='{{ $image->name }}'></img>
               @endforeach
 
-            <button type="button" class="btn btn-primary full-width" id="showNumberBtn">ПОКАЗАТЬ ТЕЛЕФОН</button>
+            <button type="button" class="btn btn-success full-width" id="showNumberBtn">Показать телефон</button>
 
             <!--Скажите продавцу, что нашли это объявление на {{ config('app.name') }}-->
             
