@@ -28,7 +28,7 @@
     
       <h1 class="grey">{{ $title }}</h1>
 
-        <div class="grey">Найдено: ({{ $items->count() }} из {{ $items->total() }} ) [ категория: {{ $categoryId }} подкатегория: {{ $subcategoryId }} ]</div>
+        <!--<div class="grey">Найдено: ({{ $items->count() }} из {{ $items->total() }} ) [ категория: {{ $categoryId }} подкатегория: {{ $subcategoryId }} ]</div>-->
 
           <div class="row mt-5">
             
@@ -65,7 +65,7 @@
                       
                         <!-- если не категория работа и бизнес то отображаю цену -->
                         @if ($categoryId!=4)
-                          <div class="price">{{ $item->price }}</div> тнг.
+                          <div class="price">{{ $item->price }}  тнг.</div>
                         @endif
 
                         <!--<div style="display:inline-block;font-size:14px;text-align:right;width:80%;">{{ date("d/m/Y в h:i", strtotime($item->created_at)) }} в {{ $item->city_name }}</div>           -->                        
