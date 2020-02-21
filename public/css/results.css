@@ -42,9 +42,9 @@ h1 {
 .price {
   font-size: 16px;
   letter-spacing: 2px;
-  background: #6e6e6e;
+  background: yellow;
+  color: black;
   margin-top: 1px;
-  color: white;
   border-radius: 2px;
   font-weight: 400;
   padding: 1px;
