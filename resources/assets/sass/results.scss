@@ -19,43 +19,37 @@ h1 {
   color:black;
 }
 
-
 .card {
   width:100%;
   display: inline-block;
   margin-top:-1px;  
 }
 
-.card-title {  
+.card-title {
+  margin:3px;  
   font-size:18px;  
   font-weight:500;    
   color:black;
-  letter-spacing: 1px;
-  margin:0;
+  letter-spacing: 1px;  
 }
 
 .block-info-area {    
   width:830px;      
-  display:inline-block;  
-//  word-break:break-all;
-  word-break: normal;
- // border:1px solid grey;
+  display:inline-block; 
+  word-break: normal; 
 }
-
 
 .price {  
   font-size:16px;
-  letter-spacing: 2px;  
-  //background:rgb(110,110,110);  
-  //color:white;
+  letter-spacing: 2px;    
   background:yellow;  
   color:black;
   margin-top:1px;    
   border-radius: 2px;
   font-weight: 400;  
   padding:1px;
-  padding-left: 8px;  
-  padding-right: 8px;      
+  padding-left: 5px;  
+  padding-right: 5px;
   float:right;
 }
 
