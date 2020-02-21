@@ -21,6 +21,8 @@ h1 {
 
 .card {
   width: 100%;
+  display: inline-block;
+  margin-top: -1px;
 }
 
 .card-title {
@@ -55,9 +57,9 @@ h1 {
   font-size: 14px;
 }
 
-.item a {
-  color: black;
-}
+/*.item a {
+  color: rgb(80,80,80);
+}*/
 
 #filters {
   margin-top: -30px;
