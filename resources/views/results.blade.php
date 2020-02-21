@@ -68,7 +68,7 @@
                               {{ $item->title }}
                             </div>
                             <hr>
-                            <div class="location">{{ $item->region_name }}, {{ $item->city_name }}, Размещено: {{ date("d.m.Y в h:i", strtotime($item->created_at)) }}</div>                            
+                            <div class="location">{{ $item->region_name }}, {{ $item->city_name }},<br>{{ date("d.m.Y в h:i", strtotime($item->created_at)) }}</div>                            
 
                           </div>            
                         </div>
