@@ -49,7 +49,7 @@
                       <div class="block-info-area">                                                                                    
                             <!-- если не категория работа и бизнес то отображаю цену -->
                             @if ($categoryId!=4)
-                              <div class="price">{{ $item->price }}  тнг.</div>
+                              <div class="price">{{ $item->price }} ₸</div>
                             @endif                                                
                             <div class="card-title">{{ $item->title }}</div>
                               <hr>
