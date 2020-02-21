@@ -121,13 +121,11 @@ class ResultsController extends Controller {
         return $this->getCategoryResults($request, $region, $city, $category);
     }
 
-
     // -------------------------------------------------------------
     // результаты по стране
     // -------------------------------------------------------------    
     public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {
-        
-        
+                
         \Debugbar::info("start_price: ".$request->start_price);
         \Debugbar::info("end_price: ".$request->end_price);        
                         
@@ -201,15 +199,20 @@ class ResultsController extends Controller {
          
  
          $items = DB::table("adverts as adv")->select(
-             "adv.id", 
-             "adv.title", 
-             "adv.price", 
+            "adv.id", 
+            "adv.title", 
+            "adv.price", 
+            "adv.created_at",            
+            "kz_region.name as region_name",
+            "kz_city.name as city_name",
              DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
          ))
-         ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
-         ->where("region_id", $regionData->region_id)
-         ->paginate(10)
-         ->onEachSide(1);                 
+        ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
+        ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
+        ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
+        ->where("region_id", $regionData->region_id)
+        ->paginate(10)
+        ->onEachSide(1);                 
  
          \Debugbar::info("субкатегория: ".$subcategory);       
          \Debugbar::info("id субкатегории: ".$subcategories);      
@@ -255,16 +258,21 @@ class ResultsController extends Controller {
             $cityData = $this->getCityData($city);                   
  
          $items = DB::table("adverts as adv")->select(
-             "adv.id", 
-             "adv.title", 
-             "adv.price", 
-             DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
-         ))
-         ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
-         ->where("region_id", $regionData->region_id)
-         ->where("city_id", $cityData->city_id)
-         ->paginate(10)
-         ->onEachSide(1);
+            "adv.id", 
+            "adv.title", 
+            "adv.price",
+            "adv.created_at",            
+            "kz_region.name as region_name",
+            "kz_city.name as city_name",
+            DB::raw("concat('".\Common::getImagePath()."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
+        ))
+        ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
+        ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
+        ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
+        ->where("region_id", $regionData->region_id)
+        ->where("city_id", $cityData->city_id)
+        ->paginate(10)
+        ->onEachSide(1);
   
          \Debugbar::info("субкатегория: ".$subcategory);       
          \Debugbar::info("id субкатегории: ".$subcategories);      
