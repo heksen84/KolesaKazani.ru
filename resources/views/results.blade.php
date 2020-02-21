@@ -41,46 +41,24 @@
                 @endif             
             </div>
 
-            @foreach($items as $item)
-
-              <!--<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">                  
-                <a href="/objavlenie/show/{{ $item->id }}">
-                  <div class="card text-left" style="height:270px;margin:3px">
-                    <img class="card-img-top" src="{{ $item->imageName }}" alt="{{ $item->title }}">
-                      <div class="card-body">                                                                                             
-                        {{ $item->title }}
-                        <p class="card-text">{{ $item->price }} тнг.</p>
-                      </div>              
-                    </div>
-                  </a>
-                </div>-->                
-                
-                
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 item">                  
-                <a href="/objavlenie/show/{{ $item->id }}"">
-                <div class="card" style="display:inline-block">                  
-                                      
+            @foreach($items as $item)                                
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 item">                  
+              <a href="/objavlenie/show/{{ $item->id }}"">
+                <div class="card" style="display:inline-block">                                      
                     <img class="card-img-top image" style="width:130px;height:130px;display:inline-block;vertical-align:top" src="{{ $item->imageName }}" alt="{{ $item->title }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';">                                                            
-                      <div class="block-info-area">                                                              
-                      
-                        <!-- если не категория работа и бизнес то отображаю цену -->
-                        @if ($categoryId!=4)
-                          <div class="price">{{ $item->price }}  тнг.</div>
-                        @endif
-
-                        <!--<div style="display:inline-block;font-size:14px;text-align:right;width:80%;">{{ date("d/m/Y в h:i", strtotime($item->created_at)) }} в {{ $item->city_name }}</div>           -->                        
-                            <div class="card-title">
-                              {{ $item->title }}
-                            </div>
-                            <hr>
-                            <div class="location">{{ $item->region_name }}, {{ $item->city_name }}<br><b style="font-size:11px">{{ date("d.m.Y в h:i", strtotime($item->created_at)) }}</b></div>                            
-
-                          </div>            
-                        </div>
-                      </a>  
-                    </div>                
-
-              @endforeach
+                      <div class="block-info-area">                                                                                    
+                            <!-- если не категория работа и бизнес то отображаю цену -->
+                            @if ($categoryId!=4)
+                              <div class="price">{{ $item->price }}  тнг.</div>
+                            @endif                                                
+                            <div class="card-title">{{ $item->title }}</div>
+                              <hr>
+                            <div class="location">{{ $item->region_name }}, {{ $item->city_name }}<br><b style="font-size:11px">{{ date("d.m.Y в h:i", strtotime($item->created_at)) }}</b></div>
+                      </div>            
+                </div>
+              </a>  
+            </div>                
+            @endforeach
 
                 @if (count($items)>9)
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">                

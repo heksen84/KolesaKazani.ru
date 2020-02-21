@@ -24,16 +24,14 @@ h1 {
 }
 
 .card-title {  
-  font-size:17px;  
-  font-weight:500;  
-  //color:rgb(70,70,70);
+  font-size:18px;  
+  font-weight:500;    
   color:black;
   letter-spacing: 1px;
   margin:0;
 }
 
-.block-info-area {  
-  margin-left:-3px;
+.block-info-area {    
   width:830px;      
   display:inline-block;  
   word-break:break-all;
@@ -42,12 +40,11 @@ h1 {
 
 
 .price {  
-  font-size:12px;
+  font-size:14px;
   letter-spacing: 2px;  
-  background:rgb(100,150,100);  
+  background:rgb(110,110,110);  
   margin-top:1px;
-  //color:yellow;      
-  color:white;
+  color:yellow;  
   border-radius: 3px;
   font-weight: 400;  
   padding:1px;
@@ -79,7 +76,7 @@ h1 {
   }
 
   .block-info-area {   
-    width:82%;    
+    width:81%;    
   }
 
 }
@@ -91,7 +88,7 @@ h1 {
 @media screen and (max-width:800px) {  
 
   .block-info-area {       
-    width:80%;    
+    width:79%;    
   }
 
 }
@@ -102,7 +99,15 @@ h1 {
 @media screen and (max-width:768px) {  
 
   .block-info-area {   
-    width:79%;    
+    width:78%;    
+  }
+
+  .price {
+    font-size:12px;  
+  }
+  
+  .card-title {
+    font-size:15px;  
   }
 
 }
@@ -121,7 +126,7 @@ h1 {
   }
 
   .block-info-area {   
-    width:76%;    
+    width:75%;    
   }
 
 }
@@ -132,7 +137,7 @@ h1 {
 @media screen and (max-width:576px) {  
 
   .block-info-area {   
-    width:70%;    
+    width:69%;    
   }
 
 }
@@ -143,7 +148,7 @@ h1 {
 @media screen and (max-width:414px) {  
 
   .block-info-area {       
-    width:60%;    
+    width:59%;    
   }
 
 }
@@ -155,7 +160,7 @@ h1 {
 @media screen and (max-width:375px) {  
 
   .block-info-area {   
-    width:61%;    
+    width:60%;    
   }
 
 }
@@ -166,7 +171,7 @@ h1 {
 @media screen and (max-width:360px) {  
 
   .block-info-area {   
-    width:59%;    
+    width:58%;    
   }
 
 }
@@ -177,7 +182,7 @@ h1 {
 @media screen and (max-width:320px) {  
 
   .block-info-area {   
-    width:54%;    
+    width:53%;    
   }
 
 }
