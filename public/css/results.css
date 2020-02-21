@@ -91,6 +91,10 @@ h1 {
     font-size: 19px;
   }
 
+  .location {
+    font-size: 12px;
+  }
+
   .block-info-area {
     width: 76%;
   }
