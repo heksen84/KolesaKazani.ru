@@ -16,34 +16,48 @@ h1 {
 }
 
 .card {
-  width:90%;
+  width:100%;
 }
 
 .card-title {  
-  font-size:16px;
-  letter-spacing:1px;
-  font-weight:600;  
+  font-size:17px;  
+  font-weight:500;  
+  //color:rgb(70,70,70);
+  color:black;
+  letter-spacing: 1px;
+  margin:0;
 }
 
-.card-text {  
-  font-size:14px;
-  letter-spacing: 2px;
-  background:rgb(130,130,130);
-  width:150px;  
-  color:yellow;    
-  font-weight: 400;
-  border-radius: 3px;
-  padding:1px;
-  padding-left: 12px;  
-  display:inline-block;
-}
-
-.block-info-area {
-  width:70%;
-  display:inline-block;
-  vertical-align:top;
+.block-info-area {  
+  margin-left:-3px;
+  width:836px;      
+  display:inline-block;  
   word-break:break-all;
+ // border:1px solid grey;
 }
+
+
+.price {  
+  font-size:13px;
+  letter-spacing: 2px;  
+  background:rgb(130,130,130);  
+  margin-top:1px;
+  color:yellow;      
+  font-weight: 400;  
+  padding:1px;
+  padding-left: 5px;  
+  padding-right: 5px;    
+  display:inline-block;  
+}
+
+hr {
+  margin:0;
+}
+
+.location {      
+  font-size:14px;  
+}
+
 
 .item a {
   color: black;
@@ -52,12 +66,72 @@ h1 {
 #filters {
   margin-top:-30px;
 }
+
+
 // --------------------------------------------
-// Большие устройства 
+// 
+// --------------------------------------------
+/*@media screen and (max-width:1024px) {  
+
+  .block-info-area {   
+    width:80%;    
+  }
+
+}*/
+
+// --------------------------------------------
+// 
 // --------------------------------------------
 @media screen and (max-width:960px) {  
-  
-  h1 {
+
+  .block-info-area {   
+    width:82%;    
+  }
+
+}
+
+
+// --------------------------------------------
+// 
+// --------------------------------------------
+@media screen and (max-width:800px) {  
+
+  .block-info-area {       
+    width:80%;    
+  }
+
+}
+
+
+// --------------------------------------------
+// 
+// --------------------------------------------
+@media screen and (max-width:768px) {  
+
+  .block-info-area {   
+    width:79%;    
+  }
+
+}
+
+
+// --------------------------------------------
+// 
+// --------------------------------------------
+@media screen and (max-width:720px) {  
+
+  .block-info-area {   
+    width:76%;    
+  }
+
+}
+
+// --------------------------------------------
+// 
+// --------------------------------------------
+@media screen and (max-width:576px) {  
+
+/*  h1 {
     font-size: 18px;    
   }
 
@@ -66,40 +140,62 @@ h1 {
   }
 
   .card-title {
-    font-size:14px;   
+    font-size:12px;   
   }
 
-  .block-info-area {
-   // width:725px;
-    width:53%;    
+  .location {
+    font-size:10px;   
+  }
+*/
+  .block-info-area {   
+    width:70%;    
   }
 
 }
 
 
 // --------------------------------------------
-// Большие устройства 
+// 
 // --------------------------------------------
-/*@media screen and (min-width:500px) {  
-  .card {
-    width:100%;
+@media screen and (max-width:414px) {  
+
+  .block-info-area {       
+    width:65%;    
   }
 
-  .block-info-area {
-    width:300px;
-  }
-
-}*/
+}
 
 
 // --------------------------------------------
-// Cмартфоны
+// 
 // --------------------------------------------
-/*@media screen and (max-width:960px) {  
-  .block-info-area {
-    background: yellow;
-    width:200px;
+@media screen and (max-width:375px) {  
+
+  .block-info-area {   
+    width:61%;    
   }
 
-}*/
+}
 
+
+// --------------------------------------------
+// 
+// --------------------------------------------
+@media screen and (max-width:360px) {  
+
+  .block-info-area {   
+    width:59%;    
+  }
+
+}
+
+// --------------------------------------------
+// 
+// --------------------------------------------
+@media screen and (max-width:320px) {  
+
+  .block-info-area {   
+    width:54%;    
+  }
+
+}

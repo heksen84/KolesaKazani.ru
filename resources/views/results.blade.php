@@ -61,12 +61,15 @@
                 <div class="card" style="display:inline-block">                  
                                       
                     <img class="card-img-top image" style="width:130px;height:130px;display:inline-block;vertical-align:top" src="{{ $item->imageName }}" alt="{{ $item->title }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';">                                                            
-                      <div class="block-info-area">                                        
-                        <div class="card-text">{{ $item->price }} тнг.</div>                                                                              
-                          <div style="display:inline-block;font-size:13px;">{{ date("Размещено d/m/Y в h:i", strtotime($item->created_at)) }} в {{ $item->city_name }}</div>                    
-                            <div class="card-title mt-2">
-                            {{ $item->title }}
-                            </div>                      
+                      <div class="block-info-area">                                                              
+                        <div class="price">{{ $item->price }}</div> тнг.
+                        <!--<div style="display:inline-block;font-size:14px;text-align:right;width:80%;">{{ date("d/m/Y в h:i", strtotime($item->created_at)) }} в {{ $item->city_name }}</div>           -->                        
+                            <div class="card-title">
+                              {{ $item->title }}
+                            </div>
+                            <hr>
+                            <div class="location">{{ $item->region_name }}, {{ $item->city_name }}</div>                            
+
                           </div>            
                         </div>
                       </a>  
