@@ -59,29 +59,18 @@
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 item">                  
                 <a href="/objavlenie/show/{{ $item->id }}"">
                 <div class="card" style="display:inline-block">                  
-                  
-                    <!--<img class="card-img-top image" style="width:150px;height:150px;" src="{{ $item->imageName }}" alt="{{ $item->title }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';">
-                      <div style="display:inline-block;position:relative;top:-15px;left:3px;border:1px solid grey;word-wrap: break-word;width:50px">
-                        <a href="/objavlenie/show/{{ $item->id }}"">
-                        <h5 class="card-title">{{ $item->title }}</h5>
-                        </a>
-                        <p class="card-text">{{ $item->price }} тнг.</p>                                      
-                    </div>-->
-
-                    <!-- vertical-align: top; -->
-
+                                      
                     <img class="card-img-top image" style="width:130px;height:130px;display:inline-block;vertical-align:top" src="{{ $item->imageName }}" alt="{{ $item->title }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';">                                                            
-                    <div class="block-info-area">                                        
-                    <div class="card-text">{{ $item->price }} тнг.</div>                                                                              
-                    <div style="display:inline-block;font-size:13px;">Аксу, Сегодня</div>                    
-                      <div class="card-title mt-2">
-                        {{ $item->title }}
-                      </div>                      
-                    </div>
-                  
-                </div>
-                </a>  
-              </div>                
+                      <div class="block-info-area">                                        
+                        <div class="card-text">{{ $item->price }} тнг.</div>                                                                              
+                          <div style="display:inline-block;font-size:13px;">{{ date("Размещено d/m/Y в h:i", strtotime($item->created_at)) }} в {{ $item->city_name }}</div>                    
+                            <div class="card-title mt-2">
+                            {{ $item->title }}
+                            </div>                      
+                          </div>            
+                        </div>
+                      </a>  
+                    </div>                
 
               @endforeach
 
