@@ -9,8 +9,8 @@
   <meta name="description" content="{{ $description }}">
   <meta name="keywords" content="{{ $keywords }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/common.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/moderator.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ mix('css/common.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ mix('css/moderator.css') }}">
 </head>
 <body>
 

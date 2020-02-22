@@ -9,8 +9,8 @@
   <meta name="description" content="{{ $description }}">
   <meta name="keywords" content="{{ $keywords }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/common.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/index.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ mix('css/common.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ mix('css/index.css') }}">
   <script data-ad-client="ca-pub-8074944108437227" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 

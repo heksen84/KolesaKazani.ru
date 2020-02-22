@@ -24,7 +24,8 @@ sass('resources/assets/sass/index.scss', 'public/css').
 sass('resources/assets/sass/newad.scss', 'public/css').
 sass('resources/assets/sass/results.scss', 'public/css').
 sass('resources/assets/sass/details.scss', 'public/css').
-sass('resources/assets/sass/home.scss', 'public/css').version().browserSync({
+sass('resources/assets/sass/home.scss', 'public/css').version()
+.browserSync({
     proxy: 'flix:90',
     port: 99,
     notify: false
