@@ -72,7 +72,9 @@
                 <img src='{{ $image->name }}' alt='{{ $image->name }}'></img>
               @endforeach
 
-            <button type="button" class="btn btn-outline-success full-width" id="showNumberBtn"><b>Показать телефон</b></button>
+            <div style="text-align:center">
+              <button type="button" class="btn btn-outline-success" id="showNumberBtn">Показать телефон</button>
+            </div>
 
             <!--Скажите продавцу, что нашли это объявление на {{ config('app.name') }}-->
             
