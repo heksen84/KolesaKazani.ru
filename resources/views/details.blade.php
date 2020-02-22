@@ -21,7 +21,7 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
       
         <!--{{ $advert->category_id }} / {{ $advert->subcategory_id }}-->
-        <div id="posted">{{ date("d.m.Y", strtotime($advert->created_at)) }}</div>
+        <div id="posted">{{ date("Размещено d.m.Y в h:i", strtotime($advert->created_at)) }}</div>
         <div id="location">{{ $advert->region_name }}, {{ $advert->city_name }}</div>
 
               @if ($advert->title!="null") 
