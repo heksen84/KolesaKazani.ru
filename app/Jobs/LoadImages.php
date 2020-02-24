@@ -30,18 +30,17 @@ class LoadImages implements ShouldQueue {
             /*                
                 сохранить в нормальном виде    
                 сохранить в уменьшенном виде              
-            */
-
-            // формирую рандомное имя
-            $filename = str_random(32).".".$img->getClientOriginalExtension();
+            */            
 
             // узнаю имя
             $imageName = Image::make($img->getRealPath());            
+
+            // формирую рандомное имя
+            $filename = str_random(32).".".$img->getClientOriginalExtension();
             $imageName->save(storage_path().'/app/images/normal/' .$filename);
             
             // сохраняю в нормальном виде            
             $image = new Images();            
-
             $image->advert_id = $advert_id;
             $image->name = $filename;                
             $image->type = 1; // 1 = normal (тип normal)
@@ -52,9 +51,12 @@ class LoadImages implements ShouldQueue {
                 $constraint->aspectRatio();
             });
 
-            $imageName->save(storage_path().'/app/images/preview/' .$filename);                        
+            // формирую рандомное имя
+            $filename = str_random(32).".".$img->getClientOriginalExtension();
+            $imageName->save(storage_path().'/app/images/small/' .$filename);                        
 
-            // сохраняю в уменьшенном            
+            // сохраняю в уменьшенном
+            $image = new Images();            
             $image->advert_id = $advert_id;
             $image->name = $filename;                
             $image->type = 0; // 0 = small (тип preview)

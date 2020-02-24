@@ -45,7 +45,7 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 item">                  
               <a href="/objavlenie/show/{{ $item->id }}">
                 <div class="card">                                      
-                    <img class="card-img-top image" style="width:130px;height:130px;display:inline-block;vertical-align:top" src="{{ $item->imageName }}" alt="{{ $item->title }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';">                                                            
+                    <img class="card-img-top image" src="{{ $item->imageName }}" alt="{{ $item->title }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';">                                                            
                       <div class="block-info-area">                                                                                    
                             <!-- если не категория работа и бизнес то отображаю цену -->
                             @if ($categoryId!=4)

@@ -373,7 +373,7 @@ class ApiController extends Controller {
             $urls->save();
                          
             // Сохраняю картинки        
-            //\App\Jobs\loadImages::dispatch($request, $advert->id);
+            \App\Jobs\loadImages::dispatch($request, $advert->id);
             
             Sitemap::addUrl($urls->url);
             return $advert->id;

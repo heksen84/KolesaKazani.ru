@@ -67,11 +67,14 @@
               @if ($advert->price!="null" && $advert->category_id!=4)
                 <div id="price">{{ $advert->price }} тнг.</div>
               @endif
+              <br>
 
+            <hr>            
               @foreach($images as $image)
-                <img src='{{ $image->name }}' alt='{{ $image->name }}'></img>
-              @endforeach
-
+                <img src='{{ $image->name }}' alt='{{ $image->name }}' style="display:block;margin: 4px auto"></img>
+              @endforeach            
+            <hr>         
+               
             <div style="text-align:center">
               <button type="button" class="btn btn-outline-success" id="showNumberBtn">Показать телефон</button>
             </div>
