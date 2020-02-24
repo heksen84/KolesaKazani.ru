@@ -666,6 +666,8 @@ onSubmit(evt) {
 	// -------------------------------------
 	showSetCoordsDialog() {    
         
+    this.serviceUnavailable=false;
+    
     $("#ShowModal").modal("show"); // отобразить окно
 
     if (!navigator.geolocation) {    
