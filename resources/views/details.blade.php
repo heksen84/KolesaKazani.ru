@@ -76,11 +76,9 @@
               @endforeach            
             <hr>            
             @endif
-               
-            <div style="text-align:center">
-              <button type="button" class="btn btn-outline-success" id="showNumberBtn">Показать телефон</button>
-            </div>
-
+                           
+            <button type="button" class="btn btn-outline-success" id="numberButton">Показать телефон</button>            
+            
             <!--Скажите продавцу, что нашли это объявление на {{ config('app.name') }}-->
             
             <div id="phone-number"></div>
