@@ -52,13 +52,11 @@ class AdvertController extends Controller {
         public function getDetails(Request $request, $id) {
 
                 \Debugbar::info("mykey: ".\Cache::get('mykey'));
-
-                if ( $id < 0 ) 
-                        return view("errors/404");
-
-                // 1. определить id категории
-                // 2. сделать выборку из необходимой таблицы                
+                                
                 $advertData = Adverts::select("category_id","subcategory_id")->where( "id", $id )->limit(1)->get();
+                
+                if (count($advertData)==0)
+                        return view("errors/404");
 
                 \Debugbar::info("-------------------");
                 \Debugbar::info($advertData);

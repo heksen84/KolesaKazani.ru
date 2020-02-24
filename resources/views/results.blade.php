@@ -28,18 +28,17 @@
     
       <h1>{{ $title }}</h1>
 
-        <!--<div class="grey">Найдено: ({{ $items->count() }} из {{ $items->total() }} ) [ категория: {{ $categoryId }} подкатегория: {{ $subcategoryId }} ]</div>-->
-
-          <div class="row mt-5">
+        <!--<div class="grey">Найдено: ({{ $items->count() }} из {{ $items->total() }} ) [ категория: {{ $categoryId }} подкатегория: {{ $subcategoryId }} ]</div>-->    
+        <div class="row mt-5">
             
           <!-- ФИЛЬТРЫ -->  
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-3" id="filters">                
-                @if ($categoryId===1 && $subcategoryId===1)  
-                  @include('filters/transport/legkovoy')
-                @else
-                  @include('filters/base')
-                @endif             
-            </div>
+            @if ($categoryId===1 && $subcategoryId===1)  
+              @include('filters/transport/legkovoy')
+            @else
+              @include('filters/base')
+            @endif             
+          </div>
 
             @foreach($items as $item)                                
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 item">                  
@@ -47,14 +46,17 @@
                 <div class="card">                                      
                     <img class="card-img-top image" src="{{ $item->imageName }}" alt="{{ $item->title }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">                                                            
                       <div class="block-info-area">                                                                                    
-                            <!-- если не категория работа и бизнес то отображаю цену -->
-                            @if ($categoryId!=4)
-                              <div class="price">{{ $item->price }} ₸</div>
-                            @endif                                                
-                            <div class="card-title">{{ $item->title }}</div>
-                              <hr>
-                            <div class="location">{{ $item->region_name }}, {{ $item->city_name }}<br><b style="font-size:11px">{{ date("d.m.Y в h:i", strtotime($item->created_at)) }}</b></div>
-                      </div>            
+                            
+                      <!-- если не категория работа и бизнес то отображаю цену -->
+                      @if ($categoryId!=4)
+                        <div class="price">{{ $item->price }} ₸</div>
+                      @endif                                                
+                            
+                      <div class="card-title">{{ $item->title }}</div>
+                        <hr>
+                      <div class="location">{{ $item->region_name }}, {{ $item->city_name }}<br><b style="font-size:11px">{{ date("d.m.Y в H:i", strtotime($item->created_at)) }}</b></div>
+
+                    </div>            
                 </div>
               </a>  
             </div>                
