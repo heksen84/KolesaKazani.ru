@@ -69,11 +69,13 @@
               @endif
               <br>
 
+            @if (count($images)>0)
             <hr>            
               @foreach($images as $image)
                 <img src='{{ $image->name }}' alt='{{ $image->name }}' style="display:block;margin: 4px auto"></img>
               @endforeach            
-            <hr>         
+            <hr>            
+            @endif
                
             <div style="text-align:center">
               <button type="button" class="btn btn-outline-success" id="showNumberBtn">Показать телефон</button>
