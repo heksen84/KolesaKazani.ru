@@ -72,7 +72,7 @@
             @if (count($images)>0)
             <hr>            
               @foreach($images as $image)
-                <img src='{{ $image->name }}' alt='{{ $image->name }}' style="display:block;margin: 4px auto"></img>
+                <img src='{{ $image->name }}' alt='{{ $image->name }}' style="display:block;margin: 4px auto" loading="lazy"></img>
               @endforeach            
             <hr>            
             @endif
