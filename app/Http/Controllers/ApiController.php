@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Jobs\LoadImages;
 use App\Urls;
 use App\SubCats;
 use App\CarMark;
@@ -373,7 +374,7 @@ class ApiController extends Controller {
             $urls->save();
                          
             // Сохраняю картинки        
-            \App\Jobs\loadImages::dispatch($request, $advert->id);
+            LoadImages::dispatch($request, $advert->id);
             
             Sitemap::addUrl($urls->url);
             return $advert->id;
