@@ -28,7 +28,7 @@
     
       <h1>{{ $title }}</h1>
 
-        <!--<div class="grey">Найдено: ({{ $items->count() }} из {{ $items->total() }} ) [ категория: {{ $categoryId }} подкатегория: {{ $subcategoryId }} ]</div>-->    
+        <!--<div class="grey">Найдено: ({{ $items->count() }} из {{ $items->total() }} ) [ категория: {{ $categoryId }} подкатегория: {{ $subcategoryId }} ]</div>-->
         <div class="row mt-5">
             
           <!-- ФИЛЬТРЫ -->  
@@ -45,20 +45,18 @@
               <a href="/objavlenie/show/{{ $item->id }}">
                 <div class="card">                                      
                     <img class="card-img-top image" src="{{ $item->imageName }}" alt="{{ $item->title }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">                                                            
-                      <div class="block-info-area">                                                                                    
-                            
-                      <!-- если не категория работа и бизнес то отображаю цену -->
-                      @if ($categoryId!=4)
-                        <div class="price">{{ $item->price }} ₸</div>
-                      @endif                                                
-                            
-                      <div class="card-title">{{ $item->title }}</div>
-                        <hr>
-                      <div class="location">{{ $item->region_name }}, {{ $item->city_name }}<br><b style="font-size:11px">{{ date("d.m.Y в H:i", strtotime($item->created_at)) }}</b></div>
-
-                    </div>            
-                </div>
-              </a>  
+                      <div class="block-info-area">                                                  
+                        <!-- если не категория работа и бизнес то отображаю цену -->
+                        @if ($categoryId!=4)
+                          <div class="price">{{ $item->price }} ₸</div>
+                        @endif                                                                            
+                        <div class="card-title">{{ $item->title }}</div>
+                          <hr>
+                        <div class="location">                        
+                          {{ $item->region_name }},{{ $item->city_name }}<br><b style="font-size:11px">{{ date("d.m.Y в H:i", strtotime($item->created_at)) }}</b></div>                      
+                        </div>            
+                      </div>
+                </a>  
             </div>                
             @endforeach
 

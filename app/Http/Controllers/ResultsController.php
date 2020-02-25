@@ -82,9 +82,14 @@ class ResultsController extends Controller {
         $items = DB::table("adverts as adv")->select(
             "adv.id", 
             "adv.title", 
-            "adv.price", 
+            "adv.price",
+            "adv.created_at",            
+            "kz_region.name as region_name",
+            "kz_city.name as city_name", 
             DB::raw("concat('".\Common::getImagePath("small")."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
         ))        
+        ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
+        ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
         ->whereRaw($whereRaw)
         ->paginate(10)
         ->onEachSide(1);
