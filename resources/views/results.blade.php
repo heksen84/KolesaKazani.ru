@@ -60,14 +60,14 @@
             </div>                
             @endforeach
 
-                @if (count($items)>9)
+                <!--@if (count($items)>9)-->
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">                
                   <!--<div class="pagination justify-content-center pagination-sm">-->
                   <div class="pagination justify-content-center">
                     {{ $items->links() }}                         
                   </div>
                 </div>
-                @endif
+                <!--@endif-->
 
           </div>                                  	                
   </div>
