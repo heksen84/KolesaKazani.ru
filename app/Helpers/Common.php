@@ -4,15 +4,15 @@ namespace App\Helpers;
  
 class Common {
 
-    public static function getImagePath($imageType) {
+    public static function getImagesPath() {
               
-        if ($imageType=="small")
+        /*if ($imageType=="small")
             $imagePath = 'app/images/small/';
 
         if ($imageType=="normal")
-            $imagePath = 'app/images/normal/';            
+            $imagePath = 'app/images/normal/';*/
 
-        return \Storage::disk("local")->url($imagePath);
+        return \Storage::disk("local")->url("app/images");
     }
 
 }

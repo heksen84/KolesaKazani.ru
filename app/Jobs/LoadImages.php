@@ -32,14 +32,7 @@ class LoadImages implements ShouldQueue {
             // узнаю имя
             $imageName = Image::make($img->getRealPath());            
             $imageName->save(storage_path().'/app/images/normal/' .$filename);
-            
-            // добавляю запись в базу       
-            $image = new Images();            
-            $image->advert_id = $advert_id;
-            $image->name = $filename;                
-            $image->type = 1; // 1 = normal (тип normal)
-            $image->save();
-            
+                        
             // изменяю размер с соотношением пропорций
             $imageName->resize(200, 150, function ($constraint) {
                 $constraint->aspectRatio();
@@ -47,12 +40,19 @@ class LoadImages implements ShouldQueue {
             
             $imageName->save(storage_path().'/app/images/small/' .$filename);                        
 
-            // добавляю запись в базу
+            // добавляю запись в базу       
             $image = new Images();            
             $image->advert_id = $advert_id;
             $image->name = $filename;                
+            //$image->type = 1; // 1 = normal (тип normal)
+            $image->save();                                    
+
+            // добавляю запись в базу
+            /*$image = new Images();            
+            $image->advert_id = $advert_id;
+            $image->name = $filename;                
             $image->type = 0; // 0 = small (тип preview)
-            $image->save();
+            $image->save();*/
         }
     }
 
