@@ -37,3 +37,9 @@ chmod 777 -R sitemaps
 
 // иcключить из индекса папку
 git rm -r --cached .idea
+
+// actions
+mysql -u root
+
+// import bd
+mysql -u root -p flix < dump_name.sql
