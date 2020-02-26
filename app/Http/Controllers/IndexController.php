@@ -65,7 +65,7 @@ class IndexController extends Controller {
 			"adv.created_at",
 			"kz_region.name as region_name",
             "kz_city.name as city_name",
-            DB::raw("concat('".\Common::getImagePath("small")."', (SELECT name FROM images WHERE images.advert_id=adv.id AND images.type=0 LIMIT 1)) as imageName"
+            DB::raw("concat('".\Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
 		))
 		->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
         ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )
