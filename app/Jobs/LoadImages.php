@@ -21,6 +21,9 @@ class LoadImages implements ShouldQueue {
      */
     public function __construct(Request $request, $advert_id) {
 
+        $MAX_IMAGE_WIDTH  = 1024;
+        $MAX_IMAGE_HEIGHT = 768;
+
         if ($request->images)
 
         // бегу по картинкам
@@ -30,29 +33,32 @@ class LoadImages implements ShouldQueue {
             $filename = str_random(32).".".$img->getClientOriginalExtension();
             
             // узнаю имя
-            $imageName = Image::make($img->getRealPath());            
-            $imageName->save(storage_path().'/app/images/normal/' .$filename);
+            $image = Image::make($img->getRealPath());       
+
+            \Debugbar::info($image->width()."x".$image->height());
+            
+            if ( $image->width()>$MAX_IMAGE_WIDTH && $image->height()>$MAX_IMAGE_HEIGHT) {                
+                // изменяю размер с соотношением пропорций
+                $image->resize($MAX_IMAGE_WIDTH, $MAX_IMAGE_HEIGHT, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+            }
+            
+            $image->save(storage_path().'/app/images/normal/' .$filename);
                         
             // изменяю размер с соотношением пропорций
-            $imageName->resize(200, 150, function ($constraint) {
+            $image->resize(200, 150, function ($constraint) {
                 $constraint->aspectRatio();
             });
             
-            $imageName->save(storage_path().'/app/images/small/' .$filename);                        
+            $image->save(storage_path().'/app/images/small/' .$filename);                        
 
             // добавляю запись в базу       
-            $image = new Images();            
-            $image->advert_id = $advert_id;
-            $image->name = $filename;                
-            //$image->type = 1; // 1 = normal (тип normal)
-            $image->save();                                    
+            $imageRec = new Images();            
+            $imageRec->advert_id = $advert_id;
+            $imageRec->name = $filename;                            
+            $imageRec->save();                                    
 
-            // добавляю запись в базу
-            /*$image = new Images();            
-            $image->advert_id = $advert_id;
-            $image->name = $filename;                
-            $image->type = 0; // 0 = small (тип preview)
-            $image->save();*/
         }
     }
 
