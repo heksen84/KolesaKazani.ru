@@ -26,9 +26,14 @@ twip.kz
 briks.kz
 blit.kz
 
+// установить графическую либу для пхп
 gd 2 php lib
 yum install gd gd-devel php-gd
 service httpd restart
 
+// утсановить полные права на папку
 chmod 777 -R images
 chmod 777 -R sitemaps
+
+// иcключить из индекса папку
+git rm -r --cached .idea
