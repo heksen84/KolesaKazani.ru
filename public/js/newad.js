@@ -1819,6 +1819,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         case "phone":
           {
 
+            alert(newValue);
+
             if (!numericPattern.test(newValue)) e.target.value = this.value;
 
             var x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);

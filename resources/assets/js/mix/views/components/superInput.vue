@@ -43,7 +43,9 @@ export default {
       switch(this.type) {
 
           // телефон
-          case "phone": {                                                        
+          case "phone": {                       
+            
+            alert(newValue)
             
             if (!numericPattern.test(newValue)) 
               e.target.value = this.value;
