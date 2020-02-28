@@ -41220,7 +41220,7 @@ var render = function() {
             id: _vm.id,
             placeholder: _vm.placeholder,
             name: _vm.name,
-            max: _vm.maxlength,
+            maxlength: _vm.maxlength,
             required: ""
           },
           domProps: { value: _vm.valueInput },
@@ -41267,7 +41267,7 @@ var render = function() {
             id: _vm.id,
             placeholder: _vm.placeholder,
             name: _vm.name,
-            max: _vm.maxlength,
+            maxlength: _vm.maxlength,
             required: ""
           },
           domProps: { value: _vm.valueInput },
