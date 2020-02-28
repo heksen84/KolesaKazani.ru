@@ -191,7 +191,7 @@
                     <button type="button" class="btn btn-primary form-group" @click="showSetCoordsDialog">уточнить местоположение</button>                    
                   </div>
                   
-                  <div class="col-md-12 text-center" v-show="places_model!=null">
+                  <div class="col-md-12 text-center" v-if="places_model!=null">
                     <hr>
                     <button type="submit" class="btn btn-success form-group">опубликовать</button>                    
                   </div>

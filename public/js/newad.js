@@ -40752,32 +40752,20 @@ var render = function() {
                         ]
                       ),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value: _vm.places_model != null,
-                              expression: "places_model!=null"
-                            }
-                          ],
-                          staticClass: "col-md-12 text-center"
-                        },
-                        [
-                          _c("hr"),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-success form-group",
-                              attrs: { type: "submit" }
-                            },
-                            [_vm._v("опубликовать")]
-                          )
-                        ]
-                      )
+                      _vm.places_model != null
+                        ? _c("div", { staticClass: "col-md-12 text-center" }, [
+                            _c("hr"),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-success form-group",
+                                attrs: { type: "submit" }
+                              },
+                              [_vm._v("опубликовать")]
+                            )
+                          ])
+                        : _vm._e()
                     ]
                   )
                 ]
