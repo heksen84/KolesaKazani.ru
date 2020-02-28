@@ -45,10 +45,10 @@ export default {
       const newValue = e.target.value;
       const numericPattern = /^[0-9]*$/;            
 
-      if (newValue.length > this.maxlength) {        
+      /*if (newValue.length > this.maxlength) {        
         this.$emit('input', null)
         return;
-      }            
+      } */           
       
 
       switch(this.type) {
