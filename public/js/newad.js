@@ -1787,6 +1787,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
+var lastValue = "";
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id", "index", "value", "name", "type", "placeholder", "maxlength"],
 
@@ -1812,6 +1814,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       var newValue = e.target.value;
       var numericPattern = /^[0-9]*$/;
+
+      if (newValue.length > this.maxlength) {
+        this.$emit('input', null);
+        return;
+      }
 
       switch (this.type) {
 

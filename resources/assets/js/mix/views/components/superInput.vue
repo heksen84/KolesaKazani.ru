@@ -8,6 +8,8 @@
 
 <script>
 
+let lastValue = "";
+
 export default {
     props: [
     "id",
@@ -25,7 +27,8 @@ export default {
       get: function() {                         
         return this.value;        
       },      
-      set: function(newValue) {}   
+      set: function(newValue) {
+      }   
     }
   },
 
@@ -40,7 +43,13 @@ export default {
     inputHandler(e) {
 
       const newValue = e.target.value;
-      const numericPattern = /^[0-9]*$/;
+      const numericPattern = /^[0-9]*$/;            
+
+      if (newValue.length > this.maxlength) {        
+        this.$emit('input', null)
+        return;
+      }            
+      
 
       switch(this.type) {
 
