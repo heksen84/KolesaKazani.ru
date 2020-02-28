@@ -1807,7 +1807,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
      />*/
 
   methods: {
-
     // обработчик ввода
     inputHandler: function inputHandler(e) {
 
@@ -1819,12 +1818,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         // телефон
         case "phone":
           {
-
             if (!numericPattern.test(newValue)) e.target.value = this.value;
-
             var x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
             var val = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
-
             this.$emit('input', val);
             break;
           }
@@ -1832,9 +1828,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         // число          
         case "number":
           {
-
             if (!numericPattern.test(newValue)) e.target.value = this.value;else this.$emit('input', newValue);
-
             break;
           }
       }
@@ -41227,7 +41221,6 @@ var render = function() {
             placeholder: _vm.placeholder,
             name: _vm.name,
             max: _vm.maxlength,
-            maxlength: _vm.maxlength,
             required: ""
           },
           domProps: { value: _vm.valueInput },
@@ -41275,7 +41268,6 @@ var render = function() {
             placeholder: _vm.placeholder,
             name: _vm.name,
             max: _vm.maxlength,
-            maxlength: _vm.maxlength,
             required: ""
           },
           domProps: { value: _vm.valueInput },
