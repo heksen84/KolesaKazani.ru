@@ -1815,10 +1815,10 @@ var lastValue = "";
       var newValue = e.target.value;
       var numericPattern = /^[0-9]*$/;
 
-      /*if (newValue.length > this.maxlength) {        
-        this.$emit('input', null)
+      if (newValue.length > this.maxlength) {
+        // this.$emit('input', null)
         return;
-      } */
+      }
 
       switch (this.type) {
 
