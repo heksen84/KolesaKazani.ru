@@ -1819,7 +1819,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         case "phone":
           {
 
-            alert(newValue);
+            //alert(newValue)
 
             if (!numericPattern.test(newValue)) e.target.value = this.value;
 

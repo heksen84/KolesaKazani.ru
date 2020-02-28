@@ -45,7 +45,7 @@ export default {
           // телефон
           case "phone": {                       
             
-            alert(newValue)
+            //alert(newValue)
             
             if (!numericPattern.test(newValue)) 
               e.target.value = this.value;
