@@ -1,8 +1,8 @@
 <template>
   <div>
     <span class="mr-2" v-if="type=='phone'">+7</span>    
-    <input type="tel" :id="id" :placeholder="placeholder" :name="name" class='form-control phone_input' v-model="valueInput" @input.prevent="inputHandler" :max="max" v-if="type==='phone'" required  @keyup.enter.stop="$event.target.blur()"/>
-    <input type="number" :id="id" :placeholder="placeholder" :name="name" class='form-control number_input' v-model="valueInput" @input.prevent="inputHandler" :max="max" v-if="type==='number'" required  @keyup.enter.stop="$event.target.blur()"/>
+    <input type="tel" :id="id" :placeholder="placeholder" :name="name" class='form-control phone_input' v-model="valueInput" @input.prevent="inputHandler" :max="maxlength" v-if="type==='phone'" required  @keyup.enter.stop="$event.target.blur()"/>
+    <input type="number" :id="id" :placeholder="placeholder" :name="name" class='form-control number_input' v-model="valueInput" @input.prevent="inputHandler" :max="maxlength" v-if="type==='number'" required  @keyup.enter.stop="$event.target.blur()"/>
  </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
     "name", 
     "type", 
     "placeholder", 
-    "max",     
+    "maxlength",     
   ],
     
   // перехватчик

@@ -1788,7 +1788,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["id", "index", "value", "name", "type", "placeholder", "max"],
+  props: ["id", "index", "value", "name", "type", "placeholder", "maxlength"],
 
   // перехватчик
   computed: {
@@ -40434,7 +40434,7 @@ var render = function() {
                             ),
                             _vm._v(" "),
                             _c("superInput", {
-                              attrs: { type: "number", max: 9 },
+                              attrs: { type: "number", maxlength: 9 },
                               on: { input: _vm.setPrice },
                               model: {
                                 value: _vm.price,
@@ -40509,7 +40509,7 @@ var render = function() {
                           attrs: {
                             type: "phone",
                             placeholder: "контактный номер",
-                            max: 14
+                            maxlength: 14
                           },
                           on: { input: _vm.setPhone },
                           model: {
@@ -41220,7 +41220,7 @@ var render = function() {
             id: _vm.id,
             placeholder: _vm.placeholder,
             name: _vm.name,
-            max: _vm.max,
+            max: _vm.maxlength,
             required: ""
           },
           domProps: { value: _vm.valueInput },
@@ -41267,7 +41267,7 @@ var render = function() {
             id: _vm.id,
             placeholder: _vm.placeholder,
             name: _vm.name,
-            max: _vm.max,
+            max: _vm.maxlength,
             required: ""
           },
           domProps: { value: _vm.valueInput },

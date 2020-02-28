@@ -127,7 +127,7 @@
                     
                     <div class="col-md-12 text-center" v-if="$store.state.show_price">
                       <span style="margin-right:5px">Цена:</span>                      
-                      <superInput type="number" v-model="price" :max="9" @input="setPrice"></superInput>
+                      <superInput type="number" v-model="price" :maxlength="9" @input="setPrice"></superInput>
                     </div>
 
                     <div class="col-md-12">
@@ -155,7 +155,7 @@
 
                   <div class="row">                                        
                     <div class="col-md-12 text-center">                      
-                      <superInput type="phone" placeholder="контактный номер" v-model="phone" :max="14" @input="setPhone"></superInput>                      
+                      <superInput type="phone" placeholder="контактный номер" v-model="phone" :maxlength="14" @input="setPhone"></superInput>                      
                       <br>
                     </div>
                   </div>
