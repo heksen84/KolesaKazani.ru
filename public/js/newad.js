@@ -1816,7 +1816,7 @@ var lastValue = "";
       var numericPattern = /^[0-9]*$/;
 
       if (newValue.length > this.maxlength) {
-        // this.$emit('input', null)
+        this.$emit('input', null);
         return;
       }
 
