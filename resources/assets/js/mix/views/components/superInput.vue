@@ -22,7 +22,10 @@ export default {
   // перехватчик
   computed: {    
     valueInput: {  
-      get: function() { return this.value; },      
+      get: function() {                         
+        return this.value; 
+        
+      },      
       set: function(newValue) {}   
     }
   },
@@ -38,7 +41,7 @@ export default {
     
     // обработчик ввода
     inputHandler(e) {
-
+      
       const newValue = e.target.value;
       const numericPattern = /^[0-9]*$/;
 
@@ -68,14 +71,8 @@ export default {
             break;
           }
       }      			
-    },
-
-    // ------------------
-    // телефон
-    // ------------------
-    removePhone() {
-      this.$store.commit("RemovePhoneNumber", this.index);
     }
+    
   }
 }
 </script>

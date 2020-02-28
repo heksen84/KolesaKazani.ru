@@ -1838,14 +1838,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             break;
           }
       }
-    },
-
-
-    // ------------------
-    // телефон
-    // ------------------
-    removePhone: function removePhone() {
-      this.$store.commit("RemovePhoneNumber", this.index);
     }
   }
 });
