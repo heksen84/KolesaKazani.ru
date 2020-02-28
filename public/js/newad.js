@@ -1786,28 +1786,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({
 
+/* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id", "index", "value", "name", "type", "placeholder", "maxlength"],
 
   // перехватчик
   computed: {
-
     valueInput: {
-      // геттер
       get: function get() {
         return this.value;
       },
-      // сеттер
       set: function set(newValue) {}
     }
   },
 
+  /*<input name="somename"
+        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        type = "number"
+        maxlength = "6"
+     />*/
+
   methods: {
 
-    // --------------------
     // обработчик ввода
-    // --------------------
     inputHandler: function inputHandler(e) {
 
       var newValue = e.target.value;
@@ -1818,8 +1819,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         // телефон
         case "phone":
           {
-
-            //alert(newValue)
 
             if (!numericPattern.test(newValue)) e.target.value = this.value;
 
@@ -41235,6 +41234,7 @@ var render = function() {
             id: _vm.id,
             placeholder: _vm.placeholder,
             name: _vm.name,
+            max: _vm.maxlength,
             maxlength: _vm.maxlength,
             required: ""
           },
@@ -41260,7 +41260,7 @@ var render = function() {
                 return null
               }
               $event.stopPropagation()
-              return _vm.onEnter($event)
+              return $event.target.blur()
             }
           }
         })
@@ -41282,6 +41282,7 @@ var render = function() {
             id: _vm.id,
             placeholder: _vm.placeholder,
             name: _vm.name,
+            max: _vm.maxlength,
             maxlength: _vm.maxlength,
             required: ""
           },
@@ -41307,7 +41308,7 @@ var render = function() {
                 return null
               }
               $event.stopPropagation()
-              return _vm.onEnter($event)
+              return $event.target.blur()
             }
           }
         })

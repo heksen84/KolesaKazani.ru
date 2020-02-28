@@ -1,15 +1,15 @@
 <template>
   <div>
     <span class="mr-2" v-if="type=='phone'">+7</span>    
-    <input type="tel" :id="id" :placeholder="placeholder" :name="name" class='form-control phone_input' v-model="valueInput" @input.prevent="inputHandler" :maxlength="maxlength" v-if="type==='phone'" required  @keyup.enter.stop="onEnter"/>
-    <input type="number" :id="id" :placeholder="placeholder" :name="name" class='form-control number_input' v-model="valueInput" @input.prevent="inputHandler" :maxlength="maxlength" v-if="type==='number'" required  @keyup.enter.stop="onEnter"/>
+    <input type="tel" :id="id" :placeholder="placeholder" :name="name" class='form-control phone_input' v-model="valueInput" @input.prevent="inputHandler" :max="maxlength" :maxlength="maxlength" v-if="type==='phone'" required  @keyup.enter.stop="$event.target.blur()"/>
+    <input type="number" :id="id" :placeholder="placeholder" :name="name" class='form-control number_input' v-model="valueInput" @input.prevent="inputHandler" :max="maxlength" :maxlength="maxlength" v-if="type==='number'" required  @keyup.enter.stop="$event.target.blur()"/>
  </div>
 </template>
 
 <script>
+
 export default {
-  
-  props: [
+    props: [
     "id",
     "index", 
     "value", 
@@ -20,21 +20,23 @@ export default {
   ],
     
   // перехватчик
-  computed: {
-    
-    valueInput: {
-      // геттер
-      get: function() { return this.value; },
-      // сеттер
+  computed: {    
+    valueInput: {  
+      get: function() { return this.value; },      
       set: function(newValue) {}   
     }
   },
+
+
+  /*<input name="somename"
+        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        type = "number"
+        maxlength = "6"
+     />*/
   
   methods: {
     
-    // --------------------
     // обработчик ввода
-    // --------------------
     inputHandler(e) {
 
       const newValue = e.target.value;
@@ -43,9 +45,7 @@ export default {
       switch(this.type) {
 
           // телефон
-          case "phone": {                       
-            
-            //alert(newValue)
+          case "phone": {                                       
             
             if (!numericPattern.test(newValue)) 
               e.target.value = this.value;
