@@ -36836,11 +36836,18 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
                     price = 400;
                     break;
                 }
+            case 4:
+                {
+                    alert("Удалить объявление?");
+                    break;
+                }
         }
 
-        __WEBPACK_IMPORTED_MODULE_0_jquery___default()(".modal-title").text(title_text);
-        __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#price").text(price);
-        __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#payment_window").modal('show');
+        if (__WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).index() != 4) {
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()(".modal-title").text(title_text);
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#price").text(price);
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#payment_window").modal('show');
+        }
     });
 });
 

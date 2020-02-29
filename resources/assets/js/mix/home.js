@@ -6,7 +6,7 @@ import "bootstrap";
 $( document ).ready(function() {
     
     // оплата
-    $(".actions button").click(function(item) {        
+    $(".actions button").click(function(item) {                
         
         let title_text="";
         let price=0;
@@ -32,11 +32,19 @@ $( document ).ready(function() {
                 price = 400;
                 break;
             }
+            case 4: {                 
+                alert("Удалить объявление?");
+                break;
+            }
+        }        
+
+        if ($(this).index()!=4) {
+            $(".modal-title").text(title_text);
+            $("#price").text(price);
+            $("#payment_window").modal('show');
         }
+
         
-        $(".modal-title").text(title_text);
-        $("#price").text(price);
-        $("#payment_window").modal('show');
         
     });
 

@@ -68,7 +68,8 @@
           <button class="btn btn-outline-primary btn-sm m-1">срочно, торг</button>
           <button class="btn btn-outline-success btn-sm m-1">продлить</button>            
           <button class="btn btn-outline-success btn-sm m-1">поднять в топ</button>
-          <button class="btn btn-outline-secondary btn-sm m-1">покрасить</button>
+          <button class="btn btn-outline-secondary btn-sm m-1">покрасить</button>          
+          <button class="btn btn-outline-danger btn-sm m-1">удалить</button>
         </div>
       </div>
   @endforeach 
