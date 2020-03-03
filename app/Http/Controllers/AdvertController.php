@@ -468,6 +468,15 @@ class AdvertController extends Controller {
 
         // удалить объявление
         public function deleteAdvert(Request $request) {
+                
+                /*
+                
+                Удалить:
+                1. категорию
+                2. подкатегорию
+                3. картинки
+
+                */
             return response()->json([ "result" => "deleted", "msg" => "объявление удалено" ]);  
 	}
     
