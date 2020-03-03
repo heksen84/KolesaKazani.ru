@@ -13,13 +13,19 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 // Сервисы (было внизу)
 Route::get("/moderator", "ModeratorController@showHomePage");
 Route::get("/util/str2url", "UtilsController@str2url");
+
 // детали объявления
 Route::get("/objavlenie/show/{id}", "AdvertController@getDetails");
+
 // Новое объявление
 Route::get("/podat-obyavlenie", "AdvertController@newAdvert");
 
 // api вызовы
 Route::post("/api/createAdvert", "ApiController@createAdvert");
+
+// удалить объявление
+Route::post("/objavlenie/delete/{id}", "AdvertController@deleteAdvert");
+
 Route::get("/api/getSubCategoryNamesById", "ApiController@getSubCategoryNamesById" );
 Route::get("/api/getRegions", "ApiController@GetRegions");
 Route::get("/api/getPlaces", "ApiController@GetPlaces");

@@ -56,6 +56,23 @@
   </div>
 </div>
 
+
+<div class="modal" tabindex="-1" role="dialog" id="advert_deleted_window">
+  <div class="modal-dialog modal-dialog-centered " role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Готово</h4>        
+      </div>
+      <div class="modal-body">
+        <h5>Ваше объявление успешно удалено</h5>
+      </div>
+      <div class="modal-footer">        
+        <button type="button" class="btn btn-outline-primary" id="close_advert_deleted_message_window">закрыть</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a href="/">На главную</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,12 +97,12 @@
   @if (count($items)>0)
     @foreach($items as $key => $item)
       <div class="row text-left">
-        <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 col-title">
+        <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 col-title">        
         <span id="title">{{ $item->title }}</span>
         <!--<b><div>Просмотров(?)|Сообщений(?)</div></b>-->
         </div>
         <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-status text-center"><span id="status"><ins>cтатус</ins><br>на модерации</span></div>
-        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-action text-center actions">
+        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-action text-center actions" data-id={{ $item->id }}>
           <button class="btn btn-outline-primary btn-sm m-1">срочно, торг</button>
           <button class="btn btn-outline-success btn-sm m-1">продлить</button>            
           <button class="btn btn-outline-success btn-sm m-1">поднять в топ</button>

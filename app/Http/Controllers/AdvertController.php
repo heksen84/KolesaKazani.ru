@@ -13,9 +13,7 @@ use App\Images;
 
 class AdvertController extends Controller {
                 
-        // --------------------------------------------------
         // новое объявление
-        // --------------------------------------------------
         public function newAdvert(Request $request) {
 
                 \Debugbar::info("Язык: ".$request->lang); 
@@ -466,5 +464,11 @@ class AdvertController extends Controller {
                 ->with( "advert", $advert[0])                
                 ->with( "images", $images);
         }    
+
+
+        // удалить объявление
+        public function deleteAdvert(Request $request) {
+            return response()->json([ "result" => "deleted", "msg" => "объявление удалено" ]);  
+	}
     
 }
