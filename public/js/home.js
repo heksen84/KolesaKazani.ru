@@ -36836,6 +36836,7 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()(".actions button").click(function (item) {
 
         var title_text = "";
+        var desc = "";
         var price = 0;
 
         current_advert_id = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).parent().data("id");
@@ -36844,24 +36845,28 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
             case 0:
                 {
                     title_text = "Срочно, торг";
+                    desc = "Объявление будет...";
                     price = 100;
                     break;
                 }
             case 1:
                 {
                     title_text = "Продлить";
+                    desc = "Объявление будет...";
                     price = 200;
                     break;
                 }
             case 2:
                 {
                     title_text = "Поднять в топ";
+                    desc = "Объявление будет...";
                     price = 300;
                     break;
                 }
             case 3:
                 {
                     title_text = "Покрасить";
+                    desc = "Объявление будет...";
                     price = 400;
                     break;
                 }
@@ -36874,6 +36879,7 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
 
         if (__WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).index() != 4) {
             __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#payment_window_title").text(title_text);
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#desc").text(desc);
             __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#price").text(price);
             __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#payment_window").modal("show");
         }

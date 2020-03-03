@@ -38,6 +38,7 @@ $( document ).ready(function() {
     $(".actions button").click(function(item) {         
                         
         let title_text="";
+        let desc="";
         let price=0;
 
         current_advert_id = $(this).parent().data("id");
@@ -45,22 +46,26 @@ $( document ).ready(function() {
 
         switch($(this).index()) {
             case 0: {
-                title_text = "Срочно, торг"; 
+                title_text = "Срочно, торг";
+                desc = "Объявление будет...";
                 price = 100;
                 break;
             }
             case 1: { 
                 title_text = "Продлить"; 
+                desc = "Объявление будет...";
                 price = 200;
                 break;
             }
             case 2: { 
-                title_text = "Поднять в топ"; 
+                title_text = "Поднять в топ";
+                desc = "Объявление будет..."; 
                 price = 300;
                 break;
             }
             case 3: { 
                 title_text = "Покрасить"; 
+                desc = "Объявление будет...";
                 price = 400;
                 break;
             }
@@ -72,6 +77,7 @@ $( document ).ready(function() {
 
         if ($(this).index()!=4) {
             $("#payment_window_title").text(title_text);
+            $("#desc").text(desc);
             $("#price").text(price);
             $("#payment_window").modal("show");
         }

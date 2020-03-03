@@ -25,6 +25,7 @@
         </button>
       </div>
       <div class="modal-body">
+        <p id="desc"></p>
         <h6>Цена <span id="price"></span> тнг.</h6>
       </div>
       <div class="modal-footer">
