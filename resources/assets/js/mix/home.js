@@ -3,7 +3,14 @@ require('./bootstrap');
 import $ from "jquery";
 import "bootstrap";
 
+// html загружен
 $( document ).ready(function() {
+
+    // удаление объявления
+    $("#delete_advert_button").click(function(item) {                    
+        alert("удалено!");
+        $("#delete_advert_window").modal("hide");
+    });
     
     // оплата
     $(".actions button").click(function(item) {                
@@ -13,39 +20,38 @@ $( document ).ready(function() {
 
         switch($(this).index()) {
             case 0: {
-                title_text = "срочно, торг"; 
+                title_text = "Срочно, торг"; 
                 price = 100;
                 break;
             }
             case 1: { 
-                title_text = "продлить"; 
+                title_text = "Продлить"; 
                 price = 200;
                 break;
             }
             case 2: { 
-                title_text = "поднять в топ"; 
+                title_text = "Поднять в топ"; 
                 price = 300;
                 break;
             }
             case 3: { 
-                title_text = "покрасить"; 
+                title_text = "Покрасить"; 
                 price = 400;
                 break;
             }
             case 4: {                 
-                alert("Удалить объявление?");
+                $("#delete_advert_window").modal("show");
                 break;
             }
         }        
 
         if ($(this).index()!=4) {
-            $(".modal-title").text(title_text);
+            $("#payment_window_title").text(title_text);
             $("#price").text(price);
-            $("#payment_window").modal('show');
+            $("#payment_window").modal("show");
         }
 
-        
-        
+                
     });
 
 });

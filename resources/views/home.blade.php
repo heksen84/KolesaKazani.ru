@@ -19,17 +19,38 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title"></h5>
+        <h5 class="modal-title" id="payment_window_title"></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <h4>Цена <span id="price"></span> тнг.</h4>
+        <h5>Цена <span id="price"></span> тнг.</h5>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Оплатить</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Не хочу</button>
+        <button type="button" class="btn btn-outline-success">Оплатить</button>
+        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Отмена</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" tabindex="-1" role="dialog" id="delete_advert_window">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Удаление объявления</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5>Вы действительно желаете удалить объявление?</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" id="delete_advert_button">Да</button>
+        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Нет</button>
       </div>
     </div>
   </div>
