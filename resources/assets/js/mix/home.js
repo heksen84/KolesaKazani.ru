@@ -17,9 +17,12 @@ $( document ).ready(function() {
             data: {"_token": $('meta[name="csrf-token"]').attr('content')},
             success: function (response) {
                 $("#delete_advert_window").modal("hide");                
-                $("#advert_deleted_window").modal("show").on('hide.bs.modal', function(e){
+                /*$("#advert_deleted_window").modal("show").on('hide.bs.modal', function(e){
                     e.preventDefault();
-                });    
+                });*/
+
+                $("#advert_deleted_window").modal("show");
+                    
             }
         });
 
@@ -27,7 +30,8 @@ $( document ).ready(function() {
 
     // закрыть сообщение и обновить страницу
     $("#close_advert_deleted_message_window").click(function(item) {                       
-        window.location="/home";
+        //window.location="/home";
+        $("#advert_deleted_window").modal("hide");
     });
         
     // оплата

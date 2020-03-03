@@ -422,7 +422,6 @@ class AdvertController extends Controller {
                         ->get();                                                        
                 }
                 
-
                 // выборка для всего остального
                 if ($advertData[0]->category_id > 2 && $advertData[0]->subcategory_id > 0 || $advertData[0]->category_id>0 && !$advertData[0]->subcategory_id) {                        
                         $advert = Adverts::select(                        
@@ -467,16 +466,26 @@ class AdvertController extends Controller {
 
 
         // удалить объявление
-        public function deleteAdvert(Request $request) {
+        public function deleteAdvert($id) {
                 
-                /*
-                
-                Удалить:
-                1. категорию
-                2. подкатегорию
-                3. картинки
-
+                /*                
+                        Удалить:
+                        1. категорию
+                        2. подкатегорию
+                        3. картинки
                 */
+
+                $advert = Adverts::select( "category_id", "subcategory_id", "inner_id")->where( "id", $id )->limit(1)->get();
+                \Debugbar::info($advert);
+
+                $images = Images::select(DB::raw("name"))->where("advert_id", $id)->get();                
+                \Debugbar::info($images);
+
+                foreach($images as $image) {
+                        \Debugbar::info(\Common::getImagesPath()."/normal/'.$image->name);
+                }
+
+
             return response()->json([ "result" => "deleted", "msg" => "объявление удалено" ]);  
 	}
     
