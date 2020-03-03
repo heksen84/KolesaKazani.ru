@@ -19,13 +19,13 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="payment_window_title"></h4>
+        <h5 class="modal-title" id="payment_window_title"></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <h5>Цена <span id="price"></span> тнг.</h5>
+        <h6>Цена <span id="price"></span> тнг.</h6>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-success">Оплатить</button>
@@ -40,13 +40,13 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Удаление объявления</h4>
+        <h5 class="modal-title">Удаление объявления</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <h5>Вы действительно желаете удалить объявление?</h5>
+        <h6>Вы действительно желаете удалить объявление?</h6>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-danger" id="delete_advert_button">Да</button>
@@ -61,10 +61,10 @@
   <div class="modal-dialog modal-dialog-centered " role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Готово</h4>        
+        <h5 class="modal-title">Готово</h5>        
       </div>
       <div class="modal-body">
-        <h5>Ваше объявление успешно удалено</h5>
+        <h6>Ваше объявление успешно удалено</h6>
       </div>
       <div class="modal-footer">        
         <button type="button" class="btn btn-outline-primary" id="close_advert_deleted_message_window">закрыть</button>
