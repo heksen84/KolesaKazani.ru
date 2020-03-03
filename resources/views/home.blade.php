@@ -26,7 +26,7 @@
       </div>
       <div class="modal-body">
         <p id="desc"></p>
-        <h6>Цена <span id="price"></span> тнг.</h6>
+        <h6>Цена <span id="price"></span> тнг.</h6>        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-success">Оплатить</button>
