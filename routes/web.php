@@ -25,6 +25,7 @@ Route::post("/api/createAdvert", "ApiController@createAdvert");
 
 // удалить объявление
 Route::post("/objavlenie/delete/{id}", "AdvertController@deleteAdvert");
+Route::get("/objavlenie/delete/{id}", "AdvertController@deleteAdvert");
 
 Route::get("/api/getSubCategoryNamesById", "ApiController@getSubCategoryNamesById" );
 Route::get("/api/getRegions", "ApiController@GetRegions");

@@ -462,11 +462,26 @@ class AdvertController extends Controller {
                 ->with( "keywords", $advert[0]->title)                
                 ->with( "advert", $advert[0])                
                 ->with( "images", $images);
-        }    
+        }            
 
 
         // удалить объявление
         public function deleteAdvert($id) {
+
+                // ПРИ УДАЛЕНИИ ПРОВЕРЯТЬ USER_ID с текущим      
+                $user_id = Auth::id();
+                \Debugbar::info("user_id ".$user_id);
+
+                $advertRequest = Adverts::select( "category_id", "subcategory_id", "inner_id")->where( "id", $id )->where("user_id", $user_id)->limit(1);                
+
+                $adverts = $advertRequest->get();
+                \Debugbar::info($adverts);
+
+                if (count($adverts)==0) {
+                        \Debugbar::info("нет прав на удаление");
+                        return response()->json([ "result" => "error", "msg" => "Access denied for this operation" ]);  
+                }
+                
                 
                 // ---- Удаляю картинки объявления ----
                 $imagesRequest = Images::select(DB::raw("name"))->where("advert_id", $id);                
@@ -487,11 +502,7 @@ class AdvertController extends Controller {
                         }
                         
                         $imagesRequest->delete();
-                }
-
-                // ---- Удаляю данные в подкатегориях ----        
-                $advert = Adverts::select( "category_id", "subcategory_id", "inner_id")->where( "id", $id )->limit(1)->get();
-                \Debugbar::info($advert);
+                }                                
 
                 // ---- Удаляю объявление ----        
 
