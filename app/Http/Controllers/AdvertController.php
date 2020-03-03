@@ -468,22 +468,32 @@ class AdvertController extends Controller {
         // удалить объявление
         public function deleteAdvert($id) {
                 
-                /*                
-                        Удалить:
-                        1. категорию
-                        2. подкатегорию
-                        3. картинки
-                */
+                // ---- Удаляю картинки объявления ----
+                $imagesRequest = Images::select(DB::raw("name"))->where("advert_id", $id);                
+                $images = $imagesRequest->get(); // получаю массив
 
+                if (count($images)>0) {
+                        
+                        foreach($images as $image) {
+                                \Debugbar::info($image->name);
+                                
+                                $small_image = \Common::getImagesPath()."/small/".$image->name;                        
+                                if (file_exists($small_image))
+                                        unlink($small_image);                                
+
+                                $normal_image = \Common::getImagesPath()."/normal/".$image->name;                        
+                                if (file_exists($normal_image))
+                                        unlink($normal_image);
+                        }
+                        
+                        $imagesRequest->delete();
+                }
+
+                // ---- Удаляю данные в подкатегориях ----        
                 $advert = Adverts::select( "category_id", "subcategory_id", "inner_id")->where( "id", $id )->limit(1)->get();
                 \Debugbar::info($advert);
 
-                $images = Images::select(DB::raw("name"))->where("advert_id", $id)->get();                
-                \Debugbar::info($images);
-
-                foreach($images as $image) {
-                        \Debugbar::info(\Common::getImagesPath()."/normal/'.$image->name);
-                }
+                // ---- Удаляю объявление ----        
 
 
             return response()->json([ "result" => "deleted", "msg" => "объявление удалено" ]);  
