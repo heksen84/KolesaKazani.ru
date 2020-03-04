@@ -50,6 +50,13 @@
                                 </div>
                             </div>
                         </div>-->
+                        
+                        <div class="form-group row">
+                            <div class="col-md-12 text-center">
+                                <img src="/resources/assets/images/social/vk.svg"></img>
+                                <img src="/resources/assets/images/social/ok.svg"></img>
+                            </div>                        
+                        </div>                        
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
