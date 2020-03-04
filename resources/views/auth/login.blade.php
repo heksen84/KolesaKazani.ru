@@ -50,9 +50,13 @@
                                 </div>
                             </div>
                         </div>-->
-                        
-                        <div class="form-group row">
-                            <div class="col-md-12 text-center">
+                                                
+                        <div class="form-group row">                        
+                        <div class="col-md-12 text-center mb-2">                        
+                            <span style="font-size:15px;letter-spacing:2px">войти через социальную сеть</span>
+                        </div>
+
+                        <div class="col-md-12 text-center">                        
                                 <img src="/resources/assets/images/social/vk.svg"></img>
                                 <img src="/resources/assets/images/social/ok.svg"></img>
                             </div>                        
