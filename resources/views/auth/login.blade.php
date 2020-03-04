@@ -51,14 +51,14 @@
                             </div>
                         </div>-->
                                                 
-                        <div class="form-group row">                        
-                        <div class="col-md-12 text-center mb-2">                        
-                            <span style="font-size:15px;letter-spacing:2px">войти через социальную сеть</span>
-                        </div>
+                        <div class="form-group row">                            
+                            <div class="col-md-12 text-center mb-2">                        
+                                <span style="font-size:15px;letter-spacing:2px">войти через социальную сеть</span>
+                            </div>
 
-                        <div class="col-md-12 text-center">                        
-                                <img src="/resources/assets/images/social/vk.svg"></img>
-                                <img src="/resources/assets/images/social/ok.svg"></img>
+                            <div class="col-md-12 text-center">                        
+                                <img src="/resources/assets/images/social/vk.svg" alt="ВКонтакте" title="Войти через соц. сеть ВКонтакте"></img>
+                                <img src="/resources/assets/images/social/ok.svg" alt="Одноклассники" title="Войти через соц. сеть Одноклассники"></img>
                             </div>                        
                         </div>                        
 
