@@ -67,7 +67,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Войти') }}
                                 </button>
-
+                            
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Забыли пароль?') }}
@@ -82,3 +82,4 @@
     </div>
 </div>
 @endsection
+<script type="text/javascript" src="{{ mix('js/login.js') }}"></script>  

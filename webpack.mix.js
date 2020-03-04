@@ -13,6 +13,7 @@ let mix = require('laravel-mix');
 
 mix.js('resources/assets/js/mix/app.js', 'public/js').
 mix.js('resources/assets/js/mix/common.js', 'public/js').
+mix.js('resources/assets/js/mix/auth/login.js', 'public/js').
 mix.js('resources/assets/js/mix/index.js', 'public/js').
 mix.js('resources/assets/js/mix/newad.js', 'public/js').
 mix.js('resources/assets/js/mix/results.js', 'public/js').
