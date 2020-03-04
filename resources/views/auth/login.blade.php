@@ -57,8 +57,8 @@
                             </div>
 
                             <div class="col-md-12 text-center">                        
-                                <img src="/resources/assets/images/social/vk.svg" alt="ВКонтакте" title="Войти через соц. сеть ВКонтакте"></img>
-                                <img src="/resources/assets/images/social/ok.svg" alt="Одноклассники" title="Войти через соц. сеть Одноклассники"></img>
+                                <img src="/resources/assets/images/social/vk.svg" alt="ВКонтакте" title="Войти через соц. сеть ВКонтакте" id="auth_vk"></img>
+                                <img src="/resources/assets/images/social/ok.svg" alt="Одноклассники" title="Войти через соц. сеть Одноклассники" id="auth_ok"></img>
                             </div>                        
                         </div>                        
 
