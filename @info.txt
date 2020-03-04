@@ -43,3 +43,6 @@ mysql -u root
 
 // import bd
 mysql -u root -p flix < dump_name.sql
+
+// сервис провайдеры
+https://socialiteproviders.netlify.com/
