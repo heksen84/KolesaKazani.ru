@@ -77,7 +77,7 @@
                 <hr>            
               @endif              
               
-              <div class="text-center mt-5">
+              <div class="text-center m-3">
                 <button type="button" class="btn btn-outline-success" id="numberButton">Показать телефон</button>            
               </div>                        
             
