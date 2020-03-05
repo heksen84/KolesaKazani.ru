@@ -20,9 +20,9 @@
     <div class="row">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
       
-        <!--{{ $advert->category_id }} / {{ $advert->subcategory_id }}-->
-        <div id="posted">{{ date("Размещено d.m.Y в H:i", strtotime($advert->created_at)) }}</div>
-        <div id="location">{{ $advert->region_name }}, {{ $advert->city_name }}</div>
+          <!--{{ $advert->category_id }} / {{ $advert->subcategory_id }}-->
+          <div id="posted">{{ date("Размещено d.m.Y в H:i", strtotime($advert->created_at)) }}</div>
+          <div id="location">{{ $advert->region_name }}, {{ $advert->city_name }}</div>
 
               @if ($advert->title!="null") 
                 <h1>{{ $advert->title }}</h1>
@@ -69,22 +69,20 @@
                 <div id="price">{{ $advert->price }} тнг.</div>
               @endif
               <br>
-
-            @if (count($images)>0)
-            <hr>            
-              @foreach($images as $image)
-                <img src='{{ $image->name }}' alt='{{ $image->name }}' class="img-fluid" style="display:block;margin: 4px auto" loading="lazy"></img>
-              @endforeach            
-            <hr>            
-            @endif
-            <br>                           
-            <button type="button" class="btn btn-outline-success" id="numberButton">Показать телефон</button>            
+              @if (count($images)>0)
+                <hr>            
+                  @foreach($images as $image)
+                    <img src='{{ $image->name }}' alt='{{ $image->name }}' class="img-fluid" style="display:block;margin: 4px auto" loading="lazy"></img>
+                  @endforeach            
+                <hr>            
+              @endif              
+              
+              <div class="text-center mt-3">
+                <button type="button" class="btn btn-outline-success" id="numberButton">Показать телефон</button>            
+              </div>                        
             
-            <!--Скажите продавцу, что нашли это объявление на {{ config('app.name') }}-->
-            
-            <div id="phone-number"></div>
-            <div id="map"></div>        
-
+              <div id="phone-number"></div>
+              <div id="map"></div> 
     </div>
   </div>
 </div>
