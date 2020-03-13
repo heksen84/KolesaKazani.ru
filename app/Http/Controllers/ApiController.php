@@ -369,7 +369,8 @@ class ApiController extends Controller {
             if (strlen($text) > 5) 
                 $url_text = $text;
             
-            $urls->url = substr($advert->id."-".Helper::str2url($url_text), 0, 100);
+            //$urls->url = substr($advert->id."-".Helper::str2url($url_text), 0, 100);
+            $urls->url = $advert->id;
             $urls->advert_id = $advert->id;
             $urls->save();
                          

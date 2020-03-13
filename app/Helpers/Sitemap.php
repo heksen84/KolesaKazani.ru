@@ -6,7 +6,7 @@ namespace App\Helpers;
 // класс для работы с sitemap.xml
 class Sitemap {
 
-	private static $public_path = "/objavlenie/";
+	private static $public_path = "/objavlenie/show/";
 	private static $sitemaps_path = "sitemaps/";
 	private static $index_file_name = "index.xml";
 
@@ -35,9 +35,9 @@ class Sitemap {
 
 		if ($current_sitemap!="sitemaps/sitemap_0.xml") {
 		                
-			// добавляю запись в сайтпам индекс
+			// добавляю запись в сайтмап индекс
 			$record = $sitemap_index->addChild("sitemap");
-			$record->addChild("loc", "damelya:90/".$new_name);
+			$record->addChild("loc", config('app.url')."/".$new_name);
 			$record->addChild("lastmod", $date_time);			
 
 			$dom = new \DOMDocument("1.0", LIBXML_NOBLANKS);
