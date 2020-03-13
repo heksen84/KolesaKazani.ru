@@ -5,7 +5,7 @@ namespace App\Helpers;
 class Common {
 
     public static function getImagesPath() {
-        return \Storage::disk("local")->url("app/public/images");
+        return \Storage::disk("local")->url("app/images");
     }
 
 }
