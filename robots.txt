@@ -1,2 +1,2 @@
 User-agent: *
-//Sitemap: http://damelya:90/sitemaps/_index.xml
+Sitemap: http://ilbo.kz/sitemaps/index.xml
