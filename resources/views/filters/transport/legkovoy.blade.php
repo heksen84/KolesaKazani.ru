@@ -1,30 +1,22 @@
+<form style="background:rgb(200,255,200)">
 
-<form style="background:rgb(200,255,200)">  
 	<div class="row p-2">
-		<div class="col-8 col-sm-8 col-md-6 col-lg-3 col-xl-3">
-		<div class="form-group mx-1">
-    <label for="exampleFormControlSelect1">Марка</label>
-    <select class="form-control form-control-sm" id="exampleFormControlSelect1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  	</div> 
+		<div class="col-10 col-sm-10 col-md-6 col-lg-3 col-xl-3">
+			<div class="form-group mx-1">
+    			<label for="mark">Марка</label>
+    				<select class="form-control form-control-sm" id="mark">
+      					<option>audi</option>
+    				</select>
+  			</div> 
 		</div>
 
-		<div class="col-8 col-sm-8 col-md-6 col-lg-3 col-xl-3">
+	<div class="col-10 col-sm-10 col-md-6 col-lg-3 col-xl-3">
 		<div class="form-group mx-1">
-    <label for="exampleFormControlSelect2">Модель</label>
-    <select class="form-control form-control-sm" id="exampleFormControlSelect2">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  	</div> 
+    		<label for="model">Модель</label>
+    			<select class="form-control form-control-sm" id="model">
+      				<option>100</option>
+    			</select>
+  			</div> 
 		</div>
 
 		<div class="col-5 col-sm-5 col-md-5 col-lg-2 col-xl-2">
