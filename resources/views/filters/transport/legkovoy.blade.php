@@ -22,7 +22,7 @@
 		<div class="col-5 col-sm-5 col-md-5 col-lg-2 col-xl-2">
 			<div class="form-group mx-1">
 		 		<label for="year">Год выпуска</label>
-				<input type="text" id="year" class="form-control form-control-sm" required/>
+				<input type="number" id="year" class="form-control form-control-sm" required/>
 			</div>
 		</div>
 		
@@ -30,14 +30,14 @@
 		<div class="col-12 col-sm-12 col-md-6 col-lg-2 col-xl-2">
 			<div class="form-group mx-1">
 		 		<label for="year">Цена от</label>
-				<input type="text" id="year" class="form-control form-control-sm" required/>
+				<input type="number" id="year" class="form-control form-control-sm" required/>
 			</div>
 		</div>
 
 		<div class="col-12 col-sm-6 col-md-6 col-lg-2 col-xl-2 mb-2">
 			<div class="form-group">
 		 		<label for="year">Цена до</label>
-				<input type="text" id="year" class="form-control form-control-sm" required/>
+				<input type="number" id="year" class="form-control form-control-sm" required/>
 			</div>
 		</div>
 
