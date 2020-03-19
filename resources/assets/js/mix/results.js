@@ -8,3 +8,8 @@
 
 
 }, false);*/
+
+// document ready
+document.addEventListener('DOMContentLoaded', function(){ // Аналог $(document).ready(function(){
+ 
+});
