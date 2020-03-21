@@ -130,17 +130,31 @@ class ResultsController extends Controller {
     // результаты по стране
     // -------------------------------------------------------------    
     public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {
+                              
+
+        if ($category=="transport" && $subcategory=="legkovoy-avtomobil") {
+            
+            $mark = $request->mark;
+            $model = $request->model;
+            $year = $request->year;
+
+            \Debugbar::info("mark: ".$mark);
+            \Debugbar::info("model: ".$model);
+            \Debugbar::info("year: ".$year);
+
+        }
                 
-        \Debugbar::info("start_price: ".$request->start_price);
-        \Debugbar::info("end_price: ".$request->end_price);        
-                        
-        $startPrice = $request->start_price;
-        $endPrice = $request->end_price;
+        $price_ot = $request->price_ot;
+        $price_do = $request->price_do;
+
+        // базовые фильтра
+        \Debugbar::info("price_ot: ".$price_ot);
+        \Debugbar::info("price_do: ".$price_do);
 
         $priceBetweenSql="";
 
-        if ($startPrice && $endPrice) 
-            $priceBetweenSql = " AND price BETWEEN ".$startPrice." AND ".$endPrice;
+        if ($price_ot && $price_do) 
+            $priceBetweenSql = " AND price BETWEEN ".$price_ot." AND ".$price_do;
                        
         $categories = $this->getCategoryData($request, $category);                         
         $subcategories = $this->getSubCategoryData($request, $subcategory);            
@@ -178,8 +192,8 @@ class ResultsController extends Controller {
         ->with("category", $category)
         ->with("subcategory", $subcategory)         
         ->with("page", $request->page?$request->page:0)
-        ->with("start_price", $request->start_price)
-        ->with("end_price", $request->end_price);
+        ->with("price_ot", $price_ot)
+        ->with("price_do", $price_do);
     }
 
     // -------------------------------------------------------------
