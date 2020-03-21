@@ -36,6 +36,23 @@
 
 		<div class="col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">
 			<div class="form-group mx-1">
+		 		<label for="mileage">Пробег</label>
+				<input type="number" id="mileage" class="form-control form-control-sm" name="year" value="{{$year}}"/>
+			</div>
+		</div>
+
+		<div class="col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+		<div class="form-group mx-1">
+    		<label for="customs">Растоможен</label>
+    			<select class="form-control form-control-sm" id="customs" name="model">
+					  <option>Да</option>
+					  <option>Нет</option>
+    			</select>
+  			</div> 
+		</div>
+
+		<div class="col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+			<div class="form-group mx-1">
 		 		<label for="price_ot">Цена от</label>
 				<input type="number" id="price_ot" class="form-control form-control-sm" name="price_ot" value="{{$price_ot}}" />
 			</div>
