@@ -1,10 +1,10 @@
 
 @if ($region && !$city)
-	<form style="background:rgb(220,250,220)" action="/{{$region}}/c/{{$category}}/{{$subcategory}}">
+	<form style="background:rgb(220,250,220);border:1px solid rgb(150,250,150)" action="/{{$region}}/c/{{$category}}/{{$subcategory}}">
 @elseif ($region && $city)
-	<form style="background:rgb(220,250,220)" action="/{{$region}}/{{$city}}/c/{{$category}}/{{$subcategory}}">
+	<form style="background:rgb(220,250,220);border:1px solid rgb(150,250,150)" action="/{{$region}}/{{$city}}/c/{{$category}}/{{$subcategory}}">
 @else
-	<form style="background:rgb(220,250,220)" action="/c/{{$category}}/{{$subcategory}}">
+	<form style="background:rgb(220,250,220);border:1px solid rgb(150,250,150)" action="/c/{{$category}}/{{$subcategory}}">
 @endif
 
 	<div class="row p-2">
