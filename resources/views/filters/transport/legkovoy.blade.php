@@ -38,14 +38,14 @@
 		<div class="col-12 col-sm-12 col-md-6 col-lg-2 col-xl-2">
 			<div class="form-group mx-1">
 		 		<label for="price_ot">Цена от</label>
-				<input type="number" id="price_ot" class="form-control form-control-sm" name="price_ot" value={{$price_ot}}/>
+				<input type="number" id="price_ot" class="form-control form-control-sm" name="price_ot" value="{{$price_ot}}" />
 			</div>
 		</div>
 
 		<div class="col-12 col-sm-6 col-md-6 col-lg-2 col-xl-2 mb-2">
 			<div class="form-group mx-1">
 		 		<label for="price_do">Цена до</label>
-				<input type="number" id="price_do" class="form-control form-control-sm" name="price_do" value={{$price_do}}/>
+				<input type="number" id="price_do" class="form-control form-control-sm" name="price_do" value="{{$price_do}}" />
 			</div>
 		</div>
 
