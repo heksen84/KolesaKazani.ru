@@ -51,7 +51,7 @@
 
 		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-12 text-center">
 			<div class="form-group">
-				<button type="submit" class="btn btn-sm btn-primary">применить</button>
+				<button type="submit" class="btn btn-sm btn-success">применить</button>
 			</div>
 		</div>
 </div>
