@@ -5,14 +5,11 @@ import Vue from 'vue';
 import $ from "jquery";
 import bootstrap from "bootstrap";
 import location from './views/components/location'
-
 // --------------------------
 // экземляр приложения vue
 // --------------------------
 export default new Vue ({
-
 el: "#app",
-
 data () {   
     return {
       searchString: "",     
@@ -20,15 +17,19 @@ data () {
       subCategories: false      
     }
   },
-
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
-
   components: { bootstrap, location },
 
   // Компонент создан
   created() {    
+    
     $("#subcats").show();
     $("#close_subcats_btn").show();    
+
+   /* $( "html" ).click(function() {
+      this.returnToCategories();
+    });*/
+
   },
 
   // Методы

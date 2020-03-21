@@ -51323,14 +51323,11 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
 
 
-
 // --------------------------
 // экземляр приложения vue
 // --------------------------
 /* harmony default export */ __webpack_exports__["default"] = (new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-
   el: "#app",
-
   data: function data() {
     return {
       searchString: "",
@@ -51339,15 +51336,18 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
     };
   },
 
-
   delimiters: ['${', '}'], // для разрешения конфликта c переменными php
-
   components: { bootstrap: __WEBPACK_IMPORTED_MODULE_2_bootstrap___default.a, location: __WEBPACK_IMPORTED_MODULE_3__views_components_location___default.a },
 
   // Компонент создан
   created: function created() {
+
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#subcats").show();
     __WEBPACK_IMPORTED_MODULE_1_jquery___default()("#close_subcats_btn").show();
+
+    /* $( "html" ).click(function() {
+       this.returnToCategories();
+     });*/
   },
 
 
