@@ -21,7 +21,7 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
       
           <!--{{ $advert->category_id }} / {{ $advert->subcategory_id }}-->
-          <div id="posted"><span style="background:rgb(110,110,230);color:white;padding:2px;padding-left:5px;padding-right:5px;letter-spacing:1px">{{ date("Размещено d.m.Y в H:i", strtotime($advert->created_at)) }}</span></div>
+          <div id="posted"><span style="background:rgb(200,250,200);color:black;padding:2px;padding-left:5px;padding-right:5px;letter-spacing:1px">{{ date("Размещено d.m.Y в H:i", strtotime($advert->created_at)) }}</span></div>
           <div id="location">{{ $advert->region_name }}, {{ $advert->city_name }}</div>
 
               @if ($advert->title!="null") 
