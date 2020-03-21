@@ -137,6 +137,7 @@ class ResultsController extends Controller {
         $price_ot = null;
         $price_do = null;
                               
+        // легковой автомобиль
         if ($category=="transport" && $subcategory=="legkovoy-avtomobil") {
 
             $mark = $request->mark;
