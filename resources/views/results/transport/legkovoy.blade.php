@@ -13,7 +13,7 @@
  </div>
  
  <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-   <p>Положение руля: <b>{{ $advert->steering_position }}</b></p>
+   <p>Руль: <b>{{ $advert->steering_position }}</b></p>
  </div>
 
  <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-4">
