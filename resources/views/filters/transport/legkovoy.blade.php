@@ -36,8 +36,15 @@
 
 		<div class="col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">
 			<div class="form-group mx-1">
-		 		<label for="mileage">Пробег</label>
-				<input type="number" id="mileage" class="form-control form-control-sm" name="year" value="{{$year}}"/>
+		 		<label for="mileage_ot">Пробег от</label>
+				<input type="number" id="mileage_ot" class="form-control form-control-sm" name="year" value="{{$year}}"/>
+			</div>
+		</div>
+
+		<div class="col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+			<div class="form-group mx-1">
+		 		<label for="mileage_do">Пробег до</label>
+				<input type="number" id="mileage_do" class="form-control form-control-sm" name="year" value="{{$year}}"/>
 			</div>
 		</div>
 
