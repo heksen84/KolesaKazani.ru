@@ -28,6 +28,8 @@
   <p>Растоможен: <b>{{ $advert->customs }}</b></p>
  </div>
 
- <hr>
- 
+ <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+  <hr>
+ </div>
+
 </div>
