@@ -130,10 +130,15 @@ class ResultsController extends Controller {
     // результаты по стране
     // -------------------------------------------------------------    
     public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {
-                              
 
+        $mark = null;
+        $model = null;
+        $year = null;
+        $price_ot = null;
+        $price_do = null;
+                              
         if ($category=="transport" && $subcategory=="legkovoy-avtomobil") {
-            
+
             $mark = $request->mark;
             $model = $request->model;
             $year = $request->year;
@@ -141,13 +146,12 @@ class ResultsController extends Controller {
             \Debugbar::info("mark: ".$mark);
             \Debugbar::info("model: ".$model);
             \Debugbar::info("year: ".$year);
-
         }
-                
+
+        // базовые фильтра
         $price_ot = $request->price_ot;
         $price_do = $request->price_do;
 
-        // базовые фильтра
         \Debugbar::info("price_ot: ".$price_ot);
         \Debugbar::info("price_do: ".$price_do);
 
@@ -192,6 +196,7 @@ class ResultsController extends Controller {
         ->with("category", $category)
         ->with("subcategory", $subcategory)         
         ->with("page", $request->page?$request->page:0)
+        ->with("year", $year)
         ->with("price_ot", $price_ot)
         ->with("price_do", $price_do);
     }

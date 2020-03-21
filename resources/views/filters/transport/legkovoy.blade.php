@@ -30,7 +30,7 @@
 		<div class="col-5 col-sm-5 col-md-5 col-lg-2 col-xl-2">
 			<div class="form-group mx-1">
 		 		<label for="year">Год выпуска</label>
-				<input type="number" id="year" class="form-control form-control-sm" name="year"/>
+				<input type="number" id="year" class="form-control form-control-sm" name="year" value="{{$year}}"/>
 			</div>
 		</div>
 		
