@@ -1,4 +1,3 @@
-
 @if ($region && !$city)
 	<form id="filters-form" action="/{{$region}}/c/{{$category}}/{{$subcategory}}">
 @elseif ($region && $city)
@@ -6,7 +5,6 @@
 @else
 	<form id="filters-form" action="/c/{{$category}}/{{$subcategory}}">
 @endif
-
 	<div class="row p-3">
 		<div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
 			<div class="form-group mx-1">
@@ -22,7 +20,9 @@
 		<div class="form-group mx-1">
     		<label for="model">Модель</label>
     			<select class="form-control form-control-sm" id="model" name="model">
-      				<option>100</option>
+					  <option>100</option>
+					  <option>200</option>
+					  <option>300</option>
     			</select>
   			</div> 
 		</div>
@@ -33,7 +33,6 @@
 				<input type="number" id="year" class="form-control form-control-sm" name="year" value="{{$year}}"/>
 			</div>
 		</div>
-		
 
 		<div class="col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">
 			<div class="form-group mx-1">
@@ -54,6 +53,9 @@
 				<button type="submit" class="btn btn-sm btn-success">применить</button>
 			</div>
 		</div>
-</div>
-			
+	</div>
 </form>
+<script>
+  window.mark = "{{ $mark }}";
+  window.model = "{{ $model }}";
+</script>

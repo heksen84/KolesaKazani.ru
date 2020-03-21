@@ -196,7 +196,11 @@ class ResultsController extends Controller {
         ->with("category", $category)
         ->with("subcategory", $subcategory)         
         ->with("page", $request->page?$request->page:0)
+        // транспорт
+        ->with("mark", $mark)
+        ->with("model", $model)
         ->with("year", $year)
+        // базовые фильтра
         ->with("price_ot", $price_ot)
         ->with("price_do", $price_do);
     }

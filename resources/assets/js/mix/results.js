@@ -12,4 +12,10 @@
 // document ready
 document.addEventListener('DOMContentLoaded', function(){ // Аналог $(document).ready(function(){
  
+  if (window.mark)
+    document.getElementById("mark").value= window.mark;
+
+    if (window.model)
+      document.getElementById("model").value= window.model;
+
 });
