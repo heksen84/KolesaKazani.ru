@@ -27,4 +27,7 @@
  <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-4">
   <p>Растоможен: <b>{{ $advert->customs }}</b></p>
  </div>
+
+ <hr>
+ 
 </div>
