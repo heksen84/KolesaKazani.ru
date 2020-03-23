@@ -43,7 +43,7 @@
 
 		</div>
 
-		<div class="row p-1" style="margin-top:-15px">
+		<div class="row p-1" style="margin-top:-13px">
 		
 		<div class="col-5 col-sm-5 col-md-5 col-lg-2 col-xl-2">
 			<div class="form-group mx-1">
@@ -71,7 +71,7 @@
 
 		</div>
 
-		<div class="row p-1" style="margin-top:-15px">
+		<div class="row p-1" style="margin-top:-13px">
 
 		<div class="col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">
 			<div class="form-group mx-1">
