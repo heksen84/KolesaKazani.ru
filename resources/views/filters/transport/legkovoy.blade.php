@@ -69,7 +69,19 @@
   			</div> 
 		</div>
 
+		<div class="col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+		<div class="form-group mx-1">
+    		<label for="engine_type">Тип двигателя</label>
+    			<select class="form-control form-control-sm" id="engine_type" name="engine_type">
+					  <option>Да</option>
+					  <option>Нет</option>
+    			</select>
+  			</div> 
 		</div>
+
+
+		</div>
+		
 
 		<div class="row p-1" style="margin-top:-13px">
 
