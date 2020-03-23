@@ -15,8 +15,10 @@
 </head>
 <body>
 
-  <div class="container-fluid mycontainer">  
-
+  <button class="btn btn-primary btn-sm mt-1" style="position:fixed;left:50%;width:200px;margin-left:-100px;">фильтр</button>
+  
+  <div class="container-fluid mycontainer"> 
+    
     <!-- закрыть страницу -->
     @if (!$region && !$city)
       <a href="/" class="close_button">X</a>
