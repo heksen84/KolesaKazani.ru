@@ -146,12 +146,13 @@
 
   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Главная страница (рекоменд.) -->
 <ins class="adsbygoogle"
      style="display:block"
-     data-ad-format="fluid"
-     data-ad-layout-key="-ef+6k-30-ac+ty"
      data-ad-client="ca-pub-8074944108437227"
-     data-ad-slot="2440929261"></ins>
+     data-ad-slot="2249357572"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
