@@ -146,15 +146,15 @@
 
   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <ins class="adsbygoogle"
+<ins class="adsbygoogle"
      style="display:block"
      data-ad-format="fluid"
-     data-ad-layout-key="-fb+5w+4e-db+86"
+     data-ad-layout-key="-ef+6k-30-ac+ty"
      data-ad-client="ca-pub-8074944108437227"
-     data-ad-slot="2513630190"></ins>
-    <script>
+     data-ad-slot="2440929261"></ins>
+<script>
      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+</script>
   </div>
 
 </div>   
