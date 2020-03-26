@@ -148,11 +148,9 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- Главная страница (рекоменд.) -->
 <ins class="adsbygoogle"
-     style="display:block"
+     style="display:inline-block;width:728px;height:100px"
      data-ad-client="ca-pub-8074944108437227"
-     data-ad-slot="2249357572"
-     data-ad-format="auto"
-     data-full-width-responsive="false"></ins>
+     data-ad-slot="2249357572"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
