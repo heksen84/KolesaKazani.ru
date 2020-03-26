@@ -29,7 +29,7 @@
       <a href="/{{$region}}/{{$city}}" class="close_button">X</a>    
     @endif
     
-      <h1>{{ $title }}</h1>
+      <h1 style="margin-top:-20px;width:96%">{{ $title }}</h1>
         <!--<div class="grey">Найдено: ({{ $items->count() }} из {{ $items->total() }} ) [ категория: {{ $categoryId }} подкатегория: {{ $subcategoryId }} ]</div>-->
         <div class="row">
 
