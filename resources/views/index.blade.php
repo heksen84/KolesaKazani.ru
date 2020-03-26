@@ -95,20 +95,6 @@
     </div>
 
   </div>  
-  
-  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <!-- Главная страница (рекоменд.) -->
-  <ins class="adsbygoogle"
-     style="display:inline-block;width:100%;height:80px"
-     data-ad-client="ca-pub-8074944108437227"
-     data-ad-slot="2249357572"></ins>
-    <script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  </div>
-
-  <br>
 
   <div id="categories_line">
     <div class="center">        
@@ -141,6 +127,18 @@
         </div>        
       </div>
     </div>
+
+  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- Главная страница (рекоменд.) -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:100%;height:80px"
+     data-ad-client="ca-pub-8074944108437227"
+     data-ad-slot="2249357572"></ins>
+    <script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
 
   <div class="row">
     @if (count($newAdverts)>0)    
