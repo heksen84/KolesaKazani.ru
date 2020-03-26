@@ -130,7 +130,8 @@
       </div>
     </div>
 
-  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mb-4">
+    <br>
+  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <!-- Главная страница (рекоменд.) -->
   <ins class="adsbygoogle"
