@@ -142,7 +142,7 @@
   </div>
 
   
-  <div class="row mt-3">
+  <div class="row">
     @if (count($newAdverts)>0)    
       <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
         <h3>Новые объявления</h3>  
