@@ -146,23 +146,20 @@
 
   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
     <br>
-    <h3>Adscence</h3>
-  </div>
-
-</div>   
-
-<div class="row mt-3">
-  <!--<div id="footer"><a href="/advert" class="underline_link">Реклама</a> | <a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a></div>-->current
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <ins class="adsbygoogle"
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle"
      style="display:block"
      data-ad-format="fluid"
      data-ad-layout-key="-fb+5w+4e-db+86"
      data-ad-client="ca-pub-8074944108437227"
      data-ad-slot="2513630190"></ins>
-  <script>
+    <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
+    </script>
+</div>   
+
+<div class="row mt-3">
+  <div id="footer"><a href="/advert" class="underline_link">Реклама</a> | <a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a></div>
 </div>  
 
 </div>
