@@ -75,6 +75,18 @@
             </div>                
             @endforeach
 
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- Главная страница (рекоменд.) -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:100%;height:100px"
+     data-ad-client="ca-pub-8074944108437227"
+     data-ad-slot="2249357572"></ins>
+    <script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
             @if (count($items)>9)
               <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">                  
                 <div class="pagination justify-content-center">
