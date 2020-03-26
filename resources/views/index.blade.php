@@ -130,8 +130,9 @@
       </div>
     </div>
 
-    <br>
-  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+  <br>
+  <!-- РЕКЛАМА -->
+  <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8 text-center">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <!-- Главная страница (рекоменд.) -->
   <ins class="adsbygoogle"
@@ -161,7 +162,7 @@
   </div>   
 
   <!-- РЕКЛАМА -->
-  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-2">
+  <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8 text-center mt-2">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <!-- Главная страница (рекоменд.) -->
   <ins class="adsbygoogle"
