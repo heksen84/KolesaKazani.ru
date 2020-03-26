@@ -132,11 +132,11 @@
 
   <br>
   <!-- РЕКЛАМА -->
-  <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8 text-center">
+  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <!-- Главная страница (рекоменд.) -->
   <ins class="adsbygoogle"
-     style="display:inline-block;width:100%;height:80px"
+     style="display:inline-block;width:300px;height:80px"
      data-ad-client="ca-pub-8074944108437227"
      data-ad-slot="2249357572"></ins>
     <script>
@@ -162,11 +162,11 @@
   </div>   
 
   <!-- РЕКЛАМА -->
-  <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8 text-center mt-2">
+  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-2">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <!-- Главная страница (рекоменд.) -->
   <ins class="adsbygoogle"
-     style="display:inline-block;width:100%;height:100px"
+     style="display:inline-block;width:300px;height:100px"
      data-ad-client="ca-pub-8074944108437227"
      data-ad-slot="2249357572"></ins>
     <script>
