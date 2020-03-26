@@ -30,10 +30,9 @@
     @endif
     
       <h1>{{ $title }}</h1>
-
         <!--<div class="grey">Найдено: ({{ $items->count() }} из {{ $items->total() }} ) [ категория: {{ $categoryId }} подкатегория: {{ $subcategoryId }} ]</div>-->
         <div class="row">
-            
+          
           <!-- ФИЛЬТРЫ -->  
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="filters-row">                
             @if ($categoryId===1 && $subcategoryId===1)  
@@ -72,7 +71,7 @@
                         <div class="location">                        
                           {{ $item->region_name }},{{ $item->city_name }}<br><b style="font-size:11px">{{ date("d.m.Y в H:i", strtotime($item->created_at)) }}</b></div>                      
                         </div>            
-                      </div>
+                  </div>
                 </a>  
             </div>                
             @endforeach
@@ -92,6 +91,7 @@
             </div>
             @endif
 
+            <!-- навигация -->
             @if (count($items)>9)
               <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">                  
                 <div class="pagination justify-content-center">
