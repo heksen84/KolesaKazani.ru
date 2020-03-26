@@ -32,9 +32,9 @@
       <h1>{{ $title }}</h1>
         <!--<div class="grey">Найдено: ({{ $items->count() }} из {{ $items->total() }} ) [ категория: {{ $categoryId }} подкатегория: {{ $subcategoryId }} ]</div>-->
         <div class="row">
-          
+
           <!-- ФИЛЬТРЫ -->  
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="filters-row">                
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">                
             @if ($categoryId===1 && $subcategoryId===1)  
               @include('filters/transport/legkovoy')
             @else
