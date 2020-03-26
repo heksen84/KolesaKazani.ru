@@ -152,7 +152,7 @@
      data-ad-client="ca-pub-8074944108437227"
      data-ad-slot="2249357572"
      data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
+     data-full-width-responsive="false"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
