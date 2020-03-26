@@ -106,9 +106,9 @@
     <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
-
-    <br>
   </div>
+
+  <br>
 
   <div id="categories_line">
     <div class="center">        
