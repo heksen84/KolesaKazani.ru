@@ -77,7 +77,6 @@
             @endforeach
 
             <!-- РЕКЛАМА -->
-            
             @if (count($items)>0)
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-1">
               <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
