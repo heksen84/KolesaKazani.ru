@@ -95,6 +95,8 @@
     </div>
 
   </div>  
+  
+  <br>
 
   <div id="categories_line">
     <div class="center">        
