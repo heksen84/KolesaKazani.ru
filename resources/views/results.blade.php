@@ -43,6 +43,18 @@
             @endif             
           </div>
 
+          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-2">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- Главная страница (рекоменд.) -->
+  <ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:100px"
+     data-ad-client="ca-pub-8074944108437227"
+     data-ad-slot="2249357572"></ins>
+    <script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
             @foreach($items as $item)                                
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 item">                  
               <a href="/objavlenie/show/{{ $item->id }}">
