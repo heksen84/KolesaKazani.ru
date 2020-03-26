@@ -44,7 +44,7 @@
   </div>
 
         <!--<div class="grey">Найдено: ({{ $items->count() }} из {{ $items->total() }} ) [ категория: {{ $categoryId }} подкатегория: {{ $subcategoryId }} ]</div>-->
-        <div class="row mt-2">
+        <div class="row mt-5">
             
           <!-- ФИЛЬТРЫ -->  
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="filters-row">                
