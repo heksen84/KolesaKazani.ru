@@ -143,8 +143,8 @@
     </script>
   </div>-->
 
-  <div class="row">
-    @if (count($newAdverts)>0)    
+  @if (count($newAdverts)>0)    
+  <div class="row mt-2">    
       <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
         <h3>Новые объявления</h3>
       </div>
@@ -155,9 +155,9 @@
           <p class="card-text">Цена ${ i.price } тнг.</p>        
         </div>
       </div>
-    </div>
-  @endif
-  </div>   
+    </div>  
+  </div>
+  @endif 
 
   <!-- РЕКЛАМА -->
   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-3">
