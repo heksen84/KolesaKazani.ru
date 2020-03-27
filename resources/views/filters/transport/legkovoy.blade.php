@@ -5,7 +5,7 @@
 @else
 	<form id="filters-form" action="/c/{{$category}}/{{$subcategory}}">
 @endif
-	<div class="row p-1">
+	<div class="row p-2">
 		<div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
 			<div class="form-group mx-1">
     			<label for="mark">Марка</label>
@@ -43,7 +43,7 @@
 
 		</div>
 
-		<div class="row p-1" style="margin-top:-13px">
+		<div class="row p-2" style="margin-top:-13px">
 		
 		<div class="col-5 col-sm-5 col-md-5 col-lg-2 col-xl-2">
 			<div class="form-group mx-1">
@@ -83,7 +83,7 @@
 		</div>
 		
 
-		<div class="row p-1" style="margin-top:-13px">
+		<div class="row p-2" style="margin-top:-13px">
 
 		<div class="col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">
 			<div class="form-group mx-1">
