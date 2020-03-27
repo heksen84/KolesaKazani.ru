@@ -145,7 +145,7 @@
 
   @if (count($newAdverts)>0)    
   <div class="row mt-2">    
-      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mb-2">
         <h3>Новые объявления</h3>
       </div>
       <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3" v-for="i in {{ $newAdverts }}">
