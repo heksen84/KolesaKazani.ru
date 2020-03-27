@@ -146,8 +146,7 @@
   <div class="row">
     @if (count($newAdverts)>0)    
       <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-        <h3>Новые объявления</h3>  
-        <br>
+        <h3>Новые объявления</h3>
       </div>
       <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3" v-for="i in {{ $newAdverts }}">
         <div class="card last-advert-card">    
