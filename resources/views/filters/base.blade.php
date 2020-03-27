@@ -27,7 +27,7 @@
 			</div>
 		</div>-->
 
-		<div class="col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+		<div class="col-12 col-sm-12 col-md-4 col-lg-2 col-xl-2">
 			<div class="form-group mx-1">
 		 		<label>&nbsp;</label>
 				<button type="submit" class="btn btn-sm btn-success form-control form-control-sm">применить</button>
