@@ -161,7 +161,7 @@
   </div>   
 
   <!-- РЕКЛАМА -->
-  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-2">
+  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-4">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <!-- Главная страница (рекоменд.) -->
   <ins class="adsbygoogle"
