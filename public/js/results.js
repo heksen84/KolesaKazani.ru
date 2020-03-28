@@ -10680,22 +10680,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
 
 
-// document ready
-/*document.addEventListener('DOMContentLoaded', function(){ // Аналог $(document).ready(function(){
- 
-  if (window.mark)
-    document.getElementById("mark").value= window.mark;
-
-    if (window.model)
-      document.getElementById("model").value= window.model;
-
-    let xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "/getCarsMarks", false ); // false for synchronous request
-    xmlHttp.send( null );
-    console.log(xmlHttp.responseText);
-
-});*/
-
 function loadCarsModels(idCarMark) {
   __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajax({
     url: "/api/getCarsModels",
@@ -10710,15 +10694,7 @@ function loadCarsModels(idCarMark) {
   });
 }
 
-// -----------------------------------
-// html готов
-// -----------------------------------
-__WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
-
-  if (window.mark) __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#mark").val(window.mark);
-
-  if (window.model) __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#model").val(window.model);
-
+function loadCarsMarks() {
   __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajax({
     url: "/api/getCarsMarks",
     type: "GET",
@@ -10734,6 +10710,18 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
       }).change();
     }
   });
+}
+
+// -----------------------------------
+// html готов
+// -----------------------------------
+__WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
+
+  if (window.mark) __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#mark").val(window.mark);
+
+  if (window.model) __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#model").val(window.model);
+
+  loadCarsMarks();
 });
 
 /***/ }),
