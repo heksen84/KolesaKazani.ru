@@ -68,7 +68,7 @@ class ApiController extends Controller {
     
         \Debugbar::info("----[ Входящие данные ]----");
         \Debugbar::info($data);        
-
+        
         // ---------------------------
         // правила валидации
         // ---------------------------
@@ -82,9 +82,10 @@ class ApiController extends Controller {
             "adv_info"      => "string"
         ]; 
 
-        // ---------------------------
-        // сообщения валидации
-        // ---------------------------
+        // -----------------------------------
+        // сообщения валидации        
+        // resources/lang/ru/validation.php
+        // -----------------------------------
         $messages = [            
             "adv_title.required"       => "Не указан заголовок объявления",            
             "adv_title.min"            => "Заголовок должен быть не менее :min символов",            
@@ -95,16 +96,14 @@ class ApiController extends Controller {
             "region_id.numeric"        => "Введите числовое значение для региона",
             "city_id.required"         => "Укажите расположение",
             "city_id.numeric"          => "Введите числовое значение для расположения"
-        ];
-
-        // resources/lang/ru/validation.php
+        ];        
 
         // проверка
         $validator = Validator::make( $data, $rules, $messages );
 
         // если проверка не прошла
         if ( $validator->fails() ) { 
-            return response()->json( ["result"=>"usr.error", "title" => "внимание", "msg" => $validator->errors()->first()] );                    
+            return response()->json( ["result" => "error", "title" => "внимание", "msg" => $validator->errors()->first()] );                    
         }
 
         $title      = $data["adv_title"];
@@ -118,7 +117,7 @@ class ApiController extends Controller {
 		//\Debugbar::info(ObsceneCensorRus::isAllowed($text)?"чисто":"обнаружен мат");
 
         if (!ObsceneCensorRus::isAllowed($title) || !ObsceneCensorRus::isAllowed($text)) {
-            return response()->json( ["result"=>"usr.error", "title" => "объявление отклонено", "msg" => "нецензурная лексика"] );
+            return response()->json( ["result" => "error", "title" => "объявление отклонено", "msg" => "нецензурная лексика"] );
         }
 
         // поля которым требуется приведение к типу null
@@ -385,7 +384,7 @@ class ApiController extends Controller {
         }		
         
         catch(\Exception $e) {
-            return response()->json([ "result" => "db.error", "title" => "ошибка", "msg" => $e->getMessage() ]);  
+            return response()->json([ "result" => "error", "title" => "ошибка", "msg" => $e->getMessage() ]);  
     	}
      	
      	return $data;

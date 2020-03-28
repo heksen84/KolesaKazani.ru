@@ -2525,7 +2525,7 @@ function forEach(data, callback) {
       // ------------------------------------------------------------------------------------------------------------------------
       axios.post("/api/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(function (response) {
 
-        if (response.data.result == "db.error") _this3.serviceError();else if (response.data.result == "usr.error") {
+        if (response.data.result == "usr.error") {
           _this3.dialogTitleMsg = response.data.title;
           _this3.dialogMsg = response.data.msg;
           _this3.serviceError();
