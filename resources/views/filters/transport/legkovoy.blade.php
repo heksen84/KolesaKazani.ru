@@ -70,41 +70,38 @@
 		</div>
 
 		<div class="col-5 col-sm-5 col-md-5 col-lg-2 col-xl-2">
-		<div class="form-group mx-1">
-    		<label for="engine_type">Тип двигателя</label>
-    			<select class="form-control form-control-sm" id="engine_type" name="engine_type">
-					  <option>Дизель</option>
-					  <option>Бензин</option>
-    			</select>
-  			</div> 
-		</div>
-
+			<div class="form-group mx-1">
+    			<label for="engine_type">Тип двигателя</label>
+    				<select class="form-control form-control-sm" id="engine_type" name="engine_type">
+					  	<option>Дизель</option>
+						  <option>Бензин</option>
+    				</select>
+  				</div> 
+			</div>
 
 		</div>
 		
+		<div class="row p-2" style="margin-top:-13px">		
+			<div class="col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+				<div class="form-group mx-1">
+		 			<label for="price_ot">Цена</label>
+					<input type="number" placeholder="от" id="price_ot" class="form-control form-control-sm" name="price_ot" value="{{$price_ot}}" />
+				</div>
+			</div>
 
-		<div class="row p-2" style="margin-top:-13px">
+			<div class="col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+				<div class="form-group mx-1">
+		 			<label for="price_do">&nbsp;</label>
+					<input type="number" placeholder="до" id="price_do" class="form-control form-control-sm" name="price_do" value="{{$price_do}}" />
+				</div>
+			</div>
 
-		<div class="col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">
-			<div class="form-group mx-1">
-		 		<label for="price_ot">Цена</label>
-				<input type="number" placeholder="от" id="price_ot" class="form-control form-control-sm" name="price_ot" value="{{$price_ot}}" />
+			<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+				<div class="mx-1 mb-2">
+					<button type="submit" class="btn btn-sm btn-success">применить</button>
+				</div>
 			</div>
 		</div>
-
-		<div class="col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">
-			<div class="form-group mx-1">
-		 		<label for="price_do">&nbsp;</label>
-				<input type="number" placeholder="до" id="price_do" class="form-control form-control-sm" name="price_do" value="{{$price_do}}" />
-			</div>
-		</div>
-
-		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-			<div class="mx-1 mb-2">
-				<button type="submit" class="btn btn-sm btn-success">применить</button>
-			</div>
-		</div>
-	</div>
 </form>
 <script>
   window.mark = "{{ $mark }}";
