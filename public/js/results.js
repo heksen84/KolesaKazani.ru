@@ -10696,14 +10696,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 });*/
 
-function loadMarks() {
-  alert("!!!");
+function loadModels(idMark) {
+
+  __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajax({
+    url: "/api/getCarsModels",
+    type: "GET",
+    data: { "_token": __WEBPACK_IMPORTED_MODULE_0_jquery___default()('meta[name="csrf-token"]').attr('content'), "mark_id": idMark },
+    success: function success(response) {
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#model").empty();
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(response, function (index, value) {
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#model").append("<option>" + value.name + "</option>");
+      });
+    }
+  });
 }
 
 // html загружен
 __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
 
   if (window.mark) __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#mark").val(window.mark);
+
   if (window.model) __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#model").val(window.model);
 
   __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajax({
@@ -10713,12 +10725,12 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
     success: function success(response) {
 
       __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(response, function (index, value) {
-        __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#mark").append("<option>" + value.name + "</option>");
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#mark").append("<option value=" + value.id_car_mark + ">" + value.name + "</option>");
       });
 
-      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#mark").change(function () {
-        loadMarks();
-      });
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#mark").change(function (item) {
+        loadModels(__WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).children("option:selected").val());
+      }).change();
     }
   });
 });
