@@ -10712,16 +10712,21 @@ function loadCarsMarks() {
   });
 }
 
-// -----------------------------------
-// html готов
-// -----------------------------------
-__WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
+function initCars() {
 
   if (window.mark) __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#mark").val(window.mark);
 
   if (window.model) __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#model").val(window.model);
 
   loadCarsMarks();
+}
+
+// -----------------------------------
+// html готов
+// -----------------------------------
+__WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
+
+  initCars();
 });
 
 /***/ }),

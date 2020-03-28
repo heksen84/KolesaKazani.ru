@@ -32,16 +32,22 @@ function loadCarsMarks() {
   });
 }
 
-// -----------------------------------
-// html готов
-// -----------------------------------
-$( document ).ready(function() {
-
+function initCars() {
+  
   if (window.mark) 
     $("#mark").val(window.mark);
   
     if (window.model) 
       $("#model").val(window.model);
 
-      loadCarsMarks();            
+      loadCarsMarks();
+}
+
+// -----------------------------------
+// html готов
+// -----------------------------------
+$( document ).ready(function() {
+  
+  initCars();
+
 });
