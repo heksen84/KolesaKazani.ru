@@ -85,7 +85,7 @@ class ApiController extends Controller {
         // ---------------------------
         // сообщения валидации
         // ---------------------------
-        /*$messages = [            
+        $messages = [            
             "adv_title.required"       => "Не указан заголовок объявления",            
             "adv_title.min"            => "Заголовок должен быть не менее :attribute символов",            
             "adv_category.required"    => "Укажите категорию товара или услуги",            
@@ -95,7 +95,7 @@ class ApiController extends Controller {
             "region_id.numeric"        => "Введите числовое значение для региона",
             "city_id.required"         => "Укажите расположение",
             "city_id.numeric"          => "Введите числовое значение для расположения"
-        ];*/
+        ];
 
         // resources/lang/ru/validation.php
 
