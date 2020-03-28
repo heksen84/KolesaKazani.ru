@@ -117,7 +117,8 @@ return [
     */
 
     'attributes' => [
-      'password'             => 'Пароль'
+        'adv_title' => 'Заголовок объявления',
+        'password' => 'Пароль'
     ],
 
 ];
