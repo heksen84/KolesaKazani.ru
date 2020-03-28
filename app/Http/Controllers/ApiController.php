@@ -97,6 +97,8 @@ class ApiController extends Controller {
             "city_id.numeric"          => "Введите числовое значение для расположения"
         ];*/
 
+        // resources/lang/ru/validation.php
+
         // проверка
         $validator = Validator::make( $data, $rules, $messages );
 
