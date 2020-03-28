@@ -648,7 +648,7 @@ onSubmit(evt) {
       this.serviceError();
 		else
       if (response.data.result=="usr.error") {
-       this.dialogTitleMsg = "Объявление отклонено";
+       this.dialogTitleMsg = response.data.title;
        this.dialogMsg = response.data.msg;
        this.serviceError();
       }

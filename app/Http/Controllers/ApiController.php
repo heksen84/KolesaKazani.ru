@@ -101,7 +101,7 @@ class ApiController extends Controller {
 
         // если проверка не прошла
         if ( $validator->fails() ) { 
-            return response()->json( ["result"=>"usr.error", "msg" => $validator->errors()->first()] );                    
+            return response()->json( ["result"=>"usr.error", "title" => "внимание", "msg" => $validator->errors()->first()] );                    
         }
 
         $title      = $data["adv_title"];
@@ -115,7 +115,7 @@ class ApiController extends Controller {
 		//\Debugbar::info(ObsceneCensorRus::isAllowed($text)?"чисто":"обнаружен мат");
 
         if (!ObsceneCensorRus::isAllowed($title) || !ObsceneCensorRus::isAllowed($text)) {
-            return response()->json( ["result"=>"usr.error", "msg" => "нецензурная лексика"] );
+            return response()->json( ["result"=>"usr.error", "title" => "объявление отклонено", "msg" => "нецензурная лексика"] );
         }
 
         // поля которым требуется приведение к типу null
@@ -382,7 +382,7 @@ class ApiController extends Controller {
         }		
         
         catch(\Exception $e) {
-            return response()->json([ "result" => "db.error", "msg" => $e->getMessage() ]);  
+            return response()->json([ "result" => "db.error", "title" => "ошибка", "msg" => $e->getMessage() ]);  
     	}
      	
      	return $data;
