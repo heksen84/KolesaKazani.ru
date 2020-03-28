@@ -10725,7 +10725,6 @@ function initCars() {
 // html готов
 // -----------------------------------
 __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
-
   initCars();
 });
 

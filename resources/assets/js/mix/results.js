@@ -47,7 +47,5 @@ function initCars() {
 // html готов
 // -----------------------------------
 $( document ).ready(function() {
-  
   initCars();
-
 });
