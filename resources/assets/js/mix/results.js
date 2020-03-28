@@ -16,6 +16,10 @@ import $ from "jquery";
 
 });*/
 
+function loadMarks() {
+  alert("!!!");
+}
+
 // html загружен
 $( document ).ready(function() {
 
@@ -27,9 +31,15 @@ $( document ).ready(function() {
       type: "GET",
       data: {"_token": $('meta[name="csrf-token"]').attr('content')},
       success: function (response) {                
+        
         $.each(response, function(index, value) {
           $("#mark").append("<option>"+value.name+"</option>");
         });
+
+        $( "#mark" ).change(function() {
+          loadMarks();
+        });
+
       }
   });
 
