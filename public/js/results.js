@@ -10704,8 +10704,8 @@ function loadModels(idMark) {
     data: { "_token": __WEBPACK_IMPORTED_MODULE_0_jquery___default()('meta[name="csrf-token"]').attr('content'), "mark_id": idMark },
     success: function success(response) {
       __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#model").empty();
-      __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(response, function (index, value) {
-        __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#model").append("<option>" + value.name + "</option>");
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(response, function (index, item) {
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#model").append("<option value=" + item.id_car_model + ">" + item.name + "</option>");
       });
     }
   });
@@ -10724,8 +10724,8 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
     data: { "_token": __WEBPACK_IMPORTED_MODULE_0_jquery___default()('meta[name="csrf-token"]').attr('content') },
     success: function success(response) {
 
-      __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(response, function (index, value) {
-        __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#mark").append("<option value=" + value.id_car_mark + ">" + value.name + "</option>");
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(response, function (index, item) {
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#mark").append("<option value=" + item.id_car_mark + ">" + item.name + "</option>");
       });
 
       __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#mark").change(function (item) {

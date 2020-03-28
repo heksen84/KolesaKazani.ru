@@ -24,8 +24,8 @@ function loadModels(idMark) {
     data: {"_token": $('meta[name="csrf-token"]').attr('content'), "mark_id": idMark},
     success: function (response) {      
       $("#model").empty();
-      $.each(response, function(index, value) {
-        $("#model").append("<option>"+value.name+"</option>");
+      $.each(response, function(index, item) {
+        $("#model").append("<option value="+item.id_car_model+">"+item.name+"</option>");
       });      
     }    
   });
@@ -47,8 +47,8 @@ $( document ).ready(function() {
       data: {"_token": $('meta[name="csrf-token"]').attr('content')},
       success: function (response) {                        
 
-        $.each(response, function(index, value) {
-          $("#mark").append("<option value="+value.id_car_mark+">"+value.name+"</option>");
+        $.each(response, function(index, item) {
+          $("#mark").append("<option value="+item.id_car_mark+">"+item.name+"</option>");
         });
 
         $( "#mark" ).change(function(item) { 
