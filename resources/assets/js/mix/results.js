@@ -16,12 +16,11 @@ import $ from "jquery";
 
 });*/
 
-function loadModels(idMark) {
-
+function loadCarsModels(idCarMark) {
   $.ajax({
     url: "/api/getCarsModels",
     type: "GET",
-    data: {"_token": $('meta[name="csrf-token"]').attr('content'), "mark_id": idMark},
+    data: {"_token": $('meta[name="csrf-token"]').attr('content'), "mark_id": idCarMark},
     success: function (response) {      
       $("#model").empty();
       $.each(response, function(index, item) {
@@ -29,10 +28,11 @@ function loadModels(idMark) {
       });      
     }    
   });
-
 }
 
-// html загружен
+// -----------------------------------
+// html готов
+// -----------------------------------
 $( document ).ready(function() {
 
   if (window.mark) 
@@ -40,22 +40,20 @@ $( document ).ready(function() {
   
     if (window.model) 
       $("#model").val(window.model);
-    
-    $.ajax({
-      url: "/api/getCarsMarks",
-      type: "GET",
-      data: {"_token": $('meta[name="csrf-token"]').attr('content')},
-      success: function (response) {                        
+      
+      $.ajax({
+        url: "/api/getCarsMarks",
+        type: "GET",
+        data: {"_token": $('meta[name="csrf-token"]').attr('content')},
+        success: function (response) {                        
 
-        $.each(response, function(index, item) {
-          $("#mark").append("<option value="+item.id_car_mark+">"+item.name+"</option>");
-        });
+          $.each(response, function(index, item) {
+            $("#mark").append("<option value="+item.id_car_mark+">"+item.name+"</option>");
+          });
 
-        $( "#mark" ).change(function(item) { 
-          loadModels($(this).children("option:selected").val()); 
-        }).change();
-
+          $( "#mark" ).change(function(item) { 
+            loadCarsModels($(this).children("option:selected").val()); 
+          }).change();
       }
   });
-
 });
