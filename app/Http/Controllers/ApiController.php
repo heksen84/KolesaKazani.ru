@@ -87,7 +87,7 @@ class ApiController extends Controller {
         // ---------------------------
         $messages = [            
             "adv_title.required"       => "Не указан заголовок объявления",            
-            "adv_title.min"            => "Заголовок должен быть не менее :attribute символов",            
+            "adv_title.min"            => "Заголовок должен быть не менее :min символов",            
             "adv_category.required"    => "Укажите категорию товара или услуги",            
             "adv_phone.required"       => "Укажите телефон",            
             "images.*.image"           => "Только изображения!",
