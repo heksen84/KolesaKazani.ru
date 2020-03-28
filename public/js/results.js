@@ -10699,9 +10699,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // html загружен
 __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
 
-  if (window.mark) document.getElementById("mark").value = window.mark;
-
-  if (window.model) document.getElementById("model").value = window.model;
+  if (window.mark) __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#mark").val(window.mark);
+  if (window.model) __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#model").val(window.model);
 
   __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajax({
     url: "/api/getCarsMarks",

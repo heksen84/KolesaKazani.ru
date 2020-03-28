@@ -19,11 +19,8 @@ import $ from "jquery";
 // html загружен
 $( document ).ready(function() {
 
-  if (window.mark)
-  document.getElementById("mark").value=window.mark;
-
-  if (window.model)
-    document.getElementById("model").value=window.model;
+  if (window.mark) $("#mark").val(window.mark);
+  if (window.model) $("#model").val(window.model);
     
     $.ajax({
       url: "/api/getCarsMarks",
