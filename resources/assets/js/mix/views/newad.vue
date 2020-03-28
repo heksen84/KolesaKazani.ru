@@ -644,7 +644,7 @@ onSubmit(evt) {
   // ------------------------------------------------------------------------------------------------------------------------
 	axios.post("/api/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {			          
 
-    if (response.data.result=="usr.error") {
+    if (response.data.result=="error") {
        this.dialogTitleMsg = response.data.title;
        this.dialogMsg = response.data.msg;
        this.serviceError();
