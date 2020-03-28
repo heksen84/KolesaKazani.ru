@@ -36808,31 +36808,32 @@ var current_advert_id = null;
 // html загружен
 __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
 
+    // -------------------------------------------------------------
     // удаление объявления
+    // -------------------------------------------------------------
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#delete_advert_button").click(function (item) {
-
         __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajax({
             url: "objavlenie/delete/" + current_advert_id,
             type: "POST",
             data: { "_token": __WEBPACK_IMPORTED_MODULE_0_jquery___default()('meta[name="csrf-token"]').attr('content') },
             success: function success(response) {
                 __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#delete_advert_window").modal("hide");
-                /*$("#advert_deleted_window").modal("show").on('hide.bs.modal', function(e){
-                    e.preventDefault();
-                });*/
-
                 __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#advert_deleted_window").modal("show");
             }
         });
     });
 
+    // -------------------------------------------------------------
     // закрыть сообщение и обновить страницу
+    // -------------------------------------------------------------
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#close_advert_deleted_message_window").click(function (item) {
         //window.location="/home";
         __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#advert_deleted_window").modal("hide");
     });
 
+    // -------------------------------------------------------------
     // оплата
+    // -------------------------------------------------------------
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()(".actions button").click(function (item) {
 
         var title_text = "";

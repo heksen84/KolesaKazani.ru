@@ -9,21 +9,14 @@
 		<div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
 			<div class="form-group mx-1">
     			<label for="mark">Марка</label>
-    				<select class="form-control form-control-sm" id="mark" name="mark">
-						  <option>audi</option>
-						  <option>bmw</option>
-    				</select>
+    				<select class="form-control form-control-sm" id="mark" name="mark"></select>
   			</div> 
 		</div>
 
 	<div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
 		<div class="form-group mx-1">
     		<label for="model">Модель</label>
-    			<select class="form-control form-control-sm" id="model" name="model">
-					  <option>100</option>
-					  <option>200</option>
-					  <option>300</option>
-    			</select>
+    			<select class="form-control form-control-sm" id="model" name="model"></select>
   			</div> 
 		</div>
 

@@ -8,33 +8,32 @@ let current_advert_id = null;
 // html загружен
 $( document ).ready(function() {
 
+    // -------------------------------------------------------------
     // удаление объявления
-    $("#delete_advert_button").click(function(item) {                       
-        
+    // -------------------------------------------------------------
+    $("#delete_advert_button").click(function(item) {        
         $.ajax({
             url: "objavlenie/delete/"+current_advert_id,
             type: "POST",
             data: {"_token": $('meta[name="csrf-token"]').attr('content')},
             success: function (response) {
                 $("#delete_advert_window").modal("hide");                
-                /*$("#advert_deleted_window").modal("show").on('hide.bs.modal', function(e){
-                    e.preventDefault();
-                });*/
-
-                $("#advert_deleted_window").modal("show");
-                    
+                $("#advert_deleted_window").modal("show");                    
             }
         });
-
     });
 
+    // -------------------------------------------------------------
     // закрыть сообщение и обновить страницу
+    // -------------------------------------------------------------
     $("#close_advert_deleted_message_window").click(function(item) {                       
         //window.location="/home";
         $("#advert_deleted_window").modal("hide");
     });
         
+    // -------------------------------------------------------------
     // оплата
+    // -------------------------------------------------------------
     $(".actions button").click(function(item) {         
                         
         let title_text="";
@@ -43,7 +42,6 @@ $( document ).ready(function() {
 
         current_advert_id = $(this).parent().data("id");
         
-
         switch($(this).index()) {
             case 0: {
                 title_text = "Срочно, торг";
@@ -81,7 +79,6 @@ $( document ).ready(function() {
             $("#price").text(price);
             $("#payment_window").modal("show");
         }
-
                 
     });
 
