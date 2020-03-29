@@ -68,9 +68,9 @@
                 <div id="price">{{ $advert->price }} тнг.</div>
               @endif
               <br>
-              @if (count($images)>0)
+              
                 <hr>          
-                  <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+                  <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
                     <div class="carousel-inner">
                       @foreach($images as $image)
                       <div class="carousel-item">
@@ -88,7 +88,6 @@
                     </a>
                   </div>
                 <hr>            
-              @endif              
               
               <div class="text-center m-3">
                 <button type="button" class="btn btn-outline-success" id="numberButton">Показать телефон</button>            

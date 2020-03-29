@@ -21,7 +21,8 @@ function initMaps() {
 
 // document ready
 document.addEventListener('DOMContentLoaded', function() {	     
-	ymaps.ready(initMaps);	
+	ymaps.ready(initMaps);
+	$('#carousel').carousel();	
 });
 
 // обработчик клика
@@ -58,6 +59,4 @@ document.body.addEventListener('click', function (evt) {
 // -----------------------------------
 // html готов
 // -----------------------------------
-$( document ).ready(function() {
-	$('#carouselExampleFade').carousel();
-  });
+//$( document ).ready(function() {});
