@@ -1,4 +1,5 @@
 import $ from "jquery";
+import bootstrap from "bootstrap";
 
 // инициализация карты
 function initMaps() {
@@ -58,5 +59,5 @@ document.body.addEventListener('click', function (evt) {
 // html готов
 // -----------------------------------
 $( document ).ready(function() {
-	alert("!");
+	$('.carousel').carousel();
   });
