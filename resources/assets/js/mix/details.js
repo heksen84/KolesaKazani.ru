@@ -23,7 +23,7 @@ function initMaps() {
 // document ready
 document.addEventListener('DOMContentLoaded', function() {	     
 	ymaps.ready(initMaps);
-	$("h1").first().addClass("active");
+	$("h1").first().remove();	
 	$('#carousel').carousel();
 });
 
