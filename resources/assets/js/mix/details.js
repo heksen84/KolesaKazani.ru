@@ -59,5 +59,5 @@ document.body.addEventListener('click', function (evt) {
 // html готов
 // -----------------------------------
 $( document ).ready(function() {
-	$('.carousel').carousel();
+	$('#carouselExampleFade').carousel();
   });

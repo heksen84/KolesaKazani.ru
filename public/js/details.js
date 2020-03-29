@@ -17817,7 +17817,7 @@ document.body.addEventListener('click', function (evt) {
 // html готов
 // -----------------------------------
 __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
-	__WEBPACK_IMPORTED_MODULE_0_jquery___default()('.carousel').carousel();
+	__WEBPACK_IMPORTED_MODULE_0_jquery___default()('#carouselExampleFade').carousel();
 });
 
 /***/ }),
