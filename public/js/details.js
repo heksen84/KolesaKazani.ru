@@ -17788,8 +17788,8 @@ function initMaps() {
 // document ready
 document.addEventListener('DOMContentLoaded', function () {
 	ymaps.ready(initMaps);
+	__WEBPACK_IMPORTED_MODULE_0_jquery___default()("img").first().addClass("active");
 	__WEBPACK_IMPORTED_MODULE_0_jquery___default()('#carousel').carousel();
-	__WEBPACK_IMPORTED_MODULE_0_jquery___default()("img").eq(0).addClass(".active");
 });
 
 // обработчик клика
