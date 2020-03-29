@@ -69,49 +69,34 @@
               @endif
               <br>
               @if (count($images)>0)
-                <hr>            
-              
+                <hr>          
                   <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
-  <div class="carousel-inner">
-    <!--<div class="carousel-item active">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>-->
-  
-
-    @foreach($images as $image)
-    <div class="carousel-item">
-      <img src='{{ $image->name }}' alt='{{ $image->name }}' class="d-block w-100 img-fluid" loading="lazy"></img>
-    </div>
-    @endforeach
-
-  </div>
-  
-  <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-
+                    <div class="carousel-inner">
+                      @foreach($images as $image)
+                      <div class="carousel-item">
+                        <img src='{{ $image->name }}' alt='{{ $image->name }}' class="d-block w-100 img-fluid" loading="lazy"></img>
+                      </div>
+                      @endforeach
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div>
                 <hr>            
               @endif              
               
               <div class="text-center m-3">
                 <button type="button" class="btn btn-outline-success" id="numberButton">Показать телефон</button>            
-              </div>                        
-            
+              </div>  
+
               <div id="phone-number"></div>
               <div id="map"></div> 
-    </div>
+      </div>
 
   <!-- РЕКЛАМА -->
   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
