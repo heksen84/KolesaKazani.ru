@@ -88,7 +88,7 @@
                     </a>
                   </div>-->
 
-                  <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                  <div id="carousel" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img class="d-block w-100" src="..." alt="First slide">
