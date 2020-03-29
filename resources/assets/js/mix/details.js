@@ -23,8 +23,9 @@ function initMaps() {
 // document ready
 document.addEventListener('DOMContentLoaded', function() {	     
 	ymaps.ready(initMaps);
-	$("img").first().addClass("active");	
-	$('#carousel').carousel();
+	$("img").first().addClass("active", function() {	
+		$('#carousel').carousel();
+	});
 });
 
 // обработчик клика
