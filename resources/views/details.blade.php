@@ -13,11 +13,13 @@
   <link rel="stylesheet" type="text/css" href="{{ mix('css/details.css') }}">
 </head>
 <body>
-
 <div class="container-fluid mycontainer">
+
   <!-- кнопка закрытия -->
   <div class="close_button mt-1" title="Закрыть страницу" @click="closeAndReturn">X</div>
+    
     <div class="row">
+
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         
           <div id="posted"><span style="background:rgb(200,250,200);color:black;letter-spacing:1px">{{ date("Размещено d.m.Y в H:i", strtotime($advert->created_at)) }}</span></div>
@@ -50,18 +52,18 @@
                     @endforeach
                   </div>
 
-  <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-
-</div>
-
-  <br>
+                  <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  
+                  <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+          </div>
+            
+            <br>
               
               <!----------------------------------------------------------------
                 подключаю характеристики по категориям
