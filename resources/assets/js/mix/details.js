@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 // инициализация карты
 function initMaps() {
 
@@ -51,3 +53,10 @@ document.body.addEventListener('click', function (evt) {
 	}
 
 }, false);
+
+// -----------------------------------
+// html готов
+// -----------------------------------
+$( document ).ready(function() {
+	alert("!");
+  });
