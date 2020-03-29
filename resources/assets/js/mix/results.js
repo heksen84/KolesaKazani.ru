@@ -8,8 +8,8 @@ function loadCarsModels(idCarMark) {
     success: function (response) {      
       
       $("#model").empty();
-      $("#model").append("<option value=all>все</option>");
-      
+      $("#model").append("<option value=all>Все модели</option>");
+
       $.each(response, function(index, item) {
         $("#model").append("<option value="+item.id_car_model+">"+item.name+"</option>");
       });      
@@ -25,7 +25,7 @@ function loadCarsMarks() {
     success: function (response) {                        
       
       $("#mark").empty();
-      $("#mark").append("<option value=all>все</option>");
+      $("#mark").append("<option value=all>Все марки</option>");
 
       $.each(response, function(index, item) {
         $("#mark").append("<option value="+item.id_car_mark+">"+item.name+"</option>");
