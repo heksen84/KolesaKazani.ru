@@ -6,7 +6,10 @@ function loadCarsModels(idCarMark) {
     type: "GET",
     data: {"_token": $('meta[name="csrf-token"]').attr('content'), "mark_id": idCarMark},
     success: function (response) {      
+      
       $("#model").empty();
+      $("#model").append("<option value=all>все</option>");
+      
       $.each(response, function(index, item) {
         $("#model").append("<option value="+item.id_car_model+">"+item.name+"</option>");
       });      
@@ -20,6 +23,9 @@ function loadCarsMarks() {
     type: "GET",
     data: {"_token": $('meta[name="csrf-token"]').attr('content')},
     success: function (response) {                        
+      
+      $("#mark").empty();
+      $("#mark").append("<option value=all>все</option>");
 
       $.each(response, function(index, item) {
         $("#mark").append("<option value="+item.id_car_mark+">"+item.name+"</option>");
