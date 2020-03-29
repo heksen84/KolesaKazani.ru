@@ -70,7 +70,7 @@
               <br>
               
                 <hr>          
-                  <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
+                  <!--<div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
                     <div class="carousel-inner">
                       @foreach($images as $image)
                       <div class="carousel-item">
@@ -86,7 +86,23 @@
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
                       <span class="sr-only">Next</span>
                     </a>
-                  </div>
+                  </div>-->
+
+                  <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="..." alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="..." alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="..." alt="Third slide">
+    </div>
+  </div>
+</div>
+
+
                 <hr>            
               
               <div class="text-center m-3">
