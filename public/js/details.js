@@ -17773,6 +17773,7 @@ function initMaps() {
 	// координаты по умолчанию для всех карт
 	var mapCoords = [window.coord_lat, window.coord_lon];
 	var map = new ymaps.Map("map", { center: mapCoords, zoom: 10 });
+	var myPlacemark = void 0;
 
 	// включаю скролл на карте
 	map.behaviors.enable("scrollZoom");

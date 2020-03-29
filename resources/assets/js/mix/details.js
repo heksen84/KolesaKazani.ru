@@ -7,6 +7,7 @@ function initMaps() {
 	// координаты по умолчанию для всех карт
 	let mapCoords = [window.coord_lat, window.coord_lon];
 	let map = new ymaps.Map("map", { center: mapCoords, zoom: 10 });
+	let myPlacemark;
 
 	// включаю скролл на карте
 	map.behaviors.enable("scrollZoom");
