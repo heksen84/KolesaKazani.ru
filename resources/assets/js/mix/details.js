@@ -24,7 +24,7 @@ function initMaps() {
 document.addEventListener('DOMContentLoaded', function() {	     
 	ymaps.ready(initMaps);
 	$('#carousel').carousel();
-	$("img").eq(0).addClass("active");	
+	$("img").eq(0).addClass(".active");	
 	
 });
 
