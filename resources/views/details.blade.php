@@ -102,10 +102,17 @@
       <img class="d-block w-100" src="{{ $images[0]->name }}" alt="{{ $images[0]->name }}">
   </div>-->
 
-  @foreach($images as $image)
+  @foreach($images as $index => $image)
+    @if ($index==0)
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="{{ $image->name }}" alt="{{ $image->name }}">
+      </div>
+    @endif
+
     <div class="carousel-item">
       <img class="d-block w-100" src="{{ $image->name }}" alt="{{ $image->name }}">
     </div>
+
   @endforeach
   </div>
 
