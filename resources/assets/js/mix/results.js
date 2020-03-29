@@ -1,5 +1,6 @@
 import $ from "jquery";
 
+// загрузить модели автомобилей
 function loadCarsModels(idCarMark) {
 
   $("#model").empty().append("<option value=all>Все модели</option>");
@@ -18,6 +19,7 @@ function loadCarsModels(idCarMark) {
   });
 }
 
+// загрузить марки автомобилей
 function loadCarsMarks() {
 
   $("#mark").empty().append("<option value=all>Все марки</option>");
@@ -39,6 +41,7 @@ function loadCarsMarks() {
   });
 }
 
+// загрузить данные автомобилей
 function initCars() {
   
   if (window.mark) 

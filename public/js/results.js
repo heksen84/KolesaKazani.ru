@@ -10680,6 +10680,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
 
 
+// загрузить модели автомобилей
 function loadCarsModels(idCarMark) {
 
   __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#model").empty().append("<option value=all>Все модели</option>");
@@ -10697,6 +10698,7 @@ function loadCarsModels(idCarMark) {
   });
 }
 
+// загрузить марки автомобилей
 function loadCarsMarks() {
 
   __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#mark").empty().append("<option value=all>Все марки</option>");
@@ -10718,6 +10720,7 @@ function loadCarsMarks() {
   });
 }
 
+// загрузить данные автомобилей
 function initCars() {
 
   if (window.mark) __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#mark").val(window.mark);
