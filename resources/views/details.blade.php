@@ -70,9 +70,38 @@
               <br>
               @if (count($images)>0)
                 <hr>            
-                  @foreach($images as $image)
-                    <img src='{{ $image->name }}' alt='{{ $image->name }}' class="img-fluid" style="display:block;margin: 4px auto" loading="lazy"></img>
-                  @endforeach            
+              
+                  <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+  <div class="carousel-inner">
+    <!--<div class="carousel-item active">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>-->
+  
+
+    @foreach($images as $image)
+    <div class="carousel-item">
+      <img src='{{ $image->name }}' alt='{{ $image->name }}' class="d-block w-100 img-fluid" loading="lazy"></img>
+    </div>
+    @endforeach
+
+  </div>
+  
+  <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
                 <hr>            
               @endif              
               
