@@ -90,24 +90,11 @@
 
                   <div id="carousel" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
-
-  <div class="carousel-item">
-            <img class="d-block img-fluid" src="https://picsum.photos/1600/400/?image=435" alt="Slide">
-            <div class="carousel-caption d-none d-md-block">
-              <h3>3 Lorem ipsum dolor</h3>
-              <p>Lorem ipsum dolor sit amet, consetetur sadipscing...</p>
-            </div>
-          </div>
-          
-          <div class="carousel-item">
-            <img class="d-block img-fluid" src="https://picsum.photos/1600/400/?image=425" alt="Slide">
-            <div class="carousel-caption d-none d-md-block">
-              <h3>4 Lorem ipsum dolor</h3>
-              <p>Lorem ipsum dolor sit amet, consetetur sadipscing...</p>
-            </div>
-          </div>
-          
-    
+  @foreach($images as $image)
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="{{ $image->name }}" alt="First slide">
+    </div>
+  @endforeach
   </div>
 </div>
 
