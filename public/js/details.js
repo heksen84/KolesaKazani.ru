@@ -17789,6 +17789,7 @@ function initMaps() {
 document.addEventListener('DOMContentLoaded', function () {
 	ymaps.ready(initMaps);
 	__WEBPACK_IMPORTED_MODULE_0_jquery___default()('#carousel').carousel();
+	__WEBPACK_IMPORTED_MODULE_0_jquery___default()(".d-block").eq(0).addClass("active");
 });
 
 // обработчик клика

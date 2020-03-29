@@ -98,9 +98,9 @@
 
   <div class="carousel-inner">
 
-  <div class="carousel-item active">
+ <!-- <div class="carousel-item active">
       <img class="d-block w-100" src="{{ $images[0]->name }}" alt="{{ $images[0]->name }}">
-  </div>
+  </div>-->
 
   @foreach($images as $image)
     <div class="carousel-item">
