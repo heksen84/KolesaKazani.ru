@@ -98,8 +98,8 @@
 
   <div class="carousel-inner">
   @foreach($images as $image)
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="{{ $image->name }}" alt="First slide">
+    <div class="carousel-item">
+      <img class="d-block w-100" src="{{ $image->name }}" alt="{{ $image->name }}">
     </div>
   @endforeach
   </div>
