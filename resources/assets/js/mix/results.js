@@ -2,8 +2,7 @@ import $ from "jquery";
 
 function loadCarsModels(idCarMark) {
 
-  $("#model").empty();
-  $("#model").append("<option value=all>Все модели</option>");
+  $("#model").empty().append("<option value=all>Все модели</option>");
 
   $.ajax({
     url: "/api/getCarsModels",
@@ -21,8 +20,7 @@ function loadCarsModels(idCarMark) {
 
 function loadCarsMarks() {
 
-  $("#mark").empty();
-  $("#mark").append("<option value=all>Все марки</option>");
+  $("#mark").empty().append("<option value=all>Все марки</option>");
 
   $.ajax({
     url: "/api/getCarsMarks",

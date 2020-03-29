@@ -10682,8 +10682,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function loadCarsModels(idCarMark) {
 
-  __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#model").empty();
-  __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#model").append("<option value=all>Все модели</option>");
+  __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#model").empty().append("<option value=all>Все модели</option>");
 
   __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajax({
     url: "/api/getCarsModels",
@@ -10700,8 +10699,7 @@ function loadCarsModels(idCarMark) {
 
 function loadCarsMarks() {
 
-  __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#mark").empty();
-  __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#mark").append("<option value=all>Все марки</option>");
+  __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#mark").empty().append("<option value=all>Все марки</option>");
 
   __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajax({
     url: "/api/getCarsMarks",
