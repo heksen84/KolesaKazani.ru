@@ -48,6 +48,31 @@
     </div>
   </nav>
   </div>
+
+  <!--<div style="position:fixed;left:100px;width:20px">advert</div>
+  <div style="position:fixed;right:100px;width:20px">advert</div>-->
+
+  <div style="float:left" class="index-side-advert">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <ins class="adsbygoogle ml-5 mt-3"
+     style="display:inline-block;width:200px;height:700px;border:1px solid grey"
+     data-ad-client="ca-pub-8074944108437227"
+     data-ad-slot="2249357572"></ins>
+    <script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>  
+
+  <div style="float:right" class="index-side-advert">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <ins class="adsbygoogle mr-5 mt-3"
+     style="display:inline-block;width:200px;height:700px;border:1px solid grey"
+     data-ad-client="ca-pub-8074944108437227"
+     data-ad-slot="2249357572"></ins>
+    <script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>  
   
   <div class="container-fluid container1 mt-2" id="index_page">
 
