@@ -55,7 +55,7 @@
   <div style="float:left" class="index-side-advert">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <ins class="adsbygoogle ml-2 mt-3"
-     style="display:inline-block;width:280px;height:800px"
+     style="display:inline-block;width:180px;height:600px"
      data-ad-client="ca-pub-8074944108437227"
      data-ad-slot="2249357572"></ins>
     <script>
@@ -66,7 +66,7 @@
   <div style="float:right" class="index-side-advert">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <ins class="adsbygoogle mr-2 mt-3"
-     style="display:inline-block;width:280px;height:800px"
+     style="display:inline-block;width:180px;height:600px"
      data-ad-client="ca-pub-8074944108437227"
      data-ad-slot="2249357572"></ins>
     <script>
