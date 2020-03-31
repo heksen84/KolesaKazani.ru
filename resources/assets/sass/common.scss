@@ -123,6 +123,8 @@ body {
   width: 100%;
 }
 
+
+
 // --------------------------------------------
 // Большие мониторы
 // --------------------------------------------
@@ -130,6 +132,12 @@ body {
 .container1 {
   width: 1280px;
 }   
+}
+
+@media screen and (max-width:1720px) {
+  .index-side-advert {    
+    display: none;
+  }
 }
 
 @media screen and (max-width:1280px) {
