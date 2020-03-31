@@ -52,7 +52,7 @@
   <!--<div style="position:fixed;left:100px;width:20px">advert</div>
   <div style="position:fixed;right:100px;width:20px">advert</div>-->
 
-  <div style="float:left" class="index-side-advert ml-5 mt-3">
+  <div style="float:left" class="index-side-advert ml-3 mt-3">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <ins class="adsbygoogle"
      style="display:inline-block;width:180px;height:800px"
@@ -63,7 +63,7 @@
     </script>
   </div>  
 
-  <div style="float:right" class="index-side-advert mr-5 mt-3">
+  <div style="float:right" class="index-side-advert mr-3 mt-3">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <ins class="adsbygoogle"
      style="display:inline-block;width:180px;height:800px"
