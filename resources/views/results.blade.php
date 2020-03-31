@@ -70,6 +70,7 @@
             <!-- Главная страница (рекоменд.) -->
             <ins class="adsbygoogle"
               style="display:inline-block;width:100%;height:100px"
+              data-full-width-responsive="true"
               data-ad-client="ca-pub-8074944108437227"
               data-ad-slot="2249357572"></ins>
             <script>
