@@ -1,5 +1,5 @@
 @extends('errors::minimal')
 
-@section('title', __('Страница не найдена'))
+@section('title', __('РЎС‚СЂР°РЅРёС†Р° РЅРµ РЅР°Р№РґРµРЅР°'))
 @section('code', '404')
-@section('message', __('Страница не найдена'))
+@section('message', __('РЎС‚СЂР°РЅРёС†Р° РЅРµ РЅР°Р№РґРµРЅР°'))
