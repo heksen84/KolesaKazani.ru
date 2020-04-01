@@ -1,25 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>404 вЂ“ СЃС‚СЂР°РЅРёС†Р° РЅРµ РЅР°Р№РґРµРЅР°</title>
-<meta charset="utf-8">
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-<style type="text/css">
-html, body {width:100%;height:100%;overflow:hidden;margin:0px;padding:0px;font-size:26px;}
-body {background:url('/resources/assets/images/errors/404.jpg') center no-repeat #dcecf9}
-.content {width:100%;text-align:center;position:absolute;bottom:20%;left:0px;}
-.content a {display:inline-block;text-decoration:none}
-.content a, .content a:hover {color:#000}
-@media only screen and (max-width: 460px), screen and (max-height: 700px) {
-.content {position:static;}
-.content a {display:block;width:100%;height:100%;position:absolute;top:0px;left:0px;font-size:0px;opacity:0;}
-body {background-size:cover;}
-}
-</style>
-</head>
-<body>
-<div class="content">
-	<a href="/">РџРµСЂРµР№С‚Рё Рє РіР»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†Рµ</a>
-</div>
-</body>
-</html>
+@extends('errors::minimal')
+
+@section('title', __('Страница не найдена'))
+@section('code', '404')
+@section('message', __('Страница не найдена'))
