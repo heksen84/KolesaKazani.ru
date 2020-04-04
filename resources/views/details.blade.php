@@ -31,8 +31,8 @@
               @endif
 
               <div id="carousel" class="carousel slide" data-ride="carousel">
-                                
-                  @if (count($images)>0)
+
+                  @if (count($images)>1)
                     <ol class="carousel-indicators">                    
                       @foreach($images as $index => $image)
                         @if ($index==0)
