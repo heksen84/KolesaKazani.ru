@@ -32,10 +32,19 @@
 
               <div id="carousel" class="carousel slide" data-ride="carousel">
                   <ol class="carousel-indicators">
-                    <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                    <!--<li data-target="#carousel" data-slide-to="0" class="active"></li>
                     <li data-target="#carousel" data-slide-to="1"></li>
                     <li data-target="#carousel" data-slide-to="2"></li>
-                    <li data-target="#carousel" data-slide-to="3"></li>
+                    <li data-target="#carousel" data-slide-to="3"></li>-->
+
+                    @foreach($images as $index => $image)
+                      @if ($index==0)
+                        <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                      @else
+                        <li data-target="#carousel" data-slide-to="{{ $index }}"></li>
+                      @endif
+                    @endforeach
+
                   </ol>
 
                   <div class="carousel-inner">
