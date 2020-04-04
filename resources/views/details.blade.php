@@ -31,21 +31,18 @@
               @endif
 
               <div id="carousel" class="carousel slide" data-ride="carousel">
-                  <ol class="carousel-indicators">
-                    <!--<li data-target="#carousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel" data-slide-to="1"></li>
-                    <li data-target="#carousel" data-slide-to="2"></li>
-                    <li data-target="#carousel" data-slide-to="3"></li>-->
-
-                    @foreach($images as $index => $image)
-                      @if ($index==0)
-                        <li data-target="#carousel" data-slide-to="0" class="active"></li>
-                      @else
-                        <li data-target="#carousel" data-slide-to="{{ $index }}"></li>
-                      @endif
-                    @endforeach
-
-                  </ol>
+                                
+                  @if (count($images)>0)
+                    <ol class="carousel-indicators">                    
+                      @foreach($images as $index => $image)
+                        @if ($index==0)
+                          <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                        @else
+                          <li data-target="#carousel" data-slide-to="{{ $index }}"></li>
+                        @endif
+                      @endforeach
+                    </ol>
+                  @endif
 
                   <div class="carousel-inner">
                     @foreach($images as $index => $image)
