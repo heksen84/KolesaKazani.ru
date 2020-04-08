@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -37,35 +36,19 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-
-                        <!--<div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Запомнить меня') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>-->
+                        </div>                        
                                                 
                         <div class="form-group row">                            
                             <div class="col-md-12 text-center mb-2">                        
                                 <span style="font-size:15px;letter-spacing:2px">войти через социальную сеть</span>
                             </div>
-
-                            <div class="col-md-12 text-center">
-                                
+                            <div class="col-md-12 text-center" id="col-links">                                
                                 <a href="{{ url('auth/vk') }}">                        
-                                    <img src="/resources/assets/images/social/vk.svg" alt="ВКонтакте" title="Войти через соц. сеть ВКонтакте" id="auth_vk"></img>
+                                    <img src="public/images/social/vk.svg" alt="ВКонтакте" title="Войти через соц. сеть ВКонтакте" id="auth_vk"></img>
                                 </a>
-
                                 <a href="{{ url('auth/ok') }}">                        
-                                    <img src="/resources/assets/images/social/ok.svg" alt="Одноклассники" title="Войти через соц. сеть Одноклассники" id="auth_ok"></img>
+                                    <img src="public/images/social/ok.svg" alt="Одноклассники" title="Войти через соц. сеть Одноклассники" id="auth_ok"></img>
                                 </a>
-
                             </div>                        
                         </div>                        
 
@@ -89,4 +72,9 @@
     </div>
 </div>
 @endsection
-<script type="text/javascript" src="{{ mix('js/login.js') }}"></script>  
+<script type="text/javascript" src="{{ mix('js/login.js') }}"></script> 
+<style> 
+#col-links a:hover {
+ text-decoration: none;
+}
+</style> 

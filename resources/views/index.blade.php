@@ -195,9 +195,16 @@
     </script>
   </div>
 
-<div class="row mt-2">
-  <div id="footer"><a href="/advert" class="underline_link">Реклама</a> | <a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a></div>
-</div>  
+  <div class="row">
+    <span class="m-1 mt-2">Ильбо в соц. сетях:</span>
+    <img src="{{ asset('images/social/icon_vkcom.png') }}" class="m-1"></img>
+    <img src="{{ asset('images/social/icon_instagram.png') }}" class="m-1"></img>
+    <img src="{{ asset('images/social/icon_facebook.png') }}" class="m-1"></img>
+  </div>  
+
+  <div class="row mt-2">
+    <div id="footer"><a href="/advert" class="underline_link">Реклама</a> | <a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a></div>
+  </div>  
 
 </div>
 
