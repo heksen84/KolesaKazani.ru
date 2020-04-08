@@ -57,29 +57,25 @@ class UtilsController extends Controller {
 
     public function str2url(Request $request) {
 
-/*    	$regions 	= Regions::all();
+    	$regions 	= Regions::all();
     	$places 	= Places::all();
+	$subcats 	= SubCats::all();
+
+    	foreach ($subcats as $subcat) {	
+		$subcat->url=str2url($subcat->name);
+		$subcat->save();
+	}
 
     	foreach ($regions as $region) {
-			echo str2url($region->name)."<br>";
 			$region->url=str2url($region->name);
 			$region->save();
 		}
 
 		foreach ($places as $place) {
-			echo str2url($place->name)."<br>";
 			$place->url=str2url($place->name);
 			$place->save();
 		}
+
     }
-*/
-
-	$subcats = SubCats::all();
-    	foreach ($subcats as $subcat) {
-		echo str2url($subcat->name)."<br>";
-		$subcat->url=str2url($subcat->name);
-		$subcat->save();
-	}
-}
-
+        
 }
