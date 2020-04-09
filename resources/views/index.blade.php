@@ -196,10 +196,12 @@
   </div>
 
   <div class="row">
-    <span class="m-1 mt-2">Ильбо в соц. сетях:</span>
-    <img src="{{ asset('images/social/icon_vkcom.png') }}" class="m-1"></img>
-    <img src="{{ asset('images/social/icon_instagram.png') }}" class="m-1"></img>
-    <img src="{{ asset('images/social/icon_facebook.png') }}" class="m-1"></img>
+   <div class="col text-right">
+    <div style="letter-spacing:2px"><b style="font-weight:600">ИЛЬБО</b> в соц. сетях:</div>
+     <a href="https://vk.com"><img src="{{ asset('images/social/icon_vkcom.png') }}"></img></a>
+     <a href="https://instagram.com"><img src="{{ asset('images/social/icon_instagram.png') }}"></img></a>
+     <a href="https://facebook.com"><img src="{{ asset('images/social/icon_facebook.png') }}"></img></a>
+    </div>
   </div>  
 
   <div class="row mt-2">
