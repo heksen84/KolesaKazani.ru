@@ -195,7 +195,7 @@
     </script>
   </div>
 
-  <div class="row">
+  <div class="row mt-5">
    <div class="col text-right">
     <div style="letter-spacing:2px"><b style="font-weight:600">ИЛЬБО</b> в соц. сетях:</div>
      <a href="https://vk.com"><img src="{{ asset('images/social/icon_vkcom.png') }}"></img></a>
