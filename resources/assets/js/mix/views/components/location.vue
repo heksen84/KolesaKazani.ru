@@ -1,6 +1,6 @@
 <template>
   <div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" aria-label="Close" @click="closeLocationWindow">
@@ -10,13 +10,13 @@
         <div class="modal-body text-center">	
           <div v-if="regions">
             <div class="link" @click="searchInCountry"><b>Весь Казахстан</b></div><hr>
-              <div v-for="(item, index) in regionsList" :key=index style="margin:5px">  
-                <a :href="getUrl(item.url)" class="grey link" @click="showPlacesByRegion($event, item.region_id)">{{ item.name }}</a><br>
+              <div v-for="(item, index) in regionsList" :key=index style="margin:10px">  
+                <h3><a :href="getUrl(item.url)" class="grey link" @click="showPlacesByRegion($event, item.region_id)">{{ item.name }}</a></h3>
               </div>
             </div>
             <div v-if="places">
               <div class="link" @click="searchInRegion"><b>Искать в области</b></div><hr>            
-                <a v-for="(item, index) in placesList" :key="index" :href="item.url" class="grey link block" style="margin:5px" @click="selectPlace($event, item.name, item.url)">{{item.name}}</a>            
+                <h3><a v-for="(item, index) in placesList" :key="index" :href="item.url" class="grey link block" style="margin:8px" @click="selectPlace($event, item.name, item.url)">{{item.name}}</a></h3>            
               </div>
             </div>
             <div class="modal-footer">
@@ -107,3 +107,10 @@ export default {
   }
 }
 </script>
+<style>
+.modal-lg {
+    max-width: 80% !important;
+    margin:auto !important;
+    margin-top:10px !important;
+}
+</style>
