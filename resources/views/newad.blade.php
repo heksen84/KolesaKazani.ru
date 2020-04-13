@@ -15,7 +15,7 @@
 <body>  
 
   <div id="loader">
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center mt-1">
       <button class="btn btn-primary" type="button" disabled>
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         Подготовка объявления. Пожалуйста подождите.
