@@ -7,9 +7,11 @@
               <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <div class="modal-body text-center">	
+        <div class="modal-body">	
           <div v-if="regions">
-            <div class="link" @click="searchInCountry"><b>Весь Казахстан</b></div><hr>
+            <div class="link text-center" @click="searchInCountry"><b>Искать по всему Казахстану</b></div>
+	    <hr>
+	      <input type="text" class="form-control" placeholder="Введите местоположение"></input>
               <div v-for="(item, index) in regionsList" :key=index style="margin:10px">  
                 <h3><a :href="getUrl(item.url)" class="grey link" @click="showPlacesByRegion($event, item.region_id)">{{ item.name }}</a></h3>
               </div>

@@ -1763,6 +1763,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
  // axios
@@ -38126,7 +38128,7 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "modal-body text-center" }, [
+            _c("div", { staticClass: "modal-body" }, [
               _vm.regions
                 ? _c(
                     "div",
@@ -38134,12 +38136,21 @@ var render = function() {
                       _c(
                         "div",
                         {
-                          staticClass: "link",
+                          staticClass: "link text-center",
                           on: { click: _vm.searchInCountry }
                         },
-                        [_c("b", [_vm._v("Весь Казахстан")])]
+                        [_c("b", [_vm._v("Искать по всему Казахстану")])]
                       ),
+                      _vm._v(" "),
                       _c("hr"),
+                      _vm._v(" "),
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Введите местоположение"
+                        }
+                      }),
                       _vm._v(" "),
                       _vm._l(_vm.regionsList, function(item, index) {
                         return _c(
