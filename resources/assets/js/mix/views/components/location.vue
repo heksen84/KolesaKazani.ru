@@ -9,15 +9,14 @@
         </div>
         <div class="modal-body">	
           <div v-if="regions">
-            <div class="link text-center" @click="searchInCountry"><b>Искать по всему Казахстану</b></div>
-	    <hr>
-	      <input type="text" class="form-control" placeholder="Введите местоположение"></input>
+            <div class="link" @click="searchInCountry"><b>Искать по всему Казахстану</b></div>
+	      <input type="text" class="form-control mt-3" placeholder="Введите местоположение"></input>
               <div v-for="(item, index) in regionsList" :key=index style="margin:10px">  
                 <h3><a :href="getUrl(item.url)" class="grey link" @click="showPlacesByRegion($event, item.region_id)">{{ item.name }}</a></h3>
               </div>
             </div>
             <div v-if="places">
-              <div class="link" @click="searchInRegion"><b>Искать в области</b></div><hr>            
+              <div class="link" @click="searchInRegion"><b>Искать по всей области</b></div><hr>            
                 <h3><a v-for="(item, index) in placesList" :key="index" :href="item.url" class="grey link block" style="margin:8px" @click="selectPlace($event, item.name, item.url)">{{item.name}}</a></h3>            
               </div>
             </div>
