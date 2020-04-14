@@ -37,32 +37,29 @@
     </script>
   </div>
 
-  <div class="container-fluid mycontainer"> 
-    
-    <!--<button class="btn btn-primary btn-sm mt-1" style="position:fixed;left:50%;width:200px;margin-left:-100px;">фильтр</button>
-    -->
-       
-    <!-- закрыть страницу -->
-    @if (!$region && !$city)
-      <a href="/" class="close_button">X</a>
-    @elseif ($region && !$city)    
-      <a href="/{{$region}}" class="close_button">X</a>    
-    @elseif ($region && $city)    
-      <a href="/{{$region}}/{{$city}}" class="close_button">X</a>    
-    @endif
-    
-      <h1>{{ $title }}</h1>
-        <!--<div class="grey">Найдено: ({{ $items->count() }} из {{ $items->total() }} ) [ категория: {{ $categoryId }} подкатегория: {{ $subcategoryId }} ]</div>-->
-        <div class="row">
+  <div class="container-fluid mycontainer">            
+    <br>
+      <hr>
+        <!-- закрыть страницу -->
+        @if (!$region && !$city)
+          <a href="/" class="close_button">X</a>
+        @elseif ($region && !$city)    
+          <a href="/{{$region}}" class="close_button">X</a>    
+        @elseif ($region && $city)    
+          <a href="/{{$region}}/{{$city}}" class="close_button">X</a>    
+        @endif    
 
-          <!-- ФИЛЬТРЫ -->  
-          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">                
-            @if ($categoryId===1 && $subcategoryId===1)  
-              @include('filters/transport/legkovoy')
-            @else
-              @include('filters/base')
-            @endif             
-          </div>
+        <h1>{{ $title }}</h1>      
+          <hr>
+            <br>
+              <div class="row">                    
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                  @if ($categoryId===1 && $subcategoryId===1)  
+                    @include('filters/transport/legkovoy')
+                  @else
+                    @include('filters/base')
+                  @endif             
+                </div>
 
           <!-- РЕКЛАМА -->
           <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-2">

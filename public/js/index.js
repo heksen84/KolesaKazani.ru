@@ -38145,7 +38145,8 @@ var render = function() {
                         staticClass: "form-control mt-3",
                         attrs: {
                           type: "text",
-                          placeholder: "Введите местоположение"
+                          placeholder:
+                            "Введите местоположение поиска, например Нур-Султан"
                         }
                       }),
                       _vm._v(" "),

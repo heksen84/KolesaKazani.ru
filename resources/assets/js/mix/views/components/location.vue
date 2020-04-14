@@ -10,7 +10,7 @@
         <div class="modal-body">	
           <div v-if="regions">
             <div class="link" @click="searchInCountry"><b>Искать по всему Казахстану</b></div>
-	      <input type="text" class="form-control mt-3" placeholder="Введите местоположение"></input>
+	      <input type="text" class="form-control mt-3" placeholder="Введите местоположение поиска, например Нур-Султан"></input>
               <div v-for="(item, index) in regionsList" :key=index style="margin:10px">  
                 <h3><a :href="getUrl(item.url)" class="grey link" @click="showPlacesByRegion($event, item.region_id)">{{ item.name }}</a></h3>
               </div>

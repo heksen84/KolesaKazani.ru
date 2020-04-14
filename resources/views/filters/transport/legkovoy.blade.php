@@ -91,7 +91,7 @@
 
 			<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
 				<div class="mx-1 mb-2">
-					<button type="submit" class="btn btn-sm btn-success">применить</button>
+					<button type="submit" class="btn btn-sm btn-warning">применить</button>
 				</div>
 			</div>
 		</div>
