@@ -155,7 +155,10 @@ class ResultsController extends Controller {
 		    "price_do" => $request->price_do,
 		    "mark" => $request->mark, 
 		    "model" => $request->model,
-		    "year" => $request->year
+            "year_ot" => $request->year_ot,
+            "year_do" => $request->year_do,
+            "mileage_ot" => $request->mileage_ot,
+            "mileage_do" => $request->mileage_do
             );
             
         }

@@ -22,15 +22,15 @@
 
 		<div class="col-5 col-sm-5 col-md-5 col-lg-2 col-xl-2">
 			<div class="form-group mx-1">
-		 		<label for="year">Год выпуска</label>
-				<input type="number" placeholder="от" id="year" class="form-control form-control-sm" name="year" value="{{$filters['year']}}"/>
+		 		<label for="year_ot">Год выпуска</label>
+				<input type="number" placeholder="от" id="year_ot" class="form-control form-control-sm" name="year_ot" value="{{$filters['year_ot']}}"/>
 			</div>
 		</div>
 
 		<div class="col-5 col-sm-5 col-md-5 col-lg-2 col-xl-2">
 			<div class="form-group mx-1">
 		 		<label for="year_do">&nbsp;</label>
-				<input type="number" placeholder="до" id="year_do" class="form-control form-control-sm" name="year_do" value="{{$filters['year']}}"/>
+				<input type="number" placeholder="до" id="year_do" class="form-control form-control-sm" name="year_do" value="{{$filters['year_do']}}"/>
 			</div>
 		</div>
 
@@ -41,14 +41,14 @@
 		<div class="col-5 col-sm-5 col-md-5 col-lg-2 col-xl-2">
 			<div class="form-group mx-1">
 		 		<label for="mileage_ot">Пробег (км.)</label>
-				<input type="number" placeholder="от" id="mileage_ot" class="form-control form-control-sm" name="year" value="{{$filters['year']}}"/>
+				<input type="number" placeholder="от" id="mileage_ot" class="form-control form-control-sm" name="mileage_ot" value="{{$filters['mileage_ot']}}"/>
 			</div>
 		</div>
 
 		<div class="col-5 col-sm-5 col-md-5 col-lg-2 col-xl-2">
 			<div class="form-group mx-1">
 		 		<label for="mileage_do">&nbsp;</label>
-				<input type="number" placeholder="до" id="mileage_do" class="form-control form-control-sm" name="year" value="{{$filters['year']}}"/>
+				<input type="number" placeholder="до" id="mileage_do" class="form-control form-control-sm" name="mileage_do" value="{{$filters['mileage_do']}}"/>
 			</div>
 		</div>
 
