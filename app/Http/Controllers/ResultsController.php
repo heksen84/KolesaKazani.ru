@@ -142,7 +142,25 @@ class ResultsController extends Controller {
             $priceBetweenSql = " AND price BETWEEN ".$request->price_ot." AND ".$request->price_do;
                        
         $categories = $this->getCategoryData($request, $category);                         
-        $subcategories = $this->getSubCategoryData($request, $subcategory);            
+        $subcategories = $this->getSubCategoryData($request, $subcategory);
+
+        // ------------------------------------------------------------------
+        // легковой автомобиль
+        // ------------------------------------------------------------------
+        if ($category=="transport" && $subcategory=="legkovoy-avtomobil") {
+
+	        // если у нас авто, то мы должны применить фильры от авто и вернуть входящие параметры во вьюху            
+            $filters = array (
+		    "price_ot" => $request->price_ot,
+		    "price_do" => $request->price_do,
+		    "mark" => $request->mark, 
+		    "model" => $request->model,
+		    "year" => $request->year
+            );
+            
+        }
+	    else
+		    $filters = array ("price_ot" => $request->price_ot, "price_do" => $request->price_do);            
                  
         $items = DB::table("adverts as adv")->select(
             "adv.id", 
@@ -163,23 +181,7 @@ class ResultsController extends Controller {
         \Debugbar::info("id субкатегории: ".$subcategories);      
         \Debugbar::info($items);
 
-        $locationName = $this->getLocationName();
-                              
-        // легковой автомобиль
-        if ($category=="transport" && $subcategory=="legkovoy-avtomobil") {
-            
-            $filters = array (
-		    "price_ot" => $request->price_ot,
-		    "price_do" => $request->price_do,
-		    "mark" => $request->mark, 
-		    "model" => $request->model,
-		    "year" => $request->year
-            );
-            
-        }
-	    else
-		    $filters = array ("price_ot" => $request->price_ot, "price_do" => $request->price_do);
-
+        $locationName = $this->getLocationName();                              
                 
         return view("results")    
         ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
