@@ -1,11 +1,5 @@
 <?php
 
-/*
-
-  Нужно возвращать данные фильтров для каждой категории, как это сделать?
-
-*/
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -20,7 +14,7 @@ use App\CarMark;
 use App\Regions;
 use App\Places;
 
-class ResultsController extends Controller {
+class TransportResultsController extends Controller {
         
     // получить данные категории    
     private function getCategoryData(Request $request, $category) {  
@@ -70,6 +64,7 @@ class ResultsController extends Controller {
 
         $categories = $this->getCategoryData($request, $category); 
         
+
         if (!$region && !$city)
             $whereRaw = "category_id = ".$categories[0]->id;
 
@@ -189,14 +184,6 @@ class ResultsController extends Controller {
         \Debugbar::info($items);
 
         $locationName = $this->getLocationName();
-
-
-	$transportFilters = array (
-	 "mark" => "bmw", 
-	 "model" => "audi",
-	 "year" => 1999
-	);
-
                 
         return view("results")    
         ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
@@ -210,14 +197,7 @@ class ResultsController extends Controller {
         ->with("category", $category)
         ->with("subcategory", $subcategory)         
         ->with("page", $request->page?$request->page:0)
-
-	// Фильтры транспорта
-        ->with("transportFilters", $transportFilters)
-	// Фильтры недвижимости
-        ->with("realestateFilters", $transportFilters)
-	// Фильтры для всего остального
-        ->with("baseFilters", $transportFilters)
-
+        // транспорт
         ->with("mark", $mark)
         ->with("model", $model)
         ->with("year", $year)
