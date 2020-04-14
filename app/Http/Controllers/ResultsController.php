@@ -136,53 +136,10 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------    
     public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {
 
-	$filters = null;
-
-	$transportFilters = null;
-	$realestateFilters = null;
-	$baseFilters = null;
-
-        $mark = null;
-        $model = null;
-        $year = null;
-        $price_ot = null;
-        $price_do = null;
-                              
-        // легковой автомобиль
-        if ($category=="transport" && $subcategory=="legkovoy-avtomobil") {
-
-		$filters = array (
-		 "mark" => "bmw", 
-		 "model" => "audi",
-		 "year" => 1999
-		);
-
-		$transportFilters = array (
-		 "mark" => "bmw", 
-		 "model" => "audi",
-		 "year" => 1999
-		);
-
-            $mark = $request->mark;
-            $model = $request->model;
-            $year = $request->year;
-
-            \Debugbar::info("mark: ".$mark);
-            \Debugbar::info("model: ".$model);
-            \Debugbar::info("year: ".$year);
-        }
-
-        // базовые фильтра
-        $price_ot = $request->price_ot;
-        $price_do = $request->price_do;
-
-        \Debugbar::info("price_ot: ".$price_ot);
-        \Debugbar::info("price_do: ".$price_do);
-
         $priceBetweenSql="";
 
-        if ($price_ot && $price_do) 
-            $priceBetweenSql = " AND price BETWEEN ".$price_ot." AND ".$price_do;
+//        if ($request->price_ot && $request->price_do) 
+//            $priceBetweenSql = " AND price BETWEEN ".$request->price_ot." AND ".$request->price_do;
                        
         $categories = $this->getCategoryData($request, $category);                         
         $subcategories = $this->getSubCategoryData($request, $subcategory);            
@@ -207,6 +164,22 @@ class ResultsController extends Controller {
         \Debugbar::info($items);
 
         $locationName = $this->getLocationName();
+
+	$filters = array (
+	 "price_ot" => $request->price_ot,
+	 "price_do" => $request->price_do
+	);
+                              
+        // легковой автомобиль
+        if ($category=="transport" && $subcategory=="legkovoy-avtomobil") {
+		$filters = array (
+		 "price_ot" => $request->price_ot,
+		 "price_do" => $request->price_do,
+		 "mark" => $request->mark, 
+		 "model" => $request->model,
+		 "year" => $request->year
+		);
+        }
                 
         return view("results")    
         ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
@@ -220,20 +193,7 @@ class ResultsController extends Controller {
         ->with("category", $category)
         ->with("subcategory", $subcategory)         
         ->with("page", $request->page?$request->page:0)
-
-	// Фильтры транспорта
-        ->with("transportFilters", $transportFilters)
-	// Фильтры недвижимости
-        ->with("realestateFilters", $transportFilters)
-	// Фильтры для всего остального
-        ->with("baseFilters", $transportFilters)
-
-        ->with("mark", $mark)
-        ->with("model", $model)
-        ->with("year", $year)
-        // базовые фильтра
-        ->with("price_ot", $price_ot)
-        ->with("price_do", $price_do);
+        ->with("filters", $filters);
     }
 
     // -------------------------------------------------------------

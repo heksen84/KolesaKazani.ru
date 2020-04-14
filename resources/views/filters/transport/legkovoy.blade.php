@@ -23,14 +23,14 @@
 		<div class="col-5 col-sm-5 col-md-5 col-lg-2 col-xl-2">
 			<div class="form-group mx-1">
 		 		<label for="year">Год выпуска</label>
-				<input type="number" placeholder="от" id="year" class="form-control form-control-sm" name="year" value="{{$year}}"/>
+				<input type="number" placeholder="от" id="year" class="form-control form-control-sm" name="year" value="{{$filters['year']}}"/>
 			</div>
 		</div>
 
 		<div class="col-5 col-sm-5 col-md-5 col-lg-2 col-xl-2">
 			<div class="form-group mx-1">
 		 		<label for="year_do">&nbsp;</label>
-				<input type="number" placeholder="до" id="year_do" class="form-control form-control-sm" name="year_do" value="{{$year}}"/>
+				<input type="number" placeholder="до" id="year_do" class="form-control form-control-sm" name="year_do" value="{{$filters['year']}}"/>
 			</div>
 		</div>
 
@@ -41,14 +41,14 @@
 		<div class="col-5 col-sm-5 col-md-5 col-lg-2 col-xl-2">
 			<div class="form-group mx-1">
 		 		<label for="mileage_ot">Пробег (км.)</label>
-				<input type="number" placeholder="от" id="mileage_ot" class="form-control form-control-sm" name="year" value="{{$year}}"/>
+				<input type="number" placeholder="от" id="mileage_ot" class="form-control form-control-sm" name="year" value="{{$filters['year']}}"/>
 			</div>
 		</div>
 
 		<div class="col-5 col-sm-5 col-md-5 col-lg-2 col-xl-2">
 			<div class="form-group mx-1">
 		 		<label for="mileage_do">&nbsp;</label>
-				<input type="number" placeholder="до" id="mileage_do" class="form-control form-control-sm" name="year" value="{{$year}}"/>
+				<input type="number" placeholder="до" id="mileage_do" class="form-control form-control-sm" name="year" value="{{$filters['year']}}"/>
 			</div>
 		</div>
 
@@ -78,14 +78,14 @@
 			<div class="col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">
 				<div class="form-group mx-1">
 		 			<label for="price_ot">Цена</label>
-					<input type="number" placeholder="от" id="price_ot" class="form-control form-control-sm" name="price_ot" value="{{$price_ot}}" />
+					<input type="number" placeholder="от" id="price_ot" class="form-control form-control-sm" name="price_ot" value="{{$filters['price_ot']}}" />
 				</div>
 			</div>
 
 			<div class="col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">
 				<div class="form-group mx-1">
 		 			<label for="price_do">&nbsp;</label>
-					<input type="number" placeholder="до" id="price_do" class="form-control form-control-sm" name="price_do" value="{{$price_do}}" />
+					<input type="number" placeholder="до" id="price_do" class="form-control form-control-sm" name="price_do" value="{{$filters['price_do']}}" />
 				</div>
 			</div>
 
@@ -97,6 +97,6 @@
 		</div>
 </form>
 <script>
-  window.mark = "{{ $mark }}";
-  window.model = "{{ $model }}";
+  window.mark = "{{ $filters['mark'] }}";
+  window.model = "{{ $filters['model'] }}";
 </script>
