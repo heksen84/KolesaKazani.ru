@@ -174,7 +174,7 @@
         <div class="card last-advert-card">    
           <div class="card-body">
           <h6 class="card-title">${ i.title }</h6>
-          <p class="card-text">Цена ${ i.price } тнг.</p>        
+          <p class="card-text">Цена <span style="background:rgb(220,255,220);padding:3px">${ i.price } тнг.</span></p>        
         </div>
       </div>
     </div>  
