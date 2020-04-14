@@ -39879,9 +39879,7 @@ var render = function() {
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
-          _c("h1", { staticClass: "title_text" }, [
-            _vm._v("подать объявление")
-          ]),
+          _c("h1", { staticClass: "title_text" }, [_vm._v("новое объявление")]),
           _vm._v(" "),
           _c("hr"),
           _vm._v(" "),
