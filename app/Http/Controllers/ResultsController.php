@@ -138,8 +138,8 @@ class ResultsController extends Controller {
 
         $priceBetweenSql="";
 
-//        if ($request->price_ot && $request->price_do) 
-//            $priceBetweenSql = " AND price BETWEEN ".$request->price_ot." AND ".$request->price_do;
+        if ($request->price_ot && $request->price_do) 
+            $priceBetweenSql = " AND price BETWEEN ".$request->price_ot." AND ".$request->price_do;
                        
         $categories = $this->getCategoryData($request, $category);                         
         $subcategories = $this->getSubCategoryData($request, $subcategory);            
@@ -164,22 +164,22 @@ class ResultsController extends Controller {
         \Debugbar::info($items);
 
         $locationName = $this->getLocationName();
-
-	$filters = array (
-	 "price_ot" => $request->price_ot,
-	 "price_do" => $request->price_do
-	);
                               
         // легковой автомобиль
         if ($category=="transport" && $subcategory=="legkovoy-avtomobil") {
-		$filters = array (
-		 "price_ot" => $request->price_ot,
-		 "price_do" => $request->price_do,
-		 "mark" => $request->mark, 
-		 "model" => $request->model,
-		 "year" => $request->year
-		);
+            
+            $filters = array (
+		    "price_ot" => $request->price_ot,
+		    "price_do" => $request->price_do,
+		    "mark" => $request->mark, 
+		    "model" => $request->model,
+		    "year" => $request->year
+            );
+            
         }
+	    else
+		    $filters = array ("price_ot" => $request->price_ot, "price_do" => $request->price_do);
+
                 
         return view("results")    
         ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
