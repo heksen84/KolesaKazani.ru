@@ -136,13 +136,14 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------    
     public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {
 
+        $categories = $this->getCategoryData($request, $category);                         
+        $subcategories = $this->getSubCategoryData($request, $subcategory);
+
         $priceBetweenSql="";
 
         if ($request->price_ot && $request->price_do) 
             $priceBetweenSql = " AND price BETWEEN ".$request->price_ot." AND ".$request->price_do;
-                       
-        $categories = $this->getCategoryData($request, $category);                         
-        $subcategories = $this->getSubCategoryData($request, $subcategory);
+                               
 
         // ------------------------------------------------------------------
         // легковой автомобиль
