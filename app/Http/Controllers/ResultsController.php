@@ -136,6 +136,8 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------    
     public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {
 
+	$filters = null;
+
 	$transportFilters = null;
 	$realestateFilters = null;
 	$baseFilters = null;
@@ -148,6 +150,12 @@ class ResultsController extends Controller {
                               
         // легковой автомобиль
         if ($category=="transport" && $subcategory=="legkovoy-avtomobil") {
+
+		$filters = array (
+		 "mark" => "bmw", 
+		 "model" => "audi",
+		 "year" => 1999
+		);
 
 		$transportFilters = array (
 		 "mark" => "bmw", 
