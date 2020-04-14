@@ -150,6 +150,29 @@ class ResultsController extends Controller {
         // ------------------------------------------------------------------
         if ($category=="transport" && $subcategory=="legkovoy-avtomobil") {
 
+            \Debugbar::info("Легковой автомобиль");
+
+	        // если у нас авто, то мы должны применить фильры от авто и вернуть входящие параметры во вьюху            
+            $filters = array (
+		    "price_ot" => $request->price_ot,
+		    "price_do" => $request->price_do,
+		    "mark" => $request->mark, 
+		    "model" => $request->model,
+            "year_ot" => $request->year_ot,
+            "year_do" => $request->year_do,
+            "mileage_ot" => $request->mileage_ot,
+            "mileage_do" => $request->mileage_do
+            );
+            
+        }
+        else
+        // ------------------------------------------------------------------
+        // легковой автомобиль
+        // ------------------------------------------------------------------
+        if ($category=="transport" && $subcategory=="gruzovoy-avtomobil") {
+
+            \Debugbar::info("Грузовой автомобиль");
+
 	        // если у нас авто, то мы должны применить фильры от авто и вернуть входящие параметры во вьюху            
             $filters = array (
 		    "price_ot" => $request->price_ot,
@@ -166,7 +189,7 @@ class ResultsController extends Controller {
 	    else
 		    $filters = array ("price_ot" => $request->price_ot, "price_do" => $request->price_do);            
                  
-        $items = DB::table("adverts as adv")->select(
+            $items = DB::table("adverts as adv")->select(
             "adv.id", 
             "adv.title", 
             "adv.price", 
@@ -174,32 +197,32 @@ class ResultsController extends Controller {
             "kz_region.name as region_name",
             "kz_city.name as city_name",
             DB::raw("concat('".\Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
-        ))
-        ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
-        ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
-        ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
-        ->paginate(10)
-        ->onEachSide(1);        
+            ))
+            ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
+            ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
+            ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
+            ->paginate(10)
+            ->onEachSide(1);        
 
-        \Debugbar::info("субкатегория: ".$subcategory);       
-        \Debugbar::info("id субкатегории: ".$subcategories);      
-        \Debugbar::info($items);
+            \Debugbar::info("субкатегория: ".$subcategory);       
+            \Debugbar::info("id субкатегории: ".$subcategories);      
+            \Debugbar::info($items);
 
-        $locationName = $this->getLocationName();                              
+            $locationName = $this->getLocationName();                              
                 
-        return view("results")    
-        ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
-        ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
-        ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))         
-        ->with("items", $items)
-        ->with("categoryId", $categories[0]->id)
-        ->with("subcategoryId", $subcategories[0]->id)         
-        ->with("region", null)
-        ->with("city", null)
-        ->with("category", $category)
-        ->with("subcategory", $subcategory)         
-        ->with("page", $request->page?$request->page:0)
-        ->with("filters", $filters);
+            return view("results")    
+            ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
+            ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
+            ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))         
+            ->with("items", $items)
+            ->with("categoryId", $categories[0]->id)
+            ->with("subcategoryId", $subcategories[0]->id)         
+            ->with("region", null)
+            ->with("city", null)
+            ->with("category", $category)
+            ->with("subcategory", $subcategory)         
+            ->with("page", $request->page?$request->page:0)
+            ->with("filters", $filters);
     }
 
     // -------------------------------------------------------------
