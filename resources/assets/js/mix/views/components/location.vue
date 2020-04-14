@@ -15,9 +15,9 @@
                 <h3><a :href="getUrl(item.url)" class="grey link" @click="showPlacesByRegion($event, item.region_id)">{{ item.name }}</a></h3>
               </div>
             </div>
-            <div v-if="places">
+            <div v-if="places" class="text-center">
               <div class="link" @click="searchInRegion"><b>Искать по всей области</b></div><hr>            
-                <h3><a v-for="(item, index) in placesList" :key="index" :href="item.url" class="grey link block" style="margin:8px" @click="selectPlace($event, item.name, item.url)">{{item.name}}</a></h3>            
+                <a v-for="(item, index) in placesList" :key="index" :href="item.url" class="grey link" style="margin:5px;padding:8px;border: 1px solid rgb(200,200,200);border-radius:5px;display:inline-block" @click="selectPlace($event, item.name, item.url)">{{item.name}}</a>
               </div>
             </div>
             <div class="modal-footer">

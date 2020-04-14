@@ -38181,26 +38181,33 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               _vm.places
-                ? _c("div", [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "link",
-                        on: { click: _vm.searchInRegion }
-                      },
-                      [_c("b", [_vm._v("Искать по всей области")])]
-                    ),
-                    _c("hr"),
-                    _vm._v(" "),
-                    _c(
-                      "h3",
+                ? _c(
+                    "div",
+                    { staticClass: "text-center" },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "link",
+                          on: { click: _vm.searchInRegion }
+                        },
+                        [_c("b", [_vm._v("Искать по всей области")])]
+                      ),
+                      _c("hr"),
+                      _vm._v(" "),
                       _vm._l(_vm.placesList, function(item, index) {
                         return _c(
                           "a",
                           {
                             key: index,
-                            staticClass: "grey link block",
-                            staticStyle: { margin: "8px" },
+                            staticClass: "grey link",
+                            staticStyle: {
+                              margin: "5px",
+                              padding: "8px",
+                              border: "1px solid rgb(200,200,200)",
+                              "border-radius": "5px",
+                              display: "inline-block"
+                            },
                             attrs: { href: item.url },
                             on: {
                               click: function($event) {
@@ -38214,10 +38221,10 @@ var render = function() {
                           },
                           [_vm._v(_vm._s(item.name))]
                         )
-                      }),
-                      0
-                    )
-                  ])
+                      })
+                    ],
+                    2
+                  )
                 : _vm._e()
             ]),
             _vm._v(" "),
