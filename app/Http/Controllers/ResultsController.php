@@ -136,6 +136,10 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------    
     public function getCountrySubCategoryResults(Request $request, $category, $subcategory) {
 
+	$transportFilters = null;
+	$realestateFilters = null;
+	$baseFilters = null;
+
         $mark = null;
         $model = null;
         $year = null;
@@ -144,6 +148,12 @@ class ResultsController extends Controller {
                               
         // легковой автомобиль
         if ($category=="transport" && $subcategory=="legkovoy-avtomobil") {
+
+		$transportFilters = array (
+		 "mark" => "bmw", 
+		 "model" => "audi",
+		 "year" => 1999
+		);
 
             $mark = $request->mark;
             $model = $request->model;
@@ -189,14 +199,6 @@ class ResultsController extends Controller {
         \Debugbar::info($items);
 
         $locationName = $this->getLocationName();
-
-
-	$transportFilters = array (
-	 "mark" => "bmw", 
-	 "model" => "audi",
-	 "year" => 1999
-	);
-
                 
         return view("results")    
         ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
