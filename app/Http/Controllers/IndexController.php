@@ -73,7 +73,9 @@ class IndexController extends Controller {
 		->paginate(10)
 		->onEachSide(1);                  
         
-		\Debugbar::info($items);		      			
+		\Debugbar::info($items);		    
+		
+		$str = "Результаты по запросу '".$str."'";
             
         return view("results")         
             ->with("title", $str)         
