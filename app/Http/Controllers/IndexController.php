@@ -73,7 +73,7 @@ class IndexController extends Controller {
 		->paginate(10)
 		->onEachSide(1);                  
         
-        \Debugbar::info($items);
+		\Debugbar::info($items);		      			
             
         return view("results")         
             ->with("title", $str)         
@@ -89,7 +89,8 @@ class IndexController extends Controller {
             ->with("page", 0)
             ->with("startPage", 0)
             ->with("start_price", 0)
-            ->with("end_price", 0);          
+			->with("end_price", 0)
+			->with("filters", null);
     }
 		    	
 	// ------------------------------------------
