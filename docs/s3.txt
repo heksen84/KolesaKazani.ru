@@ -1,0 +1,2 @@
+composer require league/flysystem-aws-s3-v3
+https://www.tutsmake.com/upload-file-to-amazon-s3-cloud-using-laravel-filesystem/

@@ -6,6 +6,15 @@ Auth::routes();
     return view('facebookAuth');
 });*/
 
+Route::get('/s3test', function () {
+    return view('s3test');
+});
+
+Route::post('upload', function () {
+//	request()->file("file")->store("my-file", "s3");
+	request()->file("file")->store("ilbo","s3");
+})->name("upload");
+
 Route::get('auth/vk', 'Auth\AuthController@redirectToVk');
 Route::get('auth/vk/callback', 'Auth\AuthController@handleVkCallback');
 Route::get('auth/ok', 'Auth\AuthController@redirectToOk');
