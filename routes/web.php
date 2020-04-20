@@ -12,7 +12,11 @@ Route::get('/s3test', function () {
 
 Route::post('upload', function () {
 //	request()->file("file")->store("my-file", "s3");
-	request()->file("file")->store("ilbo","s3");
+    //request()->file("file")->store("ilbo","s3");
+    //request()->file("file")->store("s3");
+    $file = request()->file("file");
+    $name=time()."-".$file->getClientOriginalName();
+    \Storage::disk('s3')->put($name, file_get_contents($file));
 })->name("upload");
 
 Route::get('auth/vk', 'Auth\AuthController@redirectToVk');
