@@ -27,37 +27,23 @@ class LoadImages implements ShouldQueue {
         if ($request->images)
 
         // бегу по картинкам
-        foreach($request->file("images") as $img) {
+        foreach($request->file("images") as $img) {        
 
-            // формирую рандомное имя
-            $filename = str_random(32).".".$img->getClientOriginalExtension();
-            
-            // узнаю имя
-            $image = Image::make($img->getRealPath());       
+	    /*
+	      	Сохранить в хранилище
+		Получить имя сохранённго файла
+	    */
 
-            \Debugbar::info($image->width()."x".$image->height());
-            
-            if ( $image->width()>$MAX_IMAGE_WIDTH && $image->height()>$MAX_IMAGE_HEIGHT) {                
-                // изменяю размер с соотношением пропорций
-                $image->resize($MAX_IMAGE_WIDTH, $MAX_IMAGE_HEIGHT, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-            }
-            
-            $image->save(storage_path().'/app/images/normal/' .$filename);
-                        
-            // изменяю размер с соотношением пропорций
-            $image->resize(200, 150, function ($constraint) {
-                $constraint->aspectRatio();
-            });
-            
-            $image->save(storage_path().'/app/images/small/' .$filename);                        
+	    //$file = request()->file("file");
+	    $name=time()."-".$img->getClientOriginalName();
+	    \Storage::disk('s3')->put($name, file_get_contents($img));
 
             // добавляю запись в базу       
-            $imageRec = new Images();            
+/*            $imageRec = new Images();            
             $imageRec->advert_id = $advert_id;
             $imageRec->name = $filename;                            
             $imageRec->save();                                    
+*/
 
         }
     }
