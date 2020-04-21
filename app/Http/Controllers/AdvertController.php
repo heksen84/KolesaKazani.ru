@@ -443,14 +443,16 @@ class AdvertController extends Controller {
                         ->get();
                 }
 
-
                 \DebugBar::info($advert); 
                 \Debugbar::info("advert count: ".count($advert));
 
                 if (count($advert)==0)
                         return view("errors/404");
                         
+                //$images = Images::select(DB::raw( "concat('".\Common::getImagesPath()."/normal/', name) AS name" ))->where("advert_id", $id)->get();
                 $images = Images::select(DB::raw( "concat('".\Common::getImagesPath()."/normal/', name) AS name" ))->where("advert_id", $id)->get();
+
+                //\Storage::disk('s3')->url($name)
 
                 \Debugbar::info($advert);
                 \Debugbar::info($images);
