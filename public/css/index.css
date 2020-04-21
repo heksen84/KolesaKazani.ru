@@ -210,6 +210,7 @@ h3 {
 .category_item:hover {
   background: #6464c8;
   color: white;
+  font-weight: bold;
 }
 
 .standart_input {
