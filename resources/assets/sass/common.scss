@@ -105,14 +105,14 @@ body {
 }
 
 .close_button {    
+  color: rgb(50,50,180);
+  font-size: 18px;
+  font-weight: 700;
   text-align: right;
   position: relative;
   right: 5px;
   top: 5px;
-  font-size: 18px;
-  font-weight: 700;
-  cursor: pointer;   
-  color: rgb(100,100,100);
+  cursor: pointer;
 }
 
 .close_button:hover {  
