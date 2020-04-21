@@ -17770,55 +17770,108 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // инициализация карты
 function initMaps() {
 
-	// координаты по умолчанию для всех карт
-	var mapCoords = [window.coord_lat, window.coord_lon];
-	var map = new ymaps.Map("map", { center: mapCoords, zoom: 10 });
-	var myPlacemark = void 0;
+  // координаты по умолчанию для всех карт
+  var mapCoords = [window.coord_lat, window.coord_lon];
+  var map = new ymaps.Map("map", { center: mapCoords, zoom: 10 });
+  var myPlacemark = void 0;
 
-	// включаю скролл на карте
-	map.behaviors.enable("scrollZoom");
+  // включаю скролл на карте
+  map.behaviors.enable("scrollZoom");
 
-	// формирую метку
-	myPlacemark = new ymaps.Placemark(mapCoords);
+  // формирую метку
+  myPlacemark = new ymaps.Placemark(mapCoords);
 
-	// добавляю метки на карты
-	map.geoObjects.add(myPlacemark);
+  // добавляю метки на карты
+  map.geoObjects.add(myPlacemark);
 }
 
 // document ready
 document.addEventListener('DOMContentLoaded', function () {
-	ymaps.ready(initMaps);
-	__WEBPACK_IMPORTED_MODULE_0_jquery___default()("#carousel").carousel();
+  ymaps.ready(initMaps);
+  __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#carousel").carousel();
+
+  // -------------------------------------------------------------
+  // оплата
+  // -------------------------------------------------------------
+  __WEBPACK_IMPORTED_MODULE_0_jquery___default()(".actions button").click(function (item) {
+
+    var title_text = "";
+    var desc = "";
+    var price = 0;
+
+    //current_advert_id = $(this).parent().data("id");
+
+    switch (__WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).index()) {
+      case 0:
+        {
+          title_text = "Срочно, торг";
+          desc = "Объявление будет...";
+          price = 100;
+          break;
+        }
+      case 1:
+        {
+          title_text = "Продлить";
+          desc = "Объявление будет...";
+          price = 200;
+          break;
+        }
+      case 2:
+        {
+          title_text = "Поднять в топ";
+          desc = "Объявление будет...";
+          price = 300;
+          break;
+        }
+      case 3:
+        {
+          title_text = "Покрасить";
+          desc = "Объявление будет...";
+          price = 400;
+          break;
+        }
+      case 4:
+        {
+          // $("#delete_advert_window").modal("show");
+          break;
+        }
+    }
+
+    alert(title_text);
+
+    /*    if ($(this).index()!=4) {
+            $("#payment_window_title").text(title_text);
+            $("#desc").text(desc);
+            $("#price").text(price);
+            $("#payment_window").modal("show");
+        }
+     */
+  });
 });
 
 // обработчик клика
 document.body.addEventListener('click', function (evt) {
 
-	// вернуться назад
-	if (evt.target.classList[0] === 'close_button') window.history.back();
+  // вернуться назад
+  if (evt.target.classList[0] === 'close_button') window.history.back();
 
-	// кнопка - показать номер
-	if (evt.target.id === "numberButton") {
+  // кнопка - показать номер
+  if (evt.target.id === "numberButton") {
 
-		var xhr = new XMLHttpRequest();
-		xhr.open('GET', '/api/getPhoneNumber?id=' + window.advert_id, true);
-		xhr.onload = function () {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/api/getPhoneNumber?id=' + window.advert_id, true);
+    xhr.onload = function () {
 
-			if (xhr.status != 200) alert(xhr.status + ': ' + xhr.statusText);else {
-				document.getElementById("numberButton").style.display = "none";
-				document.getElementById("phone-number").style.display = "block";
-				document.getElementById("phone-number").innerHTML = "<b>тел: <a href='tel:+7" + JSON.parse(xhr.responseText)[0].phone + "'>+7 " + JSON.parse(xhr.responseText)[0].phone + "</a></b><br>Скажите продавцу, что нашли это объявление на сайте объявлений <b>Ильбо</b>.";
-			}
-		};
+      if (xhr.status != 200) alert(xhr.status + ': ' + xhr.statusText);else {
+        document.getElementById("numberButton").style.display = "none";
+        document.getElementById("phone-number").style.display = "block";
+        document.getElementById("phone-number").innerHTML = "<b>тел: <a href='tel:+7" + JSON.parse(xhr.responseText)[0].phone + "'>+7 " + JSON.parse(xhr.responseText)[0].phone + "</a></b><br>Скажите продавцу, что нашли это объявление на сайте объявлений <b>Ильбо</b>.";
+      }
+    };
 
-		xhr.send();
-	}
+    xhr.send();
+  }
 }, false);
-
-// -----------------------------------
-// html готов
-// -----------------------------------
-//$( document ).ready(function() {});
 
 /***/ }),
 

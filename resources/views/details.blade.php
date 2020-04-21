@@ -20,7 +20,7 @@
     
     <div class="row">
 
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">        
         
           <div id="posted"><span style="background:rgb(200,250,200);color:black;letter-spacing:1px">{{ date("Размещено d.m.Y в H:i", strtotime($advert->created_at)) }}</span></div>
           <div id="location">{{ $advert->region_name }}, {{ $advert->city_name }}</div>
@@ -29,6 +29,13 @@
                 <h1>{{ $advert->title }}</h1>
                 <hr>
               @endif
+
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-action text-center actions">
+                <button class="btn btn-outline-primary btn-sm m-1">срочно, торг</button>
+                <button class="btn btn-outline-success btn-sm m-1">продлить</button>            
+                <button class="btn btn-outline-success btn-sm m-1">поднять в топ</button>
+                <button class="btn btn-outline-secondary btn-sm m-1">покрасить</button>                
+              </div>
 
               <div id="carousel" class="carousel slide" data-ride="carousel">
 
