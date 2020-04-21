@@ -105,9 +105,11 @@ body {
 }
 
 .close_button {    
-  color: rgb(50,50,180);
-  font-size: 18px;
-  font-weight: 700;
+  color: rgb(50,50,50);
+  border:1px solid grey;  
+  padding:3px;
+  font-size: 16px;
+  font-weight: 600;
   text-align: right;
   position: relative;
   right: 5px;
