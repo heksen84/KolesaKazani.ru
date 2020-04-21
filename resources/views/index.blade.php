@@ -112,7 +112,7 @@
       </div>
 
     <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center" title="Подать новое объявление на сайте" id="new_advert_col">
-      <a href="/podat-obyavlenie"><div id="new_advert_block">подать объявление</div></a>	
+      <a href="/podat-objavlenie"><div id="new_advert_block">подать объявление</div></a>	
     </div>
 
   </div>  

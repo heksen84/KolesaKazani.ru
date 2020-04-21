@@ -19,6 +19,7 @@ Route::post('upload', function () {
     \Storage::disk('s3')->put($name, file_get_contents($file));
 })->name("upload");
 
+
 Route::get('auth/vk', 'Auth\AuthController@redirectToVk');
 Route::get('auth/vk/callback', 'Auth\AuthController@handleVkCallback');
 Route::get('auth/ok', 'Auth\AuthController@redirectToOk');
@@ -39,7 +40,7 @@ Route::get("/util/str2url", "UtilsController@str2url");
 Route::get("/objavlenie/show/{id}", "AdvertController@getDetails");
 
 // Новое объявление
-Route::get("/podat-obyavlenie", "AdvertController@newAdvert");
+Route::get("/podat-objavlenie", "AdvertController@newAdvert");
 
 // api вызовы
 Route::post("/api/createAdvert", "ApiController@createAdvert");

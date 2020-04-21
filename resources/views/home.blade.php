@@ -12,8 +12,7 @@
   <link rel="stylesheet" type="text/css" href="{{ mix('css/common.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ mix('css/home.css') }}">
 </head>
-<body>  
-
+<body>
 
 <div class="modal" tabindex="-1" role="dialog" id="payment_window">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -36,7 +35,6 @@
   </div>
 </div>
 
-
 <div class="modal" tabindex="-1" role="dialog" id="delete_advert_window">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -56,7 +54,6 @@
     </div>
   </div>
 </div>
-
 
 <div class="modal" tabindex="-1" role="dialog" id="advert_deleted_window">
   <div class="modal-dialog modal-dialog-centered " role="document">
@@ -82,7 +79,7 @@
   <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="/podat-obyavlenie">Подать объявление <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/podat-objavlenie">Подать объявление <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Счёт: 4000 тнг. [ пополнить ]</a>
@@ -114,7 +111,7 @@
   @endforeach 
 @else  
   <h3 class="mt-3">нет объявлений</h3>  
-  <a href="/podat-obyavlenie" class="btn btn-success mt-2" role="button" style="width:210px">Подать объявление</a>
+  <a href="/podat-objavlenie" class="btn btn-success mt-2" role="button" style="width:210px">Подать объявление</a>
 @endif
 
 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="margin-top:15px">  
