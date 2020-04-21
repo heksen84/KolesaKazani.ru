@@ -446,8 +446,9 @@ class AdvertController extends Controller {
                 \DebugBar::info($advert); 
                 \Debugbar::info("advert count: ".count($advert));
 
-                if (count($advert)==0)
-                        return view("errors/404");
+                if (count($advert)==0) {
+                  return view("errors/404");
+                }
                         
                 //$images = Images::select(DB::raw( "concat('".\Common::getImagesPath()."/normal/', name) AS name" ))->where("advert_id", $id)->get();
                 $images = Images::select(DB::raw( "concat('".\Common::getImagesPath()."/normal/', name) AS name" ))->where("advert_id", $id)->get();
