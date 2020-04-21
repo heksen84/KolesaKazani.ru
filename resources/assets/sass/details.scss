@@ -9,6 +9,13 @@ h1 {
   word-wrap: break-word; 
 }
 
+.close_button {  
+  position:relative;  
+  top:13px;
+  left:96%; 
+  width:19px;  
+}
+
 .mycontainer {
   border: 1px solid rgb(230,230,230);
   border-radius: 7px;
