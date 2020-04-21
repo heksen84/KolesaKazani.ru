@@ -60,11 +60,6 @@ class AdvertController extends Controller {
                 \Debugbar::info($advertData);
                 \Debugbar::info("-------------------");
 
-                /*
-                ---------------------------------------
-                транспорт
-                ---------------------------------------*/
-                
                 // легковое авто
                 if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id === 1) {                        
 
@@ -220,11 +215,7 @@ class AdvertController extends Controller {
                         ->limit(1)
                         ->get();
                 }
-
-                /*
-                ---------------------------------------
-                недвижимость
-                ---------------------------------------*/                
+               
                 // квартира
                 if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 9) {
                         $advert = DB::table("adverts as adv")->select(                                 
