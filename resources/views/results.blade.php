@@ -49,7 +49,7 @@
           <a href="/{{$region}}/{{$city}}" class="close_button">X</a>    
         @endif    
 
-        <h1>{{ $title }}</h1>      
+        <h1 id="title">{{ $title }}</h1>      
           <hr>
             <br>
               <div class="row">                    
