@@ -1,6 +1,6 @@
 <template>
 <div>
-  
+
 <div style="position:fixed;width:100%;height:100%;z-index:999;opacity:0.8;background:black;text-align:center;display:none" id="advert_loading_block"><br>
 <div class="d-flex justify-content-center">
   <button class="btn btn-primary" type="button" style="font-size:24px">
@@ -665,9 +665,7 @@ onSubmit(evt) {
        this.serviceError();
     }
 		else {
-      $("#advert_loading_block").hide();
-		  alert("Объявление размещено");
-      //	else 
+      $("#advert_loading_block").hide();      
 		  //	window.location="home"; // переходим в личный кабинет
     }		
     }).catch(error => {

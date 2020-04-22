@@ -2546,8 +2546,6 @@ function forEach(data, callback) {
           _this3.serviceError();
         } else {
           __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#advert_loading_block").hide();
-          alert("Объявление размещено");
-          //	else 
           //	window.location="home"; // переходим в личный кабинет
         }
       }).catch(function (error) {
