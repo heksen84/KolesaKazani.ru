@@ -12,8 +12,8 @@
 
 <div class="container-fluid mycontainer">  
 
-    <!-- карта -->
-    <div class="modal bd-example-modal-lg" id="ShowModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- карта и сообщения об ошибках-->
+    <div class="modal" id="MsgModalDialog" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -33,6 +33,18 @@
         </div>
       </div>
     </div>        
+
+    <!-- Объявление размещено -->
+    <div class="modal" id="AdPostedModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header"><h4>Объявление размещено</h4></div>            
+              <div class="modal-footer">          
+                <button type="button" class="btn btn-primary margin-auto" data-dismiss="modal" aria-label="Close">Продолжить</button>          
+              </div>                  
+            </div>
+          </div>
+        </div>        
 
     <div class="row">  
       <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col" style="border: 1px solid rgb(220,220,220)">
@@ -359,7 +371,7 @@ methods: {
 // сервис не доступен
 serviceError() {
   this.serviceUnavailable=true;
-  $("#ShowModal").modal("show"); // отобразить окно
+  $("#MsgModalDialog").modal("show"); // отобразить окно
 },
 
 // Выбор подкатегории
@@ -665,8 +677,8 @@ onSubmit(evt) {
        this.serviceError();
     }
 		else {
-      $("#advert_loading_block").hide();      
-		  //	window.location="home"; // переходим в личный кабинет
+      $("#advert_loading_block").hide();
+      $("#AdPostedModal").modal("show");		  
     }		
     }).catch(error => {
       $("#advert_loading_block").hide();
@@ -681,7 +693,7 @@ onSubmit(evt) {
         
     this.serviceUnavailable=false;
     
-    $("#ShowModal").modal("show"); // отобразить окно
+    $("#MsgModalDialog").modal("show"); // отобразить окно
 
     if (!navigator.geolocation) {    
       console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается
@@ -701,7 +713,7 @@ onSubmit(evt) {
 	// ---------------------------------
 	setCoords() {
 
-    $("#ShowModal").modal("hide"); // скрыть окно
+    $("#MsgModalDialog").modal("hide"); // скрыть окно
 
 		this.$root.advert_data.adv_coords=[];
 		this.$root.advert_data.adv_coords=mapCoords;

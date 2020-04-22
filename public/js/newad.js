@@ -2082,6 +2082,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 // ---------------------------
@@ -2227,7 +2239,7 @@ function forEach(data, callback) {
     // сервис не доступен
     serviceError: function serviceError() {
       this.serviceUnavailable = true;
-      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#ShowModal").modal("show"); // отобразить окно
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#MsgModalDialog").modal("show"); // отобразить окно
     },
 
 
@@ -2546,7 +2558,7 @@ function forEach(data, callback) {
           _this3.serviceError();
         } else {
           __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#advert_loading_block").hide();
-          //	window.location="home"; // переходим в личный кабинет
+          __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#AdPostedModal").modal("show");
         }
       }).catch(function (error) {
         __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#advert_loading_block").hide();
@@ -2562,7 +2574,7 @@ function forEach(data, callback) {
 
       this.serviceUnavailable = false;
 
-      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#ShowModal").modal("show"); // отобразить окно
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#MsgModalDialog").modal("show"); // отобразить окно
 
       if (!navigator.geolocation) {
         console.log("navigator.geolocation error"); // navigator.geolocation не поддерживается
@@ -2582,7 +2594,7 @@ function forEach(data, callback) {
     // ---------------------------------
     setCoords: function setCoords() {
 
-      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#ShowModal").modal("hide"); // скрыть окно
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#MsgModalDialog").modal("hide"); // скрыть окно
 
       this.$root.advert_data.adv_coords = [];
       this.$root.advert_data.adv_coords = mapCoords;
@@ -39760,9 +39772,9 @@ var render = function() {
       _c(
         "div",
         {
-          staticClass: "modal bd-example-modal-lg",
+          staticClass: "modal",
           attrs: {
-            id: "ShowModal",
+            id: "MsgModalDialog",
             tabindex: "-1",
             role: "dialog",
             "aria-hidden": "true"
@@ -39874,6 +39886,8 @@ var render = function() {
           )
         ]
       ),
+      _vm._v(" "),
+      _vm._m(2),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
         _c(
@@ -40500,7 +40514,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      _vm._m(2),
+                      _vm._m(3),
                       _vm._v(" "),
                       _c(
                         "div",
@@ -40548,7 +40562,7 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _vm._m(3)
+                      _vm._m(4)
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "row" }, [
@@ -40594,7 +40608,7 @@ var render = function() {
                       [
                         _c("br"),
                         _vm._v(" "),
-                        _vm._m(4),
+                        _vm._m(5),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-12" }, [
                           _c(
@@ -40871,6 +40885,51 @@ var staticRenderFns = [
         }
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "modal",
+        attrs: {
+          id: "AdPostedModal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c("h4", [_vm._v("Объявление размещено")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary margin-auto",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close"
+                    }
+                  },
+                  [_vm._v("Продолжить")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
     )
   },
   function() {
