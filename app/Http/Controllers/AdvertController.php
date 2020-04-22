@@ -20,9 +20,9 @@ class AdvertController extends Controller {
         
                 if (Auth::check()) {
 	                return view("newad")
-                        ->with( "title", "Подать объявление" )
-                        ->with( "description", "Подать новое объявление на сайте ".config('app.name'))
-                        ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте")
+                        ->with( "title", "Подать объявление бесплатно" )
+                        ->with( "description", "Подать объявление бесплатно в Казахстане на сайте ".config('app.name'))
+                        ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте, казахстан")
                         ->with( "categories", Categories::all() )
                         ->with( "regions", Regions::all() )
                         ->with( "dealtypes", DealType::all()->toJson() )
