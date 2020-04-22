@@ -27,17 +27,21 @@ class LoadImages implements ShouldQueue {
         $MAX_IMAGE_HEIGHT = 768;
 
         if ($request->images) {
+            
             // бегу по картинкам
             foreach($request->file("images") as $img) {
                 
                 $image = Image::make($img->getRealPath());
-                $name = time()."_".$img->getClientOriginalName();        
-                
-                //\Storage::disk('s3')->put($name, file_get_contents($img));        
-                //\Storage::disk('s3')->put($name, $image->response());        
+
+                $image->resize(null, 1000, function ($constraint) {
+                    $constraint->aspectRatio();
+                });                
+
+                $name = time()."_".$img->getClientOriginalName();                                
                 \Storage::disk('s3')->put($name, $image->stream()->detach());                        
                 
                 //\Debugbar::info(\Storage::disk('s3')->url($name));
+                
                 // добавляю запись в базу       
                 $imageRec = new Images();            
                 $imageRec->advert_id = $advert_id;
