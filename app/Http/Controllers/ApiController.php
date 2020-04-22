@@ -92,6 +92,7 @@ class ApiController extends Controller {
             "adv_category.required"    => "Укажите категорию товара или услуги",            
             "adv_phone.required"       => "Укажите телефон",            
             "images.*.image"           => "Только изображения!",
+            "images.*.max"             => "Максимальный размер изображения :attr",
             "region_id.required"       => "Укажите регион",
             "region_id.numeric"        => "Введите числовое значение для региона",
             "city_id.required"         => "Укажите расположение",
