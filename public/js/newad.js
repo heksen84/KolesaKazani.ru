@@ -40849,14 +40849,12 @@ var staticRenderFns = [
         attrs: { id: "advert_loading_block" }
       },
       [
-        _c("br"),
-        _vm._v(" "),
-        _c("div", { staticClass: "d-flex justify-content-center" }, [
+        _c("div", { staticClass: "d-flex justify-content-center mt-1" }, [
           _c(
             "button",
             {
               staticClass: "btn btn-primary",
-              staticStyle: { "font-size": "24px" },
+              staticStyle: { "font-size": "22px" },
               attrs: { type: "button" }
             },
             [
@@ -40864,7 +40862,9 @@ var staticRenderFns = [
                 staticClass: "spinner-border spinner-border",
                 attrs: { role: "status", "aria-hidden": "true" }
               }),
-              _vm._v("\r\n      Размещение объявления...\r\n  ")
+              _vm._v("\r\n      Размещение объявления..."),
+              _c("br"),
+              _vm._v("Это может занять несколько минут.\r\n  ")
             ]
           )
         ])
