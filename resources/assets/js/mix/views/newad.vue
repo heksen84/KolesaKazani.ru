@@ -1,5 +1,16 @@
 <template>
-<div class="container-fluid mycontainer">     
+<div>
+  
+<div style="position:fixed;width:100%;height:100%;z-index:999;opacity:0.8;background:black;text-align:center;display:none" id="advert_loading_block"><br>
+<div class="d-flex justify-content-center">
+  <button class="btn btn-primary" type="button" style="font-size:24px">
+    <span class="spinner-border spinner-border" role="status" aria-hidden="true"></span>
+      Размещение объявления...
+  </button>
+  </div>
+</div>
+
+<div class="container-fluid mycontainer">  
 
     <!-- карта -->
     <div class="modal bd-example-modal-lg" id="ShowModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -201,6 +212,7 @@
           </form>
         </div>
     </div>  
+</div>
 </div>
 </template>
 <script>
@@ -625,9 +637,11 @@ changeCategory() {
 // --------------------
 // Отправить форму
 // --------------------
-onSubmit(evt) {
+onSubmit(evt) {  
 
   evt.preventDefault();
+
+  $("#advert_loading_block").show();
   
   // объект формы
   let formData = new FormData();
@@ -642,17 +656,20 @@ onSubmit(evt) {
   // ------------------------------------------------------------------------------------------------------------------------
   // Размещение объявления
   // ------------------------------------------------------------------------------------------------------------------------
-	axios.post("/api/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {			          
+	axios.post("/api/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {			              
 
     if (response.data.result=="error") {
+      $("#advert_loading_block").hide();
        this.dialogTitleMsg = response.data.title;
        this.dialogMsg = response.data.msg;
        this.serviceError();
     }
-		else
+		else {
+      $("#advert_loading_block").hide();
 		  alert("Объявление размещено");
-		//	else 
-		//	window.location="home"; // переходим в личный кабинет
+      //	else 
+		  //	window.location="home"; // переходим в личный кабинет
+    }		
     }).catch(error => {
 		  this.serviceError();
 	  })
