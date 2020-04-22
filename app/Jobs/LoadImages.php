@@ -37,15 +37,15 @@ class LoadImages implements ShouldQueue {
                     $constraint->aspectRatio();
                 });                
 
-                $normal_url = "normal/".time()."_".$img->getClientOriginalName();                                
-                \Storage::disk('s3')->put($normal_url, $image->stream()->detach());
+                $name = time()."_".$img->getClientOriginalName();                                
+
+                \Storage::disk('s3')->put("normal/".$name, $image->stream()->detach());
 
                 $image->resize(null, 250, function ($constraint) {
                     $constraint->aspectRatio();
                 });                
-
-                $small_url = "small/".time()."_".$img->getClientOriginalName();                                
-                \Storage::disk('s3')->put($small_url, $image->stream()->detach());
+                
+                \Storage::disk('s3')->put("small/".$name, $image->stream()->detach());
                 
                 //\Debugbar::info(\Storage::disk('s3')->url($name));
                 
