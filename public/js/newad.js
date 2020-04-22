@@ -40834,43 +40834,27 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticStyle: {
-          position: "fixed",
-          width: "100%",
-          height: "100%",
-          "z-index": "999",
-          opacity: "0.8",
-          background: "black",
-          "text-align": "center",
-          display: "none"
-        },
-        attrs: { id: "advert_loading_block" }
-      },
-      [
-        _c("div", { staticClass: "d-flex justify-content-center mt-1" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-primary",
-              staticStyle: { "font-size": "22px" },
-              attrs: { type: "button" }
-            },
-            [
-              _c("span", {
-                staticClass: "spinner-border spinner-border",
-                attrs: { role: "status", "aria-hidden": "true" }
-              }),
-              _vm._v("\r\n      Размещение объявления..."),
-              _c("br"),
-              _vm._v("Это может занять несколько минут.\r\n  ")
-            ]
-          )
-        ])
-      ]
-    )
+    return _c("div", { attrs: { id: "advert_loading_block" } }, [
+      _c("div", { staticClass: "d-flex justify-content-center mt-1" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            staticStyle: { "font-size": "22px" },
+            attrs: { type: "button" }
+          },
+          [
+            _c("span", {
+              staticClass: "spinner-border spinner-border",
+              attrs: { role: "status", "aria-hidden": "true" }
+            }),
+            _vm._v("\r\n        Размещение объявления..."),
+            _c("br"),
+            _vm._v("Это может занять некоторое время.\r\n    ")
+          ]
+        )
+      ])
+    ])
   },
   function() {
     var _vm = this
