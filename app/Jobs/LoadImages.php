@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Images;
 
+// https://laracasts.com/discuss/channels/laravel/saving-an-intervention-image-instance-into-amazon-s3?page=1
+
 class LoadImages implements ShouldQueue {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -33,7 +35,7 @@ class LoadImages implements ShouldQueue {
                 
                 //\Storage::disk('s3')->put($name, file_get_contents($img));        
                 //\Storage::disk('s3')->put($name, $image->response());        
-                \Storage::disk('s3')->put($name, $image->stream());                        
+                \Storage::disk('s3')->put($name, $image->stream()->detach());                        
                 
                 //\Debugbar::info(\Storage::disk('s3')->url($name));
                 // добавляю запись в базу       
