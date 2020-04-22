@@ -23,9 +23,6 @@ class LoadImages implements ShouldQueue {
      */
     public function __construct(Request $request, $advert_id) {
 
-        $MAX_IMAGE_WIDTH  = 1024;
-        $MAX_IMAGE_HEIGHT = 768;
-
         if ($request->images) {
             
             // бегу по картинкам
@@ -39,13 +36,13 @@ class LoadImages implements ShouldQueue {
 
                 $name = time()."_".$img->getClientOriginalName();                                
 
-                \Storage::disk('s3')->put("normal/".$name, $image->stream()->detach());
+                \Storage::disk('s3')->put("images/normal/".$name, $image->stream()->detach());
 
                 $image->resize(null, 250, function ($constraint) {
                     $constraint->aspectRatio();
                 });                
                 
-                \Storage::disk('s3')->put("small/".$name, $image->stream()->detach());
+                \Storage::disk('s3')->put("images/small/".$name, $image->stream()->detach());
                 
                 //\Debugbar::info(\Storage::disk('s3')->url($name));
                 
