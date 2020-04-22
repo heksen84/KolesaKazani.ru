@@ -2549,6 +2549,7 @@ function forEach(data, callback) {
           //	window.location="home"; // переходим в личный кабинет
         }
       }).catch(function (error) {
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#advert_loading_block").hide();
         _this3.serviceError();
       });
     },

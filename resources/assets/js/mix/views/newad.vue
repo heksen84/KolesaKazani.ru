@@ -669,6 +669,7 @@ onSubmit(evt) {
 		  //	window.location="home"; // переходим в личный кабинет
     }		
     }).catch(error => {
+      $("#advert_loading_block").hide();
 		  this.serviceError();
 	  })
   },
