@@ -45,6 +45,7 @@ class LoadImages implements ShouldQueue {
                 \Storage::disk('s3')->put("images/small/".$name, $image->stream()->detach());
                 
                 //\Debugbar::info(\Storage::disk('s3')->url($name));
+                //\Debugbar::info(\Storage::disk('s3')->url(""));
                 
                 // добавляю запись в базу       
                 $imageRec = new Images();            
