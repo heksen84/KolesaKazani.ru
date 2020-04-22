@@ -40911,6 +40911,10 @@ var staticRenderFns = [
           { staticClass: "modal-dialog modal-lg", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c("h4", [_vm._v("Готово!")])
+              ]),
+              _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("h5", [_vm._v("Ваше объявление отправлено на проверку")])
               ]),
