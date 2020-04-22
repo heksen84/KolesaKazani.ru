@@ -32,7 +32,8 @@ class LoadImages implements ShouldQueue {
                 $name = time()."_".$img->getClientOriginalName();        
                 
                 //\Storage::disk('s3')->put($name, file_get_contents($img));        
-                \Storage::disk('s3')->put($name, $image->response());        
+                //\Storage::disk('s3')->put($name, $image->response());        
+                \Storage::disk('s3')->put($name, $image->encode('data-url'));                        
                 
                 //\Debugbar::info(\Storage::disk('s3')->url($name));
                 // добавляю запись в базу       

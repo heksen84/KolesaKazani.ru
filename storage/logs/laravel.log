@@ -1904,3 +1904,7 @@ region: (string)
 #52 C:\\OSPanel\\domains\\flix\\index.php(21): require_once('C:\\\\OSPanel\\\\doma...')
 #53 {main}
 "} 
+[2020-04-22 10:18:30] local.ERROR: Maximum execution time of 180 seconds exceeded {"userId":3,"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 1): Maximum execution time of 180 seconds exceeded at C:\\OSPanel\\domains\\flix\\vendor\\guzzlehttp\\guzzle\\src\\Handler\\CurlMultiHandler.php:121)
+[stacktrace]
+#0 {main}
+"} 
