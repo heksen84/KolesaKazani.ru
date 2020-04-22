@@ -1,6 +1,7 @@
 service php7.2-fpm restart
 php -i | grep -i "upload\_max\_filesize\|post\_max\_size\|max\_file\_uploads"
 service php7.2-fpm restart
+service php-fpm restart
 
 Request Entity Too Large
 Ошибка HTTP 413 (Request Entity Too Large Error) означает, что клиент отправил слишком большой запрос на сервер. В Nginx максимальный размер запроса регулируется таким параметром:
