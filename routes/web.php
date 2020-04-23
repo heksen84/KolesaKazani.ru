@@ -7,6 +7,10 @@ Auth::routes();
 });*/
 
 Route::get('/s3test', function () {
+    \Debugbar::info(\Debugbar::info(\Storage::disk('s3')->url(".")));  // root
+    \Debugbar::info(\Debugbar::info(\Storage::disk('s3')->url("images")));
+    \Debugbar::info(\Debugbar::info(\Storage::disk('s3')->url("images/small")));
+    \Debugbar::info(\Debugbar::info(\Storage::disk('s3')->url("images/normal")));
     return view('s3test');
 });
 
