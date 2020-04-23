@@ -37,7 +37,7 @@
                 <button class="btn btn-outline-secondary btn-sm m-1">покрасить</button>                
               </div>
 
-              <div id="carousel" class="carousel slide" data-ride="carousel">
+              <div id="carousel" class="carousel slide mt-2" data-ride="carousel">
 
                   @if (count($images)>1)
                     <ol class="carousel-indicators">                    
@@ -55,11 +55,11 @@
                     @foreach($images as $index => $image)
                       @if ($index==0)
                         <div class="carousel-item active">
-                          <img class="d-block w-100" src="{{ $image->name }}" alt="{{ $image->name }}">
+                          <img class="d-block w-100" src="{{ $image->name }}" alt="{{ $image->name }}" height="1000">
                         </div>
                       @else
                         <div class="carousel-item">
-                          <img class="d-block w-100" src="{{ $image->name }}" alt="{{ $image->name }}">
+                          <img class="d-block w-100" src="{{ $image->name }}" alt="{{ $image->name }}" height="1000">
                         </div>
                       @endif
                     @endforeach
