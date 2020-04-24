@@ -30,7 +30,7 @@ class LoadImages implements ShouldQueue {
                 
                 $image = Image::make($img->getRealPath());
 
-                $image->resize(null, 1000, function ($constraint) {
+                $image->resize(null, 500, function ($constraint) {
                     $constraint->aspectRatio();
                 });                
 
@@ -38,7 +38,7 @@ class LoadImages implements ShouldQueue {
 
                 \Storage::disk('s3')->put("images/normal/".$name, $image->stream()->detach());
 
-                $image->resize(null, 250, function ($constraint) {
+                $image->resize(null, 200, function ($constraint) {
                     $constraint->aspectRatio();
                 });                
                 

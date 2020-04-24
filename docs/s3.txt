@@ -1,2 +1,21 @@
 composer require league/flysystem-aws-s3-v3
 https://www.tutsmake.com/upload-file-to-amazon-s3-cloud-using-laravel-filesystem/
+https://medium.com/@sehmbimanvir/laravel-upload-files-to-amazon-s3-a17d013f53ce
+https://console.aws.amazon.com/iam/home?region=eu-west-3#/users
+
+
+https://www.h3xed.com/web-development/how-to-make-all-objects-in-amazon-s3-bucket-public-by-default
+ARN: AKIAYYQKJT7QXSSXZ7U7
+{
+    "Id": "Policy1587701799230",
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Action": "s3:GetObject",
+            "Effect": "Allow",
+            "Resource": "arn:aws:s3:::ilbo/*",
+            "Principal": "*"
+        }
+    ]
+}
