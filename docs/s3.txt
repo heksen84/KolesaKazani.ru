@@ -19,3 +19,6 @@ ARN: AKIAYYQKJT7QXSSXZ7U7
         }
     ]
 }
+
+
+Статистика: https://console.aws.amazon.com/billing/home?#/freetier
