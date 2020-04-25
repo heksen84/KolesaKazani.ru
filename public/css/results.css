@@ -38,6 +38,7 @@ hr {
 
 .price {
   font-size: 15px;
+  letter-spacing: 2px;
   background: #dcffdc;
   color: black;
   border-radius: 3px;
