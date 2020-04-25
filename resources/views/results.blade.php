@@ -62,9 +62,8 @@
                 </div>
 
           <!-- РЕКЛАМА -->
-          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-2">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- Главная страница (рекоменд.) -->
+          <!--<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-2">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>            
             <ins class="adsbygoogle"
               style="display:inline-block;width:100%;height:100px"              
               data-ad-client="ca-pub-8074944108437227"
@@ -72,7 +71,7 @@
             <script>
               (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
-          </div>
+          </div>-->
 
             <!-- перебор массива объявлений -->
             @foreach($items as $item)                                
