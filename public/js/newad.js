@@ -39904,17 +39904,11 @@ var render = function() {
             _c(
               "div",
               {
-                staticClass: "mt-2",
-                staticStyle: {
-                  "font-size": "15px",
-                  color: "rgb(100,100,100)",
-                  "letter-spacing": "2px",
-                  cursor: "pointer"
-                },
-                attrs: { title: "Вернуться назад" },
+                staticClass: "mt-2 return-link",
+                attrs: { title: "Вернуться на предыдущую страницу" },
                 on: { click: _vm.closeAndReturn }
               },
-              [_vm._v("назад")]
+              [_vm._v("⇐назад")]
             ),
             _vm._v(" "),
             _c("br"),

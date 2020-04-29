@@ -37,19 +37,27 @@
     </script>
   </div>
 
-  <div class="container-fluid mycontainer">            
-    <br>
-      <hr>
+  <div class="container-fluid mycontainer">                      
         <!-- закрыть страницу -->
-        @if (!$region && !$city)
+        <!--@if (!$region && !$city)
           <a href="/" class="close_button">X</a>
         @elseif ($region && !$city)    
           <a href="/{{$region}}" class="close_button">X</a>    
         @elseif ($region && $city)    
           <a href="/{{$region}}/{{$city}}" class="close_button">X</a>    
-        @endif    
+        @endif-->
 
-        <h1 id="title">{{ $title }}</h1>      
+        <div class="mt-2" title="Вернуться на предыдущую страницу">        
+        @if (!$region && !$city)
+          <a href="/" class="return-link">&lArr;назад</a>
+        @elseif ($region && !$city)    
+          <a href="/{{$region}}" class="return-link">&lArr;назад</a>    
+        @elseif ($region && $city)    
+          <a href="/{{$region}}/{{$city}}" class="return-link">&lArr;назад</a>    
+        @endif        
+        </div>
+
+        <h1 id="title" class="mt-1">{{ $title }}</h1>      
           <hr>
             <br>
               <div class="row">                    

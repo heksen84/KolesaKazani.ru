@@ -16,14 +16,14 @@
 <div class="container-fluid mycontainer">
 
   <!-- кнопка закрытия -->
-  <div class="close_button mr-1" title="Закрыть страницу" @click="closeAndReturn">X</div>
+  <!--<div class="close_button mr-1" title="Закрыть страницу" @click="closeAndReturn">X</div>-->
     
-    <div class="row">
+    <div class="row">    
 
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">        
-        
-          <div id="posted"><span style="background:rgb(200,250,200);color:black;letter-spacing:1px">{{ date("Размещено d.m.Y в H:i", strtotime($advert->created_at)) }}</span></div>
-          <div id="location">{{ $advert->region_name }}, {{ $advert->city_name }}</div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2">                  
+          <div class="return-link mb-4" title="Вернуться на предыдущую страницу">&#9668;назад</div>        
+            <div id="posted"><span style="background:rgb(200,250,200);color:black;letter-spacing:1px">{{ date("Размещено d.m.Y в H:i", strtotime($advert->created_at)) }}</span></div>
+              <div id="location">{{ $advert->region_name }}, {{ $advert->city_name }}</div>
 
               @if ($advert->title!="null") 
                 <h1>{{ $advert->title }}</h1>

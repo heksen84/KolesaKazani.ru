@@ -17853,7 +17853,7 @@ document.addEventListener('DOMContentLoaded', function () {
 document.body.addEventListener('click', function (evt) {
 
   // вернуться назад
-  if (evt.target.classList[0] === 'close_button') window.history.back();
+  if (evt.target.classList[0] === 'return-link') window.history.back();
 
   // кнопка - показать номер
   if (evt.target.id === "numberButton") {

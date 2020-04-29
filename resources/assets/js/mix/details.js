@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.body.addEventListener('click', function (evt) {
 
 	// вернуться назад
-	if (evt.target.classList[0] === 'close_button')
+	if (evt.target.classList[0] === 'return-link')
 		window.history.back();	
 
 	// кнопка - показать номер
