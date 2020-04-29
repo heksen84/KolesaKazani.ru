@@ -1,2 +1,2 @@
 cd ..
-REM npm run production
+npm run production
