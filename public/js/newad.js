@@ -39905,6 +39905,7 @@ var render = function() {
               "div",
               {
                 staticClass: "mt-2 return-link",
+                staticStyle: { width: "70px" },
                 attrs: { title: "Вернуться на предыдущую страницу" },
                 on: { click: _vm.closeAndReturn }
               },
