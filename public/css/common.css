@@ -116,6 +116,11 @@ body {
   cursor: pointer;
 }
 
+.return-link:hover {
+  color: #646464;
+  text-decoration: underline;
+}
+
 .full-width {
   width: 100%;
 }
