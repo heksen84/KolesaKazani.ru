@@ -49,11 +49,11 @@
 
         <div class="mt-2" title="Вернуться на предыдущую страницу">        
         @if (!$region && !$city)
-          <a href="/" class="return-link">&lArr;назад</a>
+          <a href="/" class="return-link">< назад</a>
         @elseif ($region && !$city)    
-          <a href="/{{$region}}" class="return-link">&lArr;назад</a>    
+          <a href="/{{$region}}" class="return-link">< назад</a>    
         @elseif ($region && $city)    
-          <a href="/{{$region}}/{{$city}}" class="return-link">&lArr;назад</a>    
+          <a href="/{{$region}}/{{$city}}" class="return-link">< назад</a>    
         @endif        
         </div>
 
