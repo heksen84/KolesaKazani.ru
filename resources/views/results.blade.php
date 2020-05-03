@@ -37,7 +37,7 @@
     </script>
   </div>
 
-  <div class="container-fluid mycontainer">                      
+  <div class="container-fluid mycontainer">
         <!-- закрыть страницу -->
         <!--@if (!$region && !$city)
           <a href="/" class="close_button">X</a>
@@ -57,17 +57,15 @@
         @endif        
         </div>
 
-        <h1 id="title" class="mt-1">{{ $title }}</h1>      
-          <hr>
-            <br>
-              <div class="row">                    
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                  @if ($categoryId===1 && $subcategoryId===1)  
-                    @include('filters/transport/legkovoy')
-                  @else
-                    @include('filters/base')
-                  @endif             
-                </div>
+        <h1 id="title" class="mt-3">{{ $title }}</h1>          
+            <div class="row">                    
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                @if ($categoryId===1 && $subcategoryId===1)  
+                  @include('filters/transport/legkovoy')
+                @else
+                  @include('filters/base')
+                @endif             
+              </div>
 
           <!-- РЕКЛАМА -->
           <!--<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-2">
