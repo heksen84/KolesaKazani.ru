@@ -51,20 +51,23 @@
       <div class="modal-content">
         <div class="modal-header"><button type="button" class="close closeLocationWindow" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
           <div class="modal-body">   
-            <input type="text" class="form-control mb-2" placeholder="Введите местоположение поиска, например Нур-Султан"></input>
-              <div id="regions">                
-                <div style="text-align:center"><a href="/" class="grey link" style="background:yellow;margin:auto;font-size:17px">Искать по Казахстану</a></div>               	                
-                  <div class="mt-2">
-                    @foreach($regions as $region)
-                      <a href=/{{ $region["url"] }} class="grey link text-center region_link" id={{ $region["region_id"] }}><div class="mt-1">{{ $region["name"] }}</div></a>
-                    @endforeach                    
-                    <div class="text-center">
-                      <button class='btn btn-sm btn-success m-3 closeLocationWindow'>Закрыть</button>
-                    </div>                    
-                </div>
-              </div>
-            </div>
-            <div id="places" class="text-center hide"></div>
+            <input type="text" class="form-control mb-2" placeholder="Введите местоположение поиска, например Нур-Султан" id="placeFilter"></input>
+              
+              <div id="placeData">
+                <div id="regions">                
+                  <div style="text-align:center"><a href="/" class="grey link" style="background:yellow;margin:auto;font-size:17px">Искать по Казахстану</a></div>               	                
+                    <div class="mt-2">
+                      @foreach($regions as $region)
+                        <a href=/{{ $region["url"] }} class="grey link text-center region_link" id={{ $region["region_id"] }}><div class="mt-1">{{ $region["name"] }}</div></a>
+                      @endforeach                    
+                      <div class="text-center">
+                        <button class='btn btn-sm btn-success m-3 closeLocationWindow'>Закрыть</button>
+                      </div>                    
+                    </div>
+                  </div>
+                <div id="places" class="text-center hide"></div>
+              </div>               
+          </div>
         </div>
       </div>
     </div>
