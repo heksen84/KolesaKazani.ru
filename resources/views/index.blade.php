@@ -53,13 +53,13 @@
           <div class="modal-body">   
             <input type="text" class="form-control mb-2" placeholder="Введите местоположение поиска, например Нур-Султан"></input>
               <div id="regions">                
-                <div style="font-weight:bold;text-align:center"><a href="/" class="grey link" style="background:yellow;margin:auto;font-size:17px">Искать по Казахстану</a></div>               	                
+                <div style="text-align:center"><a href="/" class="grey link" style="background:yellow;margin:auto;font-size:17px">Искать по Казахстану</a></div>               	                
                   <div class="mt-2">
                     @foreach($regions as $region)
-                      <a href=/{{ $region["url"] }} class="grey link text-center region_link" id={{ $region["region_id"] }}><h2 class="mt-2">{{ $region["name"] }}</h2></a>
+                      <a href=/{{ $region["url"] }} class="grey link text-center region_link" id={{ $region["region_id"] }}><div class="mt-1">{{ $region["name"] }}</div></a>
                     @endforeach                    
                     <div class="text-center">
-                      <button class='btn btn-sm btn-success m-2 closeLocationWindow'>Закрыть</button>
+                      <button class='btn btn-sm btn-success m-3 closeLocationWindow'>Закрыть</button>
                     </div>                    
                 </div>
               </div>

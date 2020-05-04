@@ -47,11 +47,11 @@ $( document ).ready(function() {
       type: "GET",
       data: {"_token": $('meta[name="csrf-token"]').attr('content'), "region_id": $(this).attr("id")},
       success: function (response) {        
-        $("#places").append('<div style="font-weight:bold;text-align:center;margin-top:-15px;margin-bottom:5px"><a href="'+selectedRegionUrl+'" class="grey link" style="background:yellow;margin:auto;font-size:17px">Искать в регионе</a></div>');
+        $("#places").append('<div style="text-align:center;margin-top:-15px;margin-bottom:5px"><a href="'+selectedRegionUrl+'" class="grey link" style="background:yellow;margin:auto;font-size:17px">Искать в регионе</a></div>');
         $.each(response, function(index, item) {               
-          $("#places").append("<h3 style='display:inline-block;padding:6px;border:1px solid rgb(200,200,200);margin:3px'><a href='"+selectedRegionUrl+"/"+item.url+"' class='grey link text-center place_link'>"+item.name+"</a></h3>");
+          $("#places").append("<div style='display:inline-block;padding:6px;border:1px solid rgb(200,200,200);margin:3px'><a href='"+selectedRegionUrl+"/"+item.url+"' class='grey link text-center place_link'>"+item.name+"</a></div>");
         });                
-        $("#places").append("<br><button class='btn btn-sm btn-success m-2' id='returnToRegions'>< Назад</button>");
+        $("#places").append("<br><button class='btn btn-sm btn-success mt-2 mb-4' id='returnToRegions'>< Назад</button>");
         $("#returnToRegions").click(function(item) {                       
           $("#places").empty();
           $("#regions").show();
