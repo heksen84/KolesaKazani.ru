@@ -2,38 +2,30 @@ import $ from "jquery";
 
 // загрузить модели автомобилей
 function loadCarsModels(idCarMark) {
-
   $("#model").empty().append("<option value=all>Все модели</option>");
-
   $.ajax({
     url: "/api/getCarsModels",
     type: "GET",
     data: {"_token": $('meta[name="csrf-token"]').attr('content'), "mark_id": idCarMark},
-    success: function (response) {      
-            
+    success: function (response) {                  
       $.each(response, function(index, item) {
         $("#model").append("<option value="+item.id_car_model+">"+item.name+"</option>");
       });   
-
     }    
   });
 }
 
 // загрузить марки автомобилей
 function loadCarsMarks() {
-
   $("#mark").empty().append("<option value=all>Все марки</option>");
-
   $.ajax({
     url: "/api/getCarsMarks",
     type: "GET",
     data: {"_token": $('meta[name="csrf-token"]').attr('content')},
     success: function (response) {                                    
-
       $.each(response, function(index, item) {
         $("#mark").append("<option value="+item.id_car_mark+">"+item.name+"</option>");
       });
-
       $( "#mark" ).change(function(item) { 
         loadCarsModels($(this).children("option:selected").val()); 
       }).change();
@@ -53,9 +45,7 @@ function initCars() {
       loadCarsMarks();
 }
 
-// -----------------------------------
 // html готов
-// -----------------------------------
 $( document ).ready(function() {
   initCars();
 });

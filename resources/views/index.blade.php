@@ -12,13 +12,11 @@
   <link rel="stylesheet" type="text/css" href="{{ mix('css/common.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ mix('css/index.css') }}">
 </head>
-
 <body>
 <div id="app">
   <div id="navbar_menu">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-<!--    <a class="navbar-brand" href="#"><h2 id="navbrand-title">{{config('app.name')}}</h2><h2 id="navbrand-description">объявления {{ $sklonResult }}</h2></a>    -->
-    
+
     <a class="navbar-brand" href="/">
       <h2 id="navbrand-title">{{ config('app.name', 'Laravel') }}</h2><h2 id="navbrand-description">объявления {{ $sklonResult }}</h2>
     </a>
@@ -47,7 +45,32 @@
     </div>
   </nav>
   </div>
-  
+
+  <div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header"><button type="button" class="close" aria-label="Close" id="closeLocationWindow"><span aria-hidden="true">&times;</span></button></div>
+          <div class="modal-body">   
+            <input type="text" class="form-control mb-2" placeholder="Введите местоположение поиска, например Нур-Султан"></input>
+              <div id="regions">                
+                <div style="font-weight:bold;text-align:center"><a href="/" class="grey link" style="background:yellow;margin:auto;font-size:17px">Искать по Казахстану</a></div>               	                
+                  <div class="mt-1">
+                    @foreach($regions as $region)
+                      <a href={{ $region["url"] }} class="grey link text-center region_link" id={{ $region["region_id"] }}><h3>{{ $region["name"] }}</h3></a>               
+                    @endforeach
+                </div>
+              </div>
+            </div>
+
+            <div id="places" class="text-center hide" style="margin-top:-20px"></div>
+
+            <div class="text-center"></div>
+            <div class="modal-footer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
   <div style="float:left" class="index-side-advert ml-4 mt-2">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <ins class="adsbygoogle"
@@ -71,10 +94,7 @@
   </div>  
   
   <div class="container-fluid container1 mt-2" id="index_page">
-
-    <!-- компонент выбора расположения -->
-    <location></location>
-
+    
     <div class="row">    
       <div class="margin-auto" id="login_register_col">
         @if ($auth===0)
@@ -89,25 +109,24 @@
     <div class="row mt-2">
       <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center">
         <div id="logo_block">
-          <!--<div id="logo_block_text">{{config('app.name')}}</div>        -->
           <a href="/">
-          <div id="logo_block_text">{{ config('app.name') }}</div>
-            <h1 style="font-size:12px;color:grey;margin-top:-10px;letter-spacing:3px;">Объявления {{ $sklonResult }}</h1>
-          </div>
+            <div id="logo_block_text">{{ config('app.name') }}</div>
+              <h1 style="font-size:12px;color:grey;margin-top:-10px;letter-spacing:3px;">Объявления {{ $sklonResult }}</h1>
+            </div>
           </a>
-    </div>
+        </div>
 
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 center">
         
       <!-- компонент поиска по сайту -->
-      <form @submit="search">
+      <form>
         <input type="text" id="search_string" v-model="searchString" placeholder="поиск по объявлениям {{ $sklonResult }}" required/>
         <button id="button_search" type="submit" title="Найти что требуется">найти</button>
       </form>
 
       <!-- кнопки выбора региона и т.п.-->
       <div class="index_select_region_and_other_button_block">    
-        <button class="btn btn-link" data-toggle="modal" id="locationButton" style="margin-top:-8px" @click="showLocationWindow">расположение {{ $locationName }}</button>
+        <button class="btn btn-link" data-toggle="modal" id="locationButton" style="margin-top:-8px">расположение {{ $locationName }}</button>
         </div>
       </div>
 
@@ -121,10 +140,10 @@
 
   <div id="categories_line">
     <div class="center">        
-      <div id="categories_title" class="shadow_text" style="margin-bottom:80px"></div>    
-	      <div class="form-inline" v-show="categories">
+      <div id="categories_title" class="shadow_text"></div>    
+	      <div class="form-inline" id="categories">
           @foreach($categories as $category)
-        	  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 col_item" @click="showSubcategories($event,{{ $category['id'] }})">          	   
+        	  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 col_item" id="{{ $category['id'] }}">          	   
               @if ($location==="/")
                 <a href="/c/{{ $category['url'] }}" class="url"><div class="category_item">{{ $category["name"] }}</div></a>
               @else
@@ -132,10 +151,11 @@
               @endif
         	  </div>
           @endforeach
-	      </div>
+	      </div>  
 
-        <div v-show="subCategories" id="subcats">
-         <button type="button" id="close_subcats_btn" class="btn btn-link hide" @click="returnToCategories">&#8634; назад</button>         
+
+        <div id="subcats">
+         <button type="button" id="close_subcats_btn" class="btn btn-link">&#8634; назад</button>         
           <div id="subcategories" class="form-inline center">
             @foreach($subcategories as $subcategory)
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 hide" data-category-id="{{ $subcategory['category_id'] }}">
@@ -148,36 +168,15 @@
             @endforeach
           </div>
         </div>        
+
+
       </div>
     </div>
 
-  <br>
-  <!-- РЕКЛАМА -->
-  <!--<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <ins class="adsbygoogle"
-     style="display:inline-block;width:100%;height:120px"
-     data-ad-client="ca-pub-8074944108437227"
-     data-ad-slot="2249357572"></ins>
-    <script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  </div>-->
+  
 
-  @if (count($newAdverts)>0)    
-  <div class="row mt-2">    
-      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mb-2">
-        <h3>Новые объявления</h3>
-      </div>
-      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3" v-for="i in {{ $newAdverts }}">
-        <div class="card last-advert-card">    
-          <div class="card-body">
-          <h6 class="card-title">${ i.title }</h6>
-          <p class="card-text">Цена <span style="background:rgb(220,255,220);padding:3px">${ i.price } тнг.</span></p>        
-        </div>
-      </div>
-    </div>  
-  </div>
+  <br>
+  @if (count($newAdverts)>0)  
   @endif 
 
   <!-- РЕКЛАМА -->
@@ -212,5 +211,14 @@
 </div>  
   <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>  
   <script data-ad-client="ca-pub-8074944108437227" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<!--<style>
+.modal-lg {
+    max-width: 70% !important;
+    margin:auto !important;
+    margin-top:10px !important;
+}
+</style>-->
+
 </body>
 </html>

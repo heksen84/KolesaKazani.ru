@@ -190,6 +190,9 @@ class IndexController extends Controller {
 		// новые объявления
 		$newAdverts = Adverts::all()->take(8);
 		
+		// список регионов
+		$regions = Regions::all();
+		
 		\Debugbar::info("-- newAdverts --");
 		\Debugbar::info($newAdverts);
 											
@@ -203,6 +206,7 @@ class IndexController extends Controller {
 		->with("sklonResult", $sklonResult)
 		->with("description", $description)
 		->with("keywords", $keywords)
+		->with("regions", $regions)
 		->with("newAdverts", $newAdverts);
     }
 
