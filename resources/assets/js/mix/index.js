@@ -37,11 +37,11 @@ $( document ).ready(function() {
     $("#places").empty();    
   });  
 
-  $(".region_link").click(function(item) {
+  $(".region_link").click(function(item) {        
     selectedRegionUrl = $(this).attr("href");
     item.preventDefault();
-    $("#regions").hide(); 
-    $("#places").show(); 
+    $("#regions").hide();
+    $("#loaderForSearchPlace").show();      
     $.ajax({
       url: "/api/getPlaces",
       type: "GET",
@@ -50,8 +50,9 @@ $( document ).ready(function() {
         $("#places").append('<div style="text-align:center;margin-bottom:5px"><a href="'+selectedRegionUrl+'" class="grey link" style="background:yellow;margin:auto;font-size:17px">Искать в регионе</a></div>');
         $.each(response, function(index, item) {               
           $("#places").append("<div style='display:inline-block;padding:6px;border:1px solid rgb(200,200,200);margin:3px'><a href='"+selectedRegionUrl+"/"+item.url+"' class='grey link text-center place_link'>"+item.name+"</a></div>");
-        });                
-        $("#places").append("<br><button class='btn btn-sm btn-success mt-2 mb-4' id='returnToRegions'>< Назад</button>");
+        });                        
+        $("#places").append("<br><button class='btn btn-sm btn-success mt-2 mb-4' id='returnToRegions'>< Назад</button>").show();
+        $("#loaderForSearchPlace").hide();
         $("#returnToRegions").click(function(item) {                       
           $("#places").empty();
           $("#regions").show();

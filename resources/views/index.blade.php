@@ -65,6 +65,15 @@
                       </div>                    
                     </div>
                   </div>
+
+                  <div id="loaderForSearchPlace">
+                    <div class="d-flex justify-content-center">
+                      <button class="btn btn-primary" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>        
+                      </button>
+                    </div>
+                  </div>
+
                 <div id="places" class="text-center hide"></div>
               </div>               
           </div>
