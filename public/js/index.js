@@ -36832,7 +36832,6 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#locationModal").modal("hide");
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#regions").show();
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#places").empty();
-    selectedRegionUrl = "/";
   });
 
   __WEBPACK_IMPORTED_MODULE_0_jquery___default()(".region_link").click(function (item) {

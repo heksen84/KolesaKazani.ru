@@ -32,8 +32,7 @@ $( document ).ready(function() {
   $("#closeLocationWindow").click(function(item) {                       
     $("#locationModal").modal("hide");
     $("#regions").show();
-    $("#places").empty();
-    selectedRegionUrl = "/";
+    $("#places").empty();    
   });  
 
   $(".region_link").click(function(item) {
