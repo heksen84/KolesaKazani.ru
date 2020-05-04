@@ -61,11 +61,7 @@
                 </div>
               </div>
             </div>
-
             <div id="places" class="text-center hide" style="margin-top:-20px"></div>
-
-            <div class="text-center"></div>
-            <div class="modal-footer"></div>
         </div>
       </div>
     </div>
