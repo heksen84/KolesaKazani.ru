@@ -54,9 +54,9 @@
             <input type="text" class="form-control mb-2" placeholder="Введите местоположение поиска, например Нур-Султан"></input>
               <div id="regions">                
                 <div style="font-weight:bold;text-align:center"><a href="/" class="grey link" style="background:yellow;margin:auto;font-size:17px">Искать по Казахстану</a></div>               	                
-                  <div class="mt-1">
+                  <div class="mt-2">
                     @foreach($regions as $region)
-                      <a href={{ $region["url"] }} class="grey link text-center region_link" id={{ $region["region_id"] }}><h3>{{ $region["name"] }}</h3></a>               
+                      <a href={{ $region["url"] }} class="grey link text-center region_link" id={{ $region["region_id"] }}><h2>{{ $region["name"] }}</h2></a>
                     @endforeach
                 </div>
               </div>
