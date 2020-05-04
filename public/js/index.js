@@ -36843,8 +36843,9 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
       success: function success(response) {
         __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#places").append('<div style="font-weight:bold;text-align:center;margin:5px"><a href="/" class="grey link" style="background:yellow;margin:auto;font-size:17px">Искать в регионе</a></div>');
         __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(response, function (index, item) {
-          __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#places").append("<h3 style='display:inline-block;padding:6px;border:1px solid grey;margin:2px'><a href='" + item.url + "' class='grey link text-center region_link'>" + item.name + "</a></h3>");
+          __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#places").append("<h3 style='display:inline-block;padding:6px;border:1px solid grey;margin:3px'><a href='" + item.url + "' class='grey link text-center region_link'>" + item.name + "</a></h3>");
         });
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#places").append("<br><button class='btn btn-sm btn-success m-2'>< Назад</button>");
       }
     });
   });

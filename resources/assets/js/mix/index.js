@@ -44,8 +44,9 @@ $( document ).ready(function() {
       success: function (response) {        
         $("#places").append('<div style="font-weight:bold;text-align:center;margin:5px"><a href="/" class="grey link" style="background:yellow;margin:auto;font-size:17px">Искать в регионе</a></div>');
         $.each(response, function(index, item) {               
-          $("#places").append("<h3 style='display:inline-block;padding:6px;border:1px solid grey;margin:2px'><a href='"+item.url+"' class='grey link text-center region_link'>"+item.name+"</a></h3>");
-        });
+          $("#places").append("<h3 style='display:inline-block;padding:6px;border:1px solid grey;margin:3px'><a href='"+item.url+"' class='grey link text-center region_link'>"+item.name+"</a></h3>");
+        });        
+        $("#places").append("<br><button class='btn btn-sm btn-success m-2'>< Назад</button>");
       }    
     });
   });    
