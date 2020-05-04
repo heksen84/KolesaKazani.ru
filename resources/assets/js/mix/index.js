@@ -2,7 +2,7 @@ require('./bootstrap');
 import $ from "jquery";
 import "bootstrap";
 
-let selectedRegionUrl=null;
+let selectedRegionUrl="";
 
 $( document ).ready(function() {
 
@@ -33,12 +33,11 @@ $( document ).ready(function() {
     $("#locationModal").modal("hide");
     $("#regions").show();
     $("#places").empty();
+    selectedRegionUrl = "/";
   });  
 
-  $(".region_link").click(function(item) {                
-
+  $(".region_link").click(function(item) {
     selectedRegionUrl = $(this).attr("href");
-
     item.preventDefault();
     $("#regions").hide(); 
     $("#places").show(); 
@@ -49,15 +48,13 @@ $( document ).ready(function() {
       success: function (response) {        
         $("#places").append('<div style="font-weight:bold;text-align:center;margin:5px"><a href="'+selectedRegionUrl+'" class="grey link" style="background:yellow;margin:auto;font-size:17px">Искать в регионе</a></div>');
         $.each(response, function(index, item) {               
-          $("#places").append("<h3 style='display:inline-block;padding:6px;border:1px solid rgb(200,200,200);margin:3px'><a href='"+selectedRegionUrl+"/"+item.url+"' class='grey link text-center region_link'>"+item.name+"</a></h3>");
-        });        
+          $("#places").append("<h3 style='display:inline-block;padding:6px;border:1px solid rgb(200,200,200);margin:3px'><a href='"+selectedRegionUrl+"/"+item.url+"' class='grey link text-center place_link'>"+item.name+"</a></h3>");
+        });                
         $("#places").append("<br><button class='btn btn-sm btn-success m-2' id='returnToRegions'>< Назад</button>");
-
         $("#returnToRegions").click(function(item) {                       
           $("#places").empty();
           $("#regions").show();
-        });
-        
+        });        
       }    
     });
   });    
