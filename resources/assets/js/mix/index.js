@@ -60,16 +60,20 @@ $( document ).ready(function() {
       }    
     });
   });
-  
-  
+    
   $( "#placeFilter" ).keyup(function() {
-
-    if ($(this).val()!="")
+    if ($(this).val()=="")      
+      $("#placeData").show();    
+    else {
       $("#placeData").hide();
-    else
-      $("#placeData").show();
-
-    console.log($(this).val())
+      $.ajax({
+        url: "/api/searchPlaceByString",
+        type: "GET",
+        data: {"_token": $('meta[name="csrf-token"]').attr('content'), "searchString": $(this).val()},
+        success: function (response) {      
+        }    
+      });      
+    }      
   });
 
 });

@@ -36861,10 +36861,15 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
   });
 
   __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeFilter").keyup(function () {
-
-    if (__WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).val() != "") __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeData").hide();else __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeData").show();
-
-    console.log(__WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).val());
+    if (__WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).val() == "") __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeData").show();else {
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeData").hide();
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajax({
+        url: "/api/searchPlaceByString",
+        type: "GET",
+        data: { "_token": __WEBPACK_IMPORTED_MODULE_0_jquery___default()('meta[name="csrf-token"]').attr('content'), "searchString": __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).val() },
+        success: function success(response) {}
+      });
+    }
   });
 });
 
