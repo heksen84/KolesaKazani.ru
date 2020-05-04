@@ -31,7 +31,7 @@ $( document ).ready(function() {
     $("#locationModal").modal("show");
   });
 
-  $("#closeLocationWindow").click(function(item) {                       
+  $(".closeLocationWindow").click(function(item) {                       
     $("#locationModal").modal("hide");
     $("#regions").show();
     $("#places").empty();    

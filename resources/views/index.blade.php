@@ -49,15 +49,18 @@
   <div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
-        <div class="modal-header"><button type="button" class="close" aria-label="Close" id="closeLocationWindow"><span aria-hidden="true">&times;</span></button></div>
+        <div class="modal-header"><button type="button" class="close closeLocationWindow" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
           <div class="modal-body">   
             <input type="text" class="form-control mb-2" placeholder="Введите местоположение поиска, например Нур-Султан"></input>
               <div id="regions">                
                 <div style="font-weight:bold;text-align:center"><a href="/" class="grey link" style="background:yellow;margin:auto;font-size:17px">Искать по Казахстану</a></div>               	                
                   <div class="mt-2">
                     @foreach($regions as $region)
-                      <a href=/{{ $region["url"] }} class="grey link text-center region_link" id={{ $region["region_id"] }}><h2>{{ $region["name"] }}</h2></a>
-                    @endforeach
+                      <a href=/{{ $region["url"] }} class="grey link text-center region_link" id={{ $region["region_id"] }}><h2 class="mt-2">{{ $region["name"] }}</h2></a>
+                    @endforeach                    
+                    <div class="text-center">
+                      <button class='btn btn-sm btn-success m-2 closeLocationWindow'>Закрыть</button>
+                    </div>
                     <br>
                 </div>
               </div>
@@ -165,6 +168,7 @@
       </div>
     </div>
   <br>
+
   @if (count($newAdverts)>0)  
   @endif 
 
