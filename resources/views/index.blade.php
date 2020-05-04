@@ -58,6 +58,7 @@
                     @foreach($regions as $region)
                       <a href={{ $region["url"] }} class="grey link text-center region_link" id={{ $region["region_id"] }}><h2>{{ $region["name"] }}</h2></a>
                     @endforeach
+                    <br>
                 </div>
               </div>
             </div>
