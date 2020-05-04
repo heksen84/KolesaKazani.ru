@@ -36846,7 +36846,7 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
       type: "GET",
       data: { "_token": __WEBPACK_IMPORTED_MODULE_0_jquery___default()('meta[name="csrf-token"]').attr('content'), "region_id": __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).attr("id") },
       success: function success(response) {
-        __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#places").append('<div style="font-weight:bold;text-align:center;margin:5px"><a href="' + selectedRegionUrl + '" class="grey link" style="background:yellow;margin:auto;font-size:17px">Искать в регионе</a></div>');
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#places").append('<div style="font-weight:bold;text-align:center;margin-top:-15px;margin-bottom:5px"><a href="' + selectedRegionUrl + '" class="grey link" style="background:yellow;margin:auto;font-size:17px">Искать в регионе</a></div>');
         __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(response, function (index, item) {
           __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#places").append("<h3 style='display:inline-block;padding:6px;border:1px solid rgb(200,200,200);margin:3px'><a href='" + selectedRegionUrl + "/" + item.url + "' class='grey link text-center place_link'>" + item.name + "</a></h3>");
         });

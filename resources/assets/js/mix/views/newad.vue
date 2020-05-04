@@ -51,7 +51,7 @@
 
     <div class="row">  
       <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col" style="border: 1px solid rgb(220,220,220)">
-        <div class="mt-2 return-link" style="width:70px" title="Вернуться на предыдущую страницу" @click="closeAndReturn">< назад</div>
+        <div class="mt-2 return-link" style="width:80px" title="Вернуться на предыдущую страницу" @click="closeAndReturn">< назад</div>
         <br>
 		      <h1 class="title_text">новое объявление</h1>
             <hr>            

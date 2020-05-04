@@ -120,11 +120,11 @@ body {
 }*/
 
 .return-link {
-  font-size:15px;
+  //font-size:18px;
   color:rgb(100,100,100);
-  letter-spacing:2px;
+  letter-spacing:1px;
   cursor:pointer;
- // background: yellow;  
+  font-weight: bold;
 }
 
 .return-link:hover {

@@ -60,12 +60,11 @@
                     @endforeach                    
                     <div class="text-center">
                       <button class='btn btn-sm btn-success m-2 closeLocationWindow'>Закрыть</button>
-                    </div>
-                    <br>
+                    </div>                    
                 </div>
               </div>
             </div>
-            <div id="places" class="text-center hide" style="margin-top:-20px"></div>
+            <div id="places" class="text-center hide"></div>
         </div>
       </div>
     </div>

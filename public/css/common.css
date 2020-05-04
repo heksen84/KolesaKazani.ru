@@ -110,10 +110,10 @@ body {
 }*/
 
 .return-link {
-  font-size: 15px;
   color: #646464;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .return-link:hover {
