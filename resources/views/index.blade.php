@@ -130,11 +130,9 @@
     <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center" title="Подать новое объявление на сайте" id="new_advert_col">
       <a href="/podat-objavlenie"><div id="new_advert_block">подать объявление</div></a>	
     </div>
-
   </div>  
+  <br>  
   
-  <br>
-
   <div id="categories_line">
     <div class="center">        
       <div id="categories_title" class="shadow_text"></div>    
@@ -150,7 +148,6 @@
           @endforeach
 	      </div>  
 
-
         <div id="subcats">
          <button type="button" id="close_subcats_btn" class="btn btn-link">&#8634; назад</button>         
           <div id="subcategories" class="form-inline center">
@@ -165,13 +162,8 @@
             @endforeach
           </div>
         </div>        
-
-
       </div>
     </div>
-
-  
-
   <br>
   @if (count($newAdverts)>0)  
   @endif 

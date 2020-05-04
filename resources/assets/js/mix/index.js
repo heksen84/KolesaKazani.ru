@@ -5,6 +5,8 @@ import "bootstrap";
 let selectedRegionUrl="";
 
 $( document ).ready(function() {
+  
+  $("#categories_line").show();
 
   $(".col_item").click(function(item) {     
     let element_id = $(this).attr("id");    
