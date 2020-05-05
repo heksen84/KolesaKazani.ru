@@ -4,6 +4,7 @@ import "bootstrap";
 
 let selectedRegionUrl="";
 
+// html loaded
 $( document ).ready(function() {
   
   $("#categories_line").show();
@@ -77,9 +78,9 @@ $( document ).ready(function() {
         type: "GET",
         data: {"_token": $('meta[name="csrf-token"]').attr('content'), "searchString": searchVal},
         success: function (response) {
-          $("#placeSearchResults").empty();      
+          $("#placeSearchResults").empty().css("padding-top","4px");      
           $.each(response, function(index, item) {               
-            $("#placeSearchResults").append("<a href='/"+item.url+"' style='color:black;display:block;margin:5px'>"+item.city_name+", "+item.region_name+"</a>");
+            $("#placeSearchResults").append("<a href='/"+item.url+"' style='color:black;display:block;margin:5px;margin-top:6px'>"+item.city_name+", "+item.region_name+"</a>");
           });
         }    
       });      

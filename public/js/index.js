@@ -36804,6 +36804,7 @@ __webpack_require__("./resources/assets/js/mix/bootstrap.js");
 
 var selectedRegionUrl = "";
 
+// html loaded
 __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
 
   __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#categories_line").show();
@@ -36875,9 +36876,9 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
         type: "GET",
         data: { "_token": __WEBPACK_IMPORTED_MODULE_0_jquery___default()('meta[name="csrf-token"]').attr('content'), "searchString": searchVal },
         success: function success(response) {
-          __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeSearchResults").empty();
+          __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeSearchResults").empty().css("padding-top", "4px");
           __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(response, function (index, item) {
-            __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeSearchResults").append("<a href='/" + item.url + "' style='color:black;display:block;margin:5px'>" + item.city_name + ", " + item.region_name + "</a>");
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeSearchResults").append("<a href='/" + item.url + "' style='color:black;display:block;margin:5px;margin-top:6px'>" + item.city_name + ", " + item.region_name + "</a>");
           });
         }
       });
