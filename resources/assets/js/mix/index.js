@@ -62,17 +62,19 @@ $( document ).ready(function() {
   });
     
   $( "#placeFilter" ).keyup(function() {
-    if ($(this).val()=="") {     
+
+    let searchVal = $(this).val(); 
+    if (searchVal=="") {     
       $("#placeData").show();
       $("#placeSearchResults").empty();
     }
     else {
       $("#placeData").hide();      
-      $("#placeSearchResults").append("<a href='/' style='color:green'>"+$(this).val()+"</a>");
+      $("#placeSearchResults").append("<a href='/' style='color:green'>"+searchVal+"</a>");
       $.ajax({
         url: "/api/searchPlaceByString",
         type: "GET",
-        data: {"_token": $('meta[name="csrf-token"]').attr('content'), "searchString": $(this).val()},
+        data: {"_token": $('meta[name="csrf-token"]').attr('content'), "searchString": searchVal},
         success: function (response) {      
         }    
       });      
