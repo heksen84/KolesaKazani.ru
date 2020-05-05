@@ -36861,8 +36861,12 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
   });
 
   __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeFilter").keyup(function () {
-    if (__WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).val() == "") __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeData").show();else {
+    if (__WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).val() == "") {
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeData").show();
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeSearchResults").empty();
+    } else {
       __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeData").hide();
+      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeSearchResults").append("<a href='/' style='color:green'>" + __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).val() + "</a>");
       __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajax({
         url: "/api/searchPlaceByString",
         type: "GET",

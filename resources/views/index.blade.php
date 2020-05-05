@@ -48,7 +48,7 @@
 
   <div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
+      <div class="modal-content" style="word-wrap: break-word">
         <div class="modal-header"><button type="button" class="close closeLocationWindow" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
           <div class="modal-body">   
             <input type="text" class="form-control mb-2" placeholder="Введите местоположение поиска, например Нур-Султан" id="placeFilter"></input>
@@ -65,7 +65,6 @@
                       </div>                    
                     </div>
                   </div>
-
                   <div id="loaderForSearchPlace">
                     <div class="d-flex justify-content-center">
                       <button class="btn btn-primary" type="button" disabled>
@@ -73,9 +72,9 @@
                       </button>
                     </div>
                   </div>
-
                 <div id="places" class="text-center hide"></div>
-              </div>               
+              </div>
+              <div id="placeSearchResults"></div>
           </div>
         </div>
       </div>

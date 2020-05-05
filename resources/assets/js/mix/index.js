@@ -62,10 +62,13 @@ $( document ).ready(function() {
   });
     
   $( "#placeFilter" ).keyup(function() {
-    if ($(this).val()=="")      
-      $("#placeData").show();    
+    if ($(this).val()=="") {     
+      $("#placeData").show();
+      $("#placeSearchResults").empty();
+    }
     else {
-      $("#placeData").hide();
+      $("#placeData").hide();      
+      $("#placeSearchResults").append("<a href='/' style='color:green'>"+$(this).val()+"</a>");
       $.ajax({
         url: "/api/searchPlaceByString",
         type: "GET",
