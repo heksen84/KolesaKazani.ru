@@ -51,7 +51,7 @@ $( document ).ready(function() {
         $.each(response, function(index, item) {               
           $("#places").append("<div style='display:inline-block;padding:6px;border:1px solid rgb(200,200,200);margin:3px'><a href='"+selectedRegionUrl+"/"+item.url+"' class='grey link text-center place_link'>"+item.name+"</a></div>");
         });                        
-        $("#places").append("<br><button class='btn btn-sm btn-success mt-2 mb-4' id='returnToRegions'>< Назад</button>").show();
+        $("#places").append("<br><button class='btn btn-sm btn-success mt-2 mb-4' id='returnToRegions'>Назад</button>").show();
         $("#loaderForSearchPlace").hide();
         $("#returnToRegions").click(function(item) {                       
           $("#places").empty();
@@ -62,7 +62,6 @@ $( document ).ready(function() {
   });
     
   $( "#placeFilter" ).keyup(function() {
-
     let searchVal = $(this).val(); 
     if (searchVal=="") {     
       $("#placeData").show();

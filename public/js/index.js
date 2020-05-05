@@ -36850,7 +36850,7 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
         __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(response, function (index, item) {
           __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#places").append("<div style='display:inline-block;padding:6px;border:1px solid rgb(200,200,200);margin:3px'><a href='" + selectedRegionUrl + "/" + item.url + "' class='grey link text-center place_link'>" + item.name + "</a></div>");
         });
-        __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#places").append("<br><button class='btn btn-sm btn-success mt-2 mb-4' id='returnToRegions'>< Назад</button>").show();
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#places").append("<br><button class='btn btn-sm btn-success mt-2 mb-4' id='returnToRegions'>Назад</button>").show();
         __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#loaderForSearchPlace").hide();
         __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#returnToRegions").click(function (item) {
           __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#places").empty();
@@ -36861,7 +36861,6 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
   });
 
   __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeFilter").keyup(function () {
-
     var searchVal = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).val();
     if (searchVal == "") {
       __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeData").show();
