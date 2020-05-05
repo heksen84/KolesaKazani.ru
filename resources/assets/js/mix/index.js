@@ -89,6 +89,8 @@ $( document ).ready(function() {
             $("#placeSearchResults").empty();
           });        
         }    
+      }).error(function( err ) {
+        alert("Ошибка!");
       });      
     }      
   });
