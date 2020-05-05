@@ -92,6 +92,11 @@ $( document ).ready(function() {
         error: function (jqXHR, exception) {
           //$("#placeSearchResults").css("color","red").text("Произошла ошибка.");
           console.log("error!!!");
+        },
+        statusCode: {
+          500: function() {
+            alert("error");
+          }
         }
       }).fail(function(jqXHR, textStatus, errorThrown){
         alert("Got some error: " + errorThrown);
