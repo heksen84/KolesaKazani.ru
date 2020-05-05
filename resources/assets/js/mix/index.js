@@ -88,9 +88,10 @@ $( document ).ready(function() {
             $("#placeData").show();
             $("#placeSearchResults").empty();
           });        
-        }    
-      }).error(function( err ) {
-        alert("Ошибка!");
+        },
+        error: function (jqXHR, exception) {
+          $("#placeSearchResults").css("color","red").text("Произошла ошибка.");
+        }
       });      
     }      
   });
