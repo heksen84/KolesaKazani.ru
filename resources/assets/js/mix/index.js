@@ -91,7 +91,7 @@ $( document ).ready(function() {
         },
         error: function (jqXHR, exception) {
           //$("#placeSearchResults").css("color","red").text("Произошла ошибка.");
-          alert("error");
+          console.log("error!!!");
         }
       });      
     }      
