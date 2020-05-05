@@ -80,7 +80,7 @@ $( document ).ready(function() {
         success: function (response) {
           $("#placeSearchResults").empty().css("padding-top","4px");      
           $.each(response, function(index, item) {               
-            $("#placeSearchResults").append("<a href='/"+item.url+"' style='color:black;display:block;margin:5px;margin-top:6px'>"+item.city_name+", "+item.region_name+"</a>");
+            $("#placeSearchResults").append("<a href='/"+item.url+"' style='color:black;display:block;margin:5px;margin-top:3px'>"+item.city_name+", "+item.region_name+"</a>");
           });
         }    
       });      
