@@ -93,6 +93,8 @@ $( document ).ready(function() {
           //$("#placeSearchResults").css("color","red").text("Произошла ошибка.");
           console.log("error!!!");
         }
+      }).fail(function(jqXHR, textStatus, errorThrown){
+        alert("Got some error: " + errorThrown);
       });      
     }      
   });
