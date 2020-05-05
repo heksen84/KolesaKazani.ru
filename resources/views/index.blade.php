@@ -55,7 +55,7 @@
               
               <div id="placeData">
                 <div id="regions">                
-                  <div style="text-align:center"><a href="/" class="grey link" style="background:yellow;margin:auto;font-size:17px">Искать по Казахстану</a></div>               	                
+                  <div style="text-align:center"><a href="/" class="grey link" style="background:yellow;margin:auto">Искать по Казахстану</a></div>               	                
                     <div class="mt-2">
                       @foreach($regions as $region)
                         <a href=/{{ $region["url"] }} class="grey link text-center region_link" id={{ $region["region_id"] }}><div class="mt-1">{{ $region["name"] }}</div></a>
@@ -180,8 +180,24 @@
     </div>
   <br>
 
+  <div class="row">
+  
   @if (count($newAdverts)>0)  
+    @foreach($newAdverts as $advert)
+
+    <div class="col-sm-3 mt-1">      
+      <div class="card" style="width:250px;margin:auto">
+        <!--<img class="card-img-top" src="..." alt="Card image cap">-->
+        <div class="card-body">
+          <p class="card-text">{{ $advert["title"] }}</p>
+        </div>
+      </div>
+    </div>
+
+    @endforeach
   @endif 
+
+  </div>
 
   <!-- РЕКЛАМА -->
   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-5">
