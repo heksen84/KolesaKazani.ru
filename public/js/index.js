@@ -36851,7 +36851,7 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
       success: function success(response) {
         __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#places").append('<div style="text-align:center;margin-bottom:5px"><a href="' + selectedRegionUrl + '" class="grey link" style="background:yellow;margin:auto">Искать в регионе</a></div>');
         __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(response, function (index, item) {
-          __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#places").append("<div style='display:inline-block;padding:6px;border:1px solid rgb(200,200,200);margin:3px'><a href='" + selectedRegionUrl + "/" + item.url + "' class='grey link text-center place_link'>" + item.name + "</a></div>");
+          __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#places").append("<div style='display:inline-block;padding:6px;border:1px solid rgb(220,220,220);margin:3px'><a href='" + selectedRegionUrl + "/" + item.url + "' class='grey link text-center place_link'>" + item.name + "</a></div>");
         });
         __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#places").append("<br><button class='btn btn-sm btn-success mt-2 mb-4' id='returnToRegions'>Назад</button>").show();
         __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#loaderForSearchPlace").hide();
