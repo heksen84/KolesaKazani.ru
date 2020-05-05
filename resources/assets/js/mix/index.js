@@ -79,6 +79,9 @@ $( document ).ready(function() {
         type: "GET",
         data: {"_token": $('meta[name="csrf-token"]').attr('content'), "searchString": searchVal},
         success: function (response) {
+
+          console.log("RESPONSE: "+response);
+          
           $("#placeSearchResults").empty().css("padding-top","4px");      
           $.each(response, function(index, item) {               
             $("#placeSearchResults").append("<a href='/"+item.url+"' style='color:black;display:block;margin:5px;margin-top:3px'>"+item.city_name+", "+item.region_name+"</a>");
@@ -90,17 +93,10 @@ $( document ).ready(function() {
           });        
         },
         error: function (jqXHR, exception) {
-          //$("#placeSearchResults").css("color","red").text("Произошла ошибка.");
           console.log("error!!!");
-        },
-        statusCode: {
-          500: function() {
-            alert("error");
-          }
+          $("#placeSearchResults").css("color","red").text("Произошла ошибка.");        
         }
-      }).fail(function(jqXHR, textStatus, errorThrown){
-        alert("Got some error: " + errorThrown);
-      });      
+      })
     }      
   });
 
