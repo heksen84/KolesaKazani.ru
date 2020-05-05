@@ -90,7 +90,8 @@ $( document ).ready(function() {
           });        
         },
         error: function (jqXHR, exception) {
-          $("#placeSearchResults").css("color","red").text("Произошла ошибка.");
+          //$("#placeSearchResults").css("color","red").text("Произошла ошибка.");
+          alert("error");
         }
       });      
     }      
