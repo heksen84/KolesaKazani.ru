@@ -61,7 +61,7 @@
                         <a href=/{{ $region["url"] }} class="grey link text-center region_link" id={{ $region["region_id"] }}><div class="mt-1">{{ $region["name"] }}</div></a>
                       @endforeach                    
                       <div class="text-center">
-                        <button class='btn btn-sm btn-success m-3 closeLocationWindow'>Закрыть</button>
+                        <button class='btn btn-sm btn-success m-3 closeLocationWindow'>Отмена</button>
                       </div>                    
                     </div>
                   </div>
