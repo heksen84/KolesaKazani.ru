@@ -57,7 +57,8 @@ $( document ).ready(function() {
         });                        
         $("#places").append("<br><button class='btn btn-sm btn-success mt-2 mb-4' id='returnToRegions'>Отмена</button>").show();
         $("#loaderForSearchPlace").hide();
-        $("#returnToRegions").click(function(item) {                       
+        $("#returnToRegions").click(function(item) {
+          $("#placeFilter").val("");
           $("#places").empty();
           $("#regions").show();
         });        
@@ -82,6 +83,11 @@ $( document ).ready(function() {
           $.each(response, function(index, item) {               
             $("#placeSearchResults").append("<a href='/"+item.url+"' style='color:black;display:block;margin:5px;margin-top:3px'>"+item.city_name+", "+item.region_name+"</a>");
           });
+          $("#placeSearchResults").append("<div class='text-center'><button class='btn btn-sm btn-success' id='cancelPlaceSearchResults'>Отмена</button></div>").click(function(item) {                       
+            $("#placeFilter").val(""); 
+            $("#placeData").show();
+            $("#placeSearchResults").empty();
+          });        
         }    
       });      
     }      

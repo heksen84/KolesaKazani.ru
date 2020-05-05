@@ -36857,6 +36857,7 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
         __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#places").append("<br><button class='btn btn-sm btn-success mt-2 mb-4' id='returnToRegions'>Отмена</button>").show();
         __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#loaderForSearchPlace").hide();
         __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#returnToRegions").click(function (item) {
+          __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeFilter").val("");
           __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#places").empty();
           __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#regions").show();
         });
@@ -36879,6 +36880,11 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
           __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeSearchResults").empty().css("padding-top", "4px");
           __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(response, function (index, item) {
             __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeSearchResults").append("<a href='/" + item.url + "' style='color:black;display:block;margin:5px;margin-top:3px'>" + item.city_name + ", " + item.region_name + "</a>");
+          });
+          __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeSearchResults").append("<div class='text-center'><button class='btn btn-sm btn-success' id='cancelPlaceSearchResults'>Отмена</button></div>").click(function (item) {
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeFilter").val("");
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeData").show();
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeSearchResults").empty();
           });
         }
       });
