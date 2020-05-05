@@ -79,7 +79,7 @@ $( document ).ready(function() {
         success: function (response) {
           $("#placeSearchResults").empty();      
           $.each(response, function(index, item) {               
-            $("#placeSearchResults").append("<a href='/"+item.url+"' style='color:black;display:block'>"+item.city_name+", "+item.region_name+"</a>");
+            $("#placeSearchResults").append("<a href='/"+item.url+"' style='color:black;display:block;margin-top:7px'>"+item.city_name+", "+item.region_name+"</a>");
           });
         }    
       });      
