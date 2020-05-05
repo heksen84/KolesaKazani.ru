@@ -34,7 +34,10 @@ $( document ).ready(function() {
   $(".closeLocationWindow").click(function(item) {                       
     $("#locationModal").modal("hide");
     $("#regions").show();
-    $("#places").empty();    
+    $("#places").empty();
+    $("#placeData").show();
+    $("#placeSearchResults").empty();   
+    $("#placeFilter").val(""); 
   });  
 
   $(".region_link").click(function(item) {        
@@ -61,7 +64,7 @@ $( document ).ready(function() {
     });
   });
     
-  $( "#placeFilter" ).keyup(function() {
+  $("#placeFilter").keyup(function() {
     let searchVal = $(this).val(); 
     if (searchVal=="") {     
       $("#placeData").show();
@@ -73,9 +76,10 @@ $( document ).ready(function() {
         url: "/api/searchPlaceByString",
         type: "GET",
         data: {"_token": $('meta[name="csrf-token"]').attr('content'), "searchString": searchVal},
-        success: function (response) {      
+        success: function (response) {
+          $("#placeSearchResults").empty();      
           $.each(response, function(index, item) {               
-            $("#placeSearchResults").append("<a href='/' style='color:black;display:block'>"+item.city_name+", "+item.region_name+"</a>");
+            $("#placeSearchResults").append("<a href='/"+item.url+"' style='color:black;display:block'>"+item.city_name+", "+item.region_name+"</a>");
           });
         }    
       });      

@@ -61,8 +61,8 @@ class ApiController extends Controller {
     public function searchPlaceByString(Request $request) {
         
         $items = DB::table("kz_city as city")
-        ->select("city.name as city_name", "region.name as region_name")                
-        ->join("kz_region as region", "city.city_id", "=", "region.region_id" )                
+        ->select("city.name as city_name", "region.name as region_name", DB::raw('CONCAT(region.url,"/",city.url) as url'))                
+        ->join("kz_region as region", "city.region_id", "=", "region.region_id" )                
         ->where("city.name", $request->searchString)->get();
         
         return $items;

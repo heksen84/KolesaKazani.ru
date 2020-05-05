@@ -36834,6 +36834,9 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#locationModal").modal("hide");
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#regions").show();
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#places").empty();
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeData").show();
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeSearchResults").empty();
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeFilter").val("");
   });
 
   __WEBPACK_IMPORTED_MODULE_0_jquery___default()(".region_link").click(function (item) {
@@ -36872,8 +36875,9 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
         type: "GET",
         data: { "_token": __WEBPACK_IMPORTED_MODULE_0_jquery___default()('meta[name="csrf-token"]').attr('content'), "searchString": searchVal },
         success: function success(response) {
+          __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeSearchResults").empty();
           __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(response, function (index, item) {
-            __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeSearchResults").append("<a href='/' style='color:black;display:block'>" + item.city_name + ", " + item.region_name + "</a>");
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeSearchResults").append("<a href='/" + item.url + "' style='color:black;display:block'>" + item.city_name + ", " + item.region_name + "</a>");
           });
         }
       });
