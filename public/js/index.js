@@ -36877,7 +36877,7 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
         success: function success(response) {
           __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeSearchResults").empty();
           __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(response, function (index, item) {
-            __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeSearchResults").append("<a href='/" + item.url + "' style='color:black;display:block;margin-top:7px'>" + item.city_name + ", " + item.region_name + "</a>");
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#placeSearchResults").append("<a href='/" + item.url + "' style='color:black;display:block;margin:5px'>" + item.city_name + ", " + item.region_name + "</a>");
           });
         }
       });
