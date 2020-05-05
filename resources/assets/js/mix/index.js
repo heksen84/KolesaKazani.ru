@@ -68,13 +68,15 @@ $( document ).ready(function() {
       $("#placeSearchResults").empty();
     }
     else {
-      $("#placeData").hide();      
-      $("#placeSearchResults").append("<a href='/' style='color:green'>"+searchVal+"</a>");
+      $("#placeData").hide();            
       $.ajax({
         url: "/api/searchPlaceByString",
         type: "GET",
         data: {"_token": $('meta[name="csrf-token"]').attr('content'), "searchString": searchVal},
         success: function (response) {      
+          $.each(response, function(index, item) {               
+            $("#placeSearchResults").append("<a href='/' style='color:black;display:block'>"+item.city_name+", "+item.region_name+"</a>");
+          });
         }    
       });      
     }      
