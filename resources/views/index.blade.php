@@ -179,22 +179,23 @@
     </div>
   <br>
 
-  <div class="row">
   
-  @if (count($newAdverts)>0)  
-    @foreach($newAdverts as $advert)
+  <div class="row">
+  <div class="col-12 text-center">      
+  <div style="font-size:24px">VIP объявления</div>  
+  </div>
+    @foreach($newAdverts as $advert)    
 
-    <div class="col-sm-3 mt-1">      
-      <div class="card" style="width:250px;margin:auto">
-        <!--<img class="card-img-top" src="..." alt="Card image cap">-->
+    <div class="col-sm-2 mt-1">      
+      <div class="card" style="width:200px;height:270px;margin:auto">
+        <img class="card-img-top" src={{ $advert->imageName }} alt="photo">
         <div class="card-body">
-          <p class="card-text">{{ $advert["title"] }}</p>
+          <p class="card-text">{{ $advert->title }}</p>
         </div>
       </div>
     </div>
 
-    @endforeach
-  @endif 
+    @endforeach  
 
   </div>
 
