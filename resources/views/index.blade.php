@@ -181,7 +181,7 @@
 
   <div class="row">
     <div class="col-12 text-center">      
-      <div style="font-size:24px;font-weight:bold;color:rgb(80,80,80);text-decoration:underline">VIP объявления</div>  
+      <div style="font-size:24px;font-weight:bold;color:rgb(70,70,70);text-decoration:underline">VIP объявления</div>  
     </div>
       @foreach($newAdverts as $advert)
       <div class="col-sm-2 mt-1">      
