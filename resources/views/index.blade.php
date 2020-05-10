@@ -204,7 +204,7 @@
       <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 mt-1">      
       <a href="objavlenie/show/{{ $advert->id }}" class="black">
         <div class="card" style="width:200px;height:300px;margin:auto">
-          <img class="card-img-top" src={{ $advert->imageName }} alt={{ $advert->imageName }}>
+          <img class="card-img-top" src={{ $advert->imageName }}>
           <div class="card-body">
             <p class="card-text">
               {{ $advert->title }}              
