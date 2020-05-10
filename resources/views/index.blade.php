@@ -205,7 +205,7 @@
       <a href="objavlenie/show/{{ $advert->id }}" class="black">
         <div class="card" style="width:200px;height:280px;margin:auto">
           <img class="card-img-top" src="{{ $advert->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">          
-            <div style="color:blue;padding:3px;height:100px;white-space: initial;overflow: hidden;text-overflow: ellipsis;">
+            <div style="color:rgb(50,50,150);padding:3px;height:100px;white-space: initial;overflow: hidden;text-overflow: ellipsis;">
               {{ $advert->title }}              
             </div>
             <b style="margin:4px">{{ $advert->price }} тнг.</b>
