@@ -32,7 +32,7 @@ class LoadImages implements ShouldQueue {
 
                 //$image->resize(null, 500, function ($constraint) {
                 $image->resize(1024, 768, function ($constraint) {
-                    //$constraint->aspectRatio();
+                    $constraint->aspectRatio();
                 });                
 
                 $name = time()."_".$img->getClientOriginalName();                                
@@ -41,7 +41,7 @@ class LoadImages implements ShouldQueue {
 
                 //$image->resize(null, 200, function ($constraint) {
                 $image->resize(250, 250, function ($constraint) {
-                    //$constraint->aspectRatio();
+                    $constraint->aspectRatio();
                 });                
                 
                 \Storage::disk('s3')->put("images/small/".$name, $image->stream()->detach());
