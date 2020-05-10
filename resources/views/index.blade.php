@@ -183,17 +183,17 @@
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mb-2">      
       <div style="font-size:24px;font-weight:bold;color:rgb(70,70,70);text-decoration:underline">VIP объявления</div>  
     </div>
-      @foreach($newAdverts as $advert)
-      <a href="objavlenie/show/{{ $advert->id }}">
+      @foreach($newAdverts as $advert)      
       <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 mt-1">      
+      <a href="objavlenie/show/{{ $advert->id }}">
         <div class="card" style="width:200px;height:270px;margin:auto">
           <img class="card-img-top" src={{ $advert->imageName }} alt="photo">
           <div class="card-body">
             <p class="card-text">{{ $advert->title }}</p>
           </div>
         </div>
-      </div>
       </a>
+      </div>      
       @endforeach
   </div>
 
