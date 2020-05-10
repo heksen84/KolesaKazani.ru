@@ -1,3 +1,4 @@
+Увеличить размер загружаемого файла в php.ini и перезагрузить php-frm
 service php7.2-fpm restart
 php -i | grep -i "upload\_max\_filesize\|post\_max\_size\|max\_file\_uploads"
 service php7.2-fpm restart
