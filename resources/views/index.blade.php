@@ -184,6 +184,7 @@
       <div style="font-size:24px;font-weight:bold;color:rgb(70,70,70);text-decoration:underline">VIP объявления</div>  
     </div>
       @foreach($newAdverts as $advert)
+      <a href="objavlenie/show/{{ $advert->id }}">
       <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 mt-1">      
         <div class="card" style="width:200px;height:270px;margin:auto">
           <img class="card-img-top" src={{ $advert->imageName }} alt="photo">
@@ -192,6 +193,7 @@
           </div>
         </div>
       </div>
+      </a>
       @endforeach
   </div>
 
