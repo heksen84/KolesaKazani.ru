@@ -8,7 +8,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="description" content="{{ $description }}">
   <meta name="keywords" content="{{ $keywords }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">  
   <link rel="stylesheet" type="text/css" href="{{ mix('css/common.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ mix('css/index.css') }}">
 </head>
