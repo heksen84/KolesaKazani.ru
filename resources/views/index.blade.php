@@ -203,7 +203,7 @@
       @foreach($newAdverts as $advert)      
       <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 m-3 text-center">      
       <a href="objavlenie/show/{{ $advert->id }}" class="black">
-        <div class="card" style="width:235px;height:350px;margin:auto">
+        <div class="card" style="width:235px;height:390px;margin:auto">
           <img class="card-img-top" src="{{ $advert->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">          
             <div style="color:rgb(0,0,0);padding:3px;height:110px;white-space:initial;overflow:hidden;text-overflow:ellipsis;letter-spacing:1px;font-size:14px">
               {{ $advert->title }}              
