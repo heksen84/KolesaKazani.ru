@@ -1,2 +1,5 @@
 // show open ports and services
 sudo firewall-cmd --list-all
+// other
+sudo firewall-cmd --list-ports
+sudo firewall-cmd --list-services
