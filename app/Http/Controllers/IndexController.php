@@ -197,7 +197,7 @@ class IndexController extends Controller {
             "kz_city.name as city_name",
             DB::raw("concat('".\Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"))
             ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
-			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )->orderBy("created_at", "desc")->take(20)->get();			
+			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )->orderBy("created_at", "desc")->take(15)->get();			
 
 			\Debugbar::info("NEWADVERTS:");
 			\Debugbar::info($newAdverts);
