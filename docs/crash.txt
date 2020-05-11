@@ -1,1 +1,1 @@
-Падает MariaDb при сканинге Nmap в режиме Intense scan, all TCP ports
+Падает MariaDb и apache при сканинге Nmap в режиме Intense scan, all TCP ports
