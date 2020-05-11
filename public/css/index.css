@@ -164,7 +164,7 @@ h3 {
 
 #navbrand-title {
   font-size: 20px;
-  font-weight: 650;
+  font-weight: 700;
   letter-spacing: 5px;
   color: #5a5a5a;
   text-transform: uppercase;
@@ -172,8 +172,9 @@ h3 {
 
 #navbrand-description {
   font-size: 12px;
-  margin-top: -8px;
-  font-weight: 500;
+  margin-top: -9px;
+  font-weight: 400;
+  text-align: center;
 }
 
 /*#places {
