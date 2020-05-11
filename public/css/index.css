@@ -143,7 +143,8 @@ h3 {
   letter-spacing: 10px;
   padding: 7px;
   font-weight: 700;
-  color: #646464;
+  color: #5a5a5a;
+  text-transform: uppercase;
 }
 
 #categories_line {
@@ -166,6 +167,7 @@ h3 {
   font-weight: 650;
   letter-spacing: 5px;
   color: #5a5a5a;
+  text-transform: uppercase;
 }
 
 #navbrand-description {
