@@ -203,12 +203,13 @@
       @foreach($newAdverts as $advert)      
       <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 mt-1">      
       <a href="objavlenie/show/{{ $advert->id }}" class="black">
-        <div class="card" style="width:200px;height:280px;margin:auto">
+        <div class="card" style="width:200px;height:350px;margin:auto">
           <img class="card-img-top" src="{{ $advert->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">          
-            <div style="color:rgb(50,50,150);padding:3px;height:100px;white-space: initial;overflow: hidden;text-overflow: ellipsis;">
+            <div style="color:rgb(0,0,0);padding:3px;height:110px;white-space:initial;overflow:hidden;text-overflow:ellipsis;letter-spacing:1px;font-size:14px">
               {{ $advert->title }}              
             </div>
-            <b style="margin:4px">{{ $advert->price }} тнг.</b>
+            <div style="white-space:initial;overflow:hidden;text-overflow:ellipsis;margin:4px;font-size:12px;color:rgb(50,50,50);height:60px">{{ $advert->region_name }}<br>{{ $advert->city_name }}</div>
+            <b style="margin:4px 4px 10px">{{ $advert->price }} ₸</b>
         </div>
       </a>
       </div>      

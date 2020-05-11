@@ -179,6 +179,10 @@ h3 {
   text-align: center;
 }
 
+.card:hover {
+  box-shadow: 0 0 18px rgba(0,0,0,0.3); /* Параметры тени */
+}
+
 /*#places {
   margin-top:-10px;
 }*/
