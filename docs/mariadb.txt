@@ -6,3 +6,11 @@ systemctl restart mariadb
 
 // если зависла и перегрузить
 timedatectl set-local-rtc 0
+
+https://ruhighload.com/mycnfexample?ram=1
+https://ruhighload.com/mycnfexample?ram=2
+
+!!!! прописать лимиты открытых файлов !!!!
+/lib/systemd/system/mariadb.service
+[Service]
+LimitNOFILE=10000
