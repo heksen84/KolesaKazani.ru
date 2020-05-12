@@ -101,7 +101,7 @@
   <div style="float:left" class="index-side-advert ml-4 mt-2">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <ins class="adsbygoogle"
-     style="display:inline;width:190px;height:600px"
+     style="display:inline;width:200px;height:600px"
      data-ad-client="ca-pub-8074944108437227"
      data-ad-slot="2249357572"></ins>
     <script>
@@ -110,7 +110,7 @@
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <ins class="adsbygoogle"
-     style="display:block;width:190px;height:600px"
+     style="display:block;width:200px;height:600px"
      data-ad-client="ca-pub-8074944108437227"
      data-ad-slot="2249357572"></ins>
     <script>
@@ -119,7 +119,7 @@
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <ins class="adsbygoogle"
-     style="display:block;width:190px;height:600px"
+     style="display:block;width:200px;height:600px"
      data-ad-client="ca-pub-8074944108437227"
      data-ad-slot="2249357572"></ins>
     <script>
@@ -131,7 +131,7 @@
   <div style="float:right" class="index-side-advert mr-4 mt-2">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <ins class="adsbygoogle"
-     style="display:block;width:190px;height:600px"
+     style="display:block;width:200px;height:600px"
      data-ad-client="ca-pub-8074944108437227"
      data-ad-slot="2249357572"></ins>
     <script>
@@ -140,7 +140,7 @@
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <ins class="adsbygoogle"
-     style="display:block;width:190px;height:600px"
+     style="display:block;width:200px;height:600px"
      data-ad-client="ca-pub-8074944108437227"
      data-ad-slot="2249357572"></ins>
     <script>
@@ -149,7 +149,7 @@
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <ins class="adsbygoogle"
-     style="display:block;width:190px;height:600px"
+     style="display:block;width:200px;height:600px"
      data-ad-client="ca-pub-8074944108437227"
      data-ad-slot="2249357572"></ins>
     <script>
