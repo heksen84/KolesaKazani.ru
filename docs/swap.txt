@@ -11,7 +11,8 @@ free
 
 
 // clear swap
-swapoff -a && swapon -a
+swapoff -a
+swapon /swapfile
 
 Алексей Павлюц
 Личный сайт
