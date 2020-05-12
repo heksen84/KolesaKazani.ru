@@ -191,7 +191,7 @@
 
       <!-- кнопки выбора региона и т.п.-->
       <div class="index_select_region_and_other_button_block">    
-        <button class="btn btn-link" data-toggle="modal" id="locationButton" style="margin-top:-8px">Расположение {{ $locationName }} <span title="изменить раположения поиска">[изменить]</span></button>
+        <button class="btn btn-link" data-toggle="modal" id="locationButton" style="margin-top:-8px">Расположение {{ $locationName }} <span title="Выбрать раположения поиска">[выбрать]</span></button>
         </div>
       </div>
 
