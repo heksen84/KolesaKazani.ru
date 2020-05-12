@@ -1,1 +1,8 @@
+Out of memory
+
+SHOW VARIABLES LIKE 'log_error';
+
 systemctl restart mariadb
+
+// если зависла и перегрузить
+timedatectl set-local-rtc 0
