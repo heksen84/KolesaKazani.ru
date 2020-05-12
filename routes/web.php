@@ -6,24 +6,6 @@ Auth::routes();
     return view('facebookAuth');
 });*/
 
-Route::get('/s3test', function () {
-    \Debugbar::info(\Debugbar::info(\Storage::disk('s3')->url(".")));  // root
-    \Debugbar::info(\Debugbar::info(\Storage::disk('s3')->url("images")));
-    \Debugbar::info(\Debugbar::info(\Storage::disk('s3')->url("images/small")));
-    \Debugbar::info(\Debugbar::info(\Storage::disk('s3')->url("images/normal")));
-    return view('s3test');
-});
-
-Route::post('upload', function () {
-//	request()->file("file")->store("my-file", "s3");
-    //request()->file("file")->store("ilbo","s3");
-    //request()->file("file")->store("s3");
-    $file = request()->file("file");
-    $name=time()."-".$file->getClientOriginalName();
-    \Storage::disk('s3')->put($name, file_get_contents($file));
-})->name("upload");
-
-
 Route::get('auth/vk', 'Auth\AuthController@redirectToVk');
 Route::get('auth/vk/callback', 'Auth\AuthController@handleVkCallback');
 Route::get('auth/ok', 'Auth\AuthController@redirectToOk');
