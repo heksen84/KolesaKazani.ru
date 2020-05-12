@@ -10,7 +10,8 @@ timedatectl set-local-rtc 0
 https://ruhighload.com/mycnfexample?ram=1
 https://ruhighload.com/mycnfexample?ram=2
 
-!!!! прописать лимиты открытых файлов !!!!
-/lib/systemd/system/mariadb.service
+!!!! прописать лимиты открытых файлов в /lib/systemd/system/mariadb.service
 [Service]
 LimitNOFILE=10000
+
+info: https://blog.programs74.ru/how-to-change-mysql-open-file-limits/
