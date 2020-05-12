@@ -122,7 +122,7 @@
   <div style="float:right" class="index-side-advert mr-4 mt-2">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <ins class="adsbygoogle"
-     style="display:inline-block;width:180px;height:600px"
+     style="display:block;width:180px;height:600px"
      data-ad-client="ca-pub-8074944108437227"
      data-ad-slot="2249357572"></ins>
     <script>
@@ -131,7 +131,7 @@
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <ins class="adsbygoogle"
-     style="display:inline-block;width:180px;height:600px"
+     style="display:block;width:180px;height:600px"
      data-ad-client="ca-pub-8074944108437227"
      data-ad-slot="2249357572"></ins>
     <script>
