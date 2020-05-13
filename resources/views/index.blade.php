@@ -235,7 +235,7 @@
   <br>
 
   @if (count($vipAdverts)>0)
-  <div class="row text-center">
+  <div class="row text-center mb-3">
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">      
       <div class="titleAdverts">VIP объявления</div>  
     </div>
