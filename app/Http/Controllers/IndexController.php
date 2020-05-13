@@ -186,8 +186,27 @@ class IndexController extends Controller {
 		\Debugbar::info("PLACE: ".$place);
 
 		$petrovich = new Petrovich(Petrovich::GENDER_FEMALE);	
+							
+		// список регионов
+		$regions = Regions::all();
 		
-		// новые объявления или VIP
+		// VIP объявления
+		$vipAdverts = DB::table("adverts as adv")->select(
+            "adv.id", 
+            "adv.title", 
+            "adv.price", 
+            "adv.created_at",            
+            "kz_region.name as region_name",
+            "kz_city.name as city_name",
+            DB::raw("concat('".\Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"))
+            ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
+			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )->orderBy("created_at", "desc")->take(10)->get();			
+
+			\Debugbar::info("VIPADVERTS:");
+			\Debugbar::info($vipAdverts);
+
+		
+		// Новые объявления
 		$newAdverts = DB::table("adverts as adv")->select(
             "adv.id", 
             "adv.title", 
@@ -201,13 +220,7 @@ class IndexController extends Controller {
 
 			\Debugbar::info("NEWADVERTS:");
 			\Debugbar::info($newAdverts);
-			
 		
-		// список регионов
-		$regions = Regions::all();
-		
-		\Debugbar::info("-- newAdverts --");
-		\Debugbar::info($newAdverts);
 											
 		return view("index")		
 		->with("locationName", $locationName)
@@ -220,6 +233,7 @@ class IndexController extends Controller {
 		->with("description", $description)
 		->with("keywords", $keywords)
 		->with("regions", $regions)
+		->with("vipAdverts", $vipAdverts)
 		->with("newAdverts", $newAdverts);
     }
 
