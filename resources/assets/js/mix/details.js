@@ -27,19 +27,43 @@ $( document ).ready(function() {
     $("#carousel").carousel();
 
     $("#makeVip").click(function(item) {
-        alert("1")
+		$.ajax({
+            url: "/objavlenie/makeVip/"+window.advert_id,
+            type: "POST",
+            data: {"_token": $('meta[name="csrf-token"]').attr('content')},
+            success: function (response) {                
+            }
+        });
     });
 
     $("#makeTorg").click(function(item) {
-        alert("2")
+		$.ajax({
+            url: "/objavlenie/makeTorg/"+window.advert_id,
+            type: "POST",
+            data: {"_token": $('meta[name="csrf-token"]').attr('content')},
+            success: function (response) {                
+            }
+        });
     });
 
     $("#makeExtend").click(function(item) {
-        alert("3")
+        $.ajax({
+            url: "/objavlenie/makeExtend/"+window.advert_id,
+            type: "POST",
+            data: {"_token": $('meta[name="csrf-token"]').attr('content')},
+            success: function (response) {                
+            }
+        });
     });
 
     $("#makePaint").click(function(item) {
-        alert("4")
+        $.ajax({
+            url: "/objavlenie/makePaint/"+window.advert_id,
+            type: "POST",
+            data: {"_token": $('meta[name="csrf-token"]').attr('content')},
+            success: function (response) {                
+            }
+        });
     });
 	
 });
