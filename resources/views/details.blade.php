@@ -114,7 +114,7 @@
               <!-- убираю цену в категориях работа и бизнес (category_id!=4) -->
               @if ($advert->price!="null" && $advert->category_id!=4)
               <br>                           
-                <div id="price">{{ $advert->price }} тнг.</div>
+                <div id="price">{{ $advert->price }} ₸</div>
               @endif
               <br>
               
