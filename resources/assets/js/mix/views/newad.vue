@@ -3,7 +3,7 @@
 
 <div id="advert_loading_block">
   <div class="d-flex justify-content-center mt-1">
-    <button class="btn btn-primary" type="button" style="font-size:22px">
+    <button class="btn btn-primary" type="button" style="font-size:20px">
       <span class="spinner-border spinner-border" role="status" aria-hidden="true"></span>
         Публикация объявления...<br>Это может занять некоторое время.
     </button>

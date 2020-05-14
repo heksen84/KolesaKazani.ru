@@ -29,25 +29,20 @@ class LoadImages implements ShouldQueue {
             foreach($request->file("images") as $img) {
                 
                 $image = Image::make($img->getRealPath());
-
-                //$image->resize(1024, 768, function ($constraint) {
-                $image->fit(1024, 768, function ($constraint) {
-                     //$constraint->aspectRatio();
-                 }); 
+                
+                $image->fit(1024, 768);
+                ///$image->text(env("APP_URL"), 8,22, function($font) {
+                $image->text("ilbo.kz", 10,28, function($font) {
+                    $font->file(public_path()."/fonts/Brushie.ttf");
+                    $font->color(array(255,255,255,1));
+                    $font->size(24);
+                });
 
                 $name = time()."_".$img->getClientOriginalName();                                
-
                 \Storage::disk('s3')->put("images/normal/".$name, $image->stream()->detach());
 
-                //$image->resize(null, 200, function ($constraint) {
-                $image->fit(250, 250, function ($constraint) {
-                    //$constraint->aspectRatio();
-                });                
-                
-                \Storage::disk('s3')->put("images/small/".$name, $image->stream()->detach());
-                
-                //\Debugbar::info(\Storage::disk('s3')->url($name));
-                //\Debugbar::info(\Storage::disk('s3')->url(""));
+                $image->fit(250, 250);                
+                \Storage::disk('s3')->put("images/small/".$name, $image->stream()->detach());                                
                 
                 // добавляю запись в базу       
                 $imageRec = new Images();            
