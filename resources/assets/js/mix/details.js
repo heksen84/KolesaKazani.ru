@@ -21,64 +21,26 @@ function initMaps() {
 }
 
 // document ready
-document.addEventListener('DOMContentLoaded', function() {	     
-	ymaps.ready(initMaps);
-	$("#carousel").carousel();
+$( document ).ready(function() {	         
+    
+    ymaps.ready(initMaps);        
+    $("#carousel").carousel();
 
+    $("#makeVip").click(function(item) {
+        alert("1")
+    });
 
-	// -------------------------------------------------------------
-    // оплата
-    // -------------------------------------------------------------
-    $(".actions button").click(function(item) {         
-                        
-        let title_text="";
-        let desc="";
-        let price=0;
+    $("#makeTorg").click(function(item) {
+        alert("2")
+    });
 
-        //current_advert_id = $(this).parent().data("id");
-        
-        switch($(this).index()) {
-            case 0: {
-                title_text = "Срочно, торг";
-                desc = "Объявление будет...";
-                price = 100;
-                break;
-            }
-            case 1: { 
-                title_text = "Продлить"; 
-                desc = "Объявление будет...";
-                price = 200;
-                break;
-            }
-            case 2: { 
-                title_text = "Поднять в топ";
-                desc = "Объявление будет..."; 
-                price = 300;
-                break;
-            }
-            case 3: { 
-                title_text = "Покрасить"; 
-                desc = "Объявление будет...";
-                price = 400;
-                break;
-            }
-            case 4: {                 
-               // $("#delete_advert_window").modal("show");
-                break;
-            }
-		}        
-		
+    $("#makeExtend").click(function(item) {
+        alert("3")
+    });
 
-		alert(title_text);
-
-    /*    if ($(this).index()!=4) {
-            $("#payment_window_title").text(title_text);
-            $("#desc").text(desc);
-            $("#price").text(price);
-            $("#payment_window").modal("show");
-        }
-     */           
-	});
+    $("#makePaint").click(function(item) {
+        alert("4")
+    });
 	
 });
 
