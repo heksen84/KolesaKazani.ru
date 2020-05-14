@@ -199,7 +199,15 @@
       <a href="/podat-objavlenie"><div id="new_advert_block">подать объявление</div></a>	
     </div>
   </div>  
-  <br>  
+  <br>
+  
+  <div id="loader">
+    <div class="d-flex justify-content-center">
+      <button class="btn btn-primary" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
   
   <div id="categories_line">
     <div class="center">        

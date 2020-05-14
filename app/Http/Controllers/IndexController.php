@@ -200,11 +200,10 @@ class IndexController extends Controller {
             "kz_city.name as city_name",
             DB::raw("concat('".\Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"))
             ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
-			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )->orderBy("created_at", "desc")->take(10)->get();			
+			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )->where("adv.vip", 1)->orderBy("created_at", "desc")->take(10)->get();			
 
 			\Debugbar::info("VIPADVERTS:");
 			\Debugbar::info($vipAdverts);
-
 		
 		// Новые объявления
 		$newAdverts = DB::table("adverts as adv")->select(

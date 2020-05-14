@@ -6,8 +6,9 @@ let selectedRegionUrl="";
 
 // html loaded
 $( document ).ready(function() {
-  
+    
   $("#categories_line").show();
+  $("#loader").hide();
 
   $(".col_item").click(function(item) {     
     let element_id = $(this).attr("id");    
