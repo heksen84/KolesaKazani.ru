@@ -115,9 +115,8 @@
               @if ($advert->price!="null" && $advert->category_id!=4)
               <br>                           
                 <div id="price">{{ $advert->price }} ₸</div>
-              @endif
-              <br>
-              
+              @endif              
+                            
               <div class="text-center m-3">
                 <button type="button" class="btn btn-outline-success" id="numberButton">Показать телефон</button>            
               </div>  
