@@ -22,16 +22,14 @@ class LoadImages implements ShouldQueue {
      * @return void
      */
     public function __construct(Request $request, $advert_id) {
-
         if ($request->images) {
-            
+
             // бегу по картинкам
             foreach($request->file("images") as $img) {
                 
                 $image = Image::make($img->getRealPath());
                 
-                $image->fit(1024, 768);
-                ///$image->text(env("APP_URL"), 8,22, function($font) {
+                $image->fit(1024, 768);                
                 $image->text("ilbo.kz", 10,28, function($font) {
                     $font->file(public_path()."/fonts/Brushie.ttf");
                     $font->color(array(255,255,255,1));
@@ -48,8 +46,7 @@ class LoadImages implements ShouldQueue {
                 $imageRec = new Images();            
                 $imageRec->advert_id = $advert_id;
                 $imageRec->name = $name;                            
-                $imageRec->save();
-                
+                $imageRec->save();                
             }
         }
     }
