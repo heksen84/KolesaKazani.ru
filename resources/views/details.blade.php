@@ -14,9 +14,6 @@
 </head>
 <body>
 <div class="container-fluid mycontainer">
-
-  <!-- кнопка закрытия -->
-  <!--<div class="close_button mr-1" title="Закрыть страницу" @click="closeAndReturn">X</div>-->
     
     <div class="row"> 
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2">                  
