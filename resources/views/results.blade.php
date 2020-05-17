@@ -50,8 +50,11 @@
         </div>
 
         <h1 id="title" class="mt-3">{{ $title }}</h1>          
-            <div class="row">                    
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="row">                                
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-right">
+                <button class="btn btn-danger btn-sm" id="filters_button">отфильтровать</button>
+              </div>
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2" id="filters">
                 @if ($categoryId===1 && $subcategoryId===1)  
                   @include('filters/transport/legkovoy')
                 @else
@@ -76,7 +79,7 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-1 item">                  
               <a href="/objavlenie/show/{{ $item->id }}">
                 <div class="card">                                      
-                    <img class="card-img-top image" src="{{ $item->imageName }}" alt="{{ $item->title }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">                                                            
+                    <img class="card-img-top image" src="{{ $item->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">                                                            
                       <div class="block-info-area">                                                  
                         <!-- если не категория работа и бизнес то отображаю цену -->
                         @if ($categoryId!=4)

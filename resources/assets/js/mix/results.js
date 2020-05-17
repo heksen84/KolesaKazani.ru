@@ -45,7 +45,22 @@ function initCars() {
       loadCarsMarks();
 }
 
+let buttonFiltersDefaultText = "скрыть фильтры";
+
 // html готов
 $( document ).ready(function() {
   initCars();
+
+  $("#filters_button").click(function(item) {
+
+    if ($("#filters_button").text() == buttonFiltersDefaultText) {
+      $("#filters").hide();
+      $("#filters_button").text("отфильтровать");
+    }
+    else {
+      $("#filters").show()
+      $("#filters_button").text(buttonFiltersDefaultText);
+    }
+  });
+
 });
