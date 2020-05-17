@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<div style="float:left" class="index-side-advert ml-4 mt-2">
+<!--<div style="float:left" class="index-side-advert ml-4 mt-2">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <ins class="adsbygoogle"
      style="display:inline-block;width:180px;height:600px"
@@ -24,9 +24,9 @@
     <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
-  </div>  
+</div> -->
 
-  <div style="float:right" class="index-side-advert mr-4 mt-2">
+<!--  <div style="float:right" class="index-side-advert mr-4 mt-2">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <ins class="adsbygoogle"
      style="display:inline-block;width:180px;height:600px"
@@ -35,17 +35,9 @@
     <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
-  </div>
+  </div>-->
 
   <div class="container-fluid mycontainer">
-        <!-- закрыть страницу -->
-        <!--@if (!$region && !$city)
-          <a href="/" class="close_button">X</a>
-        @elseif ($region && !$city)    
-          <a href="/{{$region}}" class="close_button">X</a>    
-        @elseif ($region && $city)    
-          <a href="/{{$region}}/{{$city}}" class="close_button">X</a>    
-        @endif-->
 
         <div class="mt-2" title="Вернуться на предыдущую страницу">        
         @if (!$region && !$city)
@@ -101,10 +93,9 @@
             @endforeach
 
             <!-- РЕКЛАМА -->
-            @if (count($items)>5)
+<!--            @if (count($items)>5)
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-1">
-              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-              <!-- Главная страница (рекоменд.) -->
+              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>    
               <ins class="adsbygoogle"
                 style="display:inline-block;width:100%;height:120px"
                 data-full-width-responsive="true"
@@ -114,7 +105,7 @@
                 (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
             </div>
-            @endif
+            @endif -->
 
             <!-- навигация -->
             @if (count($items)>9)
