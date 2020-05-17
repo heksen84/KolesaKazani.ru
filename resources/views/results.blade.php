@@ -52,7 +52,7 @@
         <h1 id="title" class="mt-3">{{ $title }}</h1>          
             <div class="row">                                
               <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-right">
-                <button class="btn btn-outline-primary btn-sm" id="filters_button">отфильтровать</button>
+                <button class="btn btn-outline-success btn-sm" id="filters_button">отфильтровать</button>
               </div>
               <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2" id="filters">
                 @if ($categoryId===1 && $subcategoryId===1)  
