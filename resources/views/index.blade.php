@@ -241,6 +241,7 @@
       </div>
     </div>
   <br>
+  
 
   @if (count($vipAdverts)>0)
   <div class="row text-center mb-3">
@@ -250,7 +251,7 @@
       @foreach($vipAdverts as $advert)      
       <div class="col-sm-12 col-md-3 col-lg-3 col-xl-2 m-3">      
       <a href="objavlenie/show/{{ $advert->id }}" class="black">
-        <div class="card" style="width:220px;height:365px;margin:auto">
+        <div class="card" style="width:220px;height:365px;margin:auto">          
           <img class="card-img-top" src="{{ $advert->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">          
             <div style="color:rgb(0,0,0);padding:3px;height:110px;white-space:initial;overflow:hidden;text-overflow:ellipsis;letter-spacing:1px;font-size:14px">
               {{ $advert->title }}              
@@ -273,6 +274,7 @@
       <div class="col-sm-12 col-md-3 col-lg-3 col-xl-2 m-3">      
       <a href="objavlenie/show/{{ $advert->id }}" class="black">
         <div class="card" style="width:220px;height:365px;margin:auto">
+        <div class="label-torg">срочно, торг</div>
           <img class="card-img-top" src="{{ $advert->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">          
             <div style="color:rgb(0,0,0);padding:3px;height:110px;white-space:initial;overflow:hidden;text-overflow:ellipsis;letter-spacing:1px;font-size:14px">
               {{ $advert->title }}              

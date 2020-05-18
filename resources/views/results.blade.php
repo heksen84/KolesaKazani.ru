@@ -81,7 +81,7 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2 item">                  
               <a href="/objavlenie/show/{{ $item->id }}">
                 <div class="card">
-                    <div style="position:absolute; z-index:999; width:130px;;text-align:center;color:white;background:red;font-size:14px">срочно, торг</div>
+                    <div class="label-torg">срочно, торг</div>
                     <img class="card-img-top image" src="{{ $item->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">                                                            
                       <div class="block-info-area">                                                  
                         <!-- если не категория работа и бизнес то отображаю цену -->
