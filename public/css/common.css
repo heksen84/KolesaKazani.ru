@@ -96,12 +96,12 @@ body {
 
 .label-torg {
   position: absolute;
-  z-index: 999;
   width: 130px;
   text-align: center;
   font-size: 14px;
   color: white;
   background: red;
+  border-radius: 8px;
 }
 
 .return-link {
