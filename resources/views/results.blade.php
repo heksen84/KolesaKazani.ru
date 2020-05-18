@@ -51,18 +51,18 @@
 
         <h1 id="title" class="mt-3">{{ $title }}</h1>          
           <div class="row">                                
-          @if (count($items)>5)
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-right">
-              <button class="btn btn-outline-primary btn-sm" id="filters_button">отфильтровать</button>
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2" id="filters">
-              @if ($categoryId===1 && $subcategoryId===1)  
-                @include('filters/transport/legkovoy')
-              @else
-                @include('filters/base')
-              @endif             
-            </div>
-          @endif
+            @if (count($items)>5)
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-right">
+                <button class="btn btn-outline-primary btn-sm" id="filters_button">отфильтровать</button>
+              </div>
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2" id="filters">
+                @if ($categoryId===1 && $subcategoryId===1)  
+                  @include('filters/transport/legkovoy')
+                @else
+                  @include('filters/base')
+                @endif             
+              </div>
+            @endif
 
           <!-- РЕКЛАМА -->
           <!--<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-2">
