@@ -50,17 +50,19 @@
         </div>
 
         <h1 id="title" class="mt-3">{{ $title }}</h1>          
-            <div class="row">                                
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-right">
-                <button class="btn btn-outline-primary btn-sm" id="filters_button">отфильтровать</button>
-              </div>
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2" id="filters">
-                @if ($categoryId===1 && $subcategoryId===1)  
-                  @include('filters/transport/legkovoy')
-                @else
-                  @include('filters/base')
-                @endif             
-              </div>
+          <div class="row">                                
+          @if (count($items)>5)
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-right">
+              <button class="btn btn-outline-primary btn-sm" id="filters_button">отфильтровать</button>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2" id="filters">
+              @if ($categoryId===1 && $subcategoryId===1)  
+                @include('filters/transport/legkovoy')
+              @else
+                @include('filters/base')
+              @endif             
+            </div>
+          @endif
 
           <!-- РЕКЛАМА -->
           <!--<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-2">
@@ -78,7 +80,8 @@
             @foreach($items as $item)                                
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2 item">                  
               <a href="/objavlenie/show/{{ $item->id }}">
-                <div class="card">                                      
+                <div class="card">
+                    <div style="position:absolute; z-index:999; width:130px;;text-align:center;color:white;background:red;font-size:14px">срочно, торг</div>
                     <img class="card-img-top image" src="{{ $item->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">                                                            
                       <div class="block-info-area">                                                  
                         <!-- если не категория работа и бизнес то отображаю цену -->
