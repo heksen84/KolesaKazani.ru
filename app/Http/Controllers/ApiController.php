@@ -150,7 +150,12 @@ class ApiController extends Controller {
             $advert->region_id       = $region_id;
             $advert->city_id         = $city_id;
             $advert->lang            = "ru";            
+
+            // ----
             $advert->vip             = false;            
+            $advert->torg            = false;            
+            $advert->extend          = false;            
+            $advert->paint           = "";            
 
             \Debugbar::info("advert->sub_category_id = ".$subcategory);
 

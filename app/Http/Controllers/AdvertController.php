@@ -502,6 +502,15 @@ class AdvertController extends Controller {
 
 
             return response()->json([ "result" => "deleted", "msg" => "объявление удалено" ]);  
-	}
+        }
+        
+        /*Route::post("/objavlenie/makeVip/{id}", "AdvertController@makeVip");
+        Route::post("/objavlenie/makeTorg/{id}", "AdvertController@makeTorg");
+        Route::post("/objavlenie/makeExtend/{id}", "AdvertController@makeExtend");
+        Route::post("/objavlenie/makePaint/{id}", "AdvertController@makePaint");*/
+
+        public function makeVip($id) {
+                return "ok";
+        }
     
 }
