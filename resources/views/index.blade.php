@@ -244,20 +244,19 @@
   
 
   @if (count($vipAdverts)>0)
-  <div class="row text-center mb-3">
+  <div class="row text-center">
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">      
-      <div class="titleAdverts">VIP объявления</div>  
+      <div class="titleAdverts">новые объявления</div>  
     </div>
       @foreach($vipAdverts as $advert)      
       <div class="col-sm-12 col-md-3 col-lg-3 col-xl-2 m-3">      
       <a href="objavlenie/show/{{ $advert->id }}" class="black">
-        <div class="card" style="width:220px;height:365px;margin:auto">          
+        <div class="card green-background" style="width:220px;height:365px;margin:auto">
+        <div class="label-torg">срочно, торг</div>
           <img class="card-img-top" src="{{ $advert->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">          
-            <div style="color:rgb(0,0,0);padding:3px;height:110px;white-space:initial;overflow:hidden;text-overflow:ellipsis;letter-spacing:1px;font-size:14px">
-              {{ $advert->title }}              
-            </div>
-            <div style="white-space:initial;overflow:hidden;text-overflow:ellipsis;margin:4px;font-size:12px;color:rgb(50,50,50);height:60px">{{ $advert->region_name }}<br>{{ $advert->city_name }}</div>
-            <b style="margin:4px 4px 10px">{{ $advert->price }} ₸</b>
+            <div class="card-title-text">{{ $advert->title }}</div>
+            <div class="card-location-text">{{ $advert->region_name }}<br>{{ $advert->city_name }}</div>
+            <b class="card-price-value">{{ $advert->price }} ₸</b>
         </div>
       </a>
       </div>      
@@ -273,14 +272,12 @@
       @foreach($newAdverts as $advert)      
       <div class="col-sm-12 col-md-3 col-lg-3 col-xl-2 m-3">      
       <a href="objavlenie/show/{{ $advert->id }}" class="black">
-        <div class="card" style="width:220px;height:365px;margin:auto">
+        <div class="card green-background" style="width:220px;height:365px;margin:auto">
         <div class="label-torg">срочно, торг</div>
           <img class="card-img-top" src="{{ $advert->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">          
-            <div style="color:rgb(0,0,0);padding:3px;height:110px;white-space:initial;overflow:hidden;text-overflow:ellipsis;letter-spacing:1px;font-size:14px">
-              {{ $advert->title }}              
-            </div>
-            <div style="white-space:initial;overflow:hidden;text-overflow:ellipsis;margin:4px;font-size:12px;color:rgb(50,50,50);height:60px">{{ $advert->region_name }}<br>{{ $advert->city_name }}</div>
-            <b style="margin:4px 4px 10px">{{ $advert->price }} ₸</b>
+            <div class="card-title-text">{{ $advert->title }}</div>
+            <div class="card-location-text">{{ $advert->region_name }}<br>{{ $advert->city_name }}</div>
+            <b class="card-price-value">{{ $advert->price }} ₸</b>
         </div>
       </a>
       </div>      
