@@ -30,11 +30,12 @@ class LoadImages implements ShouldQueue {
                 $image = Image::make($img->getRealPath());
                 
                 $image->fit(1024, 768);                
-                $image->text("ilbo.kz", 10,28, function($font) {
+                
+                /*$image->text("ilbo.kz", 10,28, function($font) {
                     $font->file(public_path()."/fonts/Brushie.ttf");
                     $font->color(array(255,255,255,1));
                     $font->size(24);
-                });
+                });*/
 
                 $name = time()."_".$img->getClientOriginalName();                                
                 \Storage::disk('s3')->put("images/normal/".$name, $image->stream()->detach());
