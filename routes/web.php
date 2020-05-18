@@ -35,6 +35,11 @@ Route::post("/api/createAdvert", "ApiController@createAdvert");
 Route::post("/objavlenie/delete/{id}", "AdvertController@deleteAdvert");
 Route::get("/objavlenie/delete/{id}", "AdvertController@deleteAdvert");
 
+Route::post("/objavlenie/makeVip/{id}", "AdvertController@makeVip");
+Route::post("/objavlenie/makeTorg/{id}", "AdvertController@makeTorg");
+Route::post("/objavlenie/makeExtend/{id}", "AdvertController@makeExtend");
+Route::post("/objavlenie/makePaint/{id}", "AdvertController@makePaint");
+
 Route::get("/api/getSubCategoryNamesById", "ApiController@getSubCategoryNamesById" );
 Route::get("/api/getRegions", "ApiController@GetRegions");
 Route::get("/api/getPlaces", "ApiController@GetPlaces");
