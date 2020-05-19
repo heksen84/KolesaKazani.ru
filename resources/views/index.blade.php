@@ -243,7 +243,7 @@
   <br>
   
 
-  @if (count($vipAdverts)>0)
+<!--  @if (count($vipAdverts)>0)
   <div class="row text-center">
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">      
       <div class="titleAdverts">vip объявления</div>  
@@ -262,7 +262,7 @@
       </div>      
       @endforeach
   </div>
-  @endif
+  @endif-->
 
   @if (count($newAdverts)>0)
   <div class="row text-center">
