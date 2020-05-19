@@ -246,7 +246,7 @@
   @if (count($vipAdverts)>0)
   <div class="row text-center">
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">      
-      <div class="titleAdverts">новые объявления</div>  
+      <div class="titleAdverts">vip объявления</div>  
     </div>
       @foreach($vipAdverts as $advert)      
       <div class="col-sm-12 col-md-3 col-lg-3 col-xl-2 m-3">      
