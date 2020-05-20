@@ -72,7 +72,7 @@ $( document ).ready(function() {
 document.body.addEventListener('click', function (evt) {
 
 	// вернуться назад
-	if (evt.target.classList[0] === 'return-link')
+	if (evt.target.classList[0] === 'close-link')
 		window.history.back();	
 
 	// кнопка - показать номер

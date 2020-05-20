@@ -39,13 +39,13 @@
 
   <div class="container-fluid mycontainer">
 
-        <div class="mt-2" title="Вернуться на предыдущую страницу">        
+        <div class="mt-2" title="Закрыть страницу">        
         @if (!$region && !$city)
-          <a href="/" class="return-link">< назад</a>
+          <a href="/" class="close-link">закрыть</a>
         @elseif ($region && !$city)    
-          <a href="/{{$region}}" class="return-link">< назад</a>    
+          <a href="/{{$region}}" class="close-link">закрыть</a>    
         @elseif ($region && $city)    
-          <a href="/{{$region}}/{{$city}}" class="return-link">< назад</a>    
+          <a href="/{{$region}}/{{$city}}" class="close-link">< закрыть</a>    
         @endif        
         </div>
 

@@ -67,7 +67,7 @@ $( document ).ready(function() {
   initFilters();      
 
   // что-бы фильтры не вылизили стразу в других категориях
-  $(".return-link").click(function() {
+  $(".close-link").click(function() {
     localStorage.setItem("show_filters", "false");          
   });
 
