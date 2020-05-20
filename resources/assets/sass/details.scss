@@ -23,13 +23,16 @@ h1 {
 
 #posted {
   width:96%;
-  font-size:14px;
+  font-size:12px;
   margin-top:-15px;  
 }
 
 #posted span {
+  border: 1px solid rgb(150,255,150);
+  border-radius: 5px;
+  padding: 2px;
   background:rgb(200,250,200);
-  color:black;
+  color: black;
   letter-spacing:1px;
 }
 
@@ -50,6 +53,7 @@ h1 {
   letter-spacing: 2px;   
   background: rgb(220,255,220);
   color:black;  
+  border: 1px solid rgb(150,255,150);
   border-radius: 5px;
   font-weight: 600;
   padding:2px;  
