@@ -28,7 +28,7 @@ $( document ).ready(function() {
 
     $("#makeVip").click(function(item) {
 		$.ajax({
-            url: "/objavlenie/makeVip/"+window.advert_id,
+            url: "/objavlenie/makeExtend/"+window.advert_id+"/1",
             type: "POST",
             data: {"_token": $('meta[name="csrf-token"]').attr('content')},
             success: function (response) {                
@@ -37,33 +37,33 @@ $( document ).ready(function() {
     });
 
     $("#makeTorg").click(function(item) {
-		$.ajax({
-            url: "/objavlenie/makeTorg/"+window.advert_id,
+        $.ajax({
+            url: "/objavlenie/makeExtend/"+window.advert_id+"/2",
             type: "POST",
             data: {"_token": $('meta[name="csrf-token"]').attr('content')},
             success: function (response) {                
             }
-        });
+        });		
     });
 
     $("#makeExtend").click(function(item) {
         $.ajax({
-            url: "/objavlenie/makeExtend/"+window.advert_id,
+            url: "/objavlenie/makeExtend/"+window.advert_id+"/3",
             type: "POST",
             data: {"_token": $('meta[name="csrf-token"]').attr('content')},
             success: function (response) {                
             }
-        });
+        });        
     });
 
     $("#makePaint").click(function(item) {
         $.ajax({
-            url: "/objavlenie/makePaint/"+window.advert_id,
+            url: "/objavlenie/makeExtend/"+window.advert_id+"/4",
             type: "POST",
             data: {"_token": $('meta[name="csrf-token"]').attr('content')},
             success: function (response) {                
             }
-        });
+        });        
     });
 	
 });

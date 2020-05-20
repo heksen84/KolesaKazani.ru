@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\Common;
 use App\Categories;
+use App\AdExtend;
 use App\Regions;
 use App\DealType;
 use App\Adverts;
@@ -458,7 +459,6 @@ class AdvertController extends Controller {
                 ->with( "images", $images);
         }            
 
-
         // удалить объявление
         public function deleteAdvert($id) {
 
@@ -475,8 +475,7 @@ class AdvertController extends Controller {
                         \Debugbar::info("нет прав на удаление");
                         return response()->json([ "result" => "error", "msg" => "Access denied for this operation" ]);  
                 }
-                
-                
+                                
                 // ---- Удаляю картинки объявления ----
                 $imagesRequest = Images::select(DB::raw("name"))->where("advert_id", $id);                
                 $images = $imagesRequest->get(); // получаю массив
@@ -501,20 +500,18 @@ class AdvertController extends Controller {
             return response()->json([ "result" => "deleted", "msg" => "объявление удалено" ]);  
         }
                 
-        public function makeVip($id) {
-                return "ok";
-        }
+        public function makeExtend($advert_id, $adv_type) {                
+                
+                $adext = new AdExtend();
+                $adext->advert_id = $advert_id;
+                $adext->startDate = date('Y-m-d H:i:s');
+                $adext->finishDate = date('Y-m-d H:i:s');
+                $adext->type = $adv_type;
+                $adext->price = 500;
+                $adext->save();
 
-        public function makeTorg($id) {
-                return "ok";
+                return response()->json([ "result" => "success", "msg" => "готово" ]);  
         }
-
-        public function makeExtend($id) {
-                return "ok";
-        }
-
-        public function makePaint($id) {
-                return "ok";
-        }
+        
     
 }
