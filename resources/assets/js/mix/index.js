@@ -10,7 +10,7 @@ $( document ).ready(function() {
   $("#categories_line").show();
   $("#loader").hide();
 
-  $(".col_item").click(function(item) {     
+  $(".col_item").click(function(item) {    
     let element_id = $(this).attr("id");    
     if ( element_id < 10 ) {            
       item.preventDefault();
@@ -20,6 +20,7 @@ $( document ).ready(function() {
       elements.show();
       $("#categories").hide();
       $("#subcats").show();
+      localStorage.setItem("show_filters", "false");      
     }
   });
 
