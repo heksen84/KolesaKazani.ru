@@ -49,7 +49,10 @@
         @endif        
         </div>
 
-        <h1 id="title" class="mt-3">{{ $title }}</h1>          
+        <h1 id="title" class="mt-3">{{ $title }}</h1>
+        @if (count($items)==0))
+          <h3>пока ничего нет</h3>
+        @endif
           <div class="row">                                
             @if (count($items)>5)
               <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-right">
