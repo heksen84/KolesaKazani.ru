@@ -44,7 +44,7 @@ function initCars() {
 
 // подготовливаю фильтры
 function initFilters() {
-  let buttonFiltersDefaultText = "скрыть фильтры";
+  let buttonFiltersDefaultText = "скрыть фильтр";
   $("#filters_button").click(function(item) { 
 
     if ($("#filters_button").text() == buttonFiltersDefaultText) {      
