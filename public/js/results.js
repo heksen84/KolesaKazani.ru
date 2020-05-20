@@ -10723,7 +10723,6 @@ function initCars() {
 // подготовливаю фильтры
 function initFilters() {
   var buttonFiltersDefaultText = "скрыть фильтры";
-
   __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#filters_button").click(function (item) {
 
     if (__WEBPACK_IMPORTED_MODULE_0_jquery___default()("#filters_button").text() == buttonFiltersDefaultText) {
