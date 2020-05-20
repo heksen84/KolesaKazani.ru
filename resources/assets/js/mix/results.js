@@ -45,22 +45,35 @@ function initCars() {
       loadCarsMarks();
 }
 
-let buttonFiltersDefaultText = "скрыть фильтры";
+
+function initFilters() {
+
+  let buttonFiltersDefaultText = "скрыть фильтры";
+
+  $("#filters_button").click(function(item) { 
+    
+    if ($("#filters_button").text() == buttonFiltersDefaultText) {      
+      $("#filters").hide();
+      $("#filters_button").text("отфильтровать");
+      localStorage.setItem("show_filters", "false");      
+    }
+    else {      
+      $("#filters").show()
+      $("#filters_button").text(buttonFiltersDefaultText);
+      localStorage.setItem("show_filters", "true");
+    }
+  });
+
+}
 
 // html готов
 $( document ).ready(function() {
-  initCars();
+  
+  initCars();    
+  initFilters();      
 
-  $("#filters_button").click(function(item) {
-
-    if ($("#filters_button").text() == buttonFiltersDefaultText) {
-      $("#filters").hide();
-      $("#filters_button").text("отфильтровать");
-    }
-    else {
-      $("#filters").show()
-      $("#filters_button").text(buttonFiltersDefaultText);
-    }
-  });
+  if (localStorage.getItem("show_filters")=="true") {   
+    $("#filters_button").trigger("click");
+  }
 
 });
