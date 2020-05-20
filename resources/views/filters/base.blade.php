@@ -27,7 +27,7 @@
 
 	<div class="form-row">
 		<div class="form-group col-12 text-center">
-			<button type="submit" class="btn btn-sm btn-outline-primary">применить</button>
+			<button type="submit" class="btn btn-sm btn-outline-success">применить</button>
 		</div>												
 	</div>												
 		
