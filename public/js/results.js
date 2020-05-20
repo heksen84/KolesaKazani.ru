@@ -10715,16 +10715,13 @@ function loadCarsMarks() {
 
 // загрузить данные автомобилей
 function initCars() {
-
   if (window.mark) __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#mark").val(window.mark);
-
   if (window.model) __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#model").val(window.model);
-
   loadCarsMarks();
 }
 
+// подготовливаю фильтры
 function initFilters() {
-
   var buttonFiltersDefaultText = "скрыть фильтры";
 
   __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#filters_button").click(function (item) {
@@ -10746,6 +10743,11 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
 
   initCars();
   initFilters();
+
+  // что-бы фильтры не вылизили стразу в других категориях
+  __WEBPACK_IMPORTED_MODULE_0_jquery___default()(".return-link").click(function () {
+    localStorage.setItem("show_filters", "false");
+  });
 
   if (localStorage.getItem("show_filters") == "true") {
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#filters_button").trigger("click");

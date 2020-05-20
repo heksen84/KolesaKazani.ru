@@ -35,23 +35,19 @@ function loadCarsMarks() {
 
 // загрузить данные автомобилей
 function initCars() {
-  
   if (window.mark) 
     $("#mark").val(window.mark);
-  
     if (window.model) 
       $("#model").val(window.model);
-
       loadCarsMarks();
 }
 
-
+// подготовливаю фильтры
 function initFilters() {
-
   let buttonFiltersDefaultText = "скрыть фильтры";
 
   $("#filters_button").click(function(item) { 
-    
+
     if ($("#filters_button").text() == buttonFiltersDefaultText) {      
       $("#filters").hide();
       $("#filters_button").text("отфильтровать");
@@ -63,7 +59,6 @@ function initFilters() {
       localStorage.setItem("show_filters", "true");
     }
   });
-
 }
 
 // html готов
@@ -71,6 +66,11 @@ $( document ).ready(function() {
   
   initCars();    
   initFilters();      
+
+  // что-бы фильтры не вылизили стразу в других категориях
+  $(".return-link").click(function() {
+    localStorage.setItem("show_filters", "false");          
+  });
 
   if (localStorage.getItem("show_filters")=="true") {   
     $("#filters_button").trigger("click");
