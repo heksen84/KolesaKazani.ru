@@ -5,7 +5,7 @@
 @else
 	<form id="filters-form" action="/c/{{$category}}/{{$subcategory}}">
 @endif	
-	<div class="m-2 form-row mt-3">
+	<div class="form-row m-1 mt-1">
 		<div class="form-group col-4 col-sm-3 col-md-2 col-xl-2">
       		<label>Цена:</label>
 			<input type="number" placeholder="от" id="price_ot" class="form-control form-control-sm" name="price_ot" value="{{$filters['price_ot']}}" required/>			
