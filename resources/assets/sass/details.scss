@@ -1,5 +1,6 @@
 h1 {  
-  font-size: 120%;  
+  margin-top:5px;
+  font-size: 110%;  
   letter-spacing: 2px; 
   font-weight: 700;  
 }
@@ -24,6 +25,12 @@ h1 {
   width:96%;
   font-size:14px;
   margin-top:-15px;  
+}
+
+#posted span {
+  background:rgb(200,250,200);
+  color:black;
+  letter-spacing:1px;
 }
 
 #location {  

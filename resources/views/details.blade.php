@@ -18,7 +18,7 @@
     <div class="row"> 
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2">                  
           <div class="close-link mb-4" title="Закрыть страницу">закрыть</div>        
-            <div id="posted"><span style="background:rgb(200,250,200);color:black;letter-spacing:1px">{{ date("Размещено d.m.Y в H:i", strtotime($advert->created_at)) }}</span></div>
+            <div id="posted"><span>{{ date("Размещено d.m.Y в H:i", strtotime($advert->created_at)) }}</span></div>
               <div id="location">{{ $advert->region_name }}, {{ $advert->city_name }}</div>
 
               @if ($advert->title!="null") 
@@ -33,8 +33,8 @@
                 <button class="btn btn-outline-danger btn-sm m-1" id="makePaint">покрасить</button>                
               </div>
 
+              @if (count($images)>0)
               <div id="carousel" class="carousel slide mt-2" data-ride="carousel">
-
                   @if (count($images)>1)
                     <ol class="carousel-indicators">                    
                       @foreach($images as $index => $image)
@@ -46,21 +46,19 @@
                       @endforeach
                     </ol>
                   @endif
-
                   <div class="carousel-inner">
                     @foreach($images as $index => $image)
                       @if ($index==0)
                         <div class="carousel-item active">
-                          <img class="d-block w-100" src="{{ $image->name }}" alt="{{ $image->name }}">
+                          <img class="d-block w-100" src="{{ $image->name }}">
                         </div>
                       @else
                         <div class="carousel-item">
-                          <img class="d-block w-100" src="{{ $image->name }}" alt="{{ $image->name }}">
+                          <img class="d-block w-100" src="{{ $image->name }}">
                         </div>
                       @endif
                     @endforeach
                   </div>
-
                   @if (count($images)>1)
                     <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -72,9 +70,8 @@
                     </a>
                   @endif
               </div>
-            
-            <br>
-              
+              @endif            
+            <br>              
               <!----------------------------------------------------------------
                 подключаю характеристики по категориям
                ----------------------------------------------------------------->	       
@@ -137,9 +134,9 @@
 </div>
 
 <script>
-  window.advert_id = {{$advert->id}};
-  window.coord_lat = {{$advert->coord_lat}}; 
-  window.coord_lon = {{$advert->coord_lon}};
+  window.advert_id = "{{$advert->id}}";
+  window.coord_lat = "{{$advert->coord_lat}}"; 
+  window.coord_lon = "{{$advert->coord_lon}}";
 </script>
 
 <script src="https://api-maps.yandex.ru/2.0-stable/?apikey=123&load=package.standard&lang=ru-RU" type="text/javascript"></script>
