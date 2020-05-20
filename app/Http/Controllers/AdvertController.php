@@ -499,7 +499,8 @@ class AdvertController extends Controller {
 
             return response()->json([ "result" => "deleted", "msg" => "объявление удалено" ]);  
         }
-                
+
+        // сделать vip, покрасить, срочноб ...
         public function makeExtend($advert_id, $adv_type) {                
                 
                 $adext = new AdExtend();
