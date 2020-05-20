@@ -71,6 +71,11 @@ $( document ).ready(function() {
     localStorage.setItem("show_filters", "false");          
   });
 
+  /*window.onpopstate = function() {
+    localStorage.setItem("show_filters", "false"); 
+    console.log("!!!");
+  }; history.pushState({}, '');*/  
+
   if (localStorage.getItem("show_filters")=="true") {   
     $("#filters_button").trigger("click");
   }
