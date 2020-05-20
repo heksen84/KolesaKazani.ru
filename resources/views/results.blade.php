@@ -51,7 +51,7 @@
 
         <h1 id="title" class="mt-3">{{ $title }}</h1>
         @if (count($items)==0)
-          <h5 style="margin:auto">пока ничего нет</h5>
+          <h5 style="text-align:center">пока ничего нет</h5>
         @endif
           <div class="row">                                
             @if (count($items)>5)
