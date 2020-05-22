@@ -15,6 +15,7 @@
         "laravel/tinker": "^1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "predis/predis": "^1.1",
+        "socialiteproviders/odnoklassniki": "^1.0",
         "socialiteproviders/vkontakte": "^4.0",
         "vinelab/http": "^1.5"
     },

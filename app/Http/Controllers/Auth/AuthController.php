@@ -49,14 +49,17 @@ class AuthController extends Controller {
         ]);
     }
 
+    public function redirectToOk() {
+        return Socialite::driver('odnoklassniki')->redirect();
+    }
+
     public function redirectToVk() {
-        return Socialite::driver('vk')->redirect();
+        return Socialite::driver('vkontakte')->redirect();
     }
 
     public function handleVkCallback() {
 
-        try {
-
+/*        try {
             $user = Socialite::driver('vk')->user();
             $create['name'] = $user->name;
             $create['email'] = $user->email;
@@ -68,6 +71,10 @@ class AuthController extends Controller {
 
         } catch (Exception $e) {
             return redirect('auth/vk');
-        }
+        }*/
     }
+
+    public function handleOkCallback() {
+    }
+
 }
