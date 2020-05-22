@@ -18,13 +18,6 @@ class AuthController extends Controller {
         AuthenticatesUsers::redirectPath insteadof RegistersUsers;
         AuthenticatesUsers::guard insteadof RegistersUsers;
     }
-
-    // FIXME: Это надо?
-    protected $listen = [
-        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
-            'SocialiteProviders\\VKontakte\\VKontakteExtendSocialite@handle',
-        ],
-    ];
     
     protected $redirectTo = '/';
     
@@ -75,6 +68,7 @@ class AuthController extends Controller {
     }
 
     public function handleOkCallback() {
+	\Debugbar::info("i'm ready to ok!");
     }
 
 }
