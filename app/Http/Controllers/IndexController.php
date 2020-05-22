@@ -10,6 +10,7 @@ use App\Categories;
 use App\Regions;
 use App\Places;
 use DB;
+use Socialite;
 
 class IndexController extends Controller {
 
@@ -98,11 +99,7 @@ class IndexController extends Controller {
 	// ------------------------------------------
 	// Базовая функция для главной страницы		
 	// ------------------------------------------
-    private function ShowIndexPage(Request $request, $region, $place) {
-
-		//$user = Socialite::driver('odnoklassniki')->user();
-		//$accessTokenResponseBody = $user->accessTokenResponseBody;
-		//\DebugBar::info($user);
+    private function ShowIndexPage(Request $request, $region, $place) {		
 		
 		if ($request->search!="")
 			return $this->search($request->search, $region, $place);		
@@ -244,11 +241,30 @@ class IndexController extends Controller {
 	// ------------------------------------------
 	// Cтрана
 	// ------------------------------------------
-    public function ShowCountryIndexPage(Request $request) {
+    public function ShowCountryIndexPage(Request $request) {		
 
-		//\Debugbar::info("COUNTRY: ".config('app.country'));		
-		//\Cache::put('mykey', '12345');		
-		//\Debugbar::info("mykey: ".\Cache::get('mykey'));		
+
+		/*if (!$request->has('code') || $request->has('denied')) {
+            return redirect('/');
+        }
+
+        $socialUser = Socialite::driver('facebook')->user();
+
+        $user = User::where('facebook_id', $socialUser->getID())->first();
+
+        if(!$user)
+
+            $user = User::create ([
+                'facebook_id'   => $socialUser->getID(),
+                'name'      => $socialUser->getName(),
+                'email'         => $socialUser->getEmail(), 
+                        'avatar'        => $socialUser->getAvatar()             
+            ]);
+
+        auth()->login($user); 
+
+		return redirect ('/dashboard')*/
+		
 
 	    return $this->ShowIndexPage($request, null, null);
     }		
