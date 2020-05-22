@@ -5,7 +5,7 @@ Route::get('auth/vk', 'Auth\AuthController@redirectToVk');
 Route::get('auth/vk/callback', 'Auth\AuthController@handleVkCallback');
 
 Route::get('auth/ok', 'Auth\AuthController@redirectToOk');
-//Route::get('auth/ok/callback', 'Auth\AuthController@handleOkCallback');
+Route::get('auth/ok/callback', 'Auth\AuthController@handleOkCallback');
 
 // подвал
 Route::get('/advert', function() { return view('advert'); });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -67,9 +68,35 @@ class AuthController extends Controller {
         return Socialite::driver('odnoklassniki')->redirect();
     }
 
-    public function handleOkCallback() {
-        \Debugbar::info("i'm ready to ok!");
-	return redirect('/');    
+    public function handleOkCallback(Request $request) {
+        
+        if (!$request->has('code') || $request->has('denied')) {
+            return redirect('/');
+        }
+
+        \Debugbar::info("-----------------");
+
+        $socialUser = Socialite::driver('odnoklassniki')->user();
+
+        \Debugbar::info("-----------------");
+        \Debugbar::info($socialUser);
+        \Debugbar::info("-----------------");
+
+        $user = User::where('ok_id', $socialUser->getID())->first();
+
+        if(!$user)
+
+            $user = User::create ([
+                'ok_id'   => $socialUser->getID(),
+                'name'    => $socialUser->getName(),
+                'email'   => $socialUser->getEmail(), 
+                'avatar'  => $socialUser->getAvatar()             
+            ]);
+
+        auth()->login($user);
+
+		return redirect ('/');
+		
     }
 
 }

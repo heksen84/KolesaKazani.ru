@@ -241,31 +241,7 @@ class IndexController extends Controller {
 	// ------------------------------------------
 	// Cтрана
 	// ------------------------------------------
-    public function ShowCountryIndexPage(Request $request) {		
-
-
-		/*if (!$request->has('code') || $request->has('denied')) {
-            return redirect('/');
-        }
-
-        $socialUser = Socialite::driver('facebook')->user();
-
-        $user = User::where('facebook_id', $socialUser->getID())->first();
-
-        if(!$user)
-
-            $user = User::create ([
-                'facebook_id'   => $socialUser->getID(),
-                'name'      => $socialUser->getName(),
-                'email'         => $socialUser->getEmail(), 
-                        'avatar'        => $socialUser->getAvatar()             
-            ]);
-
-        auth()->login($user); 
-
-		return redirect ('/dashboard')*/
-		
-
+    public function ShowCountryIndexPage(Request $request) {
 	    return $this->ShowIndexPage($request, null, null);
     }		
 
