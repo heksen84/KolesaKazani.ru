@@ -99,6 +99,10 @@ class IndexController extends Controller {
 	// Базовая функция для главной страницы		
 	// ------------------------------------------
     private function ShowIndexPage(Request $request, $region, $place) {
+
+		//$user = Socialite::driver('odnoklassniki')->user();
+		//$accessTokenResponseBody = $user->accessTokenResponseBody;
+		//\DebugBar::info($user);
 		
 		if ($request->search!="")
 			return $this->search($request->search, $region, $place);		

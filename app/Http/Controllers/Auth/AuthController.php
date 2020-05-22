@@ -42,10 +42,6 @@ class AuthController extends Controller {
         ]);
     }
 
-    public function redirectToOk() {
-        return Socialite::driver('odnoklassniki')->redirect();
-    }
-
     public function redirectToVk() {
         return Socialite::driver('vkontakte')->redirect();
     }
@@ -67,8 +63,20 @@ class AuthController extends Controller {
         }*/
     }
 
+    public function redirectToOk() {
+        return Socialite::driver('odnoklassniki')->redirect();
+    }
+
     public function handleOkCallback() {
-	\Debugbar::info("i'm ready to ok!");
+        \Debugbar::info("i'm ready to ok!");
+
+$fp = fopen("counter.txt", "a"); // Открываем файл в режиме записи
+$mytext = "Это строку необходимо нам записать\r\n"; // Исходная строка
+$test = fwrite($fp, $mytext); // Запись в файл
+if ($test) echo 'Данные в файл успешно занесены.';
+else echo 'Ошибка при записи в файл.';
+fclose($fp); //Закрытие файла
+    
     }
 
 }

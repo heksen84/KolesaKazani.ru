@@ -1,10 +1,5 @@
 <?php
-
 Auth::routes();
-
-/*Route::get('facebook', function () {
-    return view('facebookAuth');
-});*/
 
 Route::get('auth/vk', 'Auth\AuthController@redirectToVk');
 Route::get('auth/vk/callback', 'Auth\AuthController@handleVkCallback');
