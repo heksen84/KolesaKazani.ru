@@ -16,7 +16,7 @@
 			<input type="number" placeholder="до" id="price_do" class="form-control form-control-sm" name="price_do" value="{{$filters['price_do']}}" required/>	
 		</div>
 
-		<div class="form-group col-11 col-sm-5 col-md-3 col-xl-3">
+		<div class="form-group col-7 col-sm-5 col-md-3 col-xl-3">
 			<label>Сортировка</label>
 			<select class="form-control form-control-sm">
 				<option>по возрастанию</option>
