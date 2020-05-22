@@ -186,7 +186,7 @@
         
       <!-- компонент поиска по сайту -->
       <form>
-        <input type="text" id="search_string" v-model="searchString" placeholder="поиск по объявлениям {{ $sklonResult }}" required/>
+        <input type="text" id="search_string" placeholder="поиск по объявлениям {{ $sklonResult }}" required/>
         <button id="button_search" type="submit" title="Найти что требуется">найти</button>
       </form>
 
