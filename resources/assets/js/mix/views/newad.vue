@@ -25,7 +25,8 @@
           </div>
           <div class="modal-body">
             <div v-show="!serviceUnavailable" id="bigmap" style="width: 100%; height: 300px"></div>
-            <p v-show="serviceUnavailable" class="alert-heading">{{ dialogMsg }}</p>
+            <!--<p v-show="serviceUnavailable" class="alert-heading">{{ dialogMsg }}</p>-->
+            <p v-show="serviceUnavailable" class="alert-heading">Приносим извинения за неудобства, но в данный момент мы не можем обработать ваш запрос.</p>            
           </div>
           <div class="modal-footer" v-show="!serviceUnavailable">          
             <button type="button" class="btn btn-primary margin-auto" @click="setCoords">Сохранить</button>          
@@ -677,7 +678,8 @@ onSubmit(evt) {
     if (response.data.result=="error") {
       $("#advert_loading_block").hide();
        this.dialogTitleMsg = response.data.title;
-       this.dialogMsg = response.data.msg;
+       //this.dialogMsg = response.data.msg;
+       console.error(response.data.msg);
        this.serviceError();
     }
 		else {
