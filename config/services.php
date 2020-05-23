@@ -38,6 +38,7 @@ return [
 'vkontakte' => [
     'client_id' => env('VKONTAKTE_KEY'),
     'client_secret' => env('VKONTAKTE_SECRET'),
+    'client_public' => env('VKONTAKTE_PUBLIC'),
     'redirect' => env('VKONTAKTE_REDIRECT_URI')
 ],
 

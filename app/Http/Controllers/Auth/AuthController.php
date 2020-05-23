@@ -47,21 +47,28 @@ class AuthController extends Controller {
         return Socialite::driver('vkontakte')->redirect();
     }
 
-    public function handleVkCallback() {
+    public function handleVkCallback(Request $request) {
 
-/*        try {
-            $user = Socialite::driver('vk')->user();
-            $create['name'] = $user->name;
-            $create['email'] = $user->email;
-            $create['facebook_id'] = $user->id;                        
-            $userModel = new User;
-            $createdUser = $userModel->addNew($create);
-            Auth::loginUsingId($createdUser->id);
-            return redirect()->route('home');
+        if (!$request->has('code') || $request->has('denied')) {
+            return redirect('/');
+        }
 
-        } catch (Exception $e) {
-            return redirect('auth/vk');
-        }*/
+        $socialUser = Socialite::driver('vkontakte')->user();
+
+        $user = User::where('vk_id', $socialUser->getID())->first();
+        
+        if(!$user)
+            $user = User::create ([             
+                'name'    => $socialUser->getName(),
+                //'name'    => $socialUser->getNickname(),                
+                'email'   => $socialUser->getEmail(), 
+	            'vk_id'   => $socialUser->getID(),
+           //     'avatar'  => $socialUser->getAvatar()             
+            ]);
+            
+            auth()->login($user);
+            
+		return redirect ('/');
     }
 
     public function redirectToOk() {
@@ -87,7 +94,7 @@ class AuthController extends Controller {
             ]);
             
             auth()->login($user);
-            
+
 		return redirect ('/');		
     }
 
