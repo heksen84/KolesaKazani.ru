@@ -43,10 +43,17 @@ class AuthController extends Controller {
         ]);
     }
 
+    /*
+    --------------------------------------------------------------
+    Однкоклассники
+    --------------------------------------------------------------*/
+    
+    // редирект
     public function redirectToVk() {
         return Socialite::driver('vkontakte')->redirect();
     }
 
+    // обратный вызов
     public function handleVkCallback(Request $request) {
 
         if (!$request->has('code') || $request->has('denied')) {
@@ -71,10 +78,17 @@ class AuthController extends Controller {
 		return redirect ('/');
     }
 
+    /*
+    --------------------------------------------------------------
+    Однкоклассники
+    --------------------------------------------------------------*/
+
+    // редирект
     public function redirectToOk() {
         return Socialite::driver('odnoklassniki')->redirect();
     }
 
+    // обратный вызов
     public function handleOkCallback(Request $request) {
         
         if (!$request->has('code') || $request->has('denied')) {
