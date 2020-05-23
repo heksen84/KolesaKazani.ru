@@ -221,6 +221,14 @@ class IndexController extends Controller {
 
 			\Debugbar::info("NEWADVERTS:");
 			\Debugbar::info($newAdverts);
+
+
+
+/*        $socialUser = Socialite::driver('odnoklassniki')->user();
+
+        \Debugbar::info("-----------------");
+        \Debugbar::info($socialUser);
+        \Debugbar::info("-----------------");*/
 		
 											
 		return view("index")		

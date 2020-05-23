@@ -74,29 +74,21 @@ class AuthController extends Controller {
             return redirect('/');
         }
 
-        \Debugbar::info("-----------------");
-
         $socialUser = Socialite::driver('odnoklassniki')->user();
 
-        \Debugbar::info("-----------------");
-        \Debugbar::info($socialUser);
-        \Debugbar::info("-----------------");
-
         $user = User::where('ok_id', $socialUser->getID())->first();
-
+        
         if(!$user)
-
-            $user = User::create ([
-                'ok_id'   => $socialUser->getID(),
+            $user = User::create ([             
                 'name'    => $socialUser->getName(),
                 'email'   => $socialUser->getEmail(), 
-                'avatar'  => $socialUser->getAvatar()             
+	            'ok_id'   => $socialUser->getID(),
+           //     'avatar'  => $socialUser->getAvatar()             
             ]);
-
-        auth()->login($user);
-
-		return redirect ('/');
-		
+            
+            auth()->login($user);
+            
+		return redirect ('/');		
     }
 
 }
