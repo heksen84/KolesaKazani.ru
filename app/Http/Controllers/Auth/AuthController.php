@@ -72,7 +72,8 @@ class AuthController extends Controller {
 	            'vk_id'   => $socialUser->getID(),
            //     'avatar'  => $socialUser->getAvatar()             
             ]);
-            
+        
+	    $user->update(['last_login_ip' => $request->getClientIp()]);    
             auth()->login($user);
             
 		return redirect ('/');
@@ -106,7 +107,8 @@ class AuthController extends Controller {
 	            'ok_id'   => $socialUser->getID(),
            //     'avatar'  => $socialUser->getAvatar()             
             ]);
-            
+        
+	    $user->update(['last_login_ip' => $request->getClientIp()]);    
             auth()->login($user);
 
 		return redirect ('/');		

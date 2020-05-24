@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller {
 
@@ -19,8 +20,6 @@ class LoginController extends Controller {
     */
 
     use AuthenticatesUsers;
-
-
 
     protected $redirectTo = '/home';
 
@@ -38,9 +37,8 @@ class LoginController extends Controller {
         return view('auth.login', compact('title', 'description', 'keywords'));
    }
 
-    /*
-    public function login(Request $request) {
-        $request->session()->flash('form_type', 'login');
-        return $this->traitLogin($request);
-    }*/
+   function authenticated(Request $request, $user){
+     $user->update(['last_login_ip' => $request->getClientIp()]);
+   }
+   
 }
