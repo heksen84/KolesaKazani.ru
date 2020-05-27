@@ -61,6 +61,13 @@ return [
             'secret' => env('AWS_SECRET'),
             'region' => env('AWS_REGION'),
             'bucket' => env('AWS_BUCKET'),
+            'url' => env('AWS_URL'),
+	    // the below 'endpoint' url is actually used:
+            'endpoint' => env('AWS_URL'),
+            // prevent bucket name from being added to the hostname:
+           'bucket_endpoint' => false,
+           // use older urls:
+           'use_path_style_endpoint' => true,
         ],
 
     ],

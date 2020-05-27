@@ -47,7 +47,7 @@ class LoadImages implements ShouldQueue {
                 $imageRec = new Images();            
                 $imageRec->advert_id = $advert_id;
                 $imageRec->name = $name;                            
-                $imageRec->save();                
+                $imageRec->save();
             }
         }
     }
