@@ -9,5 +9,5 @@ class Adverts extends Model {
         'user_id', 'title', 'text', 'contacts', 'price', 'category_id', 'ad_category_id', 'date_reg'
     ];*/
     
-     protected $dates = ['created_at'];
+	public $timestamps = false;
 }

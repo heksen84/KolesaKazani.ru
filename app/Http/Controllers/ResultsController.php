@@ -88,7 +88,7 @@ class ResultsController extends Controller {
             "adv.id", 
             "adv.title", 
             "adv.price",
-            "adv.created_at",            
+            "adv.startDate",            
             "kz_region.name as region_name",
             "kz_city.name as city_name", 
             DB::raw("concat('".\Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
@@ -193,7 +193,7 @@ class ResultsController extends Controller {
             "adv.id", 
             "adv.title", 
             "adv.price", 
-            "adv.created_at",            
+            "adv.startDate",            
             "kz_region.name as region_name",
             "kz_city.name as city_name",
             DB::raw("concat('".\Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
@@ -250,7 +250,7 @@ class ResultsController extends Controller {
             "adv.id", 
             "adv.title", 
             "adv.price", 
-            "adv.created_at",            
+            "adv.startDate",            
             "kz_region.name as region_name",
             "kz_city.name as city_name",
              DB::raw("concat('".\Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
@@ -309,7 +309,7 @@ class ResultsController extends Controller {
             "adv.id", 
             "adv.title", 
             "adv.price",
-            "adv.created_at",            
+            "adv.startDate",            
             "kz_region.name as region_name",
             "kz_city.name as city_name",
             DB::raw("concat('".\Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"

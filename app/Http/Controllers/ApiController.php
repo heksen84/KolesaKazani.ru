@@ -13,10 +13,9 @@ use App\Places;
 use App\Transport;
 use App\RealEstate;
 use App\Helpers\ObsceneCensorRus;
-use App\Helpers\Helper;
-use App\Helpers\Common;
 use App\Helpers\Sitemap;
 use App\Adverts;
+use Carbon\Carbon;
 use Validator;
 use DB;
 
@@ -373,7 +372,10 @@ class ApiController extends Controller {
                 $advert->coord_lon = 0;
             }            
             
-            $advert->public = true; // публикую объявление сходу                        
+            $advert->public = true; // публикую объявление сходу
+
+            $advert->finishDate =  \Carbon\Carbon::now()->add(30, 'day')->toDateTimeString();
+
             $advert->save();  // СОХРАНЕНИЕ ОБЪЯВЛЕНИЯ
             
             $urls = new Urls(); // Закидываю данные в таблицу urls для SEO

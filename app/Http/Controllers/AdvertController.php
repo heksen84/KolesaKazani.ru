@@ -67,7 +67,7 @@ class AdvertController extends Controller {
                         $advert = DB::table("adverts as adv")->select(                                 
                                 "adv.category_id",
                                 "adv.subcategory_id",
-                                "adv.created_at",
+                                "adv.startDate",
                                 "adv.id", 
                                 "adv.title", 
                                 "adv.text", 
@@ -100,7 +100,7 @@ class AdvertController extends Controller {
                         $advert = DB::table("adverts as adv")->select(                                 
                                 "adv.category_id",
                                 "adv.subcategory_id",
-                                "adv.created_at",
+                                "adv.startDate",
                                 "adv.id", 
                                 "adv.title", 
                                 "adv.text", 
@@ -129,7 +129,7 @@ class AdvertController extends Controller {
                         $advert = Adverts::select(
                                 "category_id",
                                 "subcategory_id",
-                                "created_at",                                
+                                "startDate",                                
                                 "id", 
                                 "title", 
                                 "text", 
@@ -151,7 +151,7 @@ class AdvertController extends Controller {
                         $advert = Adverts::select(
                                 "category_id",
                                 "subcategory_id",                            
-                                "created_at",                                    
+                                "startDate",                                    
                                 "id", 
                                 "title", 
                                 "text", 
@@ -173,7 +173,7 @@ class AdvertController extends Controller {
                         $advert = DB::table("adverts as adv")->select(                                 
                                 "adv.category_id",
                                 "adv.subcategory_id",
-                                "adv.created_at",
+                                "adv.startDate",
                                 "adv.id", 
                                 "adv.title", 
                                 "adv.text", 
@@ -201,7 +201,7 @@ class AdvertController extends Controller {
                         $advert = Adverts::select(
                         "category_id",
                         "subcategory_id",        
-                        "created_at",                         
+                        "startDate",                         
                         "id", 
                         "title", 
                         "text", 
@@ -222,7 +222,7 @@ class AdvertController extends Controller {
                         $advert = DB::table("adverts as adv")->select(                                 
                         "adv.category_id",
                         "adv.subcategory_id",
-                        "adv.created_at",
+                        "adv.startDate",
                         "adv.id", 
                         "adv.title", 
                         "adv.text", 
@@ -250,7 +250,7 @@ class AdvertController extends Controller {
                         $advert = DB::table("adverts as adv")->select(                                 
                         "adv.category_id",
                         "adv.subcategory_id",
-                        "adv.created_at",
+                        "adv.startDate",
                         "adv.id", 
                         "adv.title", 
                         "adv.text", 
@@ -276,7 +276,7 @@ class AdvertController extends Controller {
                         $advert = DB::table("adverts as adv")->select(                                 
                         "adv.category_id",
                         "adv.subcategory_id",
-                        "adv.created_at",
+                        "adv.startDate",
                         "adv.id", 
                         "adv.title", 
                         "adv.text", 
@@ -308,7 +308,7 @@ class AdvertController extends Controller {
                         $advert = DB::table("adverts as adv")->select(                                 
                         "adv.category_id",
                         "adv.subcategory_id",
-                        "adv.created_at",
+                        "adv.startDate",
                         "adv.id", 
                         "adv.title", 
                         "adv.text", 
@@ -331,7 +331,7 @@ class AdvertController extends Controller {
                         $advert = DB::table("adverts as adv")->select(                                 
                         "adv.category_id",
                         "adv.subcategory_id",
-                        "adv.created_at",
+                        "adv.startDate",
                         "adv.id", 
                         "adv.title", 
                         "adv.text", 
@@ -354,7 +354,7 @@ class AdvertController extends Controller {
                         $advert = DB::table("adverts as adv")->select(                                 
                         "adv.category_id",
                         "adv.subcategory_id",
-                        "adv.created_at",
+                        "adv.startDate",
                         "adv.id", 
                         "adv.title", 
                         "adv.text", 
@@ -386,7 +386,7 @@ class AdvertController extends Controller {
                         $advert = DB::table("adverts as adv")->select(                                 
                         "adv.category_id",
                         "adv.subcategory_id",
-                        "adv.created_at",
+                        "adv.startDate",
                         "adv.id", 
                         "adv.title", 
                         "adv.text", 
@@ -417,7 +417,7 @@ class AdvertController extends Controller {
                 // выборка для всего остального
                 if ($advertData[0]->category_id > 2 && $advertData[0]->subcategory_id > 0 || $advertData[0]->category_id>0 && !$advertData[0]->subcategory_id) {                        
                         $advert = Adverts::select(                        
-                        "created_at",
+                        "startDate",
                         "category_id",
                         "subcategory_id",                        
                         "id", 
