@@ -18,7 +18,7 @@
     <div class="row"> 
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2">                  
           <div class="close-link mb-4" title="Закрыть страницу">закрыть</div>        
-            <div id="posted"><span>{{ date("Размещено d.m.Y в H:i", strtotime($advert->created_at)) }}</span></div>
+            <div id="posted"><span>{{ date("Размещено d.m.Y в H:i", strtotime($advert->startDate)) }}</span></div>
               <div id="location">{{ $advert->region_name }}, {{ $advert->city_name }}</div>
 
               @if ($advert->title!="null") 
