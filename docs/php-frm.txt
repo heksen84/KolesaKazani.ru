@@ -1,4 +1,5 @@
 https://guides.wp-bullet.com/adjusting-php-fpm-performance-low-memory/
+sudo systemctl restart php-fpm
 
 -------------------------------------------------------------------------------------
 sudo nano /etc/php/7.0/fpm/pool.d/www.conf
