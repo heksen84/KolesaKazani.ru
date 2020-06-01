@@ -2098,6 +2098,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 // ---------------------------
@@ -39908,10 +39909,12 @@ var render = function() {
             staticStyle: { border: "1px solid rgb(220,220,220)" }
           },
           [
+            _vm._m(3),
+            _vm._v(" "),
             _c(
               "div",
               {
-                staticClass: "mt-2 close-link",
+                staticClass: "close-link",
                 staticStyle: { width: "80px" },
                 attrs: { title: "Закрыть страницу" },
                 on: { click: _vm.closePage }
@@ -40519,7 +40522,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      _vm._m(3),
+                      _vm._m(4),
                       _vm._v(" "),
                       _c(
                         "div",
@@ -40567,7 +40570,7 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _vm._m(4)
+                      _vm._m(5)
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "row" }, [
@@ -40613,7 +40616,7 @@ var render = function() {
                       [
                         _c("br"),
                         _vm._v(" "),
-                        _vm._m(5),
+                        _vm._m(6),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-12" }, [
                           _c(
@@ -40937,6 +40940,22 @@ var staticRenderFns = [
               ])
             ])
           ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticStyle: { "text-align": "right", "font-size": "14px" } },
+      [
+        _c(
+          "a",
+          { attrs: { href: "#", title: "Правила размещения объявления" } },
+          [_vm._v("правила размещения")]
         )
       ]
     )
