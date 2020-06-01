@@ -40950,7 +40950,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      { staticStyle: { "text-align": "right", "font-size": "14px" } },
+      { staticStyle: { "text-align": "right", "font-size": "15px" } },
       [
         _c(
           "a",
