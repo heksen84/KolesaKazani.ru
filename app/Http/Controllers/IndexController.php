@@ -202,10 +202,16 @@ class IndexController extends Controller {
             DB::raw("concat('".\Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"))
             ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
 //			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )->where("adv.vip", 1)->orderBy("startDate", "desc")->take(10)->get();			
-			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )->orderBy("startDate", "desc")->take(10)->get();			
+			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )
+			->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")
+			->orderBy("startDate", "desc")->take(10)->get();			
 
 			\Debugbar::info("VIPADVERTS:");
 			\Debugbar::info($vipAdverts);
+
+
+		// если дата окончания (finishDate) >= текущий даты
+		//whereBetween(NOW(), [$startDate, $finishDate]);
 		
 		// Новые объявления
 		$newAdverts = DB::table("adverts as adv")->select(
@@ -215,9 +221,11 @@ class IndexController extends Controller {
             "adv.startDate",            
             "kz_region.name as region_name",
             "kz_city.name as city_name",
-            DB::raw("concat('".\Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"))
+			DB::raw("concat('".\Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"))			
             ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
-			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )->orderBy("startDate", "desc")->take(10)->get();			
+			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )
+			->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")
+			->orderBy("startDate", "desc")->take(10)->get();			
 
 			\Debugbar::info("NEWADVERTS:");
 			\Debugbar::info($newAdverts);
