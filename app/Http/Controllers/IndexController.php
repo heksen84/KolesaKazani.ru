@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Petrovich;
@@ -193,8 +191,8 @@ class IndexController extends Controller {
             "kz_region.name as region_name",
             "kz_city.name as city_name",
             DB::raw("concat('".\Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"))
-            ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
-			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )
+            ->join("kz_region", "adv.region_id", "=", "kz_region.region_id")
+			->join("kz_city", "adv.city_id", "=", "kz_city.city_id")
 			->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")
 			->orderBy("startDate", "desc")->take(10)->get();			
 
@@ -220,8 +218,7 @@ class IndexController extends Controller {
 
 			\Debugbar::info("NEWADVERTS:");
 			\Debugbar::info($newAdverts);
-
-											
+										
 		return view("index")		
 		->with("locationName", $locationName)
 		->with("location", $location)
@@ -256,6 +253,5 @@ class IndexController extends Controller {
 	// ------------------------------------------
     public function ShowPlaceIndexPage(Request $request, $region, $place) {
 	    return $this->ShowIndexPage($request, $region, $place);
-    }		
-					
+    }					
 }
