@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Petrovich;
-use App\Adverts;
 use App\Categories;
 use App\Regions;
 use App\Places;
 use DB;
-use Socialite;
 
 class IndexController extends Controller {
 
