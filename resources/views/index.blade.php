@@ -273,7 +273,11 @@
       @foreach($newAdverts as $advert)      
       <div class="col-sm-12 col-md-3 col-lg-3 col-xl-2 m-3">      
       <a href="objavlenie/show/{{ $advert->id }}" class="black">
-        <div class="card green-background" style="width:220px;height:365px;margin:auto">
+        @if ($advert->color)
+          <div class="card index-card green-background">
+        @else
+          <div class="card index-card">
+        @endif
         @if ($advert->srochno_torg)
           <div class="label-torg">срочно, торг</div>
         @endif
