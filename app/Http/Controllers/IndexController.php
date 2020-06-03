@@ -202,11 +202,6 @@ class IndexController extends Controller {
 			\Debugbar::info("VIPADVERTS:");
 			\Debugbar::info($vipAdverts);
 
-
-			// ad - имеет свой срок
-			// ad_ex - также имеет свой срок
-			// т.е. объявление может жить а спец. предложение уже нет
-
 		// Новые объявления
 		$newAdverts = DB::table("adverts as adv")->select(
             "adv.id", 

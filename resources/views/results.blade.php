@@ -84,7 +84,7 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2 item">                  
               <a href="/objavlenie/show/{{ $item->id }}">
                 <div class="card">
-                  @if (false)
+                  @if ($item->srochno_torg)
                     <div class="label-torg">срочно, торг</div>
                   @endif                  
                     <img class="card-img-top image" src="{{ $item->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">                                                            
