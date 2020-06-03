@@ -275,7 +275,7 @@
       <a href="objavlenie/show/{{ $advert->id }}" class="black">
         <div class="card green-background" style="width:220px;height:365px;margin:auto">
         @if (false)
-        <div class="label-torg">срочно, торг</div>
+          <div class="label-torg">срочно, торг</div>
         @endif
           <img class="card-img-top" src="{{ $advert->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">          
             <div class="card-title-text">{{ $advert->title }}</div>
