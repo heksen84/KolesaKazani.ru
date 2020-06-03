@@ -210,9 +210,10 @@ class IndexController extends Controller {
 			\Debugbar::info($vipAdverts);
 
 
-		// если дата окончания (finishDate) >= текущий даты
-		//whereBetween(NOW(), [$startDate, $finishDate]);
-		
+			// ad - имеет свой срок
+			// ad_ex - также имеет свой срок
+			// т.е. объявление может жить а спец. предложение уже нет
+
 		// Новые объявления
 		$newAdverts = DB::table("adverts as adv")->select(
             "adv.id", 
