@@ -1,0 +1,2 @@
+ALTER TABLE `ad_extend` CHANGE `type` `srochno_torg` BOOLEAN NOT NULL;
+ALTER TABLE `ad_extend` ADD `v_top` BOOLEAN NOT NULL AFTER `srochno_torg`, ADD `color` BOOLEAN NOT NULL AFTER `v_top`;

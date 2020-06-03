@@ -220,24 +220,20 @@ class IndexController extends Controller {
             "adv.price", 
             "adv.startDate",            
             "kz_region.name as region_name",
-            "kz_city.name as city_name",
+			"kz_city.name as city_name",
+			"ad_ex.srochno_torg",
+			"ad_ex.v_top",
+			"ad_ex.color",			
 			DB::raw("concat('".\Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"))			
             ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
 			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )
+			->leftJoin("ad_extend as ad_ex", "adv.id", "=", "ad_ex.advert_id" )
 			->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")
 			->orderBy("startDate", "desc")->take(10)->get();			
 
 			\Debugbar::info("NEWADVERTS:");
 			\Debugbar::info($newAdverts);
 
-
-
-/*        $socialUser = Socialite::driver('odnoklassniki')->user();
-
-        \Debugbar::info("-----------------");
-        \Debugbar::info($socialUser);
-        \Debugbar::info("-----------------");*/
-		
 											
 		return view("index")		
 		->with("locationName", $locationName)
