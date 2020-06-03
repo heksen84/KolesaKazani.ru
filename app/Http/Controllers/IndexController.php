@@ -173,12 +173,7 @@ class IndexController extends Controller {
 				return view("errors/404"); // редирект
 		}
 				
-		$subcats = DB::table("subcats")
-			->join("categories", "categories.id", "=", "subcats.category_id")
-			->select("subcats.*", "categories.url as category_url")
-			->where("lang", "=", 0) // ru - default
-			->get();
-
+		$subcats = DB::table("subcats")->join("categories", "categories.id", "=", "subcats.category_id")->select("subcats.*", "categories.url as category_url")->where("lang", "=", 0)->get();
 
 		\Debugbar::info("location: ".$locationName);
 		\Debugbar::info("REGION: ".$region);
@@ -219,14 +214,13 @@ class IndexController extends Controller {
             "adv.price", 
             "adv.startDate",            
             "kz_region.name as region_name",
-			"kz_city.name as city_name",
-			"ad_ex.srochno_torg",
-			"ad_ex.v_top",
-			"ad_ex.color",			
+			"kz_city.name as city_name",			
+			DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id LIMIT 1) as srochno_torg"),			
+			DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id LIMIT 1) as v_top"),			
+			DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id LIMIT 1) as color"),			
 			DB::raw("concat('".\Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"))			
             ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
-			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )
-			->leftJoin("ad_extend as ad_ex", "adv.id", "=", "ad_ex.advert_id" )
+			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )			
 			->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")
 			->orderBy("startDate", "desc")->take(10)->get();			
 
