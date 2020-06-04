@@ -28,7 +28,7 @@ $( document ).ready(function() {
 
     $("#makeVip").click(function(item) {
 		$.ajax({
-            url: "/objavlenie/makeExtend/"+window.advert_id+"/1",
+            url: "/objavlenie/makeExtend/"+window.advert_id+"/makeVip",
             type: "POST",
             data: {"_token": $('meta[name="csrf-token"]').attr('content')},
             success: function (response) {                
@@ -38,7 +38,7 @@ $( document ).ready(function() {
 
     $("#makeTorg").click(function(item) {
         $.ajax({
-            url: "/objavlenie/makeExtend/"+window.advert_id+"/2",
+            url: "/objavlenie/makeExtend/"+window.advert_id+"/srochno_torg",
             type: "POST",
             data: {"_token": $('meta[name="csrf-token"]').attr('content')},
             success: function (response) {                
@@ -48,7 +48,7 @@ $( document ).ready(function() {
 
     $("#makeExtend").click(function(item) {
         $.ajax({
-            url: "/objavlenie/makeExtend/"+window.advert_id+"/3",
+            url: "/objavlenie/makeExtend/"+window.advert_id+"/prodlit",
             type: "POST",
             data: {"_token": $('meta[name="csrf-token"]').attr('content')},
             success: function (response) {                
@@ -58,7 +58,7 @@ $( document ).ready(function() {
 
     $("#makePaint").click(function(item) {
         $.ajax({
-            url: "/objavlenie/makeExtend/"+window.advert_id+"/4",
+            url: "/objavlenie/makeExtend/"+window.advert_id+"/makePaint",
             type: "POST",
             data: {"_token": $('meta[name="csrf-token"]').attr('content')},
             success: function (response) {                

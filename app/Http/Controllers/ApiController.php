@@ -374,7 +374,7 @@ class ApiController extends Controller {
             
             $advert->public = true; // публикую объявление сходу
 
-	    $advert->startDate = \Carbon\Carbon::now()->toDateTimeString();
+	        $advert->startDate = \Carbon\Carbon::now()->toDateTimeString();
             $advert->finishDate = \Carbon\Carbon::now()->add(30, 'day')->toDateTimeString(); // добавляю 30 дней
 
             $advert->save();  // СОХРАНЕНИЕ ОБЪЯВЛЕНИЯ

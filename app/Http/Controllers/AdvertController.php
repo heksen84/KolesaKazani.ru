@@ -503,15 +503,48 @@ class AdvertController extends Controller {
         // -----------------------------------------------------------
         // сделать vip, покрасить, срочно, и т.п.
         // -----------------------------------------------------------
-        public function makeExtend($advert_id, $adv_type) {                
-                
-                $adext = new AdExtend();
-                $adext->advert_id = $advert_id;
-                $adext->startDate = date('Y-m-d H:i:s');
-                $adext->finishDate = date('Y-m-d H:i:s');
-                $adext->type = $adv_type;
-                $adext->price = 500;
-                $adext->save();
+        public function makeExtend($advert_id, $adv_type) {                                
+
+                switch($adv_type) {
+                        case "makeVip": {
+                        
+                        break;
+                        }
+                        case "srochno_torg": {
+
+                                $adex = AdExtend::select("id")->where("advert_id", "=", $advert_id)->limit(1)->get();
+
+                                \Debugbar::info("count: ".$adex->count());
+
+                                if ($adex->count()>0) {
+                                        AdExtend::find($adex[0]->id)->update(['srochno_torg' => true]);                                
+                                }
+                                else {                                      
+                                        $adex = new AdExtend();
+                                        $adex->advert_id = $advert_id;
+                                        $adex->srochno_torg = true;
+                                        $adex->v_top = false;
+                                        $adex->color = false;
+                                        $adex->price = 500; // default                                
+                                        $adex->startDate = \Carbon\Carbon::now()->toDateTimeString();
+                                        $adex->finishDate = \Carbon\Carbon::now()->add(7, 'day')->toDateTimeString();                                                          
+                                        $adex->save();
+                                }
+                        
+                        break;
+                        }
+                        case "prodlit": {
+                        
+                        break;
+                        }
+                        case "makePaint": {
+                        
+                        break;
+                        }
+                }
+
+                \Debugbar::info($adv_type);
+                                
 
                 return response()->json([ "result" => "success", "msg" => "готово" ]);  
         }
