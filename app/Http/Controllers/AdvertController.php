@@ -517,7 +517,8 @@ class AdvertController extends Controller {
                                 \Debugbar::info("count: ".$adex->count());
 
                                 if ($adex->count()>0) {
-                                        AdExtend::find($adex[0]->id)->update(['srochno_torg' => true]);                                
+                                        AdExtend::find($adex[0]->id)->update(['srochno_torg' => true]);
+                                        // обновить startDate-finishDate в adverts                                
                                 }
                                 else {                                      
                                         $adex = new AdExtend();
@@ -529,6 +530,7 @@ class AdvertController extends Controller {
                                         $adex->startDate = \Carbon\Carbon::now()->toDateTimeString();
                                         $adex->finishDate = \Carbon\Carbon::now()->add(7, 'day')->toDateTimeString();                                                          
                                         $adex->save();
+                                        // обновить startDate-finishDate в adverts
                                 }
                         
                         break;
