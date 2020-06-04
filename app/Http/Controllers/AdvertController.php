@@ -513,7 +513,6 @@ class AdvertController extends Controller {
                         case "srochno_torg": {
 
                                 $adex = AdExtend::select("id")->where("advert_id", "=", $advert_id)->limit(1)->get();
-
                                 \Debugbar::info("count: ".$adex->count());
 
                                 if ($adex->count()>0) {
@@ -544,7 +543,6 @@ class AdvertController extends Controller {
                         case "makePaint": {
 
                                 $adex = AdExtend::select("id")->where("advert_id", "=", $advert_id)->limit(1)->get();
-
                                 \Debugbar::info("count: ".$adex->count());
 
                                 if ($adex->count()>0) {
