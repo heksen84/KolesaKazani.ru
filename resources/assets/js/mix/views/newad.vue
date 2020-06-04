@@ -52,7 +52,7 @@
 
     <div class="row">  
       <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col" style="border: 1px solid rgb(220,220,220)">
-        <div style="text-align:right;font-size:15px"><a href="/rules" title="Правила размещения объявления">правила размещения</a></div>
+        <div style="text-align:right;font-size:14px;letter-spacing:1px"><a href="/rules" title="Правила размещения объявления">правила размещения</a></div>
         <div class="close-link" style="width:80px" title="Закрыть страницу" @click="closePage">закрыть</div>
         <br>
 		      <h1 class="title_text">новое объявление</h1>          
