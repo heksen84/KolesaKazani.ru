@@ -83,7 +83,11 @@
             @foreach($items as $item)                                
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2 item">                  
               <a href="/objavlenie/show/{{ $item->id }}">
-                <div class="card">
+                @if ($item->color)
+                  <div class="card green-background">
+                @else
+                  <div class="card">
+                @endif
                   @if ($item->srochno_torg)
                     <div class="label-torg">срочно, торг</div>
                   @endif                  
