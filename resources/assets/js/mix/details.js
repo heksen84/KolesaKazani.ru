@@ -71,9 +71,9 @@ $( document ).ready(function() {
 // обработчик клика
 document.body.addEventListener('click', function (evt) {
 
-	// вернуться назад
-	if (evt.target.classList[0] === 'close-link')
-		window.history.back();	
+	// закрыть страницу
+	if (evt.target.classList[0] === 'close-link')        
+        window.location="/";
 
 	// кнопка - показать номер
 	if (evt.target.id==="numberButton") {
