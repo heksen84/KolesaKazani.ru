@@ -30,7 +30,7 @@
                 <button class="btn btn-outline-success btn-sm m-1" id="makeVip">В топ [VIP]</button>  
                 <button class="btn btn-outline-primary btn-sm m-1" id="makeTorg">Срочно, торг</button>                                            
                 <button class="btn btn-outline-danger btn-sm m-1" id="makePaint">Покрасить</button>   
-                <button class="btn btn-outline-secondary btn-sm m-1" id="prodlit">Продлить</button>             
+                <!--<button class="btn btn-outline-secondary btn-sm m-1" id="prodlit">Продлить</button>-->
               </div>
 
               @if (count($images)>0)
