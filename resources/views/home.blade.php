@@ -101,11 +101,11 @@
         </div>
         <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-status text-center"><span id="status"><ins>cтатус</ins><br>на модерации</span></div>
         <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-action text-center actions" data-id={{ $item->id }}>
-          <button class="btn btn-outline-primary btn-sm m-1">срочно, торг</button>
-          <button class="btn btn-outline-success btn-sm m-1">продлить</button>            
-          <button class="btn btn-outline-success btn-sm m-1">поднять в топ</button>
-          <button class="btn btn-outline-secondary btn-sm m-1">покрасить</button>          
-          <button class="btn btn-outline-danger btn-sm m-1">удалить</button>
+          <button class="btn btn-outline-primary btn-sm m-1">Срочно, торг</button>
+          <button class="btn btn-outline-success btn-sm m-1">Продлить</button>            
+          <button class="btn btn-outline-success btn-sm m-1">В топ (vip)</button>
+          <button class="btn btn-outline-secondary btn-sm m-1">Покрасить</button>          
+          <button class="btn btn-outline-danger btn-sm m-1">Удалить</button>
         </div>
       </div>
   @endforeach 

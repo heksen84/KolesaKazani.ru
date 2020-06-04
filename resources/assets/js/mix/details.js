@@ -46,7 +46,7 @@ $( document ).ready(function() {
         });		
     });
 
-    $("#makeExtend").click(function(item) {
+    $("#prodlit").click(function(item) {
         $.ajax({
             url: "/objavlenie/makeExtend/"+window.advert_id+"/prodlit",
             type: "POST",
