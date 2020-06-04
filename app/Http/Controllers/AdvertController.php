@@ -518,7 +518,7 @@ class AdvertController extends Controller {
 
                                 if ($adex->count()>0) {
                                         AdExtend::find($adex[0]->id)->update(['srochno_torg' => true]);
-                                        // обновить startDate-finishDate в adverts                                
+                                        // обновить finishDate в adverts                                
                                 }
                                 else {                                      
                                         $adex = new AdExtend();
@@ -530,7 +530,7 @@ class AdvertController extends Controller {
                                         $adex->startDate = \Carbon\Carbon::now()->toDateTimeString();
                                         $adex->finishDate = \Carbon\Carbon::now()->add(7, 'day')->toDateTimeString();                                                          
                                         $adex->save();
-                                        // обновить startDate-finishDate в adverts
+                                        // обновить finishDate в adverts
                                 }
                         
                         break;
@@ -540,6 +540,27 @@ class AdvertController extends Controller {
                         break;
                         }
                         case "makePaint": {
+
+                                $adex = AdExtend::select("id")->where("advert_id", "=", $advert_id)->limit(1)->get();
+
+                                \Debugbar::info("count: ".$adex->count());
+
+                                if ($adex->count()>0) {
+                                        AdExtend::find($adex[0]->id)->update(['color' => true]);
+                                        // обновить finishDate в adverts                                
+                                }
+                                else {                                      
+                                        $adex = new AdExtend();
+                                        $adex->advert_id = $advert_id;
+                                        $adex->srochno_torg = false;
+                                        $adex->v_top = false;
+                                        $adex->color = true;
+                                        $adex->price = 500; // default                                
+                                        $adex->startDate = \Carbon\Carbon::now()->toDateTimeString();
+                                        $adex->finishDate = \Carbon\Carbon::now()->add(7, 'day')->toDateTimeString();                                                          
+                                        $adex->save();
+                                        // обновить finishDate в adverts
+                                }
                         
                         break;
                         }
@@ -547,7 +568,6 @@ class AdvertController extends Controller {
 
                 \Debugbar::info($adv_type);
                                 
-
                 return response()->json([ "result" => "success", "msg" => "готово" ]);  
         }
         
