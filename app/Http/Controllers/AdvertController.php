@@ -445,8 +445,6 @@ class AdvertController extends Controller {
                 //$images = Images::select(DB::raw( "concat('".\Common::getImagesPath()."/normal/', name) AS name" ))->where("advert_id", $id)->get();
                 $images = Images::select(DB::raw( "concat('".\Common::getImagesPath()."/normal/', name) AS name" ))->where("advert_id", $id)->get();
 
-                //\Storage::disk('s3')->url($name)
-
                 \Debugbar::info($advert);
                 \Debugbar::info($images);
         
@@ -456,7 +454,10 @@ class AdvertController extends Controller {
                 ->with( "description", $advert[0]->title )
                 ->with( "keywords", $advert[0]->title)                
                 ->with( "advert", $advert[0])                
-                ->with( "images", $images);
+                ->with( "images", $images)
+                ->with( "vip_price", \Common::getVipPrice())
+                ->with( "srochno_torg_price", \Common::getSrochnoTorgPrice())
+                ->with( "color_price", \Common::getColorPrice());
         }            
 
         // удалить объявление

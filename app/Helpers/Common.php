@@ -11,4 +11,16 @@ class Common {
 
     }
 
+    public static function getVipPrice() {
+	return 100;
+    }
+
+    public static function getSrochnoTorgPrice() {
+	return 200;
+    }
+
+    public static function getColorPrice() {
+	return 300;
+    }
+
 }
