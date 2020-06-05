@@ -306,14 +306,14 @@
     </script>
   </div>
 
-  <div class="row mt-5">
+<!--  <div class="row mt-5">
    <div class="col text-right">
     <div style="letter-spacing:2px"><b style="font-weight:600">ИЛЬБО</b> в соц. сетях:</div>
      <a href="https://vk.com"><img src="{{ asset('images/social/icon_vkcom.png') }}"></img></a>
      <a href="https://instagram.com"><img src="{{ asset('images/social/icon_instagram.png') }}"></img></a>
      <a href="https://facebook.com"><img src="{{ asset('images/social/icon_facebook.png') }}"></img></a>
     </div>
-  </div>  
+  </div> -->
 
   <div class="row mt-2">
     <div id="footer"><a href="/advert" class="underline_link">Реклама</a> | <a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a></div>
