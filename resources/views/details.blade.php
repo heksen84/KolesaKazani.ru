@@ -24,9 +24,9 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body"><p></p></div>
+      <div class="modal-body"><p style="font-size:18px"></p></div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Продолжить</button>
+        <button type="button" class="btn btn-primary" id="continueBilling">Продолжить</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
       </div>
     </div>

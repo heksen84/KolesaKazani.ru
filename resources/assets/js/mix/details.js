@@ -30,9 +30,14 @@ $( document ).ready(function() {
     $("#makeVip").click(function(item) {
         
         $(".modal-title").text("В топ [VIP]");
-        $(".modal-body p").text("Некий текст");        
+        $(".modal-body p").text("Ссылку на ваше объявление увидят все посетители сайта. Она будет первой в горячих предложениях, пока кто-либо не займет это место.");        
+        $("#billingModalDialog").modal("show");
+        $("#continueBilling").off().click(function(item) {
+            alert("1")
+        });
+        
 
-        $("#billingModalDialog").modal("show"); // отобразить окно
+
 	/*	$.ajax({
             url: "/objavlenie/makeExtend/"+window.advert_id+"/makeVip",
             type: "POST",
@@ -45,9 +50,12 @@ $( document ).ready(function() {
     $("#makeTorg").click(function(item) {
         
         $(".modal-title").text("Срочно, торг");
-        $(".modal-body p").text("Некий текст");        
+        $(".modal-body p").text("Ваше объявление украсит флажок со словами «Срочно, торг».");        
+        $("#billingModalDialog").modal("show");
+        $("#continueBilling").off().click(function(item) {
+            alert("2")
+        });
 
-        $("#billingModalDialog").modal("show"); // отобразить окно
         /*$.ajax({
             url: "/objavlenie/makeExtend/"+window.advert_id+"/srochno_torg",
             type: "POST",
@@ -60,9 +68,12 @@ $( document ).ready(function() {
     $("#makePaint").click(function(item) {
 
         $(".modal-title").text("Выделить");
-        $(".modal-body p").text("Некий текст");        
+        $(".modal-body p").text("Цветное объявление намного заметнее в общем списке.");        
+        $("#billingModalDialog").modal("show");
+        $("#continueBilling").off().click(function(item) {
+            alert("3")
+        });
 
-        $("#billingModalDialog").modal("show"); // отобразить окно
         /*$.ajax({
             url: "/objavlenie/makeExtend/"+window.advert_id+"/makePaint",
             type: "POST",
