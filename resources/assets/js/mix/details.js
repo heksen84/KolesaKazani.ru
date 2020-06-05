@@ -23,47 +23,65 @@ function initMaps() {
 // document ready
 $( document ).ready(function() {	         
     
-    ymaps.ready(initMaps);        
+    ymaps.ready(initMaps);
+
     $("#carousel").carousel();
 
     $("#makeVip").click(function(item) {
-		$.ajax({
+        
+        $(".modal-title").text("В топ [VIP]");
+        $(".modal-body p").text("Некий текст");        
+
+        $("#billingModalDialog").modal("show"); // отобразить окно
+	/*	$.ajax({
             url: "/objavlenie/makeExtend/"+window.advert_id+"/makeVip",
             type: "POST",
             data: {"_token": $('meta[name="csrf-token"]').attr('content')},
             success: function (response) {                
             }
-        });
+        });*/
     });
 
     $("#makeTorg").click(function(item) {
-        $.ajax({
+        
+        $(".modal-title").text("Срочно, торг");
+        $(".modal-body p").text("Некий текст");        
+
+        $("#billingModalDialog").modal("show"); // отобразить окно
+        /*$.ajax({
             url: "/objavlenie/makeExtend/"+window.advert_id+"/srochno_torg",
             type: "POST",
             data: {"_token": $('meta[name="csrf-token"]').attr('content')},
             success: function (response) {                
             }
-        });		
-    });
-
-    $("#prodlit").click(function(item) {
-        $.ajax({
-            url: "/objavlenie/makeExtend/"+window.advert_id+"/prodlit",
-            type: "POST",
-            data: {"_token": $('meta[name="csrf-token"]').attr('content')},
-            success: function (response) {                
-            }
-        });        
-    });
+        });*/
+    });    
 
     $("#makePaint").click(function(item) {
-        $.ajax({
+
+        $(".modal-title").text("Выделить");
+        $(".modal-body p").text("Некий текст");        
+
+        $("#billingModalDialog").modal("show"); // отобразить окно
+        /*$.ajax({
             url: "/objavlenie/makeExtend/"+window.advert_id+"/makePaint",
             type: "POST",
             data: {"_token": $('meta[name="csrf-token"]').attr('content')},
             success: function (response) {                
             }
-        });        
+        });*/
+    });
+
+    $("#prodlit").click(function(item) {
+
+        $("#billingModalDialog").modal("show"); // отобразить окно
+        /*$.ajax({
+            url: "/objavlenie/makeExtend/"+window.advert_id+"/prodlit",
+            type: "POST",
+            data: {"_token": $('meta[name="csrf-token"]').attr('content')},
+            success: function (response) {                
+            }
+        });        */
     });
 	
 });
