@@ -26,7 +26,7 @@
       </div>
       <div class="modal-body">
         <p></p>        
-        <h5 class="text-center"></h5>
+        <h5 class="text-right"></h5>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="continueBilling">Продолжить</button>
