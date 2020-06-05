@@ -36,8 +36,6 @@ $( document ).ready(function() {
             alert("1")
         });
         
-
-
 	/*	$.ajax({
             url: "/objavlenie/makeExtend/"+window.advert_id+"/makeVip",
             type: "POST",
