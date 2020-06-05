@@ -24,7 +24,10 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body"><p></p></div>
+      <div class="modal-body">
+        <p></p>        
+        <h5 class="text-center"></h5>
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="continueBilling">Продолжить</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
@@ -81,11 +84,11 @@
                   @if (count($images)>1)
                     <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Previous</span>
+                      <span class="sr-only">Назад</span>
                     </a>                  
                     <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Next</span>
+                      <span class="sr-only">Вперёд</span>
                     </a>
                   @endif
               </div>
