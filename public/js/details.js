@@ -17850,7 +17850,9 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(function () {
     });
 });
 
+// ---------------------------------------------------------
 // обработчик клика
+// ---------------------------------------------------------
 document.body.addEventListener('click', function (evt) {
 
     // закрыть страницу

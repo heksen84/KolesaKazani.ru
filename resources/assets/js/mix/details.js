@@ -86,7 +86,9 @@ $( document ).ready(function() {
 	
 });
 
+// ---------------------------------------------------------
 // обработчик клика
+// ---------------------------------------------------------
 document.body.addEventListener('click', function (evt) {
 
 	// закрыть страницу
@@ -102,8 +104,7 @@ document.body.addEventListener('click', function (evt) {
 
 		if (xhr.status != 200)
 			alert( xhr.status + ': ' + xhr.statusText );		
-			else 
-			{			
+			else {			
 				document.getElementById("numberButton").style.display = "none";
 				document.getElementById("phone-number").style.display = "block";
 				document.getElementById("phone-number").innerHTML = "<b>тел: <a href='tel:+7"+JSON.parse(xhr.responseText)[0].phone+"'>+7 "+JSON.parse(xhr.responseText)[0].phone+"</a></b><br>Скажите продавцу, что нашли это объявление на сайте объявлений <b>Ильбо</b>.";
