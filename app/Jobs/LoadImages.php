@@ -10,7 +10,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Intervention\Image\ImageManagerStatic as Image;
-use App\Images;
 
 // https://laracasts.com/discuss/channels/laravel/saving-an-intervention-image-instance-into-amazon-s3?page=1
 
@@ -24,16 +23,16 @@ use App\Images;
 class LoadImages implements ShouldQueue {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $advert_id;
-    protected $request;
+    private $images;    
+    private $advert_id;    
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Request $request, $advert_id) {
-        $this->request = $request;
+    public function __construct($images, $advert_id) {
+        $this->images = $images;
         $this->advert_id = $advert_id;
     }
 
@@ -44,26 +43,29 @@ class LoadImages implements ShouldQueue {
      */
     public function handle() {
 
-        if ($this->request->images) {
+        foreach($this->images as $img) {                
 
-            // бегу по картинкам
-            foreach($this->request->file("images") as $img) {
-                
-                $image = Image::make($img->getRealPath());                
-                $image->fit(1024, 768);                                
-                $name = time()."_".$img->getClientOriginalName();                                
-                
-                \Storage::disk('s3')->put("images/normal/".$name, $image->stream()->detach());
+            //$image->save($img["path"].$img["name"]);
+            //$image = Image::make($img["path"].$img["name"]);
+            
+            // внечале сохраняю
+            //$image = Image::make($img["real_path"]);            
+            //$image->save($img["path"].$img["name"]);
 
-                $image->fit(250, 250);                
-                \Storage::disk('s3')->put("images/small/".$name, $image->stream()->detach());
-                
-                // добавляю запись в базу       
-                $imageRec = new Images();            
-                $imageRec->advert_id = $this->advert_id;
-                $imageRec->name = $name;                            
-                $imageRec->save();
+            // потом беру из локальной папки и преобразую
+            $image = Image::make($img["path"].$img["name"]);            
+            
+            if ($img["type"]=="normal") {
+                $image->fit(1024, 768);
+               \Storage::disk('s3')->put("images/normal/".$img["name"], $image->stream()->detach());
             }
+
+            if ($img["type"]=="small") {
+                $image->fit(250, 250);                
+                \Storage::disk('s3')->put("images/small/".$img["name"], $image->stream()->detach());
+            }                        
+                            
         }
+        
     }
 }

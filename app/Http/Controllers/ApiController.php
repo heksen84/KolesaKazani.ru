@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\ImageManagerStatic as Image;
 use App\Jobs\LoadImages;
 use App\Urls;
 use App\SubCats;
@@ -12,6 +13,7 @@ use App\Regions;
 use App\Places;
 use App\Transport;
 use App\RealEstate;
+use App\Images;
 use App\Helpers\ObsceneCensorRus;
 use App\Helpers\Sitemap;
 use App\Adverts;
@@ -389,9 +391,39 @@ class ApiController extends Controller {
             $urls->url = $advert->id;
             $urls->advert_id = $advert->id;
             $urls->save();
-                         
+        
+
+            $images = [];
+
+            foreach($request->file("images") as $img) {
+
+                // формирую рандомное имя
+                $filename = str_random(32).".".$img->getClientOriginalExtension();
+                
+                // узнаю реальный путь к файлу
+                $image = Image::make($img->getRealPath());
+                
+                $normalFileNamePath = storage_path().'/app/images/normal/';                
+                $image->save($normalFileNamePath.$filename);
+                //$record = array("path"=>$normalFileNamePath, "name"=>$filename, "type"=>"normal", "real_path"=>$img->getRealPath());
+                $record = array("path"=>$normalFileNamePath, "name"=>$filename, "type"=>"normal");
+                array_push($images, $record);
+                
+                $smallFileNamePath = storage_path().'/app/images/small/';
+                $image->save($smallFileNamePath.$filename);
+                //$record = array("path"=>$smallFileNamePath, "name"=>$filename, "type"=>"small", "real_path"=>$img->getRealPath());
+                $record = array("path"=>$smallFileNamePath, "name"=>$filename, "type"=>"small");
+                array_push($images, $record);
+                
+                $imagesTable = new Images();
+                $imagesTable->advert_id = $advert->id;
+                $imagesTable->name = $filename;                
+                $imagesTable->save();
+
+            }             
+                                                             
             // Сохраняю картинки        
-            //LoadImages::dispatch($request, $advert->id);            
+            LoadImages::dispatch($images, $advert->id);            
             Sitemap::addUrl($urls->url);
 
             return $advert->id;
