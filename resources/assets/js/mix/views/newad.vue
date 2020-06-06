@@ -674,8 +674,10 @@ onSubmit(evt) {
   // ------------------------------------------------------------------------------------------------------------------------
   // Размещение объявления
   // ------------------------------------------------------------------------------------------------------------------------
-	axios.post("/api/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {			              
 
+	axios.post("/api/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {    
+
+    // ошибка
     if (response.data.result=="error") {
       $("#advert_loading_block").hide();
        this.dialogTitleMsg = response.data.title;
@@ -683,14 +685,17 @@ onSubmit(evt) {
        console.error(response.data.msg);
        this.serviceError();
     }
+    // объявление размещено
 		else {
       $("#advert_loading_block").hide();
-      $("#AdPostedModal").modal("show");		  
-    }		
+      $("#AdPostedModal").modal("show");
+    }
+    // исключение - ошибка		
     }).catch(error => {
       $("#advert_loading_block").hide();
 		  this.serviceError();
-	  })
+    })
+
   },
 
   // -------------------------------------

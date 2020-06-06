@@ -10,6 +10,7 @@ use App\Regions;
 use App\DealType;
 use App\Adverts;
 use App\Images;
+use Carbon\Carbon;
 
 
 class AdvertController extends Controller {
@@ -442,8 +443,8 @@ class AdvertController extends Controller {
                   return view("errors/404");
                 }
                         
-                //$images = Images::select(DB::raw( "concat('".\Common::getImagesPath()."/normal/', name) AS name" ))->where("advert_id", $id)->get();
-                $images = Images::select(DB::raw( "concat('".\Common::getImagesPath()."/normal/', name) AS name" ))->where("advert_id", $id)->get();
+                //$images = Images::select(DB::raw( "concat('".Common::getImagesPath()."/normal/', name) AS name" ))->where("advert_id", $id)->get();
+                $images = Images::select(DB::raw( "concat('".Common::getImagesPath()."/normal/', name) AS name" ))->where("advert_id", $id)->get();
 
                 \Debugbar::info($advert);
                 \Debugbar::info($images);
@@ -455,9 +456,9 @@ class AdvertController extends Controller {
                 ->with( "keywords", $advert[0]->title)                
                 ->with( "advert", $advert[0])                
                 ->with( "images", $images)
-                ->with( "vip_price", \Common::getVipPrice())
-                ->with( "srochno_torg_price", \Common::getSrochnoTorgPrice())
-                ->with( "color_price", \Common::getColorPrice());
+                ->with( "vip_price", Common::getVipPrice())
+                ->with( "srochno_torg_price", Common::getSrochnoTorgPrice())
+                ->with( "color_price", Common::getColorPrice());
         }            
 
         // удалить объявление
@@ -486,11 +487,11 @@ class AdvertController extends Controller {
                         foreach($images as $image) {
                                 \Debugbar::info($image->name);
                                 
-                                $small_image = \Common::getImagesPath()."/small/".$image->name;                        
+                                $small_image = Common::getImagesPath()."/small/".$image->name;                        
                                 if (file_exists($small_image))
                                         unlink($small_image);                                
 
-                                $normal_image = \Common::getImagesPath()."/normal/".$image->name;                        
+                                $normal_image = Common::getImagesPath()."/normal/".$image->name;                        
                                 if (file_exists($normal_image))
                                         unlink($normal_image);
                         }
@@ -518,7 +519,7 @@ class AdvertController extends Controller {
 
                                 if ($adex->count()>0) {
                                         AdExtend::find($adex[0]->id)->update(['srochno_torg' => true]);
-                                        Adverts::where("id", '=', $advert_id)->update(['finishDate' => \Carbon\Carbon::now()->add(7, 'day')->toDateTimeString()]); // обновляю finishDate в adverts
+                                        Adverts::where("id", '=', $advert_id)->update(['finishDate' => Carbon::now()->add(7, 'day')->toDateTimeString()]); // обновляю finishDate в adverts
                                 }
                                 else {                                      
                                         $adex = new AdExtend();
@@ -527,12 +528,12 @@ class AdvertController extends Controller {
                                         $adex->v_top = false;
                                         $adex->color = false;
                                         $adex->price = 500; // default                                
-                                        $adex->startDate = \Carbon\Carbon::now()->toDateTimeString();
-                                        $adex->finishDate = \Carbon\Carbon::now()->add(7, 'day')->toDateTimeString();                                                          
+                                        $adex->startDate = Carbon::now()->toDateTimeString();
+                                        $adex->finishDate = Carbon::now()->add(7, 'day')->toDateTimeString();                                                          
                                         $adex->save();
 
                                         // обновляю finishDate в adverts
-                                        Adverts::where("id", '=', $advert_id)->update(['finishDate' => \Carbon\Carbon::now()->add(7, 'day')->toDateTimeString()]);
+                                        Adverts::where("id", '=', $advert_id)->update(['finishDate' => Carbon::now()->add(7, 'day')->toDateTimeString()]);
                                 }
                         
                         break;
@@ -548,7 +549,7 @@ class AdvertController extends Controller {
 
                                 if ($adex->count()>0) {
                                         AdExtend::find($adex[0]->id)->update(['color' => true]);                                        
-                                        Adverts::where("id", '=', $advert_id)->update(['finishDate' => \Carbon\Carbon::now()->add(7, 'day')->toDateTimeString()]); // обновляю finishDate в adverts
+                                        Adverts::where("id", '=', $advert_id)->update(['finishDate' => Carbon::now()->add(7, 'day')->toDateTimeString()]); // обновляю finishDate в adverts
                                 }
                                 else {                                      
                                         $adex = new AdExtend();
@@ -557,12 +558,12 @@ class AdvertController extends Controller {
                                         $adex->v_top = false;
                                         $adex->color = true;
                                         $adex->price = 500; // default                                
-                                        $adex->startDate = \Carbon\Carbon::now()->toDateTimeString();
-                                        $adex->finishDate = \Carbon\Carbon::now()->add(7, 'day')->toDateTimeString();                                                          
+                                        $adex->startDate = Carbon::now()->toDateTimeString();
+                                        $adex->finishDate = Carbon::now()->add(7, 'day')->toDateTimeString();                                                          
                                         $adex->save();
                                         
                                         // обновляю finishDate в adverts
-                                        Adverts::where("id", '=', $advert_id)->update(['finishDate' => \Carbon\Carbon::now()->add(7, 'day')->toDateTimeString()]);
+                                        Adverts::where("id", '=', $advert_id)->update(['finishDate' => Carbon::now()->add(7, 'day')->toDateTimeString()]);
                                 }
                         
                         break;

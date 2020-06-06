@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Helpers\Common;
 use App\Categories;
 use App\SubCats;
 use App\Regions;
@@ -87,7 +88,7 @@ class ResultsController extends Controller {
             DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id LIMIT 1) as srochno_torg"),			
 			DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id LIMIT 1) as v_top"),			
 			DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id LIMIT 1) as color"), 
-            DB::raw("concat('".\Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
+            DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
         ))        
         ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
         ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
@@ -195,7 +196,7 @@ class ResultsController extends Controller {
             DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id LIMIT 1) as srochno_torg"),			
 			DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id LIMIT 1) as v_top"),			
 			DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id LIMIT 1) as color"),			
-            DB::raw("concat('".\Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
+            DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
             ))
             ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
             ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
@@ -256,7 +257,7 @@ class ResultsController extends Controller {
             DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id LIMIT 1) as srochno_torg"),			
 			DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id LIMIT 1) as v_top"),			
 			DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id LIMIT 1) as color"),			
-            DB::raw("concat('".\Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
+            DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
          ))
         ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
         ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
@@ -319,7 +320,7 @@ class ResultsController extends Controller {
             DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id LIMIT 1) as srochno_torg"),			
 			DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id LIMIT 1) as v_top"),			
 			DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id LIMIT 1) as color"),			
-            DB::raw("concat('".\Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
+            DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
         ))
         ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
         ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                

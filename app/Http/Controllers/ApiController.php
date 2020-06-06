@@ -374,8 +374,8 @@ class ApiController extends Controller {
             
             $advert->public = true; // публикую объявление сходу
 
-	        $advert->startDate = \Carbon\Carbon::now()->toDateTimeString();
-            $advert->finishDate = \Carbon\Carbon::now()->add(30, 'day')->toDateTimeString(); // добавляю 30 дней
+	        $advert->startDate = Carbon::now()->toDateTimeString();
+            $advert->finishDate = Carbon::now()->add(30, 'day')->toDateTimeString(); // добавляю 30 дней
 
             $advert->save();  // СОХРАНЕНИЕ ОБЪЯВЛЕНИЯ
             
@@ -391,9 +391,9 @@ class ApiController extends Controller {
             $urls->save();
                          
             // Сохраняю картинки        
-            LoadImages::dispatch($request, $advert->id);
-            
+            //LoadImages::dispatch($request, $advert->id);            
             Sitemap::addUrl($urls->url);
+
             return $advert->id;
         }		
         
