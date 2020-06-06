@@ -28,24 +28,20 @@ $( document ).ready(function() {
     $("#carousel").carousel();    
 
     $("#makeVip").click(function(item) {
-        
-        
+                
         $(".modal-title").text("В топ [VIP]");
         $(".modal-body p").text("Ссылку на ваше объявление увидят все посетители сайта. Она будет первой в горячих предложениях, пока кто-либо не займет это место.");
         $(".modal-body h5").text(window.vip_price+" ₸");
-
         $("#billingModalDialog").modal("show");
         $("#continueBilling").off().click(function(item) {
-            alert("1")
-        });
-        
-	/*	$.ajax({
-            url: "/objavlenie/makeExtend/"+window.advert_id+"/makeVip",
-            type: "POST",
-            data: {"_token": $('meta[name="csrf-token"]').attr('content')},
-            success: function (response) {                
-            }
-        });*/
+        	$.ajax({
+                url: "/objavlenie/makeExtend/"+window.advert_id+"/makeVip",
+                type: "POST",
+                data: {"_token": $('meta[name="csrf-token"]').attr('content')},
+                success: function (response) {                
+                }
+            });            
+        });        	
     });
 
     
@@ -54,19 +50,16 @@ $( document ).ready(function() {
         $(".modal-title").text("Срочно, торг");
         $(".modal-body p").text("Ваше объявление украсит флажок со словами «Срочно, торг».");        
         $(".modal-body h5").text(window.srochno_torg_price+" ₸");
-
         $("#billingModalDialog").modal("show");
         $("#continueBilling").off().click(function(item) {
-            alert("2")
-        });
-
-        /*$.ajax({
-            url: "/objavlenie/makeExtend/"+window.advert_id+"/srochno_torg",
-            type: "POST",
-            data: {"_token": $('meta[name="csrf-token"]').attr('content')},
-            success: function (response) {                
-            }
-        });*/
+            $.ajax({
+                url: "/objavlenie/makeExtend/"+window.advert_id+"/srochno_torg",
+                type: "POST",
+                data: {"_token": $('meta[name="csrf-token"]').attr('content')},
+                success: function (response) {                
+                }
+            });           
+        });        
     });    
 
     $("#makePaint").click(function(item) {
@@ -74,19 +67,16 @@ $( document ).ready(function() {
         $(".modal-title").text("Выделить");
         $(".modal-body p").text("Цветное объявление намного заметнее в общем списке.");
         $(".modal-body h5").text(window.color_price+" ₸");
-
         $("#billingModalDialog").modal("show");
         $("#continueBilling").off().click(function(item) {
-            alert("3")
-        });
-
-        /*$.ajax({
-            url: "/objavlenie/makeExtend/"+window.advert_id+"/makePaint",
-            type: "POST",
-            data: {"_token": $('meta[name="csrf-token"]').attr('content')},
-            success: function (response) {                
-            }
-        });*/
+            $.ajax({
+                url: "/objavlenie/makeExtend/"+window.advert_id+"/makePaint",
+                type: "POST",
+                data: {"_token": $('meta[name="csrf-token"]').attr('content')},
+                success: function (response) {                
+                }
+            });
+        });        
     });
 
     $("#prodlit").click(function(item) {
