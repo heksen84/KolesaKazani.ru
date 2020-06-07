@@ -10,6 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\DB;
 
 // https://laracasts.com/discuss/channels/laravel/saving-an-intervention-image-instance-into-amazon-s3?page=1
 
@@ -63,7 +64,10 @@ class LoadImages implements ShouldQueue {
             if ($img["type"]=="small") {
                 $image->fit(250, 250);                
                 \Storage::disk('s3')->put("images/small/".$img["name"], $image->stream()->detach());
-            }                        
+            } 
+            
+            $data=array('advert_id'=>123, "name"=>"123123123");
+            DB::table('images')->insert($data);
                             
         }
         

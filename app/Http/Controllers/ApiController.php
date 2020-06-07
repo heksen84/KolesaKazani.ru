@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;  
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Jobs\LoadImages;
 use App\Urls;
@@ -19,7 +20,6 @@ use App\Helpers\Sitemap;
 use App\Adverts;
 use Carbon\Carbon;
 use Validator;
-use DB;
 
 class ApiController extends Controller {
 
@@ -401,24 +401,23 @@ class ApiController extends Controller {
                 $filename = str_random(32).".".$img->getClientOriginalExtension();
                 
                 // узнаю реальный путь к файлу
-                $image = Image::make($img->getRealPath());
-                
+                $image = Image::make($img->getRealPath());                
                 $normalFileNamePath = storage_path().'/app/images/normal/';                
-                $image->save($normalFileNamePath.$filename);
-                //$record = array("path"=>$normalFileNamePath, "name"=>$filename, "type"=>"normal", "real_path"=>$img->getRealPath());
+                $image->save($normalFileNamePath.$filename);                
                 $record = array("path"=>$normalFileNamePath, "name"=>$filename, "type"=>"normal");
-                array_push($images, $record);
-                
+                array_push($images, $record);                
                 $smallFileNamePath = storage_path().'/app/images/small/';
-                $image->save($smallFileNamePath.$filename);
-                //$record = array("path"=>$smallFileNamePath, "name"=>$filename, "type"=>"small", "real_path"=>$img->getRealPath());
+                $image->save($smallFileNamePath.$filename);                
                 $record = array("path"=>$smallFileNamePath, "name"=>$filename, "type"=>"small");
                 array_push($images, $record);
                 
-                $imagesTable = new Images();
+                /*$imagesTable = new Images();
                 $imagesTable->advert_id = $advert->id;
                 $imagesTable->name = $filename;                
-                $imagesTable->save();
+                $imagesTable->save();*/
+
+                $data=array('advert_id'=>$advert->id, "name"=>$filename);
+                DB::table('images')->insert($data);
 
             }             
                                                              
