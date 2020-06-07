@@ -4,13 +4,16 @@ namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\File;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\DB;
+use App\Images;
 
 // https://laracasts.com/discuss/channels/laravel/saving-an-intervention-image-instance-into-amazon-s3?page=1
 
@@ -51,13 +54,14 @@ class LoadImages implements ShouldQueue {
             
             if ($img["type"]=="normal") {
                 $image->fit(1024, 768);
-               \Storage::disk('s3')->put("images/normal/".$img["name"], $image->stream()->detach());
+                Storage::disk('s3')->put("images/normal/".$img["name"], $image->stream()->detach());                    
             }
 
             if ($img["type"]=="small") {
                 $image->fit(250, 250);                
-                \Storage::disk('s3')->put("images/small/".$img["name"], $image->stream()->detach());
-            }                                                   
+                Storage::disk('s3')->put("images/small/".$img["name"], $image->stream()->detach());                
+            }                                       
         }        
     }
+
 }

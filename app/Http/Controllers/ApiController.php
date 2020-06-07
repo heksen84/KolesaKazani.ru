@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;  
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Jobs\LoadImages;
+use App\Jobs\DeleteTempImages;
 use App\Urls;
 use App\SubCats;
 use App\CarMark;
@@ -411,18 +412,17 @@ class ApiController extends Controller {
                 $record = array("path"=>$smallFileNamePath, "name"=>$filename, "type"=>"small");
                 array_push($images, $record);
                 
-                /*$imagesTable = new Images();
-                $imagesTable->advert_id = $advert->id;
-                $imagesTable->name = $filename;                
-                $imagesTable->save();*/
-
-                $data=array('advert_id'=>$advert->id, "name"=>$filename);
-                DB::table('images')->insert($data);
+                // добавляю данные в таблицу
+                Images::insert(array('advert_id'=>$advert->id, "name"=>$filename));
 
             }             
                                                              
             // Сохраняю картинки        
-            LoadImages::dispatch($images, $advert->id);            
+            LoadImages::dispatch($images, $advert->id);
+            
+            // Удаляю временные картинки        
+            DeleteTempImages::dispatch($images);
+            
             Sitemap::addUrl($urls->url);
 
             return $advert->id;
