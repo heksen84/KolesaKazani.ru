@@ -33,7 +33,7 @@ $( document ).ready(function() {
     // -------------------------------------------------------------
     // оплата
     // -------------------------------------------------------------
-    $(".actions button").click(function(item) {         
+    /*$(".actions button").click(function(item) {         
                         
         let title_text="";
         let desc="";
@@ -79,6 +79,10 @@ $( document ).ready(function() {
             $("#payment_window").modal("show");
         }
                 
-    });
+    });*/
 
+    $(".prodlit").click(function(item) {
+        alert("!");
+    });
+    
 });
