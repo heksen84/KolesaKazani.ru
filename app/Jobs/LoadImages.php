@@ -45,14 +45,7 @@ class LoadImages implements ShouldQueue {
     public function handle() {
 
         foreach($this->images as $img) {                
-
-            //$image->save($img["path"].$img["name"]);
-            //$image = Image::make($img["path"].$img["name"]);
             
-            // внечале сохраняю
-            //$image = Image::make($img["real_path"]);            
-            //$image->save($img["path"].$img["name"]);
-
             // потом беру из локальной папки и преобразую
             $image = Image::make($img["path"].$img["name"]);            
             
@@ -64,12 +57,7 @@ class LoadImages implements ShouldQueue {
             if ($img["type"]=="small") {
                 $image->fit(250, 250);                
                 \Storage::disk('s3')->put("images/small/".$img["name"], $image->stream()->detach());
-            } 
-            
-            $data=array('advert_id'=>123, "name"=>"123123123");
-            DB::table('images')->insert($data);
-                            
-        }
-        
+            }                                                   
+        }        
     }
 }
