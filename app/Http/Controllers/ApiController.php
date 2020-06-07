@@ -392,7 +392,7 @@ class ApiController extends Controller {
             $urls->advert_id = $advert->id;
             $urls->save();
         
-
+            // массив имён и путей изображений
             $images = [];
 
             foreach($request->file("images") as $img) {
