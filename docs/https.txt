@@ -1,0 +1,4 @@
+// получить сертификат
+certbot certonly --webroot --agree-tos --email heksen84@yandex.ru --webroot-path /var/www/flix -d ilbo.kz
+// переполучить сертификат
+certbot renew

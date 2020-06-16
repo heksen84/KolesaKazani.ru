@@ -1,0 +1,1 @@
+passwd user_name (current: ftp_user)
