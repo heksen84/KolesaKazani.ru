@@ -98,8 +98,8 @@
       </div>
     </div>
   </div>
-    
-<!--  <div style="float:left" class="index-side-advert ml-4 mt-2">
+
+<div style="float:left" class="index-side-advert ml-4 mt-2">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <ins class="adsbygoogle"
      style="display:inline;width:150px;height:600px"
@@ -155,11 +155,14 @@
      data-ad-slot="2249357572"></ins>
     <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-
-  </div>  -->
+    </script>    
+  </div>
   
   <div class="container-fluid container1 mt-2" id="index_page">
+  
+  @if (config('app.debug'))
+   <p style="font-size:13px;background:yellow;width:105px;padding:5px;border:1px solid grey;border-radius:3px">режим отладки</p>
+  @endif
 
     <div class="row">    
       <div class="margin-auto" id="login_register_col">
@@ -243,28 +246,6 @@
     </div>
   <br>
   
-
-<!--  @if (count($vipAdverts)>0)
-  <div class="row text-center">
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">      
-      <div class="titleAdverts">vip объявления</div>  
-    </div>
-      @foreach($vipAdverts as $advert)      
-      <div class="col-sm-12 col-md-3 col-lg-3 col-xl-2 m-3">      
-      <a href="objavlenie/show/{{ $advert->id }}" class="black">
-        <div class="card green-background" style="width:220px;height:365px;margin:auto">
-        <div class="label-torg">срочно, торг</div>
-          <img class="card-img-top" src="{{ $advert->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">          
-            <div class="card-title-text">{{ $advert->title }}</div>
-            <div class="card-location-text">{{ $advert->region_name }}<br>{{ $advert->city_name }}</div>
-            <b class="card-price-value">{{ $advert->price }} ₸</b>
-        </div>
-      </a>
-      </div>      
-      @endforeach
-  </div>
-  @endif-->
-
   @if (count($newAdverts)>0)
   <div class="row text-center">
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">      
