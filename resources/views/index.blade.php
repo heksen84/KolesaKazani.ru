@@ -99,6 +99,7 @@
     </div>
   </div>
 
+<!--
 <div style="float:left" class="index-side-advert ml-4 mt-2">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <ins class="adsbygoogle"
@@ -156,7 +157,7 @@
     <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
     </script>    
-  </div>
+  </div>-->
   
   <div class="container-fluid container1 mt-2" id="index_page">
   
@@ -274,9 +275,8 @@
   @endif
 
   <!-- РЕКЛАМА -->
-  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-5">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <!-- Главная страница (рекоменд.) -->
+<!--  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-5">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>  
   <ins class="adsbygoogle"
      style="display:inline-block;width:100%;height:130px"
      data-full-width-responsive="true"
@@ -285,7 +285,7 @@
     <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
-  </div>
+  </div>-->
 
 <!--  <div class="row mt-5">
    <div class="col text-right">
