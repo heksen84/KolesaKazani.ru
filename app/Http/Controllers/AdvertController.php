@@ -92,8 +92,9 @@ class AdvertController extends Controller {
                                 \Debugbar::info("count: ".$adex->count());
 
                                 if ($adex->count()>0) {
-                                        AdExtend::find($adex[0]->id)->update(['srochno_torg' => true]);
-                                        Adverts::where("id", '=', $advert_id)->update(['finishDate' => Carbon::now()->add(7, 'day')->toDateTimeString()]); // обновляю finishDate в adverts
+                                        $plusDate = Carbon::now()->add(7, 'day')->toDateTimeString();
+                                        AdExtend::find($adex[0]->id)->update(['srochno_torg' => true, 'finishDate' => $plusDate]);
+                                        Adverts::where("id", '=', $advert_id)->update(['finishDate' => $plusDate]); // обновляю finishDate в adverts
                                 }
                                 else {                                      
                                         $adex = new AdExtend();
@@ -112,9 +113,8 @@ class AdvertController extends Controller {
                         
                         break;
                         }
-                        case "prodlit": {
-                        
-                        break;
+                        case "prodlit": {                        
+                                break;
                         }
                         case "makePaint": {
 
@@ -122,8 +122,9 @@ class AdvertController extends Controller {
                                 \Debugbar::info("count: ".$adex->count());
 
                                 if ($adex->count()>0) {
-                                        AdExtend::find($adex[0]->id)->update(['color' => true]);                                        
-                                        Adverts::where("id", '=', $advert_id)->update(['finishDate' => Carbon::now()->add(7, 'day')->toDateTimeString()]); // обновляю finishDate в adverts
+                                        $plusDate = Carbon::now()->add(7, 'day')->toDateTimeString();
+                                        AdExtend::find($adex[0]->id)->update(['color' => true, 'finishDate' => $plusDate]);                                        
+                                        Adverts::where("id", '=', $advert_id)->update(['finishDate' => $plusDate]); // обновляю finishDate в adverts
                                 }
                                 else {                                      
                                         $adex = new AdExtend();
