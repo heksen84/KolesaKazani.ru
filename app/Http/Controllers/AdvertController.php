@@ -92,11 +92,13 @@ class AdvertController extends Controller {
                                 \Debugbar::info("count: ".$adex->count());
 
                                 if ($adex->count()>0) {
+                                        \Debugbar::info("обновляю...");
                                         $plusDate = Carbon::now()->add(7, 'day')->toDateTimeString();
-                                        AdExtend::where("id", '=', $adex[0]->id)->where("srochno_torg", "=", true)->update(['finishDate' => $plusDate]);
+                                        AdExtend::where("advert_id", '=', $advert_id)->where("srochno_torg", "=", true)->update(['finishDate' => $plusDate]);
                                         Adverts::where("id", '=', $advert_id)->update(['finishDate' => $plusDate]); // обновляю finishDate в adverts
                                 }
                                 else {                                      
+                                        \Debugbar::info("создаю запись...");
                                         $adex = new AdExtend();
                                         $adex->advert_id = $advert_id;
                                         $adex->srochno_torg = true;
@@ -122,11 +124,13 @@ class AdvertController extends Controller {
                                 \Debugbar::info("count: ".$adex->count());
 
                                 if ($adex->count()>0) {
+                                        \Debugbar::info("обновляю...");
                                         $plusDate = Carbon::now()->add(7, 'day')->toDateTimeString();                                        
-                                        AdExtend::where("id", '=', $adex[0]->id)->where("color", "=", true)->update(['finishDate' => $plusDate]);
+                                        AdExtend::where("advert_id", '=', $advert_id)->where("color", "=", true)->update(['finishDate' => $plusDate]);
                                         Adverts::where("id", '=', $advert_id)->update(['finishDate' => $plusDate]); // обновляю finishDate в adverts
                                 }
                                 else {                                      
+                                        \Debugbar::info("создаю запись...");
                                         $adex = new AdExtend();
                                         $adex->advert_id = $advert_id;
                                         $adex->srochno_torg = false;
