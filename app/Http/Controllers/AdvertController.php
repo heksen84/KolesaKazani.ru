@@ -93,7 +93,7 @@ class AdvertController extends Controller {
 
                                 if ($adex->count()>0) {
                                         $plusDate = Carbon::now()->add(7, 'day')->toDateTimeString();
-                                        AdExtend::where("advert_id", '=', $adex[0]->id)->where("srochno_torg", "=", true)->update(['finishDate' => $plusDate]);
+                                        AdExtend::where("id", '=', $adex[0]->id)->where("srochno_torg", "=", true)->update(['finishDate' => $plusDate]);
                                         Adverts::where("id", '=', $advert_id)->update(['finishDate' => $plusDate]); // обновляю finishDate в adverts
                                 }
                                 else {                                      
@@ -123,7 +123,7 @@ class AdvertController extends Controller {
 
                                 if ($adex->count()>0) {
                                         $plusDate = Carbon::now()->add(7, 'day')->toDateTimeString();                                        
-                                        AdExtend::where("advert_id", '=', $adex[0]->id)->where("color", "=", true)->update(['finishDate' => $plusDate]);
+                                        AdExtend::where("id", '=', $adex[0]->id)->where("color", "=", true)->update(['finishDate' => $plusDate]);
                                         Adverts::where("id", '=', $advert_id)->update(['finishDate' => $plusDate]); // обновляю finishDate в adverts
                                 }
                                 else {                                      
