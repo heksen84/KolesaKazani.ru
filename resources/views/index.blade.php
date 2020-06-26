@@ -192,8 +192,8 @@
       <!-- компонент поиска по сайту -->
       <form action="/search" method="get">
         <input type="text" id="search_string" placeholder="поиск по объявлениям {{ $sklonResult }}" name="searchString" required/>
-        <input type="text" name="region" value="{{$urlRegion}}" hidden/>
-        <input type="text" name="place" value="{{$urlPlace}}" hidden/>
+        <input type="text" name="region" value="{{ $urlRegion }}" hidden/>
+        <input type="text" name="place" value="{{ $urlPlace }}" hidden/>
         <button id="button_search" type="submit" title="Найти что требуется">найти</button>
       </form>
 
