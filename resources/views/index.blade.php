@@ -161,9 +161,10 @@
   
   <div class="container-fluid container1 mt-2" id="index_page">
   
+  <!--
   @if (config('app.debug'))
    <p style="position:fixed;top:3px;left:3px;font-size:13px;background:yellow;width:105px;padding:5px;border:1px solid grey;border-radius:3px">режим отладки</p>
-  @endif
+  @endif-->
 
     <div class="row">    
       <div class="margin-auto" id="login_register_col">
