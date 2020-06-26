@@ -190,8 +190,8 @@
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 center">
         
       <!-- компонент поиска по сайту -->
-      <form>
-        <input type="text" id="search_string" placeholder="поиск по объявлениям {{ $sklonResult }}" required/>
+      <form action="/search" method="get">
+        <input type="text" id="search_string" placeholder="поиск по объявлениям {{ $sklonResult }}" name="searchString" required/>
         <button id="button_search" type="submit" title="Найти что требуется">найти</button>
       </form>
 
