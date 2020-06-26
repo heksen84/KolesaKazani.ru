@@ -169,6 +169,8 @@ class IndexController extends Controller {
 		return view("index")		
 		->with("locationName", $locationName)
 		->with("location", $location)
+		->with("urlRegion", $region)
+		->with("urlPlace", $place)
 		->with("categories", Categories::all())
 		->with("subcategories", json_decode($subcats, true))
 		->with("auth", Auth::user()?1:0)
