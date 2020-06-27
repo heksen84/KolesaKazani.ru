@@ -376,12 +376,9 @@ class ApiController extends Controller {
             }            
             
             $advert->public = true; // публикую объявление сходу
-
 	        $advert->startDate = Carbon::now()->toDateTimeString();
             $advert->finishDate = Carbon::now()->add(30, 'day')->toDateTimeString(); // добавляю 30 дней
-
-            $advert->save();  // СОХРАНЕНИЕ ОБЪЯВЛЕНИЯ
-            
+            $advert->save();  // СОХРАНЕНИЕ ОБЪЯВЛЕНИЯ            
             $urls = new Urls(); // Закидываю данные в таблицу urls для SEO
 
             // url sitemap
@@ -393,35 +390,34 @@ class ApiController extends Controller {
             $urls->advert_id = $advert->id;
             $urls->save();
         
-            // массив имён и путей изображений
-            $images = [];
+            \Debugbar::info("images count: ".$request->file("images"));
 
-            foreach($request->file("images") as $img) {
+            if ($request->file("images")) {
+                                
+                // массив имён и путей изображений
+               $images = [];
 
-                // формирую рандомное имя
-                $filename = str_random(32).".".$img->getClientOriginalExtension();
-                
-                // узнаю реальный путь к файлу
-                $image = Image::make($img->getRealPath());                
-                $normalFileNamePath = storage_path().'/app/images/normal/';                
-                $image->save($normalFileNamePath.$filename);                
-                $record = array("path"=>$normalFileNamePath, "name"=>$filename, "type"=>"normal");
-                array_push($images, $record);                
-                $smallFileNamePath = storage_path().'/app/images/small/';
-                $image->save($smallFileNamePath.$filename);                
-                $record = array("path"=>$smallFileNamePath, "name"=>$filename, "type"=>"small");
-                array_push($images, $record);
-                
-                // добавляю данные в таблицу
-                Images::insert(array('advert_id'=>$advert->id, "name"=>$filename));
-
-            }             
-                                                             
-            // Сохраняю картинки        
-            LoadImages::dispatch($images, $advert->id);
-            
-            // Удаляю временные картинки        
-            DeleteTempImages::dispatch($images);
+                foreach($request->file("images") as $img) {
+                    // формирую рандомное имя
+                    $filename = str_random(32).".".$img->getClientOriginalExtension();                
+                    // узнаю реальный путь к файлу
+                    $image = Image::make($img->getRealPath());                
+                    $normalFileNamePath = storage_path().'/app/images/normal/';                
+                    $image->save($normalFileNamePath.$filename);                
+                    $record = array("path"=>$normalFileNamePath, "name"=>$filename, "type"=>"normal");
+                    array_push($images, $record);                
+                    $smallFileNamePath = storage_path().'/app/images/small/';
+                    $image->save($smallFileNamePath.$filename);                
+                    $record = array("path"=>$smallFileNamePath, "name"=>$filename, "type"=>"small");
+                    array_push($images, $record);                    
+                    // добавляю данные в таблицу
+                    Images::insert(array('advert_id'=>$advert->id, "name"=>$filename));
+                }                                                             
+                // Сохраняю картинки        
+                LoadImages::dispatch($images, $advert->id);            
+                // Удаляю временные картинки        
+                DeleteTempImages::dispatch($images);
+            }
             
             Sitemap::addUrl($urls->url);
 
