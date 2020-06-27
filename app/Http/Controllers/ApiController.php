@@ -393,7 +393,7 @@ class ApiController extends Controller {
             \Debugbar::info("images count: ".$request->file("images"));
 
             if ($request->file("images")) {
-                                
+
                 // массив имён и путей изображений
                $images = [];
 
@@ -410,9 +410,11 @@ class ApiController extends Controller {
                     $image->save($smallFileNamePath.$filename);                
                     $record = array("path"=>$smallFileNamePath, "name"=>$filename, "type"=>"small");
                     array_push($images, $record);                    
+                    
                     // добавляю данные в таблицу
                     Images::insert(array('advert_id'=>$advert->id, "name"=>$filename));
-                }                                                             
+                }
+                
                 // Сохраняю картинки        
                 LoadImages::dispatch($images, $advert->id);            
                 // Удаляю временные картинки        
