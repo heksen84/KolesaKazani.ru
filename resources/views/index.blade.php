@@ -264,7 +264,7 @@
           <div class="card index-card">
         @endif
         @if ($advert->srochno_torg)        
-          <div class="label-torg">срочно, торг</div>
+          <div class="label-torg">срочно</div>
         @endif
           <img class="card-img-top" src="{{ $advert->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">          
             <div class="card-title-text">{{ $advert->title }}</div>

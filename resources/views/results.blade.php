@@ -89,7 +89,7 @@
                   <div class="card">
                 @endif
                   @if ($item->srochno_torg)
-                    <div class="label-torg">срочно, торг</div>
+                    <div class="label-torg">срочно</div>
                   @endif                  
                     <img class="card-img-top image" src="{{ $item->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">                                                            
                       <div class="block-info-area">                                                  

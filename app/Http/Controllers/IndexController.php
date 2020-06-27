@@ -204,23 +204,22 @@ class IndexController extends Controller {
 	    return $this->ShowIndexPage($request, $region, $place);
 	}
 	
-	// ------------------------------------------
+	// --------------------------------------------------------------
 	// найти по строке
-	// ------------------------------------------
-    //public function getResultsBySearchString($searchString, $region, $place) {
-		public function getResultsBySearchString(Request $request) {			
+	// --------------------------------------------------------------
+	public function getResultsBySearchString(Request $request) {			
 		
-		/*$regionData = $this->getRegionData($region); 
-		$placeData = $this->getPlaceData($place);
+		$regionData = $this->getRegionData($request->region); 
+		$placeData = $this->getPlaceData($request->place);
 		
 		if (!$regionData && !$placeData)
-			$whereStr = "MATCH (title) AGAINST('".$str."' IN BOOLEAN MODE)";
+			$whereStr = "MATCH (title) AGAINST('".$request->searchString."' IN BOOLEAN MODE)";
 
 		if ($regionData && !$placeData)
-			$whereStr = "MATCH (title) AGAINST('".$str."' IN BOOLEAN MODE) AND adv.region_id=".$regionData->region_id;		
+			$whereStr = "MATCH (title) AGAINST('".$request->searchString."' IN BOOLEAN MODE) AND adv.region_id=".$regionData->region_id;		
 
 		if ($regionData && $placeData)
-			$whereStr = "MATCH (title) AGAINST('".$str."' IN BOOLEAN MODE) AND adv.region_id=".$regionData->region_id." AND adv.city_id=".$placeData->city_id;		
+			$whereStr = "MATCH (title) AGAINST('".$request->searchString."' IN BOOLEAN MODE) AND adv.region_id=".$regionData->region_id." AND adv.city_id=".$placeData->city_id;		
         
         $items = DB::table("adverts as adv")->select(
             "adv.id", 
@@ -228,7 +227,10 @@ class IndexController extends Controller {
 			"adv.price",
 			"adv.startDate",
 			"kz_region.name as region_name",
-            "kz_city.name as city_name",
+			"kz_city.name as city_name",
+			DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND srochno_torg=1) as srochno_torg"),			
+			DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND v_top=1) as v_top"),			
+			DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"),
             DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
 		))
 		->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
@@ -239,7 +241,7 @@ class IndexController extends Controller {
         
 		\Debugbar::info($items);		    
 		
-		$str = "Результаты по запросу '".$str."'";
+		$str = "Результаты по запросу '".$request->searchString."'";
             
         return view("results")         
             ->with("title", $str)         
@@ -248,14 +250,14 @@ class IndexController extends Controller {
             ->with("items", $items)             
             ->with("categoryId", null)
             ->with("subcategoryId", null)
-            ->with("region", $region)
-         	->with("city", $place)
+            ->with("region", $request->region)
+         	->with("city", $request->place)
             ->with("category", null)
             ->with("subcategory", null)            
             ->with("page", 0)
             ->with("startPage", 0)
             ->with("start_price", 0)
 			->with("end_price", 0)
-			->with("filters", null);*/
+			->with("filters", null);
     }
 }
