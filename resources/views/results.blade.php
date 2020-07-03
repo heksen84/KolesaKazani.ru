@@ -122,15 +122,12 @@
             </div>
             @endif -->
 
-            <!-- навигация -->
-            @if (count($items)>9)
+            <!-- навигация -->            
               <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">                  
                 <div class="pagination justify-content-center">
                   {{ $items->links() }}                         
                 </div>
-              </div>
-            @endif
-
+              </div>            
           </div>                                  	                
   </div>
   <script type="text/javascript" src="{{ mix('js/common.js') }}"></script>  

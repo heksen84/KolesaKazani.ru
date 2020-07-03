@@ -75,7 +75,7 @@ class ResultsController extends Controller {
         if ($region && $city) {            
             $regionData = $this->getRegionData($region); 
             $cityData = $this->getCityData($regionData->region_id, $city);
-            $whereRaw = "region_id = ".$regionData->region_id." AND city_id = ".$cityData->city_id." AND category_id = ".$categories[0]->id." AND NOW() BETWEEN adv.startDate AND adv.finishDate";
+            $whereRaw = "adv.region_id = ".$regionData->region_id." AND adv.city_id = ".$cityData->city_id." AND adv.category_id = ".$categories[0]->id." AND NOW() BETWEEN adv.startDate AND adv.finishDate";
         }
                                                 
         $items = DB::table("adverts as adv")->select(
@@ -113,7 +113,9 @@ class ResultsController extends Controller {
         ->with("subcategory", null)         
         ->with("page", $request->page?$request->page:0)
         ->with("start_price", $request->start_price)
-        ->with("end_price", $request->end_price);
+        ->with("end_price", $request->end_price)
+        ->with("filters", null);
+        ;
     }
 
     public function getCountryCategoryResults(Request $request, $category) {
