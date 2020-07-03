@@ -170,8 +170,7 @@
   window.coord_lon = "{{$advert->coord_lon}}";
   window.vip_price = "{{$vip_price}}";
   window.srochno_torg_price = "{{$srochno_torg_price}}";
-  window.color_price = "{{$color_price}}";
-  
+  window.color_price = "{{$color_price}}";  
 </script>
 
 <script src="https://api-maps.yandex.ru/2.0-stable/?apikey=123&load=package.standard&lang=ru-RU" type="text/javascript"></script>
