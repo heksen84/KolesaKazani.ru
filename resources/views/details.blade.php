@@ -40,26 +40,26 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2">                  
           <div class="close-link mb-4" title="Закрыть страницу">закрыть</div>        
             <div id="posted"><span>{{ date("Размещено d.m.Y в H:i", strtotime($advert->startDate)) }}</span></div>
-              <div id="location">{{ $advert->region_name }}, {{ $advert->city_name }}</div>        
+              <div id="location">{{ $advert->region_name }}, {{ $advert->city_name }}</div>
+                @if ($advert->category_name)
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb p-0" style="background:rgb(245,245,245);border-radius:5px;font-size:15px">
+                      <li class="breadcrumb-item"><a href="\">ilbo.kz</a></li>
+                      <li class="breadcrumb-item"><a href="\{{ $advert->region_url }}\{{ $advert->city_url }}\c\{{ $advert->category_url }}">{{ $advert->category_name }}</a></li>
+                        @if ($advert->category_id < 10  && $advert->subcat_name)
+                          <li class="breadcrumb-item"><a href="\{{ $advert->region_url }}\{{ $advert->city_url }}\c\{{ $advert->category_url }}\{{ $advert->subcat_url }}">{{ $advert->subcat_name }}</a></li>
+                        @endif
+                    </ol>
+                  </nav>
+                @endif
 
-              @if ($advert->category_name && $advert->subcat_name)
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb p-0" style="background:rgb(245,245,245);border-radius:5px;font-size:15px">
-                    <li class="breadcrumb-item"><a href="\">ilbo.kz</a></li>
-                    <li class="breadcrumb-item"><a href="\{{ $advert->region_url }}\{{ $advert->city_url }}\c\{{ $advert->category_url }}">{{ $advert->category_name }}</a></li>
-                    <li class="breadcrumb-item"><a href="\{{ $advert->region_url }}\{{ $advert->city_url }}\c\{{ $advert->category_url }}\{{ $advert->subcat_url }}">{{ $advert->subcat_name }}</a></li>
-                  </ol>
-                </nav>
-              @endif
-
-              @if ($advert->title!="null") 
-                <h1>{{ $advert->title }}</h1>
-                <hr>
-              @endif
+                @if ($advert->title!="null") 
+                  <h1>{{ $advert->title }}</h1><hr>
+                @endif
 
               <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-action text-center">
                 <button class="btn btn-outline-danger btn-sm m-1" id="makeVip">В топ [VIP]</button>  
-                <button class="btn btn-outline-primary btn-sm m-1" id="makeTorg">Срочно, торг</button>                                            
+                <button class="btn btn-outline-primary btn-sm m-1" id="makeTorg">Срочно</button>                                            
                 <button class="btn btn-outline-success btn-sm m-1" id="makePaint">Выделить</button>   
                 <!--<button class="btn btn-outline-secondary btn-sm m-1" id="prodlit">Продлить</button>-->
               </div>
@@ -107,28 +107,28 @@
                 подключаю характеристики по категориям
                ----------------------------------------------------------------->	       
               <!-- транспорт -->
-              @if ($advert->category_id===1 && $advert->subcategory_id===1) 
+              @if ($advert->category_id==1 && $advert->subcategory_id==1) 
                 @include('results/transport/legkovoy')
-              @elseif ($advert->category_id===1 && $advert->subcategory_id===2)
+              @elseif ($advert->category_id==1 && $advert->subcategory_id==2)
                 @include('results/transport/common')          
-              @elseif ($advert->category_id===1 && $advert->subcategory_id===5)
+              @elseif ($advert->category_id==1 && $advert->subcategory_id==5)
                 @include('results/transport/common')
               @endif
 
               <!-- недвижимость -->
-              @if ($advert->category_id===2 && $advert->subcategory_id===9) 
+              @if ($advert->category_id==2 && $advert->subcategory_id==9) 
                 @include('results/nedvizhimost/kvartira')
-              @elseif ($advert->category_id===2 && $advert->subcategory_id===10)
+              @elseif ($advert->category_id==2 && $advert->subcategory_id==10)
                 @include('results/nedvizhimost/komnata')          
-              @elseif ($advert->category_id===2 && $advert->subcategory_id===11)
+              @elseif ($advert->category_id==2 && $advert->subcategory_id==11)
                 @include('results/nedvizhimost/dom_dacha_kottedzh')
-              @elseif ($advert->category_id===2 && $advert->subcategory_id===12)
+              @elseif ($advert->category_id==2 && $advert->subcategory_id==12)
                 @include('results/nedvizhimost/zemelnyu_uchastok')
-              @elseif ($advert->category_id===2 && $advert->subcategory_id===13)
+              @elseif ($advert->category_id==2 && $advert->subcategory_id==13)
                 @include('results/nedvizhimost/garazh_ili_mashinomesto')  
-              @elseif ($advert->category_id===2 && $advert->subcategory_id===14)
+              @elseif ($advert->category_id==2 && $advert->subcategory_id==14)
                 @include('results/nedvizhimost/komm_nedvizhimost')  
-              @elseif ($advert->category_id===2 && $advert->subcategory_id===15)
+              @elseif ($advert->category_id==2 && $advert->subcategory_id==15)
                 @include('results/nedvizhimost/nedvizhimost_za_rubezhom')  
               @endif
                             
