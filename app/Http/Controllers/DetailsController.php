@@ -501,8 +501,7 @@ class DetailsController extends Controller {
 
                     $advert = DB::table("adverts as adv")->select(                                 
                         "adv.startDate",
-                        "adv.category_id",
-                        /*"adv.subcategory_id",*/
+                        "adv.category_id",                        
                         "adv.id", 
                         "adv.title", 
                         "adv.text", 
@@ -511,28 +510,22 @@ class DetailsController extends Controller {
                         "adv.coord_lat", 
                         "adv.coord_lon", 
                         "categories.name as category_name",
-                        "categories.url as category_url",
-                        /*"subcats.name as subcat_name",
-                        "subcats.url as subcat_url",*/
+                        "categories.url as category_url",                        
                         DB::raw("kz_region.name AS region_name, kz_city.name AS city_name"),
                         DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
                         ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                         ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )
-                        ->join("categories", "adv.category_id" , "=" , "categories.id" )
-                        //->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
+                        ->join("categories", "adv.category_id" , "=" , "categories.id" )                        
                         ->where( "adv.id", $id )
                         ->limit(1)
                         ->get();
             }
 
             \DebugBar::info($advert); 
-            \Debugbar::info("advert count: ".count($advert));
+            \Debugbar::info("advert count: ".count($advert));            
 
-            /*if (count($advert)==0) {
-              return view("errors/404");
-            }*/
-                                
             $images = Images::select(DB::raw( "concat('".Common::getImagesPath()."/normal/', name) AS name" ))->where("advert_id", $id)->get();
+            
             \Debugbar::info($advert);
             \Debugbar::info($images); 
     
