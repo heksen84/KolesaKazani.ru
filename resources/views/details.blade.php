@@ -40,7 +40,9 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2">                  
           <div class="close-link mb-4" title="Закрыть страницу">закрыть</div>        
             <div id="posted"><span>{{ date("Размещено d.m.Y в H:i", strtotime($advert->startDate)) }}</span></div>
-              <div id="location">{{ $advert->region_name }}, {{ $advert->city_name }}</div>                
+              <div id="location">{{ $advert->region_name }}, {{ $advert->city_name }}</div>        
+
+              @if ($advert->category_name && $advert->subcat_name)
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb p-0" style="background:rgb(245,245,245);border-radius:5px;font-size:15px">
                     <li class="breadcrumb-item"><a href="\">ilbo.kz</a></li>
@@ -48,6 +50,7 @@
                     <li class="breadcrumb-item"><a href="\{{ $advert->region_url }}\{{ $advert->city_url }}\c\{{ $advert->category_url }}\{{ $advert->subcat_url }}">{{ $advert->subcat_name }}</a></li>
                   </ol>
                 </nav>
+              @endif
 
               @if ($advert->title!="null") 
                 <h1>{{ $advert->title }}</h1>
