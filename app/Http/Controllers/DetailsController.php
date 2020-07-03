@@ -37,7 +37,7 @@ class DetailsController extends Controller {
             \Debugbar::info("-------------------");
 
             // легковое авто
-            if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id === 1) {                        
+            if ($advertData[0]->category_id == 1 && $advertData[0]->subcategory_id == 1) {                        
 
                     $advert = DB::table("adverts as adv")->select(                                 
                             "adv.category_id",
@@ -78,7 +78,7 @@ class DetailsController extends Controller {
             }
 
             // грузовое авто
-            if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id === 2) {
+            if ($advertData[0]->category_id == 1 && $advertData[0]->subcategory_id == 2) {
 
                     $advert = DB::table("adverts as adv")->select(                                 
                             "adv.category_id",
@@ -107,7 +107,7 @@ class DetailsController extends Controller {
             }
 
             // мототехника
-            if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id === 3) {
+            if ($advertData[0]->category_id == 1 && $advertData[0]->subcategory_id == 3) {
 
                     $advert = Adverts::select(
                             "category_id",
@@ -129,7 +129,7 @@ class DetailsController extends Controller {
             }
 
             // спецтехника
-            if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id === 4) {
+            if ($advertData[0]->category_id == 1 && $advertData[0]->subcategory_id == 4) {
 
                     $advert = Adverts::select(
                             "category_id",
@@ -151,7 +151,7 @@ class DetailsController extends Controller {
             }
 
             // ретро авто
-            if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id === 5) {
+            if ($advertData[0]->category_id == 1 && $advertData[0]->subcategory_id == 5) {
 
                     $advert = DB::table("adverts as adv")->select(                                 
                             "adv.category_id",
@@ -180,7 +180,7 @@ class DetailsController extends Controller {
             }
             
             // выборка для остального траспорта
-            if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id > 5) {                        
+            if ($advertData[0]->category_id == 1 && $advertData[0]->subcategory_id > 5) {                        
                     $advert = Adverts::select(
                     "category_id",
                     "subcategory_id",        
@@ -201,7 +201,7 @@ class DetailsController extends Controller {
             }
            
             // квартира
-            if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 9) {
+            if ($advertData[0]->category_id == 2 && $advertData[0]->subcategory_id == 9) {
                     $advert = DB::table("adverts as adv")->select(                                 
                     "adv.category_id",
                     "adv.subcategory_id",
@@ -229,7 +229,7 @@ class DetailsController extends Controller {
                     ->get();                                                        
             }
             // комната
-            if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 10) {
+            if ($advertData[0]->category_id == 2 && $advertData[0]->subcategory_id == 10) {
                     $advert = DB::table("adverts as adv")->select(                                 
                     "adv.category_id",
                     "adv.subcategory_id",
@@ -255,7 +255,7 @@ class DetailsController extends Controller {
                     ->get();                                                        
             }
             // дом, дача, коттедж
-            if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 11) {
+            if ($advertData[0]->category_id == 2 && $advertData[0]->subcategory_id == 11) {
                     $advert = DB::table("adverts as adv")->select(                                 
                     "adv.category_id",
                     "adv.subcategory_id",
@@ -287,7 +287,7 @@ class DetailsController extends Controller {
                     ->get();                                                        
             }
             // земельный участок
-            if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 12) {
+            if ($advertData[0]->category_id == 2 && $advertData[0]->subcategory_id == 12) {
                     $advert = DB::table("adverts as adv")->select(                                 
                     "adv.category_id",
                     "adv.subcategory_id",
@@ -310,7 +310,7 @@ class DetailsController extends Controller {
                     ->get();                                                        
             }
             // гараж или машиноместо
-            if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 13) {
+            if ($advertData[0]->category_id == 2 && $advertData[0]->subcategory_id == 13) {
                     $advert = DB::table("adverts as adv")->select(                                 
                     "adv.category_id",
                     "adv.subcategory_id",
@@ -333,7 +333,7 @@ class DetailsController extends Controller {
                     ->get();                                                        
             }
             // коммерческая недвижимость
-            if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 14) {
+            if ($advertData[0]->category_id == 2 && $advertData[0]->subcategory_id == 14) {
                     $advert = DB::table("adverts as adv")->select(                                 
                     "adv.category_id",
                     "adv.subcategory_id",
@@ -365,7 +365,7 @@ class DetailsController extends Controller {
                     ->get();                                                        
             }
             // недвижимость за рубежом
-            if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 15) {
+            if ($advertData[0]->category_id == 2 && $advertData[0]->subcategory_id == 15) {
                     $advert = DB::table("adverts as adv")->select(                                 
                     "adv.category_id",
                     "adv.subcategory_id",
@@ -443,6 +443,5 @@ class DetailsController extends Controller {
             ->with( "vip_price", Common::getVipPrice())
             ->with( "srochno_torg_price", Common::getSrochnoTorgPrice())
             ->with( "color_price", Common::getColorPrice());
-    }            
-
+    }
 }
