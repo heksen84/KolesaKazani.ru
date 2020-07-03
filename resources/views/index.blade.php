@@ -257,21 +257,21 @@
     </div>
       @foreach($newAdverts as $advert)      
       <div class="col-sm-12 col-md-3 col-lg-3 col-xl-2 m-3">      
-      <a href="/objavlenie/show/{{ $advert->id }}" class="black">
-        @if ($advert->color)
-          <div class="card index-card green-background">
-        @else
-          <div class="card index-card">
-        @endif
-        @if ($advert->srochno_torg)        
-          <div class="label-torg">срочно</div>
-        @endif
-          <img class="card-img-top" src="{{ $advert->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">          
-            <div class="card-title-text">{{ $advert->title }}</div>
-            <div class="card-location-text">{{ $advert->region_name }}<br>{{ $advert->city_name }}</div>
-            <b class="card-price-value">{{ $advert->price }} ₸</b>
-        </div>
-      </a>
+        <a href="/objavlenie/show/{{ $advert->id }}" class="black">
+          @if ($advert->color)
+            <div class="card index-card green-background">
+          @else
+            <div class="card index-card">
+          @endif
+          @if ($advert->srochno_torg)        
+            <div class="label-torg">срочно</div>
+          @endif
+            <img class="card-img-top" src="{{ $advert->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">          
+              <div class="card-title-text">{{ $advert->title }}</div>
+              <div class="card-location-text">{{ $advert->region_name }}<br>{{ $advert->city_name }}</div>
+              <b class="card-price-value">{{ $advert->price }} ₸</b>
+          </div>
+        </a>
       </div>      
       @endforeach
   </div>
