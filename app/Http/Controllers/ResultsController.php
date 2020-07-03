@@ -36,8 +36,8 @@ class ResultsController extends Controller {
     }
     
     // получить данные города / села
-    private function getCityData($city) {                
-        $cityId = Places::select("city_id", "name")->where("url", $city)->get();        
+    private function getCityData($region, $city) {                
+        $cityId = Places::select("city_id", "name")->where("region_id", $region)->where("url", $city)->get();        
         \Debugbar::info("ID города/села: ".$cityId[0]->city_id);
         return $cityId[0];
     }
@@ -74,7 +74,7 @@ class ResultsController extends Controller {
 
         if ($region && $city) {            
             $regionData = $this->getRegionData($region); 
-            $cityData = $this->getCityData($city);                   
+            $cityData = $this->getCityData($regionData->region_id, $city);
             $whereRaw = "region_id = ".$regionData->region_id." AND city_id = ".$cityData->city_id." AND category_id = ".$categories[0]->id." AND NOW() BETWEEN adv.startDate AND adv.finishDate";
         }
                                                 
@@ -294,8 +294,9 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     public function getCitySubCategoryResults(Request $request, $region, $city, $category, $subcategory) {       
 
-         \Debugbar::info("start_price: ".$request->start_price);
-         \Debugbar::info("end_price: ".$request->end_price);        
+        \Debugbar::info("--- getCitySubCategoryResults ---"); 
+        \Debugbar::info("start_price: ".$request->start_price);
+        \Debugbar::info("end_price: ".$request->end_price);        
                          
          $startPrice = $request->start_price;
          $endPrice = $request->end_price;
@@ -308,7 +309,11 @@ class ResultsController extends Controller {
             $categories = $this->getCategoryData($request, $category);
             $subcategories = $this->getSubCategoryData($request, $subcategory);
             $regionData = $this->getRegionData($region); 
-            $cityData = $this->getCityData($city);                   
+            $cityData = $this->getCityData($regionData->region_id, $city);
+
+            \Debugbar::info("------------------");
+            \Debugbar::info($cityData);
+            \Debugbar::info("------------------");
  
          $items = DB::table("adverts as adv")->select(
             "adv.id", 
@@ -336,6 +341,8 @@ class ResultsController extends Controller {
          \Debugbar::info($items);
  
          $locationName = $this->getLocationName();
+
+         //return view("results");
                  
          return view("results")    
          ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
