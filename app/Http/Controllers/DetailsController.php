@@ -37,7 +37,9 @@ class DetailsController extends Controller {
             \Debugbar::info("-------------------");
 
             // легковое авто
-            if ($advertData[0]->category_id == 1 && $advertData[0]->subcategory_id == 1) {                        
+            if ($advertData[0]->category_id == 1 && $advertData[0]->subcategory_id == 1) {  
+                    
+                \Debugbar::info("легковое авто");
 
                     $advert = DB::table("adverts as adv")->select(                                 
                             "adv.category_id",
@@ -66,7 +68,7 @@ class DetailsController extends Controller {
                             "subcats.url as subcat_url"
                             )
                             ->join("categories", "adv.category_id" , "=" , "categories.id" )
-                            ->join("subcats", "adv.category_id" , "=" , "subcats.id" )
+                            ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                             ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                             ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
                             ->join("sub_transport as transport", "adv.inner_id" , "=" , "transport.id" )                
@@ -79,6 +81,8 @@ class DetailsController extends Controller {
 
             // грузовое авто
             if ($advertData[0]->category_id == 1 && $advertData[0]->subcategory_id == 2) {
+
+                \Debugbar::info("грузовое авто");
 
                     $advert = DB::table("adverts as adv")->select(                                 
                             "adv.category_id",
@@ -93,11 +97,19 @@ class DetailsController extends Controller {
                             "adv.coord_lon", 
                             "transport.type",                                
                             "transport.year", 
-                            DB::raw("CASE WHEN transport.steering_position=0 THEN 'слева' ELSE 'справа' END as steering_position"),
                             "transport.mileage",
+                            DB::raw("CASE WHEN transport.steering_position=0 THEN 'слева' ELSE 'справа' END as steering_position"),                            
                             DB::raw($this->raw_engine_type),
                             DB::raw("CASE WHEN transport.customs=1 THEN 'да' ELSE 'нет' END as customs"),                                
-                            DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
+                            DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name"),
+                            DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"),
+                            "categories.name as category_name",
+                            "categories.url as category_url",
+                            "subcats.name as subcat_name",
+                            "subcats.url as subcat_url"
+                            )
+                            ->join("categories", "adv.category_id" , "=" , "categories.id" )
+                            ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                             ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                             ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
                             ->join("sub_transport as transport", "adv.inner_id" , "=" , "transport.id" )                
@@ -109,45 +121,59 @@ class DetailsController extends Controller {
             // мототехника
             if ($advertData[0]->category_id == 1 && $advertData[0]->subcategory_id == 3) {
 
-                    $advert = Adverts::select(
-                            "category_id",
-                            "subcategory_id",
-                            "startDate",                                
-                            "id", 
-                            "title", 
-                            "text", 
-                            "price", 
-                            "phone", 
-                            "coord_lat", 
-                            "coord_lon", 
-                            DB::raw("kz_region.name AS region_name, kz_city.name AS city_name") )
-                            ->join("kz_region", "adverts.region_id" , "=" , "kz_region.region_id" )                
-                            ->join("kz_city", "adverts.city_id" , "=" , "kz_city.city_id" )                
-                            ->where( "id", $id )
-                            ->limit(1)
-                            ->get();
+                            $advert = DB::table("adverts as adv")->select(
+                                "adv.category_id",
+                                "adv.subcategory_id",
+                                "adv.startDate",                                
+                                "adv.id", 
+                                "adv.title", 
+                                "adv.text", 
+                                "adv.price", 
+                                "adv.phone", 
+                                "adv.coord_lat", 
+                                "adv.coord_lon",
+                                "categories.name as category_name",
+                                "categories.url as category_url",
+                                "subcats.name as subcat_name",
+                                "subcats.url as subcat_url",
+                                DB::raw("kz_region.name AS region_name, kz_city.name AS city_name"),
+                                DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                                ->join("categories", "adv.category_id" , "=" , "categories.id" )
+                                ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
+                                ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
+                                ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
+                                ->where( "adv.id", $id )
+                                ->limit(1)
+                                ->get();
             }
 
             // спецтехника
             if ($advertData[0]->category_id == 1 && $advertData[0]->subcategory_id == 4) {
-
-                    $advert = Adverts::select(
-                            "category_id",
-                            "subcategory_id",                            
-                            "startDate",                                    
-                            "id", 
-                            "title", 
-                            "text", 
-                            "price", 
-                            "phone", 
-                            "coord_lat", 
-                            "coord_lon", 
-                            DB::raw("kz_region.name AS region_name, kz_city.name AS city_name") )
-                            ->join("kz_region", "adverts.region_id" , "=" , "kz_region.region_id" )                
-                            ->join("kz_city", "adverts.city_id" , "=" , "kz_city.city_id" )                
-                            ->where( "id", $id )
-                            ->limit(1)
-                            ->get();
+                    
+                            $advert = DB::table("adverts as adv")->select(
+                                "adv.category_id",
+                                "adv.subcategory_id",                            
+                                "adv.startDate",                                    
+                                "adv.id", 
+                                "adv.title", 
+                                "adv.text", 
+                                "adv.price", 
+                                "adv.phone", 
+                                "adv.coord_lat", 
+                                "adv.coord_lon",
+                                "categories.name as category_name",
+                                "categories.url as category_url",
+                                "subcats.name as subcat_name",
+                                "subcats.url as subcat_url", 
+                                DB::raw("kz_region.name AS region_name, kz_city.name AS city_name"),
+                                DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))                            
+                                ->join("categories", "adv.category_id" , "=" , "categories.id" )
+                                ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
+                                ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
+                                ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
+                                ->where( "adv.id", $id )
+                                ->limit(1)
+                                ->get();
             }
 
             // ретро авто
@@ -166,11 +192,18 @@ class DetailsController extends Controller {
                             "adv.coord_lon", 
                             "transport.type",                                
                             "transport.year", 
-                            DB::raw("CASE WHEN transport.steering_position=0 THEN 'слева' ELSE 'справа' END as steering_position"),
                             "transport.mileage",
+                            "categories.name as category_name",
+                            "categories.url as category_url",
+                            "subcats.name as subcat_name",
+                            "subcats.url as subcat_url",  
+                            DB::raw("CASE WHEN transport.steering_position=0 THEN 'слева' ELSE 'справа' END as steering_position"),                            
                             DB::raw($this->raw_engine_type),
                             DB::raw("CASE WHEN transport.customs=1 THEN 'да' ELSE 'нет' END as customs"),                                
-                            DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
+                            DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name"),
+                            DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                            ->join("categories", "adv.category_id" , "=" , "categories.id" )
+                            ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                             ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                             ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
                             ->join("sub_transport as transport", "adv.inner_id" , "=" , "transport.id" )                
@@ -181,28 +214,37 @@ class DetailsController extends Controller {
             
             // выборка для остального траспорта
             if ($advertData[0]->category_id == 1 && $advertData[0]->subcategory_id > 5) {                        
-                    $advert = Adverts::select(
-                    "category_id",
-                    "subcategory_id",        
-                    "startDate",                         
-                    "id", 
-                    "title", 
-                    "text", 
-                    "price", 
-                    "phone", 
-                    "coord_lat", 
-                    "coord_lon", 
-                    DB::raw("kz_region.name AS region_name, kz_city.name AS city_name") )
-                    ->join("kz_region", "adverts.region_id" , "=" , "kz_region.region_id" )                
-                    ->join("kz_city", "adverts.city_id" , "=" , "kz_city.city_id" )                
-                    ->where( "id", $id )
-                    ->limit(1)
-                    ->get();
+
+                    $advert = DB::table("adverts as adv")->select(                                 
+                        "adv.category_id",
+                        "adv.subcategory_id",        
+                        "adv.startDate",                         
+                        "adv.id", 
+                        "adv.title", 
+                        "adv.text", 
+                        "adv.price", 
+                        "adv.phone", 
+                        "adv.coord_lat", 
+                        "adv.coord_lon",
+                        "categories.name as category_name",
+                        "categories.url as category_url",
+                        "subcats.name as subcat_name",
+                        "subcats.url as subcat_url",   
+                        DB::raw("kz_region.name AS region_name, kz_city.name AS city_name"),
+                        DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                        ->join("categories", "adv.category_id" , "=" , "categories.id" )
+                        ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
+                        ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
+                        ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                    
+                        ->where( "adv.id", $id )
+                        ->limit(1)
+                        ->get();
             }
            
             // квартира
             if ($advertData[0]->category_id == 2 && $advertData[0]->subcategory_id == 9) {
-                    $advert = DB::table("adverts as adv")->select(                                 
+                    
+                $advert = DB::table("adverts as adv")->select(                                 
                     "adv.category_id",
                     "adv.subcategory_id",
                     "adv.startDate",
@@ -218,9 +260,16 @@ class DetailsController extends Controller {
                     "realestate.floors_house",
                     "realestate.rooms",
                     "realestate.area",
+                    "categories.name as category_name",
+                    "categories.url as category_url",
+                    "subcats.name as subcat_name",
+                    "subcats.url as subcat_url",   
                     DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),
                     DB::raw("CASE WHEN realestate.kind_of_object=0 THEN 'вторичка' ELSE 'новостройка' END as kind_of_object"),                        
-                    DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
+                    DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name"),
+                    DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                    ->join("categories", "adv.category_id" , "=" , "categories.id" )
+                    ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
@@ -230,7 +279,8 @@ class DetailsController extends Controller {
             }
             // комната
             if ($advertData[0]->category_id == 2 && $advertData[0]->subcategory_id == 10) {
-                    $advert = DB::table("adverts as adv")->select(                                 
+                    
+                $advert = DB::table("adverts as adv")->select(                                 
                     "adv.category_id",
                     "adv.subcategory_id",
                     "adv.startDate",
@@ -245,8 +295,15 @@ class DetailsController extends Controller {
                     "realestate.floor",
                     "realestate.floors_house",
                     "realestate.area",
+                    "categories.name as category_name",
+                    "categories.url as category_url",
+                    "subcats.name as subcat_name",
+                    "subcats.url as subcat_url",   
                     DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),                        
-                    DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
+                    DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name"),
+                    DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                    ->join("categories", "adv.category_id" , "=" , "categories.id" )
+                    ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
@@ -256,7 +313,8 @@ class DetailsController extends Controller {
             }
             // дом, дача, коттедж
             if ($advertData[0]->category_id == 2 && $advertData[0]->subcategory_id == 11) {
-                    $advert = DB::table("adverts as adv")->select(                                 
+                    
+                $advert = DB::table("adverts as adv")->select(                                 
                     "adv.category_id",
                     "adv.subcategory_id",
                     "adv.startDate",
@@ -277,8 +335,15 @@ class DetailsController extends Controller {
                     WHEN realestate.type_of_building=1 THEN 'дача' 
                     WHEN realestate.type_of_building=2 THEN 'коттедж' 
                     ELSE '-' 
-                    END as type_of_building"),                        
-                    DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
+                    END as type_of_building"),
+                    "categories.name as category_name",
+                    "categories.url as category_url",
+                    "subcats.name as subcat_name",
+                    "subcats.url as subcat_url",   
+                    DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name"),
+                    DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                    ->join("categories", "adv.category_id" , "=" , "categories.id" )
+                    ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
@@ -288,7 +353,8 @@ class DetailsController extends Controller {
             }
             // земельный участок
             if ($advertData[0]->category_id == 2 && $advertData[0]->subcategory_id == 12) {
-                    $advert = DB::table("adverts as adv")->select(                                 
+                    
+                $advert = DB::table("adverts as adv")->select(                                 
                     "adv.category_id",
                     "adv.subcategory_id",
                     "adv.startDate",
@@ -299,9 +365,16 @@ class DetailsController extends Controller {
                     "adv.phone", 
                     "adv.coord_lat", 
                     "adv.coord_lon",
-                    "realestate.area",                        
+                    "realestate.area",
+                    "categories.name as category_name",
+                    "categories.url as category_url",
+                    "subcats.name as subcat_name",
+                    "subcats.url as subcat_url",   
                     DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),                        
-                    DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
+                    DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name"),
+                    DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                    ->join("categories", "adv.category_id" , "=" , "categories.id" )
+                    ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
@@ -311,7 +384,8 @@ class DetailsController extends Controller {
             }
             // гараж или машиноместо
             if ($advertData[0]->category_id == 2 && $advertData[0]->subcategory_id == 13) {
-                    $advert = DB::table("adverts as adv")->select(                                 
+                    
+                $advert = DB::table("adverts as adv")->select(                                 
                     "adv.category_id",
                     "adv.subcategory_id",
                     "adv.startDate",
@@ -322,9 +396,16 @@ class DetailsController extends Controller {
                     "adv.phone", 
                     "adv.coord_lat", 
                     "adv.coord_lon",                        
-                    "realestate.area",                        
+                    "realestate.area",
+                    "categories.name as category_name",
+                    "categories.url as category_url",
+                    "subcats.name as subcat_name",
+                    "subcats.url as subcat_url",   
                     DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),                        
-                    DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
+                    DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name"),
+                    DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                    ->join("categories", "adv.category_id" , "=" , "categories.id" )
+                    ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
@@ -334,7 +415,8 @@ class DetailsController extends Controller {
             }
             // коммерческая недвижимость
             if ($advertData[0]->category_id == 2 && $advertData[0]->subcategory_id == 14) {
-                    $advert = DB::table("adverts as adv")->select(                                 
+                    
+                $advert = DB::table("adverts as adv")->select(                                 
                     "adv.category_id",
                     "adv.subcategory_id",
                     "adv.startDate",
@@ -347,7 +429,11 @@ class DetailsController extends Controller {
                     "adv.coord_lon",
                     "realestate.property_type",                        
                     "realestate.rooms",
-                    "realestate.area",                        
+                    "realestate.area",               
+                    "categories.name as category_name",
+                    "categories.url as category_url",
+                    "subcats.name as subcat_name",
+                    "subcats.url as subcat_url",   
                     DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),
                     DB::raw("CASE WHEN realestate.kind_of_object=0 THEN 'вторичка' ELSE 'новостройка' END as kind_of_object"),
                     DB::raw("CASE 
@@ -356,7 +442,10 @@ class DetailsController extends Controller {
                     WHEN realestate.type_of_building=2 THEN 'коттедж' 
                     ELSE '-' 
                     END as type_of_building"),                        
-                    DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
+                    DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name"),
+                    DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                    ->join("categories", "adv.category_id" , "=" , "categories.id" )
+                    ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
@@ -366,7 +455,8 @@ class DetailsController extends Controller {
             }
             // недвижимость за рубежом
             if ($advertData[0]->category_id == 2 && $advertData[0]->subcategory_id == 15) {
-                    $advert = DB::table("adverts as adv")->select(                                 
+                    
+                $advert = DB::table("adverts as adv")->select(                                 
                     "adv.category_id",
                     "adv.subcategory_id",
                     "adv.startDate",
@@ -380,6 +470,10 @@ class DetailsController extends Controller {
                     "realestate.property_type",                        
                     "realestate.rooms",
                     "realestate.area",                        
+                    "categories.name as category_name",
+                    "categories.url as category_url", 
+                    "subcats.name as subcat_name",
+                    "subcats.url as subcat_url",   
                     DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),
                     DB::raw("CASE WHEN realestate.kind_of_object=0 THEN 'вторичка' ELSE 'новостройка' END as kind_of_object"),
                     DB::raw("CASE 
@@ -388,7 +482,10 @@ class DetailsController extends Controller {
                     WHEN realestate.type_of_building=2 THEN 'коттедж' 
                     ELSE '-' 
                     END as type_of_building"),                        
-                    DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
+                    DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name"),
+                    DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                    ->join("categories", "adv.category_id" , "=" , "categories.id" )
+                    ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
@@ -399,23 +496,31 @@ class DetailsController extends Controller {
             
             // выборка для всего остального
             if ($advertData[0]->category_id > 2 && $advertData[0]->subcategory_id > 0 || $advertData[0]->category_id>0 && !$advertData[0]->subcategory_id) {                        
-                    $advert = Adverts::select(                        
-                    "startDate",
-                    "category_id",
-                    "subcategory_id",                        
-                    "id", 
-                    "title", 
-                    "text", 
-                    "price", 
-                    "phone", 
-                    "coord_lat", 
-                    "coord_lon", 
-                    DB::raw("kz_region.name AS region_name, kz_city.name AS city_name") )
-                    ->join("kz_region", "adverts.region_id" , "=" , "kz_region.region_id" )                
-                    ->join("kz_city", "adverts.city_id" , "=" , "kz_city.city_id" )                
-                    ->where( "id", $id )
-                    ->limit(1)
-                    ->get();
+                                    
+                    $advert = DB::table("adverts as adv")->select(                                 
+                        "adv.startDate",
+                        "adv.category_id",
+                        "adv.subcategory_id",                        
+                        "adv.id", 
+                        "adv.title", 
+                        "adv.text", 
+                        "adv.price", 
+                        "adv.phone", 
+                        "adv.coord_lat", 
+                        "adv.coord_lon", 
+                        "categories.name as category_name",
+                        "categories.url as category_url",
+                        "subcats.name as subcat_name",
+                        "subcats.url as subcat_url",   
+                        DB::raw("kz_region.name AS region_name, kz_city.name AS city_name"),
+                        DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                        ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
+                        ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )
+                        ->join("categories", "adv.category_id" , "=" , "categories.id" )
+                        ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
+                        ->where( "adv.id", $id )
+                        ->limit(1)
+                        ->get();
             }
 
             \DebugBar::info($advert); 
@@ -424,14 +529,10 @@ class DetailsController extends Controller {
             if (count($advert)==0) {
               return view("errors/404");
             }
-                    
-            //$images = Images::select(DB::raw( "concat('".Common::getImagesPath()."/normal/', name) AS name" ))->where("advert_id", $id)->get();
+                                
             $images = Images::select(DB::raw( "concat('".Common::getImagesPath()."/normal/', name) AS name" ))->where("advert_id", $id)->get();
-
             \Debugbar::info($advert);
-            \Debugbar::info($images);
-
-            //$subcats = DB::table("subcats")->join("categories", "categories.id", "=", "subcats.category_id")->select("subcats.*", "categories.url as category_url")->where("lang", "=", 0)->get();
+            \Debugbar::info($images); 
     
             // проработать СЕО -->
             return view("details")
