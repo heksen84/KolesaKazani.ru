@@ -257,7 +257,7 @@
     </div>
       @foreach($newAdverts as $advert)      
       <div class="col-sm-12 col-md-3 col-lg-3 col-xl-2 m-3">      
-      <a href="objavlenie/show/{{ $advert->id }}" class="black">
+      <a href="/objavlenie/show/{{ $advert->id }}" class="black">
         @if ($advert->color)
           <div class="card index-card green-background">
         @else
