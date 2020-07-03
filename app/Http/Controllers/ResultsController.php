@@ -184,8 +184,7 @@ class ResultsController extends Controller {
             
         }
 	    else
-		    $filters = array ("price_ot" => $request->price_ot, "price_do" => $request->price_do);            
-                 
+		    $filters = array ("price_ot" => $request->price_ot, "price_do" => $request->price_do);                 
             $items = DB::table("adverts as adv")->select(
             "adv.id", 
             "adv.title", 
