@@ -44,8 +44,8 @@
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb p-0" style="background:rgb(245,245,245);border-radius:5px;font-size:15px">
                     <li class="breadcrumb-item"><a href="\">ilbo.kz</a></li>
-                    <li class="breadcrumb-item"><a href="#">подкатегория</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">категория</li>
+                    <li class="breadcrumb-item"><a href="\{{ $advert->region_url }}\{{ $advert->city_url }}\c\{{ $advert->category_url }}">{{ $advert->category_name }}</a></li>
+                    <li class="breadcrumb-item"><a href="\{{ $advert->region_url }}\{{ $advert->city_url }}\c\{{ $advert->category_url }}\{{ $advert->subcat_url }}">{{ $advert->subcat_name }}</a></li>
                   </ol>
                 </nav>
 

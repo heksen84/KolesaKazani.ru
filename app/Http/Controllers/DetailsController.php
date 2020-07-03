@@ -54,11 +54,19 @@ class DetailsController extends Controller {
                             "car_mark.name as car_name", 
                             "car_model.name as car_model", 
                             "transport.year", 
-                            DB::raw("CASE WHEN transport.steering_position=0 THEN 'слева' ELSE 'справа' END as steering_position"),
                             "transport.mileage",
+                            DB::raw("CASE WHEN transport.steering_position=0 THEN 'слева' ELSE 'справа' END as steering_position"),                            
                             DB::raw($this->raw_engine_type),
                             DB::raw("CASE WHEN transport.customs=1 THEN 'да' ELSE 'нет' END as customs"),                                
-                            DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name") )
+                            DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name"),
+                            DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"),
+                            "categories.name as category_name",
+                            "categories.url as category_url",
+                            "subcats.name as subcat_name",
+                            "subcats.url as subcat_url"
+                            )
+                            ->join("categories", "adv.category_id" , "=" , "categories.id" )
+                            ->join("subcats", "adv.category_id" , "=" , "subcats.id" )
                             ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                             ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
                             ->join("sub_transport as transport", "adv.inner_id" , "=" , "transport.id" )                
@@ -422,6 +430,8 @@ class DetailsController extends Controller {
 
             \Debugbar::info($advert);
             \Debugbar::info($images);
+
+            //$subcats = DB::table("subcats")->join("categories", "categories.id", "=", "subcats.category_id")->select("subcats.*", "categories.url as category_url")->where("lang", "=", 0)->get();
     
             // проработать СЕО -->
             return view("details")
