@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use App\Helpers\Common;
 use App\Adverts;
 use App\Images;
+use App\Urls;
 
 class DetailsController extends Controller {
 
@@ -20,23 +21,31 @@ class DetailsController extends Controller {
         // --------------------------------------------------
         // детали объявления
         // --------------------------------------------------
-        public function getDetails(Request $request, $id) {
-
-            \Debugbar::info("mykey: ".\Cache::get('mykey'));
-                            
-            $advertData = Adverts::select("category_id","subcategory_id")->where( "id", $id )->limit(1)->get();
+        public function getDetails(Request $request, $title) {
             
-            // пока не знаю как сделать ошибку 404
-            if (!count($advertData))
-                //return view("errors/404");
-                return;
+            // получаю данные url объявления по заголовку объявления
+            $urlData = Urls::select("advert_id")->where( "url", $title )->get();
+            
+            // FIXME: сделать пункт 404 с поиском
+            if (!count($urlData))
+                return;            
+            
+                // получаю id объявления по заголовку объявления
+                $id = $urlData[0]->advert_id;
 
-            \Debugbar::info("-------------------");
-            \Debugbar::info($advertData);
-            \Debugbar::info("-------------------");
+                // получаю данные объявления по его id
+                $advertData = Adverts::select("category_id","subcategory_id")->where( "id", $id )->limit(1)->get();
+                        
+                // FIXME: сделать пункт 404 с поиском
+                if (!count($advertData))          
+                    return;
 
-            // легковое авто
-            if ($advertData[0]->category_id == 1 && $advertData[0]->subcategory_id == 1) {  
+                \Debugbar::info("-------------------");
+                \Debugbar::info($advertData);
+                \Debugbar::info("-------------------");
+
+                // легковое авто
+                if ($advertData[0]->category_id == 1 && $advertData[0]->subcategory_id == 1) {  
                     
                 \Debugbar::info("легковое авто");
 
@@ -76,10 +85,10 @@ class DetailsController extends Controller {
                             ->where( "adv.id", $id )                                
                             ->limit(1)
                             ->get();                                
-            }
+                }
 
-            // грузовое авто
-            if ($advertData[0]->category_id == 1 && $advertData[0]->subcategory_id == 2) {
+                // грузовое авто
+                if ($advertData[0]->category_id == 1 && $advertData[0]->subcategory_id == 2) {
 
                 \Debugbar::info("грузовое авто");
 
@@ -115,10 +124,10 @@ class DetailsController extends Controller {
                             ->where( "adv.id", $id )                                
                             ->limit(1)
                             ->get();                                
-            }
+                }
 
-            // мототехника
-            if ($advertData[0]->category_id == 1 && $advertData[0]->subcategory_id == 3) {
+                // мототехника
+                if ($advertData[0]->category_id == 1 && $advertData[0]->subcategory_id == 3) {
 
                             $advert = DB::table("adverts as adv")->select(
                                 "adv.category_id",
@@ -144,10 +153,10 @@ class DetailsController extends Controller {
                                 ->where( "adv.id", $id )
                                 ->limit(1)
                                 ->get();
-            }
+                }
 
-            // спецтехника
-            if ($advertData[0]->category_id == 1 && $advertData[0]->subcategory_id == 4) {
+                // спецтехника
+                if ($advertData[0]->category_id == 1 && $advertData[0]->subcategory_id == 4) {
                     
                             $advert = DB::table("adverts as adv")->select(
                                 "adv.category_id",
@@ -173,7 +182,7 @@ class DetailsController extends Controller {
                                 ->where( "adv.id", $id )
                                 ->limit(1)
                                 ->get();
-            }
+                }
 
             // ретро авто
             if ($advertData[0]->category_id == 1 && $advertData[0]->subcategory_id == 5) {

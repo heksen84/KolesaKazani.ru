@@ -382,11 +382,10 @@ class ApiController extends Controller {
             $urls = new Urls(); // Закидываю данные в таблицу urls для SEO
 
             // url sitemap
-            if (strlen($text) > 5) 
-                $url_text = $text;
+            if (strlen($title) > 5) 
+                $url_text = $title;
             
-            //$urls->url = substr($advert->id."-".Helper::str2url($url_text), 0, 100);
-            $urls->url = $advert->id;
+            $urls->url = substr($advert->id."-".\Helper::str2url($url_text), 0, 100);            
             $urls->advert_id = $advert->id;
             $urls->save();
         

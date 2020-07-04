@@ -130,7 +130,7 @@ class IndexController extends Controller {
 		$regions = Regions::all();
 		
 		// VIP объявления
-		$vipAdverts = DB::table("adverts as adv")->select(
+		/*$vipAdverts = DB::table("adverts as adv")->select(
             "adv.id", 
             "adv.title", 
             "adv.price", 
@@ -144,7 +144,7 @@ class IndexController extends Controller {
 			->orderBy("startDate", "desc")->take(10)->get();			
 
 			\Debugbar::info("VIPADVERTS:");
-			\Debugbar::info($vipAdverts);
+			\Debugbar::info($vipAdverts);*/
 
 		// Новые объявления
 		$newAdverts = DB::table("adverts as adv")->select(
@@ -179,7 +179,7 @@ class IndexController extends Controller {
 		->with("description", $description)
 		->with("keywords", $keywords)
 		->with("regions", $regions)
-		->with("vipAdverts", $vipAdverts)
+		//->with("vipAdverts", $vipAdverts);
 		->with("newAdverts", $newAdverts);
     }
 

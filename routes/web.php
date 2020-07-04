@@ -22,7 +22,8 @@ Route::get("/moderator", "ModeratorController@showHomePage");
 Route::get("/util/str2url", "UtilsController@str2url");
 
 // детали объявления
-Route::get("/objavlenie/show/{id}", "DetailsController@getDetails");
+//Route::get("/objavlenie/show/{id}", "DetailsController@getDetails");
+Route::get("/objavlenie/show/{title}", "DetailsController@getDetails");
 
 // Новое объявление
 Route::get("/podat-objavlenie", "AdvertController@newAdvert");
