@@ -34,7 +34,7 @@ class DetailsController extends Controller {
                 $id = $urlData[0]->advert_id;
 
                 // получаю данные объявления по его id
-                $advertData = Adverts::select("category_id","subcategory_id")->where( "id", $id )->limit(1)->get();
+                $advertData = Adverts::select("category_id", "subcategory_id")->where( "id", $id )->limit(1)->get();
                         
                 // FIXME: сделать пункт 404 с поиском
                 if (!count($advertData))          
