@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\Common;
@@ -11,14 +9,13 @@ use App\Images;
 class DetailsController extends Controller {
 
     private $raw_engine_type = "CASE 
-    WHEN transport.engine_type=0 THEN 'бензин' 
-    WHEN transport.engine_type=1 THEN 'дизель' 
-    WHEN transport.engine_type=2 THEN 'газ-бензин'
-    WHEN transport.engine_type=3 THEN 'газ'
-    WHEN transport.engine_type=4 THEN 'гибрид'
-    WHEN transport.engine_type=5 THEN 'электричество'
-    ELSE '-' 
-    END as engine_type";
+        WHEN transport.engine_type=0 THEN 'бензин' 
+        WHEN transport.engine_type=1 THEN 'дизель' 
+        WHEN transport.engine_type=2 THEN 'газ-бензин'
+        WHEN transport.engine_type=3 THEN 'газ'
+        WHEN transport.engine_type=4 THEN 'гибрид'
+        WHEN transport.engine_type=5 THEN 'электричество'
+        ELSE '-' END as engine_type";
 
         // --------------------------------------------------
         // детали объявления
@@ -29,8 +26,10 @@ class DetailsController extends Controller {
                             
             $advertData = Adverts::select("category_id","subcategory_id")->where( "id", $id )->limit(1)->get();
             
-            if (count($advertData)==0)
-                    return view("errors/404");
+            // пока не знаю как сделать ошибку 404
+            if (!count($advertData))
+                //return view("errors/404");
+                return;
 
             \Debugbar::info("-------------------");
             \Debugbar::info($advertData);
