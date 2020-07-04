@@ -30,7 +30,7 @@ class DetailsController extends Controller {
             if (!count($urlData))
                 return;            
             
-                // получаю id объявления по заголовку объявления
+                // получаю id объявления
                 $id = $urlData[0]->advert_id;
 
                 // получаю данные объявления по его id
