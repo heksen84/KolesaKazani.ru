@@ -432,7 +432,7 @@ changeRegion() {
 	// обработка выбора местоположения
 	// -----------------------------------
 	changePlace() {
-
+    
     if (this.places_model==null) 
       return; // не обрабатыать если null
 
@@ -440,6 +440,8 @@ changeRegion() {
 	  let city_id = arr[0];
 	  let coords = arr[1];
 	  let lanlng = coords.split(",")
+
+    //console.log(lanlng);
 
     mapCoords=[];
     
@@ -455,7 +457,7 @@ changeRegion() {
 	  this.placeChanged = true;
 	  this.coordinates_set = true;
 
-	  // записываю id городи или деревни
+	  // записываю id города или деревни
 	  this.$root.advert_data.city_id = city_id;
 
 	  // записываю координаты
