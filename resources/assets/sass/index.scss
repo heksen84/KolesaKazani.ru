@@ -72,22 +72,22 @@ h3 {
 
 .card-title-text {
   padding:3px;
-  height:110px;
+  height:115px;
   white-space:initial;
   overflow:hidden;
   text-overflow:ellipsis;
   letter-spacing:1px;
-  font-size:14px;
-  //font-weight: 500;
+  font-size:14px;  
 }
 
 .card-location-text {
+  letter-spacing: 1px;
   white-space:initial;
   overflow:hidden;  
-  text-overflow:ellipsis;
-  margin:4px;
+  text-overflow:ellipsis;  
   font-size:12px;
   height:70px;
+  color:green;  
 }
 
 .card-price-value {  
