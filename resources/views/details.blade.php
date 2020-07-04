@@ -81,11 +81,11 @@
                     @foreach($images as $index => $image)
                       @if ($index==0)
                         <div class="carousel-item active">
-                          <img class="d-block w-100" src="{{ $image->name }}" onerror="this.onerror=null;this.src=" loading="lazy">
+                          <img class="d-block w-100" src="{{ $image->name }}" onerror="this.onerror=null;this.src=''" loading="lazy">
                         </div>
                       @else
                         <div class="carousel-item">
-                          <img class="d-block w-100" src="{{ $image->name }}" onerror="this.onerror=null;this.src=" loading="lazy">
+                          <img class="d-block w-100" src="{{ $image->name }}" onerror="this.onerror=null;this.src=''" loading="lazy">
                         </div>
                       @endif
                     @endforeach
