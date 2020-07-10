@@ -53,12 +53,18 @@
                   </nav>
                 @endif
 
+              <div class="text-right">
+                <span class="badge badge-danger" title="с по">В топе</span>
+                <span class="badge badge-primary" title="с по">Срочное</span>              
+                <span class="badge badge-success" title="с по">Выделено</span>              
+              </div>
+              
                 @if ($advert->title!="null") 
                   <h1>{{ $advert->title }}</h1><hr>
-                @endif
+                @endif              
 
               <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-action text-center">
-                <button class="btn btn-outline-danger btn-sm m-1" id="makeVip">В топ [VIP]</button>  
+                <button class="btn btn-outline-danger btn-sm m-1" id="makeVip">В топ ( VIP )</button>  
                 <button class="btn btn-outline-primary btn-sm m-1" id="makeTorg">Срочно</button>                                            
                 <button class="btn btn-outline-success btn-sm m-1" id="makePaint">Выделить</button>   
                 <!--<button class="btn btn-outline-secondary btn-sm m-1" id="prodlit">Продлить</button>-->
