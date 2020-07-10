@@ -11,9 +11,8 @@
 </div>
 
 <div class="container-fluid mycontainer">  
-
-    <!-- карта и сообщения об ошибках-->
-    <div class="modal" id="MsgModalDialog" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- карта и сообщения об ошибках-->
+  <div class="modal" id="MsgModalDialog" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -33,7 +32,7 @@
           </div>
         </div>
       </div>
-    </div>        
+  </div>        
 
     <!-- Объявление размещено -->
     <div class="modal" id="AdPostedModal" tabindex="-1" role="dialog" aria-hidden="true">
