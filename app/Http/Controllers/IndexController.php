@@ -224,6 +224,7 @@ class IndexController extends Controller {
 			$whereStr = "MATCH (title) AGAINST('".$request->searchString."' IN BOOLEAN MODE) AND adv.region_id=".$regionData->region_id." AND adv.city_id=".$placeData->city_id;		
         
         $items = DB::table("adverts as adv")->select(
+			"urls.url",
             "adv.id", 
             "adv.title", 
 			"adv.price",
@@ -235,6 +236,7 @@ class IndexController extends Controller {
 			DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"),
             DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
 		))
+		->join("urls", "adv.id", "=", "urls.advert_id" )
 		->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
         ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )
 		->whereRaw($whereStr)
