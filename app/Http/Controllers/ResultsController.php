@@ -79,6 +79,7 @@ class ResultsController extends Controller {
         }
                                                 
         $items = DB::table("adverts as adv")->select(
+            "urls.url",
             "adv.id", 
             "adv.title", 
             "adv.price",
@@ -89,7 +90,8 @@ class ResultsController extends Controller {
 			DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND v_top=1) as v_top"),			
 			DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"), 
             DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
-        ))        
+        ))
+        ->join("urls", "adv.id", "=", "urls.advert_id" )
         ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
         ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
         ->whereRaw($whereRaw)
@@ -188,6 +190,7 @@ class ResultsController extends Controller {
 	    else
 		    $filters = array ("price_ot" => $request->price_ot, "price_do" => $request->price_do);                 
             $items = DB::table("adverts as adv")->select(
+            "urls.url",
             "adv.id", 
             "adv.title", 
             "adv.price", 
@@ -199,6 +202,7 @@ class ResultsController extends Controller {
 			DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"), 
             DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
             ))
+            ->join("urls", "adv.id", "=", "urls.advert_id" )
             ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
             ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
             ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
@@ -249,6 +253,7 @@ class ResultsController extends Controller {
          
  
          $items = DB::table("adverts as adv")->select(
+            "urls.url",
             "adv.id", 
             "adv.title", 
             "adv.price", 
@@ -260,6 +265,7 @@ class ResultsController extends Controller {
 			DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"),
             DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
          ))
+        ->join("urls", "adv.id", "=", "urls.advert_id" )
         ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
         ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
         ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
@@ -317,6 +323,7 @@ class ResultsController extends Controller {
             \Debugbar::info("------------------");
  
          $items = DB::table("adverts as adv")->select(
+            "urls.url",
             "adv.id", 
             "adv.title", 
             "adv.price",
@@ -328,6 +335,7 @@ class ResultsController extends Controller {
 			DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"), 
             DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
         ))
+        ->join("urls", "adv.id", "=", "urls.advert_id" )
         ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
         ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
         ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)

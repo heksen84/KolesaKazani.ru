@@ -82,7 +82,7 @@
             <!-- перебор массива объявлений -->
             @foreach($items as $item)                                
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2 item">                  
-              <a href="/objavlenie/show/{{ $item->id }}">
+              <a href="/objavlenie/show/{{ $item->url }}">
                 @if ($item->color)
                   <div class="card green-background">
                 @else

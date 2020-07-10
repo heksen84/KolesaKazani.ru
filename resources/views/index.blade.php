@@ -257,7 +257,7 @@
     </div>
       @foreach($newAdverts as $advert)      
       <div class="col-sm-12 col-md-3 col-lg-3 col-xl-2 m-3">      
-        <a href="/objavlenie/show/{{ $advert->id }}" class="black">
+        <a href="/objavlenie/show/{{ $advert->url }}" class="black">
           @if ($advert->color)
             <div class="card index-card green-background">
           @else
@@ -277,7 +277,7 @@
   </div>
   @endif
 
-  <!-- РЕКЛАМА -->
+<!-- РЕКЛАМА -->
 <!--  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-5">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>  
   <ins class="adsbygoogle"
