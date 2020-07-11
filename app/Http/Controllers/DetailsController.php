@@ -580,7 +580,7 @@ class DetailsController extends Controller {
                         // adex_srochno
                         // adex_top
                         // adex_color
-                        // поля: id, advert_id, startDate, endDate
+                        // поля: id, advert_id, startDate, finishDate
 
                         /*$advert = DB::table("adverts as adv")->select(                                 
                         "adv.startDate",
