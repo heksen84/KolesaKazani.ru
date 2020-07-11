@@ -53,20 +53,33 @@
                   </nav>
                 @endif
 
-              <div class="text-right">
-                <span class="badge badge-danger" title="с по">В топе</span>
-                <span class="badge badge-primary" title="с по">Срочное</span>              
-                <span class="badge badge-success" title="с по">Выделено</span>              
-              </div>
+                <!-- индикаторы объявления -->
+                <div class="text-right">                            
+                  @if ($advert->v_top)
+                    <span class="badge badge-primary" title="с по">В топе</span>
+                  @endif
+                  @if ($advert->srochno_torg)
+                    <span class="badge badge-danger" title="с по">Срочное</span>
+                  @endif
+                  @if ($advert->color)                  
+                    <span class="badge badge-success" title="с по">Выделено</span>
+                  @endif
+                </div>
               
                 @if ($advert->title!="null") 
                   <h1>{{ $advert->title }}</h1><hr>
                 @endif              
 
               <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-action text-center">
-                <button class="btn btn-outline-danger btn-sm m-1" id="makeVip">В топ ( VIP )</button>  
-                <button class="btn btn-outline-primary btn-sm m-1" id="makeTorg">Срочно</button>                                            
-                <button class="btn btn-outline-success btn-sm m-1" id="makePaint">Выделить</button>   
+                @if (!$advert->v_top)
+                  <button class="btn btn-outline-primary btn-sm m-1" id="makeVip">В топ ( VIP )</button>
+                @endif
+                @if (!$advert->srochno_torg)
+                  <button class="btn btn-outline-danger btn-sm m-1" id="makeTorg">Срочно</button>
+                @endif
+                @if (!$advert->color)
+                  <button class="btn btn-outline-success btn-sm m-1" id="makePaint">Выделить</button>
+                @endif                
                 <!--<button class="btn btn-outline-secondary btn-sm m-1" id="prodlit">Продлить</button>-->
               </div>
 
