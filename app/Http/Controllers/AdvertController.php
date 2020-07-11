@@ -121,7 +121,7 @@ class AdvertController extends Controller {
                         case "makePaint": {
 
                                 $adex = AdExtend::select("id")->where("advert_id", "=", $advert_id)->where("color", "=", true)->get();
-                                \Debugbar::info("count: ".$adex->count());
+                                \Debugbar::info("Кол-во покрашенных: ".$adex->count());
 
                                 if ($adex->count()>0) {
                                         \Debugbar::info("обновляю...");

@@ -572,7 +572,45 @@ class DetailsController extends Controller {
                         ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                         ->where( "adv.id", $id )
                         ->limit(1)
-                        ->get();                        
+                        ->get();
+
+                        // ---------------------------------------------------
+                        // создать для каждого вида продвижения таблицу
+                        // ---------------------------------------------------
+                        // adex_srochno
+                        // adex_top
+                        // adex_color
+                        // поля: id, advert_id, startDate, endDate
+
+                        /*$advert = DB::table("adverts as adv")->select(                                 
+                        "adv.startDate",
+                        "adv.category_id",
+                        "adv.subcategory_id",
+                        "adv.id", 
+                        "adv.title", 
+                        "adv.text", 
+                        "adv.price", 
+                        "adv.phone", 
+                        "adv.coord_lat", 
+                        "adv.coord_lon", 
+                        "categories.name as category_name",
+                        "categories.url as category_url",
+                        "subcats.name as subcat_name",
+                        "subcats.url as subcat_url",
+                        "ad_ex.srochno_torg",
+                        "ad_ex.v_top",
+                        "ad_ex.color",
+                        DB::raw("kz_region.name AS region_name, kz_city.name AS city_name"),
+                        DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                        ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
+                        ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )
+                        ->join("categories", "adv.category_id" , "=" , "categories.id" )
+                        ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
+                        ->join("ad_extend as ad_ex", "adv.id" , "=" , "ad_ex.advert_id" )
+                        ->where( "adv.id", $id )
+                        ->whereRaw( "NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate" )                        
+                        ->limit(1)
+                        ->get();*/
             }
 
             // категория другое
