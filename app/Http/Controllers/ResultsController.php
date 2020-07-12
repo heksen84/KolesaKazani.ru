@@ -1,11 +1,5 @@
 <?php
-
-/*
-  Нужно возвращать данные фильтров для каждой категории, как это сделать?
-*/
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\Common;
@@ -86,17 +80,17 @@ class ResultsController extends Controller {
             "adv.startDate",            
             "kz_region.name as region_name",
             "kz_city.name as city_name",
-            DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND srochno_torg=1) as srochno_torg"),			
-			DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND v_top=1) as v_top"),			
-			DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"), 
-            DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
-        ))
-        ->join("urls", "adv.id", "=", "urls.advert_id" )
-        ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
-        ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
-        ->whereRaw($whereRaw)
-        ->paginate(10)
-        ->onEachSide(1);
+            "adex_color.id as color",
+            "adex_srochno.id as srochno",                           
+            DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"))
+            ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
+            ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			                    
+            ->join("urls", "adv.id", "=", "urls.advert_id" )
+            ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
+            ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
+            ->whereRaw($whereRaw)
+            ->paginate(10)
+            ->onEachSide(1);
 
         \Debugbar::info($items);
         
@@ -197,11 +191,11 @@ class ResultsController extends Controller {
             "adv.startDate",            
             "kz_region.name as region_name",
             "kz_city.name as city_name",
-            DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND srochno_torg=1) as srochno_torg"),			
-			DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND v_top=1) as v_top"),			
-			DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"), 
-            DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
-            ))
+            "adex_color.id as color",
+            "adex_srochno.id as srochno",                                       
+            DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"))
+            ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
+            ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			                    
             ->join("urls", "adv.id", "=", "urls.advert_id" )
             ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
             ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
@@ -251,7 +245,6 @@ class ResultsController extends Controller {
             $subcategories = $this->getSubCategoryData($request, $subcategory);
             $regionData = $this->getRegionData($region);           
          
- 
          $items = DB::table("adverts as adv")->select(
             "urls.url",
             "adv.id", 
@@ -260,19 +253,19 @@ class ResultsController extends Controller {
             "adv.startDate",            
             "kz_region.name as region_name",
             "kz_city.name as city_name",
-            DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND srochno_torg=1) as srochno_torg"),			
-			DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND v_top=1) as v_top"),			
-			DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"),
-            DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
-         ))
-        ->join("urls", "adv.id", "=", "urls.advert_id" )
-        ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
-        ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
-        ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
-        ->where("adv.region_id", $regionData->region_id)
-        ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")
-        ->paginate(10)
-        ->onEachSide(1);                 
+            "adex_color.id as color",
+            "adex_srochno.id as srochno",                                       
+            DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"))
+            ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
+            ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			                    
+            ->join("urls", "adv.id", "=", "urls.advert_id" )
+            ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
+            ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
+            ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
+            ->where("adv.region_id", $regionData->region_id)
+            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")
+            ->paginate(10)
+            ->onEachSide(1);                 
  
          \Debugbar::info("субкатегория: ".$subcategory);       
          \Debugbar::info("id субкатегории: ".$subcategories);      
@@ -330,20 +323,20 @@ class ResultsController extends Controller {
             "adv.startDate",            
             "kz_region.name as region_name",
             "kz_city.name as city_name",
-            DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND srochno_torg=1) as srochno_torg"),			
-			DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND v_top=1) as v_top"),			
-			DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"), 
-            DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"
-        ))
-        ->join("urls", "adv.id", "=", "urls.advert_id" )
-        ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
-        ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
-        ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
-        ->where("adv.region_id", $regionData->region_id)
-        ->where("adv.city_id", $cityData->city_id)
-        ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")
-        ->paginate(10)
-        ->onEachSide(1);
+            "adex_color.id as color",
+            "adex_srochno.id as srochno",                                    
+            DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"))
+            ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
+            ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			                    
+            ->join("urls", "adv.id", "=", "urls.advert_id" )
+            ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
+            ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
+            ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
+            ->where("adv.region_id", $regionData->region_id)
+            ->where("adv.city_id", $cityData->city_id)
+            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")
+            ->paginate(10)
+            ->onEachSide(1);
   
          \Debugbar::info("субкатегория: ".$subcategory);       
          \Debugbar::info("id субкатегории: ".$subcategories);      

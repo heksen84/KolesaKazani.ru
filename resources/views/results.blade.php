@@ -88,7 +88,7 @@
                 @else
                   <div class="card">
                 @endif
-                  @if ($item->srochno_torg)
+                  @if ($item->srochno)
                     <div class="label-torg">срочно</div>
                   @endif                  
                     <img class="card-img-top image" src="{{ $item->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">                                                            
