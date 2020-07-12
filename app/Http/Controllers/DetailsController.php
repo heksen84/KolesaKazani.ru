@@ -65,9 +65,9 @@ class DetailsController extends Controller {
                             "car_model.name as car_model", 
                             "transport.year", 
                             "transport.mileage",
-                            DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND srochno_torg=1) as srochno_torg"),			
-			                DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND v_top=1) as v_top"),			
-			                DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"),
+                            "adex_color.id as color",
+                            "adex_srochno.id as srochno",			                            
+                            "adex_top.id as top",			                            
                             DB::raw("CASE WHEN transport.steering_position=0 THEN 'слева' ELSE 'справа' END as steering_position"),                            
                             DB::raw($this->raw_engine_type),
                             DB::raw("CASE WHEN transport.customs=1 THEN 'да' ELSE 'нет' END as customs"),                                
@@ -78,6 +78,9 @@ class DetailsController extends Controller {
                             "subcats.name as subcat_name",
                             "subcats.url as subcat_url"
                             )
+                            ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
+                            ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			
+                            ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                    
                             ->join("categories", "adv.category_id" , "=" , "categories.id" )
                             ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                             ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -109,9 +112,9 @@ class DetailsController extends Controller {
                             "transport.type",                                
                             "transport.year", 
                             "transport.mileage",
-                            DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND srochno_torg=1) as srochno_torg"),			
-			                DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND v_top=1) as v_top"),			
-			                DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"),
+                            "adex_color.id as color",
+                            "adex_srochno.id as srochno",			                    
+                            "adex_top.id as top",			                                    
                             DB::raw("CASE WHEN transport.steering_position=0 THEN 'слева' ELSE 'справа' END as steering_position"),                            
                             DB::raw($this->raw_engine_type),
                             DB::raw("CASE WHEN transport.customs=1 THEN 'да' ELSE 'нет' END as customs"),                                
@@ -122,6 +125,9 @@ class DetailsController extends Controller {
                             "subcats.name as subcat_name",
                             "subcats.url as subcat_url"
                             )
+                            ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
+                            ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			
+                            ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                    
                             ->join("categories", "adv.category_id" , "=" , "categories.id" )
                             ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                             ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -150,11 +156,14 @@ class DetailsController extends Controller {
                                 "categories.url as category_url",
                                 "subcats.name as subcat_name",
                                 "subcats.url as subcat_url",
-                                DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND srochno_torg=1) as srochno_torg"),			
-			                    DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND v_top=1) as v_top"),			
-			                    DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"),
+                                "adex_color.id as color",
+                                "adex_srochno.id as srochno",			                
+                                "adex_top.id as top",			                                        
                                 DB::raw("kz_region.name AS region_name, kz_city.name AS city_name"),
                                 DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                                ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
+                                ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			
+                                ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                    
                                 ->join("categories", "adv.category_id" , "=" , "categories.id" )
                                 ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                                 ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -182,11 +191,14 @@ class DetailsController extends Controller {
                                 "categories.url as category_url",
                                 "subcats.name as subcat_name",
                                 "subcats.url as subcat_url",
-                                DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND srochno_torg=1) as srochno_torg"),			
-			                    DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND v_top=1) as v_top"),			
-			                    DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"),
+                                "adex_color.id as color",
+                                "adex_srochno.id as srochno",			                    
+                                "adex_top.id as top",			                                    
                                 DB::raw("kz_region.name AS region_name, kz_city.name AS city_name"),
                                 DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))                            
+                                ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
+                                ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			
+                                ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                    
                                 ->join("categories", "adv.category_id" , "=" , "categories.id" )
                                 ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                                 ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -217,14 +229,17 @@ class DetailsController extends Controller {
                             "categories.url as category_url",
                             "subcats.name as subcat_name",
                             "subcats.url as subcat_url",
-                            DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND srochno_torg=1) as srochno_torg"),			
-			                DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND v_top=1) as v_top"),			
-			                DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"),
+                            "adex_color.id as color",
+                            "adex_srochno.id as srochno",			                        
+                            "adex_top.id as top",			                                
                             DB::raw("CASE WHEN transport.steering_position=0 THEN 'слева' ELSE 'справа' END as steering_position"),                            
                             DB::raw($this->raw_engine_type),
                             DB::raw("CASE WHEN transport.customs=1 THEN 'да' ELSE 'нет' END as customs"),                                
                             DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name"),
                             DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                            ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
+                            ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )                    
+                            ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                        
                             ->join("categories", "adv.category_id" , "=" , "categories.id" )
                             ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                             ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -253,11 +268,14 @@ class DetailsController extends Controller {
                         "categories.url as category_url",
                         "subcats.name as subcat_name",
                         "subcats.url as subcat_url",
-                        DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND srochno_torg=1) as srochno_torg"),			
-			            DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND v_top=1) as v_top"),			
-			            DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"),
+                        "adex_color.id as color",
+                        "adex_srochno.id as srochno",			                        
+                        "adex_top.id as top",			                                
                         DB::raw("kz_region.name AS region_name, kz_city.name AS city_name"),
                         DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                        ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
+                        ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			        
+                        ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                                
                         ->join("categories", "adv.category_id" , "=" , "categories.id" )
                         ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                         ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -290,13 +308,16 @@ class DetailsController extends Controller {
                     "categories.url as category_url",
                     "subcats.name as subcat_name",
                     "subcats.url as subcat_url",
-                    DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND srochno_torg=1) as srochno_torg"),			
-			        DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND v_top=1) as v_top"),			
-			        DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"),
+                    "adex_color.id as color",
+                    "adex_srochno.id as srochno",			                        
+                    "adex_top.id as top",			                                
                     DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),
                     DB::raw("CASE WHEN realestate.kind_of_object=0 THEN 'вторичка' ELSE 'новостройка' END as kind_of_object"),                        
                     DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name"),
                     DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                    ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
+                    ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			            
+                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                            
                     ->join("categories", "adv.category_id" , "=" , "categories.id" )
                     ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -328,12 +349,15 @@ class DetailsController extends Controller {
                     "categories.url as category_url",
                     "subcats.name as subcat_name",
                     "subcats.url as subcat_url",
-                    DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND srochno_torg=1) as srochno_torg"),			
-			        DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND v_top=1) as v_top"),			
-			        DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"),
+                    "adex_color.id as color",
+                    "adex_srochno.id as srochno",                    
+                    "adex_top.id as top",			                            
                     DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),                        
                     DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name"),
                     DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                    ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
+                    ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			            
+                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                            
                     ->join("categories", "adv.category_id" , "=" , "categories.id" )
                     ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -360,9 +384,9 @@ class DetailsController extends Controller {
                     "realestate.property_type",                        
                     "realestate.rooms",
                     "realestate.area",
-                    DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND srochno_torg=1) as srochno_torg"),			
-			        DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND v_top=1) as v_top"),			
-			        DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"),
+                    "adex_color.id as color",
+                    "adex_srochno.id as srochno",                    
+                    "adex_top.id as top",			                            
                     DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),
                     DB::raw("CASE WHEN realestate.kind_of_object=0 THEN 'вторичка' ELSE 'новостройка' END as kind_of_object"),
                     DB::raw("CASE 
@@ -377,6 +401,9 @@ class DetailsController extends Controller {
                     "subcats.url as subcat_url",   
                     DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name"),
                     DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                    ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
+                    ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			            
+                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                            
                     ->join("categories", "adv.category_id" , "=" , "categories.id" )
                     ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -405,12 +432,15 @@ class DetailsController extends Controller {
                     "categories.url as category_url",
                     "subcats.name as subcat_name",
                     "subcats.url as subcat_url",
-                    DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND srochno_torg=1) as srochno_torg"),			
-			        DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND v_top=1) as v_top"),			
-			        DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"),
+                    "adex_color.id as color",
+                    "adex_srochno.id as srochno",                    
+                    "adex_top.id as top",			                            
                     DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),                        
                     DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name"),
                     DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                    ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
+                    ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			            
+                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                            
                     ->join("categories", "adv.category_id" , "=" , "categories.id" )
                     ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -439,12 +469,15 @@ class DetailsController extends Controller {
                     "categories.url as category_url",
                     "subcats.name as subcat_name",
                     "subcats.url as subcat_url",
-                    DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND srochno_torg=1) as srochno_torg"),			
-			        DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND v_top=1) as v_top"),			
-			        DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"),
+                    "adex_color.id as color",
+                    "adex_srochno.id as srochno",                    
+                    "adex_top.id as top",			                            
                     DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),                        
                     DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name"),
                     DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                    ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
+                    ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			            
+                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                            
                     ->join("categories", "adv.category_id" , "=" , "categories.id" )
                     ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -475,9 +508,9 @@ class DetailsController extends Controller {
                     "categories.url as category_url",
                     "subcats.name as subcat_name",
                     "subcats.url as subcat_url",
-                    DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND srochno_torg=1) as srochno_torg"),			
-			        DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND v_top=1) as v_top"),			
-			        DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"),
+                    "adex_color.id as color",
+                    "adex_srochno.id as srochno",                    
+                    "adex_top.id as top",			                            
                     DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),
                     DB::raw("CASE WHEN realestate.kind_of_object=0 THEN 'вторичка' ELSE 'новостройка' END as kind_of_object"),
                     DB::raw("CASE 
@@ -488,6 +521,9 @@ class DetailsController extends Controller {
                     END as type_of_building"),                        
                     DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name"),
                     DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                    ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
+                    ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			            
+                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                            
                     ->join("categories", "adv.category_id" , "=" , "categories.id" )
                     ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -518,9 +554,9 @@ class DetailsController extends Controller {
                     "categories.url as category_url", 
                     "subcats.name as subcat_name",
                     "subcats.url as subcat_url",
-                    DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND srochno_torg=1) as srochno_torg"),			
-			        DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND v_top=1) as v_top"),			
-			        DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"),
+                    "adex_color.id as color",
+                    "adex_srochno.id as srochno",                    
+                    "adex_top.id as top",			                            
                     DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),
                     DB::raw("CASE WHEN realestate.kind_of_object=0 THEN 'вторичка' ELSE 'новостройка' END as kind_of_object"),
                     DB::raw("CASE 
@@ -531,6 +567,9 @@ class DetailsController extends Controller {
                     END as type_of_building"),                        
                     DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name"),
                     DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                    ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
+                    ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			                
+                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                        
                     ->join("categories", "adv.category_id" , "=" , "categories.id" )
                     ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -560,57 +599,22 @@ class DetailsController extends Controller {
                         "categories.name as category_name",
                         "categories.url as category_url",
                         "subcats.name as subcat_name",
-                        "subcats.url as subcat_url",
-                        DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND srochno_torg=1) as srochno_torg"),			
-			            DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND v_top=1) as v_top"),			
-			            DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"),
+                        "subcats.url as subcat_url",                 
+                        "adex_color.id as color",
+                        "adex_srochno.id as srochno",                           
+                        "adex_top.id as top",			                            
                         DB::raw("kz_region.name AS region_name, kz_city.name AS city_name"),
                         DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                        ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
+                        ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			                    
+                        ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                    
                         ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                         ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )
                         ->join("categories", "adv.category_id" , "=" , "categories.id" )
                         ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                         ->where( "adv.id", $id )
                         ->limit(1)
-                        ->get();
-
-                        // ---------------------------------------------------
-                        // создать для каждого вида продвижения таблицу
-                        // ---------------------------------------------------
-                        // adex_srochno
-                        // adex_top
-                        // adex_color
-                        // поля: id, advert_id, startDate, finishDate
-
-                        /*$advert = DB::table("adverts as adv")->select(                                 
-                        "adv.startDate",
-                        "adv.category_id",
-                        "adv.subcategory_id",
-                        "adv.id", 
-                        "adv.title", 
-                        "adv.text", 
-                        "adv.price", 
-                        "adv.phone", 
-                        "adv.coord_lat", 
-                        "adv.coord_lon", 
-                        "categories.name as category_name",
-                        "categories.url as category_url",
-                        "subcats.name as subcat_name",
-                        "subcats.url as subcat_url",
-                        "ad_ex.srochno_torg",
-                        "ad_ex.v_top",
-                        "ad_ex.color",
-                        DB::raw("kz_region.name AS region_name, kz_city.name AS city_name"),
-                        DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
-                        ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
-                        ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )
-                        ->join("categories", "adv.category_id" , "=" , "categories.id" )
-                        ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
-                        ->join("ad_extend as ad_ex", "adv.id" , "=" , "ad_ex.advert_id" )
-                        ->where( "adv.id", $id )
-                        ->whereRaw( "NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate" )                        
-                        ->limit(1)
-                        ->get();*/
+                        ->get();                    
             }
 
             // категория другое
@@ -629,12 +633,15 @@ class DetailsController extends Controller {
                     "adv.coord_lat", 
                     "adv.coord_lon", 
                     "categories.name as category_name",
-                    "categories.url as category_url",
-                    DB::raw("(SELECT srochno_torg FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND srochno_torg=1) as srochno_torg"),			
-			        DB::raw("(SELECT v_top FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND v_top=1) as v_top"),			
-			        DB::raw("(SELECT color FROM ad_extend as ad_ex WHERE NOW() BETWEEN ad_ex.startDate AND ad_ex.finishDate AND ad_ex.advert_id=adv.id AND color=1) as color"),
+                    "categories.url as category_url",                    
+                    "adex_color.id as color",
+                    "adex_srochno.id as srochno",                           
+                    "adex_top.id as top",			                            
                     DB::raw("kz_region.name AS region_name, kz_city.name AS city_name"),
                     DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                    ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
+                    ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			                    
+                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                    
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )
                     ->join("categories", "adv.category_id" , "=" , "categories.id" )                    

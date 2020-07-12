@@ -55,10 +55,10 @@
 
                 <!-- индикаторы объявления -->
                 <div class="text-right">                            
-                  @if ($advert->v_top)
+                  @if ($advert->top)
                     <span class="badge badge-primary" title="с по">В топе</span>
                   @endif
-                  @if ($advert->srochno_torg)
+                  @if ($advert->srochno)
                     <span class="badge badge-danger" title="с по">Срочное</span>
                   @endif
                   @if ($advert->color)                  
@@ -71,10 +71,10 @@
                 @endif              
 
               <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-action text-center">
-                @if (!$advert->v_top)
+                @if (!$advert->top)
                   <button class="btn btn-outline-primary btn-sm m-1" id="makeVip">В топ ( VIP )</button>
                 @endif
-                @if (!$advert->srochno_torg)
+                @if (!$advert->srochno)
                   <button class="btn btn-outline-danger btn-sm m-1" id="makeTorg">Срочно</button>
                 @endif
                 @if (!$advert->color)
