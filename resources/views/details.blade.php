@@ -56,13 +56,13 @@
                 <!-- индикаторы объявления -->
                 <div class="text-right">                            
                   @if ($advert->top)
-                    <span class="badge badge-primary" title="с по">В топе</span>
+                    <span class="badge badge-primary" title="с {{ $advert->topStartDate }} по {{ $advert->topFinishDate }}">В топе</span>
                   @endif
                   @if ($advert->srochno)
-                    <span class="badge badge-danger" title="с по">Срочное</span>
+                    <span class="badge badge-danger" title="с {{ $advert->srochnoStartDate }} по {{ $advert->srochnoFinishDate }}">Срочное</span>
                   @endif
                   @if ($advert->color)                  
-                    <span class="badge badge-success" title="с по">Выделено</span>
+                    <span class="badge badge-success" title="с {{ $advert->colorStartDate }} по {{ $advert->colorFinishDate }}">Выделено</span>
                   @endif
                 </div>
               
