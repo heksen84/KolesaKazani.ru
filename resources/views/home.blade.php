@@ -96,7 +96,7 @@
     @foreach($items as $key => $item)
       <div class="row text-left">
         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 col-title">        
-        <span id="title">{{ $item->title }}</span>
+        <a href="/objavlenie/show/{{ $item->url }}" id="title" style="color:black">{{ $item->title }}</a>
         <!--<b><div>Просмотров(?)|Сообщений(?)</div></b>-->
         </div>
         <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-status text-center"><span id="status"><ins>cтатус</ins><br>на модерации</span></div>
