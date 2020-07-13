@@ -80,15 +80,15 @@ class ResultsController extends Controller {
             "adv.startDate",            
             "kz_region.name as region_name",
             "kz_city.name as city_name",
-            "adex_color.id as color",
-            "adex_srochno.id as srochno",                           
+            DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
+            DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
             DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"))
             ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
             ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			                    
             ->join("urls", "adv.id", "=", "urls.advert_id" )
             ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
             ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
-            ->whereRaw($whereRaw)
+            ->whereRaw($whereRaw)            
             ->paginate(10)
             ->onEachSide(1);
 
@@ -191,8 +191,8 @@ class ResultsController extends Controller {
             "adv.startDate",            
             "kz_region.name as region_name",
             "kz_city.name as city_name",
-            "adex_color.id as color",
-            "adex_srochno.id as srochno",                                       
+            DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
+            DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
             DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"))
             ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
             ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			                    
@@ -253,8 +253,8 @@ class ResultsController extends Controller {
             "adv.startDate",            
             "kz_region.name as region_name",
             "kz_city.name as city_name",
-            "adex_color.id as color",
-            "adex_srochno.id as srochno",                                       
+            DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
+            DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
             DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"))
             ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
             ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			                    
@@ -323,8 +323,8 @@ class ResultsController extends Controller {
             "adv.startDate",            
             "kz_region.name as region_name",
             "kz_city.name as city_name",
-            "adex_color.id as color",
-            "adex_srochno.id as srochno",                                    
+            DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
+            DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
             DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"))
             ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
             ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			                    
