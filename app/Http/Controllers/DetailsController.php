@@ -65,9 +65,9 @@ class DetailsController extends Controller {
                             "car_model.name as car_model", 
                             "transport.year", 
                             "transport.mileage",
-                            "adex_color.id as color",
-                            "adex_srochno.id as srochno",			                            
-                            "adex_top.id as top",
+                            DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
+                            DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
+                            DB::raw("(SELECT COUNT(*) FROM adex_top WHERE NOW() BETWEEN adex_top.startDate AND adex_top.finishDate AND adex_top.advert_id=adv.id) as top"),
                             "adex_color.startDate as colorStartDate",		                            
                             "adex_color.finishDate as colorFinishDate",		                            
                             "adex_srochno.startDate as srochnoStartDate",		                            
@@ -94,6 +94,7 @@ class DetailsController extends Controller {
                             ->join("car_mark", "car_mark.id_car_mark" , "=" , "transport.mark" )                
                             ->join("car_model", "car_mark.id_car_mark" , "=" , "car_model.id_car_mark" )                
                             ->where( "adv.id", $id )                                
+                            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
                             ->limit(1)
                             ->get();                                
                 }
@@ -117,9 +118,9 @@ class DetailsController extends Controller {
                             "transport.type",                                
                             "transport.year", 
                             "transport.mileage",
-                            "adex_color.id as color",
-                            "adex_srochno.id as srochno",			                    
-                            "adex_top.id as top",
+                            DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
+                            DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
+                            DB::raw("(SELECT COUNT(*) FROM adex_top WHERE NOW() BETWEEN adex_top.startDate AND adex_top.finishDate AND adex_top.advert_id=adv.id) as top"),
                             "adex_color.startDate as colorStartDate",		                            
                             "adex_color.finishDate as colorFinishDate",		                            
                             "adex_srochno.startDate as srochnoStartDate",		                            
@@ -144,6 +145,7 @@ class DetailsController extends Controller {
                             ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
                             ->join("sub_transport as transport", "adv.inner_id" , "=" , "transport.id" )                
                             ->where( "adv.id", $id )                                
+                            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
                             ->limit(1)
                             ->get();                                
                 }
@@ -166,9 +168,9 @@ class DetailsController extends Controller {
                                 "categories.url as category_url",
                                 "subcats.name as subcat_name",
                                 "subcats.url as subcat_url",
-                                "adex_color.id as color",
-                                "adex_srochno.id as srochno",			                
-                                "adex_top.id as top",
+                                DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
+                                DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
+                                DB::raw("(SELECT COUNT(*) FROM adex_top WHERE NOW() BETWEEN adex_top.startDate AND adex_top.finishDate AND adex_top.advert_id=adv.id) as top"),
                                 "adex_color.startDate as colorStartDate",		                            
                                 "adex_color.finishDate as colorFinishDate",		                            
                                 "adex_srochno.startDate as srochnoStartDate",		                            
@@ -185,6 +187,7 @@ class DetailsController extends Controller {
                                 ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                                 ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
                                 ->where( "adv.id", $id )
+                                ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
                                 ->limit(1)
                                 ->get();
                 }
@@ -207,9 +210,9 @@ class DetailsController extends Controller {
                                 "categories.url as category_url",
                                 "subcats.name as subcat_name",
                                 "subcats.url as subcat_url",
-                                "adex_color.id as color",
-                                "adex_srochno.id as srochno",			                    
-                                "adex_top.id as top",
+                                DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
+                                DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
+                                DB::raw("(SELECT COUNT(*) FROM adex_top WHERE NOW() BETWEEN adex_top.startDate AND adex_top.finishDate AND adex_top.advert_id=adv.id) as top"),
                                 "adex_color.startDate as colorStartDate",		                            
                                 "adex_color.finishDate as colorFinishDate",		                            
                                 "adex_srochno.startDate as srochnoStartDate",		                            
@@ -226,6 +229,7 @@ class DetailsController extends Controller {
                                 ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                                 ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
                                 ->where( "adv.id", $id )
+                                ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
                                 ->limit(1)
                                 ->get();
                 }
@@ -251,9 +255,9 @@ class DetailsController extends Controller {
                             "categories.url as category_url",
                             "subcats.name as subcat_name",
                             "subcats.url as subcat_url",
-                            "adex_color.id as color",
-                            "adex_srochno.id as srochno",			                        
-                            "adex_top.id as top",
+                            DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
+                            DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
+                            DB::raw("(SELECT COUNT(*) FROM adex_top WHERE NOW() BETWEEN adex_top.startDate AND adex_top.finishDate AND adex_top.advert_id=adv.id) as top"),
                             "adex_color.startDate as colorStartDate",		                            
                             "adex_color.finishDate as colorFinishDate",		                            
                             "adex_srochno.startDate as srochnoStartDate",		                            
@@ -274,6 +278,7 @@ class DetailsController extends Controller {
                             ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
                             ->join("sub_transport as transport", "adv.inner_id" , "=" , "transport.id" )                
                             ->where( "adv.id", $id )                                
+                            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
                             ->limit(1)
                             ->get();                                
             }
@@ -296,9 +301,9 @@ class DetailsController extends Controller {
                         "categories.url as category_url",
                         "subcats.name as subcat_name",
                         "subcats.url as subcat_url",
-                        "adex_color.id as color",
-                        "adex_srochno.id as srochno",			                        
-                        "adex_top.id as top",
+                        DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
+                        DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
+                        DB::raw("(SELECT COUNT(*) FROM adex_top WHERE NOW() BETWEEN adex_top.startDate AND adex_top.finishDate AND adex_top.advert_id=adv.id) as top"),
                         "adex_color.startDate as colorStartDate",		                            
                         "adex_color.finishDate as colorFinishDate",		                            
                         "adex_srochno.startDate as srochnoStartDate",		                            
@@ -315,6 +320,7 @@ class DetailsController extends Controller {
                         ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                         ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                    
                         ->where( "adv.id", $id )
+                        ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
                         ->limit(1)
                         ->get();
             }
@@ -342,9 +348,9 @@ class DetailsController extends Controller {
                     "categories.url as category_url",
                     "subcats.name as subcat_name",
                     "subcats.url as subcat_url",
-                    "adex_color.id as color",
-                    "adex_srochno.id as srochno",			                        
-                    "adex_top.id as top",
+                    DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
+                    DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
+                    DB::raw("(SELECT COUNT(*) FROM adex_top WHERE NOW() BETWEEN adex_top.startDate AND adex_top.finishDate AND adex_top.advert_id=adv.id) as top"),
                     "adex_color.startDate as colorStartDate",		                            
                     "adex_color.finishDate as colorFinishDate",		                            
                     "adex_srochno.startDate as srochnoStartDate",		                            
@@ -364,6 +370,7 @@ class DetailsController extends Controller {
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
                     ->where( "adv.id", $id )                                
+                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
                     ->limit(1)
                     ->get();                                                        
             }
@@ -389,9 +396,9 @@ class DetailsController extends Controller {
                     "categories.url as category_url",
                     "subcats.name as subcat_name",
                     "subcats.url as subcat_url",
-                    "adex_color.id as color",
-                    "adex_srochno.id as srochno",                    
-                    "adex_top.id as top",
+                    DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
+                    DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
+                    DB::raw("(SELECT COUNT(*) FROM adex_top WHERE NOW() BETWEEN adex_top.startDate AND adex_top.finishDate AND adex_top.advert_id=adv.id) as top"),
                     "adex_color.startDate as colorStartDate",		                            
                     "adex_color.finishDate as colorFinishDate",		                            
                     "adex_srochno.startDate as srochnoStartDate",		                            
@@ -410,6 +417,7 @@ class DetailsController extends Controller {
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
                     ->where( "adv.id", $id )                                
+                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
                     ->limit(1)
                     ->get();                                                        
             }
@@ -430,9 +438,9 @@ class DetailsController extends Controller {
                     "realestate.property_type",                        
                     "realestate.rooms",
                     "realestate.area",
-                    "adex_color.id as color",
-                    "adex_srochno.id as srochno",                    
-                    "adex_top.id as top",
+                    DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
+                    DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
+                    DB::raw("(SELECT COUNT(*) FROM adex_top WHERE NOW() BETWEEN adex_top.startDate AND adex_top.finishDate AND adex_top.advert_id=adv.id) as top"),
                     "adex_color.startDate as colorStartDate",		                            
                     "adex_color.finishDate as colorFinishDate",		                            
                     "adex_srochno.startDate as srochnoStartDate",		                            
@@ -462,6 +470,7 @@ class DetailsController extends Controller {
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
                     ->where( "adv.id", $id )                                
+                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
                     ->limit(1)
                     ->get();                                                        
             }
@@ -484,9 +493,9 @@ class DetailsController extends Controller {
                     "categories.url as category_url",
                     "subcats.name as subcat_name",
                     "subcats.url as subcat_url",
-                    "adex_color.id as color",
-                    "adex_srochno.id as srochno",                    
-                    "adex_top.id as top",
+                    DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
+                    DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
+                    DB::raw("(SELECT COUNT(*) FROM adex_top WHERE NOW() BETWEEN adex_top.startDate AND adex_top.finishDate AND adex_top.advert_id=adv.id) as top"),
                     "adex_color.startDate as colorStartDate",		                            
                     "adex_color.finishDate as colorFinishDate",		                            
                     "adex_srochno.startDate as srochnoStartDate",		                            
@@ -505,6 +514,7 @@ class DetailsController extends Controller {
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
                     ->where( "adv.id", $id )                                
+                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
                     ->limit(1)
                     ->get();                                                        
             }
@@ -527,9 +537,9 @@ class DetailsController extends Controller {
                     "categories.url as category_url",
                     "subcats.name as subcat_name",
                     "subcats.url as subcat_url",
-                    "adex_color.id as color",
-                    "adex_srochno.id as srochno",                    
-                    "adex_top.id as top",
+                    DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
+                    DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
+                    DB::raw("(SELECT COUNT(*) FROM adex_top WHERE NOW() BETWEEN adex_top.startDate AND adex_top.finishDate AND adex_top.advert_id=adv.id) as top"),
                     "adex_color.startDate as colorStartDate",		                            
                     "adex_color.finishDate as colorFinishDate",		                            
                     "adex_srochno.startDate as srochnoStartDate",		                            
@@ -548,6 +558,7 @@ class DetailsController extends Controller {
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
                     ->where( "adv.id", $id )                                
+                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
                     ->limit(1)
                     ->get();                                                        
             }
@@ -572,9 +583,9 @@ class DetailsController extends Controller {
                     "categories.url as category_url",
                     "subcats.name as subcat_name",
                     "subcats.url as subcat_url",
-                    "adex_color.id as color",
-                    "adex_srochno.id as srochno",                    
-                    "adex_top.id as top",
+                    DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
+                    DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
+                    DB::raw("(SELECT COUNT(*) FROM adex_top WHERE NOW() BETWEEN adex_top.startDate AND adex_top.finishDate AND adex_top.advert_id=adv.id) as top"),
                     "adex_color.startDate as colorStartDate",		                            
                     "adex_color.finishDate as colorFinishDate",		                            
                     "adex_srochno.startDate as srochnoStartDate",		                            
@@ -600,6 +611,7 @@ class DetailsController extends Controller {
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
                     ->where( "adv.id", $id )                                
+                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
                     ->limit(1)
                     ->get();                                                        
             }
@@ -624,9 +636,9 @@ class DetailsController extends Controller {
                     "categories.url as category_url", 
                     "subcats.name as subcat_name",
                     "subcats.url as subcat_url",
-                    "adex_color.id as color",
-                    "adex_srochno.id as srochno",                    
-                    "adex_top.id as top",
+                    DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
+                    DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
+                    DB::raw("(SELECT COUNT(*) FROM adex_top WHERE NOW() BETWEEN adex_top.startDate AND adex_top.finishDate AND adex_top.advert_id=adv.id) as top"),
                     "adex_color.startDate as colorStartDate",		                            
                     "adex_color.finishDate as colorFinishDate",		                            
                     "adex_srochno.startDate as srochnoStartDate",		                            
@@ -652,6 +664,7 @@ class DetailsController extends Controller {
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
                     ->where( "adv.id", $id )                                
+                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
                     ->limit(1)
                     ->get();                                                        
             }
