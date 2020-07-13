@@ -56,13 +56,13 @@
                 <!-- индикаторы объявления -->
                 <div class="text-right">                            
                   @if ($advert->top)
-                    <span class="badge badge-primary" title="с {{ date('d.m.Y', strtotime($advert->topStartDate)) }} по {{ date('d.m.Y', strtotime($advert->topFinishDate)) }}">В топе</span>
+                    <span class="badge badge-primary" title="В топе с {{ date('d.m.Y', strtotime($advert->topStartDate)) }} по {{ date('d.m.Y', strtotime($advert->topFinishDate)) }}">В топе</span>
                   @endif
                   @if ($advert->srochno)
-                    <span class="badge badge-danger" title="с {{ date('d.m.Y', strtotime($advert->srochnoStartDate)) }} по {{ date('d.m.Y', strtotime($advert->srochnoFinishDate)) }}">Срочное</span>
+                    <span class="badge badge-danger" title="Срочное с {{ date('d.m.Y', strtotime($advert->srochnoStartDate)) }} по {{ date('d.m.Y', strtotime($advert->srochnoFinishDate)) }}">Срочное</span>
                   @endif
                   @if ($advert->color)                  
-                    <span class="badge badge-success" title="с {{ date('d.m.Y', strtotime($advert->colorStartDate)) }} по {{ date('d.m.Y', strtotime($advert->colorFinishDate)) }}">Выделено</span>
+                    <span class="badge badge-success" title="Выделено с {{ date('d.m.Y', strtotime($advert->colorStartDate)) }} по {{ date('d.m.Y', strtotime($advert->colorFinishDate)) }}">Выделено</span>
                   @endif
                 </div>
               
