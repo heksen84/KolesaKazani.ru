@@ -50,7 +50,7 @@ class IndexController extends Controller {
 			$sklonResult="";
 						
 		// Страна
-		if ($region===null && $place===null) {
+		if ($region==null && $place==null) {
 
 			$location = "/";				
 			$title = mb_strtoupper(config('app.name'))." - объявления Казахстана";
