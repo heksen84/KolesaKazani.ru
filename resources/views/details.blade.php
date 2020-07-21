@@ -84,6 +84,7 @@
               </div>
 
               @if (count($images)>0)
+              123
               <div id="carousel" class="carousel slide mt-2" data-ride="carousel">
                   @if (count($images)>1)
                     <ol class="carousel-indicators">                    
