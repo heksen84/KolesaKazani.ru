@@ -83,9 +83,8 @@
                 <!--<button class="btn btn-outline-secondary btn-sm m-1" id="prodlit">Продлить</button>-->
               </div>
 
-              @if (count($images)>0)
-              123
-              <div id="carousel" class="carousel slide mt-2" data-ride="carousel">
+              @if (count($images)>0)              
+              <div id="carousel" class="carousel slide mt-3" data-ride="carousel">
                   @if (count($images)>1)
                     <ol class="carousel-indicators">                    
                       @foreach($images as $index => $image)
