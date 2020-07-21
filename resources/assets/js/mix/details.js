@@ -24,7 +24,7 @@ $( document ).ready(function() {
 
     $("#makeVip").click(function(item) {
                 
-        $(".modal-title").text("В топ [VIP]");
+        $(".modal-title").text("В топ");
         $(".modal-body p").text("Ссылку на ваше объявление увидят все посетители сайта. Она будет первой в горячих предложениях, пока кто-либо не займет это место.");
         $(".modal-body h5").text(window.vip_price+" ₸");
         $("#billingModalDialog").modal("show");
@@ -43,7 +43,7 @@ $( document ).ready(function() {
     
     $("#makeTorg").click(function(item) {
         
-        $(".modal-title").text("Срочно, торг");
+        $(".modal-title").text("Срочно");
         $(".modal-body p").text("Ваше объявление украсит флажок со словами «Срочно, торг».");        
         $(".modal-body h5").text(window.srochno_torg_price+" ₸");
         $("#billingModalDialog").modal("show");
