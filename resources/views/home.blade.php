@@ -81,9 +81,9 @@
       <li class="nav-item active">
         <a class="nav-link" href="/podat-objavlenie">Подать объявление <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
+      <!--<li class="nav-item">
         <a class="nav-link" href="#">Счёт: 4000 тнг. [ пополнить ]</a>
-      </li>
+      </li>-->
       <li class="nav-item">
         <a class="nav-link" href="/logout"><b>Выход</b></a>
       </li>      
