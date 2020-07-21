@@ -95,12 +95,12 @@
   @if (count($items)>0)
     @foreach($items as $key => $item)
       <div class="row text-left">
-        <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 col-title">        
-        <a href="/objavlenie/show/{{ $item->url }}" id="title" style="color:black">{{ $item->title }}</a>        
-        </div>
-        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-status text-center"><span id="status"><ins>cтатус</ins><br>на модерации</span></div>
-        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-action text-center actions" data-id={{ $item->id }}>
-          <button class="btn btn-outline-primary btn-sm m-1 prodlit">Продлить</button>          
+        <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 col-title">        
+          <a href="/objavlenie/show/{{ $item->url }}" id="title" style="color:black">{{ $item->title }}</a>
+          <div style="color:green;border:1px solid rgb(200,200,200);padding:2px;margin:5px 0px;width:110px;font-size:13px">на модерации</div>
+        </div>        
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-action text-center actions" data-id={{ $item->id }}>
+          <button class="btn btn-outline-primary btn-sm m-1 prodlit" title="Продлить бесплатно на 30 дней">Продлить бесплатно</button>          
         </div>
       </div>
   @endforeach 
