@@ -15,7 +15,6 @@ use App\Adverts;
 use App\Images;
 use Carbon\Carbon;
 
-
 class AdvertController extends Controller {
                 
         // новое объявление
