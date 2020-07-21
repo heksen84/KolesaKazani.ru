@@ -100,7 +100,7 @@
   </div>
 
 
-<div style="float:left" class="index-side-advert ml-4 mt-2">
+<!--<div style="float:left" class="index-side-advert ml-4 mt-2">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <ins class="adsbygoogle"
      style="display:inline;width:150px;height:600px"
@@ -157,7 +157,7 @@
     <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
     </script>    
-  </div>
+  </div>-->
   
   <div class="container-fluid container1 mt-2" id="index_page">
   
