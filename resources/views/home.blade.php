@@ -96,16 +96,11 @@
     @foreach($items as $key => $item)
       <div class="row text-left">
         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 col-title">        
-        <a href="/objavlenie/show/{{ $item->url }}" id="title" style="color:black">{{ $item->title }}</a>
-        <!--<b><div>Просмотров(?)|Сообщений(?)</div></b>-->
+        <a href="/objavlenie/show/{{ $item->url }}" id="title" style="color:black">{{ $item->title }}</a>        
         </div>
         <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-status text-center"><span id="status"><ins>cтатус</ins><br>на модерации</span></div>
         <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 col-action text-center actions" data-id={{ $item->id }}>
-          <button class="btn btn-outline-primary btn-sm m-1 prodlit">Продлить</button>            
-          <!--<button class="btn btn-outline-primary btn-sm m-1">Срочно, торг</button>          
-          <button class="btn btn-outline-success btn-sm m-1">В топ (vip)</button>
-          <button class="btn btn-outline-secondary btn-sm m-1">Покрасить</button>          
-          <button class="btn btn-outline-danger btn-sm m-1">Удалить</button>-->
+          <button class="btn btn-outline-primary btn-sm m-1 prodlit">Продлить</button>          
         </div>
       </div>
   @endforeach 
