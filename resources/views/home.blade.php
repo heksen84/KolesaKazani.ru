@@ -95,7 +95,7 @@
     @if (count($items)>0)
       @foreach($items as $key => $item)
         <div class="row text-left">
-          <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 col-title" style="height:100px;border:none">        
+          <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 col-title pt-1" style="height:100px;border:none">        
             <a href="/objavlenie/show/{{ $item->url }}" id="title" style="color:black">{{ $item->title }}</a>
             <!--<div style="color:green;border:1px solid rgb(200,200,200);padding:2px;margin:5px 0px;width:110px;font-size:13px;border-radius:3px">на модерации</div>-->
           </div>        
