@@ -107,7 +107,7 @@ class AdvertController extends Controller {
                                         
                                         \Debugbar::info("обновляю...");                                       
                                         adex_srochno::where("advert_id", '=', $advert_id)->update(['startDate'=>Carbon::now()->toDateTimeString(), 'finishDate' => $plusDate]);
-                                        Adverts::where("id", '=', $advert_id)->update(['startDate'=>Carbon::now()->toDateTimeString(), 'finishDate' => $plusDate]); // обновляю finishDate в adverts
+                                        //Adverts::where("id", '=', $advert_id)->update(['startDate'=>Carbon::now()->toDateTimeString(), 'finishDate' => $plusDate]); // обновляю finishDate в adverts
                                 }
                                 else {                                      
                                         
@@ -119,7 +119,7 @@ class AdvertController extends Controller {
                                         $adex->save();
 
                                         // обновляю finishDate в adverts
-                                        Adverts::where("id", '=', $advert_id)->update(['startDate'=>Carbon::now()->toDateTimeString(),'finishDate' => $plusDate]);
+                                        //Adverts::where("id", '=', $advert_id)->update(['startDate'=>Carbon::now()->toDateTimeString(),'finishDate' => $plusDate]);
                                 }
                                 break;
                         }
@@ -133,7 +133,7 @@ class AdvertController extends Controller {
                                 if ($adex->count()>0) {
                                         \Debugbar::info("обновляю...");                                        
                                         adex_color::where("advert_id", '=', $advert_id)->update(['startDate'=>Carbon::now()->toDateTimeString(), 'finishDate' => $plusDate]);
-                                        Adverts::where("id", '=', $advert_id)->update(['startDate'=>Carbon::now()->toDateTimeString(), 'finishDate' => $plusDate]); // обновляю finishDate в adverts
+                                        //Adverts::where("id", '=', $advert_id)->update(['startDate'=>Carbon::now()->toDateTimeString(), 'finishDate' => $plusDate]); // обновляю finishDate в adverts
                                 }
                                 else {                                      
                                         
@@ -145,7 +145,7 @@ class AdvertController extends Controller {
                                         $adex->save();
 
                                         // обновляю finishDate в adverts
-                                        Adverts::where("id", '=', $advert_id)->update(['startDate'=>Carbon::now()->toDateTimeString(), 'finishDate' => $plusDate]);
+                                        //Adverts::where("id", '=', $advert_id)->update(['startDate'=>Carbon::now()->toDateTimeString(), 'finishDate' => $plusDate]);
                                 }                        
                                 break;
                         }
