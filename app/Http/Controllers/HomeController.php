@@ -17,7 +17,7 @@ class HomeController extends Controller {
     public function ShowHomePage() {
 
     if (Auth::check()) {        
-        
+
         $items = DB::table("adverts as adv")->select(			
 			"urls.url",
             "adv.id", 
@@ -35,7 +35,7 @@ class HomeController extends Controller {
 			->join("urls", "adv.id", "=", "urls.advert_id" )
 			->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
 			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )			
-            //->orderBy("startDate", "desc")
+            ->orderBy("adv.startDate", "desc")
             ->where("user_id", Auth::id())
             ->paginate(10)
             ->onEachSide(1);
