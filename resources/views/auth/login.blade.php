@@ -50,7 +50,7 @@
                                     <img src="public/images/social/ok.svg" alt="Одноклассники" title="Войти через соц. сеть Одноклассники" id="auth_ok"></img>
                                 </a>
                                 <a href="{{ url('auth/ok') }}">                        
-                                    <img src="public/images/social/instagram.svg" alt="инстаграмм" title="Войти через соц. сеть Инстаграм" id="auth_instagram" width="56" height="56" style="margin-left:-4px"></img>
+                                    <img src="public/images/social/instagram.svg" alt="инстаграмм" title="Войти через соц. сеть Инстаграм" id="auth_instagram" width="56" height="56" style="margin-left:-5px"></img>
                                 </a>
                             </div>                        
                         </div>                        
