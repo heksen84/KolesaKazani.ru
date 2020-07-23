@@ -16,7 +16,9 @@ class HomeController extends Controller {
 		    
     public function ShowHomePage() {
 
-    if (Auth::check()) {        
+    if (Auth::check()) {   
+        
+        // вернуть expired
 
         $items = DB::table("adverts as adv")->select(			
 			"urls.url",
@@ -26,7 +28,8 @@ class HomeController extends Controller {
             "adv.startDate",            
             "kz_region.name as region_name",
 			"kz_city.name as city_name",			
-			DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
+            DB::raw("(SELECT COUNT(*) FROM adverts WHERE NOW() BETWEEN startDate AND finishDate AND id=adv.id) as expired"),                        
+            DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
             DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"))
 			->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
 			->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			
@@ -37,6 +40,8 @@ class HomeController extends Controller {
             ->where("user_id", Auth::id())
             ->paginate(10)
             ->onEachSide(1);
+
+            \Debugbar::info($items);
 
         $userName = Auth::user()->name;
 

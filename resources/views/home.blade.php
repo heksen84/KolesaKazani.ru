@@ -91,29 +91,34 @@
   </div>
 </nav>
 
-<div class="container-fluid mycontainer text-center">
-  @if (count($items)>0)
-    @foreach($items as $key => $item)
-      <div class="row text-left">
-        <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 col-title">        
-          <a href="/objavlenie/show/{{ $item->url }}" id="title" style="color:black">{{ $item->title }}</a>
-          <div style="color:green;border:1px solid rgb(200,200,200);padding:2px;margin:5px 0px;width:110px;font-size:13px;border-radius:3px">на модерации</div>
-        </div>        
-        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-action text-center actions" data-id={{ $item->id }}>
-          <button class="btn btn-outline-primary btn-sm m-1 prodlit" title="Продлить объявление бесплатно на 30 дней">Продлить бесплатно на 30 дн.</button>          
+  <div class="container-fluid mycontainer text-center">
+    @if (count($items)>0)
+      @foreach($items as $key => $item)
+        <div class="row text-left">
+          <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 col-title" style="height:100px;border:none">        
+            <a href="/objavlenie/show/{{ $item->url }}" id="title" style="color:black">{{ $item->title }}</a>
+            <!--<div style="color:green;border:1px solid rgb(200,200,200);padding:2px;margin:5px 0px;width:110px;font-size:13px;border-radius:3px">на модерации</div>-->
+          </div>        
+          <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-action text-center actions" style="border:none" data-id={{ $item->id }}>          
+          @if (!$item->expired)
+            <button class="btn btn-outline-primary btn-sm m-1 prodlit" title="Продлить объявление бесплатно на 30 дней">Продлить бесплатно на 30 дн.</button>
+          @endif
+          <button class="btn btn-outline-success btn-sm m-1" id="makeVip">В топ</button>
+          <button class="btn btn-outline-secondary btn-sm m-1" id="makeVip">Выделить</button>
+          <button class="btn btn-outline-danger btn-sm m-1" id="makeVip">Срочно</button>
+          </div>
         </div>
-      </div>
-  @endforeach 
-@else  
-  <h3 class="mt-3">нет объявлений</h3>  
-  <a href="/podat-objavlenie" class="btn btn-success mt-2" role="button" style="width:210px">Подать объявление</a>
-@endif
+    @endforeach 
+  @else  
+    <h3 class="mt-3">нет объявлений</h3>  
+    <a href="/podat-objavlenie" class="btn btn-success mt-2" role="button" style="width:210px">Подать объявление</a>
+  @endif
 
-<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4">  
-    <div class="pagination justify-content-center pagination">      
-      {{ $items->links() }}                         
-    </div>
-</div>
+  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4">  
+      <div class="pagination justify-content-center pagination">      
+        {{ $items->links() }}                         
+      </div>
+  </div>
   
 </div>
 <script type="text/javascript" src="{{ mix('js/home.js') }}"></script>
