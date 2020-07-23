@@ -53,7 +53,7 @@ class LoadImages implements ShouldQueue {
             $image = Image::make($img["path"].$img["name"]);            
             
             if ($img["type"]=="normal") {
-                $image->fit(1024, 768);
+                $image->fit(800, 600);
                 Storage::disk('s3')->put("images/normal/".$img["name"], $image->stream()->detach());                    
             }
 
