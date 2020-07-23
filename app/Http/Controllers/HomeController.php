@@ -30,7 +30,8 @@ class HomeController extends Controller {
 			"kz_city.name as city_name",			
             DB::raw("(SELECT COUNT(*) FROM adverts WHERE NOW() BETWEEN startDate AND finishDate AND id=adv.id) as expired"),                        
             DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
-            DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"))
+            DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
+            DB::raw("(SELECT COUNT(*) FROM adex_top WHERE NOW() BETWEEN adex_top.startDate AND adex_top.finishDate AND adex_top.advert_id=adv.id) as top"))
 			->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
 			->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			
 			->join("urls", "adv.id", "=", "urls.advert_id" )
