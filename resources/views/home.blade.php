@@ -120,10 +120,10 @@
           @endif
           <!--<button class="btn btn-outline-success btn-sm m-1" id="makeVip">В топ</button>-->
           @if (!$item->color)
-            <button class="btn btn-outline-secondary btn-sm m-1" id="makeVip">Выделить</button>
+            <button class="btn btn-outline-secondary btn-sm m-1 color">Выделить</button>
           @endif
           @if (!$item->srochno)
-            <button class="btn btn-outline-danger btn-sm m-1" id="makeVip">Срочно</button>
+            <button class="btn btn-outline-danger btn-sm m-1 srochno">Срочно</button>
           @endif
           </div>
         </div>
