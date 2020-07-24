@@ -164,7 +164,7 @@ class IndexController extends Controller {
 			->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
 			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )			
 			->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")			
-			//->orderBy("startDate", "desc")
+			->orderBy("startDate", "desc")
 			->take(10)->get();			
 
 			\Debugbar::info("NEWADVERTS:");
