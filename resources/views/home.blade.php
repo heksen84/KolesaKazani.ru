@@ -97,19 +97,21 @@
       @foreach($items as $key => $item)
         <div class="row text-left">
           <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 col-title pt-1" style="height:140px;border:none"> 
+                <div class="statuses">                  
+                  @if ($item->top)
+                    <span class="badge badge-primary" title="В топе с {{ date('d.m.Y', strtotime($item->topStartDate)) }} по {{ date('d.m.Y', strtotime($item->topFinishDate)) }}">В топе</span>
+                  @endif
+                  @if ($item->srochno)
+                    <span class="badge badge-danger" title="Срочное с {{ date('d.m.Y', strtotime($item->srochnoStartDate)) }} по {{ date('d.m.Y', strtotime($item->srochnoFinishDate)) }}">Срочное</span>
+                  @endif
+                  @if ($item->color)                  
+                    <span class="badge badge-success" title="Выделено с {{ date('d.m.Y', strtotime($item->colorStartDate)) }} по {{ date('d.m.Y', strtotime($item->colorFinishDate)) }}">Выделено</span>
+                  @endif                  
+               </div>
 
-                @if ($item->top)
-                  <span class="badge badge-primary" title="В топе с {{ date('d.m.Y', strtotime($item->topStartDate)) }} по {{ date('d.m.Y', strtotime($item->topFinishDate)) }}">В топе</span>
-                @endif
-                @if ($item->srochno)
-                  <span class="badge badge-danger" title="Срочное с {{ date('d.m.Y', strtotime($item->srochnoStartDate)) }} по {{ date('d.m.Y', strtotime($item->srochnoFinishDate)) }}">Срочное</span>
-                @endif
-                @if ($item->color)                  
-                  <span class="badge badge-success" title="Выделено с {{ date('d.m.Y', strtotime($item->colorStartDate)) }} по {{ date('d.m.Y', strtotime($item->colorFinishDate)) }}">Выделено</span>
-                @endif
-                @if ($item->color || $item->srochno || $item->top)
-                  <hr style="margin-top:8px">
-                @endif
+                <!--@if ($item->color || $item->srochno || $item->top)
+                    <hr style="margin-top:8px">
+                @endif-->
 
             <a href="/objavlenie/show/{{ $item->url }}" id="title" style="color:black">{{ $item->title }}</a>
               <!--<div style="color:green;border:1px solid rgb(200,200,200);padding:2px;margin:5px 0px;width:115px;font-size:12px;border-radius:3px;padding-left:7px">на модерации</div>-->

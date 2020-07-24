@@ -2,19 +2,6 @@ require('./bootstrap');
 import $ from "jquery";
 import "bootstrap";
 
-/*@if ($item->top)
-                  <span class="badge badge-primary" title="В топе с {{ date('d.m.Y', strtotime($item->topStartDate)) }} по {{ date('d.m.Y', strtotime($item->topFinishDate)) }}">В топе</span>
-                @endif
-                @if ($item->srochno)
-                  <span class="badge badge-danger" title="Срочное с {{ date('d.m.Y', strtotime($item->srochnoStartDate)) }} по {{ date('d.m.Y', strtotime($item->srochnoFinishDate)) }}">Срочное</span>
-                @endif
-                @if ($item->color)                  
-                  <span class="badge badge-success" title="Выделено с {{ date('d.m.Y', strtotime($item->colorStartDate)) }} по {{ date('d.m.Y', strtotime($item->colorFinishDate)) }}">Выделено</span>
-                @endif
-                @if ($item->color || $item->srochno || $item->top)
-                  <hr style="margin-top:8px">
-                @endif*/
-
 function setExtendOptions() {
 
     $(".color").off().click(function(item) {
@@ -27,6 +14,7 @@ function setExtendOptions() {
             data: {"_token": $('meta[name="csrf-token"]').attr('content')},
             success: function (response) {                
                 self.hide();
+                self.parent().parent().find(".col-title").find(".statuses").append('<span class="badge badge-success">Выделено</span>');
             }
         });        
     });
@@ -40,9 +28,11 @@ function setExtendOptions() {
             type: "POST",
             data: {"_token": $('meta[name="csrf-token"]').attr('content')},
             success: function (response) {                
-                self.hide();
+             self.hide();
+             self.parent().parent().find(".col-title").find(".statuses").append('<span class="badge badge-danger">Срочное</span>');
             }
-        });        
+        });
+        
     });
 
     $(".prodlit").off().click(function(item) {        
