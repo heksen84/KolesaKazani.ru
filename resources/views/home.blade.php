@@ -112,17 +112,19 @@
                 @endif
 
             <a href="/objavlenie/show/{{ $item->url }}" id="title" style="color:black">{{ $item->title }}</a>
-            <!--<div style="color:green;border:1px solid rgb(200,200,200);padding:2px;margin:5px 0px;width:110px;font-size:13px;border-radius:3px">на модерации</div>-->
+              <!--<div style="color:green;border:1px solid rgb(200,200,200);padding:2px;margin:5px 0px;width:115px;font-size:12px;border-radius:3px;padding-left:7px">на модерации</div>-->
           </div>        
           <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-action text-center actions" style="border:none" data-id={{ $item->id }}>          
           @if (!$item->expired)
             <button class="btn btn-outline-primary btn-sm m-1 prodlit" title="Продлить объявление бесплатно на 30 дней">Продлить бесплатно на 30 дн.</button>
           @endif
-          <!--<button class="btn btn-outline-success btn-sm m-1" id="makeVip">В топ</button>-->
-          @if (!$item->color)
+          @if (!$item->top && $item->expired)
+            <button class="btn btn-outline-success btn-sm m-1 top">В топ</button>
+          @endif
+          @if (!$item->color && $item->expired)
             <button class="btn btn-outline-secondary btn-sm m-1 color">Выделить</button>
           @endif
-          @if (!$item->srochno)
+          @if (!$item->srochno && $item->expired)
             <button class="btn btn-outline-danger btn-sm m-1 srochno">Срочно</button>
           @endif
           </div>
