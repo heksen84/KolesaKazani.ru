@@ -4,6 +4,42 @@ import "bootstrap";
 
 function setExtendOptions() {
 
+    $(".prodlit").off().click(function(item) {        
+
+        let self = $(this);
+
+        $.ajax({
+            url: "/objavlenie/makeExtend/"+$(this).parent().data("id")+"/prodlit",
+            type: "POST",
+            data: {"_token": $('meta[name="csrf-token"]').attr('content')},
+            success: function (response) {                
+                self.hide();                
+
+                let buttons = '<button class="btn btn-outline-success btn-sm m-1 top">В топ</button>'+
+                              '<button class="btn btn-outline-secondary btn-sm m-1 color">Выделить</button>'+
+                              '<button class="btn btn-outline-danger btn-sm m-1 srochno">Срочно</button>';                
+                
+                self.parent().append(buttons);                
+                setExtendOptions();             
+            }
+        });        
+    });
+
+    $(".top").off().click(function(item) {
+
+        let self = $(this);
+
+        $.ajax({
+            url: "/objavlenie/makeExtend/"+$(this).parent().data("id")+"/goTop",
+            type: "POST",
+            data: {"_token": $('meta[name="csrf-token"]').attr('content')},
+            success: function (response) {                
+                self.hide();
+                self.parent().parent().find(".col-title").find(".statuses").append('<span class="badge badge-primary">В топе</span>');
+            }
+        });        
+    });
+
     $(".color").off().click(function(item) {
 
         let self = $(this);
@@ -33,28 +69,8 @@ function setExtendOptions() {
             }
         });
         
-    });
-
-    $(".prodlit").off().click(function(item) {        
-
-        let self = $(this);
-
-        $.ajax({
-            url: "/objavlenie/makeExtend/"+$(this).parent().data("id")+"/prodlit",
-            type: "POST",
-            data: {"_token": $('meta[name="csrf-token"]').attr('content')},
-            success: function (response) {                
-                self.hide();                
-
-                let buttons = '<button class="btn btn-outline-success btn-sm m-1 top">В топ</button>'+
-                              '<button class="btn btn-outline-secondary btn-sm m-1 color">Выделить</button>'+
-                              '<button class="btn btn-outline-danger btn-sm m-1 srochno">Срочно</button>';                
-                
-                self.parent().append(buttons);                
-                setExtendOptions();             
-            }
-        });        
-    });
+    });    
+    
 }
 
 // html загружен

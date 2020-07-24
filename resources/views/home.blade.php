@@ -107,12 +107,7 @@
                   @if ($item->color)                  
                     <span class="badge badge-success" title="Выделено с {{ date('d.m.Y', strtotime($item->colorStartDate)) }} по {{ date('d.m.Y', strtotime($item->colorFinishDate)) }}">Выделено</span>
                   @endif                  
-               </div>
-
-                <!--@if ($item->color || $item->srochno || $item->top)
-                    <hr style="margin-top:8px">
-                @endif-->
-
+                </div>                
             <a href="/objavlenie/show/{{ $item->url }}" id="title" style="color:black">{{ $item->title }}</a>
               <!--<div style="color:green;border:1px solid rgb(200,200,200);padding:2px;margin:5px 0px;width:115px;font-size:12px;border-radius:3px;padding-left:7px">на модерации</div>-->
           </div>        

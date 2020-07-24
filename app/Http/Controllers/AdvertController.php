@@ -86,7 +86,29 @@ class AdvertController extends Controller {
                 switch($adv_type) {
 
                         // В топ
-                        case "makeVip": {                        
+                        case "goTop": {
+                                
+                                $plusDate = Carbon::now()->add(7, 'day')->toDateTimeString();
+                                $adex = adex_top::select("id")->where("advert_id", "=", $advert_id)->get();
+                                \Debugbar::info("count: ".$adex->count());
+
+                                if ($adex->count()>0) {
+                                        
+                                        \Debugbar::info("обновляю...");                                       
+                                        adex_top::where("advert_id", '=', $advert_id)->update(['startDate'=>Carbon::now()->toDateTimeString(), 'finishDate' => $plusDate]);                                        
+                                }
+                                else {                                      
+                                        
+                                        \Debugbar::info("создаю запись...");                                        
+                                        $adex = new adex_top();
+                                        $adex->advert_id = $advert_id;                                        
+                                        $adex->startDate = Carbon::now()->toDateTimeString();
+                                        $adex->finishDate = $plusDate;
+                                        $adex->save();
+
+                                        // обновляю finishDate в adverts
+                                        //Adverts::where("id", '=', $advert_id)->update(['startDate'=>Carbon::now()->toDateTimeString(),'finishDate' => $plusDate]);
+                                }
                                 break;
                         }
                         
