@@ -70,7 +70,7 @@
                   <h1>{{ $advert->title }}</h1><hr>
                 @endif              
 
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-action text-center">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-action text-center">                
                 @if (!$advert->top)
                   <button class="btn btn-outline-primary btn-sm m-1" id="makeVip">В топ</button>
                 @endif
@@ -79,8 +79,7 @@
                 @endif
                 @if (!$advert->color)
                   <button class="btn btn-outline-success btn-sm m-1" id="makePaint">Выделить</button>
-                @endif                
-                <!--<button class="btn btn-outline-secondary btn-sm m-1" id="prodlit">Продлить</button>-->
+                @endif
               </div>
 
               @if (count($images)>0)              

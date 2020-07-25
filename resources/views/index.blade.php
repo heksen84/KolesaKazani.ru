@@ -249,6 +249,33 @@
       </div>
     </div>
   <br>
+
+  @if (count($topAdverts)>0)
+  <div class="row text-center">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">      
+      <div class="titleAdverts">ТОП объявления</div>  
+    </div>
+      @foreach($topAdverts as $advert)      
+      <div class="col-sm-12 col-md-3 col-lg-3 col-xl-2 m-3">      
+        <a href="/objavlenie/show/{{ $advert->url }}" class="black">
+          @if ($advert->color)
+            <div class="card index-card green-background">
+          @else
+            <div class="card index-card">
+          @endif
+          @if ($advert->srochno)        
+            <div class="label-torg">срочно</div>
+          @endif
+            <img class="card-img-top" src="{{ $advert->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">          
+              <div class="card-title-text">{{ $advert->title }}</div>
+              <div class="card-location-text">{{ $advert->region_name }}<br>{{ $advert->city_name }}</div>
+              <b class="card-price-value">{{ $advert->price }} ₸</b>
+          </div>
+        </a>
+      </div>      
+      @endforeach
+  </div>
+  @endif
   
   @if (count($newAdverts)>0)
   <div class="row text-center">

@@ -30,7 +30,7 @@ $( document ).ready(function() {
         $("#billingModalDialog").modal("show");
         $("#continueBilling").off().click(function(item) {
         	$.ajax({
-                url: "/objavlenie/makeExtend/"+window.advert_id+"/makeVip",
+                url: "/objavlenie/makeExtend/"+window.advert_id+"/goTop",
                 type: "POST",
                 data: {"_token": $('meta[name="csrf-token"]').attr('content')},
                 success: function (response) {
@@ -75,19 +75,7 @@ $( document ).ready(function() {
                 }
             });
         });        
-    });
-
-    $("#prodlit").click(function(item) {
-
-        $("#billingModalDialog").modal("show"); // отобразить окно
-        /*$.ajax({
-            url: "/objavlenie/makeExtend/"+window.advert_id+"/prodlit",
-            type: "POST",
-            data: {"_token": $('meta[name="csrf-token"]').attr('content')},
-            success: function (response) {                
-            }
-        });        */
-    });
+    });    
 	
 });
 
