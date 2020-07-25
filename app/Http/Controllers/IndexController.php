@@ -129,7 +129,6 @@ class IndexController extends Controller {
 		// список регионов
 		$regions = Regions::all();
 
-
 		// Новые объявления
 		$topAdverts = DB::table("adverts as adv")->select(			
 			"urls.url",
@@ -151,8 +150,7 @@ class IndexController extends Controller {
 			->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")			
 			->orderBy("startDate", "desc")
 			->orderBy("adv.id", "desc")
-			->take(10)->get();			
-		
+			->take(10)->get();					
 		
 		// Новые объявления
 		$newAdverts = DB::table("adverts as adv")->select(			
