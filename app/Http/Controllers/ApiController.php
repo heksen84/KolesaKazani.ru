@@ -137,6 +137,7 @@ class ApiController extends Controller {
         // поля которым требуется приведение к типу null
         $subcategory = $this->to_php_null($data["adv_subcategory"]);        
         $price = $this->to_php_null($data["adv_price"]);
+        
                 
      	try {
             
@@ -380,6 +381,7 @@ class ApiController extends Controller {
             $advert->finishDate = Carbon::now()->add(30, 'day')->toDateTimeString(); // добавляю 30 дней
             $advert->save();  // СОХРАНЕНИЕ ОБЪЯВЛЕНИЯ            
             $urls = new Urls(); // Закидываю данные в таблицу urls для SEO
+            
 
             // url sitemap
             if (strlen($title) > 5) 
@@ -387,9 +389,7 @@ class ApiController extends Controller {
             
             $urls->url = substr($advert->id."-".\Helper::str2url($url_text), 0, 100);            
             $urls->advert_id = $advert->id;
-            $urls->save();
-        
-            \Debugbar::info("images count: ".$request->file("images"));
+            $urls->save();                            
 
             if ($request->file("images")) {
 
@@ -416,6 +416,7 @@ class ApiController extends Controller {
                 
                 // Сохраняю картинки        
                 LoadImages::dispatch($images, $advert->id);            
+            
                 // Удаляю временные картинки        
                 DeleteTempImages::dispatch($images);
             }
