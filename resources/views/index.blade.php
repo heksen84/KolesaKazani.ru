@@ -8,6 +8,13 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="description" content="{{ $description }}">
   <meta name="keywords" content="{{ $keywords }}">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@letsencrypt">
+    <meta name="twitter:title" content="Let&#39;s Encrypt - Free SSL/TLS Certificates">
+    <meta name="twitter:url" content="https://ilbo.kz">
+    <meta name="twitter:description" content=" Let&#39;s Encrypt - это бесплатный, автоматизированный и открытый Центр Сертификации, созданный для вас некоммерческой организацией Internet Security Research Group (ISRG). ">
+
   <link rel="shortcut icon" href="{{ asset('css/shop.ico') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">  
   <link rel="stylesheet" type="text/css" href="{{ mix('css/common.css') }}">
