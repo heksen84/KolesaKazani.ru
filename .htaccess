@@ -15,3 +15,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !^/public/
 RewriteRule ^(css|map|js|images|ico)/(.*)$ public/$1/$2 [L,NC]
+
+<Files ~ "^.env">
+  Deny from all
+</Files>
