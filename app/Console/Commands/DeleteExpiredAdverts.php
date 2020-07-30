@@ -4,20 +4,25 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class WordOfTheDay extends Command
+
+/*
+    удалить объявление которое просрочено на месяц и всё что с ним связано: подкатегории и картинки в хранилище
+*/
+
+class DeleteExpiredAdverts extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'word:day';
+    protected $signature = 'deleteExpiredAdverts';
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Удалить просроченные объявления';
 
     /**
      * Create a new command instance.
@@ -34,9 +39,8 @@ class WordOfTheDay extends Command
      *
      * @return mixed
      */
-    public function handle()
-    {
+    public function handle() {
         // здесь логика
-	 $this->info('Приветики!');
+	    $this->info('Приветики!');
     }
 }

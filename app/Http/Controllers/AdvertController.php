@@ -35,47 +35,6 @@ class AdvertController extends Controller {
                 }
                 else 
                         return redirect('/login');
-        }              
-
-        // удалить объявление
-        public function deleteAdvert($id) {
-
-                // ПРИ УДАЛЕНИИ ПРОВЕРЯТЬ USER_ID с текущим      
-                $user_id = Auth::id();
-                \Debugbar::info("user_id ".$user_id);
-
-                $advertRequest = Adverts::select( "category_id", "subcategory_id", "inner_id")->where( "id", $id )->where("user_id", $user_id)->limit(1);                
-
-                $adverts = $advertRequest->get();
-                \Debugbar::info($adverts);
-
-                if (count($adverts)==0) {
-                        \Debugbar::info("нет прав на удаление");
-                        return response()->json([ "result" => "error", "msg" => "Access denied for this operation" ]);  
-                }
-                                
-                // ---- Удаляю картинки объявления ----
-                $imagesRequest = Images::select(DB::raw("name"))->where("advert_id", $id);                
-                $images = $imagesRequest->get(); // получаю массив
-
-                if (count($images)>0) {
-                        
-                        foreach($images as $image) {
-                                \Debugbar::info($image->name);
-                                
-                                $small_image = Common::getImagesPath()."/small/".$image->name;                        
-                                if (file_exists($small_image))
-                                        unlink($small_image);                                
-
-                                $normal_image = Common::getImagesPath()."/normal/".$image->name;                        
-                                if (file_exists($normal_image))
-                                        unlink($normal_image);
-                        }
-                        
-                        $imagesRequest->delete();
-                }                                
-
-            return response()->json([ "result" => "deleted", "msg" => "объявление удалено" ]);  
         }
 
         // -----------------------------------------------------------
@@ -176,5 +135,48 @@ class AdvertController extends Controller {
                 \Debugbar::info($adv_type);
                                 
                 return response()->json([ "result" => "success", "msg" => "готово" ]);  
-        }           
+        }
+
+        // ---------------------------------
+        // удалить объявление
+        // ---------------------------------
+        public function deleteAdvert($id) {
+
+                // ПРИ УДАЛЕНИИ ПРОВЕРЯТЬ USER_ID с текущим      
+                $user_id = Auth::id();
+                \Debugbar::info("user_id ".$user_id);
+
+                $advertRequest = Adverts::select( "category_id", "subcategory_id", "inner_id")->where( "id", $id )->where("user_id", $user_id)->limit(1);                
+
+                $adverts = $advertRequest->get();
+                \Debugbar::info($adverts);
+
+                if (count($adverts)==0) {
+                        \Debugbar::info("нет прав на удаление");
+                        return response()->json([ "result" => "error", "msg" => "Access denied for this operation" ]);  
+                }
+                                
+                // ---- Удаляю картинки объявления ----
+                $imagesRequest = Images::select(DB::raw("name"))->where("advert_id", $id);                
+                $images = $imagesRequest->get(); // получаю массив
+
+                if (count($images)>0) {
+                        
+                        foreach($images as $image) {
+                                \Debugbar::info($image->name);
+                                
+                                $small_image = Common::getImagesPath()."/small/".$image->name;                        
+                                if (file_exists($small_image))
+                                        unlink($small_image);                                
+
+                                $normal_image = Common::getImagesPath()."/normal/".$image->name;                        
+                                if (file_exists($normal_image))
+                                        unlink($normal_image);
+                        }
+                        
+                        $imagesRequest->delete();
+                }                                
+
+            return response()->json([ "result" => "deleted", "msg" => "объявление удалено" ]);  
+        }
 }
