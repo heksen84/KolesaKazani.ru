@@ -307,8 +307,7 @@ class ApiController extends Controller {
 
                     // Дом, Дача, Коттедж
                     if (isset($data["type_of_building"]))
-                        $realestate->type_of_building = $this->to_php_null($data["type_of_building"]);
-                    
+                        $realestate->type_of_building = $this->to_php_null($data["type_of_building"]);                    
 
                     $realestate->save();
 
@@ -397,8 +396,10 @@ class ApiController extends Controller {
                $images = [];
 
                 foreach($request->file("images") as $img) {
+                    
                     // формирую рандомное имя
-                    $filename = str_random(32).".".$img->getClientOriginalExtension();                
+                    $filename = str_random(32).".".$img->getClientOriginalExtension();      
+
                     // узнаю реальный путь к файлу
                     $image = Image::make($img->getRealPath());                
                     $normalFileNamePath = storage_path().'/app/images/normal/';                
