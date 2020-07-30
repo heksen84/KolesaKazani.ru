@@ -6,3 +6,6 @@ serice crond stop
 serice crond restart
 
 crontab -l  -вывести содержимое крона
+
+
+https://tutsforweb.com/how-to-set-up-task-scheduling-cron-job-in-laravel/
