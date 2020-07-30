@@ -1,1 +1,6 @@
 CRON - через мес€ц должен грохнуть объ€вление с истЄкшим сроком полностью из базы и с фото.
+—оздаЄм файл с именеи пользолвател€ например root в /var/spool/cron
+
+serice crond start
+serice crond stop
+serice crond restart
