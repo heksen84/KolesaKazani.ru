@@ -4,3 +4,5 @@ CRON - через мес€ц должен грохнуть объ€вление с истЄкшим сроком полностью из баз
 serice crond start
 serice crond stop
 serice crond restart
+
+crontab -l  -вывести содержимое крона
