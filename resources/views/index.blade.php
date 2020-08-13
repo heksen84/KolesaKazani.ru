@@ -9,6 +9,17 @@
   <meta name="description" content="{{ $description }}" />
   <meta name="keywords" content="{{ $keywords }}" />
 
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ильбо">
+  <meta property="og:title" content="{{ $title }}">
+  <meta property="og:description" content="{{ $description }}">
+  <meta property="og:url" content="/{{ $location }}/c/{{ $category['url'] }}">
+  
+  <!--<meta property="og:locale" content="ru_RU">
+  <meta property="og:image" content="http://example.com/img.jpg">
+  <meta property="og:image:width" content="968">
+  <meta property="og:image:height" content="504">-->
+
   <link rel="shortcut icon" href="{{ asset('css/shop.ico') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ mix('css/common.css') }}" />
