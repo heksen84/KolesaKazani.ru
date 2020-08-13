@@ -13,9 +13,8 @@
   <meta property="og:site_name" content="Ильбо">
   <meta property="og:title" content="{{ $title }}">
   <meta property="og:description" content="{{ $description }}">
-  <meta property="og:url" content="/{{ $location }}/c/{{ $category['url'] }}">
-  
-  <!--<meta property="og:locale" content="ru_RU">
+  <!--<meta property="og:url" content="/{{ $location }}/c/{{ $category['url'] }}">
+  <meta property="og:locale" content="ru_RU">
   <meta property="og:image" content="http://example.com/img.jpg">
   <meta property="og:image:width" content="968">
   <meta property="og:image:height" content="504">-->
