@@ -19,7 +19,7 @@
 
   <meta name="news_keywords" content="{{ $title }}"/>
 	<meta name="twitter:title" content="{{ $title }}"/>
-	<meta property="vk:title" content="12321312"/>
+	<meta property="vk:title" content="{{ $title }}"/>
 
   <link rel="shortcut icon" href="{{ asset('css/shop.ico') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
