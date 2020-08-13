@@ -13,7 +13,7 @@
   <meta property="og:site_name" content="Ильбо">
   <meta property="og:title" content="{{ $title }}">
   <meta property="og:description" content="{{ $description }}">  
-  <meta property="og:url" content="https://ilbo.kz">
+  <meta property="og:url" content="https://ilbo.kz/">
 
   <link rel="shortcut icon" href="{{ asset('css/shop.ico') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
