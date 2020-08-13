@@ -9,11 +9,17 @@
   <meta name="description" content="{{ $description }}" />
   <meta name="keywords" content="{{ $keywords }}" />
 
+  <!-- OpenGraph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Ильбо">
   <meta property="og:title" content="{{ $title }}">
   <meta property="og:description" content="{{ $description }}">  
   <meta property="og:url" content="https://ilbo.kz/">
+  <!-- /OpenGraph -->
+
+  <meta name="news_keywords" content="{{ $title }}"/>
+	<meta name="twitter:title" content="{{ $title }}"/>
+	<meta property="vk:title" content="{{ $title }}"/>
 
   <link rel="shortcut icon" href="{{ asset('css/shop.ico') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
