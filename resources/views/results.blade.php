@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
+  <title>{{ $title }}</title>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="keywords" content="{{ $keywords }}" />
   <meta name="description" content="{{ $description }}" />
   <meta name="csrf-token" content="{{ csrf_token() }}" />
-  <title>{{ $title }}</title>
+
+  <!-- OpenGraph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ильбо">
+  <meta property="og:title" content="{{ $title }}">
+  <meta property="og:description" content="{{ $description }}">  
+  <meta property="og:url" content="https://ilbo.kz/">
+  <!-- /OpenGraph -->
+
+  <meta name="news_keywords" content="{{ $title }}"/>
+	<meta name="twitter:title" content="{{ $title }}"/>
+	<meta property="vk:title" content="{{ $title }}"/>
+  
   <link rel="icon" href="{{ asset('public/shop.ico') }}" />
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ mix('css/common.css') }}" />
-  <link rel="stylesheet" type="text/css" href="{{ mix('css/results.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ mix('css/results.css') }}" />    
 </head>
 <body>
 
