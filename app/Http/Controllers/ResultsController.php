@@ -54,7 +54,9 @@ class ResultsController extends Controller {
     }    
     
     // результаты - общий запрос
-    public function getCategoryResults(Request $request, $region, $city, $category) {     
+    public function getCategoryResults(Request $request, $region, $city, $category) {  
+        
+        
 
         \Debugbar::info("getCategoryResults");        
         \Debugbar::info("start_price: ".$request->start_price);
@@ -192,14 +194,8 @@ class ResultsController extends Controller {
 
 	        // если у нас авто, то мы должны применить фильры от авто и вернуть входящие параметры во вьюху            
             $filters = array (
-		    "price_ot" => $request->price_ot,
-		    "price_do" => $request->price_do,
-		    "mark" => $request->mark, 
-		    "model" => $request->model,
-            "year_ot" => $request->year_ot,
-            "year_do" => $request->year_do,
-            "mileage_ot" => $request->mileage_ot,
-            "mileage_do" => $request->mileage_do
+                "price_ot" => $request->price_ot,
+                "price_do" => $request->price_do,		    
             );
             
         }
@@ -250,7 +246,13 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     // результаты по области
     // -------------------------------------------------------------
-    public function getRegionSubCategoryResults(Request $request, $region, $category, $subcategory) {    
+    public function getRegionSubCategoryResults(Request $request, $region, $category, $subcategory) {
+        
+        // если у нас авто, то мы должны применить фильры от авто и вернуть входящие параметры во вьюху            
+        $filters = array (
+		    "price_ot" => $request->price_ot,
+		    "price_do" => $request->price_do,		    
+        );
 
          \Debugbar::info("start_price: ".$request->start_price);
          \Debugbar::info("end_price: ".$request->end_price);        
@@ -308,13 +310,20 @@ class ResultsController extends Controller {
          ->with("subcategory", $subcategory)          
          ->with("page", $request->page?$request->page:0)
          ->with("start_price", $request->start_price)
-         ->with("end_price", $request->end_price);
+         ->with("end_price", $request->end_price)
+         ->with("filters", $filters);
     }
 
     // -------------------------------------------------------------
     // результаты по городу либо селу
     // -------------------------------------------------------------
-    public function getCitySubCategoryResults(Request $request, $region, $city, $category, $subcategory) {       
+    public function getCitySubCategoryResults(Request $request, $region, $city, $category, $subcategory) {   
+        
+        // если у нас авто, то мы должны применить фильры от авто и вернуть входящие параметры во вьюху            
+        $filters = array (
+		    "price_ot" => $request->price_ot,
+		    "price_do" => $request->price_do,		    
+        );
 
         \Debugbar::info("--- getCitySubCategoryResults ---"); 
         \Debugbar::info("start_price: ".$request->start_price);
@@ -381,6 +390,7 @@ class ResultsController extends Controller {
          ->with("subcategory", $subcategory)          
          ->with("page", $request->page?$request->page:0)
          ->with("start_price", $request->start_price)
-         ->with("end_price", $request->end_price);
+         ->with("end_price", $request->end_price)
+         ->with("filters", $filters);
     }    
 }
