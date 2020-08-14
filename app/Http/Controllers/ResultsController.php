@@ -56,8 +56,6 @@ class ResultsController extends Controller {
     // результаты - общий запрос
     public function getCategoryResults(Request $request, $region, $city, $category) {  
         
-        
-
         \Debugbar::info("getCategoryResults");        
         \Debugbar::info("start_price: ".$request->start_price);
         \Debugbar::info("end_price: ".$request->end_price);        
@@ -158,7 +156,7 @@ class ResultsController extends Controller {
         $categories = $this->getCategoryData($request, $category);                         
         $subcategories = $this->getSubCategoryData($request, $subcategory);
 
-        $priceBetweenSql="";
+        $priceBetweenSql = "";
 
         if ($request->price_ot && $request->price_do) 
             $priceBetweenSql = " AND price BETWEEN ".$request->price_ot." AND ".$request->price_do;
@@ -167,7 +165,7 @@ class ResultsController extends Controller {
         // ------------------------------------------------------------------
         // легковой автомобиль
         // ------------------------------------------------------------------
-        if ($category=="transport" && $subcategory=="legkovoy-avtomobil") {
+        if ($category === "transport" && $subcategory === "legkovoy-avtomobil") {
 
             \Debugbar::info("Легковой автомобиль");
 
@@ -188,7 +186,7 @@ class ResultsController extends Controller {
         // ------------------------------------------------------------------
         // легковой автомобиль
         // ------------------------------------------------------------------
-        if ($category=="transport" && $subcategory=="gruzovoy-avtomobil") {
+        if ($category === "transport" && $subcategory === "gruzovoy-avtomobil") {
 
             \Debugbar::info("Грузовой автомобиль");
 
@@ -196,8 +194,7 @@ class ResultsController extends Controller {
             $filters = array (
                 "price_ot" => $request->price_ot,
                 "price_do" => $request->price_do,		    
-            );
-            
+            );            
         }
 	    else
 		    $filters = array ("price_ot" => $request->price_ot, "price_do" => $request->price_do);                 
@@ -260,7 +257,7 @@ class ResultsController extends Controller {
          $startPrice = $request->start_price;
          $endPrice = $request->end_price;
  
-         $priceBetweenSql="";
+         $priceBetweenSql = "";
  
          if ($startPrice && $endPrice) 
              $priceBetweenSql = " AND price BETWEEN ".$startPrice." AND ".$endPrice;
