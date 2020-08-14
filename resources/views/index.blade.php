@@ -89,7 +89,7 @@
                   <div style="text-align:center"><a href="/" class="grey link" style="background:yellow;margin:auto">Искать по Казахстану</a></div>               	                
                     <div class="mt-2">
                       @foreach($regions as $region)
-                        <a href=/{{ $region["url"] }} class="grey link text-center region_link" id={{ $region["region_id"] }}><div class="mt-1">{{ $region["name"] }}</div></a>
+                        <a href=/{{ $region["url"] }} class="grey link text-center region_link" id={{ $region["region_id"] }}><div class="mt-1">{{ $region["name"] }} обл.</div></a>
                       @endforeach                    
                       <div class="text-center">
                         <button class='btn btn-sm btn-success m-3 closeLocationWindow'>Отмена</button>

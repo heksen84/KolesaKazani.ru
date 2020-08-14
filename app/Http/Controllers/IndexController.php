@@ -69,21 +69,16 @@ class IndexController extends Controller {
 				return view("errors/404"); // редирект
 
 			$regionArr = $locationName; // ???
-			$locationName = $locationName[0]->name;			
+			$locationName = $locationName[0]->name." обл.";			
 
 			if ($regionArr->count()>0) {
 				
 				$petrovich = new Petrovich(Petrovich::GENDER_FEMALE);					
 				$regionName = $regionArr[0]->name;
-				$regionName = trim(str_replace("обл.", "", $regionName));
-				$sklonResult = $petrovich->firstname($regionName, 0);
-
-				// minifix
-				switch($sklonResult) {
-					case "Алмы-Атинской": $sklonResult="Алма-Атинской"; break;
-				}
-
-				$title = mb_strtoupper(config('app.name'))." - объявления ".$sklonResult;
+				$regionName = trim(str_replace("обл.", "", $regionName));				
+				$sklonResult = $petrovich->firstname($regionName, 0)." области";
+				
+				$title = mb_strtoupper(config('app.name'))." - объявления-- ".$sklonResult;
 				$description = "Объявления о покупке, продаже, обмене, а так же сдаче в аренду в ".$sklonResult;
 				$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, FLIX, ".$regionName." область";
 			}

@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\Common;
+use App\Helpers\Petrovich;
 use App\Categories;
 use App\SubCats;
 use App\Regions;
@@ -37,8 +38,19 @@ class ResultsController extends Controller {
     }
     
     // получить расположение
-    private function getLocationName() {                        
-        return "Казахстане";
+    private function getLocationName($val, $isRegion) {                        
+
+	    if ($val===null)
+          return "Казахстане";
+	    else 
+            if ($isRegion) {
+                $petrovich = new Petrovich(Petrovich::GENDER_FEMALE);											
+                return $petrovich->firstname($val, 4);
+            }
+            else {
+                $petrovich = new Petrovich(Petrovich::GENDER_MALE);											
+                return $petrovich->firstname($val, 4);
+            }	    
     }    
     
     // результаты - общий запрос
@@ -208,7 +220,7 @@ class ResultsController extends Controller {
             \Debugbar::info("id субкатегории: ".$subcategories);      
             \Debugbar::info($items);
 
-            $locationName = $this->getLocationName();                              
+            $locationName = $this->getLocationName(null, null);                              
                 
             return view("results")    
             ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
@@ -271,12 +283,12 @@ class ResultsController extends Controller {
          \Debugbar::info("id субкатегории: ".$subcategories);      
          \Debugbar::info($items);
  
-         $locationName = $this->getLocationName();
+         $locationName = $this->getLocationName($regionData->name, true);
                  
          return view("results")    
-         ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
-         ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
-         ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))         
+         ->with("title", str_replace("@place", $locationName, $subcategories[0]->title." области" ))         
+         ->with("description", str_replace("@place", $locationName, $subcategories[0]->description." области" ))         
+         ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords." области" ))         
          ->with("items", $items)
          ->with("categoryId", $categories[0]->id)
          ->with("subcategoryId", $subcategories[0]->id)          
@@ -342,7 +354,7 @@ class ResultsController extends Controller {
          \Debugbar::info("id субкатегории: ".$subcategories);      
          \Debugbar::info($items);
  
-         $locationName = $this->getLocationName();
+         $locationName = $this->getLocationName($cityData->name, false);
 
          //return view("results");
                  
