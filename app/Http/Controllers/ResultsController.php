@@ -354,9 +354,7 @@ class ResultsController extends Controller {
          \Debugbar::info("id субкатегории: ".$subcategories);      
          \Debugbar::info($items);
  
-         $locationName = $this->getLocationName($cityData->name, false);
-
-         //return view("results");
+         $locationName = $this->getLocationName($cityData->name, false);         
                  
          return view("results")    
          ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
