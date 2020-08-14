@@ -117,9 +117,7 @@ class ResultsController extends Controller {
         if (!$regionData && !$cityData) {
             $locationName = $this->getLocationName(null, null);
         }
-        
-                
-                
+                                        
         return view("results")    
         ->with("title", str_replace("@place", $locationName, $categories[0]->title ))         
         ->with("description", str_replace("@place", $locationName, $categories[0]->description ))         
