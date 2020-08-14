@@ -40,12 +40,12 @@ class ResultsController extends Controller {
     // получить расположение
     private function getLocationName($val, $isRegion) {                        
 
-	    if ($val===null)
-          return "Казахстане";
+        if ($val===null) 
+            return "Казахстане";
 	    else 
             if ($isRegion) {
                 $petrovich = new Petrovich(Petrovich::GENDER_FEMALE);											
-                return $petrovich->firstname($val, 4);
+                return $petrovich->firstname($val, 4). " области";
             }
             else {
                 $petrovich = new Petrovich(Petrovich::GENDER_MALE);											
@@ -61,9 +61,10 @@ class ResultsController extends Controller {
         \Debugbar::info("end_price: ".$request->end_price);        
                         
         $startPrice = $request->start_price;
-        $endPrice = $request->end_price;
-        
-        $priceBetweenSql="";
+        $endPrice = $request->end_price;        
+        $priceBetweenSql = "";        
+        $regionData = null;
+        $cityData = null;
 
         if ($startPrice && $endPrice) 
             $priceBetweenSql = " AND price BETWEEN ".$startPrice." AND ".$endPrice;
@@ -75,7 +76,8 @@ class ResultsController extends Controller {
 
         if ($region && !$city) {
             $regionData = $this->getRegionData($region);             
-            $whereRaw = "region_id = ".$regionData->region_id." AND category_id = ".$categories[0]->id." AND NOW() BETWEEN adv.startDate AND adv.finishDate";
+           \Debugbar::info($regionData->region_id);
+            $whereRaw = "adv.region_id = ".$regionData->region_id." AND adv.category_id = ".$categories[0]->id." AND NOW() BETWEEN adv.startDate AND adv.finishDate";            
         }
 
         if ($region && $city) {            
@@ -105,8 +107,18 @@ class ResultsController extends Controller {
             ->onEachSide(1);
 
         \Debugbar::info($items);
+
+        if ($regionData) {                        
+            $locationName = $this->getLocationName($regionData->name, true);
+        }        
+        if ($cityData) {
+            $locationName = $this->getLocationName($cityData->name, false);
+        }
+        if (!$regionData && !$cityData) {
+            $locationName = $this->getLocationName(null, null);
+        }
         
-        $locationName = $this->getLocationName();        
+                
                 
         return view("results")    
         ->with("title", str_replace("@place", $locationName, $categories[0]->title ))         
@@ -286,9 +298,9 @@ class ResultsController extends Controller {
          $locationName = $this->getLocationName($regionData->name, true);
                  
          return view("results")    
-         ->with("title", str_replace("@place", $locationName, $subcategories[0]->title." области" ))         
-         ->with("description", str_replace("@place", $locationName, $subcategories[0]->description." области" ))         
-         ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords." области" ))         
+         ->with("title", str_replace("@place", $locationName, $subcategories[0]->title))         
+         ->with("description", str_replace("@place", $locationName, $subcategories[0]->description))         
+         ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords))         
          ->with("items", $items)
          ->with("categoryId", $categories[0]->id)
          ->with("subcategoryId", $subcategories[0]->id)          
@@ -353,6 +365,8 @@ class ResultsController extends Controller {
          \Debugbar::info("субкатегория: ".$subcategory);       
          \Debugbar::info("id субкатегории: ".$subcategories);      
          \Debugbar::info($items);
+
+         \DebugBar::info("tuta");
  
          $locationName = $this->getLocationName($cityData->name, false);         
                  
