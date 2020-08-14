@@ -50,7 +50,7 @@ class IndexController extends Controller {
 			$sklonResult="Казахстана";
 						
 		// Страна
-		if ($region==null && $place==null) {
+		if ($region===null && $place===null) {
 
 			$location = "/";				
 			$title = mb_strtoupper(config('app.name'))." - объявления Казахстана";
@@ -71,7 +71,7 @@ class IndexController extends Controller {
 			$regionArr = $locationName; // ???
 			$locationName = $locationName[0]->name." обл.";			
 
-			if ($regionArr->count()>0) {
+			if ($regionArr->count() > 0) {
 				
 				$petrovich = new Petrovich(Petrovich::GENDER_FEMALE);					
 				$regionName = $regionArr[0]->name;
