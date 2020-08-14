@@ -66,10 +66,10 @@ class UtilsController extends Controller {
 		$subcat->save();
 	}
 
-    	foreach ($regions as $region) {
+/*    	foreach ($regions as $region) {
 			$region->url=str2url($region->name);
 			$region->save();
-		}
+		}*/
 
 		foreach ($places as $place) {
 			$place->url=str2url($place->name);
