@@ -113,7 +113,7 @@
                         <div class="card-title">{{ $item->title }}</div>
                           <hr>
                         <div class="location">                        
-                          {{ $item->region_name }},{{ $item->city_name }}<br><b style="font-size:11px">{{ date("d.m.Y в H:i", strtotime($item->startDate)) }}</b></div>                      
+                          {{ $item->region_name }} обл., {{ $item->city_name }}<br><b style="font-size:11px">{{ date("d.m.Y в H:i", strtotime($item->startDate)) }}</b></div>                      
                         </div>            
                   </div>
                 </a>  

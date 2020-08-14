@@ -53,7 +53,7 @@
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2">                  
           <div class="close-link mb-4" title="Закрыть страницу">закрыть</div>        
             <div id="posted"><span>{{ date("Размещено d.m.Y в H:i", strtotime($advert->startDate)) }}</span></div>
-              <div id="location">{{ $advert->region_name }}, {{ $advert->city_name }}</div>
+              <div id="location">{{ $advert->region_name }} обл., {{ $advert->city_name }}</div>
                 @if ($advert->category_name)
                   <nav aria-label="breadcrumb">
                     <ol class="breadcrumb p-0" style="background:rgb(245,245,245);border-radius:5px;font-size:15px">

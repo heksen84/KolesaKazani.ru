@@ -53,12 +53,14 @@ class Petrovich {
 	    
 	switch ( mb_substr( mb_strtolower($middlename) , -4))
         {
+            case 'чное': return Petrovich::GENDER_MALE; break;
             case 'оглы': return Petrovich::GENDER_MALE; break;
             case 'кызы': return Petrovich::GENDER_FEMALE; break;
         }
 
         switch ( mb_substr( mb_strtolower($middlename) , -2))
         {
+            case 'ое': return Petrovich::GENDER_MALE; break;
             case 'ич': return Petrovich::GENDER_MALE; break;
             case 'на': return Petrovich::GENDER_FEMALE; break;
             default: return Petrovich::GENDER_ANDROGYNOUS; break;
