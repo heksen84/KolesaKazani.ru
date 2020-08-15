@@ -131,7 +131,25 @@ class Sitemap {
 					$record = $sitemap->addChild("url");
 					$record->addChild("loc", config('app.url').Sitemap::$public_path.$url);
 					$record->addChild("lastmod", $date_time);			
-					$record->addChild("changefreq", "hourly");
+
+					/*
+					 NEVER: Old news stories, press releases, etc
+					 YEARLY: Contact, “About Us”, login, registration pages
+					 MONTHLY: FAQs, instructions, occasionally updated articles
+					 WEEKLY: Product info pages, website directories
+					 DAILY: Blog entry index, classifieds, small message board
+					 HOURLY: Major news site, weather information, forum
+					 ALWAYS: Stock market data, social bookmarking categories
+					*/
+					
+					$record->addChild("changefreq", "daily");
+					
+					/*
+					 0.8-1.0: Homepage, subdomains, product info, major features, major category pages.
+					 0.4-0.7: Articles and blog entries, minor category pages, sub-category pages, FAQs
+					 0.0-0.3: Outdated news, info that has become irrelevant
+					*/
+	
 					$record->addChild("priority", "0.8");
 
 					$dom = new \DOMDocument("1.0", LIBXML_NOBLANKS);
