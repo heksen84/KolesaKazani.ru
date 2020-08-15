@@ -67,7 +67,7 @@ class UtilsController extends Controller {
 	}
 
 /*    	foreach ($regions as $region) {
-			$region->url=str2url($region->name);
+			$region->url=str2url($region->name)."-oblast";
 			$region->save();
 		}*/
 
