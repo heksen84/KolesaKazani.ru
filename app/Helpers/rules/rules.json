@@ -1021,6 +1021,19 @@
       {
         "gender": "androgynous",
         "test": [
+          "ана"
+        ],
+        "mods": [
+          "-а",
+          "-а",
+          "-а",
+          "-а",
+          "-а"
+        ]
+      },
+      {
+        "gender": "androgynous",
+        "test": [
           "а"
         ],
         "mods": [
