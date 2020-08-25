@@ -1,4 +1,7 @@
 User-agent: *
+Allow: /
+Disallow: /?
+Disallow: /*.php
 Disallow: /home
 Disallow: /moderator
 Disallow: /util/str2url
