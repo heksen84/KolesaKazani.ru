@@ -9,3 +9,12 @@ crontab -l  -вывести содержимое крона
 
 
 https://tutsforweb.com/how-to-set-up-task-scheduling-cron-job-in-laravel/
+
+
+„тобы запустить демон cron, воспользуйтесь следующей командой:
+sudo systemctl start crond.service
+
+„тобы настроить запуск cron при загрузке сервера, введите:
+sudo systemctl enable crond.service
+
+«адачи в cron записываютс€ и управл€ютс€ в специальном файле crontab.  аждый профиль пользовател€ в системе может иметь собственный файл crontab, где составл€ютс€ расписани€ задач, который хранитс€ в директории /var/spool/cron/.
