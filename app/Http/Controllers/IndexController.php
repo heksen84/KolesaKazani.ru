@@ -65,8 +65,9 @@ class IndexController extends Controller {
 			$location = $region;
 			$locationName = Regions::select("name")->where("url", $region)->get();
 
-			if (count($locationName)==0)
-				return view("errors/404"); // редирект
+			if (count($locationName) == 0) {
+				abort(404);             
+			}
 
 			$regionArr = $locationName; // ???
 			$locationName = $locationName[0]->name." обл.";			
@@ -82,8 +83,8 @@ class IndexController extends Controller {
 				$description = "Объявления о покупке, продаже, обмене, а так же сдаче в аренду в ".$sklonResult;
 				$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, FLIX, ".$regionName." область";
 			}
-			else 
-				return view("errors/404"); // редирект
+			else	
+				abort(404);
 		}
 
 		// Город, село
@@ -92,8 +93,9 @@ class IndexController extends Controller {
 			$location = $region."/".$place;
 			$locationName = Places::select("name")->where("url", $place)->get();
 
-			if (count($locationName)==0)
-				return view("errors/404"); // редирект
+			if (count($locationName)==0) {
+				abort(404);
+			}
 
 			$placeArr = $locationName;
 			$locationName = $locationName[0]->name;
@@ -110,7 +112,7 @@ class IndexController extends Controller {
 			
 			}
 			else 
-				return view("errors/404"); // редирект
+				abort(404);
 		}
 				
 		$subcats = DB::table("subcats")->join("categories", "categories.id", "=", "subcats.category_id")->select("subcats.*", "categories.url as category_url")->where("lang", "=", 0)->get();
