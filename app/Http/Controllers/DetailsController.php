@@ -27,8 +27,10 @@ class DetailsController extends Controller {
             $urlData = Urls::select("advert_id")->where( "url", $title )->get();
             
             // FIXME: сделать пункт 404 с поиском
-            if (!count($urlData))
-                return;            
+            if (!count($urlData)) {
+                abort(404);
+                //return;            
+            }
             
                 // получаю id объявления
                 $id = $urlData[0]->advert_id;
