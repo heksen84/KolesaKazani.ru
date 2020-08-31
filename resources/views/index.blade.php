@@ -317,7 +317,7 @@
   </div>
   @endif
 
-  <div class="text-center mt-5">
+  <div class="text-center mt-2">
     <a href="/podat-objavlenie" class="black" style="font-size:18px;letter-spacing:3px">подать объявление</a>
   </div>
 
