@@ -289,10 +289,6 @@
       @endforeach
   </div>
   @endif
-
-  <div class="text-center">
-    <a href="/podat-objavlenie" class="black" style="font-size:18px;letter-spacing:3px">подать объявление</a>
-  </div>
   
   @if (count($newAdverts)>0)
   <div class="row text-center">
@@ -319,7 +315,11 @@
       </div>      
       @endforeach
   </div>
-  @endif  
+  @endif
+
+  <div class="text-center">
+    <a href="/podat-objavlenie" class="black" style="font-size:18px;letter-spacing:3px">подать объявление</a>
+  </div>
 
 <!-- РЕКЛАМА -->
 <!--  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-5">
