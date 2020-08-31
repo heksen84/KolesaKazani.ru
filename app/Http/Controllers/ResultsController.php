@@ -13,27 +13,55 @@ class ResultsController extends Controller {
         
     // получить данные категории    
     private function getCategoryData(Request $request, $category) {  
-        $table = new Categories();         
-        return $table::select("id", "title", "description", "keywords")->where("url", $category)->get();
+        
+        $table = new Categories();
+        $data = $table::select("id", "title", "description", "keywords")->where("url", $category)->get();
+
+        if (!count($data)) {
+            abort(404);             
+        }
+
+        return $data;
     }
     
     // получить данные подкатегории
     private function getSubCategoryData(Request $request, $subcategory) {  
-        $table = new SubCats();         
-        return $table::select("id", "title", "description", "keywords")->where("url", $subcategory)->get();
+        
+        $table = new SubCats();
+        $data = $table::select("id", "title", "description", "keywords")->where("url", $subcategory)->get();
+
+        if (!count($data)) {
+            abort(404);             
+        }
+
+        return $data;
     }
     
     // получить данные региона
     private function getRegionData($region) {                
+        
         $regionId = Regions::select("region_id", "name")->where("url", $region)->get();        
         \Debugbar::info("ID региона: ".$regionId[0]->region_id);
+
+        // FIXME: NEED?
+        if (!count($regionId)) {
+            abort(404);             
+        }
+        
         return $regionId[0];
     }
     
     // получить данные города / села
     private function getCityData($region, $city) {                
+        
         $cityId = Places::select("city_id", "name")->where("region_id", $region)->where("url", $city)->get();        
         \Debugbar::info("ID города/села: ".$cityId[0]->city_id);
+
+        // FIXME: NEED?
+        if (!count($cityId)) {
+            abort(404);             
+        }
+
         return $cityId[0];
     }
     
