@@ -318,7 +318,7 @@
   @endif
 
   <div class="text-center">
-    <a href="/podat-objavlenie" class="black mt-2" style="font-size:18px;letter-spacing:3px">подать объявление</a>
+    <a href="/podat-objavlenie" class="black mt-5" style="font-size:18px;letter-spacing:3px">подать объявление</a>
   </div>
 
 <!-- РЕКЛАМА -->
