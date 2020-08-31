@@ -3,6 +3,15 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Adverts;
+use App\Images;
+use App\adex_color;
+use App\adex_srochno;
+use App\adex_top;
+use App\urls;
+use App\users;
+use App\Transport;
+use App\RealEstate;
 
 
 /*
@@ -16,7 +25,7 @@ class DeleteExpiredAdverts extends Command
      *
      * @var string
      */
-    protected $signature = 'deleteExpiredAdverts';
+    protected $signature = 'adverts:deleteExpired';
     /**
      * The console command description.
      *
@@ -40,7 +49,18 @@ class DeleteExpiredAdverts extends Command
      * @return mixed
      */
     public function handle() {
-        // здесь логика
-	    $this->info('Приветики!');
+
+        Adverts::truncate();
+        Images::truncate();
+        
+        adex_color::truncate();
+        adex_srochno::truncate();
+        adex_top::truncate();
+
+        Transport::truncate();
+	    RealEstate::truncate();
+
+        // здесь логика        
+        $this->info('Временные объявления удалены');
     }
 }

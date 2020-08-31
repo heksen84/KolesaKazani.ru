@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\Common;
 use App\Categories;
-use App\AdExtend;
 use App\adex_color;
 use App\adex_srochno;
 use App\adex_top;

@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-	    Commands\DeleteExpiredAdverts::class,
+	    Commands\DeleteAllAdverts::class,
+	    Commands\DeleteExpiredAdverts::class
     ];
 
     /**
@@ -23,7 +24,7 @@ class Kernel extends ConsoleKernel
      * @return void
      */
     protected function schedule(Schedule $schedule) {
-         $schedule->command('deleteExpiredAdverts')->everyMinute();
+         $schedule->command('deleteAllAdverts')->everyMinute();
     }
 
     /**
