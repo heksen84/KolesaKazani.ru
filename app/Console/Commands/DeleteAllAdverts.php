@@ -53,14 +53,12 @@ class DeleteAllAdverts extends Command
         Adverts::truncate();
         Transport::truncate();
 	RealEstate::truncate();        
+        Urls::truncate();        
+        Images::truncate();
         
         adex_color::truncate();
         adex_srochno::truncate();
         adex_top::truncate();
-
-        Urls::truncate();
-        
-        Images::truncate();
 
         // здесь логика        
         $this->info('Все объявления удалены');
