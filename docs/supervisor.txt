@@ -28,3 +28,10 @@ supervisorctl status laravel-worker:*
 # 6. After a change in php sources you have to restart the queue, since queue:work does run as daemon
 php artisan queue:restart
 > Broadcasting queue restart signal.
+
+----------------------------------------------------------------
+Œÿ»¡ ¿: unix:///var/run/supervisor.sock no such file
+systemctl enable supervisord
+systemctl start supervisord
+systemctl status supervisord
+----------------------------------------------------------------
