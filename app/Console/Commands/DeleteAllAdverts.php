@@ -50,7 +50,7 @@ class DeleteAllAdverts extends Command
      */
     public function handle() {
 
-	if( $this->command->confirm('Do you wish to continue? (yes|no)[no]'))
+	if( $this->confirm('Do you wish to continue? (yes|no)[no]'))
         {
 
         Adverts::truncate();
