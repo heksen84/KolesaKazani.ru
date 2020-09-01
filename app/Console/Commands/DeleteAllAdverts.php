@@ -50,8 +50,7 @@ class DeleteAllAdverts extends Command
      */
     public function handle() {
 
-	if( $this->confirm('Do you wish to continue? (yes|no)[no]'))
-        {
+	if( $this->confirm('Удалить все объявления? (yes|no)[no]')) {
 
         Adverts::truncate();
         Transport::truncate();
@@ -65,6 +64,7 @@ class DeleteAllAdverts extends Command
 
         // здесь логика        
         $this->info('Все объявления удалены');
+        
        }
     }
 }
