@@ -58,7 +58,7 @@ class DeleteAllAdverts extends Command
         adex_srochno::truncate();
         adex_top::truncate();
 
-        urls::truncate();
+        Urls::truncate();
         
         Images::truncate();
 
