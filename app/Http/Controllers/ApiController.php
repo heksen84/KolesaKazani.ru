@@ -375,13 +375,18 @@ class ApiController extends Controller {
                 $advert->coord_lon = 0;
             }            
             
+            // ---------------------------------------------------------
             $advert->public = true; // публикую объявление сходу
 	        $advert->startDate = Carbon::now()->toDateTimeString();
             $advert->finishDate = Carbon::now()->add(30, 'day')->toDateTimeString(); // добавляю 30 дней
-            $advert->save();  // СОХРАНЕНИЕ ОБЪЯВЛЕНИЯ            
+            $advert->save();  // СОХРАНЕНИЕ ОБЪЯВЛЕНИЯ
+
+            \Debugbar::info("Объявление сохранено!");
+            // ---------------------------------------------------------
+            
+            
             $urls = new Urls(); // Закидываю данные в таблицу urls для SEO
             
-
             // url sitemap
             if (strlen($title) > 5) 
                 $url_text = $title;
