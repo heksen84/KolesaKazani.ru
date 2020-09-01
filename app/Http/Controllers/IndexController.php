@@ -140,14 +140,17 @@ class IndexController extends Controller {
 			DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"))			
 			->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
 			->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			
-			->join("adex_top", "adex_top.advert_id", "=", "adv.id" ) // связь для топа
+			->leftjoin("adex_top", "adex_top.advert_id", "=", "adv.id" ) // связь для топа
 			->join("urls", "adv.id", "=", "urls.advert_id" )			
 			->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
 			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )			
 			->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")			
 			->orderBy("startDate", "desc")
 			->orderBy("adv.id", "desc")
-			->take(10)->get();					
+			->take(10)
+			->get();			
+			
+			
 		
 		// Новые объявления
 		$newAdverts = DB::table("adverts as adv")->select(			
@@ -169,7 +172,8 @@ class IndexController extends Controller {
 			->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")			
 			->orderBy("startDate", "desc")
 			->orderBy("adv.id", "desc")
-			->take(10)->get();			
+			->take(20)
+			->get();			
 
 			\Debugbar::info("NEWADVERTS:");
 			\Debugbar::info($newAdverts);
