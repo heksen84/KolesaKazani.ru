@@ -679,6 +679,8 @@ onSubmit(evt) {
 
 	axios.post("/api/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {    
 
+    console.log("hello!");
+
     // ошибка
     if (response.data.result=="error") {
       $("#advert_loading_block").hide();
