@@ -5,13 +5,13 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Adverts;
 use App\Images;
+use App\Urls;
+use App\Transport;
+use App\RealEstate;
+use App\users;
 use App\adex_color;
 use App\adex_srochno;
 use App\adex_top;
-use App\urls;
-use App\users;
-use App\Transport;
-use App\RealEstate;
 
 
 /*
