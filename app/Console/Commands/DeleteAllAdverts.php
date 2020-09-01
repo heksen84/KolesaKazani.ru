@@ -52,19 +52,22 @@ class DeleteAllAdverts extends Command
 
 	if( $this->confirm('Удалить все объявления? (yes|no)[no]')) {
 
-        Adverts::truncate();
-        Transport::truncate();
-	    RealEstate::truncate();        
-        Urls::truncate();        
-        Images::truncate();
-        
-        adex_color::truncate();
-        adex_srochno::truncate();
-        adex_top::truncate();
+        if( $this->confirm('Вы действительно уверены? Это удалит все объявления! (yes|no)[no]')) {
 
-        // здесь логика        
-        $this->info('Все объявления удалены');
+            Adverts::truncate();
+            Transport::truncate();
+	        RealEstate::truncate();        
+            Urls::truncate();        
+            Images::truncate();
         
+            adex_color::truncate();
+            adex_srochno::truncate();
+            adex_top::truncate();
+
+            // здесь логика        
+            $this->info('Все объявления удалены');
+        }
+
        }
     }
 }
