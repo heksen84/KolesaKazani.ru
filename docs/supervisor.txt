@@ -5,7 +5,6 @@ sudo touch /var/run/supervisor.sock
 sudo chmod 777 /var/run/supervisor.sock
 sudo service supervisor restart
 
-
 # 1. create the config file, see below for content
 vi /etc/supervisor/conf.d/laravel-worker.conf
 
