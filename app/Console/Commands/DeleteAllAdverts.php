@@ -52,11 +52,13 @@ class DeleteAllAdverts extends Command
 
         Adverts::truncate();
         Transport::truncate();
-	    RealEstate::truncate();        
+	RealEstate::truncate();        
         
         adex_color::truncate();
         adex_srochno::truncate();
         adex_top::truncate();
+
+        urls::truncate();
         
         Images::truncate();
 
