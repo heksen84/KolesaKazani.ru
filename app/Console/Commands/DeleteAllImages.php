@@ -46,7 +46,9 @@ class DeleteAllImages extends Command
 	if( $this->confirm('Удалить все изображения? (yes|no)[no]')) {
         if( $this->confirm('Вы действительно уверены? Это удалит все изображения! (yes|no)[no]')) {
 
-	    foreach(Images::all() as $img) {                                        
+	    foreach(Images::all() as $img) {
+            
+            $this->info($img);
             
             if (\Storage::delete("images/normal/".$img->name)) {
                 $this->info("images/normal/".$img->name." удалён!");                            
@@ -57,7 +59,7 @@ class DeleteAllImages extends Command
             }
         }	
 
-            Images::truncate();       
+            //Images::truncate();       
             $this->info('Все изображения удалены');
         }
 
