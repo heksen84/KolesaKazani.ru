@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use App\Adverts;
 use App\Images;
 use App\Urls;
@@ -59,6 +60,13 @@ class DeleteExpiredAdverts extends Command
             6. грохнуть запись с adex_top
             7. грохнуть запись с images
         */
+
+        // if (currentDate >= finishDate+30 days)
+
+        // finishDate +30 day и потом удалить
+        
+        $items = DB::table("adverts as adv")->whereRaw("DATE(NOW()) >= DATE_ADD('adv.finishDate', INTERVAL 3 DAY)")->get();
+        $this->info($items);
 
         /*
 
