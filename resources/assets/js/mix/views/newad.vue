@@ -682,7 +682,7 @@ onSubmit(evt) {
     console.log("hello!");
 
     // ошибка
-    if (response.data.result=="error") {
+    if ( response.data.result == "error" ) {
       $("#advert_loading_block").hide();
        this.dialogTitleMsg = response.data.title;
        this.dialogMsg = response.data.msg;
@@ -691,8 +691,14 @@ onSubmit(evt) {
     }
     // объявление размещено
 		else {
-      $("#advert_loading_block").hide();
-      $("#AdPostedModal").modal("show");
+     // $("#advert_loading_block").hide();
+     // $("#AdPostedModal").modal("show");
+     // window.location="/home";
+
+     $("#advert_loading_block").hide();
+     window.location="/objavlenie/show/"+response.data.url;
+     //console.log(response.data);
+
     }
     // исключение - ошибка		
     }).catch(error => {

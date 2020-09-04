@@ -428,8 +428,9 @@ class ApiController extends Controller {
             }
             
             Sitemap::addUrl($urls->url);
-
-            return $advert->id;
+            // $urls->url
+            //return $advert->id;
+            return response()->json([ "result" => "success", "url" => $urls->url ]);
         }		
         
         catch(\Exception $e) {
