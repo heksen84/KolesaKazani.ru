@@ -65,7 +65,9 @@ class DeleteExpiredAdverts extends Command
 
         // finishDate +30 day и потом удалить
         
-        $items = DB::table("adverts as adv")->whereRaw("DATE(NOW()) >= DATE_ADD('adv.finishDate', INTERVAL 3 DAY)")->get();
+        //$items = DB::table("adverts as adv")->whereRaw("DATE(NOW()) >= DATE_ADD('adv.finishDate', INTERVAL 3 DAY)")->get();
+        $items = DB::table("adverts as adv")->whereRaw("adv.finishDate + INTERVAL 30 DAY >= NOW()")->get();
+ 
         $this->info($items);
 
         /*
