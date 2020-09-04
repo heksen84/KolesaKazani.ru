@@ -24,6 +24,7 @@ Route::get("/util/str2url", "UtilsController@str2url");
 // детали объявления
 //Route::get("/objavlenie/show/{id}", "DetailsController@getDetails");
 Route::get("/objavlenie/show/{title}", "DetailsController@getDetails");
+Route::get("/objavlenie/posted/{url}", "AdvertController@posted");
 
 // Новое объявление
 Route::get("/podat-objavlenie", "AdvertController@newAdvert");

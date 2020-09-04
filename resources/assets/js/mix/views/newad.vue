@@ -696,7 +696,7 @@ onSubmit(evt) {
      // window.location="/home";
 
      $("#advert_loading_block").hide();
-     window.location="/objavlenie/show/"+response.data.url;
+     window.location="/objavlenie/posted/"+response.data.url;
      //console.log(response.data);
 
     }

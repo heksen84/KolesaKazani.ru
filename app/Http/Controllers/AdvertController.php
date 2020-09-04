@@ -36,6 +36,11 @@ class AdvertController extends Controller {
                         return redirect('/login');
         }
 
+        // --
+        public function posted($url) {
+	        return view("adposted")->with( "url", $url );
+        }
+
         // -----------------------------------------------------------
         // сделать vip, покрасить, срочно, и т.п.
         // -----------------------------------------------------------
