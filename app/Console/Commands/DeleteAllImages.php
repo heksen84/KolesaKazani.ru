@@ -3,13 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Storage;
 use App\Images;
-
-
-
-/*
-    удалить объявление которое просрочено на месяц и всё что с ним связано: подкатегории и картинки в хранилище
-*/
 
 class DeleteAllImages extends Command
 {
@@ -50,11 +45,11 @@ class DeleteAllImages extends Command
             
             $this->info($img);
             
-            if (\Storage::delete("images/normal/".$img->name)) {
+            if (Storage::disk('s3')->delete("images/normal/".$img->name)) {
                 $this->info("images/normal/".$img->name." удалён!");                            
             }
             
-            if (\Storage::delete("images/small/".$img->name)) {
+            if (Storage::disk('s3')->delete("images/small/".$img->name)) {
                 $this->info("images/small/".$img->name." удалён!");                            
             }
         }	
