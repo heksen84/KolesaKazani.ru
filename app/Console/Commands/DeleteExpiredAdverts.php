@@ -80,27 +80,27 @@ class DeleteExpiredAdverts extends Command
                 $this->info("images/small/".$img->name." удалён!");                            
             }
             $this->info("----------------------------------------------------------------------\n");
-            
+
         }	
         
         $items = DB::delete("DELETE 
-        adverts, 
-        sub_transport, 
-        sub_realestate, 
-        adex_color, 
-        adex_top, 
-        adex_srochno, 
-        images, 
-        urls 
-        FROM `adverts` 
-        LEFT JOIN sub_transport ON adverts.inner_id = sub_transport.id
-        LEFT JOIN sub_realestate ON adverts.inner_id = sub_realestate.id
-        LEFT JOIN images ON adverts.id = images.advert_id
-        LEFT JOIN urls ON adverts.id = urls.advert_id
-        LEFT JOIN adex_color ON adex_color.advert_id = adverts.id
-        LEFT JOIN adex_srochno ON adex_srochno.advert_id = adverts.id
-        LEFT JOIN adex_top ON adex_top.advert_id = adverts.id
-        WHERE adverts.finishDate + INTERVAL 30 DAY >= NOW()"
+            adverts,
+            sub_transport, 
+            sub_realestate, 
+            adex_color, 
+            adex_top, 
+            adex_srochno, 
+            images, 
+            urls 
+            FROM `adverts` 
+            LEFT JOIN sub_transport ON adverts.inner_id = sub_transport.id
+            LEFT JOIN sub_realestate ON adverts.inner_id = sub_realestate.id
+            LEFT JOIN images ON adverts.id = images.advert_id
+            LEFT JOIN urls ON adverts.id = urls.advert_id
+            LEFT JOIN adex_color ON adex_color.advert_id = adverts.id
+            LEFT JOIN adex_srochno ON adex_srochno.advert_id = adverts.id
+            LEFT JOIN adex_top ON adex_top.advert_id = adverts.id
+            WHERE adverts.finishDate + INTERVAL 30 DAY >= NOW()"
         );
  
         $this->info("Удалено: ".$items." записей");
