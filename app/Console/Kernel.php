@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
 	    Commands\DeleteAllAdverts::class,
-	    Commands\DeleteExpiredAdverts::class
+	    Commands\DeleteExpiredAdverts::class,
+	    Commands\DeleteAllImages::class
     ];
 
     /**
