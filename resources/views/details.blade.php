@@ -95,6 +95,17 @@
                 @endif
               </div>
 
+              @if ($advert->text!="null")              
+                <b>Описание:</b>
+                <div id="text">{{ $advert->text }}</div>
+              @endif
+                      
+              <!-- убираю цену в категориях работа и бизнес (category_id!=4) -->
+              @if ($advert->price!="null" && $advert->category_id!=4)
+              <br>                           
+                <div id="price">{{ $advert->price }} ₸</div>
+              @endif
+
               @if (count($images)>0)              
               <div id="carousel" class="carousel slide" data-ride="carousel">
                   @if (count($images)>1)
@@ -163,16 +174,7 @@
                 @include('results/nedvizhimost/nedvizhimost_za_rubezhom')  
               @endif
                             
-              @if ($advert->text!="null")              
-                <b>Описание:</b>
-                <div id="text">{{ $advert->text }}</div>
-              @endif
-                      
-              <!-- убираю цену в категориях работа и бизнес (category_id!=4) -->
-              @if ($advert->price!="null" && $advert->category_id!=4)
-              <br>                           
-                <div id="price">{{ $advert->price }} ₸</div>
-              @endif              
+                          
                             
               <div class="text-center m-3">
                 <button type="button" class="btn btn-outline-success" id="numberButton">Показать телефон</button>            
