@@ -43,7 +43,7 @@ class DeleteAllImages extends Command
 
 	    foreach(Images::all() as $img) {
             
-            $this->info("-----------------------------------");
+            $this->info("----------------------------------------------------------------------");
             $this->info($img);
             
             if (Storage::disk('s3')->delete("images/normal/".$img->name)) {
@@ -53,7 +53,7 @@ class DeleteAllImages extends Command
             if (Storage::disk('s3')->delete("images/small/".$img->name)) {
                 $this->info("images/small/".$img->name." удалён!");                            
             }
-            $this->info("-----------------------------------\n");
+            $this->info("----------------------------------------------------------------------\n");
         }	
 
             //Images::truncate();       
