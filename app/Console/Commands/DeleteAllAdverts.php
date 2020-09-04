@@ -58,6 +58,7 @@ class DeleteAllAdverts extends Command
 	        RealEstate::truncate();        
             Urls::truncate();
             
+            // грохаю картинки из хранилища
             foreach(Images::all() as $img) {
             
                 $this->info("----------------------------------------------------------------------");
