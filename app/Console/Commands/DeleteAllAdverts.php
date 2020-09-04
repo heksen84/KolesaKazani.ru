@@ -3,12 +3,12 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Storage;
 use App\Adverts;
 use App\Images;
 use App\Urls;
 use App\Transport;
 use App\RealEstate;
-use App\users;
 use App\adex_color;
 use App\adex_srochno;
 use App\adex_top;
@@ -56,7 +56,23 @@ class DeleteAllAdverts extends Command
             Adverts::truncate();
             Transport::truncate();
 	        RealEstate::truncate();        
-            Urls::truncate();        
+            Urls::truncate();
+            
+            foreach(Images::all() as $img) {
+            
+                $this->info("----------------------------------------------------------------------");
+                $this->info($img);
+                
+                if (Storage::disk('s3')->delete("images/normal/".$img->name)) {
+                    $this->info("images/normal/".$img->name." удалён!");                            
+                }
+                
+                if (Storage::disk('s3')->delete("images/small/".$img->name)) {
+                    $this->info("images/small/".$img->name." удалён!");                            
+                }
+                $this->info("----------------------------------------------------------------------\n");
+            }	
+
             Images::truncate();
         
             adex_color::truncate();
