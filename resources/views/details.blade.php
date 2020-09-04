@@ -106,6 +106,12 @@
                 <div id="price">{{ $advert->price }} ₸</div>
               @endif
 
+              <div class="text-center m-3">
+                <button type="button" class="btn btn-outline-success" id="numberButton">Показать телефон</button>            
+              </div>  
+
+              <div id="phone-number"></div>
+
               @if (count($images)>0)              
               <div id="carousel" class="carousel slide" data-ride="carousel">
                   @if (count($images)>1)
@@ -173,14 +179,7 @@
               @elseif ($advert->category_id==2 && $advert->subcategory_id==15)
                 @include('results/nedvizhimost/nedvizhimost_za_rubezhom')  
               @endif
-                            
-                          
-                            
-              <div class="text-center m-3">
-                <button type="button" class="btn btn-outline-success" id="numberButton">Показать телефон</button>            
-              </div>  
-
-              <div id="phone-number"></div>
+                    
               <div id="map"></div> 
       </div>
 
