@@ -56,7 +56,7 @@ class DeleteAllImages extends Command
             $this->info("----------------------------------------------------------------------\n");
         }	
 
-            //Images::truncate();       
+            Images::truncate();       
             $this->info('Все изображения удалены');
         }
 
