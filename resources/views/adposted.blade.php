@@ -12,6 +12,7 @@
 </head>
 <body>
 <center>
+  <img src="public/images/success.png"></img>
   <h1>объявление размещено!</h1>
   <a href="/objavlenie/show/{{ $url }}">посмотреть</a>
 </center>
