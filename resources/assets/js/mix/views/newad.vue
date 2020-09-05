@@ -5,7 +5,7 @@
   <div class="d-flex justify-content-center mt-1">
     <button class="btn btn-primary" type="button" style="font-size:20px">
       <span class="spinner-border spinner-border" role="status" aria-hidden="true"></span>
-        Публикация объявления...<br>Подождите.
+        Публикация объявления... Подождите
     </button>
     </div>
 </div>
@@ -33,23 +33,7 @@
         </div>
       </div>
   </div>        
-
-    <!-- Объявление размещено -->
-    <div class="modal" id="AdPostedModal" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header"><h4>Готово!</h4></div>
-            <div class="modal-body">
-              <!--<h5>Ваше объявление отправлено на проверку</h5>-->
-              <h5>Объявление размещено</h5>
-            </div>
-              <div class="modal-footer">          
-                <button type="button" class="btn btn-primary margin-auto" data-dismiss="modal" aria-label="Close">Продолжить</button>          
-              </div>                  
-            </div>
-          </div>
-        </div>        
-
+    
     <div class="row">  
       <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col" style="border: 1px solid rgb(220,220,220)">
         <div style="text-align:right;font-size:14px;letter-spacing:1px"><a href="/rules" title="Правила размещения объявления">правила размещения</a></div>
@@ -678,27 +662,19 @@ onSubmit(evt) {
   // ------------------------------------------------------------------------------------------------------------------------
 
 	axios.post("/api/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(response => {    
-
-    console.log("hello!");
-
+    
     // ошибка
-    if ( response.data.result == "error" ) {
+    if ( response.data.result === "error" ) {
       $("#advert_loading_block").hide();
-       this.dialogTitleMsg = response.data.title;
-       this.dialogMsg = response.data.msg;
        console.error(response.data.msg);
+       this.dialogTitleMsg = response.data.title;
+       this.dialogMsg = response.data.msg;       
        this.serviceError();
     }
     // объявление размещено
-		else {
-     // $("#advert_loading_block").hide();
-     // $("#AdPostedModal").modal("show");
-     // window.location="/home";
-
-     $("#advert_loading_block").hide();
-     window.location="/objavlenie/posted/"+response.data.url;
-     //console.log(response.data);
-
+		else {     
+      $("#advert_loading_block").hide();
+      window.location="/objavlenie/posted/"+response.data.url;     
     }
     // исключение - ошибка		
     }).catch(error => {
