@@ -104,7 +104,7 @@ class DeleteExpiredAdverts extends Command
             LEFT JOIN adex_color ON adex_color.advert_id = adverts.id
             LEFT JOIN adex_srochno ON adex_srochno.advert_id = adverts.id
             LEFT JOIN adex_top ON adex_top.advert_id = adverts.id
-            WHERE " + $rawDate
+            WHERE ".$rawDate
         );
  
         $this->info("Удалено: ".$items." записей");
