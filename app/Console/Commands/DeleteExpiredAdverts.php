@@ -52,18 +52,18 @@ class DeleteExpiredAdverts extends Command
      */
     public function handle() {
     
-        //$items = DB::table("adverts as adv", "adex_top", '00')
-        /*->leftJoin("sub_transport", "adv.inner_id" , "=" , "sub_transport.id" )
+        /*$items = DB::table("adverts as adv", "adex_top", '00')
+        ->leftJoin("sub_transport", "adv.inner_id" , "=" , "sub_transport.id" )
         ->leftJoin("sub_realestate", "adv.inner_id" , "=" , "sub_realestate.id" )
         ->leftJoin("images", "adv.id" , "=" , "images.id" )
         ->leftJoin("urls", "adv.id" , "=" , "urls.advert_id" )        
         ->leftJoin("adex_color", "adv.id" , "=" , "adex_color.advert_id" )
-        ->leftJoin("adex_srochno", "adv.id" , "=" , "adex_srochno.advert_id" )*/
-        //->leftJoin("adex_top", "adv.id" , "=" , "adex_top.advert_id" )
-        //->whereRaw("adv.finishDate + INTERVAL -30 DAY >= NOW()")
-        //->whereRaw("adex_srochno.advert_id = adv.id")
-        //->whereRaw("adex_top.advert_id = adv.id")
-        //->delete();        
+        ->leftJoin("adex_srochno", "adv.id" , "=" , "adex_srochno.advert_id" )
+        ->leftJoin("adex_top", "adv.id" , "=" , "adex_top.advert_id" )
+        ->whereRaw("adv.finishDate + INTERVAL -30 DAY >= NOW()")
+        ->whereRaw("adex_srochno.advert_id = adv.id")
+        ->whereRaw("adex_top.advert_id = adv.id")
+        ->delete();*/
 
         $images = DB::table("images")->join("adverts", "adverts.id", "=", "images.advert_id")->whereRaw("adverts.finishDate + INTERVAL 30 DAY >= NOW()")->get();        
         $this->info($images);
