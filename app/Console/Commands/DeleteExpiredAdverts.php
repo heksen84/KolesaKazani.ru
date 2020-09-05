@@ -66,11 +66,12 @@ class DeleteExpiredAdverts extends Command
         ->whereRaw("adex_top.advert_id = adv.id")
         ->delete();*/
 
+        $this->info( "[".date("d-m-Y h:i:s")."] Удаление просроченных объявлений");
+
         // объявление хранится 30 дней (после adverts.finishDate), затем удаляется
         $rawDate = "NOW() >= adverts.finishDate + INTERVAL 30 DAY";
 
-        $images = DB::table("images")->join("adverts", "adverts.id", "=", "images.advert_id")->whereRaw($rawDate)->get();        
-        $this->info($images);
+        $images = DB::table("images")->join("adverts", "adverts.id", "=", "images.advert_id")->whereRaw($rawDate)->get();                    
         
         foreach( $images as $img ) {
 
@@ -107,7 +108,7 @@ class DeleteExpiredAdverts extends Command
             WHERE ".$rawDate
         );
  
-        $this->info("Удалено: ".$items." записей");
+        $this->info("Удалено: ".$items." записей в бд");
 
     }
 }

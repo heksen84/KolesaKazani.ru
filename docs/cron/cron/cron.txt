@@ -1,0 +1,2 @@
+service crond restart
+crond -l
