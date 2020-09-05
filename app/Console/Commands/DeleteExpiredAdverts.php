@@ -50,9 +50,7 @@ class DeleteExpiredAdverts extends Command
      *
      * @return mixed
      */
-    public function handle() {
-
-        $rawDate = "NOW() >= adverts.finishDate + INTERVAL 0 DAY"; // 0 заменить на кол-во дней хранения объявления
+    public function handle() {        
     
         // ORM
         /*$items = DB::table("adverts as adv", "adex_top", '00')
@@ -66,7 +64,10 @@ class DeleteExpiredAdverts extends Command
         ->whereRaw("adv.finishDate + INTERVAL -30 DAY >= NOW()")
         ->whereRaw("adex_srochno.advert_id = adv.id")
         ->whereRaw("adex_top.advert_id = adv.id")
-        ->delete();*/        
+        ->delete();*/
+
+        // объявление хранится 30 дней (после adverts.finishDate), затем удаляется
+        $rawDate = "NOW() >= adverts.finishDate + INTERVAL 30 DAY";
 
         $images = DB::table("images")->join("adverts", "adverts.id", "=", "images.advert_id")->whereRaw($rawDate)->get();        
         $this->info($images);
@@ -83,7 +84,6 @@ class DeleteExpiredAdverts extends Command
                 $this->info("images/small/".$img->name." удалён!");                            
             }
             $this->info("----------------------------------------------------------------------\n");
-
         }	
         
         // native SQL
