@@ -52,8 +52,9 @@ class DeleteExpiredAdverts extends Command
      */
     public function handle() {
 
-        $rawDate = "NOW() >= adverts.finishDate + INTERVAL 1 DAY";
+        $rawDate = "NOW() >= adverts.finishDate + INTERVAL 0 DAY"; // 0 заменить на кол-во дней хранения объявления
     
+        // ORM
         /*$items = DB::table("adverts as adv", "adex_top", '00')
         ->leftJoin("sub_transport", "adv.inner_id" , "=" , "sub_transport.id" )
         ->leftJoin("sub_realestate", "adv.inner_id" , "=" , "sub_realestate.id" )
@@ -65,9 +66,7 @@ class DeleteExpiredAdverts extends Command
         ->whereRaw("adv.finishDate + INTERVAL -30 DAY >= NOW()")
         ->whereRaw("adex_srochno.advert_id = adv.id")
         ->whereRaw("adex_top.advert_id = adv.id")
-        ->delete();*/
-
-        // if NOW() BETWEEN adverts.finishDate + INTERVAL 30 DAY
+        ->delete();*/        
 
         $images = DB::table("images")->join("adverts", "adverts.id", "=", "images.advert_id")->whereRaw($rawDate)->get();        
         $this->info($images);
@@ -87,6 +86,7 @@ class DeleteExpiredAdverts extends Command
 
         }	
         
+        // native SQL
         $items = DB::delete("DELETE 
             adverts,
             sub_transport, 
