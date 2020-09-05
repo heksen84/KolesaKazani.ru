@@ -52,7 +52,7 @@ class DeleteExpiredAdverts extends Command
      */
     public function handle() {
 
-        $rawDate = "NOW() >= adverts.finishDate + INTERVAL 30 DAY";
+        $rawDate = "NOW() >= adverts.finishDate + INTERVAL 1 DAY";
     
         /*$items = DB::table("adverts as adv", "adex_top", '00')
         ->leftJoin("sub_transport", "adv.inner_id" , "=" , "sub_transport.id" )
