@@ -51,6 +51,8 @@ class DeleteExpiredAdverts extends Command
      * @return mixed
      */
     public function handle() {
+
+        $rawDate = "NOW() >= adverts.finishDate + INTERVAL 30 DAY";
     
         /*$items = DB::table("adverts as adv", "adex_top", '00')
         ->leftJoin("sub_transport", "adv.inner_id" , "=" , "sub_transport.id" )
@@ -65,7 +67,9 @@ class DeleteExpiredAdverts extends Command
         ->whereRaw("adex_top.advert_id = adv.id")
         ->delete();*/
 
-        $images = DB::table("images")->join("adverts", "adverts.id", "=", "images.advert_id")->whereRaw("adverts.finishDate + INTERVAL 30 DAY >= NOW()")->get();        
+        // if NOW() BETWEEN adverts.finishDate + INTERVAL 30 DAY
+
+        $images = DB::table("images")->join("adverts", "adverts.id", "=", "images.advert_id")->whereRaw($rawDate)->get();        
         $this->info($images);
         
         foreach( $images as $img ) {
@@ -100,7 +104,7 @@ class DeleteExpiredAdverts extends Command
             LEFT JOIN adex_color ON adex_color.advert_id = adverts.id
             LEFT JOIN adex_srochno ON adex_srochno.advert_id = adverts.id
             LEFT JOIN adex_top ON adex_top.advert_id = adverts.id
-            WHERE adverts.finishDate + INTERVAL 30 DAY >= NOW()"
+            WHERE " + $rawDate
         );
  
         $this->info("Удалено: ".$items." записей");
