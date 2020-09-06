@@ -114,7 +114,7 @@
 
               <!-- № объявления -->
               <div class="text-right m-1">
-                <div style="font-size:12px;color:grey;letter-spacing:2px">№ {{ $advert->id }}</div>
+                <div style="font-size:12px;color:grey;letter-spacing:2px">№ объявления: {{ $advert->id }}</div>
               </div>
 
               @if (count($images)>0)              
