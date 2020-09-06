@@ -57,8 +57,8 @@
               <div id="location">{{ $advert->region_name }} обл., {{ $advert->city_name }}</div>
                 @if ($advert->category_name)
                   <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb p-0" style="background:rgb(245,245,245);border-radius:5px;font-size:15px">
-                      <li class="breadcrumb-item"><a href="\">ilbo.kz</a></li>
+                    <ol class="breadcrumb p-0" style="background:rgb(245,245,245);border-radius:5px;font-size:14px">
+                      <!--<li class="breadcrumb-item"><a href="\">Начало</a></li>-->
                       <li class="breadcrumb-item"><a href="\{{ $advert->region_url }}\{{ $advert->city_url }}\c\{{ $advert->category_url }}">{{ $advert->category_name }}</a></li>
                         @if ($advert->category_id < 10  && $advert->subcat_name)
                           <li class="breadcrumb-item"><a href="\{{ $advert->region_url }}\{{ $advert->city_url }}\c\{{ $advert->category_url }}\{{ $advert->subcat_url }}">{{ $advert->subcat_name }}</a></li>
