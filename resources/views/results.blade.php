@@ -52,13 +52,13 @@
 
   <div class="container-fluid mycontainer">
 
-        <div title="Закрыть страницу">        
+        <div title="Закрыть страницу" class="mt-1">        
         @if (!$region && !$city)
           <a href="/" class="close-link">закрыть</a>
         @elseif ($region && !$city)    
           <a href="/{{$region}}" class="close-link">закрыть</a>    
         @elseif ($region && $city)    
-          <a href="/{{$region}}/{{$city}}" class="close-link">< закрыть</a>    
+          <a href="/{{$region}}/{{$city}}" class="close-link">закрыть</a>    
         @endif        
         </div>
 
