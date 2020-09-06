@@ -110,7 +110,12 @@
                 <button type="button" class="btn btn-outline-success" id="numberButton">Показать телефон</button>            
               </div>  
 
-              <div id="phone-number"></div>              
+              <div id="phone-number"></div>
+
+              <!-- № объявления -->
+              <div class="text-right m-1">
+                <div style="font-size:12px;color:grey;letter-spacing:2px">№ {{ $advert->id }}</div>
+              </div>
 
               @if (count($images)>0)              
               <div id="carousel" class="carousel slide" data-ride="carousel">
@@ -150,11 +155,6 @@
                   @endif
               </div>
               @endif            
-
-            <!-- № объявления -->
-            <div class="text-right">
-              <div style="font-size:12px;color:grey;letter-spacing:2px">№ {{ $advert->id }}</div>
-            </div>
 
               <!----------------------------------------------------------------
                 подключаю характеристики по категориям
