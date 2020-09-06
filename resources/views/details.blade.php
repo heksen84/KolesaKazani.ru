@@ -150,7 +150,12 @@
                   @endif
               </div>
               @endif            
-            <br>              
+
+            <!-- № объявления -->
+            <div class="text-right">
+              <div style="font-size:12px;color:grey;letter-spacing:2px">№ {{ $advert->id }}</div>
+            </div>
+
               <!----------------------------------------------------------------
                 подключаю характеристики по категориям
                ----------------------------------------------------------------->	       
@@ -180,7 +185,7 @@
                 @include('results/nedvizhimost/nedvizhimost_za_rubezhom')  
               @endif
                     
-              <div id="map"></div> 
+              <div id="map"></div>              
       </div>
 
   <!-- РЕКЛАМА -->
