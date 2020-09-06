@@ -144,7 +144,7 @@ class IndexController extends Controller {
 			->join("urls", "adv.id", "=", "urls.advert_id" )			
 			->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
 			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )			
-			->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")			
+			->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")			
 			->orderBy("startDate", "desc")
 			->orderBy("adv.id", "desc")
 			->take(10)
@@ -169,7 +169,7 @@ class IndexController extends Controller {
 			->join("urls", "adv.id", "=", "urls.advert_id" )
 			->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
 			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )			
-			->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")			
+			->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")			
 			->orderBy("startDate", "desc")
 			->orderBy("adv.id", "desc")
 			->take(20)
@@ -250,7 +250,7 @@ class IndexController extends Controller {
 			->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
         	->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )
 			->whereRaw($whereStr)
-			->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")
+			->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")
 			->paginate(10)
 			->onEachSide(1);                  
         

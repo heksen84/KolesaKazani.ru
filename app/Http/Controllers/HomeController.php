@@ -42,7 +42,7 @@ class HomeController extends Controller {
 			->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
 			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )			
             ->orderBy("adv.id", "desc")
-            ->where("user_id", Auth::id())
+            ->where("user_id", Auth::id())            
             ->paginate(10)
             ->onEachSide(1);
 

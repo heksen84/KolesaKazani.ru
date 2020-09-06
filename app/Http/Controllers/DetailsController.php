@@ -34,7 +34,7 @@ class DetailsController extends Controller {
                 $id = $urlData[0]->advert_id;
 
                 // получаю данные объявления по его id
-                $advertData = Adverts::select("category_id", "subcategory_id")->where( "id", $id )->limit(1)->get();
+                $advertData = Adverts::select("category_id", "subcategory_id")->where( "id", $id )->where( "public", true )->limit(1)->get();
                         
                 if (!count($advertData)) {
                   abort(404);             
@@ -94,7 +94,7 @@ class DetailsController extends Controller {
                             ->join("car_mark", "car_mark.id_car_mark" , "=" , "transport.mark" )                
                             ->join("car_model", "car_mark.id_car_mark" , "=" , "car_model.id_car_mark" )                
                             ->where( "adv.id", $id )                                
-                            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
+                            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")
                             ->limit(1)
                             ->get();                                
                 }
@@ -145,7 +145,7 @@ class DetailsController extends Controller {
                             ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
                             ->join("sub_transport as transport", "adv.inner_id" , "=" , "transport.id" )                
                             ->where( "adv.id", $id )                                
-                            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
+                            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")                        
                             ->limit(1)
                             ->get();                                
                 }
@@ -187,7 +187,7 @@ class DetailsController extends Controller {
                                 ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                                 ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
                                 ->where( "adv.id", $id )
-                                ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
+                                ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")
                                 ->limit(1)
                                 ->get();
                 }
@@ -229,7 +229,7 @@ class DetailsController extends Controller {
                                 ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                                 ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
                                 ->where( "adv.id", $id )
-                                ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
+                                ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")                        
                                 ->limit(1)
                                 ->get();
                 }
@@ -278,7 +278,7 @@ class DetailsController extends Controller {
                             ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
                             ->join("sub_transport as transport", "adv.inner_id" , "=" , "transport.id" )                
                             ->where( "adv.id", $id )                                
-                            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
+                            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")                        
                             ->limit(1)
                             ->get();                                
             }
@@ -320,7 +320,7 @@ class DetailsController extends Controller {
                         ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                         ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                    
                         ->where( "adv.id", $id )
-                        ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
+                        ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")                        
                         ->limit(1)
                         ->get();
             }
@@ -370,7 +370,7 @@ class DetailsController extends Controller {
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
                     ->where( "adv.id", $id )                                
-                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
+                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")                        
                     ->limit(1)
                     ->get();                                                        
             }
@@ -417,7 +417,7 @@ class DetailsController extends Controller {
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
                     ->where( "adv.id", $id )                                
-                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
+                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")                        
                     ->limit(1)
                     ->get();                                                        
             }
@@ -470,7 +470,7 @@ class DetailsController extends Controller {
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
                     ->where( "adv.id", $id )                                
-                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
+                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")                        
                     ->limit(1)
                     ->get();                                                        
             }
@@ -514,7 +514,7 @@ class DetailsController extends Controller {
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
                     ->where( "adv.id", $id )                                
-                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
+                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")                        
                     ->limit(1)
                     ->get();                                                        
             }
@@ -558,7 +558,7 @@ class DetailsController extends Controller {
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
                     ->where( "adv.id", $id )                                
-                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
+                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")                        
                     ->limit(1)
                     ->get();                                                        
             }
@@ -611,7 +611,7 @@ class DetailsController extends Controller {
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
                     ->where( "adv.id", $id )                                
-                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
+                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")                        
                     ->limit(1)
                     ->get();                                                        
             }
@@ -664,7 +664,7 @@ class DetailsController extends Controller {
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
                     ->where( "adv.id", $id )                                
-                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
+                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")
                     ->limit(1)
                     ->get();                                                        
             }
@@ -708,7 +708,7 @@ class DetailsController extends Controller {
                         ->join("categories", "adv.category_id" , "=" , "categories.id" )
                         ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                         ->where( "adv.id", $id )
-                        ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
+                        ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")                        
                         ->limit(1)
                         ->get();                    
             }
@@ -748,7 +748,7 @@ class DetailsController extends Controller {
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )
                     ->join("categories", "adv.category_id" , "=" , "categories.id" )                    
                     ->where( "adv.id", $id )
-                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")                        
+                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")                        
                     ->limit(1)
                     ->get();                        
             }

@@ -100,18 +100,18 @@ class ResultsController extends Controller {
         $categories = $this->getCategoryData($request, $category); 
         
         if (!$region && !$city)
-            $whereRaw = "category_id = ".$categories[0]->id." AND NOW() BETWEEN adv.startDate AND adv.finishDate";
+            $whereRaw = "category_id = ".$categories[0]->id." AND NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true";
 
         if ($region && !$city) {
             $regionData = $this->getRegionData($region);             
            \Debugbar::info($regionData->region_id);
-            $whereRaw = "adv.region_id = ".$regionData->region_id." AND adv.category_id = ".$categories[0]->id." AND NOW() BETWEEN adv.startDate AND adv.finishDate";            
+            $whereRaw = "adv.region_id = ".$regionData->region_id." AND adv.category_id = ".$categories[0]->id." AND NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true";            
         }
 
         if ($region && $city) {            
             $regionData = $this->getRegionData($region); 
             $cityData = $this->getCityData($regionData->region_id, $city);
-            $whereRaw = "adv.region_id = ".$regionData->region_id." AND adv.city_id = ".$cityData->city_id." AND adv.category_id = ".$categories[0]->id." AND NOW() BETWEEN adv.startDate AND adv.finishDate";
+            $whereRaw = "adv.region_id = ".$regionData->region_id." AND adv.city_id = ".$cityData->city_id." AND adv.category_id = ".$categories[0]->id." AND NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true";
         }
                                                 
         $items = DB::table("adverts as adv")->select(
@@ -243,7 +243,7 @@ class ResultsController extends Controller {
             ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
             ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
             ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
-            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")
+            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")
             ->paginate(10)
             ->onEachSide(1);        
 
@@ -312,7 +312,7 @@ class ResultsController extends Controller {
             ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
             ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
             ->where("adv.region_id", $regionData->region_id)
-            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")
+            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")
             ->paginate(10)
             ->onEachSide(1);                 
  
@@ -390,7 +390,7 @@ class ResultsController extends Controller {
             ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
             ->where("adv.region_id", $regionData->region_id)
             ->where("adv.city_id", $cityData->city_id)
-            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate")
+            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")
             ->paginate(10)
             ->onEachSide(1);
   
