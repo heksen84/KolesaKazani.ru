@@ -153,7 +153,7 @@
 
               <!-- № объявления -->
               <div class="text-right m-1">
-                <div style="font-size:12px;color:grey;letter-spacing:2px;font-weight:bold">№: {{ $advert->id }}</div>
+                <div style="font-size:12px;color:grey;letter-spacing:2px;font-weight:bold" title="номер объявления">№: {{ $advert->id }}</div>
               </div>            
 
               <!----------------------------------------------------------------
