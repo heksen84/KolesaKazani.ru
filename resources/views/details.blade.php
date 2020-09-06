@@ -84,7 +84,7 @@
                   <h1>{{ $advert->title }}</h1><hr>
                 @endif              
 
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-action text-center mb-2">                
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-action text-center mb-2" style="margin-top:-10px">                
                 @if (!$advert->top)
                   <button class="btn btn-outline-primary btn-sm m-1" id="makeVip">В топ</button>
                 @endif
