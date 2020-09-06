@@ -311,7 +311,7 @@
               <div class="card-location-text">{{ $advert->region_name }} обл.<br>{{ $advert->city_name }}</div>
               @if ($advert->price)
                 <b class="card-price-value">{{ $advert->price }} ₸</b>
-              @ndif
+              @endif
           </div>
         </a>
       </div>      
