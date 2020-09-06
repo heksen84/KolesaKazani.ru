@@ -1,0 +1,12 @@
+DELETE t1 FROM contacts t1
+INNER JOIN contacts t2 
+WHERE 
+    t1.id < t2.id AND 
+    t1.email = t2.email;
+
+SELECT name, region_id,  COUNT(*) c FROM kz_city GROUP BY name, region_id HAVING c > 1
+
+DELETE t1 FROM kz_city t1 INNER JOIN kz_city t2 WHERE t1.region_id > t2.region_id AND t1.name = t2.name
+
+// ok
+DELETE n1 FROM kz_city n1, kz_city n2 WHERE n1.city_id < n2.city_id AND n1.region_id = n2.region_id AND n1.name = n2.name
