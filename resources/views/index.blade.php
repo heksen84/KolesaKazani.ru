@@ -308,7 +308,7 @@
           @endif
             <img class="card-img-top" src="{{ $advert->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">          
               <div class="card-title-text">{{ $advert->title }}</div>
-              <div class="card-location-text">{{ $advert->region_name }}<br>{{ $advert->city_name }}</div>
+              <div class="card-location-text">{{ $advert->region_name }} обл.<br>{{ $advert->city_name }}</div>
               @if ($advert->price)
                 <b class="card-price-value">{{ $advert->price }} ₸</b>
               @ndif
