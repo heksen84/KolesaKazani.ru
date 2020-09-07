@@ -1,10 +1,12 @@
-$background: rgb(255, 255, 255);
-//$logo_block_text_color: rgb(90,90,90);
-$logo_block_text_color: rgb(0,0,0);
-$logo_block_description_color: rgb(0,0,0);
+$logo_block_text_color: rgb(90,90,90);
+$logo_block_description_color: rgb(50,150,50);
+$logo_block_description_fontsize: 13px;
 
+//$background: rgb(255, 255, 255);
+//$logo_block_text_color: rgb(0,0,0);
+//$logo_block_description_color: rgb(0,0,0);
 
-body {
+/*body {
   color:white;
   background: $background;
   background-image: url('/images/fon.jpg');
@@ -15,8 +17,7 @@ body {
  -moz-background-size: cover;
  -webkit-background-size: cover;
  -o-background-size: cover;
- }
-
+ }*/
 
 #navbar_menu {
   display: none;
@@ -208,10 +209,10 @@ h3 {
 }
 
 #logo_block_description {
-  font-size:12px;
+  font-size: $logo_block_description_fontsize;
   color: $logo_block_description_color;
-  margin-top:-10px;
-  letter-spacing:3px;
+  margin-top: -10px;
+  letter-spacing: 3px;
 }
 
 #categories_line {  
