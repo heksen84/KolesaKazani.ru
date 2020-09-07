@@ -341,7 +341,7 @@ data () {
 	animals:false,				      // животные
 	hobbies_and_leisure:false,	// хобби и отдых
 	services:false,				      // услуги
-	other:false					        // другое
+	dating:false					      // знакомства
   }
 },
 
@@ -549,7 +549,7 @@ advReset(category_data) {
     this.animals=false;				      // животные
     this.hobbies_and_leisure=false;	// хобби и отдых
     this.services=false;			      // услуги
-    this.other=false;				        // другое
+    this.dating=false;				        // другое
   }
 
   // сбрасываю фотки
@@ -618,8 +618,9 @@ changeCategory() {
       break; 
     }
     case 10: {
-      this.$store.commit("ShowFinalFields", true);  
-      this.other=true;      
+      this.$store.commit("ShowFinalFields", true);
+      this.$store.commit("SetShowPrice", false);  
+      this.dating=true;      
       break; 
       }
     }
