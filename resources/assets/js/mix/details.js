@@ -3,14 +3,18 @@ import bootstrap from "bootstrap";
 
 // инициализация карты
 function initMaps() {
-	// координаты по умолчанию для всех карт
+    
+    // координаты по умолчанию для всех карт
 	let mapCoords = [window.coord_lat, window.coord_lon];
 	let map = new ymaps.Map("map", { center: mapCoords, zoom: 10 });
-	let myPlacemark;
+    let myPlacemark;
+    
 	// включаю скролл на карте
-	map.behaviors.enable("scrollZoom");
+    map.behaviors.enable("scrollZoom");
+    
 	// формирую метку
-	myPlacemark = new ymaps.Placemark(mapCoords);
+    myPlacemark = new ymaps.Placemark(mapCoords);
+    
 	// добавляю метки на карты
 	map.geoObjects.add(myPlacemark);	
 }
