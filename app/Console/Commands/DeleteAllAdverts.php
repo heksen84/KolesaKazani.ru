@@ -9,6 +9,7 @@ use App\Images;
 use App\Urls;
 use App\Transport;
 use App\RealEstate;
+use App\Complaints;
 use App\adex_color;
 use App\adex_srochno;
 use App\adex_top;
@@ -57,6 +58,7 @@ class DeleteAllAdverts extends Command
             Transport::truncate();
 	        RealEstate::truncate();        
             Urls::truncate();
+            Complaints::truncate();
             
             // грохаю картинки из хранилища
             foreach(Images::all() as $img) {

@@ -10,6 +10,7 @@ use App\Images;
 use App\Urls;
 use App\Transport;
 use App\RealEstate;
+use App\Complaints;
 use App\users;
 use App\adex_color;
 use App\adex_srochno;
@@ -93,7 +94,8 @@ class DeleteExpiredAdverts extends Command
             adex_top, 
             adex_srochno, 
             images, 
-            urls 
+            urls,
+            complaints
             FROM `adverts` 
             LEFT JOIN sub_transport ON adverts.inner_id = sub_transport.id
             LEFT JOIN sub_realestate ON adverts.inner_id = sub_realestate.id
@@ -102,6 +104,7 @@ class DeleteExpiredAdverts extends Command
             LEFT JOIN adex_color ON adex_color.advert_id = adverts.id
             LEFT JOIN adex_srochno ON adex_srochno.advert_id = adverts.id
             LEFT JOIN adex_top ON adex_top.advert_id = adverts.id
+            LEFT JOIN complaints ON complaints.advert_id = adverts.id
             WHERE ".$rawDate
         );
  
