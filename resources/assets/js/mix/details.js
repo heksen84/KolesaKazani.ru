@@ -1,7 +1,9 @@
 import $ from "jquery";
 import bootstrap from "bootstrap";
 
+// --------------------------------------------
 // инициализация карты
+// --------------------------------------------
 function initMaps() {
     
     // координаты по умолчанию для всех карт
@@ -19,7 +21,9 @@ function initMaps() {
 	map.geoObjects.add(myPlacemark);	
 }
 
+// --------------------------------------------
 // document ready
+// --------------------------------------------
 $( document ).ready(function() {	         
     
     ymaps.ready(initMaps);
@@ -31,7 +35,9 @@ $( document ).ready(function() {
         $(".modal-title").text("В топ");
         $(".modal-body p").text("Ссылку на ваше объявление увидят все посетители сайта. Она будет первой в горячих предложениях, пока кто-либо не займет это место.");
         $(".modal-body h5").text(window.vip_price+" ₸");
+
         $("#billingModalDialog").modal("show");
+
         $("#continueBilling").off().click(function(item) {
         	$.ajax({
                 url: "/objavlenie/makeExtend/"+window.advert_id+"/goTop",
@@ -50,7 +56,9 @@ $( document ).ready(function() {
         $(".modal-title").text("Срочно");
         $(".modal-body p").text("Ваше объявление украсит флажок со словами «Срочно, торг».");        
         $(".modal-body h5").text(window.srochno_torg_price+" ₸");
+
         $("#billingModalDialog").modal("show");
+
         $("#continueBilling").off().click(function(item) {
             $.ajax({
                 url: "/objavlenie/makeExtend/"+window.advert_id+"/srochno_torg",
@@ -68,7 +76,9 @@ $( document ).ready(function() {
         $(".modal-title").text("Выделить");
         $(".modal-body p").text("Цветное объявление намного заметнее в общем списке.");
         $(".modal-body h5").text(window.color_price+" ₸");
+
         $("#billingModalDialog").modal("show");
+
         $("#continueBilling").off().click(function(item) {
             $.ajax({
                 url: "/objavlenie/makeExtend/"+window.advert_id+"/makePaint",
