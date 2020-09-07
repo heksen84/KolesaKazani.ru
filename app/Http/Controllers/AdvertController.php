@@ -48,16 +48,17 @@ class AdvertController extends Controller {
         // Отправить жалобу
         // -----------------------------------------------------------
         public function makeComplaint(Request $request, $advert_id) {
+                
+                $user_id = Auth::id()? Auth::id() : null;
+                \Debugbar::info("user_id = ".$user_id);
 
-                \Debugbar::info($request->complainText);
-
-                if (Complaints::where('advert_id', '=', $advert_id)->update(array('text' => $request->complainText))) {
+                if (Complaints::where('advert_id', '=', $advert_id)->update(array('user_id' => $user_id, 'text' => $request->complainText))) {
                         return response()->json([ "result" => "success", "msg" => "Ваша жалоба обновлена" ]);        
                 }
                 else {
                         $complaints = new Complaints;
                         $complaints->advert_id = $advert_id;
-                        $complaints->user_id = Auth::id();
+                        $complaints->user_id = $user_id;
                         $complaints->text = $request->complainText;
                         $complaints->save();
         
