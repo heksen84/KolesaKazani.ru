@@ -79,12 +79,30 @@ $( document ).ready(function() {
 	
 });
 
-$("#complain").click(function(event) {
-    
-    event.preventDefault();
-
-    alert("Текст жалобы...");
+$("#complain").click(function(event) {    
+    event.preventDefault();    
+    $("#complainTextarea").val("");
+    $("#complainDialog").modal("show");
 });
+
+$("#sendComplain").click(function(event) {    
+
+    if ($("#complainTextarea").val().length > 3) {
+        $.ajax({
+            url: "/objavlenie/makeComplaint/"+window.advert_id,
+            type: "POST",
+            data: { "_token": $('meta[name="csrf-token"]').attr('content'), "complainText": $("#complainTextarea").val() },
+            success: function (response) {
+                $("#complainDialog").modal("hide");            
+                alert(response.msg);
+            }
+        }); 
+    }
+    else {
+        alert("Мало конкретики");
+    }    
+});
+
 // ---------------------------------------------------------
 // обработчик клика
 // ---------------------------------------------------------

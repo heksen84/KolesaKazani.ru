@@ -42,9 +42,19 @@ class AdvertController extends Controller {
         }
 
         // -----------------------------------------------------------
+        // Отправить жалобу
+        // -----------------------------------------------------------
+        public function makeComplaint(Request $request, $advert_id) {
+
+                \Debugbar::info($request->complainText);
+        
+                return response()->json([ "result" => "success", "msg" => "Ваша жалоба отправлена на рассмотрение" ]);
+        }
+        
+        // -----------------------------------------------------------
         // сделать vip, покрасить, срочно, и т.п.
         // -----------------------------------------------------------
-        public function makeExtend($advert_id, $adv_type) {                                
+        public function makeExtend($advert_id, $adv_type) {
 
                 switch($adv_type) {
 
@@ -68,9 +78,6 @@ class AdvertController extends Controller {
                                         $adex->startDate = Carbon::now()->toDateTimeString();
                                         $adex->finishDate = $plusDate;
                                         $adex->save();
-
-                                        // обновляю finishDate в adverts
-                                        //Adverts::where("id", '=', $advert_id)->update(['startDate'=>Carbon::now()->toDateTimeString(),'finishDate' => $plusDate]);
                                 }
                                 break;
                         }
@@ -91,8 +98,7 @@ class AdvertController extends Controller {
                                 if ($adex->count()>0) {
                                         
                                         \Debugbar::info("обновляю...");                                       
-                                        adex_srochno::where("advert_id", '=', $advert_id)->update(['startDate'=>Carbon::now()->toDateTimeString(), 'finishDate' => $plusDate]);
-                                        //Adverts::where("id", '=', $advert_id)->update(['startDate'=>Carbon::now()->toDateTimeString(), 'finishDate' => $plusDate]); // обновляю finishDate в adverts
+                                        adex_srochno::where("advert_id", '=', $advert_id)->update(['startDate'=>Carbon::now()->toDateTimeString(), 'finishDate' => $plusDate]);                                        
                                 }
                                 else {                                      
                                         
@@ -102,9 +108,6 @@ class AdvertController extends Controller {
                                         $adex->startDate = Carbon::now()->toDateTimeString();
                                         $adex->finishDate = $plusDate;
                                         $adex->save();
-
-                                        // обновляю finishDate в adverts
-                                        //Adverts::where("id", '=', $advert_id)->update(['startDate'=>Carbon::now()->toDateTimeString(),'finishDate' => $plusDate]);
                                 }
                                 break;
                         }
@@ -128,9 +131,6 @@ class AdvertController extends Controller {
                                         $adex->startDate = Carbon::now()->toDateTimeString();
                                         $adex->finishDate = $plusDate;
                                         $adex->save();
-
-                                        // обновляю finishDate в adverts
-                                        //Adverts::where("id", '=', $advert_id)->update(['startDate'=>Carbon::now()->toDateTimeString(), 'finishDate' => $plusDate]);
                                 }                        
                                 break;
                         }
@@ -138,7 +138,7 @@ class AdvertController extends Controller {
 
                 \Debugbar::info($adv_type);
                                 
-                return response()->json([ "result" => "success", "msg" => "готово" ]);  
+                return response()->json([ "result" => "success", "msg" => "готово" ]);
         }
 
         // ---------------------------------
@@ -155,7 +155,7 @@ class AdvertController extends Controller {
                 $adverts = $advertRequest->get();
                 \Debugbar::info($adverts);
 
-                if (count($adverts)==0) {
+                if (count($adverts) == 0) {
                         \Debugbar::info("нет прав на удаление");
                         return response()->json([ "result" => "error", "msg" => "Access denied for this operation" ]);  
                 }

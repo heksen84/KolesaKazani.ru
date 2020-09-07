@@ -28,6 +28,7 @@
 <body>
 <div class="container-fluid mycontainer">
 
+<!-- диалог оплаты -->
 <div class="modal" tabindex="-1" role="dialog" id="billingModalDialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -43,6 +44,27 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="continueBilling">Продолжить</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- диалог подачи жалобы -->
+<div class="modal" tabindex="-1" role="dialog" id="complainDialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Подать жалобу</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">        
+        <textarea class="form-control" id="complainTextarea" rows="5" maxlength="255" placeholder="Введите текст жалобы"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="sendComplain">Отправить</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
       </div>
     </div>
