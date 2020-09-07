@@ -12,6 +12,7 @@ use App\Regions;
 use App\DealType;
 use App\Adverts;
 use App\Images;
+use App\Complaints;
 use Carbon\Carbon;
 
 class AdvertController extends Controller {
@@ -49,8 +50,19 @@ class AdvertController extends Controller {
         public function makeComplaint(Request $request, $advert_id) {
 
                 \Debugbar::info($request->complainText);
+
+                if (Complaints::where('advert_id', '=', $advert_id)->update(array('text' => $request->complainText))) {
+                        return response()->json([ "result" => "success", "msg" => "Ваша жалоба обновлена" ]);        
+                }
+                else {
+                        $complaints = new Complaints;
+                        $complaints->advert_id = $advert_id;
+                        $complaints->user_id = Auth::id();
+                        $complaints->text = $request->complainText;
+                        $complaints->save();
         
-                return response()->json([ "result" => "success", "msg" => "Ваша жалоба отправлена на рассмотрение" ]);
+                        return response()->json([ "result" => "success", "msg" => "Ваша жалоба отправлена на рассмотрение" ]);
+                }
         }
         
         // -----------------------------------------------------------
