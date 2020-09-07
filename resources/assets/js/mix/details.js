@@ -39,7 +39,8 @@ $( document ).ready(function() {
         $("#billingModalDialog").modal("show");
 
         $("#continueBilling").off().click(function(item) {
-        	$.ajax({
+            
+            $.ajax({
                 url: "/objavlenie/makeExtend/"+window.advert_id+"/goTop",
                 type: "POST",
                 data: {"_token": $('meta[name="csrf-token"]').attr('content')},
@@ -60,6 +61,7 @@ $( document ).ready(function() {
         $("#billingModalDialog").modal("show");
 
         $("#continueBilling").off().click(function(item) {
+            
             $.ajax({
                 url: "/objavlenie/makeExtend/"+window.advert_id+"/srochno_torg",
                 type: "POST",
@@ -80,6 +82,7 @@ $( document ).ready(function() {
         $("#billingModalDialog").modal("show");
 
         $("#continueBilling").off().click(function(item) {
+            
             $.ajax({
                 url: "/objavlenie/makeExtend/"+window.advert_id+"/makePaint",
                 type: "POST",
@@ -94,7 +97,7 @@ $( document ).ready(function() {
 });
 
 $("#complain").click(function(event) {    
-    event.preventDefault();    
+    event.preventDefault();     
     $("#complainTextarea").val("");
     $("#complainDialog").modal("show");
 });
@@ -102,6 +105,7 @@ $("#complain").click(function(event) {
 $("#sendComplain").click(function(event) {    
 
     if ($("#complainTextarea").val().length > 3) {
+
         $.ajax({
             url: "/objavlenie/makeComplaint/"+window.advert_id,
             type: "POST",
@@ -134,9 +138,10 @@ document.body.addEventListener('click', function (evt) {
 		xhr.onload = function () {
 
 		if (xhr.status != 200)
-			alert( xhr.status + ': ' + xhr.statusText );		
-			else {			
-				document.getElementById("numberButton").style.display = "none";
+			alert( xhr.status + ': ' + xhr.statusText );            
+            else {			
+                
+                document.getElementById("numberButton").style.display = "none";
                 document.getElementById("phone-number").style.display = "block";
                 // удаляю лишние символы для ссылки с набором номера
                 let hRefTel = JSON.parse(xhr.responseText)[0].phone.split('(').join('').split(')').join('').split(' ').join('').split('-').join('');
