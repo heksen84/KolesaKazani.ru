@@ -44,13 +44,13 @@ class IndexController extends Controller {
 	// ------------------------------------------
     private function ShowIndexPage(Request $request, $region, $place) {		
 		
-		if ($request->search!="")
+		if ($request->search != "")
 			return $this->search($request->search, $region, $place);		
 		
 			$sklonResult="Казахстана";
 						
 		// Страна
-		if ($region===null && $place===null) {
+		if ($region === null && $place === null) {
 
 			$location = "/";				
 			$title = mb_strtoupper(config('app.name'))." - объявления Казахстана";
@@ -60,7 +60,7 @@ class IndexController extends Controller {
 		}
 
 		// Регион
-		if ($region!=null && $place===null) {
+		if ($region != null && $place === null) {
 
 			$location = $region;
 			$locationName = Regions::select("name")->where("url", $region)->get();
@@ -88,7 +88,7 @@ class IndexController extends Controller {
 		}
 
 		// Город, село
-		if ($region!=null && $place!=null) {				
+		if ($region != null && $place != null) {				
 				
 			$location = $region."/".$place;
 			$locationName = Places::select("name")->where("url", $place)->get();
