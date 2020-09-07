@@ -22,6 +22,7 @@ class AdvertController extends Controller {
                 \Debugbar::info("Язык: ".$request->lang); 
         
                 if (Auth::check()) {
+
 	                return view("newad")
                         ->with( "title", "Подать объявление бесплатно" )
                         ->with( "description", "Подать объявление бесплатно в Казахстане на сайте ".config('app.name'))
@@ -33,10 +34,11 @@ class AdvertController extends Controller {
                         ->with( "lang", $request->lang );                        
                 }
                 else 
-                return redirect('/login');
+                return 
+                        redirect('/login');
         }
 
-        // --
+        // ???
         public function posted($url) {
 	        return view("adposted")->with( "url", $url );
         }
