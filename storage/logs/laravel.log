@@ -903,3 +903,60 @@
 #50 C:\\OSPanel\\domains\\flix\\index.php(21): require_once('C:\\\\OSPanel\\\\doma...')
 #51 {main}
 "} 
+[2020-09-07 16:51:35] local.ERROR: Argument 2 passed to Symfony\Component\HttpFoundation\Request::setTrustedProxies() must be of the type integer, array given, called in C:\OSPanel\domains\flix\vendor\fideloper\proxy\src\TrustProxies.php on line 54 {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalThrowableError(code: 0): Argument 2 passed to Symfony\\Component\\HttpFoundation\\Request::setTrustedProxies() must be of the type integer, array given, called in C:\\OSPanel\\domains\\flix\\vendor\\fideloper\\proxy\\src\\TrustProxies.php on line 54 at C:\\OSPanel\\domains\\flix\\vendor\\symfony\\http-foundation\\Request.php:583)
+[stacktrace]
+#0 C:\\OSPanel\\domains\\flix\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(54): Symfony\\Component\\HttpFoundation\\Request::setTrustedProxies(Array, Array)
+#1 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(171): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#2 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#3 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(171): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#4 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#5 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(171): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#6 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#7 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(171): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#8 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode.php(63): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#9 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(171): Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#10 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(105): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#11 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(145): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#12 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(110): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#13 C:\\OSPanel\\domains\\flix\\public\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#14 C:\\OSPanel\\domains\\flix\\index.php(21): require_once('C:\\\\OSPanel\\\\doma...')
+#15 {main}
+"} 
+[2020-09-07 16:51:35] local.ERROR: Argument 2 passed to Symfony\Component\HttpFoundation\Request::setTrustedProxies() must be of the type integer, array given, called in C:\OSPanel\domains\flix\vendor\fideloper\proxy\src\TrustProxies.php on line 54 {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalThrowableError(code: 0): Argument 2 passed to Symfony\\Component\\HttpFoundation\\Request::setTrustedProxies() must be of the type integer, array given, called in C:\\OSPanel\\domains\\flix\\vendor\\fideloper\\proxy\\src\\TrustProxies.php on line 54 at C:\\OSPanel\\domains\\flix\\vendor\\symfony\\http-foundation\\Request.php:583)
+[stacktrace]
+#0 C:\\OSPanel\\domains\\flix\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(54): Symfony\\Component\\HttpFoundation\\Request::setTrustedProxies(Array, Array)
+#1 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(171): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#2 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#3 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(171): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#4 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#5 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(171): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#6 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#7 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(171): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#8 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode.php(63): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#9 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(171): Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#10 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(105): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#11 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(145): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#12 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(110): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#13 C:\\OSPanel\\domains\\flix\\public\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#14 C:\\OSPanel\\domains\\flix\\index.php(21): require_once('C:\\\\OSPanel\\\\doma...')
+#15 {main}
+"} 
+[2020-09-07 16:51:56] local.ERROR: Argument 2 passed to Symfony\Component\HttpFoundation\Request::setTrustedProxies() must be of the type integer, array given, called in C:\OSPanel\domains\flix\vendor\fideloper\proxy\src\TrustProxies.php on line 54 {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalThrowableError(code: 0): Argument 2 passed to Symfony\\Component\\HttpFoundation\\Request::setTrustedProxies() must be of the type integer, array given, called in C:\\OSPanel\\domains\\flix\\vendor\\fideloper\\proxy\\src\\TrustProxies.php on line 54 at C:\\OSPanel\\domains\\flix\\vendor\\symfony\\http-foundation\\Request.php:583)
+[stacktrace]
+#0 C:\\OSPanel\\domains\\flix\\vendor\\fideloper\\proxy\\src\\TrustProxies.php(54): Symfony\\Component\\HttpFoundation\\Request::setTrustedProxies(Array, Array)
+#1 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(171): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#2 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#3 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(171): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#4 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#5 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(171): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#6 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#7 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(171): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#8 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode.php(63): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#9 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(171): Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#10 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(105): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#11 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(145): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#12 C:\\OSPanel\\domains\\flix\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(110): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#13 C:\\OSPanel\\domains\\flix\\public\\index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#14 C:\\OSPanel\\domains\\flix\\index.php(21): require_once('C:\\\\OSPanel\\\\doma...')
+#15 {main}
+"} 
