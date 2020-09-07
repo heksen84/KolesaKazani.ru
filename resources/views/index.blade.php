@@ -195,7 +195,7 @@
         <div id="logo_block">
           <a href="/">
             <div id="logo_block_text">{{ config('app.name') }}</div>
-              <h1 style="font-size:12px;color:grey;margin-top:-10px;letter-spacing:3px;">Объявления {{ $sklonResult }}</h1>
+              <h1 id="logo_block_description">Объявления {{ $sklonResult }}</h1>
             </div>
           </a>
         </div>
