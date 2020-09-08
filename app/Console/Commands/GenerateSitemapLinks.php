@@ -36,6 +36,7 @@ class GenerateSitemapLinks extends Command
     }
 
     public function generateRecord($url) {
+            
         $this->info('<url>');                
         $this->info("<loc>".$url."</loc>");
         $this->info("<changefreq>hourly</changefreq>");
@@ -81,14 +82,12 @@ class GenerateSitemapLinks extends Command
 	}
 
         $this->info("<!-- регионы -->");
-
 	$regions = Regions::select("url")->orderBy('kz_region.url')->get();        
         foreach($regions as $region) {
           $this->generateRecord($app_url."/".$region->url);
         }
 
-        $this->info("<!-- регионы c городами -->");
-        
+        $this->info("<!-- регионы c городами -->");        
         $results = Regions::select("kz_region.url as region_url", "kz_city.url as place_url")->leftJoin("kz_city", "kz_city.region_id", "=", "kz_region.region_id")->orderBy('kz_region.url')->orderBy('kz_city.url')->orderBy('kz_region.url')->get();	
 	foreach($results as $item) {                
           $this->generateRecord($app_url."/".$item->region_url."/".$item->place_url);
