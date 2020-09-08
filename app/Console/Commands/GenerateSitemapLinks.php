@@ -51,7 +51,6 @@ class GenerateSitemapLinks extends Command
                 - регионы + подкатегории
                 - регионы + города + категории
                 - регионы + города + подкатегории
-
         */
         
 	$app_url = config('app.url', 'Laravel');
