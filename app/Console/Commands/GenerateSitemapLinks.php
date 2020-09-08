@@ -35,6 +35,14 @@ class GenerateSitemapLinks extends Command
         parent::__construct();
     }
 
+    public function generateRecord($url) {
+        $this->info('<url>');                
+        $this->info("<loc>".$url."</loc>");
+        $this->info("<changefreq>hourly</changefreq>");
+        $this->info("<priority>0.8</priority>");
+        $this->info('</url>');
+    }
+
     /**
      * Execute the console command.
      *
@@ -58,87 +66,51 @@ class GenerateSitemapLinks extends Command
         $this->info('<?xml version="1.0" encoding="UTF-8"?>');
         
         $this->info("<!-- только категории -->");
-
         $categories = Categories::select("url")->orderBy('url')->get();	
-
-	foreach($categories as $category) {
-          $this->info('<url>');                
-          $this->info("<loc>".$app_url."/c/".$category->url."</loc>");
-          $this->info("<changefreq>hourly</changefreq>");
-          $this->info("<priority>0.8</priority>");
-          $this->info('</url>');
+	foreach($categories as $category) {          
+          $this->generateRecord($app_url."/c/".$category->url);
 	}
 
-        $this->info("<!-- категории с подкатегориями -->");
-	
-	$results1 = Categories::select("categories.url as category_url", "subcats.url as subcats_url")->leftJoin("subcats", "categories.id", "=", "subcats.category_id" )->distinct('subcats.url')->orderBy('categories.url')->orderBy('subcats.url')->get();	
-	
+        $this->info("<!-- категории с подкатегориями -->");	
+	$results1 = Categories::select("categories.url as category_url", "subcats.url as subcats_url")->leftJoin("subcats", "categories.id", "=", "subcats.category_id" )->distinct('subcats.url')->orderBy('categories.url')->orderBy('subcats.url')->get();		
 	foreach($results1 as $item) {
-	 $slash_subcats = "";
-	  if ($item->category_url && $item->subcats_url)	  
-    	     $slash_subcats = "/";
-
-                $this->info('<url>');
-                $this->info("<loc>".$app_url."/c/".$item->category_url.$slash_subcats.$item->subcats_url."</loc>");
-                $this->info("<changefreq>hourly</changefreq>");
-                $this->info("<priority>0.8</priority>");
-                $this->info('</url>');
+	   $slash_subcats = "";          
+           if ($item->category_url && $item->subcats_url)	  
+    	     $slash_subcats = "/";                
+             $this->generateRecord($app_url."/c/".$item->category_url.$slash_subcats.$item->subcats_url);
 	}
 
         $this->info("<!-- регионы -->");
 
-	$regions = Regions::select("url")->orderBy('kz_region.url')->get();	
-        
+	$regions = Regions::select("url")->orderBy('kz_region.url')->get();        
         foreach($regions as $region) {
-                
-                $this->info('<url>');
-                $this->info("<loc>".$app_url."/".$region->url."</loc>");
-                $this->info("<changefreq>hourly</changefreq>");
-                $this->info("<priority>0.8</priority>");
-                $this->info('</url>');
+          $this->generateRecord($app_url."/".$region->url);
         }
 
         $this->info("<!-- регионы c городами-->");
         
         $results = Regions::select("kz_region.url as region_url", "kz_city.url as place_url")->leftJoin("kz_city", "kz_city.region_id", "=", "kz_region.region_id")->orderBy('kz_region.url')->orderBy('kz_city.url')->orderBy('kz_region.url')->get();	
-	foreach($results as $item) {
-                $this->info('<url>');               
-                $this->info("<loc>".$app_url."/".$item->region_url."/".$item->place_url."</loc>");
-                $this->info("<changefreq>hourly</changefreq>");
-                $this->info("<priority>0.8</priority>");
-                $this->info('</url>');
+	foreach($results as $item) {                
+          $this->generateRecord($app_url."/".$item->region_url."/".$item->place_url);
         }
 
         $this->info("<!-- регионы c городами и категориями-->");
-
         foreach($categories as $category) {
-        foreach($results as $item) { 
-                
-                $this->info('<url>');               
-                $this->info("<loc>".$app_url."/".$item->region_url."/".$item->place_url."/c/".$category->url."</loc>");
-                $this->info("<changefreq>hourly</changefreq>");
-                $this->info("<priority>0.8</priority>");
-                $this->info('</url>');
+         foreach($results as $item) {
+            $this->generateRecord($app_url."/".$item->region_url."/".$item->place_url."/c/".$category->url);
           }
         }
 
-        $this->info("<!-- регионы c городами и категориями и подкатегориями где???-->");
-                
+        $this->info("<!-- регионы c городами и категориями и подкатегориями где???-->");                
 	foreach($results as $item1) {
                 foreach($results1 as $item2) {
                         $slash_subcats = "";
                          if ($item2->category_url && $item2->subcats_url)	  
-                                $slash_subcats = "/";
-               
-                                $this->info('<url>');
-                                $this->info("<loc>".$app_url."/".$item1->region_url."/".$item1->place_url."/c/".$item2->category_url.$slash_subcats.$item2->subcats_url."</loc>");
-                                $this->info("<changefreq>hourly</changefreq>");
-                                $this->info("<priority>0.8</priority>");
-                                $this->info('</url>');
+                           $slash_subcats = "/";                                               
+                           $this->generateRecord($app_url."/".$item1->region_url."/".$item1->place_url."/c/".$item2->category_url.$slash_subcats.$item2->subcats_url);        
                        }	  
         }
         
         $this->info('</urlset>');
-
     }
 }
