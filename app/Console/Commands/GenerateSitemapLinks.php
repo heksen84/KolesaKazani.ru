@@ -87,21 +87,21 @@ class GenerateSitemapLinks extends Command
           $this->generateRecord($app_url."/".$region->url);
         }
 
-        $this->info("<!-- регионы c городами-->");
+        $this->info("<!-- регионы c городами -->");
         
         $results = Regions::select("kz_region.url as region_url", "kz_city.url as place_url")->leftJoin("kz_city", "kz_city.region_id", "=", "kz_region.region_id")->orderBy('kz_region.url')->orderBy('kz_city.url')->orderBy('kz_region.url')->get();	
 	foreach($results as $item) {                
           $this->generateRecord($app_url."/".$item->region_url."/".$item->place_url);
         }
 
-        $this->info("<!-- регионы c городами и категориями-->");
+        $this->info("<!-- регионы c городами и категориями -->");
         foreach($categories as $category) {
          foreach($results as $item) {
             $this->generateRecord($app_url."/".$item->region_url."/".$item->place_url."/c/".$category->url);
           }
         }
 
-        $this->info("<!-- регионы c городами и категориями и подкатегориями где???-->");                
+        $this->info("<!-- регионы c городами и категориями и подкатегориями -->");                
 	foreach($results as $item1) {
                 foreach($results1 as $item2) {
                         $slash_subcats = "";
