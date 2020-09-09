@@ -223,6 +223,8 @@ class IndexController extends Controller {
 		
 		$regionData = $this->getRegionData($request->region); 
 		$placeData = $this->getPlaceData($request->place);
+
+//		\Debugbar::info($request->searchString);
 		
 		if (!$regionData && !$placeData)
 			$whereStr = "MATCH (title) AGAINST('".$request->searchString."' IN BOOLEAN MODE)";

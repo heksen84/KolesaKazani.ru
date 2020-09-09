@@ -86,7 +86,7 @@ $( document ).ready(function() {
           
           $("#placeSearchResults").empty().css("padding-top","4px");      
           $.each(response, function(index, item) {               
-            $("#placeSearchResults").append("<a href='/"+item.url+"' style='color:black;display:block;margin:5px;margin-top:3px'>"+item.city_name+", "+item.region_name+"</a>");
+            $("#placeSearchResults").append("<a href='/"+item.url+"' style='color:black;display:block;margin:5px;margin-top:3px'>"+item.city_name+", "+item.region_name+" обл.</a>");
           });
           $("#placeSearchResults").append("<div class='text-center'><button class='btn btn-sm btn-success' id='cancelPlaceSearchResults'>Отмена</button></div>").click(function(item) {                       
             $("#placeFilter").val(""); 
