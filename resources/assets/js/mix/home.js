@@ -13,13 +13,17 @@ function setExtendOptions() {
             type: "POST",
             data: {"_token": $('meta[name="csrf-token"]').attr('content')},
             success: function (response) {                
+                
                 self.hide();                
-
-                let buttons = '<button class="btn btn-outline-success btn-sm m-1 top">В топ</button>'+
+                
+                /*let buttons = '<button class="btn btn-outline-success btn-sm m-1 top">В топ</button>'+
                               '<button class="btn btn-outline-secondary btn-sm m-1 color">Выделить</button>'+
                               '<button class="btn btn-outline-danger btn-sm m-1 srochno">Срочно</button>';                
                 
-                self.parent().append(buttons);                
+                self.parent().append(buttons);*/
+
+                alert("Объявление продлено на 30 дней")
+                
                 setExtendOptions();             
             }
         });        
