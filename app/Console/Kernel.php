@@ -16,7 +16,8 @@ class Kernel extends ConsoleKernel
 	    Commands\DeleteAllAdverts::class,
 	    Commands\DeleteExpiredAdverts::class,
 	    Commands\DeleteAllImages::class,
-	    Commands\GenerateSitemapLinks::class
+	    Commands\GenerateSitemapLinks::class,
+	    Commands\Utils::class
     ];
 
     /**
