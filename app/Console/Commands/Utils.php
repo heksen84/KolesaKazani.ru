@@ -88,10 +88,22 @@ class Utils extends Command {
 
     	$regions = Regions::all();
     	$places  = Places::all();
-	    $subcats = SubCats::all();
+	$cats    = Categories::all();
+	$subcats = SubCats::all();
+
+    	foreach ($cats as $cat) {	
+		    $cat->url=str2url($cat->name);
+		    $cat->description=$cat->title;
+		    $cat->keywords="";
+		    $cat->save();
+        }
+
+	$this->info('cats_ok');
 
     	foreach ($subcats as $subcat) {	
 		    $subcat->url=str2url($subcat->name);
+		    $subcat->description=$subcat->title;
+		    $subcat->keywords="";
 		    $subcat->save();
         }
         
