@@ -293,7 +293,7 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <!-- Горизонтальное после новых объявлений -->
   <ins class="adsbygoogle"
-      style="display:block"
+      style="display:block;height:100px"
       data-ad-client="ca-pub-8074944108437227"
       data-ad-slot="8746851039"
       data-ad-format="auto"
