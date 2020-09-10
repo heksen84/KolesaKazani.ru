@@ -227,11 +227,11 @@
 // ---------------------------
 import $ from "jquery";
 import bootstrap from "bootstrap";
-import transport from "./subcategories/transport.vue"
-import realEstate from "./subcategories/realEstate.vue"
-import superInput from "./components/superInput.vue"
-import register from "./components/auth/register.vue"
-import restore from "./components/auth/restore.vue"
+import transport from "./subcategories/transport"
+import realEstate from "./subcategories/realestate"
+import superInput from "./components/superInput"
+import register from "./components/auth/register"
+import restore from "./components/auth/restore"
 
 import { post, get } from '../../helpers/api'
 
@@ -334,16 +334,16 @@ data () {
 	places: [],
 	places_model: null,
 	phone: "",		
-	transport:false,			      // транспорт
-	real_estate:false,			    // недвижимость
-	appliances:false,			      // бытовая техника
-	work_and_buisness:false,	  // работа и бизнес
-	for_home:false,				      // для дома и дачи
-	personal_effects:false,		  // личные вещи
-	animals:false,				      // животные
-	hobbies_and_leisure:false,	// хобби и отдых
-	services:false,				      // услуги
-	dating:false					      // знакомства
+	transport: false,			      // транспорт
+	real_estate: false,			    // недвижимость
+	appliances: false,			      // бытовая техника
+	work_and_buisness: false,	  // работа и бизнес
+	for_home: false,				      // для дома и дачи
+	personal_effects: false,		  // личные вещи
+	animals: false,				      // животные
+	hobbies_and_leisure: false,	// хобби и отдых
+	services: false,				      // услуги
+	dating: false					      // знакомства
   }
 },
 
@@ -404,8 +404,8 @@ closePage() {
 // ------------------------------
 changeRegion() {
 
-    this.$root.advert_data.region_id = this.regions_model;	  
-    
+    this.$root.advert_data.region_id = this.regions_model;
+
 	  // Получить города / сёлы
     get("api/getPlaces?region_id="+this.regions_model).then((res) => {
 		  this.places=res.data;
