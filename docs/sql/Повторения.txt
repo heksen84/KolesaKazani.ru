@@ -13,3 +13,6 @@ DELETE n1 FROM kz_city n1, kz_city n2 WHERE n1.city_id < n2.city_id AND n1.regio
 
 // update region_id
 UPDATE `kz_city` SET `region_id`=10 WHERE city_id > 416
+
+// update coords
+UPDATE `kz_city` SET coords='51.785262, 69.908818' WHERE region_id=1
