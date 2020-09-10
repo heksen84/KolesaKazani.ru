@@ -52,6 +52,8 @@ function str2url($str) {
     return $str;
 }
 
+
+
 class Utils extends Command {
     /**
      * The name and signature of the console command.
@@ -91,17 +93,23 @@ class Utils extends Command {
     	foreach ($subcats as $subcat) {	
 		    $subcat->url=str2url($subcat->name);
 		    $subcat->save();
-	    }
+        }
+        
+        $this->info('subcats_ok');
 
     	foreach ($regions as $region) {
 			$region->url=str2url($region->name)."-oblast";
 			$region->save();
-		}
-
+        }
+        
+        $this->info('regions_ok');
+		
 		foreach ($places as $place) {
 			$place->url=str2url($place->name);
 			$place->save();
-		}
+        }
+        
+        $this->info('places_ok');
 
         $this->info('Готово!');
  
