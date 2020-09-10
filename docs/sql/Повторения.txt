@@ -10,3 +10,6 @@ DELETE t1 FROM kz_city t1 INNER JOIN kz_city t2 WHERE t1.region_id > t2.region_i
 
 // ok
 DELETE n1 FROM kz_city n1, kz_city n2 WHERE n1.city_id < n2.city_id AND n1.region_id = n2.region_id AND n1.name = n2.name
+
+// update region_id
+UPDATE `kz_city` SET `region_id`=10 WHERE city_id > 416
