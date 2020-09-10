@@ -16,3 +16,7 @@ UPDATE `kz_city` SET `region_id`=10 WHERE city_id > 416
 
 // update coords
 UPDATE `kz_city` SET coords='51.785262, 69.908818' WHERE region_id=1
+
+
+// выбрать регионы и города по имени
+SELECT kz_region.name, kz_city.name FROM `kz_city` inner join kz_region on kz_city.region_id= kz_region.region_id order by kz_region.name, kz_city.name
