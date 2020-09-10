@@ -71,7 +71,7 @@
               <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-right">
                 <button class="btn btn-outline-primary btn-sm" id="filters_button">отфильтровать</button>
               </div>
-              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2" id="filters">
+<!--              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2" id="filters">
                 @if ($categoryId===1 && $subcategoryId===1)  
                   @include('filters/transport/legkovoy')
                 @else
@@ -79,7 +79,7 @@
                 @endif             
               </div>
             @endif
-
+-->
           <!-- РЕКЛАМА -->
           <!--<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-2">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>            
