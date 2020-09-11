@@ -289,18 +289,6 @@
       @endforeach
   </div>
   @endif
-
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <!-- Горизонтальное после новых объявлений -->
-  <ins class="adsbygoogle"
-      style="display:block;height:100px"
-      data-ad-client="ca-pub-8074944108437227"
-      data-ad-slot="8746851039"
-      data-ad-format="auto"
-      data-full-width-responsive="true"></ins>
-  <script>
-       (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
   
   @if (count($newAdverts)>0)
   <div class="row text-center">
@@ -334,6 +322,19 @@
   <div class="text-center mt-2">
     <a href="/podat-objavlenie" class="black" style="font-size:18px;letter-spacing:3px">подать объявление</a>
   </div>
+
+
+  <!-- Горизонтальное после новых объявлений -->
+  <!--<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>  
+  <ins class="adsbygoogle"
+      style="display:block;height:100px"
+      data-ad-client="ca-pub-8074944108437227"
+      data-ad-slot="8746851039"
+      data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>-->
 
 <!-- РЕКЛАМА -->
 <!--  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-5">
