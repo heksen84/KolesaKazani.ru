@@ -86,6 +86,8 @@ class Utils extends Command {
      */
     public function handle() {
 
+	if( $this->confirm('Обновить данные? ВНИМАНИЕ!!! Это обновит id в таблицах!(yes|no)[no]')) {
+
     	$regions = Regions::all();
     	$places  = Places::all();
 	$cats    = Categories::all();
@@ -122,8 +124,8 @@ class Utils extends Command {
         }
         
         $this->info('places_ok');
-
         $this->info('Готово!');
  
     }
+  }
 }
