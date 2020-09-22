@@ -1,3 +1,9 @@
+yum install mariadb-server
+systemctl start mariadb
+service mariadb start
+
+sudo yum install php-mysqlnd // установка расширения
+
 Out of memory
 
 SHOW VARIABLES LIKE 'log_error';

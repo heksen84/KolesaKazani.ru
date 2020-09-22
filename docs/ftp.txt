@@ -1,1 +1,2 @@
+https://serveradmin.ru/ustanovka-i-nastroyka-ftp-servera-na-centos-7/
 passwd user_name (current: ftp_user)

@@ -1,1 +1,4 @@
+yum install mailx
+echo "Тело сообщения" | mail -s "Тема сообщения" your@mail.com
+
 https://www.dmosk.ru/instruktions.php?object=postfix-centos
