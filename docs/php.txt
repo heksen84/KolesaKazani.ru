@@ -1,2 +1,1 @@
-sudo yum install php-json (call udefined function json_decode())
-sudo yum install php-mbstring php-zip php-xml php-pdo php-mysqlnd(problems install laravel vendor)
+sudo yum install php php-mbstring php-zip php-xml php-pdo php-mysqlnd php-json
