@@ -13,6 +13,6 @@ MAILTO=root
 # |  |  |  |  |
 # *  *  *  *  * user-name  command to be executed
 
-#* * * * * echo $(php -v) >> /var/www/flix/crontest.txt
-* 2 * * * cd /var/www/flix && php artisan adverts:deleteExpired >> /var/www/flix/storage/logs/cron.log
+#* * * * * echo $(php -v) >> /var/www/ilbo/crontest.txt
+* 2 * * * cd /var/www/ilbo && php artisan adverts:deleteExpired >> /var/www/ilbo/storage/logs/cron.log
 

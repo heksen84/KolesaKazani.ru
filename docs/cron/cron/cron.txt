@@ -1,2 +1,2 @@
 service crond restart
-crond -l
+crontab -l (записи крона)
