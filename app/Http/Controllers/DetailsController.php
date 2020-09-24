@@ -38,7 +38,7 @@ class DetailsController extends Controller {
                         
                 if (!count($advertData)) {
                   abort(404);             
-		}
+		        }
 
                 \Debugbar::info("-------------------");
                 \Debugbar::info($advertData);
@@ -754,7 +754,14 @@ class DetailsController extends Controller {
             }
 
             \DebugBar::info($advert); 
-            \Debugbar::info("advert count: ".count($advert));
+            
+            $count = count($advert);
+            
+            \Debugbar::info("advert count: ".$count);
+
+            if (!count($count)) {
+                \Debugbar::info("ОШИБКА: пустая выборка");                
+            }
                                 
             $images = Images::select(DB::raw( "concat('".Common::getImagesPath()."/normal/', name) AS name" ))->where("advert_id", $id)->get();
     
