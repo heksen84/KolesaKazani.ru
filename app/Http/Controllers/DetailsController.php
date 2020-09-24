@@ -755,11 +755,11 @@ class DetailsController extends Controller {
 
             \DebugBar::info($advert); 
             
-            $count = count($advert);
+            $dataCount = count($advert);
             
-            \Debugbar::info("advert count: ".$count);
+            \Debugbar::info("advert count: ".$dataCount);
 
-            if (!count($count)) {
+            if (!count($dataCount)) {
                 \Debugbar::info("ОШИБКА: пустая выборка");                
             }
                                 
