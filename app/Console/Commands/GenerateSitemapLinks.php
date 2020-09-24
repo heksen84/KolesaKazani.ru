@@ -65,6 +65,7 @@ class GenerateSitemapLinks extends Command
 	$app_url = config('app.url', 'Laravel');
 
         $this->info('<?xml version="1.0" encoding="UTF-8"?>');
+        $this->info('<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">');
         
         $this->info("<!-- только категории -->");
         $categories = Categories::select("url")->orderBy('url')->get();	
