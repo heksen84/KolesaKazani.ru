@@ -759,7 +759,7 @@ class DetailsController extends Controller {
             
             \Debugbar::info("advert count: ".$dataCount);
 
-            if (!count($dataCount)) {
+            if ($dataCount===0) {
                 \Debugbar::info("ОШИБКА: пустая выборка");                
             }
                                 
