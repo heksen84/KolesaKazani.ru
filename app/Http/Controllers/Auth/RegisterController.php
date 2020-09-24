@@ -62,7 +62,7 @@ class RegisterController extends Controller
             "email.unique"          => "Такая почта уже существует", 
             "password.required"     => "Требуется пароль", 
             "password.string"       => "Пароль должен быть указан в виде строки", 
-            "password.min"          => "Пароль должен быть не менее 6 символов", 
+            "password.min"          => "Пароль должен быть не менее 8 символов", 
             "password.confirmed"    => "Подтвердите пароль", 
         ]; 
 
@@ -70,7 +70,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name'      => 'required|string|min:3|max:60',
             'email'     => 'required|string|email|min:1|max:60|unique:users',
-            'password'  => 'required|string|min:6|confirmed',
+            'password'  => 'required|string|min:8|confirmed',
         ], $messages);
     }
 
