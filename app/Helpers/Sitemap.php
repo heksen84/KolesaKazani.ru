@@ -65,7 +65,8 @@ class Sitemap {
 		if (!$file) 
 			return false;
 		
-		$date_time = date(\DateTime::ISO8601);
+//		$date_time = date(\DateTime::ISO8601);
+		$date_time = date("Y-m-d");
 
 		fwrite($file, '<?xml version="1.0" encoding="UTF-8"?>'."\n");
 		fwrite($file, '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'."\n");
@@ -112,7 +113,9 @@ class Sitemap {
 				// проверяем наличие файла
 				if (file_exists($current_sitemap)) {        			
 					
-					$date_time = date(\DateTime::ISO8601);
+					//$date_time = date(\DateTime::ISO8601);
+					$date_time = date("Y-m-d");
+
 					$sitemap_created=false;
 
 					// если sitemap больше или равен 50 мб. то ...
