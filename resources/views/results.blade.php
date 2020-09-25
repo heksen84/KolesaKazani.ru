@@ -138,7 +138,7 @@
             @endforeach
 
             <!-- РЕКЛАМА -->
-<!--            @if (count($items)>5)
+            @if (count($items)>5)
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-1">
               <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>    
               <ins class="adsbygoogle"
@@ -150,7 +150,7 @@
                 (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
             </div>
-            @endif -->
+            @endif
 
             <!-- навигация -->            
               <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">                  
