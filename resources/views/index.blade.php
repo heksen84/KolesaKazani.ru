@@ -293,7 +293,7 @@
 
   <!-- Горизонтальное до новых объявлений -->
   <!-- data-ad-format="auto" -->
-  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-1">
+  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-1 mb-1">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>  
     <ins class="adsbygoogle"
         style="display:inline-block;width:100%;height:130px"
