@@ -4,10 +4,15 @@ namespace App\Helpers;
  
 class Common {
 
+//    public static function getImagesPath($storage_id) {
     public static function getImagesPath() {
-        //return \Storage::disk("local")->url("app/images");
-//        return \Storage::disk("s3")->url("images");
-        return "https://ilbo.object.pscloud.io/images";
+
+/*	if ($storage_id===0)
+         return "https://ilbo.object.pscloud.io/images";
+
+	if ($storage_id===1)
+         return "---";      */
+         return "https://ilbo.object.pscloud.io/images";
 
     }
 
