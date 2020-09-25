@@ -14,5 +14,5 @@ MAILTO=root
 # *  *  *  *  * user-name  command to be executed
 
 #* * * * * echo $(php -v) >> /var/www/ilbo/crontest.txt
-* 2 * * * cd /var/www/ilbo && php artisan adverts:deleteExpired >> /var/www/ilbo/storage/logs/cron.log
+0 2 * * * cd /var/www/ilbo && php artisan adverts:deleteExpired >> /var/www/ilbo/storage/logs/cron.log
 
