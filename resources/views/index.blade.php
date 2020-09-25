@@ -326,13 +326,13 @@
 
 
   <!-- Горизонтальное после новых объявлений -->
+  <!-- data-ad-format="auto" -->
   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-5">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>  
     <ins class="adsbygoogle"
         style="display:inline-block;width:100%;height:130px"
         data-ad-client="ca-pub-8074944108437227"
-        data-ad-slot="8746851039"
-        data-ad-format="auto"
+        data-ad-slot="8746851039"        
         data-full-width-responsive="true"></ins>
     <script>
          (adsbygoogle = window.adsbygoogle || []).push({});
