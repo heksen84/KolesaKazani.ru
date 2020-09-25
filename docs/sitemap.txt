@@ -1,0 +1,1 @@
+ѕреобразовать base.xml в utf-8 без BOM в Notepad++ иначе google его не понимает.
