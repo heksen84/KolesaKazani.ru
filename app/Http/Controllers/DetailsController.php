@@ -763,6 +763,7 @@ class DetailsController extends Controller {
                 \Debugbar::info("ОШИБКА: пустая выборка");                
             }
                                 
+	    // нужно извлечь storageId
             $images = Images::select(DB::raw( "concat('".Common::getImagesPath()."/normal/', name) AS name" ))->where("advert_id", $id)->get();
     
             \Debugbar::info($advert);
