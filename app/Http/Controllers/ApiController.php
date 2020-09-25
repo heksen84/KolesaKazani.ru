@@ -376,14 +376,15 @@ class ApiController extends Controller {
             }            
             
             // ---------------------------------------------------------
-            $advert->public = true; // публикую объявление сходу
+ 
+           $advert->public = true; // публикую объявление сходу
 	        $advert->startDate = Carbon::now()->toDateTimeString();
             $advert->finishDate = Carbon::now()->add(30, 'day')->toDateTimeString(); // добавляю 30 дней
             $advert->save();  // СОХРАНЕНИЕ ОБЪЯВЛЕНИЯ
 
             \Debugbar::info("Объявление сохранено!");
-            // ---------------------------------------------------------
-            
+
+            // ---------------------------------------------------------            
             
             $urls = new Urls(); // Закидываю данные в таблицу urls для SEO
             
@@ -394,8 +395,8 @@ class ApiController extends Controller {
             $urls->url = substr($advert->id."-".\Helper::str2url($url_text), 0, 100);            
             $urls->advert_id = $advert->id;
             $urls->save();                            
-
-            if ($request->file("images")) {
+ 
+           if ($request->file("images")) {
 
                 // массив имён и путей изображений
                $images = [];
@@ -407,20 +408,22 @@ class ApiController extends Controller {
 
                     // узнаю реальный путь к файлу
                     $image = Image::make($img->getRealPath());                
+
                     $normalFileNamePath = storage_path().'/app/images/normal/';                
                     $image->save($normalFileNamePath.$filename);                
-                    $record = array("path"=>$normalFileNamePath, "name"=>$filename, "type"=>"normal");
+                    $record = array("path" => $normalFileNamePath, "name" => $filename, "type" => "normal");
                     array_push($images, $record);                
+
                     $smallFileNamePath = storage_path().'/app/images/small/';
                     $image->save($smallFileNamePath.$filename);                
-                    $record = array("path"=>$smallFileNamePath, "name"=>$filename, "type"=>"small");
+                    $record = array("path" => $smallFileNamePath, "name" => $filename, "type" => "small");
                     array_push($images, $record);                    
                     
                     // добавляю данные в таблицу
-                    Images::insert(array('advert_id'=>$advert->id, "name"=>$filename));
+                    Images::insert(array('advert_id' => $advert->id, "name" => $filename));
                 }
                 
-                // Сохраняю картинки        
+                // Сохраняю картинки в облачное хранилище
                 LoadImages::dispatch($images, $advert->id);            
             
                 // Удаляю временные картинки        
@@ -428,8 +431,7 @@ class ApiController extends Controller {
             }
             
             Sitemap::addUrl($urls->url);
-            // $urls->url
-            //return $advert->id;
+
             return response()->json([ "result" => "success", "url" => $urls->url ]);
         }		
         
@@ -438,6 +440,5 @@ class ApiController extends Controller {
     	}
      	
      	return $data;
-    }
-    
+    }    
 }
