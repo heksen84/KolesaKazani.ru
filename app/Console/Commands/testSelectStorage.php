@@ -5,11 +5,11 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use App\Images;
-
+                                                                                                                            i
 class testSelectStorage extends Command
 {
     /**
-     * The name and signature of the console command.
+     * The name and signature of the console command.                                                               
      *
      * @var string
      */
@@ -37,8 +37,6 @@ class testSelectStorage extends Command
      * @return mixed
      */
     public function handle() {
-
-	// нужно передать imgStorageId в СOMMON::getImagesPath()
-	//WITH result AS (select title AS name, (SELECT 1) as imgStorageId from `adverts`) SELECT concat(name, '----', imgStorageId) FROM result
+	// WITH images AS (select id, title AS name, (SELECT 1) as imgStorageId from `adverts`) SELECT id, concat(name, ' /public/storage/', imgStorageId) AS path FROM images WHERE id = 1
     }
 }
