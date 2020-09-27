@@ -47,15 +47,15 @@ class IndexController extends Controller {
 		if ($request->search != "")
 			return $this->search($request->search, $region, $place);		
 		
-			$sklonResult="Казахстана";
+			$sklonResult = "Казахстана";
 						
 		// Страна
 		if ($region === null && $place === null) {
 
 			$location = "/";				
-			$title = mb_strtoupper(config('app.name'))." - объявления Казахстана";
-			$description = "Объявления о покупке, продаже, обмене, а так же сдаче в аренду в Казахстане";
-			$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, FLIX, страна, казахстан";
+			$title = mb_strtoupper(config('app.name'))." - бесплатные объявления Казахстана";
+			$description = "Объявления о покупке, продаже, обмене и сдаче в аренду в Казахстане";
+			$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, ilbo, ИльБо, страна, казахстан";
 			$locationName = "Казахстан";
 		}
 
@@ -79,9 +79,9 @@ class IndexController extends Controller {
 				$regionName = trim(str_replace("обл.", "", $regionName));				
 				$sklonResult = $petrovich->firstname($regionName, 0)." области";
 				
-				$title = mb_strtoupper(config('app.name'))." - объявления-- ".$sklonResult;
-				$description = "Объявления о покупке, продаже, обмене, а так же сдаче в аренду в ".$sklonResult;
-				$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, FLIX, ".$regionName." область";
+				$title = mb_strtoupper(config('app.name'))." - бесплатные объявления ".$sklonResult;
+				$description = "Объявления о покупке, продаже, обмене, и сдаче в аренду в ".$sklonResult;
+				$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, ilbo, ИльБо ".$regionName." область";
 			}
 			else	
 				abort(404);
@@ -106,8 +106,8 @@ class IndexController extends Controller {
 				$sklonResult = $petrovich->firstname($placeArr[0]->name, 0);
 				$sklonResultForDesc = $petrovich->firstname($placeArr[0]->name, 4);
 
-				$title = mb_strtoupper(config('app.name'))." - объявления ".$sklonResult;
-				$description = "Объявления о покупке, продаже, обмене, а так же сдаче в аренду в ".$sklonResultForDesc;
+				$title = mb_strtoupper(config('app.name'))." - бесплатные объявления ".$sklonResult;
+				$description = "Объявления о покупке, продаже, обмене, и сдаче в аренду в ".$sklonResultForDesc;
 				$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, FLIX, ".$locationName;
 			
 			}
