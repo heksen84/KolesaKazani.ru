@@ -52,16 +52,15 @@ class LoadImages implements ShouldQueue {
             // потом беру из локальной папки и преобразую
             $image = Image::make($img["path"].$img["name"]);            
             
-            if ($img["type"]=="normal") {
+            if ($img["type"] === "normal") {
                 $image->fit(800, 600);
                 Storage::disk('s3')->put("images/normal/".$img["name"], $image->stream()->detach());                    
             }
 
-            if ($img["type"]=="small") {
+            if ($img["type"] === "small") {
                 $image->fit(250, 250);                
                 Storage::disk('s3')->put("images/small/".$img["name"], $image->stream()->detach());                
             }                                       
         }        
     }
-
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;  
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Helpers\Common;
 use App\Jobs\LoadImages;
 use App\Jobs\DeleteTempImages;
 use App\Urls;
@@ -394,12 +395,12 @@ class ApiController extends Controller {
             
             $urls->url = substr($advert->id."-".\Helper::str2url($url_text), 0, 100);            
             $urls->advert_id = $advert->id;
-            $urls->save();                            
- 
+            $urls->save();                                   
+              
+            // проверяем есть-ли входящие картинки вообще?
            if ($request->file("images")) {
-
-                // массив имён и путей изображений
-               $images = [];
+                
+               $images = []; // массив имён и путей изображений
 
                 foreach($request->file("images") as $img) {
                     
@@ -422,6 +423,14 @@ class ApiController extends Controller {
                     // добавляю данные в таблицу
                     Images::insert(array('advert_id' => $advert->id, "name" => $filename));
                 }
+
+                \Debugbar::info("Осталось места: ".Common::getFreeDiskSpace("."));
+
+                // если больше 5 гигов
+                /*if (Common::getFreeDiskSpace(".") > 5) {
+                    \Debugbar::info("Пишем на локальный диск");
+                    return response()->json([ "result" => "error", "url" => "test_error" ]);
+                }*/
                 
                 // Сохраняю картинки в облачное хранилище
                 LoadImages::dispatch($images, $advert->id);            
