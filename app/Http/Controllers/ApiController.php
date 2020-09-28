@@ -182,7 +182,7 @@ class ApiController extends Controller {
                     \Debugbar::info("NULL PHP: ".$transport->year);
                     
                     // легковушки
-                    if ($data["transport_type"]==1) {
+                    if ( $data["transport_type"] == 1 ) {
                         $transport->mark                = $data["mark_id"];            // id марки авто
                         $transport->model               = $data["model_id"];           // id модели авто                        
                         $transport->year                = $data["release_date"];       // год выпуска
@@ -196,7 +196,7 @@ class ApiController extends Controller {
                     }                    
                     
                     // грузовой
-                    if ($data["transport_type"]==2) {
+                    if ( $data["transport_type"] == 2 ) {
 
                         \Debugbar::info("NULL JS: ".$data["release_date"]);
 
@@ -211,7 +211,7 @@ class ApiController extends Controller {
                     }
 
                     // мото
-                    if ($data["transport_type"]==3) {
+                    if ( $data["transport_type"] == 3 ) {
 
                         $transport->year            = $this->to_php_null($data["release_date"]);       // год выпуска
                         $transport->mileage         = $this->to_php_null($data["mileage"]);            // пробег
@@ -223,7 +223,7 @@ class ApiController extends Controller {
                     }
 
                     // спецтехника
-                    if ($data["transport_type"]==4) {                        
+                    if ( $data["transport_type"] == 4 ) {                        
 
                         $transport->year            = $this->to_php_null($data["release_date"]);       // год выпуска
                         $transport->mileage         = $this->to_php_null($data["mileage"]);            // пробег
@@ -235,7 +235,7 @@ class ApiController extends Controller {
                     }
 
                     // ретро-авто
-                    if ($data["transport_type"]==5) {
+                    if ( $data["transport_type"] == 5 ) {
 
                         $transport->year                = $data["release_date"];       // год выпуска
                         $transport->steering_position   = $data["rule_position"];      // положение руля
@@ -248,7 +248,7 @@ class ApiController extends Controller {
                     }
 
                     // водный транспорт
-                    if ($data["transport_type"]==6) {
+                    if ( $data["transport_type"] == 6 ) {
 
                         $transport->year            = $this->to_php_null($data["release_date"]);       // год выпуска
                         $transport->mileage         = $this->to_php_null($data["mileage"]);            // пробег
@@ -260,7 +260,7 @@ class ApiController extends Controller {
                     }
 
                     // велосипед
-                    if ($data["transport_type"]==7) {
+                    if ( $data["transport_type"] == 7 ) {
 
                         $transport->year            = $this->to_php_null($data["release_date"]);       // год выпуска
                         $transport->mileage         = $this->to_php_null($data["mileage"]);            // пробег
@@ -272,7 +272,7 @@ class ApiController extends Controller {
                     }
 
                     // воздушный транспорт
-                    if ($data["transport_type"]==8) {
+                    if ( $data["transport_type"] == 8 ) {
 
                         $transport->year            = $this->to_php_null($data["release_date"]);       // год выпуска
                         $transport->mileage         = $this->to_php_null($data["mileage"]);            // пробег
@@ -361,7 +361,6 @@ class ApiController extends Controller {
                     $advert->inner_id = $subcategory;
                     break;
                 }
-
             }
                         
             // координаты            
@@ -374,20 +373,20 @@ class ApiController extends Controller {
             else {
                 $advert->coord_lat = 0;
                 $advert->coord_lon = 0;
-            }            
-            
-            // ---------------------------------------------------------
+            }                                    
  
-           $advert->public = true; // публикую объявление сходу
+            // Публикую объявление сходу, без модерации
+            $advert->public = true;
 	        $advert->startDate = Carbon::now()->toDateTimeString();
             $advert->finishDate = Carbon::now()->add(30, 'day')->toDateTimeString(); // добавляю 30 дней
-            $advert->save();  // СОХРАНЕНИЕ ОБЪЯВЛЕНИЯ
-
-            \Debugbar::info("Объявление сохранено!");
-
-            // ---------------------------------------------------------            
             
-            $urls = new Urls(); // Закидываю данные в таблицу urls для SEO
+            // Сохраняю объявление
+            $advert->save();
+
+            \Debugbar::info("Объявление сохранено!");            
+            
+            // Закидываю данные в таблицу urls для SEO
+            $urls = new Urls();
             
             // url sitemap
             if (strlen($title) > 5) 
