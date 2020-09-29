@@ -10,8 +10,9 @@ Route::get('auth/ok/callback', 'Auth\AuthController@handleOkCallback');
 Route::get('/advert', function() { return view('advert'); });
 Route::get('/rules', function() { return view('rules'); });
 Route::get('/about', function() { return view('about'); });
+Route::get('/blog', "BlogController@showArticles");
 
-Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::get('/logout', "\App\Http\Controllers\Auth\LoginController@logout");
 Route::get('/search', "IndexController@getResultsBySearchString");
 
 // Сервисы (было внизу)
