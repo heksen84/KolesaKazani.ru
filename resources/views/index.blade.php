@@ -359,16 +359,6 @@
     </div>
   </div> -->
 
-  <div class="row mt-2">
-    <div id="footer"><a href="/blog" class="underline_link">Блог</a> | <a href="/advert" class="underline_link">Реклама</a> | <a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a></div>
-  </div>  
-
-</div>
-
-</div>  
-  <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>  
-  <script data-ad-client="ca-pub-8074944108437227" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
 <!-- ZERO.kz -->
 <span id="_zero_72991">
   <noscript>
@@ -399,5 +389,13 @@
 <!-- End ZERO.kz -->
 
 
+  <div class="row mt-2">
+    <div id="footer"><a href="/blog" class="underline_link">Блог</a> | <a href="/advert" class="underline_link">Реклама</a> | <a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a></div>
+  </div>  
+
+</div>
+</div>  
+  <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>  
+  <script data-ad-client="ca-pub-8074944108437227" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </body>
 </html>
