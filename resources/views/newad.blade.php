@@ -27,6 +27,8 @@
 </head>
 <body>  
 
+<h1 style="display:none">Подать объявление бесплатно</h1>
+
   <div id="loader">
     <div class="d-flex justify-content-center">
       <button class="btn btn-primary" type="button" disabled>

@@ -43,7 +43,7 @@
         <!-- FIX: убрать mt-2 -->
         <div class="close-link mt-2" style="width:80px" title="Закрыть страницу" @click="closePage">закрыть</div>
         <br>
-		      <h1 class="title_text">новое объявление</h1>          
+		      <h2 class="title_text">новое объявление</h2>
             <hr>            
             
           <!------------------------------------------------------------------ 
