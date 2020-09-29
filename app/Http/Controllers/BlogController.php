@@ -9,4 +9,8 @@ class BlogController extends Controller {
         public function showArticles(Request $request) {
 	
 	}
+
+        public function showArticle($articleId) {
+	
+	}
 }
