@@ -27,7 +27,7 @@
 </head>
 <body>  
 
-<h1 style="display:none">Подать объявление бесплатно</h1>
+  <h1 style="display:none">Подать объявление бесплатно</h1>
 
   <div id="loader">
     <div class="d-flex justify-content-center">
