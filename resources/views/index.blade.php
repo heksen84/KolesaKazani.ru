@@ -333,7 +333,7 @@
       </script>
     </div>
 
-  <div class="text-center mt-2">
+  <div class="text-center m-3 ">
     <a href="/podat-objavlenie" class="black" style="font-size:18px;letter-spacing:3px">подать объявление</a>
   </div>
 
@@ -359,43 +359,45 @@
     </div>
   </div> -->
 
-<!-- ZERO.kz -->
-<span id="_zero_72991">
-  <noscript>
-    <a href="http://zero.kz/?s=72991" target="_blank">
-      <img src="http://c.zero.kz/z.png?u=72991" width="88" height="31" alt="ZERO.kz" />
-    </a>
-  </noscript>
-</span>
-
-<script type="text/javascript"><!--
-  var _zero_kz_ = _zero_kz_ || [];
-  _zero_kz_.push(["id", 72991]);
-  // Цвет кнопки
-  _zero_kz_.push(["type", 1]);
-  // Проверять url каждые 200 мс, при изменении перегружать код счётчика
-  // _zero_kz_.push(["url_watcher", 200]);
-
-  (function () {
-    var a = document.getElementsByTagName("script")[0],
-    s = document.createElement("script");
-    s.type = "text/javascript";
-    s.async = true;
-    s.src = (document.location.protocol == "https:" ? "https:" : "http:")
-    + "//c.zero.kz/z.js";
-    a.parentNode.insertBefore(s, a);
-  })(); //-->
-</script>
-<!-- End ZERO.kz -->
-
-
   <div class="row mt-2">
     <div id="footer"><a href="/blog" class="underline_link">Блог</a> | <a href="/advert" class="underline_link">Реклама</a> | <a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a></div>
-  </div>  
+  </div>
 
-</div>
-</div>  
   <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>  
   <script data-ad-client="ca-pub-8074944108437227" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-</body>
+  
+  <div class="row m-2">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+      <span id="_zero_72991">
+        <noscript>
+            <a href="http://zero.kz/?s=72991" target="_blank">
+              <img src="http://c.zero.kz/z.png?u=72991" width="88" height="31" alt="ZERO.kz" />
+            </a>
+        </noscript>
+      </span>
+
+            <script type="text/javascript"><!--
+              var _zero_kz_ = _zero_kz_ || [];
+              _zero_kz_.push(["id", 72991]);
+              // Цвет кнопки
+              _zero_kz_.push(["type", 1]);
+              // Проверять url каждые 200 мс, при изменении перегружать код счётчика
+              // _zero_kz_.push(["url_watcher", 200]);
+
+              (function () {
+                var a = document.getElementsByTagName("script")[0],
+                s = document.createElement("script");
+                s.type = "text/javascript";
+                s.async = true;
+                s.src = (document.location.protocol == "https:" ? "https:" : "http:")
+                + "//c.zero.kz/z.js";
+                a.parentNode.insertBefore(s, a);
+              })(); //-->
+            </script>
+            
+          </div>
+        </div>
+      </div>
+    </div>  
+  </body>
 </html>
