@@ -61,8 +61,9 @@
           <a href="/{{$region}}/{{$city}}" class="close-link">закрыть</a>    
         @endif        
         </div>
-
-        <h1 id="title" class="mt-3">{{ $title }}</h1>
+        
+        <h1 id="title" class="mt-3">{{ $h1 }}</h1>
+        
         @if (count($items)==0)
           <h4>пока ничего нет</h4>
 

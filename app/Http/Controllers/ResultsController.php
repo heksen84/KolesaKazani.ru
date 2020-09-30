@@ -15,7 +15,7 @@ class ResultsController extends Controller {
     private function getCategoryData(Request $request, $category) {  
         
         $table = new Categories();
-        $data = $table::select("id", "title", "description", "keywords")->where("url", $category)->get();
+        $data = $table::select("id", "title", "description", "keywords", "h1")->where("url", $category)->get();
 
         if (!count($data)) {
             abort(404);             
@@ -28,7 +28,7 @@ class ResultsController extends Controller {
     private function getSubCategoryData(Request $request, $subcategory) {  
         
         $table = new SubCats();
-        $data = $table::select("id", "title", "description", "keywords")->where("url", $subcategory)->get();
+        $data = $table::select("id", "title", "description", "keywords", "h1")->where("url", $subcategory)->get();
 
         if (!count($data)) {
             abort(404);             
@@ -146,10 +146,12 @@ class ResultsController extends Controller {
             $locationName = $this->getLocationName(null, null);
         }
                                         
+
         return view("results")    
         ->with("title", str_replace("@place", $locationName, $categories[0]->title ))         
         ->with("description", str_replace("@place", $locationName, $categories[0]->description ))         
         ->with("keywords", str_replace("@place", $locationName, $categories[0]->keywords ))         
+        ->with("h1", str_replace("@place", $locationName, $categories[0]->h1 ))
         ->with("items", $items)
         ->with("categoryId", $categories[0]->id)
         ->with("subcategoryId", null)         
@@ -161,7 +163,6 @@ class ResultsController extends Controller {
         ->with("start_price", $request->start_price)
         ->with("end_price", $request->end_price)
         ->with("filters", null);
-        ;
     }
 
     public function getCountryCategoryResults(Request $request, $category) {
@@ -256,7 +257,8 @@ class ResultsController extends Controller {
             return view("results")    
             ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
             ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
-            ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))         
+            ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))
+            ->with("h1", str_replace("@place", $locationName, $subcategories[0]->h1 ))         
             ->with("items", $items)
             ->with("categoryId", $categories[0]->id)
             ->with("subcategoryId", $subcategories[0]->id)         
@@ -325,7 +327,8 @@ class ResultsController extends Controller {
          return view("results")    
          ->with("title", str_replace("@place", $locationName, $subcategories[0]->title))         
          ->with("description", str_replace("@place", $locationName, $subcategories[0]->description))         
-         ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords))         
+         ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords))
+         ->with("h1", str_replace("@place", $locationName, $subcategories[0]->h1 ))         
          ->with("items", $items)
          ->with("categoryId", $categories[0]->id)
          ->with("subcategoryId", $subcategories[0]->id)          
@@ -405,7 +408,8 @@ class ResultsController extends Controller {
          return view("results")    
          ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
          ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
-         ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))         
+         ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))
+         ->with("h1", str_replace("@place", $locationName, $subcategories[0]->h1 ))         
          ->with("items", $items)
          ->with("categoryId", $categories[0]->id)
          ->with("subcategoryId", $subcategories[0]->id)     
