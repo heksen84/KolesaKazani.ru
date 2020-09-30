@@ -367,7 +367,7 @@
   <script data-ad-client="ca-pub-8074944108437227" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   
   <div class="row m-2">
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-right">
       <span id="_zero_72991">
         <noscript>
             <a href="http://zero.kz/?s=72991" target="_blank">
@@ -394,7 +394,7 @@
                 a.parentNode.insertBefore(s, a);
               })(); //-->
             </script>
-            
+
           </div>
         </div>
       </div>
