@@ -115,7 +115,7 @@ class IndexController extends Controller {
 				abort(404);
 		}
 				
-		$subcats = DB::table("subcats")->join("categories", "categories.id", "=", "subcats.category_id")->select("subcats.*", "categories.url as category_url")->where("lang", "=", 0)->get();
+		$subcats = DB::table("subcats")->join("categories", "categories.id", "=", "subcats.category_id")->select("subcats.*", "categories.url as category_url")->get();
 
 		\Debugbar::info("location: ".$locationName);
 		\Debugbar::info("REGION: ".$region);
