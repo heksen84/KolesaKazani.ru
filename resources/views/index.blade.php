@@ -366,9 +366,9 @@
   <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>  
   <script data-ad-client="ca-pub-8074944108437227" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   
-  <div class="row m-2">
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-right">
-      <span id="_zero_72991">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-right m-2">
+      <span id="_zero_72991" >
         <noscript>
             <a href="http://zero.kz/?s=72991" target="_blank">
               <img src="http://c.zero.kz/z.png?u=72991" width="88" height="31" alt="ZERO.kz" />
