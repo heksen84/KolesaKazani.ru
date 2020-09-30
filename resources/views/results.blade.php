@@ -66,9 +66,9 @@
         
         @if (count($items)===0)
           
-          <h5>В категории ничего нет</h5>
+          <h5>в категории ничего нет</h5>
 
-          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-1 mb-3">
+          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-2 mb-3">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>  
             <ins class="adsbygoogle"
             style="display:inline-block;width:100%;height:110px"
