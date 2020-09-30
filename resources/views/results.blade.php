@@ -64,8 +64,9 @@
         
         <h1 id="title" class="mt-3">{{ $h1 }}</h1>
         
-        @if (count($items)==0)
-          <h4>пока ничего нет</h4>
+        @if (count($items)===0)
+          
+          <h5>В категории ничего нет</h5>
 
           <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-1 mb-3">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>  
