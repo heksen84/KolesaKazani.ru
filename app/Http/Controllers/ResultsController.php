@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 use App\Helpers\Common;
 use App\Helpers\Petrovich;
 use App\Categories;
@@ -162,7 +163,8 @@ class ResultsController extends Controller {
         ->with("page", $request->page?$request->page:0)
         ->with("start_price", $request->start_price)
         ->with("end_price", $request->end_price)
-        ->with("filters", null);
+        ->with("filters", null)
+        ->with("moderation", Cache::get("moderation"));
     }
 
     public function getCountryCategoryResults(Request $request, $category) {
@@ -267,7 +269,8 @@ class ResultsController extends Controller {
             ->with("category", $category)
             ->with("subcategory", $subcategory)         
             ->with("page", $request->page?$request->page:0)
-            ->with("filters", $filters);
+            ->with("filters", $filters)
+            ->with("moderation", Cache::get("moderation"));
     }
 
     // -------------------------------------------------------------
@@ -339,7 +342,8 @@ class ResultsController extends Controller {
          ->with("page", $request->page?$request->page:0)
          ->with("start_price", $request->start_price)
          ->with("end_price", $request->end_price)
-         ->with("filters", $filters);
+         ->with("filters", $filters)
+         ->with("moderation", Cache::get("moderation"));
     }
 
     // -------------------------------------------------------------
@@ -420,6 +424,7 @@ class ResultsController extends Controller {
          ->with("page", $request->page?$request->page:0)
          ->with("start_price", $request->start_price)
          ->with("end_price", $request->end_price)
-         ->with("filters", $filters);
+         ->with("filters", $filters)
+         ->with("moderation", Cache::get("moderation"));
     }    
 }

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use App\Helpers\Petrovich;
 use App\Helpers\Common;
 use App\Categories;
@@ -276,6 +277,7 @@ class IndexController extends Controller {
             ->with("startPage", 0)
             ->with("start_price", 0)
 			->with("end_price", 0)
-			->with("filters", null);
+			->with("filters", null)
+			->with("moderation", Cache::get("moderation"));
     }
 }
