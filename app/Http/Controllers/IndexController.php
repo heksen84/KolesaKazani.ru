@@ -30,7 +30,7 @@ class IndexController extends Controller {
 	// получить данные города / села
 	// ------------------------------------------
     private function getPlaceData($place) {                
-
+		
 		if (!$place)
 			return false;
 
@@ -43,7 +43,11 @@ class IndexController extends Controller {
 	// ------------------------------------------
 	// Базовая функция для главной страницы		
 	// ------------------------------------------
-    private function ShowIndexPage(Request $request, $region, $place) {		
+    private function ShowIndexPage(Request $request, $region, $place) {
+		
+		$cm_title = mb_strtoupper(config('app.name'))." - бесплатные объявления";
+		$cm_description = "Объявления о покупке, продаже, обмене и сдаче в аренду в";
+		$cm_keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, ilbo, ИльБо, страна";
 		
 		if ($request->search != "")
 			return $this->search($request->search, $region, $place);		
@@ -51,12 +55,11 @@ class IndexController extends Controller {
 			$sklonResult = "Казахстана";
 						
 		// Страна
-		if ($region === null && $place === null) {
-
+		if ($region === null && $place === null) {			
 			$location = "/";				
-			$title = mb_strtoupper(config('app.name'))." - бесплатные объявления Казахстана";
-			$description = "Объявления о покупке, продаже, обмене и сдаче в аренду в Казахстане";
-			$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, ilbo, ИльБо, страна, казахстан";
+			$title =  $cm_title." ".$sklonResult;
+			$description = $cm_description." Казахстане";
+			$keywords = $cm_keywords." Казахстан";
 			$locationName = "Казахстан";
 		}
 
@@ -80,9 +83,9 @@ class IndexController extends Controller {
 				$regionName = trim(str_replace("обл.", "", $regionName));				
 				$sklonResult = $petrovich->firstname($regionName, 0)." области";
 				
-				$title = mb_strtoupper(config('app.name'))." - бесплатные объявления ".$sklonResult;
-				$description = "Объявления о покупке, продаже, обмене, и сдаче в аренду в ".$sklonResult;
-				$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, ilbo, ИльБо ".$regionName." область";
+				$title = $cm_title.$sklonResult;
+				$description = $cm_title.$sklonResult;
+				$keywords = $cm_keywords.$regionName." область";
 			}
 			else	
 				abort(404);
@@ -107,9 +110,9 @@ class IndexController extends Controller {
 				$sklonResult = $petrovich->firstname($placeArr[0]->name, 0);
 				$sklonResultForDesc = $petrovich->firstname($placeArr[0]->name, 4);
 
-				$title = mb_strtoupper(config('app.name'))." - бесплатные объявления ".$sklonResult;
-				$description = "Объявления о покупке, продаже, обмене, и сдаче в аренду в ".$sklonResultForDesc;
-				$keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, FLIX, ".$locationName;
+				$title = $cm_title.$sklonResult;
+				$description = $cm_description.$sklonResultForDesc;
+				$keywords = $cm_keywords.$locationName;
 			
 			}
 			else 
