@@ -334,7 +334,7 @@
     </div>
 
   <div class="text-center m-3 ">
-    <a href="/podat-objavlenie" class="black" style="font-size:18px;letter-spacing:3px">подать объявление</a>
+    <a href="/podat-objavlenie" class="black" style="font-size:23px;letter-spacing:3px;font-weight:300">подать объявление</a>
   </div>
 
 <!-- РЕКЛАМА -->
@@ -350,14 +350,14 @@
     </script>
   </div>-->
 
-<!--  <div class="row mt-5">
-   <div class="col text-right">
+  <div class="row mt-5">
+   <div class="col text-center">
     <div style="letter-spacing:2px"><b style="font-weight:600">ИЛЬБО</b> в соц. сетях:</div>
-     <a href="https://vk.com"><img src="{{ asset('images/social/icon_vkcom.png') }}"></img></a>
-     <a href="https://instagram.com"><img src="{{ asset('images/social/icon_instagram.png') }}"></img></a>
-     <a href="https://facebook.com"><img src="{{ asset('images/social/icon_facebook.png') }}"></img></a>
+     <a href="https://vk.com"><img src="public/images/social/vk.svg"></img></a>
+     <a href="https://facebook.com"><img src="public/images/social/ok.svg"></img></a>
+     <a href="https://instagram.com"><img src="public/images/social/insta.svg" width="56" height="56" style="margin-left:-5px"></img></a>     
     </div>
-  </div> -->
+  </div>
 
   <div class="row mt-2">
     <div id="footer"><a href="/blog" class="underline_link">Блог</a> | <a href="/advert" class="underline_link">Реклама</a> | <a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a></div>
