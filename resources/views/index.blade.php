@@ -334,7 +334,7 @@
     </div>
 
   <div class="text-center m-4 ">
-    <a href="/podat-objavlenie" class="black" style="font-size:23px;letter-spacing:3px;font-weight:300">подать объявление</a>
+    <a href="/podat-objavlenie" class="black" style="font-size:20px;letter-spacing:3px;font-weight:300">подать объявление</a>
   </div>
 
 <!-- РЕКЛАМА -->
