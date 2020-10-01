@@ -32,7 +32,7 @@ class ApiController extends Controller {
 
    // Получить имена подкатегорий
     public function getSubCategoryNamesById(Request $request) {
-        return SubCats::select( "id", "name" )->where("category_id", $request->id)->where("lang", 0)->get();
+        return SubCats::select( "id", "name" )->where("category_id", $request->id)->get();
     }
 
     // Выбор марок авто
