@@ -293,7 +293,7 @@
   
   @if (count($newAdverts)>0)
   <div class="row text-center">
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">      
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-1">      
       <div class="titleAdverts">новые объявления</div>  
     </div>
       @foreach($newAdverts as $advert)      
@@ -352,7 +352,7 @@
 
   <div class="row mt-5">
    <div class="col text-center">
-    <div style="letter-spacing:2px"><b style="font-weight:600">ИЛЬБО</b> в соц. сетях:</div>
+    <div style="letter-spacing:2px">ИЛЬБО в соц. сетях:</div>
      <a href="https://vk.com"><img src="public/images/social/vk.svg"></img></a>
      <a href="https://facebook.com"><img src="public/images/social/ok.svg"></img></a>
      <a href="https://instagram.com"><img src="public/images/social/insta.svg" width="56" height="56" style="margin-left:-5px"></img></a>     
