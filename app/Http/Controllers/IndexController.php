@@ -261,9 +261,10 @@ class IndexController extends Controller {
 		$str = "Результаты по запросу '".$request->searchString."'";
             
         return view("results")         
-            ->with("title", $str)         
+			->with("title", $str)         			
             ->with("description", "Результаты поиска по запросу: ".$str)         
-            ->with("keywords", "поиск, результат, запрос")
+			->with("keywords", "поиск, результат, запрос")
+			->with("h1", $str)
             ->with("items", $items)             
             ->with("categoryId", null)
             ->with("subcategoryId", null)
