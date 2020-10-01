@@ -353,9 +353,9 @@
   <div class="row mt-5">
    <div class="col text-center">
     <div style="letter-spacing:2px">ИЛЬБО в соц. сетях:</div>
-     <a href="https://vk.com"><img src="public/images/social/vk.svg"></img></a>
-     <a href="https://facebook.com"><img src="public/images/social/ok.svg"></img></a>
-     <a href="https://instagram.com"><img src="public/images/social/insta.svg" width="56" height="56" style="margin-left:-5px"></img></a>     
+     <a href="https://vk.com"><img src="/public/images/social/vk.svg"></img></a>
+     <a href="https://facebook.com"><img src="/public/images/social/ok.svg"></img></a>
+     <a href="https://instagram.com"><img src="/public/images/social/insta.svg" width="56" height="56" style="margin-left:-5px"></img></a>     
     </div>
   </div>
 

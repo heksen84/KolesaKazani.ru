@@ -44,13 +44,13 @@
                             </div>
                             <div class="col-md-12 text-center" id="col-links">                                
                                 <a href="{{ url('auth/vk') }}">                        
-                                    <img src="public/images/social/vk.svg" alt="ВКонтакте" title="Войти через соц. сеть ВКонтакте" id="auth_vk"></img>
+                                    <img src="/public/images/social/vk.svg" alt="ВКонтакте" title="Войти через соц. сеть ВКонтакте" id="auth_vk"></img>
                                 </a>
                                 <a href="{{ url('auth/ok') }}">                        
-                                    <img src="public/images/social/ok.svg" alt="Одноклассники" title="Войти через соц. сеть Одноклассники" id="auth_ok"></img>
+                                    <img src="/public/images/social/ok.svg" alt="Одноклассники" title="Войти через соц. сеть Одноклассники" id="auth_ok"></img>
                                 </a>
                                 <!--<a href="{{ url('auth/instagram') }}">                        
-                                    <img src="public/images/social/insta.svg" alt="инстаграмм" title="Войти через соц. сеть Инстаграм" id="auth_instagram" width="56" height="56" style="margin-left:-5px"></img>
+                                    <img src="/public/images/social/insta.svg" alt="инстаграмм" title="Войти через соц. сеть Инстаграм" id="auth_instagram" width="56" height="56" style="margin-left:-5px"></img>
                                 </a>-->
                             </div>                        
                         </div>                        
