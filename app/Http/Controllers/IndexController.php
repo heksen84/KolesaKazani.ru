@@ -257,12 +257,12 @@ class IndexController extends Controller {
 			->onEachSide(1);                  
         
 		\Debugbar::info($items);		    
-		
-		$str = "Результаты по запросу '".$request->searchString."'";
+				
+		$str = "Результаты по запросу '".$request->searchString;
             
         return view("results")         
 			->with("title", $str)         			
-            ->with("description", "Результаты поиска по запросу: ".$str)         
+            ->with("description", $str)         
 			->with("keywords", "поиск, результат, запрос")
 			->with("h1", $str)
             ->with("items", $items)             
