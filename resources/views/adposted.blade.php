@@ -12,16 +12,14 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
 </head>
 <body>
-
-<div class="container-fluid">
-  <div class="row text-center mt-5">
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2">    
-      <img src="/public/images/success.png"></img>
-      <h1 class="mt-3 mb-2">Объявление размещено!</h1>
-      <h4><a href="/objavlenie/show/{{ $url }}">посмотреть</a></h4>
+  <div class="container-fluid">
+    <div class="row text-center mt-5">
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2">    
+        <img src="/public/images/success.png"></img>
+        <h1 class="mt-3 mb-2">Объявление размещено!</h1>
+        <h4><a href="/objavlenie/show/{{ $url }}">посмотреть</a></h4>
+      </div>
     </div>
   </div>
-</div>
-
 </body>
 </html>
