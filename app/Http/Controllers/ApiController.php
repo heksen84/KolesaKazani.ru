@@ -404,7 +404,7 @@ class ApiController extends Controller {
                 foreach($request->file("images") as $img) {
                     
                     // формирую рандомное имя
-                    $filename = str_random(32).".".$img->getClientOriginalExtension();      
+                    $filename = str_random(16).".".$img->getClientOriginalExtension();      
 
                     // узнаю реальный путь к файлу
                     $image = Image::make($img->getRealPath());                
