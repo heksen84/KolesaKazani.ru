@@ -469,8 +469,11 @@ loadImage(evt) {
 		  return;
 		
 	  for (let i=0; i<files.length; i++) {
-      if (i===this.$root.max_loaded_images) 
-        break;
+      
+      if (i===this.$root.max_loaded_images) {
+       alert("Максимум 10");
+       break;
+      }
 
 		  // если уже существует, не обрабатывать изображение
 		  for (let j=0; j<preview_images.length; j++)
@@ -484,9 +487,13 @@ loadImage(evt) {
 
       return function(e) {
     
-      if (theFile.type=="image/jpeg" || theFile.type=="image/pjpeg" || theFile.type=="image/png") {					
-			  preview_images.push({ "name": theFile.name, "src": e.target.result });
-			  real_images.push(theFile);
+      if (theFile.type==="image/jpeg" || theFile.type==="image/pjpeg" || theFile.type==="image/png") {					
+        
+        preview_images.push({ "name": theFile.name, "src": e.target.result });
+        real_images.push(theFile);
+        
+        console.log("загрузить")
+
 		  }
 		  else
         alert("Только изображения")
@@ -504,9 +511,12 @@ loadImage(evt) {
 // Удаление фото по щелчку
 // -------------------------
 deletePhoto(index) {
-	document.querySelector("input[type=file]").value = "";
+  
+  document.querySelector("input[type=file]").value = "";
 	this.preview_images.splice(index, 1);
-	this.real_images.splice(index, 1);
+  this.real_images.splice(index, 1);
+  
+  console.log("удалить")
 },
 
 
@@ -541,24 +551,24 @@ advReset(category_data) {
 
     // сброс категорий
     if (category_data!=null) {
-    this.root=false;				        // по умолчанию
-    this.transport=false;			      // транспорт
-    this.real_estate=false;			    // недвижимость
-    this.appliances=false;			    // электроника
-    this.work_and_buisness=false; 	// работа и бизнес
-    this.for_home=false;			      // для дома и дачи
-    this.personal_effects=false;	  // личные вещи
-    this.animals=false;				      // животные
-    this.hobbies_and_leisure=false;	// хобби и отдых
-    this.services=false;			      // услуги
-    this.dating=false;				        // другое
-  }
+      this.root=false;				        // по умолчанию
+      this.transport=false;			      // транспорт
+      this.real_estate=false;			    // недвижимость
+      this.appliances=false;			    // электроника
+      this.work_and_buisness=false; 	// работа и бизнес
+      this.for_home=false;			      // для дома и дачи
+      this.personal_effects=false;	  // личные вещи
+      this.animals=false;				      // животные
+      this.hobbies_and_leisure=false;	// хобби и отдых
+      this.services=false;			      // услуги
+      this.dating=false;				        // другое
+    }
 
-  // сбрасываю фотки
-  let photos = document.querySelector("input[type=file]");
+    // сбрасываю фотки
+    let photos = document.querySelector("input[type=file]");
 
-  if (photos!=null) 
-    photos.value = "";
+    if (photos!=null) 
+      photos.value = "";
 
 },
 
