@@ -503,8 +503,7 @@ class ApiController extends Controller {
             $urls->url = substr($advert->id."-".\Helper::str2url($url_text), 0, 100);            
             $urls->advert_id = $advert->id;
             $urls->save();                            
-                        
-              
+                                      
             // проверяем есть-ли входящие картинки вообще?
            if ($request->file("images")) {                
 
@@ -526,20 +525,22 @@ class ApiController extends Controller {
                         $imagesArray = [];
 
                         $normalFileNamePath = storage_path().'/app/images/normal/';                
-                        if ($imgLib->save($normalFileNamePath.$newFilename)) {
+                        $imgLib->save($normalFileNamePath.$newFilename);
+                        //if ($imgLib->save($normalFileNamePath.$newFilename)) {
                             
                             $arrayRecord = array("path" => $normalFileNamePath, "name" => $newFilename, "type" => "normal");
                             array_push($imagesArray, $arrayRecord);                
 
                             $smallFileNamePath = storage_path().'/app/images/small/';
-                            if ($imgLib->save($smallFileNamePath.$newFilename)) {
+                            $imgLib->save($smallFileNamePath.$newFilename);
+                            //if ($imgLib->save($smallFileNamePath.$newFilename)) {
                                 $arrayRecord = array("path" => $smallFileNamePath, "name" => $newFilename, "type" => "small");
                                 array_push($imagesArray, $arrayRecord);          
                                 $img_loaded = true;
-                            } 
+                          //  } 
                         }                         
 
-                        if ($img_loaded) {
+                        //if ($img_loaded) {
                 
                             // записать в таблицу
                             $imgRecord = new Images();
@@ -555,9 +556,9 @@ class ApiController extends Controller {
 
                             // Удаляю картинки из облачного хранилища
                             DeleteTempImages::dispatch($imagesArray);
-                        }
+                        //}
 
-                        else return response()->json([ "error" => "error", "msg" => "невозможно загрузить изображение" ]);
+                        //else return response()->json([ "error" => "error", "msg" => "невозможно загрузить изображение" ]);
                         
                     }                    
                                         
