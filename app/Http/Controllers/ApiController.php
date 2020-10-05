@@ -512,6 +512,8 @@ class ApiController extends Controller {
 
                 Images::where("uid", $request->uid)->update(array("advert_id" => $advert->id)); 
 
+                $imagesArray = [];
+
                 foreach($request->file("images") as $img) {                                                        
 
                     // если такого ещё нет в базе то заливаем снова
@@ -523,9 +525,7 @@ class ApiController extends Controller {
                         $imgLib = Image::make($img->getRealPath());
 
                         // формирую рандомное имя
-                        $newFilename = str_random(16).".".$img->getClientOriginalExtension(); 
-                
-                        $imagesArray = [];
+                        $newFilename = str_random(16).".".$img->getClientOriginalExtension();                                         
 
                         $normalFileNamePath = storage_path().'/app/images/normal/';                
                         $imgLib->save($normalFileNamePath.$newFilename);
@@ -539,7 +539,7 @@ class ApiController extends Controller {
                             //if ($imgLib->save($smallFileNamePath.$newFilename)) {
                                 $arrayRecord = array("path" => $smallFileNamePath, "name" => $newFilename, "type" => "small");
                                 array_push($imagesArray, $arrayRecord);          
-                                $img_loaded = true;
+                                //$img_loaded = true;
                           //  } 
                       //  }                         
 
@@ -552,20 +552,20 @@ class ApiController extends Controller {
                             $imgRecord->originalName = $img->getClientOriginalName();
                             $imgRecord->inCloud = false;
                             $imgRecord->uid = $request->uid;
-                            $imgRecord->save();
-
-                            // Сохраняю картинки в облачное хранилище
-                            LoadImages::dispatch($imagesArray);            
-
-                            // Удаляю картинки из облачного хранилища
-                            DeleteTempImages::dispatch($imagesArray);
+                            $imgRecord->save();                            
                         //}
 
                         //else return response()->json([ "error" => "error", "msg" => "невозможно загрузить изображение" ]);
                         
-                    }                    
-                                        
-                }
+                    }                                                            
+                } // end foreach
+
+                // Сохраняю картинки в облачное хранилище
+                LoadImages::dispatch($imagesArray);            
+                            
+                // Удаляю картинки из облачного хранилища
+                DeleteTempImages::dispatch($imagesArray);
+                
             }
                 
             \Debugbar::info("Осталось места: ".Common::getFreeDiskSpace("."));
