@@ -538,7 +538,7 @@ class ApiController extends Controller {
                                 array_push($imagesArray, $arrayRecord);          
                                 $img_loaded = true;
                           //  } 
-                        }                         
+                      //  }                         
 
                         //if ($img_loaded) {
                 
