@@ -183,15 +183,15 @@ class ApiController extends Controller {
 
         $this->region_id = $request->region_id;
 
-        $values = Cache::get("places_".$this->region_id, function () {                        
+        $values = Cache::get("ilbo:places_".$this->region_id, function () {                        
             \Debugbar::info("Значения из базы");
             $places = Places::where("region_id", $this->region_id  )->orderBy("name", "asc")->get();                                    
-            Cache::put("places_".$this->region_id, $places);
+            Cache::put("ilbo:places_".$this->region_id, $places);
             return $places;
         });
 
         \Debugbar::info("Значения из кэша");
-        
+
         return $values;
     }
 
