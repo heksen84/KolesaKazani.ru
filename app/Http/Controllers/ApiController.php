@@ -30,11 +30,12 @@ class ApiController extends Controller {
     
     public function loadImage(Request $request) {
 
-        /*\Debugbar::info("UID: ".$request->uid);
+        \Debugbar::info("UID: ".$request->uid);
 
         if ($request->file("image")) {            
 
             $image = $request->file("image");
+            
             \Debugbar::info($image);
 
             $imageOriginalName = $image->getClientOriginalName();
@@ -68,8 +69,7 @@ class ApiController extends Controller {
                         $img_loaded = true;
                     }                         
                 }
-                
-                
+                                
                 if ($img_loaded) {
 
                     // записать в таблицу
@@ -90,14 +90,15 @@ class ApiController extends Controller {
                     // сразу добавить запись в бд
                     return response()->json([ "result" => "success", "msg" => $imageOriginalName." загружен" ]);
                 }
-                else return response()->json([ "result" => "error", "msg" => "невозможно загрузить изображение" ]);
+                else 
+                    return response()->json([ "result" => "error", "msg" => "невозможно загрузить изображение" ]);
             
             }
-        }*/
+        }
 
         // сразу добавить запись в бд
-        //return response()->json([ "result" => "success", "msg" => $imageOriginalName." пропущен" ]);  
-        return response()->json([ "result" => "success", "msg" => " ok" ]);  
+        return response()->json([ "result" => "success", "msg" => $imageOriginalName." пропущен" ]);  
+        //return response()->json([ "result" => "success", "msg" => " ok" ]);  
     }
 
     public function deleteImage(Request $request) {
@@ -565,7 +566,7 @@ class ApiController extends Controller {
                             
                 // Удаляю картинки из облачного хранилища
                 DeleteTempImages::dispatch($imagesArray);
-                
+
             }
                 
             \Debugbar::info("Осталось места: ".Common::getFreeDiskSpace("."));
