@@ -470,6 +470,10 @@ makeid(length) {
    return result;
 },
 
+messageBro() {
+  alert("!");
+},
+
 // ------------------------------------------------
 // Загрузка изображений
 // ------------------------------------------------
@@ -481,17 +485,13 @@ loadImage(evt) {
 	let preview_images = this.preview_images;		
   let real_images = this.real_images;
   let self = this;
-
-	  if (input_images.files.length + preview_images.length > this.$root.max_loaded_images) 
-		  return;
+  let max_files = 10;
+    
+    //if (input_images.files.length + preview_images.length > this.$root.max_loaded_images) 
+		  //return;
 		
-	  for (let i=0; i<files.length; i++) {
-      
-      if (i===this.$root.max_loaded_images) {
-       alert("Максимум 10");
-       break;
-      }
-
+	  for (let i=0; i < max_files; i++) {
+            
 		  // если уже существует, не обрабатывать изображение
 		  for (let j=0; j<preview_images.length; j++)
 			  if (files[i].name==preview_images[j].name)
@@ -507,26 +507,34 @@ loadImage(evt) {
       if (theFile.type === "image/jpeg" || theFile.type === "image/pjpeg" || theFile.type === "image/png") {					
         
         preview_images.push({ "name": theFile.name, "src": e.target.result });
-        real_images.push(theFile);
+        real_images.push(theFile);        
                 
         let formData = new FormData();        
+
+        //formData.append("images["+i+"]", theFile);
 
         formData.append("image", theFile);
         formData.append("uid", self.uid);
 
         // загрузка изображения на лету
-        axios.post("/api/loadImage", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then( response => {}).catch(error => {          
-		      //this.serviceError();
+        axios.post("/api/loadImage", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then( response => {}).catch(error => {          		      
         });
 
+          // 10
+          /*if (preview_images.length===max_files) {          
+            axios.post("/api/loadImages", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then( response => {}).catch(error => {          		                
+            });                  
+          }*/
+          
 		  }
 		  else
         alert("Только изображения")
       };
 
 		})(image);		  
-			reader.readAsDataURL(image);			
+      reader.readAsDataURL(image);	      
   }
+  
     
   input_images.value = "";
   

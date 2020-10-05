@@ -28,6 +28,14 @@ $img_loaded = false;
 
 class ApiController extends Controller {
     
+    public function loadImages(Request $request) {
+
+        \Debugbar::info("UID: ".$request->uid);
+        \Debugbar::info($request->file("images"));
+
+        return response()->json([ "result" => "success", "msg" => "загружен" ]);
+    }
+    
     public function loadImage(Request $request) {
 
         \Debugbar::info("UID: ".$request->uid);
