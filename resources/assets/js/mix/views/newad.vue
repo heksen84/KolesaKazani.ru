@@ -514,8 +514,8 @@ loadImage(evt) {
         formData.append("uid", self.uid);
 
         // загрузка изображения на лету
-        axios.post("/api/loadImage", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then( response => {}).catch(error => {
-          console.log("error /api/loadImages")
+        axios.post("/api/loadImage", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then( response => {}).catch(error => {          
+		      this.serviceError();
         });
 
 		  }
@@ -547,8 +547,8 @@ deletePhoto(index, name) {
   formData.append("image", name);
 
   // загрузка изображения на лету
-  axios.post("/api/deleteImage", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then( response => {}).catch(error => {
-    console.log("/api/deleteImage error");
+  axios.post("/api/deleteImage", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then( response => {}).catch(error => {    
+		this.serviceError();
   });
 
 },
