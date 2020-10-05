@@ -30,7 +30,7 @@ class ApiController extends Controller {
     
     public function loadImage(Request $request) {
 
-        \Debugbar::info("UID: ".$request->uid);
+        /*\Debugbar::info("UID: ".$request->uid);
 
         if ($request->file("image")) {            
 
@@ -48,6 +48,7 @@ class ApiController extends Controller {
 
                 // узнаю реальный путь к файлу
                 $img = Image::make($image->getRealPath());
+
                 // формирую рандомное имя
                 $newFilename = str_random(16).".".$image->getClientOriginalExtension(); 
                 
@@ -70,6 +71,7 @@ class ApiController extends Controller {
                 
                 
                 if ($img_loaded) {
+
                     // записать в таблицу
                     $imgRecord = new Images();
                     $imgRecord->advert_id = null;
@@ -91,7 +93,7 @@ class ApiController extends Controller {
                 else return response()->json([ "result" => "error", "msg" => "невозможно загрузить изображение" ]);
             
             }
-        }
+        }*/
 
         // сразу добавить запись в бд
         return response()->json([ "result" => "success", "msg" => $imageOriginalName." пропущен" ]);  
