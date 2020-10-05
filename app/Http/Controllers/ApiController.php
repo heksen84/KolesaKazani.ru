@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;  
+use Illuminate\Support\Facades\Cache;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Helpers\Common;
 use App\Jobs\LoadImages;
@@ -27,6 +28,8 @@ use Validator;
 $img_loaded = false;
 
 class ApiController extends Controller {
+
+    private $region_id;
     
     public function loadImages(Request $request) {
 
@@ -175,7 +178,27 @@ class ApiController extends Controller {
 
     // Получить расположение
     public function GetPlaces(Request $request) {
-        return Places::where("region_id",  $request->region_id )->orderBy("name", "asc")->get();
+
+//        Cache::flush();
+
+        $this->region_id = $request->region_id;
+
+        $values = Cache::get("places", function () {
+            
+            \Debugbar::info("Дёргаю из значения из базы");
+
+            $places = Places::where("region_id", $this->region_id  )->orderBy("name", "asc")->get();                                    
+            Cache::put("places", $places); 
+            
+            return $places;
+        });
+
+        if ($values) {
+            \Debugbar::info("Дёргаю значения из кэша");
+        }
+        
+
+        return $values;
     }
 
     // Получить расположение
