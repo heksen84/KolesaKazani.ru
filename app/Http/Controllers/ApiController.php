@@ -502,7 +502,7 @@ class ApiController extends Controller {
                                     
                     Images::where("uid", $request->uid)->update(array("advert_id" => $advert->id));
 
-                    $image = Images::select("name")->where("uid", $request->uid)->where("inCloud", false)->get();                                                        
+                  /*  $image = Images::select("name")->where("uid", $request->uid)->where("inCloud", false)->get();                                                        
 
                     if ( count($image) > 0 ) {                        
                
@@ -520,7 +520,7 @@ class ApiController extends Controller {
 
                         LoadImages::dispatch($images);
                         DeleteTempImages::dispatch($images);
-                    }
+                    }*/
                                         
                 }
             }
