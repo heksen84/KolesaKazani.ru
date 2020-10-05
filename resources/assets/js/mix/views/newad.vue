@@ -5,7 +5,7 @@
   <div class="d-flex justify-content-center mt-1">
     <button class="btn btn-primary" type="button" style="font-size:20px">
       <span class="spinner-border spinner-border" role="status" aria-hidden="true"></span>
-        Публикация объявления... Подождите
+        Отправка объявления... Подождите
     </button>
     </div>
 </div>
@@ -510,6 +510,7 @@ loadImage(evt) {
         real_images.push(theFile);
                 
         let formData = new FormData();        
+
         formData.append("image", theFile);
         formData.append("uid", self.uid);
 

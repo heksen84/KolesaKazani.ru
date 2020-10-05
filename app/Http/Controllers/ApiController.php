@@ -518,7 +518,7 @@ class ApiController extends Controller {
                 foreach($request->file("images") as $img) {                                                        
 
                     // если такого ещё нет в базе то заливаем снова
-                    $imageRequest = Images::select("name")->where("uid", $request->uid)->where("inCloud", false)->where("originalName", $img->getClientOriginalName())->get();
+                    $imageRequest = Images::select("name")->where("uid", $request->uid)->where("originalName", $img->getClientOriginalName())->get();
                     
                     if ( count($imageRequest) === 0 ) {                        
                                        
@@ -529,17 +529,13 @@ class ApiController extends Controller {
                         $newFilename = str_random(16).".".$img->getClientOriginalExtension();                                         
 
                         $normalFileNamePath = storage_path().'/app/images/normal/';                
-                        
-                        $imgLib->save($normalFileNamePath.$newFilename);
-
+                                                
                         if ($imgLib->save($normalFileNamePath.$newFilename)) {
                             
                             $arrayRecord = array("path" => $normalFileNamePath, "name" => $newFilename, "type" => "normal");
                             array_push($imagesArray, $arrayRecord);                
 
-                            $smallFileNamePath = storage_path().'/app/images/small/';
-                            
-                            $imgLib->save($smallFileNamePath.$newFilename);
+                            $smallFileNamePath = storage_path().'/app/images/small/';                                                        
 
                             if ($imgLib->save($smallFileNamePath.$newFilename)) {
                                 $arrayRecord = array("path" => $smallFileNamePath, "name" => $newFilename, "type" => "small");
