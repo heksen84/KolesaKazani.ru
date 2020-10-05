@@ -151,7 +151,7 @@
                     </div>
 
                     <div class="col-md-12 text-center">
-                      <img v-for="(i, index) in preview_images" :src="i.src" :key="i.name" @click="deletePhoto(index)" class="image" :title="i.name"/>
+                      <img v-for="(i, index) in preview_images" :src="i.src" :key="i.name" @click="deletePhoto(index, i.name)" class="image" :title="i.name"/>
                     </div>
 
                     <div class="col-md-12 text-center">                      
@@ -310,7 +310,9 @@ components: {
 
 data () {
   
-  return 	{  
+  return 	{
+
+  uid: null,
   
   dialogMsg: "повторите позже",
   dialogTitleMsg: "Cервис временно не доступен",
@@ -343,12 +345,16 @@ data () {
 	animals: false,				      // животные
 	hobbies_and_leisure: false,	// хобби и отдых
 	services: false,				      // услуги
-	dating: false					      // знакомства
+  dating: false					      // знакомства  
   }
 },
 
 // компонент создан
-created() {  
+created() {
+  
+  this.uid = this.makeid(10);
+
+  console.log(this.uid);
 
   document.getElementById("loader").style.display = "none";  
 
@@ -429,10 +435,7 @@ changeRegion() {
 	  let coords = arr[1];
 	  let lanlng = coords.split(",")
 
-    //console.log(lanlng);
-
-    mapCoords=[];
-    
+    mapCoords=[];    
 	  mapCoords.push(lanlng[0])
 	  mapCoords.push(lanlng[1])
 
@@ -454,6 +457,19 @@ changeRegion() {
     
 },
 
+makeid(length) {
+   
+   let result           = '';
+   let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+   let charactersLength = characters.length;
+   
+   for ( let i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   
+   return result;
+},
+
 // ------------------------------------------------
 // Загрузка изображений
 // ------------------------------------------------
@@ -463,7 +479,8 @@ loadImage(evt) {
 	let files = evt.target.files;			
 	let input_images = document.querySelector("input[type=file]");	
 	let preview_images = this.preview_images;		
-	let real_images = this.real_images;
+  let real_images = this.real_images;
+  let self = this;
 
 	  if (input_images.files.length + preview_images.length > this.$root.max_loaded_images) 
 		  return;
@@ -487,12 +504,19 @@ loadImage(evt) {
 
       return function(e) {
     
-      if (theFile.type==="image/jpeg" || theFile.type==="image/pjpeg" || theFile.type==="image/png") {					
+      if (theFile.type === "image/jpeg" || theFile.type === "image/pjpeg" || theFile.type === "image/png") {					
         
         preview_images.push({ "name": theFile.name, "src": e.target.result });
         real_images.push(theFile);
-        
-        console.log("загрузить")
+                
+        let formData = new FormData();        
+        formData.append("image", theFile);
+        formData.append("uid", self.uid);
+
+        // загрузка изображения на лету
+        axios.post("/api/loadImage", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then( response => {}).catch(error => {
+          console.log("error /api/loadImages")
+        });
 
 		  }
 		  else
@@ -510,15 +534,24 @@ loadImage(evt) {
 // -------------------------
 // Удаление фото по щелчку
 // -------------------------
-deletePhoto(index) {
-  
+deletePhoto(index, name) {
+    
   document.querySelector("input[type=file]").value = "";
-	this.preview_images.splice(index, 1);
-  this.real_images.splice(index, 1);
-  
-  console.log("удалить")
-},
 
+  this.preview_images.splice(index, 1);
+  this.real_images.splice(index, 1);
+    
+  let formData = new FormData();  
+  
+  formData.append("uid", this.uid);
+  formData.append("image", name);
+
+  // загрузка изображения на лету
+  axios.post("/api/deleteImage", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then( response => {}).catch(error => {
+    console.log("/api/deleteImage error");
+  });
+
+},
 
 // --------------------------------------
 // сброс данных объявления
@@ -664,9 +697,13 @@ onSubmit(evt) {
   
   // объект формы
   let formData = new FormData();
+
+  formData.append("uid", this.uid); 
   
   // записываю значения полей
-  forEach(this.$root.advert_data, function(key, value) { formData.append(key, value); })
+  forEach(this.$root.advert_data, function(key, value) { 
+    formData.append(key, value); 
+  })
   
 	// Записываю изображения
 	for( let i=0; i < this.real_images.length; i++ )

@@ -44,6 +44,8 @@ class IndexController extends Controller {
 	// Базовая функция для главной страницы		
 	// ------------------------------------------
     private function ShowIndexPage(Request $request, $region, $place) {
+
+		\Debugbar::info("SESSION ID: ".\Session::getId());
 		
 		$cm_title = mb_strtoupper(config('app.name'))." - бесплатные объявления";
 		$cm_description = "Объявления о покупке, продаже, обмене и сдаче в аренду в";

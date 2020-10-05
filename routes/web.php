@@ -43,6 +43,8 @@ Route::get("/api/getCarsMarks", "ApiController@getCarsMarks" );
 Route::get("/api/getCarsModels", "ApiController@getCarsModels" );
 Route::get("/api/getPhoneNumber", "ApiController@getPhoneNumber" );
 Route::get("/api/searchPlaceByString", "ApiController@searchPlaceByString" );
+Route::post("/api/loadImage", "ApiController@loadImage" );
+Route::post("/api/deleteImage", "ApiController@deleteImage" );
 
 // По стране
 Route::get("/", "IndexController@ShowCountryIndexPage");

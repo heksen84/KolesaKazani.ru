@@ -9,6 +9,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use App\Helpers\Common;
 use App\Jobs\LoadImages;
 use App\Jobs\DeleteTempImages;
+use App\Jobs\DeleteImagesFromCloud;
 use App\Urls;
 use App\SubCats;
 use App\CarMark;
@@ -24,6 +25,105 @@ use Carbon\Carbon;
 use Validator;
 
 class ApiController extends Controller {
+    
+    public function loadImage(Request $request) {
+
+        \Debugbar::info("UID: ".$request->uid);
+
+        if ($request->file("image")) {            
+
+            $image = $request->file("image");
+            \Debugbar::info($image);
+
+            $imageOriginalName = $image->getClientOriginalName();
+
+            $imagesCount = Images::where("originalName", $imageOriginalName)->where("advert_id", null)->get()->count();
+
+            \Debugbar::info("test"); 
+            \Debugbar::info($imageOriginalName."  ".$imagesCount);            
+
+            if ( $imagesCount === 0 ) {                
+
+                // узнаю реальный путь к файлу
+                $img = Image::make($image->getRealPath());
+
+                // формирую рандомное имя
+                $newFilename = str_random(16).".".$image->getClientOriginalExtension(); 
+                
+                $imagesArray = [];
+
+                $normalFileNamePath = storage_path().'/app/images/normal/';                
+                $img->save($normalFileNamePath.$newFilename);                
+                $arrayRecord = array("path" => $normalFileNamePath, "name" => $newFilename, "type" => "normal");
+                array_push($imagesArray, $arrayRecord);                
+
+                $smallFileNamePath = storage_path().'/app/images/small/';
+                $img->save($smallFileNamePath.$newFilename);                
+                $arrayRecord = array("path" => $smallFileNamePath, "name" => $newFilename, "type" => "small");
+                array_push($imagesArray, $arrayRecord);                                    
+                
+                // записать в таблицу
+                $imgRecord = new Images();
+                $imgRecord->advert_id = null;
+                $imgRecord->name = $newFilename;
+                $imgRecord->originalName = $imageOriginalName;
+                $imgRecord->inCloud = false;
+                $imgRecord->uid = $request->uid;
+                $imgRecord->save();
+
+                // Сохраняю картинки в облачное хранилище
+                LoadImages::dispatch($imagesArray);            
+
+                // Удаляю картинки из облачного хранилища
+                DeleteTempImages::dispatch($imagesArray);
+
+                // сразу добавить запись в бд
+                return response()->json([ "result" => "success", "msg" => $imageOriginalName." загружен" ]);  
+            
+            }
+        }
+
+        // сразу добавить запись в бд
+        return response()->json([ "result" => "success", "msg" => $imageOriginalName." пропущен" ]);  
+    }
+
+    public function deleteImage(Request $request) {
+
+        \Debugbar::info("image name: ".$request->image);
+        \Debugbar::info("uid: ".$request->uid);
+
+        $images = Images::select("name")->where("uid", $request->uid)->where("originalName", $request->image)->get();
+
+        if (count($images) > 0) {
+            
+            foreach($images as $img) {
+
+                $imagesArray = [];
+
+                $normalFileNamePath = storage_path().'/app/images/normal/';                        
+                $arrayRecord = array("path" => $normalFileNamePath, "name" => $img->name, "type" => "normal");
+                array_push($imagesArray, $arrayRecord);                
+
+                $smallFileNamePath = storage_path().'/app/images/small/';        
+                $arrayRecord = array("path" => $smallFileNamePath, "name" => $img->name, "type" => "small");
+                array_push($imagesArray, $arrayRecord);
+
+                \Debugbar::info($imagesArray);
+                
+                Images::where("uid", $request->uid)->where("name", $img->name)->delete();
+
+                // Удаляю картинки из облачного хранилища
+                DeleteImagesFromCloud::dispatch($imagesArray);
+
+                // Удаляю картинки из хранилища на локальном диске
+                DeleteTempImages::dispatch($imagesArray);
+            }
+                            
+            return response()->json([ "result" => "success", "msg" => $request->image." удалено" ]);  
+        }
+
+        return response()->json([ "result" => "success", $request->image." отсутвует" ]);  
+    }
 
     // js "null" в php null
     private function to_php_null($value) {
@@ -382,61 +482,58 @@ class ApiController extends Controller {
             
             // Сохраняю объявление
             $advert->save();
-
-            \Debugbar::info("Объявление сохранено!");            
             
             // Закидываю данные в таблицу urls для SEO
             $urls = new Urls();
-            
+                    
             // url sitemap
             if (strlen($title) > 5) 
                 $url_text = $title;
             
             $urls->url = substr($advert->id."-".\Helper::str2url($url_text), 0, 100);            
             $urls->advert_id = $advert->id;
-            $urls->save();                                   
+            $urls->save();                            
+                        
               
             // проверяем есть-ли входящие картинки вообще?
-           if ($request->file("images")) {
-                
-               $images = []; // массив имён и путей изображений
+           if ($request->file("images")) {                
 
                 foreach($request->file("images") as $img) {
-                    
-                    // формирую рандомное имя
-                    $filename = str_random(16).".".$img->getClientOriginalExtension();      
+                                    
+                    Images::where("uid", $request->uid)->update(array("advert_id" => $advert->id));
 
-                    // узнаю реальный путь к файлу
-                    $image = Image::make($img->getRealPath());                
+                    $image = Images::select("name")->where("uid", $request->uid)->where("inCloud", false)->get();                                                        
 
-                    $normalFileNamePath = storage_path().'/app/images/normal/';                
-                    $image->save($normalFileNamePath.$filename);                
-                    $record = array("path" => $normalFileNamePath, "name" => $filename, "type" => "normal");
-                    array_push($images, $record);                
+                    if ( count($image) > 0 ) {                        
+               
+                        // массив имён и путей изображений
+                        $images = [];
 
-                    $smallFileNamePath = storage_path().'/app/images/small/';
-                    $image->save($smallFileNamePath.$filename);                
-                    $record = array("path" => $smallFileNamePath, "name" => $filename, "type" => "small");
-                    array_push($images, $record);                    
-                    
-                    // добавляю данные в таблицу
-                    Images::insert(array('advert_id' => $advert->id, "name" => $filename));
+                        // если не в хранилище, то поместить в хранилище
+                        $normalFileNamePath = storage_path().'/app/images/normal/';
+                        $record = array("path" => $normalFileNamePath, "name" => $image[0]->name, "type" => "normal");
+                        array_push($images, $record);
+
+                        $normalFileNamePath = storage_path().'/app/images/small/';
+                        $record = array("path" => $normalFileNamePath, "name" => $image[0]->name, "type" => "small");
+                        array_push($images, $record);
+
+                        LoadImages::dispatch($images);
+                        DeleteTempImages::dispatch($images);
+                    }
+                                        
                 }
-
-                \Debugbar::info("Осталось места: ".Common::getFreeDiskSpace("."));
-
-                // если больше 5 гигов
-                /*if (Common::getFreeDiskSpace(".") > 5) {
-                    \Debugbar::info("Пишем на локальный диск");
-                    return response()->json([ "result" => "error", "url" => "test_error" ]);
-                }*/
-                
-                // Сохраняю картинки в облачное хранилище
-                LoadImages::dispatch($images, $advert->id);            
-            
-                // Удаляю временные картинки        
-                DeleteTempImages::dispatch($images);
             }
+                
+            \Debugbar::info("Осталось места: ".Common::getFreeDiskSpace("."));
+
+            // если больше 5 гигов
+            /*if (Common::getFreeDiskSpace(".") > 5) {
+                \Debugbar::info("Пишем на локальный диск");
+                return response()->json([ "result" => "error", "url" => "test_error" ]);
+            }*/
+                                
+            //}
             
             Sitemap::addUrl($urls->url);
 
