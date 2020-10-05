@@ -525,7 +525,7 @@ loadImage(evt) {
             axios.post("/api/loadImages", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then( response => {}).catch(error => {          		                
             });                  
           }*/
-          
+
 		  }
 		  else
         alert("Только изображения")
@@ -687,7 +687,7 @@ changeCategory() {
     // -------------------------------
     if (subItems.indexOf(this.category)!=-1) {
       // запрос
-      get("api/getSubCategoryNamesById?id="+this.category).then((res) => {
+      get("/api/getSubCategoryNamesById?id="+this.category).then((res) => {
 		    this.subCategoryItems=res.data;
       }).catch((err) => {        
         this.serviceError();
