@@ -24,6 +24,8 @@ use App\Adverts;
 use Carbon\Carbon;
 use Validator;
 
+$img_loaded = false;
+
 class ApiController extends Controller {
     
     public function loadImage(Request $request) {
@@ -40,9 +42,7 @@ class ApiController extends Controller {
             $imagesCount = Images::where("originalName", $imageOriginalName)->where("advert_id", null)->get()->count();
 
             \Debugbar::info("test"); 
-            \Debugbar::info($imageOriginalName."  ".$imagesCount);            
-
-            $img_loaded = false;
+            \Debugbar::info($imageOriginalName."  ".$imagesCount);                        
 
             if ( $imagesCount === 0 ) {                
 
@@ -508,9 +508,7 @@ class ApiController extends Controller {
             // проверяем есть-ли входящие картинки вообще?
            if ($request->file("images")) {                
 
-                Images::where("uid", $request->uid)->update(array("advert_id" => $advert->id));
-
-                $img_loaded = false;
+                Images::where("uid", $request->uid)->update(array("advert_id" => $advert->id)); 
 
                 foreach($request->file("images") as $img) {                                                        
 
