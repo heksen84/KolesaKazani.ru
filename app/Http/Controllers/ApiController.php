@@ -516,12 +516,12 @@ class ApiController extends Controller {
                         $imagesArray = [];
 
                         $normalFileNamePath = storage_path().'/app/images/normal/';                
-                        $img->save($normalFileNamePath.$newFilename);                
+                        $imgLib->save($normalFileNamePath.$newFilename);                
                         $arrayRecord = array("path" => $normalFileNamePath, "name" => $newFilename, "type" => "normal");
                         array_push($imagesArray, $arrayRecord);                
 
                         $smallFileNamePath = storage_path().'/app/images/small/';
-                        $img->save($smallFileNamePath.$newFilename);                
+                        $imgLib->save($smallFileNamePath.$newFilename);                
                         $arrayRecord = array("path" => $smallFileNamePath, "name" => $newFilename, "type" => "small");
                         array_push($imagesArray, $arrayRecord);                                    
                 
