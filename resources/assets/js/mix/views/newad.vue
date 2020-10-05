@@ -515,7 +515,7 @@ loadImage(evt) {
 
         // загрузка изображения на лету
         axios.post("/api/loadImage", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then( response => {}).catch(error => {          
-		      this.serviceError();
+		      //this.serviceError();
         });
 
 		  }
@@ -548,7 +548,7 @@ deletePhoto(index, name) {
 
   // загрузка изображения на лету
   axios.post("/api/deleteImage", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then( response => {}).catch(error => {    
-		this.serviceError();
+		//this.serviceError();
   });
 
 },
