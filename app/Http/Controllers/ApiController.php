@@ -503,7 +503,7 @@ class ApiController extends Controller {
                 foreach($request->file("images") as $img) {                                                        
 
                     // если такого ещё нет в базе то заливаем снова
-                    $imageRequest = Images::select("name")->where("uid", $request->uid)->where("originalName", $img->getClientOriginalName())->get();
+                    $imageRequest = Images::select("name")->where("uid", $request->uid)->where("inCloud", false)->where("originalName", $img->getClientOriginalName())->get();
                     
                     if ( count($imageRequest) === 0 ) {                        
                                        
