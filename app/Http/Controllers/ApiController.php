@@ -35,7 +35,7 @@ class ApiController extends Controller {
         if ($request->file("image")) {            
 
             $image = $request->file("image");
-            
+
             \Debugbar::info($image);
 
             $imageOriginalName = $image->getClientOriginalName();
@@ -529,22 +529,26 @@ class ApiController extends Controller {
                         $newFilename = str_random(16).".".$img->getClientOriginalExtension();                                         
 
                         $normalFileNamePath = storage_path().'/app/images/normal/';                
+                        
                         $imgLib->save($normalFileNamePath.$newFilename);
-                        //if ($imgLib->save($normalFileNamePath.$newFilename)) {
+
+                        if ($imgLib->save($normalFileNamePath.$newFilename)) {
                             
                             $arrayRecord = array("path" => $normalFileNamePath, "name" => $newFilename, "type" => "normal");
                             array_push($imagesArray, $arrayRecord);                
 
                             $smallFileNamePath = storage_path().'/app/images/small/';
+                            
                             $imgLib->save($smallFileNamePath.$newFilename);
-                            //if ($imgLib->save($smallFileNamePath.$newFilename)) {
+
+                            if ($imgLib->save($smallFileNamePath.$newFilename)) {
                                 $arrayRecord = array("path" => $smallFileNamePath, "name" => $newFilename, "type" => "small");
                                 array_push($imagesArray, $arrayRecord);          
-                                //$img_loaded = true;
-                          //  } 
-                      //  }                         
+                                $img_loaded = true;
+                            } 
+                        }                         
 
-                        //if ($img_loaded) {
+                        if ($img_loaded) {
                 
                             // записать в таблицу
                             $imgRecord = new Images();
@@ -554,9 +558,9 @@ class ApiController extends Controller {
                             $imgRecord->inCloud = false;
                             $imgRecord->uid = $request->uid;
                             $imgRecord->save();                            
-                        //}
-
-                        //else return response()->json([ "error" => "error", "msg" => "невозможно загрузить изображение" ]);
+                        }
+                        else 
+                            return response()->json([ "error" => "error", "msg" => "невозможно загрузить изображение" ]);
                         
                     }                                                            
                 } // end foreach
