@@ -513,7 +513,7 @@ class ApiController extends Controller {
 
                 Images::where("uid", $request->uid)->update(array("advert_id" => $advert->id)); 
 
-                /*$imagesArray = [];
+                $imagesArray = [];
 
                 foreach($request->file("images") as $img) {                                                        
 
@@ -565,7 +565,7 @@ class ApiController extends Controller {
                 LoadImages::dispatch($imagesArray);            
                             
                 // Удаляю картинки из облачного хранилища
-                DeleteTempImages::dispatch($imagesArray);*/
+                DeleteTempImages::dispatch($imagesArray);
 
             }
                 
