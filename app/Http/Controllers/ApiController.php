@@ -498,29 +498,49 @@ class ApiController extends Controller {
             // проверяем есть-ли входящие картинки вообще?
            if ($request->file("images")) {                
 
-                foreach($request->file("images") as $img) {
-                                    
-                    Images::where("uid", $request->uid)->update(array("advert_id" => $advert->id));
+                Images::where("uid", $request->uid)->update(array("advert_id" => $advert->id));
 
-                    $image = Images::select("name")->where("uid", $request->uid)->where("inCloud", false)->get();                                                        
+                foreach($request->file("images") as $img) {                                                        
 
-                    if ( count($image) > 0 ) {                        
-               
-                        // массив имён и путей изображений
-                        $images = [];
+                    // если такого ещё нет в базе то заливаем снова
+                    $imageRequest = Images::select("name")->where("uid", $request->uid)->where("originalName", $img->getClientOriginalName())->get();
+                    
+                    if ( count($imageRequest) === 0 ) {                        
+                                       
+                        // узнаю реальный путь к файлу
+                        $imgLib = Image::make($img->getRealPath());
 
-                        // если не в хранилище, то поместить в хранилище
-                        $normalFileNamePath = storage_path().'/app/images/normal/';
-                        $record = array("path" => $normalFileNamePath, "name" => $image[0]->name, "type" => "normal");
-                        array_push($images, $record);
+                        // формирую рандомное имя
+                        $newFilename = str_random(16).".".$img->getClientOriginalExtension(); 
+                
+                        $imagesArray = [];
 
-                        $normalFileNamePath = storage_path().'/app/images/small/';
-                        $record = array("path" => $normalFileNamePath, "name" => $image[0]->name, "type" => "small");
-                        array_push($images, $record);
+                        $normalFileNamePath = storage_path().'/app/images/normal/';                
+                        $img->save($normalFileNamePath.$newFilename);                
+                        $arrayRecord = array("path" => $normalFileNamePath, "name" => $newFilename, "type" => "normal");
+                        array_push($imagesArray, $arrayRecord);                
 
-                        LoadImages::dispatch($images);
-                        DeleteTempImages::dispatch($images);
-                    }
+                        $smallFileNamePath = storage_path().'/app/images/small/';
+                        $img->save($smallFileNamePath.$newFilename);                
+                        $arrayRecord = array("path" => $smallFileNamePath, "name" => $newFilename, "type" => "small");
+                        array_push($imagesArray, $arrayRecord);                                    
+                
+                        // записать в таблицу
+                        $imgRecord = new Images();
+                        $imgRecord->advert_id = $advert->id;
+                        $imgRecord->name = $newFilename;
+                        $imgRecord->originalName = $img->getClientOriginalName();
+                        $imgRecord->inCloud = false;
+                        $imgRecord->uid = $request->uid;
+                        $imgRecord->save();
+
+                        // Сохраняю картинки в облачное хранилище
+                        LoadImages::dispatch($imagesArray);            
+
+                        // Удаляю картинки из облачного хранилища
+                        DeleteTempImages::dispatch($imagesArray);
+                        
+                    }                    
                                         
                 }
             }
