@@ -96,7 +96,8 @@ class ApiController extends Controller {
         }*/
 
         // сразу добавить запись в бд
-        return response()->json([ "result" => "success", "msg" => $imageOriginalName." пропущен" ]);  
+        //return response()->json([ "result" => "success", "msg" => $imageOriginalName." пропущен" ]);  
+        return response()->json([ "result" => "success", "msg" => " ok" ]);  
     }
 
     public function deleteImage(Request $request) {
