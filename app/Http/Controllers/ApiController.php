@@ -178,26 +178,20 @@ class ApiController extends Controller {
 
     // Получить расположение
     public function GetPlaces(Request $request) {
-
+        
 //        Cache::flush();
 
         $this->region_id = $request->region_id;
 
-        $values = Cache::get("places", function () {
-            
-            \Debugbar::info("Дёргаю из значения из базы");
-
+        $values = Cache::get("places_".$this->region_id, function () {                        
+            \Debugbar::info("Значения из базы");
             $places = Places::where("region_id", $this->region_id  )->orderBy("name", "asc")->get();                                    
-            Cache::put("places", $places); 
-            
+            Cache::put("places_".$this->region_id, $places);
             return $places;
         });
 
-        if ($values) {
-            \Debugbar::info("Дёргаю значения из кэша");
-        }
+        \Debugbar::info("Значения из кэша");
         
-
         return $values;
     }
 
