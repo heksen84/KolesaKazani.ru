@@ -459,8 +459,8 @@ changeRegion() {
 
 makeid(length) {
    
-   let result           = '';
-   let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+   let result = '';
+   let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
    let charactersLength = characters.length;
    
    for ( let i = 0; i < length; i++ ) {
@@ -468,10 +468,6 @@ makeid(length) {
    }
    
    return result;
-},
-
-messageBro() {
-  alert("!");
 },
 
 // ------------------------------------------------
@@ -722,7 +718,7 @@ onSubmit(evt) {
   // Размещение объявления
   // ------------------------------------------------------------------------------------------------------------------------
 
-	axios.post("/api/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' }, async: false }).then(response => {    
+	axios.post("/api/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' }}).then(response => {    
     
     // ошибка
     if ( response.data.result === "error" ) {
@@ -750,7 +746,7 @@ onSubmit(evt) {
 	// -------------------------------------
 	showSetCoordsDialog() {    
         
-    this.serviceUnavailable=false;
+    this.serviceUnavailable = false;
     
     $("#MsgModalDialog").modal("show"); // отобразить окно
 
@@ -771,9 +767,7 @@ onSubmit(evt) {
 	// Установить координаты
 	// ---------------------------------
 	setCoords() {
-
     $("#MsgModalDialog").modal("hide"); // скрыть окно
-
 		this.$root.advert_data.adv_coords=[];
 		this.$root.advert_data.adv_coords=mapCoords;
 		this.coordinates_set=true;
