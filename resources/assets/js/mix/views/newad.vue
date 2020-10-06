@@ -151,7 +151,7 @@
                     </div>
 
                     <div class="col-md-12 text-center">
-                      <img v-for="(i, index) in preview_images" :src="i.src" :key="i.name" @click="deletePhoto(index, i.name)" class="image" :title="i.name"/>
+                      <img v-for="(i, index) in preview_images" :src="i.src" :key="index" @click="deletePhoto(index, i.name)" class="image" :title="i.name"/>
                     </div>
 
                     <div class="col-md-12 text-center">                      
@@ -475,63 +475,54 @@ makeid(length) {
 // ------------------------------------------------
 loadImage(evt) {
 			  
-	let root = this.$root;  
-	let files = evt.target.files;			
+	let root = this.$root;  	
 	let input_images = document.querySelector("input[type=file]");	
 	let preview_images = this.preview_images;		
   let real_images = this.real_images;
   let self = this;
   let max_files = 10;
-    
-    //if (input_images.files.length + preview_images.length > this.$root.max_loaded_images) 
-		  //return;
+  let files_count = evt.target.files.length;          
+  let formData = new FormData();                
 		
-	  for (let i=0; i < max_files; i++) {
+	for (let i=0; i < files_count; i++) {
+
+  let img = evt.target.files[i];      
+	let reader = new FileReader();
             
-		  // если уже существует, не обрабатывать изображение
-		  for (let j=0; j<preview_images.length; j++)
-			  if (files[i].name==preview_images[j].name)
-			  	return false;
+	// если уже существует, не обрабатывать изображение
+	for (let j = 0; j < preview_images.length; j++)
+		if (img.name===preview_images[j].name)
+      return false;
+          
+    if ( preview_images.length > max_files) {
+      alert("Максимум 10 изображений");
+      break;
+    }
 
-      let image = files[i]
-		  let reader = new FileReader();
-
-  	  reader.onload = (function(theFile) {
-
-      return function(e) {
+  reader.onload = (function(theFile) {
+  return function(e) {
     
-      if (theFile.type === "image/jpeg" || theFile.type === "image/pjpeg" || theFile.type === "image/png") {					
+  if (theFile.type === "image/jpeg" || theFile.type === "image/pjpeg" || theFile.type === "image/png") {					
         
         preview_images.push({ "name": theFile.name, "src": e.target.result });
         real_images.push(theFile);        
-                
-        let formData = new FormData();        
-
-        //formData.append("images["+i+"]", theFile);
 
         formData.append("image", theFile);
         formData.append("uid", self.uid);
 
         // загрузка изображения на лету
-        axios.post("/api/loadImage", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then( response => {}).catch(error => {          		      
-        });
-
-          // 10
-          /*if (preview_images.length===max_files) {          
-            axios.post("/api/loadImages", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then( response => {}).catch(error => {          		                
-            });                  
-          }*/
-
+        axios.post("/api/loadImage", formData, { headers: {'Content-Type': 'multipart/form-data'} }).then( response => {        
+        }).catch(error => {});
+          
 		  }
 		  else
         alert("Только изображения")
-      };
+    };
 
-		})(image);		  
-      reader.readAsDataURL(image);	      
+		})(img);		  
+      reader.readAsDataURL(img);	      
   }
-  
-    
+      
   input_images.value = "";
   
 },

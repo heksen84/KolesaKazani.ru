@@ -56,15 +56,15 @@ class ApiController extends Controller {
             \Debugbar::info("test"); 
             \Debugbar::info($imageOriginalName."  ".$imagesCount);                        
 
+            $imagesArray = [];
+
             if ( $imagesCount === 0 ) {                
 
                 // узнаю реальный путь к файлу
                 $img = Image::make($image->getRealPath())->orientate();
 
                 // формирую рандомное имя
-                $newFilename = str_random(16).".".$image->getClientOriginalExtension(); 
-                
-                $imagesArray = [];
+                $newFilename = str_random(16).".".$image->getClientOriginalExtension();                                
 
                 $normalFileNamePath = storage_path().'/app/images/normal/';                
                 
@@ -106,10 +106,8 @@ class ApiController extends Controller {
             
             }
         }
-
-        // сразу добавить запись в бд
+        
         return response()->json([ "result" => "success", "msg" => $imageOriginalName." пропущен" ]);  
-        //return response()->json([ "result" => "success", "msg" => " ok" ]);  
     }
 
     public function deleteImage(Request $request) {
@@ -133,9 +131,7 @@ class ApiController extends Controller {
                 $arrayRecord = array("path" => $smallFileNamePath, "name" => $img->name, "type" => "small");
                 array_push($imagesArray, $arrayRecord);
 
-                \Debugbar::info($imagesArray);
-                
-                Images::where("uid", $request->uid)->where("name", $img->name)->delete();
+                \Debugbar::info($imagesArray);                
 
                 // Удаляю картинки из облачного хранилища
                 DeleteImagesFromCloud::dispatch($imagesArray);

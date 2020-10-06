@@ -8,6 +8,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Storage;
+use App\Images;
 
 class DeleteImagesFromCloud implements ShouldQueue {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -30,9 +31,11 @@ class DeleteImagesFromCloud implements ShouldQueue {
      */
     public function handle() {
 
-	    foreach($this->images as $img) {                        
-            Storage::disk('s3')->delete("images/normal/".$img["name"]);            
-            Storage::disk('s3')->delete("images/small/".$img["name"]);                        
+	    foreach($this->images as $img) {                
+                    
+            if (Storage::disk('s3')->delete("images/normal/".$img["name"]) && Storage::disk('s3')->delete("images/small/".$img["name"])) {
+                Images::where("name", $img["name"])->delete();
+            }
         }
 
     }
