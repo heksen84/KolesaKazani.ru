@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="keywords" content="Готово, Модерация" />
         <meta name="description" content="Ваше объявление отправлено на модерацию." />        
-	    <link rel="icon" href="{{ asset('public/shop.ico') }}" />
+	    <link rel="shortcut icon" href="{{ asset('/public/ico/favicon.svg') }}" type="image/x-icon" />" />
     </head>
 <body>
 	<h1 style="text-align:center;margin-top:50px;color:rgb(100,100,130)">Ваше объявление отправлено на модерацию.</h1>

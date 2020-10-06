@@ -44,7 +44,7 @@ class RemoveLostImages extends Command
         $images = Images::select("name")->where("advert_id", null);
 
         if (count($images->get()) > 0) {
-            
+                        
             foreach($images->get() as $img) {
 
                 $imagesArray = [];

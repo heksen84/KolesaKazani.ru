@@ -7,8 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="csrf-token" content="{{ csrf_token() }}" />
   <meta name="description" content="{{ $description }}" />
-  <meta name="keywords" content="{{ $keywords }}" />
-  
+  <meta name="keywords" content="{{ $keywords }}" />  
   <!-- OpenGraph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Ильбо">
@@ -16,11 +15,11 @@
   <meta property="og:description" content="{{ $description }}">  
   <meta property="og:url" content="https://ilbo.kz/">
   <!-- /OpenGraph -->
-
   <meta name="news_keywords" content="{{ $title }}"/>
 	<meta name="twitter:title" content="{{ $title }}"/>
 	<meta property="vk:title" content="{{ $title }}"/>
-
+  
+  <link rel="shortcut icon" href="{{ asset('/public/ico/favicon.svg') }}" type="image/x-icon" />
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ mix('css/common.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ mix('css/details.css') }}" />

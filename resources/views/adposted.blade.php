@@ -8,7 +8,7 @@
   <meta name="keywords" content="Объявление размещено" />
   <meta name="description" content="Объявление размещено" />
   <meta name="csrf-token" content="{{ csrf_token() }}" />    
-  <link rel="icon" href="/public/ico/favicon.ico" />
+  <link rel="shortcut icon" href="{{ asset('/public/ico/favicon.svg') }}" type="image/x-icon" />
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
 </head>
 <body>

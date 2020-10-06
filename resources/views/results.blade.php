@@ -21,7 +21,7 @@
 	<meta name="twitter:title" content="{{ $title }}"/>
 	<meta property="vk:title" content="{{ $title }}"/>
   
-  <link rel="icon" href="{{ asset('public/shop.ico') }}" />
+  <link rel="shortcut icon" href="{{ asset('/public/ico/favicon.svg') }}" type="image/x-icon" />
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ mix('css/common.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ mix('css/results.css') }}" />    

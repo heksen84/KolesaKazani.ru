@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="keywords" content="разместить рекламу" />
   <meta name="description" content="Размещение рекламы на сайте" />
-  <meta name="csrf-token" content="{{ csrf_token() }}" />
+  <meta name="csrf-token" content="{{ csrf_token() }}" />  
   <title>Реклама на сайте</title>
-  <link rel="icon" href="{{ asset('public/shop.ico') }}" />
+  <link rel="shortcut icon" href="{{ asset('/public/ico/favicon.svg') }}" type="image/x-icon" />
 </head>
 <body>
 <center>

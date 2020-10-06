@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="keywords" content="Страница не найдена"/>
         <meta name="description" content="Страница не найдена">
+        <link rel="shortcut icon" href="{{ asset('/public/ico/favicon.svg') }}" type="image/x-icon" />
         <title>Страница не найдена</title>
 	<link rel="icon" href="{{ asset('public/shop.ico') }}">
     </head>

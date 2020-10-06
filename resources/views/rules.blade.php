@@ -8,7 +8,7 @@
   <meta name="keywords" content="Правила сайта" />
   <meta name="description" content="Правила сайта" />
   <meta name="csrf-token" content="{{ csrf_token() }}" />  
-  <link rel="icon" href="{{ asset('public/shop.ico') }}" />
+  <link rel="shortcut icon" href="{{ asset('/public/ico/favicon.svg') }}" type="image/x-icon" />
 </head>
 <body>
   Правила сайта
