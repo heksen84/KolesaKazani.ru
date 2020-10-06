@@ -20,7 +20,8 @@ class Kernel extends ConsoleKernel
 	    Commands\Utils::class,
 	    Commands\EnableModeration::class,
 	    Commands\DisableModeration::class,
-	    Commands\RemoveLostImages::class
+	    Commands\RemoveLostImages::class,
+	    Commands\RemoveAdvert::class
     ];
 
     /**
