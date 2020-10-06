@@ -88,6 +88,6 @@ class RemoveAdvert extends Command
             WHERE ".$raw
         );
  
-        $this->info("Удалено: ".$items." объявлений");
+        $this->info("Затронуто: ".$items." записей в бд");
     }
 }
