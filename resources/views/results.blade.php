@@ -81,7 +81,7 @@
         </div>
 
         <div class="text-center mt-2">
-          <a href="/podat-objavlenie" class="black" style="font-size:18px;letter-spacing:3px">подать объявление</a>
+          <a href="/podat-objavlenie" class="black" style="font-size:20px;letter-spacing:3px">подать объявление</a>
         </div>
 
         @endif

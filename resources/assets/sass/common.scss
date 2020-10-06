@@ -64,7 +64,7 @@ html {
   color:white;
 }
 
-body {
+/*body {
  color:black;
  background: $background;
  background-size: cover;
@@ -74,6 +74,14 @@ body {
 -moz-background-size: cover;
 -webkit-background-size: cover;
 -o-background-size: cover; 
+}*/
+
+body {
+background-image: url("/public/images/13.png"); /* Путь к фоновому рисунку */
+//background-position: left bottom; /* Положение фона */
+background-repeat: repeat; /* Повторяем фон по горизонтали */
+opacity: 1;
+//background: rgba(0, 0, 0, 1.5);
 }
 
 #navbar-brand-text {

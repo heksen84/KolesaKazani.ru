@@ -47,7 +47,7 @@
 
 <div id="app">
   <div id="navbar_menu">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light">
 
     <a class="navbar-brand" href="/">
       <h2 id="navbrand-title">{{ config('app.name', 'Laravel') }}</h2><h2 id="navbrand-description">объявления {{ $sklonResult }}</h2>
@@ -334,7 +334,7 @@
     </div>
 
   <div class="text-center m-4 ">
-    <a href="/podat-objavlenie" class="black" style="font-size:20px;letter-spacing:3px;font-weight:300">подать объявление</a>
+    <a href="/podat-objavlenie" class="black" style="font-size:22px;letter-spacing:4px;font-weight:300">подать объявление</a>
   </div>
 
 <!-- РЕКЛАМА -->
