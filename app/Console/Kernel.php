@@ -19,7 +19,8 @@ class Kernel extends ConsoleKernel
 	    Commands\GenerateSitemapLinks::class,
 	    Commands\Utils::class,
 	    Commands\EnableModeration::class,
-	    Commands\DisableModeration::class
+	    Commands\DisableModeration::class,
+	    Commands\RemoveLostImages::class
     ];
 
     /**

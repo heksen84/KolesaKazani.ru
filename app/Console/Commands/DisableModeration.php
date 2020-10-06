@@ -40,7 +40,7 @@ class DisableModeration extends Command
 
 	if  (Cache::get('moderation')===true) {
 		Cache::put('moderation', false);
-	        $this->info("Модерация отключена");
+	    $this->info("Модерация отключена");
 	}
 
     }
