@@ -59,7 +59,7 @@ class ApiController extends Controller {
             if ( $imagesCount === 0 ) {                
 
                 // узнаю реальный путь к файлу
-                $img = Image::make($image->getRealPath());
+                $img = Image::make($image->getRealPath())->orientate();
 
                 // формирую рандомное имя
                 $newFilename = str_random(16).".".$image->getClientOriginalExtension(); 
@@ -548,7 +548,7 @@ class ApiController extends Controller {
                     if ( count($imageRequest) === 0 ) {                        
                                        
                         // узнаю реальный путь к файлу
-                        $imgLib = Image::make($img->getRealPath());
+                        $imgLib = Image::make($img->getRealPath())->orientate();
 
                         // формирую рандомное имя
                         $newFilename = str_random(16).".".$img->getClientOriginalExtension();                                         
