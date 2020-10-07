@@ -133,8 +133,7 @@
   @else  
     <h3 class="mt-3">нет объявлений</h3>  
     <a href="/podat-objavlenie" class="btn btn-success mt-2 mb-2" role="button" style="width:210px">Подать объявление</a>
-
-    <!-- data-ad-format="auto" -->
+    
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-1 mb-1">
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>  
       <ins class="adsbygoogle"
@@ -146,17 +145,16 @@
       <script>
            (adsbygoogle = window.adsbygoogle || []).push({});
       </script>
-    </div>
-    
+    </div>    
   @endif
 
   <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4">  
-      <div class="pagination justify-content-center pagination">      
-        {{ $items->links() }}                         
-      </div>
+    <div class="pagination justify-content-center pagination">      
+      {{ $items->links() }}
+    </div>
   </div>
   
-</div>
+  </div>
 <script type="text/javascript" src="{{ mix('js/home.js') }}"></script>
 </body>
 </html>
