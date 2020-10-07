@@ -133,11 +133,12 @@
   @else  
     <h3 class="mt-3">нет объявлений</h3>  
     <a href="/podat-objavlenie" class="btn btn-success mt-2 mb-2" role="button" style="width:210px">Подать объявление</a>
-    
+
+    <!-- data-ad-format="auto" -->
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-1 mb-1">
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>  
-      <ins class="adsbygoogle"          
-          data-ad-format="auto"
+      <ins class="adsbygoogle"
+          style="display:inline-block;width:100%;height:110px"
           data-ad-client="ca-pub-8074944108437227"
           data-ad-slot="8746851039"        
           data-full-width-responsive="true"></ins>
@@ -145,7 +146,7 @@
            (adsbygoogle = window.adsbygoogle || []).push({});
       </script>
     </div>
-
+    
   @endif
 
   <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-4">  
