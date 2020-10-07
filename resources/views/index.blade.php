@@ -355,7 +355,7 @@
     <div style="letter-spacing:2px">ИЛЬБО в соц. сетях:</div>
      <a href="https://vk.com/ilbo_kz"><img src="/public/images/social/vk.svg"></img></a>
      <a href="https://ok.ru/group/58900893401207"><img src="/public/images/social/ok.svg"></img></a>
-     <a href="https://instagram.com"><img src="/public/images/social/insta.svg" width="56" height="56" style="margin-left:-5px"></img></a>     
+     <a href="https://www.instagram.com/ilbo_kz"><img src="/public/images/social/insta.svg" width="56" height="56" style="margin-left:-5px"></img></a>     
     </div>
   </div>
 
