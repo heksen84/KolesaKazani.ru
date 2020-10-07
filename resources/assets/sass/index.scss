@@ -2,6 +2,12 @@ $logo_block_text_color: rgb(105,105,105);
 $logo_block_description_color: rgb(100,100,100);
 $logo_block_description_fontsize: 13px;
 
+/*@font-face {
+  font-family: "BAUHS93";
+  src: url(/fonts/BAUHS93.TTF) format("truetype");
+  font-weight: bold;
+}*/
+
 //$background: rgb(255, 255, 255);
 //$logo_block_text_color: rgb(0,0,0);
 //$logo_block_description_color: rgb(0,0,0);
@@ -201,12 +207,13 @@ h3 {
 }
 
 #logo_block_text {  
-  font-size:160%;
-  letter-spacing:8px;
+  font-size:170%;
+  letter-spacing:6px;
   padding:7px;  
   font-weight: 700;
   color: $logo_block_text_color;
-  text-transform: uppercase;  
+  text-transform: uppercase;
+  //font-family: "BAUHS93";
 }
 
 #logo_block_description {
