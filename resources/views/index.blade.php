@@ -26,8 +26,6 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ mix('css/common.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ mix('css/index.css') }}" />
-</head>
-<body>
 
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript" >
@@ -44,6 +42,9 @@
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/67694167" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+
+</head>
+<body>
 
 <div id="app">
   <div id="navbar_menu">
