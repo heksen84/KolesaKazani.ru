@@ -368,7 +368,6 @@
   </div>
 
   <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>  
-  <script data-ad-client="ca-pub-8074944108437227" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   
   <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-right m-2">
