@@ -90,15 +90,10 @@ http {
         listen       [::]:443 ssl http2 default_server;
         server_name  _;
         root         /var/www/ilbo;
-
-#        add_header X-Frame-Options "SAMEORIGIN";
-        add_header X-XSS-Protection "1; mode=block";
-	add_header X-Content-Type-Options "nosniff";
-
         charset UTF-8;
 
-        ssl_certificate "/etc/letsencrypt/live/ilbo.site/cert.pem";
-        ssl_certificate_key "/etc/letsencrypt/live/ilbo.site/privkey.pem";
+        ssl_certificate "/etc/letsencrypt/live/ilbo.kz/cert.pem";
+        ssl_certificate_key "/etc/letsencrypt/live/ilbo.kz/privkey.pem";
         ssl_session_cache shared:SSL:1m;
         ssl_session_timeout  10m;
         ssl_ciphers PROFILE=SYSTEM;
@@ -107,38 +102,42 @@ http {
 	# Load configuration files for the default server block.
         include /etc/nginx/default.d/*.conf;
 
+
+    location / {
+        # URLs to attempt, including pretty ones.
+        try_files   $uri $uri/ /index.php?$query_string;
+
+    }
+
         location ~*^.+\.(css|js)$ {
 	 root /var/www/ilbo/public;
         }        
 
 
-    location / {
-
-	set $frame_options '';
-
-        if ($http_referer !~ '^https?:\/\/([^\/]+\.)?(ilbo\.site|webvisor\.com)\/'){
-            set $frame_options 'SAMEORIGIN';
-        }
-
-        add_header X-Frame-Options $frame_options;
-
-
-        try_files $uri $uri/ /index.php?$query_string;
-
+    # Remove trailing slash to please routing system.
+    if (!-d $request_filename) {
+        rewrite     ^/(.+)/$ /$1 permanent;
     }
 
-
-   location ~ \.php$ {
-        fastcgi_pass unix:/var/run/php7.2-fpm.sock;
-        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
-        include fastcgi_params;
+    # PHP FPM configuration.
+    location ~* \.php$ {
+            fastcgi_pass                    unix:/var/run/php-fpm.sock;
+            fastcgi_index                   index.php;
+            fastcgi_split_path_info         ^(.+\.php)(.*)$;
+            include                         /etc/nginx/fastcgi_params;
+            fastcgi_param                   SCRIPT_FILENAME $document_root$fastcgi_script_name;
     }
 
-
-   location ~ /\.(?!well-known).* {
-        deny all;
+    # We don't need .ht files with nginx.
+    location ~ /\.ht {
+            deny all;
     }
     
+    # Set header expirations on per-project basis
+    location ~* \.(?:ico|css|js|jpe?g|JPG|png|svg|woff)$ {
+            expires 365d;
+
+    }        
 
     }
 
