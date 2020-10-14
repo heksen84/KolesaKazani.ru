@@ -324,7 +324,7 @@
   </div>
   @endif    
   
-<!--    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-1 mb-1">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-1 mb-1">
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>  
       <ins class="adsbygoogle"
           style="display:block"
@@ -335,7 +335,7 @@
       <script>
            (adsbygoogle = window.adsbygoogle || []).push({});
       </script>
-    </div> -->
+    </div>
 
   <div class="text-center m-4 ">
     <a href="/podat-objavlenie" class="black" style="font-size:22px;letter-spacing:4px;font-weight:300">подать объявление</a>
