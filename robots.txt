@@ -8,4 +8,4 @@ Disallow: /util/str2url
 Disallow: /auth/vk
 Disallow: /auth/ok
 Disallow: /logout
-Sitemap: https://ilbo.kz/sitemaps/index.xml
+Sitemap: https://ilbo.site/sitemaps/index.xml
