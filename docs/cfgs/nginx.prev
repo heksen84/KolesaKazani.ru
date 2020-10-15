@@ -92,8 +92,8 @@ http {
         root         /var/www/ilbo;
         charset UTF-8;
 
-        ssl_certificate "/etc/letsencrypt/live/ilbo.kz/cert.pem";
-        ssl_certificate_key "/etc/letsencrypt/live/ilbo.kz/privkey.pem";
+        ssl_certificate "/etc/letsencrypt/live/ilbo.site/cert.pem";
+        ssl_certificate_key "/etc/letsencrypt/live/ilbo.site/privkey.pem";
         ssl_session_cache shared:SSL:1m;
         ssl_session_timeout  10m;
         ssl_ciphers PROFILE=SYSTEM;

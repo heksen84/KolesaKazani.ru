@@ -17,7 +17,7 @@ use App\Images;
 
 // https://laracasts.com/discuss/channels/laravel/saving-an-intervention-image-instance-into-amazon-s3?page=1
 
-              /*$image->text("ilbo.kz", 10,28, function($font) {
+              /*$image->text("ilbo.site", 10,28, function($font) {
                     $font->file(public_path()."/fonts/Brushie.ttf");
                     $font->color(array(255,255,255,1));
                     $font->size(24);

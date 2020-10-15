@@ -24,7 +24,7 @@ class MailResetPasswordNotification extends Notification {
     public function toMail( $notifiable ) {
     return ( new MailMessage )
       ->from('siteilbo@gmail.com')
-      ->subject( 'Сброс пароля на сайте объявлений ilbo.kz' )
+      ->subject( 'Сброс пароля на сайте объявлений ilbo.site' )
       ->line( "Для сброса пароля нажмите на кнопку \"Сбросить пароль\"." )
       ->action( 'Сбросить пароль', url( "/password/reset/".$this->token) );
     }
