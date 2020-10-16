@@ -4,9 +4,7 @@ namespace App\Helpers;
  
 class Common {
 
-    public static function getPreviewImage($advert_id) {          
-        return "(SELECT concat(url,'/small/', name) FROM `images` JOIN storages ON storages.id = images.storage_id WHERE images.advert_id = ".$advert_id." LIMIT 1) as imageName";                        
-    }
+    const MIN_FREE_DISK_SPACE = 2; // гига
 
     public static function getFreeDiskSpace($target) {
 	    $bytes = disk_free_space($target); 
@@ -16,6 +14,10 @@ class Common {
 	    $free_space = sprintf("%1.0f", $bytes / pow($base,$class));
 	    return $free_space;
     }
+
+    public static function getPreviewImage($advert_id) {          
+        return "(SELECT concat(url,'/small/', name) FROM `images` JOIN storages ON storages.id = images.storage_id WHERE images.advert_id = ".$advert_id." LIMIT 1) as imageName";                        
+    }    
 
     public static function getVipPrice() {
 	    return 100;

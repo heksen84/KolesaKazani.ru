@@ -21,8 +21,8 @@ class Kernel extends ConsoleKernel
 	    Commands\DisableModeration::class,
 	    Commands\RemoveLostImages::class,
 	    Commands\RemoveAdvert::class,
-	    Commands\TestImagesStorage::class,
-	    Commands\Utils::class
+	    Commands\Utils::class,
+	    Commands\Test::class
     ];
 
     /**
