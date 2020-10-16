@@ -26,8 +26,7 @@ class Test extends Command
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
     }
 
@@ -37,8 +36,7 @@ class Test extends Command
      * @return mixed
      */
     public function handle() {
-
-	$this->info("Минимальный объём места: ".Common::MIN_FREE_DISK_SPACE_IN_GB);
-	$this->info("Свободно: ".Common::getFreeDiskSpace(".")." гигабайта");
+    	$this->info("Минимальный объём места: ".Common::MIN_FREE_DISK_SPACE_IN_GB);
+	    $this->info("Свободно: ".Common::getFreeDiskSpace(".")." гигабайта");
     }
 }
