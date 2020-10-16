@@ -44,7 +44,7 @@ class ApiController extends Controller {
         // заглушка
         return response()->json([ "result" => "success", "msg" => "ok" ]);
 
-        \Debugbar::info("UID: ".$request->uid);
+     /*   \Debugbar::info("UID: ".$request->uid);
 
         if ($request->file("image")) {            
 
@@ -110,7 +110,7 @@ class ApiController extends Controller {
             }
         }
         
-        return response()->json([ "result" => "success", "msg" => $imageOriginalName." пропущен" ]);  
+        return response()->json([ "result" => "success", "msg" => $imageOriginalName." пропущен" ]);  */
     }
 
     // удаление изображения
@@ -577,7 +577,7 @@ class ApiController extends Controller {
                             $imgRecord->advert_id = $advert->id;
                             $imgRecord->name = $newFilename;
                             $imgRecord->originalName = $img->getClientOriginalName();
-                            $imgRecord->storage_id = 0;
+                            $imgRecord->storage_id = 1;
                             $imgRecord->uid = $request->uid;
                             $imgRecord->save();                            
                         }
