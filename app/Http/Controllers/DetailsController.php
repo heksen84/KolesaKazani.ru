@@ -759,15 +759,15 @@ class DetailsController extends Controller {
             
             \Debugbar::info("advert count: ".$dataCount);
 
-            if ($dataCount===0) {
+            if ( $dataCount === 0 )
                 \Debugbar::info("ОШИБКА: пустая выборка");                
-            }
-                                
-	    // нужно извлечь storageId
-            $images = Images::select(DB::raw( "concat('".Common::getImagesPath()."/normal/', name) AS name" ))->where("advert_id", $id)->get();
-    
-            \Debugbar::info($advert);
-            \Debugbar::info($images); 
+            
+            $images = DB::table("images")->selectRaw("concat(url,'/normal/', name) as imageName")->leftJoin("storages", "storages.id", "=", "images.storage_id")->where("images.advert_id", $id)->get();                
+            
+            \Debugbar::info("-[images]-------------------");
+            \Debugbar::info($images);
+            \Debugbar::info("---------------------");
+            \Debugbar::info($advert);             
                 
             return view("details")
             ->with( "title", $advert[0]->title )

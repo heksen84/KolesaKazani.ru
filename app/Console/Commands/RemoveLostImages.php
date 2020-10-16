@@ -4,9 +4,9 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
-use App\Images;
 use App\Jobs\DeleteTempImages;
 use App\Jobs\DeleteImagesFromCloud;
+use App\Images;
 
 class RemoveLostImages extends Command
 {

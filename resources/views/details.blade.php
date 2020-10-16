@@ -133,12 +133,12 @@
 
               <div id="phone-number"></div>              
 
-              @if (count($images)>0)              
+              @if (count($images) > 0)              
               <div id="carousel" class="carousel slide" data-ride="carousel">
-                  @if (count($images)>1)
+                  @if (count($images) > 1)
                     <ol class="carousel-indicators">                    
                       @foreach($images as $index => $image)
-                        @if ($index==0)
+                        @if ($index===0)
                           <li data-target="#carousel" data-slide-to="0" class="active"></li>
                         @else
                           <li data-target="#carousel" data-slide-to="{{ $index }}"></li>
@@ -148,13 +148,13 @@
                   @endif
                   <div class="carousel-inner">
                     @foreach($images as $index => $image)
-                      @if ($index==0)
+                      @if ($index===0)
                         <div class="carousel-item active">
-                          <img class="d-block w-100" src="{{ $image->name }}" onerror="this.onerror=null;this.src=''" loading="lazy">
+                          <img class="d-block w-100" src="{{ $image->imageName }}" onerror="this.onerror=null;this.src=''" loading="lazy">
                         </div>
                       @else
                         <div class="carousel-item">
-                          <img class="d-block w-100" src="{{ $image->name }}" onerror="this.onerror=null;this.src=''" loading="lazy">
+                          <img class="d-block w-100" src="{{ $image->imageName }}" onerror="this.onerror=null;this.src=''" loading="lazy">
                         </div>
                       @endif
                     @endforeach

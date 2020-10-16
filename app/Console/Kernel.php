@@ -17,11 +17,12 @@ class Kernel extends ConsoleKernel
 	    Commands\DeleteExpiredAdverts::class,
 	    Commands\DeleteAllImages::class,
 	    Commands\GenerateSitemapLinks::class,
-	    Commands\Utils::class,
 	    Commands\EnableModeration::class,
 	    Commands\DisableModeration::class,
 	    Commands\RemoveLostImages::class,
-	    Commands\RemoveAdvert::class
+	    Commands\RemoveAdvert::class,
+	    Commands\TestImagesStorage::class,
+	    Commands\Utils::class
     ];
 
     /**

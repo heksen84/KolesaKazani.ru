@@ -4,8 +4,13 @@ namespace App\Helpers;
  
 class Common {
 
-    public static function getImagesPath() {
-         return "https://ilbo.object.pscloud.io/images";
+    public static function getImages($size, $advert_id) {          
+        //return "(SELECT concat(url,'/".$size."/', name) FROM `images` JOIN storages ON storages.id = images.storage_id) as imageName";                        
+        return "(SELECT name FROM images) as images";
+    }
+
+    public static function getImage($size, $advert_id) {          
+        return "(SELECT concat(url,'/".$size."/', name) FROM `images` JOIN storages ON storages.id = images.storage_id WHERE images.advert_id = ".$advert_id." LIMIT 1) as imageName";                        
     }
 
     public static function getFreeDiskSpace($target) {
@@ -19,17 +24,16 @@ class Common {
 	    return $free_space;
     }
 
-
     public static function getVipPrice() {
-	return 100;
+	    return 100;
     }
 
     public static function getSrochnoTorgPrice() {
-	return 200;
+	    return 200;
     }
 
     public static function getColorPrice() {
-	return 300;
+	    return 300;
     }
 
 }

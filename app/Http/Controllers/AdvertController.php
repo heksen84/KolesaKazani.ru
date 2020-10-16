@@ -184,11 +184,11 @@ class AdvertController extends Controller {
                         foreach($images as $image) {
                                 \Debugbar::info($image->name);
                                 
-                                $small_image = Common::getImagesPath()."/small/".$image->name;                        
+                                $small_image = Common::getImage()."/small/".$image->name;                        
                                 if (file_exists($small_image))
                                         unlink($small_image);                                
 
-                                $normal_image = Common::getImagesPath()."/normal/".$image->name;                        
+                                $normal_image = Common::getImage()."/normal/".$image->name;                        
                                 if (file_exists($normal_image))
                                         unlink($normal_image);
                         }

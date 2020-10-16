@@ -142,8 +142,8 @@ class IndexController extends Controller {
             "kz_region.name as region_name",
 			"kz_city.name as city_name",			
 			DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
-            DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
-			DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"))			
+            DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),			
+			DB::raw(Common::getImage("small", "adv.id", 1)))
 			->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
 			->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			
 			->join("adex_top", "adex_top.advert_id", "=", "adv.id" ) // связь для топа
@@ -154,9 +154,7 @@ class IndexController extends Controller {
 			->orderBy("startDate", "desc")
 			->orderBy("adv.id", "desc")
 			->take(10)
-			->get();			
-			
-			
+			->get();									
 		
 		// Новые объявления
 		$newAdverts = DB::table("adverts as adv")->select(			
@@ -168,8 +166,8 @@ class IndexController extends Controller {
             "kz_region.name as region_name",
 			"kz_city.name as city_name",			
 			DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
-            DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
-			DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"))			
+            DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),			
+			DB::raw(Common::getImage("small", "adv.id", 1)))
 			->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
 			->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			
 			->join("urls", "adv.id", "=", "urls.advert_id" )
@@ -251,7 +249,7 @@ class IndexController extends Controller {
 			"kz_city.name as city_name",
 			DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
             DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
-			DB::raw("concat('".Common::getImagesPath()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"))
+			DB::raw("concat('".Common::getImage()."/small/', (SELECT name FROM images WHERE images.advert_id=adv.id LIMIT 1)) as imageName"))
 			->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
 			->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )
 			->join("urls", "adv.id", "=", "urls.advert_id" )
