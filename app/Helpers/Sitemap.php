@@ -175,11 +175,15 @@ class Sitemap {
 			else {
 			  
 				\Debugbar::error($current_sitemap." не найден\n Создаю...");			
-							  
-			  	if (Sitemap::createNewSitemap("sitemaps/sitemap_0.xml", simpleXML_load_file(Sitemap::$sitemaps_path.Sitemap::$index_file_name), date(\DateTime::ISO8601)))
+				
+				$newSitemapName = Sitemap::createNewSitemap("sitemaps/sitemap_0.xml", simpleXML_load_file(Sitemap::$sitemaps_path.Sitemap::$index_file_name), date(\DateTime::ISO8601));
+
+			  	if ($newSitemapName) {
 			  		Sitemap::addUrl($url);
+				 	// Здесь нужно добавить новый сайтмап в таблицу sitemaps с именем $newSitemapName
+				}
 			  	
-			  return false;		
+				  return false;		
 			}				  	
 	}	
 }

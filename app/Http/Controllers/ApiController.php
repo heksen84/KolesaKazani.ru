@@ -88,7 +88,7 @@ class ApiController extends Controller {
                     $imgRecord->advert_id = null;
                     $imgRecord->name = $newFilename;
                     $imgRecord->originalName = $imageOriginalName;
-                    $imgRecord->inCloud = false;
+                    $imgRecord->storage_id = 0; // 0 = локальное хранилище
                     $imgRecord->uid = $request->uid;
                     $imgRecord->save();
 
@@ -571,7 +571,7 @@ class ApiController extends Controller {
                             $imgRecord->advert_id = $advert->id;
                             $imgRecord->name = $newFilename;
                             $imgRecord->originalName = $img->getClientOriginalName();
-                            $imgRecord->inCloud = false;
+                            $imgRecord->storage_id = 0;
                             $imgRecord->uid = $request->uid;
                             $imgRecord->save();                            
                         }

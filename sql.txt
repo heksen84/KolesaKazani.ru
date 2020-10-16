@@ -1,6 +1,0 @@
-ALTER TABLE `images` ADD `originalName` VARCHAR(60) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL AFTER `name`;
-ALTER TABLE `images` CHANGE `originalName` `originalName` VARCHAR(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;
-ALTER TABLE `images` ADD INDEX( `originalName`);
-ALTER TABLE `images` ADD `created_at` TIMESTAMP NOT NULL AFTER `originalName`, ADD `updated_at` TIMESTAMP NOT NULL AFTER `created_at`;
-ALTER TABLE `images` ADD `inCloud` BOOLEAN NOT NULL AFTER `originalName`;
-ALTER TABLE `images` ADD `uid` VARCHAR(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL AFTER `inCloud`, ADD INDEX (`uid`);

@@ -63,8 +63,8 @@ class LoadImages implements ShouldQueue {
             }
 
             if ($img_loaded) {                
-                // записываю true в inCloud при условии
-                Images::where("name", $img["name"])->update(array("inCloud" => true));
+                // записываю true в storage_id при условии
+                Images::where("name", $img["name"])->update(array("storage_id" => 1));
             }
 
         }        
