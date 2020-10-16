@@ -82,7 +82,7 @@ class ApiController extends Controller {
                     $img_loaded = true;
                 }                         
                                 
-                if ($img_loaded) {
+                /*if ($img_loaded) {
 
                     // записать в таблицу
                     $imgRecord = new Images();
@@ -103,7 +103,9 @@ class ApiController extends Controller {
                     return response()->json([ "result" => "success", "msg" => $imageOriginalName." загружен" ]);
                 }
                 else 
-                    return response()->json([ "result" => "error", "msg" => "невозможно загрузить изображение" ]);
+                    return response()->json([ "result" => "error", "msg" => "невозможно загрузить изображение" ]);*/
+
+                    return response()->json([ "result" => "success", "msg" =>"ok" ]);
             
             }
         }
