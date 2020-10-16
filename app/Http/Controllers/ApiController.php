@@ -82,7 +82,7 @@ class ApiController extends Controller {
                     $img_loaded = true;
                 }                         
                                 
-                /*if ($img_loaded) {
+                if ($img_loaded) {
 
                     // записать в таблицу
                     $imgRecord = new Images();
@@ -103,9 +103,9 @@ class ApiController extends Controller {
                     return response()->json([ "result" => "success", "msg" => $imageOriginalName." загружен" ]);
                 }
                 else 
-                    return response()->json([ "result" => "error", "msg" => "невозможно загрузить изображение" ]);*/
+                    return response()->json([ "result" => "error", "msg" => "невозможно загрузить изображение" ]);
 
-                    return response()->json([ "result" => "success", "msg" =>"ok" ]);
+//                    return response()->json([ "result" => "success", "msg" =>"ok" ]);
             
             }
         }
@@ -534,6 +534,8 @@ class ApiController extends Controller {
             // проверяем есть-ли входящие картинки вообще?
            if ($request->file("images")) {                
 
+                $img_loaded = false;
+
                 Images::where("uid", $request->uid)->update(array("advert_id" => $advert->id)); 
 
                 $imagesArray = [];
@@ -553,19 +555,19 @@ class ApiController extends Controller {
 
                         $normalFileNamePath = storage_path().'/app/images/normal/';                
                                                 
-                        if ($imgLib->save($normalFileNamePath.$newFilename)) {
-                            
+                        if ($imgLib->save($normalFileNamePath.$newFilename)) {                            
                             $arrayRecord = array("path" => $normalFileNamePath, "name" => $newFilename, "type" => "normal");
-                            array_push($imagesArray, $arrayRecord);                
-
-                            $smallFileNamePath = storage_path().'/app/images/small/';                                                        
-
-                            if ($imgLib->save($smallFileNamePath.$newFilename)) {
-                                $arrayRecord = array("path" => $smallFileNamePath, "name" => $newFilename, "type" => "small");
-                                array_push($imagesArray, $arrayRecord);          
-                                $img_loaded = true;
-                            } 
+                            array_push($imagesArray, $arrayRecord);          
+                            $img_loaded = true;                                  
                         }                         
+
+                        $smallFileNamePath = storage_path().'/app/images/small/';                                                        
+
+                        if ($imgLib->save($smallFileNamePath.$newFilename) && $img_loaded === true) {
+                            $arrayRecord = array("path" => $smallFileNamePath, "name" => $newFilename, "type" => "small");
+                            array_push($imagesArray, $arrayRecord);          
+                            $img_loaded = true;
+                        } 
 
                         if ($img_loaded) {
                 
