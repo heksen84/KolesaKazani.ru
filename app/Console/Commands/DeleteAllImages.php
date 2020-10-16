@@ -39,6 +39,7 @@ class DeleteAllImages extends Command
     public function handle() {
 
 	if( $this->confirm('Удалить все изображения? (yes|no)[no]')) {
+        
         if( $this->confirm('Вы действительно уверены? Это удалит все изображения! (yes|no)[no]')) {
 
 	    foreach(Images::all() as $img) {
