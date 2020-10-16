@@ -70,16 +70,17 @@ class ApiController extends Controller {
                 
                 if ($img->save($normalFileNamePath.$newFilename)) {
                     $arrayRecord = array("path" => $normalFileNamePath, "name" => $newFilename, "type" => "normal");
-                    array_push($imagesArray, $arrayRecord);                 
-
-                    $smallFileNamePath = storage_path().'/app/images/small/';
-                
-                    if ($img->save($smallFileNamePath.$newFilename)) {
-                        $arrayRecord = array("path" => $smallFileNamePath, "name" => $newFilename, "type" => "small");
-                        array_push($imagesArray, $arrayRecord);           
-                        $img_loaded = true;
-                    }                         
+                    array_push($imagesArray, $arrayRecord);
+                    $img_loaded = true;                    
                 }
+
+                $smallFileNamePath = storage_path().'/app/images/small/';
+                
+                if ($img->save($smallFileNamePath.$newFilename) && $img_loaded === true) {
+                    $arrayRecord = array("path" => $smallFileNamePath, "name" => $newFilename, "type" => "small");
+                    array_push($imagesArray, $arrayRecord);           
+                    $img_loaded = true;
+                }                         
                                 
                 if ($img_loaded) {
 
