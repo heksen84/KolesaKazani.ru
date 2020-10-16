@@ -31,15 +31,18 @@ class ApiController extends Controller {
 
     private $region_id;
     
-    public function loadImages(Request $request) {
+    /*public function loadImages(Request $request) {
 
         \Debugbar::info("UID: ".$request->uid);
         \Debugbar::info($request->file("images"));
 
         return response()->json([ "result" => "success", "msg" => "загружен" ]);
-    }
+    }*/
     
     public function loadImage(Request $request) {
+
+        // заглушка
+        return response()->json([ "result" => "success", "msg" => "ok" ]);
 
         \Debugbar::info("UID: ".$request->uid);
 
@@ -103,16 +106,14 @@ class ApiController extends Controller {
                     return response()->json([ "result" => "success", "msg" => $imageOriginalName." загружен" ]);
                 }
                 else 
-                    return response()->json([ "result" => "error", "msg" => "невозможно загрузить изображение" ]);
-
-//                    return response()->json([ "result" => "success", "msg" =>"ok" ]);
-            
+                    return response()->json([ "result" => "error", "msg" => "невозможно загрузить изображение" ]);            
             }
         }
         
         return response()->json([ "result" => "success", "msg" => $imageOriginalName." пропущен" ]);  
     }
 
+    // удаление изображения
     public function deleteImage(Request $request) {
 
         \Debugbar::info("image name: ".$request->image);
