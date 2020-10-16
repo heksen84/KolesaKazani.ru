@@ -577,7 +577,7 @@ class ApiController extends Controller {
                             $imgRecord->advert_id = $advert->id;
                             $imgRecord->name = $newFilename;
                             $imgRecord->originalName = $img->getClientOriginalName();
-                            $imgRecord->storage_id = 1;
+                            $imgRecord->storage_id = 0;
                             $imgRecord->uid = $request->uid;
                             $imgRecord->save();                            
                         }
