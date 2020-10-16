@@ -13,7 +13,7 @@ use App\Places;
 class ResultsController extends Controller {
         
     // получить данные категории    
-    private function getCategoryData(Request $request, $category) {  
+    private function getCategoryData(Request $request, $category) {          
         
         $table = new Categories();
         $data = $table::select("id", "title", "description", "keywords", "h1")->where("url", $category)->get();
@@ -21,12 +21,11 @@ class ResultsController extends Controller {
         if (!count($data)) {
             abort(404);             
         }
-
         return $data;
     }
     
     // получить данные подкатегории
-    private function getSubCategoryData(Request $request, $subcategory) {  
+    private function getSubCategoryData(Request $request, $subcategory) {          
         
         $table = new SubCats();
         $data = $table::select("id", "title", "description", "keywords", "h1")->where("url", $subcategory)->get();
@@ -34,12 +33,11 @@ class ResultsController extends Controller {
         if (!count($data)) {
             abort(404);             
         }
-
         return $data;
     }
     
     // получить данные региона
-    private function getRegionData($region) {                
+    private function getRegionData($region) {                        
         
         $regionId = Regions::select("region_id", "name")->where("url", $region)->get();        
         \Debugbar::info("ID региона: ".$regionId[0]->region_id);
@@ -47,8 +45,7 @@ class ResultsController extends Controller {
         // FIXME: NEED?
         if (!count($regionId)) {
             abort(404);             
-        }
-        
+        }        
         return $regionId[0];
     }
     
@@ -125,7 +122,7 @@ class ResultsController extends Controller {
             "kz_city.name as city_name",
             DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
             DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
-            DB::raw(Common::getImage("small", "adv.id")))
+            DB::raw(Common::getPreviewImage("adv.id")))
             ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
             ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			                    
             ->join("urls", "adv.id", "=", "urls.advert_id" )
@@ -238,7 +235,7 @@ class ResultsController extends Controller {
             "kz_city.name as city_name",
             DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
             DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
-            DB::raw(Common::getImage("small", "adv.id")))
+            DB::raw(Common::getPreviewImage("adv.id")))
             ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
             ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			                    
             ->join("urls", "adv.id", "=", "urls.advert_id" )
@@ -308,7 +305,7 @@ class ResultsController extends Controller {
             "kz_city.name as city_name",
             DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
             DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
-            DB::raw(Common::getImage("small", "adv.id")))
+            DB::raw(Common::getPreviewImage("adv.id")))
             ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
             ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			                    
             ->join("urls", "adv.id", "=", "urls.advert_id" )
@@ -387,7 +384,7 @@ class ResultsController extends Controller {
             "kz_city.name as city_name",
             DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
             DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
-            DB::raw(Common::getImage("small", "adv.id")))
+            DB::raw(Common::getPreviewImage("adv.id")))
             ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
             ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			                    
             ->join("urls", "adv.id", "=", "urls.advert_id" )
