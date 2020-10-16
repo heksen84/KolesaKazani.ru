@@ -19,8 +19,7 @@ use App\adex_top;
     удалить объявление которое просрочено на месяц и всё что с ним связано: подкатегории и картинки в хранилище
 */
 
-class DeleteAllAdverts extends Command
-{
+class DeleteAllAdverts extends Command {
     /**
      * The name and signature of the console command.
      *
@@ -39,8 +38,7 @@ class DeleteAllAdverts extends Command
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
     }
 
