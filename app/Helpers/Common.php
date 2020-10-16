@@ -4,7 +4,7 @@ namespace App\Helpers;
  
 class Common {
 
-    const MIN_FREE_DISK_SPACE = 2; // гига
+    const MIN_FREE_DISK_SPACE_IN_GB = 2; // гига
 
     public static function getFreeDiskSpace($target) {
 	    $bytes = disk_free_space($target); 

@@ -37,6 +37,8 @@ class Test extends Command
      * @return mixed
      */
     public function handle() {
+
+	$this->info("Минимальный объём места: ".Common::MIN_FREE_DISK_SPACE_IN_GB);
 	$this->info("Свободно: ".Common::getFreeDiskSpace(".")." гигабайта");
     }
 }

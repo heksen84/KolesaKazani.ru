@@ -69,15 +69,14 @@ class ApiController extends Controller {
                 // формирую рандомное имя
                 $newFilename = str_random(16).".".$image->getClientOriginalExtension();                                
 
-                $normalFileNamePath = storage_path().'/app/images/normal/';                
+                $normalFileNamePath = storage_path().'/app/images/normal/';
+                $smallFileNamePath = storage_path().'/app/images/small/';
                 
                 if ($img->save($normalFileNamePath.$newFilename)) {
                     $arrayRecord = array("path" => $normalFileNamePath, "name" => $newFilename, "type" => "normal");
                     array_push($imagesArray, $arrayRecord);
                     $img_loaded = true;                    
-                }
-
-                $smallFileNamePath = storage_path().'/app/images/small/';
+                }                
                 
                 if ($img->save($smallFileNamePath.$newFilename) && $img_loaded === true) {
                     $arrayRecord = array("path" => $smallFileNamePath, "name" => $newFilename, "type" => "small");
@@ -128,10 +127,11 @@ class ApiController extends Controller {
                 $imagesArray = [];
 
                 $normalFileNamePath = storage_path().'/app/images/normal/';                        
-                $arrayRecord = array("path" => $normalFileNamePath, "name" => $img->name, "type" => "normal");
-                array_push($imagesArray, $arrayRecord);                
-
                 $smallFileNamePath = storage_path().'/app/images/small/';        
+
+                $arrayRecord = array("path" => $normalFileNamePath, "name" => $img->name, "type" => "normal");
+                array_push($imagesArray, $arrayRecord);                                
+                
                 $arrayRecord = array("path" => $smallFileNamePath, "name" => $img->name, "type" => "small");
                 array_push($imagesArray, $arrayRecord);
 
@@ -554,15 +554,14 @@ class ApiController extends Controller {
                         // формирую рандомное имя
                         $newFilename = str_random(16).".".$img->getClientOriginalExtension();                                         
 
-                        $normalFileNamePath = storage_path().'/app/images/normal/';                
+                        $normalFileNamePath = storage_path().'/app/images/normal/';
+                        $smallFileNamePath = storage_path().'/app/images/small/'; 
                                                 
                         if ($imgLib->save($normalFileNamePath.$newFilename)) {                            
                             $arrayRecord = array("path" => $normalFileNamePath, "name" => $newFilename, "type" => "normal");
                             array_push($imagesArray, $arrayRecord);          
                             $img_loaded = true;                                  
-                        }                         
-
-                        $smallFileNamePath = storage_path().'/app/images/small/';                                                        
+                        }                                                                                                        
 
                         if ($imgLib->save($smallFileNamePath.$newFilename) && $img_loaded === true) {
                             $arrayRecord = array("path" => $smallFileNamePath, "name" => $newFilename, "type" => "small");
@@ -598,7 +597,7 @@ class ApiController extends Controller {
             \Debugbar::info("Осталось места: ".Common::getFreeDiskSpace("."));
 
             // если больше 5 гигов
-            /*if (Common::getFreeDiskSpace(".") > 5) {
+            /*if (Common::getFreeDiskSpace(".") > Common::MIN_FREE_DISK_SPACE) {
                 \Debugbar::info("Пишем на локальный диск");
                 return response()->json([ "result" => "error", "url" => "test_error" ]);
             }*/
