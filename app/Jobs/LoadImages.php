@@ -54,20 +54,18 @@ class LoadImages implements ShouldQueue {
             
             if ($img["type"] === "normal") {
                 $image->fit(800, 600);
-                $img_loaded = Storage::disk('s3')->put("images/normal/".$img["name"], $image->stream()->detach())?true:false;
-                Images::where("name", $img["name"])->update(array("storage_id" => 2));
+                $img_loaded = Storage::disk('s3')->put("images/normal/".$img["name"], $image->stream()->detach())?true:false;                
             }
 
             if ($img["type"] === "small") {
                 $image->fit(250, 250);                
-                $img_loaded = Storage::disk('s3')->put("images/small/".$img["name"], $image->stream()->detach())?true:false;
-                Images::where("name", $img["name"])->update(array("storage_id" => 5));
+                $img_loaded = Storage::disk('s3')->put("images/small/".$img["name"], $image->stream()->detach())?true:false;                
             }
 
-            //if ($img_loaded) {                
+            if ($img_loaded) {                
                 // записываю true в storage_id при условии
-                //Images::where("name", $img["name"])->update(array("storage_id" => 1));
-            //}
+                Images::where("name", $img["name"])->update(array("storage_id" => 1));
+            }
 
         }        
     }

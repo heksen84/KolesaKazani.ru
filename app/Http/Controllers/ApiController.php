@@ -42,9 +42,9 @@ class ApiController extends Controller {
     public function loadImage(Request $request) {
 
         // заглушка
-        return response()->json([ "result" => "success", "msg" => "ok" ]);
+        //return response()->json([ "result" => "success", "msg" => "ok" ]);
 
-     /*   \Debugbar::info("UID: ".$request->uid);
+        \Debugbar::info("UID: ".$request->uid);
 
         if ($request->file("image")) {            
 
@@ -110,7 +110,7 @@ class ApiController extends Controller {
             }
         }
         
-        return response()->json([ "result" => "success", "msg" => $imageOriginalName." пропущен" ]);  */
+        return response()->json([ "result" => "success", "msg" => $imageOriginalName." пропущен" ]);
     }
 
     // удаление изображения
