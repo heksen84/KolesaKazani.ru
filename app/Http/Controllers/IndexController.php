@@ -48,7 +48,7 @@ class IndexController extends Controller {
 		\Debugbar::info("SESSION ID: ".\Session::getId());
 		
 		$cm_title = mb_strtoupper(config('app.name'))." - бесплатные объявления ";
-		$cm_description = "Объявления о покупке, продаже, обмене и сдаче в аренду в";
+		$cm_description = "Объявления о покупке, продаже, обмене и сдаче в аренду в ";
 		$cm_keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, ilbo, ИльБо, страна";
 		
 		if ($request->search != "")
@@ -86,7 +86,7 @@ class IndexController extends Controller {
 				$sklonResult = $petrovich->firstname($regionName, 0)." области";
 				
 				$title = $cm_title.$sklonResult;
-				$description = $cm_title.$sklonResult;
+				$description = $cm_description.$sklonResult;
 				$keywords = $cm_keywords.$regionName." область";
 			}
 			else	
