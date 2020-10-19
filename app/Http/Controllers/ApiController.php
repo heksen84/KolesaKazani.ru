@@ -597,7 +597,7 @@ class ApiController extends Controller {
             \Debugbar::info("Осталось места: ".Common::getFreeDiskSpace("."));
 
             // если больше 5 гигов
-            /*if (Common::getFreeDiskSpace(".") > Common::MIN_FREE_DISK_SPACE) {
+            /*if (Common::getFreeDiskSpace(".") > Common::MIN_FREE_DISK_SPACE_IN_GB) {
                 \Debugbar::info("Пишем на локальный диск");
                 return response()->json([ "result" => "error", "url" => "test_error" ]);
             }*/
