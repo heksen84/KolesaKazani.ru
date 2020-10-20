@@ -524,8 +524,7 @@ class ApiController extends Controller {
                 $advert->coord_lon = $coords[1];
                 \Debugbar::info($coords);
             }
-            else 
-            {
+            else {
                 $advert->coord_lat = 0;
                 $advert->coord_lon = 0;
             }                                    
@@ -542,8 +541,7 @@ class ApiController extends Controller {
             $urls = new Urls();
                     
             // url sitemap
-            if (strlen($title) > 5) 
-                $url_text = $title;
+            if ( strlen($title) > 5 ) $url_text = $title;
             
             $urls->url = substr($advert->id."-".\Helper::str2url($url_text), 0, 100);            
             $urls->advert_id = $advert->id;
