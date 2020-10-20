@@ -116,13 +116,15 @@ class ApiController extends Controller {
 
     // --------------------------------------
     // удаление изображения на лету
+    // рекурсивная функция
     // --------------------------------------
-    public function deleteImage(Request $request) {
+    public function deleteImage(Request $request, $storage_id) {
 
+        \Debugbar::info("storage_id: ".$storage_id);
         \Debugbar::info("image name: ".$request->image);
         \Debugbar::info("uid: ".$request->uid);
-
-        $images = Images::select("name")->where("uid", $request->uid)->where("originalName", $request->image)->where("storage_id", 0)->get();
+        
+        $images = Images::select("name")->where("uid", $request->uid)->where("originalName", $request->image)->where("storage_id", $storage_id)->get();
 
         if (count($images) > 0) {
 
@@ -141,31 +143,18 @@ class ApiController extends Controller {
 
             \Debugbar::info($imagesArray);                                    
                         
-            DeleteTempImages::dispatch($imagesArray);                                    
-        }
-
-        $images = Images::select("name")->where("uid", $request->uid)->where("originalName", $request->image)->where("storage_id", 1)->get();
-
-        if (count($images) > 0) {
-            
-            $imagesArray = [];                
-            
-            foreach($images as $img) {                
-
-                $arrayRecord = array("path" => Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH, "name" => $img->name, "type" => "normal");
-                array_push($imagesArray, $arrayRecord);                                
-                
-                $arrayRecord = array("path" => Common::SMALL_IMAGES_LOCAL_STORAGE_PATH, "name" => $img->name, "type" => "small");
-                array_push($imagesArray, $arrayRecord);                
+            if ( $storage_id == 0 ) {                
+                DeleteTempImages::dispatch($imagesArray);                                                    
+                return response()->json([ "result" => "success", "Файлы на удаление на очереди" ]);  
             }
-
-            \Debugbar::info($imagesArray);                        
-            \Debugbar::info("Удаляю картинки из облачного хранилища");
-
-            DeleteImagesFromCloud::dispatch($imagesArray);                                    
+            
+            if ( $storage_id == 1 ) {
+                DeleteImagesFromCloud::dispatch($imagesArray);
+                return response()->json([ "result" => "success", "Файлы на удаление облака на очереди" ]);  
+            }
         }
-
-        return response()->json([ "result" => "success", $request->image." отсутвует" ]);  
+        else
+            $this->deleteImage($request, 1);     
     }
 
     // --------------------------------------
