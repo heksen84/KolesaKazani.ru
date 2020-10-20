@@ -27,7 +27,7 @@ use Validator;
 
 class ApiController extends Controller {
 
-    private $region_id;
+    private $region_id = null;
     private $img_loaded = false;
         
     // --------------------------------------

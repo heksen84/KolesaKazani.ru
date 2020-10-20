@@ -13,8 +13,7 @@ class Common {
     const NORMAL_IMAGES_LOCAL_STORAGE_PATH = "storage/app/images/small/";
 
     // сободное место на диске
-    public static function getFreeDiskSpace($target) {
-        
+    public static function getFreeDiskSpace($target) {        
         $si_prefix = array( 'B', 'KB', 'MB', 'GB', 'TB', 'EB', 'ZB', 'YB' );
         $bytes = disk_free_space($target); 	    
 	    $base = 1024;
