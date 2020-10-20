@@ -194,9 +194,7 @@ class ApiController extends Controller {
     // --------------------------------------
     // Получить расположение
     // --------------------------------------
-    public function GetPlaces(Request $request) {
-        
-//        Cache::flush();
+    public function GetPlaces(Request $request) {        
 
         $this->region_id = $request->region_id;
 
@@ -219,6 +217,9 @@ class ApiController extends Controller {
         return Adverts::select("phone")->where("id",  $request->id )->get();
     }
 
+    // --------------------------------------
+    // Поиск места по строке
+    // --------------------------------------
     public function searchPlaceByString(Request $request) {        
         
         $items = DB::table("kz_city as city")
