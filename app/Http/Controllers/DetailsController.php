@@ -26,9 +26,8 @@ class DetailsController extends Controller {
             // получаю данные url объявления по заголовку объявления
             $urlData = Urls::select("advert_id")->where( "url", $title )->get();
                         
-            if (!count($urlData)) {
-                abort(404);             
-            }
+            if (!count($urlData))
+                abort(404);            
             
                 // получаю id объявления
                 $id = $urlData[0]->advert_id;
