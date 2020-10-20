@@ -30,80 +30,93 @@ class ApiController extends Controller {
     private $region_id;
     private $img_loaded = false;
         
+    // --------------------------------------
+    // загрузка изображения на лету
+    // --------------------------------------
     public function loadImage(Request $request) {
 
-        // заглушка
-        //return response()->json([ "result" => "success", "msg" => "ok" ]);
-
-        /*\Debugbar::info("UID: ".$request->uid);
+        \Debugbar::info("UID: ".$request->uid);        
 
         if ($request->file("image")) {            
 
-            $image = $request->file("image");
+            $this->img_loaded = false;
 
-            \Debugbar::info($image);
+            $img = $request->file("image");
+            \Debugbar::info($img);
 
-            $imageOriginalName = $image->getClientOriginalName();
+            // получаю имя изображения
+            $imageOriginalName = $img->getClientOriginalName();
+            
+            // ищу изображения без привязки к объявлению т.е. advert_id = null
+            $imagesCount = Images::where("originalName", $imageOriginalName)->where("advert_id", null)->get()->count();            
 
-            $imagesCount = Images::where("originalName", $imageOriginalName)->where("advert_id", null)->get()->count();
+            if ( $imagesCount === 0 ) {
 
-            \Debugbar::info("test"); 
-            \Debugbar::info($imageOriginalName."  ".$imagesCount);                        
-
-            $imagesArray = [];
-
-            if ( $imagesCount === 0 ) {                
-
-                // узнаю реальный путь к файлу
-                $img = Image::make($image->getRealPath())->orientate();
-
-                // формирую рандомное имя
-                $newFilename = str_random(16).".".$image->getClientOriginalExtension();                                
-
-                $normalFileNamePath = storage_path().'/app/images/normal/';
-                $smallFileNamePath = storage_path().'/app/images/small/';
+                $imagesArray = [];
                 
-                if ($img->save($normalFileNamePath.$newFilename)) {
-                    $arrayRecord = array("path" => $normalFileNamePath, "name" => $newFilename, "type" => "normal");
-                    array_push($imagesArray, $arrayRecord);
-                    $this->img_loaded = true;                    
-                }                
-                
-                if ($img->save($smallFileNamePath.$newFilename) && $this->img_loaded === true) {
-                    $arrayRecord = array("path" => $smallFileNamePath, "name" => $newFilename, "type" => "small");
-                    array_push($imagesArray, $arrayRecord);           
-                    $this->img_loaded = true;
-                }                         
+                \Debugbar::info("Свободного места на диске: ".Common::getFreeDiskSpace(".")." гб.");
+
+                        // узнаю реальный путь к файлу
+                        $imgLib = Image::make($img->getRealPath())->orientate();
+                        
+                        // формирую рандомное имя
+                        $newFilename = str_random(16).".".$img->getClientOriginalExtension();
+                                                                        
+                        // меняю размер и сохраняю изображение (800x600)
+                        if ($imgLib->fit(800, 600)->save(Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH.$newFilename)) {
+
+                            // поменять путь исходя из оставшегося места на диске
+                            $arrayRecord = array("path" => Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH, "name" => $newFilename, "type" => "normal");
+                            array_push($imagesArray, $arrayRecord);          
+                            $this->img_loaded = true;                                  
+                        }                                                                                                        
+
+                        // меняю размер и сохраняю изображение (250x250)
+                        if ($imgLib->fit(250, 250)->save(Common::SMALL_IMAGES_LOCAL_STORAGE_PATH.$newFilename) && $this->img_loaded === true) {
+
+                            // поменять путь исходя из оставшегося места на диске
+                            $arrayRecord = array("path" => Common::SMALL_IMAGES_LOCAL_STORAGE_PATH, "name" => $newFilename, "type" => "small");
+                            array_push($imagesArray, $arrayRecord);          
+                            $this->img_loaded = true;
+                        } 
+
+                        if ($this->img_loaded) {
+
+                            \Debugbar::info("Пишу в таблицу");
+
+                            // записать в таблицу
+                            $imgRecord = new Images();
+                            $imgRecord->advert_id = null;
+                            $imgRecord->name = $newFilename;
+                            $imgRecord->originalName = $imageOriginalName;
+                            $imgRecord->storage_id = 0;
+                            $imgRecord->uid = $request->uid;
+                            $imgRecord->save();
+                        }
+                        else
+                            return response()->json([ "error" => "error", "msg" => "невозможно загрузить изображение" ]);
+
+                        // Если свободного места осталось мало, то сохраняю в облако и удаляю временные изображения
+                        if (Common::getFreeDiskSpace(".") < Common::MIN_FREE_DISK_SPACE_IN_GB) {
                                 
-                if ($this->img_loaded) {
+                            \Debugbar::info("Сохраняю изображения в облако...");                                
 
-                    // записать в таблицу
-                    $imgRecord = new Images();
-                    $imgRecord->advert_id = null;
-                    $imgRecord->name = $newFilename;
-                    $imgRecord->originalName = $imageOriginalName;
-                    $imgRecord->storage_id = 0; // 0 = локальное хранилище
-                    $imgRecord->uid = $request->uid;
-                    $imgRecord->save();
-
-                    // Сохраняю картинки в облачное хранилище
-                    LoadImages::dispatch($imagesArray);            
-
-                    // Удаляю картинки из облачного хранилища
-                    DeleteTempImages::dispatch($imagesArray);
-
-                    // сразу добавить запись в бд
-                    return response()->json([ "result" => "success", "msg" => $imageOriginalName." загружен" ]);
-                }
-                else 
-                    return response()->json([ "result" => "error", "msg" => "невозможно загрузить изображение" ]);            
+                            // отправляю в очередь
+                            LoadImages::dispatch($imagesArray);
+                            DeleteTempImages::dispatch($imagesArray);
+                            
+                            // сразу добавить запись в бд
+                            return response()->json([ "result" => "success", "msg" => $imageOriginalName." загружен" ]);
+                        }                                                
             }
         }
-        
-        return response()->json([ "result" => "success", "msg" => $imageOriginalName." пропущен" ]);*/
+
+        return response()->json([ "result" => "success", "msg" => $imageOriginalName." пропущен" ]);
     }
 
-    // удаление изображения
+    // --------------------------------------
+    // удаление изображения на лету
+    // --------------------------------------
     public function deleteImage(Request $request) {
 
         \Debugbar::info("image name: ".$request->image);
@@ -115,25 +128,22 @@ class ApiController extends Controller {
             
             foreach($images as $img) {
 
-                $imagesArray = [];
+                $imagesArray = [];                
 
-                $normalFileNamePath = storage_path().'/app/images/normal/';                        
-                $smallFileNamePath = storage_path().'/app/images/small/';        
-
-                $arrayRecord = array("path" => $normalFileNamePath, "name" => $img->name, "type" => "normal");
+                $arrayRecord = array("path" => Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH, "name" => $img->name, "type" => "normal");
                 array_push($imagesArray, $arrayRecord);                                
                 
-                $arrayRecord = array("path" => $smallFileNamePath, "name" => $img->name, "type" => "small");
-                array_push($imagesArray, $arrayRecord);
-
-                \Debugbar::info($imagesArray);                
-
-                // Удаляю картинки из облачного хранилища
-                DeleteImagesFromCloud::dispatch($imagesArray);
-
-                // Удаляю картинки из хранилища на локальном диске
-                DeleteTempImages::dispatch($imagesArray);
+                $arrayRecord = array("path" => Common::SMALL_IMAGES_LOCAL_STORAGE_PATH, "name" => $img->name, "type" => "small");
+                array_push($imagesArray, $arrayRecord);                
             }
+
+            \Debugbar::info($imagesArray);
+
+            // Удаляю картинки из облачного хранилища
+            DeleteImagesFromCloud::dispatch($imagesArray);
+
+            // Удаляю картинки из хранилища на локальном диске
+            DeleteTempImages::dispatch($imagesArray);
                             
             return response()->json([ "result" => "success", "msg" => $request->image." удалено" ]);  
         }
@@ -141,33 +151,45 @@ class ApiController extends Controller {
         return response()->json([ "result" => "success", $request->image." отсутвует" ]);  
     }
 
+    // --------------------------------------
     // js "null" в php null
+    // --------------------------------------
     private function to_php_null($value) {
         return ($value==="null")?null:$value;
     }
 
-   // Получить имена подкатегорий
+   // --------------------------------------
+    // Получить имена подкатегорий
+    // --------------------------------------
     public function getSubCategoryNamesById(Request $request) {
         return SubCats::select( "id", "name" )->where("category_id", $request->id)->get();
     }
 
+    // --------------------------------------
     // Выбор марок авто
+    // --------------------------------------
     public function getCarsMarks() {
         $car_marks = CarMark::all("id_car_mark", "name");
         return $car_marks;
     }
         
+    // --------------------------------------
     // Выбор моделей авто
+    // --------------------------------------
     public function getCarsModels(Request $request) {
         return DB::table("car_model")->where("id_car_mark", $request->mark_id )->get();
     }
 
+    // --------------------------------------
     // Получить расположение
+    // --------------------------------------
     public function GetRegions() {
         return Regions::all();
     }
 
+    // --------------------------------------
     // Получить расположение
+    // --------------------------------------
     public function GetPlaces(Request $request) {
         
 //        Cache::flush();
@@ -186,7 +208,9 @@ class ApiController extends Controller {
         return $values;
     }
 
+    // --------------------------------------
     // Получить расположение
+    // --------------------------------------
     public function getPhoneNumber(Request $request) {
         return Adverts::select("phone")->where("id",  $request->id )->get();
     }
@@ -553,24 +577,21 @@ class ApiController extends Controller {
                         
                         // формирую рандомное имя
                         $newFilename = str_random(16).".".$img->getClientOriginalExtension();
-                                                
-                        $normalFileNamePath = "storage/app/images/normal/";       
-                        $smallFileNamePath = "storage/app/images/small/";       
-
+                                                                        
                         // меняю размер и сохраняю изображение (800x600)
-                        if ($imgLib->fit(800, 600)->save($normalFileNamePath.$newFilename)) {
+                        if ($imgLib->fit(800, 600)->save(Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH.$newFilename)) {
 
                             // поменять путь исходя из оставшегося места на диске
-                            $arrayRecord = array("path" => $normalFileNamePath, "name" => $newFilename, "type" => "normal");
+                            $arrayRecord = array("path" => Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH, "name" => $newFilename, "type" => "normal");
                             array_push($imagesArray, $arrayRecord);          
                             $this->img_loaded = true;                                  
                         }                                                                                                        
 
                         // меняю размер и сохраняю изображение (250x250)
-                        if ($imgLib->fit(250, 250)->save($smallFileNamePath.$newFilename) && $this->img_loaded === true) {
+                        if ($imgLib->fit(250, 250)->save(Common::SMALL_IMAGES_LOCAL_STORAGE_PATH.$newFilename) && $this->img_loaded === true) {
 
                             // поменять путь исходя из оставшегося места на диске
-                            $arrayRecord = array("path" => $smallFileNamePath, "name" => $newFilename, "type" => "small");
+                            $arrayRecord = array("path" => Common::SMALL_IMAGES_LOCAL_STORAGE_PATH, "name" => $newFilename, "type" => "small");
                             array_push($imagesArray, $arrayRecord);          
                             $this->img_loaded = true;
                         } 
@@ -588,7 +609,7 @@ class ApiController extends Controller {
 
                         }
                         else 
-                            return response()->json([ "error" => "error", "msg" => "невозможно загрузить изображение" ]);                                                                            
+                            return response()->json([ "error" => "error", "msg" => "невозможно загрузить изображение" ]);
                     }                                           
 
                 } // end foreach
@@ -598,9 +619,11 @@ class ApiController extends Controller {
                                 
                     \Debugbar::info("Сохраняю изображения в облако...");                                
 
-                     LoadImages::dispatch($imagesArray);
-                     DeleteTempImages::dispatch($imagesArray);                                
-                }                            
+                    // отправляю в очередь
+                    LoadImages::dispatch($imagesArray);
+                    DeleteTempImages::dispatch($imagesArray);                                
+                }
+
             }                            
             
             Sitemap::addUrl($urls->url);
