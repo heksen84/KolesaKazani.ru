@@ -58,9 +58,11 @@ class LoadImages implements ShouldQueue {
             if ($img["type"] === "small")                
                 $img_loaded = Storage::disk('s3')->put("images/small/".$img["name"], $image->stream()->detach())?true:false;                            
 
-            if ($img_loaded)
-                // записываю true в storage_id при условии
+            // записываю true в storage_id при условии
+            if ($img_loaded) {                
                 Images::where("name", $img["name"])->update(array("storage_id" => 1));
+                File::delete($img["path"].$img["name"]);
+            }
                 
         }        
     }

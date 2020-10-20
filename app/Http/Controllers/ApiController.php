@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Cache;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Helpers\Common;
 use App\Jobs\LoadImages;
-use App\Jobs\DeleteTempImages;
+use App\Jobs\DeleteImages;
 use App\Jobs\DeleteImagesFromCloud;
 use App\Urls;
 use App\SubCats;
@@ -101,9 +101,7 @@ class ApiController extends Controller {
                             \Debugbar::info("Сохраняю изображения в облако...");                                
 
                             // отправляю в очередь
-                            LoadImages::dispatch($imagesArray);
-                            DeleteTempImages::dispatch($imagesArray);
-                            
+                            LoadImages::dispatch($imagesArray);                            
                             
                             // сразу добавить запись в бд
                             return response()->json([ "result" => "success", "msg" => $imageOriginalName." загружен" ]);
@@ -142,7 +140,7 @@ class ApiController extends Controller {
             \Debugbar::info($imagesArray);                                    
                         
             if ( $storage_id == 0 ) {                
-                DeleteTempImages::dispatch($imagesArray);                                                    
+                DeleteImages::dispatch($imagesArray);                                                    
                 return response()->json([ "result" => "success", "Файлы на удаление на очереди" ]);  
             }
             
@@ -621,10 +619,9 @@ class ApiController extends Controller {
                 if (Common::getFreeDiskSpace(".") < Common::MIN_FREE_DISK_SPACE_IN_GB) {
                                 
                     \Debugbar::info("Сохраняю изображения в облако...");                                
-
+                    
                     // отправляю в очередь
-                    LoadImages::dispatch($imagesArray);
-                    DeleteTempImages::dispatch($imagesArray);                                
+                    LoadImages::dispatch($imagesArray);                    
                 }
 
             }                            
