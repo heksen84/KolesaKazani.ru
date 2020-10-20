@@ -126,9 +126,7 @@ class ApiController extends Controller {
         
         $images = Images::select("name")->where("uid", $request->uid)->where("originalName", $request->image)->where("storage_id", $storage_id)->get();
 
-        if (count($images) > 0) {
-
-            \Debugbar::info("!!!");
+        if (count($images) > 0) {            
 
             $imagesArray = [];
             
