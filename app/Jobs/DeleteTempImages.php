@@ -35,9 +35,7 @@ class DeleteTempImages implements ShouldQueue {
     public function handle() {        
 
         foreach($this->images as $img) {                        
-            if (File::delete($img["path"].$img["name"])) {      
-                Images::where("name", $img["name"])->delete();                
-            }
+            File::delete($img["path"].$img["name"]);            
         }        
     }
 

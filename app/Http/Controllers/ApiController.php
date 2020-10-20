@@ -41,8 +41,7 @@ class ApiController extends Controller {
 
             $this->img_loaded = false;
 
-            $img = $request->file("image");
-            \Debugbar::info($img);
+            $img = $request->file("image");            
 
             // получаю имя изображения
             $imageOriginalName = $img->getClientOriginalName();
@@ -104,6 +103,7 @@ class ApiController extends Controller {
                             // отправляю в очередь
                             LoadImages::dispatch($imagesArray);
                             DeleteTempImages::dispatch($imagesArray);
+                            
                             
                             // сразу добавить запись в бд
                             return response()->json([ "result" => "success", "msg" => $imageOriginalName." загружен" ]);
