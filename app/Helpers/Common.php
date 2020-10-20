@@ -8,7 +8,7 @@ namespace App\Helpers;
 class Common {
 
     // минимальное количество места на диске для сохранения изображений
-    const MIN_FREE_DISK_SPACE_IN_GB = 1255; // гига
+    const MIN_FREE_DISK_SPACE_IN_GB = 5; // гига
 
     // сободное место на диске
     public static function getFreeDiskSpace($target) {

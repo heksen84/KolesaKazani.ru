@@ -19,9 +19,9 @@ use App\Places;
 use App\Transport;
 use App\RealEstate;
 use App\Images;
+use App\Adverts;
 use App\Helpers\ObsceneCensorRus;
 use App\Helpers\Sitemap;
-use App\Adverts;
 use Carbon\Carbon;
 use Validator;
 
