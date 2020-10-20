@@ -226,15 +226,7 @@
     </div>
   </div>  
   <br>
-  
-  <!--<div id="loader">
-    <div class="d-flex justify-content-center">
-      <button class="btn btn-primary" type="button" disabled>
-        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-      </button>
-    </div>
-  </div>-->
-  
+    
   <div id="categories_line">
     <div class="center">        
       <div id="categories_title" class="shadow_text"></div>    
@@ -268,7 +260,7 @@
     </div>
   <br>
 
-  @if (count($topAdverts)>0)
+  @if ( count($topAdverts) > 0 )
   <div class="row text-center">
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2">      
       <div class="titleAdverts">ТОП объявления</div>  
@@ -295,7 +287,7 @@
   </div>
   @endif
   
-  @if (count($newAdverts)>0)
+  @if ( count( $newAdverts ) > 0 )
   <div class="row text-center">
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-1">      
       <div class="titleAdverts">новые объявления</div>  
