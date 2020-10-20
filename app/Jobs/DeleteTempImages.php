@@ -11,8 +11,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Intervention\Image\ImageManagerStatic as Image;
-use Illuminate\Support\Facades\DB;
+use App\Images;
 
 class DeleteTempImages implements ShouldQueue {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -33,10 +32,12 @@ class DeleteTempImages implements ShouldQueue {
      *
      * @return void
      */
-    public function handle() {
+    public function handle() {        
 
-        foreach($this->images as $img) {                                        
-            File::delete($img["path"].$img["name"]);                                      
+        foreach($this->images as $img) {                        
+            if (File::delete($img["path"].$img["name"])) {      
+                Images::where("name", $img["name"])->delete();                
+            }
         }        
     }
 

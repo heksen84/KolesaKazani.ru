@@ -122,13 +122,35 @@ class ApiController extends Controller {
         \Debugbar::info("image name: ".$request->image);
         \Debugbar::info("uid: ".$request->uid);
 
-        $images = Images::select("name")->where("uid", $request->uid)->where("originalName", $request->image)->get();
+        $images = Images::select("name")->where("uid", $request->uid)->where("originalName", $request->image)->where("storage_id", 0)->get();
+
+        if (count($images) > 0) {
+
+            \Debugbar::info("!!!");
+
+            $imagesArray = [];
+            
+            foreach($images as $img) {            
+
+                $arrayRecord = array("path" => Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH, "name" => $img->name, "type" => "normal");
+                array_push($imagesArray, $arrayRecord);                                
+                
+                $arrayRecord = array("path" => Common::SMALL_IMAGES_LOCAL_STORAGE_PATH, "name" => $img->name, "type" => "small");
+                array_push($imagesArray, $arrayRecord);                                
+            }
+
+            \Debugbar::info($imagesArray);                                    
+                        
+            DeleteTempImages::dispatch($imagesArray);                                    
+        }
+
+        $images = Images::select("name")->where("uid", $request->uid)->where("originalName", $request->image)->where("storage_id", 1)->get();
 
         if (count($images) > 0) {
             
-            foreach($images as $img) {
-
-                $imagesArray = [];                
+            $imagesArray = [];                
+            
+            foreach($images as $img) {                
 
                 $arrayRecord = array("path" => Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH, "name" => $img->name, "type" => "normal");
                 array_push($imagesArray, $arrayRecord);                                
@@ -137,15 +159,10 @@ class ApiController extends Controller {
                 array_push($imagesArray, $arrayRecord);                
             }
 
-            \Debugbar::info($imagesArray);
+            \Debugbar::info($imagesArray);                        
+            \Debugbar::info("Удаляю картинки из облачного хранилища");
 
-            // Удаляю картинки из облачного хранилища
-            DeleteImagesFromCloud::dispatch($imagesArray);
-
-            // Удаляю картинки из хранилища на локальном диске
-            DeleteTempImages::dispatch($imagesArray);
-                            
-            return response()->json([ "result" => "success", "msg" => $request->image." удалено" ]);  
+            DeleteImagesFromCloud::dispatch($imagesArray);                                    
         }
 
         return response()->json([ "result" => "success", $request->image." отсутвует" ]);  
@@ -155,7 +172,7 @@ class ApiController extends Controller {
     // js "null" в php null
     // --------------------------------------
     private function to_php_null($value) {
-        return ($value==="null")?null:$value;
+        return ( $value === "null" ) ? null : $value;
     }
 
    // --------------------------------------

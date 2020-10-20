@@ -31,8 +31,8 @@ class DeleteImagesFromCloud implements ShouldQueue {
      */
     public function handle() {
 
-	    foreach($this->images as $img) {                
-                    
+	    foreach($this->images as $img) { 
+                               
             if (Storage::disk('s3')->delete("images/normal/".$img["name"]) && Storage::disk('s3')->delete("images/small/".$img["name"])) {
                 Images::where("name", $img["name"])->delete();
             }
