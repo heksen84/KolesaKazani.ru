@@ -234,9 +234,9 @@
           @foreach($categories as $category)
         	  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 col_item" id="{{ $category['id'] }}">                      	   
               @if ($location==="/")
-                <a href="/c/{{ $category['url'] }}" class="url"><div class="category_item text-left"><img src="/public/ico/star_01.svg" width="22" style="margin-right:10px"/>{{ $category["name"] }}</div></a>
+                <a href="/c/{{ $category['url'] }}" class="url"><div class="category_item">{{ $category["name"] }}</div></a>
               @else
-                <a href="/{{ $location }}/c/{{ $category['url'] }}" class="url"><div class="category_item text-left"><img src="/public/ico/star_01.svg" width="22" style="margin-right:10px"/>{{ $category["name"] }}</div></a>
+                <a href="/{{ $location }}/c/{{ $category['url'] }}" class="url"><div class="category_item">{{ $category["name"] }}</div></a>
               @endif
         	  </div>
           @endforeach
@@ -248,9 +248,9 @@
             @foreach($subcategories as $subcategory)
               <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 hide" data-category-id="{{ $subcategory['category_id'] }}">
               @if ($location==="/")
-                <a href="/c/{{ $subcategory['category_url']}}/{{ $subcategory['url'] }}" class="url"><div class="category_item subcategory text-left"><img src="/public/ico/star_01.svg" width="22" style="margin-right:10px"/>{{ $subcategory["name"] }}</div></a>
+                <a href="/c/{{ $subcategory['category_url']}}/{{ $subcategory['url'] }}" class="url"><div class="category_item subcategory">{{ $subcategory["name"] }}</div></a>
               @else
-                <a href="/{{ $location }}/c/{{ $subcategory['category_url'] }}/{{ $subcategory['url'] }}" class="url"><div class="category_item subcategory text-left"><img src="/public/ico/star_01.svg" width="22" style="margin-right:10px"/>{{ $subcategory["name"] }}</div></a>
+                <a href="/{{ $location }}/c/{{ $subcategory['category_url'] }}/{{ $subcategory['url'] }}" class="url"><div class="category_item subcategory">{{ $subcategory["name"] }}</div></a>
               @endif
               </div>
             @endforeach

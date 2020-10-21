@@ -294,8 +294,7 @@ class ApiController extends Controller {
         // поля которым требуется приведение к типу null
         $subcategory = $this->to_php_null($data["adv_subcategory"]);        
         $price = $this->to_php_null($data["adv_price"]);
-        
-                
+                        
      	try {
             
             $advert = new Adverts();
