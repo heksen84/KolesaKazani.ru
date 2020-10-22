@@ -5,8 +5,8 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-use App\Images;
 use App\Helpers\Common;
+use App\Images;
 
 class DeleteAllImages extends Command
 {
