@@ -63,19 +63,19 @@ class ApiController extends Controller {
                         $newFilename = str_random(16).".".$img->getClientOriginalExtension();
                                                                         
                         // сохраняю изображение
-                        if ($imgLib->save(Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH.$newFilename)) {
+                        if ($imgLib->save(storage_path().Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH.$newFilename)) {
 
                             // поменять путь исходя из оставшегося места на диске
-                            $arrayRecord = array("path" => Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH, "name" => $newFilename, "type" => "normal");
+                            $arrayRecord = array("path" => storage_path().Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH, "name" => $newFilename, "type" => "normal");
                             array_push($imagesArray, $arrayRecord);          
                             $this->img_saved = true;                                  
                         }                                                                                                        
 
                         // сохраняю изображение
-                        if ($imgLib->save(Common::SMALL_IMAGES_LOCAL_STORAGE_PATH.$newFilename) && $this->img_saved === true) {
+                        if ($imgLib->save(storage_path().Common::SMALL_IMAGES_LOCAL_STORAGE_PATH.$newFilename) && $this->img_saved === true) {
 
                             // поменять путь исходя из оставшегося места на диске
-                            $arrayRecord = array("path" => Common::SMALL_IMAGES_LOCAL_STORAGE_PATH, "name" => $newFilename, "type" => "small");
+                            $arrayRecord = array("path" => storage_path().Common::SMALL_IMAGES_LOCAL_STORAGE_PATH, "name" => $newFilename, "type" => "small");
                             array_push($imagesArray, $arrayRecord);          
                             $this->img_saved = true;
                         } 
