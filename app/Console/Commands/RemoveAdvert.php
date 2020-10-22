@@ -60,11 +60,11 @@ class RemoveAdvert extends Command
 
             if ($img->storage_id===0) {                    
                     
-                if (File::delete(Common::SMALL_IMAGES_LOCAL_STORAGE_PATH.$img->name)) 
-                    $this->info(Common::SMALL_IMAGES_LOCAL_STORAGE_PATH.$img->name." удалён!");
+                if (File::delete(storage_path().Common::SMALL_IMAGES_LOCAL_PATH.$img->name)) 
+                    $this->info(storage_path().Common::SMALL_IMAGES_LOCAL_PATH.$img->name." удалён!");
 
-                    if (File::delete(Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH.$img->name)) 
-                        $this->info(Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH.$img->name." удалён!");
+                    if (File::delete(storage_path().Common::NORMAL_IMAGES_LOCAL_PATH.$img->name)) 
+                        $this->info(storage_path().Common::NORMAL_IMAGES_LOCAL_PATH.$img->name." удалён!");
             }
 
             if ($img->storage_id===1) {

@@ -9,8 +9,8 @@ class Common {
 
     // минимальное количество места на диске для сохранения изображений
     const MIN_FREE_DISK_SPACE_IN_GB = 5; // гига    
-    const SMALL_IMAGES_LOCAL_STORAGE_PATH  = "/app/images/small/";
-    const NORMAL_IMAGES_LOCAL_STORAGE_PATH = "/app/images/normal/";
+    const SMALL_IMAGES_LOCAL_PATH  = "/app/images/small/";
+    const NORMAL_IMAGES_LOCAL_PATH = "/app/images/normal/";
 
     // сободное место на диске
     public static function getFreeDiskSpace($target) {        

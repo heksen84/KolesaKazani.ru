@@ -50,10 +50,10 @@ class RemoveLostImages extends Command
 
             foreach($images->get() as $img) {
                             
-                $arrayRecord = array("path" => Common::SMALL_IMAGES_LOCAL_STORAGE_PATH, "name" => $img->name, "type" => "normal");
+                $arrayRecord = array("path" => storage_path().Common::SMALL_IMAGES_LOCAL_PATH, "name" => $img->name, "type" => "normal");
                 array_push($imagesArray, $arrayRecord);                
                 
-                $arrayRecord = array("path" => Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH, "name" => $img->name, "type" => "small");
+                $arrayRecord = array("path" => storage_path().Common::NORMAL_IMAGES_LOCAL_PATH, "name" => $img->name, "type" => "small");
                 array_push($imagesArray, $arrayRecord);                                                                
             }
 
