@@ -11,9 +11,10 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use App\Images;
+use Intervention\Image\ImageManagerStatic as Image;
 
-class DeleteImages implements ShouldQueue {
+
+class ResizeImages implements ShouldQueue {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private $images;        
@@ -32,12 +33,20 @@ class DeleteImages implements ShouldQueue {
      *
      * @return void
      */
-    public function handle() {        
+    public function handle() {
 
-        foreach($this->images as $img) {                        
-            if (File::delete($img["path"].$img["name"]))
-                Images::where("name", $img["name"])->delete();
+        foreach($this->images as $img) {
+            
+            // беру из локальной папки
+            $image = Image::make($img["path"].$img["name"]);            
+            
+            // и преобразую
+            if ($img["type"] === "normal")
+                $image->fit(800,600)->save($img["path"].$img["name"]);
+
+            if ($img["type"] === "small")
+                $image->fit(250,250)->save($img["path"].$img["name"]);
+                
         }        
     }
-
 }

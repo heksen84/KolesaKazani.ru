@@ -10,6 +10,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use App\Helpers\Common;
 use App\Jobs\LoadImages;
 use App\Jobs\DeleteImages;
+use App\Jobs\ResizeImages;
 use App\Jobs\DeleteImagesFromCloud;
 use App\Urls;
 use App\SubCats;
@@ -28,7 +29,7 @@ use Validator;
 class ApiController extends Controller {
 
     private $region_id = null;
-    private $img_loaded = false;
+    private $img_saved = false;
         
     // --------------------------------------
     // загрузка изображения на лету
@@ -39,7 +40,7 @@ class ApiController extends Controller {
 
         if ($request->file("image")) {            
 
-            $this->img_loaded = false;
+            $this->img_saved = false;
 
             $img = $request->file("image");            
 
@@ -61,25 +62,28 @@ class ApiController extends Controller {
                         // формирую рандомное имя
                         $newFilename = str_random(16).".".$img->getClientOriginalExtension();
                                                                         
-                        // меняю размер и сохраняю изображение (800x600)
-                        if ($imgLib->fit(800, 600)->save(Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH.$newFilename)) {
+                        // сохраняю изображение
+                        if ($imgLib->save(Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH.$newFilename)) {
 
                             // поменять путь исходя из оставшегося места на диске
                             $arrayRecord = array("path" => Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH, "name" => $newFilename, "type" => "normal");
                             array_push($imagesArray, $arrayRecord);          
-                            $this->img_loaded = true;                                  
+                            $this->img_saved = true;                                  
                         }                                                                                                        
 
-                        // меняю размер и сохраняю изображение (250x250)
-                        if ($imgLib->fit(250, 250)->save(Common::SMALL_IMAGES_LOCAL_STORAGE_PATH.$newFilename) && $this->img_loaded === true) {
+                        // сохраняю изображение
+                        if ($imgLib->save(Common::SMALL_IMAGES_LOCAL_STORAGE_PATH.$newFilename) && $this->img_saved === true) {
 
                             // поменять путь исходя из оставшегося места на диске
                             $arrayRecord = array("path" => Common::SMALL_IMAGES_LOCAL_STORAGE_PATH, "name" => $newFilename, "type" => "small");
                             array_push($imagesArray, $arrayRecord);          
-                            $this->img_loaded = true;
+                            $this->img_saved = true;
                         } 
 
-                        if ($this->img_loaded) {
+                        if ($this->img_saved) {
+
+                            // преобразую размеры
+                            ResizeImages::dispatch($imagesArray);
 
                             \Debugbar::info("Пишу в таблицу");
 
@@ -554,7 +558,7 @@ class ApiController extends Controller {
            if ($request->file("images")) {                
 
                 // сбрасываю статус загрузки изображений
-                $this->img_loaded = false;
+                $this->img_saved = false;
                 
                 // массив данных об изображениях
                 $imagesArray = [];
@@ -580,24 +584,27 @@ class ApiController extends Controller {
                         $newFilename = str_random(16).".".$img->getClientOriginalExtension();
                                                                         
                         // меняю размер и сохраняю изображение (800x600)
-                        if ($imgLib->fit(800, 600)->save(Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH.$newFilename)) {
+                        if ($imgLib->save(Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH.$newFilename)) {
 
                             // поменять путь исходя из оставшегося места на диске
                             $arrayRecord = array("path" => Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH, "name" => $newFilename, "type" => "normal");
                             array_push($imagesArray, $arrayRecord);          
-                            $this->img_loaded = true;                                  
+                            $this->img_saved = true;                                  
                         }                                                                                                        
 
                         // меняю размер и сохраняю изображение (250x250)
-                        if ($imgLib->fit(250, 250)->save(Common::SMALL_IMAGES_LOCAL_STORAGE_PATH.$newFilename) && $this->img_loaded === true) {
+                        if ($imgLib->save(Common::SMALL_IMAGES_LOCAL_STORAGE_PATH.$newFilename) && $this->img_saved === true) {
 
                             // поменять путь исходя из оставшегося места на диске
                             $arrayRecord = array("path" => Common::SMALL_IMAGES_LOCAL_STORAGE_PATH, "name" => $newFilename, "type" => "small");
                             array_push($imagesArray, $arrayRecord);          
-                            $this->img_loaded = true;
+                            $this->img_saved = true;
                         } 
 
-                        if ($this->img_loaded) {
+                        if ($this->img_saved) {
+
+                            // преобразую размеры
+                            ResizeImages::dispatch($imagesArray);
 
                             // записываю в таблицу
                             $imgRecord = new Images();
