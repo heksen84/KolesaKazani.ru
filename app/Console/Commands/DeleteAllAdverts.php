@@ -13,6 +13,8 @@ use App\Complaints;
 use App\adex_color;
 use App\adex_srochno;
 use App\adex_top;
+use App\Helpers\Common;
+use Illuminate\Support\Facades\File;
 
 
 /*
@@ -61,14 +63,24 @@ class DeleteAllAdverts extends Command {
             
             // грохаю картинки из хранилища
             foreach(Images::all() as $img) {
-                                                
-                if (Storage::disk('s3')->delete("images/normal/".$img->name)) {
-                    $this->info("images/normal/".$img->name." удалён!");                            
+
+                if ($img->storage_id===0) {                    
+                    
+                    if (File::delete(Common::SMALL_IMAGES_LOCAL_STORAGE_PATH.$img->name)) 
+                        $this->info(Common::SMALL_IMAGES_LOCAL_STORAGE_PATH.$img->name." удалён!");
+
+                        if (File::delete(Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH.$img->name)) 
+                            $this->info(Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH.$img->name." удалён!");
                 }
-                
-                if (Storage::disk('s3')->delete("images/small/".$img->name)) {
-                    $this->info("images/small/".$img->name." удалён!");                            
-                }                
+
+                if ($img->storage_id===1) {
+                                                                                    
+                    if (Storage::disk('s3')->delete("images/normal/".$img->name))
+                        $this->info("images/normal/".$img->name." удалён!");                            
+                                    
+                    if (Storage::disk('s3')->delete("images/small/".$img->name))
+                        $this->info("images/small/".$img->name." удалён!");
+                }
             }	
 
             Images::truncate();

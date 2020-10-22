@@ -4,8 +4,9 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
-use App\Jobs\DeleteTempImages;
+use App\Jobs\DeleteImages;
 use App\Jobs\DeleteImagesFromCloud;
+use App\Helpers\Common;
 use App\Images;
 
 class RemoveLostImages extends Command
@@ -45,29 +46,28 @@ class RemoveLostImages extends Command
 
         if (count($images->get()) > 0) {
                         
+            $imagesArray = [];
+
             foreach($images->get() as $img) {
-
-                $imagesArray = [];
-
-                $normalFileNamePath = storage_path().'/app/images/normal/';                        
-                $arrayRecord = array("path" => $normalFileNamePath, "name" => $img->name, "type" => "normal");
+                            
+                $arrayRecord = array("path" => Common::SMALL_IMAGES_LOCAL_STORAGE_PATH, "name" => $img->name, "type" => "normal");
                 array_push($imagesArray, $arrayRecord);                
-
-                $smallFileNamePath = storage_path().'/app/images/small/';        
-                $arrayRecord = array("path" => $smallFileNamePath, "name" => $img->name, "type" => "small");
-                array_push($imagesArray, $arrayRecord);                                                
-
-                // Удаляю картинки из облачного хранилища
-                DeleteImagesFromCloud::dispatch($imagesArray);
-
-                // Удаляю картинки из хранилища на локальном диске
-                DeleteTempImages::dispatch($imagesArray);
-
-                // удаляю изображение из таблицы
-                $images->delete();
-
-                $this->info("выполнено (executed)");
+                
+                $arrayRecord = array("path" => Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH, "name" => $img->name, "type" => "small");
+                array_push($imagesArray, $arrayRecord);                                                                
             }
+
+            // Удаляю картинки из облачного хранилища
+            DeleteImagesFromCloud::dispatch($imagesArray);
+
+            // Удаляю картинки из хранилища на локальном диске
+            DeleteImages::dispatch($imagesArray);
+
+            // удаляю изображение из таблицы
+            $images->delete();
+
+            $this->info("выполнено (executed)");
+
         }
         else 
             $this->info("нет потерянных изображений (NoLostImages)");

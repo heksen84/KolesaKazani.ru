@@ -39,8 +39,10 @@ class EnableModeration extends Command
     public function handle() {
 
 	if  (Cache::get('moderation')===false) {
-		Cache::put('moderation', true);
-	        $this->info("Модерация включена");
+        
+        Cache::put('moderation', true);
+        $this->info("Модерация включена");
+        
 	}
 
     }

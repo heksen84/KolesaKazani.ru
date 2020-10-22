@@ -114,6 +114,7 @@ class ApiController extends Controller {
 
     // --------------------------------------
     // удаление изображения на лету
+    // только одна картинка!
     // рекурсивная функция
     // --------------------------------------
     public function deleteImage(Request $request, $storage_id) {

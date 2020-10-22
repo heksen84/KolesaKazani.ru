@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use App\Adverts;
 use App\Images;
 use App\Urls;
@@ -15,6 +16,7 @@ use App\users;
 use App\adex_color;
 use App\adex_srochno;
 use App\adex_top;
+use App\Helpers\Common;
 
 
 /*
@@ -76,13 +78,24 @@ class DeleteExpiredAdverts extends Command
         
         foreach( $images as $img ) {
 
-            if (Storage::disk('s3')->delete("images/normal/".$img->name)) {
-                $this->info("images/normal/".$img->name." удалён!");                            
+            if ($img->storage_id===0) {                    
+                    
+                if (File::delete(Common::SMALL_IMAGES_LOCAL_STORAGE_PATH.$img->name)) 
+                    $this->info(Common::SMALL_IMAGES_LOCAL_STORAGE_PATH.$img->name." удалён!");
+
+                    if (File::delete(Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH.$img->name)) 
+                        $this->info(Common::NORMAL_IMAGES_LOCAL_STORAGE_PATH.$img->name." удалён!");
             }
-            
-            if (Storage::disk('s3')->delete("images/small/".$img->name)) {
-                $this->info("images/small/".$img->name." удалён!");                            
-            }            
+
+            if ($img->storage_id===1) {
+                                                                                
+                if (Storage::disk('s3')->delete("images/normal/".$img->name))
+                    $this->info("images/normal/".$img->name." удалён!");                            
+                                
+                if (Storage::disk('s3')->delete("images/small/".$img->name))
+                    $this->info("images/small/".$img->name." удалён!");
+            }
+
         }	
         
         // native SQL
