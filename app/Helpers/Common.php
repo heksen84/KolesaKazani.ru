@@ -27,6 +27,14 @@ class Common {
         return "(SELECT concat(url,'/small/', name) FROM `images` JOIN storages ON storages.id = images.storage_id WHERE images.advert_id = ".$advert_id." LIMIT 1) as imageName";                        
     }       
 
+    public static function getNormalImagesPath() { 
+        return storage_path().self::NORMAL_IMAGES_LOCAL_PATH; 
+    }
+
+    public static function getSmallImagesPath() { 
+        return storage_path().self::SMALL_IMAGES_LOCAL_PATH; 
+    }
+
     public static function getVipPrice() { return 100; }
     public static function getSrochnoTorgPrice() { return 200; }
     public static function getColorPrice() { return 300; }

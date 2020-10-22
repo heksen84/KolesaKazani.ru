@@ -63,19 +63,19 @@ class ApiController extends Controller {
                         $newFilename = str_random(16).".".$img->getClientOriginalExtension();
                                                                         
                         // сохраняю изображение
-                        if ($imgLib->save(storage_path().Common::NORMAL_IMAGES_LOCAL_PATH.$newFilename)) {
+                        if ($imgLib->save(Common::getNormalImagesPath().$newFilename)) {
 
                             // поменять путь исходя из оставшегося места на диске
-                            $arrayRecord = array("path" => storage_path().Common::NORMAL_IMAGES_LOCAL_PATH, "name" => $newFilename, "type" => "normal");
+                            $arrayRecord = array("path" => Common::getNormalImagesPath(), "name" => $newFilename, "type" => "normal");
                             array_push($imagesArray, $arrayRecord);          
                             $this->img_saved = true;                                  
                         }                                                                                                        
 
-                        // сохраняю изображение
-                        if ($imgLib->save(storage_path().Common::SMALL_IMAGES_LOCAL_PATH.$newFilename) && $this->img_saved === true) {
+                        // сохраняю изображение                        
+                        if ($imgLib->save(Common::getSmallImagesPath().$newFilename) && $this->img_saved === true) {
 
                             // поменять путь исходя из оставшегося места на диске
-                            $arrayRecord = array("path" => storage_path().Common::SMALL_IMAGES_LOCAL_PATH, "name" => $newFilename, "type" => "small");
+                            $arrayRecord = array("path" => Common::getSmallImagesPath(), "name" => $newFilename, "type" => "small");
                             array_push($imagesArray, $arrayRecord);          
                             $this->img_saved = true;
                         } 
@@ -135,10 +135,10 @@ class ApiController extends Controller {
             
             foreach($images as $img) {            
 
-                $arrayRecord = array("path" => storage_path().Common::NORMAL_IMAGES_LOCAL_PATH, "name" => $img->name, "type" => "normal");
+                $arrayRecord = array("path" => Common::getNormalImagesPath(), "name" => $img->name, "type" => "normal");
                 array_push($imagesArray, $arrayRecord);                                
                 
-                $arrayRecord = array("path" => storage_path().Common::SMALL_IMAGES_LOCAL_PATH, "name" => $img->name, "type" => "small");
+                $arrayRecord = array("path" => Common::getSmallImagesPath(), "name" => $img->name, "type" => "small");
                 array_push($imagesArray, $arrayRecord);                                
             }
 
@@ -584,19 +584,19 @@ class ApiController extends Controller {
                         $newFilename = str_random(16).".".$img->getClientOriginalExtension();
                                                                         
                         // меняю размер и сохраняю изображение (800x600)
-                        if ($imgLib->save(storage_path().Common::NORMAL_IMAGES_LOCAL_PATH.$newFilename)) {
+                        if ($imgLib->save(Common::getNormalImagesPath().$newFilename)) {
 
                             // поменять путь исходя из оставшегося места на диске
-                            $arrayRecord = array("path" => storage_path().Common::NORMAL_IMAGES_LOCAL_PATH, "name" => $newFilename, "type" => "normal");
+                            $arrayRecord = array("path" => Common::getNormalImagesPath(), "name" => $newFilename, "type" => "normal");
                             array_push($imagesArray, $arrayRecord);          
                             $this->img_saved = true;                                  
                         }                                                                                                        
 
                         // меняю размер и сохраняю изображение (250x250)
-                        if ($imgLib->save(storage_path().Common::SMALL_IMAGES_LOCAL_PATH.$newFilename) && $this->img_saved === true) {
+                        if ($imgLib->save(Common::getSmallImagesPath().$newFilename) && $this->img_saved === true) {
 
                             // поменять путь исходя из оставшегося места на диске
-                            $arrayRecord = array("path" => storage_path().Common::SMALL_IMAGES_LOCAL_PATH, "name" => $newFilename, "type" => "small");
+                            $arrayRecord = array("path" => Common::getSmallImagesPath(), "name" => $newFilename, "type" => "small");
                             array_push($imagesArray, $arrayRecord);          
                             $this->img_saved = true;
                         } 

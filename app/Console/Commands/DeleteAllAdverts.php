@@ -66,11 +66,11 @@ class DeleteAllAdverts extends Command {
 
                 if ($img->storage_id===0) {                    
                     
-                    if (File::delete(storage_path().Common::SMALL_IMAGES_LOCAL_PATH.$img->name)) 
-                        $this->info(storage_path().Common::SMALL_IMAGES_LOCAL_PATH.$img->name." удалён!");
+                    if (File::delete(Common::getSmallImagesPath().$img->name)) 
+                        $this->info(Common::getSmallImagesPath().$img->name." удалён!");
 
-                        if (File::delete(storage_path().Common::NORMAL_IMAGES_LOCAL_PATH.$img->name)) 
-                            $this->info(storage_path().Common::NORMAL_IMAGES_LOCAL_PATH.$img->name." удалён!");
+                        if (File::delete(Common::getNormalImagesPath().$img->name)) 
+                            $this->info(Common::getNormalImagesPath().$img->name." удалён!");
                 }
 
                 if ($img->storage_id===1) {
