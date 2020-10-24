@@ -80,10 +80,7 @@ class ApiController extends Controller {
                             $this->img_saved = true;
                         } 
 
-                        if ($this->img_saved) {
-
-                            // преобразую размеры
-                            ResizeImages::dispatch($imagesArray);
+                        if ($this->img_saved) {                            
 
                             \Debugbar::info("Пишу в таблицу");
 
@@ -97,19 +94,22 @@ class ApiController extends Controller {
                             $imgRecord->save();
                         }
                         else
-                            return response()->json([ "error" => "error", "msg" => "невозможно загрузить изображение" ]);
+                            return response()->json([ "error" => "error", "msg" => "невозможно сохранить изображение" ]);
 
-                        // Если свободного места осталось мало, то сохраняю в облако и удаляю временные изображения
-                        if (Common::getFreeDiskSpace(".") < Common::MIN_FREE_DISK_SPACE_IN_GB) {
+                            // преобразую размеры
+                            ResizeImages::dispatch($imagesArray);
+
+                            // Если свободного места осталось мало, то сохраняю в облако и удаляю временные изображения
+                            if (Common::getFreeDiskSpace(".") < Common::MIN_FREE_DISK_SPACE_IN_GB) {
                                 
-                            \Debugbar::info("Сохраняю изображения в облако...");                                
+                                \Debugbar::info("Сохраняю изображения в облако...");                                
 
-                            // отправляю в очередь
-                            LoadImages::dispatch($imagesArray);                            
+                                // отправляю в очередь
+                                LoadImages::dispatch($imagesArray);                            
                             
-                            // сразу добавить запись в бд
-                            return response()->json([ "result" => "success", "msg" => $imageOriginalName." загружен" ]);
-                        }                                                
+                                // сразу добавить запись в бд
+                                return response()->json([ "result" => "success", "msg" => $imageOriginalName." загружен" ]);
+                            }                                                
             }
         }
 
@@ -602,10 +602,7 @@ class ApiController extends Controller {
                         } 
 
                         if ($this->img_saved) {
-
-                            // преобразую размеры
-                            ResizeImages::dispatch($imagesArray);
-
+ 
                             // записываю в таблицу
                             $imgRecord = new Images();
                             $imgRecord->advert_id = $advert->id;
@@ -621,6 +618,9 @@ class ApiController extends Controller {
                     }                                           
 
                 } // end foreach
+
+                // преобразую размеры
+                ResizeImages::dispatch($imagesArray);
 
                 // Если свободного места осталось мало, то сохраняю в облако и удаляю временные изображения
                 if (Common::getFreeDiskSpace(".") < Common::MIN_FREE_DISK_SPACE_IN_GB) {
