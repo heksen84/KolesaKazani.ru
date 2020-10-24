@@ -200,7 +200,8 @@ return [
         'ObsceneCensorRus' => \App\Helpers\ObsceneCensorRus::class,
         'Petrovich' => \App\Helpers\Petrovich\Petrovich::class,
     	'Helper' => App\Helpers\Helper::class,
-	    'Common' => App\Helpers\Common::class,
+        'Common' => App\Helpers\Common::class,
+	'InstaLite' => App\Helpers\InstaLite::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
@@ -235,8 +236,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-	    'Debugbar' => Barryvdh\Debugbar\Facade::class,
-	    'HTMLMin' => HTMLMin\HTMLMin\Facades\HTMLMin::class
+	'Debugbar' => Barryvdh\Debugbar\Facade::class,
+	'HTMLMin' => HTMLMin\HTMLMin\Facades\HTMLMin::class
 
     ],
 
