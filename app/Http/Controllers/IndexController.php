@@ -108,7 +108,8 @@ class IndexController extends Controller {
 			
 				$petrovich = new Petrovich(Petrovich::GENDER_MALE);
 				$sklonResult = $petrovich->firstname($placeArr[0]->name, 0);
-				$sklonResultForDesc = $petrovich->firstname($placeArr[0]->name, 4);
+				//$sklonResultForDesc = $petrovich->firstname($placeArr[0]->name, 4);
+				$sklonResultForDesc = $placeArr[0]->name;
 
 				//$title = $cm_title.$sklonResult;
 				$title = $sklonResult." объявления";
