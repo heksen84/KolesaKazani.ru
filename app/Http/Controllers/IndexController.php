@@ -63,6 +63,7 @@ class IndexController extends Controller {
 			$description = $cm_description."Казахстане";
 			$keywords = $cm_keywords."Казахстан";
 			$locationName = "Казахстан";
+			$place = "Казахстана";
 		}
 
 		// Регион
