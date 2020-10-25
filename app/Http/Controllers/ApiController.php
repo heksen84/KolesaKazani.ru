@@ -539,7 +539,8 @@ class ApiController extends Controller {
             // Публикую объявление сходу, без модерации
             $advert->public = true;
 	        $advert->startDate = Carbon::now()->toDateTimeString();
-            $advert->finishDate = Carbon::now()->add(30, 'day')->toDateTimeString(); // добавляю 30 дней
+            //$advert->finishDate = Carbon::now()->add(30, 'day')->toDateTimeString(); // добавляю 30 дней
+	    $advert->finishDate = Carbon::now()->add(60, 'day')->toDateTimeString(); // 60 дней размещения
             
             // Сохраняю объявление
             $advert->save();
