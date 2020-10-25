@@ -63,7 +63,7 @@ class IndexController extends Controller {
 			$description = $cm_description."Казахстане";
 			$keywords = $cm_keywords."Казахстан";
 			$locationName = "Казахстан";
-			$place = "Казахстана";
+			$sklonPlace = "Казахстана";
 		}
 
 		// Регион
@@ -84,7 +84,7 @@ class IndexController extends Controller {
 				$regionName = $regionArr[0]->name;
 				$regionName = trim(str_replace("обл.", "", $regionName));				
 				$sklonResult = $petrovich->firstname($regionName, 0)." области";			
-				$place = $sklonResult;	
+				$sklonPlace = $sklonResult;	
 				$title = $cm_title.$sklonResult;
 				$description = $cm_description.$sklonResult;
 				$keywords = $cm_keywords.$regionName." область";
@@ -108,7 +108,7 @@ class IndexController extends Controller {
 			if ($placeArr->count() > 0) {
 			
 				$petrovich = new Petrovich(Petrovich::GENDER_MALE);
-				$place = $petrovich->firstname($placeArr[0]->name, 0);
+				$sklonPlace = $petrovich->firstname($placeArr[0]->name, 0);
 				$sklonResult = $placeArr[0]->name;
 				$sklonResultForDesc = $petrovich->firstname($placeArr[0]->name, 4);								
 				$title = $sklonResult." объявления";
@@ -191,7 +191,7 @@ class IndexController extends Controller {
 		->with("auth", Auth::user()?1:0)
 		->with("title", $title)
 		->with("sklonResult", $sklonResult)
-		->with("place", $place)
+		->with("sklonPlace", $sklonPlace)
 		->with("description", $description)
 		->with("keywords", $keywords)
 		->with("regions", $regions)
@@ -224,9 +224,9 @@ class IndexController extends Controller {
 	// найти по строке
 	// --------------------------------------------------------------
 	public function getResultsBySearchString(Request $request) {			
-		
+				
 		$regionData = $this->getRegionData($request->region); 
-		$placeData = $this->getPlaceData($request->place);
+		$placeData = $this->getPlaceData($request->place);		
 
 //		\Debugbar::info($request->searchString);
 		
@@ -238,6 +238,8 @@ class IndexController extends Controller {
 
 		if ($regionData && $placeData)
 			$whereStr = "MATCH (title) AGAINST('".$request->searchString."' IN BOOLEAN MODE) AND adv.region_id=".$regionData->region_id." AND adv.city_id=".$placeData->city_id;		
+
+			
         
         $items = DB::table("adverts as adv")->select(
 			"urls.url",
