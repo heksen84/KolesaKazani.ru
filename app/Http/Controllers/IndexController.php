@@ -82,8 +82,8 @@ class IndexController extends Controller {
 				$petrovich = new Petrovich(Petrovich::GENDER_FEMALE);					
 				$regionName = $regionArr[0]->name;
 				$regionName = trim(str_replace("обл.", "", $regionName));				
-				$sklonResult = $petrovich->firstname($regionName, 0)." области";
-				
+				$sklonResult = $petrovich->firstname($regionName, 0);
+				$sklonResult = $petrovich->firstname($regionName, 0)." области";				
 				$title = $cm_title.$sklonResult;
 				$description = $cm_description.$sklonResult;
 				$keywords = $cm_keywords.$regionName." область";
@@ -110,7 +110,8 @@ class IndexController extends Controller {
 				$sklonResult = $petrovich->firstname($placeArr[0]->name, 0);
 				$sklonResultForDesc = $petrovich->firstname($placeArr[0]->name, 4);
 
-				$title = $cm_title.$sklonResult;
+				//$title = $cm_title.$sklonResult;
+				$title = $sklonResult." объявления";
 				$description = $cm_description.$sklonResultForDesc;
 				$keywords = $cm_keywords.$locationName;
 			
