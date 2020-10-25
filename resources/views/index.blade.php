@@ -200,7 +200,7 @@
         <div id="logo_block">
           <a href="/">
             <div id="logo_block_text">{{ config('app.name') }}</div>
-              <h1 id="logo_block_description">Объявления {{ $sklonResult }}</h1>
+              <h1 id="logo_block_description">Объявления {{ $place }}</h1>
             </div>
           </a>
         </div>
@@ -209,7 +209,7 @@
         
       <!-- компонент поиска по сайту -->
       <form action="/search" method="get">
-        <input type="text" id="search_string" placeholder="поиск по объявлениям {{ $sklonResult }}" name="searchString" required/>
+        <input type="text" id="search_string" placeholder="поиск по объявлениям {{ $place }}" name="searchString" required/>
         <input type="text" name="region" value="{{ $urlRegion }}" hidden/>
         <input type="text" name="place" value="{{ $urlPlace }}" hidden/>
         <button id="button_search" type="submit" title="Найти что требуется">найти</button>

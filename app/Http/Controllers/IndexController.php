@@ -82,8 +82,8 @@ class IndexController extends Controller {
 				$petrovich = new Petrovich(Petrovich::GENDER_FEMALE);					
 				$regionName = $regionArr[0]->name;
 				$regionName = trim(str_replace("обл.", "", $regionName));				
-				$sklonResult = $petrovich->firstname($regionName, 0);
-				$sklonResult = $petrovich->firstname($regionName, 0)." области";				
+				$sklonResult = $petrovich->firstname($regionName, 0)." области";			
+				$place = $sklonResult;	
 				$title = $cm_title.$sklonResult;
 				$description = $cm_description.$sklonResult;
 				$keywords = $cm_keywords.$regionName." область";
@@ -107,11 +107,9 @@ class IndexController extends Controller {
 			if ($placeArr->count() > 0) {
 			
 				$petrovich = new Petrovich(Petrovich::GENDER_MALE);
-				//$sklonResult = $petrovich->firstname($placeArr[0]->name, 0);
+				$place = $petrovich->firstname($placeArr[0]->name, 0);
 				$sklonResult = $placeArr[0]->name;
-				$sklonResultForDesc = $petrovich->firstname($placeArr[0]->name, 4);				
-
-				//$title = $cm_title.$sklonResult;
+				$sklonResultForDesc = $petrovich->firstname($placeArr[0]->name, 4);								
 				$title = $sklonResult." объявления";
 				$description = $cm_description.$sklonResultForDesc;
 				$keywords = $cm_keywords.$locationName;
@@ -192,6 +190,7 @@ class IndexController extends Controller {
 		->with("auth", Auth::user()?1:0)
 		->with("title", $title)
 		->with("sklonResult", $sklonResult)
+		->with("place", $place)
 		->with("description", $description)
 		->with("keywords", $keywords)
 		->with("regions", $regions)
