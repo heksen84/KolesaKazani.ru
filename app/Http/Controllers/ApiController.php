@@ -632,7 +632,8 @@ class ApiController extends Controller {
 
                 } // end foreach                
 
-                if ( count($imagesArray) > 0) {
+		// FIXME: проверка нужна?
+                if ( count($imagesArray) > 0) { 
 
                     PostSocials::dispatch($imagesArray, $title, $category, $text, $price, $phone, $region_id, $city_id);
 
