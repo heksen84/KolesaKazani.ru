@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Helpers\InstaLite;
+use App\Socials;
 
 
 class PostSocials implements ShouldQueue {
@@ -49,30 +50,36 @@ class PostSocials implements ShouldQueue {
      */
     public function handle() {
 
-        $phone_str="";
-        $price_str="";
-        
-        if ($this->phone) {
+        $result = Socials::select("insta_login", "insta_pass", "hash_tag")->where("place_id", $this->place_id)->limit(1)->get();         
+
+        if (count($result) > 0) {
             
-            $this->phone = str_replace('(', '', $this->phone);
-            $this->phone = str_replace(')', '', $this->phone);
-            $this->phone = str_replace('-', '', $this->phone);
-            $this->phone = str_replace(' ', '', $this->phone);        
+            $instagram = new InstaLite($result[0]->insta_login, $result[0]->insta_pass);
 
-            $phone_str = "\nНомер: +7".$this->phone;
-        }
-
-        if ($this->price_str)
-            $price_str = "\nЦена: ".$this->price;        
-
-        $instagram = new InstaLite("test_site68", "morphosis19");
+            $phone_str="";
+            $price_str="";
         
-        if ( count($this->images) > 0 ) {
+            if ($this->phone) {
             
-            foreach($this->images as $img) {        
-                $instagram->uploadPhoto($img["path"].$img["name"], "\n".$this->title."\n\n".$this->text.$price_str.$phone_str."\n\n\n#ilbo_aksu");
-                break;  // ПОКА ТОЛЬКО ОДНО ФОТО
+                $this->phone = str_replace('(', '', $this->phone);
+                $this->phone = str_replace(')', '', $this->phone);
+                $this->phone = str_replace('-', '', $this->phone);
+                $this->phone = str_replace(' ', '', $this->phone);        
+
+                $phone_str = "\nНомер: +7".$this->phone;
             }
+
+            if ($this->price)
+                $price_str = "\nЦена: ".$this->price;                                            
+        
+            if ( count($this->images) > 0 ) {
+
+                foreach($this->images as $img) {        
+                    $instagram->uploadPhoto($img["path"].$img["name"], $this->title."\n".$this->text."\n".$price_str."\n".$phone_str."\n\n".$result[0]->hash_tag);
+                    break;  // ПОКА ТОЛЬКО ОДНО ФОТО
+                }
+            }
+
         }
 
     }
