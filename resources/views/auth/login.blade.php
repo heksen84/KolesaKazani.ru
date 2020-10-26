@@ -38,7 +38,7 @@
                             </div>
                         </div>                        
                                                 
-                        <div class="form-group row">                            
+                        <div class="form-group row mb-4">                            
                             <div class="col-md-12 text-center mb-2">                        
                                 <span style="font-size:15px;letter-spacing:2px">войти через социальную сеть</span>
                             </div>
@@ -55,8 +55,9 @@
                             </div>                        
                         </div>                        
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
+                        <div class="form-group row">
+                            <div class="col-md-12 text-center">
+                                                    
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Войти') }}
                                 </button>
@@ -64,9 +65,13 @@
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Забыли пароль?') }}
-                                    </a>
-                                @endif
-                            </div>
+                                    </a>                                    
+                                @endif                                
+
+                                
+                                <a href="/register" style="display:block;margin-top:30px">Регистрация на сайте</a>
+
+                            </div>                                                                                    
                         </div>
                     </form>
                 </div>
