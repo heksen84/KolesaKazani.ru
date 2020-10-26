@@ -48,19 +48,29 @@ class PostSocials implements ShouldQueue {
      * @return void
      */
     public function handle() {
+
+        $phone_str="";
+        $price_str="";
         
         if ($this->phone) {
+            
             $this->phone = str_replace('(', '', $this->phone);
             $this->phone = str_replace(')', '', $this->phone);
             $this->phone = str_replace('-', '', $this->phone);
             $this->phone = str_replace(' ', '', $this->phone);        
+
+            $phone_str = "\nНомер: +7".$this->phone;
         }
+
+        if ($this->price_str)
+            $price_str = "\nЦена: ".$this->price;        
 
         $instagram = new InstaLite("test_site68", "morphosis19");
         
         if ( count($this->images) > 0 ) {
+            
             foreach($this->images as $img) {        
-                $instagram->uploadPhoto($img["path"].$img["name"], "\n".$this->title."\n\n".$this->text."\nЦена: ".$this->price."\nНомер: +7".$this->phone."\n\n\n#ilbo_aksu");
+                $instagram->uploadPhoto($img["path"].$img["name"], "\n".$this->title."\n\n".$this->text.$price_str.$phone_str."\n\n\n#ilbo_aksu");
                 break;  // ПОКА ТОЛЬКО ОДНО ФОТО
             }
         }
