@@ -622,8 +622,7 @@ class ApiController extends Controller {
 
                         foreach($imageRequest as $img) {                            
                             $arrayRecord = array("path" => Common::getNormalImagesPath(), "name" => $img->name, "type" => "normal");
-                            array_push($imagesArray, $arrayRecord);
-                            break;                            
+                            array_push($imagesArray, $arrayRecord);                            
                         }
 
                         PostSocials::dispatch($imagesArray, $title, $category, $text, $price, $phone, $region_id, $city_id);
