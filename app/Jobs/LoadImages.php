@@ -43,7 +43,7 @@ class LoadImages implements ShouldQueue {
      *
      * @return void
      */
-    public function handle() {
+    public function handle() {        
 
         foreach($this->images as $img) {         
             

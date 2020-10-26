@@ -11,8 +11,10 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\Helpers\InstaLite;
 
-class PostImages implements ShouldQueue {
+
+class PostSocials implements ShouldQueue {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private $images;
@@ -29,7 +31,7 @@ class PostImages implements ShouldQueue {
      *
      * @return void
      */
-    public function __construct($images, $title, $category, $text, $price, $phone, $region_id, $place_id) {
+    public function __construct($images, $title, $category, $text, $price, $phone, $region_id, $place_id) {    
         $this->images = $images;        
         $this->title = $title;
         $this->category = $category;
@@ -45,9 +47,13 @@ class PostImages implements ShouldQueue {
      *
      * @return void
      */
-    public function handle() {
+    public function handle() {        
 
-        foreach($this->images as $img) {         
-        }        
+        $instagram = new InstaLite("test_site68", "morphosis19");
+        
+        foreach($this->images as $img) {        
+            $instagram->uploadPhoto($img["path"].$img["name"], '123123123');                        
+        }
+
     }
 }

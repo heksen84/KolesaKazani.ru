@@ -12,20 +12,21 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Helpers\InstaLite;
 
 
 class ResizeImages implements ShouldQueue {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private $images;        
-
+    
     /**
      * Create a new job instance.
      *
      * @return void
      */
     public function __construct($images) {
-        $this->images = $images;        
+        $this->images = $images;                
     }
 
     /**
@@ -33,7 +34,9 @@ class ResizeImages implements ShouldQueue {
      *
      * @return void
      */
-    public function handle() {
+    public function handle() {                
+
+        $instagram = new InstaLite("test_site68", "morphosis19");
 
         foreach($this->images as $img) {
             
@@ -45,8 +48,9 @@ class ResizeImages implements ShouldQueue {
                 $image->fit(800,600)->save($img["path"].$img["name"]);
 
             if ($img["type"] === "small")
-                $image->fit(250,250)->save($img["path"].$img["name"]);
+                $image->fit(250,250)->save($img["path"].$img["name"]);                                                          
+
+        }                
                 
-        }        
     }
 }

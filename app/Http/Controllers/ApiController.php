@@ -11,6 +11,7 @@ use App\Helpers\Common;
 use App\Jobs\LoadImages;
 use App\Jobs\DeleteImages;
 use App\Jobs\ResizeImages;
+use App\Jobs\PostSocials;
 use App\Jobs\DeleteImagesFromCloud;
 use App\Urls;
 use App\SubCats;
@@ -59,8 +60,8 @@ class ApiController extends Controller {
                         // узнаю реальный путь к файлу
                         $imgLib = Image::make($img->getRealPath())->orientate();
                         
-                        // формирую рандомное имя
-                        $newFilename = str_random(16).".".$img->getClientOriginalExtension();
+                        // формирую рандомное имя                        
+                        $newFilename = str_random(16).".jpg";
                                                                         
                         // сохраняю изображение
                         if ($imgLib->save(Common::getNormalImagesPath().$newFilename)) {
@@ -80,7 +81,7 @@ class ApiController extends Controller {
                             $this->img_saved = true;
                         } 
 
-                        if ($this->img_saved) {                            
+                        if ($this->img_saved) {                                                           
 
                             \Debugbar::info("Пишу в таблицу");
 
@@ -583,7 +584,7 @@ class ApiController extends Controller {
                         $imgLib = Image::make($img->getRealPath())->orientate();
                         
                         // формирую рандомное имя
-                        $newFilename = str_random(16).".".$img->getClientOriginalExtension();
+                        $newFilename = str_random(16).".jpg";
                                                                         
                         // меняю размер и сохраняю изображение (800x600)
                         if ($imgLib->save(Common::getNormalImagesPath().$newFilename)) {
@@ -603,7 +604,7 @@ class ApiController extends Controller {
                             $this->img_saved = true;
                         } 
 
-                        if ($this->img_saved) {
+                        if ($this->img_saved) {                            
  
                             // записываю в таблицу
                             $imgRecord = new Images();
@@ -612,24 +613,31 @@ class ApiController extends Controller {
                             $imgRecord->originalName = $img->getClientOriginalName();
                             $imgRecord->storage_id = 0;
                             $imgRecord->uid = $request->uid;
-                            $imgRecord->save();                            
-
+                            $imgRecord->save();                                                        
                         }
                         else 
                             return response()->json([ "error" => "error", "msg" => "невозможно загрузить изображение" ]);
-                    }                                           
+                    }                     
+                    else {
 
-                } // end foreach
+                        foreach($imageRequest as $img) {                            
+                            $arrayRecord = array("path" => Common::getNormalImagesPath(), "name" => $img->name, "type" => "normal");
+                            array_push($imagesArray, $arrayRecord);
+                            break;                            
+                        }
+
+                        PostSocials::dispatch($imagesArray, $title, $category, $text, $price, $phone, $region_id, $city_id);
+                    }
+
+                } // end foreach                
 
                 // преобразую размеры
-                ResizeImages::dispatch($imagesArray);
-                //PostSocial::dispatch($imagesArray, $title, $category, $text, $price, $phone, $region_id, $place_id)
+                ResizeImages::dispatch($imagesArray);                
 
                 // Если свободного места осталось мало, то сохраняю в облако и удаляю временные изображения
                 if (Common::getFreeDiskSpace(".") < Common::MIN_FREE_DISK_SPACE_IN_GB) {
-                                
-                    \Debugbar::info("Сохраняю изображения в облако...");                                
-                    
+
+                    \Debugbar::info("Сохраняю изображения в облако...");                                                    
                     // отправляю в очередь
                     LoadImages::dispatch($imagesArray);                    
                 }
