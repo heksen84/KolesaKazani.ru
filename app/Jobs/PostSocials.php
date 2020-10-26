@@ -32,7 +32,8 @@ class PostSocials implements ShouldQueue {
      *
      * @return void
      */
-    public function __construct($images, $title, $category, $text, $price, $phone, $region_id, $place_id) {    
+    public function __construct($images, $title, $category, $text, $price, $phone, $region_id, $place_id) {
+            
         $this->images = $images;        
         $this->title = $title;
         $this->category = $category;
