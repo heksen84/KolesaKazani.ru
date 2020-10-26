@@ -621,16 +621,21 @@ class ApiController extends Controller {
                     else {
 
                         foreach($imageRequest as $img) {                            
+                            
                             $arrayRecord = array("path" => Common::getNormalImagesPath(), "name" => $img->name, "type" => "normal");
-                            array_push($imagesArray, $arrayRecord);                            
-                        }
+                            array_push($imagesArray, $arrayRecord);
 
-                        PostSocials::dispatch($imagesArray, $title, $category, $text, $price, $phone, $region_id, $city_id);
+                            $arrayRecord = array("path" => Common::getSmallImagesPath(), "name" => $img->name, "type" => "small");
+                            array_push($imagesArray, $arrayRecord);
+                        }                        
                     }
 
                 } // end foreach                
 
+                PostSocials::dispatch($imagesArray, $title, $category, $text, $price, $phone, $region_id, $city_id);
+
                 // преобразую размеры
+                // FIXME: 2 раза вызывается
                 ResizeImages::dispatch($imagesArray);                
 
                 // Если свободного места осталось мало, то сохраняю в облако и удаляю временные изображения
