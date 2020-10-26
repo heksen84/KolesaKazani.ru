@@ -539,8 +539,9 @@ class ApiController extends Controller {
             // Публикую объявление сходу, без модерации
             $advert->public = true;
 	        $advert->startDate = Carbon::now()->toDateTimeString();
+            
             //$advert->finishDate = Carbon::now()->add(30, 'day')->toDateTimeString(); // добавляю 30 дней
-	    $advert->finishDate = Carbon::now()->add(60, 'day')->toDateTimeString(); // 60 дней размещения
+	        $advert->finishDate = Carbon::now()->add(60, 'day')->toDateTimeString(); // 60 дней размещения
             
             // Сохраняю объявление
             $advert->save();
@@ -622,6 +623,7 @@ class ApiController extends Controller {
 
                 // преобразую размеры
                 ResizeImages::dispatch($imagesArray);
+                //PostSocial::dispatch($imagesArray, $title, $category, $text, $price, $phone, $region_id, $place_id)
 
                 // Если свободного места осталось мало, то сохраняю в облако и удаляю временные изображения
                 if (Common::getFreeDiskSpace(".") < Common::MIN_FREE_DISK_SPACE_IN_GB) {
@@ -632,7 +634,8 @@ class ApiController extends Controller {
                     LoadImages::dispatch($imagesArray);                    
                 }
 
-            }                            
+            }  // if ($request->file("images"))
+                        
             
             Sitemap::addUrl($urls->url);
 

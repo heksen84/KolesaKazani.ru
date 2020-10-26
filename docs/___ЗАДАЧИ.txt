@@ -7,4 +7,4 @@
 5. Экспортнуть таблицу storages
 6. По идее нужно перейти в другое хранилище изображений
 7. Убрать все style= в css
-8. Объеденить ResizeImages и LoadImages в один метод job. И назвать SaveImages.
+8. Объеденить ResizeImages и LoadImages в один метод job. И назвать ProcessImages.
