@@ -632,19 +632,23 @@ class ApiController extends Controller {
 
                 } // end foreach                
 
-                PostSocials::dispatch($imagesArray, $title, $category, $text, $price, $phone, $region_id, $city_id);
+                if ( count($imagesArray) > 0) {
 
-                // преобразую размеры
-                // FIXME: 2 раза вызывается
-                ResizeImages::dispatch($imagesArray);                
+                    PostSocials::dispatch($imagesArray, $title, $category, $text, $price, $phone, $region_id, $city_id);
 
-                // Если свободного места осталось мало, то сохраняю в облако и удаляю временные изображения
-                if (Common::getFreeDiskSpace(".") < Common::MIN_FREE_DISK_SPACE_IN_GB) {
+                    // преобразую размеры
+                    // FIXME: 2 раза вызывается
+                    ResizeImages::dispatch($imagesArray);                
 
-                    \Debugbar::info("Сохраняю изображения в облако...");                                                    
-                    // отправляю в очередь
-                    LoadImages::dispatch($imagesArray);                    
-                }
+                    // Если свободного места осталось мало, то сохраняю в облако и удаляю временные изображения
+                    if (Common::getFreeDiskSpace(".") < Common::MIN_FREE_DISK_SPACE_IN_GB) {
+
+                        \Debugbar::info("Сохраняю изображения в облако...");                                                    
+                        // отправляю в очередь
+                        LoadImages::dispatch($imagesArray);                    
+                    }
+                } 
+                
 
             }  // if ($request->file("images"))
                         
