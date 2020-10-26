@@ -406,6 +406,10 @@ h3 {
 // --------------------------------------------
 @media screen and (max-width:9000px) {
   
+#mobile_new_advert_link {
+  display:none;    
+}
+  
 .create_advert_col {
   border-radius: 5px;
 }
@@ -433,6 +437,7 @@ h3 {
 }
 
 // --- скрываю всё лишнее на мобильных устройствах --
+
 #select_location_mobile {
   display:block;
 }
@@ -468,6 +473,7 @@ h3 {
 // --------------------------------------------
 @media screen and (max-width:1024px) {
 
+
 #welcome_menu {
   margin-top:3px;
 }
@@ -494,6 +500,15 @@ h3 {
 // Большие устройства
 // --------------------------------------------
 @media screen and (max-width:960px) {
+
+
+  #mobile_new_advert_link {
+    display:block;    
+    margin-top:-10px;
+    margin-bottom:10px;
+  }
+  
+  
 
 #button_search {
   padding:8px;
@@ -557,7 +572,7 @@ h3 {
 // --------------------------------------------
 // Cмартфоны
 // --------------------------------------------
-@media screen and (max-width:420px) {
+@media screen and (max-width:420px) {  
 
 #button_search {   
   font-size:14px;    

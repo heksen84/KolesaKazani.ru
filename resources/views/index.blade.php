@@ -81,6 +81,7 @@
     </div>
   </nav>
   </div>
+  
 
   <div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -195,6 +196,12 @@
       </div>
     </div>
 
+    <div class="row" id="mobile_new_advert_link">
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 center">  
+        <a href="/podat-objavlenie" style="color:black">подать объявление</a>	
+      </div>
+    </div>
+
     <div class="row mt-2">
       <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center">
         <div id="logo_block">
@@ -205,7 +212,7 @@
           </a>
         </div>
 
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 center">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 center">    
         
       <!-- компонент поиска по сайту -->
       <form action="/search" method="get">
