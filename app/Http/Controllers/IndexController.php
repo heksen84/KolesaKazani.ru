@@ -159,14 +159,19 @@ class IndexController extends Controller {
 			$whereLocationRawStr="";
 
 			if ($region) {
-				$regionData = $this->getRegionData($region); 			
-				$whereLocationRawStr=" AND adv.region_id=".$regionData->region_id;
+				$regionData = $this->getRegionData($region);				
+				
+				if ($regionData)
+					$whereLocationRawStr=" AND adv.region_id=".$regionData->region_id;
 			}
 			
 			if ($region && $place) {
-				$regionData = $this->getRegionData($region); 
-				$placeData = $this->getPlaceData($regionData->region_id, $place);
-				$whereLocationRawStr=" AND adv.region_id=".$regionData->region_id." AND adv.city_id=".$placeData->city_id;
+				$regionData = $this->getRegionData($region);
+								
+				if ($regionData) {
+					$placeData = $this->getPlaceData($regionData->region_id, $place);
+					$whereLocationRawStr=" AND adv.region_id=".$regionData->region_id." AND adv.city_id=".$placeData->city_id;
+				}
 			}
 		
 		// Новые объявления
