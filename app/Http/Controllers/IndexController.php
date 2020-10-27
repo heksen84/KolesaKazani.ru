@@ -18,7 +18,7 @@ class IndexController extends Controller {
     private function getRegionData($regionUrl) {                
 		
 		if (!$regionUrl)
-			abort(404);
+			return false;
 
         $regionId = Regions::select("region_id")->where("url", $regionUrl)->get();        
 		\Debugbar::info("ID региона: ".$regionId[0]->region_id);
@@ -32,7 +32,7 @@ class IndexController extends Controller {
     private function getPlaceData($regionId, $placeUrl) {                		
 		
 		if (!$regionId && !$placeId)		
-			abort(404);			
+			return false;		
 
         $placeId = Places::select("city_id")->where("region_id", $regionId)->where("url", $placeUrl)->get();        
 		\Debugbar::info("ID города/села: ".$placeId[0]->city_id);
@@ -239,10 +239,13 @@ class IndexController extends Controller {
 	// --------------------------------------------------------------
 	public function getResultsBySearchString(Request $request) {			
 				
-		$regionData = $this->getRegionData($request->region); 
-		$placeData = $this->getPlaceData($regionData->region_id, $request->place);		
+		$regionData = $this->getRegionData($request->region);
+		
+		if ($regionData) 
+			$placeData = $this->getPlaceData($regionData->region_id, $request->place);
+		else 
+			$placeData="";
 
-//		\Debugbar::info($request->searchString);
 		
 		if (!$regionData && !$placeData)
 			$whereStr = "MATCH (title) AGAINST('".$request->searchString."' IN BOOLEAN MODE)";
