@@ -20,7 +20,7 @@ class ResultsController extends Controller {
 
         if (!count($data))
             abort(404);             
-                    
+
         return $data;
     }
     

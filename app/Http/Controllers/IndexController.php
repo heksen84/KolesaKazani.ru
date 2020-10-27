@@ -240,11 +240,11 @@ class IndexController extends Controller {
 	public function getResultsBySearchString(Request $request) {			
 				
 		$regionData = $this->getRegionData($request->region);
-		
+				
 		if ($regionData) 
 			$placeData = $this->getPlaceData($regionData->region_id, $request->place);
 		else 
-			$placeData="";
+			$placeData=false;
 
 		
 		if (!$regionData && !$placeData)
