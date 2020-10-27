@@ -18,9 +18,9 @@ class ResultsController extends Controller {
         $table = new Categories();
         $data = $table::select("id", "title", "description", "keywords", "h1")->where("url", $category)->get();
 
-        if (!count($data)) {
+        if (!count($data))
             abort(404);             
-        }
+                    
         return $data;
     }
     
@@ -30,9 +30,9 @@ class ResultsController extends Controller {
         $table = new SubCats();
         $data = $table::select("id", "title", "description", "keywords", "h1")->where("url", $subcategory)->get();
 
-        if (!count($data)) {
-            abort(404);             
-        }
+        if (!count($data))
+            abort(404);          
+
         return $data;
     }
     
@@ -50,17 +50,17 @@ class ResultsController extends Controller {
     }
     
     // получить данные города / села
-    private function getCityData($region, $city) {                
+    private function getPlaceData($region, $place) {                
         
-        $cityId = Places::select("city_id", "name")->where("region_id", $region)->where("url", $city)->get();        
-        \Debugbar::info("ID города/села: ".$cityId[0]->city_id);
+        $placeId = Places::select("city_id", "name")->where("region_id", $region)->where("url", $place)->get();        
+        \Debugbar::info("ID города/села: ".$placeId[0]->city_id);
 
         // FIXME: NEED?
-        if (!count($cityId)) {
+        if (!count($placeId)) {
             abort(404);             
         }
 
-        return $cityId[0];
+        return $placeId[0];
     }
     
     // получить расположение
@@ -80,7 +80,7 @@ class ResultsController extends Controller {
     }    
     
     // результаты - общий запрос
-    public function getCategoryResults(Request $request, $region, $city, $category) {  
+    public function getCategoryResults(Request $request, $region, $place, $category) {  
         
         \Debugbar::info("getCategoryResults");        
         \Debugbar::info("start_price: ".$request->start_price);
@@ -90,26 +90,26 @@ class ResultsController extends Controller {
         $endPrice = $request->end_price;        
         $priceBetweenSql = "";        
         $regionData = null;
-        $cityData = null;
+        $placeData = null;
 
         if ($startPrice && $endPrice) 
             $priceBetweenSql = " AND price BETWEEN ".$startPrice." AND ".$endPrice;
 
         $categories = $this->getCategoryData($request, $category); 
         
-        if (!$region && !$city)
+        if (!$region && !$place)
             $whereRaw = "category_id = ".$categories[0]->id." AND NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true";
 
-        if ($region && !$city) {
+        if ($region && !$place) {
             $regionData = $this->getRegionData($region);             
            \Debugbar::info($regionData->region_id);
             $whereRaw = "adv.region_id = ".$regionData->region_id." AND adv.category_id = ".$categories[0]->id." AND NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true";            
         }
 
-        if ($region && $city) {            
+        if ($region && $place) {            
             $regionData = $this->getRegionData($region); 
-            $cityData = $this->getCityData($regionData->region_id, $city);
-            $whereRaw = "adv.region_id = ".$regionData->region_id." AND adv.city_id = ".$cityData->city_id." AND adv.category_id = ".$categories[0]->id." AND NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true";
+            $placeData = $this->getPlaceData($regionData->region_id, $place);
+            $whereRaw = "adv.region_id = ".$regionData->region_id." AND adv.city_id = ".$placeData->city_id." AND adv.category_id = ".$categories[0]->id." AND NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true";
         }
                                                 
         $items = DB::table("adverts as adv")->select(
@@ -137,10 +137,10 @@ class ResultsController extends Controller {
         if ($regionData) {                        
             $locationName = $this->getLocationName($regionData->name, true);
         }        
-        if ($cityData) {
-            $locationName = $this->getLocationName($cityData->name, false);
+        if ($placeData) {
+            $locationName = $this->getLocationName($placeData->name, false);
         }
-        if (!$regionData && !$cityData) {
+        if (!$regionData && !$placeData) {
             $locationName = $this->getLocationName(null, null);
         }
                                         
@@ -171,8 +171,8 @@ class ResultsController extends Controller {
         return $this->getCategoryResults($request, $region, null, $category);
     }
 
-    public function getCityCategoryResults(Request $request, $region, $city, $category) {
-        return $this->getCategoryResults($request, $region, $city, $category);
+    public function getCityCategoryResults(Request $request, $region, $place, $category) {
+        return $this->getCategoryResults($request, $region, $place, $category);
     }
 
     // -------------------------------------------------------------
@@ -345,7 +345,7 @@ class ResultsController extends Controller {
     // -------------------------------------------------------------
     // результаты по городу либо селу
     // -------------------------------------------------------------
-    public function getCitySubCategoryResults(Request $request, $region, $city, $category, $subcategory) {   
+    public function getCitySubCategoryResults(Request $request, $region, $place, $category, $subcategory) {   
         
         // если у нас авто, то мы должны применить фильры от авто и вернуть входящие параметры во вьюху            
         $filters = array (
@@ -368,10 +368,10 @@ class ResultsController extends Controller {
             $categories = $this->getCategoryData($request, $category);
             $subcategories = $this->getSubCategoryData($request, $subcategory);
             $regionData = $this->getRegionData($region); 
-            $cityData = $this->getCityData($regionData->region_id, $city);
+            $placeData = $this->getPlaceData($regionData->region_id, $place);
 
             \Debugbar::info("------------------");
-            \Debugbar::info($cityData);
+            \Debugbar::info($placeData);
             \Debugbar::info("------------------");
  
          $items = DB::table("adverts as adv")->select(
@@ -392,7 +392,7 @@ class ResultsController extends Controller {
             ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
             ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
             ->where("adv.region_id", $regionData->region_id)
-            ->where("adv.city_id", $cityData->city_id)
+            ->where("adv.city_id", $placeData->city_id)
             ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")
             ->paginate(10)
             ->onEachSide(1);
@@ -403,7 +403,7 @@ class ResultsController extends Controller {
 
          \DebugBar::info("tuta");
  
-         $locationName = $this->getLocationName($cityData->name, false);         
+         $locationName = $this->getLocationName($placeData->name, false);         
                  
          return view("results")    
          ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
@@ -414,7 +414,7 @@ class ResultsController extends Controller {
          ->with("categoryId", $categories[0]->id)
          ->with("subcategoryId", $subcategories[0]->id)     
          ->with("region", $region)
-         ->with("city", $city)
+         ->with("city", $place)
          ->with("category", $category)
          ->with("subcategory", $subcategory)          
          ->with("page", $request->page?$request->page:0)

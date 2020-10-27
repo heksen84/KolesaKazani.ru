@@ -15,12 +15,12 @@ class IndexController extends Controller {
 	// ------------------------------------------
 	// получить данные региона
 	// ------------------------------------------
-    private function getRegionData($region) {                
+    private function getRegionData($regionUrl) {                
 		
-		if (!$region)
-			return false;
+		if (!$regionUrl)
+			abort(404);
 
-        $regionId = Regions::select("region_id")->where("url", $region)->get();        
+        $regionId = Regions::select("region_id")->where("url", $regionUrl)->get();        
 		\Debugbar::info("ID региона: ".$regionId[0]->region_id);
 		
         return $regionId[0];
@@ -29,12 +29,12 @@ class IndexController extends Controller {
 	// ------------------------------------------
 	// получить данные города / села
 	// ------------------------------------------
-    private function getPlaceData($place) {                
+    private function getPlaceData($regionId, $placeUrl) {                		
 		
-		if (!$place)
-			return false;
+		if (!$regionId && !$placeId)		
+			abort(404);			
 
-        $placeId = Places::select("city_id")->where("url", $place)->get();        
+        $placeId = Places::select("city_id")->where("region_id", $regionId)->where("url", $placeUrl)->get();        
 		\Debugbar::info("ID города/села: ".$placeId[0]->city_id);
 		
         return $placeId[0];
@@ -154,7 +154,20 @@ class IndexController extends Controller {
 			->orderBy("startDate", "desc")
 			->orderBy("adv.id", "desc")
 			->take(10)
-			->get();									*/
+			->get();*/
+			
+			$whereLocationRawStr="";
+
+			if ($region) {
+				$regionData = $this->getRegionData($region); 			
+				$whereLocationRawStr=" AND adv.region_id=".$regionData->region_id;
+			}
+			
+			if ($region && $place) {
+				$regionData = $this->getRegionData($region); 
+				$placeData = $this->getPlaceData($regionData->region_id, $place);
+				$whereLocationRawStr=" AND adv.region_id=".$regionData->region_id." AND adv.city_id=".$placeData->city_id;
+			}
 		
 		// Новые объявления
 		$newAdverts = DB::table("adverts as adv")->select(			
@@ -172,8 +185,8 @@ class IndexController extends Controller {
 			->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			
 			->join("urls", "adv.id", "=", "urls.advert_id" )
 			->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
-			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )			
-			->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")			
+			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )						
+			->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true".$whereLocationRawStr)
 			->orderBy("startDate", "desc")
 			->orderBy("adv.id", "desc")
 			->take(5)
@@ -227,7 +240,7 @@ class IndexController extends Controller {
 	public function getResultsBySearchString(Request $request) {			
 				
 		$regionData = $this->getRegionData($request->region); 
-		$placeData = $this->getPlaceData($request->place);		
+		$placeData = $this->getPlaceData($regionData->region_id, $request->place);		
 
 //		\Debugbar::info($request->searchString);
 		
