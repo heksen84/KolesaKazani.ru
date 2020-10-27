@@ -121,8 +121,8 @@
                 <div id="text">{{ $advert->text }}</div>
               @endif
                       
-              <!-- убираю цену в категориях -->
-              @if ($advert->price!="null" && $advert->category_id!=4 && $advert->category_id!=10)
+              <!-- не показываю цену в категориях -->
+              @if ($advert->price!="null" && $advert->category_id!=4 && $advert->category_id!=9 && $advert->category_id!=10)
               <br>                           
                 <div id="price">{{ $advert->price }} ₸</div>
               @endif

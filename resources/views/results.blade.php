@@ -124,14 +124,15 @@
                   @if ($item->srochno)
                     <div class="label-torg">срочно</div>
                   @endif                  
-                    <img class="card-img-top image" src="{{ $item->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">                                                            
-                      <div class="block-info-area">                                                  
-                        <!-- если не категория работа и бизнес то отображаю цену -->
-                        @if ($categoryId!=4)
+                    <img class="card-img-top image" src="{{ $item->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">                      
+                      <div class="block-info-area">                                                                          
+                        
+                        @if ($item->price!="null" && $categoryId!=4 && $categoryId!=9 && $categoryId!=10)
                           <div class="price">{{ $item->price }} ₸</div>
-                        @endif                                                                            
-                        <div class="card-title">{{ $item->title }}</div>
-                          <hr>
+                        @endif
+
+                        <div class="card-title">{{ $item->title }}</div><hr>
+
                         <div class="location">                        
                           {{ $item->region_name }} обл., {{ $item->city_name }}<br><b style="font-size:11px">{{ date("d.m.Y в H:i", strtotime($item->startDate)) }}</b></div>                      
                         </div>            

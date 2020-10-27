@@ -654,7 +654,8 @@ changeCategory() {
       this.hobbies_and_leisure=true;       
       break;
     }
-    case 9: {      
+    case 9: {
+      this.$store.commit("SetShowPrice", false);      
       this.services=true;      
       break; 
     }
