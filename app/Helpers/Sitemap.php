@@ -73,6 +73,7 @@ class Sitemap {
 		fwrite($file, '<sitemap>'."\n");
     	fwrite($file, '<loc>'.config('app.url').'/'.Sitemap::$sitemaps_path.'sitemap_1.xml</loc>'."\n");
     	fwrite($file, '<lastmod>'.$date_time.'</lastmod>'."\n");
+    	fwrite($file, '<changefreq>hourly</changefreq>'."\n");
 		fwrite($file, '</sitemap>'."\n");
 		fwrite($file, '</sitemapindex>');
 		

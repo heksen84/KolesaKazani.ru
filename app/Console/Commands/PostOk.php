@@ -38,7 +38,7 @@ class PostOk extends Command
 
 
     // Запрос
-    private function getUrl($url, $type = "GET", $params = array(), $timeout = 30, $image = false, $decode = true) {
+    public function getUrl($url, $type = "GET", $params = array(), $timeout = 30, $image = false, $decode = true) {
         if ($ch = curl_init()) {
             
             curl_setopt($ch, CURLOPT_URL, $url);
@@ -115,28 +115,26 @@ private function arInStr($array) {
         // 1. Получим адрес для загрузки 1 фото
 
         $params = array(
-            "application_key"   =>  $self::ok_public_key,
+            "application_key"   =>  $this->ok_public_key,
             "method"            => "photosV2.getUploadUrl",
             "count"             =>  1,  // количество фото для загрузки
-            "gid"               =>  $self::ok_group_id,
+            "gid"               =>  $this->ok_group_id,
             "format"            =>  "json"
         );
 
-        //$sig = md5( arInStr($params) . md5($self::ok_access_token.$self::ok_private_key) );
-
         // Подпишем запрос
-        $sig = md5( arInStr($params) . md5("{$ok_access_token}{$ok_private_key}") );
+        $sig = md5( $this->arInStr($params) . md5("{$this->ok_access_token}{$this->ok_private_key}") );
 
-        $params['access_token'] = $ok_access_token;
+        $params['access_token'] = $this->ok_access_token;
         $params['sig']          = $sig;
 
         // Выполним
-        $step1 = json_decode(getUrl("https://api.ok.ru/fb.do", "POST", $params), true);
+        $step1 = json_decode($this->getUrl("https://api.ok.ru/fb.do", "POST", $params), true);
 
         // Если ошибка
         if (isset($step1['error_code'])) {
             // Обработка ошибки
-            exit();
+            die("die1");
         }
 
         // Идентификатор для загрузки фото
@@ -155,7 +153,7 @@ private function arInStr($array) {
         // Если ошибка
         if (isset($step2['error_code'])) {
             // Обработка ошибки
-            exit();
+            die("die2");
         }
 
         // Токен загруженной фотки
@@ -183,21 +181,20 @@ private function arInStr($array) {
             ]
         }';
 
-
         $params = array(
-            "application_key"   =>  $self::ok_public_key,
+            "application_key"   =>  self::ok_public_key,
             "method"            =>  "mediatopic.post",
-            "gid"               =>  $self::ok_group_id,
+            "gid"               =>  self::ok_group_id,
             "type"              =>  "GROUP_THEME",
             "attachment"        =>  $attachment,
             "format"            =>  "json",
         );
 
         // Подпишем
-        //$sig = md5( arInStr($params) . md5($self::ok_access_token.$self::ok_private_key) );
+        //$sig = md5( arInStr($params) . md5(self::ok_access_token.self::ok_private_key) );
         $sig = md5( arInStr($params) . md5("{ok_access_token}{ok_private_key}") );
 
-        $params['access_token'] = $self::ok_access_token;
+        $params['access_token'] = self::ok_access_token;
         $params['sig']          = $sig;
 
         $step3 = json_decode( getUrl("https://api.ok.ru/fb.do", "POST", $params, 30, false, false ), true);
@@ -205,7 +202,7 @@ private function arInStr($array) {
         // Если ошибка
         if (isset($step3['error_code'])) {
         // Обработка ошибки
-            exit();
+            die("die3");
         }
 
         // Успешно
