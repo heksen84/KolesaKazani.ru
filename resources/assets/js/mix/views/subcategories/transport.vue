@@ -258,7 +258,7 @@ export default {
 
 
       // запчасти
-      case 75: {            
+      case 74: {            
           this.$store.commit("ShowFinalFields", true);                                                                                 
           break;
         }
