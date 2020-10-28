@@ -2,9 +2,9 @@
 <div>         
         <div class="row">        
           <div class="col-auto form-group">
-            <label for="transport_type">Вид транспорта:</label>
+            <label for="transport_type">Подкатегория:</label>
               <select id="transport_type" class="form-control" v-model="selected.type_transport" @change="selectTransportType">                          
-                <option value="null" :key="null">-- Выберите вид транспорта --</option>
+                <option value="null" :key="null">-- Выберите подкатегорию --</option>
                 <option v-for="item in type_transport" :value="item.id" :key="item.id">{{ item.name }}</option>
               </select>
           </div>                
@@ -80,20 +80,6 @@ export default {
 
   data () {
     return 	{
-
-        //placeholder_info_text: "Введите текст объявления, например: ",
-
-        /*type_transport: [
-          { value: null, text: '-- Выберите вид транспорта --' },
-          { value: 0, text: 'Легковой автомобиль' },
-          { value: 1, text: 'Грузовой автомобиль' },
-          { value: 2, text: 'Мототехника' },
-          { value: 3, text: 'Спецтехника' },
-          { value: 4, text: 'Ретро-автомобиль' },
-          { value: 5, text: 'Водный транспорт' },
-          { value: 6, text: 'Велосипед' },
-          { value: 7, text: 'Воздушный транспорт' }
-        ],*/
         
         type_transport: [],
 
@@ -266,6 +252,13 @@ export default {
 
       // воздушный транспорт
       case 8: {            
+          this.$store.commit("ShowFinalFields", true);                                                                                 
+          break;
+        }
+
+
+      // запчасти
+      case 75: {            
           this.$store.commit("ShowFinalFields", true);                                                                                 
           break;
         }
