@@ -194,7 +194,7 @@ class IndexController extends Controller {
 			->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true".$whereLocationRawStr)
 			->orderBy("startDate", "desc")
 			->orderBy("adv.id", "desc")
-			->take(5)
+			->take(10)
 			->get();			
 
 			\Debugbar::info("NEWADVERTS:");

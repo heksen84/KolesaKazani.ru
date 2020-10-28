@@ -181,8 +181,7 @@ export default {
             
       this.resetFields();
       
-      if (this.selected.type_transport==null) 
-      {
+      if (this.selected.type_transport == null) {
         this.$store.commit("ShowCommonTransport", false);
         this.$store.commit("ShowFinalFields", false);               
       }      
@@ -255,7 +254,6 @@ export default {
           this.$store.commit("ShowFinalFields", true);                                                                                 
           break;
         }
-
 
       // запчасти
       case 74: {            
