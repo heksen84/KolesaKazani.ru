@@ -21,11 +21,13 @@ class PostOk extends Command
     protected $description = 'post to ok.ru';
 
     // Параметры
-    private $ok_access_token    = "";  // Наш вечный токен
-    private $ok_private_key     = "";  // Секретный ключ приложения
-    private $ok_public_key      = "";  // Публичный ключ приложения
-    private $ok_group_id        = "";  // ID нашей группы
-    private $message            = "";  // Сообщение к посту, можно с переносами строки
+    //tkn180Dmnu5orjLFlMJoY28zePbbopCHcQpWbOdurQnxXevJgANRoBPGN1KaxdCRVupSg:CBPPPNJGDIHBABABA
+//    private $ok_access_token    = "tkn1gWLZAuB4RiRceEkdQZjTEDcddnZ9Zvb4VsnjXFfQQqNRxBQ5uLTlsX0qxvauLXV791";  // Наш вечный токен
+    private $ok_access_token    = "tkn180Dmnu5orjLFlMJoY28zePbbopCHcQpWbOdurQnxXevJgANRoBPGN1KaxdCRVupSg:CBPPPNJGDIHBABABA";  // Наш вечный токен
+    private $ok_private_key     = "3C689A74BD065F94CE3A22DA";  // Секретный ключ приложения
+    private $ok_public_key      = "CQNGKLJGDIHBABABA";  // Публичный ключ приложения
+    private $ok_group_id        = "59138679505015";  // ID нашей группы
+    private $message            = "HELLO WORLD";  // Сообщение к посту, можно с переносами строки
 
     /**
      * Create a new command instance.
@@ -76,6 +78,8 @@ class PostOk extends Command
         if (isset($data['error_code']) && $data['error_code'] == 5000) {
             $data = getUrl($url, $type, $params, $timeout, $image, $decode);
         }
+
+	echo $data;	
 
         return $data;
 
