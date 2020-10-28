@@ -11,4 +11,4 @@ let mix = require('laravel-mix');
  |
 */
 
-mix.js('resources/assets/js/mix/newad.js', 'public/js').sass('resources/assets/sass/newad.scss', 'public/css').version().browserSync({ proxy: 'flix:90', port: 99, notify: false });
+mix.js('resources/assets/js/mix/newad.js', 'public/js').sass('resources/assets/sass/newad.scss', 'public/css').version();
