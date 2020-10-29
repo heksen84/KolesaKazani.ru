@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Helpers\Petrovich;
 use App\Helpers\Common;
 use App\Adverts;
 use App\Images;
@@ -766,10 +767,12 @@ class DetailsController extends Controller {
             \Debugbar::info("-[images]-------------------");
             \Debugbar::info($images);
             \Debugbar::info("---------------------");
-            \Debugbar::info($advert);             
+            \Debugbar::info($advert);
+            
+            $petrovich = new Petrovich(Petrovich::GENDER_MALE);
                 
             return view("details")
-            ->with( "title", $advert[0]->title )
+            ->with( "title", $advert[0]->title." в ".$petrovich->firstname($advert[0]->city_name, 4) )
             ->with( "description", $advert[0]->title )
             ->with( "keywords", $advert[0]->title)                
             ->with( "advert", $advert[0])                
