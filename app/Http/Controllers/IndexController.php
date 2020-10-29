@@ -31,7 +31,7 @@ class IndexController extends Controller {
 	// ------------------------------------------
     private function getPlaceData($regionId, $placeUrl) {                		
 		
-		if (!$regionId && !$placeId)		
+		if (!$regionId && !$placeUrl)		
 			return false;		
 
         $placeId = Places::select("city_id")->where("region_id", $regionId)->where("url", $placeUrl)->get();        
