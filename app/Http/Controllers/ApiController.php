@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;  
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Helpers\Petrovich;
 use App\Helpers\Common;
 use App\Jobs\LoadImages;
 use App\Jobs\DeleteImages;
@@ -232,6 +233,19 @@ class ApiController extends Controller {
         ->whereRaw("MATCH (city.name) AGAINST('".$request->searchString."' IN BOOLEAN MODE)")->get();
         
         return $items;
+    }
+
+      // получить данные города / села
+      private function getPlaceNameById($place_id) {                
+        
+        $placeId = Places::select("name")->where("city_id", $place_id)->get();        
+        \Debugbar::info("ID города/села: ".$placeId[0]->city_id);
+
+        // FIXME: NEED?
+        if (!count($placeId))
+            return false;
+
+        return $placeId[0];
     }
 
    /*
@@ -551,8 +565,12 @@ class ApiController extends Controller {
             $urls = new Urls();
                     
             // url sitemap
-            if ( strlen($title) > 5 ) $url_text = $title;
+            if ( strlen($title) > 5 ) {                
+                $petrovich = new Petrovich(Petrovich::GENDER_MALE);
+                $url_text = $title." в ".$petrovich->firstname($this->getPlaceNameById($city_id)->name, 4);
+            }
             
+            // обрезаю до 100 символов!
             $urls->url = substr($advert->id."-".\Helper::str2url($url_text), 0, 100);            
             $urls->advert_id = $advert->id;
             $urls->save();                            
