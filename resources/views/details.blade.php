@@ -135,7 +135,7 @@
               <div id="phone-number"></div>              
 
               @if (count($images) > 0)              
-              <div id="carousel" class="carousel slide" data-ride="carousel">
+              <div id="carousel" class="carousel slide mt-1" data-ride="carousel">
                   @if (count($images) > 1)
                     <ol class="carousel-indicators">                    
                       @foreach($images as $index => $image)
