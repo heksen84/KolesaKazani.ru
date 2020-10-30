@@ -122,7 +122,8 @@
               @endif
                       
               <!-- не показываю цену в категориях -->
-              @if ($advert->price!="null" && $advert->category_id!=4 && $advert->category_id!=9 && $advert->category_id!=10)              
+              @if ($advert->price!="null" && $advert->category_id!=4 && $advert->category_id!=9 && $advert->category_id!=10)
+                <br>              
                 <div id="price" title="цена: {{ $advert->price }} тенге">цена: {{ $advert->price }} тенге</div>              
               @endif
 
