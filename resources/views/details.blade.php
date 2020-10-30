@@ -216,7 +216,7 @@
               </div>
               
               @foreach($similarAdverts as $advert)      
-                <div class="col-4 col-sm-4 col-md-3 col-lg-4 col-xl-2 text-center">      
+                <div class="col-4 col-sm-4 col-md-3 col-lg-4 col-xl-2 mb-1 text-center">      
                   <a href="/objavlenie/show/{{ $advert->url }}">
                     <div class="card">
                     <img class="card-img-top" src="{{ $advert->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">
