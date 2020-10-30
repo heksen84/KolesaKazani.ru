@@ -49,7 +49,7 @@ h1 {
   background: #dcffdc;
   color: black;
   border: 1px solid #96ff96;
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 500;
   padding: 2px;
   padding-left: 10px;
@@ -81,5 +81,11 @@ h1 {
   margin-bottom: 15px;
   margin-top: 20px;
   border: 1px solid #c8c8c8;
+}
+
+@media screen and (max-width: 960px) {
+  #price {
+    font-size: 15px;
+  }
 }
 
