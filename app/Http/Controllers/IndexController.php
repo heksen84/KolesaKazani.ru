@@ -242,7 +242,18 @@ class IndexController extends Controller {
 	// --------------------------------------------------------------
 	// найти по строке
 	// --------------------------------------------------------------
-	public function getResultsBySearchString(Request $request) {			
+	public function getResultsBySearchString(Request $request) {
+		
+		
+		\Debugbar::info("-----------------------------");
+		\Debugbar::info($request->getRequestUri());	
+		
+		//$pos = strpos($request->getRequestUri(), "&page=");
+		//$str = $request->getRequestUri()[$pos+strlen("&page=")-1]."222";
+		//$str = $request->getRequestUri()[$pos+strlen("&page=")-1].$request->page;
+		//\Debugbar::info($str);
+
+		\Debugbar::info("-----------------------------");
 				
 		$regionData = $this->getRegionData($request->region);
 				
@@ -251,7 +262,8 @@ class IndexController extends Controller {
 		else 
 			$placeData=false;
 
-		
+		$request->except('page');
+
 		if (!$regionData && !$placeData)
 			$whereStr = "MATCH (title) AGAINST('".$request->searchString."' IN BOOLEAN MODE)";
 
@@ -260,9 +272,16 @@ class IndexController extends Controller {
 
 		if ($regionData && $placeData)
 			$whereStr = "MATCH (title) AGAINST('".$request->searchString."' IN BOOLEAN MODE) AND adv.region_id=".$regionData->region_id." AND adv.city_id=".$placeData->city_id;
-						
-        
-        $items = DB::table("adverts as adv")->select(
+						        		
+			// удаляю &page= из url			
+			$path=$request->getRequestUri();
+			$pos=strpos($request->getRequestUri(), "&page=");
+			
+			if ($pos > 0) {
+				$path = substr($request->getRequestUri(), 0, $pos);
+			}
+
+		$items = DB::table("adverts as adv")->select(
 			"urls.url",
             "adv.id", 
             "adv.title", 
@@ -281,12 +300,15 @@ class IndexController extends Controller {
 			->whereRaw($whereStr)
 			->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")
 			->paginate(10)
-			->onEachSide(1);                  
+			->onEachSide(1)			
+			->withPath($path);						
         
 		\Debugbar::info($items);		    
 				
 		$str = "Результаты по запросу '".$request->searchString;
-            
+		
+		//return view("results");
+
         return view("results")         
 			->with("title", $str)         			
             ->with("description", $str)         
@@ -299,8 +321,8 @@ class IndexController extends Controller {
          	->with("city", $request->place)
             ->with("category", null)
             ->with("subcategory", null)            
-            ->with("page", 0)
-            ->with("startPage", 0)
+            ->with("page", $request->page?$request->page:0)
+           // ->with("startPage", 0)
             ->with("start_price", 0)
 			->with("end_price", 0)
 			->with("filters", null)
