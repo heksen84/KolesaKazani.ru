@@ -50,17 +50,16 @@ h1 {
 }
 
 #price {
-  font-size: 19px;
+  font-size: 17px;
   letter-spacing: 2px;   
   background: rgb(220,255,220);
   color:black;  
-  border: 1px solid rgb(150,255,150);
-  border-radius: 5px;
-  font-weight: 600;
+  border: 1px solid rgb(150,255,150);  
+  font-weight: 500;
   padding:2px;  
   padding-left: 10px;  
   padding-right: 5px;  
-  text-align: center;
+  text-align: right;
 }
 
 #numberButton {  
@@ -69,8 +68,8 @@ h1 {
 
 #phone-number {  
   display: none;  
-  margin:20px;  
-  font-size: 20px;  
+  margin-top:10px;  
+  font-size: 18px;  
   color:black;
   text-align: center;    
   letter-spacing: 2px;

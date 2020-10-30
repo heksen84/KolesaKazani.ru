@@ -147,7 +147,7 @@ document.body.addEventListener('click', function (evt) {
                 let hRefTel = JSON.parse(xhr.responseText)[0].phone.split('(').join('').split(')').join('').split(' ').join('').split('-').join('');
                 //document.getElementById("phone-number").innerHTML = "<b>тел: <a href='tel:+7"+hRefTel+"'>+7 "+JSON.parse(xhr.responseText)[0].phone+"</a></b><br>Скажите продавцу, что нашли это объявление на сайте объявлений <b>Ильбо</b>.";
                 document.getElementById("phone-number").innerHTML = 
-                "<b>тел: <a href='tel:+7"+hRefTel+"'>+7 "+JSON.parse(xhr.responseText)[0].phone+"</a></b><br><a class='btn btn-outline-warning btn-sm mt-1' href='tel:+7"+hRefTel+"'>позвонить</a>";
+                "<b>тел: <a href='tel:+7"+hRefTel+"'>+7 "+JSON.parse(xhr.responseText)[0].phone+"</a></b><br><a class='btn btn-outline-success btn-sm mt-1' href='tel:+7"+hRefTel+"'>позвонить</a>";
 			}
 			
 		}
