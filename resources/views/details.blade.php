@@ -227,7 +227,7 @@
                       <b class="card-price-value">{{ $advert->price }} ₸</b>
                     @endif
                   </div>      
-                <!--</div>-->
+                </div>
               @endforeach
 
               @endif
