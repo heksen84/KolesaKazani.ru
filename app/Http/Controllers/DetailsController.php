@@ -821,7 +821,7 @@ class DetailsController extends Controller {
                 ->where("subcategory_id", $advert[0]->subcategory_id)
                 ->where("adv.region_id", $advert[0]->region_id)
                 ->where("adv.city_id", $advert[0]->city_id)
-                ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")->limit(6)->get();
+                ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true AND adv.id!=".$advert[0]->id)->limit(6)->get();
                 
             return view("details")
             ->with( "title", $advert[0]->title." в ".$petrovich->firstname($advert[0]->city_name, 4) )
