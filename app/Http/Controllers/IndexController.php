@@ -246,13 +246,7 @@ class IndexController extends Controller {
 		
 		
 		\Debugbar::info("-----------------------------");
-		\Debugbar::info($request->getRequestUri());	
-		
-		//$pos = strpos($request->getRequestUri(), "&page=");
-		//$str = $request->getRequestUri()[$pos+strlen("&page=")-1]."222";
-		//$str = $request->getRequestUri()[$pos+strlen("&page=")-1].$request->page;
-		//\Debugbar::info($str);
-
+		\Debugbar::info($request->getRequestUri());		
 		\Debugbar::info("-----------------------------");
 				
 		$regionData = $this->getRegionData($request->region);
