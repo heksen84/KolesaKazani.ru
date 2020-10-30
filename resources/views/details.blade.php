@@ -78,7 +78,7 @@
               <div id="location">{{ $advert->region_name }} обл., {{ $advert->city_name }}</div>
                 @if ($advert->category_name)
                   <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb p-0" style="background:rgb(245,245,245);border-radius:5px;font-size:14px">                      
+                    <ol class="breadcrumb p-0" style="background:white;font-size:15px;margin-top:8px">                      
                       <li class="breadcrumb-item"><a href="\{{ $advert->region_url }}\{{ $advert->city_url }}\c\{{ $advert->category_url }}">{{ $advert->category_name }}</a></li>
                         @if ($advert->category_id < 10  && $advert->subcat_name)
                           <li class="breadcrumb-item"><a href="\{{ $advert->region_url }}\{{ $advert->city_url }}\c\{{ $advert->category_url }}\{{ $advert->subcat_url }}">{{ $advert->subcat_name }}</a></li>
@@ -245,6 +245,14 @@
      (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
   </div>
+</div>
+
+<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+  <div class="close-link mt-2 mb-3" style="font-size:20px;text-decoration:none" title="Закрыть страницу">Закрыть страницу</div>                    
+</div>
+
+<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+  как разместить объявление | подать объявление
 </div>
 
 <script>

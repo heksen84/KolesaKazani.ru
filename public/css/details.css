@@ -23,16 +23,14 @@ h1 {
 
 #posted {
   width: 96%;
-  font-size: 13px;
+  font-size: 12px;
   margin-top: -15px;
   margin-bottom: 2px;
 }
 
 #posted span {
-  border: 1px solid #96ff96;
-  border-radius: 5px;
+  border: 1px solid #82e682;
   padding: 2px;
-  background: #c8fac8;
   color: black;
   letter-spacing: 1px;
 }

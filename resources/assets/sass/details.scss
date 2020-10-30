@@ -23,25 +23,23 @@ h1 {
 
 #posted {
   width:96%;
-  font-size:13px;
+  font-size:12px;
   margin-top:-15px;
   margin-bottom:2px;
 }
 
-#posted span {
-  border: 1px solid rgb(150,255,150);
-  border-radius: 5px;
-  padding: 2px;
-  background:rgb(200,250,200);
+#posted span {  
+  border: 1px solid rgb(130,230,130);
+  padding:2px;  
   color: black;
-  letter-spacing:1px;
+  letter-spacing:1px;  
 }
 
 #location {  
   font-size:15px;  
   letter-spacing: 1px;  
   font-weight: 600;
-  color:rgb(30,30,30);
+  color:rgb(30,30,30);  
 }
 
 #text {
