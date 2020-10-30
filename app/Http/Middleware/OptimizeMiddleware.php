@@ -19,14 +19,11 @@ class OptimizeMiddleware
      * @param  \Closure $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
-    {
-/*        $response = $next($request);
+    public function handle($request, Closure $next) {
+        $response = $next($request);
         $buffer = $response->getContent();
         if (strpos($buffer, '<pre>') !== false) {
             $replace = array(
-//                '/<!--[^\[](.*?)[^\]]-->/s' => '',
-//                "/<\?php/" => '<?php ',
                 "/\r/" => '',
                 "/>\n</" => '><',
                 "/>\s+\n</" => '><',
@@ -34,8 +31,6 @@ class OptimizeMiddleware
             );
         } else {
             $replace = array(
- //               '/<!--[^\[](.*?)[^\]]-->/s' => '',
- //               "/<\?php/" => '<?php ',
                 "/\n([\S])/" => '$1',
                 "/\r/" => '',
                 "/\n/" => '',
@@ -46,9 +41,9 @@ class OptimizeMiddleware
         $buffer = preg_replace(array_keys($replace), array_values($replace), $buffer);
         $response->setContent($buffer);
         ini_set('zlib.output_compression', 'On');
-        return $response;*/
+        return $response;
 
-        return $next($request);
+        //return $next($request);
 
     }
 }
