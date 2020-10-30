@@ -73,7 +73,7 @@
     <div class="row"> 
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <div class="text-right"><a href="" style="font-size:13px;color:black;letter-spacing:2px" title="подать жалобу в администрацию на размещённое объявление" id="complain">пожаловаться</a></div>    
-          <div class="close-link" style="margin-bottom:25px" title="Закрыть страницу">закрыть</div>                    
+          <div class="close-link" style="margin-bottom:25px" title="Закрыть страницу">закрыть страницу</div>                    
             <div id="posted"><span>{{ date("Размещено d.m.Y в H:i", strtotime($advert->startDate)) }}</span></div>
               <div id="location">{{ $advert->region_name }} обл., {{ $advert->city_name }}</div>
                 @if ($advert->category_name)
@@ -124,7 +124,7 @@
               <!-- не показываю цену в категориях -->
               @if ($advert->price!="null" && $advert->category_id!=4 && $advert->category_id!=9 && $advert->category_id!=10)
               <br>                           
-                <div id="price" title="цена: {{ $advert->price }} тенге">ЦЕНА: {{ $advert->price }} тенге</div>
+                <div id="price" title="цена: {{ $advert->price }} тенге">цена: {{ $advert->price }} тенге</div>
               @endif
 
               <div class="text-center m-3">

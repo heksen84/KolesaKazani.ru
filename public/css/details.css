@@ -22,14 +22,11 @@ h1 {
 }
 
 #posted {
-  width: 96%;
-  font-size: 12px;
-  margin-top: -15px;
-  margin-bottom: 2px;
+  font-size: 13px;
+  margin-top: -14px;
 }
 
 #posted span {
-  border: 1px solid #82e682;
   padding: 2px;
   color: black;
   letter-spacing: 1px;
