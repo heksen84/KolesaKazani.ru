@@ -45,15 +45,16 @@ h1 {
 }
 
 #price {
-  font-size: 17px;
   letter-spacing: 2px;
   background: #dcffdc;
   color: black;
   border: 1px solid #96ff96;
+  font-size: 17px;
   font-weight: 500;
   padding: 2px;
   padding-left: 10px;
   padding-right: 5px;
+  float: right;
   text-align: right;
 }
 

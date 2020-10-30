@@ -44,17 +44,18 @@ h1 {
   font-size: 16px;  
 }
 
-#price {
-  font-size: 17px;
+#price { 
   letter-spacing: 2px;   
   background: rgb(220,255,220);
   color:black;  
   border: 1px solid rgb(150,255,150);  
+  font-size:17px;
   font-weight: 500;
   padding:2px;  
   padding-left: 10px;  
-  padding-right: 5px;  
-  text-align: right;
+  padding-right: 5px;
+  float:right;
+  text-align:right;
 }
 
 #numberButton {  

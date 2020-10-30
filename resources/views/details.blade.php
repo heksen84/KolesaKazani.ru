@@ -78,7 +78,7 @@
               <div id="location">{{ $advert->region_name }} обл., {{ $advert->city_name }}</div>
                 @if ($advert->category_name)
                   <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb p-0" style="background:white;font-size:15px;margin-top:8px">                      
+                    <ol class="breadcrumb p-0" style="background:white;font-size:15px;margin-top:5px">                      
                       <li class="breadcrumb-item"><a href="\{{ $advert->region_url }}\{{ $advert->city_url }}\c\{{ $advert->category_url }}">{{ $advert->category_name }}</a></li>
                         @if ($advert->category_id < 10  && $advert->subcat_name)
                           <li class="breadcrumb-item"><a href="\{{ $advert->region_url }}\{{ $advert->city_url }}\c\{{ $advert->category_url }}\{{ $advert->subcat_url }}">{{ $advert->subcat_name }}</a></li>
@@ -117,17 +117,17 @@
               </div>-->
 
               @if ($advert->text!="null")              
-                <b>Описание:</b>
+                <b>Описание товара или услуги:</b>
                 <div id="text">{{ $advert->text }}</div>
               @endif
                       
               <!-- не показываю цену в категориях -->
-              @if ($advert->price!="null" && $advert->category_id!=4 && $advert->category_id!=9 && $advert->category_id!=10)
-              <br>                           
-                <div id="price" title="цена: {{ $advert->price }} тенге">цена: {{ $advert->price }} тенге</div>
+              @if ($advert->price!="null" && $advert->category_id!=4 && $advert->category_id!=9 && $advert->category_id!=10)              
+                <div id="price" title="цена: {{ $advert->price }} тенге">цена: {{ $advert->price }} тенге</div>              
               @endif
 
               <div class="text-center m-3">
+                <br><br>
                 <button type="button" class="btn btn-outline-success" id="numberButton">Показать телефон</button>            
               </div>  
 
