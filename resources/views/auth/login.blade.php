@@ -10,7 +10,26 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
-                        <div class="form-group row">
+
+                        <div class="form-group row mb-4">                            
+                            <div class="col-md-12 text-center mb-2">                        
+                                <span style="font-size:15px;letter-spacing:2px">войти через социальную сеть</span>
+                            </div>
+                            <div class="col-md-12 text-center" id="col-links">                                
+                                <a href="{{ url('auth/vk') }}">                        
+                                    <img src="/public/images/social/vk.svg" alt="ВКонтакте" title="Войти через соц. сеть ВКонтакте" id="auth_vk"></img>
+                                </a>
+                                <a href="{{ url('auth/ok') }}">                        
+                                    <img src="/public/images/social/ok.svg" alt="Одноклассники" title="Войти через соц. сеть Одноклассники" id="auth_ok"></img>
+                                </a>
+                                <a href="{{ url('auth/insta') }}">                        
+                                    <img src="/public/images/social/insta.svg" alt="инстаграмм" title="Войти через соц. сеть Инстаграм" id="auth_instagram" width="56" height="56" style="margin-left:-5px"></img>
+                                </a>
+                            </div>                        
+                        </div>                                                
+                        <hr>
+                        <div class="form-group row">              
+                                  
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail адрес') }}</label>
 
                             <div class="col-md-6">
@@ -36,24 +55,7 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>                        
-                                                
-                        <div class="form-group row mb-4">                            
-                            <div class="col-md-12 text-center mb-2">                        
-                                <span style="font-size:15px;letter-spacing:2px">войти через социальную сеть</span>
-                            </div>
-                            <div class="col-md-12 text-center" id="col-links">                                
-                                <a href="{{ url('auth/vk') }}">                        
-                                    <img src="/public/images/social/vk.svg" alt="ВКонтакте" title="Войти через соц. сеть ВКонтакте" id="auth_vk"></img>
-                                </a>
-                                <a href="{{ url('auth/ok') }}">                        
-                                    <img src="/public/images/social/ok.svg" alt="Одноклассники" title="Войти через соц. сеть Одноклассники" id="auth_ok"></img>
-                                </a>
-                                <!--<a href="{{ url('auth/instagram') }}">                        
-                                    <img src="/public/images/social/insta.svg" alt="инстаграмм" title="Войти через соц. сеть Инстаграм" id="auth_instagram" width="56" height="56" style="margin-left:-5px"></img>
-                                </a>-->
-                            </div>                        
-                        </div>                        
+                        </div>                                                                                                
 
                         <div class="form-group row">
                             <div class="col-md-12 text-center">
@@ -67,9 +69,8 @@
                                         {{ __('Забыли пароль?') }}
                                     </a>                                    
                                 @endif                                
-
                                 
-                                <a href="/register" style="display:block;margin-top:30px">Регистрация на сайте</a>
+                                <a href="/register" style="display:block;margin-top:25px;font-weight:500;letter-spacing:2">Регистрация на сайте</a>
 
                             </div>                                                                                    
                         </div>

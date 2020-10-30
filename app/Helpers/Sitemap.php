@@ -66,7 +66,7 @@ class Sitemap {
 			return false;
 		
 //		$date_time = date(\DateTime::ISO8601);
-		$date_time = date("Y-m-d");
+		$date_time = date("Y-m-dTh:m:s");
 
 		fwrite($file, '<?xml version="1.0" encoding="UTF-8"?>'."\n");
 		fwrite($file, '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'."\n");
@@ -115,7 +115,7 @@ class Sitemap {
 				if (file_exists($current_sitemap)) {        			
 					
 					//$date_time = date(\DateTime::ISO8601);
-					$date_time = date("Y-m-d");
+					$date_time = date("Y-m-dTh:m:s");
 
 					$sitemap_created=false;
 
@@ -146,7 +146,7 @@ class Sitemap {
 					 ALWAYS: Stock market data, social bookmarking categories
 					*/
 					
-					$record->addChild("changefreq", "daily");
+					$record->addChild("changefreq", "hourly");
 					
 					/*
 					 0.8-1.0: Homepage, subdomains, product info, major features, major category pages.

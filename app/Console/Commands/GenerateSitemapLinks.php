@@ -36,9 +36,12 @@ class GenerateSitemapLinks extends Command
     }
 
     public function generateRecord($url) {
+
+	$date_time = date("Y-m-dTh:m:s");
             
         $this->info('<url>');                
         $this->info("<loc>".$url."</loc>");
+        $this->info("<lastmod>".$date_time."</lastmod>");
         $this->info("<changefreq>hourly</changefreq>");
         $this->info("<priority>0.8</priority>");
         $this->info('</url>');

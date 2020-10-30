@@ -81,7 +81,7 @@ class AuthController extends Controller {
 
     /*
     --------------------------------------------------------------
-    Однкоклассники
+    Одноклассники
     --------------------------------------------------------------*/
 
     // редирект
@@ -97,6 +97,42 @@ class AuthController extends Controller {
         }
 
         $socialUser = Socialite::driver('odnoklassniki')->user();
+
+        $user = User::where('ok_id', $socialUser->getID())->first();
+        
+        if(!$user)
+            $user = User::create ([             
+                'name'    => $socialUser->getName(),
+                'email'   => $socialUser->getEmail(), 
+	            'ok_id'   => $socialUser->getID(),
+           //     'avatar'  => $socialUser->getAvatar()             
+            ]);
+        
+	    $user->update(['last_login_ip' => $request->getClientIp()]);    
+            auth()->login($user);
+
+		return redirect ('/');		
+    }
+
+
+     /*
+    --------------------------------------------------------------
+    Инста
+    --------------------------------------------------------------*/
+
+    // редирект
+    public function redirectToInsta() {
+        return Socialite::driver('instagram')->redirect();
+    }
+
+    // обратный вызов
+    public function handleInstaCallback(Request $request) {
+        
+        if (!$request->has('code') || $request->has('denied')) {
+            return redirect('/');
+        }
+
+        $socialUser = Socialite::driver('instagram')->user();
 
         $user = User::where('ok_id', $socialUser->getID())->first();
         

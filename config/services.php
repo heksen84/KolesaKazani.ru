@@ -35,18 +35,24 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
-'vkontakte' => [
-    'client_id' => env('VKONTAKTE_KEY'),
-    'client_secret' => env('VKONTAKTE_SECRET'),
-    'client_public' => env('VKONTAKTE_PUBLIC'),
-    'redirect' => env('VKONTAKTE_REDIRECT_URI')
-],
+    'vkontakte' => [
+        'client_id' => env('VKONTAKTE_KEY'),
+        'client_secret' => env('VKONTAKTE_SECRET'),
+        'client_public' => env('VKONTAKTE_PUBLIC'),
+        'redirect' => env('VKONTAKTE_REDIRECT_URI')
+    ],
 
-'odnoklassniki' => [
-    'client_id' => env('ODNOKLASSNIKI_KEY'),
-    'client_secret' => env('ODNOKLASSNIKI_SECRET'),
-    'client_public' => env('ODNOKLASSNIKI_PUBLIC'),
-    'redirect' => env('ODNOKLASSNIKI_REDIRECT_URI')
-]
+    'odnoklassniki' => [
+        'client_id' => env('ODNOKLASSNIKI_KEY'),
+        'client_secret' => env('ODNOKLASSNIKI_SECRET'),
+        'client_public' => env('ODNOKLASSNIKI_PUBLIC'),
+        'redirect' => env('ODNOKLASSNIKI_REDIRECT_URI')
+    ],
+
+    'instagram' => [
+        'client_id' => env('INSTAGRAM_ID'),
+        'client_secret' => env('INSTAGRAM_SECRET'),
+        'redirect' => env('INSTAGRAM_REDIRECT_URI')
+    ]
 
 ];

@@ -20,7 +20,8 @@ class EventServiceProvider extends ServiceProvider
 	 \SocialiteProviders\Manager\SocialiteWasCalled::class => [
 	        // add your listeners (aka providers) here
         	'SocialiteProviders\\VKontakte\\VKontakteExtendSocialite@handle',
-	        'SocialiteProviders\\Odnoklassniki\\OdnoklassnikiExtendSocialite@handle'
+	        'SocialiteProviders\\Odnoklassniki\\OdnoklassnikiExtendSocialite@handle',
+	        'SocialiteProviders\\Instagram\\InstagramExtendSocialite@handle',
 	 ],
     ];
 
