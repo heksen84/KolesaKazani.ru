@@ -117,7 +117,7 @@
               </div>-->
 
               @if ($advert->text!="null")              
-                <b>Описание товара или услуги:</b>
+                <p>Описание товара или услуги:</p>
                 <div id="text">{{ $advert->text }}</div>
               @endif
                       
