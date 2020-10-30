@@ -72,7 +72,7 @@
     
     <div class="row"> 
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <div class="text-right"><a href="" style="font-size:13px;color:black;letter-spacing:2px" title="подать жалобу в администрацию на размещённое объявление" id="complain">пожаловаться</a></div>    
+        <div class="text-right"><a href="" id="sendComplainLink" title="подать жалобу в администрацию на размещённое объявление" id="complain">пожаловаться</a></div>    
           <div class="close-link" style="margin-bottom:25px" title="Закрыть страницу">закрыть страницу</div>                    
             <div id="posted"><span>{{ date("Размещено d.m.Y в H:i", strtotime($advert->startDate)) }}</span></div>
               <div id="location">{{ $advert->region_name }} обл., {{ $advert->city_name }}</div>
@@ -175,7 +175,7 @@
 
               <!-- № объявления -->
               <div class="text-right m-1">
-                <div style="font-size:12px;color:grey;letter-spacing:2px;font-weight:bold" title="номер объявления">№: {{ $advert->id }}</div>
+                <div id="advertNumber"title="номер объявления">№: {{ $advert->id }}</div>
               </div>            
 
               <!----------------------------------------------------------------
@@ -210,12 +210,10 @@
               <div id="map"></div>              
               
               @if ( count( $similarAdverts ) > 0 )
-
               <div class="row">                
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-1 text-left mb-2">    
                 <h5>Похожие объявления:</h5>
-              </div>
-              
+              </div>              
               @foreach($similarAdverts as $advert)      
                 <div class="col-4 col-sm-4 col-md-3 col-lg-4 col-xl-2 mb-1 text-center">      
                   <a href="/objavlenie/show/{{ $advert->url }}">
@@ -230,23 +228,21 @@
                   </div>      
                 </div>
               @endforeach
-
-              @endif
-              
+            @endif              
       </div>
 
-  <!-- РЕКЛАМА -->
-  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2 text-center">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>  
-  <ins class="adsbygoogle"
-     style="display:inline-block;width:100%;height:100px"
-     data-ad-client="ca-pub-8074944108437227"
-     data-ad-slot="2249357572"></ins>
-    <script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+    <!-- РЕКЛАМА -->
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2 text-center">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>  
+    <ins class="adsbygoogle"
+       style="display:inline-block;width:100%;height:100px"
+      data-ad-client="ca-pub-8074944108437227"
+      data-ad-slot="2249357572"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
   </div>
-</div>
 
 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
   <div class="close-link mt-2 mb-3" style="font-size:20px;text-decoration:none" title="Закрыть страницу">Закрыть страницу</div>                    
