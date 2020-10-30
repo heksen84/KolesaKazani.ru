@@ -224,7 +224,7 @@
                 </div>                
                 </a>
                     @if ($advert->price)
-                      <b class="card-price-value">{{ $advert->price }} ₸</b>
+                      <b class="card-price-value" style="font-size:13px">{{ $advert->price }} ₸</b>
                     @endif
                   </div>      
                 </div>
@@ -235,7 +235,7 @@
       </div>
 
   <!-- РЕКЛАМА -->
-  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2 text-center">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>  
   <ins class="adsbygoogle"
      style="display:inline-block;width:100%;height:100px"
