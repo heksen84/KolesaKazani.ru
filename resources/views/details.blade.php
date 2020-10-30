@@ -220,7 +220,7 @@
                   <a href="/objavlenie/show/{{ $advert->url }}">
                     <div class="card">
                     <img class="card-img-top" src="{{ $advert->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">
-                    <!--<div class="card-title-text" style="font-size:13px">{{ $advert->title }}-->
+                    <div class="card-title-text" style="font-size:13px">{{ $advert->title }}
                 </div>                
                 </a>
                     @if ($advert->price)
