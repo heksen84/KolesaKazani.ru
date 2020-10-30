@@ -207,6 +207,31 @@
               @endif
                     
               <div id="map"></div>              
+              
+              @if ( count( $similarAdverts ) > 0 )
+
+              <div class="row">                
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-1 text-left mb-2">    
+                <h5>Похожие объявления:</h5>
+              </div>
+              
+              @foreach($similarAdverts as $advert)      
+                <div class="col-4 col-sm-4 col-md-3 col-lg-4 col-xl-2 text-center">      
+                  <a href="/objavlenie/show/{{ $advert->url }}">
+                    <div class="card">
+                    <img class="card-img-top" src="{{ $advert->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">
+                    <!--<div class="card-title-text" style="font-size:13px">{{ $advert->title }}-->
+                </div>                
+                </a>
+                    @if ($advert->price)
+                      <b class="card-price-value">{{ $advert->price }} ₸</b>
+                    @endif
+                  </div>      
+                <!--</div>-->
+              @endforeach
+
+              @endif
+              
       </div>
 
   <!-- РЕКЛАМА -->
