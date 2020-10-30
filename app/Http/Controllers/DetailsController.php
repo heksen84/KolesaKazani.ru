@@ -49,7 +49,9 @@ class DetailsController extends Controller {
                     
                 \Debugbar::info("легковое авто");
 
-                    $advert = DB::table("adverts as adv")->select(                                 
+                    $advert = DB::table("adverts as adv")->select(
+                            "adv.region_id",
+                            "adv.city_id",                                 
                             "adv.category_id",
                             "adv.subcategory_id",
                             "adv.startDate",
@@ -104,7 +106,9 @@ class DetailsController extends Controller {
 
                 \Debugbar::info("грузовое авто");
 
-                    $advert = DB::table("adverts as adv")->select(                                 
+                    $advert = DB::table("adverts as adv")->select(
+                            "adv.region_id",
+                            "adv.city_id",                                 
                             "adv.category_id",
                             "adv.subcategory_id",
                             "adv.startDate",
@@ -154,6 +158,8 @@ class DetailsController extends Controller {
                 if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id === 3) {
 
                             $advert = DB::table("adverts as adv")->select(
+                                "adv.region_id",
+                                "adv.city_id",
                                 "adv.category_id",
                                 "adv.subcategory_id",
                                 "adv.startDate",                                
@@ -196,6 +202,8 @@ class DetailsController extends Controller {
                 if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id === 4) {
                     
                             $advert = DB::table("adverts as adv")->select(
+                                "adv.region_id",
+                                "adv.city_id",
                                 "adv.category_id",
                                 "adv.subcategory_id",                            
                                 "adv.startDate",                                    
@@ -237,7 +245,9 @@ class DetailsController extends Controller {
             // ретро авто
             if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id === 5) {
 
-                    $advert = DB::table("adverts as adv")->select(                                 
+                    $advert = DB::table("adverts as adv")->select(
+                            "adv.region_id",
+                            "adv.city_id",                                 
                             "adv.category_id",
                             "adv.subcategory_id",
                             "adv.startDate",
@@ -286,7 +296,9 @@ class DetailsController extends Controller {
             // выборка для остального траспорта
             if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id > 5) {                        
 
-                    $advert = DB::table("adverts as adv")->select(                                 
+                    $advert = DB::table("adverts as adv")->select(
+                        "adv.region_id",
+                        "adv.city_id",                                 
                         "adv.category_id",
                         "adv.subcategory_id",        
                         "adv.startDate",                         
@@ -328,7 +340,9 @@ class DetailsController extends Controller {
             // квартира
             if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 9) {
                     
-                $advert = DB::table("adverts as adv")->select(                                 
+                $advert = DB::table("adverts as adv")->select(
+                    "adv.region_id",
+                    "adv.city_id",                                 
                     "adv.category_id",
                     "adv.subcategory_id",
                     "adv.startDate",
@@ -377,7 +391,9 @@ class DetailsController extends Controller {
             // комната
             if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 10) {
                     
-                $advert = DB::table("adverts as adv")->select(                                 
+                $advert = DB::table("adverts as adv")->select(
+                    "adv.region_id",
+                    "adv.city_id",                                 
                     "adv.category_id",
                     "adv.subcategory_id",
                     "adv.startDate",
@@ -424,7 +440,9 @@ class DetailsController extends Controller {
             // дом, дача, коттедж
             if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 11) {
                     
-                $advert = DB::table("adverts as adv")->select(                                 
+                $advert = DB::table("adverts as adv")->select(
+                    "adv.region_id",
+                    "adv.city_id",                                 
                     "adv.category_id",
                     "adv.subcategory_id",
                     "adv.startDate",
@@ -477,7 +495,9 @@ class DetailsController extends Controller {
             // земельный участок
             if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 12) {
                     
-                $advert = DB::table("adverts as adv")->select(                                 
+                $advert = DB::table("adverts as adv")->select(
+                    "adv.region_id",
+                    "adv.city_id",                                 
                     "adv.category_id",
                     "adv.subcategory_id",
                     "adv.startDate",
@@ -521,7 +541,9 @@ class DetailsController extends Controller {
             // гараж или машиноместо
             if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 13) {
                     
-                $advert = DB::table("adverts as adv")->select(                                 
+                $advert = DB::table("adverts as adv")->select(
+                    "adv.region_id",
+                    "adv.city_id",                                 
                     "adv.category_id",
                     "adv.subcategory_id",
                     "adv.startDate",
@@ -565,7 +587,9 @@ class DetailsController extends Controller {
             // коммерческая недвижимость
             if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 14) {
                     
-                $advert = DB::table("adverts as adv")->select(                                 
+                $advert = DB::table("adverts as adv")->select(
+                    "adv.region_id",
+                    "adv.city_id",                                 
                     "adv.category_id",
                     "adv.subcategory_id",
                     "adv.startDate",
@@ -618,7 +642,9 @@ class DetailsController extends Controller {
             // недвижимость за рубежом
             if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 15) {
                     
-                $advert = DB::table("adverts as adv")->select(                                 
+                $advert = DB::table("adverts as adv")->select(
+                    "adv.region_id",
+                    "adv.city_id",                                 
                     "adv.category_id",
                     "adv.subcategory_id",
                     "adv.startDate",
@@ -674,7 +700,9 @@ class DetailsController extends Controller {
                 
                 \Debugbar::info("== остальное ==");
 
-                    $advert = DB::table("adverts as adv")->select(                                 
+                    $advert = DB::table("adverts as adv")->select(
+                        "adv.region_id",
+                        "adv.city_id",                                 
                         "adv.startDate",
                         "adv.category_id",
                         "adv.subcategory_id",
@@ -719,6 +747,8 @@ class DetailsController extends Controller {
                 \Debugbar::info("== другое ==");
 
                 $advert = DB::table("adverts as adv")->select(                                 
+                    "adv.region_id",
+                    "adv.city_id",
                     "adv.startDate",
                     "adv.category_id",                    
                     "adv.id", 
@@ -771,7 +801,27 @@ class DetailsController extends Controller {
             
             $petrovich = new Petrovich(Petrovich::GENDER_MALE);
 
-            $similarAdverts = Adverts::all()->take(6);
+            // ---------------------
+            // Похожие объявления
+            // ---------------------
+            $similarAdverts = DB::table("adverts as adv")->select(
+                "urls.url",
+                "adv.id", 
+                "adv.title", 
+                "adv.price",
+                "adv.startDate",            
+                "adv.coord_lat",            
+                "adv.coord_lon",            
+                "kz_region.name as region_name",
+                "kz_city.name as city_name",               
+                DB::raw(Common::getPreviewImage("adv.id")))                
+                ->join("urls", "adv.id", "=", "urls.advert_id" )
+                ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
+                ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
+                ->where("subcategory_id", $advert[0]->subcategory_id)
+                ->where("adv.region_id", $advert[0]->region_id)
+                ->where("adv.city_id", $advert[0]->city_id)
+                ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")->limit(6)->get();
                 
             return view("details")
             ->with( "title", $advert[0]->title." в ".$petrovich->firstname($advert[0]->city_name, 4) )
