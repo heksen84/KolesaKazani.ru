@@ -189,7 +189,7 @@ class GenerateSitemapLinks extends Command
         $total1 = count($results);
         $total2 = count($results1);        
         
-        $nextVal1 = 100;
+        $nextVal1 = 50;
         $nextVal2 = 200;
         $nextVal3 = 300;
         $nextVal4 = 400;
