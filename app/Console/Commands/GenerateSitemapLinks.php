@@ -8,6 +8,7 @@ use App\Categories;
 use App\SubCats;
 use App\Regions;
 use App\Places;
+use Carbon\Carbon;
 
 class GenerateSitemapLinks extends Command
 {
@@ -62,9 +63,14 @@ class GenerateSitemapLinks extends Command
                 - регионы + города + категории
                 - регионы + города + подкатегории
         */
-        
-	$date_time = date("Y-m-dTh:m:s");	
-	$app_url = config('app.url', 'Laravel');
+
+        $app_url = config('app.url', 'Laravel');
+
+        $date_time = Carbon::now();
+        $date_time->format("Y-m-dTh:m:s");
+        $date_time->toDateTimeString();
+
+        $this->info($date_time);
         
         $base1 = fopen("base1.xml", "w");
         $base2 = fopen("base2.xml", "w");
