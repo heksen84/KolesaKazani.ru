@@ -41,8 +41,8 @@ class GenerateSitemapLinks extends Command
 	fwrite($file, '<url>');                
 	fwrite($file,"<loc>".$url."</loc>");
 	fwrite($file,"<lastmod>".$date_time."</lastmod>");
-	fwrite($file,"<changefreq>hourly</changefreq>");
-	fwrite($file,"<priority>0.8</priority>");
+	fwrite($file,"<changefreq>daily</changefreq>");
+	//fwrite($file,"<priority>0.8</priority>");
 	fwrite($file,'</url>');
     }
 
@@ -66,7 +66,8 @@ class GenerateSitemapLinks extends Command
 
         $app_url = config('app.url', 'Laravel');
         
-        $date_time = Carbon::now()->format('Y-m-d\TH:i:sP');        
+        //$date_time = Carbon::now()->format('Y-m-d\TH:i:sP');        
+        $date_time = Carbon::now()->format('Y-m-d');        
         $this->info($date_time);
         
         $base1 = fopen("base1.xml", "w");
