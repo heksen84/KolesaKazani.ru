@@ -70,13 +70,16 @@ class GenerateSitemapLinks extends Command
         $date_time = Carbon::now()->format('Y-m-d');        
         $this->info($date_time);
         
-        $base1 = fopen("base1.xml", "w");
-        $base2 = fopen("base2.xml", "w");
-        $base3 = fopen("base3.xml", "w");
-        $base4 = fopen("base4.xml", "w");
-        $base5 = fopen("base5.xml", "w");
-        $base6 = fopen("base6.xml", "w");
-        $base7 = fopen("base7.xml", "w");
+        $base1  = fopen("base1.xml", "w");
+        $base2  = fopen("base2.xml", "w");
+        $base3  = fopen("base3.xml", "w");
+        $base4  = fopen("base4.xml", "w");
+        $base5  = fopen("base5.xml", "w");
+        $base6  = fopen("base6.xml", "w");
+        $base7  = fopen("base7.xml", "w");
+        $base8  = fopen("base8.xml", "w");
+        $base9  = fopen("base9.xml", "w");
+        $base10 = fopen("base10.xml", "w");
 
         // ----------------------------------------------------------------------------
 
@@ -172,25 +175,41 @@ class GenerateSitemapLinks extends Command
         fwrite($base7, '<?xml version="1.0" encoding="UTF-8"?>');
         fwrite($base7,'<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">');
 
+        fwrite($base8, '<?xml version="1.0" encoding="UTF-8"?>');
+        fwrite($base8,'<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">');
+
+        fwrite($base9, '<?xml version="1.0" encoding="UTF-8"?>');
+        fwrite($base9,'<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">');
+
+        fwrite($base10, '<?xml version="1.0" encoding="UTF-8"?>');
+        fwrite($base10,'<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">');
+
         $curIndexFile = $base6;
 
         $total1 = count($results);
-        $total2 = count($results1);
-        //$nextVal = intval($total/2);
-        $nextVal = 205;
+        $total2 = count($results1);        
+        
+        $nextVal1 = 100;
+        $nextVal2 = 200;
+        $nextVal3 = 300;
+        $nextVal4 = 400;
         
         $this->info($total1);
         $this->info($total2);
-        $this->info($nextVal);
+        $this->info($nextVal1);
 
        for($i=0; $i<$total1; $i++) {        
+
         for($j=0; $j<$total2; $j++) {
                 $slash_subcats = "";                
                 if ($results1[$j]->category_url && $results1[$j]->subcats_url)	                  
                 $slash_subcats = "/";                                               
                 $this->generateRecord($app_url."/".$results[$i]->region_url."/".$results[$i]->place_url."/c/".$results1[$j]->category_url.$slash_subcats.$results1[$j]->subcats_url, $date_time, $curIndexFile);                
 
-                if ($i===$nextVal) $curIndexFile = $base7;                
+                if ($i===$nextVal1) $curIndexFile = $base7;                
+                if ($i===$nextVal2) $curIndexFile = $base8;
+                if ($i===$nextVal3) $curIndexFile = $base9;
+                if ($i===$nextVal4) $curIndexFile = $base10;
          }
 
        }
@@ -201,6 +220,15 @@ class GenerateSitemapLinks extends Command
 
         fwrite($base7, '</urlset>');
         fclose($base7);
+
+        fwrite($base8, '</urlset>');
+        fclose($base8);
+
+        fwrite($base9, '</urlset>');
+        fclose($base9);
+
+        fwrite($base10, '</urlset>');
+        fclose($base10);
                 
         $this->info("ready!");
     }
