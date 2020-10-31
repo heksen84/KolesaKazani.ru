@@ -76,6 +76,7 @@ class GenerateSitemapLinks extends Command
         $base4 = fopen("base4.xml", "w");
         $base5 = fopen("base5.xml", "w");
         $base6 = fopen("base6.xml", "w");
+        $base7 = fopen("base7.xml", "w");
 
         // ----------------------------------------------------------------------------
 
@@ -155,19 +156,52 @@ class GenerateSitemapLinks extends Command
         fwrite($base6, '<?xml version="1.0" encoding="UTF-8"?>');
         fwrite($base6,'<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">');
 
-	foreach($results as $item1) {
+        $total = count($results);
+
+/*	foreach($results as $item1) {
                 foreach($results1 as $item2) {
                         $slash_subcats = "";
                          if ($item2->category_url && $item2->subcats_url)	  
                            $slash_subcats = "/";                                               
                            $this->generateRecord($app_url."/".$item1->region_url."/".$item1->place_url."/c/".$item2->category_url.$slash_subcats.$item2->subcats_url, $date_time, $base6);        
+  
                        }	  
         }
+*/
+
+        fwrite($base7, '<?xml version="1.0" encoding="UTF-8"?>');
+        fwrite($base7,'<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">');
+
+        $curIndexFile = $base6;
+
+        $total1 = count($results);
+        $total2 = count($results1);
+        //$nextVal = intval($total/2);
+        $nextVal = 205;
+        
+        $this->info($total1);
+        $this->info($total2);
+        $this->info($nextVal);
+
+       for($i=0; $i<$total1; $i++) {        
+        for($j=0; $j<$total2; $j++) {
+                $slash_subcats = "";                
+                if ($results1[$j]->category_url && $results1[$j]->subcats_url)	                  
+                $slash_subcats = "/";                                               
+                $this->generateRecord($app_url."/".$results[$i]->region_url."/".$results[$i]->place_url."/c/".$results1[$j]->category_url.$slash_subcats.$results1[$j]->subcats_url, $date_time, $curIndexFile);                
+
+                if ($i===$nextVal) $curIndexFile = $base7;                
+         }
+
+       }
+
 
         fwrite($base6, '</urlset>');
         fclose($base6);
-        
 
+        fwrite($base7, '</urlset>');
+        fclose($base7);
+                
         $this->info("ready!");
     }
 }
