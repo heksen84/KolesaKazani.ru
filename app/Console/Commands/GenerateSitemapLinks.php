@@ -206,10 +206,13 @@ class GenerateSitemapLinks extends Command
                 $slash_subcats = "/";                                               
                 $this->generateRecord($app_url."/".$results[$i]->region_url."/".$results[$i]->place_url."/c/".$results1[$j]->category_url.$slash_subcats.$results1[$j]->subcats_url, $date_time, $curIndexFile);                
 
-                if ($i===$nextVal1) $curIndexFile = $base7;                
-                if ($i===$nextVal2) $curIndexFile = $base8;
+                //if ($i===(count(results/10%))))) {
+                  //      $this->info(count(results)/10%);
+                 //       $curIndexFile = $base7;                
+                //}
+                /*if ($i===$nextVal2) $curIndexFile = $base8;
                 if ($i===$nextVal3) $curIndexFile = $base9;
-                if ($i===$nextVal4) $curIndexFile = $base10;
+                if ($i===$nextVal4) $curIndexFile = $base10;*/
          }
 
        }
