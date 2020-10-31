@@ -65,11 +65,8 @@ class GenerateSitemapLinks extends Command
         */
 
         $app_url = config('app.url', 'Laravel');
-
-        $date_time = Carbon::now();
-        $date_time->format("Y-m-dTh:m:s");
-        $date_time->toDateTimeString();
-
+        
+        $date_time = Carbon::now()->format('Y-m-d\TH:i:s');        
         $this->info($date_time);
         
         $base1 = fopen("base1.xml", "w");
