@@ -8,8 +8,11 @@ let selectedRegionUrl = "";
 $(function() {
 
   $(".col_item").on("click",function(item) {    
+    
     let element_id = $(this).attr("id");    
+    
     if ( element_id < 10 ) {            
+    
       item.preventDefault();
       let elements = $("*[data-category-id='"+element_id+"']");    
       if (elements.length < 4)
@@ -19,9 +22,11 @@ $(function() {
       $("#subcats").show();
       localStorage.setItem("show_filters", "false");      
     }
+
   });
 
   $("#close_subcats_btn").on("click",function(item) {                       
+
     $("*[data-category-id]").hide();
     $("#categories").show();
     $("#subcats").hide();  
@@ -32,6 +37,7 @@ $(function() {
   });
 
   $(".closeLocationWindow").on("click",function(item) {                       
+
     $("#locationModal").modal("hide");
     $("#regions").show();
     $("#places").empty();
@@ -41,10 +47,14 @@ $(function() {
   });  
 
   $(".region_link").on("click",function(item) {        
+
     selectedRegionUrl = $(this).attr("href");
+    
     item.preventDefault();
+    
     $("#regions").hide();
     $("#loaderForSearchPlace").show();      
+    
     $.ajax({
       url: "/api/getPlaces",
       type: "GET",
@@ -66,14 +76,20 @@ $(function() {
   });
     
   $("#placeFilter").keyup(function() {
+
     let searchVal = $(this).val(); 
+
     if (searchVal=="") {     
+    
       $("#placeData").show();
       $("#placeSearchResults").empty();
     }
     else {
+    
       $("#placeData").hide();            
+    
       $.ajax({
+    
         url: "/api/searchPlaceByString",
         type: "GET",
         data: {"_token": $('meta[name="csrf-token"]').attr('content'), "searchString": searchVal},
@@ -82,14 +98,18 @@ $(function() {
           console.log("RESPONSE: "+response);
           
           $("#placeSearchResults").empty().css("padding-top","4px");      
+    
           $.each(response, function(index, item) {               
             $("#placeSearchResults").append("<a href='/"+item.url+"' style='color:black;display:block;margin:5px;margin-top:3px'>"+item.city_name+", "+item.region_name+" обл.</a>");
           });
+    
           $("#placeSearchResults").append("<div class='text-center'><button class='btn btn-sm btn-success' id='cancelPlaceSearchResults'>Отмена</button></div>").on("click",function(item) {                       
             $("#placeFilter").val(""); 
             $("#placeData").show();
             $("#placeSearchResults").empty();
-          });        
+          });
+
+
         },
         error: function (jqXHR, exception) {
           console.log("error!!!");
