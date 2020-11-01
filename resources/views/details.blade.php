@@ -244,13 +244,22 @@
     </div>
   </div>
 
-<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-  <div class="close-link mt-2 mb-3" style="font-size:20px;text-decoration:none" title="Закрыть страницу">Закрыть страницу</div>                    
-</div>
+  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-1">
+    <a href="https://www.instagram.com/">
+    <img src="/public/images/social/insta.svg" alt="инстаграмм" title="Войти через соц. сеть Инстаграм" id="auth_instagram" width="40" height="40" style="margin-left:-5px"></img>
+      Страничка объявления {{ $advert->city_name }} в инстаграме
+    </a>
+  </div>
 
-<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-  как разместить объявление | подать объявление
-</div>
+  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+  <hr>
+    <div class="close-link mt-2 mb-3" style="text-decoration:none" title="Закрыть страницу">Закрыть страницу</div>                    
+  <hr>
+  </div>  
+
+  <!--<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mb-3">
+    <a href="/podat-objavlenie" class="black">подать объявление</a>
+  </div>-->
 
 <script>
   window.advert_id = "{{$advert->id}}";
