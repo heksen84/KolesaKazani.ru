@@ -163,12 +163,12 @@ class GenerateSitemapLinks extends Command
         $this->info($total1);
         $this->info($total2);
         
-        $maxLinks = 1500;
+        $maxLinks = 1000;
         $linkCounter = 0;
         $sitemapIndex=0;                
         
         $sitemaps=[];
-        for ($i=6;$i<50;$i++)
+        for ($i = 6; $i < 60; $i ++)
                 array_push($sitemaps, "base".$i.".xml");
         
         $curIndexFile = fopen($sitemaps[$sitemapIndex], "w");
