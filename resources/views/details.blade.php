@@ -177,7 +177,7 @@
               <div class="text-right m-1">
                 <div id="advertNumber"title="номер объявления">№: {{ $advert->id }}</div>
               </div>            
-
+              
               <!----------------------------------------------------------------
                 подключаю характеристики по категориям
                ----------------------------------------------------------------->	       
@@ -214,22 +214,22 @@
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-1 text-left mb-2">    
                 <h5>Похожие объявления:</h5>
               </div>              
-              @foreach($similarAdverts as $advert)      
+              @foreach($similarAdverts as $simAdvert)      
                 <div class="col-4 col-sm-4 col-md-3 col-lg-4 col-xl-2 mb-1 text-center">      
-                  <a href="/objavlenie/show/{{ $advert->url }}">
+                  <a href="/objavlenie/show/{{ $simAdvert->url }}">
                     <div class="card">
-                    <img class="card-img-top" src="{{ $advert->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">
-                    <div class="card-title-text" style="font-size:11px">{{ $advert->title }}
+                    <img class="card-img-top" src="{{ $simAdvert->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">
+                    <div class="card-title-text" style="font-size:11px">{{ $simAdvert->title }}
                 </div>                
                 </a>
-                    @if ($advert->price)
-                      <b class="card-price-value" style="font-size:13px">{{ $advert->price }} ₸</b>
+                    @if ($simAdvert->price)
+                      <b class="card-price-value" style="font-size:13px">{{ $simAdvert->price }} ₸</b>
                     @endif
                   </div>      
                 </div>
               @endforeach
             @endif              
-      </div>
+      </div>      
 
     <!-- РЕКЛАМА -->
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2 text-center">
@@ -242,24 +242,22 @@
       (adsbygoogle = window.adsbygoogle || []).push({});
       </script>
     </div>
-  </div>
+  </div>  
 
+  @if ($advert->insta_login)
   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-1">
-    <a href="https://www.instagram.com/">
-    <img src="/public/images/social/insta.svg" alt="инстаграмм" title="Войти через соц. сеть Инстаграм" id="auth_instagram" width="40" height="40" style="margin-left:-5px"></img>
+    <a href="https://www.instagram.com/{{ $advert->insta_login }}">
+    <img src="/public/images/social/insta.svg" alt="инстаграмм" title="Войти через соц. сеть Инстаграм" width="40" height="40"></img>
       Страничка объявления {{ $advert->city_name }} в инстаграме
     </a>
   </div>
+  @endif
 
   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-  <hr>
-    <div class="close-link mt-2 mb-3" style="text-decoration:none" title="Закрыть страницу">Закрыть страницу</div>                    
-  <hr>
+    <hr>
+      <div class="close-link mt-2 mb-3" style="text-decoration:none;font-size:18px" title="Закрыть страницу">Закрыть страницу</div>                    
+    <hr>
   </div>  
-
-  <!--<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mb-3">
-    <a href="/podat-objavlenie" class="black">подать объявление</a>
-  </div>-->
 
 <script>
   window.advert_id = "{{$advert->id}}";

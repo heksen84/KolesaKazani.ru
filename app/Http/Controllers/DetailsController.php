@@ -7,6 +7,7 @@ use App\Helpers\Common;
 use App\Adverts;
 use App\Images;
 use App\Urls;
+use App\Socials;
 
 class DetailsController extends Controller {
 
@@ -50,6 +51,7 @@ class DetailsController extends Controller {
                 \Debugbar::info("легковое авто");
 
                     $advert = DB::table("adverts as adv")->select(
+                            "socials.insta_login",
                             "adv.region_id",
                             "adv.city_id",                                 
                             "adv.category_id",
@@ -88,6 +90,7 @@ class DetailsController extends Controller {
                             ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
                             ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			
                             ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                    
+                            ->join("socials", "adv.city_id" , "=" , "socials.place_id" )
                             ->join("categories", "adv.category_id" , "=" , "categories.id" )
                             ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                             ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -107,6 +110,7 @@ class DetailsController extends Controller {
                 \Debugbar::info("грузовое авто");
 
                     $advert = DB::table("adverts as adv")->select(
+                            "socials.insta_login",
                             "adv.region_id",
                             "adv.city_id",                                 
                             "adv.category_id",
@@ -142,7 +146,8 @@ class DetailsController extends Controller {
                             "subcats.url as subcat_url")
                             ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
                             ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			
-                            ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                    
+                            ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )
+                            ->join("socials", "adv.city_id" , "=" , "socials.place_id" )			                    
                             ->join("categories", "adv.category_id" , "=" , "categories.id" )
                             ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                             ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -158,6 +163,7 @@ class DetailsController extends Controller {
                 if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id === 3) {
 
                             $advert = DB::table("adverts as adv")->select(
+                                "socials.insta_login",
                                 "adv.region_id",
                                 "adv.city_id",
                                 "adv.category_id",
@@ -187,7 +193,8 @@ class DetailsController extends Controller {
                                 DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
                                 ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
                                 ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			
-                                ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                    
+                                ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )
+                                ->join("socials", "adv.city_id" , "=" , "socials.place_id" )			                    
                                 ->join("categories", "adv.category_id" , "=" , "categories.id" )
                                 ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                                 ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -202,6 +209,7 @@ class DetailsController extends Controller {
                 if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id === 4) {
                     
                             $advert = DB::table("adverts as adv")->select(
+                                "socials.insta_login",
                                 "adv.region_id",
                                 "adv.city_id",
                                 "adv.category_id",
@@ -231,7 +239,8 @@ class DetailsController extends Controller {
                                 DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))                            
                                 ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
                                 ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			
-                                ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                    
+                                ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )
+                                ->join("socials", "adv.city_id" , "=" , "socials.place_id" )			                    
                                 ->join("categories", "adv.category_id" , "=" , "categories.id" )
                                 ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                                 ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -246,6 +255,7 @@ class DetailsController extends Controller {
             if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id === 5) {
 
                     $advert = DB::table("adverts as adv")->select(
+                            "socials.insta_login",
                             "adv.region_id",
                             "adv.city_id",                                 
                             "adv.category_id",
@@ -281,7 +291,8 @@ class DetailsController extends Controller {
                             DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
                             ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
                             ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )                    
-                            ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                        
+                            ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )
+                            ->join("socials", "adv.city_id" , "=" , "socials.place_id" )			                        
                             ->join("categories", "adv.category_id" , "=" , "categories.id" )
                             ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                             ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -297,6 +308,7 @@ class DetailsController extends Controller {
             if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id > 5) {                        
 
                     $advert = DB::table("adverts as adv")->select(
+                        "socials.insta_login",
                         "adv.region_id",
                         "adv.city_id",                                 
                         "adv.category_id",
@@ -326,7 +338,8 @@ class DetailsController extends Controller {
                         DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
                         ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
                         ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			        
-                        ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                                
+                        ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )
+                        ->join("socials", "adv.city_id" , "=" , "socials.place_id" )			                                
                         ->join("categories", "adv.category_id" , "=" , "categories.id" )
                         ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                         ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -341,6 +354,7 @@ class DetailsController extends Controller {
             if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 9) {
                     
                 $advert = DB::table("adverts as adv")->select(
+                    "socials.insta_login",
                     "adv.region_id",
                     "adv.city_id",                                 
                     "adv.category_id",
@@ -377,7 +391,8 @@ class DetailsController extends Controller {
                     DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
                     ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
                     ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			            
-                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                            
+                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )
+                    ->join("socials", "adv.city_id" , "=" , "socials.place_id" )			                            
                     ->join("categories", "adv.category_id" , "=" , "categories.id" )
                     ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -392,6 +407,7 @@ class DetailsController extends Controller {
             if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 10) {
                     
                 $advert = DB::table("adverts as adv")->select(
+                    "socials.insta_login",
                     "adv.region_id",
                     "adv.city_id",                                 
                     "adv.category_id",
@@ -426,7 +442,8 @@ class DetailsController extends Controller {
                     DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
                     ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
                     ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			            
-                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                            
+                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )
+                    ->join("socials", "adv.city_id" , "=" , "socials.place_id" )			                            
                     ->join("categories", "adv.category_id" , "=" , "categories.id" )
                     ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -441,6 +458,7 @@ class DetailsController extends Controller {
             if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 11) {
                     
                 $advert = DB::table("adverts as adv")->select(
+                    "socials.insta_login",
                     "adv.region_id",
                     "adv.city_id",                                 
                     "adv.category_id",
@@ -481,7 +499,8 @@ class DetailsController extends Controller {
                     DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
                     ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
                     ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			            
-                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                            
+                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )
+                    ->join("socials", "adv.city_id" , "=" , "socials.place_id" )			                            
                     ->join("categories", "adv.category_id" , "=" , "categories.id" )
                     ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -496,6 +515,7 @@ class DetailsController extends Controller {
             if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 12) {
                     
                 $advert = DB::table("adverts as adv")->select(
+                    "socials.insta_login",
                     "adv.region_id",
                     "adv.city_id",                                 
                     "adv.category_id",
@@ -527,7 +547,8 @@ class DetailsController extends Controller {
                     DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
                     ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
                     ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			            
-                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                            
+                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )
+                    ->join("socials", "adv.city_id" , "=" , "socials.place_id" )			                            
                     ->join("categories", "adv.category_id" , "=" , "categories.id" )
                     ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -542,6 +563,7 @@ class DetailsController extends Controller {
             if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 13) {
                     
                 $advert = DB::table("adverts as adv")->select(
+                    "socials.insta_login",
                     "adv.region_id",
                     "adv.city_id",                                 
                     "adv.category_id",
@@ -573,7 +595,8 @@ class DetailsController extends Controller {
                     DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
                     ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
                     ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			            
-                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                            
+                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )
+                    ->join("socials", "adv.city_id" , "=" , "socials.place_id" )			                            
                     ->join("categories", "adv.category_id" , "=" , "categories.id" )
                     ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -588,6 +611,7 @@ class DetailsController extends Controller {
             if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 14) {
                     
                 $advert = DB::table("adverts as adv")->select(
+                    "socials.insta_login",
                     "adv.region_id",
                     "adv.city_id",                                 
                     "adv.category_id",
@@ -628,7 +652,8 @@ class DetailsController extends Controller {
                     DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
                     ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
                     ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			            
-                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                            
+                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )
+                    ->join("socials", "adv.city_id" , "=" , "socials.place_id" )			                            
                     ->join("categories", "adv.category_id" , "=" , "categories.id" )
                     ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -643,6 +668,7 @@ class DetailsController extends Controller {
             if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 15) {
                     
                 $advert = DB::table("adverts as adv")->select(
+                    "socials.insta_login",
                     "adv.region_id",
                     "adv.city_id",                                 
                     "adv.category_id",
@@ -683,7 +709,8 @@ class DetailsController extends Controller {
                     DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
                     ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
                     ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			                
-                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                        
+                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )
+                    ->join("socials", "adv.city_id" , "=" , "socials.place_id" )			                        
                     ->join("categories", "adv.category_id" , "=" , "categories.id" )
                     ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
@@ -701,6 +728,7 @@ class DetailsController extends Controller {
                 \Debugbar::info("== остальное ==");
 
                     $advert = DB::table("adverts as adv")->select(
+                        "socials.insta_login",
                         "adv.region_id",
                         "adv.city_id",                                 
                         "adv.startDate",
@@ -730,7 +758,8 @@ class DetailsController extends Controller {
                         DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
                         ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
                         ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			                    
-                        ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                    
+                        ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )
+                        ->join("socials", "adv.city_id" , "=" , "socials.place_id" )			                    
                         ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                         ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )
                         ->join("categories", "adv.category_id" , "=" , "categories.id" )
@@ -746,7 +775,8 @@ class DetailsController extends Controller {
                 
                 \Debugbar::info("== другое ==");
 
-                $advert = DB::table("adverts as adv")->select(                                 
+                $advert = DB::table("adverts as adv")->select(  
+                    "socials.insta_login",                               
                     "adv.region_id",
                     "adv.city_id",
                     "adv.startDate",
@@ -773,7 +803,8 @@ class DetailsController extends Controller {
                     DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
                     ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
                     ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			                    
-                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )			                    
+                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )
+                    ->join("socials", "adv.city_id" , "=" , "socials.place_id" )			                    
                     ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )
                     ->join("categories", "adv.category_id" , "=" , "categories.id" )                    
