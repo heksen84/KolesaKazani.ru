@@ -248,7 +248,7 @@
   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-1">
     <a href="https://www.instagram.com/{{ $advert->insta_login }}">
     <img src="/public/images/social/insta.svg" alt="инстаграм" title="Войти через соц. сеть инстаграм" width="40" height="40"></img>
-      Объявления {{ $advert->city_name }} в инстаграме, присоединяйтесь.
+      Объявления {{ $advert->city_name }} в инстаграм
     </a>
   </div>
   @endif
