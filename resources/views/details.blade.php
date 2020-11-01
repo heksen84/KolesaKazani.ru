@@ -247,7 +247,7 @@
   @if ($advert->insta_login)
   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-1">
     <a href="https://www.instagram.com/{{ $advert->insta_login }}">
-    <img src="/public/images/social/insta.svg" alt="инстаграмм" title="Войти через соц. сеть Инстаграм" width="40" height="40"></img>
+    <img src="/public/images/social/insta.svg" alt="инстаграм" title="Войти через соц. сеть инстаграм" width="40" height="40"></img>
       Страничка объявления {{ $advert->city_name }} в инстаграм
     </a>
   </div>
