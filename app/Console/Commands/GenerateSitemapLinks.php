@@ -75,12 +75,6 @@ class GenerateSitemapLinks extends Command
         $base3  = fopen("base3.xml", "w");
         $base4  = fopen("base4.xml", "w");
         $base5  = fopen("base5.xml", "w");
-/*        $base6  = fopen("base6.xml", "w");
-        $base7  = fopen("base7.xml", "w");
-        $base8  = fopen("base8.xml", "w");
-        $base9  = fopen("base9.xml", "w");
-        $base10 = fopen("base10.xml", "w");*/
-
         // ----------------------------------------------------------------------------
 
 	fwrite($base1, '<?xml version="1.0" encoding="UTF-8"?>');
@@ -168,7 +162,7 @@ class GenerateSitemapLinks extends Command
         $sitemapIndex=0;                
         
         $sitemaps=[];
-        
+
         for ($i = 6; $i < 60; $i ++)
                 array_push($sitemaps, "base".$i.".xml");
         
