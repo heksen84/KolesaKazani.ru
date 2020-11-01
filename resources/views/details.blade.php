@@ -75,7 +75,7 @@
         <div class="text-right"><a href="" title="подать жалобу в администрацию на размещённое объявление" id="sendComplainLink">пожаловаться</a></div>    
           <div class="close-link" style="margin-bottom:25px" title="Закрыть страницу">закрыть страницу</div>                    
             <div id="posted"><span>{{ date("Размещено d.m.Y в H:i", strtotime($advert->startDate)) }}</span></div>
-              <div id="location">{{ $advert->region_name }} обл., {{ $advert->city_name }}</div>
+              <div id="location"><a href="/{{ $advert->region_url }}">{{ $advert->region_name }} обл.,</a> <a href="/{{ $advert->region_url }}/{{ $advert->city_url}}">{{ $advert->city_name }}</a></div>
                 @if ($advert->category_name)
                   <nav aria-label="breadcrumb">
                     <ol class="breadcrumb p-0" style="background:white;font-size:15px;margin-top:5px">                      
