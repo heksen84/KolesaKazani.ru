@@ -115,7 +115,8 @@ class Sitemap {
 				if (file_exists($current_sitemap)) {        			
 					
 					//$date_time = date(\DateTime::ISO8601);
-					$date_time = date("Y-m-dTh:m:s");
+					//$date_time = date("Y-m-dTh:m:s");
+					$date_time = date("Y-m-d");
 
 					$sitemap_created=false;
 
@@ -146,7 +147,7 @@ class Sitemap {
 					 ALWAYS: Stock market data, social bookmarking categories
 					*/
 					
-					$record->addChild("changefreq", "hourly");
+					$record->addChild("changefreq", "daily");
 					
 					/*
 					 0.8-1.0: Homepage, subdomains, product info, major features, major category pages.

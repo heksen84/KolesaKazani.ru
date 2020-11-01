@@ -168,6 +168,7 @@ class GenerateSitemapLinks extends Command
         $sitemapIndex=0;                
         
         $sitemaps=[];
+        
         for ($i = 6; $i < 60; $i ++)
                 array_push($sitemaps, "base".$i.".xml");
         
