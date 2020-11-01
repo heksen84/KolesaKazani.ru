@@ -4,7 +4,7 @@ import "bootstrap";
 
 function setExtendOptions() {
 
-    $(".prodlit").off().click(function(item) {        
+    $(".prodlit").off().on("click",function(item) {        
 
         let self = $(this);
 
@@ -29,7 +29,7 @@ function setExtendOptions() {
         });        
     });
 
-    $(".top").off().click(function(item) {
+    $(".top").off().on("click",function(item) {
 
         let self = $(this);
 
@@ -44,7 +44,7 @@ function setExtendOptions() {
         });        
     });
 
-    $(".color").off().click(function(item) {
+    $(".color").off().on("click",function(item) {
 
         let self = $(this);
 
@@ -59,7 +59,7 @@ function setExtendOptions() {
         });        
     });
 
-    $(".srochno").off().click(function(item) {
+    $(".srochno").off().on("click",function(item) {
 
         let self = $(this);
 
@@ -78,6 +78,6 @@ function setExtendOptions() {
 }
 
 // html загружен
-$( document ).ready(function() {
+$(function() {
     setExtendOptions();    
 });

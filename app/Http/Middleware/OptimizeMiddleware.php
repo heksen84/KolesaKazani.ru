@@ -20,7 +20,9 @@ class OptimizeMiddleware
      * @return mixed
      */
     public function handle($request, Closure $next) {
+
         $response = $next($request);
+
         $buffer = $response->getContent();
         if (strpos($buffer, '<pre>') !== false) {
             $replace = array(
@@ -38,12 +40,13 @@ class OptimizeMiddleware
                 "/ +/" => ' ',
             );
         }
+
         $buffer = preg_replace(array_keys($replace), array_values($replace), $buffer);
         $response->setContent($buffer);
+
         ini_set('zlib.output_compression', 'On');
         return $response;
 
         //return $next($request);
-
     }
 }

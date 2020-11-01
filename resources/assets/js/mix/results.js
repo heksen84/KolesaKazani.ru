@@ -45,7 +45,7 @@ function initCars() {
 // подготовливаю фильтры
 function initFilters() {
   let buttonFiltersDefaultText = "скрыть фильтр";
-  $("#filters_button").click(function(item) { 
+  $("#filters_button").on("click",function(item) { 
 
     if ($("#filters_button").text() == buttonFiltersDefaultText) {      
       $("#filters").hide();
@@ -61,13 +61,13 @@ function initFilters() {
 }
 
 // html готов
-$( document ).ready(function() {
+$(function() {
   
   initCars();    
   initFilters();      
 
   // что-бы фильтры не вылизили стразу в других категориях
-  $(".close-link").click(function() {
+  $(".close-link").on("click",function() {
     localStorage.setItem("show_filters", "false");          
   });
 

@@ -24,13 +24,13 @@ function initMaps() {
 // --------------------------------------------
 // document ready
 // --------------------------------------------
-$( document ).ready(function() {	         
+$(function() {
     
     ymaps.ready(initMaps);
 
     $("#carousel").carousel();    
 
-    $("#makeVip").click(function(item) {
+    $("#makeVip").on("click", function(item) {
                 
         $(".modal-title").text("В топ");
         $(".modal-body p").text("Ссылку на ваше объявление увидят все посетители сайта. Она будет первой в горячих предложениях, пока кто-либо не займет это место.");
@@ -38,7 +38,7 @@ $( document ).ready(function() {
 
         $("#billingModalDialog").modal("show");
 
-        $("#continueBilling").off().click(function(item) {
+        $("#continueBilling").off().on("click", function(item) {
             
             $.ajax({
                 url: "/objavlenie/makeExtend/"+window.advert_id+"/goTop",
@@ -52,7 +52,7 @@ $( document ).ready(function() {
     });
 
     
-    $("#makeTorg").click(function(item) {
+    $("#makeTorg").on("click", function(item) {
         
         $(".modal-title").text("Срочно");
         $(".modal-body p").text("Ваше объявление украсит флажок со словами «Срочно, торг».");        
@@ -60,7 +60,7 @@ $( document ).ready(function() {
 
         $("#billingModalDialog").modal("show");
 
-        $("#continueBilling").off().click(function(item) {
+        $("#continueBilling").off().on("click",function(item) {
             
             $.ajax({
                 url: "/objavlenie/makeExtend/"+window.advert_id+"/srochno_torg",
@@ -73,7 +73,7 @@ $( document ).ready(function() {
         });        
     });    
 
-    $("#makePaint").click(function(item) {
+    $("#makePaint").on("click", function(item) {
 
         $(".modal-title").text("Выделить");
         $(".modal-body p").text("Цветное объявление намного заметнее в общем списке.");
@@ -81,7 +81,7 @@ $( document ).ready(function() {
 
         $("#billingModalDialog").modal("show");
 
-        $("#continueBilling").off().click(function(item) {
+        $("#continueBilling").off().on("click",function(item) {
             
             $.ajax({
                 url: "/objavlenie/makeExtend/"+window.advert_id+"/makePaint",
@@ -96,13 +96,16 @@ $( document ).ready(function() {
 	
 });
 
-$("#complain").click(function(event) {    
+$("#sendComplainLink").on("click", function(event) {    
+    
     event.preventDefault();     
+
     $("#complainTextarea").val("");
     $("#complainDialog").modal("show");
 });
 
-$("#sendComplain").click(function(event) {    
+
+$("#sendComplain").on("click", function(event) {     
 
     if ($("#complainTextarea").val().length > 3) {
 

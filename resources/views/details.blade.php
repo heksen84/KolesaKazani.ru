@@ -72,7 +72,7 @@
     
     <div class="row"> 
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-        <div class="text-right"><a href="" id="sendComplainLink" title="подать жалобу в администрацию на размещённое объявление" id="complain">пожаловаться</a></div>    
+        <div class="text-right"><a href="" title="подать жалобу в администрацию на размещённое объявление" id="sendComplainLink">пожаловаться</a></div>    
           <div class="close-link" style="margin-bottom:25px" title="Закрыть страницу">закрыть страницу</div>                    
             <div id="posted"><span>{{ date("Размещено d.m.Y в H:i", strtotime($advert->startDate)) }}</span></div>
               <div id="location">{{ $advert->region_name }} обл., {{ $advert->city_name }}</div>
