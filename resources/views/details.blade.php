@@ -85,7 +85,7 @@
                         @endif
                     </ol>
                   </nav>
-                @endif
+                @endif                
 
                 <!-- индикаторы объявления -->
                 <div class="text-right">                            

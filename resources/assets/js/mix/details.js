@@ -1,5 +1,5 @@
 import $ from "jquery";
-import bootstrap from "bootstrap";
+import "bootstrap";
 
 // --------------------------------------------
 // инициализация карты
@@ -28,7 +28,7 @@ $(function() {
     
     ymaps.ready(initMaps);
 
-    $("#carousel").carousel();    
+    $("#carousel").carousel(); 
 
     $("#makeVip").on("click", function(item) {
                 
