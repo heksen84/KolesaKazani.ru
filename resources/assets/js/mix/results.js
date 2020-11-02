@@ -2,7 +2,9 @@ import $ from "jquery";
 
 // загрузить модели автомобилей
 function loadCarsModels(idCarMark) {
+
   $("#model").empty().append("<option value=all>Все модели</option>");
+
   $.ajax({
     url: "/api/getCarsModels",
     type: "GET",
@@ -17,26 +19,36 @@ function loadCarsModels(idCarMark) {
 
 // загрузить марки автомобилей
 function loadCarsMarks() {
+
   $("#mark").empty().append("<option value=all>Все марки</option>");
+
   $.ajax({
+
     url: "/api/getCarsMarks",
     type: "GET",
     data: {"_token": $('meta[name="csrf-token"]').attr('content')},
-    success: function (response) {                                    
+    success: function (response) {
+
       $.each(response, function(index, item) {
+
         $("#mark").append("<option value="+item.id_car_mark+">"+item.name+"</option>");
       });
-      $( "#mark" ).change(function(item) { 
+
+      $( "#mark" ).trigger("change", function(item) { 
+        
         loadCarsModels($(this).children("option:selected").val()); 
-      }).change();
+      }).trigger("change");
     }
   });
 }
 
 // загрузить данные автомобилей
 function initCars() {
-  if (window.mark) 
+
+  if (window.mark)
+
     $("#mark").val(window.mark);
+
     if (window.model) 
       $("#model").val(window.model);
       loadCarsMarks();
@@ -44,7 +56,9 @@ function initCars() {
 
 // подготовливаю фильтры
 function initFilters() {
+  
   let buttonFiltersDefaultText = "скрыть фильтр";
+  
   $("#filters_button").on("click",function(item) { 
 
     if ($("#filters_button").text() == buttonFiltersDefaultText) {      
@@ -52,7 +66,8 @@ function initFilters() {
       $("#filters_button").text("отфильтровать");
       localStorage.setItem("show_filters", "false");      
     }
-    else {      
+    else {
+
       $("#filters").show()
       $("#filters_button").text(buttonFiltersDefaultText);
       localStorage.setItem("show_filters", "true");
