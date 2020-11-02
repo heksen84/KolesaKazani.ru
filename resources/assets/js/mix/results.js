@@ -35,7 +35,6 @@ function loadCarsMarks() {
       });
 
       $( "#mark" ).trigger("change", function(item) { 
-        
         loadCarsModels($(this).children("option:selected").val()); 
       }).trigger("change");
     }
