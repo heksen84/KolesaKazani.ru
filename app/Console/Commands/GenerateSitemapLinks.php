@@ -75,6 +75,7 @@ class GenerateSitemapLinks extends Command
         $base3  = fopen("base3.xml", "w");
         $base4  = fopen("base4.xml", "w");
         $base5  = fopen("base5.xml", "w");
+
         // ----------------------------------------------------------------------------
 
 	fwrite($base1, '<?xml version="1.0" encoding="UTF-8"?>');
@@ -150,7 +151,7 @@ class GenerateSitemapLinks extends Command
 
         // ----------------------------------------------------------------------------
 
-        $total = count($results);        
+        $total  = count($results);        
         $total1 = count($results);
         $total2 = count($results1);       
 
@@ -171,11 +172,13 @@ class GenerateSitemapLinks extends Command
         fwrite($curIndexFile, '<?xml version="1.0" encoding="UTF-8"?>');
         fwrite($curIndexFile,'<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">');
         
-       for($i=0; $i<$total1; $i++) {        
-        for($j=0; $j<$total2; $j++) {
+       for($i = 0; $i < $total1; $i++ ) {        
+        for($j = 0; $j < $total2; $j++ ) {
+
                 $slash_subcats = "";                
 
                 if ($results1[$j]->category_url && $results1[$j]->subcats_url)
+
                         $slash_subcats = "/";                                               
                         
                         $this->generateRecord($app_url."/".$results[$i]->region_url."/".$results[$i]->place_url."/c/".$results1[$j]->category_url.$slash_subcats.$results1[$j]->subcats_url, $date_time, $curIndexFile);                
@@ -192,8 +195,11 @@ class GenerateSitemapLinks extends Command
                                 fwrite($curIndexFile,'<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">');	                        
 		        }		
                 }
-
        }
+                                fwrite($curIndexFile, '</urlset>');
+                                fclose($curIndexFile);
+
+
                 
         $this->info("ready!");
     }
