@@ -49,6 +49,16 @@ Route::get("/api/searchPlaceByString", "ApiController@searchPlaceByString" );
 Route::post("/api/loadImage", "ApiController@loadImage" );
 Route::post("/api/deleteImage/{storage_id}", "ApiController@deleteImage" );
 
+
+/*Route::get("/c/auto/{mark}", "AutoResultsController@getCountryCategoryResults");
+Route::get("{region}/c/auto/{mark}", "AutoResultsController@getCountryCategoryResults");
+Route::get("{region}/{city}/c/auto/{mark}", "AutoResultsController@getCityCategoryResults");
+
+Route::get("/c/auto/{mark}{model}", "AutoResultsController@getCountryCategoryResults");
+Route::get("{region}/c/auto/{mark}{model}", "AutoResultsController@getCountryCategoryResults");
+Route::get("{region}/{city}/c/auto/{mark}{model}", "AutoResultsController@getCityCategoryResults");*/
+
+
 // По стране
 Route::get("/", "IndexController@ShowCountryIndexPage");
 
