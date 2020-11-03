@@ -226,7 +226,7 @@
                 </div>                
                 </a>
                     @if ($simAdvert->price)
-                      <b class="card-price-value mb-2" style="font-size:12px">{{ $simAdvert->price }} ₸</b>
+                      <b class="card-price-value mb-2" style="font-size:11px">{{ $simAdvert->price }} ₸</b>
                     @else
                       <b class="mb-2">&nbsp</b>
                     @endif                    
