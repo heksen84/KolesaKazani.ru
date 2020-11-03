@@ -1,27 +1,27 @@
 <div class="row">
 
 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
-  <p>Этаж: <b>{{ $advert->floor }}</b></p>
+  <p>Этаж: <span class="text">{{ $advert->floor }}</span></p>
  </div>
  
  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
-  <p>Кол-во этажей в доме: <b>{{ $advert->floors_house }}</b></p>
+  <p>Кол-во этажей в доме: <span class="text">{{ $advert->floors_house }}</span></p>
  </div>
  
  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
-   <p>Кол-во комнат: <b>{{ $advert->rooms }}</b></p>
+   <p>Кол-во комнат: <span class="text">{{ $advert->rooms }}</span></p>
  </div>
  
  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
-   <p>Площадь: <b>{{ $advert->area }}м²</b></p>
+   <p>Площадь: <span class="text">{{ $advert->area }}м²</span></p>
  </div>
 
  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
-   <p>Право собственности: <b>{{ $advert->ownership }}</b></p>
+   <p>Право собственности: <span class="text">{{ $advert->ownership }}</span></p>
  </div>
 
  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
-  <p>Вид объекта: <b>{{ $advert->kind_of_object }}</b></p>
+  <p>Вид объекта: <span class="text">{{ $advert->kind_of_object }}</span></p>
  </div>
 
 </div>
