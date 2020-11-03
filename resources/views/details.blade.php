@@ -218,7 +218,7 @@
               </div>
 
               @foreach($similarAdverts as $simAdvert)      
-                <div class="col-4 col-sm-4 col-md-3 col-lg-4 col-xl-2 mb-1 text-center">      
+                <div class="col-4 col-sm-4 col-md-3 col-lg-4 col-xl-2 text-center">      
                   <a href="/objavlenie/show/{{ $simAdvert->url }}">
                     <div class="card">
                     <img class="card-img-top" src="{{ $simAdvert->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">
@@ -226,8 +226,10 @@
                 </div>                
                 </a>
                     @if ($simAdvert->price)
-                      <b class="card-price-value" style="font-size:12px">{{ $simAdvert->price }} ₸</b>
-                    @endif
+                      <b class="card-price-value mb-2" style="font-size:12px">{{ $simAdvert->price }} ₸</b>
+                    @else
+                      <b class="mb-2">&nbsp</b>
+                    @endif                    
                   </div>      
                 </div>
               @endforeach
