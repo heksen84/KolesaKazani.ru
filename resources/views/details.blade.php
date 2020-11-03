@@ -132,9 +132,7 @@
                 <button type="button" class="btn btn-outline-success" id="numberButton">Показать телефон</button>            
               </div>  
 
-              <div id="phone-number"></div>
-              
-              <hr>
+              <div id="phone-number"></div>                            
 
               @if (count($images) > 0)              
               <div id="carousel" class="carousel slide mt-2" data-ride="carousel">
