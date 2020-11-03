@@ -207,13 +207,16 @@
                 @include('results/nedvizhimost/nedvizhimost_za_rubezhom')  
               @endif
                     
+              <h6>На карте</h6>
               <div id="map"></div>              
               
               @if ( count( $similarAdverts ) > 0 )
+              
               <div class="row">                
-                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-1 text-left mb-2">    
-                <h5>Похожие объявления:</h5>
-              </div>              
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-left">    
+                <h6>Похожие объявления:</h6>
+              </div>
+
               @foreach($similarAdverts as $simAdvert)      
                 <div class="col-4 col-sm-4 col-md-3 col-lg-4 col-xl-2 mb-1 text-center">      
                   <a href="/objavlenie/show/{{ $simAdvert->url }}">
@@ -228,8 +231,22 @@
                   </div>      
                 </div>
               @endforeach
-            @endif              
-      </div>      
+            @endif
+            
+            <!--<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-1 text-left mt-3">    
+              <h6>Топ 5 популярных:</h6>
+              <table class="table table-bordered" style="word-break: break-all">
+                <tr>  
+                  <td><a href="/333">222222222222222222222222222222222222222222222222222222222222222</a><br><b>1000 тнг</b></td>                                    
+                </tr>  
+                <tr>  
+                  <td><a href="/333">222222222222222222222222222222222222222222222222222222222222222</a><br><b>2000 тнг</b></td>                                    
+                </tr>  
+                <tr>  
+                  <td><a href="/333">222222222222222222222222222222222222222222222222222222222222222</a><br><b>3000 тнг</b></td>                                    
+                </tr>  
+              </table>
+            </div>      -->
 
     <!-- РЕКЛАМА -->
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2 text-center">
