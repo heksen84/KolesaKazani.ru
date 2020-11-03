@@ -184,9 +184,9 @@
                   
                   <div class="col-md-12">
                     <div style="width:280px;margin:auto">
-                    <label for="selectRegion">Регион:</label>
+                    <label for="selectRegion">Область:</label>
                       <select id="selectRegion" class="form-control form-group" @change="changeRegion" v-model="regions_model">            
-                        <option v-bind:value="null">-- Выберите регион --</option>
+                        <option v-bind:value="null">-- Выберите область --</option>
                         <option v-for="item in regions" :value="item.region_id" :key="item.name">{{ item.name }}</option>
                       </select>
                     </div>
