@@ -207,14 +207,14 @@
                 @include('results/nedvizhimost/nedvizhimost_za_rubezhom')  
               @endif
                     
-              <h6>На карте</h6>
+              <h6 style="letter-spacing:1px">На карте</h6>
               <div id="map"></div>              
               
               @if ( count( $similarAdverts ) > 0 )
               
               <div class="row">                
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-left">    
-                <h6>Похожие объявления:</h6>
+                <h6 style="letter-spacing:1px">Похожие объявления:</h6>
               </div>
 
               @foreach($similarAdverts as $simAdvert)      
