@@ -1,5 +1,7 @@
 <div class="row">
 
+<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"><hr></div>
+
  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
   <p>Тип строения: <span class="text">{{ $advert->type_of_building }}</span></p>
  </div>
@@ -19,5 +21,7 @@
  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
   <p>Вид объекта: <span class="text">{{ $advert->kind_of_object }}</span></p>
  </div>
+
+ <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"><hr></div>
 
 </div>
