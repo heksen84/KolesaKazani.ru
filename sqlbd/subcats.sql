@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Окт 28 2020 г., 06:45
+-- Время создания: Ноя 03 2020 г., 14:16
 -- Версия сервера: 10.3.13-MariaDB-log
 -- Версия PHP: 7.3.9
 
@@ -117,7 +117,8 @@ INSERT INTO `subcats` (`id`, `name`, `url`, `title`, `description`, `keywords`, 
 (71, 'Уход за животными', 'uhod-za-zhivotnymi', 'Услуги по уходу за животными в @place', 'Услуги по уходу за животными в @place', '', 'Уход за животными в @place', 9),
 (72, 'Фото- и видеосъёмка', 'foto--i-videosemka', 'Услуги фото- и видеосъёмки в @place', 'Услуги фото- и видеосъёмки в @place', '', 'Фото- и видеосъёмка в @place', 9),
 (73, 'Другое', 'drugoe', 'Различные объявления в @place', 'Различные объявления в @place', '', 'Другое в @place', 9),
-(74, 'Запчасти', 'zapchasti', 'Запчасти в @place', 'Запчасти в @place', '', 'Запчасти для транспорта в @place', 1);
+(74, 'Запчасти', 'zapchasti', 'Запчасти в @place', 'Запчасти в @place', '', 'Запчасти для транспорта в @place', 1),
+(77, 'Прочая электроника', 'prochaya-elektronika', 'Прочая электроника в @place', 'Прочая электроника в @place', '', 'Прочая электроника в @place', 3);
 
 --
 -- Индексы сохранённых таблиц
@@ -138,7 +139,7 @@ ALTER TABLE `subcats`
 -- AUTO_INCREMENT для таблицы `subcats`
 --
 ALTER TABLE `subcats`
-  MODIFY `id` int(2) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id` int(2) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
