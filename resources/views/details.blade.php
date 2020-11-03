@@ -207,7 +207,8 @@
                 @include('results/nedvizhimost/nedvizhimost_za_rubezhom')  
               @endif
                     
-              <h6 style="letter-spacing:1px">На карте</h6>
+              <br>
+              <h6 style="letter-spacing:1px;">На карте</h6>
               <div id="map"></div>              
               
               @if ( count( $similarAdverts ) > 0 )
