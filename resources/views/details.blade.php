@@ -206,9 +206,8 @@
               @elseif ($advert->category_id==2 && $advert->subcategory_id==15)
                 @include('results/nedvizhimost/nedvizhimost_za_rubezhom')  
               @endif
-                    
-              <br>
-              <h6 style="letter-spacing:1px;">На карте</h6>
+                                  
+              <h6 style="letter-spacing:1px;margin-top:5px">На карте</h6>
               <div id="map"></div>              
               
               @if ( count( $similarAdverts ) > 0 )
