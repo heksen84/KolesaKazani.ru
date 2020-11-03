@@ -146,9 +146,10 @@ document.body.addEventListener('click', function (evt) {
                 
                 document.getElementById("numberButton").style.display = "none";
                 document.getElementById("phone-number").style.display = "block";
+
                 // удаляю лишние символы для ссылки с набором номера
-                let hRefTel = JSON.parse(xhr.responseText)[0].phone.split('(').join('').split(')').join('').split(' ').join('').split('-').join('');
-                //document.getElementById("phone-number").innerHTML = "<b>тел: <a href='tel:+7"+hRefTel+"'>+7 "+JSON.parse(xhr.responseText)[0].phone+"</a></b><br>Скажите продавцу, что нашли это объявление на сайте объявлений <b>Ильбо</b>.";
+                let hRefTel = JSON.parse(xhr.responseText)[0].phone.split('(').join('').split(')').join('').split(' ').join('').split('-').join('');                
+                
                 document.getElementById("phone-number").innerHTML = 
                 "<b>тел: <a href='tel:+7"+hRefTel+"'>+7 "+JSON.parse(xhr.responseText)[0].phone+"</a></b><br><a class='btn btn-outline-success btn-sm mt-1 mb-2' href='tel:+7"+hRefTel+"'>позвонить</a>";
 			}
