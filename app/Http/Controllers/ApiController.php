@@ -62,7 +62,7 @@ class ApiController extends Controller {
                         $imgLib = Image::make($img->getRealPath())->orientate();
                         
                         // формирую рандомное имя                        
-                        $newFilename = str_random(16).".jpg";
+                        $newFilename = str_random(16).".webp";
                                                                         
                         // сохраняю изображение
                         if ($imgLib->save(Common::getNormalImagesPath().$newFilename)) {
@@ -602,7 +602,7 @@ class ApiController extends Controller {
                         $imgLib = Image::make($img->getRealPath())->orientate();
                         
                         // формирую рандомное имя
-                        $newFilename = str_random(16).".jpg";
+                        $newFilename = str_random(16).".webp";
                                                                         
                         // меняю размер и сохраняю изображение (800x600)
                         if ($imgLib->save(Common::getNormalImagesPath().$newFilename)) {

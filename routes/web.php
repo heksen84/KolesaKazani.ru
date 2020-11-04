@@ -13,8 +13,15 @@ Route::get('auth/insta/callback', 'Auth\AuthController@handleInstaCallback');
 Route::get('/advert', function() { return view('advert'); });
 Route::get('/rules', function() { return view('rules'); });
 Route::get('/about', function() { return view('about'); });
+
+// Блог
 Route::get('/blog', "BlogController@showArticles");
 Route::get('/blog/{articleId}', "BlogController@showArticle");
+
+// Статьи
+Route::get("/articles", "ArticlesController@showArticles");
+Route::get("/articles/show/", "ArticlesController@showArticle");
+Route::get("/articles/delete/", "ArticlesController@deleteArticle");
 
 Route::get('/logout', "\App\Http\Controllers\Auth\LoginController@logout");
 Route::get('/search', "IndexController@getResultsBySearchString");
@@ -33,9 +40,8 @@ Route::get("/podat-objavlenie", "AdvertController@newAdvert");
 Route::post("/api/createAdvert", "ApiController@createAdvert");
 
 // удалить объявление
-Route::post("/objavlenie/delete/{id}", "AdvertController@deleteAdvert");
-Route::get("/objavlenie/delete/{id}", "AdvertController@deleteAdvert");
-
+Route::post("/objavlenie/delete/{id}", "AdvertController@deleteAdvert"); // post
+Route::get("/objavlenie/delete/{id}", "AdvertController@deleteAdvert"); // get
 Route::post("/objavlenie/makeExtend/{advert_id}/{adv_type}", "AdvertController@makeExtend");
 Route::post("/objavlenie/makeComplaint/{advert_id}", "AdvertController@makeComplaint");
 
@@ -49,7 +55,6 @@ Route::get("/api/searchPlaceByString", "ApiController@searchPlaceByString" );
 Route::post("/api/loadImage", "ApiController@loadImage" );
 Route::post("/api/deleteImage/{storage_id}", "ApiController@deleteImage" );
 
-
 /*Route::get("/c/auto/{mark}", "AutoResultsController@getCountryCategoryResults");
 Route::get("{region}/c/auto/{mark}", "AutoResultsController@getCountryCategoryResults");
 Route::get("{region}/{city}/c/auto/{mark}", "AutoResultsController@getCityCategoryResults");
@@ -58,38 +63,23 @@ Route::get("/c/auto/{mark}{model}", "AutoResultsController@getCountryCategoryRes
 Route::get("{region}/c/auto/{mark}{model}", "AutoResultsController@getCountryCategoryResults");
 Route::get("{region}/{city}/c/auto/{mark}{model}", "AutoResultsController@getCityCategoryResults");*/
 
-
-// Статьи
-Route::get("/articles", "ArticlesController@showArticles");
-Route::get("/articles/show/", "ArticlesController@showArticle");
-Route::get("/articles/delete/", "ArticlesController@deleteArticle");
-
 // По стране
 Route::get("/", "IndexController@ShowCountryIndexPage");
-
 // мои объявления
 Route::get("/home", "HomeController@ShowHomePage");
-
 // Результаты по категориям по стране
 Route::get("/c/{category}", "ResultsController@getCountryCategoryResults");
-
 // Результаты по категориям по региону
 Route::get("{region}/c/{category}", "ResultsController@getRegionCategoryResults");
-
 // Результаты по категориям по месту
 Route::get("{region}/{place}/c/{category}", "ResultsController@getCityCategoryResults");
-
 // Результаты по подкатегориям по стране
 Route::get("/c/{category}/{subcategory}", "ResultsController@getCountrySubCategoryResults");
-
 // Результаты по подкатегориям по региону
 Route::get("/{region}/c/{category}/{subcategory}", "ResultsController@getRegionSubCategoryResults");
-
 // Результаты по подкатегориям по местности
 Route::get("/{region}/{city}/c/{category}/{subcategory}", "ResultsController@getCitySubCategoryResults");
-
 // По всему региону
 Route::get("/{region}", "IndexController@ShowRegionIndexPage");
-
 // По городу или селу
 Route::get("/{region}/{place}", "IndexController@ShowPlaceIndexPage");

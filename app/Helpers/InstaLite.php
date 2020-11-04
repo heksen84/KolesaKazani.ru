@@ -165,7 +165,8 @@ class InstaLite
         $photo_id = round(microtime(true) * 1000);
         $file_temp = __DIR__ . '/' . $this->uuid4();
         list($width, $height, $image_type) = getimagesize(realpath($photo));
-        $srcImage = ImageCreateFromJPEG($photo);
+//        $srcImage = ImageCreateFromJPEG($photo);
+	$srcImage = imagecreatefromwebp($photo);
         $resImage = ImageCreateTrueColor($width, $height);
         ImageCopyResampled($resImage, $srcImage, 0, 0, 0, 0, $width, $height, $width, $height);
         ImageJPEG($srcImage, $file_temp, 100);
