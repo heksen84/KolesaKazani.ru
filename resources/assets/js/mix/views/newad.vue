@@ -40,7 +40,7 @@
           <a href="/rules" title="Правила размещения объявления">правила размещения</a>
         </div>
         <!-- FIX: убрать mt-2 -->
-        <div class="close-link" style="width:150px;margin-top:-27px" title="Закрыть страницу" @click="closePage">закрыть</div>
+        <div class="close-link" style="width:150px;margin-top:-28px" title="Закрыть страницу" @click="closePage">закрыть</div>
         <br>
 		      <h2 class="title_text">новое объявление</h2>
             <hr>            
