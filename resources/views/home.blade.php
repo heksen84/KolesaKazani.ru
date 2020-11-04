@@ -86,7 +86,7 @@
         <a class="nav-link" href="#">Счёт: 4000 тнг. [ пополнить ]</a>
       </li>-->
       <li class="nav-item">
-        <a class="nav-link" href="/logout"><b>Выход</b></a>
+        <a class="nav-link" href="/logout">Выход</a>
       </li>      
     </ul>
   </div>
