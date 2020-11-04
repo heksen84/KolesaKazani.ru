@@ -131,7 +131,7 @@ document.body.addEventListener('click', function (evt) {
 
 	// закрыть страницу
 	if (evt.target.classList[0] === 'close-link')        
-        window.location="/";
+        history.go(-1)
 
 	// кнопка - показать номер
 	if (evt.target.id==="numberButton") {

@@ -11,7 +11,7 @@
   <link rel="shortcut icon" href="{{ asset('/public/ico/favicon.svg') }}" type="image/x-icon" />
 </head>
 <body style="padding-right:20px;padding-left:20px;">
-<center><a href="/">Вернуться на главную страницу</a></center>
+<center><a href="javascript:history.go(-1)">Вернуться назад</a></center>
 <h1>Правила сайта</h1>
 <h2>Правила размещения объявлений, Политика конфиденциальности и защита персональной информации</h2>
 
@@ -290,6 +290,6 @@
 <p>11.3. При удалении объявления, которое не соответствует настоящим Правилам, средства за оказанные услуги не возвращаются.</p>
 <br>
 <br>
-<center><a href="/">Вернуться на главную страницу</a></center>
+<center><a href="javascript:history.go(-1)">Вернуться назад</a></center>
 </body>
 </html>

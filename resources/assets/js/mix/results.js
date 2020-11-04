@@ -60,7 +60,8 @@ function initFilters() {
   
   $("#filters_button").on("click",function(item) { 
 
-    if ($("#filters_button").text() == buttonFiltersDefaultText) {      
+    if ($("#filters_button").text() == buttonFiltersDefaultText) {
+
       $("#filters").hide();
       $("#filters_button").text("отфильтровать");
       localStorage.setItem("show_filters", "false");      
@@ -83,14 +84,10 @@ $(function() {
   // что-бы фильтры не вылизили стразу в других категориях
   $(".close-link").on("click",function() {
     localStorage.setItem("show_filters", "false");          
+    history.go(-1);
   });
 
-  /*window.onpopstate = function() {
-    localStorage.setItem("show_filters", "false"); 
-    console.log("!!!");
-  }; history.pushState({}, '');*/  
-
-  if (localStorage.getItem("show_filters")=="true") {   
+  if (localStorage.getItem("show_filters")=="true") {    
     $("#filters_button").trigger("click");
   }
 
