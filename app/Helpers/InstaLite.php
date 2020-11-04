@@ -14,8 +14,8 @@ require_once 'InstaLite/Request.php';
 use InstaLite\Exception;
 use InstaLite\Request;
 
-class InstaLite
-{
+class InstaLite {
+    
     /** username instagram */
     public $username;
     /** password instagram */
