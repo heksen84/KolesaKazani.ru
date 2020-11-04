@@ -59,6 +59,11 @@ Route::get("{region}/c/auto/{mark}{model}", "AutoResultsController@getCountryCat
 Route::get("{region}/{city}/c/auto/{mark}{model}", "AutoResultsController@getCityCategoryResults");*/
 
 
+// Статьи
+Route::get("/articles", "ArticlesController@showArticles");
+Route::get("/articles/show/", "ArticlesController@showArticle");
+Route::get("/articles/delete/", "ArticlesController@deleteArticle");
+
 // По стране
 Route::get("/", "IndexController@ShowCountryIndexPage");
 
