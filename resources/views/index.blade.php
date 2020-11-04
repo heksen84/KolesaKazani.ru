@@ -45,6 +45,9 @@
         <li class="nav-item">
           <a class="nav-link" href="/home">Мои объявления</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout"><b>Выход</b></a>
+        </li>      
 	      @else        
         <li class="nav-item">
           <a class="nav-link" href="/login">Вход</a>
