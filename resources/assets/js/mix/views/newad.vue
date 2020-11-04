@@ -38,7 +38,7 @@
       <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col" style="border: 1px solid rgb(220,220,220)">        
         <div style="text-align:right;font-size:14px;letter-spacing:1px;margin-bottom:8px">
           <!-- FIX: вернуть отображение -->
-          <a style="display:none" href="/rules" title="Правила размещения объявления">правила размещения</a>
+          <a href="/rules" title="Правила размещения объявления">правила размещения</a>
         </div>
         <!-- FIX: убрать mt-2 -->
         <div class="close-link mt-2" style="width:160px" title="Закрыть страницу" @click="closePage">закрыть страницу</div>
