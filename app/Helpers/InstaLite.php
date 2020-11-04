@@ -8,8 +8,8 @@
 
 namespace App\Helpers;
 
-require_once __DIR__ . './InstaLite/Exception.php';
-require_once __DIR__ . './InstaLite/Request.php';
+require_once 'InstaLite/Exception.php';
+require_once 'InstaLite/Request.php';
 
 use InstaLite\Exception;
 use InstaLite\Request;
