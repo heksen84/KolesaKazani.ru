@@ -9,7 +9,6 @@
   <meta name="description" content="{{ $description }}" />
   <meta name="keywords" content="{{ $keywords }}" />
   <meta name="yandex-verification" content="56091dbfb213e164" />
-
   <!-- OpenGraph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Ильбо">
@@ -17,19 +16,15 @@
   <meta property="og:description" content="{{ $description }}">  
   <meta property="og:url" content="https://ilbo.site/">
   <!-- /OpenGraph -->
-
   <meta name="news_keywords" content="{{ $title }}"/>
 	<meta name="twitter:title" content="{{ $title }}"/>
 	<meta property="vk:title" content="{{ $title }}"/>
-
   <link rel="shortcut icon" href="{{ asset('/public/ico/favicon.svg') }}" type="image/x-icon" />
   <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ mix('css/common.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ mix('css/index.css') }}" />
-
 </head>
 <body>
-
 <div id="app">
   <div id="navbar_menu">
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -400,5 +395,5 @@
     a.parentNode.insertBefore(s, a);
     })();
   </script>
-  
+
 </html>
