@@ -37,10 +37,10 @@
     <div class="row">  
       <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col" style="border: 1px solid rgb(220,220,220)">        
         <div style="text-align:right;font-size:14px;letter-spacing:1px;margin-bottom:8px">
-          <a href="/rules" title="Правила размещения объявления">правила</a>
+          <a href="/rules" title="Правила размещения объявления">правила размещения</a>
         </div>
         <!-- FIX: убрать mt-2 -->
-        <div class="close-link" style="width:150px;margin-top:-25px" title="Закрыть страницу" @click="closePage">закрыть страницу</div>
+        <div class="close-link" style="width:150px;margin-top:-25px" title="Закрыть" @click="closePage">закрыть страницу</div>
         <br>
 		      <h2 class="title_text">новое объявление</h2>
             <hr>            
