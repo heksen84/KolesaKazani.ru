@@ -60,8 +60,8 @@
 		
 	        <div style="padding: 10px">
 		        <a href="/">перейти на главную страницу</a>
-	        </div>
-
+	        </div>        
+	    </div>
 
         <hr>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>  
@@ -75,7 +75,6 @@
            (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
         <hr>
-
-	    </div>
+        
     </body>
 </html>
