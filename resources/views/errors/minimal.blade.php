@@ -49,7 +49,7 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-width">
+        <div class="flex-center position-ref">
             <div class="code">
                 @yield('code')
             </div>
