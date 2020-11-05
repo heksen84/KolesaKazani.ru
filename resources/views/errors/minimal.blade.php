@@ -63,10 +63,10 @@
 	        </div>                    
 	    </div>
 
-        <div stlye="margin-top:-50px">
+        <div stlye="margin-top:-100px;text-align:center">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>  
                 <ins class="adsbygoogle"
-                style="display:block;margin:auto"
+                style="display:block"
                 data-ad-client="ca-pub-8074944108437227"
                 data-ad-format="auto"
                 data-ad-slot="8746851039"        
