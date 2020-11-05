@@ -130,8 +130,11 @@ $("#sendComplain").on("click", function(event) {
 document.body.addEventListener('click', function (evt) {
 
 	// закрыть страницу
-	if (evt.target.classList[0] === 'close-link')        
-        history.go(-1)
+	if (evt.target.classList[0] === 'close-link') {
+        //history.go(-1)
+        // при размещении объявления отменить назад
+        window.location="/";
+    }
 
 	// кнопка - показать номер
 	if (evt.target.id==="numberButton") {
