@@ -63,6 +63,7 @@
 	        </div>
 
 
+        <hr>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>  
         <ins class="adsbygoogle"
           style="display:block"
@@ -73,6 +74,7 @@
         <script>
            (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
+        <hr>
 
 	    </div>
     </body>
