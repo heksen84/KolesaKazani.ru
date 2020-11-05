@@ -62,9 +62,8 @@
 		        <a href="/">перейти на главную страницу</a>
 	        </div>                    
 	    </div>
-
-        <div stlye="margin-top:-100px;text-align:center;width:100%">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>  
+        
+        <!--<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>  
                 <ins class="adsbygoogle"
                 style="display:block;margin:auto"
                 data-ad-client="ca-pub-8074944108437227"
@@ -73,8 +72,7 @@
                 data-full-width-responsive="true"></ins>
             <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        </div>
+        </script>-->
 
     </body>
 </html>
