@@ -60,7 +60,20 @@
 		
 	        <div style="padding: 10px">
 		        <a href="/">перейти на главную страницу</a>
-	        </div>        
+	        </div>
+
+
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>  
+        <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-8074944108437227"
+          data-ad-format="auto"
+          data-ad-slot="8746851039"        
+          data-full-width-responsive="true"></ins>
+        <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
 	    </div>
     </body>
 </html>
