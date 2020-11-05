@@ -17,7 +17,7 @@
       <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2">    
         <img src="/public/images/success.png"></img>
         <h1 class="mt-3 mb-2">Объявление размещено!</h1>
-        <h4><a href="/objavlenie/show/{{ $url }}">посмотреть</a></h4>
+        <h4><a href="/objavlenie/show/{{ $url }}/?view=1">посмотреть</a></h4>
       </div>
     </div>
   </div>

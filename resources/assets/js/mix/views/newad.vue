@@ -713,6 +713,7 @@ onSubmit(evt) {
     
     // ошибка
     if ( response.data.result === "error" ) {
+
       $("#advert_loading_block").hide();
        console.error(response.data.msg);
        this.dialogTitleMsg = response.data.title;
@@ -720,12 +721,14 @@ onSubmit(evt) {
        this.serviceError();
     }
     // объявление размещено
-		else {     
+		else {
+
       $("#advert_loading_block").hide();
       window.location="/objavlenie/posted/"+response.data.url;     
     }
     // исключение - ошибка		
     }).catch(error => {
+      
       $("#advert_loading_block").hide();
 		  this.serviceError();
     })

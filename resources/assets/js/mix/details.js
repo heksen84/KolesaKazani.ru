@@ -130,14 +130,16 @@ $("#sendComplain").on("click", function(event) {
 document.body.addEventListener('click', function (evt) {
 
 	// закрыть страницу
-	if (evt.target.classList[0] === 'close-link') {
-        //history.go(-1)
-        // при размещении объявления отменить назад
-        window.location="/";
+	if (evt.target.classList[0] === 'close-link') {                
+
+        if (window.view)
+            window.location="/";
+        else
+            history.go(-1);
     }
 
 	// кнопка - показать номер
-	if (evt.target.id==="numberButton") {
+	if (evt.target.id === "numberButton") {
 		
 		let xhr = new XMLHttpRequest();		
 		xhr.open('GET', '/api/getPhoneNumber?id='+window.advert_id, true);		

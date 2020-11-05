@@ -24,6 +24,8 @@ class DetailsController extends Controller {
         // детали объявления
         // --------------------------------------------------
         public function getDetails(Request $request, $title) {
+
+            \Debugbar::info("VIEW: ".$request->view);
             
             // получаю данные url объявления по заголовку объявления
             $urlData = Urls::select("advert_id")->where( "url", $title )->get();
@@ -894,6 +896,7 @@ class DetailsController extends Controller {
             ->with( "vip_price", Common::getVipPrice())
             ->with( "srochno_torg_price", Common::getSrochnoTorgPrice())
             ->with( "color_price", Common::getColorPrice())
-            ->with( "similarAdverts", $similarAdverts);        
+            ->with( "similarAdverts", $similarAdverts)
+            ->with( "view", $request->view);
     }
 }

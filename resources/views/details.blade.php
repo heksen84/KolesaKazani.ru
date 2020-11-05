@@ -279,12 +279,13 @@
   </div>  
 
 <script>
-  window.advert_id = "{{$advert->id}}";
-  window.coord_lat = "{{$advert->coord_lat}}"; 
-  window.coord_lon = "{{$advert->coord_lon}}";
-  window.vip_price = "{{$vip_price}}";
-  window.srochno_torg_price = "{{$srochno_torg_price}}";
-  window.color_price = "{{$color_price}}";  
+  window.advert_id = "{{ $advert->id }}";
+  window.coord_lat = "{{ $advert->coord_lat }}"; 
+  window.coord_lon = "{{ $advert->coord_lon }}";
+  window.vip_price = "{{ $vip_price }}";
+  window.srochno_torg_price = "{{ $srochno_torg_price }}";
+  window.color_price = "{{ $color_price }}";  
+  window.view = "{{ $view }}";
 </script>
 
 <script src="https://api-maps.yandex.ru/2.0-stable/?apikey=123&load=package.standard&lang=ru-RU" type="text/javascript"></script>
