@@ -63,7 +63,7 @@
 	        </div>                    
 	    </div>
 
-        <div class="text-center;margin-top:-20px">
+        <div class="text-center" stlye="margin-top:-20px">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>  
                 <ins class="adsbygoogle"
                 style="display:block"
