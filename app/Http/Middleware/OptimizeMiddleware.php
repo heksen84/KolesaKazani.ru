@@ -35,7 +35,7 @@ class OptimizeMiddleware
             $replace = array(
 //                "/\n([\S])/" => '$1',
 //                "/\r/" => '',
-                "/\n/" => '',
+//                "/\n/" => '',
                 "/\t/" => '',
                 "/ +/" => ' ',
             );
