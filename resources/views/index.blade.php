@@ -357,8 +357,7 @@
           </div>
         </div>
       </div>
-    </div>  
-  </body>
+    </div>
 
   <!-- Yandex.Metrika counter -->
   <script type="text/javascript" >
@@ -398,5 +397,7 @@
     a.parentNode.insertBefore(s, a);
     })();
   </script>
+
+  </body>
 
 </html>
