@@ -27,9 +27,9 @@ class OptimizeMiddleware
         if (strpos($buffer, '<pre>') !== false) {
             $replace = array(
                 "/\r/" => '',
-//                "/>\n</" => '><',
-//                "/>\s+\n</" => '><',
-//                "/>\n\s+</" => '><',
+                "/>\n</" => '><',
+                "/>\s+\n</" => '><',
+                "/>\n\s+</" => '><',
             );
         } else {
             $replace = array(
