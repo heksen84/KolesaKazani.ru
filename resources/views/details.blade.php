@@ -235,20 +235,20 @@
               @endforeach
             @endif
             
-            <!--<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-1 text-left mt-3">    
-              <h6 style="letter-spacing:1px">Топ 5 популярных</h6>
-              <table class="table table-bordered" style="word-break: break-all">
+            <!--<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-1 text-left mt-3">
+              <h5 style="letter-spacing:1px">Топ 5 популярных</h5>
+              <table class="table table-bordered" style="word-break: break-all;font-size:14px;">
                 <tr>  
-                  <td><a href="/333">222222222222222222222222222222222222222222222222222222222222222</a><br><b>1000 тнг</b></td>                                    
+                  <td class="p-0"><a href="/333"><div class="p-1">222222222222222222222222222222222222222222222222222222222222222</a><br><b>1000 тнг</b></div></td>                                    
                 </tr>  
                 <tr>  
-                  <td><a href="/333">222222222222222222222222222222222222222222222222222222222222222</a><br><b>2000 тнг</b></td>                                    
+                  <td class="p-0"><div class="p-1"><a href="/333">222222222222222222222222222222222222222222222222222222222222222</a><br><b>2000 тнг</b></div></td>                                    
                 </tr>  
                 <tr>  
-                  <td><a href="/333">222222222222222222222222222222222222222222222222222222222222222</a><br><b>3000 тнг</b></td>                                    
+                  <td class="p-0"><div class="p-1"><a href="/333">222222222222222222222222222222222222222222222222222222222222222</a><br><b>3000 тнг</b></div></td>
                 </tr>  
               </table>
-            </div>      -->
+            </div>-->
 
     <!-- РЕКЛАМА -->
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2 text-center">
