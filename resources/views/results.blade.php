@@ -53,13 +53,13 @@
   <div class="container-fluid mycontainer">
 
         <div title="Закрыть страницу" class="mt-1">        
-        @if (!$region && !$city)
-          <a href="/" class="close-link">закрыть страницу</a>
-        @elseif ($region && !$city)    
-          <a href="/{{$region}}" class="close-link">закрыть страницу</a>    
-        @elseif ($region && $city)    
-          <a href="/{{$region}}/{{$city}}" class="close-link">закрыть страницу</a>    
-        @endif        
+          @if (!$region && !$city)
+            <a href="/" class="close-link">закрыть страницу</a>
+          @elseif ($region && !$city)    
+            <a href="/{{$region}}" class="close-link">закрыть страницу</a>    
+          @elseif ($region && $city)    
+            <a href="/{{$region}}/{{$city}}" class="close-link">закрыть страницу</a>    
+          @endif        
         </div>
         
         <h1 id="title" class="mt-3">{{ $h1 }}</h1>
@@ -114,19 +114,18 @@
 
             <!-- перебор массива объявлений -->
             @foreach($items as $item)                                
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2 item">                  
-              <a href="/objavlenie/show/{{ $item->url }}">
-                @if ($item->color)
-                  <div class="card green-background">
-                @else
-                  <div class="card">
-                @endif
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2 item">
+                <a href="/objavlenie/show/{{ $item->url }}">
+                  @if ($item->color)
+                    <div class="card green-background">
+                  @else
+                    <div class="card">
+                  @endif
                   @if ($item->srochno)
                     <div class="label-torg">срочно</div>
                   @endif                  
                     <img class="card-img-top image" src="{{ $item->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">                      
-                      <div class="block-info-area">                                                                          
-                        
+                      <div class="block-info-area">                                                                                                  
                         @if ($item->price!="null" && $categoryId!=4 && $categoryId!=9 && $categoryId!=10)
                           <div class="price">{{ $item->price }} ₸</div>
                         @endif
@@ -136,9 +135,9 @@
                         <div class="location">                        
                           {{ $item->region_name }} обл., {{ $item->city_name }}<br><b style="font-size:11px">{{ date("d.m.Y в H:i", strtotime($item->startDate)) }}</b></div>                      
                         </div>            
-                  </div>
-                </a>  
-            </div>                
+                      </div>
+                  </a>  
+              </div>                
             @endforeach
 
             <!-- РЕКЛАМА -->
