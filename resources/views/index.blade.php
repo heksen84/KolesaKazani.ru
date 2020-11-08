@@ -379,7 +379,8 @@
   <!-- google adscence -->
   <script data-ad-client="ca-pub-8074944108437227" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  <script type="text/javascript"><!--
+  <!-- ZERO.KZ -->
+  <script type="text/javascript">
     var _zero_kz_ = _zero_kz_ || [];
     _zero_kz_.push(["id", 72991]);
     // Цвет кнопки
