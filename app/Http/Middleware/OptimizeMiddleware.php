@@ -10,8 +10,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class OptimizeMiddleware
-{
+class OptimizeMiddleware {
     /**
      * Handle an incoming request.
      * (c) Farshad Ghanbari <eng.ghanbari2025@gmail.com>
@@ -35,8 +34,7 @@ class OptimizeMiddleware
             $replace = array(
                 "/\n([\S])/" => '$1',
                 "/\r/" => '',
-//                "/\n/" => '',
-                "/\n/" => '&nbsp',
+                "/\n/" => '', // <-- проблема с zero.kz
                 "/\t/" => '',
                 "/ +/" => ' ',
             );

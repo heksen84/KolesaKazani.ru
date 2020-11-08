@@ -344,40 +344,6 @@
     <div id="footer"><a href="/blog" class="underline_link">Блог</a> | <a href="/advert" class="underline_link">Реклама</a> | <a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a></div>
   </div>
 
-  <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>
-        <div class="row">
-          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-right m-2">
-            <span id="_zero_72991" >
-              <noscript>
-                <a href="http://zero.kz/?s=72991" target="_blank">
-                  <img src="http://c.zero.kz/z.png?u=72991" width="88" height="31" alt="ZERO.kz" />
-                </a>
-              </noscript>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  <!-- Yandex.Metrika counter -->
-  <script type="text/javascript" >
-    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-    ym(68275672, "init", {
-          clickmap:true,
-          trackLinks:true,
-          accurateTrackBounce:true,
-          webvisor:true
-     });
-  </script>
-  <noscript><div><img src="https://mc.yandex.ru/watch/68275672" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-  <!-- /Yandex.Metrika counter -->
-
-  <!-- google adscence -->
-  <script data-ad-client="ca-pub-8074944108437227" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
   <!-- ZERO.KZ -->
   <script type="text/javascript">
     var _zero_kz_ = _zero_kz_ || [];
@@ -398,6 +364,39 @@
     })();
   </script>
 
+  <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-right m-2">
+            <span id="_zero_72991" >
+              <noscript>
+                <a href="http://zero.kz/?s=72991" target="_blank">
+                  <img src="http://c.zero.kz/z.png?u=72991" width="88" height="31" alt="ZERO.kz" />
+                </a>
+              </noscript>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
+
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript" >
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(68275672, "init", {
+          clickmap:true,
+          trackLinks:true,
+          accurateTrackBounce:true,
+          webvisor:true
+     });
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/68275672" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
+
+  <!-- google adscence -->
+  <script data-ad-client="ca-pub-8074944108437227" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 </html>
