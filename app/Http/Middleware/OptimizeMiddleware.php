@@ -33,7 +33,7 @@ class OptimizeMiddleware
             );
         } else {
             $replace = array(
-                "/\n([\S])/" => '$1',
+//                "/\n([\S])/" => '$1',
                 "/\r/" => '',
                 "/\n/" => '',
                 "/\t/" => '',
