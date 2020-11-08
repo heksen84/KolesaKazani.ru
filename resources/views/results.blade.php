@@ -54,17 +54,17 @@
 
         <div title="Закрыть страницу" class="mt-1">        
         @if (!$region && !$city)
-          <a href="/" class="close-link">закрыть</a>
+          <a href="/" class="close-link">закрыть страницу</a>
         @elseif ($region && !$city)    
-          <a href="/{{$region}}" class="close-link">закрыть</a>    
+          <a href="/{{$region}}" class="close-link">закрыть страницу</a>    
         @elseif ($region && $city)    
-          <a href="/{{$region}}/{{$city}}" class="close-link">закрыть</a>    
+          <a href="/{{$region}}/{{$city}}" class="close-link">закрыть страницу</a>    
         @endif        
         </div>
         
         <h1 id="title" class="mt-3">{{ $h1 }}</h1>
         
-        @if (count($items)===0)
+        @if (count($items) === 0)
           
           <h5>в категории ничего нет</h5>
 
