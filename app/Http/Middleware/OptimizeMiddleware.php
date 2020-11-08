@@ -34,7 +34,7 @@ class OptimizeMiddleware
         } else {
             $replace = array(
 //                "/\n([\S])/" => '$1',
-                "/\r/" => '',
+//                "/\r/" => '',
                 "/\n/" => '',
                 "/\t/" => '',
                 "/ +/" => ' ',
