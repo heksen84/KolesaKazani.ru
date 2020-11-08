@@ -21,7 +21,7 @@ class OptimizeMiddleware
      */
     public function handle($request, Closure $next) {
 
-/*        $response = $next($request);
+        $response = $next($request);
 
         $buffer = $response->getContent();
         if (strpos($buffer, '<pre>') !== false) {
@@ -37,7 +37,7 @@ class OptimizeMiddleware
                 "/\r/" => '',
                 "/\n/" => '',
                 "/\t/" => '',
-                "/ +/" => ' ',
+//                "/ +/" => ' ',
             );
         }
 
@@ -45,8 +45,8 @@ class OptimizeMiddleware
         $response->setContent($buffer);
 
         ini_set('zlib.output_compression', 'On');
-        return $response;*/
+        return $response;
 
-        return $next($request);
+  //      return $next($request);
     }
 }
