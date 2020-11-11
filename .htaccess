@@ -1,7 +1,7 @@
 RewriteEngine On
 
-RewriteCond %{SERVER_PORT} 80
-RewriteRule ^(.*)$ https://ilbo.site/$1 [R,L]
+#RewriteCond %{SERVER_PORT} 80
+#RewriteRule ^(.*)$ https://ilbo.site/$1 [R,L]
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)/$ /$1 [L,R=301]
