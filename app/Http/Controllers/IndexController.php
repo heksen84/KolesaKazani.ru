@@ -156,7 +156,7 @@ class IndexController extends Controller {
 			->take(10)
 			->get();*/
 			
-			$whereLocationRawStr="";
+			$whereLocationRawStr = "";
 
 			if ($region) {
 				$regionData = $this->getRegionData($region);				
@@ -301,7 +301,10 @@ class IndexController extends Controller {
 				
 		$str = "Результаты по запросу '".$request->searchString;
 		
-		//return view("results");
+		$filters = array (
+		    "price_ot" => $request->price_ot,
+		    "price_do" => $request->price_do,		
+        );
 
         return view("results")         
 			->with("title", $str)         			
@@ -315,11 +318,10 @@ class IndexController extends Controller {
          	->with("city", $request->place)
             ->with("category", null)
             ->with("subcategory", null)            
-            ->with("page", $request->page?$request->page:0)
-           // ->with("startPage", 0)
+            ->with("page", $request->page?$request->page:0)           
             ->with("start_price", 0)
 			->with("end_price", 0)
-			->with("filters", null)
+			->with("filters", $filters)
 			->with("moderation", Cache::get("moderation"));
     }
 }
