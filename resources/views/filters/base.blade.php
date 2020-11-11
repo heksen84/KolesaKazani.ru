@@ -1,4 +1,4 @@
-@if ($region && !$city)
+<!--@if ($region && !$city)
 	<form id="filters-form" action="/{{$region}}/c/{{$category}}/{{$subcategory}}">
 @elseif ($region && $city)
 	<form id="filters-form" action="/{{$region}}/{{$city}}/c/{{$category}}/{{$subcategory}}">
@@ -29,6 +29,5 @@
 		<div class="form-group col-12 text-center">
 			<button type="submit" class="btn btn-sm btn-primary" title="Применить фильтр">применить</button>
 		</div>												
-	</div>												
-		
-</form>
+	</div>														
+</form>-->
