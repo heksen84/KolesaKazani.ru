@@ -130,18 +130,16 @@ $("#sendComplain").on("click", function(event) {
 document.body.addEventListener('click', function (evt) {
 
 	// закрыть страницу
-	if (evt.target.classList[0] === 'close-link') {                
-
-        console.log()
+	if (evt.target.classList[0] === 'close-link') {                        
 
         if (window.view)
             window.location = "/";
         else {
 
-            if (window.history.length > 0) 
+            if (window.history.length > 1 && document.referrer) 
                 window.history.go(-1);
-                else
-                window.location = "/";
+                    else
+                    window.location = "/";
         }
     }
 
