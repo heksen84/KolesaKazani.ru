@@ -132,11 +132,16 @@ document.body.addEventListener('click', function (evt) {
 	// закрыть страницу
 	if (evt.target.classList[0] === 'close-link') {                
 
+        console.log()
+
         if (window.view)
-            window.location="/";
+            window.location = "/";
         else {
-            if (!history.go(-1))
-                window.location="/";
+
+            if (window.history.length > 0) 
+                window.history.go(-1);
+                else
+                window.location = "/";
         }
     }
 
