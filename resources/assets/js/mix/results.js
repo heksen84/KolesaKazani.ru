@@ -85,11 +85,7 @@ $(function() {
   $(".close-link").on("click",function() {
 
     localStorage.setItem("show_filters", "false");
-
-    if (window.history.length > 1 && document.referrer) 
-    window.history.go(-1);
-      else
-      window.location = "/";
+    (window.history.length > 1 && document.referrer)?window.history.go(-1):window.location = "/";
 
   });
 

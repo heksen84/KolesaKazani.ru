@@ -134,13 +134,8 @@ document.body.addEventListener('click', function (evt) {
 
         if (window.view)
             window.location = "/";
-        else {
-
-            if (window.history.length > 1 && document.referrer) 
-                window.history.go(-1);
-                    else
-                    window.location = "/";
-        }
+        else
+            (window.history.length > 1 && document.referrer)?window.history.go(-1):window.location = "/";        
     }
 
 	// кнопка - показать номер
