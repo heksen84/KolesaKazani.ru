@@ -143,6 +143,11 @@ class ResultsController extends Controller {
         if (!$regionData && !$placeData) {
             $locationName = $this->getLocationName(null, null);
         }
+
+        $filters = array (
+		    "price_ot" => $request->price_ot,
+		    "price_do" => $request->price_do,		    
+        );
                                         
         return view("results")    
         ->with("title", str_replace("@place", $locationName, $categories[0]->title ))         
@@ -159,7 +164,7 @@ class ResultsController extends Controller {
         ->with("page", $request->page?$request->page:0)
         ->with("start_price", $request->start_price)
         ->with("end_price", $request->end_price)
-        ->with("filters", null)
+        ->with("filters", $filters)
         ->with("moderation", Cache::get("moderation"));
     }
 
