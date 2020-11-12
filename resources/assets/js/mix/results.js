@@ -83,8 +83,14 @@ $(function() {
 
   // что-бы фильтры не вылизили стразу в других категориях
   $(".close-link").on("click",function() {
-    localStorage.setItem("show_filters", "false");          
-    history.go(-1);
+
+    localStorage.setItem("show_filters", "false");
+
+    if (window.history.length > 1 && document.referrer) 
+    window.history.go(-1);
+      else
+      window.location = "/";
+
   });
 
   if (localStorage.getItem("show_filters")=="true") {    
