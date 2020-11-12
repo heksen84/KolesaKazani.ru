@@ -46,7 +46,33 @@ class CountryCategories extends TestCase
 
         $response = $this->get('/c/transport/zapchasti');
         $response->assertStatus(200);
+        
+        $response = $this->get('/c/nedvizhimost');
+        $response->assertStatus(200);
 
+        $response = $this->get('/c/nedvizhimost/kvartira');
+        $response->assertStatus(200);
+
+        $response = $this->get('/c/nedvizhimost/komnata');
+        $response->assertStatus(200);
+
+        $response = $this->get('/c/nedvizhimost/dom-dacha-kottedzh');
+        $response->assertStatus(200);
+
+        $response = $this->get('/c/nedvizhimost/zemelnyy-uchastok');
+        $response->assertStatus(200);
+
+        $response = $this->get('/c/nedvizhimost/garazh-ili-mashinomesto');
+        $response->assertStatus(200);
+
+        $response = $this->get('/c/nedvizhimost/kommercheskaya-nedvizhimost');
+        $response->assertStatus(200);
+
+        $response = $this->get('/c/nedvizhimost/nedvizhimost-za-rubezhom');
+        $response->assertStatus(200);                
+
+        /*$response = $this->get('/c/nedvizhimost/nedvizhimost-za-rubezhom');
+        $response->assertStatus(200);*/
 
     }
 }
