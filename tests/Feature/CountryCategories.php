@@ -16,8 +16,37 @@ class CountryCategories extends TestCase
     public function testExample() {
 
         $this->withoutMiddleware();
-        $response = $this->get('/c/transport');
 
+        $response = $this->get('/c/transport');
         $response->assertStatus(200);
+
+        $response = $this->get('/c/transport/legkovoy-avtomobil');
+        $response->assertStatus(200);
+
+        $response = $this->get('/c/transport/gruzovoy-avtomobil');
+        $response->assertStatus(200);
+
+        $response = $this->get('/c/transport/mototehnika');
+        $response->assertStatus(200);
+
+        $response = $this->get('/c/transport/spectehnika');
+        $response->assertStatus(200);
+
+        $response = $this->get('/c/transport/retro-avtomobil');
+        $response->assertStatus(200);
+
+        $response = $this->get('/c/transport/vodnyy-transport');
+        $response->assertStatus(200);
+
+        $response = $this->get('/c/transport/velosiped');
+        $response->assertStatus(200);
+
+        $response = $this->get('/c/transport/vozdushnyy-transport');
+        $response->assertStatus(200);
+
+        $response = $this->get('/c/transport/zapchasti');
+        $response->assertStatus(200);
+
+
     }
 }
