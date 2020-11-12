@@ -53,6 +53,7 @@ class DetailsController extends Controller {
                 \Debugbar::info("легковое авто");
 
                     $advert = DB::table("adverts as adv")->select(
+                            "car_model.id_car_mark",
                             "socials.insta_login",
                             "adv.region_id",
                             "adv.city_id",                                 
@@ -70,7 +71,7 @@ class DetailsController extends Controller {
                             "car_mark.name as car_name", 
                             "car_model.name as car_model", 
                             "transport.year", 
-                            "transport.mileage",
+                            "transport.mileage",                            
                             DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
                             DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
                             DB::raw("(SELECT COUNT(*) FROM adex_top WHERE NOW() BETWEEN adex_top.startDate AND adex_top.finishDate AND adex_top.advert_id=adv.id) as top"),
@@ -100,12 +101,12 @@ class DetailsController extends Controller {
                             ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                             ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
                             ->join("sub_transport as transport", "adv.inner_id" , "=" , "transport.id" )                
-                            ->join("car_mark", "car_mark.id_car_mark" , "=" , "transport.mark" )                
-                            ->join("car_model", "car_mark.id_car_mark" , "=" , "car_model.id_car_mark" )                
+                            ->join("car_mark", "car_mark.id_car_mark" , "=" , "transport.mark" )  // toyota                                                                              
+                            ->join("car_model", "car_model.id_car_model", "transport.model" )                                                                      
                             ->where( "adv.id", $id )                                
                             ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")
                             ->limit(1)
-                            ->get();                                
+                            ->get();                            
                 }
 
                 // грузовое авто
@@ -847,7 +848,9 @@ class DetailsController extends Controller {
                     ->get();                        
             }
 
+            \Debugbar::info("-[выборка]-------------------");
             \DebugBar::info($advert); 
+            \Debugbar::info("-----------------------------");
             
             $dataCount = count($advert);
             
