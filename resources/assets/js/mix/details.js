@@ -134,8 +134,10 @@ document.body.addEventListener('click', function (evt) {
 
         if (window.view)
             window.location="/";
-        else
-            history.go(-1);
+        else {
+            if (!history.go(-1))
+                window.location="/";
+        }
     }
 
 	// кнопка - показать номер
