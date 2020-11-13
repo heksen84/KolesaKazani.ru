@@ -367,59 +367,63 @@ class DetailsController extends Controller {
            
             // квартира
             if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 9) {
-                    
-                $advert = DB::table("adverts as adv")->select(
-                    "socials.insta_login",
-                    "adv.region_id",
-                    "adv.city_id",                                 
-                    "adv.category_id",
-                    "adv.subcategory_id",
-                    "adv.startDate",
-                    "adv.id", 
-                    "adv.title", 
-                    "adv.text", 
-                    "adv.price", 
-                    "adv.phone", 
-                    "adv.coord_lat", 
-                    "adv.coord_lon",
-                    "realestate.property_type",
-                    "realestate.floor",
-                    "realestate.floors_house",
-                    "realestate.rooms",
-                    "realestate.area",
-                    "categories.name as category_name",
-                    "categories.url as category_url",
-                    "subcats.name as subcat_name",
-                    "subcats.url as subcat_url",
-                    "kz_region.url as region_url",
-                    "kz_city.url as city_url",
-                    DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
-                    DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
-                    DB::raw("(SELECT COUNT(*) FROM adex_top WHERE NOW() BETWEEN adex_top.startDate AND adex_top.finishDate AND adex_top.advert_id=adv.id) as top"),
-                    "adex_color.startDate as colorStartDate",		                            
-                    "adex_color.finishDate as colorFinishDate",		                            
-                    "adex_srochno.startDate as srochnoStartDate",		                            
-                    "adex_srochno.finishDate as srochnoFinishDate",		                            
-                    "adex_top.startDate as topStartDate",		                            
-                    "adex_top.finishDate as topFinishDate",		                            			                            			                                
-                    DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),
-                    DB::raw("CASE WHEN realestate.kind_of_object=0 THEN 'вторичка' ELSE 'новостройка' END as kind_of_object"),                        
-                    DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name"),
-                    DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
-                    ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
-                    ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			            
-                    ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )
-                    ->join("socials", "adv.city_id" , "=" , "socials.place_id" )			                            
-                    ->join("categories", "adv.category_id" , "=" , "categories.id" )
-                    ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
-                    ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
-                    ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
-                    ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
-                    ->where( "adv.id", $id )                                
-                    ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")                        
-                    ->limit(1)
-                    ->get();                                                        
+
+                \Debugbar::info("квартира");
+                                    
+                    $advert = DB::table("adverts as adv")->select(
+                        "socials.insta_login",
+                        "adv.region_id",
+                        "adv.city_id",                                 
+                        "adv.category_id",
+                        "adv.subcategory_id",
+                        "adv.startDate",
+                        "adv.id", 
+                        "adv.title", 
+                        "adv.text", 
+                        "adv.price", 
+                        "adv.phone", 
+                        "adv.coord_lat", 
+                        "adv.coord_lon",
+                        "realestate.property_type",
+                        "realestate.floor",
+                        "realestate.floors_house",
+                        "realestate.rooms",
+                        "realestate.area",
+                        DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),
+                        DB::raw("CASE WHEN realestate.kind_of_object=0 THEN 'вторичка' ELSE 'новостройка' END as kind_of_object"),                        
+                        "categories.name as category_name",
+                        "categories.url as category_url",
+                        "subcats.name as subcat_name",
+                        "subcats.url as subcat_url",
+                        DB::raw("(SELECT COUNT(*) FROM adex_color WHERE NOW() BETWEEN adex_color.startDate AND adex_color.finishDate AND adex_color.advert_id=adv.id) as color"),                        
+                        DB::raw("(SELECT COUNT(*) FROM adex_srochno WHERE NOW() BETWEEN adex_srochno.startDate AND adex_srochno.finishDate AND adex_srochno.advert_id=adv.id) as srochno"),
+                        DB::raw("(SELECT COUNT(*) FROM adex_top WHERE NOW() BETWEEN adex_top.startDate AND adex_top.finishDate AND adex_top.advert_id=adv.id) as top"),
+                        "adex_color.startDate as colorStartDate",		                            
+                        "adex_color.finishDate as colorFinishDate",		                            
+                        "adex_srochno.startDate as srochnoStartDate",		                            
+                        "adex_srochno.finishDate as srochnoFinishDate",		                            
+                        "adex_top.startDate as topStartDate",		                            
+                        "adex_top.finishDate as topFinishDate",
+                        "kz_region.url as region_url",
+                        "kz_city.url as city_url",		                            			                            			                            
+                        DB::raw("CASE WHEN realestate.ownership=0 THEN 'собственник' ELSE 'посредник' END as ownership"),                        
+                        DB::raw("`kz_region`.`name` AS region_name, `kz_city`.`name` AS city_name"),
+                        DB::raw("`kz_region`.`url` AS region_url, `kz_city`.`url` AS city_url"))
+                        ->leftJoin("adex_color", "adv.id", "=", "adex_color.advert_id" )
+                        ->leftJoin("adex_srochno", "adv.id", "=", "adex_srochno.advert_id" )			            
+                        ->leftJoin("adex_top", "adv.id", "=", "adex_top.advert_id" )
+                        ->leftJoin("socials", "adv.city_id" , "=" , "socials.place_id" )			                            
+                        ->join("categories", "adv.category_id" , "=" , "categories.id" )
+                        ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
+                        ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
+                        ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
+                        ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
+                        ->where( "adv.id", $id )                                
+                        ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")                        
+                        ->limit(1)
+                        ->get();                                                        
             }
+            
             // комната
             if ($advertData[0]->category_id === 2 && $advertData[0]->subcategory_id === 10) {
                     
