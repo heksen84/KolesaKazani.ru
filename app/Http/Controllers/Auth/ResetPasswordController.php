@@ -39,7 +39,7 @@ class ResetPasswordController extends Controller
 
    public function showResetForm($token) {
         $title = 'Сброс пароля';
-        $description = 'Сброс и создание новго пароля';
+        $description = 'Сброс и создание нового пароля';
         $keywords = "Новый пароль, Сброс старого пароля";
         return view('auth.passwords.reset', compact('title', 'description', 'keywords', 'token'));
    }

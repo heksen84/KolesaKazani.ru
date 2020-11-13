@@ -91,7 +91,7 @@ class RegisterController extends Controller
 
    public function showRegistrationForm() {
         $title = 'Регистрация';
-        $description = 'Регистрация нового пользователя на сайте объявлений';
+        $description = 'Регистрация пользователя на сайте';
         $keywords = "Регистрация, Новый пользователь";
         return view('auth.register', compact('title', 'description', 'keywords'));
    }

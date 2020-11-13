@@ -32,7 +32,7 @@ class LoginController extends Controller {
         \Debugbar::info("locale: ".\App::getLocale());
 
         $title = 'Авторизация';
-        $description = 'Авторизация нового пользователя на сайте объявлений';
+        $description = 'Авторизация пользователя на сайте';
         $keywords = "Авторизация, Пользователь";
         return view('auth.login', compact('title', 'description', 'keywords'));
    }
