@@ -724,7 +724,7 @@ onSubmit(evt) {
 		else {
 
       $("#advert_loading_block").hide();
-      //window.location="/objavlenie/posted/"+response.data.url;     
+      window.location="/objavlenie/posted/"+response.data.url;     
     }
     // исключение - ошибка		
     }).catch(error => {
