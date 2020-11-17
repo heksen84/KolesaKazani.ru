@@ -156,7 +156,7 @@
                     <div class="col-md-12 text-center">                      
                       <br>
                       <div class="custom-file" id="customFile" lang="ru">
-                        <input @change="loadImage" name="input2[]" type="file" class="custom-file-input" accept=".png, .jpg, .jpeg" multiple data-show-upload="true" data-show-caption="true">
+                        <input @change="loadImage" name="input2[]" type="file" class="custom-file-input" accept=".png, .jpg, .jpeg .webp" multiple data-show-upload="true" data-show-caption="true">
                         <label class="custom-file-label"></label>
                       </div>
                     </div>
@@ -501,7 +501,7 @@ loadImage(evt) {
   reader.onload = (function(theFile) {
   return function(e) {
     
-  if (theFile.type === "image/jpeg" || theFile.type === "image/pjpeg" || theFile.type === "image/png") {					
+  if (theFile.type === "image/jpeg" || theFile.type === "image/pjpeg" || theFile.type === "image/png" || theFile.type === "image/webp") {					
         
         preview_images.push({ "name": theFile.name, "src": e.target.result });
         real_images.push(theFile);        

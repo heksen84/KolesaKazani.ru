@@ -268,7 +268,7 @@ class ApiController extends Controller {
             "adv_phone"     => "required|string|max:14",            
             "region_id"     => "required|numeric|min:0",
             "city_id"       => "required|numeric|min:0",
-            "images.*"      => "image|mimes:jpeg,png,jpg|max:8128",
+            "images.*"      => "image|mimes:jpeg,jpg,png,webp|max:8128",
             "adv_info"      => "string"
         ]; 
 
