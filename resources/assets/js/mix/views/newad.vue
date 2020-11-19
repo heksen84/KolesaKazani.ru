@@ -310,41 +310,38 @@ components: {
 data () {
   
   return 	{
-
-  uid: null,
-  
-  dialogMsg: "повторите позже",
-  dialogTitleMsg: "Cервис временно не доступен",
-
-  title: "",
-  serviceUnavailable: false,
-  subCategoryItems: [],    
-  lastPhoneNumber: null,
-	const_phone_max_length: 9,		
-	coordinates_set: false,
-	placeChanged: false,			
-	category: null,
-  subCategory: null,
-	info: "",
-	price: 0,
-	number: 0,
-	preview_images: [],
-	real_images: [],
-	root: false,
-	regions_model: null,
-	places: [],
-	places_model: null,
-	phone: "",		
-	transport: false,			      // транспорт
-	real_estate: false,			    // недвижимость
-	appliances: false,			      // бытовая техника
-	work_and_buisness: false,	  // работа и бизнес
-	for_home: false,				      // для дома и дачи
-	personal_effects: false,		  // личные вещи
-	animals: false,				      // животные
-	hobbies_and_leisure: false,	// хобби и отдых
-	services: false,				      // услуги
-  dating: false					      // знакомства  
+    uid: null,    
+    dialogMsg: "повторите позже",
+    dialogTitleMsg: "Cервис временно не доступен",
+    title: "",
+    info: "",
+    phone: "",
+    serviceUnavailable: false,
+    subCategoryItems: [],    
+    lastPhoneNumber: null,
+	  const_phone_max_length: 9,		
+	  coordinates_set: false,
+	  placeChanged: false,			
+	  category: null,
+    subCategory: null,	  
+	  price: 0,
+	  number: 0,
+	  preview_images: [],
+	  real_images: [],
+	  root: false,
+	  regions_model: null,
+	  places: [],
+	  places_model: null,	  
+	  transport: false,			        // транспорт
+	  real_estate: false,			      // недвижимость
+	  appliances: false,			      // бытовая техника
+	  work_and_buisness: false,	    // работа и бизнес
+	  for_home: false,				      // для дома и дачи
+	  personal_effects: false,		  // личные вещи
+	  animals: false,				        // животные
+	  hobbies_and_leisure: false,	  // хобби и отдых
+	  services: false,				      // услуги
+    dating: false					        // знакомства
   }
 },
 
