@@ -1,0 +1,24 @@
+yum install mailx
+echo "Тело сообщения" | mail -s "Тема сообщения" your@mail.com
+
+https://www.dmosk.ru/instruktions.php?object=postfix-centos
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+https://myaccount.google.com/apppasswords siteilbo@gmail.com/udmcztsewlmrjdwn
+
+Using a G Suite account
+If you are using a G Suite account, anything you try will fail. At least at the time, this answer is being typed. You must use @gmail.com account, anything else like @example.com will not work.
+
+After you use the gmail.com address. You just need to update .env as most of the people already mentioned.
+
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=****@gmail.com
+MAIL_PASSWORD=16digitapppassword
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=****@gmail.com
+MAIL_FROM_NAME="${APP_NAME}"
+Don't forget to create an App password, if you don't see the option probably your 2-factor authentication is not enabled. And there is no need to allow less secure apps if you follow this approach.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

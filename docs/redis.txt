@@ -1,0 +1,4 @@
+Install Redis on RHEL 8 / CentOS 8
+sudo yum install -y @redis
+sudo systemctl enable --now redis
+port: 6379

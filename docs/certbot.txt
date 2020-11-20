@@ -1,0 +1,8 @@
+sudo dnf install epel-release
+sudo dnf install certbot python3-certbot-apache mod_ssl
+
+// получить сертификат
+certbot certonly --webroot --agree-tos --email heksen84@yandex.ru --webroot-path /var/www/ilbo -d ilbo.site
+// переполучить сертификат
+certbot renew
+systemctl restart httpd.service

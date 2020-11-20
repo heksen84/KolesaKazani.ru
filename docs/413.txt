@@ -1,0 +1,17 @@
+Увеличить размер загружаемого файла в php.ini и перезагрузить php-frm
+service php7.2-fpm restart
+php -i | grep -i "upload\_max\_filesize\|post\_max\_size\|max\_file\_uploads"
+service php7.2-fpm restart
+service php-fpm restart
+
+Request Entity Too Large
+Ошибка HTTP 413 (Request Entity Too Large Error) означает, что клиент отправил слишком большой запрос на сервер. В Nginx максимальный размер запроса регулируется таким параметром:
+
+server {
+    ...
+    client_max_body_size 32m;
+    ...
+}
+# Установим максимальный размер в 32 Мб
+
+По умолчанию ограничение установлено в 1 Мб. Поэтому, если Вы используете загрузку файлов на сайте, увеличивайте это значение, чтобы исправить проблему. Начните со значений в рамках от 4 Мб до 32 Мб и увеличивайте дальше.

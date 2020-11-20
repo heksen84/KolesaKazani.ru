@@ -1,0 +1,2 @@
+sudo yum –y install python38-pip
+pip3 –V

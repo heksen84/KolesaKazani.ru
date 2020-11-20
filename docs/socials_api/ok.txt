@@ -1,0 +1,10 @@
+Метод для публикации топиков в группах в API Одноклассников, конечно же, есть.
+Вот он: https://apiok.ru/dev/methods/rest/mediatopic/mediatopic.post
+Также вам наверняка потребуется метод по загрузке фото: https://apiok.ru/dev/methods/rest/photosV2/photosV2.getUploadUrl
+
+Примеров на php у нас в документации, к сожалению, нет, но много хороших людей уже всё сделали за нас и до нас.
+Например:
+http://shtyrlyaev.ru/all/skript-avtopostinga-v-gruppu-odnoklassnikov/
+https://dampi.ru/posting-v-gruppu-v-odnoklassnikah-avtomaticheski-s-sayta
+
+В этих же примерах кратко описано, как создать приложение и какие вам нужны права. Об этом и в документации написано: https://apiok.ru/dev/app/create

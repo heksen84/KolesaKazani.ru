@@ -1,0 +1,15 @@
+yum install firewalld
+
+// show open ports and services
+sudo firewall-cmd --list-all
+
+// other
+sudo firewall-cmd --list-ports
+sudo firewall-cmd --list-services
+
+// helper
+firewall-cmd --zone=public --remove-port=порт/tcp
+firewall-cmd --runtime-to-permanent
+firewall-cmd --reload
+systemctl restart firewalld
+firewall-cmd --zone=public --list-ports

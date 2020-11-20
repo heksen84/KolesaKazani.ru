@@ -1,0 +1,2 @@
+=== JOBS ===
+При изменении в коде jobs, перезагружать supervisord:  systemctl restart supervisord

@@ -1,0 +1,1 @@
+ALTER TABLE `adverts` ADD `torg` BOOLEAN NOT NULL AFTER `vip`, ADD `extend` BOOLEAN NOT NULL AFTER `torg`, ADD `paint` VARCHAR(15) NOT NULL AFTER `extend`;

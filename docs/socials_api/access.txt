@@ -1,0 +1,16 @@
+https://socialiteproviders.netlify.app/
+
+Здравствуйте, Илья Бобков!
+
+Ваше приложение Доска объявлений "Ильбо". успешно зарегистрировано на Одноклассниках.
+
+Application ID: 512000435679.
+Публичный ключ приложения: CQNGKLJGDIHBABABA
+Секретный ключ приложения: 3C689A74BD065F94CE3A22DA
+Ссылка на приложение: https://ok.ru/game/512000435679
+
+Вечный access_token: tkn1gWLZAuB4RiRceEkdQZjTEDcddnZ9Zvb4VsnjXFfQQqNRxBQ5uLTlsX0qxvauLXV791
+Secret_session_key: 1870d61a52ea3fb0326db2e7b981fa99
+--
+С уважением,
+Служба поддержки OK.ru
