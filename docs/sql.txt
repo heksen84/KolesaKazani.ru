@@ -1,2 +1,0 @@
-CREATE TABLE `flix`.`adex_srochno` ( `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT , `advert_id` INT(10) UNSIGNED NOT NULL , `startDate` DATE NOT NULL , `finishDate` DATE NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
-DROP TABLE `flix`.`ad_extend

@@ -1,2 +1,0 @@
-В php.conf выставить zlib.outputcompression = On
-https://habr.com/ru/post/221803/

@@ -1,4 +1,0 @@
-timedatectl
-timedatectl set-timezone Asia/Almaty
-mysql: SET time_zone = "+06:00";
-œ≈–≈«¿√–”«»“‹ mysql

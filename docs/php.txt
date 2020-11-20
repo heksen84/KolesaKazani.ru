@@ -1,3 +1,0 @@
-sudo yum install php php-mbstring php-zip php-xml php-pdo php-mysqlnd php-json php-gd
-
-php -r "echo disk_free_space('/');"

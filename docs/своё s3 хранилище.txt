@@ -1,2 +1,0 @@
-minio
-https://www.centosblog.com/install-configure-minio-object-storage-server-centos-linux/

@@ -1,1 +1,0 @@
-В Request добавить ещё сколько нужно ->addFile($file_temp)

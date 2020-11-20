@@ -1,7 +1,0 @@
-laravel.log err cannot append:
-cd /var/www/ilbo
-setenforce 0
-service httpd restart
-
-chmod 777 -R storage
-chmod 777 -R (на папки в сторадже)

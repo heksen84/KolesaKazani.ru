@@ -1,3 +1,0 @@
-sudo yum update
-создать папку в storage/app/images/normal
-создать папку в storage/app/images/small
