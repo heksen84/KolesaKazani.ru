@@ -18,11 +18,11 @@ use Carbon\Carbon;
 class AdvertController extends Controller {
                 
         // новое объявление
-        public function newAdvert(Request $request) {
+        public function new_advert(Request $request) {
 
                 \Debugbar::info("Язык: ".$request->lang); 
         
-                if (Auth::check()) {
+                /*if (Auth::check()) {
 
 	                return view("newad")
                         ->with( "title", "Подать объявление бесплатно" )
@@ -36,8 +36,47 @@ class AdvertController extends Controller {
                 }
                 else 
                 return 
-                        redirect('/login');
+                        redirect('/login');*/                        
+
+                return view("newad")
+                ->with( "title", "Подать объявление бесплатно" )
+                ->with( "description", "Подать объявление бесплатно в Казахстане на сайте ".config('app.name'))
+                ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте, казахстан")
+                ->with( "categories", Categories::all() )
+                ->with( "regions", Regions::all() )
+                ->with( "dealtypes", DealType::all()->toJson() )
+                ->with( "country", "kz" )
+                ->with( "lang", $request->lang );
         }
+
+
+        // подать бесплатно объявление о работе в кз
+        public function new_advert_podat_besplatno_obyavlenie_o_rabote_v_kz(Request $request) {                
+        
+                return view("newad")
+                ->with( "title", "подать бесплатно объявление о работе в кз" )
+                ->with( "description", "Подать объявление бесплатно в Казахстане на сайте ".config('app.name'))
+                ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте, казахстан")
+                ->with( "categories", Categories::all() )
+                ->with( "regions", Regions::all() )
+                ->with( "dealtypes", DealType::all()->toJson() )
+                ->with( "country", "kz" )
+                ->with( "lang", $request->lang );
+        }
+
+        // подать бесплатное объявление в усть каменогорске
+        public function new_advert_podat_besplatnoe_obyavlenie_v_ust_kamenogorske(Request $request) {           
+        
+                return view("newad")
+                ->with( "title", "подать бесплатное объявление в усть каменогорске" )
+                ->with( "description", "Подать объявление бесплатно в Казахстане на сайте ".config('app.name'))
+                ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте, казахстан")
+                ->with( "categories", Categories::all() )
+                ->with( "regions", Regions::all() )
+                ->with( "dealtypes", DealType::all()->toJson() )
+                ->with( "country", "kz" )
+                ->with( "lang", $request->lang );
+        }        
 
         // ???
         public function posted($url) {
