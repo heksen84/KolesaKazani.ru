@@ -22,6 +22,11 @@
   margin:1px;   
 }
 
+.user_input {
+  width:250px;
+  margin:2px auto;
+}
+
 .custom-file-input:lang(ru)~.custom-file-label::after {
   background: rgb(110,180,110);  
   color:white;

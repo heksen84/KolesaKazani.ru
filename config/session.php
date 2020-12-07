@@ -29,8 +29,8 @@ return [
     |
     */
 
-    'lifetime' => 9999,
-
+     //'lifetime' => 9999, // default
+    'lifetime' => 525600, // для года
     'expire_on_close' => false,
 
     /*

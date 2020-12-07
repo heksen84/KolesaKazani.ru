@@ -254,6 +254,11 @@ class ApiController extends Controller {
     -----------------------------------------------*/
     public function createAdvert(Request $request) {                
 
+        if (!Auth::check()) {
+            \Debugbar::info("Пользователь не авторизирован");
+            return response()->json([ "result" => "user_is_not_authorized", "msg" => "пользователь не авторизован" ]);
+        }
+
         $data = $request->all();
     
         \Debugbar::info("----[ Входящие данные ]----");
@@ -307,9 +312,8 @@ class ApiController extends Controller {
         //\Debugbar::info(ObsceneCensorRus::isAllowed($title)?"чисто":"обнаружен мат");
 		//\Debugbar::info(ObsceneCensorRus::isAllowed($text)?"чисто":"обнаружен мат");
 
-        if (!ObsceneCensorRus::isAllowed($title) || !ObsceneCensorRus::isAllowed($text)) {
-            return response()->json( ["result" => "error", "title" => "Объявление отклонено", "msg" => "нецензурная лексика"] );
-        }
+        if (!ObsceneCensorRus::isAllowed($title) || !ObsceneCensorRus::isAllowed($text))
+            return response()->json( ["result" => "error", "title" => "Объявление отклонено", "msg" => "нецензурная лексика"] );        
 
         // поля которым требуется приведение к типу null
         $subcategory = $this->to_php_null($data["adv_subcategory"]);        

@@ -12,6 +12,7 @@
 
 <div class="container-fluid mycontainer">  
   <!-- карта и сообщения об ошибках-->
+  
   <div class="modal" id="MsgModalDialog" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -32,7 +33,28 @@
           </div>
         </div>
       </div>
-  </div>        
+  </div>
+
+  <div class="modal" id="DialogAuthNeed" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content text-center">
+        <div class="modal-header"><h5>Требуется регистрация</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>
+          <div class="modal-body">
+            <input type="text" class="form-control user_input" id="user_name" placeholder="имя">            
+            <input type="text" class="form-control user_input" id="user_email" placeholder="email">
+            <input type="text" class="form-control user_input" id="user_pass" placeholder="пароль">            
+          </div>
+            <div class="modal-footer">          
+              <button type="button" class="btn btn-primary margin-auto" @click="continueReg">Продолжить</button>          
+            </div>            
+            <a href="#" class="mb-4">Уже на сайте?</a>            
+          </div>
+        </div>
+      </div>    
     
     <div class="row">  
       <div class="col-sm-12 col-md-12 col-lg-10 col-xl-10 create_advert_col" style="border: 1px solid rgb(220,220,220)">        
@@ -686,13 +708,10 @@ onSubmit(evt) {
 
   evt.preventDefault();
 
-  $("#advert_loading_block").show();
-  
   // объект формы
   let formData = new FormData();
-
   formData.append("uid", this.uid); 
-  
+
   // записываю значения полей
   forEach(this.$root.advert_data, function(key, value) { 
     formData.append(key, value); 
@@ -706,26 +725,30 @@ onSubmit(evt) {
   // Размещение объявления
   // ------------------------------------------------------------------------------------------------------------------------
 
+  $("#advert_loading_block").show();
+
 	axios.post("/api/createAdvert", formData, { headers: { 'Content-Type': 'multipart/form-data' }}).then(response => {    
+
+    console.log(response.data.result);
     
-    // ошибка
-    if ( response.data.result === "error" ) {
+    if ( response.data.result === "user_is_not_authorized" ) {
 
-      $("#advert_loading_block").hide();
-       console.error(response.data.msg);
-       this.dialogTitleMsg = response.data.title;
-       this.dialogMsg = response.data.msg;       
-       this.serviceError();
+      $("#advert_loading_block").hide();      
+      $("#DialogAuthNeed").modal("show");
     }
-    // объявление размещено
-		else {
-
-      $("#advert_loading_block").hide();
-      window.location="/objavlenie/posted/"+response.data.url;     
-    }
-    // исключение - ошибка		
-    }).catch(error => {
+    else if ( response.data.result === "error" ) {        
       
+      $("#advert_loading_block").hide();        
+      this.dialogTitleMsg = response.data.title;
+      this.dialogMsg = response.data.msg;       
+      this.serviceError();
+    }      
+		else {              
+        $("#advert_loading_block").hide();
+        window.location="/objavlenie/posted/"+response.data.url;
+      }      
+    }).catch(error => { // исключение - ошибка
+
       $("#advert_loading_block").hide();
 		  this.serviceError();
     })
@@ -758,11 +781,17 @@ onSubmit(evt) {
 	// Установить координаты
 	// ---------------------------------
 	setCoords() {
+    
     $("#MsgModalDialog").modal("hide"); // скрыть окно
 		this.$root.advert_data.adv_coords=[];
 		this.$root.advert_data.adv_coords=mapCoords;
 		this.coordinates_set=true;
+	},
+  
+  continueReg() {    
+    $("#DialogAuthNeed").modal("hide");		
 	}
+
 }
 
 }
