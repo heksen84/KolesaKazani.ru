@@ -19,15 +19,15 @@ class AdvertController extends Controller {
         
         // общая метод для всех размещений
         public function new_advert_common($title, $description, $request) {
-                return view("newad")
-                ->with( "title", $title )
-                ->with( "description", $description." на сайте ".config('app.name'))
-                ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте, казахстан")
-                ->with( "categories", Categories::all() )
-                ->with( "regions", Regions::all() )
-                ->with( "dealtypes", DealType::all()->toJson() )
-                ->with( "country", "kz" )
-                ->with( "lang", $request->lang );        
+          return view("newad")
+          ->with( "title", $title )
+          ->with( "description", $description." на сайте ".config('app.name'))
+          ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте, казахстан")
+          ->with( "categories", Categories::all() )
+          ->with( "regions", Regions::all() )
+          ->with( "dealtypes", DealType::all()->toJson() )
+          ->with( "country", "kz" )
+          ->with( "lang", $request->lang );        
         }
         
         // новое объявление
