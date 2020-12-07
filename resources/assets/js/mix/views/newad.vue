@@ -55,7 +55,7 @@
             <div class="modal-footer">          
               <button type="button" class="btn btn-primary margin-auto" @click="continueReg">Продолжить</button>          
             </div>            
-            <a href="#" class="mb-4">Уже на сайте?</a>            
+            <!--<a href="#" class="mb-4">Уже на сайте?</a>-->
           </div>
         </div>
       </div>    

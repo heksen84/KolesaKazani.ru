@@ -40014,10 +40014,6 @@ var render = function() {
                     },
                     [_vm._v("Продолжить")]
                   )
-                ]),
-                _vm._v(" "),
-                _c("a", { staticClass: "mb-4", attrs: { href: "#" } }, [
-                  _vm._v("Уже на сайте?")
                 ])
               ])
             ]
