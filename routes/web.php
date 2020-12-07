@@ -44,6 +44,10 @@ Route::get("/objavlenie/posted/{url}", "AdvertController@posted");
 
 // razmeshenye.xml <-- sitemap
 
+//новые объявления
+//новые объявления квартир
+//новые объявления купить
+
 // подать объявление
 Route::get("/podat-objavlenie", "AdvertController@new_advert");
 // подать бесплатно объявление о работе в кз
