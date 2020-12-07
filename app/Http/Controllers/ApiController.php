@@ -263,14 +263,13 @@ class ApiController extends Controller {
         if ($validator->fails())
             return response()->json([ "result" => "error", "msg" => $validator->errors()->first() ]);
 
-            $user = $rc->create($data);
-
-            $user->update(['last_login_ip' => $request->getClientIp()]);                
+            $user = $rc->create($data);                    
+            $user->update(['last_login_ip' => $request->getClientIp()]);
+            
+            Auth::login($user);
 
             if (!$user->save())
-                return response()->json([ "result" => "error", "msg" => "ошибка создания пользователя" ]);                
-
-                Auth::login($user);                
+                return response()->json([ "result" => "error", "msg" => "ошибка создания пользователя" ]);                                
 
             return response()->json([ "result" => "success", "msg" => "пользователь создан" ]);        
     }
