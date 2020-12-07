@@ -51,7 +51,7 @@ class AdvertController extends Controller {
 
 
         // подать бесплатно объявление о работе в кз
-        public function new_advert_podat_besplatno_obyavlenie_o_rabote_v_kz(Request $request) {                
+        public function podat_besplatno_obyavlenie_o_rabote_v_kz(Request $request) {                
         
                 return view("newad")
                 ->with( "title", "подать бесплатно объявление о работе в кз" )
@@ -65,7 +65,7 @@ class AdvertController extends Controller {
         }
 
         // подать бесплатное объявление в усть каменогорске
-        public function new_advert_podat_besplatnoe_obyavlenie_v_ust_kamenogorske(Request $request) {           
+        public function podat_besplatnoe_obyavlenie_v_ust_kamenogorske(Request $request) {           
         
                 return view("newad")
                 ->with( "title", "подать бесплатное объявление в усть каменогорске" )

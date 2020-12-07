@@ -47,9 +47,9 @@ Route::get("/objavlenie/posted/{url}", "AdvertController@posted");
 // подать объявление
 Route::get("/podat-objavlenie", "AdvertController@new_advert");
 // подать бесплатно объявление о работе в кз
-Route::get("/podat-besplatno-objavlenye-o-rabote-v-kz", "AdvertController@new_advert_podat_besplatno_obyavlenie_o_rabote_v_kz");
+Route::get("/podat-besplatno-objavlenye-o-rabote-v-kz", "AdvertController@podat_besplatno_obyavlenie_o_rabote_v_kz");
 // подать бесплатное объявление в усть каменогорске
-Route::get("/podat-besplatnoe-objavlenye-v-ust-kamenogorske", "AdvertController@new_advert_podat_besplatnoe_obyavlenie_v_ust_kamenogorske");
+Route::get("/podat-besplatnoe-objavlenye-v-ust-kamenogorske", "AdvertController@podat_besplatnoe_obyavlenie_v_ust_kamenogorske");
 
 // подать бесплатное объявление продажа гаража
 Route::get("/podat-besplatnoe-obyavlenie-prodazha-garazha", "AdvertController@podat_besplatnoe_obyavlenie_prodazha_garazha");
