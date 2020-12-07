@@ -18,10 +18,10 @@ use Carbon\Carbon;
 class AdvertController extends Controller {
         
         // общая метод для всех размещений
-        public function new_advert_common($title, $description, $request) {
+        public function new_advert_common($title, $request) {
           return view("newad")
           ->with( "title", $title )
-          ->with( "description", $description." на сайте ".config('app.name'))
+          ->with( "description", $title." на сайте ".config('app.name'))
           ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте, казахстан")
           ->with( "categories", Categories::all() )
           ->with( "regions", Regions::all() )
@@ -32,21 +32,21 @@ class AdvertController extends Controller {
         
         // новое объявление
         public function new_advert(Request $request) {                        
-        return $this->new_advert_common("Подать объявление бесплатно", "Подать объявление бесплатно в Казахстане", $request);
+        return $this->new_advert_common("Подать объявление бесплатно", $request);
         }
         // подать бесплатно объявление о работе в кз
         public function podat_besplatno_obyavlenie_o_rabote_v_kz(Request $request) {                
-        return $this->new_advert_common("подать бесплатно объявление о работе в кз", "подать бесплатно объявление о работе в кз", $request);
+        return $this->new_advert_common("подать бесплатно объявление о работе в кз", $request);
         }
 
         // подать бесплатное объявление в усть каменогорске
         public function podat_besplatnoe_obyavlenie_v_ust_kamenogorske(Request $request) {                           
-        return $this->new_advert_common("подать бесплатное объявление в усть каменогорске", "подать бесплатное объявление в усть каменогорске", $request);
+        return $this->new_advert_common("подать бесплатное объявление в усть каменогорске", $request);
         }        
 
         // ???
         public function posted($url) {
-	        return view("adposted")->with( "url", $url );
+	 return view("adposted")->with( "url", $url );
         }
 
         // -----------------------------------------------------------
