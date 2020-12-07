@@ -736,7 +736,6 @@ onSubmit(evt) {
     console.log(response.data.result);
     
     if ( response.data.result === "user_is_not_authorized" ) {
-
       $("#advert_loading_block").hide();      
       $("#DialogAuthNeed").modal("show");
     }
@@ -748,7 +747,6 @@ onSubmit(evt) {
       this.serviceError();
     }      
 		else {
-
         $("#advert_loading_block").hide();
         window.location="/objavlenie/posted/"+response.data.url;
       }      

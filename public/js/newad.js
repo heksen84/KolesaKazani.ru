@@ -2614,7 +2614,6 @@ function forEach(data, callback) {
         console.log(response.data.result);
 
         if (response.data.result === "user_is_not_authorized") {
-
           __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#advert_loading_block").hide();
           __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#DialogAuthNeed").modal("show");
         } else if (response.data.result === "error") {
@@ -2624,7 +2623,6 @@ function forEach(data, callback) {
           _this3.dialogMsg = response.data.msg;
           _this3.serviceError();
         } else {
-
           __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#advert_loading_block").hide();
           window.location = "/objavlenie/posted/" + response.data.url;
         }
