@@ -41,6 +41,9 @@ Route::get("/objavlenie/posted/{url}", "AdvertController@posted");
 // SEO URL генератор/транслятор в ЧПУ (человеко понятный урл)
 // http://wd5.ru/tools/seo-url/
 
+
+// razmeshenye.xml <-- sitemap
+
 // подать объявление
 Route::get("/podat-objavlenie", "AdvertController@new_advert");
 // подать бесплатно объявление о работе в кз
@@ -113,6 +116,7 @@ Route::get("/podat-besplatnoe-objavlenye-v-ust-kamenogorske", "AdvertController@
 // ...
 
 // api вызовы
+Route::post("/api/createUser", "ApiController@createUser");
 Route::post("/api/createAdvert", "ApiController@createAdvert");
 
 // удалить объявление

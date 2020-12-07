@@ -14,6 +14,7 @@ use App\Jobs\DeleteImages;
 use App\Jobs\ResizeImages;
 use App\Jobs\PostSocials;
 use App\Jobs\DeleteImagesFromCloud;
+use App\User;
 use App\Urls;
 use App\SubCats;
 use App\CarMark;
@@ -28,7 +29,9 @@ use App\Helpers\Sitemap;
 use Carbon\Carbon;
 use Validator;
 
-class ApiController extends Controller {
+use App\Http\Controllers\Auth\RegisterController;
+
+class ApiController extends Controller {    
 
     private $region_id = null;
     private $img_saved = false;
@@ -248,6 +251,30 @@ class ApiController extends Controller {
         return $placeId[0];
     }
 
+
+    public function createUser(Request $request, RegisterController $rc) {
+
+        \Debugbar::info("Создание пользователя...");
+        
+        $data = $request->all();
+
+        $validator = $rc->validator($data);
+
+        if ($validator->fails())
+            return response()->json([ "result" => "error", "msg" => $validator->errors()->first() ]);
+
+            $user = $rc->create($data);
+
+            $user->update(['last_login_ip' => $request->getClientIp()]);                
+
+            if (!$user->save())
+                return response()->json([ "result" => "error", "msg" => "ошибка создания пользователя" ]);                
+
+                Auth::login($user);                
+
+            return response()->json([ "result" => "success", "msg" => "пользователь создан" ]);        
+    }
+
    /*
     -----------------------------------------------
     Создать объявление
@@ -255,12 +282,13 @@ class ApiController extends Controller {
     public function createAdvert(Request $request) {                
 
         if (!Auth::check()) {
+
             \Debugbar::info("Пользователь не авторизирован");
             return response()->json([ "result" => "user_is_not_authorized", "msg" => "пользователь не авторизован" ]);
         }
 
-        $data = $request->all();
-    
+        $data = $request->all();    
+
         \Debugbar::info("----[ Входящие данные ]----");
         \Debugbar::info($data);        
         

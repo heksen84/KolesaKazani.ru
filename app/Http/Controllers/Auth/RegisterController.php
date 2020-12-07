@@ -7,8 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class RegisterController extends Controller
-{
+class RegisterController extends Controller {
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -34,8 +33,7 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('guest');
     }
 
@@ -45,8 +43,8 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
+    public function validator(array $data) {
+        
         // ----------------------------------------------
         // сообщения для валидации при регистрации
         // ----------------------------------------------
@@ -55,14 +53,15 @@ class RegisterController extends Controller
             "name.string"           => "Имя должно быть указано в виде строки", 
             "name.min"              => "Имя должно быть длиной не менее 3-ёх символов", 
             "name.max"              => "Имя должно быть не более 60 символов", 
+            "email.email"           => "Укажите почту в правильном формате", 
             "email.required"        => "Введите почту", 
             "email.string"          => "Почта должна быть указана в виде строки",
             "email.max"             => "Почта должна быть длиной не менее 1-го символа",  
             "email.max"             => "Почта должна быть длиной не более 60 символов",  
             "email.unique"          => "Такая почта уже существует", 
-            "password.required"     => "Требуется пароль", 
+            "password.required"     => "Введите пароль", 
             "password.string"       => "Пароль должен быть указан в виде строки", 
-            "password.min"          => "Пароль должен быть не менее 8 символов", 
+            "password.min"          => "Пароль должен быть не менее :min символов", 
             "password.confirmed"    => "Подтвердите пароль", 
         ]; 
 
@@ -70,7 +69,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name'      => 'required|string|min:3|max:60',
             'email'     => 'required|string|email|min:1|max:60|unique:users',
-            'password'  => 'required|string|min:8|confirmed',
+            'password'  => 'required|string|min:5|confirmed',
         ], $messages);
     }
 
@@ -80,13 +79,8 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+    public function create(array $data) {
+        return User::create(['name' => $data['name'], 'email' => $data['email'], 'password' => bcrypt($data['password'])]);
     }
 
    public function showRegistrationForm() {

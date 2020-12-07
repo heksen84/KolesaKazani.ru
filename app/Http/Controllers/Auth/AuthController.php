@@ -136,16 +136,10 @@ class AuthController extends Controller {
 
         $user = User::where('ok_id', $socialUser->getID())->first();
         
-        if(!$user)
-            $user = User::create ([             
-                'name'    => $socialUser->getName(),
-                'email'   => $socialUser->getEmail(), 
-	            'ok_id'   => $socialUser->getID(),
-           //     'avatar'  => $socialUser->getAvatar()             
-            ]);
+        if(!$user) $user = User::create(['name' => $socialUser->getName(), 'email' => $socialUser->getEmail(), 'ok_id' => $socialUser->getID()]);        
+        $user->update(['last_login_ip' => $request->getClientIp()]);    
         
-	    $user->update(['last_login_ip' => $request->getClientIp()]);    
-            auth()->login($user);
+        auth()->login($user);
 
 		return redirect ('/');		
     }

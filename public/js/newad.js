@@ -2108,6 +2108,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 // ---------------------------
@@ -2620,6 +2624,7 @@ function forEach(data, callback) {
           _this3.dialogMsg = response.data.msg;
           _this3.serviceError();
         } else {
+
           __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#advert_loading_block").hide();
           window.location = "/objavlenie/posted/" + response.data.url;
         }
@@ -2660,12 +2665,42 @@ function forEach(data, callback) {
     setCoords: function setCoords() {
 
       __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#MsgModalDialog").modal("hide"); // скрыть окно
+
       this.$root.advert_data.adv_coords = [];
       this.$root.advert_data.adv_coords = mapCoords;
       this.coordinates_set = true;
     },
-    continueReg: function continueReg() {
-      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#DialogAuthNeed").modal("hide");
+    continueReg: function continueReg(event) {
+      var _this4 = this;
+
+      //$( "#submit_btn" ).trigger("click", function () {      
+
+      //$('form_submit').submit(function () {        
+
+      var formData = new FormData();
+
+      formData.append("name", __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#user_name").val());
+      formData.append("email", __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#user_email").val());
+      formData.append("password", __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#user_pass").val());
+      formData.append("password_confirmation", __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#user_pass_confirmation").val());
+
+      axios.post("/api/createUser", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(function (response) {
+
+        if (response.data.result === "error") alert(response.data.msg);
+
+        if (response.data.result === "success") {
+          __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#DialogAuthNeed").modal("hide");
+          _this4.onSubmit(event);
+        }
+      }).catch(function (error) {
+
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#DialogAuthNeed").modal("hide");
+        _this4.serviceError();
+      });
+
+      //});    
+
+      //});    
     }
   }
 
@@ -41011,20 +41046,52 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-body" }, [
-      _c("input", {
-        staticClass: "form-control user_input",
-        attrs: { type: "text", id: "user_name", placeholder: "имя" }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control user_input",
-        attrs: { type: "text", id: "user_email", placeholder: "email" }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control user_input",
-        attrs: { type: "text", id: "user_pass", placeholder: "пароль" }
-      })
+      _c("form", { attrs: { id: "form_reg" } }, [
+        _c("input", {
+          staticClass: "form-control user_input",
+          attrs: {
+            type: "text",
+            id: "user_name",
+            placeholder: "имя",
+            required: ""
+          }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control user_input",
+          attrs: {
+            type: "email",
+            id: "user_email",
+            placeholder: "email",
+            required: ""
+          }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control user_input",
+          attrs: {
+            type: "password",
+            id: "user_pass",
+            placeholder: "пароль",
+            required: ""
+          }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control user_input",
+          attrs: {
+            type: "password",
+            id: "user_pass_confirmation",
+            placeholder: "подтвердите пароль",
+            required: ""
+          }
+        }),
+        _vm._v(" "),
+        _c("button", {
+          staticStyle: { display: "none" },
+          attrs: { type: "submit", id: "submit_btn" }
+        })
+      ])
     ])
   },
   function() {

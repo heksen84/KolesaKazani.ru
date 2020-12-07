@@ -44,9 +44,13 @@
           </button>
           </div>
           <div class="modal-body">
-            <input type="text" class="form-control user_input" id="user_name" placeholder="имя">            
-            <input type="text" class="form-control user_input" id="user_email" placeholder="email">
-            <input type="text" class="form-control user_input" id="user_pass" placeholder="пароль">            
+            <form id="form_reg">
+              <input type="text" class="form-control user_input" id="user_name" placeholder="имя" required>
+              <input type="email" class="form-control user_input" id="user_email" placeholder="email" required>
+              <input type="password" class="form-control user_input" id="user_pass" placeholder="пароль" required>  
+              <input type="password" class="form-control user_input" id="user_pass_confirmation" placeholder="подтвердите пароль" required>                
+              <button type="submit" style="display:none" id="submit_btn"/>
+            </form>
           </div>
             <div class="modal-footer">          
               <button type="button" class="btn btn-primary margin-auto" @click="continueReg">Продолжить</button>          
@@ -743,14 +747,15 @@ onSubmit(evt) {
       this.dialogMsg = response.data.msg;       
       this.serviceError();
     }      
-		else {              
+		else {
+
         $("#advert_loading_block").hide();
         window.location="/objavlenie/posted/"+response.data.url;
       }      
     }).catch(error => { // исключение - ошибка
 
       $("#advert_loading_block").hide();
-		  this.serviceError();
+      this.serviceError();      
     })
 
   },
@@ -783,13 +788,46 @@ onSubmit(evt) {
 	setCoords() {
     
     $("#MsgModalDialog").modal("hide"); // скрыть окно
-		this.$root.advert_data.adv_coords=[];
+    
+    this.$root.advert_data.adv_coords=[];
 		this.$root.advert_data.adv_coords=mapCoords;
 		this.coordinates_set=true;
 	},
   
-  continueReg() {    
-    $("#DialogAuthNeed").modal("hide");		
+  continueReg(event) {                
+
+    //$( "#submit_btn" ).trigger("click", function () {      
+
+      //$('form_submit').submit(function () {        
+
+        let formData = new FormData();
+    
+        formData.append("name", $("#user_name").val()); 
+        formData.append("email", $("#user_email").val()); 
+        formData.append("password", $("#user_pass").val()); 
+        formData.append("password_confirmation", $("#user_pass_confirmation").val());         
+
+        axios.post("/api/createUser", formData, { headers: { 'Content-Type': 'multipart/form-data' }}).then(response => {
+
+          if (response.data.result === "error")
+            alert(response.data.msg)
+
+            if (response.data.result === "success") {
+              $("#DialogAuthNeed").modal("hide");		
+              this.onSubmit(event);
+            }
+        
+        
+        }).catch(error => {
+        
+          $("#DialogAuthNeed").modal("hide");
+		      this.serviceError();
+        })        
+
+      //});    
+
+    //});    
+
 	}
 
 }
