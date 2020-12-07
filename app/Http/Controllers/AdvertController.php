@@ -55,7 +55,7 @@ class AdvertController extends Controller {
         
                 return view("newad")
                 ->with( "title", "подать бесплатно объявление о работе в кз" )
-                ->with( "description", "Подать объявление бесплатно в Казахстане на сайте ".config('app.name'))
+                ->with( "description", "подать бесплатно объявление о работе в кз на сайте ".config('app.name'))
                 ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте, казахстан")
                 ->with( "categories", Categories::all() )
                 ->with( "regions", Regions::all() )
@@ -69,7 +69,7 @@ class AdvertController extends Controller {
         
                 return view("newad")
                 ->with( "title", "подать бесплатное объявление в усть каменогорске" )
-                ->with( "description", "Подать объявление бесплатно в Казахстане на сайте ".config('app.name'))
+                ->with( "description", "подать бесплатное объявление в усть каменогорске на сайте ".config('app.name'))
                 ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте, казахстан")
                 ->with( "categories", Categories::all() )
                 ->with( "regions", Regions::all() )
