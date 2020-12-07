@@ -52,14 +52,23 @@ Route::get("/podat-besplatno-objavlenye-o-rabote-v-kz", "AdvertController@new_ad
 Route::get("/podat-besplatnoe-objavlenye-v-ust-kamenogorske", "AdvertController@new_advert_podat_besplatnoe_obyavlenie_v_ust_kamenogorske");
 
 // подать бесплатное объявление продажа гаража
+Route::get("/podat-besplatnoe-obyavlenie-prodazha-garazha", "AdvertController@podat_besplatnoe_obyavlenie_prodazha_garazha");
 // подать бесплатные объявления аренда квартир
+Route::get("/podat-besplatnye-obyavleniya-arenda-kvartir", "AdvertController@podat_besplatnye_obyavleniya_arenda_kvartir");
 // подать детское объявление
+Route::get("/podat-detskoe-obyavlenie", "AdvertController@podat_detskoe_obyavlenie");
 // подать объявление авто пробегом
+Route::get("/podat-obyavlenie-avto-probegom", "AdvertController@podat_obyavlenie_avto_probegom");
 // подать объявление аренда
+Route::get("/podat-obyavlenie-arenda", "AdvertController@podat_obyavlenie_arenda");
 // подать объявление бесплатно в области
+Route::get("/podat-obyavlenie-besplatno-v-oblasti", "AdvertController@podat_obyavlenie_besplatno_v_oblasti");
 // подать объявление в газету работа
+Route::get("/podat-obyavlenie-v-gazetu-rabota", "AdvertController@podat_obyavlenie_v_gazetu_rabota");
 // подать объявление в рубрике
+Route::get("/podat-obyavlenie-v-rubrike", "AdvertController@podat_obyavlenie_v_rubrike");
 // подать объявление в усть каменогорске
+Route::get("/podat-obyavlenie-v-ust-kamenogorske", "AdvertController@podat-obyavlenie-v-ust-kamenogorske");
 // подать объявление инфо
 // подать объявление мясо
 // подать объявление на продавца
