@@ -34,6 +34,7 @@ class AdvertController extends Controller {
         public function new_advert(Request $request) {                        
         return $this->new_advert_common("Подать объявление бесплатно", $request);
         }
+
         // подать бесплатно объявление о работе в кз
         public function podat_besplatno_obyavlenie_o_rabote_v_kz(Request $request) {                
         return $this->new_advert_common("подать бесплатно объявление о работе в кз", $request);
@@ -42,7 +43,52 @@ class AdvertController extends Controller {
         // подать бесплатное объявление в усть каменогорске
         public function podat_besplatnoe_obyavlenie_v_ust_kamenogorske(Request $request) {                           
         return $this->new_advert_common("подать бесплатное объявление в усть каменогорске", $request);
-        }        
+        }
+
+        // подать бесплатное объявление продажа гаража
+        public function podat_besplatnoe_obyavlenie_prodazha_garazha(Request $request) {                           
+        return $this->new_advert_common("подать бесплатное объявление продажа гаража", $request);
+        }
+
+        // подать бесплатные объявления аренда квартир
+        public function podat_besplatnye_obyavleniya_arenda_kvartir(Request $request) {                           
+        return $this->new_advert_common("подать бесплатные объявления аренда квартир", $request);
+        }
+
+        // подать детское объявление
+        public function podat_detskoe_obyavlenie(Request $request) {                           
+        return $this->new_advert_common("подать детское объявление", $request);
+        }
+
+        // подать объявление авто пробегом
+        public function podat_obyavlenie_avto_probegom(Request $request) {                           
+        return $this->new_advert_common("подать объявление авто пробегом", $request);
+        }
+
+        // подать объявление аренда
+        public function podat_obyavlenie_arenda(Request $request) {                           
+        return $this->new_advert_common("подать объявление аренда", $request);
+        }
+
+        // подать объявление бесплатно в области
+        public function podat_obyavlenie_besplatno_v_oblasti(Request $request) {                           
+        return $this->new_advert_common("подать объявление бесплатно в области", $request);
+        }
+
+        // подать объявление в газету работа
+        public function podat_obyavlenie_v_gazetu_rabota(Request $request) {                           
+        return $this->new_advert_common("подать объявление в газету работа", $request);
+        }                
+
+        // подать объявление в рубрике
+        public function podat_obyavlenie_v_rubrike(Request $request) {                           
+        return $this->new_advert_common("подать объявление в рубрике", $request);
+        }                
+
+        // подать объявление в усть каменогорске
+        public function podat_obyavlenie_v_ust_kamenogorske(Request $request) {                           
+        return $this->new_advert_common("подать объявление в усть каменогорске", $request);
+        }                
 
         // ???
         public function posted($url) {
