@@ -163,31 +163,31 @@ Route::get("/podat-platnoe-obyavlenie", "AdvertController@podat_platnoe_obyavlen
 Route::get("/servis-razmestit-obyavlenie", "AdvertController@servis_razmestit_obyavlenie");
 // сиделка Подать объявление
 Route::get("/sidelka-podat-obyavlenie", "AdvertController@sidelka_podat_obyavlenie");
-// стройка Подать объявление
+// Стройка подать объявление
 Route::get("/stroyka-podat-obyavlenie", "AdvertController@stroyka_podat_obyavlenie");
-// хочу купить Подать объявление
+// Хочу купить подать объявление
 Route::get("/hochu-kupit-podat-obyavlenie", "AdvertController@hochu_kupit_podat_obyavlenie");
-// юридические услуги Подать объявление
+// Юридические услуги подать объявление
 Route::get("/yuridicheskie-uslugi-podat-obyavlenie", "AdvertController@yuridicheskie_uslugi_podat_obyavlenie");
-// акжайык Подать объявление
+// Акжайык подать объявление
 Route::get("/akzhayyk-podat-obyavlenie", "AdvertController@akzhayyk_podat_obyavlenie");
-// газета срочно Подать объявление
+// Газета срочно подать объявление
 Route::get("/gazeta-srochno-podat-obyavlenie", "AdvertController@gazeta_srochno_podat_obyavlenie");
-// газеты области Подать объявления
+// Газеты области подать объявления
 Route::get("/gazety-oblasti-podat-obyavleniya", "AdvertController@gazety_oblasti_podat_obyavleniya");
-// нурсултан Подать объявление на продажу автомобиля
+// Нурсултан подать объявление на продажу автомобиля
 Route::get("/nursultan-podat-obyavlenie-na-prodazhu-avtomobilya", "AdvertController@nursultan_podat_obyavlenie_na_prodazhu_avtomobilya");
-// работа в интернете разместить объявление
+// Работа в интернете разместить объявление
 Route::get("/rabota-v-internete-razmestit-obyavlenie", "AdvertController@rabota_v_internete_razmestit_obyavlenie");
-// работа частные объявления Подать
+// Работа частные объявления подать
 Route::get("/rabota-chastnye-obyavleniya-podat", "AdvertController@rabota_chastnye_obyavleniya_podat");
-// разместить объявление бесплатно и без регистрации
+// Разместить объявление бесплатно и без регистрации
 Route::get("/razmestit-obyavlenie-besplatno-i-bez-registracii", "AdvertController@razmestit_obyavlenie_besplatno_i_bez_registracii");
-// разместить объявление о продаже
+// Разместить объявление о продаже
 Route::get("/razmestit-obyavlenie-o-prodazhe", "AdvertController@razmestit_obyavlenie_o_prodazhe");
-// разместить объявление о работе
+// Разместить объявление о работе
 Route::get("/razmestit-obyavlenie-o-rabote", "AdvertController@razmestit_obyavlenie_o_rabote");
-// разместить объявление о работе бесплатно
+// Разместить объявление о работе бесплатно
 Route::get("/razmestit-obyavlenie-o-rabote-besplatno", "AdvertController@razmestit_obyavlenie_o_rabote_besplatno");
 
 
