@@ -355,6 +355,29 @@ class AdvertController extends Controller {
         return $this->new_advert_common("Разместить объявление о работе бесплатно", $request);
         }        
 
+	// Подать объявление бесплатно астана (45)
+        public function podat_obyavlenie_besplatno_astana(Request $request) {
+        return $this->new_advert_common("Подать объявление бесплатно астана", $request);
+        }        
+
+	// Подать объявления алматы (207)
+        public function podat_obyavleniya_almaty(Request $request) {
+        return $this->new_advert_common("Подать объявления алматы", $request);
+        }        
+
+	// Подать объявление павлодар (73)
+        public function podat_obyavlenie_pavlodar(Request $request) {
+        return $this->new_advert_common("Подать объявление павлодар", $request);
+        }        
+
+	// Подать объявление актобе(18)
+        public function podat_obyavlenie_aktobe(Request $request) {
+        return $this->new_advert_common("Подать объявление актобе", $request);
+        }        
+
+
+
+
         // ----------------------------------
         // ???
         // ----------------------------------

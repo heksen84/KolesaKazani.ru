@@ -190,6 +190,17 @@ Route::get("/razmestit-obyavlenie-o-rabote", "AdvertController@razmestit_obyavle
 // Разместить объявление о работе бесплатно
 Route::get("/razmestit-obyavlenie-o-rabote-besplatno", "AdvertController@razmestit_obyavlenie_o_rabote_besplatno");
 
+// ----------------------------------------------
+// Подать объявление бесплатно астана (45)
+// Подать объявления алматы (207)
+// Подать объявление павлодар (73)
+// Подать объявление актобе(18)
+// ----------------------------------------------
+Route::get("/podat-obyavlenie-besplatno-astana", "AdvertController@podat_obyavlenie_besplatno_astana");
+Route::get("/podat-obyavleniya-almaty", "AdvertController@podat_obyavleniya_almaty");
+Route::get("/podat-obyavlenie-pavlodar", "AdvertController@podat_obyavlenie_pavlodar");
+Route::get("/podat-obyavlenie-aktobe", "AdvertController@podat_obyavlenie_aktobe");
+
 
 // api вызовы
 Route::post("/api/createUser", "ApiController@createUser");
