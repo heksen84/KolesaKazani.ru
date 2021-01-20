@@ -54,7 +54,7 @@ class IndexController extends Controller {
 		if ($request->search != "")
 			return $this->search($request->search, $region, $place);		
 		
-			$sklonResult = "в Казахстане";
+			$sklonResult = "Казахстана";
 						
 		// Страна
 		if ($region === null && $place === null) {			
