@@ -115,8 +115,9 @@
               <!--<div style="color:green;border:1px solid rgb(200,200,200);padding:2px;margin:5px 0px;width:115px;font-size:12px;border-radius:3px;padding-left:7px">на модерации</div>-->
           </div>        
           <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-action text-center actions" style="border:none" data-id={{ $item->id }}>          
-          @if (!$item->expired)
-            <button class="btn btn-secondary btn-sm m-1 prodlit" title="Срок размещения объявления истёк. Вы можете бесплатно продлить объявление ещё на 30 дней"><span style="letter-spacing:1px;font-weight:400;color:yellow">не активно <span style="color:rgb(255,80,80)">(!)</span></span><div style="margin-top:-2px">Продлить бесплатно на 30 дн.</div></button>
+          @if (!$item->expired)            
+            <!--<button class="btn btn-secondary btn-sm m-1 prodlit" title="Срок размещения объявления истёк. Вы можете бесплатно продлить объявление ещё на 30 дней"><span style="letter-spacing:1px;font-weight:400;color:yellow">не активно <span style="color:rgb(255,80,80)">(!)</span></span><div style="margin-top:-2px">Продлить бесплатно на 30 дн.</div></button>-->
+            <button class="btn btn-outline-success btn-sm m-1 prodlit" title="Срок размещения объявления истёк. Вы можете бесплатно продлить объявление ещё на 30 дней"><span style="letter-spacing:1px;font-weight:400;color:red">не активно (!)</span><div style="margin-top:-3px">Продлить бесплатно на 30 дн.</div></button>
           @endif
           <!--@if (!$item->top && $item->expired)
             <button class="btn btn-outline-success btn-sm m-1 top">В топ</button>
