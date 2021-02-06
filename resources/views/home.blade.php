@@ -116,7 +116,7 @@
           </div>        
           <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-action text-center actions" style="border:none" data-id={{ $item->id }}>          
           @if (!$item->expired)
-            <button class="btn btn-outline-primary btn-sm m-1 prodlit" title="Продлить объявление бесплатно на 30 дней">Продлить бесплатно на 30 дн.</button>
+            <button class="btn btn-outline-primary btn-sm m-1 prodlit" title="Срок размещения объявления истёк. Можно продлить объявление бесплатно ещё на 30 дней"><span style="color:red;letter-spacing:2px">ИСТЕКЛО</span><br>Продлить бесплатно на 30 дн.</button>
           @endif
           <!--@if (!$item->top && $item->expired)
             <button class="btn btn-outline-success btn-sm m-1 top">В топ</button>
