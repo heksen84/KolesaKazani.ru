@@ -110,7 +110,7 @@
                   @endif                  
                 </div>                
             <a href="/objavlenie/show/{{ $item->url }}" id="title" style="color:black;letter-spacing:2px">{{ $item->title }}</a>            
-            <a class="btn btn-outline-success btn-sm mt-1" style="width:80px;display:block;padding:2px;color:black" href="/objavlenie/show/{{ $item->url }}" role="button">обзор</a>
+            <a class="btn btn-outline-success btn-sm mt-1" style="width:80px;display:block;padding:2px;color:black" href="/objavlenie/show/{{ $item->url }}?source=owner" role="button">обзор</a>
             
               <!--<div style="color:green;border:1px solid rgb(200,200,200);padding:2px;margin:5px 0px;width:115px;font-size:12px;border-radius:3px;padding-left:7px">на модерации</div>-->
           </div>        
