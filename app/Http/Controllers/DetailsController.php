@@ -854,27 +854,22 @@ class DetailsController extends Controller {
 
             \Debugbar::info("-[выборка]-------------------");
             \DebugBar::info($advert); 
-            \Debugbar::info("-----------------------------");
-            
-            $dataCount = count($advert);
-            
-            \Debugbar::info("advert count: ".$dataCount);
+            \Debugbar::info("-----------------------------");                
 
-            if ( $dataCount === 0 )
-                \Debugbar::info("ОШИБКА: пустая выборка");                
+            if ( !count($advert) ) {
+                \Debugbar::info("0 - объявлений");                
+                abort(404);
+            }
             
             $images = DB::table("images")->selectRaw("concat(url,'/normal/', name) as imageName")->leftJoin("storages", "storages.id", "=", "images.storage_id")->where("images.advert_id", $id)->get();                
             
             \Debugbar::info("-[images]-------------------");
             \Debugbar::info($images);
             \Debugbar::info("---------------------");
-            \Debugbar::info($advert);
             
-            $petrovich = new Petrovich(Petrovich::GENDER_MALE);
-
-            // ---------------------
+            // ---------------------------------------------------------------
             // Похожие объявления
-            // ---------------------
+            // ---------------------------------------------------------------
             $similarAdverts = DB::table("adverts as adv")->select(
                 "urls.url",
                 "adv.id", 
@@ -886,13 +881,19 @@ class DetailsController extends Controller {
                 "kz_region.name as region_name",
                 "kz_city.name as city_name",               
                 DB::raw(Common::getPreviewImage("adv.id")))                
-                ->join("urls", "adv.id", "=", "urls.advert_id" )
+                ->leftJoin("urls", "adv.id", "=", "urls.advert_id" )
                 ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
                 ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
                 ->where("subcategory_id", $advert[0]->subcategory_id)
                 ->where("adv.region_id", $advert[0]->region_id)
                 ->where("adv.city_id", $advert[0]->city_id)
-                ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true AND adv.id!=".$advert[0]->id)->limit(6)->get();
+                ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true AND adv.id!=".$advert[0]->id)->limit(6)->get();                                                
+
+                if (!count($similarAdverts)) {
+                    \Debugbar::info("пустая выборка");                 
+                }                        
+
+            $petrovich = new Petrovich(Petrovich::GENDER_MALE);
                 
             return view("details")
             ->with( "title", $advert[0]->title." в ".$petrovich->firstname($advert[0]->city_name, 4) )
