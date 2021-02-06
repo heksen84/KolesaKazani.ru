@@ -97,7 +97,7 @@
     @if (count($items)>0)
       @foreach($items as $key => $item)
         <div class="row text-left">
-          <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 col-title pt-1" style="height:140px;border:none"> 
+          <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 col-title pt-1" style="border:none"> 
                 <div class="statuses">                  
                   @if ($item->top)
                     <span class="badge badge-primary" title="В топе с {{ date('d.m.Y', strtotime($item->topStartDate)) }} по {{ date('d.m.Y', strtotime($item->topFinishDate)) }}">В топе</span>
@@ -110,14 +110,14 @@
                   @endif                  
                 </div>                
             <a href="/objavlenie/show/{{ $item->url }}" id="title" style="color:black;letter-spacing:2px">{{ $item->title }}</a>            
-            <a class="btn btn-outline-success btn-sm mt-1" style="width:80px;display:block;padding:2px;color:black" href="/objavlenie/show/{{ $item->url }}?source=owner" role="button">обзор</a>
+            <a class="btn btn-outline-success btn-sm mt-1 mb-3" style="width:80px;display:block;padding:2px;color:black" href="/objavlenie/show/{{ $item->url }}?source=owner" role="button">обзор</a>
             
               <!--<div style="color:green;border:1px solid rgb(200,200,200);padding:2px;margin:5px 0px;width:115px;font-size:12px;border-radius:3px;padding-left:7px">на модерации</div>-->
           </div>        
           <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-action text-center actions" style="border:none" data-id={{ $item->id }}>          
           @if (!$item->expired)            
             <!--<button class="btn btn-secondary btn-sm m-1 prodlit" title="Срок размещения объявления истёк. Вы можете бесплатно продлить объявление ещё на 30 дней"><span style="letter-spacing:1px;font-weight:400;color:yellow">не активно <span style="color:rgb(255,80,80)">(!)</span></span><div style="margin-top:-2px">Продлить бесплатно на 30 дн.</div></button>-->
-            <button class="btn btn-outline-success btn-sm m-1 prodlit" title="Срок размещения объявления истёк. Вы можете бесплатно продлить объявление ещё на 30 дней"><span style="letter-spacing:1px;font-weight:500;color:red">не активно (!)</span><div style="margin-top:-3px">Продлить бесплатно на 30 дн.</div></button>
+            <button class="btn btn-outline-success btn-sm prodlit" title="Срок размещения объявления истёк. Вы можете бесплатно продлить объявление ещё на 30 дней"><span style="letter-spacing:1px;font-weight:500;color:red">не активно (!)</span><div style="margin-top:-3px">Продлить бесплатно на 30 дн.</div></button>
           @endif
           <!--@if (!$item->top && $item->expired)
             <button class="btn btn-outline-success btn-sm m-1 top">В топ</button>
