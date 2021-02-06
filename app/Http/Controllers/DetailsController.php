@@ -52,10 +52,10 @@ class DetailsController extends Controller {
                 // Выборка на основании владельца
                 if ($request->source && $request->source === 'owner') {
                     \Debugbar::info("Владелец");                    
-                    $periodSample = "adv.public = true";
+                    $periodSampleSql = "adv.public = true";
                 } 
                 else
-                    $periodSample = "NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true";
+                    $periodSampleSql = "NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true";
 
                 // легковое авто
                 if ($advertData[0]->category_id === 1 && $advertData[0]->subcategory_id === 1) {  
@@ -114,7 +114,7 @@ class DetailsController extends Controller {
                             ->join("car_mark", "car_mark.id_car_mark" , "=" , "transport.mark" )  // toyota                                                                              
                             ->join("car_model", "car_model.id_car_model", "transport.model" )                                                                      
                             ->where( "adv.id", $id )                                
-                            ->whereRaw($periodSample)
+                            ->whereRaw($periodSampleSql)
                             ->limit(1)
                             ->get();                            
                 }
@@ -171,7 +171,7 @@ class DetailsController extends Controller {
                             ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
                             ->join("sub_transport as transport", "adv.inner_id" , "=" , "transport.id" )                
                             ->where( "adv.id", $id )                                
-                            ->whereRaw($periodSample)                        
+                            ->whereRaw($periodSampleSql)                        
                             ->limit(1)
                             ->get();                                
                 }
@@ -219,7 +219,7 @@ class DetailsController extends Controller {
                                 ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                                 ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
                                 ->where( "adv.id", $id )
-                                ->whereRaw($periodSample)
+                                ->whereRaw($periodSampleSql)
                                 ->limit(1)
                                 ->get();
                 }
@@ -267,7 +267,7 @@ class DetailsController extends Controller {
                                 ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                                 ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
                                 ->where( "adv.id", $id )
-                                ->whereRaw($periodSample)                        
+                                ->whereRaw($periodSampleSql)                        
                                 ->limit(1)
                                 ->get();
                 }
@@ -322,7 +322,7 @@ class DetailsController extends Controller {
                             ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                
                             ->join("sub_transport as transport", "adv.inner_id" , "=" , "transport.id" )                
                             ->where( "adv.id", $id )                                
-                            ->whereRaw($periodSample)                        
+                            ->whereRaw($periodSampleSql)                        
                             ->limit(1)
                             ->get();                                
             }
@@ -370,7 +370,7 @@ class DetailsController extends Controller {
                         ->join("kz_region", "adv.region_id" , "=" , "kz_region.region_id" )                
                         ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                    
                         ->where( "adv.id", $id )
-                        ->whereRaw($periodSample)                        
+                        ->whereRaw($periodSampleSql)                        
                         ->limit(1)
                         ->get();
             }
@@ -429,7 +429,7 @@ class DetailsController extends Controller {
                         ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                         ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
                         ->where( "adv.id", $id )                                
-                        ->whereRaw($periodSample)                        
+                        ->whereRaw($periodSampleSql)                        
                         ->limit(1)
                         ->get();                                                        
             }
@@ -483,7 +483,7 @@ class DetailsController extends Controller {
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
                     ->where( "adv.id", $id )                                
-                    ->whereRaw($periodSample)                        
+                    ->whereRaw($periodSampleSql)                        
                     ->limit(1)
                     ->get();                                                        
             }
@@ -542,7 +542,7 @@ class DetailsController extends Controller {
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
                     ->where( "adv.id", $id )                                
-                    ->whereRaw($periodSample)                        
+                    ->whereRaw($periodSampleSql)                        
                     ->limit(1)
                     ->get();                                                        
             }
@@ -592,7 +592,7 @@ class DetailsController extends Controller {
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
                     ->where( "adv.id", $id )                                
-                    ->whereRaw($periodSample)                        
+                    ->whereRaw($periodSampleSql)                        
                     ->limit(1)
                     ->get();                                                        
             }
@@ -642,7 +642,7 @@ class DetailsController extends Controller {
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
                     ->where( "adv.id", $id )                                
-                    ->whereRaw($periodSample)                        
+                    ->whereRaw($periodSampleSql)                        
                     ->limit(1)
                     ->get();                                                        
             }
@@ -701,7 +701,7 @@ class DetailsController extends Controller {
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
                     ->where( "adv.id", $id )                                
-                    ->whereRaw($periodSample)                        
+                    ->whereRaw($periodSampleSql)                        
                     ->limit(1)
                     ->get();                                                        
             }
@@ -760,7 +760,7 @@ class DetailsController extends Controller {
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )                                
                     ->join("sub_realestate as realestate", "adv.inner_id" , "=" , "realestate.id" )                                
                     ->where( "adv.id", $id )                                
-                    ->whereRaw($periodSample)
+                    ->whereRaw($periodSampleSql)
                     ->limit(1)
                     ->get();                                                        
             }
@@ -811,7 +811,7 @@ class DetailsController extends Controller {
                         ->join("categories", "adv.category_id" , "=" , "categories.id" )
                         ->join("subcats", "adv.subcategory_id" , "=" , "subcats.id" )
                         ->where( "adv.id", $id )
-                        ->whereRaw($periodSample)                        
+                        ->whereRaw($periodSampleSql)                        
                         ->limit(1)
                         ->get();                    
             }
@@ -857,7 +857,7 @@ class DetailsController extends Controller {
                     ->join("kz_city", "adv.city_id" , "=" , "kz_city.city_id" )
                     ->join("categories", "adv.category_id" , "=" , "categories.id" )                    
                     ->where( "adv.id", $id )
-                    ->whereRaw($periodSample)                        
+                    ->whereRaw($periodSampleSql)                        
                     ->limit(1)
                     ->get();                        
             }
