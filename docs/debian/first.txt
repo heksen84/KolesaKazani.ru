@@ -1,0 +1,7 @@
+apt install mc
+------------------------------
+Для просмотра html:
+apt install w3m
+apt install links
+apt install lynx
+------------------------------

@@ -1,0 +1,7 @@
+apt update
+apt install mariadb-server
+mysql_secure_installation
+---------------------------------
+Status: systemctl status mariadb
+---------------------------------
+https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-debian9-ru
