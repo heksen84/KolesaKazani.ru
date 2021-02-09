@@ -5,7 +5,5 @@ Disallow: /*.php
 Disallow: /home
 Disallow: /moderator
 Disallow: /util/str2url
-Disallow: /auth/vk
-Disallow: /auth/ok
 Disallow: /logout
 Sitemap: https://ilbo.site/sitemaps/index.xml
