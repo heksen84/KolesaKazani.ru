@@ -21275,3 +21275,15 @@ Did you mean one of these?
 #52 C:\\OSPanel\\domains\\ilbo\\index.php(21): require_once('C:\\\\OSPanel\\\\doma...')
 #53 {main}
 "} 
+[2021-02-15 01:07:48] local.ERROR: syntax error, unexpected end of file, expecting function (T_FUNCTION) or const (T_CONST) {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalThrowableError(code: 0): syntax error, unexpected end of file, expecting function (T_FUNCTION) or const (T_CONST) at C:\\OSPanel\\domains\\ilbo\\app\\Console\\Commands\\GeneratePlacementLinks.php:72)
+[stacktrace]
+#0 C:\\OSPanel\\domains\\ilbo\\vendor\\composer\\ClassLoader.php(322): Composer\\Autoload\\includeFile('C:\\\\OSPanel\\\\doma...')
+#1 [internal function]: Composer\\Autoload\\ClassLoader->loadClass('App\\\\Console\\\\Com...')
+#2 [internal function]: spl_autoload_call('App\\\\Console\\\\Com...')
+#3 C:\\OSPanel\\domains\\ilbo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(239): is_subclass_of('App\\\\Console\\\\Com...', 'Illuminate\\\\Cons...')
+#4 C:\\OSPanel\\domains\\ilbo\\app\\Console\\Kernel.php(45): Illuminate\\Foundation\\Console\\Kernel->load(Array)
+#5 C:\\OSPanel\\domains\\ilbo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(326): App\\Console\\Kernel->commands()
+#6 C:\\OSPanel\\domains\\ilbo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(129): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#7 C:\\OSPanel\\domains\\ilbo\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#8 {main}
+"} 

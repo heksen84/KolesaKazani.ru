@@ -41,23 +41,6 @@ Route::get("/objavlenie/posted/{url}", "AdvertController@posted");
 // SEO URL генератор/транслятор в ЧПУ (человеко понятный урл)
 // http://wd5.ru/tools/seo-url/
 
-
-// razmeshenye.xml <-- sitemap
-
-// --поиск--
-// поиск работы Подать объявление бесплатное
-// поиск людей Подать объявление
-// поиск новых объявлений
-
-// --найти--
-// Подать объявление найти работу
-// новые объявления найти работу
-
-
-//--новые объявления--
-//новые объявления квартир
-//новые объявления купить
-
 // Подать объявление
 Route::get("/podat-objavlenie", "AdvertController@new_advert");
 // Подать бесплатно объявление о работе в кз
@@ -200,7 +183,6 @@ Route::get("/podat-obyavlenie-besplatno-astana", "AdvertController@podat_obyavle
 Route::get("/podat-obyavleniya-almaty", "AdvertController@podat_obyavleniya_almaty");
 Route::get("/podat-obyavlenie-pavlodar", "AdvertController@podat_obyavlenie_pavlodar");
 Route::get("/podat-obyavlenie-aktobe", "AdvertController@podat_obyavlenie_aktobe");
-
 
 // api вызовы
 Route::post("/api/createUser", "ApiController@createUser");
