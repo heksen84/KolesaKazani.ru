@@ -34,13 +34,11 @@ Route::get("/objavlenie/show/{title}", "DetailsController@getDetails");
 Route::get("/objavlenie/posted/{url}", "AdvertController@posted");
 
 /* 
-----------------------------------------------------------------------------------------------------------------------------------------------
+----------------------
 ПОДАЧА ОБЪЯВЛЕНИЯ
-----------------------------------------------------------------------------------------------------------------------------------------------*/
-
+----------------------*/
 // SEO URL генератор/транслятор в ЧПУ (человеко понятный урл)
 // http://wd5.ru/tools/seo-url/
-
 // Подать объявление
 Route::get("/podat-objavlenie", "AdvertController@new_advert");
 // Подать бесплатно объявление о работе в кз
@@ -65,7 +63,6 @@ Route::get("/podat-obyavlenie-v-gazetu-rabota", "AdvertController@podat_obyavlen
 Route::get("/podat-obyavlenie-v-rubrike", "AdvertController@podat_obyavlenie_v_rubrike");
 // Подать объявление в усть каменогорске
 Route::get("/podat-obyavlenie-v-ust-kamenogorske", "AdvertController@podat_obyavlenie_v_ust_kamenogorske");
-
 // Подать объявление инфо
 Route::get("/podat-obyavlenie-info", "AdvertController@podat_obyavlenie_info");
 // Подать объявление мясо
@@ -172,7 +169,6 @@ Route::get("/razmestit-obyavlenie-o-prodazhe", "AdvertController@razmestit_obyav
 Route::get("/razmestit-obyavlenie-o-rabote", "AdvertController@razmestit_obyavlenie_o_rabote");
 // Разместить объявление о работе бесплатно
 Route::get("/razmestit-obyavlenie-o-rabote-besplatno", "AdvertController@razmestit_obyavlenie_o_rabote_besplatno");
-
 // ----------------------------------------------
 // Подать объявление бесплатно астана (45)
 // Подать объявления алматы (207)
@@ -193,7 +189,6 @@ Route::post("/objavlenie/delete/{id}", "AdvertController@deleteAdvert"); // post
 Route::get("/objavlenie/delete/{id}", "AdvertController@deleteAdvert"); // get
 Route::post("/objavlenie/makeExtend/{advert_id}/{adv_type}", "AdvertController@makeExtend");
 Route::post("/objavlenie/makeComplaint/{advert_id}", "AdvertController@makeComplaint");
-
 Route::get("/api/getSubCategoryNamesById", "ApiController@getSubCategoryNamesById" );
 Route::get("/api/getRegions", "ApiController@GetRegions");
 Route::get("/api/getPlaces", "ApiController@GetPlaces");
