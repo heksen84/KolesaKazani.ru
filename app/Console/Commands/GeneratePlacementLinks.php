@@ -36,7 +36,7 @@ class GenerateSitemapLinks extends Command
         parent::__construct();
     }
 
-    public function generateRecord($url, $date_time, $file) {            
+    public function generateRecord($locTitle, $date, $file) {            
     }
 
     /**
@@ -51,6 +51,7 @@ class GenerateSitemapLinks extends Command
         $date = Carbon::now()->format('Y-m-d');        
 
         $this->info($date);
+        $this->info("----------------------");
         
         $file = fopen("razmeshenye.xml", "w");
 
