@@ -10,7 +10,7 @@ use App\Regions;
 use App\Places;
 use Carbon\Carbon;
 
-class GenerateSitemapLinks extends Command
+class GeneratePlacementLinks extends Command
 {
     /**
      * The name and signature of the console command.
