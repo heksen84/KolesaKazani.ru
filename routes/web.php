@@ -34,11 +34,20 @@ Route::get("/objavlenie/show/{title}", "DetailsController@getDetails");
 Route::get("/objavlenie/posted/{url}", "AdvertController@posted");
 
 /* 
-----------------------
-ПОДАЧА ОБЪЯВЛЕНИЯ
-----------------------*/
-// SEO URL генератор/транслятор в ЧПУ (человеко понятный урл)
-// http://wd5.ru/tools/seo-url/
+------------------------------------------------------------------------------------------------------------------------
+
+ПОДАЧА ОБЪЯВЛЕНИЯ ЧПУ: http://wd5.ru/tools/seo-url/
+
+------------------------------------------------------------------------------------------------------------------------*/
+// --------------------------------------------------------------------------------------------------------
+// Размещение по местоположению. 
+// Роуты имеют приоритеты
+// --------------------------------------------------------------------------------------------------------
+Route::get("/podat-obyavlenie-besplatno-{place}", "AdvertController@podat_obyavlenie_besplatno_in_place");
+Route::get("/podat-obyavlenie-{place}", "AdvertController@podat_obyavlenie_in_place");
+Route::get("/razmestit-obyavlenie-besplatno-{place}", "AdvertController@razmestit_obyavlenie_besplatno_in_place");
+Route::get("/razmestit-obyavlenie-{place}", "AdvertController@razmestit_obyavlenie_in_place");
+
 // Подать объявление
 Route::get("/podat-objavlenie", "AdvertController@new_advert");
 // Подать бесплатно объявление о работе в кз
@@ -169,6 +178,7 @@ Route::get("/razmestit-obyavlenie-o-prodazhe", "AdvertController@razmestit_obyav
 Route::get("/razmestit-obyavlenie-o-rabote", "AdvertController@razmestit_obyavlenie_o_rabote");
 // Разместить объявление о работе бесплатно
 Route::get("/razmestit-obyavlenie-o-rabote-besplatno", "AdvertController@razmestit_obyavlenie_o_rabote_besplatno");
+
 // ----------------------------------------------
 // Подать объявление бесплатно астана (45)
 // Подать объявления алматы (207)

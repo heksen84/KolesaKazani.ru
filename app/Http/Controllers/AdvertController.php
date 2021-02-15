@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\Common;
 use App\Categories;
+use App\Places;
 use App\adex_color;
 use App\adex_srochno;
 use App\adex_top;
@@ -373,9 +374,36 @@ class AdvertController extends Controller {
 	// Подать объявление актобе(18)
         public function podat_obyavlenie_aktobe(Request $request) {
         return $this->new_advert_common("Подать объявление актобе", $request);
+        }
+
+	// Получить имя местоположения по чпу
+	private function getPlaceNameByUrl($placeUrl) {
+
+	 // Делаю выборку и сходу заменяю слово беслатно на пробел
+	 $place = Places::select("name")->where("url", str_replace("besplatno-", "", $placeUrl))->get();
+
+	 if (!count($place))
+            abort(404);          
+
+	 return $place[0]->name;
+	}
+
+	/* 
+	---------------------------------------------
+	 Подача объявления по местоположению
+	---------------------------------------------*/
+	public function podat_obyavlenie_in_place(Request $request, $place) {	
+        return $this->new_advert_common("Подать объявление ".$this->getPlaceNameByUrl($place), $request);
         }        
-
-
+	public function podat_obyavlenie_besplatno_in_place(Request $request, $place) {
+        return $this->new_advert_common("Подать объявление бесплатно ".$this->getPlaceNameByUrl($place), $request);
+        }
+	public function razmestit_obyavlenie_in_place(Request $request, $place) {
+        return $this->new_advert_common("Разместить объявление ".$this->getPlaceNameByUrl($place), $request);
+        }        
+	public function razmestit_obyavlenie_besplatno_in_place(Request $request, $place) {
+        return $this->new_advert_common("Разместить объявление бесплатно ".$this->getPlaceNameByUrl($place), $request);
+        } 
 
 
         // ----------------------------------
