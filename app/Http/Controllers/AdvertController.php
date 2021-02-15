@@ -376,7 +376,9 @@ class AdvertController extends Controller {
         return $this->new_advert_common("Подать объявление актобе", $request);
         }
 
+ 	// ----------------------------------------------
 	// Получить имя местоположения по чпу
+ 	// ----------------------------------------------
 	private function getPlaceNameByUrl($placeUrl) {
 
 	 // Делаю выборку и сходу заменяю слово беслатно на пробел
