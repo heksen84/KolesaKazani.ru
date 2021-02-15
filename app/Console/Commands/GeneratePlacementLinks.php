@@ -31,8 +31,7 @@ class GeneratePlacementLinks extends Command
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
     }
 
@@ -47,25 +46,15 @@ class GeneratePlacementLinks extends Command
     public function handle() {
 
         $app_url = config('app.url', 'Laravel');
-
-        $date = Carbon::now()->format('Y-m-d');        
-
+        $date = Carbon::now()->format('Y-m-d');
         $this->info($date);
-        $this->info("----------------------");
         
         $file = fopen("razmeshenye.xml", "w");
 
 	fwrite($file, '<?xml version="1.0" encoding="UTF-8"?>');
         fwrite($file,'<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">');
         
-        $places = Places::select("name", "url")->orderBy('name')->distinct()->get();	
-
-/*  <url>
-    <loc>https://ilbo.site/podat-obyavlenie-besplatno-astana</loc>
-    <lastmod>2021-01-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>*/
+        $places = Places::select("name", "url")->orderBy('name')->distinct()->get();
 
 	foreach($places as $place) {          
 	  fwrite($file, "<url>\n");	 		  
@@ -106,7 +95,6 @@ class GeneratePlacementLinks extends Command
         fwrite($file, '</urlset>');
         fclose($file);
                         
-        $this->info("----------------------");
         $this->info("ok");
 
     }
