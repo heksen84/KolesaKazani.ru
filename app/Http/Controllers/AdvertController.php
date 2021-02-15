@@ -405,17 +405,16 @@ class AdvertController extends Controller {
         return $this->new_advert_common("Разместить объявление бесплатно ".$this->getPlaceNameByUrl($place), $request);
         } 
 
-
-        // ----------------------------------
-        // ???
-        // ----------------------------------
+       /* ---------------------------------------------
+        Редирект после того как объявление размещено
+        -----------------------------------------------*/
         public function posted($url) {
 	 return view("adposted")->with( "url", $url );
         }
 
-        // -----------------------------------------------------------
-        // Отправить жалобу
-        // -----------------------------------------------------------
+       /* -----------------------------------------------------------
+        Отправить жалобу
+        -------------------------------------------------------------*/
         public function makeComplaint(Request $request, $advert_id) {
                 
                 $user_id = Auth::id()? Auth::id() : null;
@@ -424,13 +423,12 @@ class AdvertController extends Controller {
                 if (Complaints::where('advert_id', '=', $advert_id)->update(array('user_id' => $user_id, 'text' => $request->complainText))) {
                         return response()->json([ "result" => "success", "msg" => "Ваша жалоба обновлена" ]);        
                 }
-                else {
+                else  {
                         $complaints = new Complaints;
                         $complaints->advert_id = $advert_id;
                         $complaints->user_id = $user_id;
                         $complaints->text = $request->complainText;
-                        $complaints->save();
-        
+                        $complaints->save();        
                         return response()->json([ "result" => "success", "msg" => "Ваша жалоба отправлена на рассмотрение" ]);
                 }
         }
@@ -544,11 +542,13 @@ class AdvertController extends Controller {
                         return response()->json([ "result" => "error", "msg" => "Access denied for this operation" ]);  
                 }
                                 
+
                 // ---- Удаляю картинки объявления ----
-                $imagesRequest = Images::select(DB::raw("name"))->where("advert_id", $id);                
+                $imagesRequest = Images::select(DB::raw("name"))->where("advert_id", $id);
+
                 $images = $imagesRequest->get(); // получаю массив
 
-                if (count($images)>0) {
+                if ( count($images) > 0 ) {
                         
                         foreach($images as $image) {
                                 \Debugbar::info($image->name);
