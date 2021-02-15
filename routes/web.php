@@ -1,5 +1,7 @@
 <?php
 
+// Роуты имеют приоритеты
+
 Auth::routes();
 
 Route::get('auth/vk', 'Auth\AuthController@redirectToVk');
@@ -38,12 +40,9 @@ Route::get("/objavlenie/posted/{url}", "AdvertController@posted");
 
 ПОДАЧА ОБЪЯВЛЕНИЯ 
 ЧПУ: http://wd5.ru/tools/seo-url/
-
 ------------------------------------------------------------------------------------------------------------------------*/
-// --------------------------------------------------------------------------------------------------------
-// Размещение по местоположению. 
-// Роуты имеют приоритеты
-// --------------------------------------------------------------------------------------------------------
+
+// Размещение по местоположению
 Route::get("/podat-obyavlenie-besplatno-{place}", "AdvertController@podat_obyavlenie_besplatno_in_place");
 Route::get("/podat-obyavlenie-{place}", "AdvertController@podat_obyavlenie_in_place");
 Route::get("/razmestit-obyavlenie-besplatno-{place}", "AdvertController@razmestit_obyavlenie_besplatno_in_place");
