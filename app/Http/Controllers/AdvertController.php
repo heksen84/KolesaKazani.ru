@@ -18,8 +18,11 @@ use Carbon\Carbon;
 
 class AdvertController extends Controller {
         
+	// -----------------------------------------------------
         // общая метод для всех размещений
+	// -----------------------------------------------------
         public function new_advert_common($title, $request) {
+
           return view("newad")
           ->with( "title", $title )
           ->with( "description", $title." на сайте ".config('app.name'))
