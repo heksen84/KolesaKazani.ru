@@ -64,7 +64,7 @@ class IndexController extends Controller {
 			$keywords = $cm_keywords."Казахстан";
 			$locationName = "Казахстан";
 			$sklonPlace = "Казахстана";
-		}
+		}		
 
 		// Регион
 		if ($region != null && $place === null) {
@@ -76,7 +76,7 @@ class IndexController extends Controller {
 				abort(404);             			
 
 			$regionArr = $locationName; // ???
-			$locationName = $locationName[0]->name." обл.";			
+			$locationName = $locationName[0]->name." обл.";						
 
 			if ($regionArr->count() > 0) {
 				
@@ -132,6 +132,7 @@ class IndexController extends Controller {
 		$regions = Regions::all();
 
 		$topAdverts=[];
+
 		// Новые объявления
 		/*$topAdverts = DB::table("adverts as adv")->select(			
 			"urls.url",
@@ -159,18 +160,21 @@ class IndexController extends Controller {
 			$whereLocationRawStr = "";
 
 			if ($region) {
+
 				$regionData = $this->getRegionData($region);				
 				
-				if ($regionData)
-					$whereLocationRawStr=" AND adv.region_id=".$regionData->region_id;
+				if ($regionData) {
+					$whereLocationRawStr=" AND adv.region_id=".$regionData->region_id;					
+				}
 			}
 			
 			if ($region && $place) {
+				
 				$regionData = $this->getRegionData($region);
 								
 				if ($regionData) {
 					$placeData = $this->getPlaceData($regionData->region_id, $place);
-					$whereLocationRawStr=" AND adv.region_id=".$regionData->region_id." AND adv.city_id=".$placeData->city_id;
+					$whereLocationRawStr=" AND adv.region_id=".$regionData->region_id." AND adv.city_id=".$placeData->city_id;					
 				}
 			}
 		
@@ -198,7 +202,7 @@ class IndexController extends Controller {
 			->get();			
 
 			\Debugbar::info("NEWADVERTS:");
-			\Debugbar::info($newAdverts);
+			\Debugbar::info($newAdverts);			
 										
 		return view("index")		
 		->with("locationName", $locationName)

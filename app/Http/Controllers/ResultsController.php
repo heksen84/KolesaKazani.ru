@@ -11,6 +11,8 @@ use App\Regions;
 use App\Places;
 
 class ResultsController extends Controller {
+
+    const FULL_SITE_DESC =  " на сайте объявлений Ильбо";
         
     // получить данные категории    
     private function getCategoryData(Request $request, $category) {          
@@ -66,7 +68,7 @@ class ResultsController extends Controller {
     // получить расположение
     private function getLocationName($val, $isRegion) {                        
 
-        if ($val===null) 
+        if ( $val === null ) 
             return "Казахстане";
 	    else 
             if ($isRegion) {
@@ -150,7 +152,7 @@ class ResultsController extends Controller {
         );
                                         
         return view("results")    
-        ->with("title", str_replace("@place", $locationName, $categories[0]->title ))         
+        ->with("title", str_replace("@place", $locationName, $categories[0]->title ).self::FULL_SITE_DESC)         
         ->with("description", str_replace("@place", $locationName, $categories[0]->description ))         
         ->with("keywords", str_replace("@place", $locationName, $categories[0]->keywords ))         
         ->with("h1", str_replace("@place", $locationName, $categories[0]->h1 ))
@@ -259,7 +261,7 @@ class ResultsController extends Controller {
             $locationName = $this->getLocationName(null, null);                              
                 
             return view("results")    
-            ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
+            ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ).self::FULL_SITE_DESC)         
             ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
             ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))
             ->with("h1", str_replace("@place", $locationName, $subcategories[0]->h1 ))         
@@ -330,7 +332,7 @@ class ResultsController extends Controller {
          $locationName = $this->getLocationName($regionData->name, true);
                  
          return view("results")    
-         ->with("title", str_replace("@place", $locationName, $subcategories[0]->title))         
+         ->with("title", str_replace("@place", $locationName, $subcategories[0]->title).self::FULL_SITE_DESC)
          ->with("description", str_replace("@place", $locationName, $subcategories[0]->description))         
          ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords))
          ->with("h1", str_replace("@place", $locationName, $subcategories[0]->h1 ))         
@@ -412,7 +414,7 @@ class ResultsController extends Controller {
          $locationName = $this->getLocationName($placeData->name, false);         
                  
          return view("results")    
-         ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ))         
+         ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ).self::FULL_SITE_DESC)         
          ->with("description", str_replace("@place", $locationName, $subcategories[0]->description ))         
          ->with("keywords", str_replace("@place", $locationName, $subcategories[0]->keywords ))
          ->with("h1", str_replace("@place", $locationName, $subcategories[0]->h1 ))         
