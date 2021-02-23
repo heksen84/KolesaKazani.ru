@@ -12,7 +12,7 @@ use App\Places;
 
 class ResultsController extends Controller {
 
-    const FULL_SITE_DESC =  " на сайте объявлений Ильбо";
+    const FULL_SITE_DESC = " на сайте объявлений Ильбо";
         
     // получить данные категории    
     private function getCategoryData(Request $request, $category) {          
