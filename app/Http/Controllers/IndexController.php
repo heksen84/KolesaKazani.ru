@@ -111,7 +111,7 @@ class IndexController extends Controller {
 				$sklonPlace = $petrovich->firstname($placeArr[0]->name, 0);
 				$sklonResult = $placeArr[0]->name;
 				$sklonResultForDesc = $petrovich->firstname($placeArr[0]->name, 4);								
-				$title = $sklonResult." объявления";
+				$title = "Объявления ".$sklonResult;
 				$description = $cm_description.$sklonResultForDesc;
 				$keywords = $cm_keywords.$locationName;
 			
