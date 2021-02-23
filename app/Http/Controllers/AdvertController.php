@@ -33,6 +33,20 @@ class AdvertController extends Controller {
           ->with( "country", "kz" )
           ->with( "lang", $request->lang );        
         }
+
+        // ----------------------------------------------
+	// Получить имя местоположения по чпу
+ 	// ----------------------------------------------
+	private function getPlaceNameByUrl($placeUrl) {
+
+                // Делаю выборку и сходу заменяю слово беслатно на пробел
+                $place = Places::select("name")->where("url", str_replace("besplatno-", "", $placeUrl))->get();
+       
+                if (!count($place))
+                   abort(404);          
+       
+                return $place[0]->name;
+        }
         
         // новое объявление
         public function new_advert(Request $request) {                        
@@ -377,26 +391,12 @@ class AdvertController extends Controller {
 	// Подать объявление актобе(18)
         public function podat_obyavlenie_aktobe(Request $request) {
         return $this->new_advert_common("Подать объявление актобе", $request);
-        }
-
- 	// ----------------------------------------------
-	// Получить имя местоположения по чпу
- 	// ----------------------------------------------
-	private function getPlaceNameByUrl($placeUrl) {
-
-	 // Делаю выборку и сходу заменяю слово беслатно на пробел
-	 $place = Places::select("name")->where("url", str_replace("besplatno-", "", $placeUrl))->get();
-
-	 if (!count($place))
-            abort(404);          
-
-	 return $place[0]->name;
-	}
+        } 	
 
 	/* 
-	---------------------------------------------
+	-----------------------------------------------------------------------
 	 Подача объявления по местоположению
-	---------------------------------------------*/
+	-----------------------------------------------------------------------*/
 	public function podat_obyavlenie_in_place(Request $request, $place) {	
         return $this->new_advert_common("Подать объявление ".$this->getPlaceNameByUrl($place), $request);
         }        
