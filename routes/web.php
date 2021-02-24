@@ -163,7 +163,6 @@ Route::get("/razmestit-obyavlenie-o-prodazhe", "AdvertController@razmestit_obyav
 Route::get("/razmestit-obyavlenie-o-rabote", "AdvertController@razmestit_obyavlenie_o_rabote");
 // Разместить объявление о работе бесплатно
 Route::get("/razmestit-obyavlenie-o-rabote-besplatno", "AdvertController@razmestit_obyavlenie_o_rabote_besplatno");
-
 // ----------------------------------------------
 // Подать объявление бесплатно астана (45)
 // Подать объявления алматы (207)
@@ -175,18 +174,16 @@ Route::get("/podat-obyavleniya-almaty", "AdvertController@podat_obyavleniya_alma
 Route::get("/podat-obyavlenie-pavlodar", "AdvertController@podat_obyavlenie_pavlodar");
 Route::get("/podat-obyavlenie-aktobe", "AdvertController@podat_obyavlenie_aktobe");
 
-// Размещение по местоположению. 
-// Не двигать! (приоритет)
+// Размещение по местоположению. Не двигать! (приоритет)
 Route::get("/podat-obyavlenie-besplatno-{place}", "AdvertController@podat_obyavlenie_besplatno_in_place");
 Route::get("/podat-obyavlenie-{place}", "AdvertController@podat_obyavlenie_in_place");
 Route::get("/razmestit-obyavlenie-besplatno-{place}", "AdvertController@razmestit_obyavlenie_besplatno_in_place");
 Route::get("/razmestit-obyavlenie-{place}", "AdvertController@razmestit_obyavlenie_in_place");
-
-// api вызовы
+// ---------------------------------------------------------------
+// AJAX API вызовы
+// ---------------------------------------------------------------
 Route::post("/api/createUser", "ApiController@createUser");
 Route::post("/api/createAdvert", "ApiController@createAdvert");
-
-// удалить объявление
 Route::post("/objavlenie/delete/{id}", "AdvertController@deleteAdvert"); // post
 Route::get("/objavlenie/delete/{id}", "AdvertController@deleteAdvert"); // get
 Route::post("/objavlenie/makeExtend/{advert_id}/{adv_type}", "AdvertController@makeExtend");
