@@ -10,19 +10,18 @@ Route::get('auth/ok/callback', 'Auth\AuthController@handleOkCallback');
 Route::get('auth/insta', 'Auth\AuthController@redirectToInsta');
 Route::get('auth/insta/callback', 'Auth\AuthController@handleInstaCallback');
 // подвал
-Route::get('/advert', function() { return view('advert'); });
-Route::get('/rules', function() { return view('rules'); });
-Route::get('/about', function() { return view('about'); });
+Route::get("/advert", function() { return view("advert"); });
+Route::get("/rules", function() { return view("rules"); });
+Route::get("/about", function() { return view("about"); });
 // Блог
-Route::get('/blog', "BlogController@showArticles");
-Route::get('/blog/{articleId}', "BlogController@showArticle");
+Route::get("/blog", "BlogController@showArticles");
+Route::get("/blog/{articleId}", "BlogController@showArticle");
 // Статьи
 Route::get("/articles", "ArticlesController@showArticles");
 Route::get("/articles/show/", "ArticlesController@showArticle");
 Route::get("/articles/delete/", "ArticlesController@deleteArticle");
-Route::get('/logout', "\App\Http\Controllers\Auth\LoginController@logout");
-Route::get('/search', "IndexController@getResultsBySearchString");
-// Сервисы (было внизу)
+Route::get("/logout", "\App\Http\Controllers\Auth\LoginController@logout");
+Route::get("/search", "IndexController@getResultsBySearchString");
 Route::get("/moderator", "ModeratorController@showHomePage");
 // детали объявления
 Route::get("/objavlenie/show/{title}", "DetailsController@getDetails");
@@ -32,7 +31,6 @@ Route::get("/objavlenie/posted/{url}", "AdvertController@posted");
 ------------------------------------------------------------------------------------------------------------------------
 ПОДАЧА ОБЪЯВЛЕНИЯ ЧПУ: http://wd5.ru/tools/seo-url/
 ------------------------------------------------------------------------------------------------------------------------*/
-
 // Подать объявление
 Route::get("/podat-objavlenie", "AdvertController@new_advert");
 // Подать бесплатно объявление о работе в кз
@@ -163,6 +161,7 @@ Route::get("/razmestit-obyavlenie-o-prodazhe", "AdvertController@razmestit_obyav
 Route::get("/razmestit-obyavlenie-o-rabote", "AdvertController@razmestit_obyavlenie_o_rabote");
 // Разместить объявление о работе бесплатно
 Route::get("/razmestit-obyavlenie-o-rabote-besplatno", "AdvertController@razmestit_obyavlenie_o_rabote_besplatno");
+
 // ----------------------------------------------
 // Подать объявление бесплатно астана (45)
 // Подать объявления алматы (207)
@@ -174,11 +173,12 @@ Route::get("/podat-obyavleniya-almaty", "AdvertController@podat_obyavleniya_alma
 Route::get("/podat-obyavlenie-pavlodar", "AdvertController@podat_obyavlenie_pavlodar");
 Route::get("/podat-obyavlenie-aktobe", "AdvertController@podat_obyavlenie_aktobe");
 
-// Размещение по местоположению. Не двигать! (приоритет)
+// Размещение по местоположению. Не двигать (ПРИОРИТЕТ!)
 Route::get("/podat-obyavlenie-besplatno-{place}", "AdvertController@podat_obyavlenie_besplatno_in_place");
 Route::get("/podat-obyavlenie-{place}", "AdvertController@podat_obyavlenie_in_place");
 Route::get("/razmestit-obyavlenie-besplatno-{place}", "AdvertController@razmestit_obyavlenie_besplatno_in_place");
 Route::get("/razmestit-obyavlenie-{place}", "AdvertController@razmestit_obyavlenie_in_place");
+
 // ---------------------------------------------------------------
 // AJAX API вызовы
 // ---------------------------------------------------------------
@@ -208,8 +208,6 @@ Route::get("{region}/{city}/c/auto/{mark}{model}", "AutoResultsController@getCit
 
 // Главная страница
 Route::get("/", "IndexController@ShowCountryIndexPage");
-
-
 // мои объявления
 Route::get("/home", "HomeController@ShowHomePage");
 // Результаты по категориям по стране
