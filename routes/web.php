@@ -33,12 +33,6 @@ Route::get("/objavlenie/posted/{url}", "AdvertController@posted");
 ПОДАЧА ОБЪЯВЛЕНИЯ ЧПУ: http://wd5.ru/tools/seo-url/
 ------------------------------------------------------------------------------------------------------------------------*/
 
-// Размещение по местоположению
-Route::get("/podat-obyavlenie-besplatno-{place}", "AdvertController@podat_obyavlenie_besplatno_in_place");
-Route::get("/podat-obyavlenie-{place}", "AdvertController@podat_obyavlenie_in_place");
-Route::get("/razmestit-obyavlenie-besplatno-{place}", "AdvertController@razmestit_obyavlenie_besplatno_in_place");
-Route::get("/razmestit-obyavlenie-{place}", "AdvertController@razmestit_obyavlenie_in_place");
-
 // Подать объявление
 Route::get("/podat-objavlenie", "AdvertController@new_advert");
 // Подать бесплатно объявление о работе в кз
@@ -180,6 +174,13 @@ Route::get("/podat-obyavlenie-besplatno-astana", "AdvertController@podat_obyavle
 Route::get("/podat-obyavleniya-almaty", "AdvertController@podat_obyavleniya_almaty");
 Route::get("/podat-obyavlenie-pavlodar", "AdvertController@podat_obyavlenie_pavlodar");
 Route::get("/podat-obyavlenie-aktobe", "AdvertController@podat_obyavlenie_aktobe");
+
+// Размещение по местоположению. 
+// Не двигать! (приоритет)
+Route::get("/podat-obyavlenie-besplatno-{place}", "AdvertController@podat_obyavlenie_besplatno_in_place");
+Route::get("/podat-obyavlenie-{place}", "AdvertController@podat_obyavlenie_in_place");
+Route::get("/razmestit-obyavlenie-besplatno-{place}", "AdvertController@razmestit_obyavlenie_besplatno_in_place");
+Route::get("/razmestit-obyavlenie-{place}", "AdvertController@razmestit_obyavlenie_in_place");
 
 // api вызовы
 Route::post("/api/createUser", "ApiController@createUser");

@@ -22,7 +22,8 @@ class Kernel extends ConsoleKernel
 	    Commands\RemoveLostImages::class,
 	    Commands\RemoveAdvert::class,
 	    Commands\Utils::class,
-	    Commands\Test::class
+	    Commands\Test::class,
+            Commands\CheckSitemapsForError::class
     ];
 
     /**
