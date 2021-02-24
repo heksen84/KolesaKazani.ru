@@ -23,9 +23,11 @@ class AdvertController extends Controller {
 	// -----------------------------------------------------
         public function new_advert_common($title, $request) {
 
+	  $title = $title." на сайте ".config('app.name');
+
           return view("newad")
           ->with( "title", $title )
-          ->with( "description", $title." на сайте ".config('app.name'))
+          ->with( "description", $title)
           ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте, казахстан")
           ->with( "categories", Categories::all() )
           ->with( "regions", Regions::all() )
