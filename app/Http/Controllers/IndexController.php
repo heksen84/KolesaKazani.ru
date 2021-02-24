@@ -45,6 +45,8 @@ class IndexController extends Controller {
 	// ------------------------------------------
     private function ShowIndexPage(Request $request, $region, $place) {
 
+
+		\Debugbar::info("v=".$request->v);
 		\Debugbar::info("SESSION ID: ".\Session::getId());
 		
 		$cm_title = mb_strtoupper(config('app.name'))." - бесплатные объявления ";
