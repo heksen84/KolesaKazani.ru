@@ -503,8 +503,8 @@ class AdvertController extends AdvertBase {
         // ---------------------------------
         public function deleteAdvert($id) {
 
-                // ПРИ УДАЛЕНИИ ПРОВЕРЯТЬ USER_ID с текущим      
                 $user_id = Auth::id();
+
                 \Debugbar::info("user_id ".$user_id);
 
                 $advertRequest = Adverts::select( "category_id", "subcategory_id", "inner_id")->where( "id", $id )->where("user_id", $user_id)->limit(1);                
@@ -517,11 +517,11 @@ class AdvertController extends AdvertBase {
                         return response()->json([ "result" => "error", "msg" => "Access denied for this operation" ]);  
                 }
                                 
-
-                // ---- Удаляю картинки объявления ----
+                // удаляю картинки объявления
                 $imagesRequest = Images::select(DB::raw("name"))->where("advert_id", $id);
-
-                $images = $imagesRequest->get(); // получаю массив
+		
+		// получаю массив
+                $images = $imagesRequest->get();
 
                 if ( count($images) > 0 ) {
                         
