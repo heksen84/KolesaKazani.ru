@@ -5,7 +5,7 @@ use App\Categories;
 use App\Regions;
 use App\DealType;
 
-class SEOController extends Controller {        
+class AdvertBaseController extends Controller {        
 
 	// -----------------------------------------------------
         // общая метод для всех размещений

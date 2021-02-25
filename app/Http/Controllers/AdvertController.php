@@ -16,7 +16,7 @@ use App\Adverts;
 use App\Images;
 use App\Complaints;
 
-class AdvertController extends SEOController {        
+class AdvertController extends AdvertBaseController {        
         
         // новое объявление
         public function new_advert(Request $request) {                        
