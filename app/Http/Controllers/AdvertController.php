@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\Common;
+use Carbon\Carbon;
 use App\Categories;
 use App\Places;
 use App\adex_color;
@@ -14,41 +15,8 @@ use App\DealType;
 use App\Adverts;
 use App\Images;
 use App\Complaints;
-use Carbon\Carbon;
 
-class AdvertController extends Controller {
-        
-	// -----------------------------------------------------
-        // общая метод для всех размещений
-	// -----------------------------------------------------
-        public function new_advert_common($title, $request) {
-
-	  $title = $title." на сайте ".config('app.name');
-
-          return view("newad")
-          ->with( "title", $title )
-          ->with( "description", $title)
-          ->with( "keywords", "новое объявление, объявление, подать, разместить, разместить на сайте, казахстан")
-          ->with( "categories", Categories::all() )
-          ->with( "regions", Regions::all() )
-          ->with( "dealtypes", DealType::all()->toJson() )
-          ->with( "country", "kz" )
-          ->with( "lang", $request->lang );        
-        }
-
-        // ----------------------------------------------
-	// Получить имя местоположения по чпу
- 	// ----------------------------------------------
-	private function getPlaceNameByUrl($placeUrl) {
-
-                // Делаю выборку и сходу заменяю слово беслатно на пробел
-                $place = Places::select("name")->where("url", str_replace("besplatno-", "", $placeUrl))->get();
-       
-                if (!count($place))
-                   abort(404);          
-       
-                return $place[0]->name;
-        }
+class AdvertController extends AdvertBase {        
         
         // новое объявление
         public function new_advert(Request $request) {                        
