@@ -14,7 +14,7 @@ use App\CarMark;
 use App\Regions;
 use App\Places;
 
-class RealEstateResultsController extends Controller {
+class RealEstateController extends Controller {
         
     // получить данные категории    
     private function getCategoryData(Request $request, $category) {  

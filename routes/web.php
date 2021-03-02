@@ -3,19 +3,24 @@
 // Роуты имеют приоритеты
 Auth::routes();
 
+Route::get("/sitemap_index.xml", function() { return "sitemap_index"; });
+
 Route::get('auth/vk', 'Auth\AuthController@redirectToVk');
 Route::get('auth/vk/callback', 'Auth\AuthController@handleVkCallback');
 Route::get('auth/ok', 'Auth\AuthController@redirectToOk');
 Route::get('auth/ok/callback', 'Auth\AuthController@handleOkCallback');
 Route::get('auth/insta', 'Auth\AuthController@redirectToInsta');
 Route::get('auth/insta/callback', 'Auth\AuthController@handleInstaCallback');
+
 // подвал
 Route::get("/advert", function() { return view("advert"); });
 Route::get("/rules", function() { return view("rules"); });
 Route::get("/about", function() { return view("about"); });
+
 // Блог
 Route::get("/blog", "BlogController@showArticles");
 Route::get("/blog/{articleId}", "BlogController@showArticle");
+
 // Статьи
 Route::get("/articles", "ArticlesController@showArticles");
 Route::get("/articles/show/", "ArticlesController@showArticle");
@@ -23,6 +28,7 @@ Route::get("/articles/delete/", "ArticlesController@deleteArticle");
 Route::get("/logout", "\App\Http\Controllers\Auth\LoginController@logout");
 Route::get("/search", "IndexController@getResultsBySearchString");
 Route::get("/moderator", "ModeratorController@showHomePage");
+
 // детали объявления
 Route::get("/objavlenie/show/{title}", "DetailsController@getDetails");
 Route::get("/objavlenie/posted/{url}", "AdvertController@posted");

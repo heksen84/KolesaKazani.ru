@@ -10,8 +10,7 @@ use App\Regions;
 use App\Places;
 use Carbon\Carbon;
 
-class CheckSitemapsForError extends Command
-{
+class CheckSitemapsForError extends Command {
     /**
      * The name and signature of the console command.
      *
