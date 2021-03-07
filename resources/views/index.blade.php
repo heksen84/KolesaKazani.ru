@@ -340,10 +340,10 @@
     </div>
   </div>-->
 
-        <div class="row mt-2">
-          <div id="footer"><a href="/blog" class="underline_link">Блог</a> | <a href="/advert" class="underline_link">Реклама</a> | <a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a></div>
+        <div class="row mt-2">          
+          <div id="footer"><a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a> | <a href="https://kojan.kz" class="underline_link">Информационно-развлекательный портал Коян</a></div>
         </div>
-
+        
         <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>
       </div>
     </div>
