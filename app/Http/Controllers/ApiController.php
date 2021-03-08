@@ -313,7 +313,7 @@ class ApiController extends Controller {
             "adv_title.min"            => "Заголовок объявления должен быть не менее :min символов",            
             "adv_category.required"    => "Укажите категорию товара или услуги",            
             "adv_phone.required"       => "Укажите телефон",            
-            "images.*.image"           => "Только изображения!",
+            "images.*.image"           => "Изображение повреждено или файл не является изображением",
             "images.*.max"             => "Максимальный размер изображения :max мб.",
             "region_id.required"       => "Укажите регион",
             "region_id.numeric"        => "Введите числовое значение для региона",
@@ -326,7 +326,7 @@ class ApiController extends Controller {
 
         // если проверка не прошла
         if ( $validator->fails() ) { 
-            return response()->json( ["result" => "error", "title" => "Внимание!", "msg" => $validator->errors()->first()] );                    
+            return response()->json( ["result" => "error", "title" => "Ошибка", "msg" => $validator->errors()->first()] );                    
         }
 
         $title      = $data["adv_title"];
