@@ -52,7 +52,7 @@ foreach(SE_UserQueries::All() as $item) {
     ]);
 }
 
-Route::get("/sitemap/index.xml", "SitemapController@getUrls");
+Route::get("/sitemap/test.xml", "SitemapController@getUrls");
 
 /* 
 ------------------------------------------------------------------------------------------------------------------------
