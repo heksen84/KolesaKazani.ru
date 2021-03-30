@@ -128,7 +128,7 @@
               </div>
               <div class="form-check">
               <input class="form-check-input" type="radio" value=3 v-model="optype">
-              <label>Услуги</label>
+              <label>Услуга</label>
               </div>
               <div class="form-check" v-if="category!=1 && category!=2">
               <input class="form-check-input" type="radio" value=4 v-model="optype">
