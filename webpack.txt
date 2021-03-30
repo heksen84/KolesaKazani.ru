@@ -1,0 +1,46 @@
+In order to create a mix file for backend and frontend each (and other entry points if needed), adjust package.json:
+
+"scripts": {
+    "dev": "npm run development",
+    "development": "cross-env process.env.section=website NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "cross-env process.env.section=website NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env process.env.section=website NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "admin-dev": "npm run admin-development",
+    "admin-development": "cross-env process.env.section=admin NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "admin-watch": "cross-env process.env.section=admin NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "admin-prod": "npm run admin-production",
+    "admin-production": "cross-env process.env.section=admin NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+webpack.mix.js:
+
+let mix = require('laravel-mix');
+
+if (process.env.section) {
+  require(`${__dirname}/webpack.mix.${process.env.section}.js`);
+}
+create webpack.mix.website.js:
+
+let { mix } = require('laravel-mix');
+
+mix
+  .setPublicPath(path.normalize('public_html/assets/website'))
+  .less('resources/assets/website/less/website.less', 'css/style.css')
+  .options({
+    processCssUrls: false
+  })
+  .js('resources/assets/website/js/website.js', 'js/global.js')
+;
+create webpack.mix.admin.js:
+
+let mix = require('laravel-mix');
+
+mix
+  .setPublicPath(path.normalize('public_html/assets/admin'))
+  .options({
+    processCssUrls: false
+  })
+  .js('resources/assets/admin/js/admin.js', 'js/global.js')
+  .less('resources/assets/admin/less/admin.less', 'css/style.css')
+;
+This is currently the only way to create multiple manifest files etc. for multiple entry points on different directory levels.

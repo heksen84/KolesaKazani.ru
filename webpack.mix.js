@@ -18,7 +18,7 @@ mix.js('resources/assets/js/mix/newad.js', 'public/js').
 mix.js('resources/assets/js/mix/results.js', 'public/js').
 mix.js('resources/assets/js/mix/details.js', 'public/js').
 mix.js('resources/assets/js/mix/home.js', 'public/js').
-mix.js('resources/assets/js/mix/moderator.js', 'public/js').
+mix.js('resources/assets/js/mix/moderator.js', 'public/js').extract(['vue', 'jquery', 'bootstrap', 'axios']).
 sass('resources/assets/sass/common.scss', 'public/css').
 sass('resources/assets/sass/index.scss', 'public/css').
 sass('resources/assets/sass/newad.scss', 'public/css').
@@ -26,7 +26,7 @@ sass('resources/assets/sass/results.scss', 'public/css').
 sass('resources/assets/sass/details.scss', 'public/css').
 sass('resources/assets/sass/home.scss', 'public/css').version()
 .browserSync({
-    proxy: 'flix:90',
+    proxy: 'ilbo:90',
     port: 99,
     notify: false
 });

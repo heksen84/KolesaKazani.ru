@@ -1,0 +1,28 @@
+let mix = require('laravel-mix');
+
+/*
+ |--------------------------------------------------------------------------
+ | Mix Asset Management
+ |--------------------------------------------------------------------------
+ |
+ | Mix provides a clean, fluent API for defining some Webpack build steps
+ | for your Laravel application. By default, we are compiling the Sass
+ | file for the application as well as bundling up all the JS files.
+ |
+*/
+
+mix.setPublicPath('public/js/common').js('resources/assets/js/mix/common.js', '').extract(['vue', 'jquery', 'bootstrap', 'axios'], 'public/js/common/vendor.js').
+mix.setPublicPath('public/js/login').js('resources/assets/js/mix/auth/login.js', '').extract(['vue', 'jquery', 'bootstrap', 'axios'], 'public/js/login/vendor.js').
+mix.setPublicPath('public/js/index').js('resources/assets/js/mix/index.js', '').extract(['vue', 'jquery', 'bootstrap', 'axios'], 'public/js/index/vendor.js').
+mix.setPublicPath('public/js/newad').js('resources/assets/js/mix/newad.js', '').extract(['vue', 'jquery', 'bootstrap', 'axios'], 'public/js/common/newad.js').
+mix.setPublicPath('public/js/results').js('resources/assets/js/mix/results.js', '').extract(['vue', 'jquery', 'bootstrap', 'axios'], 'public/js/common/results.js').
+mix.setPublicPath('public/js/details').js('resources/assets/js/mix/details.js', '').extract(['vue', 'jquery', 'bootstrap', 'axios'], 'public/js/common/details.js').
+mix.setPublicPath('public/js/home').js('resources/assets/js/mix/home.js', '').extract(['vue', 'jquery', 'bootstrap', 'axios'], 'public/js/common/home.js').
+mix.setPublicPath('public/js/moderator').js('resources/assets/js/mix/moderator.js', '').extract(['vue', 'jquery', 'bootstrap', 'axios'], 'public/js/common/moderator.js').
+sass('resources/assets/sass/common.scss', 'public/css').
+sass('resources/assets/sass/index.scss', 'public/css').
+sass('resources/assets/sass/newad.scss', 'public/css').
+sass('resources/assets/sass/results.scss', 'public/css').
+sass('resources/assets/sass/details.scss', 'public/css').
+sass('resources/assets/sass/home.scss', 'public/css').
+version().browserSync({ proxy: 'ilbo:90', port: 99, notify: false });

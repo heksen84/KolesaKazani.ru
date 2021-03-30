@@ -906,7 +906,7 @@ class DetailsController extends Controller {
             $petrovich = new Petrovich(Petrovich::GENDER_MALE);
                 
             return view("details")
-            ->with( "title", $advert[0]->title." в ".$petrovich->firstname($advert[0]->city_name, 4) )
+            ->with( "title", $advert[0]->title." в ".$petrovich->firstname($advert[0]->city_name, 4)." на сайте объявлений ".config('app.name') )
             ->with( "description", $advert[0]->title )
             ->with( "keywords", $advert[0]->title)                
             ->with( "advert", $advert[0])                            

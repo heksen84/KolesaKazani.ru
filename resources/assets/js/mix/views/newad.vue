@@ -10,9 +10,28 @@
     </div>
 </div>
 
-<div class="container-fluid mycontainer">  
-  <!-- карта и сообщения об ошибках-->
-  
+<div class="container-fluid mycontainer">
+
+  <div class="modal" id="MsgBox" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">            
+            <h6>{{ msgTitle }}</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">            
+            <p>{{ msgText }}</p>            
+          </div>          
+          <div class="modal-footer">          
+            <button type="button" class="btn btn-success margin-auto" data-dismiss="modal">Понятно</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <!-- карта и сообщения об ошибках-->  
   <div class="modal" id="MsgModalDialog" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -74,36 +93,59 @@
           <!------------------------------------------------------------------ 
             ОСНОВНАЯ ФОРМА 
             ------------------------------------------------------------------>
-          <form id="advertform" @submit="onSubmit">
-
-            <div class="row form-group">
-              <div class="col-auto">
-                <label>Заголовок объявления</label>
-                <input class="form-control" size="100" maxlength="100" placeholder="Введите заголовок объявления" v-model="title" @input="setTitle" required/>
-              </div>
-            </div>    
+          <form id="advertform" @submit="onSubmit">                            
+            
+              <div class="row form-group mt-3">              
+                <div class="col-auto">
+                  <label>Заголовок объявления:</label>
+                  <input class="form-control" size="100" maxlength="100" placeholder="Введите заголовок объявления" v-model="title" @input="setTitle" required/>
+                </div>
+              </div>                                    
   
-          <div class="row form-group">
-            <div class="col-auto">
-              <label for="categories">Категория товара или услуги:</label>
-                <select class="form-control" v-model="category" @change="changeCategory">            
-                  <option v-bind:value="null">-- Выберите категорию --</option>
-                  <option v-for="(item, index) in categories" :key="index" v-bind:value="item.id">{{ item.name }}</option>
-                </select>                
+              <div class="row form-group">
+                <div class="col-auto">
+                  <label for="categories">Категория товара или услуги:</label>
+                    <select class="form-control" v-model="category" @change="changeCategory">            
+                      <option v-bind:value="null">-- Выберите категорию --</option>
+                      <option v-for="(item, index) in categories" :key="index" v-bind:value="item.id">{{ item.name }}</option>
+                    </select>                
+                </div>
               </div>
-            </div>
+
+              <div v-if="category && category!=4 && category!=9 && category!=10" class="mb-2">
+              <label>Выберите действие:</label>
+              <div class="form-check">
+              <input class="form-check-input" type="radio" value=0 v-model="optype">
+              <label>Покупка</label>
+              </div>
+              <div class="form-check">
+              <input class="form-check-input" type="radio" value=1 v-model="optype">
+              <label>Продажа</label>
+              </div>
+              <div class="form-check">
+              <input class="form-check-input" type="radio" value=2 v-model="optype">
+              <label>Обмен</label>              
+              </div>
+              <div class="form-check">
+              <input class="form-check-input" type="radio" value=3 v-model="optype">
+              <label>Услуги</label>
+              </div>
+              <div class="form-check" v-if="category!=1 && category!=2">
+              <input class="form-check-input" type="radio" value=4 v-model="optype">
+              <label>Отдам даром</label>
+              </div>                       
+              </div>
 
             <!-- Категории -->
-		        <div v-if="root"></div>
+		        <div v-if="root && optype"></div>            
 
-              <transport v-if="transport && category"/>    
-              <realEstate v-if="real_estate"/>
-
-              <!-- fix: поместить селекты в компонент superSelect -->
+              <transport v-if="transport && category && optype"/>
+              <realEstate v-if="real_estate && optype"/>
+              
               <div class="row">
 
                 <!-- электроника -->
-                <div class="col-11 col-xl-5 col-md-5 col-sm-12" v-if="appliances && category">
+                <div class="col-11 col-xl-5 col-md-5 col-sm-12" v-if="appliances && category && optype">
                   <select class="form-group form-control" v-model="subCategory" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
                     <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name }}</option>
@@ -119,7 +161,7 @@
                 </div>
 
                 <!-- для дома и дачи -->
-                <div class="col-11 col-xl-4 col-md-4 col-sm-12" v-if="for_home && category">
+                <div class="col-11 col-xl-4 col-md-4 col-sm-12" v-if="for_home && category && optype">
                   <select class="form-group form-control" v-model="subCategory" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
                     <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name }}</option>
@@ -127,7 +169,7 @@
                 </div>
 
                 <!-- личные вещи -->
-                <div class="col-11 col-xl-5 col-md-5 col-sm-12" v-if="personal_effects && category">
+                <div class="col-11 col-xl-5 col-md-5 col-sm-12" v-if="personal_effects && category && optype">
                   <select class="form-group form-control" v-model="subCategory" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
                     <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name }}</option>
@@ -135,15 +177,15 @@
                 </div>
 
                 <!-- животные -->
-                <div class="col-11 col-xl-4 col-md-4 col-sm-12" v-if="animals && category">
+                <div class="col-11 col-xl-4 col-md-4 col-sm-12" v-if="animals && category && optype">
                   <select class="form-group form-control" v-model="subCategory" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
                     <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name }}</option>
                   </select>
                 </div>
 
-                <!-- хобби и бизнес -->
-                <div class="col-11 col-xl-4 col-md-4 col-sm-12" v-if="hobbies_and_leisure && category">
+                <!-- хобби и отдых -->
+                <div class="col-11 col-xl-4 col-md-4 col-sm-12" v-if="hobbies_and_leisure && category && optype">
                   <select class="form-group form-control" v-model="subCategory" @change="changeSubCategory">
                     <option value="null">-- Подкатегория --</option>
                     <option v-for="(item, index) in subCategoryItems" :key="index" :value=item.id>{{ item.name }}</option>
@@ -188,8 +230,7 @@
                     </div>
 
                     <div class="col-md-12">
-                      <hr>
-                      <label class="form-group">Контакты:</label>                            
+                      <hr><label class="form-group">Контакты:</label>                            
                     </div>
 
                   </div>
@@ -251,6 +292,7 @@
 // импорт модулей
 // ---------------------------
 import $ from "jquery";
+//import * as nsfwjs from "../lib/nsfwjs.min.js";
 import bootstrap from "bootstrap";
 import transport from "./subcategories/transport"
 import realEstate from "./subcategories/realestate"
@@ -297,7 +339,6 @@ function initMaps() {
 
   // обработчик клика по карте
   bigmap.events.add("click", function (e) {
-
     mapCoords = e.get("coordPosition");
 	  myPlacemark1.geometry.setCoordinates(mapCoords);
 		myPlacemark2.geometry.setCoordinates(mapCoords);
@@ -336,6 +377,10 @@ components: {
 data () {
   
   return 	{
+
+    msgTitle: "",
+    msgText: "",
+    optype: null,
     uid: null,    
     dialogMsg: "повторите позже",
     dialogTitleMsg: "Cервис временно не доступен",
@@ -372,18 +417,21 @@ data () {
 },
 
 // компонент создан
-created() {
-  
+created() {  
+
   this.uid = this.makeid(10);
-
-  console.log(this.uid);
-
   document.getElementById("loader").style.display = "none";  
-
-  // FIX?: заюзать require js для загрузки yandex модулей
   ymaps.ready(initMaps);  
   this.$root.advert_data = []; 
-  this.advReset();    
+  this.advReset();      
+  },
+
+// слежу за данными
+watch: {
+
+  optype: function (val) {
+    this.$root.advert_data.adv_optype = val;
+  }
 },
 
 // методы компонента
@@ -397,7 +445,7 @@ serviceError() {
 
 // Выбор подкатегории
 changeSubCategory() {
-  this.subCategory=="null"?this.$store.commit("ShowFinalFields", false):this.$store.commit("ShowFinalFields", true);  
+  this.subCategory=="null" ? this.$store.commit("ShowFinalFields", false):this.$store.commit("ShowFinalFields", true);  
   this.$root.advert_data.adv_subcategory=this.subCategory;
 },
 
@@ -513,32 +561,71 @@ loadImage(evt) {
             
 	// если уже существует, не обрабатывать изображение
 	for (let j = 0; j < preview_images.length; j++)
+
 		if (img.name===preview_images[j].name)
       return false;
           
     if ( preview_images.length > max_files) {
-      alert("Максимум 10 изображений");
+      this.msgTitle = "Внимание";
+      this.msgText = "Максимум 10 изображений";
+      $("#MsgBox").modal("show");      
       break;
     }
 
   reader.onload = (function(theFile) {
+  
   return function(e) {
     
-  if (theFile.type === "image/jpeg" || theFile.type === "image/pjpeg" || theFile.type === "image/png" || theFile.type === "image/webp") {					
-        
-        preview_images.push({ "name": theFile.name, "src": e.target.result });
-        real_images.push(theFile);        
+  if (theFile.type === "image/jpeg" || theFile.type === "image/pjpeg" || theFile.type === "image/png" || theFile.type === "image/webp") {    
 
-        formData.append("image", theFile);
-        formData.append("uid", self.uid);
+      /*const img = new Image();    
+      img.crossOrigin = "anonymous";  
+      img.src = e.target.result
 
-        // загрузка изображения на лету
-        axios.post("/api/loadImage", formData, { headers: {'Content-Type': 'multipart/form-data'} }).then( response => {        
-        }).catch(error => {});
-          
-		  }
-		  else
-        alert("Только изображения")
+      nsfwjs.load().then((model) => {              
+      model.classify(img).then((predictions) => {
+
+      console.log("Predictions", predictions);      
+
+      let adultImage=false;
+
+      for(let m=0; m<5; m++) {
+
+        if (predictions[m].className === "Porn" && predictions[m].probability > 0.74) { 
+          img.src = null;
+          adultImage=true;
+          break;
+        }
+      }
+      
+
+      if (adultImage===true) {        
+        self.msgTitle = "Запрещённый контент";
+        self.msgText = "Выберите другое изображение.";
+        $("#MsgBox").modal("show"); // отобразить окно
+      }
+      else*/ {
+
+            preview_images.push({ "name": theFile.name, "src": e.target.result });
+            real_images.push(theFile);        
+
+            formData.append("image", theFile);
+            formData.append("uid", self.uid);
+
+            // загрузка изображения на лету
+            axios.post("/api/loadImage", formData, { headers: {'Content-Type': 'multipart/form-data'} }).then( response => {        
+            }).catch(error => {});        
+          }
+        //});
+      //});                  
+		}
+		else 
+    {        
+        self.msgTitle = "Внимание";
+        self.msgText = "Только изображения";
+        $("#MsgBox").modal("show");
+    }
+
     };
 
 		})(img);		  
@@ -576,16 +663,16 @@ deletePhoto(index, name) {
 // --------------------------------------
 advReset(category_data) {
 
+    this.optype = null;
+
     this.$store.commit("SetShowPrice", true);
     this.serviceUnavailable=false;
-
+    
     let form = document.getElementById("advertform");
 
-    this.subCategory=null; // сбрасываю подкатегории
+    this.subCategory = null; // сбрасываю подкатегории
 
-    if (form) 
-      form.reset();        
-
+    this.$root.advert_data.adv_optype       = null;
     this.$root.advert_data.adv_subcategory  = null;
     this.$root.advert_data.adv_info         = null;
     this.$root.advert_data.adv_price        = null;
@@ -602,6 +689,7 @@ advReset(category_data) {
 
     // сброс категорий
     if (category_data!=null) {
+      
       this.root=false;				        // по умолчанию
       this.transport=false;			      // транспорт
       this.real_estate=false;			    // недвижимость
@@ -628,7 +716,7 @@ advReset(category_data) {
 // --------------------------------------
 changeCategory() {
 
-  let category = this.category;
+  let category = this.category;  
 
   // сброс объявления при выборе категории
   this.advReset(category);
@@ -743,7 +831,7 @@ onSubmit(evt) {
       
       $("#advert_loading_block").hide();        
       this.dialogTitleMsg = response.data.title;
-      this.dialogMsg = response.data.msg;       
+      this.dialogMsg = response.data.msg; 
       this.serviceError();
     }      
 		else {
@@ -763,8 +851,7 @@ onSubmit(evt) {
 	// -------------------------------------
 	showSetCoordsDialog() {    
         
-    this.serviceUnavailable = false;
-    
+    this.serviceUnavailable = false;    
     $("#MsgModalDialog").modal("show"); // отобразить окно
 
     if (!navigator.geolocation) {    
@@ -794,10 +881,6 @@ onSubmit(evt) {
   
   continueReg(event) {                
 
-    //$( "#submit_btn" ).trigger("click", function () {      
-
-      //$('form_submit').submit(function () {        
-
         let formData = new FormData();
     
         formData.append("name", $("#user_name").val()); 
@@ -807,28 +890,23 @@ onSubmit(evt) {
 
         axios.post("/api/createUser", formData, { headers: { 'Content-Type': 'multipart/form-data' }}).then(response => {
 
-          if (response.data.result === "error")
-            alert(response.data.msg)
+          if (response.data.result === "error") {
+            this.msgTitle = "Ошибка";
+            this.msgText = response.data.msg;
+            $("#MsgBox").modal("show");		
+          }
 
             if (response.data.result === "success") {
               $("#DialogAuthNeed").modal("hide");		
               this.onSubmit(event);
             }
-        
-        
+                
         }).catch(error => {
         
-          $("#DialogAuthNeed").modal("hide");
+        $("#DialogAuthNeed").modal("hide");
 		      this.serviceError();
-        })        
-
-      //});    
-
-    //});    
-
-	}
-
-}
-
+        })
+	  }
+  }
 }
 </script>

@@ -325,9 +325,8 @@ class ApiController extends Controller {
         $validator = Validator::make( $data, $rules, $messages );
 
         // если проверка не прошла
-        if ( $validator->fails() ) { 
-            return response()->json( ["result" => "error", "title" => "Ошибка", "msg" => $validator->errors()->first()] );                    
-        }
+        if ( $validator->fails() )
+            return response()->json( ["result" => "error", "title" => "Ошибка", "msg" => $validator->errors()->first()] );                            
 
         $title      = $data["adv_title"];
         $category   = $data["adv_category"];        
@@ -336,15 +335,14 @@ class ApiController extends Controller {
         $region_id  = $data["region_id"];
         $city_id    = $data["city_id"];
 
-        //\Debugbar::info(ObsceneCensorRus::isAllowed($title)?"чисто":"обнаружен мат");
-		//\Debugbar::info(ObsceneCensorRus::isAllowed($text)?"чисто":"обнаружен мат");
-
-        if (!ObsceneCensorRus::isAllowed($title) || !ObsceneCensorRus::isAllowed($text))
-            return response()->json( ["result" => "error", "title" => "Объявление отклонено", "msg" => "нецензурная лексика"] );        
-
         // поля которым требуется приведение к типу null
         $subcategory = $this->to_php_null($data["adv_subcategory"]);        
         $price = $this->to_php_null($data["adv_price"]);
+        $optype = $this->to_php_null($data["adv_optype"]);
+
+        // проверка текста на мат
+        if (!ObsceneCensorRus::isAllowed($title) || !ObsceneCensorRus::isAllowed($text))
+            return response()->json( ["result" => "error", "title" => "Объявление отклонено", "msg" => "нецензурная лексика"] );
                         
      	try {
             
@@ -359,7 +357,7 @@ class ApiController extends Controller {
             $advert->subcategory_id  = $subcategory;            
             $advert->region_id       = $region_id;
             $advert->city_id         = $city_id;
-            $advert->lang            = "ru";            
+            $advert->optype          = $optype;
 
             \Debugbar::info("advert->sub_category_id = ".$subcategory);
 
@@ -389,6 +387,7 @@ class ApiController extends Controller {
                     
                     // легковушки
                     if ( $data["transport_type"] == 1 ) {
+
                         $transport->mark                = $data["mark_id"];            // id марки авто
                         $transport->model               = $data["model_id"];           // id модели авто                        
                         $transport->year                = $data["release_date"];       // год выпуска
@@ -578,6 +577,7 @@ class ApiController extends Controller {
                 \Debugbar::info($coords);
             }
             else {
+                
                 $advert->coord_lat = 0;
                 $advert->coord_lon = 0;
             }                                    
@@ -587,7 +587,7 @@ class ApiController extends Controller {
 	        $advert->startDate = Carbon::now()->toDateTimeString();
             
             $advert->finishDate = Carbon::now()->add(30, 'day')->toDateTimeString(); // добавляю 30 дней
-	    //$advert->finishDate = Carbon::now()->add(60, 'day')->toDateTimeString(); // 60 дней размещения
+	        //$advert->finishDate = Carbon::now()->add(60, 'day')->toDateTimeString(); // 60 дней размещения
             
             // Сохраняю объявление
             $advert->save();

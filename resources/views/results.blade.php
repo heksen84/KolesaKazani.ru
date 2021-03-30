@@ -163,6 +163,8 @@
               </div>            
           </div>                                  	                
   </div>
+  <script type="text/javascript" src="{{ mix('js/manifest.js') }}"></script>
+  <script type="text/javascript" src="{{ mix('js/vendor.js') }}"></script>        
   <script type="text/javascript" src="{{ mix('js/common.js') }}"></script>  
   <script type="text/javascript" src="{{ mix('js/results.js') }}"></script> 
 </body>

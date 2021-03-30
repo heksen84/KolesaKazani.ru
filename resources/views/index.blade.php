@@ -342,12 +342,14 @@
 
         <div class="row mt-2">          
           <div id="footer">
-		<a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a> | <a href="https://kojan.kz" class="underline_link">Информационно-развлекательный портал Коян</a>
+		        <a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a> | <a href="https://kojan.kz" class="underline_link">Информационно-развлекательный портал Коян</a>
   	        <br>
-		<a href="https://webmaster.yandex.ru/siteinfo/?site=https://ilbo.site"><img width="88" height="31" alt="" border="0" src="https://yandex.ru/cycounter?https://ilbo.site&theme=light&lang=ru"/></a>
-	  </div>
-        </div>
+		        <a href="https://webmaster.yandex.ru/siteinfo/?site=https://ilbo.site"><img width="88" height="31" alt="" border="0" src="https://yandex.ru/cycounter?https://ilbo.site&theme=light&lang=ru"/></a>
+	      </div>
         
+        </div>
+	<script type="text/javascript" src="{{ mix('js/manifest.js') }}"></script>        
+	<script type="text/javascript" src="{{ mix('js/vendor.js') }}"></script>        
         <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>
       </div>
     </div>
@@ -368,8 +370,6 @@
   </script>
   <noscript><div><img src="https://mc.yandex.ru/watch/68275672" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
   <!-- /Yandex.Metrika counter -->
-
-
 
   <!-- google adscence -->
   <script data-ad-client="ca-pub-8074944108437227" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

@@ -1,9 +1,11 @@
 <?php
 
+use Illuminate\Http\Request;
+use App\Helpers\Common;
+use App\SE_UserQueries;
+
 // Роуты имеют приоритеты
 Auth::routes();
-
-Route::get("/sitemap_index.xml", function() { return "sitemap_index"; });
 
 Route::get('auth/vk', 'Auth\AuthController@redirectToVk');
 Route::get('auth/vk/callback', 'Auth\AuthController@handleVkCallback');
@@ -32,6 +34,25 @@ Route::get("/moderator", "ModeratorController@showHomePage");
 // детали объявления
 Route::get("/objavlenie/show/{title}", "DetailsController@getDetails");
 Route::get("/objavlenie/posted/{url}", "AdvertController@posted");
+
+// ----------------------------------------------------
+// Генерирую url из таблицы
+// ----------------------------------------------------
+foreach(SE_UserQueries::All() as $item) {    
+
+    Route::get("/".str_replace(' ', '-',$item->title), [ 
+        "uses"=>"UrlGeneratorController@convertData", 
+        "title"=>$item->title,
+        "category_id"=>$item->category_id,
+        "subcategory_id"=>$item->subcategory_id,
+        "optype"=>$item->optype,
+        "region_id"=>$item->region_id,
+        "place_id"=>$item->place_id,
+        "view"=>"вьюха"
+    ]);
+}
+
+Route::get("/sitemap/index.xml", "SitemapController@getUrls");
 
 /* 
 ------------------------------------------------------------------------------------------------------------------------

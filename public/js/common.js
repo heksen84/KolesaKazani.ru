@@ -1,1 +1,74 @@
-!function(n){var t={};function r(o){if(t[o])return t[o].exports;var e=t[o]={i:o,l:!1,exports:{}};return n[o].call(e.exports,e,e.exports,r),e.l=!0,e.exports}r.m=n,r.c=t,r.d=function(n,t,o){r.o(n,t)||Object.defineProperty(n,t,{configurable:!1,enumerable:!0,get:o})},r.n=function(n){var t=n&&n.__esModule?function(){return n.default}:function(){return n};return r.d(t,"a",t),t},r.o=function(n,t){return Object.prototype.hasOwnProperty.call(n,t)},r.p="",r(r.s=0)}({0:function(n,t,r){r("aSY8"),r("fhsZ"),r("8Lrs"),r("6zvv"),r("0W6u"),r("rJHw"),n.exports=r("18qx")},"0W6u":function(n,t){},"18qx":function(n,t){},"6zvv":function(n,t){},"8Lrs":function(n,t){},aSY8:function(n,t){},fhsZ:function(n,t){},rJHw:function(n,t){}});
+webpackJsonp([2],{
+
+/***/ "./resources/assets/js/mix/common.js":
+/***/ (function(module, exports) {
+
+/*document.body.addEventListener('click', function (evt) {        
+
+    if (evt.target.classList[0] === 'close_button') {                        
+
+        
+            window.location = "/";
+    }
+
+}, false);*/
+
+/***/ }),
+
+/***/ "./resources/assets/sass/common.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/assets/sass/details.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/assets/sass/home.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/assets/sass/index.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/assets/sass/newad.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/assets/sass/results.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 0:
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__("./resources/assets/js/mix/common.js");
+__webpack_require__("./resources/assets/sass/common.scss");
+__webpack_require__("./resources/assets/sass/index.scss");
+__webpack_require__("./resources/assets/sass/newad.scss");
+__webpack_require__("./resources/assets/sass/results.scss");
+__webpack_require__("./resources/assets/sass/details.scss");
+module.exports = __webpack_require__("./resources/assets/sass/home.scss");
+
+
+/***/ })
+
+},[0]);

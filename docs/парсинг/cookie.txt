@@ -1,0 +1,20 @@
+https://qna.habr.com/q/937449
+Как зайти на другие страницы авторизованным cURL?
+-----------------------------------------------------------
+$cookieJar = tempnam('/tmp', 'cookie');
+
+// Получаем cookie
+$ch = curl_init($loginUrl);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_COOKIEJAR, $cookieJar);
+$page = curl_exec($ch);
+
+// Авторизованный запрос
+$ch = curl_init($protectedUrl);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POST, true); 
+curl_setopt($ch, CURLOPT_POSTFIELDS, $postData); 
+curl_setopt($ch, CURLOPT_COOKIEFILE, $cookieJar);
+$page = curl_exec($ch);
+
+curl_close($ch);

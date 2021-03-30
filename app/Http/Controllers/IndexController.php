@@ -43,14 +43,12 @@ class IndexController extends Controller {
 	// ------------------------------------------
 	// Базовая функция для главной страницы		
 	// ------------------------------------------
-    private function ShowIndexPage(Request $request, $region, $place) {
-
+    private function ShowIndexPage(Request $request, $usertitle, $region, $place) {
 
 		\Debugbar::info("v=".$request->v);
 		\Debugbar::info("SESSION ID: ".\Session::getId());
 		
-//		$cm_title = mb_strtoupper(config('app.name'))." - бесплатные объявления ";
-		$cm_title = config('app.name')." - бесплатные объявления ";
+		$cm_title = '"'.config('app.name').'" - бесплатные объявления ';
 		$cm_description = "Объявления о покупке, продаже, обмене и сдаче в аренду в ";
 		$cm_keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, ilbo, ильбо, страна, ";
 		
@@ -78,7 +76,7 @@ class IndexController extends Controller {
 			if (count($locationName) === 0)
 				abort(404);             			
 
-			$regionArr = $locationName; // ???
+			$regionArr = $locationName;
 			$locationName = $locationName[0]->name." обл.";						
 
 			if ($regionArr->count() > 0) {
@@ -92,8 +90,7 @@ class IndexController extends Controller {
 				$description = $cm_description.$sklonResult;
 				$keywords = $cm_keywords.$regionName." область";
 			}
-			else	
-				abort(404);
+			else abort(404);
 		}
 
 		// Город, село
@@ -114,7 +111,7 @@ class IndexController extends Controller {
 				$sklonPlace = $petrovich->firstname($placeArr[0]->name, 0);
 				$sklonResult = $placeArr[0]->name;
 				$sklonResultForDesc = $petrovich->firstname($placeArr[0]->name, 4);								
-				$title = "Объявления ".$sklonResult;
+				$title = '"'.config('app.name').'" - бесплатные объявления '.$sklonResult;
 				$description = $cm_description.$sklonResultForDesc;
 				$keywords = $cm_keywords.$locationName;
 			
@@ -206,16 +203,18 @@ class IndexController extends Controller {
 
 			\Debugbar::info("NEWADVERTS:");
 			\Debugbar::info($newAdverts);			
+			
+			$title = $usertitle?$usertitle." на сайте объявлений Ильбо":$title;
 										
-		return view("index")		
+		return view("index")
+		->with("title", $title)
 		->with("locationName", $locationName)
 		->with("location", $location)
 		->with("urlRegion", $region)
 		->with("urlPlace", $place)
 		->with("categories", Categories::all())
 		->with("subcategories", json_decode($subcats, true))
-		->with("auth", Auth::user()?1:0)
-		->with("title", $title)
+		->with("auth", Auth::user()?1:0)		
 		->with("sklonResult", $sklonResult)
 		->with("sklonPlace", $sklonPlace)
 		->with("description", $description)
@@ -227,31 +226,31 @@ class IndexController extends Controller {
 
 	// ------------------------------------------
 	// Cтрана
-	// ------------------------------------------
-    public function ShowCountryIndexPage(Request $request) {
-	    return $this->ShowIndexPage($request, null, null);
+	// ------------------------------------------    
+	//public function ShowCountryIndexPage(Request $request, $title=null, $region_id=null, $place_id=null, $category_id=null, $subcategory_id=null) {
+	public function ShowCountryIndexPage(Request $request, $title=null) {
+	    return $this->ShowIndexPage($request, $title, null, null);
     }		
 
 	// ------------------------------------------
 	// Регион
 	// ------------------------------------------
     public function ShowRegionIndexPage(Request $request, $region) {
-	    return $this->ShowIndexPage($request, $region, null);
+	    return $this->ShowIndexPage($request, null, $title, $region);
     }		
 
 	// ------------------------------------------
 	// Город или село
 	// ------------------------------------------
     public function ShowPlaceIndexPage(Request $request, $region, $place) {
-	    return $this->ShowIndexPage($request, $region, $place);
+	    return $this->ShowIndexPage($request, null, $region, $place);
 	}
 	
 	// --------------------------------------------------------------
 	// найти по строке
 	// --------------------------------------------------------------
 	public function getResultsBySearchString(Request $request) {
-		
-		
+				
 		\Debugbar::info("-----------------------------");
 		\Debugbar::info($request->getRequestUri());		
 		\Debugbar::info("-----------------------------");

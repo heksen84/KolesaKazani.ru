@@ -282,8 +282,10 @@ h3 {
 }
 
 .category_item {  
-  color: rgb(50,50,50);  
+  //color: rgb(30,30,30);  
+  color:black;
   font-size: 16px;
+  font-weight: 400;
   letter-spacing: 2px;
   padding: 9px;
   text-align:center;
@@ -375,11 +377,12 @@ h3 {
   border-radius: 3px;
   text-align:left;
   margin-top:21px;
-  font-size:16px;
+  font-size:15px;
   padding:3px;
   width:80%;
-  border:1px solid rgb(200, 200, 200);
-  color:rgb(50,50,50);
+  border:1px solid rgb(150, 150, 150);
+  color:rgb(0,0,0);
+  //padding:3px;
 }
 
 #footer {

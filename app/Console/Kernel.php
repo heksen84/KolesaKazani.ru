@@ -20,10 +20,11 @@ class Kernel extends ConsoleKernel
 	    Commands\EnableModeration::class,
 	    Commands\DisableModeration::class,
 	    Commands\RemoveLostImages::class,
-	    Commands\RemoveAdvert::class,
+	    Commands\DeleteAdvert::class,
 	    Commands\Utils::class,
 	    Commands\Test::class,
-            Commands\CheckSitemapsForError::class
+            Commands\CheckSitemapsForError::class,
+            Commands\ImportUserQueries::class
     ];
 
     /**

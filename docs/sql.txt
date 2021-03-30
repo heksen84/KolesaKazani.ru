@@ -1,1 +1,2 @@
 ALTER TABLE `adverts` ADD `optype` INT(1) UNSIGNED NULL AFTER `category_id`, ADD INDEX (`optype`);
+”далить поле lang в adverts

@@ -13,12 +13,21 @@ use App\Places;
 class ResultsController extends Controller {
 
     const FULL_SITE_DESC = " на сайте объявлений Ильбо";
+    
+    // --- Замена тегов в строке и склонение их по указанному роду
+    private function ReplaceTagsAndSklonCategoryItem($title, $locationName, $category_name, $gender, $optype_on) {
+
+        $petrovich = new Petrovich($gender);                    
+        $category_name = mb_strtolower($petrovich->firstname($category_name, 0 ));
+        
+        return str_replace("@category", $category_name, str_replace("@place", $locationName, $title ));
+    }
         
     // получить данные категории    
     private function getCategoryData(Request $request, $category) {          
         
         $table = new Categories();
-        $data = $table::select("id", "title", "description", "keywords", "h1")->where("url", $category)->get();
+        $data = $table::select("id", "name", "title", "description", "keywords", "h1")->where("url", $category)->get();
 
         if (!count($data))
             abort(404);             
@@ -30,7 +39,7 @@ class ResultsController extends Controller {
     private function getSubCategoryData(Request $request, $subcategory) {          
         
         $table = new SubCats();
-        $data = $table::select("id", "title", "description", "keywords", "h1")->where("url", $subcategory)->get();
+        $data = $table::select("id", "name", "title", "description", "keywords", "h1")->where("url", $subcategory)->get();
 
         if (!count($data))
             abort(404);          
@@ -92,26 +101,45 @@ class ResultsController extends Controller {
         $endPrice = $request->end_price;        
         $priceBetweenSql = "";        
         $regionData = null;
-        $placeData = null;
+        $placeData  = null;
 
         if ($startPrice && $endPrice) 
             $priceBetweenSql = " AND price BETWEEN ".$startPrice." AND ".$endPrice;
 
-        $categories = $this->getCategoryData($request, $category); 
+        $categories = $this->getCategoryData($request, $category);
+                
+        \Debugbar::info("optype: ".$request->optype);
+
+        // ----------- optype -----------
+        // проверка на тип операции
+        (!$request->optype)?$optypeSql = "":is_numeric($request->optype)?$optypeSql = " AND optype=".$request->optype:$optypeSql = "";        
         
+        if (is_numeric($request->optype)) {
+            switch($request->optype) {
+                case 0: $optypeTitle = "Покупка"; break;
+                case 1: $optypeTitle = "Продажа"; break;
+                case 2: $optypeTitle = "Обмен"; break;
+                case 3: $optypeTitle = "Услуги"; break;
+                case 4: $optypeTitle = "Отдача даром"; break;
+                default: $optypeTitle = "";
+            }
+        } else 
+            $optypeTitle = "";
+                
+                    
         if (!$region && !$place)
-            $whereRaw = "category_id = ".$categories[0]->id." AND NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true";
+            $whereRaw = "category_id = ".$categories[0]->id." AND NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true".$optypeSql;
 
         if ($region && !$place) {
             $regionData = $this->getRegionData($region);             
            \Debugbar::info($regionData->region_id);
-            $whereRaw = "adv.region_id = ".$regionData->region_id." AND adv.category_id = ".$categories[0]->id." AND NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true";            
+            $whereRaw = "adv.region_id = ".$regionData->region_id." AND adv.category_id = ".$categories[0]->id." AND NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true".$optypeSql;
         }
 
         if ($region && $place) {            
             $regionData = $this->getRegionData($region); 
             $placeData = $this->getPlaceData($regionData->region_id, $place);
-            $whereRaw = "adv.region_id = ".$regionData->region_id." AND adv.city_id = ".$placeData->city_id." AND adv.category_id = ".$categories[0]->id." AND NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true";
+            $whereRaw = "adv.region_id = ".$regionData->region_id." AND adv.city_id = ".$placeData->city_id." AND adv.category_id = ".$categories[0]->id." AND NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true".$optypeSql;
         }
                                                 
         $items = DB::table("adverts as adv")->select(
@@ -149,13 +177,13 @@ class ResultsController extends Controller {
         $filters = array (
 		    "price_ot" => $request->price_ot,
 		    "price_do" => $request->price_do,		    
-        );
-                                        
+        );                        
+                                                
         return view("results")    
-        ->with("title", str_replace("@place", $locationName, $categories[0]->title ).self::FULL_SITE_DESC)         
-        ->with("description", str_replace("@place", $locationName, $categories[0]->description ))         
-        ->with("keywords", str_replace("@place", $locationName, $categories[0]->keywords ))         
-        ->with("h1", str_replace("@place", $locationName, $categories[0]->h1 ))
+        ->with("title", $optypeTitle." ".$this->ReplaceTagsAndSklonCategoryItem($categories[0]->title, $locationName, $categories[0]->name, 1, 0).self::FULL_SITE_DESC)         
+        ->with("description", $this->ReplaceTagsAndSklonCategoryItem($categories[0]->description, $locationName, $categories[0]->name, 1, 0))         
+        ->with("keywords", $this->ReplaceTagsAndSklonCategoryItem($categories[0]->keywords, $locationName, $categories[0]->name, 1, 0))         
+        ->with("h1", $optypeTitle." ".$this->ReplaceTagsAndSklonCategoryItem($categories[0]->h1, $locationName, $categories[0]->name, 1, 0))
         ->with("items", $items)
         ->with("categoryId", $categories[0]->id)
         ->with("subcategoryId", null)         
@@ -194,8 +222,10 @@ class ResultsController extends Controller {
 
         if ($request->price_ot && $request->price_do) 
             $priceBetweenSql = " AND price BETWEEN ".$request->price_ot." AND ".$request->price_do;
-                               
 
+            // проверка на тип операции
+            (!$request->optype)?$optypeSql = "":is_numeric($request->optype)?$optypeSql = " AND optype=".$request->optype:$optypeSql = "";
+                                           
         // ------------------------------------------------------------------
         // легковой автомобиль
         // ------------------------------------------------------------------
@@ -250,7 +280,7 @@ class ResultsController extends Controller {
             ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
             ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
             ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
-            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")
+            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true".$optypeSql)
             ->paginate(10)
             ->onEachSide(1);        
 
@@ -258,7 +288,9 @@ class ResultsController extends Controller {
             \Debugbar::info("id субкатегории: ".$subcategories);      
             \Debugbar::info($items);
 
-            $locationName = $this->getLocationName(null, null);                              
+            $locationName = $this->getLocationName(null, null);
+            
+            // Добавить функцию ReplaceTagsAndSklonCategoryItem($subcategories[0]->title)
                 
             return view("results")    
             ->with("title", str_replace("@place", $locationName, $subcategories[0]->title ).self::FULL_SITE_DESC)         
@@ -294,10 +326,13 @@ class ResultsController extends Controller {
          $startPrice = $request->start_price;
          $endPrice = $request->end_price;
  
-         $priceBetweenSql = "";
+         $priceBetweenSql = "";         
  
          if ($startPrice && $endPrice) 
              $priceBetweenSql = " AND price BETWEEN ".$startPrice." AND ".$endPrice;
+
+            // проверка на тип операции
+            (!$request->optype)?$optypeSql = "":is_numeric($request->optype)?$optypeSql = " AND optype=".$request->optype:$optypeSql = "";
                         
             $categories = $this->getCategoryData($request, $category);
             $subcategories = $this->getSubCategoryData($request, $subcategory);
@@ -321,7 +356,7 @@ class ResultsController extends Controller {
             ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
             ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
             ->where("adv.region_id", $regionData->region_id)
-            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")
+            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true".$optypeSql)
             ->paginate(10)
             ->onEachSide(1);                 
  
@@ -372,6 +407,9 @@ class ResultsController extends Controller {
  
          if ($startPrice && $endPrice) 
              $priceBetweenSql = " AND price BETWEEN ".$startPrice." AND ".$endPrice;
+
+            // проверка на тип операции
+            (!$request->optype)?$optypeSql = "":is_numeric($request->optype)?$optypeSql = " AND optype=".$request->optype:$optypeSql = "";
                         
             $categories = $this->getCategoryData($request, $category);
             $subcategories = $this->getSubCategoryData($request, $subcategory);
@@ -401,7 +439,7 @@ class ResultsController extends Controller {
             ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
             ->where("adv.region_id", $regionData->region_id)
             ->where("adv.city_id", $placeData->city_id)
-            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")
+            ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true".$optypeSql)
             ->paginate(10)
             ->onEachSide(1);
   

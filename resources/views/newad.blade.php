@@ -43,6 +43,8 @@
     <newad :categories="{{ $categories }}" :regions="{{ $regions }}"></newad>
   </div>
 <script src="https://api-maps.yandex.ru/2.0-stable/?apikey=123&load=package.standard&lang=ru-RU" type="text/javascript"></script>
+<script type="text/javascript" src="{{ mix('js/manifest.js') }}"></script>
+<script type="text/javascript" src="{{ mix('js/vendor.js') }}"></script>
 <script type="text/javascript" src="{{ mix('js/newad.js') }}"></script>
 </body>
 </html>

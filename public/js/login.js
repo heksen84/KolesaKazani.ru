@@ -1,1 +1,30 @@
-!function(t){var e={};function n(o){if(e[o])return e[o].exports;var r=e[o]={i:o,l:!1,exports:{}};return t[o].call(r.exports,r,r.exports,n),r.l=!0,r.exports}n.m=t,n.c=e,n.d=function(t,e,o){n.o(t,e)||Object.defineProperty(t,e,{configurable:!1,enumerable:!0,get:o})},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="",n(n.s=1)}({1:function(t,e,n){t.exports=n("RZge")},RZge:function(t,e){document.addEventListener("DOMContentLoaded",function(){document.body.addEventListener("click",function(t){"auth_vk"==t.target.id&&console.log("vk"),"auth_ok"==t.target.id&&console.log("ok")},!1)})}});
+webpackJsonp([8],{
+
+/***/ "./resources/assets/js/mix/auth/login.js":
+/***/ (function(module, exports) {
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  document.body.addEventListener('click', function (evt) {
+
+    if (evt.target.id == "auth_vk") {
+      console.log("vk");
+    }
+
+    if (evt.target.id == "auth_ok") {
+      console.log("ok");
+    }
+  }, false);
+});
+
+/***/ }),
+
+/***/ 1:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("./resources/assets/js/mix/auth/login.js");
+
+
+/***/ })
+
+},[1]);
