@@ -70,6 +70,8 @@ class IndexController extends Controller {
 		// Регион
 		if ($region != null && $place === null) {
 
+			\Debugbar::info("Я здесь!!!");
+
 			$location = $region;
 			$locationName = Regions::select("name")->where("url", $region)->get();
 
@@ -81,7 +83,8 @@ class IndexController extends Controller {
 
 			if ($regionArr->count() > 0) {
 				
-				$petrovich = new Petrovich(Petrovich::GENDER_FEMALE);					
+				$petrovich = new Petrovich(Petrovich::GENDER_FEMALE);
+									
 				$regionName = $regionArr[0]->name;
 				$regionName = trim(str_replace("обл.", "", $regionName));				
 				$sklonResult = $petrovich->firstname($regionName, 0)." области";			
@@ -163,9 +166,8 @@ class IndexController extends Controller {
 
 				$regionData = $this->getRegionData($region);				
 				
-				if ($regionData) {
-					$whereLocationRawStr=" AND adv.region_id=".$regionData->region_id;					
-				}
+				if ($regionData)
+					$whereLocationRawStr=" AND adv.region_id=".$regionData->region_id;
 			}
 			
 			if ($region && $place) {
@@ -235,8 +237,11 @@ class IndexController extends Controller {
 	// ------------------------------------------
 	// Регион
 	// ------------------------------------------
-    public function ShowRegionIndexPage(Request $request, $region) {
-	    return $this->ShowIndexPage($request, null, $title, $region);
+	// private function ShowIndexPage(Request $request, $usertitle, $region, $place) {
+    public function ShowRegionIndexPage(Request $request, $region) {	
+		//return $this->ShowIndexPage($request, "123123123", $region, null);
+		//return $this->ShowIndexPage($request, "Объявления Павлодарской области", $region, null);
+		return $this->ShowIndexPage($request, null, $region, null);
     }		
 
 	// ------------------------------------------
