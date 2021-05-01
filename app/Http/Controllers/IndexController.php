@@ -200,7 +200,7 @@ class IndexController extends Controller {
 			->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true".$whereLocationRawStr)
 			->orderBy("startDate", "desc")
 			->orderBy("adv.id", "desc")
-			->take(10)
+			->take(5) // взять 5 записей
 			->get();			
 
 			\Debugbar::info("NEWADVERTS:");
@@ -282,9 +282,8 @@ class IndexController extends Controller {
 			$path=$request->getRequestUri();
 			$pos=strpos($request->getRequestUri(), "&page=");
 			
-			if ($pos > 0) {
+			if ($pos > 0)
 				$path = substr($request->getRequestUri(), 0, $pos);
-			}
 
 		$items = DB::table("adverts as adv")->select(
 			"urls.url",

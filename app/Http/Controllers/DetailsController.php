@@ -39,9 +39,8 @@ class DetailsController extends Controller {
                 // получаю данные объявления по его id
                 $advertData = Adverts::select("category_id", "subcategory_id")->where( "id", $id )->where( "public", true )->limit(1)->get();
                         
-                if (!count($advertData)) {
-                  abort(404);             
-		        }
+                if (!count($advertData))
+                  abort(404);             		        
 
                 \Debugbar::info("-------------------");
                 \Debugbar::info($advertData);
