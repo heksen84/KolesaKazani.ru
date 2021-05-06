@@ -148,8 +148,8 @@ class ParseOlx extends Command {
         "region_id" => 1, // Акмол
         "city_id" => 11, // Аксу
         "adv_category" => 3,
-        //"adv_subcategory" => 22, // телефоны и гаджеты
-        "adv_subcategory" => 18, // компы
+        "adv_subcategory" => 22, // телефоны и гаджеты
+        //"adv_subcategory" => 18, // компы
         "adv_info" => $desc,
         "adv_price" => $price,
         "adv_phone" => $phoneNumber,
