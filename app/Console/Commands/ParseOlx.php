@@ -143,16 +143,19 @@ class ParseOlx extends Command {
     $data = array(
         "uid" => $this->makeid(10),
         "adv_optype"=> $optype,
+        //"region_id" => 11, Павл
+        //"city_id" => 50, Аксу
+        "region_id" => 1, // Акмол
+        "city_id" => 11, // Аксу
         "adv_category" => 3,
         //"adv_subcategory" => 22, // телефоны и гаджеты
-        "adv_subcategory" => 18, // телефоны и гаджеты
+        "adv_subcategory" => 18, // компы
         "adv_info" => $desc,
         "adv_price" => $price,
         "adv_phone" => $phoneNumber,
-        "adv_title" => $title,        
-        "region_id" => 11,
-        "city_id" => 50,
-        "adv_coords" => "52.040616,76.926367", // Pavl, Aksu
+        "adv_title" => $title,
+        //"adv_coords" => "52.040616,76.926367", // Pavl, Aksu
+        "adv_coords" => "51.128207, 71.430411", // Akmol, Nur
         "olx_id" => $advertId,
         "img_real_path" => storage_path("app")."/".$imgRealPath,
         "img_original_name" => $imgOriginalName,
@@ -177,7 +180,8 @@ class ParseOlx extends Command {
         $this->info($token);        
         $this->info((json_decode($token)->expires_in/3600)." часов осталось\n");
 
-       $page = self::getPage("https://www.olx.kz/elektronika/kompyutery-i-komplektuyuschie/nastolnye-kompyutery/aksu_5689/", $cookie);
+       //$page = self::getPage("https://www.olx.kz/elektronika/kompyutery-i-komplektuyuschie/nastolnye-kompyutery/aksu_5689/", $cookie);
+       $page = self::getPage("https://www.olx.kz/elektronika/kompyutery-i-komplektuyuschie/nastolnye-kompyutery/astana/", $cookie);
         //$page = self::getPage("https://www.olx.kz/elektronika/telefony-i-aksesuary/mobilnye-telefony-smartfony/aksu_5689/", $cookie);
 
         $this->info("ok\n");
