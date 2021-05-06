@@ -162,7 +162,7 @@ class ParseOlx extends Command {
     );
 
     // $data, $fromFrontend, $request, user_id
-    $this->info($advert_api->createAdvert($data, false, null, 34));
+    $this->info($advert_api->createAdvert($data, false, null, 3));
 
    }
    
