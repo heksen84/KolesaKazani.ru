@@ -249,9 +249,12 @@ class ParseOlx extends Command {
               $phone = substr($phone, 1);            
             }
             else
-                $phone = null;                
-                $phone = "(".$phone[0].$phone[1].$phone[2].")".$phone[3].$phone[4].$phone[5].$phone[6].$phone[7].$phone[8].$phone[9];
-                $this->info("Phone result: ".$phone."\n");
+                $phone = null;     
+                
+                if ($phone!=null) {
+                    $phone = "(".$phone[0].$phone[1].$phone[2].")".$phone[3].$phone[4].$phone[5].$phone[6].$phone[7].$phone[8].$phone[9];
+                    $this->info("Phone result: ".$phone."\n");
+                }
 
             $imageUrl = self::getImage($page);
             
