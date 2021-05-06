@@ -144,7 +144,8 @@ class ParseOlx extends Command {
         "uid" => $this->makeid(10),
         "adv_optype"=> $optype,
         "adv_category" => 3,
-        "adv_subcategory" => 22,
+        //"adv_subcategory" => 22, // телефоны и гаджеты
+        "adv_subcategory" => 18, // телефоны и гаджеты
         "adv_info" => $desc,
         "adv_price" => $price,
         "adv_phone" => $phoneNumber,
@@ -176,8 +177,8 @@ class ParseOlx extends Command {
         $this->info($token);        
         $this->info((json_decode($token)->expires_in/3600)." часов осталось\n");
 
-       // $page = self::getPage("https://www.olx.kz/elektronika/kompyutery-i-komplektuyuschie/nastolnye-kompyutery/aksu_5689/", $cookie);
-        $page = self::getPage("https://www.olx.kz/elektronika/telefony-i-aksesuary/mobilnye-telefony-smartfony/aksu_5689/", $cookie);
+       $page = self::getPage("https://www.olx.kz/elektronika/kompyutery-i-komplektuyuschie/nastolnye-kompyutery/aksu_5689/", $cookie);
+        //$page = self::getPage("https://www.olx.kz/elektronika/telefony-i-aksesuary/mobilnye-telefony-smartfony/aksu_5689/", $cookie);
 
         $this->info("ok\n");
 
