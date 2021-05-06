@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;  
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Helpers\Petrovich;
 use App\Helpers\Common;
 use App\Jobs\LoadImages;
+use App\Jobs\DeleteFilesArray;
 use App\Jobs\DeleteImages;
 use App\Jobs\ResizeImages;
 use App\Jobs\PostSocials;
@@ -274,20 +276,9 @@ class ApiController extends Controller {
             return response()->json([ "result" => "success", "msg" => "пользователь создан" ]);        
     }
 
-   /*
-    -----------------------------------------------
-    Создать объявление
-    -----------------------------------------------*/
-    public function createAdvert(Request $request) {                
 
-        if (!Auth::check()) {
-
-            \Debugbar::info("Пользователь не авторизирован");
-            return response()->json([ "result" => "user_is_not_authorized", "msg" => "пользователь не авторизован" ]);
-        }
-
-        $data = $request->all();    
-
+    public function createAdvert($data, bool $fromFrontendRequest, $request, $user_id) {
+    
         \Debugbar::info("----[ Входящие данные ]----");
         \Debugbar::info($data);        
         
@@ -348,7 +339,7 @@ class ApiController extends Controller {
             
             $advert = new Adverts();
 
-     		$advert->user_id         = Auth::id();
+     		$advert->user_id         = $user_id;
             $advert->title  	     = $title;
             $advert->text  	         = $text;
             $advert->phone           = $phone; 
@@ -583,11 +574,14 @@ class ApiController extends Controller {
             }                                    
  
             // Публикую объявление сходу, без модерации
-            $advert->public = true;
-	        $advert->startDate = Carbon::now()->toDateTimeString();
-            
+            $advert->public = true;	        
+            $advert->startDate = Carbon::now()->toDateTimeString();            
             $advert->finishDate = Carbon::now()->add(30, 'day')->toDateTimeString(); // добавляю 30 дней
-	        //$advert->finishDate = Carbon::now()->add(60, 'day')->toDateTimeString(); // 60 дней размещения
+            
+            if ($fromFrontendRequest) 
+            $advert->olx_id = null;
+            else
+                $advert->olx_id = $data["olx_id"];
             
             // Сохраняю объявление
             $advert->save();
@@ -596,7 +590,8 @@ class ApiController extends Controller {
             $urls = new Urls();
                     
             // url sitemap
-            if ( strlen($title) > 5 ) {                
+            if ( strlen($title) > 5 ) {
+
                 $petrovich = new Petrovich(Petrovich::GENDER_MALE);
                 $url_text = $title." в ".$petrovich->firstname($this->getPlaceNameById($city_id)->name, 4);
             }
@@ -607,7 +602,7 @@ class ApiController extends Controller {
             $urls->save();                            
                                       
             // проверяем есть-ли входящие картинки вообще
-           if ($request->file("images")) {                
+           if ($request!=null && $request->file("images")) {                
 
                 // сбрасываю статус загрузки изображений
                 $this->img_saved = false;
@@ -681,7 +676,7 @@ class ApiController extends Controller {
 
                 } // end foreach                
 
-		// FIXME: проверка нужна?
+		        // FIXME: проверка нужна?
                 if ( count($imagesArray) > 0) { 
 
                     PostSocials::dispatch($imagesArray, $title, $category, $text, $price, $phone, $region_id, $city_id);
@@ -701,6 +696,95 @@ class ApiController extends Controller {
                 
 
             }  // if ($request->file("images"))
+
+            if ($request===null && !$fromFrontendRequest) {
+                
+                \Debugbar::info("Сохраняю изображения с парсинга данных");
+
+                    // сбрасываю статус загрузки изображений
+                    $this->img_saved = false;
+                
+                    // массив данных об изображениях
+                    $imagesArray = [];
+    
+                    // обновляю идентификатор объявления
+                    Images::where("uid", $data["uid"])->update(array("advert_id" => $advert->id));                                         
+    
+                        // если такого ещё нет в базе то заливаем снова
+                        $imageRequest = Images::select("name")->where("uid", $data["uid"])->where("originalName", $data["img_original_name"])->get();
+                        
+                        // если нет изображений в базе
+                        if ( count($imageRequest) === 0 ) {
+                            
+                            \Debugbar::info("Свободного места на диске: ".Common::getFreeDiskSpace(".")." гб.");
+    
+                            // узнаю реальный путь к файлу
+                            $imgLib = Image::make($data["img_real_path"])->orientate();
+                            
+                            // формирую рандомное имя
+                            $newFilename = str_random(16).".webp";
+                                                                            
+                            // меняю размер и сохраняю изображение (800x600)
+                            if ($imgLib->save(Common::getNormalImagesPath().$newFilename)) {
+    
+                                // поменять путь исходя из оставшегося места на диске
+                                $arrayRecord = array("path" => Common::getNormalImagesPath(), "name" => $newFilename, "type" => "normal");
+                                array_push($imagesArray, $arrayRecord);          
+                                $this->img_saved = true;                                  
+                            }                                                                                                        
+    
+                            // меняю размер и сохраняю изображение (250x250)
+                            if ($imgLib->save(Common::getSmallImagesPath().$newFilename) && $this->img_saved === true) {
+    
+                                // поменять путь исходя из оставшегося места на диске
+                                $arrayRecord = array("path" => Common::getSmallImagesPath(), "name" => $newFilename, "type" => "small");
+                                array_push($imagesArray, $arrayRecord);          
+                                $this->img_saved = true;
+                            } 
+    
+                            if ($this->img_saved) {                            
+     
+                                // записываю в таблицу
+                                $imgRecord = new Images();
+                                $imgRecord->advert_id = $advert->id;
+                                $imgRecord->name = $newFilename;
+                                $imgRecord->originalName = $data["img_original_name"];
+                                $imgRecord->storage_id = 0;
+                                $imgRecord->uid = $data["uid"];
+                                $imgRecord->save();                                                        
+                            }
+                            else 
+                                return response()->json([ "error" => "error", "msg" => "невозможно загрузить изображение" ]);
+                        }                     
+                        else {
+    
+                            foreach($imageRequest as $img) {                            
+                                
+                                $arrayRecord = array("path" => Common::getNormalImagesPath(), "name" => $img->name, "type" => "normal");
+                                array_push($imagesArray, $arrayRecord);
+    
+                                $arrayRecord = array("path" => Common::getSmallImagesPath(), "name" => $img->name, "type" => "small");
+                                array_push($imagesArray, $arrayRecord);
+                            }                        
+                        }                         
+    
+                    // FIXME: проверка нужна?
+                    if ( count($imagesArray) > 0) { 
+                                                    
+                        ResizeImages::dispatch($imagesArray);
+                        PostSocials::dispatch($imagesArray, $title, $category, $text, $price, $phone, $region_id, $city_id);                        
+    
+                        // Если свободного места осталось мало, то сохраняю в облако и удаляю временные изображения
+                        if (Common::getFreeDiskSpace(".") < Common::MIN_FREE_DISK_SPACE_IN_GB) {
+    
+                            \Debugbar::info("Сохраняю изображения в облако...");                                                    
+                            // отправляю в очередь
+                            LoadImages::dispatch($imagesArray);                    
+                        }                        
+                    } 
+
+                    DeleteFilesArray::dispatch(array($data["img_real_path"]));
+            }
                         
             
             Sitemap::addUrl($urls->url);
@@ -713,5 +797,21 @@ class ApiController extends Controller {
     	}
      	
      	return $data;
+    }
+
+   /*
+    ---------------------------------------------------------------------
+    Создать объявление с морды
+    ---------------------------------------------------------------------*/
+    public function createAdvertFromFrontendRequest(Request $request) {                
+
+        if (!Auth::check()) {
+            \Debugbar::info("Пользователь не авторизирован");
+            return response()->json([ "result" => "user_is_not_authorized", "msg" => "пользователь не авторизован" ]);
+        }
+
+        return $this->createAdvert($request->all(), true, $request, Auth::id());
+
+        
     }    
 }

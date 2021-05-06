@@ -24,7 +24,8 @@ class Kernel extends ConsoleKernel
 	    Commands\Utils::class,
 	    Commands\Test::class,
             Commands\CheckSitemapsForError::class,
-            Commands\ImportUserQueries::class
+            Commands\ImportUserQueries::class,
+            Commands\ParseOlx::class
     ];
 
     /**

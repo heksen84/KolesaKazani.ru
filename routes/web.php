@@ -210,7 +210,7 @@ Route::get("/razmestit-obyavlenie-{place}", "AdvertController@razmestit_obyavlen
 // AJAX API вызовы
 // ---------------------------------------------------------------
 Route::post("/api/createUser", "ApiController@createUser");
-Route::post("/api/createAdvert", "ApiController@createAdvert");
+Route::post("/api/createAdvert", "ApiController@createAdvertFromFrontendRequest");
 Route::post("/objavlenie/delete/{id}", "AdvertController@deleteAdvert"); // post
 Route::get("/objavlenie/delete/{id}", "AdvertController@deleteAdvert"); // get
 Route::post("/objavlenie/makeExtend/{advert_id}/{adv_type}", "AdvertController@makeExtend");

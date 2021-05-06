@@ -78,7 +78,7 @@ class PostSocials implements ShouldQueue {
             if ( count($this->images) > 0 ) {
 
                 foreach($this->images as $img) {        
-                    $instagram->uploadPhoto($img["path"].$img["name"], $this->title."\n".$this->text."\n".$price_str."\n".$phone_str."\n\n".$like_and_subscribe."\n\n".$result[0]->hash_tag);
+                    $instagram->uploadPhoto($img["path"].$img["name"], $this->title."\n".$this->text."\n".$price_str."\n".$phone_str."\n\n".$like_and_subscribe."\n\n".$result[0]->hash_tag);                    
                     break;  // ПОКА ТОЛЬКО ОДНО ФОТО
                 }
             }

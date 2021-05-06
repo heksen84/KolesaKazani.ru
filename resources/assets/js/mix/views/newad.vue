@@ -607,7 +607,9 @@ loadImage(evt) {
       else*/ {
 
             preview_images.push({ "name": theFile.name, "src": e.target.result });
-            real_images.push(theFile);        
+            real_images.push(theFile);       
+            
+            console.log()
 
             formData.append("image", theFile);
             formData.append("uid", self.uid);

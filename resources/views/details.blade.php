@@ -122,7 +122,7 @@
               @endif
                       
               <!-- не показываю цену в категориях -->
-              @if ($advert->price!="null" && $advert->category_id!=4 && $advert->category_id!=9 && $advert->category_id!=10)
+              @if ($advert->price!=null && $advert->category_id!=4 && $advert->category_id!=9 && $advert->category_id!=10)
                 <br>              
                 <div id="price" title="цена: {{ $advert->price }} тенге">цена: {{ $advert->price }} тенге</div>              
               @endif
@@ -225,7 +225,7 @@
                     <div class="card-title-text" style="font-size:11px">{{ $simAdvert->title }}
                 </div>                
                 </a>
-                    @if ($simAdvert->price)
+                    @if ($simAdvert->price)                    
                       <b class="card-price-value mb-2" style="font-size:11px">{{ $simAdvert->price }} ₸</b>
                     @else
                       <b class="mb-2">&nbsp</b>

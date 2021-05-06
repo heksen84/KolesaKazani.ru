@@ -36,7 +36,16 @@ class Test extends Command
      * @return mixed
      */
     public function handle() {
-    	$this->info("Минимальный объём места: ".Common::MIN_FREE_DISK_SPACE_IN_GB);
-	    $this->info("Свободно: ".Common::getFreeDiskSpace(".")." гигабайта");
+//    	$this->info("Минимальный объём места: ".Common::MIN_FREE_DISK_SPACE_IN_GB);
+//	    $this->info("Свободно: ".Common::getFreeDiskSpace(".")." гигабайта");
+
+//	    $x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);            
+//            $val = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : ''); 
+	   
+            $phone = "7058675457";
+
+	    $res = "(".$phone[0].$phone[1].$phone[2].")".$phone[3].$phone[4].$phone[5].$phone[6].$phone[7].$phone[8].$phone[9];
+ 	    $this->info($res);
+
     }
 }

@@ -180,7 +180,9 @@ class IndexController extends Controller {
 				}
 			}
 		
+		// --------------------------------------------------
 		// Новые объявления
+		// --------------------------------------------------
 		$newAdverts = DB::table("adverts as adv")->select(			
 			"urls.url",
             "adv.id", 

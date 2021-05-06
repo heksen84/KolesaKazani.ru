@@ -1,0 +1,2 @@
+ALTER TABLE `adverts` ADD `olx_id` INT(10) UNSIGNED NULL DEFAULT NULL AFTER `finishDate`, ADD INDEX (`olx_id`);
+ALTER TABLE `images` CHANGE `originalName` `originalName` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;

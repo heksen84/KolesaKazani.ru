@@ -55,10 +55,13 @@ export default {
 
           // телефон
           case "phone": {                                                   
+            
             if (!numericPattern.test(newValue)) 
               e.target.value = this.value;
+
             let x = newValue.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);            
             let val = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : ''); 
+
             this.$emit('input', val)
             break;
           }

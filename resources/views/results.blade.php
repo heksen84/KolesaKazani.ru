@@ -126,7 +126,7 @@
                   @endif                  
                     <img class="card-img-top image" src="{{ $item->imageName }}" onerror="this.onerror=null;this.src='/public/images/_nofoto.jpg';" loading="lazy">                      
                       <div class="block-info-area">                                                                                                  
-                        @if ($item->price!="null" && $categoryId!=4 && $categoryId!=9 && $categoryId!=10)
+                        @if ($item->price!=null && $categoryId!=4 && $categoryId!=9 && $categoryId!=10)
                           <div class="price">{{ $item->price }} ₸</div>
                         @endif
 

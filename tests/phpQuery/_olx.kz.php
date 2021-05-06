@@ -13,6 +13,31 @@ $cookieJar = tempnam('/tmp', 'cookie');
 	Хобби отдых и спорт
 	Животные
 	Услуги
+
+	1. Сканируем объявления за текущий день
+	2. Смотрим есть ли оно в базе olx_id, market_id, ...
+	3. Если нету - парсим и вносим на сайт
+
+	https://www.olx.kz/elektronika/aksu_5689/
+	https://www.olx.kz/elektronika/aksu_5689/?page=2
+
+	elektronika/telefony-i-aksesuary
+	elektronika/telefony-i-aksesuary/zapchasti-dlya-telefonov
+	elektronika/telefony-i-aksesuary/aksessuary-dlya-telefonov
+	elektronika/telefony-i-aksesuary/mobilnye-telefony-smartfony
+	elektronika/telefony-i-aksesuary/sim-karty-tarify-nomera
+	elektronika/telefony-i-aksesuary/statsionarnye-telefony
+	elektronika/telefony-i-aksesuary/ratsiyi-i-prochie-telefony
+
+	elektronika/kompyutery-i-komplektuyuschie
+	elektronika/kompyutery-i-komplektuyuschie/nastolnye-kompyutery
+	elektronika/kompyutery-i-komplektuyuschie/komplektuyuschie-i-aksesuary
+	elektronika/kompyutery-i-komplektuyuschie/periferiynye-ustroystva
+	elektronika/kompyutery-i-komplektuyuschie/monitory
+	elektronika/kompyutery-i-komplektuyuschie/vneshnie-nakopiteli
+	elektronika/kompyutery-i-komplektuyuschie/rashodnye-materialy
+	elektronika/kompyutery-i-komplektuyuschie/drugoe
+
 */
 
 /*
