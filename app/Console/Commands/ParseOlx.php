@@ -266,9 +266,9 @@ class ParseOlx extends Command {
             
             if ($imageUrl) {
 
-                $image = file_get_contents($imageUrl, 0, stream_context_create(["http"=>["timeout"=>5]]));
+                $image = @file_get_contents($imageUrl, 0, stream_context_create(["http"=>["timeout" => 3]]));
 
-                if ($image==false)
+                if ($image===false)
                     continue;
                 else 
                 {
