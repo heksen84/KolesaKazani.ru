@@ -265,14 +265,17 @@ class ParseOlx extends Command {
             $imageUrl = self::getImage($page);
             
             if ($imageUrl) {
-                $image = file_get_contents($imageUrl);
 
-                if (!$image)
+                $image = file_get_contents($imageUrl, 0, stream_context_create(["http"=>["timeout"=>5]]));
+
+                if ($image==false)
                     continue;
-
-                $imgOriginalName = self::getImageName($page).".webp";
-                $imgRealPath = 'images/parse/olx/'.$imgOriginalName;
-                \Storage::disk('local')->put($imgRealPath, $image);
+                else 
+                {
+                    $imgOriginalName = self::getImageName($page).".webp";
+                    $imgRealPath = 'images/parse/olx/'.$imgOriginalName;
+                    \Storage::disk('local')->put($imgRealPath, $image);
+                }
             }
             else 
                 $imageUrl = null;
