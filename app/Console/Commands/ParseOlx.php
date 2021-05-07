@@ -266,6 +266,10 @@ class ParseOlx extends Command {
             
             if ($imageUrl) {
                 $image = file_get_contents($imageUrl);
+
+                if (!$image)
+                    continue;
+
                 $imgOriginalName = self::getImageName($page).".webp";
                 $imgRealPath = 'images/parse/olx/'.$imgOriginalName;
                 \Storage::disk('local')->put($imgRealPath, $image);
@@ -273,8 +277,7 @@ class ParseOlx extends Command {
             else 
                 $imageUrl = null;
 
-            if ($phone != "") {
-                $images = 0;
+            if ($phone != "") {                
                 self::createAdvert($id, $title, $desc, $price, $phone, $imgRealPath, $imgOriginalName, 0, 0, 0, 0, $optype);
             }
 
