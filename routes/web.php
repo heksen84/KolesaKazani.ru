@@ -189,6 +189,11 @@ Route::get("/razmestit-obyavlenie-o-rabote", "AdvertController@razmestit_obyavle
 // Разместить объявление о работе бесплатно
 Route::get("/razmestit-obyavlenie-o-rabote-besplatno", "AdvertController@razmestit_obyavlenie_o_rabote_besplatno");
 
+
+
+Route::get("/adminPanel", "AdminController@login");
+Route::get("/adminPanel/parseOlx", "AdminController@parseOlx");
+
 // ----------------------------------------------
 // Подать объявление бесплатно астана (45)
 // Подать объявления алматы (207)

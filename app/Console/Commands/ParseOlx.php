@@ -19,12 +19,12 @@ class ParseOlx extends Command {
      *
      * @var string
      */
-    protected $description = 'Парсинг olx.kz';
+    protected $description = 'Парсинг объявлений с olx.kz';
         
     // Из первого запроса токена в браузере
     const clientId = "100302";
     const clientSecret = "dHXhnUG4QDkQ3Btx07EgdZGOYydoccbtZBE5ROlNTycHxs2W";
-    const refreshToken = "42309399ffaa297dc8f3e42b68ff7005f0cdb50b";
+    const refreshToken = "7c33c972e5e51327e3508d614213f76a6cc9643c";
     const deviceId = "c073d2b0-96ab-497a-89e0-e2bf335d2f09";
     const deviceToken = "eyJpZCI6ImMwNzNkMmIwLTk2YWItNDk3YS04OWUwLWUyYmYzMzVkMmYwOSJ9.e578f578f2de49d846e0be2a2c399bb78153c63c";
 
@@ -126,6 +126,25 @@ class ParseOlx extends Command {
 
    // метод создания объявления
    function createAdvert($advertId, $title, $desc, $price, $phoneNumber, $imgRealPath, $imgOriginalName, $categoryId, $subCategoryId, $regionId, $placeId, $optype) {        
+
+/*    $places = [
+        array("region_id" => 1, "city_id" => 11, "coords" = > "51.128207, 71.430411"), // НурСултан
+        array("region_id" => 11, "city_id" => 50, "coords" = > "52.040616,76.926367")  // Аксу
+    ];
+
+    $categories = [
+        array("category" => 3, "subcategory" => 18), // Настольные компьютеры
+        array("category" => 3, "subcategory" => 22)  // Телефоны и гаджеты
+    ];
+
+    foreach($places as $place) {
+        
+        $this->info($place["region_id"]);
+        $this->info($place["city_id"]);
+    }    
+    
+
+    return;*/
     
     $advert_api = new ApiController();
         
@@ -140,29 +159,86 @@ class ParseOlx extends Command {
     $this->info("img_real_path: ".storage_path("app")."/".$imgRealPath);
     $this->info("img_original_name: ".$imgOriginalName);
 
-    $data = array(
+
+    $dataNursultanPhonesAndGadgets = array(
         "uid" => $this->makeid(10),
-        "adv_optype"=> $optype,
-        //"region_id" => 11, Павл
-        //"city_id" => 50, Аксу
-        "region_id" => 1, // Акмол
-        "city_id" => 11, // Аксу
+        "adv_optype"=> $optype,        
+        "region_id" => 1,
+        "city_id" => 11,
         "adv_category" => 3,
-        "adv_subcategory" => 22, // телефоны и гаджеты
-        //"adv_subcategory" => 18, // компы
+        "adv_subcategory" => 22,        
         "adv_info" => $desc,
         "adv_price" => $price,
         "adv_phone" => $phoneNumber,
-        "adv_title" => $title,
-        //"adv_coords" => "52.040616,76.926367", // Pavl, Aksu
+        "adv_title" => $title,        
+        "adv_coords" => "51.128207, 71.430411",
+        "olx_id" => $advertId,
+        "img_real_path" => storage_path("app")."/".$imgRealPath,
+        "img_original_name" => $imgOriginalName,
+    );
+
+    $dataNursultanComps = array(
+        "uid" => $this->makeid(10),
+        "adv_optype"=> $optype,        
+        "region_id" => 1, // Акмол
+        "city_id" => 11, // Аксу
+        "adv_category" => 3,        
+        "adv_subcategory" => 18, // компы
+        "adv_info" => $desc,
+        "adv_price" => $price,
+        "adv_phone" => $phoneNumber,
+        "adv_title" => $title,        
         "adv_coords" => "51.128207, 71.430411", // Akmol, Nur
         "olx_id" => $advertId,
         "img_real_path" => storage_path("app")."/".$imgRealPath,
         "img_original_name" => $imgOriginalName,
     );
 
-    // $data, $fromFrontend, $request, user_id
-    $this->info($advert_api->createAdvert($data, false, null, 3));
+    $dataAksuComps = array(
+        "uid" => $this->makeid(10),
+        "adv_optype"=> $optype,
+        "region_id" => 11,
+        "city_id" => 50,
+        "adv_category" => 3,        
+        "adv_subcategory" => 18, // компы
+        "adv_info" => $desc,
+        "adv_price" => $price,
+        "adv_phone" => $phoneNumber,
+        "adv_title" => $title,
+        "adv_coords" => "52.040616,76.926367", // Pavl, Aksu        
+        "olx_id" => $advertId,
+        "img_real_path" => storage_path("app")."/".$imgRealPath,
+        "img_original_name" => $imgOriginalName,
+    );
+
+    $dataAksuPhonesAndGadgets = array(
+        "uid" => $this->makeid(10),
+        "adv_optype"=> $optype,
+        "region_id" => 11,
+        "city_id" => 50,
+        "adv_category" => 3,        
+        "adv_subcategory" => 22,
+        "adv_info" => $desc,
+        "adv_price" => $price,
+        "adv_phone" => $phoneNumber,
+        "adv_title" => $title,
+        "adv_coords" => "52.040616,76.926367", // Pavl, Aksu        
+        "olx_id" => $advertId,
+        "img_real_path" => storage_path("app")."/".$imgRealPath,
+        "img_original_name" => $imgOriginalName,
+    );
+
+    $dataArray = [];
+
+    //array_push($dataArray, $dataAksuComps);
+    array_push($dataArray, $dataAksuPhonesAndGadgets);
+
+    foreach($dataArray as $data) {
+        //$this->info("-----------------------------------------");
+        //$this->info($data["img_original_name"]);
+        //$this->info("-----------------------------------------");
+      $this->info($advert_api->createAdvert($data, false, null, 3)); // $data, $fromFrontend, $request, user_id
+    }
 
    }
    
@@ -180,10 +256,14 @@ class ParseOlx extends Command {
         $this->info($token);        
         $this->info((json_decode($token)->expires_in/3600)." часов осталось\n");
 
+
+        // Сюда как-то передать массив!!!
+        // Генерить оригинальное имя
+
        //$page = self::getPage("https://www.olx.kz/elektronika/kompyutery-i-komplektuyuschie/nastolnye-kompyutery/aksu_5689/", $cookie);
        //$page = self::getPage("https://www.olx.kz/elektronika/kompyutery-i-komplektuyuschie/nastolnye-kompyutery/astana/", $cookie);
-       //$page = self::getPage("https://www.olx.kz/elektronika/telefony-i-aksesuary/mobilnye-telefony-smartfony/aksu_5689/", $cookie);
-       $page = self::getPage("https://www.olx.kz/elektronika/telefony-i-aksesuary/mobilnye-telefony-smartfony/astana/", $cookie);
+       $page = self::getPage("https://www.olx.kz/elektronika/telefony-i-aksesuary/mobilnye-telefony-smartfony/aksu_5689/", $cookie);
+       //$page = self::getPage("https://www.olx.kz/elektronika/telefony-i-aksesuary/mobilnye-telefony-smartfony/astana/", $cookie);
 
         $this->info("ok\n");
 
@@ -231,12 +311,14 @@ class ParseOlx extends Command {
                 $optype = 2;
             }
 
-
             $phoneJson = self::getPhone($id, $cookie, $token);
 
             $this->info($phoneJson);
 
-            $phoneDecode = json_decode($phoneJson)->data->phones;
+            $phoneData = json_decode($phoneJson)->data;
+            
+            if ($phoneData)
+                $phoneDecode = $phoneData->phones;
 
             if ($phoneJson && count($phoneDecode) > 0) {
 
@@ -266,15 +348,15 @@ class ParseOlx extends Command {
             
             if ($imageUrl) {
 
+                // @ - disable error
                 $image = @file_get_contents($imageUrl, 0, stream_context_create(["http"=>["timeout" => 3]]));
 
                 if ($image===false)
                     continue;
-                else 
-                {
+                else {
                     $imgOriginalName = self::getImageName($page).".webp";
                     $imgRealPath = 'images/parse/olx/'.$imgOriginalName;
-                    \Storage::disk('local')->put($imgRealPath, $image);
+                    @\Storage::disk('local')->put($imgRealPath, $image);
                 }
             }
             else 

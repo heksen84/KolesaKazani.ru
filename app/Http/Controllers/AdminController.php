@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function login() {
-        return view('adminpanel');
-   }
+        return view('admin');
+    }
+
+    public function parseOlx() {
+
+        $outout = "";
+        exec("ls -la", $output);
+
+        
+        return $output;
+    }
 }
