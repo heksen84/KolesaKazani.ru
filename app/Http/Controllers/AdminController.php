@@ -13,8 +13,7 @@ class AdminController extends Controller
     public function parseOlx() {
 
         $outout = "";
-        exec("ls -la", $output);
-
+        exec("php artisan parse:olx", $output);
         
         return $output;
     }
