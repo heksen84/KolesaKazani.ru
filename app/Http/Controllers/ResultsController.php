@@ -158,7 +158,8 @@ class ResultsController extends Controller {
             ->join("urls", "adv.id", "=", "urls.advert_id" )
             ->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
             ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
-            ->whereRaw($whereRaw)            
+            ->whereRaw($whereRaw)
+            ->orderBy("adv.startDate", "DESC")
             ->paginate(10)
             ->onEachSide(1);
 
@@ -281,6 +282,7 @@ class ResultsController extends Controller {
             ->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )                
             ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
             ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true".$optypeSql)
+            ->orderBy("adv.startDate", "DESC")
             ->paginate(10)
             ->onEachSide(1);        
 
@@ -357,6 +359,7 @@ class ResultsController extends Controller {
             ->where("subcategory_id", $subcategories[0]->id.$priceBetweenSql)
             ->where("adv.region_id", $regionData->region_id)
             ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true".$optypeSql)
+            ->orderBy("adv.startDate", "DESC")
             ->paginate(10)
             ->onEachSide(1);                 
  
@@ -440,6 +443,7 @@ class ResultsController extends Controller {
             ->where("adv.region_id", $regionData->region_id)
             ->where("adv.city_id", $placeData->city_id)
             ->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true".$optypeSql)
+            ->orderBy("adv.startDate", "DESC")
             ->paginate(10)
             ->onEachSide(1);
   
