@@ -200,7 +200,7 @@ class IndexController extends Controller {
 			->join("kz_region", "adv.region_id", "=", "kz_region.region_id" )
 			->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )						
 			->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true".$whereLocationRawStr)
-			->orderBy("startDate", "desc")
+			->orderBy("startDate", "desc")			
 			->orderBy("adv.id", "desc")
 			->take(5) // взять 5 записей
 			->get();			
@@ -305,6 +305,7 @@ class IndexController extends Controller {
         	->join("kz_city", "adv.city_id", "=", "kz_city.city_id" )
 			->whereRaw($whereStr)
 			->whereRaw("NOW() BETWEEN adv.startDate AND adv.finishDate AND adv.public = true")
+			->orderBy("adv.startDate", "DESC")
 			->paginate(10)
 			->onEachSide(1)			
 			->withPath($path);						
