@@ -227,18 +227,21 @@ class ParseOlx extends Command {
         "img_original_name" => $imgOriginalName,
     );
 
-    $dataAksuModaAndStyle = array(
+    $dataModaAndStyle = array(
         "uid" => $this->makeid(10),
         "adv_optype"=> $optype,
-        "region_id" => 11,
-        "city_id" => 50,
+//        "region_id" => 11,
+//        "city_id" => 50,
+        "region_id" => 1, // Акмол
+        "city_id" => 11, // Астана
         "adv_category" => 6,        
         "adv_subcategory" => 33,
         "adv_info" => $desc,
         "adv_price" => $price,
         "adv_phone" => $phoneNumber,
         "adv_title" => $title,
-        "adv_coords" => "52.040616,76.926367", // Pavl, Aksu        
+//        "adv_coords" => "52.040616,76.926367", // Pavl, Aksu        
+        "adv_coords" => "51.128207, 71.430411", // Akmol, Nur
         "olx_id" => $advertId,
         "img_real_path" => storage_path("app")."/".$imgRealPath,
         "img_original_name" => $imgOriginalName,
@@ -248,7 +251,7 @@ class ParseOlx extends Command {
 
     //array_push($dataArray, $dataAksuComps);
 //    array_push($dataArray, $dataNursultanPhonesAndGadgets);
-    array_push($dataArray, $dataAksuModaAndStyle);
+    array_push($dataArray, $dataModaAndStyle);
 
     foreach($dataArray as $data) {
         //$this->info("-----------------------------------------");
@@ -281,7 +284,8 @@ class ParseOlx extends Command {
        //$page = self::getPage("https://www.olx.kz/elektronika/kompyutery-i-komplektuyuschie/nastolnye-kompyutery/astana/", $cookie);
        //$page = self::getPage("https://www.olx.kz/elektronika/telefony-i-aksesuary/mobilnye-telefony-smartfony/aksu_5689/", $cookie);	
        //$page = self::getPage("https://www.olx.kz/elektronika/telefony-i-aksesuary/mobilnye-telefony-smartfony/astana/", $cookie);
-       $page = self::getPage("https://www.olx.kz/moda-i-stil/aksessuary/aksu_5689/", $cookie);
+//       $page = self::getPage("https://www.olx.kz/moda-i-stil/aksessuary/aksu_5689/", $cookie);
+       $page = self::getPage("https://www.olx.kz/moda-i-stil/aksessuary/astana/", $cookie);
 
         $this->info("ok\n");
 
