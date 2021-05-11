@@ -290,6 +290,12 @@ class ParseOlx extends Command {
             $title = trim(self::getTitle($page));
 
             $desc =  trim(self::getDesc($page));    
+            
+            $desc =  str_replace("OLX", "ilbo", $desc);
+            $desc =  str_replace("olx", "ilbo", $desc);
+            $desc =  str_replace("олкс", "ilbo", $desc);
+            $desc =  str_replace("олэикс", "ilbo", $desc);
+
             $desc =  str_replace("Показать номер",  "", $desc);
             $desc =  str_replace("877",  "", $desc);
             $desc =  str_replace("870",  "", $desc);
