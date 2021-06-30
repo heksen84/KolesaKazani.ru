@@ -6,13 +6,13 @@ use Illuminate\Console\Command;
 use phpQuery;
 use App\Adverts;
 
-class ParseOlx extends Command {
+class ParseOlx_phones_and_gadgets extends Command {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'parse:olx';
+    protected $signature = 'parse:olx_phones_and_gadgets';
 
     /**
      * The console command description.
@@ -81,7 +81,7 @@ class ParseOlx extends Command {
    
    function getDesc($page) {
     $doc = phpQuery::newDocument($page);
-    return $doc->find('#textContent')->text();
+    return $doc->find('.css-g5mtbi-Text')->text();
    }
    
    function getPrice($page) {
@@ -258,7 +258,9 @@ class ParseOlx extends Command {
 
     //array_push($dataArray, $dataAksuComps);
 //    array_push($dataArray, $dataNursultanPhonesAndGadgets);
-    array_push($dataArray, $dataModaAndStyle);
+//    array_push($dataArray, $dataModaAndStyle);
+
+    array_push($dataArray, $dataNursultanPhonesAndGadgets);
 
     foreach($dataArray as $data) {
         //$this->info("-----------------------------------------");
@@ -290,9 +292,9 @@ class ParseOlx extends Command {
        //$page = self::getPage("https://www.olx.kz/elektronika/kompyutery-i-komplektuyuschie/nastolnye-kompyutery/aksu_5689/", $cookie);
        //$page = self::getPage("https://www.olx.kz/elektronika/kompyutery-i-komplektuyuschie/nastolnye-kompyutery/astana/", $cookie);
        //$page = self::getPage("https://www.olx.kz/elektronika/telefony-i-aksesuary/mobilnye-telefony-smartfony/aksu_5689/", $cookie);	
-       //$page = self::getPage("https://www.olx.kz/elektronika/telefony-i-aksesuary/mobilnye-telefony-smartfony/astana/", $cookie);
+       $page = self::getPage("https://www.olx.kz/elektronika/telefony-i-aksesuary/mobilnye-telefony-smartfony/astana/", $cookie);
 //       $page = self::getPage("https://www.olx.kz/moda-i-stil/aksessuary/aksu_5689/", $cookie);
-       $page = self::getPage("https://www.olx.kz/moda-i-stil/aksessuary/astana/", $cookie);
+//       $page = self::getPage("https://www.olx.kz/moda-i-stil/aksessuary/astana/", $cookie);
 
         $this->info("ok\n");
 
@@ -325,8 +327,10 @@ class ParseOlx extends Command {
             }
 
             $title = trim(self::getTitle($page));
+            $this->info("TITLE: ".$title);	       
 
-            $desc =  trim(self::getDesc($page));    
+            $desc =  trim(self::getDesc($page)); 
+            $this->info("DESC: ".$desc);	       
             
             $desc =  str_replace("OLX", "ilbo", $desc);
             $desc =  str_replace("olx", "ilbo", $desc);
@@ -363,7 +367,6 @@ class ParseOlx extends Command {
           $this->info("---------------------------------");
 
             $phoneData = json_decode($phoneJson)->data;
-//            $phoneData = json_decode($phoneJson);
             
             if ($phoneData)
                 $phoneDecode = $phoneData->phones;
