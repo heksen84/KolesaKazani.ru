@@ -24,7 +24,7 @@ class ParseOlx extends Command {
     // Из первого запроса токена в браузере
     const clientId = "100302";
     const clientSecret = "dHXhnUG4QDkQ3Btx07EgdZGOYydoccbtZBE5ROlNTycHxs2W";
-    const refreshToken = "7c33c972e5e51327e3508d614213f76a6cc9643c";
+    const refreshToken = "81611540efea3b2e9baa2256e29df2ed79e71dc9";
     const deviceId = "c073d2b0-96ab-497a-89e0-e2bf335d2f09";
     const deviceToken = "eyJpZCI6ImMwNzNkMmIwLTk2YWItNDk3YS04OWUwLWUyYmYzMzVkMmYwOSJ9.e578f578f2de49d846e0be2a2c399bb78153c63c";
 
@@ -52,6 +52,8 @@ class ParseOlx extends Command {
    }
 
    function getPhone($advertId, $cookie, $token) {
+
+   $this->info("ADVERT ID: ".$advertId."\n");
 
     $ch = curl_init("https://www.olx.kz/api/v1/offers/".$advertId."/phones/");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -84,20 +86,25 @@ class ParseOlx extends Command {
    
    function getPrice($page) {
     $doc = phpQuery::newDocument($page);
-    $price = $doc->find('.pricelabel strong')->eq(0)->text();
+//    $price = $doc->find('.pricelabel strong')->eq(0)->text();
+    $price = $doc->find('.css-dcwlyx h3')->eq(0)->text();
     $price = str_replace("тг.", "", $price);
+    $price = str_replace("₸", "", $price);
     $price = str_replace(" ", "", $price);
     return $price;
    }
    
    function getId($page) {
-    $doc = phpQuery::newDocument($page);
-    return $doc->find('.offer-bottombar__item strong')->eq(2)->text();
+    $doc = phpQuery::newDocument($page);    
+    return str_replace("ID: ",  "", $doc->find('.css-1ferwkx span')->eq(0)->text());
+
    }
    
    function getImage($page) {
     $doc = phpQuery::newDocument($page);
-    return $doc->find('#descImage img')->attr("src");
+
+//    $this->info("Картинка:".$doc->find('.swiper-zoom-container img')->eq(0)->attr("src"));
+    return $doc->find('.swiper-zoom-container img')->eq(0)->attr("src");
    }
    
    function getImageName($page) {
@@ -240,8 +247,8 @@ class ParseOlx extends Command {
         "adv_price" => $price,
         "adv_phone" => $phoneNumber,
         "adv_title" => $title,
-//        "adv_coords" => "52.040616,76.926367", // Pavl, Aksu        
-        "adv_coords" => "51.128207, 71.430411", // Akmol, Nur
+        "adv_coords" => "52.040616,76.926367", // Pavl, Aksu        
+//        "adv_coords" => "51.128207, 71.430411", // Akmol, Nur
         "olx_id" => $advertId,
         "img_real_path" => storage_path("app")."/".$imgRealPath,
         "img_original_name" => $imgOriginalName,
@@ -284,8 +291,8 @@ class ParseOlx extends Command {
        //$page = self::getPage("https://www.olx.kz/elektronika/kompyutery-i-komplektuyuschie/nastolnye-kompyutery/astana/", $cookie);
        //$page = self::getPage("https://www.olx.kz/elektronika/telefony-i-aksesuary/mobilnye-telefony-smartfony/aksu_5689/", $cookie);	
        //$page = self::getPage("https://www.olx.kz/elektronika/telefony-i-aksesuary/mobilnye-telefony-smartfony/astana/", $cookie);
-//       $page = self::getPage("https://www.olx.kz/moda-i-stil/aksessuary/aksu_5689/", $cookie);
-       $page = self::getPage("https://www.olx.kz/moda-i-stil/aksessuary/astana/", $cookie);
+       $page = self::getPage("https://www.olx.kz/moda-i-stil/aksessuary/aksu_5689/", $cookie);
+//       $page = self::getPage("https://www.olx.kz/moda-i-stil/aksessuary/astana/", $cookie);
 
         $this->info("ok\n");
 
@@ -294,14 +301,22 @@ class ParseOlx extends Command {
         $title = $doc->find('title')->text();
         $items = $doc->find('h3 a');
 
+
         foreach($items as $item) { 
 
+//            $this->info(pq($item)->attr("href")."\n");
+//            return;
+
             $page = self::getPage(pq($item)->attr("href"), $cookie);
-            
-          //  echo $page;
-          //  return;
-          
+
+//            $this->info($page."\n");
+//            return;
+
             $id = trim(self::getId($page));
+
+            $this->info("id:".$id."\n");
+
+
             $advCount = Adverts::where("olx_id", $id)->get()->count();
 
             if ( $advCount > 0 ) {
@@ -339,11 +354,16 @@ class ParseOlx extends Command {
                 $optype = 2;
             }
 
+          $this->info("Цена: ".$price);
+		
             $phoneJson = self::getPhone($id, $cookie, $token);
 
-            $this->info($phoneJson);
+          $this->info("-----------[ телефон ]-----------");
+          $this->info($phoneJson);
+          $this->info("---------------------------------");
 
             $phoneData = json_decode($phoneJson)->data;
+//            $phoneData = json_decode($phoneJson);
             
             if ($phoneData)
                 $phoneDecode = $phoneData->phones;
@@ -373,6 +393,9 @@ class ParseOlx extends Command {
                 }
 
             $imageUrl = self::getImage($page);
+
+	    $imgRealPath = null;
+	    $imgOriginalName = null;
             
             if ($imageUrl) {
 
