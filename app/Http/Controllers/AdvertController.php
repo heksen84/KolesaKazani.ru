@@ -17,6 +17,21 @@ use App\Images;
 use App\Complaints;
 
 class AdvertController extends AdvertBaseController {        
+
+
+        // ----------------------------------------------
+	// Получить имя местоположения по чпу
+ 	// ----------------------------------------------
+	private function getPlaceNameByUrl($placeUrl) {
+
+                // Делаю выборку и сходу заменяю слово беслатно на пробел
+                $place = Places::select("name")->where("url", str_replace("besplatno-", "", $placeUrl))->get();
+       
+                if (!count($place))
+                   abort(404);          
+       
+                return $place[0]->name;
+        }
         
         // новое объявление
         public function new_advert(Request $request) {                        
