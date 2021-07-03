@@ -28,7 +28,7 @@ class AdvertBaseController extends Controller {
         // ----------------------------------------------
 	// Получить имя местоположения по чпу
  	// ----------------------------------------------
-	private function getPlaceNameByUrl($placeUrl) {
+	public function getPlaceNameByUrl($placeUrl) {
 
                 // Делаю выборку и сходу заменяю слово беслатно на пробел
                 $place = Places::select("name")->where("url", str_replace("besplatno-", "", $placeUrl))->get();
