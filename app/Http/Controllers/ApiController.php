@@ -677,7 +677,7 @@ class ApiController extends Controller {
                 } // end foreach                
 
 		        // FIXME: проверка нужна?
-//                if ( count($imagesArray) > 0) { 
+                if ( count($imagesArray) > 0) { 
                     
                     ResizeImages::dispatch($imagesArray);                
                     //PostSocials::dispatch($imagesArray, $title, $category, $text, $price, $phone, $region_id, $city_id);                    
@@ -689,7 +689,7 @@ class ApiController extends Controller {
                         // отправляю в очередь
                         LoadImages::dispatch($imagesArray);                    
                     }
-//                } 
+                } 
                 
 
             }  // if ($request->file("images"))
@@ -766,10 +766,10 @@ class ApiController extends Controller {
                         }                         
     
                     // FIXME: проверка нужна?
-//                    if ( count($imagesArray) > 0) { 
+                    if ( count($imagesArray) > 0) { 
                                                     
                         ResizeImages::dispatch($imagesArray);
-                        PostSocials::dispatch($imagesArray, $title, $category, $text, $price, $phone, $region_id, $city_id);                        
+                        //PostSocials::dispatch($imagesArray, $title, $category, $text, $price, $phone, $region_id, $city_id);                        
     
                         // Если свободного места осталось мало, то сохраняю в облако и удаляю временные изображения
                         if (Common::getFreeDiskSpace(".") < Common::MIN_FREE_DISK_SPACE_IN_GB) {
@@ -778,7 +778,7 @@ class ApiController extends Controller {
                             // отправляю в очередь
                             LoadImages::dispatch($imagesArray);                    
                         }                        
- //                   } 
+                   } 
 
                     DeleteFilesArray::dispatch(array($data["img_real_path"]));
             }
