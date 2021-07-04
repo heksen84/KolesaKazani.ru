@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Intervention\Image\ImageManagerStatic as Image;
-use App\Helpers\InstaLite;
 
 
 class ResizeImages implements ShouldQueue {
@@ -36,7 +35,6 @@ class ResizeImages implements ShouldQueue {
      */
     public function handle() {                
 
-        $instagram = new InstaLite("test_site68", "morphosis19");
 
         foreach($this->images as $img) {
             
