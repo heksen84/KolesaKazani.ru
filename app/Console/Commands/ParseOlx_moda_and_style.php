@@ -24,7 +24,7 @@ class ParseOlx_moda_and_style extends Command {
     // Из первого запроса токена в браузере
     const clientId = "100302";
     const clientSecret = "dHXhnUG4QDkQ3Btx07EgdZGOYydoccbtZBE5ROlNTycHxs2W";
-    const refreshToken = "81611540efea3b2e9baa2256e29df2ed79e71dc9";
+    const refreshToken = "5ecaa241c0a5079625cfa1fbc608141fda424ebc";
     const deviceId = "c073d2b0-96ab-497a-89e0-e2bf335d2f09";
     const deviceToken = "eyJpZCI6ImMwNzNkMmIwLTk2YWItNDk3YS04OWUwLWUyYmYzMzVkMmYwOSJ9.e578f578f2de49d846e0be2a2c399bb78153c63c";
 

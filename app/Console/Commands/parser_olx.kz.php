@@ -5,7 +5,7 @@ include 'phpQuery.php';
 // Данные клиента
 $clientId = "100302"; // Из первого запроса токена в браузере
 $clientSecret = "dHXhnUG4QDkQ3Btx07EgdZGOYydoccbtZBE5ROlNTycHxs2W"; // Из первого запроса токена в браузере
-$refreshToken = "42309399ffaa297dc8f3e42b68ff7005f0cdb50b"; // Из первого запроса токена в браузере
+$refreshToken = "5ecaa241c0a5079625cfa1fbc608141fda424ebc"; // Из первого запроса токена в браузере
 $deviceId = "c073d2b0-96ab-497a-89e0-e2bf335d2f09";
 $deviceToken = "eyJpZCI6ImMwNzNkMmIwLTk2YWItNDk3YS04OWUwLWUyYmYzMzVkMmYwOSJ9.e578f578f2de49d846e0be2a2c399bb78153c63c";
 // grand_type: "device"
