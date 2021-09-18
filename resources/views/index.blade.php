@@ -216,9 +216,48 @@
   <br>
 
 
+    <div class="row">
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">    
 	<a href="/bmw" class="blue">bmw</a><br>
         <a href="/bmw" class="blue">audi</a><br>
 	<a href="/bmw" class="blue">toyota</a>
+    </div>
+
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">    
+	<a href="/bmw" class="blue">bmw</a><br>
+        <a href="/bmw" class="blue">audi</a><br>
+	<a href="/bmw" class="blue">toyota</a>
+    </div>
+
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">    
+	<a href="/bmw" class="blue">bmw</a><br>
+        <a href="/bmw" class="blue">audi</a><br>
+	<a href="/bmw" class="blue">toyota</a>
+    </div>
+
+
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">    
+	<a href="/bmw" class="blue">bmw</a><br>
+        <a href="/bmw" class="blue">audi</a><br>
+	<a href="/bmw" class="blue">toyota</a>
+    </div>
+
+
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">    
+	<a href="/bmw" class="blue">bmw</a><br>
+        <a href="/bmw" class="blue">audi</a><br>
+	<a href="/bmw" class="blue">toyota</a>
+    </div>
+
+    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">    
+	<a href="/bmw" class="blue">bmw</a><br>
+        <a href="/bmw" class="blue">audi</a><br>
+	<a href="/bmw" class="blue">toyota</a>
+    </div>
+    </div>
+	
+    <br>
+    Все марки
   <!--<div id="categories_line">
     <div class="center">        
       <div id="categories_title" class="shadow_text"></div>    
