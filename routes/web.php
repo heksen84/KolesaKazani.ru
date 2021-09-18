@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\Helpers\Common;
-use App\SE_UserQueries;
+//use App\SE_UserQueries;
 
 // Роуты имеют приоритеты
 Auth::routes();
@@ -38,7 +38,7 @@ Route::get("/objavlenie/posted/{url}", "AdvertController@posted");
 // ----------------------------------------------------
 // Генерирую url из таблицы
 // ----------------------------------------------------
-foreach(SE_UserQueries::All() as $item) {    
+/*foreach(SE_UserQueries::All() as $item) {    
 
     Route::get("/".str_replace(' ', '-',$item->title), [ 
         "uses"=>"UrlGeneratorController@convertData", 
@@ -50,7 +50,7 @@ foreach(SE_UserQueries::All() as $item) {
         "place_id"=>$item->place_id,
         "view"=>"вьюха"
     ]);
-}
+}*/
 
 Route::get("/sitemap/test.xml", "SitemapController@getUrls");
 
