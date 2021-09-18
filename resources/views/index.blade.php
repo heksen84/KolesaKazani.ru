@@ -30,7 +30,7 @@
     <nav class="navbar navbar-expand-lg navbar-light">
 
     <a class="navbar-brand" href="/">
-      <h2 id="navbrand-title">{{ config('app.name', 'Laravel') }}</h2><h2 id="navbrand-description">Продажа Авто и Мототехники</h2>
+      <h2 id="navbrand-title">{{ config('app.name', 'Laravel') }}</h2><h2 id="navbrand-description">Продажа авто в г.Казань</h2>
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -186,7 +186,7 @@
         <div id="logo_block">
           <a href="/">
             <div id="logo_block_text">{{ config('app.name') }}</div>
-              <h1 id="logo_block_description">Продажа Авто и Мототехники</h1>
+              <h1 id="logo_block_description">Продажа авто в г.Казань</h1>
             </div>
           </a>
         </div>
@@ -214,8 +214,12 @@
     </div>
   </div>  
   <br>
-    
-  <div id="categories_line">
+
+
+	<a href="/bmw" class="blue">bmw</a><br>
+        <a href="/bmw" class="blue">audi</a><br>
+	<a href="/bmw" class="blue">toyota</a>
+  <!--<div id="categories_line">
     <div class="center">        
       <div id="categories_title" class="shadow_text"></div>    
 	      <div class="form-inline" id="categories">
@@ -302,7 +306,7 @@
       </div>      
       @endforeach
   </div>
-  @endif    
+  @endif  -->  
   
   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-1 mb-1">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>  

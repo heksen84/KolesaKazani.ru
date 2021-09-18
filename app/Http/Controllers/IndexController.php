@@ -48,7 +48,7 @@ class IndexController extends Controller {
 		\Debugbar::info("v=".$request->v);
 		\Debugbar::info("SESSION ID: ".\Session::getId());
 		
-		$cm_title = '"'.config('app.name').'" - Покупка и продажа Авто ';
+		$cm_title = '"'.config('app.name').'" - Продажа авто в г.Казань';
 		$cm_description = "Объявления о покупке, продаже, обмене и сдаче в аренду в ";
 		$cm_keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, ilbo, ТатарДоска, страна, ";
 		
