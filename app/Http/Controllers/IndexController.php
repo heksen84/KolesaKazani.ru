@@ -48,23 +48,23 @@ class IndexController extends Controller {
 		\Debugbar::info("v=".$request->v);
 		\Debugbar::info("SESSION ID: ".\Session::getId());
 		
-		$cm_title = '"'.config('app.name').'" - сайт объявлений ';
+		$cm_title = '"'.config('app.name').'" - Покупка и продажа Авто ';
 		$cm_description = "Объявления о покупке, продаже, обмене и сдаче в аренду в ";
-		$cm_keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, ilbo, ильбо, страна, ";
+		$cm_keywords = "объявления, частные объявления, доска объявлений, дать объявление, объявления продажа, объявления продаю, сайт объявлений, ilbo, ТатарДоска, страна, ";
 		
 		if ($request->search != "")
 			return $this->search($request->search, $region, $place);		
 		
-			$sklonResult = "Казахстана";
+			$sklonResult = "Татарстана";
 						
 		// Страна
 		if ($region === null && $place === null) {			
 			$location = "/";				
 			$title =  $cm_title.$sklonResult;
-			$description = $cm_description."Казахстане";
-			$keywords = $cm_keywords."Казахстан";
-			$locationName = "Казахстан";
-			$sklonPlace = "Казахстана";
+			$description = $cm_description."Татарстане";
+			$keywords = $cm_keywords."Татарстан";
+			$locationName = "Татарстан";
+			$sklonPlace = "Татарстана";
 		}		
 
 		// Регион
@@ -208,7 +208,7 @@ class IndexController extends Controller {
 			\Debugbar::info("NEWADVERTS:");
 			\Debugbar::info($newAdverts);			
 			
-			$title = $usertitle?$usertitle." на сайте объявлений Ильбо":$title;
+			$title = $usertitle?$usertitle." на сайте объявлений ТатарДоска":$title;
 										
 		return view("index")
 		->with("title", $title)

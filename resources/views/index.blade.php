@@ -30,7 +30,7 @@
     <nav class="navbar navbar-expand-lg navbar-light">
 
     <a class="navbar-brand" href="/">
-      <h2 id="navbrand-title">{{ config('app.name', 'Laravel') }}</h2><h2 id="navbrand-description">объявления {{ $sklonResult }}</h2>
+      <h2 id="navbrand-title">{{ config('app.name', 'Laravel') }}</h2><h2 id="navbrand-description">Продажа Авто и Мототехники</h2>
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -186,7 +186,7 @@
         <div id="logo_block">
           <a href="/">
             <div id="logo_block_text">{{ config('app.name') }}</div>
-              <h1 id="logo_block_description">Объявления {{ $sklonPlace }}</h1>
+              <h1 id="logo_block_description">Продажа Авто и Мототехники</h1>
             </div>
           </a>
         </div>
@@ -195,16 +195,18 @@
         
       <!-- компонент поиска по сайту -->
       <form action="/search" method="get">
-        <input type="text" id="search_string" placeholder="поиск по объявлениям {{ $sklonPlace }}" name="searchString" required/>
+        <input type="text" id="search_string" placeholder="поиск по объявлениям" name="searchString" required/>
         <input type="text" name="region" value="{{ $urlRegion }}" hidden/>
         <input type="text" name="place" value="{{ $urlPlace }}" hidden/>
         <button id="button_search" type="submit" title="Найти что требуется">найти</button>
       </form>
 
       <!-- кнопки выбора региона и т.п.-->
-      <div class="index_select_region_and_other_button_block">    
+<!--     <div class="index_select_region_and_other_button_block">    
         <button class="btn btn-link" data-toggle="modal" id="locationButton" style="margin-top:-8px">Расположение {{ $locationName }} <span title="Выбрать раположения поиска">(изменить)</span></button>
-        </div>
+     </div> -->
+
+
       </div>
 
     <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center" title="Подать новое объявление на сайте" id="new_advert_col">

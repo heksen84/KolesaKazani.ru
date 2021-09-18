@@ -78,7 +78,7 @@ class ResultsController extends Controller {
     private function getLocationName($val, $isRegion) {                        
 
         if ( $val === null ) 
-            return "Казахстане";
+            return "Татарстане";
 	    else 
             if ($isRegion) {
                 $petrovich = new Petrovich(Petrovich::GENDER_FEMALE);											
