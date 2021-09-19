@@ -217,39 +217,39 @@
 
 
     <div class="row">
-    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">    
+    <div class="center col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">    
 	<a href="/bmw" class="blue">bmw</a><br>
         <a href="/bmw" class="blue">audi</a><br>
 	<a href="/bmw" class="blue">toyota</a>
     </div>
 
-    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">    
+    <div class="center col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">    
 	<a href="/bmw" class="blue">bmw</a><br>
         <a href="/bmw" class="blue">audi</a><br>
 	<a href="/bmw" class="blue">toyota</a>
     </div>
 
-    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">    
-	<a href="/bmw" class="blue">bmw</a><br>
-        <a href="/bmw" class="blue">audi</a><br>
-	<a href="/bmw" class="blue">toyota</a>
-    </div>
-
-
-    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">    
+    <div class="center col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">    
 	<a href="/bmw" class="blue">bmw</a><br>
         <a href="/bmw" class="blue">audi</a><br>
 	<a href="/bmw" class="blue">toyota</a>
     </div>
 
 
-    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">    
+    <div class="center col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">    
 	<a href="/bmw" class="blue">bmw</a><br>
         <a href="/bmw" class="blue">audi</a><br>
 	<a href="/bmw" class="blue">toyota</a>
     </div>
 
-    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">    
+
+    <div class="center col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">    
+	<a href="/bmw" class="blue">bmw</a><br>
+        <a href="/bmw" class="blue">audi</a><br>
+	<a href="/bmw" class="blue">toyota</a>
+    </div>
+
+    <div class="center col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">    
 	<a href="/bmw" class="blue">bmw</a><br>
         <a href="/bmw" class="blue">audi</a><br>
 	<a href="/bmw" class="blue">toyota</a>
