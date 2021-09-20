@@ -16,7 +16,7 @@ class IndexController extends Controller {
 	// ------------------------------------------
     public function ShowIndexPage(Request $request) {												
 		return view("index")
-		->with("title", "КолёсаКазани")
+		->with("title", "КолёсаКазани - продажа авто в Казани")
 		->with("description", "123")
 		->with("keywords", "123")
 		->with("auth", Auth::user()?1:0)
