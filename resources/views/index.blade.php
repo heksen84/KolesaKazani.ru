@@ -40,7 +40,7 @@
     <div class="collapse navbar-collapse" id="navbar-list">
       <ul class="navbar-nav">        
         <li class="nav-item active">	    
-          <a class="nav-link" href="/podat-objavlenie">Подать объявлениe <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/podat-objavlenie">Продать авто <span class="sr-only">(current)</span></a>
         </li>
         @if ($auth===1)
         <li class="nav-item">
