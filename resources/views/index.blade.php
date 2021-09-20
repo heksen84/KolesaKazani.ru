@@ -11,7 +11,7 @@
   <meta name="yandex-verification" content="56091dbfb213e164" />
   <!-- OpenGraph -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Ильбо">
+  <meta property="og:site_name" content="{{ $title }}">
   <meta property="og:title" content="{{ $title }}">
   <meta property="og:description" content="{{ $description }}">  
   <meta property="og:url" content="https://ilbo.site/">
