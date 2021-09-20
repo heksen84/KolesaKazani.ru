@@ -33,11 +33,11 @@
       <h2 id="navbrand-title">{{ config('app.name', 'Laravel') }}</h2><h2 id="navbrand-description">Продажа авто в г.Казань</h2>
     </a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" onclick="displayMenu(event)">
       <span class="navbar-toggler-icon"></span>
     </button>
     
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div class="collapse navbar-collapse" id="navbar-list">
       <ul class="navbar-nav">        
         <li class="nav-item active">	    
           <a class="nav-link" href="/podat-objavlenie">Подать объявлениe <span class="sr-only">(current)</span></a>
@@ -137,6 +137,16 @@
   </div>
 
   <script>
+
+  function displayMenu(event) {
+    if (document.getElementById("navbar-list").classList.contains("show")) {
+        document.getElementById("navbar-list").classList.remove("show")
+    }
+    else {
+        document.getElementById("navbar-list").classList.add("show")
+    }
+  }
+
   function showAll() {      
     let items = document.getElementsByClassName('hide');    
     for (let i = 0; i < items.length; i++) {
