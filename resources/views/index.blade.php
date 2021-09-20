@@ -77,7 +77,7 @@
 
     <div class="row" id="mobile_new_advert_link">
       <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 center">  
-        <a href="/podat-objavlenie" style="font-size:16px;letter-spacing:2px;color:green">подать объявление</a>	
+        <a href="/podat-objavlenie" style="font-size:16px;letter-spacing:2px;color:green">продать авто</a>	
       </div>
     </div>
 
