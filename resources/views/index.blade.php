@@ -159,7 +159,7 @@
       </div>
       @endfor
     </div>
-    <div class="row hide" style="margin: -5px 0px 0px 17px">
+    <div class="row hide" style="margin: 0px 0px 0px 17px">
       @for($i=18; $i<count($car_mark); $i++)      
       <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-2">       
         <a href="/cars/{{$car_mark[$i]->name}}" class="blue">{{ $car_mark[$i]->name }}</a>            
@@ -185,18 +185,15 @@
   <script>
   
   function showAll() {    
-    let items = document.getElementsByClassName('hide');
     
+    let items = document.getElementsByClassName('hide');    
     for (let i = 0; i < items.length; i++) {
-      console.log(items[i].classList.remove("hide"));
-    }
-
-    console.log(items)
+      items[i].classList.remove("hide");
+    }    
 
   }
 
   </script>
-
 	    <script type="text/javascript" src="{{ mix('js/manifest.js') }}"></script>        
 	    <script type="text/javascript" src="{{ mix('js/vendor.js') }}"></script>        
       <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>
