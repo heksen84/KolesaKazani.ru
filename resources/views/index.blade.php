@@ -61,73 +61,8 @@
     </div>
   </nav>
   </div>
-
-
-<!--<div style="float:left" class="index-side-advert ml-4 mt-2">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <ins class="adsbygoogle"
-     style="display:inline;width:150px;height:600px"
-     data-ad-client="ca-pub-8074944108437227"
-     data-ad-slot="2249357572"></ins>
-    <script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <ins class="adsbygoogle"
-     style="display:block;width:150px;height:600px"
-     data-ad-client="ca-pub-8074944108437227"
-     data-ad-slot="2249357572"></ins>
-    <script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <ins class="adsbygoogle"
-     style="display:block;width:150px;height:600px"
-     data-ad-client="ca-pub-8074944108437227"
-     data-ad-slot="2249357572"></ins>
-    <script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-
-  </div>  
-
-  <div style="float:right" class="index-side-advert mr-4 mt-2">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <ins class="adsbygoogle"
-     style="display:block;width:150px;height:600px"
-     data-ad-client="ca-pub-8074944108437227"
-     data-ad-slot="2249357572"></ins>
-    <script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <ins class="adsbygoogle"
-     style="display:block;width:150px;height:600px"
-     data-ad-client="ca-pub-8074944108437227"
-     data-ad-slot="2249357572"></ins>
-    <script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <ins class="adsbygoogle"
-     style="display:block;width:150px;height:600px"
-     data-ad-client="ca-pub-8074944108437227"
-     data-ad-slot="2249357572"></ins>
-    <script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>    
-  </div>-->
   
   <div class="container-fluid container1 mt-2" id="index_page">
-  
-  <!--
-  @if (config('app.debug'))
-   <p style="position:fixed;top:3px;left:3px;font-size:13px;background:yellow;width:105px;padding:5px;border:1px solid grey;border-radius:3px">режим отладки</p>
-  @endif-->
 
     <div class="row">    
       <div class="margin-auto" id="login_register_col">
@@ -216,6 +151,10 @@
 	
     <br>
     Все марки 
+    <br>
+    @foreach($car_mark as $car)
+    <a href="/" class="blue">{{ $car->name }}</a>
+    @endforeach
 
   <div class="text-center m-4 ">
     <a href="/podat-objavlenie" class="black" style="font-size:22px;letter-spacing:4px;font-weight:300">подать объявление</a>

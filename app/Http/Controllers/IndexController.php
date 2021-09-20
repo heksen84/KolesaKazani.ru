@@ -3,11 +3,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
-use App\Helpers\Petrovich;
 use App\Helpers\Common;
+use App\CarMark;
 use App\Categories;
-use App\Regions;
-use App\Places;
 use DB;
 
 class IndexController extends Controller {
@@ -22,6 +20,7 @@ class IndexController extends Controller {
 		->with("description", "123")
 		->with("keywords", "123")
 		->with("auth", Auth::user()?1:0)
+		->with("car_mark", CarMark::All())
 		;
     }
 	
