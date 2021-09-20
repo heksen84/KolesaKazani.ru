@@ -486,7 +486,7 @@ h3 {
 }
 
 #search_string {
-  width:385px;
+  width:80%;
 }
 
 #logo_block_text {
@@ -527,7 +527,7 @@ h3 {
 }
 
 #search_string {
-  margin-top:7px;
+  margin-top:7px;  
 }
 
 #categories_title {
@@ -540,10 +540,6 @@ h3 {
 // IPAD'ы
 // --------------------------------------------
 @media screen and (max-width:768px) {
-
-#search_string {
-  width:90%;
-}
 
 #index_select_region_and_other_button_block {
   margin-top:0px;
@@ -570,7 +566,11 @@ h3 {
 // --------------------------------------------
 @media screen and (max-width:420px) {  
 
-#button_search {   
+  #search_string {
+    width:220px;
+  }
+
+  #button_search {   
   font-size:14px;    
 }
 
