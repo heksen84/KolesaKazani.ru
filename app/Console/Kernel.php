@@ -25,10 +25,7 @@ class Kernel extends ConsoleKernel
 	    Commands\Test::class,
             Commands\CheckSitemapsForError::class,
             Commands\ImportUserQueries::class,
-            Commands\ParseOlx_phones_and_gadgets::class,
-            Commands\ParseOlx_moda_and_style::class,
-            Commands\ParseOlx_comps::class,
-            Commands\ParseOlx_bytovye_uslugi::class,
+            Commands\Parse_Kolesa_KZ::class
     ];
 
     /**

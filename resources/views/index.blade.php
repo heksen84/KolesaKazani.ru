@@ -109,7 +109,7 @@
   <br>
 
 
-    <div class="row">
+    <!--<div class="row">
     <div class="center col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">    
 	<a href="/bmw" class="blue">bmw</a><br>
         <a href="/bmw" class="blue">audi</a><br>
@@ -151,10 +151,14 @@
 	
     <br>
     Все марки 
-    <br>
-    @foreach($car_mark as $car)
-    <a href="/" class="blue">{{ $car->name }}</a>
-    @endforeach
+    <br>-->
+    <div class="row" style="margin: 15px 10px">
+      @foreach($car_mark as $car)
+      <div class="col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2" style="font-size:16px;"> 
+      <a href="/" class="blue">{{ $car->name }}</a>
+      </div>
+      @endforeach
+    </div>
 
   <div class="text-center m-4 ">
     <a href="/podat-objavlenie" class="black" style="font-size:22px;letter-spacing:4px;font-weight:300">подать объявление</a>
