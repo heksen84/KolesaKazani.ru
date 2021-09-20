@@ -10,7 +10,9 @@ use DB;
 
 class IndexController extends Controller {
 	
-		    	
+
+	// SELECT * FROM mytable WHERE id IN (1,2,3,4) ORDER BY FIELD(id,3,2,1,4);
+	
 	// ------------------------------------------
 	// Базовая функция для главной страницы		
 	// ------------------------------------------
