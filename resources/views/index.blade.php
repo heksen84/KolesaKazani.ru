@@ -98,8 +98,7 @@
         <input type="text" id="search_string" placeholder="поиск по объявлениям" name="searchString"/>
         <button id="button_search" type="submit" title="Найти что требуется">найти</button>
       </form>
-
-
+      
       </div>
 
     <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 center" title="Подать новое объявление на сайте" id="new_advert_col">
@@ -107,60 +106,15 @@
     </div>
   </div>  
   <br>
-
-
-    <!--<div class="row">
-    <div class="center col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">    
-	<a href="/bmw" class="blue">bmw</a><br>
-        <a href="/bmw" class="blue">audi</a><br>
-	<a href="/bmw" class="blue">toyota</a>
-    </div>
-
-    <div class="center col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">    
-	<a href="/bmw" class="blue">bmw</a><br>
-        <a href="/bmw" class="blue">audi</a><br>
-	<a href="/bmw" class="blue">toyota</a>
-    </div>
-
-    <div class="center col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">    
-	<a href="/bmw" class="blue">bmw</a><br>
-        <a href="/bmw" class="blue">audi</a><br>
-	<a href="/bmw" class="blue">toyota</a>
-    </div>
-
-
-    <div class="center col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">    
-	<a href="/bmw" class="blue">bmw</a><br>
-        <a href="/bmw" class="blue">audi</a><br>
-	<a href="/bmw" class="blue">toyota</a>
-    </div>
-
-
-    <div class="center col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">    
-	<a href="/bmw" class="blue">bmw</a><br>
-        <a href="/bmw" class="blue">audi</a><br>
-	<a href="/bmw" class="blue">toyota</a>
-    </div>
-
-    <div class="center col-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">    
-	<a href="/bmw" class="blue">bmw</a><br>
-        <a href="/bmw" class="blue">audi</a><br>
-	<a href="/bmw" class="blue">toyota</a>
-    </div>
-    </div>
-	
-    <br>
-    Все марки 
-    <br>-->
     <div class="row" style="margin: -5px 0px 0px 17px">
-      @for($i=0; $i<18; $i++)      
+      @for($i=0; $i<24; $i++)      
       <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-2">       
         <a href="/cars/{{$car_mark[$i]->name}}" class="blue">{{ $car_mark[$i]->name }}</a>            
       </div>
       @endfor
     </div>
     <div class="row hide" style="margin: 0px 0px 0px 17px">
-      @for($i=18; $i<count($car_mark); $i++)      
+      @for($i=24; $i<count($car_mark); $i++)      
       <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-2">       
         <a href="/cars/{{$car_mark[$i]->name}}" class="blue">{{ $car_mark[$i]->name }}</a>            
       </div>
@@ -183,20 +137,14 @@
   </div>
 
   <script>
-  
-  function showAll() {    
-    
+  function showAll() {      
     let items = document.getElementsByClassName('hide');    
     for (let i = 0; i < items.length; i++) {
       items[i].classList.remove("hide");
-    }    
-
-  }
-
+    }
+  } 
   </script>
-	    <script type="text/javascript" src="{{ mix('js/manifest.js') }}"></script>        
-	    <script type="text/javascript" src="{{ mix('js/vendor.js') }}"></script>        
-      <script type="text/javascript" src="{{ mix('js/index.js') }}"></script>
+
       </div>
     </div>
   </body>  
