@@ -152,12 +152,24 @@
     <br>
     Все марки 
     <br>-->
-    <div class="row" style="margin: 5px 10px">
-      @foreach($car_mark as $car)
-      <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-2"> 
-      <a href="/" class="blue">{{ $car->name }}</a>
+    <div class="row" style="margin: -5px 0px 0px 17px">
+      @for($i=0; $i<18; $i++)      
+      <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-2">       
+        <a href="/cars/{{$car_mark[$i]->name}}" class="blue">{{ $car_mark[$i]->name }}</a>            
       </div>
-      @endforeach
+      @endfor
+    </div>
+    <div class="row hide" style="margin: -5px 0px 0px 17px">
+      @for($i=18; $i<count($car_mark); $i++)      
+      <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-2">       
+        <a href="/cars/{{$car_mark[$i]->name}}" class="blue">{{ $car_mark[$i]->name }}</a>            
+      </div>
+      @endfor
+    </div>        
+    <div class="row mt-3">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 center"> 
+        <div class="black cursor" onclick="showAll()" title="показать все марки тачек">показать все</div>
+      </div>
     </div>
 
   <div class="text-center m-4 ">
@@ -169,6 +181,21 @@
 		  <a href="/rules" class="underline_link">Правила сайта</a> | <a href="/about" class="underline_link">О сайте</a> 	 
 	  </div>        
   </div>
+
+  <script>
+  
+  function showAll() {    
+    let items = document.getElementsByClassName('hide');
+    
+    for (let i = 0; i < items.length; i++) {
+      console.log(items[i].classList.remove("hide"));
+    }
+
+    console.log(items)
+
+  }
+
+  </script>
 
 	    <script type="text/javascript" src="{{ mix('js/manifest.js') }}"></script>        
 	    <script type="text/javascript" src="{{ mix('js/vendor.js') }}"></script>        
