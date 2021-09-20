@@ -12,7 +12,7 @@ class IndexController extends Controller {
 	
 
 	// SELECT * FROM mytable WHERE id IN (1,2,3,4) ORDER BY FIELD(id,3,2,1,4);
-	
+
 	// ------------------------------------------
 	// Базовая функция для главной страницы		
 	// ------------------------------------------
@@ -22,8 +22,8 @@ class IndexController extends Controller {
 		->with("description", "123")
 		->with("keywords", "123")
 		->with("auth", Auth::user()?1:0)
-		->with("car_mark", CarMark::All())
-		;
+		//->with("car_mark", CarMark::select("*")->orderByRaw("FIELD(id,1,2,3,4,7,8,9,10,12,14,15,18,19,20,21,22,24,25,26,27,28,29,30,31,32,34,35,36,37) asc")->get());		
+		->with("car_mark", CarMark::All());		
     }
 	
 	// --------------------------------------------------------------
