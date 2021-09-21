@@ -56,7 +56,15 @@
           <a href="/" class="close-link">закрыть страницу</a>
         </div>
         
-        <h1 id="title" class="mt-3">{{ $h1 }}</h1>
+        <!--<h1 id="title" class="mt-3">{{ $h1 }}</h1>-->
+        <br>
+
+        <label>{{ $h1 }}</label>
+        <select>
+        @foreach($models as $model)        
+        <option>{{ $model->name }}</<option>        
+        @endforeach
+        </select>
         
         <!--@if (count($items) === 0)
           
