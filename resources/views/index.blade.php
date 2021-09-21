@@ -122,7 +122,7 @@
     </div>        
     <div class="row mt-3">
       <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 center"> 
-        <div class="black cursor" onclick="showAll()" title="показать все марки тачек" id="showAll">показать все</div>
+        <div class="black" style="cursor:default" onclick="showAll()" title="показать все марки тачек" id="showAll">показать все</div>
       </div>
     </div>
 
