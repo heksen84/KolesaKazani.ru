@@ -74,3 +74,8 @@
     </div>
 </div>
 @endsection
+<style> 
+.row {
+ margin: -8px;
+}
+</style> 
