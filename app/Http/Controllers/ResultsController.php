@@ -14,8 +14,8 @@ class ResultsController extends Controller {
 
     const FULL_SITE_DESC = " на сайте объявлений Ильбо";
 
-    public function getDataSet() {
-        return "123";
+    public function getDataSet($mark) {
+        return $mark;
     }
     
     // --- Замена тегов в строке и склонение их по указанному роду
