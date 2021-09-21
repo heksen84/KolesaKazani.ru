@@ -52,8 +52,8 @@
 
   <div class="container-fluid mycontainer">
 
-        <div title="Закрыть страницу" class="mt-1">        
-          <a href="/" class="close-link">закрыть страницу</a>
+        <div class="mt-1">        
+          <a href="/" class="close-link">назад</a>
         </div>
         
         <!--<h1 id="title" class="mt-3">{{ $h1 }}</h1>-->
