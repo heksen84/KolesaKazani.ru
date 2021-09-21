@@ -109,14 +109,14 @@
     <div class="row" style="margin: -5px 0px 0px 17px">
       @for($i=0; $i<24; $i++)      
       <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-2">       
-        <a href="/cars/{{strtolower($car_mark[$i]->name)}}" class="blue link">{{ $car_mark[$i]->name }}</a>            
+        <a href="/cars/{{mb_strtolower($car_mark[$i]->name)}}" class="blue link">{{ $car_mark[$i]->name }}</a>            
       </div>
       @endfor
     </div>
     <div class="row hide" style="margin: 0px 0px 0px 17px">
       @for($i=24; $i<count($car_mark); $i++)      
       <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-2">       
-        <a href="/cars/{{strtolower($car_mark[$i]->name)}}" class="blue link">{{ $car_mark[$i]->name }}</a>            
+        <a href="/cars/{{mb_strtolower($car_mark[$i]->name)}}" class="blue link">{{ $car_mark[$i]->name }}</a>            
       </div>
       @endfor
     </div>        

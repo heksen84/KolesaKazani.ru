@@ -4,18 +4,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 use App\Helpers\Common;
-use App\Helpers\Petrovich;
 use App\Categories;
-use App\SubCats;
-use App\Regions;
-use App\Places;
+use App\CarMark;
+use App\CarModel;
 
-class ResultsController extends Controller {
 
-    const FULL_SITE_DESC = " на сайте объявлений Ильбо";
+class ResultsController extends Controller {    
 
     public function getDataSet($mark) {
-        return $mark;
+        $set = CarModel::select("car_model.name")->join("car_mark", "car_mark.id", "=", "car_model.mark_id" )->whereRaw("car_mark.name = '".$mark."'")->get();
+        return $set;
     }
     
     // --- Замена тегов в строке и склонение их по указанному роду
