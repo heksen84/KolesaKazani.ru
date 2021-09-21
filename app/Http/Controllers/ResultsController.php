@@ -13,6 +13,10 @@ use App\Places;
 class ResultsController extends Controller {
 
     const FULL_SITE_DESC = " на сайте объявлений Ильбо";
+
+    public function getDataSet() {
+        return "123";
+    }
     
     // --- Замена тегов в строке и склонение их по указанному роду
     private function ReplaceTagsAndSklonCategoryItem($title, $locationName, $category_name, $gender, $optype_on) {
