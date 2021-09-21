@@ -53,18 +53,12 @@
   <div class="container-fluid mycontainer">
 
         <div title="Закрыть страницу" class="mt-1">        
-          @if (!$region && !$city)
-            <a href="/" class="close-link">закрыть страницу</a>
-          @elseif ($region && !$city)    
-            <a href="/{{$region}}" class="close-link">закрыть страницу</a>    
-          @elseif ($region && $city)    
-            <a href="/{{$region}}/{{$city}}" class="close-link">закрыть страницу</a>    
-          @endif        
+          <a href="/" class="close-link">закрыть страницу</a>
         </div>
         
         <h1 id="title" class="mt-3">{{ $h1 }}</h1>
         
-        @if (count($items) === 0)
+        <!--@if (count($items) === 0)
           
           <h5>в категории ничего нет</h5>
 
@@ -85,7 +79,7 @@
           <a href="/podat-objavlenie" class="black" style="font-size:20px;letter-spacing:3px">подать объявление</a>
         </div>
 
-        @endif
+        @endif-->
           <div class="row">                                
 <!--            @if (count($items)>5)
               <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-right">
@@ -113,7 +107,7 @@
           </div>-->
 
             <!-- перебор массива объявлений -->
-            @foreach($items as $item)                                
+            <!--@foreach($items as $item)                                
               <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-2 item">
                 <a href="/objavlenie/show/{{ $item->url }}">
                   @if ($item->color)
@@ -138,10 +132,10 @@
                       </div>
                   </a>  
               </div>                
-            @endforeach
+            @endforeach-->
 
             <!-- РЕКЛАМА -->
-            @if (count($items)>5)
+            <!--@if (count($items)>5)
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-1">
               <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>    
               <ins class="adsbygoogle"
@@ -153,19 +147,15 @@
                 (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
             </div>
-            @endif
+            @endif-->
 
             <!-- навигация -->            
               <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">                  
                 <div class="pagination justify-content-center">
-                  {{ $items->links() }}                         
+                  
                 </div>
               </div>            
           </div>                                  	                
   </div>
-  <script type="text/javascript" src="{{ mix('js/manifest.js') }}"></script>
-  <script type="text/javascript" src="{{ mix('js/vendor.js') }}"></script>        
-  <script type="text/javascript" src="{{ mix('js/common.js') }}"></script>  
-  <script type="text/javascript" src="{{ mix('js/results.js') }}"></script> 
 </body>
 </html>
