@@ -291,9 +291,9 @@
 // ---------------------------
 // импорт модулей
 // ---------------------------
-import $ from "jquery";
+//import $ from "jquery";
 //import * as nsfwjs from "../lib/nsfwjs.min.js";
-import bootstrap from "bootstrap";
+//import bootstrap from "bootstrap";
 import transport from "./subcategories/transport"
 import realEstate from "./subcategories/realestate"
 import superInput from "./components/superInput"
