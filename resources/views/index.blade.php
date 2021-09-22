@@ -106,7 +106,7 @@
     </div>
   </div>  
   <br>
-    <div class="row" style="margin: -5px 0px 0px 17px">
+    <div class="row" style="margin: -15px 0px 0px 17px">
       @for($i=0; $i<24; $i++)      
       <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-2">       
         <a href="/cars/{{mb_strtolower($car_mark[$i]->name)}}" class="blue link">{{ $car_mark[$i]->name }}</a>            
