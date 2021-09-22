@@ -67,7 +67,7 @@
               @endforeach
             </select>
 
-            Год выпуска <input type="text" size=4></input>
+            Макс. год выпуска <input type="text" size=4></input>
             Макс. пробег (км) <input type="text" size=4></input>
             <br>
             <button class="btn btn-secondary btn-sm mt-2" style="width:100%">применить</button>
