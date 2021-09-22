@@ -17,7 +17,7 @@ class ResultsController extends Controller {
         
         return view("results")->with("models", $modelList)
         ->with("title", "Купить авто ".$mark." в Казани")
-        ->with("keywords", "sdfsdfsd")
+        ->with("keywords", "Казань, $mark, купить")
         ->with("description", "sdfsdfsd")
         ->with("h1", $mark)
         ->with("items", []);
