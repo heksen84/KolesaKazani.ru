@@ -52,8 +52,8 @@
 
   <div class="container-fluid mycontainer">
 
-        <div class="mt-1">        
-          <a href="/" class="close-link">x</a>
+        <div class="mt-1 text-right">
+          <a href="/" class="close-link">X</a>
         </div>
         
         <!--<h1 id="title" class="mt-3">{{ $h1 }}</h1>-->        
