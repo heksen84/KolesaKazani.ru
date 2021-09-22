@@ -50,16 +50,18 @@
     </script>
   </div>-->
 
-  <div class="container-fluid mycontainer">
-
-        <div class="mt-1 m-1 text-right">
-          <a href="/" class="close-link">X</a>
-        </div>
+  <div class="container-fluid mycontainer">        
         
         <!--<h1 id="title" class="mt-3">{{ $h1 }}</h1>-->        
 
+        <div class="text-right">
+          <a href="/" class="close-link">X</a>
+        </div>
+
+
         <div class="row">
-          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="border:1px solid rgb(200,200,200);background:yellow;padding:10px">
+          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="border:1px solid rgb(200,200,200);background:yellow;padding:10px">          
+
             <label>{{ $h1 }}</label>
             <select>
               @foreach($models as $model)        
