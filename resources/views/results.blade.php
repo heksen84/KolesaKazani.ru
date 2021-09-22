@@ -56,17 +56,18 @@
 
 
         <div class="form-group row">        
-          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="border:1px solid rgb(200,200,200);background:yellow;padding:5px">          
+          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 p-2" style="border:1px solid rgb(200,200,200);background:yellow">          
             <div class="text-right"><a href="/" onclick="window.history.go(-1); return false;" class="close-link" style="position:absolute;top:5px;right:10px">X</a></div>
 
-            <label>{{ $h1 }}</label>
+            <h1 style="font-size:19px">{{ $h1 }}</h1>
+            Модель
             <select>
               @foreach($models as $model)        
                 <option>{{ $model->name }}</<option>        
               @endforeach
             </select>
-
-            <button class="btn btn-outline-secondary btn-sm">Фильтр</button>
+            <br>
+            <button class="btn btn-secondary btn-sm mt-2" style="width:100%">Фильтр</button>
           </div>
         </div>
         
