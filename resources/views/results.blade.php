@@ -52,15 +52,12 @@
 
   <div class="container-fluid mycontainer">        
         
-        <!--<h1 id="title" class="mt-3">{{ $h1 }}</h1>-->        
-
-        <div class="text-right">
-          <a href="/" class="close-link">X</a>
-        </div>
+        <!--<h1 id="title" class="mt-3">{{ $h1 }}</h1>-->                
 
 
-        <div class="row">
-          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="border:1px solid rgb(200,200,200);background:yellow;padding:10px">          
+        <div class="form-group row">        
+          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="border:1px solid rgb(200,200,200);background:yellow;padding:5px">          
+            <div class="text-right"><a href="/" class="close-link" style="position:absolute;top:5px;right:10px">X</a></div>
 
             <label>{{ $h1 }}</label>
             <select>
