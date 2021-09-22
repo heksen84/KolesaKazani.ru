@@ -57,7 +57,7 @@
 
         <div class="form-group row">        
           <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="border:1px solid rgb(200,200,200);background:yellow;padding:5px">          
-            <div class="text-right"><a href="/" class="close-link" style="position:absolute;top:5px;right:10px">X</a></div>
+            <div class="text-right"><a href="/" onclick="window.history.go(-1); return false;" class="close-link" style="position:absolute;top:5px;right:10px">X</a></div>
 
             <label>{{ $h1 }}</label>
             <select>
