@@ -66,6 +66,9 @@
                 <option>{{ $model->name }}</<option>        
               @endforeach
             </select>
+
+            Год выпуска <input type="text" size=4></input>
+            Пробег (км) <input type="text" size=4></input>
             <br>
             <button class="btn btn-secondary btn-sm mt-2" style="width:100%">применить</button>
           </div>
