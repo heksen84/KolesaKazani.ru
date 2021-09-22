@@ -67,7 +67,7 @@
               @endforeach
             </select>
             <br>
-            <button class="btn btn-secondary btn-sm mt-2" style="width:100%">Фильтр</button>
+            <button class="btn btn-secondary btn-sm mt-2" style="width:100%">применить</button>
           </div>
         </div>
         
