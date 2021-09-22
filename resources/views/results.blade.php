@@ -53,18 +53,23 @@
   <div class="container-fluid mycontainer">
 
         <div class="mt-1">        
-          <a href="/" class="close-link">назад</a>
+          <a href="/" class="close-link">x</a>
         </div>
         
-        <!--<h1 id="title" class="mt-3">{{ $h1 }}</h1>-->
-        <br>
+        <!--<h1 id="title" class="mt-3">{{ $h1 }}</h1>-->        
 
-        <label>{{ $h1 }}</label>
-        <select>
-        @foreach($models as $model)        
-        <option>{{ $model->name }}</<option>        
-        @endforeach
-        </select>
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" style="border:1px solid rgb(200,200,200);background:yellow;padding:10px">
+            <label>{{ $h1 }}</label>
+            <select>
+              @foreach($models as $model)        
+                <option>{{ $model->name }}</<option>        
+              @endforeach
+            </select>
+
+            <button class="btn btn-outline-secondary btn-sm">Фильтр</button>
+          </div>
+        </div>
         
         <!--@if (count($items) === 0)
           
