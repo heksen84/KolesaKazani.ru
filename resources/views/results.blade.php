@@ -52,7 +52,7 @@
 
   <div class="container-fluid mycontainer">
 
-        <div class="mt-1 text-right">
+        <div class="mt-1 m-1 text-right">
           <a href="/" class="close-link">X</a>
         </div>
         
