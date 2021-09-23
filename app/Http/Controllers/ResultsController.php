@@ -11,7 +11,7 @@ use App\CarModel;
 
 class ResultsController extends Controller {    
 
-    public function getDataSet($mark) {
+    public function getCarsMarks($mark) {
         
         $modelList = CarModel::select("car_model.name")->join("car_mark", "car_mark.id", "=", "car_model.mark_id" )->whereRaw("car_mark.name = '".$mark."'")->get();
         
@@ -21,6 +21,10 @@ class ResultsController extends Controller {
         ->with("description", "sdfsdfsd")
         ->with("h1", $mark)
         ->with("items", []);
+    }
+
+    public function getCarsModels($mark,$model) {        
+     return "123";
     }
     
     // --- Замена тегов в строке и склонение их по указанному роду

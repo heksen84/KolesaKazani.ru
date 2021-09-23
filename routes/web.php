@@ -66,4 +66,5 @@ Route::get("/", "IndexController@ShowIndexPage");
 Route::get("/home", "HomeController@ShowHomePage");
 
 // Результаты
-Route::get("/cars/{mark}", "ResultsController@getDataSet");
+Route::get("/cars/{mark}", "ResultsController@getCarsMarks");
+Route::get("/cars/{mark}/{model}", "ResultsController@getCarsModels");
