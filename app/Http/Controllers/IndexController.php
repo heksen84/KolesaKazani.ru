@@ -1,4 +1,15 @@
 <?php
+/**
+ * @OA\Info(title="My First API", version="0.1")
+ */
+ 
+/**
+ * @OA\Get(
+ *     path="/api/resource.json",
+ *     @OA\Response(response="200", description="An example resource")
+ * )
+ */
+
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -9,6 +20,11 @@ use App\Categories;
 use DB;
 
 class IndexController extends Controller {
+
+
+    public function __construct(){
+//        $this->middleware('role:admin|author');
+    }
 	
 
 	// SELECT * FROM mytable WHERE id IN (1,2,3,4) ORDER BY FIELD(id,3,2,1,4);
@@ -16,6 +32,33 @@ class IndexController extends Controller {
 	// ------------------------------------------
 	// Базовая функция для главной страницы		
 	// ------------------------------------------
+
+ /**
+     * @OA\Info(
+     *      version="1.0.0",
+     *      title="Laravel OpenApi Demo Documentation",
+     *      description="L5 Swagger OpenApi description",
+     *      @OA\Contact(
+     *          email="admin@admin.com"
+     *      ),
+     *      @OA\License(
+     *          name="Apache 2.0",
+     *          url="http://www.apache.org/licenses/LICENSE-2.0.html"
+     *      )
+     * )
+     *
+     * @OA\Server(
+     *      url=L5_SWAGGER_CONST_HOST,
+     *      description="Demo API Server"
+     * )
+
+     *
+     * @OA\Tag(
+     *     name="Projects",
+     *     description="API Endpoints of Projects"
+     * )
+     */
+
     public function ShowIndexPage(Request $request) {												
 		return view("index")
 		->with("title", "КолёсаКазани - продажа авто в Казани")

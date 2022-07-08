@@ -106,25 +106,14 @@
     </div>
   </div>  
   <br>
-    <div class="row" style="margin: -15px 0px 0px 17px">
-      @for($i=0; $i<24; $i++)      
-      <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-2">       
-        <a href="/cars/{{mb_strtolower($car_mark[$i]->name)}}" class="blue link">{{ $car_mark[$i]->name }}</a>            
-      </div>
-      @endfor
+  
+  <div class="row" style="margin: -15px 0px 0px 17px">
+    @for($i=0; $i<count($car_mark); $i++)      
+    <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-2">       
+      <a href="/cars/{{mb_strtolower($car_mark[$i]->name)}}" class="blue link">{{ $car_mark[$i]->name }}</a>            
     </div>
-    <div class="row hide" style="margin: 0px 0px 0px 17px">
-      @for($i=24; $i<count($car_mark); $i++)      
-      <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-2">       
-        <a href="/cars/{{mb_strtolower($car_mark[$i]->name)}}" class="blue link">{{ $car_mark[$i]->name }}</a>            
-      </div>
-      @endfor
-    </div>        
-    <div class="row mt-3">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 center"> 
-        <div class="black" style="cursor:default" onclick="showAll()" title="показать все марки тачек" id="showAll">показать все</div>
-      </div>
-    </div>
+    @endfor
+  </div>  
 
   <div class="text-center m-4 ">
     <a href="/podat-objavlenie" class="black" style="font-size:22px;letter-spacing:4px;font-weight:300">продать авто</a>
